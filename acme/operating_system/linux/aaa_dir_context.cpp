@@ -301,7 +301,7 @@ namespace linux
       else
       {
 
-         ::file::patha stra;
+         ::file::path_array stra;
 
          ::dir::ls(stra, listing.m_pathFinal);
 
@@ -502,7 +502,7 @@ pacmedir->is(path))
 
       }
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       pcsz.ascendants_path(stra);
 

@@ -57,7 +57,7 @@ namespace dynamic_source
       void Unload();
 
 
-      //virtual ::aura::application * get_application() const override;
+      //virtual ::aura::application * get_app() const override;
 
 
    };

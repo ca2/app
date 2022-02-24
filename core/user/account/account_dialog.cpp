@@ -315,7 +315,7 @@ namespace account
       if((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::application) papp = puiParent->get_application();
+         __pointer(::application) papp = puiParent->get_app();
 
          if(papp != nullptr)
          {
@@ -446,7 +446,7 @@ namespace account
 
       __pointer(::core::session) psession = get_session();
 
-      __pointer(::core::application) papplication = get_application();
+      __pointer(::core::application) papp = get_app();
 
       if(pcredentials->m_strTitle == "ca2")
       {

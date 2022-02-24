@@ -11,7 +11,7 @@ namespace file
    public:
 
 
-      __pointer(::file::patha)      m_ppathaSearch;
+      __pointer(::file::path_array)      m_ppathaSearch;
       __pointer(bool_array)         m_pbaRecursive;
       string_array                  m_straFilter;
       ::file::listing               m_listing;
@@ -27,7 +27,7 @@ namespace file
 
       // reference
       virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive);
-      virtual void add_search(const ::file::patha & pathaSearchFolder, const bool_array & baRecursive);
+      virtual void add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive);
       virtual void add_filter(string_array & stra);
       virtual ::count get_file_count();
       virtual void file_at(::index i, string & str);

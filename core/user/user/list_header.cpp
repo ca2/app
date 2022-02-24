@@ -73,7 +73,7 @@ namespace user
 
       string str;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       str = plist->_001GetColumnText(ItemToColumnKey(iColumn));
 
@@ -400,11 +400,11 @@ namespace user
 
          }
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         papplication->data_set(datakey, iaWidth);
+         papp->data_set(datakey, iaWidth);
 
-         //if (!papplication->data_set(datakey, iaWidth))
+         //if (!papp->data_set(datakey, iaWidth))
          //{
 
          //   return false;
@@ -415,9 +415,9 @@ namespace user
       else
       {
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         if (papplication->data_get(datakey, iaWidth))
+         if (papp->data_get(datakey, iaWidth))
          {
 
             ::count c = minimum(iaWidth.get_count(), m_plistctrlinterface->_001GetColumnCount());

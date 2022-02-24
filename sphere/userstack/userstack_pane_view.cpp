@@ -53,30 +53,30 @@ namespace userstack
       pframe->m_ppaneview = this;
 
 
-      papplication->m_ppaneview = this;
+      papp->m_ppaneview = this;
 
 
 
       add_tab("menu", CONTEXT_MENU_IMPACT);
 
-      for(i32 i = 0; i < papplication->m_varTopicQuery["app"].stra().get_count(); i++)
+      for(i32 i = 0; i < papp->m_varTopicQuery["app"].stra().get_count(); i++)
       {
 
-         string strId = papplication->m_varTopicQuery["app"].stra()[i];
+         string strId = papp->m_varTopicQuery["app"].stra()[i];
 
          if(i == 0 && strId == "app/sphere/userstack")
             continue;
 
          add_tab(strId, "app:" + strId);
 
-         set_current_tab_by_id("app:" + papplication->m_varTopicQuery["app"].stra()[i]);
+         set_current_tab_by_id("app:" + papp->m_varTopicQuery["app"].stra()[i]);
 
       }
 
-      for (i32 i = 0; i < papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
+      for (i32 i = 0; i < papp->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
       {
 
-         set_current_tab_by_id("app:" + papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
+         set_current_tab_by_id("app:" + papp->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
 
       }
 
@@ -103,8 +103,8 @@ namespace userstack
 
          if(psession->appptra().lookup("application:" + strId, pappTab))
          {
-            psession->m_papplicationCurrent = pappTab;
-            //psession->m_papplicationCurrent = pappTab;
+            psession->m_pappCurrent = pappTab;
+            //psession->m_pappCurrent = pappTab;
          }
          /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
@@ -177,31 +177,31 @@ namespace userstack
          if(!psession->appptra().lookup("application:" + strId, pappTab))
          {
 
-            application_bias * papplicationbias = new application_bias;
-            papplicationbias->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+            application_bias * pappbias = new application_bias;
+            pappbias->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
             __pointer(::create) pcreate(e_create);
-            pcreate->m_papplicationbias = papplicationbias;
+            pcreate->m_pappbias = pappbias;
             pcreate->m_pcommandline->_001ParseCommandFork(strId);
 
 
             string str;
 
-            if(papplication->has_property(strId))
+            if(papp->has_property(strId))
             {
 
-               pcreate->m_pcommandline->m_varQuery.propset().merge(papplication->m_varTopicQuery[(const ::string &) strId].propset());
+               pcreate->m_pcommandline->m_varQuery.propset().merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
 
-               if(papplication->m_varTopicQuery[(const ::string &) strId].has_property("file"))
+               if(papp->m_varTopicQuery[(const ::string &) strId].has_property("file"))
                {
 
-                  pcreate->m_pcommandline->m_varFile = papplication->m_varTopicQuery[(const ::string &) strId]["file"];
+                  pcreate->m_pcommandline->m_varFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
 
                }
 
             }
 
-            str = __string((iptr) pcreate->m_papplicationbias->m_puserinteractionParent);
+            str = __string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
 
             pcreate->m_pcommandline->m_eventReady.ResetEvent();
 
@@ -211,9 +211,9 @@ namespace userstack
 
          }
 
-         __pointer(::aura::application) pappCurrent = psession->m_papplicationCurrent;
+         __pointer(::aura::application) pappCurrent = psession->m_pappCurrent;
 
-         papplication->appptra_add(pappCurrent);
+         papp->appptra_add(pappCurrent);
 
          string strTypeId = typeid(*pappCurrent.m_p).name();
 
@@ -221,7 +221,7 @@ namespace userstack
 
          ::user::tab_pane * ppane = (::user::tab_pane *) get_pane_by_id(pimpactdata->m_atom);
 
-         pappCurrent = psession->m_papplicationCurrent;
+         pappCurrent = psession->m_pappCurrent;
 
          if(Sess(pappCurrent).file().exists(strIcon))
          {
@@ -293,7 +293,7 @@ namespace userstack
    void pane_view::check_menu_dir(const ::file::path & psz)
    {
 
-      ::file::listing straPath(get_application());
+      ::file::listing straPath(get_app());
 
       straPath.rls(pcontext->m_papexcontext->dir().commonprograms());
 
@@ -379,7 +379,7 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      ::file::listing listing(get_application());
+      ::file::listing listing(get_app());
 
 //      wchar_t buf[4096];
 //      __memset(buf, 0, sizeof(buf));
@@ -490,7 +490,7 @@ namespace userstack
       {
          ::user::menu menu(this);
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
-         ::user::menu menuPopup(get_application(), menu.GetSubMenu(0));
+         ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
          get_parent_frame()->set_active_view(this);
          menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, get_parent_frame());
       }*/

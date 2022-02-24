@@ -1504,7 +1504,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
       else
       {
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_application(),nullptr);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_app(),nullptr);
 
       }
 
@@ -1584,7 +1584,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    //::html::html * application::create_html()
    //{
 
-   //   return new ::html::html(get_application());
+   //   return new ::html::html(get_app());
 
    //}
 

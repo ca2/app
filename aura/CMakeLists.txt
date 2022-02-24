@@ -266,7 +266,7 @@ list(APPEND library_source
    operating_system/file.h
    operating_system/graphics.h
    operating_system/http.cpp
-   operating_system/operating_system.h
+   #operating_system/operating_system.h
    #operating_system/os_windowing2.h
    #operating_system/process.h
    operating_system/text.h
@@ -279,6 +279,8 @@ list(APPEND library_source
    platform/_platform.h
    platform/application.cpp
    platform/application.h
+   platform/aura.h
+   platform/aura.cpp
    platform/aura_mq.cpp
    platform/context.cpp
    platform/context.h
@@ -293,9 +295,9 @@ list(APPEND library_source
    platform/session.h
    platform/shell_open.cpp
    platform/shell_open.h
-   platform/static_start.cpp
-   platform/static_start.h
-   platform/static_start_aura.cpp
+   #platform/static_start.cpp
+   #platform/static_start.h
+   #platform/static_start_aura.cpp
    platform/system.cpp
    platform/system.h
    platform/theme.cpp

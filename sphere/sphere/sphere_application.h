@@ -23,7 +23,7 @@ namespace sphere
 
       bool                                         m_bShowPlatform;
 
-      __pointer(::aura::application)                      m_papplicationCurrent;
+      __pointer(::aura::application)                      m_pappCurrent;
       
       __pointer(::user::single_document_template)         m_ptemplate_main;
       __pointer(::user::single_document_template)         m_ptemplate_pane;
@@ -123,7 +123,7 @@ namespace sphere
 
       //void on_request(::create * pcreate) override;
 
-      __pointer(::aura::application) application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * papplicationbias = nullptr);
+      __pointer(::aura::application) application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pappbias = nullptr);
 
       __pointer(::aura::application) get_current_application();
 

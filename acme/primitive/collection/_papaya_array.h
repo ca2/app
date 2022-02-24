@@ -599,22 +599,16 @@ namespace papaya
       inline ::index add(string_array & stra, const ::property & property);
       inline ::index add(string_array & stra, const ::property_set & propertyset);
 
-      inline ::index add(::file::patha & patha, const ::string & str);
-
-
-
+      inline ::index add(::file::path_array & patha, const ::string & str);
 
       inline ::index add(string_array & stra, const string_array & straSource);
 
-      inline ::index add(::file::patha & patha, const string_array & stra);
-      inline ::index add(::file::patha & patha, const ::file::patha & pathaSrc);
-      inline ::index add(::file::patha & patha, const ::file::listing & listing);
-
-
+      inline ::index add(::file::path_array & patha, const string_array & stra);
+      inline ::index add(::file::path_array & patha, const ::file::path_array & pathaSrc);
+      inline ::index add(::file::path_array & patha, const ::file::listing & listing);
 
       template < typename T >
       inline bool are_all_elements_equal(const __pointer_array(T) & a1, const __pointer_array(T) & a2);
-
 
       // t1 candidate bigger
       template < typename T1, typename  T2>

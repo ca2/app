@@ -591,4 +591,12 @@ inline enum_element item_element(const ::item * pitem)
 }
 
 
+inline ::index item_index(const ::item * pitem)
+{
+
+   return ::is_set(pitem) ? pitem->item_index() : -1;
+
+}
+
+
 

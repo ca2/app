@@ -28,7 +28,7 @@
 //      catch(...)
 //      {
 //
-//         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
+//         TRACE("Could not create .desktop shortcut file for the Linux papp for the current user.");
 //
 //      }
 //

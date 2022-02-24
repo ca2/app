@@ -34,9 +34,9 @@ service* service_handler::get_service()
 
       }
 
-      __pointer(::application) papplication = get_application();
+      __pointer(::application) papp = get_app();
 
-      auto pservice = papplication->create_service();
+      auto pservice = papp->create_service();
 
       if (!pservice)
       {
@@ -45,8 +45,8 @@ service* service_handler::get_service()
 
       }
 
-      //auto estatus = pservice->initialize(papplication);
-      pservice->initialize(papplication);
+      //auto estatus = pservice->initialize(papp);
+      pservice->initialize(papp);
 
       //if (!estatus)
       //{

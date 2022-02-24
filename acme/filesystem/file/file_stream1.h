@@ -12,14 +12,14 @@ namespace file
 
 
       file_stream();
-      file_stream(const char * pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_application());
+      file_stream(const char * pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_app());
 
       file_stream(file * preader);
 //      file_stream(const file_stream & preader);
       virtual ~file_stream();
 
 
-      void open(const ::file::path & pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_application());
+      void open(const ::file::path & pszFileName,u32 nOpenFlags,::acme::application * papp = ::get_app());
 
 
 

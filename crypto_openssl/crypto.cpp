@@ -1082,7 +1082,7 @@ namespace crypto_openssl
 //               ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 //
 //
-//         return __new(::crypto::rsa(get_application(), provider->CreateKeyPair(1024)));
+//         return __new(::crypto::rsa(get_app(), provider->CreateKeyPair(1024)));
 //
 //      }
 //

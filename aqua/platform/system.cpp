@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
 //#endif
@@ -209,7 +209,7 @@ namespace aqua
       try
       {
 
-         auto psetup = ::static_setup::get_first(::static_setup::flag_multimedia);
+         auto psetup = ::system_setup::get_first(::system_setup::flag_multimedia);
 
          if (psetup)
          {
@@ -336,6 +336,14 @@ namespace aqua
    {
 
       return !m_bAudio.undefined() && m_bAudio.is_true();
+
+   }
+
+   void initialize_system()
+   {
+
+      ::factory::add_factory_item< ::aqua::system, class ::system >();
+
 
    }
 

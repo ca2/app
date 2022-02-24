@@ -121,7 +121,7 @@
 //
 //         pWatch->m_bRecursive = true;
 //
-//         ::file::patha stra;
+//         ::file::path_array stra;
 //
 //         dir::rls_dir(stra, directory);
 //

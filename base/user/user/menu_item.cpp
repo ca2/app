@@ -101,7 +101,7 @@ namespace user
 
       ::count iItemCount = pnode->get_children_count();
 
-      __pointer(::base::application) papplication = get_application();
+      __pointer(::base::application) papp = get_app();
 
       m_bPopup = pnode->get_children_count() > 0 && pnode->get_name() == "menubar";
 

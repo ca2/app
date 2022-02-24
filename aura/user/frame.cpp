@@ -70,9 +70,9 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      papplication->_001TryCloseApplication();
+      papp->_001TryCloseApplication();
 
       if (pmessage != nullptr)
       {

@@ -81,11 +81,11 @@ namespace experience
 
          {
 
-            auto papplication = pobject->get_application();
+            auto papp = pobject->get_app();
 
             {
 
-               auto strExperience = papplication->preferred_experience();
+               auto strExperience = papp->m_papplication->preferred_experience();
 
                straExperience.add(strExperience);
 
@@ -93,7 +93,7 @@ namespace experience
 
             {
 
-               auto strExperience = papplication->payload("experience");
+               auto strExperience = papp->payload("experience");
 
                straExperience.add(strExperience);
 
@@ -105,7 +105,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papp->m_papplication->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -113,7 +113,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papp->m_papplication->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -121,7 +121,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papp->m_papplication->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 

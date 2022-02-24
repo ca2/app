@@ -122,13 +122,13 @@ bool db_server::initialize()
 
 pacmedir->system() / "database.sqlite";
 
-   if (papplication->is_system())
+   if (papp->is_system())
    {
 
       str = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
    }
-   else if (papplication->is_session())
+   else if (papp->is_session())
    {
 
       str = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";

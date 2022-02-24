@@ -22,14 +22,14 @@ namespace android
    }
 
 
-   void copydesk::get_filea(::file::patha & patha)
+   void copydesk::get_filea(::file::path_array & patha)
    {
 
       patha.add("this_file_does_not_exist_please_implement_android_copydesk_get_filea.txt");
 
    }
 
-   void copydesk::set_filea(const ::file::patha & patha)
+   void copydesk::set_filea(const ::file::path_array & patha)
    {
 
       throw ::exception(todo);

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 //void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);

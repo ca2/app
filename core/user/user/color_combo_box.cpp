@@ -113,7 +113,7 @@ namespace user
 
                puser->will_use_view_hint(COLORSEL_IMPACT);
 
-               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
+               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
                m_pimpact = m_pdocument->get_type_impact < ::userex::color_view >();
 

@@ -41,16 +41,16 @@
 //
 //      }
 //
-//      auto papplicationStartup = psystem->new_application(strAppId);
+//      auto pappStartup = psystem->new_application(strAppId);
 //
-//      if (!papplicationStartup)
+//      if (!pappStartup)
 //      {
 //
 //         throw ::exception(error_resource);
 //
 //      }
 //
-//      psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
+//      psystem->__refer(psystem->m_pappStartup, pappStartup);
 //
 //      psystem->m_bConsole = false;
 //
@@ -100,11 +100,11 @@
 //
 //      m_estatus = (void) m_psystem->inline_init();
 //
-//      auto papp = m_psystem->m_papexsystem->m_papplicationStartup;
+//      auto papp = m_psystem->m_papexsystem->m_pappStartup;
 //
-//      __refer(m_psystem->m_papexsystem->m_papplicationMain, m_psystem->m_papexsystem->m_papplicationStartup.get());
+//      __refer(m_psystem->m_papexsystem->m_pappMain, m_psystem->m_papexsystem->m_pappStartup.get());
 //
-//      __unbind(m_psystem->m_papexsystem, m_papplicationStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(m_psystem, ""));
+//      __unbind(m_psystem->m_papexsystem, m_pappStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(m_psystem, ""));
 //
 //   }
 //

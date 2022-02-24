@@ -13,7 +13,7 @@ __FACTORY_EXPORT void library ## _factory(::factory::factory* pfactory);
 
 
 #define SETUP_FACTORY(library) \
-::static_setup m_setup_ ## library{ &library ## _factory, #library}
+::system_setup m_setup_ ## library{ &library ## _factory, #library}
 
 
 //class node_data_exchange;
@@ -22,7 +22,7 @@ __FACTORY_EXPORT void library ## _factory(::factory::factory* pfactory);
 //void apex_set_get_new_application(PFN_NEW_APEX_APPLICATION pnewapplication);
 
 
-class CLASS_DECL_ACME static_setup 
+class CLASS_DECL_ACME system_setup
 {
 public:
 
@@ -45,26 +45,26 @@ public:
 
    const char *                  m_pszName;
    enum_flag                     m_eflag;
-   static_setup*                 m_ppropertysetupNext;
+   system_setup*                 m_ppropertysetupNext;
    PFN_factory                   m_pfnFactory;
 
 
-   static static_setup *         s_psetupList;
+   static system_setup *         s_psetupList;
 
 
-   static_setup(::static_setup::enum_flag eflag, const char * pszName);
-   static_setup(PFN_factory pfnFactory, const char* pszName);
+   system_setup(::system_setup::enum_flag eflag, const char * pszName);
+   system_setup(PFN_factory pfnFactory, const char* pszName);
 
 
    void construct();
 
 
    inline bool should_install() { return !has_flag(flag_do_not_install); }
-   [[nodiscard]] bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
+   [[nodiscard]] bool has_flag(::system_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static static_setup* get_last(::static_setup::enum_flag eflag, const char* pszName = nullptr);
-   static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
+   static system_setup* get_last(::system_setup::enum_flag eflag, const char* pszName = nullptr);
+   static system_setup* get_first(::system_setup::enum_flag eflag, const char* pszName = nullptr);
    static PFN_factory get_factory_function(const char* pszName = nullptr);
 
 
@@ -83,7 +83,7 @@ public:
 
 template < typename LIBRARY >
 class static_library_factory :
-   public static_setup
+   public system_setup
 {
 public:
 
@@ -92,7 +92,7 @@ public:
 
 
    explicit static_library_factory(const char * pszName = "") :
-      static_setup(flag_library, pszName)
+      system_setup(flag_library, pszName)
    {
 
 
@@ -104,7 +104,7 @@ public:
 
 template < typename OBJECT >
 class static_object_factory :
-   public static_setup
+   public system_setup
 {
 public:
 
@@ -112,8 +112,8 @@ public:
    __pointer(::element) _create_element() override { return __new(OBJECT); }
 
 
-   explicit static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
-      static_setup(eflag, pszName)
+   explicit static_object_factory(::system_setup::enum_flag eflag, const char* pszName = "") :
+      system_setup(eflag, pszName)
    {
 
    }
@@ -131,11 +131,11 @@ public:
 
 
 #define __namespace_system_factory(SYSTEM) \
-__namespace_object_factory(SYSTEM,:: static_setup::flag_system)
+__namespace_object_factory(SYSTEM,:: system_setup::flag_system)
 
 
 #define __namespace_session_factory(SESSION) \
-__namespace_object_factory(SESSION,:: static_setup::flag_session)
+__namespace_object_factory(SESSION,:: system_setup::flag_session)
 
 
 
@@ -144,7 +144,7 @@ __namespace_object_factory(SESSION,:: static_setup::flag_session)
 
 template < typename APPLICATION >
 class static_application_factory :
-   public static_setup
+   public system_setup
 {
 public:
 
@@ -152,15 +152,15 @@ public:
    virtual __pointer(::element) _create_application_as_element() override
    {
 
-      auto papplication = __new(APPLICATION);
+      auto papp = __new(APPLICATION);
 
-      return papplication;
+      return papp;
 
    }
 
 
    static_application_factory(const char* pszName = "") :
-      static_setup(flag_application, pszName)
+      system_setup(flag_application, pszName)
    {
 
 

@@ -117,9 +117,9 @@ CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 //
 //}
 //
-//#undef papplication
+//#undef papp
 //
-//::winrt::Windows::UI::Xaml::papplication^ get_xaml_app();
+//::winrt::Windows::UI::Xaml::papp^ get_xaml_app();
 //
 //
 //

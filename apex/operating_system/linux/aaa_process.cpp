@@ -468,7 +468,7 @@ int_array module_path_get_pid(const char * pszPath)
 
    int_array ia;
 
-   ::file::patha stra;
+   ::file::path_array stra;
 
    ::dir::ls_dir(stra, "/proc/");
 
@@ -506,7 +506,7 @@ int_array module_path_get_pid(const char * pszPath)
 //
 //   id_array ia;
 //
-//   ::file::patha stra;
+//   ::file::path_array stra;
 //
 //   ::dir::ls_dir(stra, "/proc/");
 //

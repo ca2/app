@@ -724,7 +724,7 @@ namespace os
       m_rectangle.top = m_point.y;
       m_rectangle.bottom = m_point.y + m_size.cy;
 
-      m_pimage = create_image({get_application()->create_new,  this});
+      m_pimage = create_image({get_app()->create_new,  this});
       m_pimage = create_image({m_size.cx,  m_size.cy});
 
       m_xlib.create(m_window, cx, cy);

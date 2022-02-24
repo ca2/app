@@ -206,7 +206,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::parallelization::set_finish(::get_application());
+//   ::parallelization::set_finish(::get_app());
 //
 //#endif
 //

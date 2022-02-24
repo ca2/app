@@ -99,9 +99,9 @@ bool simple_printer_list_view::on_click(::item * pitem)
    pprinttask.create(this);
    pprinttask->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   pprinttask->m_pprinter = papplication->get_printer(item.m_strText);
+   pprinttask->m_pprinter = papp->get_printer(item.m_strText);
    pprinttask->m_pinteraction = m_pimpact;
 
    pprinttask->branch();

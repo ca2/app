@@ -119,7 +119,7 @@ namespace filehandler
 
 
       color32_t color32;
-      __pointer(::aura::application) papp = pview->get_application();
+      __pointer(::aura::application) papp = pview->get_app();
       
       bool bHover = pview->m_pitemHover == m_iIndex;
 

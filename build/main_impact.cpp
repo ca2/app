@@ -68,7 +68,7 @@ namespace app_core_build
 
       int iPane;
 
-      if (m_papplication->m_bMultiverseChat)
+      if (m_papp->m_bMultiverseChat)
       {
 
          SetPaneCount(2);

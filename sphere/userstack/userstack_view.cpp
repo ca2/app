@@ -136,7 +136,7 @@ namespace userstack
 
 
       string strImageDir = pcontext->m_papexcontext->dir().appdata() / "image";
-      m_straImagePath.m_pprovider = get_application();
+      m_straImagePath.m_pprovider = get_app();
       m_straImagePath.rls(strImageDir);
 
       for(i32 i = 0; i < m_straImagePath.get_size();)

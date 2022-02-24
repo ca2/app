@@ -77,7 +77,7 @@ CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_folder(string &
    }
 
 
-   ::file::patha patha;
+   ::file::path_array patha;
 
    ::file::path path(strPath);
 
@@ -564,7 +564,7 @@ namespace universal_windows
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////      if (!::Locknative_buffer((HANDLE)m_hnative_buffer, LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-      ////       WinFileException::ThrowOsError(get_application(), (::i32)::get_last_error());
+      ////       WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::unlock(filesize dwPos,filesize dwCount)
@@ -573,7 +573,7 @@ namespace universal_windows
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
       ////  if (!::Unlocknative_buffer((HANDLE)m_hnative_buffer,  LODWORD(dwPos), HIDWORD(dwPos), LODWORD(dwCount), HIDWORD(dwCount)))
-      ////   WinFileException::ThrowOsError(get_application(), (::i32)::get_last_error());
+      ////   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::set_size(filesize dwNewLen)
@@ -584,7 +584,7 @@ namespace universal_windows
       //seek((::i32)dwNewLen,(::enum_seek)::e_seek_set);
 
       //if(!::SetEndOfnative_buffer((HANDLE)m_hnative_buffer))
-      //   WinFileException::ThrowOsError(get_application(),(::i32)::get_last_error());
+      //   WinFileException::ThrowOsError(get_app(),(::i32)::get_last_error());
    }
 
 
@@ -620,7 +620,7 @@ namespace universal_windows
    {
    if (!::Movenative_buffer((char *)pszOldName, (char *)pszNewName))
 
-   WinFileException::ThrowOsError(get_application(), (::i32)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
 
    void native_buffer::erase(const char * pszfileName)
@@ -628,7 +628,7 @@ namespace universal_windows
    {
    if (!::Deletenative_buffer((char *)pszfileName))
 
-   WinFileException::ThrowOsError(get_application(), (::i32)::get_last_error());
+   WinFileException::ThrowOsError(get_app(), (::i32)::get_last_error());
    }
    */
 

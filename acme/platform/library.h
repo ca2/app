@@ -213,16 +213,6 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * p
 
 
 
-extern "C"
-typedef ::acme::library* NEW_LIBRARY();
-
-typedef NEW_LIBRARY* PFN_NEW_LIBRARY;
-
-
-
-typedef ::matter * NEW_MATTER();
-
-typedef NEW_MATTER* PFN_NEW_MATTER;
 
 //
 //

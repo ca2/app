@@ -54,7 +54,7 @@ namespace browser
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;
-         get_application() = new SimpleApp();
+         get_app() = new SimpleApp();
 
          WCHAR szTempPath[MAX_PATH] = L"";
          GetTempPathW(_countof(szTempPath), szTempPath);
@@ -73,7 +73,7 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
 
          CefString(&settings.cache_path) = szRelative;
 
-         CefInitialize(mainargs, settings, get_application(), nullptr);
+         CefInitialize(mainargs, settings, get_app(), nullptr);
 
       }
 

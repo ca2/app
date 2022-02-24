@@ -323,7 +323,7 @@ namespace interprocess_communication
          {
 
             dispatch_message(::move(strMessage));
-            //get_application()->fork([this, prx, strMessage]()
+            //get_app()->fork([this, prx, strMessage]()
             //{
 
             //   if (m_preceiver != nullptr)

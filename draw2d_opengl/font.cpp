@@ -19,7 +19,7 @@ namespace draw2d_opengl
 
 
    //font::font(const font & font) :
-   //   ::object(font.get_application())
+   //   ::object(font.get_app())
    //{
 
    //   //m_pfont     = nullptr;

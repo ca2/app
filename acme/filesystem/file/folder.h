@@ -42,7 +42,7 @@ public:
    virtual bool is_compressed(const char* pszItem = nullptr);
 
 
-   virtual void extract_all(const char* pszTargetDir, ::file::patha* ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
+   virtual void extract_all(const char* pszTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 
 
    bool perform_file_listing(::file::listing& listing) override;

@@ -97,7 +97,7 @@ namespace user
    }
 
 
-   inline ::base::application* form_control::get_application() const
+   inline ::base::application* form_control::get_app() const
    {
       
       return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;

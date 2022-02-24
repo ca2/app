@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/acme.h"
 //#include "system_impl.h"
 #include "library.h"
 
@@ -637,7 +637,7 @@ namespace acme
    //   try
    //   {
 
-   //      auto psetup = ::static_setup::get_first(::static_setup::flag_application, pszAppId);
+   //      auto psetup = ::system_setup::get_first(::system_setup::flag_application, pszAppId);
 
    //      if (psetup)
    //      {

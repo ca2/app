@@ -193,9 +193,9 @@ namespace simpledb
 
          synchronouslock.unlock();
 
-         __pointer(::axis::application) papplication = get_application();
+         __pointer(::axis::application) papp = get_app();
 
-         papplication->assert_user_logged_in();
+         papp->assert_user_logged_in();
 
          synchronouslock.lock();
 

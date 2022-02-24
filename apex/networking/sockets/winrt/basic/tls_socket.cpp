@@ -7,7 +7,7 @@ namespace sockets
 
 
    tls_socket::tls_socket(::sockets::) :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

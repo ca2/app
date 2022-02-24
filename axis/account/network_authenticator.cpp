@@ -244,7 +244,7 @@ namespace account
 
       set["post"]["entered_user"] = puser->m_strLogin;
 
-      set["app"] = get_application();
+      set["app"] = get_app();
 
       set["user"] = puser;
 

@@ -131,12 +131,28 @@ CLASS_DECL_ACME void acme_ref();
 
 
 class system; // acme - cam
-class application; // apex - tbs
+class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
 
 
 
 namespace acme
 {
+
+
+   CLASS_DECL_ACME void increment_reference_count();
+   CLASS_DECL_ACME void decrement_reference_count();
+
+
+   class reference
+   {
+   public:
+
+
+      reference() { increment_reference_count(); }
+      ~reference() { decrement_reference_count(); }
+
+
+   };
 
 
    class node;
@@ -165,7 +181,15 @@ namespace acme
 
 
 } // namespace acme
-
+//class ____start
+//{
+//public:
+//
+//   ____start() {::acme::initialize();}
+//    ~____start() {::acme::finalize();}
+//
+//};
+//
 
 namespace apex
 {
@@ -257,6 +281,9 @@ namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace OPERATING_SYSTEM_NAMESPACE
+
+
+#define APPLICATION_CLASS app
 
 
 namespace windowing_x11
@@ -2074,6 +2101,13 @@ inline bool is_null(POINTER p)
 }
 
 
+template < typename CHAR_STRING >
+inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
+
+inline bool is_empty(const ansichar * p) { return is_string_empty(p); }
+inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
+inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
+
 
 
 template < a_pointer POINTER >
@@ -2377,7 +2411,7 @@ namespace file
    class path;
 
 
-   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > patha;
+   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > path_array;
 
 
    class file;
@@ -2635,6 +2669,9 @@ namespace acme
    class file;
 
 
+   mutex * get_global_mutex();
+
+
    namespace trace
    {
 
@@ -2721,7 +2758,7 @@ namespace html
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -3743,7 +3780,7 @@ CLASS_DECL_ACME::atom os_message_box(::object * pobject, const char * pszMessage
 
 #include "acme/primitive/primitive/traits.h"
 
-//#include "acme/static_setup.h"
+//#include "acme/system_setup.h"
 
 #include "acme/platform/string_exchange.h"
 
@@ -4318,7 +4355,7 @@ class wcsdup_array;
 #include "acme/platform/main.h"
 
 
-#include "acme/platform/acme_main_data.h"
+#include "acme/platform/acme_main_struct.h"
 
 
 CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation);
@@ -4403,6 +4440,13 @@ namespace acme
 class task_group;
 class task_tool;
 
+
+
+#include "acme/platform/app_core.h"
+
+
+
+#include "acme/platform/app.h"
 
 
 

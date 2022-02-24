@@ -220,7 +220,7 @@ namespace aura
 
          m_bRun = true;
 
-         m_pthread = ::fork(get_application(), [&]()
+         m_pthread = ::fork(get_app(), [&]()
          {
 
 

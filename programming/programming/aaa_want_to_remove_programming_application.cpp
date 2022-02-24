@@ -64,7 +64,7 @@ pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.c
 
          }
 
-         __pointer(object) p = lib->alloc(get_application(), "plugin", this);
+         __pointer(object) p = lib->alloc(get_app(), "plugin", this);
 
          if (p.is_null())
             return;

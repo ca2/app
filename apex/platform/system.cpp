@@ -3,11 +3,11 @@
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "acme/id.h"
 //#include "apex/operating_system/_node.h"
 #include "acme/platform/profiler.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "apex/id.h"
 #ifdef LINUX
 #include <unistd.h>
@@ -576,7 +576,7 @@ namespace apex
 
 #if !defined(ANDROID)
 
-      if (!m_papplicationStartup->is_service() || m_papplicationStartup->is_user_service())
+      if (!m_pappStartup->m_papplication->is_service() || m_pappStartup->m_papplication->is_user_service())
       {
 
          m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
@@ -718,7 +718,7 @@ namespace apex
 
       }
 
-      //string strAppId = m_papplicationStartup->m_strAppId;
+      //string strAppId = m_pappStartup->m_strAppId;
 
 
 #if !defined(_UWP)
@@ -1387,7 +1387,7 @@ pacmedir->create("/ca2core");
       {
 
          ///if (!
-         m_papexsession->begin_synchronously();
+         m_papexsession->branch_synchronously();
          //{
 
          //   output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -1562,9 +1562,10 @@ pacmedir->create("/ca2core");
 //   }
 //
 
-   void system::init_thread()
+   void system::init_task()
    {
 
+      call_init_system();
       //auto estatus = ([a-z0-9_]+)_factory();
 
       //if(!estatus)
@@ -1575,71 +1576,71 @@ pacmedir->create("/ca2core");
       //}
 
       //auto estatus =
-      process_init();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      if (m_psystemParent)
-      {
-
-         m_psystemParent->add_reference(this);
-
-      }
-
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      init1();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      init2();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-
-//      estatus = process_init();
+//      process_init();
 //
-//      if (!estatus)
+//      //if(!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      if (m_psystemParent)
 //      {
 //
-//         return estatus;
+//         m_psystemParent->add_reference(this);
 //
 //      }
-
-
-      //estatus = process_creation_requests();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return true;
+//
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //estatus =
+//      init1();
+//
+//      //if(!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //estatus =
+//      init2();
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//
+////      estatus = process_init();
+////
+////      if (!estatus)
+////      {
+////
+////         return estatus;
+////
+////      }
+//
+//
+//      //estatus = process_creation_requests();
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return true;
 
    }
 
@@ -1650,8 +1651,6 @@ pacmedir->create("/ca2core");
       //return true;
 
    }
-
-
 
 
    void system::post_creation_requests()
@@ -1673,7 +1672,7 @@ pacmedir->create("/ca2core");
    void system::post_initial_request()
    {
 
-      //auto papp = m_papplicationMain;
+      //auto papp = m_pappMain;
 
       //auto psession = m_papexsession;
 
@@ -1692,10 +1691,10 @@ pacmedir->create("/ca2core");
       if (strAppId.is_empty())
       {
 
-         if (m_papplicationStartup)
+         if (m_pappStartup)
          {
 
-            strAppId = m_papplicationStartup->m_strAppId;
+            strAppId = m_pappStartup->m_strAppId;
 
          }
 
@@ -1784,10 +1783,10 @@ pacmedir->create("/ca2core");
 
 #endif
 
-      //if (m_papplication)
+      //if (m_papp)
       //{
 
-      //   estatus = m_papplication->m_estatus;
+      //   estatus = m_papp->m_estatus;
 
       //}
 
@@ -1796,13 +1795,13 @@ pacmedir->create("/ca2core");
    }
 
 
-   void system::__thread_init()
+   void system::__task_init()
    {
 
       try
       {
 
-         ::apex::context::__thread_init();
+         ::apex::context::__task_init();
 
       }
       catch (exception & exception)
@@ -1821,10 +1820,10 @@ pacmedir->create("/ca2core");
    }
 
 
-   ::application* system::get_main_application()
+   ::app * system::get_main_app()
    {
 
-      return m_papplicationMain;
+      return m_pappMain;
 
    }
 
@@ -1842,22 +1841,29 @@ pacmedir->create("/ca2core");
 
       //}
 
-      auto papplicationStartup = new_application(m_strAppId);
-
-      //if (!papplicationStartup)
-      //{
-
-      //   return -1;
-
-      //}
-
-      __refer(m_papplicationStartup, papplicationStartup);
-
-      m_papplicationStartup->initialize(this);
-
-      m_papplicationStartup->get_property_set().merge(get_property_set());
-
-      set_main_struct(*m_papplicationStartup);
+//      ::app * pappStartup = ::app::g_p;
+//
+//      if(::is_null(pappStartup))
+//      {
+//
+//         pappStartup = new_app(m_strAppId);
+//
+//      }
+//
+//      //if (!pappStartup)
+//      //{
+//
+//      //   return -1;
+//
+//      //}
+//
+//      __refer(m_pappStartup, pappStartup);
+//
+//      m_pappStartup->initialize(this);
+//
+//      m_pappStartup->get_property_set().merge(get_property_set());
+//
+//      set_main_struct(*m_pappStartup);
 
       //return estatus;
 
@@ -1942,7 +1948,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   void system::term_thread()
+   void system::term_task()
    {
 
       try
@@ -1959,7 +1965,7 @@ pacmedir->create("/ca2core");
       try
       {
 
-         ::thread::term_thread();
+         ::thread::term_task();
 
       }
       catch(...)
@@ -2801,7 +2807,7 @@ pacmedir->create("/ca2core");
    void system::on_request(::create * pcreate)
    {
 
-      ::apex::session * psession = session();
+      ::apex::session * psession = get_session();
 
       if(psession == nullptr)
       {
@@ -3885,7 +3891,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          //path /= strProfile;
 
-         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\papplication", SW_SHOWNORMAL, 0);
+         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\papp", SW_SHOWNORMAL, 0);
 
 #else
 
@@ -4569,7 +4575,7 @@ namespace apex
 
    //   bool bLibraryOk = false;
 
-   //   auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, pszLibrary);
+   //   auto plibraryfactory = ::system_setup::get_first(::system_setup::flag_library, pszLibrary);
 
    //   if(!plibraryfactory)
    //   {
@@ -4647,7 +4653,7 @@ namespace apex
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_papplicationbias);
+   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
 
    //   ::apex::system::on_request(pcreate);
 
@@ -4828,10 +4834,10 @@ namespace apex
    //}
 
 
-   //   void system::post_fork_uri(const ::string & pszUri,application_bias * papplicationbias)
+   //   void system::post_fork_uri(const ::string & pszUri,application_bias * pappbias)
    //   {
    //
-   //      add_fork_uri(pszUri,papplicationbias);
+   //      add_fork_uri(pszUri,pappbias);
    //
    //      //if(has_property("version"))
    //      //{
@@ -5026,10 +5032,10 @@ namespace apex
       else if(ptopic->m_atom == id_app_activated)
       {
          
-         if(::is_set(m_papplicationMain))
+         if(::is_set(m_pappMain))
          {
          
-            m_papplicationMain->handle(ptopic, pcontext);
+            m_pappMain->handle(ptopic, pcontext);
             
          }
          
@@ -5240,7 +5246,7 @@ string get_bundle_app_library_name();
 //__pointer()::apex::session* platform_create_session()
 //{
 //
-//   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+//   auto pstaticsetup = ::system_setup::get_first(::system_setup::flag_system, "");
 //
 //   if (!pstaticsetup)
 //   {

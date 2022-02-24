@@ -15,11 +15,11 @@ namespace sip
 
 
    request::request(const request& src) :
-   ::object(((request&) src).get_application()),
+   ::object(((request&) src).get_app()),
    transaction(src),
    m_null(src.m_null),
-   m_file(((request&) src).get_application()),
-   m_form(((request&) src).get_application())
+   m_file(((request&) src).get_app()),
+   m_form(((request&) src).get_app())
    {
       m_file = src.m_file;
    }

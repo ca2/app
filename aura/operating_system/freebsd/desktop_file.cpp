@@ -21,13 +21,13 @@ namespace linux
    }
 
 
-   //AudioVideo   papplication for presenting, creating, or processing multimedia (audio/video)
+   //AudioVideo   papp for presenting, creating, or processing multimedia (audio/video)
    //Audio        An audio application                                                          Desktop entry must include AudioVideo as well
    //Video        A video application	                                                         Desktop entry must include AudioVideo as well
    //Development  An application for development
    //Education    Educational software
    //Game         A game
-   //Graphics     papplication for viewing, creating, or processing graphics
+   //Graphics     papp for viewing, creating, or processing graphics
    //Network      Network application such as a web browser
    //Office       An office type application
    //Science      Scientific software
@@ -167,9 +167,9 @@ namespace linux
 
       path = pacmedir->localconfig() / "desk/monitor-0/2desk";
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      string strPrgName = papplication->get_wm_class();
+      string strPrgName = papp->get_wm_class();
 
       path /= (strPrgName + ".desktop");
 
@@ -199,9 +199,9 @@ namespace linux
 
       string_array & straLine = m_straLine;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      string strWMClass = papplication->get_wm_class();
+      string strWMClass = papp->get_wm_class();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
@@ -235,19 +235,19 @@ namespace linux
 
       }
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      string strTitle = papplication->title();
+      string strTitle = papp->title();
 
-      string_array straCategories = proper_category(papplication->get_categories());
+      string_array straCategories = proper_category(papp->get_categories());
 
-      string strWMClass = papplication->get_wm_class();
+      string strWMClass = papp->get_wm_class();
 
       ::file::path pathUserBin;
 
       string strName;
 
-      strName = papplication->m_strAppId;
+      strName = papp->m_strAppId;
 
       strName.replace("-", "_");
 
@@ -361,10 +361,10 @@ namespace linux
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
-      // for(index i = 0; i < papplication->applicationmenu().get_count(); i++)
+      // for(index i = 0; i < papp->applicationmenu().get_count(); i++)
       // {
 
-      //    auto & item = papplication->applicationmenu()[i];
+      //    auto & item = papp->applicationmenu()[i];
 
       //    if()
 

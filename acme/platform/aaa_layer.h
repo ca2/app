@@ -1,8 +1,8 @@
-// Created by camilo on 2021-11-01 17:22 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-11-01 17:22 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 
 
 namespace acme

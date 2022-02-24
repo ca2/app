@@ -17,7 +17,7 @@
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
+pacmedir->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
    return m_psystem->m_pacmefile->as_string(path);
 
@@ -320,7 +320,7 @@ CLASS_DECL_CORE ::file::path core_app_path(string strApp)
 
    ::file::path path = getenv("HOME");
 
-   path /= "Library/papplication Support/ca2/mypath" / strApp;
+   path /= "Library/papp Support/ca2/mypath" / strApp;
 
    path += ".txt";
 

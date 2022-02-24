@@ -49,7 +49,7 @@ namespace turboc
       if(get_pane_count() > 0)
          return;
 
-      if(papplication->m_bMultiverseChat)
+      if(papp->m_bMultiverseChat)
       {
 
          SetPaneCount(2);
@@ -62,7 +62,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      if(papplication->m_bMultiverseChat)
+      if(papp->m_bMultiverseChat)
       {
 
          m_ptopview = create_view < top_view >(NULL,::rectangle_i32(),NULL,"turboc_top");
@@ -92,7 +92,7 @@ namespace turboc
       m_ptopview->m_pimpact = m_pimpact;
 
 
-      if(papplication->m_bMultiverseChat)
+      if(papp->m_bMultiverseChat)
       {
          SetPane(1,m_pimpact,false);
 
@@ -117,10 +117,10 @@ namespace turboc
          if(ptopic->user_element_id() == "turboc_toggle")
          {
 
-            if(m_pimpact->m_bLite && !papplication->m_bLoadAiFont)
+            if(m_pimpact->m_bLite && !papp->m_bLoadAiFont)
             {
 
-               papplication->load_ai_font();
+               papp->load_ai_font();
 
             }
 

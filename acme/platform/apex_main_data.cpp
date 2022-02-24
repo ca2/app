@@ -1,5 +1,6 @@
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "apex/operating_system.h"
+#include "acme/operating_system.h"
 
 
 //#ifdef ANDROID
@@ -283,36 +284,36 @@ void apex_main_data::system_construct(const char * pszCommandLine, const ::e_dis
 }
 
 
-void apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
-{
-
-#ifdef ANDROID
-
-   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
-
-#endif
-
-   m_edisplay = edisplay;
-
-   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
-
-   //m_poslocal = poslocal;
-
-   //__zero(m_mainrunnera);
-
-
-   on_system_construct();
-
-//   if(!estatus)
-//   {
+//void apex_main_data::system_construct(os_local * poslocal, const ::e_display & edisplay)
+//{
 //
-//      return estatus;
+//#ifdef ANDROID
 //
-//   }
+//   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
 //
-//   return estatus;
-
-}
+//#endif
+//
+//   m_edisplay = edisplay;
+//
+//   //m_edisplay = windows_show_window_to_edisplay(edisplay, m_eactivation);
+//
+//   //m_poslocal = poslocal;
+//
+//   //__zero(m_mainrunnera);
+//
+//
+//   on_system_construct();
+//
+////   if(!estatus)
+////   {
+////
+////      return estatus;
+////
+////   }
+////
+////   return estatus;
+//
+//}
 
 
 #endif

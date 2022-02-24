@@ -300,12 +300,12 @@ namespace universal_windows
 
             //m_psystem->add_create(pcreate);
 
-            //auto papp = m_psystem->m_papplicationStartup;
+            //auto papp = m_psystem->m_pappStartup;
 
             //if (papp == nullptr)
             //{
 
-            //   papp = m_psystem->get_session()->m_papplicationCurrent;
+            //   papp = m_psystem->get_session()->m_pappCurrent;
 
             //}
 

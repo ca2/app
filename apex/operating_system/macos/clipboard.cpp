@@ -21,7 +21,7 @@
 //}
 //
 //
-//void macos_clipboard_get_filea(::file::patha & patha)
+//void macos_clipboard_get_filea(::file::path_array & patha)
 //{
 //   
 //   long c = 0;
@@ -42,7 +42,7 @@
 //}
 //
 //
-//void macos_clipboard_set_filea(const ::file::patha & patha)
+//void macos_clipboard_set_filea(const ::file::path_array & patha)
 //{
 //   
 //   auto psza = patha.c_ansi_get();

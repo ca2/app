@@ -247,9 +247,9 @@ namespace user
 
       m_psystem->m_paquasystem->_xml();
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      auto strXml = papplication->as_string(varXml.string());
+      auto strXml = papp->as_string(varXml.string());
 
       if (strXml.is_empty())
       {

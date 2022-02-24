@@ -305,12 +305,12 @@ namespace user
 
       }
 
- /*     auto papplication = get_application();
+ /*     auto papp = get_app();
 
-      if (papplication)
+      if (papp)
       {
 
-         papplication->defer_process_activation_message();
+         papp->defer_process_activation_message();
 
       }*/
 
@@ -340,9 +340,9 @@ namespace user
       if (!GetDocString(strDocName, impact_system::docName) || strDocName.is_empty())
       {
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         strDocName = papplication->load_string("untitled");
+         strDocName = papp->m_papplication->load_string("untitled");
 
       }
 

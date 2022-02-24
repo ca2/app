@@ -3518,13 +3518,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
          try
          {
 
-            for(auto & papplication : applicationa)
+            for(auto & papp : applicationa)
             {
 
                try
                {
 
-                  auto uiptraFrame = *papplication->m_puiptraFrame;
+                  auto uiptraFrame = *papp->m_puiptraFrame;
 
                   for(auto & pframe : uiptraFrame)
                   {

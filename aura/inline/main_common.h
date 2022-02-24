@@ -1,7 +1,7 @@
 #include "acme/_start.h"
 //#include "aura/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/platform/static_setup.h"
+//#include "acme/platform/system_setup.h"
 //#include "aura/_defer.h"
 
 //
@@ -174,25 +174,25 @@
 //
 //template < typename APPLICATION >
 //class static_application_factory :
-//   public static_setup
+//   public system_setup
 //{
 //public:
 //
 //
 //   virtual ::matter* new_application_as_matter() override
 //   {
-//      auto papplication = new APPLICATION;
+//      auto papp = new APPLICATION;
 //#ifdef NO_IMAGING
-//      papplication->m_bImaging = false;
+//      papp->m_bImaging = false;
 //#endif
 //
-//      return papplication;
+//      return papp;
 //
 //   }
 //
 //
 //   static_application_factory(const char * pszName = "") :
-//      static_setup(flag_application, pszName)
+//      system_setup(flag_application, pszName)
 //   {
 //
 //

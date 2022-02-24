@@ -4,7 +4,7 @@
 //#endif
 //#include "acme/id.h"
 //#include "apex/platform/app_core.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 //#include "apex/platform/str_context.h"
 
 //#ifdef LINUX
@@ -171,7 +171,7 @@ namespace aura
 
       m_pimplPendingFocus2             = nullptr;
 
-      m_papplicationCurrent                    = nullptr;
+      m_pappCurrent                    = nullptr;
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -357,7 +357,7 @@ namespace aura
 
       return open_by_file_extension(pcreateNew);
 
-      //return papplication->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return papp->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -365,7 +365,7 @@ namespace aura
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return papplication->platform_open_by_file_extension(m_iEdge, pcc);
+      //return papp->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -1829,7 +1829,7 @@ namespace aura
 
          INFORMATION("success");
 
-         //auto psetup = static_setup::get_first(::static_setup::flag_object_user);
+         //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
 
          //if (psetup)
          //{
@@ -2181,10 +2181,10 @@ namespace aura
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_papplicationCurrent))
+      if (::is_set(m_pappCurrent))
       {
 
-         m_papplicationCurrent->pre_translate_message(pmessage);
+         m_pappCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -2294,7 +2294,7 @@ namespace aura
 
       auto psession = get_session();
 
-      return psession->m_papplicationCurrent;
+      return psession->m_pappCurrent;
 
    }
 

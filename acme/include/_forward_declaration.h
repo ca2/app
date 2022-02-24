@@ -3,6 +3,7 @@
 
 
 class system;
+class app;
 class application;
 class thread;
 class property_object;

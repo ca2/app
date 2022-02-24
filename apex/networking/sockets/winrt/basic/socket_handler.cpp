@@ -519,7 +519,7 @@ namespace sockets
       if (!m_resolver)
       {
          m_resolver_port = port;
-         m_resolver = new resolv_server(get_application(), port);
+         m_resolver = new resolv_server(get_app(), port);
       }
    }
 

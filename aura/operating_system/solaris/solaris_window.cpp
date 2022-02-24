@@ -883,20 +883,20 @@ i32 WINAPI MessageBoxA_x11(oswindow hWnd, const ::string & lpText, const ::strin
 
    base_application * papp = nullptr;
 
-   if(hWnd == nullptr || hWnd->get_user_interaction() == nullptr || hWnd->get_user_interaction()->get_application() == nullptr)
+   if(hWnd == nullptr || hWnd->get_user_interaction() == nullptr || hWnd->get_user_interaction()->get_app() == nullptr)
    {
 
-      papp = get_application();
+      papp = get_app();
 
    }
    else
    {
 
-      papp = hWnd->get_user_interaction()->get_application();
+      papp = hWnd->get_user_interaction()->get_app();
 
    }
 
-   return message_box_show_xlib(get_application(), lpText, lpCaption);
+   return message_box_show_xlib(get_app(), lpText, lpCaption);
 
 }
 
@@ -917,7 +917,7 @@ static void initialize_x11_message_box()
 i32 WINAPI MessageBoxA(oswindow hWnd, const ::string & lpText, const ::string & lpCaption, ::u32 uType)
 {
 
-   message_box_show_xlib(get_application(), lpText, lpCaption);
+   message_box_show_xlib(get_app(), lpText, lpCaption);
 
    return 0;
 

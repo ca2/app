@@ -1031,7 +1031,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
    //if (m_puserstyle == nullptr)
    //{
 
-   //   m_puserstyle = papplication->userstyle();
+   //   m_puserstyle = papp->userstyle();
 
    //}
 

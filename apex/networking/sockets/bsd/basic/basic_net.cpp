@@ -75,9 +75,9 @@ namespace sockets
       //if(psystem->m_bGudoNetCache)
       {
 
-         //get_application()->gudo_get("sockets::net::m_mapCache",m_mapCache);
+         //get_app()->gudo_get("sockets::net::m_mapCache",m_mapCache);
 
-         //get_application()->gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
+         //get_app()->gudo_get("sockets::net::m_mapReverseCache",m_mapReverseCache);
 
       }
 
@@ -367,7 +367,7 @@ namespace sockets
 //   //if(psystem->m_bGudoNetCache)
 //   {
 //
-//      //get_application()->gudo_set("sockets::net::m_mapCache",m_mapCache);
+//      //get_app()->gudo_set("sockets::net::m_mapCache",m_mapCache);
 //
 //   }
 //
@@ -535,7 +535,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in *point = (struct sockaddr_in *)sa;
          ::sockets::address_pointer addr;
-         addr(new ::sockets::ipv4_address(get_application(), *point_i32));
+         addr(new ::sockets::ipv4_address(get_app(), *point_i32));
          return addr;
       }
       break;
@@ -544,7 +544,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
       {
          struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
          ::sockets::address_pointer addr;
-         addr(new ::sockets::ipv6_address(get_application(), *point_i32));
+         addr(new ::sockets::ipv6_address(get_app(), *point_i32));
          return addr;
       }
       break;

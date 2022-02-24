@@ -165,19 +165,19 @@ namespace userex
 
       //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
-      //if (papplication->m_pmainpane == nullptr)
+      //if (papp->m_pmainpane == nullptr)
       //{
 
-      //   papplication->m_pmainpane = this;
+      //   papp->m_pmainpane = this;
 
       //}
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      if (papplication->m_puiMainContainer == nullptr)
+      if (papp->m_puiMainContainer == nullptr)
       {
 
-         papplication->m_puiMainContainer = this;
+         papp->m_puiMainContainer = this;
 
       }
 
@@ -269,13 +269,13 @@ namespace userex
          if (::is_set(m_pdocumentMenu))
          {
 
-            auto strOptionsImpact = get_application()->prepare_impact_options();
+            auto strOptionsImpact = get_app()->prepare_impact_options();
 
 #ifdef _DEBUG
 
             auto pcontext = m_pcontext->m_papexcontext;
 
-            pcontext->file().put_memory(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
+            pcontext->file().put_memory(pcontext->dir().home() / "debug_ca2/menu_view" / get_app()->m_strAppId + ".html", strOptionsImpact);
 
 #endif
 
@@ -290,7 +290,7 @@ namespace userex
 
             auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
 
-            pformview->get_form()->add_handler(get_application());
+            pformview->get_form()->add_handler(get_app());
 
             pformview->set_need_load_form_data();
 
@@ -521,11 +521,11 @@ namespace userex
 
          //pcreate->m_pusersystem
 
-//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_app(), ::e_type_null, false, pimpactdata->m_pplaceholder);
 
          auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
 
-         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
+         auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_type_impact < font_view >();
 
@@ -562,7 +562,7 @@ namespace userex
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
+         auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
          m_pcolorview = pdocument->get_type_impact < color_view >();
 
@@ -695,7 +695,7 @@ namespace userex
       //   cc->m_bMakeVisible               = true;
       //   cc->m_puserinteractionParent                  = pimpactdata->m_pplaceholder;
 
-      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_application(), -1, cc);
+      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_app(), -1, cc);
 
       //   if(pmanager != nullptr)
       //   {
@@ -950,9 +950,9 @@ namespace userex
    void pane_tab_view::prepare_form(atom atom, ::form_document * pdocument)
    {
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->prepare_form(atom, pdocument);
+      papp->prepare_form(atom, pdocument);
 
    }
 

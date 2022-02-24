@@ -454,7 +454,7 @@ namespace linux
 
             m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "native_create_window"));
 
-            auto papp = get_application();
+            auto papp = get_app();
 
             if(!(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
             {
@@ -960,7 +960,7 @@ namespace linux
 
       {
 
-         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+         single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
 
          ::thread* pThread = ::get_task();
 
@@ -1804,7 +1804,7 @@ namespace linux
 //      if (pszcaption == nullptr)
 //      {
 //
-//         strCaption = get_application()->m_strAppName;
+//         strCaption = get_app()->m_strAppName;
 //
 //      }
 //      else
@@ -3688,7 +3688,7 @@ namespace linux
 ////        __UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
-////        m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+////        m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 ////
 ////        return uEvent;
 //
@@ -3705,7 +3705,7 @@ namespace linux
 //
 //      return ::user::interaction_impl::KillTimer(uEvent);
 //
-////       m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
+////       m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 //
 //      //     return true;
 //

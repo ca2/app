@@ -6,10 +6,10 @@ namespace simpledb
 
 
    table::table(database * pdatabase, const ::string & pszName) :
-      object(pdatabase->get_application()),
-      m_spfileMeta(pdatabase->get_application()),
-      m_spfileFixed(pdatabase->get_application()),
-      m_xmldocumentMeta(pdatabase->get_application())
+      object(pdatabase->get_app()),
+      m_spfileMeta(pdatabase->get_app()),
+      m_spfileFixed(pdatabase->get_app()),
+      m_xmldocumentMeta(pdatabase->get_app())
    {
 
 

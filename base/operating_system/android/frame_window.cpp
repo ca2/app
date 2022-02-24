@@ -36,7 +36,7 @@ void simple_frame_window::defer_set_icon()
 
    //   }
 
-   //   auto papp = &papplication;
+   //   auto papp = &papp;
 
    //   auto pimage = &papp->image();
 

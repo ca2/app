@@ -140,9 +140,9 @@ namespace hellobase
 
       return ::helloaxis::render::initialize_render(strId);
 
-      ////      ::database::client::initialize_data_client(&papplication->dataserver());
+      ////      ::database::client::initialize_data_client(&papp->dataserver());
 
-      //if (papplication->m_strAppId == "app-core/flag")
+      //if (papp->m_strAppId == "app-core/flag")
       //{
 
       //   m_bilboa.add(bilbo("matter://cat.gif"));
@@ -846,12 +846,12 @@ namespace hellobase
 //      }
 //
 //#if 0
-//      if (papplication->m_iErrorAiFont == 0)
+//      if (papp->m_iErrorAiFont == 0)
 //      {
 //
-//         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
+//         synchronous_lock slAiFont(&papp->m_mutexAiFont);
 //
-//         FT_Face & face = (FT_Face &)papplication->m_faceAi;
+//         FT_Face & face = (FT_Face &)papp->m_faceAi;
 //
 //         i32 error;
 //
@@ -1104,7 +1104,7 @@ namespace hellobase
 
       //}
 
-      //if (papplication->m_etype == application::type_mili)
+      //if (papp->m_etype == application::type_mili)
       //{
 
       //   {
@@ -1280,7 +1280,7 @@ namespace hellobase
 
    //      pimage->m_eload = ::draw2d::load_going_to_load;
 
-   //      ::fork(get_application(), [=]()
+   //      ::fork(get_app(), [=]()
    //      {
 
    //         if (!m_mapDib23[strImage].load_image(strImage, true, true))

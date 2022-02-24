@@ -49,7 +49,7 @@ namespace sockets
    socket_map socket::s_mapSocket;
 
    socket::socket() :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
       base_socket(h),
       m_handler(h)
    {

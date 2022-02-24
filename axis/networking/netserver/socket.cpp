@@ -138,7 +138,7 @@ namespace netserver
             if (domain.m_strName == "ca2.software")
             {
 
-               //straValue[i] = "https://" + papplication->m_strFontopusServer + purl->get_object(straValue[i]);
+               //straValue[i] = "https://" + papp->m_strFontopusServer + purl->get_object(straValue[i]);
 
             }
 

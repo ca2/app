@@ -270,7 +270,7 @@ namespace opengl
 //
 //      ::file::path path(pszPath);
 //
-//      auto & app = papplication;
+//      auto & app = papp;
 //
 //      auto & file = app.file();
 //

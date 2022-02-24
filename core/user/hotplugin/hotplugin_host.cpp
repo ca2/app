@@ -357,7 +357,7 @@ namespace hotplugin
    i32 host::start_app_install(const ::string & pszCommandLine)
    {
 
-      return start_app_install(pszCommandLine, get_application(), this);
+      return start_app_install(pszCommandLine, get_app(), this);
 
    }
 

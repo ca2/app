@@ -735,7 +735,7 @@ namespace ios
    void interaction_impl::post_non_client_destroy()
    {
 
-      single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
 
       //pmessage->m_bRet = true;
 
@@ -894,7 +894,7 @@ namespace ios
    bool interaction_impl::DestroyWindow()
    {
 
-      single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+      single_lock synchronouslock(get_app() == nullptr ? nullptr : get_app()->mutex(), true);
 
       if(get_handle() == nullptr)
          return false;
@@ -1149,7 +1149,7 @@ namespace ios
 
       if(pusermessage->m_atom == e_message_timer)
       {
-         //         get_application()->get_application()->step_timer();
+         //         get_app()->get_app()->step_timer();
       }
       else if(pusermessage->m_atom == e_message_left_button_down)
       {
@@ -1164,7 +1164,7 @@ namespace ios
        if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
        ::application ** ppapp= (::application **) pusermessage->m_lparam;
-       *ppapp = get_application();
+       *ppapp = get_app();
        pusermessage->m_bRet = true;
        return;
        }
@@ -1212,10 +1212,10 @@ namespace ios
 
          }
 
-         /*         if(m_puserinteraction != nullptr && m_puserinteraction != this && m_puserinteraction->get_application()->m_psession != nullptr && m_puserinteraction->get_application()->m_psession != get_application()->m_psession)
+         /*         if(m_puserinteraction != nullptr && m_puserinteraction != this && m_puserinteraction->get_app()->m_psession != nullptr && m_puserinteraction->get_app()->m_psession != get_app()->m_psession)
           {
 
-          BaseSess(m_puserinteraction->get_application()->m_psession).m_pointCursor = pmouse->m_point;
+          BaseSess(m_puserinteraction->get_app()->m_psession).m_pointCursor = pmouse->m_point;
 
           }
           */
@@ -1270,13 +1270,13 @@ namespace ios
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
-         //         papplication->keyboard().translate_os_key_message(pkey);
+         //         papp->keyboard().translate_os_key_message(pkey);
          /*
           if(pusermessage->m_atom == e_message_key_down)
           {
           try
           {
-          papplication->set_key_pressed(pkey->m_ekey, true);
+          papp->set_key_pressed(pkey->m_ekey, true);
           }
           catch(...)
           {
@@ -1286,7 +1286,7 @@ namespace ios
           {
           try
           {
-          papplication->set_key_pressed(pkey->m_ekey, false);
+          papp->set_key_pressed(pkey->m_ekey, false);
           }
           catch(...)
           {
@@ -1542,7 +1542,7 @@ namespace ios
 //      string strCaption;
 //
 //      if (lpszCaption == nullptr)
-//         lpszCaption = papplication->m_strAppName;
+//         lpszCaption = papp->m_strAppName;
 //      else
 //         lpszCaption = strCaption;
 //      
@@ -2826,7 +2826,7 @@ namespace ios
 //
 ////      ::rectangle_i32 rect32;
 ////
-////      if(m_puserinteraction == get_application()->m_psystem->m_possystemwindow->m_puserinteraction)
+////      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
 ////         if(!GetMainScreenRect(rect32))
@@ -2865,7 +2865,7 @@ namespace ios
 //
 //      ::rectangle_i32 rect32;
 //
-//      if(m_puserinteraction == get_application()->m_psystem->m_possystemwindow->m_puserinteraction)
+//      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 //      {
 //
 //         if(!GetMainScreenRect(rect32))
@@ -3067,9 +3067,9 @@ namespace ios
 
 //   bool interaction_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
-//      if(get_application() != nullptr)
+//      if(get_app() != nullptr)
 //      {
-//         return get_application()->post_message(m_puserinteraction, message, wparam, lparam);
+//         return get_app()->post_message(m_puserinteraction, message, wparam, lparam);
 //      }
 //      else
 //      {
@@ -3568,7 +3568,7 @@ namespace ios
       /*
        __UNREFERENCED_PARAMETER(lpfnTimer);
 
-       m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+       m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 
        return uEvent;
 
@@ -3588,7 +3588,7 @@ namespace ios
        //ASSERT(::is_window(get_handle()));
        //return ::KillTimer(get_handle(), uEvent)  != false;
 
-       m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
+       m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 
 
        return true;*/

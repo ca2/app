@@ -52,9 +52,9 @@ namespace filemanager
 
       }
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      bool bPathImpact = papplication->is_false("no_path_view");
+      bool bPathImpact = papp->is_false("no_path_view");
 
       SetPaneCount(bPathImpact ? 2 : 1);
 

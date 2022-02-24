@@ -14,7 +14,7 @@ namespace base
 
 
 
-//      __pointer(::aura::application)                     m_papplicationStartup;
+//      __pointer(::aura::application)                     m_pappStartup;
 //
 //      __composite(::aura::system)                        m_psystemParent;
 //
@@ -889,7 +889,7 @@ namespace base
 //
 //#endif
 //
-//      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
+//      //virtual void post_fork_uri(const ::string & pszUri,application_bias * pappbias);
 //
 //
 //

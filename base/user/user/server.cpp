@@ -18,7 +18,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_new_document(::application* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
+   ::user::document* server::open_new_document(::app* pappOnBehalfOf, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
    {
 
       return open_document_file(pappOnBehalfOf, nullptr, bMakeVisible, puiParent, eflag, atom);
@@ -45,9 +45,9 @@ namespace user
 
          //}
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         pcreate->initialize_create(papplication->m_strAppId, ::e_type_empty, true);
+         pcreate->initialize_create(papp->m_strAppId, ::e_type_empty, true);
 
          //if (!estatus)
          //{
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_document_file(::application* pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
+   ::user::document* server::open_document_file(::app * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::atom atom)
    {
 
       auto pcreate = pappOnBehalfOf->__create_new< ::create>();
@@ -83,7 +83,7 @@ namespace user
    {
 
       auto pdocument = open_document_file(
-         pimpactdata->m_pplaceholder->get_application(),
+         pimpactdata->m_pplaceholder->get_app(),
          ::e_type_null,
          true,
          pimpactdata->m_pplaceholder);

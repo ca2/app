@@ -36,7 +36,9 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   __pointer(::element)                      m_pelement;
+   __pointer(manual_reset_event)                   m_peventInitialization;
+
+   __pointer(::element)                            m_pelement;
    __pointer(manual_reset_event)                   m_pevSleep;
 
 #ifdef WINDOWS
@@ -118,15 +120,15 @@ public:
 
    
 
-   virtual void branch(
+   __pointer(::task) branch(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
-   virtual void begin_synchronously(
+   __pointer(::task) branch_synchronously(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
-      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+      u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
    
    virtual bool task_sleep(const class ::wait & wait);
@@ -152,6 +154,13 @@ public:
 
 
    //virtual ::property_object * thread_parent();
+
+   virtual void __task_init();
+   virtual void __task_term();
+
+
+   virtual void on_task_init();
+   virtual void on_task_term();
 
 
    virtual bool is_thread() const override;

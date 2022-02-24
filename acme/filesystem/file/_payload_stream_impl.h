@@ -20,7 +20,7 @@
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::payload & payload) { s.default_exchange(atom, payload); }
 
 
-//inline void __exchange(::payload_stream& s, ::file::patha& patha) { s.var_exchange(patha); }
+//inline void __exchange(::payload_stream& s, ::file::path_array& patha) { s.var_exchange(patha); }
 
 
 

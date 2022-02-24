@@ -247,7 +247,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
-   //papplication->data_set({"LastOpenedFile", true}, get_file_path());
+   //papp->data_set({"LastOpenedFile", true}, get_file_path());
 
    return true;
 
@@ -371,14 +371,14 @@ void html_document::on_command_probe(::message::command * pcommand)
 void html_document::on_command(::message::command * pcommand)
 {
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
    if(pcommand->m_atom == "viewindefaultbrowser")
    {
 
       property_set propertyset;
 
-      papplication->dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
+      papp->dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
 #ifndef _UWP
 

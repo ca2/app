@@ -44,7 +44,7 @@ namespace apex
       // For Mobile systems it is particularly meaningful...
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
-      // The Main papplication window?
+      // The Main papp window?
       __pointer(::user::primitive)                         m_puserprimitiveHost;
       //__pointer(::layered)     m_pimplLastSeed;
       //__pointer(::layered)                        m_puiMain2;
@@ -251,7 +251,7 @@ namespace apex
 
       //virtual bool is_session() const override;
 
-      virtual void init_thread() override;
+      virtual void init_task() override;
 
       //virtual void process_init();
 
@@ -268,7 +268,7 @@ namespace apex
 
       virtual void term1();
 
-      virtual void term_thread() override;
+      virtual void term_task() override;
 
       //virtual void term_session();
 
@@ -437,7 +437,7 @@ namespace apex
       // apex commented
       //virtual ::write_text::font_list* get_single_column_font_list();
 
-      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
+      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
       virtual void do_request(::create* pcreate) override;

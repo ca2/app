@@ -16,9 +16,9 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 {
    ::user::form_view::handle(ptopic, pcontext);
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   papplication->handle(ptopic, pcontext);
+   papp->handle(ptopic, pcontext);
 
    if (ptopic->m_bRet)
    {
@@ -55,9 +55,9 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //{
 //
-//   auto papplication = get_application();
+//   auto papp = get_app();
 //
-//   papplication->handle(ptopic, pcontext);
+//   papp->handle(ptopic, pcontext);
 //
 //   if(ptopic->m_bRet)
 //   {
@@ -122,9 +122,9 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
       pextendedtopic->m_puserelement = this;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->route(pextendedtopic);
+      papp->route(pextendedtopic);
 
       if(pextendedtopic->m_bRet)
       {

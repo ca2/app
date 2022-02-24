@@ -16,7 +16,7 @@ namespace apex
    public:
 
 
-      __reference(::application)                   m_papplicationStartup;
+      __reference(::application)                   m_pappStartup;
 
       __composite(::apex::system)                        m_psystemParent;
 
@@ -909,7 +909,7 @@ namespace apex
 
 #endif
 
-      //virtual void post_fork_uri(const char * pszUri,application_bias * papplicationbias);
+      //virtual void post_fork_uri(const char * pszUri,application_bias * pappbias);
 
 
 

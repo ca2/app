@@ -7,12 +7,12 @@ namespace sockets
 
 
    smtp_socket::smtp_socket() :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),
       tcp_socket(h),
-      m_email(h.get_application())
+      m_email(h.get_app())
    {
       SetLineProtocol();
 

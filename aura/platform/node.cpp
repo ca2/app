@@ -109,7 +109,7 @@ namespace aura
    }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::application * papplication)
+   void node::set_application_menu(::application_menu * pmenu, ::application * papp)
    {
 
    }

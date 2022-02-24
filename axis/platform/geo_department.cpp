@@ -664,7 +664,7 @@ namespace geo
       //
       //#endif
       //
-      //         str = papplication->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
+      //         str = papp->http_get("http://api.timezonedb.com/?key=" + strKey + "&format=network_payload&lat=" + strLat + "&lng=" + strLng, set);
       //
       //         if (str.has_char())
       //         {

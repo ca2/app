@@ -8,7 +8,7 @@
 
 
 
-#include "acme/platform/static_start.h"
+#include "acme/platform/acme.h"
 
 
 class plex_heap_alloc_array;
@@ -61,39 +61,39 @@ namespace apex
 
    CLASS_DECL_APEX void ref();
 
-   class static_start
-   {
-   public:
+//   class static_start
+//   {
+//   public:
+//
+//
+//      bool m_bRef;
 
 
-      bool m_bRef;
+      void initialize_system();
+      void finalize_system();
 
-
-      static_start();
-      ~static_start();
-
-      static static_start g_staticstart;
-      
-      void this_ref();
-
-      
-      
-      void construct();
-
-
-      void init();
-      void term();
-
-
-      void init_windowing();
-      void term_windowing();
-
-
-      //void init_id_pool();
-      //void term_id_pool();
-
-
-   };
+//      static static_start g_staticstart;
+//
+//      void this_ref();
+//
+//
+//
+//      void construct();
+//
+//
+//      void init();
+//      void term();
+//
+//
+//      void init_windowing();
+//      void term_windowing();
+//
+//
+//      //void init_id_pool();
+//      //void term_id_pool();
+//
+//
+//   };
 
 
 } // namespace apex

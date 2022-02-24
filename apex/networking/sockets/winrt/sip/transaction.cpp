@@ -12,7 +12,7 @@ namespace sip
    }
 
    transaction::transaction(const transaction & src) :
-      ::object(src.get_application()),
+      ::object(src.get_app()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {

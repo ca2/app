@@ -267,7 +267,7 @@ namespace userex
 
       //auto * plist = get_group_list(strGroup);
 
-     //::image_pointer pimage = papplication->matter_image(pgroup->m_strIcon);
+     //::image_pointer pimage = papp->matter_image(pgroup->m_strIcon);
 
       //m_buttonMenu.set_window_text(get_group_title(pgroup));
 

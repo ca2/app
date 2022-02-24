@@ -4,7 +4,7 @@
 //CLASS_DECL_APEX string __apex_get_text(string str)
 //{
 //
-//   ::application* papp = ::get_application();
+//   ::application* papp = ::get_app();
 //
 //   if (papp == nullptr)
 //   {

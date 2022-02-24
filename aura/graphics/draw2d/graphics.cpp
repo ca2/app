@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "aura/platform/static_start.h"
+#include "aura/platform/aura.h"
 #include "image_array.h"
 #include "graphics.h"
 #include "image.h"

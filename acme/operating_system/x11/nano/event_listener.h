@@ -1,8 +1,26 @@
 //
-// Created by camilo on 21/02/2022.
+// Created by camilo on 21/02/2022 23:09 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef BASIS_EVENT_LISTENER_H
-#define BASIS_EVENT_LISTENER_H
 
-#endif //BASIS_EVENT_LISTENER_H
+namespace x11
+{
+
+
+   class event_listener :
+      virtual public ::element
+   {
+   public:
+
+
+      virtual bool _on_event(XEvent * pevent) = 0;
+
+
+   };
+
+
+} // namespace x11
+
+
+

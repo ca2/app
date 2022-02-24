@@ -1014,7 +1014,7 @@ namespace draw2d_cairo
 //      if (dAndroid >= 8.0)
 //      {
 //
-//         ::file::patha patha;
+//         ::file::path_array patha;
 //
 //         ::dir::ls(patha, "/system/fonts");
 //

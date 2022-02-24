@@ -3,7 +3,7 @@
 #include "base/user/menu/_menu.h"
 #include "aura/update.h"
 #include "simple_view.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -70,7 +70,7 @@ namespace base
       ::factory::add_factory_item <::user::place_holder >();
       //add_factory_item <::user::font_combo_box >();
 
-      ////if(get_application()->is_system())
+      ////if(get_app()->is_system())
       //{
 
       //   add_factory_item <keyboard_layout >();
@@ -187,7 +187,7 @@ namespace base
       //if(strStyleUser.has_char())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
-      //string strLicense = papplication->get_license_id();
+      //string strLicense = papp->get_license_id();
 
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
@@ -317,20 +317,20 @@ namespace base
    void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      //auto papplicationBase = get_application();
+      //auto pappBase = get_app();
 
       auto psession = get_session();
 
-      for (auto& papplicationApex : psession->m_applicationa)
+      for (auto& pappApex : psession->m_applicationa)
       {
 
-         __pointer(::base::application) papplicationItem = papplicationApex;
+         __pointer(::base::application) pappItem = pappApex;
 
-         synchronous_lock synchronouslock(&papplicationItem->m_mutexFrame);
+         synchronous_lock synchronouslock(&pappItem->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (papplicationItem->get_frame(pinteraction))
+         while (pappItem->get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -680,7 +680,7 @@ namespace base
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         psession->m_papplicationCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pobject);
 //
 //      }
 //
@@ -717,11 +717,11 @@ namespace base
 //         //}
 //      }
 //
-////      if (psession->m_papplicationCurrent != nullptr && psession->m_papplicationCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_papplicationCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -838,9 +838,9 @@ namespace base
 ////         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent);
 ////      }
 //
-////      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
+////      if (puiParent == nullptr && pcreate->m_pappbias.is_set())
 ////      {
-////         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
+////         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_pappbias->m_puserinteractionParent);
 ////      }
 //
 //
@@ -859,7 +859,7 @@ namespace base
 //      }*/
 //
 //      if (pcreate->m_bExperienceMainFrame ||
-//            papplication->m_bExperienceMainFrame ||
+//            papp->m_bExperienceMainFrame ||
 //            pcreate->m_bOuterPopupAlertLike)
 //      {
 //         return puiParent;
@@ -883,7 +883,7 @@ namespace base
 //
 //
 //
-//      ::aura::application & app = App(pinteraction->get_application());
+//      ::aura::application & app = App(pinteraction->get_app());
 //
 //      string strAppName = app.m_strAppName;
 //
@@ -1274,7 +1274,7 @@ namespace base
    }
 
 
-   void user::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha)
+   void user::on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha)
    {
 
 
@@ -1307,7 +1307,7 @@ namespace base
 
 
 
-   __namespace_object_factory(user, ::static_setup::flag_object_user);
+   __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
 } // namespace base
@@ -1316,7 +1316,7 @@ namespace base
 //string __get_text(string str)
 //{
 //
-//   ::aura::application* papp = ::get_application();
+//   ::aura::application* papp = ::get_app();
 //
 //   if (papp == nullptr)
 //   {

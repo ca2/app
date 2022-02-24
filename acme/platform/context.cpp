@@ -10,16 +10,20 @@ namespace acme
    context::context()
    {
 
+
       m_pcontext = this;
-      m_papexcontext = nullptr;
-      m_pauracontext = nullptr;
-      m_papexapplication = nullptr;
+
+
+      m_papp = nullptr;
+      m_papplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
       m_paxisapplication = nullptr;
       m_pbaseapplication = nullptr;
       m_pbredapplication = nullptr;
       m_pcoreapplication = nullptr;
+      m_papexcontext = nullptr;
+      m_pauracontext = nullptr;
       m_papexsession = nullptr;
       m_paquasession = nullptr;
       m_paurasession = nullptr;

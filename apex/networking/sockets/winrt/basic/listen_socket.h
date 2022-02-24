@@ -194,7 +194,7 @@ namespace sockets
       \param h base_socket_handler object
       \param use_creator Optional use of creator (default true) */
       listen_socket(bool use_creator = true) :
-         ::object(h.get_application()), 
+         ::object(h.get_app()),
          listen_socket_base(h),
          base_socket(h),
          socket(h), 
@@ -443,7 +443,7 @@ namespace sockets
 //                  if (p -> sin6_family == AF_INET6)
 //                  {
 //                     
-//                     ipv6_address ad(get_application(), p -> sin6_addr,ntohs(p -> sin6_port));
+//                     ipv6_address ad(get_app(), p -> sin6_addr,ntohs(p -> sin6_port));
 //                     
 //                     ad.SetFlowinfo(p -> sin6_flowinfo);
 //
@@ -467,7 +467,7 @@ namespace sockets
 //                  if (p -> sin_family == AF_INET)
 //                  {
 //                     
-//                     ipv4_address ad(get_application(), p->sin_addr, ntohs(p->sin_port));
+//                     ipv4_address ad(get_app(), p->sin_addr, ntohs(p->sin_port));
 //
 //                     tmp -> SetRemoteAddress(ad);
 //

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
+#include "acme/platform/acme.h"
 #include "acme/operating_system.h"
 
 

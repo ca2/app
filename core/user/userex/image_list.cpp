@@ -100,7 +100,7 @@ namespace userex
 
          auto pcontext = m_pcontext;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
          if (m_pathFolder.has_char())
          {
@@ -331,9 +331,9 @@ namespace userex
 
       string strText;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_get(m_atom + ".cur_text", strText);
+      papp->data_get(m_atom + ".cur_text", strText);
 
    }
 

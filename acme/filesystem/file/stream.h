@@ -97,7 +97,7 @@ template < typename ARRAY >
 inline void __exchange_array(::stream & s, const ARRAY & array) { __exchange_array(s, (ARRAY &)array); }
 
 
-inline void __exchange(::stream & s, const ::file::patha & patha) { __exchange_array(s, patha); }
+inline void __exchange(::stream & s, const ::file::path_array & patha) { __exchange_array(s, patha); }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void __exchange(::stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }

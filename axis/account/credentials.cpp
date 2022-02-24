@@ -151,9 +151,9 @@ namespace account
 
       }
 
-      __pointer(::axis::application) papplication = get_application();
+      __pointer(::axis::application) papp = get_app();
 
-      papplication->interactive_credentials(this);
+      papp->interactive_credentials(this);
 
       //return m_estatus;
 

@@ -539,7 +539,7 @@ namespace user
             bNeedLayout = true;
 
          }
-         else if(::is_set(get_application()) && ::is_set(get_application()->get_session()))
+         else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
          {
 
             ::rectangle_i32 rectangleWindow;
@@ -3130,9 +3130,9 @@ namespace user
 
       }
 
-      __pointer(::base::application) papplication = get_application();
+      __pointer(::base::application) papp = get_app();
 
-      papplication->on_change_cur_sel(this);
+      papp->on_change_cur_sel(this);
 
    }
 

@@ -51,7 +51,7 @@
 //
 //      __UNREFERENCED_PARAMETER(uiCode);
 //
-//      //::acme::application * papp = ::get_application();
+//      //::acme::application * papp = ::get_app();
 //
 //      switch (ppointers->ExceptionRecord->ExceptionCode)
 //      {

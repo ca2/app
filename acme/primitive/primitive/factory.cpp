@@ -1,7 +1,10 @@
 #include "framework.h"
-#include "acme/platform/static_start_internal.h"
+#include "acme/platform/acme.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"
+
+
+extern class ::system * g_psystem;
 
 
 namespace factory
@@ -25,7 +28,7 @@ namespace factory
 //    CLASS_DECL_ACME factory_array * get_factory_item_array()
 //    {
 //
-//       return ::acme::static_start::g_staticstart.m_pfactorya;
+//       return ::acme::acme::g_pstaticstatic->m_pfactorya;
 //
 //    }
 
@@ -33,7 +36,7 @@ namespace factory
     CLASS_DECL_ACME critical_section * get_factory_critical_section()
     {
 
-       return ::acme::static_start::g_staticstart.m_pcriticalsectionFactory;
+       return ::acme::acme::g_p->m_pcriticalsectionFactory;
 
     }
 
@@ -41,7 +44,7 @@ namespace factory
     CLASS_DECL_ACME factory * get_factory()
     {
 
-       return ::acme::static_start::g_staticstart.m_pfactory;
+       return ::acme::acme::g_p->m_pfactory;
 
     }
 
@@ -49,12 +52,12 @@ namespace factory
    CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
    {
 
-      auto & pfactory = ::acme::static_start::g_staticstart.m_mapFactory[atomSource];
+      auto & pfactory = ::acme::acme::g_p->m_mapFactory[atomSource];
 
       if (!pfactory)
       {
 
-         pfactory = __new(::factory::factory);
+         ::g_psystem->__construct_new(pfactory);
 
       }
 
@@ -63,53 +66,6 @@ namespace factory
    }
 
 
-   void factory_init()
-    {
-
-       ::acme::static_start::g_staticstart.m_pfactory = __new(factory());
-
-       ::acme::static_start::g_staticstart.m_pfactory->InitHashTable(16189);
-
-       //::acme::static_start::g_staticstart.m_pfactorya = new factory_array();
-
-
-
-       ::factory::add_factory_item < manual_reset_event >();
-       ::factory::add_factory_item < task >();
-
-
-       ::factory::add_factory_item < simple_log, logger >();
-
-
-       //operating_system_initialize_nano();
-
-
-    }
-
-
-   void factory_close()
-   {
-
-      critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
-
-      ::acme::static_start::g_staticstart.m_pfactory->erase_all();
-
-      ::acme::static_start::g_staticstart.m_mapFactory.erase_all();
-
-   }
-
-   void factory_term()
-   {
-
-      critical_section_lock synchronouslock(::acme::static_start::g_staticstart.m_pcriticalsectionFactory);
-
-      ::acme::static_start::g_staticstart.m_pfactory.release();
-
-      //::acme::del(::acme::static_start::g_staticstart.m_pfactorya);
-
-      //::acme::del(::acme::static_start::g_staticstart.m_pfactory);
-
-   }
 
 
    void factory::merge(const ::factory::factory* pfactory)
@@ -320,5 +276,3 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //#ifdef __DEBUG
 //#include "acme/inline/factory_item.cpp"
 //#endif
-
-

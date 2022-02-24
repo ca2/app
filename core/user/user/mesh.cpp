@@ -5689,7 +5689,7 @@ namespace user
             pimage1->get_graphics()->set(m_pfont);
             pimage1->get_graphics()->_DrawText(m_strText,rectangleCache,m_ealign, m_edrawtext);
 
-            //::aura::application * get_application() = m_pmesh->get_application();
+            //::aura::application * get_app() = m_pmesh->get_app();
 
             auto psystem = m_psystem->m_paurasystem;
 

@@ -132,7 +132,7 @@ namespace core
       virtual ~user();
 
 
-      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
@@ -252,7 +252,7 @@ namespace core
       virtual ::type get_simple_child_frame_type_info();
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha) override;
+      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
 
 
 
@@ -556,7 +556,7 @@ namespace core
 
       //virtual ::write_text::font_list* get_single_column_font_list();
 
-      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
+      //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
       //virtual void do_request(::create* pcreate) override;

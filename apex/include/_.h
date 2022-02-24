@@ -173,8 +173,8 @@ extern CLASS_DECL_APEX int g_bApex;
 #define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
-
-
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS application
 
 
 
@@ -326,7 +326,7 @@ namespace core
 #include "acme/platform/library.h"
 
 
-#include "apex/platform/apex_main_struct.h"
+//#include "apex/platform/apex_main_struct.h"
 
 
 
@@ -608,9 +608,9 @@ namespace html
 
 //#define get_session() (Sess(get_session()))
 
-//#define papplication (App(this))
-//#define ThisApp (*::application_consumer < application >::get_app())
-//#define m_papplication->
+//#define papp (App(this))
+//#define ThisApp (*::app_consumer < application >::get_app())
+//#define m_papp->
 
 
 //#undef Ctx
@@ -627,7 +627,7 @@ namespace html
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -696,10 +696,10 @@ namespace aura
 //CLASS_DECL_APEX ::application * get_global_application();
 
 
-//CLASS_DECL_APEX ::application * get_application();
-//CLASS_DECL_APEX ::application * get_application(::object * pobject);
-//CLASS_DECL_APEX inline ::application * get_application(::application * papp);
-//CLASS_DECL_APEX inline ::application * get_app() { return get_application(); }
+//CLASS_DECL_APEX ::application * get_app();
+//CLASS_DECL_APEX ::application * get_app(::object * pobject);
+//CLASS_DECL_APEX inline ::application * get_app(::application * papp);
+//CLASS_DECL_APEX inline ::application * get_app() { return get_app(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();
@@ -1048,7 +1048,7 @@ namespace zip
 #include "apex/platform/application_menu.h"
 #include "apex/platform/application_array.h"
 #include "apex/platform/application_exit.h"
-#include "apex/platform/application_container.h"
+#include "apex/platform/app_container.h"
 
 
 class interprocess_task;
@@ -1165,7 +1165,7 @@ namespace xml
 } // namespace xml
 
 
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 
 
 #include "apex/process/_.h"
@@ -1232,7 +1232,7 @@ namespace mathematics
 #include "apex/compress/_.h"
 
 
-#include "apex/platform/application_consumer.h"
+#include "apex/platform/app_consumer.h"
 
 
 //#include "apex/platform/async.h"

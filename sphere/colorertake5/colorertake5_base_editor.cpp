@@ -50,7 +50,7 @@ namespace colorertake5
    void base_editor::initialize(line_source *lineSource)
    {
 
-      ParserFactory *parserFactory = &papplication->parser_factory();
+      ParserFactory *parserFactory = &papp->parser_factory();
 
       if (parserFactory == nullptr || lineSource == nullptr)
       {

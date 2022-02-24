@@ -34,7 +34,7 @@ namespace userex
       void install_message_routing(::channel * pchannel) override;
 
 
-      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
@@ -103,7 +103,7 @@ class application_pane_tab_view :
 public:
 
 
-   __pointer(APPLICATION) m_papplication;
+   __pointer(APPLICATION) m_papp;
 
 
    application_pane_tab_view()
@@ -163,7 +163,8 @@ public:
 
    }
 
-   APPLICATION_CONSUMER_BODY
+
+   APP_CONSUMER_BODY
 
 
    virtual void install_message_routing(::channel* pchannel) override
@@ -194,8 +195,8 @@ public:
    }
 
 
-   inline APPLICATION* get_application() { return m_papplication.get(); }
-   inline APPLICATION* get_application() const { return (APPLICATION *) m_papplication.get(); }
+   inline APPLICATION* get_app() { return m_papp.get(); }
+   inline APPLICATION* get_app() const { return (APPLICATION *) m_papp.get(); }
 
    void on_change_cur_sel() override = 0;
    void on_create_impact(::user::impact_data * pimpactdata) override = 0;

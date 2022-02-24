@@ -29,6 +29,8 @@ namespace acme
 
 #endif
 
+   //::routine_array            m_routineaPost;
+
 
    public:
 
@@ -242,6 +244,10 @@ namespace acme
       }
 
       virtual void node_post(const ::routine & routine);
+
+
+      /// returns true if processed something
+      //virtual bool run_posted_routine_step();
 
       virtual void node_send(const ::routine & routine);
 

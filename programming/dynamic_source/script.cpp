@@ -445,9 +445,9 @@ namespace dynamic_source
    __pointer(script_instance) ds_script::create_instance()
    {
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      synchronous_lock slCompiler(&papplication->m_semCompiler);
+      synchronous_lock slCompiler(&papp->m_semCompiler);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -604,10 +604,10 @@ namespace dynamic_source
    }
 
 
-   //::aura::application * ds_script::get_application() const
+   //::aura::application * ds_script::get_app() const
    //{
 
-   //   return m_pmanager->get_application();
+   //   return m_pmanager->get_app();
 
    //}
 

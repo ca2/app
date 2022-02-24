@@ -128,7 +128,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-::application* create::create_get_application(::application* pappFallback)
+::app * create::create_get_app(::app * pappFallback)
 {
 
    auto pobject = this;
@@ -136,7 +136,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
    if (pobject)
    {
 
-      auto papp = pobject->get_application();
+      auto papp = pobject->get_app();
 
       if (papp)
       {
@@ -173,10 +173,10 @@ void create::finish_initialization()
 
    }
 
-   if(get_application())
+   if(get_app())
    {
 
-      if(get_application()->m_bExperienceMainFrame)
+      if(get_app()->m_bExperienceMainFrame)
       {
 
          m_bExperienceMainFrame = true;

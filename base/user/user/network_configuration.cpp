@@ -17,7 +17,7 @@ namespace user
 
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
-      /*m_pdocument = papplication->create_form(this, puiParent);
+      /*m_pdocument = papp->create_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
          m_pimpact = m_pdocument->get_type_impact < ::user::form > ();

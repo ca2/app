@@ -54,7 +54,7 @@ namespace helloworld
    void application::init_instance()
    {
 
-      ::aura::session * pcoression = get_application()->m_psession;
+      ::aura::session * pcoression = get_app()->m_psession;
 
       pcoression->use_font_sel();
 

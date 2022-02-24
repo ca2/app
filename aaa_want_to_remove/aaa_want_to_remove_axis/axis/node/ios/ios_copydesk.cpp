@@ -35,7 +35,7 @@ namespace ios
    }
 
 
-   void copydesk::get_filea(::file::patha & patha)
+   void copydesk::get_filea(::file::path_array & patha)
    {
       i32 iCount = get_file_count();
       if(iCount <= 0)
@@ -57,7 +57,7 @@ namespace ios
       */
    }
 
-   void copydesk::set_filea(const ::file::patha & patha)
+   void copydesk::set_filea(const ::file::path_array & patha)
    {
 
 //      ASSERT(m_p->is_window());
@@ -239,7 +239,7 @@ namespace ios
                //HDC hdc = ::CreateCompatibleDC(nullptr);
                //::draw2d::graphics_pointer g(this);
                //g->Attach(hdc);
-               //::draw2d::graphics_pointer & pgraphics = papplication->graphics_from_os_data(hdc);
+               //::draw2d::graphics_pointer & pgraphics = papp->graphics_from_os_data(hdc);
                //g->SelectObject(hbitmap);
              //  BITMAP bm;
                //::GetObjectA(hbitmap, sizeof(bm), &bm);

@@ -19,6 +19,15 @@ void acme_system_term();
 CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
 void implement(class ::system * psystem);
 
+namespace acme
+{
+
+   void initialize();
+
+   void finalize();
+
+}
+
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
@@ -26,33 +35,47 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   //__FACTORY(FACTORY)(::factory::get_factory());
+   APPLICATION_CLASS app;
 
-   class ::main main;
-
-   //Sleep(30'000);
-
-   main.m_argc = argc;
-#ifdef WINDOWS
-   main.m_wargv = argv;
-   main.m_wenvp = envp;
-#else
-   main.m_argv = argv;
-   main.m_envp = envp;
-#endif
-
-#ifdef __APP_ID
-   main.m_strAppId = __APP_ID;
-#endif
+   app.set_args(argc, argv, envp);
 
 
-   main.m_pfnImplement = &::implement;
+//   {
+//      //__FACTORY(FACTORY)(::factory::get_factory());
+//
+//      class ::main main;
+//
+//      //Sleep(30'000);
+//
+//      main.m_argc = argc;
+//
+//#ifdef WINDOWS
+//
+//      main.m_wargv = argv;
+//      main.m_wenvp = envp;
+//
+//#else
+//
+//      main.m_argv = argv;
+//      main.m_envp = envp;
+//
+//#endif
+//
+//#ifdef __APP_ID
+//
+//      main.m_strAppId = __APP_ID;
+//
+//#endif
 
-   main.m_bConsole = true;
+      app.m_pfnImplement = &::implement;
 
-   __main(main);
+      app.m_bConsole = true;
 
-   return main.m_iExitCode;
+      app.m_strAppId = __APP_ID;
+
+      int iExitCode = app.main_loop();
+
+      return iExitCode;
 
 
 //   process_set_args(argc, argv);
@@ -120,6 +143,10 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //   acme_system_term();
 //
 //   return process_get_status();
+
+//   }
+
+  // ::acme::finalize();
 
 }
 

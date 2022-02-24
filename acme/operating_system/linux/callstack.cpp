@@ -2,7 +2,7 @@
 #include "acme/operating_system/ansi/callstack.h"
 #include "_linux.h"
 #include <execinfo.h>
-//#include <cxxabi.h>
+#include <cxxabi.h>
 #undef USE_MISC
 
 string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
@@ -284,7 +284,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
       if (status == 0)
       {
 
-         strSymbolName = pszRealName;
+         strSymbolName = (const char *) (char *) pszRealName;
 
       }
       else

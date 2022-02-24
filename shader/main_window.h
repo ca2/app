@@ -6,7 +6,7 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER main_window :
-      virtual public application_consumer < application, ::user::main_window >
+      virtual public app_consumer < application, ::user::main_window >
    {
    public:
 

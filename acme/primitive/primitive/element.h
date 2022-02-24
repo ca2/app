@@ -65,6 +65,7 @@ public:
    virtual void operator()();
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
+   virtual void init_task();
    virtual void run();
    virtual bool step();
    virtual ::payload realize();

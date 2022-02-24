@@ -57,9 +57,9 @@ namespace user
 
       place(rectangleWindow);
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      string strCaption = papplication->get_app_user_friendly_task_bar_name();
+      string strCaption = papp->get_app_user_friendly_task_bar_name();
 
       set_window_text(strCaption);
 

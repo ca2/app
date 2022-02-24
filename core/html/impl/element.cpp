@@ -811,7 +811,7 @@ namespace html
             //   if (m_pelemental->get_color(color32, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_application()).imaging().color_blend(pgraphics, rectangle, color32, maximum(0, minimum(255, (byte)(d * 255))));
+            //      App(pdata->get_app()).imaging().color_blend(pgraphics, rectangle, color32, maximum(0, minimum(255, (byte)(d * 255))));
 
             //   }
 

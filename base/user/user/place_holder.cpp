@@ -261,7 +261,7 @@ namespace user
 
       }
 
-      __pointer(::base::application) papplication = get_application();
+      __pointer(::base::application) papp = get_app();
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -278,7 +278,7 @@ namespace user
          for (auto & puiChildOld : puserinteractionpointeraChild->interactiona())
          {
 
-            papplication->place_hold(puiChildOld);
+            papp->place_hold(puiChildOld);
 
          }
 
@@ -297,9 +297,9 @@ namespace user
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
 
-      __pointer(::base::application) papplication = get_application();
+      __pointer(::base::application) papp = get_app();
 
-      return papplication->place_hold(pinteraction) != nullptr;
+      return papp->place_hold(pinteraction) != nullptr;
 
    }
 

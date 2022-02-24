@@ -299,7 +299,7 @@ bool matter::thread_is_running() const
 }
 
 
-::application* matter::_get_application()
+::app* matter::_get_app()
 {
 
    return nullptr;
@@ -750,7 +750,7 @@ void matter::trace_log_fatal(const char * psz, ...)
 
 
 
-void matter::__thread_main()
+void matter::__task_main()
 {
 
    //::e_status estatus = operator()();
@@ -831,7 +831,7 @@ void matter::__thread_main()
 //}
 
 
-void matter::osthread_init()
+void matter::task_osinit()
 {
 
    //return ::success;
@@ -839,7 +839,7 @@ void matter::osthread_init()
 }
 
 
-void matter::__thread_init()
+void matter::__task_init()
 {
 
    //return ::success;
@@ -847,7 +847,7 @@ void matter::__thread_init()
 }
 
 
-void matter::__thread_term()
+void matter::__task_term()
 {
 
    //return ::success;
@@ -855,7 +855,7 @@ void matter::__thread_term()
 }
 
 
-void matter::osthread_term()
+void matter::task_osterm()
 {
 
    //return ::success;

@@ -21,6 +21,8 @@ nano_window::nano_window()
 
    m_bStartCentered = false;
 
+   m_bArbitraryPositioning = false;
+
    m_bCapture = false;
 
 }
@@ -477,7 +479,7 @@ void nano_window::on_left_button_up(int x, int y)
 
       m_atomResult = m_atomLeftButtonUp;
 
-      on_click(m_atomResult);
+      m_pimplementation->on_click(m_atomResult);
 
    }
 
@@ -536,7 +538,7 @@ void nano_window::on_right_button_up(int x, int y)
    if (m_atomRightButtonUp == m_atomRightButtonDown)
    {
 
-      on_right_click(m_atomLeftButtonUp);
+      m_pimplementation->on_right_click(m_atomLeftButtonUp);
 
    }
 

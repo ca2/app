@@ -685,9 +685,9 @@ namespace user
 
       }
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->on_change_cur_sel(this);
+      papp->on_change_cur_sel(this);
 
 
 

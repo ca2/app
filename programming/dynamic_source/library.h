@@ -16,11 +16,11 @@ namespace dynamic_source
       ::string_stream                               m_memfileError;
       ::string_stream                               m_memfileLibError;
       ::file::listing                           m_straLibSourcePath;
-      ::file::patha                             m_straLibSourceRelPath;
-      ::file::patha                             m_straLibCppPath;
+      ::file::path_array                             m_straLibSourceRelPath;
+      ::file::path_array                             m_straLibCppPath;
       ::file::listing                           m_straLibIncludePath;
-      ::file::patha                             m_straLibIncludeRelPath;
-      ::file::patha                             m_straLibHppPath;
+      ::file::path_array                             m_straLibIncludeRelPath;
+      ::file::path_array                             m_straLibHppPath;
       ::file::path                              m_strLibraryPath;
 
       ::duration                                    m_durationLastLibraryVersionCheck;

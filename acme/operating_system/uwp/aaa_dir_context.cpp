@@ -199,7 +199,7 @@ pacmedir->roaming() / "home";
 
          }
 
-         ::file::patha stra;
+         ::file::path_array stra;
 
          ::dir::ls(stra, listing.m_pathFinal);
 
@@ -244,7 +244,7 @@ pacmedir->roaming() / "home";
 
          }
 
-         ::file::patha stra;
+         ::file::path_array stra;
 
          ::dir::ls(stra,listing.m_pathFinal);
 
@@ -445,7 +445,7 @@ pacmedir->roaming() / "home";
       if(is(pcsz))
          return true;
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       pcsz.ascendants_path(stra);
 

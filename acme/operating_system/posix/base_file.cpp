@@ -810,7 +810,7 @@ bool file_exists(const char * path)
 //
 //   strsize iLastPos = -1;
 //
-//   ::file::patha stra;
+//   ::file::path_array stra;
 //
 //   ::file::path path(pathParam);
 //

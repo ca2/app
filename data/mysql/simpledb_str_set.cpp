@@ -66,7 +66,7 @@ public:
 
 
    db_str_set_core(db_server * pserver):
-      matter(pserver->get_application()),
+      matter(pserver->get_app()),
       db_set(pserver,"stringtable"),
       m_handler(this),
       
@@ -238,8 +238,8 @@ void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 
 
 db_str_set::db_str_set(db_server * pserver):
-matter(pserver->get_application()),
-m_mutex(pserver->get_application())
+matter(pserver->get_app()),
+m_mutex(pserver->get_app())
 {
 
    m_pcore = new db_str_set_core(pserver);
@@ -272,7 +272,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
    if(m_pcore->m_pdataserver->m_bRemote && string(lpKey).find("&data_source=local&") < 0)
    {
 
-      papplication->assert_user_logged_in();
+      papp->assert_user_logged_in();
 
       synchronous_lock synchronouslock(&m_mutex);
 

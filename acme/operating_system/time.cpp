@@ -286,11 +286,11 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime);
+//void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime);
 
 
 
-void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime);
+//void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime);
 
 
 

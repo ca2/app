@@ -120,7 +120,7 @@ namespace account
 //            return strSessId;
 //
 //      }
-//      class validate authuser(get_application(), "system\\user\\authenticate.xhtml", true, bInteractive);
+//      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
 //      __pointer(user) puser = authuser.get_user(pszText);
 //      if(puser == nullptr)
 //         strSessId = "not_auth";
@@ -302,7 +302,7 @@ namespace account
 
       //m_pcredentials->m_strToken = m_strRequestingHost;
 
-      //      m_eresult = papplication->interactive_credentials(thisget_app(), m_pathUrl, nullptr, strUsername, strPassword, m_strRequestingHost, "ca2", m_bInteractive);
+      //      m_eresult = papp->interactive_credentials(thisget_app(), m_pathUrl, nullptr, strUsername, strPassword, m_strRequestingHost, "ca2", m_bInteractive);
 
       try
       {
@@ -366,9 +366,9 @@ namespace account
       //else
       //{
 
-      // ::account::set_cred(get_application(), "ca2", "", "");
+      // ::account::set_cred(get_app(), "ca2", "", "");
 
-      //::account::set_cred_ok(get_application(), "ca2", false);
+      //::account::set_cred_ok(get_app(), "ca2", false);
 
       //}
 

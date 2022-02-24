@@ -275,14 +275,14 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(::std:
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
-   // matter(a.get_application())
+   // matter(a.get_app())
 {
    ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (a);
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) //:
-//   matter(a.get_application())
+//   matter(a.get_app())
 {
 
    this->m_nGrowBy = a.m_nGrowBy;

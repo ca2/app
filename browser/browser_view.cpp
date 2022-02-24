@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(m_atom).contains_ci("switcher");
 
-      m_prender = __new(render(get_application(), bAlternate));
+      m_prender = __new(render(get_app(), bAlternate));
 
       m_prender->m_pimpact = this;
 
@@ -140,7 +140,7 @@ namespace browser
 
       //set_browser(strText);
 
-      if(papplication->m_etype == application::type_normal)
+      if(papp->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -317,7 +317,7 @@ namespace browser
 
       pmessage->previous();
 
-      papplication->m_ppaneview->m_pviewLastBilbo = this;
+      papp->m_ppaneview->m_pviewLastBilbo = this;
 
       CefMouseEvent event;
 
@@ -331,7 +331,7 @@ namespace browser
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         papplication->m_ppaneview->m_pviewLastBilbo = this;
+         papp->m_ppaneview->m_pviewLastBilbo = this;
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
@@ -379,7 +379,7 @@ namespace browser
       if (rectangle.size() != m_pimageBrowser->size())
       {
 
-         if (papplication->get_application()->m_bCefInitialized)
+         if (papp->get_app()->m_bCefInitialized)
          {
             if (!m_bBrowser)
             {
@@ -618,13 +618,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + papplication->m_strAlternateHelloBrowser;
+               return "Rolling " + papp->m_strAlternateHelloBrowser;
 
             }
             else
             {
 
-               return papplication->m_strAlternateHelloBrowser.c_str();
+               return papp->m_strAlternateHelloBrowser.c_str();
 
             }
 
@@ -635,13 +635,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + papplication->m_strHelloBrowser;
+               return "Rolling " + papp->m_strHelloBrowser;
 
             }
             else
             {
 
-               return papplication->m_strHelloBrowser.c_str();
+               return papp->m_strHelloBrowser.c_str();
 
             }
 

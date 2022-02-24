@@ -15,7 +15,7 @@ public:
    //matter(::matter * pobject);
    virtual ~matter();
 
-   virtual ::acme::application * get_application() const;
+   virtual ::acme::application * get_app() const;
    virtual ::matter * this const;
 
 

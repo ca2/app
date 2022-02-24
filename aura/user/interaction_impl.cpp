@@ -689,12 +689,12 @@ namespace user
 
          __refer(m_puserthread, puserthread);
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         if (::is_set(papplication))
+         if (::is_set(papp))
          {
 
-            papplication->add_task(m_puserthread);
+            papp->add_task(m_puserthread);
 
          }
 
@@ -731,7 +731,7 @@ namespace user
       {
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->begin_synchronously();
+         m_puserthread->branch_synchronously();
          //{
 
          //   __release(m_pprodevian);

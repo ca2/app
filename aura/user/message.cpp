@@ -27,7 +27,7 @@ namespace user
    //   set(oswindow, playeredUserPrimitive, atom, wparam, lparam);
 
 
-   //   //papplication->tellme_destroyed(puserinteraction, &m_bDestroyed);
+   //   //papp->tellme_destroyed(puserinteraction, &m_bDestroyed);
 
    //}
 
@@ -45,7 +45,7 @@ namespace user
    //   m_bDoSystemDefault = base.m_bDoSystemDefault;
    //   m_bDestroyed = false;
 
-   //   //papplication->tellme_destroyed(m_puserinteraction, &m_bDestroyed);
+   //   //papp->tellme_destroyed(m_puserinteraction, &m_bDestroyed);
 
    //}
 
@@ -66,7 +66,7 @@ namespace user
       //   else
       //   {
 
-      //      papplication->tellme_destroyed(m_puserinteraction, &m_bDestroyed, false);
+      //      papp->tellme_destroyed(m_puserinteraction, &m_bDestroyed, false);
 
       //   }
 

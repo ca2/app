@@ -1,21 +1,38 @@
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
-namespace apex
-{
+//#include "apex_main_data.h"
 
 
-   class application;
+//namespace apex
+//{
 
 
-   class library;
+  // class application;
 
 
-} // namespace apex
+   //class library;
 
 
-struct CLASS_DECL_APEX apex_main_struct :
-   virtual public ::main
+//} // namespace apex
+
+
+
+extern "C"
+typedef ::acme::library* NEW_LIBRARY();
+
+typedef NEW_LIBRARY* PFN_NEW_LIBRARY;
+
+
+extern "C"
+typedef ::matter * NEW_MATTER();
+
+typedef NEW_MATTER* PFN_NEW_MATTER;
+
+
+struct CLASS_DECL_ACME apex_main_struct :
+   public acme_main_struct
 {
 
 

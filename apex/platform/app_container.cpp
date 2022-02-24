@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -323,7 +323,7 @@ __pointer(::application) application_container::instantiate_application(const ch
       else
       {
 
-         papp = psystem->new_application(strAppId);
+         papp = psystem->new_app(strAppId);
 
          ::g_pappcore->initialize_application(papp, this);
 

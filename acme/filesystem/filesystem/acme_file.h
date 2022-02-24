@@ -105,8 +105,8 @@ public:
    virtual void copy(const char * pszDup, const char * pszSrc, bool bOverwrite);
    
 
-   virtual ::duration modification_time(const char* psz);
-   virtual void set_modification_time(const char* psz, const ::duration & duration);
+   virtual ::datetime::time modification_time(const char* psz);
+   virtual void set_modification_time(const char* psz, const ::datetime::time & time);
    virtual void synchronize(const char * psz1, const char * psz2);
 
 

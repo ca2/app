@@ -39,7 +39,7 @@ namespace ios
 //      for (index i = 0; i < iThreadCount; i++)
 //      {
 //
-//         m_threadaGetImage.add(::fork(get_application(),
+//         m_threadaGetImage.add(::fork(get_app(),
 //                                      [&]()
 //         {
 //

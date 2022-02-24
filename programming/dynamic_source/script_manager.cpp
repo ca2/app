@@ -236,7 +236,7 @@ namespace dynamic_source
 
       ::file::listing listing;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       pcontext->m_papexcontext->dir().ls_dir(listing, m_strNetnodePath);
 

@@ -505,7 +505,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 }
 
 mutexmutex(const mutex & m):
-   matter(m.get_application()),
+   matter(m.get_app()),
    synchronization_object(m.m_pszName)
 {
 
@@ -534,7 +534,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 }
 
 //mutexmutex(const mutex & m) :
-//   matter(m.get_application()),
+//   matter(m.get_app()),
 //   synchronization_object(m.m_pszName)
 //{
 //
@@ -561,7 +561,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 
 //mutexmutex(const mutex & m):
-//   matter(m.get_application()),
+//   matter(m.get_app()),
 //   synchronization_object(m.m_pszName)
 //{
 //

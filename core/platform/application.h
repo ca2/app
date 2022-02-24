@@ -17,7 +17,7 @@ namespace core
 
       void common_construct();
 
-      inline ::core::application* get_application() const { return m_pcoreapplication; }
+      inline ::core::application* get_app() const { return m_pcoreapplication; }
       inline ::core::session* get_session() const { return m_pcoresession; }
       inline ::core::system* get_system() const { return m_pcoresystem; }
 

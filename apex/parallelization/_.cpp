@@ -389,7 +389,7 @@ namespace parallelization
 //}
 
 
-//::application * get_application()
+//::application * get_app()
 //{
 //
 //   task* ptask = get_task();
@@ -406,12 +406,12 @@ namespace parallelization
 //   if (pthread != nullptr)
 //   {
 //
-//      auto papplication = pthread->get_application();
+//      auto papp = pthread->get_app();
 //
-//      if (papplication)
+//      if (papp)
 //      {
 //
-//         return papplication;
+//         return papp;
 //
 //      }
 //
@@ -426,7 +426,7 @@ namespace parallelization
 //
 //   }
 //
-//   auto papplication = pobject->get_context();
+//   auto papp = pobject->get_context();
 //
 //   if (!pobject)
 //   {
@@ -435,7 +435,7 @@ namespace parallelization
 //
 //   }
 //
-//   return papplication;
+//   return papp;
 //
 //}
 
@@ -879,7 +879,7 @@ namespace apex
 //
 //#else
 //
-//      ::parallelization::finish(::get_application());
+//      ::parallelization::finish(::get_app());
 //
 //#endif
 //
@@ -1045,12 +1045,12 @@ void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronousl
 
    //}
 
-   auto papplicationContext = get_application();
+   auto pappContext = get_app()->m_papplication;
 
-   if (::is_set(papplicationContext) && papplicationContext != this)
+   if (::is_set(pappContext) && pappContext != this)
    {
 
-      return papplicationContext;
+      return pappContext;
 
    }
 

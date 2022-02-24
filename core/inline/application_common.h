@@ -1,6 +1,6 @@
 #include "aura/_.h"
 #include "aura/platform/app_core.h"
-#include "aura/platform/static_setup.h"
+#include "aura/platform/system_setup.h"
 #include "aura/_defer.h"
 
 
@@ -56,7 +56,7 @@ void application_common(aura_main_struct * pmainstruct)
 
 template < typename APPLICATION >
 class static_application_factory :
-   public static_setup
+   public system_setup
 {
 public:
 
@@ -65,7 +65,7 @@ public:
 
 
    static_application_factory(const ::string & pszName = "") :
-      static_setup(flag_application, pszName)
+      system_setup(flag_application, pszName)
    {
 
 

@@ -3,7 +3,7 @@
 
 #define _System ::apex::get_system()
 #define _Platform Platform
-#define _Application papplication
+#define _Application papp
 #define _Session get_session()
 
 

@@ -46,7 +46,7 @@ namespace filemanager
       double get_item_read(i32 iItem);
       double get_item_size(i32 iItem);
 
-      void expand(::file::listing & straExpanded,::file::patha & straExpand);
+      void expand(::file::listing & straExpanded,::file::path_array & straExpand);
 
       virtual void start();
       virtual bool step() override;

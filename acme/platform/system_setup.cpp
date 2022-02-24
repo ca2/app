@@ -1,13 +1,13 @@
 //  Moved from Apex to Acme on 2021-03-20 18:39 <3ThomasBS_
 #include "framework.h"
-#include "static_setup.h"
+#include "system_setup.h"
 #include "library.h"
 
 
-::static_setup * static_setup::s_psetupList = nullptr;
+::system_setup * system_setup::s_psetupList = nullptr;
 
 
-static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
+system_setup::system_setup(::system_setup::enum_flag eflag, const char * pszName) :
    m_pfnFactory(nullptr),
    m_pszName(pszName),
    m_eflag(eflag)
@@ -17,7 +17,7 @@ static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName
 
 }
 
-static_setup::static_setup(PFN_factory pfnFactory, const char* pszName) :
+system_setup::system_setup(PFN_factory pfnFactory, const char* pszName) :
    m_pfnFactory(pfnFactory),
    m_pszName(pszName),
    m_eflag(flag_factory)
@@ -27,7 +27,7 @@ static_setup::static_setup(PFN_factory pfnFactory, const char* pszName) :
 
 }
 
-//static_setup::static_setup(const char * lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
+//system_setup::system_setup(const char * lpszName, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication) :
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
@@ -39,7 +39,7 @@ static_setup::static_setup(PFN_factory pfnFactory, const char* pszName) :
 //}
 //
 //
-//static_setup::static_setup(const char * lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
+//system_setup::system_setup(const char * lpszName, PFN_NEW_APEX_LIBRARY pfnNewLibrary):
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
@@ -51,7 +51,7 @@ static_setup::static_setup(PFN_factory pfnFactory, const char* pszName) :
 //}
 
 
-void static_setup::construct()
+void system_setup::construct()
 {
 
    m_ppropertysetupNext = s_psetupList;
@@ -61,7 +61,7 @@ void static_setup::construct()
 }
 
 
-static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const char* pszName)
+system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const char* pszName)
 {
 
    auto psetup = s_psetupList;
@@ -87,7 +87,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 }
 
 
-PFN_factory static_setup::get_factory_function(const char* pszName)
+PFN_factory system_setup::get_factory_function(const char* pszName)
 {
 
    if (::is_null(pszName))
@@ -118,7 +118,7 @@ PFN_factory static_setup::get_factory_function(const char* pszName)
 
 }
 
-static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char* pszName)
+system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char* pszName)
 {
 
    auto psetup = s_psetupList;
@@ -143,7 +143,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 
 }
 
-//::static_setup * static_setup::get(const char * lpszName)
+//::system_setup * system_setup::get(const char * lpszName)
 //{
 //
 //   if(s_papp == nullptr)
@@ -153,7 +153,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 //
 //   }
 //
-//   static_setup * papp = s_papp;
+//   system_setup * papp = s_papp;
 //
 //   if (papp != nullptr && !ansi_cmp(lpszName, "acid"))
 //   {
@@ -181,7 +181,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 //}
 
 
-//bool static_setup::has_flag(::static_setup::enum_flag eflag)
+//bool system_setup::has_flag(::system_setup::enum_flag eflag)
 //{
 //
 //   auto psetup = s_psetupList;
@@ -205,7 +205,7 @@ static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char
 //}
 
 
-__pointer(::element) static_setup::create_element()
+__pointer(::element) system_setup::create_element()
 {
 
    auto pobject = _create_element();
@@ -222,24 +222,24 @@ __pointer(::element) static_setup::create_element()
 }
 
 
-__pointer(::element) static_setup::create_application_as_element()
+__pointer(::element) system_setup::create_application_as_element()
 {
 
-   auto papplication = _create_application_as_element();
+   auto papp = _create_application_as_element();
 
-   if (::is_set(papplication))
+   if (::is_set(papp))
    {
 
-      papplication->set_application_id(m_pszName);
+      papp->set_application_id(m_pszName);
 
    }
 
-   return papplication;
+   return papp;
 
 }
 
 
-__pointer(::acme::library) static_setup::create_library()
+__pointer(::acme::library) system_setup::create_library()
 {
 
    auto plibrary = _create_library();
@@ -257,7 +257,7 @@ __pointer(::acme::library) static_setup::create_library()
 
 
 
-__pointer(::element) static_setup::_create_element()
+__pointer(::element) system_setup::_create_element()
 {
 
    return nullptr;
@@ -265,7 +265,7 @@ __pointer(::element) static_setup::_create_element()
 }
 
 
-__pointer(::element) static_setup::_create_application_as_element()
+__pointer(::element) system_setup::_create_application_as_element()
 {
 
    return nullptr;
@@ -273,7 +273,7 @@ __pointer(::element) static_setup::_create_application_as_element()
 }
 
 
-__pointer(::acme::library) static_setup::_create_library()
+__pointer(::acme::library) system_setup::_create_library()
 {
 
    return nullptr;

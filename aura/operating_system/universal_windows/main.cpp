@@ -288,12 +288,12 @@
 //   return true;
 //
 //}
-#undef papplication
+#undef papp
 
 //void os_post_quit()
 //{
 //
-//   ::winrt::Windows::UI::Xaml::papplication::Current->Exit();
+//   ::winrt::Windows::UI::Xaml::papp::Current->Exit();
 //
 //}
 

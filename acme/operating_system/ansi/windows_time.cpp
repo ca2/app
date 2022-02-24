@@ -6,6 +6,7 @@
 //  14:35
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
+#include "framework.h"
 #include "windows_time.h"
 
 
@@ -15,7 +16,8 @@ using WINULONG = ::u32;
 using LONGLONG = ::i64;
 using ULONGLONG = ::u64;
 using NTSTATUS = ::i32;
-using LPDWORD = DWORD *;
+using DWORD = ::u32;
+using LPDWORD = ::DWORD *;
 
 
 #define STATUS_SUCCESS                   ((NTSTATUS) 0x00000000)
@@ -1219,7 +1221,7 @@ void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
 
       time = 0;
 
-      return ::error_failed;
+      throw ::exception(::error_failed);
 
    }
 
@@ -1242,7 +1244,7 @@ void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
 
 #endif
 
-   return ::success;
+   //return ::success;
 
 }
 

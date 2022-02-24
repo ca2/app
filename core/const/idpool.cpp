@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "idpool.h"
-#include "aura/platform/static_start.h"
+//#include "aura/platform/static_start.h"
 
 
 namespace core

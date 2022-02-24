@@ -398,7 +398,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
    pstream->Seek(l, STREAM_SEEK_SET, nullptr);
 
 
-   memory mem(pobject->get_application());
+   memory mem(pobject->get_app());
 
    mem.set_size(1024 * 1024);
 

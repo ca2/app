@@ -175,9 +175,9 @@ namespace user
 
       string strText;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_get(m_atom + ".cur_text", strText);
+      papp->data_get(m_atom + ".cur_text", strText);
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -679,7 +679,7 @@ namespace user
 
       int iCommand;
 
-//      auto papplication = get_application();
+//      auto papp = get_app();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 

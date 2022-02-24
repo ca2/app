@@ -125,7 +125,7 @@ void service::stop_service()
 //
 //   }
 //
-//   get_application()->destroy();
+//   get_app()->destroy();
 //
 //   estatus = __thread_term();
 //

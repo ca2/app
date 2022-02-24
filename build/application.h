@@ -36,7 +36,7 @@ namespace app_core_build
       pane_view *                            m_ppaneview;
 
 
-      ::file::patha                          m_pathaCommandLineSlide;
+      ::file::path_array                          m_pathaCommandLineSlide;
 
 
       application();

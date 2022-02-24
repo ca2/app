@@ -37,3 +37,7 @@ namespace opengl
 
 
 
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS ::app_shader::application
+
+

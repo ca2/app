@@ -20,7 +20,7 @@
 //
 //#elif defined(__APPLE__)
 //
-//   path = ::file::path(getenv("HOME")) / "Library/papplication Support";
+//   path = ::file::path(getenv("HOME")) / "Library/papp Support";
 //
 //#else
 //

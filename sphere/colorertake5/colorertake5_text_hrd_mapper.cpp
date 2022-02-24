@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      __pointer(::xml::document) hbase = new xml::document(get_application());
+      __pointer(::xml::document) hbase = new xml::document(get_app());
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")

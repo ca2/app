@@ -2229,10 +2229,10 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::application* object::get_application() const 
+inline ::app * object::get_app() const
 { 
    
-   return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication : (m_psystem ? m_psystem->m_papplicationMain.get() : nullptr);
+   return m_pcontext && m_pcontext->m_papp ? m_pcontext->m_papp : (m_psystem ? m_psystem->m_pappMain.get() : nullptr);
 
 }
 
@@ -3369,7 +3369,7 @@ inline void object::defer_branch(::task_pointer& ptask, const ::routine& routine
 
    ptask->m_pelement = routine;
 
-   return ptask->branch();
+   ptask->branch();
 
 }
 

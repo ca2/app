@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   bool copydesk::string_to_filea(::file::patha * ppatha, const ::string & str)
+   bool copydesk::string_to_filea(::file::path_array * ppatha, const ::string & str)
    {
 
       string_array stra;
@@ -144,7 +144,7 @@ namespace user
    }
 
 
-   bool copydesk::get_filea(::file::patha & patha, enum_op & eop)
+   bool copydesk::get_filea(::file::path_array & patha, enum_op & eop)
    {
 
       if(_get_filea(patha, eop))
@@ -175,7 +175,7 @@ namespace user
    }
 
 
-   bool copydesk::set_filea(const ::file::patha & patha, enum_op eop)
+   bool copydesk::set_filea(const ::file::path_array & patha, enum_op eop)
    {
 
       return _set_filea(patha, eop);
@@ -226,7 +226,7 @@ namespace user
 
             }
 
-            __pointer(::aura::application) papplication = get_application();
+            __pointer(::aura::application) papp = get_app();
 
             auto psystem = m_psystem->m_paurasystem;
 
@@ -328,7 +328,7 @@ namespace user
 
          enum_op eop = e_op_copy;
 
-         ::file::patha patha;
+         ::file::path_array patha;
 
          if(get_filea(patha, eop))
          {
@@ -536,7 +536,7 @@ namespace user
    }
 
 
-   bool copydesk::_get_filea(::file::patha & stra, enum_op & eop)
+   bool copydesk::_get_filea(::file::path_array & stra, enum_op & eop)
    {
 
       __UNREFERENCED_PARAMETER(stra);
@@ -548,7 +548,7 @@ namespace user
    }
 
 
-   bool copydesk::_set_filea(const ::file::patha & patha, enum_op eop)
+   bool copydesk::_set_filea(const ::file::path_array & patha, enum_op eop)
    {
 
       __UNREFERENCED_PARAMETER(patha);

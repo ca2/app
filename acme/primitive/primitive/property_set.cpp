@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
-#include "acme/platform/static_start_internal.h"
+#include "acme/platform/acme.h"
+//#include "acme/platform/static_start_internal.h"
 
 
 #undef new

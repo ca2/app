@@ -62,16 +62,16 @@
 //
 //      auto picon = pwindowing->load_icon(pathIcon);
 //
-////      HICON hicon = load_icon(get_application(), straMatter, "icon.ico", 16, 16);
+////      HICON hicon = load_icon(get_app(), straMatter, "icon.ico", 16, 16);
 //
 //      set_icon(picon);
 //
 //      //if (m_bWindowFrame)
 //      //{
 //
-//      //   //hicon = load_icon(get_application(), straMatter, "icon.ico", 24, 24);
+//      //   //hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 //
-//      //   //__compose(m_picon, papplication->load_icon("matter://icon.ico"));
+//      //   //__compose(m_picon, papp->load_icon("matter://icon.ico"));
 //
 //      //   //__compose(m_picon, m_picon->);
 //

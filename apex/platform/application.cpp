@@ -5,7 +5,7 @@
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 //#include "apex/compress/zip/_.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
@@ -107,16 +107,25 @@ CLASS_DECL_APEX int ui_open_url(const ::string & psz);
 //extern void * g_pf1;
 
 
-//namespace apex
-//{
+namespace apex
+{
+
+
+   void initialize_system();
+
+
+} // namespace apex
 
 
 application::application()
 {
 
+
+   ::apex::initialize_system();
+
    m_bEnableAutoStartOption = false;
    //m_bProcessingApplicationExitRequest = false;
-   m_papexapplication = this;
+   m_papplication = this;
    ::object::m_pcontext = this;
    m_pcontext = this;
 
@@ -218,7 +227,7 @@ application::application()
 
    //m_durationGcomBackgroundUpdate = 30_s;
 
-   m_papplicationimpl = new application_impl;
+   m_pappimpl = new application_impl;
 
 
 }
@@ -228,7 +237,7 @@ application::application()
 application::~application()
 {
 
-   acme::del(m_papplicationimpl);
+   acme::del(m_pappimpl);
 
 }
 
@@ -248,7 +257,7 @@ void application::initialize(::object * pobject)
 //
 //}
 
-m_papplicationimpl->initialize(this);
+m_pappimpl->initialize(this);
 ///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
 //set_context_app(this);
@@ -290,14 +299,14 @@ m_strBuild = "(unknown build version)";
 application_menu & application::applicationmenu()
 {
 
-if(m_papplicationmenu.is_null())
+if(m_pappmenu.is_null())
 {
 
-__own(this, m_papplicationmenu, __new(application_menu));
+__own(this, m_pappmenu, __new(application_menu));
 
 }
 
-return *m_papplicationmenu;
+return *m_pappmenu;
 
 }
 
@@ -335,7 +344,7 @@ auto pnode = psystem->node();
 if(pnode)
 {
 
-pnode->set_application_menu(m_papplicationmenu, this);
+pnode->set_application_menu(m_pappmenu, this);
 
 }
 
@@ -708,7 +717,7 @@ do_request(pcreate);
 
 //      }
 
-//      auto papp = pinteraction->get_application();
+//      auto papp = pinteraction->get_app();
 
 //      if (papp == nullptr)
 //      {
@@ -821,7 +830,7 @@ do_request(pcreate);
 
 //    psystem->on_run_exception(esp);
 
-//    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
+//    throw ::exception(exit_exception(esp->get_app(), ::exit_application));
 
 // }
 catch (const ::exception & e)
@@ -1282,7 +1291,7 @@ void application::process_exception(const ::exception & e)
 //   if (!is_system())
 //   {
 
-//      // get_application() may be it self, it is ok...
+//      // get_app() may be it self, it is ok...
 //      if (psystem->final_handle_exception(pe))
 //         return true;
 
@@ -1341,7 +1350,7 @@ void application::process_exception(const ::exception & e)
 //   }
 
 
-void application::init_thread()
+void application::init_task()
 {
 
    try
@@ -1375,7 +1384,7 @@ void application::init_thread()
 }
 
 
-void application::term_thread()
+void application::term_task()
 {
 
    INFORMATION("apex::application::term_thread");
@@ -1393,7 +1402,7 @@ void application::term_thread()
 
    }
 
-   ::thread::term_thread();
+   ::thread::term_task();
 
 }
 
@@ -1624,7 +1633,7 @@ synchronous_lock synchronouslock(mutex());
 //      try
 //      {
 
-//         if (papp != this && papp->get_application() == this)
+//         if (papp != this && papp->get_app() == this)
 //         {
 
 //            set_object(nullptr);
@@ -3319,17 +3328,17 @@ void application::init1()
 
       }
 
-      if (get_application()->payload("locale").get_count() > 0)
+      if (get_app()->payload("locale").get_count() > 0)
       {
 
-         strLocale = get_application()->payload("locale").stra()[0];
+         strLocale = get_app()->payload("locale").stra()[0];
 
       }
 
-      if (get_application()->payload("schema").get_count() > 0)
+      if (get_app()->payload("schema").get_count() > 0)
       {
 
-         strSchema = get_application()->payload("schema").stra()[0];
+         strSchema = get_app()->payload("schema").stra()[0];
 
       }
 
@@ -3608,7 +3617,7 @@ __pointer(::acme::exclusive) application_impl::get_exclusive(string strId ARG_SE
 bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
 {
 
-   auto pexclusive = m_papplicationimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+   auto pexclusive = m_pappimpl->get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
    if(!pexclusive)
    {
@@ -3766,7 +3775,7 @@ return true;
 bool application::release_exclusive()
 {
 
-   m_papplicationimpl->m_mapExclusive.erase_all();
+   m_pappimpl->m_mapExclusive.erase_all();
 
    return true;
 
@@ -5437,40 +5446,40 @@ return atom;
 bool application::on_start_application()
 {
 
-string strAppId = m_strAppId;
+   string strAppId = m_strAppId;
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-auto& file = psystem->file();
+   auto& file = psystem->file();
 
-string strNetworkPayload = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.network_payload");
+   string strNetworkPayload = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.network_payload");
 
-if (strNetworkPayload.has_char())
-{
+   if (strNetworkPayload.has_char())
+   {
 
-try
-{
+      try
+      {
 
-psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
+         psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
 
-}
-catch (...)
-{
+      }
+      catch (...)
+      {
 
-}
+      }
 
-}
+   }
 
-m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
+   m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
 
-if (!os_on_start_application())
-{
+   if (!os_on_start_application())
+   {
 
-return false;
+      return false;
 
-}
+   }
 
-return true;
+   return true;
 
 }
 
@@ -5478,53 +5487,20 @@ return true;
 bool application::start_application(bool bSynch, ::create * pcreate)
 {
 
-//      try
-//      {
-//
-//         if (pbias != nullptr)
-//         {
-//
-//            if (pbias->m_pcallback != nullptr)
-//            {
-//
-//               pbias->m_pcallback->connect_to(this);
-//
-//            }
-//
-//         }
-//      }
-//      catch (...)
-//      {
-//      }
+   if (bSynch)
+   {
 
-//      if (pbias != nullptr)
-//      {
-//
-//         m_biasCalling = *pbias;
-//
-//      }
+      branch_synchronously();
 
-if (bSynch)
-{
+   }
+   else
+   {
 
-   begin_synchronously();
+      branch();
 
-//if (!begin_synch())
-//{
-//
-//return false;
-//
-//}
+   }
 
-}
-else
-{
-
-branch();
-
-}
-
-return true;
+   return true;
 
 }
 
@@ -7019,7 +6995,7 @@ return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name
 else
 {
 
-return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(), nullptr);
+return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app()->m_papplication, nullptr);
 
 }
 
@@ -7137,7 +7113,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 //::html::html * application::create_html()
 //{
 
-//   return new ::html::html(get_application());
+//   return new ::html::html(get_app());
 
 //}
 
@@ -7292,7 +7268,7 @@ return m_datakey.m_bLocalData;
 
 
 
-//::application * application::get_application() const
+//::application * application::get_app() const
 //{
 
 //   return (application *) this;
@@ -9034,9 +9010,9 @@ return true;
 //      puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
 //   }
 
-//   //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
+//   //      if (puiParent == nullptr && pcreate->m_pappbias.is_set())
 //   //      {
-//   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
+//   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_pappbias->m_puserinteractionParent);
 //   //      }
 
 //         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bExperienceMainFrame
@@ -9747,7 +9723,7 @@ throw ::exception(e);
 catch(const const ::exception & e)
 {
 
-if(!get_application()->on_run_exception((::exception &) e))
+if(!get_app()->on_run_exception((::exception &) e))
 throw ::exception(exit_exception());
 
 }
@@ -10061,9 +10037,9 @@ string application::get_wm_class() const
 void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
    
-   auto papplication = (::application *) pApplication;
+   auto papp = (::application *) pApplication;
    
-   papplication->on_application_menu_action(pszCommand);
+   papp->on_application_menu_action(pszCommand);
    
 }
 
@@ -10071,9 +10047,9 @@ void application_on_menu_action(void * pApplication, const char * pszCommand)
 void * application_system(void * pApplication)
 {
    
-   auto papplication = (::application *) pApplication;
+   auto papp = (::application *) pApplication;
    
-   return papplication->m_psystem;
+   return papp->m_psystem;
    
 }
 

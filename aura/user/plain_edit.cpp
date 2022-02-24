@@ -883,10 +883,10 @@ namespace user
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
       //psession->keyboard(); // trigger keyboard creationg
-      papplication->defer_create_keyboard();
+      papp->defer_create_keyboard();
 
 #endif
 
@@ -6132,9 +6132,9 @@ finished_update:
 
             plain_edit_get_text(m_propertyText.m_pproperty->as_string());
 
-            auto papplication = get_application();
+            auto papp = get_app();
 
-            papplication->on_property_changed(m_propertyText.m_pproperty, actioncontext);
+            papp->on_property_changed(m_propertyText.m_pproperty, actioncontext);
 
          }
 

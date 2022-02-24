@@ -15,13 +15,13 @@ struct CLASS_DECL_ACME matter :
    mutable __pointer(synchronization_object)                mutex();
    ::sticker *                            m_psticker;
    ::matter *                             this; // Context Object
-   ::acme::application *                  get_application(); // Context papplication
+   ::acme::application *                  get_app(); // Context papp
    ::eobject                              m_eobject;
    //::atom                                   m_atom;
    __pointer(__pointer_array(::matter))     m_preferencea;
 
 
-   matter() : this(nullptr), get_application()(nullptr), m_psticker(nullptr) { }
+   matter() : this(nullptr), get_app()(nullptr), m_psticker(nullptr) { }
    matter(::matter * pobject);
    virtual ~matter() { }
 
@@ -36,7 +36,7 @@ struct CLASS_DECL_ACME matter :
    inline const char * topic_text() { return ::is_null(m_psticker) ? nullptr : m_psticker->m_pszTopicText; }
    inline void raw_set_topic_text(const char * psz) { m_psticker->raw_set_topic_text(psz); }
 
-   ::acme::application * get_application() const { return get_application(); }
+   ::acme::application * get_app() const { return get_app(); }
 
    ::matter * this const { return this; }
 
@@ -45,7 +45,7 @@ struct CLASS_DECL_ACME matter :
 
       this = pobject;
 
-      get_application() = ::get_application(pobject);
+      get_app() = ::get_app(pobject);
 
    }
 

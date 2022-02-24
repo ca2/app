@@ -1,23 +1,25 @@
-#pragma once
+// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+// #pragma once
 
 
 class CLASS_DECL_ACME system :
+   virtual public ::app_core,
    virtual public ::acme::context,
-   virtual public ::main,
    virtual public ::task
 {
 public:
 
 
-   //__pointer(system_impl) *                                                     m_psystemimpl;
 
-   __pointer(::factory::factory)                                   m_pfactoryFolder;
+   //__pointer(system_impl) *                                        m_psystemimpl;
+
+   __pointer(::factory::factory)                                     m_pfactoryFolder;
    
    bool                                                              m_bPostedInitialRequest;
 
 
-   __reference(::application)                                        m_papplicationStartup;
-   __reference(::application)                                        m_papplicationMain;
+   __reference(::app)                                                m_pappStartup;
+   __reference(::app)                                                m_pappMain;
 
    __composite(::apex::system)                                       m_psystemParent;
 
@@ -76,6 +78,8 @@ public:
 
 
    enum_trace_level                                                  m_etracelevel;
+   ::duration                                         m_durationMainStart;
+   ::duration                                         m_durationAfterApplicationFirstRequest;
 
 
    system();
@@ -124,6 +128,8 @@ public:
    virtual bool has_audio();
 
    virtual void init1();
+
+   virtual void init2();
 
    //virtual logger & log() { return *m_plogger; }
 
@@ -190,7 +196,7 @@ public:
    void process_exit_status(::object* pobject, const ::e_status& estatus);
 
 
-   virtual ::application* get_main_application();
+   virtual ::app * get_main_app();
 
 
    virtual __pointer(::factory::factory) & folder_factory();
@@ -256,6 +262,7 @@ public:
    void main() override;
 
 
+   virtual __pointer(::app) new_app(const char* pszAppId);
 
 
    virtual void end();
@@ -309,6 +316,8 @@ public:
    void unset_task(itask_t itask, ::task* ptask);
 
 
+   void init_task() override;
+   void term_task() override;
 
 
    virtual string __get_text(const string& str);

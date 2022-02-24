@@ -63,12 +63,12 @@ namespace universal_windows
       //if (m_strNetSeedFolder.is_empty())
       //   m_strNetSeedFolder = install() / "net";
 
-      //mk(m_strTimeFolder, get_application());
+      //mk(m_strTimeFolder, get_app());
 
-      //if (!is(m_strTimeFolder, get_application()))
+      //if (!is(m_strTimeFolder, get_app()))
       //   return false;
 
-      //mk(m_strTimeFolder / "time", get_application());
+      //mk(m_strTimeFolder / "time", get_app());
 
       //m_pathHome = ::dir_system::ca2roaming() / "home";
 

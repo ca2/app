@@ -102,7 +102,7 @@ namespace dynamic_source
 //
 //#endif
 //
-//      __pointer(::aura::application) papplication = get_application();
+//      __pointer(::aura::application) papp = get_app();
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -114,7 +114,7 @@ namespace dynamic_source
 //
 //            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvarsall.bat";
 //
-//            m_strVCVersion = papplication->get_visual_studio_build();
+//            m_strVCVersion = papp->get_visual_studio_build();
 //
 //         }
 //         else if (m_strVs == "2019")
@@ -122,7 +122,7 @@ namespace dynamic_source
 //
 //            m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
-//            m_strVCVersion = papplication->get_visual_studio_build();
+//            m_strVCVersion = papp->get_visual_studio_build();
 //
 //         }
 //         else if (m_strVs == "2017")
@@ -142,7 +142,7 @@ namespace dynamic_source
 //
 //            m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
 //
-//            m_strVCVersion = papplication->get_visual_studio_build();
+//            m_strVCVersion = papp->get_visual_studio_build();
 //
 //         }
 //         else if (m_strVs == "2015")
@@ -1182,10 +1182,10 @@ pacmedir->create(pathDVP_Folder);
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::application_consumer < ::netnode::application, ::" + m_pmanager->m_strNamespace + "::script_instance >\r\n";
+      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pmanager->m_strNamespace + "::script_instance >\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
+      //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual ~" + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual void     run() { script_run(); };\r\n";
@@ -1377,9 +1377,9 @@ pacmedir->create(pathDVP_Folder);
       strFolder = m_pcontext->m_papexcontext->dir().install();
 
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      l.m_straLibSourcePath.m_pprovider = papplication;
+      l.m_straLibSourcePath.m_pprovider = papp;
 
       l.m_straLibSourcePath.clear_results();
 
@@ -1407,7 +1407,7 @@ pacmedir->create(pathDVP_Folder);
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
-      l.m_straLibIncludePath.m_pprovider = papplication;
+      l.m_straLibIncludePath.m_pprovider = papp;
       l.m_straLibIncludePath.clear_results();
       pcontext->m_papexcontext->dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
@@ -2565,7 +2565,7 @@ ch_else:
 
       ::file::listing stra;
 
-      //auto papplication = get_application();
+      //auto papp = get_app();
 
       auto pcontext = m_pcontext;
 
@@ -2845,7 +2845,7 @@ ch_else:
 
       ::file::listing straFile;
 
-      //auto papplication = get_application();
+      //auto papp = get_app();
 
       auto pcontext = m_pcontext;
 

@@ -1,7 +1,11 @@
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:17 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
-class CLASS_DECL_APEX apex_main_data :
+#include "apex_main_struct.h"
+
+
+class CLASS_DECL_ACME apex_main_data :
    virtual public apex_main_struct,
    virtual public ::object
 {
@@ -52,7 +56,7 @@ public:
 #else
 
    void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
-   void system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
+   //void system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
 
 #endif
 

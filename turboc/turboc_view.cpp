@@ -106,21 +106,21 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-      if(papplication->m_etype == application::type_normal)
+      if(papp->m_etype == application::type_normal)
       {
 
          if(!m_bLite)
          {
 
-            papplication->load_ai_font();
+            papp->load_ai_font();
 
          }
 
-         __begin_thread(get_application(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
+         __begin_thread(get_app(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
 
       }
 
-      papplication->start_main();
+      papp->start_main();
 
 
    }
@@ -185,10 +185,10 @@ namespace turboc
 
       GetClientRect(rectangleClient);
 
-/*      pgraphics->BitBlt(rectangleClient,papplication->m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectangleClient,papp->m_pcontext->m_pimage->g());
 
 
-      if(papplication->m_etype == application::type_mili)
+      if(papp->m_etype == application::type_mili)
       {
 
          string strHelloMultiverse = get_processed_turboc();
@@ -845,13 +845,13 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            return papplication->m_strAlternateTurboC;
+            return papp->m_strAlternateTurboC;
 
          }
          else
          {
 
-            return papplication->m_strTurboC;
+            return papp->m_strTurboC;
 
          }
 

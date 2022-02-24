@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "axis/user/_user.h"
 #include "acme/id.h"
-#include "apex/platform/app_core.h"
-#include "acme/platform/static_setup.h"
+//#include "apex/platform/app_core.h"
+#include "acme/platform/system_setup.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
@@ -109,7 +109,7 @@ namespace axis
 
       }
 
-      m_papplicationCurrent                    = nullptr;
+      m_pappCurrent                    = nullptr;
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -123,7 +123,7 @@ namespace axis
 
       m_bShowPlatform                  = false;
 
-      m_papplicationCurrent                    = nullptr;
+      m_pappCurrent                    = nullptr;
 
 
       //m_XstrAppId = "base_session";
@@ -381,7 +381,7 @@ namespace axis
 //
 //#ifndef _UWP
 //
-//                        os_message_box(nullptr, "papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+//                        os_message_box(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 //
 //#endif
 //

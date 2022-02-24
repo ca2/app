@@ -24,7 +24,7 @@ namespace file
 
    class CLASS_DECL_ACME listing:
    // recursive fetchings should set a meaningful m_iRelative value at each returned path
-      public ::file::patha,
+      public ::file::path_array,
       public LISTING
    {
    public:
@@ -176,7 +176,7 @@ namespace file
       }
 
 
-      ::count preferred_name(patha  & stra)
+      ::count preferred_name(path_array & stra)
       {
          ::count count = 0;
          for(index i = stra.get_upper_bound(); i >= 0; i--)

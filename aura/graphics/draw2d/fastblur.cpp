@@ -424,7 +424,7 @@ auto tick2 = ::duration::now();
          output_debug_string(str2);
          output_debug_string("| \n");
 
-         ::aura::application * papp = m_p->get_application();
+         ::aura::application * papp = m_p->get_app();
          TRACE("/--------------------------------");
          TRACE("| fastblur::blur");
          TRACE("| ");
@@ -541,7 +541,7 @@ auto tickC1 = ::duration::now();
             output_debug_string(str2);
             output_debug_string("| \n");
 
-            //::aura::application * papp = pimage->get_application();
+            //::aura::application * papp = pimage->get_app();
             INFORMATION("/--------------------------------");
             INFORMATION("| fastblur::blur");
             INFORMATION("| ");
@@ -635,7 +635,7 @@ auto tick2 = ::duration::now();
       output_debug_string(str2);
       output_debug_string("| \n");
 
-      ::aura::application * papp = m_p->get_application();
+      ::aura::application * papp = m_p->get_app();
       TRACE("/--------------------------------");
       TRACE("| fastblur::blur");
       TRACE("| ");

@@ -15,7 +15,7 @@ namespace turboc
 
       window_enable_full_screen();
 
-      m_bWindowFrame = !papplication->m_bExperienceMainFrame;
+      m_bWindowFrame = !papp->m_bExperienceMainFrame;
 
    }
 
@@ -45,9 +45,9 @@ namespace turboc
    ::experience::frame * frame::frame_experience()
    {
 
-      //auto pframe = papplication->experience()->frame_experience("experience_lite", "001");
+      //auto pframe = papp->experience()->frame_experience("experience_lite", "001");
 
-      auto pframe = papplication->experience()->frame_experience("experience_lite","013");
+      auto pframe = papp->experience()->frame_experience("experience_lite","013");
 
       pframe->set_style("LightBlue");
 

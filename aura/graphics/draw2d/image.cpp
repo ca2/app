@@ -379,7 +379,7 @@ void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 
    //}
 
-   //fork_count_end(get_application(), imagea.get_count(),
+   //fork_count_end(get_app(), imagea.get_count(),
    //               [&](index i)
    //{
 

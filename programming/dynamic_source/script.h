@@ -87,7 +87,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      //virtual ::aura::application * get_application() const override;
+      //virtual ::aura::application * get_app() const override;
 
       __pointer(script_instance) create_instance() override;
 

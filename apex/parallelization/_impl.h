@@ -225,7 +225,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      m_bInitialized = false;
 //
-//      ::fork(::get_application(), [&]()
+//      ::fork(::get_app(), [&]()
 //      {
 //
 //         try

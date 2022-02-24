@@ -211,7 +211,7 @@ __pointer(::aura::application) application_container::instantiate_application(co
    if (strAppId == "session")
    {
 
-      papp = create_platform(get_application()->get_session());
+      papp = create_platform(get_app()->get_session());
 
       if (!papp)
       {
@@ -226,21 +226,21 @@ __pointer(::aura::application) application_container::instantiate_application(co
    else
    {
 
-      if (psystem->m_papplicationStartup.is_set())
+      if (psystem->m_pappStartup.is_set())
       {
 
-         if (psystem->m_papplicationStartup->m_strAppId != strAppId)
+         if (psystem->m_pappStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong papplication Data Type");
+            TRACE("Wrong papp Data Type");
 
             return nullptr;
 
          }
 
-         papp = psystem->m_papplicationStartup;
+         papp = psystem->m_pappStartup;
 
-         psystem->m_papplicationStartup.release();
+         psystem->m_pappStartup.release();
 
       }
       else
@@ -408,7 +408,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          else
          {
 
-            output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            output_error_message("papp \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -427,7 +427,7 @@ __pointer(::aura::application) application_container::start_application(const ::
 
    m_applicationa.add_unique(papp);
 
-   m_papplicationCurrent = papp;
+   m_pappCurrent = papp;
 
    if (!papp->on_start_application())
    {

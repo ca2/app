@@ -123,7 +123,7 @@ namespace prompt
          pdata->m_pcallback = this;
          pdata->m_strXmlPopup = "matter://filemanager\\file_popup.xml";
 
-         bool bOk = pdata->open(get_application(), pcontext->m_papexcontext->dir().appdata() / "command/menu", ::e_source_system);
+         bool bOk = pdata->open(get_app(), pcontext->m_papexcontext->dir().appdata() / "command/menu", ::e_source_system);
 
          if(bOk && ::is_set(pdata->m_pdocument))
          {
@@ -204,7 +204,7 @@ namespace prompt
          //pdata->m_strFilePopup = "filemanager\\file_popup.xml";
 
          //auto pdocument = pdata->browse(pcontext->m_papexcontext->dir().appdata() / "co
-         pdata->open(get_application(), pcontext->m_papexcontext->dir().appdata() / "command\\3-action-launch", ::e_source_system);
+         pdata->open(get_app(), pcontext->m_papexcontext->dir().appdata() / "command\\3-action-launch", ::e_source_system);
 
          if(::is_set(pdata->m_pdocument))
          {
@@ -240,7 +240,7 @@ namespace prompt
       break;
       case impact_configuration:
       {
-         __pointer(::user::document) pdocument = papplication->create_form(this, this);
+         __pointer(::user::document) pdocument = papp->create_form(this, this);
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;

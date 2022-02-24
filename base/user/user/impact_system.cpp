@@ -136,7 +136,7 @@ namespace user
 
       }
 
-      ::application * papp = pcreate->create_get_application(get_application());
+      ::app * papp = pcreate->create_get_app(get_app());
 
       __pointer(::user::document) pdocument;
 
@@ -214,7 +214,7 @@ namespace user
 
       }
 
-      ::application * papp = pcreate->create_get_application(get_application());
+      ::app * papp = pcreate->create_get_app(get_app());
 
       __pointer(::user::frame_window) pframe;
 

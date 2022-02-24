@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/message/timer.h"
 #include "acme/constant/timer.h"
@@ -1321,10 +1321,10 @@ namespace user
 
          pprimitiveimplNew->m_puserinteraction = this;
 
-         __pointer(::aura::application) papplication = get_application();
+         __pointer(::aura::application) papp = get_app();
 
          //psession->erase_frame(this); // no more a top level frame if it were one
-         papplication->erase_user_interaction(this); // no more a top level frame if it were one
+         papp->erase_user_interaction(this); // no more a top level frame if it were one
 
          m_pprimitiveimpl = pprimitiveimplNew;
 
@@ -1493,13 +1493,13 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      if (papplication)
+      if (papp)
       {
 
          // return true to set focus to this control
-         papplication->keyboard_focus_OnSetFocus(this);
+         papp->keyboard_focus_OnSetFocus(this);
 
       }
 
@@ -2164,7 +2164,7 @@ namespace user
       try
       {
 
-         if (get_application() != nullptr && get_application()->get_session() != nullptr)
+         if (get_app() != nullptr && get_app()->get_session() != nullptr)
          {
 
             if (has_mouse_capture())
@@ -2219,7 +2219,7 @@ namespace user
             post_routine(__routine([this]()
             {
 
-               if (get_application() != nullptr && get_application()->get_session() != nullptr && has_keyboard_focus())
+               if (get_app() != nullptr && get_app()->get_session() != nullptr && has_keyboard_focus())
                {
 
                   if (get_parent() != nullptr && is_window_visible(e_layout_sketch))
@@ -2268,10 +2268,10 @@ namespace user
       try
       {
 
-         if (::is_set(get_application()))
+         if (::is_set(get_app()))
          {
 
-            get_application()->m_puserprimitiveActive = nullptr;
+            get_app()->m_puserprimitiveActive = nullptr;
 
          }
 
@@ -2534,15 +2534,15 @@ namespace user
       if (!is_message_only_window())
       {
 
-         if (get_application() != nullptr)
+         if (get_app() != nullptr)
          {
 
             try
             {
 
-               __pointer(::aura::application) papplication = get_application();
+               __pointer(::aura::application) papp = get_app();
 
-               papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+               papp->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
             }
             catch (...)
@@ -2550,15 +2550,15 @@ namespace user
 
             }
 
-            if (get_application()->get_session() != nullptr)
+            if (get_app()->get_session() != nullptr)
             {
 
                try
                {
 
-                  __pointer(::aura::application) papplication = get_application();
+                  __pointer(::aura::application) papp = get_app();
 
-                  papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+                  papp->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
                }
                catch (...)
@@ -4656,26 +4656,26 @@ return "";
 
          synchronous_lock synchronouslock(mutex());
 
-         //if (get_application()->get_context_system() != nullptr)
+         //if (get_app()->get_context_system() != nullptr)
          //{
 
          //   psystem->add_frame(this);
 
          //}
 
-         //if (get_application()->get_session() != nullptr)
+         //if (get_app()->get_session() != nullptr)
          //{
 
          //   psession->add_frame(this);
 
          //}
 
-         if (get_application() != nullptr)
+         if (get_app() != nullptr)
          {
 
-            __pointer(::aura::application) papplication = get_application();
+            __pointer(::aura::application) papp = get_app();
 
-            papplication->add_user_interaction(this);
+            papp->add_user_interaction(this);
 
          }
 
@@ -8402,11 +8402,11 @@ void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
          try
          {
 
-            __pointer(::aura::application) papplication = get_application();
+            __pointer(::aura::application) papp = get_app();
 
             if (pinteraction->m_bExtendOnParent ||
             (pinteraction->m_bExtendOnParentIfClientOnly
-            && papplication->m_bExperienceMainFrame))
+            && papp->m_bExperienceMainFrame))
             {
 
                bool bThisVisible = pinteraction->is_this_visible();
@@ -9640,12 +9640,12 @@ void interaction::EndModalLoop(atom idResult)
 //
 //      }
 //
-//      auto papplication = get_application();
+//      auto papp = get_app();
 //
-//      if (papplication && papplication != pusercallback)
+//      if (papp && papp != pusercallback)
 //      {
 //
-//         papplication->route_handling(pevent);
+//         papp->route_handling(pevent);
 //
 //         return;
 //
@@ -11913,9 +11913,9 @@ void interaction::on_message_close(::message::message * pmessage)
 
             post_redraw();
 
-            auto papplication = get_application();
+            auto papp = get_app();
 
-            papplication->_001TryCloseApplication();
+            papp->_001TryCloseApplication();
 
             return;
 
@@ -12546,7 +12546,7 @@ void interaction::show_keyboard(bool bShow)
 void interaction::keep_alive(::object * pliveobject)
 {
 
-   get_application()->keep_alive();
+   get_app()->keep_alive();
 
    if (::get_task() != nullptr)
    {
@@ -16869,10 +16869,10 @@ order(zorderParam);
 
       bool bSet = false;
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
       if (m_bExtendOnParent ||
-         (m_bExtendOnParentIfClientOnly && papplication->m_bExperienceMainFrame))
+         (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
       {
 
          auto puserinteractionParent = get_parent();
@@ -18088,9 +18088,9 @@ order(zorderParam);
 
       auto econtroltype = get_control_type();
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      string strClassName = papplication->get_window_class_name(econtroltype);
+      string strClassName = papp->get_window_class_name(econtroltype);
 
       return strClassName;
 

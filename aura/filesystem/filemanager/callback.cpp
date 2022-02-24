@@ -56,7 +56,7 @@ namespace filemanager
    //void callback::on_request(::create * pcreate)
    //{
 
-   //   papplication->do_request(pcreate);
+   //   papp->do_request(pcreate);
 
    //}
 

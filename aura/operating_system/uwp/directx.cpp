@@ -91,7 +91,7 @@ namespace universal_windows
 
       dpi_os_initialize();
 
-      //m_pimage->alloc(get_application()->create_new, this);
+      //m_pimage->alloc(get_app()->create_new, this);
       //m_pimage = create_image({1000,  1000});
 
 

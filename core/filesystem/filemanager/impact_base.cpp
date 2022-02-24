@@ -239,13 +239,13 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    else if (ptopic->m_atom == id_synchronize_path)
    {
 
-      __pointer(::core::application) papplication = get_application();
+      __pointer(::core::application) papp = get_app();
 
       auto pfileitem = ptopic->_extended_topic()->m_pfileitem;
 
       auto bFileManagerItemSet = ::is_set(filemanager_item());
 
-      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(ptopic->_extended_topic()->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
+      bool bEqualFilePath = bFileManagerItemSet && papp->is_equal_file_path(ptopic->_extended_topic()->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
 
       if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
       {

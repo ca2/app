@@ -204,7 +204,7 @@ namespace userex
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), this);
+         pdocTab = m_ptemplateTab->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), this);
 
       }
 
@@ -602,7 +602,7 @@ namespace userex
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       if (pdocument.is_set())
       {
@@ -637,7 +637,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true).is_true(), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
+            pdocument = pimpactsystem->open_document_file(get_app(), e_type_empty, __visible(true).is_true(), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
 
          }
 
@@ -652,7 +652,7 @@ namespace userex
       else
       {
 
-         pdocument = papplication->defer_create_view(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
+         pdocument = papp->defer_create_view(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
 
       }
 
@@ -696,9 +696,9 @@ namespace userex
 
       bool bShow = true;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_set("frame::" + idImpact.to_string() + ".visible", bShow);
+      papp->data_set("frame::" + idImpact.to_string() + ".visible", bShow);
 
       auto pcontext = m_pcontext;
       
@@ -734,9 +734,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_set("frame::" + idImpact + ".visible", bShow);
+      papp->data_set("frame::" + idImpact + ".visible", bShow);
 
       __pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
 
@@ -764,9 +764,9 @@ namespace userex
 
             bool bShow = false;
 
-            auto papplication = get_application();
+            auto papp = get_app();
 
-            papplication->data_get("frame::" + idImpact + ".visible", bShow);
+            papp->data_get("frame::" + idImpact + ".visible", bShow);
 
             bShow = !bShow;
 
@@ -794,9 +794,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_get("frame::" + idImpact + ".visible", bShow);
+      papp->data_get("frame::" + idImpact + ".visible", bShow);
 
       if (!bShow)
       {

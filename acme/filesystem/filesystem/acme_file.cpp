@@ -750,7 +750,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-::duration acme_file::modification_time(const char* psz)
+::datetime::time acme_file::modification_time(const char* psz)
 {
 
    throw ::interface_only();
@@ -761,7 +761,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-void acme_file::set_modification_time(const char* psz, const ::duration& duration)
+void acme_file::set_modification_time(const char* psz, const ::datetime::time& time)
 {
 
    throw ::interface_only();
@@ -1444,7 +1444,11 @@ void acme_file::_erase(const char * path)
    if (::unlink(path) == -1)
    {
 
-      throw ::exception(errno_to_status(errno));
+      int iErrNo = errno;
+
+      auto estatus = errno_to_status(iErrNo);
+
+      throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"", m_psystem->m_pappMain->m_strAppId, e_message_box_ok, "Failed to erase file:\n\"" + string(path) + "\"");
 
    }
 

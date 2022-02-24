@@ -100,10 +100,10 @@
       virtual ::file::path locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
       virtual ::file::path matter(const ::file::path & path, bool bDir, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
-      virtual ::file::path matter(const ::file::patha & patha, bool bDir = false);
+      virtual ::file::path matter(const ::file::path_array & patha, bool bDir = false);
       virtual ::file::path matter(::file::path path, bool bDir = false);
 
-      virtual ::file::path matter_from_locator(const ::file::patha & patha, const string_array & straMatterLocator, bool bDir = false);
+      virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir = false);
       virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator, bool bDir = false);
 
       virtual ::file::path appmatter(string strApp, ::file::path pathRel);
@@ -154,12 +154,12 @@
 
       //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle);
       //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain);
-      //virtual string matter(const ::file::patha & patha, bool bDir);
+      //virtual string matter(const ::file::path_array & patha, bool bDir);
       //virtual string matter(const ::file::path & path, bool bDir );
 
-      //virtual void   matter_ls(const ::file::path & str, ::file::patha & stra);
+      //virtual void   matter_ls(const ::file::path & str, ::file::path_array & stra);
       //virtual ::file::path matter_file(const ::file::path & path, bool bDir = false);
-      //virtual void   matter_ls_file(const ::file::path & str, ::file::patha & stra);
+      //virtual void   matter_ls_file(const ::file::path & str, ::file::path_array & stra);
 
       //virtual ::file::path usersystemappdata(const string & pcszPrefix);
 

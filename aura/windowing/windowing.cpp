@@ -741,7 +741,7 @@ namespace windowing
          //
          //#endif
 
-                  //papplication->on_create_keyboard();
+                  //papp->on_create_keyboard();
 
          initialize_keyboard(m_pkeyboard);
 

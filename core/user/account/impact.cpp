@@ -454,7 +454,7 @@ namespace account
 
       //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
-      //__begin_thread(get_application(),thread_proc_pre_login,get_application());
+      //__begin_thread(get_app(),thread_proc_pre_login,get_app());
 
    }
 

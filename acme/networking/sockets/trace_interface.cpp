@@ -13,11 +13,11 @@ namespace sockets
 
    //   if (sock)
    //   {
-   //      Sys(phandler->get_application()).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
+   //      Sys(phandler->get_app()).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
    //   }
    //   else
    //   {
-   //      Sys(phandler->get_application()).log().trace("%s: %d %s (%s)\n", strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
+   //      Sys(phandler->get_app()).log().trace("%s: %d %s (%s)\n", strUser.c_str(), iError, strSystem.c_str(), strLevel.c_str());
    //   }
 
    //}

@@ -937,7 +937,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = papplication->userstyle();
+      //   m_puserstyle = papp->userstyle();
 
       //}
 

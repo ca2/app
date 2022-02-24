@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/id.h"
 #include "acme/platform/version.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
@@ -80,10 +80,29 @@ CLASS_DECL_AURA int ui_open_url(const ::string & psz);
 namespace aura
 {
 
+   bool g_bInitialize = false;
+
+   void initialize()
+   {
+
+      if(g_bInitialize)
+      {
+
+         return;
+
+      }
+
+      ::factory::add_factory_item<::aura::system, class ::system>();
+
+      g_bInitialize = true;
+
+   }
 
 
    application::application()
    {
+
+      ::aura::initialize();
 
       m_pauraapplication = this;
 #if defined(LINUX) || defined(FREEBSD)
@@ -245,14 +264,14 @@ namespace aura
    //application_menu & application::applicationmenu()
    //{
 
-   //   if(m_papplicationmenu.is_null())
+   //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_papplicationmenu = __new(application_menu);
+   //      m_pappmenu = __new(application_menu);
 
    //   }
 
-   //   return *m_papplicationmenu;
+   //   return *m_pappmenu;
 
    //}
 
@@ -440,7 +459,7 @@ namespace aura
 
             }
 
-            auto papp = pinteraction->get_application();
+            auto papp = pinteraction->get_app();
 
             if (papp == nullptr)
             {
@@ -558,7 +577,7 @@ namespace aura
 
          //    psystem->on_run_exception(esp);
 
-         //    throw ::exception(exit_exception(esp->get_application(), ::exit_application));
+         //    throw ::exception(exit_exception(esp->get_app(), ::exit_application));
 
          // }
          catch (const ::exception & e)
@@ -3926,7 +3945,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_application()->post_message(e_message_close);
+               get_app()->m_papplication->post_message(e_message_close);
 
             }
 
@@ -5644,7 +5663,7 @@ retry_license:
 //      else
 //      {
 //
-//         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(), nullptr);
+//         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_app(), nullptr);
 //
 //      }
 //
@@ -5761,7 +5780,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return new ::html::html(get_application());
+      //   return new ::html::html(get_app());
 
       //}
 
@@ -5976,7 +5995,7 @@ namespace aura
    }
 
 
-   //::aura::application * application::get_application() const
+   //::aura::application * application::get_app() const
    //{
 
    //   return (application *) this;
@@ -8448,10 +8467,10 @@ namespace aura
    //}
 
 
-   //bool application::platform_open_by_file_extension(int iEdge, const ::string & pszPathName, application_bias * papplicationbias)
+   //bool application::platform_open_by_file_extension(int iEdge, const ::string & pszPathName, application_bias * pappbias)
    //{
 
-   //   return psystem->get_platform(iEdge)->open_by_file_extension(pszPathName, papplicationbias);
+   //   return psystem->get_platform(iEdge)->open_by_file_extension(pszPathName, pappbias);
    //}
 
    //bool application::platform_open_by_file_extension(int iEdge, ::create * pcc)
@@ -9032,7 +9051,7 @@ namespace aura
            {
               //   try
               //   {
-              //      papplication->erase_frame(pinteraction);
+              //      papp->erase_frame(pinteraction);
               //   }
               //   catch(...)
               //   {
@@ -9283,10 +9302,10 @@ namespace aura
 //
 //      straMatter.add("main");
 //
-//      if (::is_set(get_application()))
+//      if (::is_set(get_app()))
 //      {
 //
-//         straMatter.add(get_application()->m_straMatterLocator);
+//         straMatter.add(get_app()->m_straMatterLocator);
 //
 //      }
 //

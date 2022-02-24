@@ -6,7 +6,7 @@ namespace app_core_build
 
 
    class CLASS_DECL_APP_CORE_BUILD impact :
-      virtual public ::application_consumer < application, ::user::impact >
+      virtual public ::app_consumer < application, ::user::impact >
    {
    public:
 

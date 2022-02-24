@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "static_start.h"
-#include "static_start_internal.h"
+#include "acme.h"
+//#include "static_start_internal.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
@@ -13,7 +13,7 @@
 void initialize_memory_management();
 void finalize_memory_management();
 
-
+#define ThomasBS_Acme this
 #ifdef WINDOWS
 
 
@@ -338,7 +338,7 @@ namespace acme
 
 
 
-   void static_start::construct()
+   void acme::construct()
    {
 
       __seed_srand();
@@ -505,8 +505,10 @@ namespace acme
    }
 
 
-   static_start::static_start()
+   acme::acme()
    {
+
+      g_p = ThomasBS_Acme;
 
       g_nanosecondFirst.Now();
 
@@ -667,7 +669,7 @@ namespace acme
 
 #endif
 
-      ::factory::factory_init();
+      factory_init();
 
       g_paAura = new array < matter * >;
 
@@ -766,7 +768,7 @@ namespace acme
    }
 
 
-   static_start::~static_start()
+   acme::~acme()
    {
 
       //::acme::del(::acme::library::s_pmutexLoading);
@@ -928,7 +930,7 @@ namespace acme
       try
       {
 
-         ::factory::factory_term();
+         factory_term();
 
       }
       catch (...)
@@ -1070,7 +1072,7 @@ namespace acme
    }
 
 
-   void static_start::this_ref()
+   void acme::this_ref()
    {
 
       m_bRef = true;
@@ -1092,10 +1094,10 @@ namespace acme
 
 
 
-   void static_start::init()
+   void acme::init()
    {
 
-      //::acme::static_start::init();
+      //::acme::acme::init();
 
       //if (!__node_acme_pre_init())
       __node_acme_pre_init();
@@ -1133,7 +1135,7 @@ namespace acme
    }
 
 
-   void static_start::term()
+   void acme::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1167,7 +1169,7 @@ namespace acme
 
       __node_acme_pos_term();
 
-      //::acme::static_start::term();
+      //::acme::acme::term();
 
       //return true;
 
@@ -1224,59 +1226,54 @@ namespace acme
 #endif
 
 
+   void acme::factory_init()
+   {
+
+      m_pfactory = __new(::factory::factory());
+
+      m_pfactory->InitHashTable(16189);
+
+      //::acme::acme::g_pstaticstatic->m_pfactorya = new factory_array();
 
 
 
-      void static_start::factory_init()
-      {
-
-         ::acme::static_start::g_pstaticstart->m_pfactory = __new(factory());
-
-         ::acme::static_start::g_pstaticstart->m_pfactory->InitHashTable(16189);
-
-         //::acme::static_start::g_pstaticstatic->m_pfactorya = new factory_array();
+      ::factory::add_factory_item<manual_reset_event>();
+      ::factory::add_factory_item<task>();
 
 
-
-         ::factory::add_factory_item<manual_reset_event>();
-         ::factory::add_factory_item<task>();
+      ::factory::add_factory_item<simple_log, logger>();
 
 
-         ::factory::add_factory_item<simple_log, logger>();
+      //operating_system_initialize_nano();
 
 
-         //operating_system_initialize_nano();
+   }
 
 
-      }
+   void acme::factory_close()
+   {
+
+      critical_section_lock synchronouslock(m_pcriticalsectionFactory);
+
+      m_pfactory->erase_all();
+
+      m_mapFactory.erase_all();
+
+   }
 
 
-      void static_start::factory_close()
-      {
+   void acme::factory_term()
+   {
 
-         critical_section_lock synchronouslock(::acme::static_start::g_pstaticstart->m_pcriticalsectionFactory);
+      critical_section_lock synchronouslock(m_pcriticalsectionFactory);
 
-         ::acme::static_start::g_pstaticstart->m_pfactory->erase_all();
+      m_pfactory.release();
 
-         ::acme::static_start::g_pstaticstart->m_mapFactory.erase_all();
+      //::acme::del(::acme::acme::g_pstaticstatic->m_pfactorya);
 
-      }
+      //::acme::del(::acme::acme::g_pstaticstatic->m_pfactory);
 
-      void static_start::factory_term()
-      {
-
-         critical_section_lock synchronouslock(::acme::static_start::g_pstaticstart->m_pcriticalsectionFactory);
-
-         ::acme::static_start::g_pstaticstart->m_pfactory.release();
-
-         //::acme::del(::acme::static_start::g_pstaticstatic->m_pfactorya);
-
-         //::acme::del(::acme::static_start::g_pstaticstatic->m_pfactory);
-
-      }
-
-
-
+   }
 
 
 } // namespace acme
@@ -1494,7 +1491,7 @@ locale_t get_c_locale()
 void acme_ref()
 {
 
-   ::acme::static_start::g_pstaticstart->this_ref();
+   ::acme::acme::g_p->this_ref();
 
 }
 
@@ -1578,4 +1575,99 @@ void add_release_on_end(::matter * pmatter)
 }
 
 
+namespace acme
+{
 
+
+   acme * acme::g_p = nullptr;
+   int g_iReference = 0;
+critical_section g_cs;
+
+   void increment_reference_count()
+   {
+
+      critical_section_lock lock(&g_cs);
+
+      g_iReference++;
+
+      if(g_iReference == 1)
+      {
+
+         new acme();
+
+      }
+
+   }
+
+
+   void decrement_reference_count()
+   {
+
+      critical_section_lock lock(&g_cs);
+
+      g_iReference--;
+
+      if(g_iReference == 0)
+      {
+
+         ::acme::del(acme::g_p);
+
+      }
+
+   }
+
+
+   reference g_reference;
+
+
+   void initialize_system()
+   {
+
+
+   }
+
+
+
+   void finalize_system()
+   {
+
+
+
+   }
+
+
+
+} // namespace acme
+
+
+//#pragma comment (linker, "/export:_g_acme")
+
+
+// _ACME_LINKER_FORCE_INCLUDE(g_acme);
+
+
+
+
+
+
+
+int main(int argc, char * argv[], char * envp[])
+{
+
+   ::app * papp = ::app::g_p;
+
+   papp->set_args(argc, argv, envp);
+
+//#ifdef LINUX
+//
+//   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
+//
+//   papp->m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
+//
+//#endif
+
+   int iExitCode = papp->main_loop();
+
+   return iExitCode;
+
+}

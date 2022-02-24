@@ -31,16 +31,16 @@ RunBeforeMain go;
 //
 //   }
 //
-//   auto papplicationStartup = psystem->new_application(strAppId);
+//   auto pappStartup = psystem->new_application(strAppId);
 //
-//   if (!papplicationStartup)
+//   if (!pappStartup)
 //   {
 //
 //      return -1;
 //
 //   }
 //
-//   __bind(psystem, m_papplicationStartup, papplicationStartup);
+//   __bind(psystem, m_pappStartup, pappStartup);
 //
 //   psystem->m_bConsole = false;
 //   application_common(psystem);

@@ -28,7 +28,7 @@ namespace draw2d
       void dump(dump_context & dumpcontext) const override;
 
       
-      //inline ::aura::application* get_application();
+      //inline ::aura::application* get_app();
       //inline ::aura::session* get_session();
       inline ::aura::system* get_system();
 

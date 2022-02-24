@@ -19,7 +19,7 @@ namespace sphere
 
       m_bDrawCursor = true;
       m_bShowPlatform = false;
-      m_papplicationCurrent = nullptr;
+      m_pappCurrent = nullptr;
       m_bLicense = false;
 
       m_ppaneview = nullptr;
@@ -675,15 +675,15 @@ namespace sphere
    /*   void department::request(::create * pcreate)
       {
 
-         if(m_papplicationCurrent != nullptr && m_papplicationCurrent != this
+         if(m_pappCurrent != nullptr && m_pappCurrent != this
             && (pcreate->m_pcommandline->m_strApp.is_empty()
-            ||App(m_papplicationCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
+            ||App(m_pappCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
          {
             if(get_document() != nullptr && get_document()->get_type_impact < pane_view >() != nullptr)
             {
-               get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + App(m_papplicationCurrent).m_strAppName);
+               get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
-            App(m_papplicationCurrent).do_request(pcreate);
+            App(m_pappCurrent).do_request(pcreate);
             if(pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document > () == nullptr)
             {
                goto alt1;
@@ -713,11 +713,11 @@ namespace sphere
             }
             else if(pcreate->m_pcommandline->m_strApp.has_char() &&
                get_document() != nullptr && get_document()->get_type_impact < pane_view >() != nullptr
-               && (!pcreate->m_papplicationbias.is_set() || pcreate->m_papplicationbias->m_puserinteractionParent == nullptr))
+               && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
                get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
-               App(m_papplicationCurrent).do_request(pcreate);
+               App(m_pappCurrent).do_request(pcreate);
             }
             else
             {
@@ -736,7 +736,7 @@ namespace sphere
    }
 
 
-   __pointer(::aura::application) application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * papplicationbias)
+   __pointer(::aura::application) application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * pappbias)
    {
 
       __pointer(::aura::application) papp;
@@ -760,7 +760,7 @@ namespace sphere
       try
       {
 
-         papp = create_application(pszAppId, bSynch, papplicationbias);
+         papp = create_application(pszAppId, bSynch, pappbias);
 
       }
       catch (...)
@@ -794,7 +794,7 @@ namespace sphere
 
    __pointer(::aura::application) application::get_current_application()
    {
-      return m_papplicationCurrent;
+      return m_pappCurrent;
    }
 
 

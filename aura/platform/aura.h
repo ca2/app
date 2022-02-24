@@ -5,7 +5,9 @@
 //
 //
 #pragma once
-#include "acme/platform/static_start.h"
+
+
+#include "acme/platform/acme.h"
 
 
 class plex_heap_alloc_array;
@@ -189,39 +191,39 @@ namespace aura
 
    //extern critical_section g_csRefDbg;
    
-   CLASS_DECL_AURA void ref();
+   //CLASS_DECL_AURA void ref();
 
-   class aura
-   {
-   public:
-
-
-      bool m_bRef;
-
-
-      aura();
-      ~aura();
-
-      static aura g_aura;
-      
-      void this_ref();
-
-      
-      
-      void construct();
-
-
-      void init();
-      void term();
-
-
-      //void init_windowing();
-      //void terg_windowing();
-
-
-
-
-   };
+//   class aura
+//   {
+//   public:
+//
+//
+//      bool m_bRef;
+//
+//
+//      aura();
+//      ~aura();
+//
+//      static aura g_aura;
+//
+//      void this_ref();
+//
+//
+//
+//      void construct();
+//
+//
+//      void init();
+//      void term();
+//
+//
+//      //void init_windowing();
+//      //void terg_windowing();
+//
+//
+//
+//
+//   };
 
 
 } // namespace aura

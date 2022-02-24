@@ -9,7 +9,7 @@
 //#include "acme/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
 //#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
@@ -690,20 +690,20 @@ namespace aura
 
       //}
 
-      //m_papplicationStartup = get_new_application(get_session(), m_XstrAppId);
+      //m_pappStartup = get_new_application(get_session(), m_XstrAppId);
 
-      //if (!m_papplicationStartup)
+      //if (!m_pappStartup)
       //{
 
-      //   output_error_message("Failed to allocate papplication!!");
+      //   output_error_message("Failed to allocate papp!!");
 
       //   return false;
 
       //}
 
-      //set_main_struct(*m_papplicationStartup);
+      //set_main_struct(*m_pappStartup);
 
-      //string strAppId = m_papplicationStartup->m_XstrAppId;
+      //string strAppId = m_pappStartup->m_XstrAppId;
 
       //auto pcommand = get_command();
 
@@ -1547,11 +1547,11 @@ namespace aura
    }
 
 
-   void system::init_thread()
+   void system::init_task()
    {
 
       
-      return ::aqua::system::init_thread();
+      return ::aqua::system::init_task();
 
 
       //if (m_psystemParent)
@@ -2008,7 +2008,8 @@ namespace aura
 
    }
 
-   void system::term_thread()
+
+   void system::term_task()
    {
 
       //try
@@ -2026,7 +2027,7 @@ namespace aura
       //try
       //{
 
-         ::thread::term_thread();
+         ::thread::term_task();
 
       //}
       //catch(...)
@@ -4151,7 +4152,7 @@ namespace aura
 //
 //         //path /= strProfile;
 //
-//         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\papplication", SW_SHOWNORMAL, 0);
+//         //call_sync("C:\\Program Files\\Opera.exe", "--user-data-dir=\"" + path + "\" " + strUrl, "C:\\Users\\camilo\\AppData\\Local\\Vivaldi\\papp", SW_SHOWNORMAL, 0);
 //
 //#else
 //
@@ -5347,7 +5348,7 @@ namespace aura
   //      //      m_window                                  = nullptr;
   //      //#endif
   //
-  //            //::aura::application * papp = ::get_application(pobject);
+  //            //::aura::application * papp = ::get_app(pobject);
   //
   //            //if(papp == nullptr)
   //            //{
@@ -5984,7 +5985,7 @@ namespace aura
 
    //   bool bLibraryOk = false;
 
-   //   auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, pszLibrary);
+   //   auto plibraryfactory = ::system_setup::get_first(::system_setup::flag_library, pszLibrary);
 
    //   if(!plibraryfactory)
    //   {
@@ -6062,7 +6063,7 @@ namespace aura
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_papplicationbias);
+   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
 
    //   ::aura::system::on_request(pcreate);
 
@@ -6236,10 +6237,10 @@ namespace aura
    //}
 
 
-   //   void system::post_fork_uri(const ::string & pszUri,application_bias * papplicationbias)
+   //   void system::post_fork_uri(const ::string & pszUri,application_bias * pappbias)
    //   {
    //
-   //      add_fork_uri(pszUri,papplicationbias);
+   //      add_fork_uri(pszUri,pappbias);
    //
    //      //if(has_property("version"))
    //      //{

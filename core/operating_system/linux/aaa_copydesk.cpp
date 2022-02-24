@@ -47,7 +47,7 @@ public:
    manual_reset_event         m_event;
    string                     m_str;
    ::image_pointer            m_pimage;
-   ::file::patha              m_patha;
+   ::file::path_array              m_patha;
    int                        m_nTargets;
    GtkImage *                 m_pgtkimage;
 
@@ -532,7 +532,7 @@ namespace linux
    bool copydesk::_get_plain_text(string & str)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_plain_text));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_app(), clipboard_get_plain_text));
 
       pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_get_plain_text"));
 
@@ -582,7 +582,7 @@ namespace linux
    bool copydesk::_has_filea()
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_file_target_count));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_app(), clipboard_get_file_target_count));
 
       pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_has_filea"));
 
@@ -604,10 +604,10 @@ namespace linux
    }
 
 
-   bool copydesk::_get_filea(::file::patha & patha, e_op & eop)
+   bool copydesk::_get_filea(::file::path_array & patha, e_op & eop)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_patha));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_app(), clipboard_get_patha));
 
       pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_get_filea"));
 
@@ -633,10 +633,10 @@ namespace linux
    }
 
 
-   bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
+   bool copydesk::_set_filea(const ::file::path_array & patha, e_op eop)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_set_patha));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_app(), clipboard_set_patha));
 
       pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_set_filea"));
 
@@ -667,7 +667,7 @@ namespace linux
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_image));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_app(), clipboard_get_image));
 
       pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "copydesk::_desk_to_image"));
 

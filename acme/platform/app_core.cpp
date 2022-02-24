@@ -1,5 +1,6 @@
+// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "apex/operating_system.h"
+#include "acme/operating_system.h"
 #include "app_core.h"
 #include "acme/platform/system_setup.h"
 //#include "apex/platform/static_start.h"
@@ -12,8 +13,8 @@
 
 CLASS_DECL_ACME bool is_verbose();
 
-CLASS_DECL_APEX int_bool os_init_windowing();
-CLASS_DECL_APEX void os_term_windowing();
+CLASS_DECL_ACME int_bool os_init_windowing();
+CLASS_DECL_ACME void os_term_windowing();
 
 #ifdef RASPBIAN
 
@@ -245,7 +246,7 @@ void app_core::system_prep()
 
 //CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
 
-CLASS_DECL_APEX void set_debug_pointer(void * p);
+CLASS_DECL_ACME void set_debug_pointer(void * p);
 
 
 void app_core::system_init()
@@ -508,7 +509,8 @@ void app_core::system_init()
 
    //psystem = __move_transfer(apex_create_apex_system());
 
-   auto psystem = get_system()->m_papexsystem;
+   //auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system();
 
    if (!psystem)
    {
@@ -773,7 +775,7 @@ void app_core::system_end()
 //
 //         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 //
-//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 //         ::output_debug_string(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
@@ -873,7 +875,7 @@ void app_core::system_end()
 //
 //            char szTimeMessage1[2048];
 //
-//            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+//            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 //
 //            if (file_length_raw(szEllapsed) > 0)
 //            {
@@ -1703,8 +1705,15 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__pointer(::application) app_core::new_application()
+__pointer(::app) app_core::new_app()
 {
+
+   if(::app::g_p)
+   {
+
+      return ::app::g_p;
+
+   }
 
    if (!m_pfnnewmatterApplication)
    {
@@ -1713,7 +1722,7 @@ __pointer(::application) app_core::new_application()
 
    }
 
-   __pointer(::application) papp;
+   __pointer(::app) papp;
 
    papp = m_pfnnewmatterApplication();
 
@@ -1731,12 +1740,12 @@ __pointer(::application) app_core::new_application()
 
 
 
-void app_core::initialize_application(::application *papplication, ::object * pobject)
+void app_core::initialize_application(::app *papp, ::object * pobject)
 {
 
    //auto estatus = 
    
-   papplication->initialize(pobject);
+   papp->initialize(pobject);
 
    //if (!estatus)
    //{
@@ -1752,7 +1761,7 @@ void app_core::initialize_application(::application *papplication, ::object * po
 static apex_level * s_plevel = NULL;
 
 
-apex_level::apex_level(e_level elevel, PFN_DEFER_INIT pfnDeferInit) :
+apex_level::apex_level(enum_level elevel, PFN_DEFER_INIT pfnDeferInit) :
    m_elevel(elevel),
    m_pfnDeferInit(pfnDeferInit),
    m_plevelNext(s_plevel)

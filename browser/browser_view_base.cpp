@@ -77,10 +77,10 @@ auto m_durationRoll = ::duration::now();
    void impact_base::on_message_left_button_down(::message::message * pmessage)
    {
 
-      if(papplication->m_ppaneview != nullptr)
+      if(papp->m_ppaneview != nullptr)
       {
 
-         papplication->m_ppaneview->m_pviewLast = this;
+         papp->m_ppaneview->m_pviewLast = this;
 
       }
 

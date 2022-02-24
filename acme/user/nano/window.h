@@ -45,6 +45,7 @@ public:
 
    bool                                   m_bCapture;
    bool                                   m_bStartCentered;
+   bool                                   m_bArbitraryPositioning;
    int                                    m_iFontSize;
    enum_font                              m_efont;
 

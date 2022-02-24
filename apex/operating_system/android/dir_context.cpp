@@ -155,7 +155,7 @@ namespace android
       {
 
 
-         ::file::patha stra;
+         ::file::path_array stra;
 
          ::dir::ls(stra, listing.m_pathFinal);
 
@@ -874,7 +874,7 @@ namespace android
       if (is(lpcsz))
          return true;
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       lpcsz.ascendants_path(stra);
 

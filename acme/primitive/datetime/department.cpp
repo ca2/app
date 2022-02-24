@@ -1104,7 +1104,7 @@ namespace datetime
                straWeekDay.add("Fri");
                straWeekDay.add("Sat");
 
-               //str = Sys(pscript->get_application()).datetime().get_tiny_week_day_str(pscript->textcontext(), time.GetGmtDayOfWeek());
+               //str = Sys(pscript->get_app()).datetime().get_tiny_week_day_str(pscript->textcontext(), time.GetGmtDayOfWeek());
                str = straWeekDay[time.day_of_week(timeshift) % 7];
 
             }

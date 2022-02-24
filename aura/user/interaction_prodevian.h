@@ -111,7 +111,7 @@ namespace user
 
       //virtual bool pump_message() override;
 
-      virtual void term_thread() override;
+      virtual void term_task() override;
 
       virtual void destroy() override;
 

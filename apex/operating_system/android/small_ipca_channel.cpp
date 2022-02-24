@@ -220,7 +220,7 @@
 
          m_bRun = true;
 
-         m_pthread = get_application()->fork([&]()
+         m_pthread = get_app()->fork([&]()
          {
 
 

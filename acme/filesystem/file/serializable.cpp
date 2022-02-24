@@ -51,7 +51,7 @@ namespace file
 //       if (papp == nullptr)
 //       {
 
-//          papp = get_application();
+//          papp = get_app();
 
 //       }
 
@@ -98,7 +98,7 @@ namespace file
 //       if (papp == nullptr)
 //       {
 
-//          papp = get_application();
+//          papp = get_app();
 
 //       }
 

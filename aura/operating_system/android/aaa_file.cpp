@@ -143,7 +143,7 @@ namespace android
    //   if(iNew == -1)
    //      return nullptr;
 
-   //   file* pFile = new file(get_application(), iNew);
+   //   file* pFile = new file(get_app(), iNew);
    //   pFile->m_iFile = (::u32)iNew;
    //   ASSERT(pFile->m_iFile != hFileNull);
    //   return pFile;
@@ -329,7 +329,7 @@ namespace android
 
          /*try
          {
-            get_application()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+            get_app()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
          }
          catch(...)
          {

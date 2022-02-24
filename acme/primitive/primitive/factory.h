@@ -251,11 +251,11 @@ namespace factory
 
    CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource);
 
-   CLASS_DECL_ACME void factory_init();
+   //CLASS_DECL_ACME void factory_init();
 
-   CLASS_DECL_ACME void factory_close();
+   //CLASS_DECL_ACME void factory_close();
 
-   CLASS_DECL_ACME void factory_term();
+   //CLASS_DECL_ACME void factory_term();
 
    
    inline __pointer(factory_item_interface) & get_factory_item(const ::atom & atom);

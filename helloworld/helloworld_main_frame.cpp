@@ -14,11 +14,11 @@ namespace helloworld
 
       window_enable_full_screen();
 
-      m_bWindowFrame = !papplication->m_bExperienceMainFrame;
+      m_bWindowFrame = !papp->m_bExperienceMainFrame;
 
 
 
-      if (papplication->has_property("opaque"))
+      if (papp->has_property("opaque"))
       {
 
          m_bExplicitTranslucency = true;
@@ -65,9 +65,9 @@ namespace helloworld
 
 
 
-      //__pointer(::user::experience::main_frame::main_frame) pschema = papplication->experience()->frame_experience("experience_lite", "001");
+      //__pointer(::user::experience::main_frame::main_frame) pschema = papp->experience()->frame_experience("experience_lite", "001");
 
-      auto pframe = papplication->experience()->frame_experience(nullptr, "013");
+      auto pframe = papp->experience()->frame_experience(nullptr, "013");
 
       pframe->set_style("LightBlue");
 

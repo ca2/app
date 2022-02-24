@@ -43,7 +43,7 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      __pointer(::file::patha) ppatha;
+      __pointer(::file::path_array) ppatha;
 
       __construct_new(ppatha);
 

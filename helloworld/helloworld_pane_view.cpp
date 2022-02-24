@@ -237,7 +237,7 @@ namespace helloworld
       case impact_menu:
       {
 
-         m_pdocMenu = papplication->create_child_form(this,pimpactdata->m_pplaceholder);
+         m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
@@ -252,7 +252,7 @@ namespace helloworld
 //         m_prollspf = pview->get_child_by_id("roll_spf");
          //try
          //{
-         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(papplication->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(papp->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -260,7 +260,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag")->_001SetCheck(papplication->should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag")->_001SetCheck(papp->should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -268,7 +268,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag_auto")->_001SetCheck(papplication->should_auto_launch_flag_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag_auto")->_001SetCheck(papp->should_auto_launch_flag_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -281,14 +281,14 @@ namespace helloworld
       case PaneViewHelloWorld:
       {
 
-         papplication->m_ptemplateHelloWorldView->create_subdocument(pimpactdata);
+         papp->m_ptemplateHelloWorldView->create_subdocument(pimpactdata);
 
       }
       break;
       case PaneViewHelloWorldSwitcher:
       {
 
-         papplication->m_ptemplateHelloWorldSwitcher->create_subdocument(pimpactdata);
+         papp->m_ptemplateHelloWorldSwitcher->create_subdocument(pimpactdata);
 
       }
       break;
@@ -415,22 +415,22 @@ namespace helloworld
 
          //if(ptopic->user_element_id() == "clockverse")
          //   {
-         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "clockverse_auto")
          //   {
-         //      papplication->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag")
          //   {
-         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag_auto")
          //   {
-         //      papplication->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //}

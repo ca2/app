@@ -26,9 +26,9 @@ CLASS_DECL_ACME bool _os_may_have_alias(const char * psz);
 //   if (_os_may_have_alias(psz))
 //   {
 //
-//      ::file::patha patha;
+//      ::file::path_array patha;
 //
-//      ::file::patha pathaRelative;
+//      ::file::path_array pathaRelative;
 //
 //      path.ascendants_path(patha, &pathaRelative);
 //

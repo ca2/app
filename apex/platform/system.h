@@ -6,7 +6,6 @@ namespace apex
 
 
    class CLASS_DECL_APEX system:
-      virtual public ::app_core,
       virtual public ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
@@ -42,8 +41,6 @@ namespace apex
       __composite(::dir_system)                          m_pdirsystem;
       __composite(::file_system)                         m_pfilesystem;
 
-      ::duration                                         m_durationMainStart;
-      ::duration                                         m_durationAfterApplicationFirstRequest;
 
       string_array                                       m_straCommandLineAccumul;
       string_array                                       m_straCommandLineExtra;
@@ -100,10 +97,10 @@ namespace apex
 
 #endif
 
-      virtual void __thread_init() override;
+      virtual void __task_init() override;
 
 
-      virtual ::application* get_main_application() override;
+      virtual ::app * get_main_app() override;
 
 
       virtual void init();
@@ -452,8 +449,8 @@ namespace apex
       //virtual bool ([a-z0-9_]+)_factory(::factory::factory * pfactory);
       //virtual string imaging_get_default_library_name();
 
-      virtual void init_thread() override;
-      virtual void term_thread() override;
+      virtual void init_task() override;
+      virtual void term_task() override;
 
 
       //virtual void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
@@ -754,7 +751,7 @@ namespace apex
 
 #endif
 
-      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
+      //virtual void post_fork_uri(const ::string & pszUri,application_bias * pappbias);
 
 
 

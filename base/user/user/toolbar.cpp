@@ -1755,7 +1755,7 @@ return { 0,0 };
 
       __pointer(::user::toolbar_item) item;
 
-      //auto papplication = get_application();
+      //auto papp = get_app();
 
       for(index i = 0; i < children.get_size(); i++)
       {

@@ -49,7 +49,8 @@ public:
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
 
 
-   ::application* create_get_application(::application* pappFallback = nullptr);
+   ::app * create_get_app(::app * pappFallback = nullptr);
+
 
    void finish_initialization();
 

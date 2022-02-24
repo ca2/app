@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "apex/operating_system.h"
-#include "static_start.h"
+#include "apex.h"
 #include "apex/networking/sockets/_sockets.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "apex/astr.h"
 #include "acme/exception/engine.h"
-//#include "apex/os/_os.h"
+#include "system.h"
 
 
 //bool __node_apex_pre_init();
@@ -187,147 +187,147 @@ namespace apex
 
 
 
-   void static_start::construct()
-   {
-
-      //::set_thread_get_run(&apex_thread_get_run);
-      //::set_task_sleep(&acme_task_sleep);
-
-      g_bApex = 0;
-
-#if OBJECT_TYPE_COUNTER
-
-      g_pmapObjTypCtr = nullptr;
-
-#endif
-
-      g_bApex = false;
-
-#if OBJECT_TYPE_COUNTER
-
-      g_iObjTypCtrInit = 0;
-
-#endif
-
-      g_pmutexChildren = nullptr;
-
-#if !defined(WINDOWS)
-
-//      g_tlsindexLastError = 0;
-
-      g_pszDemangle = nullptr;
-
-      g_pcsDemangle = nullptr;
-
-#endif
-
-      //g_main_deferred_run = nullptr;
-
-      //get_globals_mutex() = nullptr;
-
-      //g_pcsGlobal = nullptr;
-
-      //g_bOutputDebugString = true;
-
-      //g_pcsTrace = nullptr;
-
-      //g_ptrace = nullptr;
-
-      //g_psimpletrace = nullptr;
-
-
-      g_pexceptionengine = nullptr;
-      g_pmutexMessageDispatch = nullptr;
-
-      g_paAura = nullptr;
-
-#ifdef WINDOWS
-
-      g_largeintegerFrequency = {};
-
-#endif
-
-      g_iFirstNano = 0;
-
-      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
-
-      g_iMemoryCountersStartable = 0;
-      //::mutex * g_pmutexTrait;
-      //::mutex * g_pmutexFactory;
-
-      g_pmutexUiDestroyed = 0;
-
-#ifdef ANDROID
-
-      g_pmutexOutputDebugStringA = 0;
-
-#endif
-
-      //g_papexstrpool = nullptr;
-
-      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      // ::mutex * g_pmutexMq;
-
-      // #endif
-
-#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
-
-//::mutex * g_pmutexThreadIdHandleLock;
-
-//::mutex * g_pmutexThreadIdLock;
-
-//#if !defined(_UWP)
-
-//::mutex * g_pmutexPendingThreadsLock;
-
+//   void static_start::construct()
+//   {
+//
+//      //::set_thread_get_run(&apex_thread_get_run);
+//      //::set_task_sleep(&acme_task_sleep);
+//
+//      g_bApex = 0;
+//
+//#if OBJECT_TYPE_COUNTER
+//
+//      g_pmapObjTypCtr = nullptr;
+//
 //#endif
+//
+//      g_bApex = false;
+//
+//#if OBJECT_TYPE_COUNTER
+//
+//      g_iObjTypCtrInit = 0;
+//
+//#endif
+//
+//      g_pmutexChildren = nullptr;
+//
+//#if !defined(WINDOWS)
+//
+////      g_tlsindexLastError = 0;
+//
+//      g_pszDemangle = nullptr;
+//
+//      g_pcsDemangle = nullptr;
+//
+//#endif
+//
+//      //g_main_deferred_run = nullptr;
+//
+//      //get_globals_mutex() = nullptr;
+//
+//      //g_pcsGlobal = nullptr;
+//
+//      //g_bOutputDebugString = true;
+//
+//      //g_pcsTrace = nullptr;
+//
+//      //g_ptrace = nullptr;
+//
+//      //g_psimpletrace = nullptr;
+//
+//
+//      g_pexceptionengine = nullptr;
+//      g_pmutexMessageDispatch = nullptr;
+//
+//      g_paAura = nullptr;
+//
+//#ifdef WINDOWS
+//
+//      g_largeintegerFrequency = {};
+//
+//#endif
+//
+//      g_iFirstNano = 0;
+//
+//      //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
+//
+//      g_iMemoryCountersStartable = 0;
+//      //::mutex * g_pmutexTrait;
+//      //::mutex * g_pmutexFactory;
+//
+//      g_pmutexUiDestroyed = 0;
+//
+//#ifdef ANDROID
+//
+//      g_pmutexOutputDebugStringA = 0;
+//
+//#endif
+//
+//      //g_papexstrpool = nullptr;
+//
+//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//
+//      // ::mutex * g_pmutexMq;
+//
+//      // #endif
+//
+//#if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
+//
+////::mutex * g_pmutexThreadIdHandleLock;
+//
+////::mutex * g_pmutexThreadIdLock;
+//
+////#if !defined(_UWP)
+//
+////::mutex * g_pmutexPendingThreadsLock;
+//
+////#endif
+//
+////::mutex * g_pmutexTlsData;
+//
+//#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
+//
+//#if defined(LINUX) || defined(__APPLE__)
+//
+//      g_pmutexTz = nullptr;
+//
+//      g_pmutexThreadHandleLock = nullptr;
+//
+//#endif // defined(LINUX) || defined(__APPLE__)
+//
+//
+//#ifdef __APPLE__
+//
+//
+//      g_pmutexCvt = nullptr;
+//
+//
+//#endif
+//
+//      //g_pcsFont = nullptr;
+//
+//      //g_pmapFontFaceName = nullptr;
+//
+//      //add_factory_item < ::apex::idpool >();
+//
+//
+//
+//   }
+//
 
-//::mutex * g_pmutexTlsData;
-
-#endif // defined(LINUX) || defined(__APPLE__) || defined(_UWP)
-
-#if defined(LINUX) || defined(__APPLE__)
-
-      g_pmutexTz = nullptr;
-
-      g_pmutexThreadHandleLock = nullptr;
-
-#endif // defined(LINUX) || defined(__APPLE__)
-
-
-#ifdef __APPLE__
-
-
-      g_pmutexCvt = nullptr;
-
-
-#endif
-
-      //g_pcsFont = nullptr;
-
-      //g_pmapFontFaceName = nullptr;
-
-      //add_factory_item < ::apex::idpool >();
-
-
-
-   }
-
-
-   static_start::static_start()
+   void initialize_system()
    {
 
-      m_bRef = false;
+      //m_bRef = false;
 
-      construct();
+      //construct();
 
-
-#ifndef WINDOWS
-
-      g_pcsDemangle = new critical_section;
-
-#endif
+//
+//#ifndef WINDOWS
+//
+//      g_pcsDemangle = new critical_section;
+//
+//#endif
 
 
 
@@ -401,6 +401,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
+      ::factory::add_factory_item < ::apex::system, class ::system >();
       ::factory::add_factory_item < ::apex::context, ::acme::context >();
 
 
@@ -416,15 +417,59 @@ namespace apex
 
       //g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
 
-      init();
+
+//      void static_start::init()
+//xxxxxx init();
+      {
+
+         ::parallelization::initialize();
+
+      }
 
    }
 
 
-   static_start::~static_start()
+   void finalize_system()
    {
 
-      term();
+//      void static_start::term()
+//xxxxxx term();
+      {
+
+         //::parallelization::wait_threads(1_min);
+
+         //if (g_axisontermthread)
+         //{
+
+         //   g_axisontermthread();
+
+         //}
+
+         on_term_thread();
+
+         ::parallelization::destroy();
+
+         //__node_apex_pre_term();
+
+//#ifdef WINDOWS
+//
+//      set_simple_output_debug_string_a();
+//
+//      set_simple_output_debug_string_w();
+//
+//#endif
+
+         processor_cache_oriented_destroy_all_memory_pools();
+
+         //__node_apex_pos_term();
+
+         //::apex::static_start::term();
+
+         //return true;
+
+         //return ::success;
+//
+      }
 
 //      ::acme::del(g_pthreadaDeferredCreate);
 
@@ -659,13 +704,13 @@ namespace apex
    }
 
 
-   void static_start::this_ref()
-   {
-
-      m_bRef = true;
-      //printf()
-
-   }
+//   void static_start::this_ref()
+//   {
+//
+//      m_bRef = true;
+//      //printf()
+//
+//   }
 
 
    //::apex::system * apex_create_system(app_core * pappcore)
@@ -680,80 +725,43 @@ namespace apex
    //}
 
 
-
-   void static_start::init()
-   {
-
-      //::apex::static_start::init();
-
-      //if (!__node_apex_pre_init())
-      //{
-
-      //   return ::error_failed;
-
-      //}
-
-      ::parallelization::initialize();
-
-      //if (!__node_apex_pos_init())
-      //{
-
-      //   return ::error_failed;
-
-      //}
-
-//#ifdef WINDOWS
 //
-//      set_extended_output_debug_string_a();
+//   void static_start::init()
+//   {
 //
-//      set_extended_output_debug_string_w();
+//      //::apex::static_start::init();
 //
-//#endif
-
-      //g_pfn_create_system = &apex_create_apex_system;
-
-      //return true;
-
-   }
-
-
-   void static_start::term()
-   {
-
-      //::parallelization::wait_threads(1_min);
-
-      //if (g_axisontermthread)
-      //{
-
-      //   g_axisontermthread();
-
-      //}
-
-      on_term_thread();
-
-      ::parallelization::destroy();
-
-      //__node_apex_pre_term();
-
-//#ifdef WINDOWS
+//      //if (!__node_apex_pre_init())
+//      //{
 //
-//      set_simple_output_debug_string_a();
+//      //   return ::error_failed;
 //
-//      set_simple_output_debug_string_w();
+//      //}
 //
-//#endif
+//      ::parallelization::initialize();
+//
+//      //if (!__node_apex_pos_init())
+//      //{
+//
+//      //   return ::error_failed;
+//
+//      //}
+//
+////#ifdef WINDOWS
+////
+////      set_extended_output_debug_string_a();
+////
+////      set_extended_output_debug_string_w();
+////
+////#endif
+//
+//      //g_pfn_create_system = &apex_create_apex_system;
+//
+//      //return true;
+//
+//   }
 
-      processor_cache_oriented_destroy_all_memory_pools();
 
-      //__node_apex_pos_term();
-
-      //::apex::static_start::term();
-
-      //return true;
-
-      //return ::success;
-
-   }
 
 
 //} // namespace static_start
@@ -1117,18 +1125,18 @@ namespace apex
 //
 
 
-
-void apex_ref()
-{
-
-
-   ::apex::static_start::g_pstaticstatic->this_ref();
-   set_platform_level(e_platform_level_apex);
-
-
-}
-
-
+//
+//void apex_ref()
+//{
+//
+//
+//   ::apex::static_start::g_pstaticstatic->this_ref();
+//   set_platform_level(e_platform_level_apex);
+//
+//
+//}
+//
+//
 
 
 

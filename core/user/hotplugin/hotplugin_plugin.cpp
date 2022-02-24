@@ -48,8 +48,8 @@ namespace hotplugin
 
       m_etheme = ::user::e_theme_lite;
 
-      //get_application() = this;
-      //get_application()->m_psession = this;
+      //get_app() = this;
+      //get_app()->m_psession = this;
       //::aura::application::m_psession = this;
 
    }

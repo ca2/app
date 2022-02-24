@@ -781,14 +781,14 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       ::rectangle_i32 rectangleShadow;
       _001GetItemRect(iItem, rectangleShadow, e_element_item);
 
-      ::draw2d::pen_pointer ppenShadow(get_application(), PS_SOLID, 1, rgb(127, 127, 127));
-      ::draw2d::brush_pointer pbrushShadow(get_application(), rgb(127, 127, 127));
+      ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
+      ::draw2d::brush_pointer pbrushShadow(get_app(), rgb(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(ppenShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(pbrushShadow);
       pgraphics->rectangle(rectangleShadow);
 
-      ::draw2d::pen_pointer pen(get_application(), PS_SOLID, 1, rgb(92, 92, 92));
-      ::draw2d::brush_pointer brush(get_application(), rgb(255, 255, 255));
+      ::draw2d::pen_pointer pen(get_app(), PS_SOLID, 1, rgb(92, 92, 92));
+      ::draw2d::brush_pointer brush(get_app(), rgb(255, 255, 255));
       pgraphics->set(ppen);
       pgraphics->set(pbrush);
       pgraphics->rectangle(rectangleItem);

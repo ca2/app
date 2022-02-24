@@ -2,7 +2,7 @@
 #include "__apps.inl"
 
 
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 
 
 #include "_main_hold.h"

@@ -197,12 +197,12 @@ namespace parallelization
 
    //   }
 
-   //   auto papplicationContext = pthread->get_application();
+   //   auto pappContext = pthread->get_app();
 
-   //   if (::is_set(papplicationContext) && papplicationContext != pthread)
+   //   if (::is_set(pappContext) && pappContext != pthread)
    //   {
 
-   //      return papplicationContext;
+   //      return pappContext;
 
    //   }
 

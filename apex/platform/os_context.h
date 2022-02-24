@@ -128,10 +128,10 @@ public:
    virtual void browse_file_or_folder(property_set & set);
 
 
-   virtual void list_process(::file::patha & patha, u32_array & uaPid);
+   virtual void list_process(::file::path_array & patha, u32_array & uaPid);
 
 
-   ::file::patha list_process_path();
+   ::file::path_array list_process_path();
 
    //virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 

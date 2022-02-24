@@ -69,7 +69,7 @@ namespace user
 
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
-      inline ::aura::application* get_application();
+      inline ::aura::application* get_app();
       inline ::aura::session * get_session();
       inline ::aura::system* get_system();
 

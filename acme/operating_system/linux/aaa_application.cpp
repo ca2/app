@@ -454,7 +454,7 @@ namespace acme
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_application()->SetCurrentHandles();
+//      get_app()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -524,7 +524,7 @@ namespace acme
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papp for the current user.");
 
       }
 

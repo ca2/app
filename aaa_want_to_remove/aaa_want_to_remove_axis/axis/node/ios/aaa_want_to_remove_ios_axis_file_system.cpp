@@ -311,7 +311,7 @@ namespace ios
 //      bool file_system::mk_time(const ::string & lpcszCandidate)
 //      {
 //         file_pointer spfile(e_create);
-//         if(pcontext->m_papexcontext->file().exists(lpcszCandidate, get_application()))
+//         if(pcontext->m_papexcontext->file().exists(lpcszCandidate, get_app()))
 //            return false;
 //         try
 //         {

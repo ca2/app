@@ -48,7 +48,7 @@ public:
 
 
    virtual void trash_that_is_not_trash(const ::file::path & path);
-   virtual void trash_that_is_not_trash(::file::patha & patha);
+   virtual void trash_that_is_not_trash(::file::path_array & patha);
 
 
    virtual __pointer(::handle::ini) get_ini(const ::payload& payloadFile);
@@ -142,7 +142,7 @@ public:
    }
 
 
-   virtual i32 filterex_time_square(const char * pszPrefix, ::file::patha & stra);
+   virtual i32 filterex_time_square(const char * pszPrefix, ::file::path_array & stra);
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
@@ -212,7 +212,7 @@ public:
 
    //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 
-   //virtual void dtf(const ::file::path & pszFile, ::file::patha & stra);
+   //virtual void dtf(const ::file::path & pszFile, ::file::path_array & stra);
 
    //virtual void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
@@ -262,7 +262,7 @@ public:
 
 
    //virtual void trash_that_is_not_trash(const ::file::path & psz);
-   //virtual void trash_that_is_not_trash(::file::patha & stra);
+   //virtual void trash_that_is_not_trash(::file::path_array & stra);
 
 
    //virtual ::extended::status replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace);
@@ -376,7 +376,7 @@ public:
 
 
    //void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
-   void dtf(const ::file::path & pszFile, ::file::patha & stra, ::file::patha & straRelative);
+   void dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative);
    //void ftd(const ::file::path & pszDir, const ::file::path & pszFile);
 
 

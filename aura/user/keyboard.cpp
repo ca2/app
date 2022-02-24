@@ -434,7 +434,7 @@ namespace user
 //         if(playout->load(playout->m_strPath))
 //         {
 //            m_playout = playout;
-//// xxx            papplication->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
+//// xxx            papp->simpledb().on_set_keyboard_layout(playout->m_strPath, context);
 //            FORMATTED_TRACE("successfully set keyboard on_layout to %s (path=%s)", playout->m_strName.c_str(), playout->m_strPath.c_str());
 //            return true;
 //         }
@@ -527,7 +527,7 @@ namespace user
 //
 //      keyboard_layout_ida layoutida;
 //
-//      ::file::patha patha;
+//      ::file::path_array patha;
 //
 //      pcontext->m_papexcontext->dir().matter_ls_file("keyboard layout", patha);
 //

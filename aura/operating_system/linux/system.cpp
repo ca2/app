@@ -6,7 +6,7 @@
 #include "aura/user/_user.h"
 //#include <gtk/gtk.h>
 ////#include "third/sn/sn.h"
-#include "apex/platform/app_core.h"
+#include "apex/platform/apex.h"
 //#include "apex/os/linux/gnome_apex_application.h"
 #include "aura/user/message_box.h"
 
@@ -70,13 +70,13 @@
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_session()->set_context_app(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context_app(psystem->m_pappStartup);
 //
-//      psystem->set_context_app(psystem->m_papplicationStartup);
+//      psystem->set_context_app(psystem->m_pappStartup);
 //
-//      psystem->get_session()->set_context(psystem->m_papplicationStartup);
+//      psystem->get_session()->set_context(psystem->m_pappStartup);
 //
-//      psystem->set_context(psystem->m_papplicationStartup);
+//      psystem->set_context(psystem->m_pappStartup);
 //
 //   }
 //

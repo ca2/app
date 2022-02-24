@@ -364,7 +364,7 @@ namespace sockets
          {
             struct sockaddr_in *p = (struct sockaddr_in *)sa;
             ::sockets::address_pointer addr;
-            addr(new ::sockets::ipv4_address(get_application(), *p));
+            addr(new ::sockets::ipv4_address(get_app(), *p));
             return addr;
          }
          break;
@@ -373,7 +373,7 @@ namespace sockets
          {
             struct sockaddr_in6 *p = (struct sockaddr_in6 *)sa;
             ::sockets::address_pointer addr;
-            addr(new ::sockets::ipv6_address(get_application(), *p));
+            addr(new ::sockets::ipv6_address(get_app(), *p));
             return addr;
          }
          break;

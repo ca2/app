@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 //#include "apex/compress/zip/_.h"
 #include "acme/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
@@ -1684,7 +1684,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 ::file::path dir_context::locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
 {
 
-   string strHint = pathRoot / "_matter" / pathDomain / get_application()->get_locale_schema_dir(strLocale, strSchema);
+   string strHint = pathRoot / "_matter" / pathDomain / get_app()->m_papplication->get_locale_schema_dir(strLocale, strSchema);
 
    return strHint;
 
@@ -1881,7 +1881,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       }
 
 
-      ::file::patha straLs;
+      ::file::path_array straLs;
 
       string_array straSep;
 
@@ -1915,7 +1915,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 }
 
 
-::file::path dir_context::matter_from_locator(const ::file::patha & patha, const string_array & straMatterLocator, bool bDir)
+::file::path dir_context::matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir)
 {
 
    if (patha.is_empty())
@@ -2242,7 +2242,7 @@ ret:
 ::file::path dir_context::matter_from_locator(::file::path path, const string_array & straMatterLocator, bool bDir)
 {
 
-   ::file::patha patha;
+   ::file::path_array patha;
 
    ::str::begins_eat_ci((string &) path, "matter://");
 
@@ -2253,7 +2253,7 @@ ret:
 }
 
 
-::file::path dir_context::matter(const ::file::patha & patha, bool bDir)
+::file::path dir_context::matter(const ::file::path_array & patha, bool bDir)
 {
 
    string_array straMatterLocator;
@@ -2261,7 +2261,7 @@ ret:
 
       synchronous_lock synchronouslock(mutex());
 
-      straMatterLocator = get_application()->m_straMatterLocator;
+      straMatterLocator = get_app()->m_papplication->m_straMatterLocator;
 
    }
 
@@ -2649,7 +2649,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
 //{
 //
-//   ::file::patha stra;
+//   ::file::path_array stra;
 //
 //   stra.add_tokens(pszEnv, ":", false);
 //
@@ -2876,31 +2876,31 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    } 
    
-   if (m_psystem->m_papplicationStartup)
+   if (m_psystem->m_pappStartup)
    {
 
-      if (m_psystem->m_papplicationStartup->m_strAppId.is_empty())
+      if (m_psystem->m_pappStartup->m_strAppId.is_empty())
       {
 
          throw ::exception(error_wrong_state, "Application Startup App Id is empty");
 
       }
 
-      return dropbox() / "application" / m_psystem->m_papplicationStartup->m_strAppId;
+      return dropbox() / "application" / m_psystem->m_pappStartup->m_strAppId;
 
    }
 
-   if (m_psystem->m_papplicationMain)
+   if (m_psystem->m_pappMain)
    {
 
-      if (m_psystem->m_papplicationMain->m_strAppId.is_empty())
+      if (m_psystem->m_pappMain->m_strAppId.is_empty())
       {
 
          throw ::exception(error_wrong_state, "Application Main App Id is empty");
 
       }
 
-      return dropbox() / "application" / m_psystem->m_papplicationMain->m_strAppId;
+      return dropbox() / "application" / m_psystem->m_pappMain->m_strAppId;
 
    }
 
@@ -2923,7 +2923,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
 //{
 
-//   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle);
+//   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle);
 
 //}
 
@@ -2931,15 +2931,15 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string_array dir_context::locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
-//   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle, pathRoot, pathDomain);
+//   return psystem->m_spdir->locale_schema_matter(get_app(), strLocale, strStyle, pathRoot, pathDomain);
 
 //}
 
 //
-//string dir_context::matter(const ::file::patha & patha, bool bDir)
+//string dir_context::matter(const ::file::path_array & patha, bool bDir)
 //{
 //
-//   return psystem->m_spdir->matter(get_application(), patha, bDir);
+//   return psystem->m_spdir->matter(get_app(), patha, bDir);
 //
 //}
 
@@ -2947,19 +2947,19 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //string dir_context::matter(const ::file::path & path, bool bDir)
 //{
 //
-//   return psystem->m_spdir->matter(get_application(), path, bDir);
+//   return psystem->m_spdir->matter(get_app(), path, bDir);
 //
 //}
 ////
 //
-//void dir_context::matter_ls(const ::file::path & str, ::file::patha & stra)
+//void dir_context::matter_ls(const ::file::path & str, ::file::path_array & stra)
 //{
-//   psystem->m_spdir->matter_ls(get_application(), str, stra);
+//   psystem->m_spdir->matter_ls(get_app(), str, stra);
 //}
 //
-//void dir_context::matter_ls_file(const ::file::path & str, ::file::patha & stra)
+//void dir_context::matter_ls_file(const ::file::path & str, ::file::path_array & stra)
 //{
-//   psystem->m_spdir->matter_ls_file(get_application(), str, stra);
+//   psystem->m_spdir->matter_ls_file(get_app(), str, stra);
 //}
 
 
@@ -2967,7 +2967,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   string strPath = psystem->m_spdir->matter(get_application(), pcsz, bDir);
+//   string strPath = psystem->m_spdir->matter(get_app(), pcsz, bDir);
 //
 //
 //   return strPath;
@@ -2994,14 +2994,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::listing & dir_context::ls(listing & listing)
 //{
 //
-//   return psystem->m_spdir.m_p->ls(get_application(), listing);
+//   return psystem->m_spdir.m_p->ls(get_app(), listing);
 //
 //}
 
 //::file::listing & dir_context::ls_relative_name(listing & listing)
 //{
 //
-//   return psystem->m_spdir.m_p->ls_relative_name(get_application(), listing);
+//   return psystem->m_spdir.m_p->ls_relative_name(get_app(), listing);
 //
 //}
 //
@@ -3010,7 +3010,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return psystem->m_spdir.m_p->has_subdir(get_application(), pcsz);
+//   return psystem->m_spdir.m_p->has_subdir(get_app(), pcsz);
 //
 //
 //}
@@ -3020,7 +3020,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return psystem->m_spdir.m_p->is(pcsz, get_application());
+//   return psystem->m_spdir.m_p->is(pcsz, get_app());
 //
 //
 //}
@@ -3030,7 +3030,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //{
 //
-//   return psystem->m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_application());
+//   return psystem->m_spdir.m_p->is_inside(pcszDir, lpcszPath, get_app());
 //
 //
 //}
@@ -3039,14 +3039,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::is_inside_time(const ::file::path & pcsz)
 //
 //{
-//   return psystem->m_spdir.m_p->is_inside_time(pcsz, get_application());
+//   return psystem->m_spdir.m_p->is_inside_time(pcsz, get_app());
 //
 //}
 
 
 //::file::listing & dir_context::root_ones(::file::listing & listing)
 //{
-//   return psystem->m_spdir.m_p->root_ones(listing, get_application());
+//   return psystem->m_spdir.m_p->root_ones(listing, get_app());
 //}
 //
 
@@ -3060,7 +3060,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //
 //   }
 //
-//   return psystem->m_spdir.m_p->mk(path, get_application());
+//   return psystem->m_spdir.m_p->mk(path, get_app());
 //
 //}
 
@@ -3068,7 +3068,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //bool dir_context::rm(const ::file::path & path, bool bRecursive)
 //{
 //
-//   return psystem->m_spdir.m_p->rm(get_application(), path, bRecursive);
+//   return psystem->m_spdir.m_p->rm(get_app(), path, bRecursive);
 //
 //}
 
@@ -3084,7 +3084,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::dropbox()
 //{
 //
-//   return psystem->m_spdir->dropbox(get_application());
+//   return psystem->m_spdir->dropbox(get_app());
 //
 //}
 
@@ -3092,7 +3092,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::onedrive()
 //{
 //
-//   return psystem->m_spdir->onedrive(get_application());
+//   return psystem->m_spdir->onedrive(get_app());
 //
 //}
 

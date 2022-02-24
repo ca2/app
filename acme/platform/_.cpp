@@ -174,7 +174,7 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::parallelization::finish(::get_application());
+//   ::parallelization::finish(::get_app());
 //
 //#endif
 //

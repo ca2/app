@@ -107,9 +107,9 @@ public:
 
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
-   inline ::application* get_application() { return _get_application(); }
+   inline ::app* get_app() { return _get_app(); }
 
-   virtual ::application* _get_application();
+   virtual ::app* _get_app();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();
@@ -139,11 +139,11 @@ public:
    //virtual void on_task();
 
 
-   virtual void osthread_init();
-   virtual void __thread_init();
-   virtual void __thread_main();
-   virtual void __thread_term();
-   virtual void osthread_term();
+   virtual void task_osinit();
+   virtual void __task_init();
+   virtual void __task_main();
+   virtual void __task_term();
+   virtual void task_osterm();
 
 
 //   virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

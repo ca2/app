@@ -6,8 +6,8 @@
 #include "main.h"
 
 
-class CLASS_DECL_ACME acme_main_data :
-public ::main
+class CLASS_DECL_ACME acme_main_struct :
+   public ::main
 {
 public:
 //

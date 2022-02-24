@@ -115,14 +115,14 @@ void clear_message_queue(itask_t idthread)
 ////
 ////   }
 ////
-////   if(pinteraction->get_application() == nullptr)
+////   if(pinteraction->get_app() == nullptr)
 ////   {
 ////
 ////      return false;
 ////
 ////   }
 ////
-////   itask_t idthread = pinteraction->get_application()->get_os_int();
+////   itask_t idthread = pinteraction->get_app()->get_os_int();
 ////
 ////   message_queue * pmq = __get_mq(idthread, false);
 ////

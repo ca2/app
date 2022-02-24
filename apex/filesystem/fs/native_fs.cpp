@@ -207,7 +207,7 @@ namespace fs
    }
 
 
-   //void native::get_ascendants_path(const ::file::path & pszPath,::file::patha & stra)
+   //void native::get_ascendants_path(const ::file::path & pszPath,::file::path_array & stra)
    //{
 
    //   return m_pcontext->m_papexcontext->file().get_ascendants_path(pszPath, stra);
@@ -215,7 +215,7 @@ namespace fs
    //}
 
 
-   //void native::get_ascendants_name(const ::file::path & pcsz,::file::patha & straParam)
+   //void native::get_ascendants_name(const ::file::path & pcsz,::file::path_array & straParam)
 
    //{
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_setup.h"
+#include "aura/platform/system_setup.h"
 
 
 //extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
@@ -572,7 +572,7 @@ namespace aura
       try
       {
 
-         auto psetup = ::static_setup::get_first(::static_setup::flag_application, pszAppId);
+         auto psetup = ::system_setup::get_first(::system_setup::flag_application, pszAppId);
 
          if (psetup)
          {

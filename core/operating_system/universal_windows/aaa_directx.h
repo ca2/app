@@ -47,10 +47,10 @@ namespace universal_windows
       directx_base();
 
 
-      ::aura::application * get_application() const
+      ::aura::application * get_app() const
       {
 
-         return get_application();
+         return get_app();
 
       }
 

@@ -459,7 +459,7 @@ namespace sockets
    /////////////////////////////////////////////////////////////////////////////////////////
 
    //http_transfer_socket::http_transfer_socket() :
-   //   ::object(handler.get_application()),
+   //   ::object(handler.get_app()),
    //   base_socket(handler),
    //   socket(handler),
    //   stream_socket(handler),

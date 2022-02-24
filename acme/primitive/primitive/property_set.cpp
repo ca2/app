@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
-#include "acme/platform/static_start_internal.h"
+#include "acme/platform/acme.h"
+//#include "acme/platform/static_start_internal.h"
 
 
 #undef new
@@ -1970,4 +1970,55 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
 }
 
 
+
+bool property_set::payload_bool(const atom & atom, bool bDefault) const
+{
+   
+   auto pproperty = find(atom);
+
+   if (::is_null(pproperty))
+   {
+
+      return bDefault;
+
+   }
+   
+   return pproperty->get_bool(bDefault);
+
+}
+
+
+::string property_set::payload_string(const atom & atom, const ::string & strDefault) const
+{
+
+   auto pproperty = find(atom);
+
+   if (::is_null(pproperty))
+   {
+
+      return strDefault;
+
+   }
+
+   return pproperty->get_string();
+
+}
+
+
+
+::file::path property_set::payload_file_path(const atom & atom, const ::file::path & pathDefault) const
+{
+
+   auto pproperty = find(atom);
+
+   if (::is_null(pproperty))
+   {
+
+      return pathDefault;
+
+   }
+
+   return pproperty->get_file_path();
+
+}
 

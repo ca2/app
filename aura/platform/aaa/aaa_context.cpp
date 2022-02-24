@@ -324,7 +324,7 @@ string context::defer_get_file_title(string strParam)
 
             __keep_thread_flag(id_thread_resolve_alias);
 
-            if (!os_resolve_alias(path, path,::is_set(get_application())? papplication->m_puiCurrent: nullptr))
+            if (!os_resolve_alias(path, path,::is_set(get_app())? papp->m_puiCurrent: nullptr))
             {
 
                break;
@@ -404,6 +404,12 @@ string context::defer_get_file_title(string strParam)
       path = dir().dropbox() / path;
 
    }
+   else if (::str::begins_eat_ci(path, "dropbox-app://"))
+   {
+
+      path = dir().dropbox_app() / path;
+
+   }
    else if (::str::begins_eat_ci(path, "onedrive://"))
    {
 
@@ -413,7 +419,7 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "appconfig://"))
    {
 
-      path = papplication->appconfig_folder() / path;
+      path = papp->appconfig_folder() / path;
 
    }
    else if (::str::begins_eat_ci(path, "download://"))
@@ -854,10 +860,10 @@ string context::get_schema()
 void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
-   if (get_application())
+   if (get_app())
    {
 
-      get_application()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      get_app()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
    else if (get_session())
@@ -879,10 +885,10 @@ void context::locale_schema_matter(string_array & stra, const string_array & str
 string context::get_locale_schema_dir()
 {
 
-   if (get_application())
+   if (get_app())
    {
 
-      return get_application()->get_locale_schema_dir();
+      return get_app()->get_locale_schema_dir();
 
    }
    else if (get_session())
@@ -1102,7 +1108,7 @@ void context::destroy()
 
    ::object::destroy();
 
-   m_papplication.release();
+   m_papp.release();
 
    m_psession.release();
 

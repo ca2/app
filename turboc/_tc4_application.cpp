@@ -150,7 +150,7 @@ namespace tc4
 
       m_iErrorAiFont = -1;
 
-      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::e_priority_normal,0,0,NULL);
+      __begin_thread(get_app(),&thread_proc_load_ai_font,this,::e_priority_normal,0,0,NULL);
 
    }
 
@@ -162,7 +162,7 @@ namespace tc4
 
       pview->m_iErrorAiFont = -1;
 
-      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_application()).ftlibrary(),Sess(pview->get_application()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
+      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_app()).ftlibrary(),Sess(pview->get_app()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
 
       return pview->m_iErrorAiFont;
 

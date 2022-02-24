@@ -15,7 +15,7 @@
 //
 //#endif
 
-#include "acme/platform/static_start.h"
+#include "acme/platform/acme.h"
 
 #undef new
 

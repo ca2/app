@@ -27,7 +27,7 @@
 //#define ::aura::get_system() (psystem->m_paurasystem)
 //#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
-//#define App(playered) (*::get_application(playered)->m_pauraapplication)
+//#define App(playered) (*::get_app(playered)->m_pauraapplication)
 
 
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
@@ -2227,14 +2227,14 @@ namespace draw2d
 //#define Sess(pobject) (*::get_session(pobject))
 //
 //#undef App
-//#define App(pobject) (*::get_application(pobject))
+//#define App(pobject) (*::get_app(pobject))
 //
 //
 //#define ::aura::get_system() Sys(get_context())
 //#define Session Sess(get_context())
-//#define papplication App(get_context())
-//#define ThisApp (*::application_consumer < application >::get_app())
-//#define m_papplication->
+//#define papp App(get_context())
+//#define ThisApp (*::app_consumer < application >::get_app())
+//#define m_papp->
 //
 //
 //#undef Ctx
@@ -2249,7 +2249,7 @@ namespace draw2d
 //
 //// throw ::exception( - exception - result exception - if not ok
 //#ifndef TINOK
-//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
+//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 //#endif
 //
 //
@@ -2317,10 +2317,10 @@ CLASS_DECL_AURA void __node_aura_pos_term();
 //CLASS_DECL_AURA ::aura::application * get_global_application();
 //
 //
-//CLASS_DECL_AURA ::aura::application * get_application();
-//CLASS_DECL_AURA inline ::aura::application * get_application(::object * pobject);
-//CLASS_DECL_AURA inline ::aura::application * get_application(::aura::application * papp);
-//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_application(); }
+//CLASS_DECL_AURA ::aura::application * get_app();
+//CLASS_DECL_AURA inline ::aura::application * get_app(::object * pobject);
+//CLASS_DECL_AURA inline ::aura::application * get_app(::aura::application * papp);
+//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_app(); }
 //
 //
 //CLASS_DECL_AURA::aura::session * get_session();

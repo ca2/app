@@ -197,7 +197,7 @@ namespace axis
 
       rectangleClient.top--;
 
-      if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
+      if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          auto pbrush = __create < ::draw2d::brush >();

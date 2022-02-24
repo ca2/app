@@ -689,12 +689,12 @@ namespace user
 
          __refer(m_puserthread, puserthread);
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         if (::is_set(papplication))
+         if (::is_set(papp))
          {
 
-            papplication->add_task(m_puserthread);
+            papp->add_task(m_puserthread);
 
          }
 
@@ -731,7 +731,7 @@ namespace user
       {
 
          //if (!m_puserthread->begin_synch())
-         m_puserthread->begin_synchronously();
+         m_puserthread->branch_synchronously();
          //{
 
          //   __release(m_pprodevian);
@@ -2782,14 +2782,14 @@ namespace user
 
          //return false;
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
       if(!m_puserinteraction->m_pthreadUserInteraction)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2798,7 +2798,7 @@ namespace user
       if(!pwindow)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2807,7 +2807,7 @@ namespace user
       if(!oswindow)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -2830,7 +2830,7 @@ namespace user
       if(::is_null(pmessagequeue))
       {
          
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
          
       }
 
@@ -4423,7 +4423,7 @@ namespace user
 
          //return error_failed;
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -4432,7 +4432,7 @@ namespace user
       if (::is_null(puserthread))
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

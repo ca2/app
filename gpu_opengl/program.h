@@ -12,6 +12,9 @@ namespace opengl
    public:
 
 
+      //__creatable_from_base(program, ::gpu::program);
+
+
       program();
       ~program() override;
 

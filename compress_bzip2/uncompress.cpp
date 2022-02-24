@@ -65,7 +65,7 @@ namespace compress_bzip2
       if (BZ2_bzDecompressInit(&zstream, 0, 0) != BZ_OK)
       {
          
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -127,7 +127,7 @@ namespace compress_bzip2
       if (!done)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

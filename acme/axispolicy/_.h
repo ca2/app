@@ -78,7 +78,7 @@
 //#define Sess(pobject) (*(::get_session(pobject))->cast < SESSION_TYPE >())
 //
 //#undef App
-//#define App(pobject) (*(::get_application(pobject))->cast < APP_TYPE >())
+//#define App(pobject) (*(::get_app(pobject))->cast < APP_TYPE >())
 //
 
 

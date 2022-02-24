@@ -171,7 +171,7 @@ namespace draw2d
       if (cx <= 0 || cy <= 0 || radius <= 0)
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -329,7 +329,7 @@ namespace draw2d
       if (cx <= 0 || cy <= 0 || iRadius <= 0)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -424,7 +424,7 @@ auto tick2 = ::duration::now();
          output_debug_string(str2);
          output_debug_string("| \n");
 
-         ::aura::application * papp = m_p->get_application();
+         ::aura::application * papp = m_p->get_app();
          TRACE("/--------------------------------");
          TRACE("| fastblur::blur");
          TRACE("| ");
@@ -541,7 +541,7 @@ auto tickC1 = ::duration::now();
             output_debug_string(str2);
             output_debug_string("| \n");
 
-            //::aura::application * papp = pimage->get_application();
+            //::aura::application * papp = pimage->get_app();
             INFORMATION("/--------------------------------");
             INFORMATION("| fastblur::blur");
             INFORMATION("| ");
@@ -635,7 +635,7 @@ auto tick2 = ::duration::now();
       output_debug_string(str2);
       output_debug_string("| \n");
 
-      ::aura::application * papp = m_p->get_application();
+      ::aura::application * papp = m_p->get_app();
       TRACE("/--------------------------------");
       TRACE("| fastblur::blur");
       TRACE("| ");
@@ -1350,7 +1350,7 @@ auto tick2 = ::duration::now();
       if(radius <= 0)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -1587,7 +1587,7 @@ auto tick2 = ::duration::now();
    void fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
       /*
 

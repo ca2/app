@@ -6,7 +6,7 @@ namespace app_core_build
 
 
    class CLASS_DECL_APP_CORE_BUILD main_impact:
-      virtual public ::application_consumer < application, ::user::split_view >
+      virtual public ::app_consumer < application, ::user::split_view >
    {
    public:
 

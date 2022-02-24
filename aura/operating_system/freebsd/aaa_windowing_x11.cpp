@@ -3958,13 +3958,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          try
          {
 
-            for(auto & papplication : applicationa)
+            for(auto & papp : applicationa)
             {
 
                try
                {
 
-                  auto & app = App(papplication);
+                  auto & app = App(papp);
 
                   auto uiptraFrame = app.m_puiptraFrame->interactiona();
 

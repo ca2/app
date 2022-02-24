@@ -106,9 +106,9 @@ namespace aura
       if (strContextTheme != strTheme)
       {
 
-         __pointer(::aura::application) papplication = get_application();
+         __pointer(::aura::application) papp = get_app();
 
-         papplication->app_set("theme-" + get_current_weather(), strTheme);
+         papp->app_set("theme-" + get_current_weather(), strTheme);
 
       }
 
@@ -282,9 +282,9 @@ namespace aura
 
       string strCurrentWeather = get_current_weather();
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      string strTheme = papplication->app_get("theme-" + strCurrentWeather);
+      string strTheme = papp->app_get("theme-" + strCurrentWeather);
 
       if (strTheme.is_empty())
       {
@@ -346,9 +346,9 @@ namespace aura
 
       m_strDayNightTheme = strDayNightTheme;
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      if (papplication->m_bContextTheme)
+      if (papp->m_bContextTheme)
       {
 
          sync_with_stored_theme();

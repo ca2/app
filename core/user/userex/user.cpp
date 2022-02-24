@@ -6,7 +6,7 @@
 #endif
 
 #include "core/user/account/_account.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "aura/user/shell.h"
@@ -140,6 +140,9 @@ namespace core
       
       
       ::factory::add_factory_item < ::simple_toolbar >();
+
+
+      //::factory::add_factory_item < ::simple_pane_document >();
 
       //if (!create_user_shell())
       //{
@@ -350,7 +353,7 @@ namespace core
 
       }
 
-      //auto papplication = get_se();
+      //auto papp = get_se();
 
       //if (strLangUser.has_char())
       //{
@@ -366,7 +369,7 @@ namespace core
 
       //}
 
-      //string strLicense = papplication->get_license_id();
+      //string strLicense = papp->get_license_id();
 
 
       //::payload & varTopicQuey = psystem->m_varTopicQuery;
@@ -376,7 +379,7 @@ namespace core
 //      bool bHasUninstall = psystem->has_property("uninstall");
 //
 //      if (!(bHasInstall || bHasUninstall)
-//            && papplication->m_bLicense
+//            && papp->m_bLicense
 //            && strLicense.has_char())
 //      {
 //
@@ -410,7 +413,7 @@ namespace core
 //
 //      }
 
-      //set_data_server(papplication->dataserver());
+      //set_data_server(papp->dataserver());
 
 
       ::factory::add_factory_item <::userex::pane_tab_view >();
@@ -631,18 +634,18 @@ namespace core
 
       //auto psession = get_session();
 
-      //auto papplication = pobject->get_application();
+      //auto papp = pobject->get_app();
 
       //if (::is_set(puiOwner))
       //{
 
-      //   propertyset["application_name"] = papplication->m_strAppName;
+      //   propertyset["application_name"] = papp->m_strAppName;
 
       //}
-      //else if (::is_set(psession->m_papplicationCurrent))
+      //else if (::is_set(psession->m_pappCurrent))
       //{
 
-      //   string strAppName = psession->m_papplicationCurrent->m_strAppName;
+      //   string strAppName = psession->m_pappCurrent->m_strAppName;
 
       //   propertyset["application_name"] = strAppName;
 
@@ -681,7 +684,7 @@ namespace core
 
       //      //strMessage.replace("<br>","\r\n");
 
-      //      //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
+      //      //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
 
       //      pfuture->set_status(::error_failed);
 
@@ -700,7 +703,7 @@ namespace core
 
       //   //strMessage.replace("<br>","\r\n");
 
-      //   //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
+      //   //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
 
       //}
 
@@ -762,9 +765,9 @@ namespace core
 
       ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      //auto papplication = pobject->get_application();
+      //auto papp = pobject->get_app();
 
-      //string strTitle = papplication->title();
+      //string strTitle = papp->title();
 
       //pbox->payload("application_name") = strTitle;
 
@@ -955,7 +958,7 @@ namespace core
 
       will_use_view_hint(COLORSEL_IMPACT);
 
-      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_application(), ::e_type_null, __visible(true));
+      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
       __pointer(::userex::color_view) pview = pdocument->get_type_impact < ::userex::color_view >();
 
@@ -988,18 +991,18 @@ namespace core
    void user::_001OnFileNew()
    {
       
-      auto papplication = get_application();
+      auto papp = get_app();
       
-      ASSERT(papplication->document_manager() != nullptr);
+      ASSERT(papp->document_manager() != nullptr);
 
-      if (papplication->document_manager() == nullptr)
+      if (papp->document_manager() == nullptr)
       {
 
          return;
 
       }
 
-      papplication->document_manager()->_001OnFileNew();
+      papp->document_manager()->_001OnFileNew();
 
    }
 
@@ -1080,7 +1083,7 @@ namespace core
 
       auto ptemplateForm = m_ptemplateForm;
 
-      //::aura::application * papp = ::get_application(pobject);
+      //::aura::application * papp = ::get_app(pobject);
 
       //if (papp == nullptr)
       //{
@@ -1088,19 +1091,19 @@ namespace core
       //   if (puserinteractionParent.is_set())
       //   {
 
-      //      papp = puserinteractionParent->get_application();
+      //      papp = puserinteractionParent->get_app();
 
       //   }
       //   else if (pcallback != nullptr)
       //   {
 
-      //      papp = pcallback->get_application();
+      //      papp = pcallback->get_app();
 
       //   }
       //   else
       //   {
 
-      //      papp = get_application();
+      //      papp = get_app();
 
       //   }
 
@@ -1169,27 +1172,27 @@ namespace core
 
       }
 
-      auto papplication = pobject->get_application();
+      auto papp = pobject->get_app();
 
-      if (papplication == nullptr)
+      if (papp == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            papplication = puserinteractionParent->get_application();
+            papp = puserinteractionParent->get_app();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papplication = pcallback->get_application();
+            papp = pcallback->get_app();
 
          }
          else
          {
 
-            papplication = get_application();
+            papp = get_app();
 
          }
 
@@ -1253,27 +1256,27 @@ namespace core
    __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      auto papplication = pobject->get_application();
+      auto papp = pobject->get_app();
 
-      if (papplication == nullptr)
+      if (papp == nullptr)
       {
 
          if (puserinteractionParent.is_set())
          {
 
-            papplication = puserinteractionParent->get_application();
+            papp = puserinteractionParent->get_app();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papplication = pcallback->get_application();
+            papp = pcallback->get_app();
 
          }
          else
          {
 
-            papplication = get_application();
+            papp = get_app();
 
          }
 
@@ -1949,7 +1952,7 @@ namespace core
 
       __UNREFERENCED_PARAMETER(pdata);
 
-      //m_pdocs->m_ptemplate_html->open_document_file(get_application(), itema[0]->get_user_path());
+      //m_pdocs->m_ptemplate_html->open_document_file(get_app(), itema[0]->get_user_path());
 
    }
 
@@ -1966,7 +1969,7 @@ namespace core
    //}
 
 
-   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::patha & patha)
+   void user::on_frame_window_drop_files(::user::interaction * pinteraction, ::file::path_array & patha)
    {
 
       for (auto & path : patha)
@@ -2011,7 +2014,7 @@ namespace core
          //add_factory_item <::user::color_view >();
 
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
-         //   get_application(),
+         //   get_app(),
          //   "main",
          //   __type(::user::document),
          //   __type(::prodevian_translucent_simple_frame_window),
@@ -2107,7 +2110,7 @@ namespace core
 
    //}
 
-   __namespace_object_factory(user, ::static_setup::flag_object_user);
+   __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
 

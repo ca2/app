@@ -61,7 +61,7 @@ namespace ios
 
             }
 
-            ::file::listing dira(get_application());
+            ::file::listing dira(get_app());
 
             dira.ls_dir(listing.m_pathFinal);
 
@@ -89,7 +89,7 @@ namespace ios
 
          }
 
-         ::file::patha  straPath;
+         ::file::path_array  straPath;
 
          ::dir::ls(straPath, listing.m_pathFinal);
 
@@ -134,7 +134,7 @@ namespace ios
 
          }
 
-         ::file::patha  straPath;
+         ::file::path_array  straPath;
 
          ::dir::ls(straPath, listing.m_pathFinal);
 
@@ -223,7 +223,7 @@ pacmedir->is(path))
          
       }
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       pcsz.ascendants_path(stra);
 
@@ -567,7 +567,7 @@ pacmedir->is(stra[i]))
 //      }
 
       
-//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/papplication Support";
+//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/papp Support";
       {
 
          string str;

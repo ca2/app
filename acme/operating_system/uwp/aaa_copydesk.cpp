@@ -91,7 +91,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_get_filea(::file::patha & patha, e_op & eop)
+   bool copydesk::_get_filea(::file::path_array & patha, e_op & eop)
    {
 
       bool bHasFile = false;
@@ -137,7 +137,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
+   bool copydesk::_set_filea(const ::file::path_array & patha, e_op eop)
    {
 
 #ifdef WINDOWS_DESKTOP

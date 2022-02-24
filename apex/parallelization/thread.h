@@ -46,14 +46,13 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::e_status                                        m_estatus;
+   //::e_status                                        m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
 
 
-   __pointer(manual_reset_event)                      m_peventInitialization;
    __pointer(manual_reset_event)                      m_peventStarted;
    __pointer(manual_reset_event)                      m_peventSync;
    __pointer(manual_reset_event)                      m_peventReady;
@@ -315,14 +314,14 @@ public:
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
-   virtual void init_thread();
+   void init_task() override;
    //virtual void on_pre_run_task();
 
    virtual void run() override;
    virtual void main() override;
 
    virtual void on_pos_run_thread();
-   virtual void term_thread();
+   void term_task() override;
 
    virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
@@ -416,8 +415,8 @@ public:
    //virtual void delete_this();
 
    /// thread implementation
-   virtual void on_thread_init();
-   virtual void on_thread_term();
+   void on_task_init() override;
+   void on_task_term() override;
    //virtual void     on_thread_end();
    //virtual void thread_delete();
    operator htask_t() const;
@@ -429,22 +428,22 @@ public:
    //virtual void run() override;
 
 
-   virtual void osthread_init() override;
-   virtual void __thread_init() override;
+   void task_osinit() override;
+   void __task_init() override;
    //virtual void __thread_main() override;
-   virtual void __thread_term() override;
-   virtual void osthread_term() override;
+   void __task_term() override;
+   void task_osterm() override;
 
 
-   void branch(
+   __pointer(::task) branch(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
-   void begin_synchronously(
+   __pointer(::task) branch_synchronously(
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual void inline_init();
@@ -557,7 +556,7 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 //CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization_object* psync = nullptr);
 CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(::application * papplication, const class ::wait & wait);
+CLASS_DECL_APEX bool app_sleep(::application * papp, const class ::wait & wait);
 
 
 
@@ -585,7 +584,7 @@ inline void while_predicateicate_Sleep(int iTime, PRED pred)
 
    }
 
-   throw_status(error_timeout);
+   throw ::exception(error_timeout);
 
 }
 

@@ -6,8 +6,18 @@ namespace base
 {
 
 
+   void initialize()
+   {
+
+      ::factory::add_factory_item< ::base::system, class ::system>();
+
+   }
+
+
    application::application()
    {
+
+      ::base::initialize();
 
       m_pbaseapplication = this;
 

@@ -50,7 +50,7 @@ namespace filehandler
       __type(document),
       __type(frame),       // top level SDI frame::user::interaction_impl
       __type(pane_view));
-      papplication->add_document_template(pdoctemplate);
+      papp->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 

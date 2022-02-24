@@ -52,7 +52,7 @@ namespace simpledb
 
       //   //return false;
 
-      //   throw_status(error_failed);
+      //   throw ::exception(error_failed);
 
       //}
 
@@ -178,7 +178,7 @@ namespace simpledb
       if (::is_null(pdatabaseUser))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 

@@ -208,66 +208,66 @@ namespace apex
 {
 
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
+//
+//
+//   bool context::_os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
+//   {
+//
+//      if (::is_null(psz))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//
+//
+//
+//      char* pszRealPath = ::realpath(psz, NULL);
+//
+//      if (pszRealPath == NULL)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (strcmp(psz, pszRealPath) == 0)
+//      {
+//
+//         ::free(pszRealPath);
+//
+//         return false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         path = pszRealPath;
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      ::free(pszRealPath);
+//
+//      return true;
+//
+//   }
+//
+//#endif
 
 
-   bool context::_os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
-   {
-
-      if (::is_null(psz))
-      {
-
-         return false;
-
-      }
-
-
-
-
-      char* pszRealPath = ::realpath(psz, NULL);
-
-      if (pszRealPath == NULL)
-      {
-
-         return false;
-
-      }
-
-      if (strcmp(psz, pszRealPath) == 0)
-      {
-
-         ::free(pszRealPath);
-
-         return false;
-
-      }
-
-      try
-      {
-
-         path = pszRealPath;
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::free(pszRealPath);
-
-      return true;
-
-   }
-
-#endif
-
-
-   bool context::os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
-   {
-
-      return _os_resolve_alias(path, psz, bNoUI, bNoMount);
-
-   }
+//   bool context::os_resolve_alias(::file::path& path, const char* psz, bool bNoUI, bool bNoMount)
+//   {
+//
+//      return _os_resolve_alias(path, psz, bNoUI, bNoMount);
+//
+//   }
 
 
 

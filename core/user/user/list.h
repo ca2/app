@@ -51,7 +51,7 @@ namespace user
       ~list() override;
 
 
-      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
@@ -294,8 +294,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnListImpactAutoArrange);
 
 
-      bool on_click(const ::item & item) override;
-      bool on_right_click(const ::item & item) override;
+      bool on_click(::item * pitem) override;
+      bool on_right_click(::item * pitem) override;
 
       void _001GetSelection(range & selection) override;
       virtual index _001GetCurItem();
@@ -349,8 +349,8 @@ namespace user
 
       void _001AddSelection(const item_range & itemrange) override;
 
-      void set_current_item(const ::item & item, const ::action_context & action_context) override;
-      ::item current_item() override;
+      void set_current_item(::item * pitem, const ::action_context & action_context) override;
+      ::item_pointer current_item() override;
 
       void set_current_item(const index_array & iaSel, const ::action_context & action_context) override;
       void get_cur_sel(index_array & iaSel) override;

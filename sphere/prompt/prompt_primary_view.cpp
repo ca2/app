@@ -170,7 +170,7 @@ namespace prompt
 
                         m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
 
-                        papplication->send_simple_command("winactionareaview::show_calendar(\""+ __string((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        papp->send_simple_command("winactionareaview::show_calendar(\""+ __string((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
                         bOk = true;
 

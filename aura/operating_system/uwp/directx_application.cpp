@@ -63,7 +63,7 @@ namespace universal_windows
 
       //      psystem->get_session()->m_frameworkview = this;
 
-      m_pdxi = psystem->m_papplicationStartup->__create_new < directx_interaction>();
+      m_pdxi = psystem->m_pappStartup->__create_new < directx_interaction>();
 
    }
 
@@ -353,12 +353,12 @@ namespace universal_windows
 
             //m_psystem->add_create(pcreate);
 
-            //auto papp = m_psystem->m_papplicationStartup;
+            //auto papp = m_psystem->m_pappStartup;
 
             //if (papp == nullptr)
             //{
 
-            //   papp = m_psystem->get_session()->m_papplicationCurrent;
+            //   papp = m_psystem->get_session()->m_pappCurrent;
 
             //}
 

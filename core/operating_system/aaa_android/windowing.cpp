@@ -408,7 +408,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_htask = m_pimpl->m_puserinteraction->get_application()->get_os_handle();
+   m_htask = m_pimpl->m_puserinteraction->get_app()->get_os_handle();
 
 }
 

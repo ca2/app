@@ -323,7 +323,7 @@ namespace aura
          else
          {
 
-            ::fork(get_application(), [=]()
+            ::fork(get_app(), [=]()
             {
 
                if (m_preceiver != nullptr)

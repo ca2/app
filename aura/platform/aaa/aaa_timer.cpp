@@ -90,7 +90,7 @@ bool timer::start(int ::duration, bool bPeriodic)
 
    //this->children_add(this);
 
-   //papplication->thread_add(this);
+   //papp->thread_add(this);
 
    return true;
 
@@ -322,7 +322,7 @@ void timer::term_thread()
 //{
 //
 //
-////   papplication->thread_erase(this);
+////   papp->thread_erase(this);
 //
 //
 //   {

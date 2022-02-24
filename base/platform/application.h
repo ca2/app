@@ -26,7 +26,7 @@ namespace base
    public:
 
 
-      //__pointer(::aura::application_menu)       m_papplicationmenu;
+      //__pointer(::aura::application_menu)       m_pappmenu;
 
 
       application();
@@ -757,7 +757,7 @@ namespace base
 //
 //      //virtual void     main() override;
 //
-//      //virtual ::aura::application * get_application() const override;
+//      //virtual ::aura::application * get_app() const override;
 //
 //      //virtual bool is_system() const override;
 //      //virtual bool is_session() const override;
@@ -1196,7 +1196,7 @@ namespace base
 //
 //::user::document* hold(__pointer(::user::interaction) pinteraction);
 //
-////virtual bool platform_open_by_file_extension(int iEdge, const ::string & pszPathName,application_bias * papplicationbias = nullptr);
+////virtual bool platform_open_by_file_extension(int iEdge, const ::string & pszPathName,application_bias * pappbias = nullptr);
 ////virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 //
 //

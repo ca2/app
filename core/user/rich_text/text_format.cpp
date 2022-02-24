@@ -13,7 +13,7 @@ namespace user
       void     text_format::text_format_load(data * pdata, ::file::file * pfileIn)
       {
 
-         throw_status(error_not_implemented);
+         throw ::exception(error_not_implemented);
 
       }
 
@@ -21,7 +21,7 @@ namespace user
       void     text_format::text_format_save(::file::file * pfileOut, data * pdata)
       {
 
-         throw_status(error_not_implemented);
+         throw ::exception(error_not_implemented);
 
       }
 

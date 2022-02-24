@@ -1,7 +1,7 @@
 #include "acme/_start.h"
 #include "apex/_.h"
 #include "apex/platform/app_core.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "apex/_defer.h"
 #include "acme/inline/implement.h"
 
@@ -170,7 +170,7 @@ const char* br_init_get_symbol();
 //
 //template < typename APPLICATION >
 //class static_application_factory :
-//   public static_setup
+//   public system_setup
 //{
 //public:
 //
@@ -179,7 +179,7 @@ const char* br_init_get_symbol();
 //
 //
 //   static_application_factory(const char * pszName = "") :
-//      static_setup(flag_application, pszName)
+//      system_setup(flag_application, pszName)
 //   {
 //
 //

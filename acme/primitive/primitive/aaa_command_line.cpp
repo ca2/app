@@ -27,7 +27,7 @@ void command_line::common_construct()
    m_ecommand        = command_application_start;
    m_iEdge           = 0;
    m_puserinteractionParent       = nullptr;
-   //m_papplicationbias     = nullptr;
+   //m_pappbias     = nullptr;
 }
 
 command_line::~command_line()

@@ -297,7 +297,7 @@ namespace imaging_freeimage
 
          //return false;
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -306,7 +306,7 @@ namespace imaging_freeimage
 
          //return false;
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -392,7 +392,7 @@ namespace imaging_freeimage
       if (pmem == nullptr)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -483,7 +483,7 @@ namespace imaging_freeimage
 
          FreeImage_CloseMemory(pmem);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

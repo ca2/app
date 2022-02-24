@@ -13,6 +13,9 @@ namespace aura
    public:
 
 
+      //__creatable_from_base(application, ::application);
+
+
       void* m_pnativeapp;
 
 
@@ -37,7 +40,7 @@ namespace aura
 
       //bool                                            m_bReadStringTable;
 
-      //__pointer(::application_menu)             m_papplicationmenu;
+      //__pointer(::application_menu)             m_pappmenu;
 
       //__composite(::game::game)                       m_pgame;
       __reference(::user::interaction)                m_puserinteractionMain;
@@ -872,7 +875,7 @@ namespace aura
 
       //virtual void     main() override;
 
-      //virtual ::aura::application * get_application() const override;
+      //virtual ::aura::application * get_app() const override;
 
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;

@@ -39,7 +39,7 @@ namespace simpledb
    bool socket_thread::init_thread()
    {
 
-      //papplication->::simpledb::application::m_pmanager->LoadEnv();
+      //papp->::simpledb::application::m_pmanager->LoadEnv();
 
 
       /*   STARTUPINFO startupinfo;

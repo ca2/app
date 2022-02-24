@@ -312,9 +312,9 @@ namespace user
 
          window_rectangle windowrectangle;
 
-         __pointer(::aura::application) papplication = get_application();
+         __pointer(::aura::application) papp = get_app();
 
-         if (!papplication->data_get(key, windowrectangle))
+         if (!papp->data_get(key, windowrectangle))
          {
 
             return false;
@@ -436,9 +436,9 @@ namespace user
       if (m_windowrectangleStore.m_edisplay == e_display_undefined)
       {
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         papplication->data_get(key, m_windowrectangleStore);
+         papp->data_get(key, m_windowrectangleStore);
 
       }
 
@@ -500,9 +500,9 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      papplication->data_set(key, windowrect);
+      papp->data_set(key, windowrect);
       //{
 
       //   return false;

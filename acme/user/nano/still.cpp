@@ -13,8 +13,6 @@ nano_still::~nano_still()
 void nano_still::on_draw(nano_device * pnanodevice)
 {
 
-   //::SelectObject(hdc, m_pwindow->m_hbrushWindow);
-
    __pointer(nano_pen) ppenBorder;
 
    if (m_pwindow->m_pchildHover == this || m_pwindow->m_pchildFocus == this)
@@ -29,8 +27,6 @@ void nano_still::on_draw(nano_device * pnanodevice)
       ppenBorder = m_pwindow->m_ppenBorder;
 
    }
-
-   //pnanodevice->rectangle(m_rectangle, m_pwindow->m_pbrushWindow, ppenBorder);
 
    wstring wstrText(m_strText);
 
@@ -50,9 +46,6 @@ void nano_still::on_draw(nano_device * pnanodevice)
       m_pwindow->m_pfont);
 
 }
-
-
-
 
 
 void nano_still::on_char(int iChar)
@@ -113,15 +106,15 @@ bool nano_still::is_focusable() const
 }
 
 
-void nano_still::resize_to_fit()
-{
-
-   auto pdevice = __create < nano_device>();
-
-   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
-
-   m_rectangle.right = m_rectangle.left + size.cx;
-
-   m_rectangle.bottom = m_rectangle.top + size.cy;
-
-}
+//void nano_still::resize_to_fit()
+//{
+//
+//   auto pdevice = __create < nano_device >();
+//
+//   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
+//
+//   m_rectangle.right = m_rectangle.left + size.cx;
+//
+//   m_rectangle.bottom = m_rectangle.top + size.cy;
+//
+//}

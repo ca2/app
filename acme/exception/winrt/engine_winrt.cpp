@@ -67,7 +67,7 @@ namespace exception
    }
 
 
-   char * engine::stack_trace(uptr uiSkip, void * caller_address, const char * pszFormat)
+   char * engine::xxxstack_trace(uptr uiSkip, void * caller_address, const char * pszFormat)
    {
 
       return nullptr;

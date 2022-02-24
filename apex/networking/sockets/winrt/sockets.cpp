@@ -96,7 +96,7 @@ namespace sockets
    //   if(!m_spnet->initialize())
    //      return false;
 
-   //   if(get_application()->is_system())
+   //   if(get_app()->is_system())
    //   {
 
    //      /*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
@@ -121,7 +121,7 @@ namespace sockets
 
       //bool bOk = true;
 
-      //if(get_application()->is_system())
+      //if(get_app()->is_system())
       //{
       //   if(m_pajpbasesocketinit != nullptr)
       //   {

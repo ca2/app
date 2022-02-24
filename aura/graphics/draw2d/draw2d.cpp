@@ -385,7 +385,7 @@ namespace draw2d
       if (strText.is_empty())
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -1144,7 +1144,7 @@ breakFilter2:
 //      if (dAndroid >= 8.0)
 //      {
 //
-//         ::file::patha patha;
+//         ::file::path_array patha;
 //
 //         ::dir::ls(patha, "/system/fonts");
 //
@@ -1365,7 +1365,7 @@ breakFilter2:
       //if (::succeeded(estatus))
       //{
 
-         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+        ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 
@@ -1508,7 +1508,7 @@ breakFilter2:
 
       }
 
-      throw exception(error_resource, "No write_text pluging available!!");
+      throw ::exception(error_resource, "No write_text pluging available!!");
 
       //destroy:
 

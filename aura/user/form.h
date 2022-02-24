@@ -24,7 +24,7 @@ namespace user
       ~form() override;
 
 
-      inline ::aura::application* get_application() const;
+      inline ::aura::application* get_app() const;
       inline ::aura::session* get_session() const;
       inline ::aura::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; }
       inline ::user::user * user() const { return get_session() ? get_session()->user() : nullptr; }

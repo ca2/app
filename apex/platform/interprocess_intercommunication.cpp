@@ -186,7 +186,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
 
          }
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -548,15 +548,15 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          strCommandLine = payloada[2];
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-          papplication->on_additional_local_instance(
+         papp->m_papplication->on_additional_local_instance(
             payload["handled"].as_bool(),
             strModule, 
             payloada[1].i32(), 
             strCommandLine);
 
-          payload["continue"] = true;
+         payload["continue"] = true;
 
       }
       else if (strMember == "on_new_instance")
@@ -576,7 +576,7 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 
    defer_add_module(strModule, idPid);
 
-   get_application()->on_new_instance(strModule, idPid);
+   get_app()->m_papplication->on_new_instance(strModule, idPid);
 
 }
 

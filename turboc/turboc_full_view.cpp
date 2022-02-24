@@ -58,12 +58,12 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-      //if(papplication->m_etype == application::type_normal)
+      //if(papp->m_etype == application::type_normal)
       //{
 
-      //   papplication->load_ai_font();
+      //   papp->load_ai_font();
 
-      //   __begin_thread(get_application(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
+      //   __begin_thread(get_app(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
 
       //}
 
@@ -291,12 +291,12 @@ namespace turboc
       }
 
 #if 0
-      if(papplication->m_iErrorAiFont == 0)
+      if(papp->m_iErrorAiFont == 0)
       {
 
-         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
+         synchronous_lock slAiFont(&papp->m_mutexAiFont);
 
-         FT_Face & face = (FT_Face &)papplication->m_faceAi;
+         FT_Face & face = (FT_Face &)papp->m_faceAi;
 
          i32 error;
 

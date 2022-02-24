@@ -25,11 +25,11 @@ int main_posix(int argc, char* argv[])
 
    }
 
-   papplication->m_estatus = ::undefined;
+   papp->m_estatus = ::undefined;
 
    (*pauramain)();
 
-   int iStatus = (int)papplication->m_estatus;
+   int iStatus = (int)papp->m_estatus;
 
    int iError = 0;
 

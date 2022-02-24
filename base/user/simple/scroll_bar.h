@@ -76,10 +76,10 @@ public:
 
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void on_hit_test(::item & item) override;
+   virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
    //virtual ::enum_element _001HitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem) override;
 
-   virtual bool scrollbar_action(const ::item & item, ::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_action(const ::item * pitem, ::draw2d::graphics_pointer & pgraphics);
 
    virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pgraphics);

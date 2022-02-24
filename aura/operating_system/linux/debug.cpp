@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_start.h"
+#include "aura/platform/aura.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

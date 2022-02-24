@@ -340,7 +340,7 @@ namespace user
          crBk = argb(255, 127, 127, 127);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          // Hover Background
@@ -390,7 +390,7 @@ namespace user
          crBorder = argb(255, 255, 255, 255);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          crBorder = argb(255, 100, 100, 200);
@@ -495,7 +495,7 @@ namespace user
          crText = argb(255, 0, 0, 0);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          crText = argb(255, 0, 0, 0);
@@ -530,7 +530,7 @@ namespace user
          crBackground = argb(255, 240, 240, 240);
 
       }
-      else if (m_itemHover.is_set())
+      else if (::is_set(m_pitemHover))
       {
 
          crBackground = argb(255, 240, 240, 240);
@@ -753,7 +753,7 @@ namespace user
 
       if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
-      else if(m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
+      else if(::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
       else if(psession->get_focus_ui() == this && ::is_ok(m_pbitmap->m_pimageFocus))
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -835,7 +835,7 @@ namespace user
 
          if (echeck() == ::check_checked && m_pbitmap->m_pimageSel->is_set() && m_pbitmap->m_pimageSel->area() > 0)
             pimage = m_pbitmap->m_pimageSel;
-         else if (m_itemHover.is_set() && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
+         else if (::is_set(m_pitemHover) && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
             pimage = m_pbitmap->m_pimageHover;
          else if (psession->get_focus_ui() == this && m_pbitmap->m_pimageFocus->is_set() && m_pbitmap->m_pimageFocus->area() > 0)
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
@@ -901,7 +901,7 @@ namespace user
 
       }
 
-      if(m_itemHover.is_set())
+      if(::is_set(m_pitemHover))
       {
 
          color.hls_rate(0.0,0.2,0.0);
@@ -1150,7 +1150,7 @@ namespace user
          if(get_form() != nullptr)
             return;
          get_client_rect(rectangleClient);
-         bItemHover     = m_itemHover.is_set();
+         bItemHover     = ::is_set(m_pitemHover);
          bSubItemHover  = bItemHover;
       }
 
@@ -1260,10 +1260,10 @@ namespace user
    }
 
 
-   //bool button::m_itemHover
+   //bool button::m_pitemHover
    //{
 
-   //   return m_itemHover;
+   //   return m_pitemHover;
 
    //}
 

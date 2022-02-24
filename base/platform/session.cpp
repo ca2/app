@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 
 
 namespace base
@@ -45,7 +45,7 @@ namespace base
 
       m_bShowPlatform                  = false;
 
-      m_papplicationCurrent                    = nullptr;
+      m_pappCurrent                    = nullptr;
 
       m_puiMouseMoveCapture = nullptr;
 

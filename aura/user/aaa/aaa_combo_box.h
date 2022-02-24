@@ -94,7 +94,7 @@ namespace user
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 
-      virtual void on_hit_test(::item & item) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual bool plain_edit_is_enabled() override;
 

@@ -73,7 +73,7 @@ namespace linux
 
       virtual bool file_open(::file::path strSrc, string strParams, string strFolder) override;
 
-      virtual void list_process(::file::patha & patha, u32_array & iaPid) override;
+      virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
 
    };

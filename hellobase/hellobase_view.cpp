@@ -103,7 +103,7 @@ namespace hellobase
 
 
 
-      if(papplication->m_etype == application::type_normal)
+      if(papp->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -263,7 +263,7 @@ namespace hellobase
             m_strImage = strImage;
 
 
-            ::fork(get_application(),[=]()
+            ::fork(get_app(),[=]()
             {
 
 
@@ -357,11 +357,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + papplication->m_strAlternateHelloBase;
+               return "Rolling " + papp->m_strAlternateHelloBase;
             }
             else
             {
-               return papplication->m_strAlternateHelloBase;
+               return papp->m_strAlternateHelloBase;
             }
 
 
@@ -371,11 +371,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + papplication->m_strHelloBase;
+               return "Rolling " + papp->m_strHelloBase;
             }
             else
             {
-               return papplication->m_strHelloBase;
+               return papp->m_strHelloBase;
             }
 
 

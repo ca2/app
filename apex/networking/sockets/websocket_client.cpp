@@ -416,7 +416,7 @@ namespace sockets
 
 
    //websocket_client::websocket_client(const string & host, port_t port, const string & url_in) :
-   //   object(h.get_application()),
+   //   object(h.get_app()),
    //   base_socket(h),
    //   socket(h),
    //   stream_socket(h),
@@ -1090,7 +1090,7 @@ namespace sockets
 
       string str((const char *) pdata, len);
 
-      //::fork(get_application(), [=]()
+      //::fork(get_app(), [=]()
       //{
 
       // DO FORK if necessary only in inner loops,

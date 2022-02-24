@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "idpool.h"
-#include "apex/platform/static_start.h"
+//#include "apex/platform/acme.h"
 
 
 namespace apex

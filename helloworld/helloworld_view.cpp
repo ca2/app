@@ -120,7 +120,7 @@ namespace helloworld
 
 
 
-      if(papplication->m_etype == application::type_normal)
+      if(papp->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -320,7 +320,7 @@ namespace helloworld
             m_strImage = strImage;
 
 
-            ::fork(get_application(),[=]()
+            ::fork(get_app(),[=]()
             {
 
 
@@ -414,11 +414,11 @@ namespace helloworld
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + papplication->m_strAlternateHelloWorld;
+               return "Rolling " + papp->m_strAlternateHelloWorld;
             }
             else
             {
-               return papplication->m_strAlternateHelloWorld;
+               return papp->m_strAlternateHelloWorld;
             }
 
 
@@ -428,11 +428,11 @@ namespace helloworld
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + papplication->m_strHelloWorld;
+               return "Rolling " + papp->m_strHelloWorld;
             }
             else
             {
-               return papplication->m_strHelloWorld;
+               return papp->m_strHelloWorld;
             }
 
 

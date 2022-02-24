@@ -129,7 +129,7 @@ namespace crypto
          if (str.is_empty())
          {
           
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -154,7 +154,7 @@ namespace crypto
          if (str.is_empty())
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -410,7 +410,7 @@ namespace crypto
          if (!palgorithm)
          {
 
-            throw_status(error_resource);
+            throw ::exception(error_resource);
 
          }
 
@@ -567,7 +567,7 @@ namespace crypto
          if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 

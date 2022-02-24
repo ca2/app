@@ -37,7 +37,7 @@ namespace xml
    void xml::init1()
    {
 
-      //if(papplication->is_system())
+      //if(papp->is_system())
       //{
 
       ::factory::add_factory_item < edit_item > ();

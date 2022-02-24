@@ -176,10 +176,10 @@ bool ftpfs::has_subdir(const ::file::path & path)
    listing.clear_results();
 
 
-   //::file::patha  straDir;
-   //::file::patha  straDirName;
-   //::file::patha  straFile;
-   //::file::patha  straFileName;
+   //::file::path_array  straDir;
+   //::file::path_array  straDirName;
+   //::file::path_array  straFile;
+   //::file::path_array  straFileName;
    //i64_array    iaFileSize;
    //i64_array    iaFolderSize;
    //bool_array     baFileDir;
@@ -528,7 +528,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    int iTry = 0;
 
-   auto papplication = m_pcontext->m_pcoreapplication;
+   auto papp = m_pcontext->m_pcoreapplication;
 
    if (!pclient)
    {
@@ -552,7 +552,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
 retry:
 
-      papplication->interactive_credentials(plogon);
+      papp->interactive_credentials(plogon);
 
 retry_login:
 
@@ -583,7 +583,7 @@ retry_login:
 
       }
 
-      //papplication->set_cred(strToken, logon.Username(), logon.Password());
+      //papp->set_cred(strToken, logon.Username(), logon.Password());
 
       plogon->save_status_to_storage(::success);
 

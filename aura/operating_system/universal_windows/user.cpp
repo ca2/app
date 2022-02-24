@@ -116,9 +116,9 @@ CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint);
 //
 //}
 
-//#undef papplication
+//#undef papp
 
-//::winrt::Windows::UI::Xaml::papplication^ get_xaml_app();
+//::winrt::Windows::UI::Xaml::papp^ get_xaml_app();
 
 
 

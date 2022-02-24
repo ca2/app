@@ -46,7 +46,7 @@ namespace axis
       //add_factory_item < ::file::axis::system_dir, ::file::system_dir >();
       //add_factory_item < ::file::axis::system_file, ::file::system_file >();
 
-      //::aura::application * papp = ::get_application(pobject);
+      //::aura::application * papp = ::get_app(pobject);
 
       //m_XstrAppId = "axis_system";
       //m_strAppName = "axis_system";
@@ -124,7 +124,7 @@ namespace axis
 
       }
 
-      //m_psystem->m_phtml->construct(get_application());
+      //m_psystem->m_phtml->construct(get_app());
 
    //}
 
@@ -143,7 +143,7 @@ namespace axis
       //if(!::axis::application::init1())
       //   return false;
 
-      Sess(get_application()).m_ptextcontext->defer_ok(m_puserstr);
+      Sess(get_app()).m_ptextcontext->defer_ok(m_puserstr);
 
       return true;
 

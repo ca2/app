@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     
       main();
 
-      estatus = papplication->m_estatus;
+      estatus = papp->m_estatus;
 
    }
 

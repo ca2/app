@@ -41,11 +41,11 @@ namespace file
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status& estatus);
 
-   CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen);
+   //CLASS_DECL_ACME void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen);
 
-   CLASS_DECL_ACME void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
+   //CLASS_DECL_ACME void throw_::exception(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path = nullptr);
 
-   CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path);
+   //CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path);
 
 //#ifdef WINDOWS
 //
@@ -53,11 +53,11 @@ namespace file
 //
 //#endif
 
-   CLASS_DECL_ACME void throw_errno(int iErrNo, const ::file::path& path = nullptr);
+   //CLASS_DECL_ACME void throw ::file::exception(errno_to_status(errno), (int iErrNo, const ::file::path& path = nullptr);
 
    CLASS_DECL_ACME int dos_to_os_error(int lDosErr);
 
-   const char* status_message(const ::e_status& estatus);
+   const char* status_short_description(const ::e_status& estatus);
 
 
 } // namespace file

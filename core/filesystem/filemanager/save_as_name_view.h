@@ -41,7 +41,7 @@ namespace filemanager
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual bool on_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 

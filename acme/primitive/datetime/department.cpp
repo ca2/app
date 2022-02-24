@@ -61,7 +61,7 @@ namespace datetime
 
       //}
 
-      /*estatus = */ __construct_new(m_pstr);
+//      /*estatus = */ __construct_new(m_pstr);
 
       //if (!estatus)
       //{
@@ -70,7 +70,7 @@ namespace datetime
 
       //}
 
-      m_pstr->m_pdatetime = this;
+      //m_pstr->m_pdatetime = this;
 
       //return estatus;
 
@@ -94,29 +94,29 @@ namespace datetime
    }
 
 
-   void department::str::initialize(::object * pobject)
-   {
-
-      /* auto estatus = */ ::object::initialize(pobject);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
-
+//   void department::str::initialize(::object * pobject)
+//   {
+//
+//      /* auto estatus = */ ::object::initialize(pobject);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return estatus;
+//
+//   }
+//
 
    void department::destroy()
    {
 
       m_pinternational.release();
 
-      m_pstr.release();
+      //m_pstr.release();
 
       ::acme::department::destroy();
 
@@ -491,21 +491,21 @@ namespace datetime
    //}
 
 
-   department::str::str()
-   {
-      
-      m_pdatetime = nullptr;
-
-   }
-
-
-   string department::str::get_date_time(const ::time_shift& timeshift)
-   {
-
-      return m_pdatetime->international().get_date_time(::datetime::time::now(), timeshift);
-
-   }
-
+//   department::str::str()
+//   {
+//      
+//      m_pdatetime = nullptr;
+//
+//   }
+//
+//
+//   string department::str::get_date_time(const ::time_shift& timeshift)
+//   {
+//
+//      return m_pdatetime->international().get_date_time(::datetime::time::now(), timeshift);
+//
+//   }
+//
 
    time_t department::s_mktime(i32 iHour, i32 iMinute, i32 iSecond, i32 iMonth, i32 iDay, i32 iYear, const ::time_shift& timeshift)
    {
@@ -1104,7 +1104,7 @@ namespace datetime
                straWeekDay.add("Fri");
                straWeekDay.add("Sat");
 
-               //str = Sys(pscript->get_application()).datetime().get_tiny_week_day_str(pscript->textcontext(), time.GetGmtDayOfWeek());
+               //str = Sys(pscript->get_app()).datetime().get_tiny_week_day_str(pscript->textcontext(), time.GetGmtDayOfWeek());
                str = straWeekDay[time.day_of_week(timeshift) % 7];
 
             }

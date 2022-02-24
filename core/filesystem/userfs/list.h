@@ -16,7 +16,7 @@ namespace userfs
 
 
       string_array              m_straFileSize;
-      ::file::patha        m_pathaStrictOrder;
+      ::file::path_array        m_pathaStrictOrder;
       index                m_iSelectionSubItem;
       index                m_iNameSubItem;
       index                m_iNameSubItemText;
@@ -42,13 +42,13 @@ namespace userfs
       __pointer(::image_list) GetActionButtonImageList(index i);
 
 
-      virtual void get_selected_user_path(::file::patha & stra);
-      virtual void get_selected_final_path(::file::patha & stra);
+      virtual void get_selected_user_path(::file::path_array & stra);
+      virtual void get_selected_final_path(::file::path_array & stra);
       virtual void get_selected_items(::file::item_array & itema);
 
 
-      virtual ::file::patha get_selected_user_path();
-      virtual ::file::patha get_selected_final_path();
+      virtual ::file::path_array get_selected_user_path();
+      virtual ::file::path_array get_selected_final_path();
       virtual ::file::item_array get_selected_items();
       virtual __pointer(::file::item) get_first_selected_item();
 
@@ -80,7 +80,7 @@ namespace userfs
 
 
 
-      virtual bool on_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
 
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;

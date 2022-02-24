@@ -14,7 +14,7 @@ namespace file
 
 
    listing::listing(const listing & listing) :
-      patha(listing)
+      path_array(listing)
    {
       
       m_nGrowBy = 128;

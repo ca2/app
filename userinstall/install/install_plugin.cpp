@@ -415,7 +415,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
    bool plugin::native_launch()
    {
 
-      m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
+      m_phost->m_pbasecomposer->m_strEntryHallText = "***papp started.";
 
       property_set set;
 
@@ -468,11 +468,11 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
          //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
 
-         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papplication->..";
+         //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papp->..";
 
          //m_bNativeLaunchFail = true;
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***papp started.";
 
          m_bNativeLaunchFail = false;
 
@@ -482,7 +482,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
          //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "***papplication started.";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "***papp started.";
 
          m_bNativeLaunchFail = false;
 
@@ -494,7 +494,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
-         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papplication->..";
+         m_phost->m_pbasecomposer->m_strEntryHallText = "Starting papp->..";
 
          m_bNativeLaunchFail = true;
 
@@ -515,7 +515,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
       //   string strPassword;
 
-      //   string str = ::account::get_cred(get_application(),strUsername,strPassword,"ca2");
+      //   string str = ::account::get_cred(get_app(),strUsername,strPassword,"ca2");
 
       //   if(strUsername.has_char() && strPassword.has_char() && str == "ok")
       //   {
@@ -879,7 +879,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -896,7 +896,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_app(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -914,7 +914,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_kill_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_app(),this,e_message_kill_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -931,7 +931,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(user::message) paxis = __new(user::message(get_application(),this,e_message_set_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_app(),this,e_message_set_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 

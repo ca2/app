@@ -475,7 +475,7 @@ void task_group::select_tool(task_tool* ptool)
 
 
 //predicate_set::predicate_set(::task_group * ptools) :
-//   matter(ptools->get_application()),
+//   matter(ptools->get_app()),
 //   m_ptasktools(ptools)
 //{
 //

@@ -53,10 +53,10 @@ namespace userfs
    }
 
 
-   //::aura::application * document::get_application() const
+   //::aura::application * document::get_app() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_application()->m_psession)->m_papplicationCurrent;
+   //   return dynamic_cast < ::base::session * >(get_app()->m_psession)->m_pappCurrent;
 
    //}
 
@@ -107,7 +107,7 @@ namespace userfs
 
       ::file::listing listingUser;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       auto pcontext = m_pcontext;
 

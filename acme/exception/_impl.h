@@ -2,43 +2,43 @@
 #pragma once
 
 
-inline void throw_status(const ::e_status& estatus, const char * pszMessage)
-{
-
-   throw_status(estatus.m_estatus, pszMessage);
-
-}
-
-
-inline void throw_status(const ::enum_status& estatus, const char* pszMessage)
-{
-
-   if (estatus == error_not_implemented)
-   {
-
-      throw ::not_implemented(pszMessage);
-
-   }
-   else if (estatus == error_interface_only)
-   {
-
-      throw ::interface_only(pszMessage);
-
-   }
-   else if (estatus == error_io)
-   {
-
-      throw io_exception(pszMessage);
-
-   }
-   else
-   {
-    
-      throw exception(estatus, pszMessage);
-
-   }
-
-}
+//inline void throw ::exception(const ::e_status& estatus, const char * pszMessage)
+//{
+//
+//   throw ::exception(estatus.m_estatus, pszMessage);
+//
+//}
+//
+//
+//inline void throw ::exception(const ::enum_status& estatus, const char* pszMessage)
+//{
+//
+//   if (estatus == error_not_implemented)
+//   {
+//
+//      throw ::not_implemented(pszMessage);
+//
+//   }
+//   else if (estatus == error_interface_only)
+//   {
+//
+//      throw ::interface_only(pszMessage);
+//
+//   }
+//   else if (estatus == error_io)
+//   {
+//
+//      throw io_exception(pszMessage);
+//
+//   }
+//   else
+//   {
+//    
+//      throw ::exception(estatus, pszMessage);
+//
+//   }
+//
+//}
 
 
 

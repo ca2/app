@@ -4,7 +4,7 @@
 #include "framework.h"
 
 
-void operating_system_initialize_nano();
+void operating_system_initialize_nano(::factory::factory * pfactory);
 
 
 bool g_bNanoInitialize = false;
@@ -19,7 +19,7 @@ CLASS_DECL_ACME void initialize_nano()
 
    }
 
-   operating_system_initialize_nano();
+   operating_system_initialize_nano(::factory::get_factory());
 
    g_bNanoInitialize = true;
 

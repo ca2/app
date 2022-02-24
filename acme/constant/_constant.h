@@ -433,17 +433,17 @@ enum enum_zorder
 };
 
 
-enum e_callstack :
-   i64
-{
-
-
-   callstack_none,
-   callstack_exception = 1 << 0,
-   callstack_fork_global = 1 << 1,
-
-
-};
+//enum e_callstack :
+//   i64
+//{
+//
+//
+//   callstack_none,
+//   callstack_exception = 1 << 0,
+//   callstack_fork_global = 1 << 1,
+//
+//
+//};
 
 
 enum enum_display

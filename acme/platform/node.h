@@ -29,6 +29,8 @@ namespace acme
 
 #endif
 
+   //::routine_array            m_routineaPost;
+
 
    public:
 
@@ -243,6 +245,10 @@ namespace acme
 
       virtual void node_post(const ::routine & routine);
 
+
+      /// returns true if processed something
+      //virtual bool run_posted_routine_step();
+
       virtual void node_send(const ::routine & routine);
 
 //      template < typename PRED >
@@ -295,9 +301,9 @@ namespace acme
       virtual double get_time_zone();
 
 
-
-
       virtual string font_name(enum_font efont);
+
+
       //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
 

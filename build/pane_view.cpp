@@ -62,7 +62,7 @@ namespace app_core_build
 
       }
 
-      m_papplication->m_ppaneview = this;
+      m_papp->m_ppaneview = this;
 
       set_tab("Options", OPTIONS_IMPACT);
       set_tab("Build", MAIN_IMPACT);
@@ -116,9 +116,9 @@ namespace app_core_build
 
          auto& payloadFile = pcommandline->m_varFile;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         m_papplication->m_ptemplateHelloMultiverseView->open_document_file(papplication, payloadFile, true, pimpactdata->m_pplaceholder);
+         m_papp->m_ptemplateHelloMultiverseView->open_document_file(papp, payloadFile, true, pimpactdata->m_pplaceholder);
 
       }
       break;

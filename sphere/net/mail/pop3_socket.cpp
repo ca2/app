@@ -4,7 +4,7 @@ namespace mail
 {
 
    pop3_socket::pop3_socket(ISocketHandler& h) :
-      ::ca::ca(h.get_application()),
+      ::ca::ca(h.get_app()),
       TcpSocket(h),
       m_estate(state_disconnected)
    {
@@ -70,7 +70,7 @@ namespace mail
          {
             m_estate = state_transaction;
             string strPass;
-            papplication->crypt().file_get(
+            papp->crypt().file_get(
                pcontext->m_papexcontext->dir().default_userappdata(m_ppop3->m_paccount->m_strEmail, "license_auth/00003"),
                strPass);
             Send("PASS " + strPass + "\r\n");

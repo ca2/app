@@ -16,7 +16,7 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
 
-   virtual bool on_click(const ::item & item) override;
+   virtual bool on_click(::item * pitem) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
 

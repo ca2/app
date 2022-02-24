@@ -1730,6 +1730,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Users\camilo\Desktop\app.lnk" />
     <None Include="acme\message\message.inl" />
     <None Include="exception\_.inl" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />

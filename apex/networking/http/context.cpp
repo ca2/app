@@ -44,7 +44,7 @@ namespace http
    property_set & context::process_set(property_set & set, const char * pszUrl)
    {
 
-      set["app"] = get_application();
+      set["app"] = get_app();
 
       auto psystem = m_psystem;
 
@@ -1331,7 +1331,7 @@ namespace http
 
          auto tickTimeProfile1 = ::duration::now();
 
-         ::application * papp = psession->m_psockethandler->get_application();
+         auto papplication = psession->m_psockethandler->get_app()->m_papplication;
 
          string strRequest = purl->get_object(pszRequest);
 
@@ -2988,14 +2988,14 @@ namespace http
 
    //   bool bOk = true;
 
-   //   if (!psystem->crypto().file_get(strUserNameFile, strUserName, nullptr, get_application()) || strUserName.is_empty())
+   //   if (!psystem->crypto().file_get(strUserNameFile, strUserName, nullptr, get_app()) || strUserName.is_empty())
    //   {
 
    //      bOk = false;
 
    //   }
 
-   //   if (!psystem->crypto().file_get(strPasswordFile, strPassword, nullptr, get_application()) || strPassword.is_empty())
+   //   if (!psystem->crypto().file_get(strPasswordFile, strPassword, nullptr, get_app()) || strPassword.is_empty())
    //   {
 
    //      bOk = false;
@@ -3016,9 +3016,9 @@ namespace http
    //      if (psession->get_auth("context/account/proxy_authenticate.xhtml", strUserName, strPassword))
    //      {
 
-   //         psystem->crypto().file_set(strUserNameFile, strUserName, nullptr, get_application());
+   //         psystem->crypto().file_set(strUserNameFile, strUserName, nullptr, get_app());
 
-   //         psystem->crypto().file_set(strPasswordFile, strPassword, nullptr, get_application());
+   //         psystem->crypto().file_set(strPasswordFile, strPassword, nullptr, get_app());
 
    //         psocket->m_strUserNameFile = strUserNameFile;
 

@@ -288,8 +288,8 @@ namespace axis
 
       }
 
-//      if(papplication->has_property("uninstall")
-//            || papplication->has_property("install"))
+//      if(papp->has_property("uninstall")
+//            || papp->has_property("install"))
 //      {
 //
 ////         if(!m_paccount->open_local("system"))

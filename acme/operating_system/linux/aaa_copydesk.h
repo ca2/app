@@ -20,8 +20,8 @@ namespace linux
       virtual void initialize(::matter * pobject) override;
       virtual void destroy() override;
 
-      virtual bool _set_filea(const ::file::patha & patha, e_op eop) override;
-      virtual bool _get_filea(::file::patha & patha, e_op & eop) override;
+      virtual bool _set_filea(const ::file::path_array & patha, e_op eop) override;
+      virtual bool _get_filea(::file::path_array & patha, e_op & eop) override;
       virtual bool _has_filea() override;
 
 

@@ -86,7 +86,7 @@ namespace user
       bool document::parse_rtf_text(string str)
       {
 
-//         papplication->m_ppaneview->set_current_tab_by_id(::impact_rich_edit);
+//         papp->m_ppaneview->set_current_tab_by_id(::impact_rich_edit);
 
          return true;
 

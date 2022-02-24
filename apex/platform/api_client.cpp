@@ -51,7 +51,7 @@ void api_client::defer_api()
 
          m_papi.release();
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -107,7 +107,7 @@ void api_client::create_api(const ::string& strImplementation)
       if (!pfactory)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -116,7 +116,7 @@ void api_client::create_api(const ::string& strImplementation)
       if (!m_papi)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -138,7 +138,7 @@ void api_client::api_get(::string & str, const string& strUrl, property_set& set
    if (!m_papi)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -167,7 +167,7 @@ void api_client::api_get(::payload& payload, const string& strUrl, property_set&
    if (!m_papi)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -195,7 +195,7 @@ void api_client::api_download(string strGet, const ::file::path& path, property_
    if (!m_papi)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 

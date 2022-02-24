@@ -3,7 +3,7 @@
 #include "core/user/userex/_userex.h"
 #endif
 
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "core/user/userex/progress.h"
 
 
@@ -11,8 +11,18 @@ namespace core
 {
 
 
+   void initialize()
+   {
+
+      ::factory::add_factory_item < ::core::system, class ::system >();
+
+   }
+
+
    application::application()
    {
+
+      ::core::initialize();
 
       m_pcoreapplication = this;
 
@@ -88,7 +98,7 @@ namespace core
 
       string strApplicationTitle;
 
-      strApplicationTitle = get_application()->title();
+      strApplicationTitle = get_app()->title();
 
       string strHeader__;
 

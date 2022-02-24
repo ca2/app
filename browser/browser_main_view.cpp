@@ -59,7 +59,7 @@ namespace browser
 
       int iPane;
 
-      if (papplication->m_bBrowserChat)
+      if (papp->m_bBrowserChat)
       {
 
          SetPaneCount(2);

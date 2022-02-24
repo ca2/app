@@ -24,7 +24,7 @@ namespace file
    inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
    inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
-   inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
+   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
    inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
    //   inline path path::folder() const { return ::file_path_folder(*this); }
    inline bool path::operator == (const ::payload & payload) const { return operator == (payload.get_file_path()); }
@@ -491,7 +491,7 @@ namespace file
 //bool file_context::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 //
 //}
 
@@ -500,7 +500,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pathOut, p, pfnOuput, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pathOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -509,7 +509,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pathOut, point, pfnOuput, istream);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -518,7 +518,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pfileOut, point, pfnOuput, pathIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -528,7 +528,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -537,7 +537,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), pfileOut, p, pfnOuput, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -546,7 +546,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::* pfnOuput)(::file::file*, ::file::file*), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), os, p, pfnOuput, pathIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), os, p, pfnOuput, pathIn);
 
 //}
 
@@ -555,7 +555,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), os, p, pfnOuput, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), os, p, pfnOuput, pfileIn);
 
 //}
 
@@ -565,7 +565,7 @@ namespace file
 
 //{
 
-//   return m_pcontext->m_papexcontext->file().output(get_application(), os, point, pfnOuput, istream);
+//   return m_pcontext->m_papexcontext->file().output(get_app(), os, point, pfnOuput, istream);
 
 
 //}
@@ -594,7 +594,7 @@ namespace file
 //      if (papp == nullptr)
 //      {
 
-//         papp = get_application();
+//         papp = get_app();
 
 //      }
 
@@ -650,7 +650,7 @@ namespace file
 //      if (papp == nullptr)
 //      {
 
-//         papp = get_application();
+//         papp = get_app();
 
 //      }
 
@@ -880,7 +880,7 @@ namespace file
 
       }
 
-      patha::operator         = (listing);
+      path_array::operator         = (listing);
       *((LISTING *)this) = (const LISTING&)listing;
       m_pathUser = listing.m_pathUser;
       m_pathFinal = listing.m_pathFinal;

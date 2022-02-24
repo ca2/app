@@ -34,7 +34,7 @@
 //   //
 //   //   synchronous_lock synchronouslock(::exception_engine().mutex());
 //   //
-//   //   ::exception_engine().stack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
+//   //   ::exception_engine().xxxstack_trace(iSkip, nullptr, m_pszFormat, m_iCount);
 //   //
 //   //   psz = _strdup(::exception_engine()._strS);
 //   //

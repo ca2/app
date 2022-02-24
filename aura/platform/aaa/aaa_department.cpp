@@ -41,7 +41,7 @@ namespace aura
    void department::connect_to_application_signal()
    {
 
-      get_application()->add_route(this,&department::on_application_message);
+      get_app()->add_route(this,&department::on_application_message);
 
    }
 
@@ -121,84 +121,84 @@ namespace aura
    void department::on_application_message(::message::message * pmessage)
    {
 
-      __pointer(::aura::application_message) papplicationsignal(pmessage);
+      __pointer(::aura::application_message) pappsignal(pmessage);
 
       try
       {
-         if(papplicationsignal->m_esignal == ::aura::application_message_process_init)
+         if(pappsignal->m_esignal == ::aura::application_message_process_init)
          {
 
-            papplicationsignal->m_bOk = process_init();
+            pappsignal->m_bOk = process_init();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_init)
+         else if(pappsignal->m_esignal == ::aura::application_message_init)
          {
 
-            papplicationsignal->m_bOk = init();
+            pappsignal->m_bOk = init();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_init1)
+         else if(pappsignal->m_esignal == ::aura::application_message_init1)
          {
 
-            papplicationsignal->m_bOk = init1();
+            pappsignal->m_bOk = init1();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_init2)
+         else if(pappsignal->m_esignal == ::aura::application_message_init2)
          {
 
-            papplicationsignal->m_bOk = init2();
+            pappsignal->m_bOk = init2();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_init3)
+         else if(pappsignal->m_esignal == ::aura::application_message_init3)
          {
 
-            papplicationsignal->m_bOk = init3();
+            pappsignal->m_bOk = init3();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_init_instance)
+         else if(pappsignal->m_esignal == ::aura::application_message_init_instance)
          {
 
-            papplicationsignal->m_bOk = init_instance();
+            pappsignal->m_bOk = init_instance();
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_term_instance)
+         else if(pappsignal->m_esignal == ::aura::application_message_term_instance)
          {
 
             term_instance();
 
-            papplicationsignal->m_bOk = true;
+            pappsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_term3)
+         else if(pappsignal->m_esignal == ::aura::application_message_term3)
          {
 
             term3();
 
-            papplicationsignal->m_bOk = true;
+            pappsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_term2)
+         else if(pappsignal->m_esignal == ::aura::application_message_term2)
          {
 
             term2();
 
-            papplicationsignal->m_bOk = true;
+            pappsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_term1)
+         else if(pappsignal->m_esignal == ::aura::application_message_term1)
          {
 
             term1();
 
-            papplicationsignal->m_bOk = true;
+            pappsignal->m_bOk = true;
 
          }
-         else if(papplicationsignal->m_esignal == ::aura::application_message_process_term)
+         else if(pappsignal->m_esignal == ::aura::application_message_process_term)
          {
 
             term();
 
-            papplicationsignal->m_bOk = true;
+            pappsignal->m_bOk = true;
 
          }
 
@@ -206,7 +206,7 @@ namespace aura
       catch(...)
       {
 
-         papplicationsignal->m_bOk = false;
+         pappsignal->m_bOk = false;
 
       }
 

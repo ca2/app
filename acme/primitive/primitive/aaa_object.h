@@ -19,7 +19,7 @@ public:
 
 
    //::task_pointer                                m_pthread;
-   //__pointer(::application)                     m_papplication;
+   //__pointer(::application)                     m_papp;
    //__pointer(::apex::session)                         m_psession;
    //__pointer(class ::system)                          m_psystem;
    __pointer(::context)                               m_pcontext;
@@ -72,10 +72,10 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
-   inline ::application* application() { return m_papplication; }
+   inline ::application* application() { return m_papp; }
 
 
-   inline ::application* get_application() { return _get_application(); }
+   inline ::application* get_app() { return _get_application(); }
 
    virtual ::application* _get_application() override;
 
@@ -128,7 +128,7 @@ public:
 
    inline ::thread * get_thread() const { return m_pthread; }
 
-   inline ::application * get_application() const { return m_papplication; }
+   inline ::application * get_app() const { return m_papp; }
 
    inline ::apex::session * get_session() const { return m_psession; }
 
@@ -136,7 +136,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papp; }
 
    virtual string get_text(const ::payload & payload, const ::atom& atom) override;
 
@@ -659,7 +659,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
-   //inline ::application* application() { return m_papplication; }
+   //inline ::application* application() { return m_papp; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -721,7 +721,7 @@ public:
 
    inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::application* get_application() const { return m_papplication; }
+   inline ::application* get_app() const { return m_papp; }
 
    inline ::apex::session* get_session() const { return m_psession; }
 
@@ -729,7 +729,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papp; }
 
    virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 

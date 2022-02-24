@@ -174,7 +174,7 @@ namespace filemanager
    }
 
 
-   bool save_as_button::on_click(const ::item & item)
+   bool save_as_button::on_click(::item * pitem)
    {
 
 

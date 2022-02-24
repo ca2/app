@@ -130,20 +130,26 @@ GeoIPRecord * _extract_record(GeoIP* gi, u32 seek_record, i32 *next_record_ptr)
    return record;
 }
 
-static
-GeoIPRecord * _get_record(GeoIP* gi, u32 ipnum)
+
+static GeoIPRecord * _get_record(GeoIP* gi, u32 ipnum)
 {
+   
    u32 seek_record;
 
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1)
    {
+      
       debug_print("Invalid database type %s, expected %s\n", GeoIPDBDescription[(i32)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
+      
       return 0;
+
    }
 
    seek_record = _GeoIP_seek_record(gi, ipnum);
+   
    return _extract_record(gi, seek_record, nullptr);
+
 }
 
 static

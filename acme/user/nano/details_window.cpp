@@ -8,8 +8,10 @@
 
 nano_details_window::nano_details_window()
 {
-
    
+   m_efont = e_font_monospace;
+
+   m_strLabelDetails = "Dump to file";
 
 }
 
@@ -40,6 +42,32 @@ void nano_details_window::calculate_size()
 
 
 }
+
+
+void nano_details_window::on_click(const ::atom& atom)
+{
+
+
+   if (atom == "details")
+   {
+
+      //string m_strDetails;
+
+      display_temporary_file_with_text(m_strDetails);
+
+      //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+
+      //m_atomResult.clear();
+
+      return;
+
+   }
+
+   nano_message_box::on_click(atom);
+
+
+}
+
 
 
 

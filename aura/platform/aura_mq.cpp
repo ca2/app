@@ -18,7 +18,7 @@ CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::a
    if (pinteraction == nullptr)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -27,7 +27,7 @@ CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::a
    if (!pmq)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -62,25 +62,25 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
    if(pinteraction == nullptr)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
-   if(pinteraction->get_application() == nullptr)
+   if(pinteraction->get_app() == nullptr)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
-   itask_t idthread = pinteraction->get_application()->get_ithread();
+   itask_t idthread = pinteraction->get_app()->get_ithread();
 
    message_queue * pmq = get_message_queue(idthread, false);
 
    if(pmq == nullptr)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 

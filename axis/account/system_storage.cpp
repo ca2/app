@@ -85,7 +85,7 @@ namespace account
       try
       {
 
-         psystem->crypto()->file_get(path, strValue, strToken, get_application());
+         psystem->crypto()->file_get(path, strValue, strToken, get_app()->m_papplication);
 
       }
       catch (...)
@@ -115,7 +115,7 @@ namespace account
 
       path /= psystem->crypto()->md5(strToken + strKey);
       
-      psystem->crypto()->file_set(path, strValue, strToken, get_application());
+      psystem->crypto()->file_set(path, strValue, strToken, get_app()->m_papplication);
       
    }
    

@@ -111,9 +111,9 @@ namespace app_message_box
             if (psequence->m_atomResult == e_dialog_result_yes)
             {
 
-               auto papplication = get_application();
+               auto papp = get_app();
 
-               papplication->_001TryCloseApplication();
+               papp->_001TryCloseApplication();
 
             }
             else if (psequence->m_atomResult == e_dialog_result_cancel)

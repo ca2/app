@@ -81,7 +81,7 @@ namespace linux
 //      if(iNew == INVALID_FILE)
 //         return nullptr;
 //
-//      auto pFile  = __new(file(get_application(), iNew));
+//      auto pFile  = __new(file(get_app(), iNew));
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
@@ -195,7 +195,7 @@ namespace linux
 
          ::u32 dwLastError = ::get_last_error();
 
-         //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
+         //return //::fesp(get_app(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
          return ::file::errno_to_status(iError);
 
@@ -237,7 +237,7 @@ namespace linux
             {
 
             }
-            ::file::throw_errno( errno);
+            ::throw ::file::exception( errno);
          }
          else if(iRead == 0)
          {
@@ -272,7 +272,7 @@ namespace linux
          i32 iWrite = ::write(m_iFile, &((const u8 *)pdata)[pos], (size_t) minimum(0x7fffffff, nCount));
 
          if(iWrite < 0)
-            throw_errno(errno, m_path);
+            throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
          nCount -= iWrite;
          pos += iWrite;
       }
@@ -286,7 +286,7 @@ namespace linux
    {
 
       if(m_iFile == INVALID_FILE)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
 
       ASSERT(m_iFile != INVALID_FILE);
@@ -299,7 +299,7 @@ namespace linux
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return posNew;
    }
@@ -315,7 +315,7 @@ namespace linux
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       return pos;
    }
@@ -335,7 +335,7 @@ namespace linux
 //         return;
 //
 //      if (!::FlushFileBuffers((HANDLE)m_iFile))
-//         throw_errno(errno, m_path);
+//         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
    }
 
    void file::close()
@@ -351,7 +351,7 @@ namespace linux
       m_path.Empty();
 
       if (bError)
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
    }
 
@@ -399,7 +399,7 @@ namespace linux
       if (::ftruncate64(m_iFile, dwNewLen) == -1)
       {
 
-         throw_errno(errno, m_path);
+         throw ::file::exception(errno_to_status(errno), -1, errno, m_path);
 
       }
 

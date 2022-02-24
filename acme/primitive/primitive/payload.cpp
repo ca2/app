@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
+#include "acme/platform/acme.h"
 #include "acme/operating_system.h"
 
 
@@ -7469,7 +7469,7 @@ void payload::run()
    else
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 

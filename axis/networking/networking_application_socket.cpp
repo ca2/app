@@ -19,7 +19,7 @@ networking_application_socket::~networking_application_socket()
 void networking_application_socket::on_send_response()
 {
 
-   auto papplication = get_application()->m_paxisapplication;
+   auto papp = get_app()->m_paxisapplication;
 
    string strUrl;
 
@@ -31,7 +31,7 @@ void networking_application_socket::on_send_response()
 
    string strHtml;
       
-   auto estatus = papplication->on_html_response(strHtml, strUrl, setPost);
+   auto estatus = papp->on_html_response(strHtml, strUrl, setPost);
 
    response().file()->write(strHtml);
 

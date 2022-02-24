@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/platform/static_start.h"
+//#include "aura/platform/static_start.h"
 
 
 static ::mutex * s_pmutex = nullptr;
@@ -36,38 +36,43 @@ void init_cairo_mutex()
 
    s_pmutex = new ::mutex();
 
-   ::acme::add_matter(s_pmutex);
-
 #ifdef LINUX
 
    g_pmutexFc = new ::mutex();
 
-   ::acme::add_matter(g_pmutexFc);
-
    g_pmapFontPath = new string_to_string();
-
-   ::acme::add_matter(g_pmapFontPath);
 
 #endif
 
    g_pmapFontFace = new string_map < i32_map < FT_Face> > ();
 
-   ::acme::add_matter(g_pmapFontFace);
-
    g_pmapCairoFontFace = new string_map < cairo_font_face_t * > ();
-
-   ::acme::add_matter(g_pmapCairoFontFace);
 
    g_pmapFontError = new string_to_int ();
 
-   ::acme::add_matter(g_pmapFontError);
-
    g_pmapFontError2 = new string_to_int ();
-
-   ::acme::add_matter(g_pmapFontError2);
 
 }
 
+
+void term_cairo_mutex()
+{
+
+   ::acme::del(g_pmapFontError2);
+
+   ::acme::del(g_pmapFontError);
+
+   ::acme::del(g_pmapCairoFontFace);
+
+   ::acme::del(g_pmapFontFace);
+
+   ::acme::del(g_pmapFontPath);
+
+   ::acme::del(g_pmutexFc);
+
+   ::acme::del(s_pmutex);
+
+}
 
 
 //#ifdef WINDOWS

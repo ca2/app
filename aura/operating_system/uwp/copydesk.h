@@ -38,8 +38,8 @@ namespace universal_windows
       virtual void initialize(::object * pobject) override;
       virtual void destroy() override;
 
-      virtual bool _set_filea(const ::file::patha & stra, e_op eop) override;
-      virtual bool _get_filea(::file::patha & stra, e_op & eop) override;
+      virtual bool _set_filea(const ::file::path_array & stra, e_op eop) override;
+      virtual bool _get_filea(::file::path_array & stra, e_op & eop) override;
       virtual bool _has_filea() override;
 
       virtual bool _set_plain_text(const ::string & str) override;

@@ -19,7 +19,7 @@ namespace user
       virtual ~form_list();
 
 
-      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
@@ -61,8 +61,8 @@ namespace user
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
-      virtual bool on_click(const ::item & item) override;
-      virtual bool on_right_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
+      virtual bool on_right_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;

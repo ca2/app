@@ -85,7 +85,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
    if (!exists(pathSource))
    {
 
-      throw_status(error_not_found);
+      throw ::exception(error_not_found);
 
    }
 
@@ -339,11 +339,11 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
       DWORD dwLastError = ::GetLastError();
 
-      debug_print("GetTempPath failed (%d)\n", ::GetLastError());
+      //debug_print("GetTempPath failed (%d)\n", ::GetLastError());
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -379,7 +379,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
    }
    
-   throw_status(error_not_found);
+   throw ::exception(error_not_found);
 
    return string();
 
@@ -419,7 +419,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 
          }
 
-         throw_status(error_io);
+         throw ::exception(error_io);
 
       }
 
@@ -446,7 +446,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
    if (uiWrittenTotal != nCount)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -470,7 +470,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
    if (!bOk)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -492,7 +492,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
    if (!pacmedir->is(::file_path_folder(strFile)))
    {
 
-      throw_status(error_path_not_found);
+      throw ::exception(error_path_not_found);
 
    }
 
@@ -525,7 +525,7 @@ void acme_file::append_wait(const char * strFile, const block & block, const ::d
       if (millisStart.elapsed() > duration)
       {
 
-         throw_status(error_timeout);
+         throw ::exception(error_timeout);
 
       }
 
@@ -556,14 +556,14 @@ bool acme_file::exists(const char * path)
    if(::is_null(path))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -695,14 +695,14 @@ void acme_file::erase(const char * path)
    if(::is_null(path))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -750,7 +750,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-::duration acme_file::modification_time(const char* psz)
+::datetime::time acme_file::modification_time(const char* psz)
 {
 
    throw ::interface_only();
@@ -761,7 +761,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-void acme_file::set_modification_time(const char* psz, const ::duration& duration)
+void acme_file::set_modification_time(const char* psz, const ::datetime::time& time)
 {
 
    throw ::interface_only();
@@ -900,7 +900,7 @@ void acme_file::as_block(block & block, const char * path)
    if(size != block.get_size())
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -935,7 +935,7 @@ string acme_file::line(const char * path, index iLine)
 
       trace_last_error();
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -998,7 +998,7 @@ string_array acme_file::lines(const char * path)
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1024,7 +1024,7 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
    if (iLine < 0)
    {
 
-      throw_status(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
 
    }
 
@@ -1294,11 +1294,11 @@ void acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
          if (dw < dwWrite)
          {
             // is_disk_full?
-            throw_status(error_disk_full);
+            throw ::exception(error_disk_full);
 
          }
 
-         throw_status(error_io);
+         throw ::exception(error_io);
          //return false;
 
       }
@@ -1368,7 +1368,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
    if (!m_pacmedir->is(::file_path_folder(strFile)))
    {
 
-      throw_status(false);
+      throw ::exception(false);
 
    }
 
@@ -1401,7 +1401,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
       if (millisStart.elapsed() > duration)
       {
 
-         throw_status(error_timeout);
+         throw ::exception(error_timeout);
 
       }
 
@@ -1444,11 +1444,52 @@ void acme_file::_erase(const char * path)
    if (::unlink(path) == -1)
    {
 
-      throw_status(errno_to_status(errno));
+      int iErrNo = errno;
+
+      auto estatus = errno_to_status(iErrNo);
+
+      throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"", m_psystem->m_pappMain->m_strAppId, e_message_box_ok, "Failed to erase file:\n\"" + string(path) + "\"");
 
    }
 
 }
+
+
+::file::path acme_file::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str)
+{
+
+   ::file::path path;
+
+   int i = 0;
+
+   while (true)
+   {
+
+      string strHexadecimal;
+
+      strHexadecimal.format("%08x", i);
+
+      path = pathFolder / (strPrefix + "-" + strHexadecimal + "." + strExtension);
+
+      if (exists(path))
+      {
+
+         i++;
+
+         continue;
+
+      }
+
+      put_contents(path, str);
+
+      break;
+
+   }
+
+   return path;
+
+}
+
 
 
 

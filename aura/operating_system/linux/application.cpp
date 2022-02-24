@@ -459,7 +459,7 @@ namespace aura
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_application()->SetCurrentHandles();
+//      get_app()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -510,9 +510,9 @@ namespace aura
 
          auto pnode = psystem->node()->m_papexnode;
 
-         auto papplication = get_application();
+         auto papp = get_app()->m_papplication;
 
-         ::file::path path = pnode->get_desktop_file_path(papplication);
+         ::file::path path = pnode->get_desktop_file_path(papp);
 
          if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
@@ -531,7 +531,7 @@ namespace aura
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papp for the current user.");
 
       }
 

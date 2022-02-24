@@ -1129,7 +1129,7 @@ namespace filemanager
 //               idMachine = "iOS";
 //#endif
 //
-//               if (papplication->data_get({true, "last_browse_folder." + __string(idMachine)}, str))
+//               if (papp->data_get({true, "last_browse_folder." + __string(idMachine)}, str))
 //               {
 //
 //                  browse(str, ::e_source_database);
@@ -1498,9 +1498,9 @@ namespace filemanager
 
       //::filemanager::callback::on_request(pcreate);
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->call_request(pcreate);
+      papp->call_request(pcreate);
 
    }
 

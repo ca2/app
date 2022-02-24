@@ -123,12 +123,12 @@ namespace simple_ui
 
       m_bMouseMove = true;
 
-      if (!m_itemHover.is_set())
+      if (!::is_set(m_pitemHover))
       {
 
          track_mouse_hover();
 
-         m_itemHover = ::e_element_client;
+         m_pitemHover = ::e_element_client;
 
          set_need_redraw();
 
@@ -144,7 +144,7 @@ namespace simple_ui
 
       m_bMouseMove = false;
 
-      m_itemHover = ::e_element_none;
+      m_pitemHover = ::e_element_none;
 
       set_need_redraw();
 

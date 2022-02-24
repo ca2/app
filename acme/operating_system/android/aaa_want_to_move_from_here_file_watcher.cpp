@@ -121,7 +121,7 @@
 //
 //         pWatch->m_bRecursive = true;
 //
-//         ::file::patha stra;
+//         ::file::path_array stra;
 //
 //         dir::rls_dir(stra, directory);
 //
@@ -133,7 +133,7 @@
 //            if(inaw < 0)
 //            {
 //               if(errno == ENOENT)
-//                  ::file::throw_status(error_file_not_found, errno, stra[index]);
+//                  throw ::file::exception(error_file_not_found, errno, stra[index]);
 //               else
 //                  throw ::exception(exception(strerror(errno)));
 //            }

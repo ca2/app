@@ -35,11 +35,9 @@ namespace user
       ~image_list() override;
 
 
-      virtual void on_hit_test(::item & item) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
-      virtual bool get_rect(::item & item) override;
-
-
+      //virtual bool get_rect(::item & item) override;
 
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
@@ -75,9 +73,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      virtual bool on_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
 
-      virtual ::item current_item() override;
+      ::item_pointer current_item() override;
 
       index_array _001GetSelection();
 

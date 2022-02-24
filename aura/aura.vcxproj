@@ -237,8 +237,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -397,8 +396,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
     </PreBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>
@@ -567,8 +565,7 @@
       </MapFileName>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -725,8 +722,7 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
     </PreBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -1071,6 +1067,7 @@
     <ClCompile Include="windowing\windowing___.cpp" />
     <ClCompile Include="windowing\xrender.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_factory.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="aaa_callback.h" />
@@ -1122,6 +1119,7 @@
     <ClInclude Include="graphics\write_text\text_out_array.h" />
     <ClInclude Include="graphics\write_text\write_text.h" />
     <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="_factory.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_c.h" />
     <ClInclude Include="include\_no_templates.h" />

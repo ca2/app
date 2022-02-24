@@ -14,7 +14,6 @@
 #include "_c_mm.h"
 
 
-string apple_app_module_path();
 
 
 

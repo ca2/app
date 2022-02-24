@@ -170,7 +170,7 @@ namespace user
       //if (::is_null(puserinteraction))
       //{
 
-      //   return get_application();
+      //   return get_app();
 
       //}
 
@@ -794,7 +794,7 @@ namespace user
    //i32 primitive::sync_message_box_timeout(const ::string & pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
-   //   return papplication->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
+   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
 
    //}
 
@@ -3678,7 +3678,7 @@ namespace user
       if (::is_null(pchild))
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 
@@ -4009,7 +4009,7 @@ namespace user
 
    //   }
 
-   //   return get_application();
+   //   return get_app();
 
    //}
 
@@ -4135,25 +4135,34 @@ namespace user
    void primitive::on_check_change()
    {
 
-      get_application()->signal(m_propertyCheck->m_atom);
+      get_app()->m_papplication->signal(m_propertyCheck->m_atom);
 
    }
 
 
    void primitive::keyboard_focus_OnTimer(i32 iTimer)
    {
+
       __UNREFERENCED_PARAMETER(iTimer);
+
    }
+
 
    void primitive::keyboard_focus_OnChar(::message::message * pmessage)
    {
+
       __UNREFERENCED_PARAMETER(pmessage);
+
    }
+
 
    void primitive::keyboard_focus_OnSysChar(::message::message * pmessage)
    {
+
       __UNREFERENCED_PARAMETER(pmessage);
+
    }
+
 
    void primitive::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
@@ -4169,26 +4178,9 @@ namespace user
    }
 
 
-   //void primitive::route(::topic * ptopic, ::context * pcontext)
-   //{
-
-   //   handle(ptopic, pcontext);
-
-   //}
-
-
-   //void primitive::handle_event(control_event * pevent)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pevent);
-
-   //}
-
-
    bool primitive::keyboard_focus_is_focusable() const
    {
 
-      //return papplication->keyboard_focus_is_focusable(this);
       return false;
 
    }
@@ -4260,7 +4252,7 @@ namespace user
 
      }
 
-     single_lock(puiThis->get_application()->mutex(), true);
+     single_lock(puiThis->get_app()->mutex(), true);
 
      __pointer(primitive) pprimitive;
 

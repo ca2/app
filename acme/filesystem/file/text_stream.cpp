@@ -50,7 +50,7 @@ bool text_stream::is_stream_set()
 //   if (m_gcount <= 0)
 //   {
 //
-//      throw_status(error_io);
+//      throw ::exception(error_io);
 //
 //   }
 //
@@ -255,7 +255,7 @@ void text_stream::write(const char * psz)
    if (::is_null(psz))
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
    else
@@ -325,7 +325,7 @@ void text_stream::read(char & ch)
    if (m_gcount <= 0)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 

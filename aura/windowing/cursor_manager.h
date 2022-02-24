@@ -24,7 +24,7 @@ namespace windowing
       virtual ~cursor_manager();
 
 
-      inline ::aura::application* get_application() const;
+      inline ::aura::application* get_app() const;
       inline ::aura::session* get_session() const;
       inline ::aura::system* get_system() const;
 

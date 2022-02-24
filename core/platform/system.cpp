@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "core/user/user/_user.h"
 #include "core/const/idpool.h"
 #include "core/networking/ftp/file_status.h"
@@ -87,7 +87,7 @@ namespace core
       if (!__rich_text_initialize())
       {
 
-         throw_status(error_not_initialized);
+         throw ::exception(error_not_initialized);
 
       }
 

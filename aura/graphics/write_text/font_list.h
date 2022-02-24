@@ -102,9 +102,9 @@ namespace write_text
       //virtual void ensure_sel_visible();
 
 
-      virtual ::item hit_test(const ::point_i32& point);
-      virtual ::item hit_test_wide(const ::point_i32& point);
-      virtual ::item hit_test_single_column(const ::point_i32& point);
+      virtual ::item_pointer hit_test(const ::point_i32& point);
+      virtual ::item_pointer hit_test_wide(const ::point_i32& point);
+      virtual ::item_pointer hit_test_single_column(const ::point_i32& point);
       
       virtual bool get_box_rect(RECTANGLE_I32 * lprect, ::index i);
       virtual bool get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i);

@@ -349,7 +349,7 @@ namespace draw2d_opengl
       /*      // ASSERT(m_hdc != nullptr);
          if(pObject == nullptr)
             return nullptr;
-         return SelectGdiObject(get_application(), m_hdc, pObject->get_os_data()); */
+         return SelectGdiObject(get_app(), m_hdc, pObject->get_os_data()); */
       return nullptr;
    }
 
@@ -3487,7 +3487,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, hObject);
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, hObject);
-            return ::draw2d_opengl::object::from_handle(get_application(), hOldObj);*/
+            return ::draw2d_opengl::object::from_handle(get_app(), hOldObj);*/
 
       return nullptr;
 
@@ -3503,7 +3503,7 @@ namespace draw2d_opengl
          hOldObj = ::SelectObject(m_hdc, pPen->get_os_data());
       if(m_hdc != nullptr)
          hOldObj = ::SelectObject(m_hdc, pPen->get_os_data());
-      return dynamic_cast < pen * > (::draw2d_opengl::object::from_handle(get_application(), hOldObj));*/
+      return dynamic_cast < pen * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
       m_ppen = pPen;
       return m_ppen;
 
@@ -3519,7 +3519,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, pBrush->get_os_data());
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, pBrush->get_os_data());
-            return dynamic_cast < ::draw2d::brush * > (::draw2d_opengl::object::from_handle(get_application(), hOldObj));*/
+            return dynamic_cast < ::draw2d::brush * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
       m_pbrush = pBrush;
 
       return m_pbrush;
@@ -3536,7 +3536,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
-            return dynamic_cast < ::write_text::font * > (::draw2d_opengl::object::from_handle(get_application(), hOldObj));*/
+            return dynamic_cast < ::write_text::font * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != nullptr);
 
@@ -3569,7 +3569,7 @@ namespace draw2d_opengl
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return nullptr;
-//      return dynamic_cast < ::draw2d::palette * > (::draw2d_opengl::object::from_handle(get_application(), ::SelectPalette(m_hdc, (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::draw2d::palette * > (::draw2d_opengl::object::from_handle(get_app(), ::SelectPalette(m_hdc, (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
 
@@ -4384,7 +4384,7 @@ namespace draw2d_opengl
 //            {
 //               // got the stock object back, so must be selecting a font
 //               throw ::not_implemented();
-////                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
+////                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
 //            else
@@ -4398,7 +4398,7 @@ namespace draw2d_opengl
 //         else if (nObjType == OBJ_FONT)
 //         {
 //            // play back as graphics::SelectObject(::write_text::font*)
-////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
+////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //            throw ::not_implemented();
 //            break;  // don't play the default record
 //         }

@@ -454,7 +454,7 @@ void event::_wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         throw_status(signaled_base);
+         throw ::exception(signaled_base);
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -463,7 +463,7 @@ void event::_wait ()
          if (!task_get_run())
          {
 
-            throw_status(abandoned_base);
+            throw ::exception(abandoned_base);
 
          }
 
@@ -471,7 +471,7 @@ void event::_wait ()
       else
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -601,7 +601,7 @@ bool event::_wait (const class ::wait & wait)
    else
    {
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
       return false;
 
@@ -762,7 +762,7 @@ bool event::_wait (const class ::wait & wait)
          else
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -803,7 +803,7 @@ bool event::_wait (const class ::wait & wait)
             else
             {
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 

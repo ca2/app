@@ -2,16 +2,16 @@
 
 
 template < typename APPLICATION >
-class application_consumer :
+class app_consumer :
    virtual public ::object
 {
 public:
 
 
-   __pointer(APPLICATION) m_papplication;
+   __pointer(APPLICATION) m_papp;
 
 
-   application_consumer()
+   app_consumer()
    {
 
       add(procedure(CREATE_ROUTINE, [this]()
@@ -27,18 +27,18 @@ public:
    void initialize_application_consumer()
    {
 
-      m_papplication = get_application();
+      m_papp = get_app();
 
    }
 
 
-   inline APPLICATION* get_app() { return m_papplication.get(); }
+   inline APPLICATION* get_app() { return m_papp.get(); }
 
 
 };
 
 
-#define __application_consumer ::application_consumer < application >
+#define __application_consumer ::app_consumer < application >
 
 
 

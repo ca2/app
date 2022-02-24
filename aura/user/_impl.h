@@ -294,10 +294,10 @@ namespace user
    }
 
 
-   inline ::aura::application* interaction::get_application() const
+   inline ::aura::application* interaction::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -318,10 +318,10 @@ namespace user
    }
 
    
-   inline ::aura::application* user::get_application()
+   inline ::aura::application* user::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -342,7 +342,7 @@ namespace user
    }
 
 
-   inline ::aura::application* primitive_impl::get_application() const
+   inline ::aura::application* primitive_impl::get_app() const
    {
 
       return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
@@ -366,7 +366,7 @@ namespace user
    }
 
 
-   inline ::aura::application* form::get_application() const 
+   inline ::aura::application* form::get_app() const
    {
       
       return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; 

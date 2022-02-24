@@ -218,7 +218,7 @@ namespace account
 //         strGetFontopus = "https://ca2.software/get_account_login";
 //      }
 //
-//      //      ::aura::application * papp = get_application();
+//      //      ::aura::application * papp = get_app();
 //
 //      url_domain domainFontopus;
 //

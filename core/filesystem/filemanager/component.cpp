@@ -648,7 +648,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new(::create(papplication->handler(), payloadFile, true));
+      //   pcreate = __new(::create(papp->handler(), payloadFile, true));
 
       //}
 
@@ -682,7 +682,7 @@ namespace filemanager
 
       //   string strManagerId;
 
-      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_application());
+      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_app());
 
       //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 

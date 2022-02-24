@@ -463,7 +463,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 }
 
 
-i32 file_context::filterex_time_square(const char *pszPrefix, ::file::patha &stra)
+i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array &stra)
 {
 
    i32 iMax = -1;
@@ -781,7 +781,7 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
       if (!pfile)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -940,7 +940,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    if (!::is_ok(pfile))
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -981,7 +981,7 @@ void file_context::add_contents(const ::payload &payloadFile, const void *pvoidC
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1021,7 +1021,7 @@ void file_context::add_contents(const ::payload &payloadFile, const char *pcszCo
    if (is_null(pcszContents))
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -1040,7 +1040,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1089,7 +1089,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
    if (!pfile)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -1397,7 +1397,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          if (exists(varTarget))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1829,7 +1829,7 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 
 
 
-void file_context::trash_that_is_not_trash(::file::patha& stra)
+void file_context::trash_that_is_not_trash(::file::path_array& stra)
 {
 
    if (stra.get_size() <= 0)
@@ -1861,7 +1861,7 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
    if (!preader)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -2174,7 +2174,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
       // rename should work only on files in the same directory/folder
 
-      throw_status(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 
@@ -2203,7 +2203,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 //
 //
-//void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra)
+//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra)
 //{
 //
 //   file_pointer pfile = get_file(pszFile, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary);
@@ -2562,7 +2562,7 @@ void file_context::init_context()
 
 //   i64 iTry = 0;
 
-//   ::application * papp = ::get_application(pobject);
+//   ::application * papp = ::get_app(pobject);
 
 //   while (true)
 //   {
@@ -2659,7 +2659,7 @@ void file_context::post_output(const ::file::path & pathOut, const ::file::path 
 
       erase(pathDownloading);
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
 
@@ -2763,7 +2763,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
 
    INFORMATION("::file::file_context::data_get_file Failed");
 
-   //throw_status(error_failed);
+   //throw ::exception(error_failed);
    //return ::error_failed;
 
    return nullptr;
@@ -2779,7 +2779,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImp
    if (!pfactory)
    {
 
-     throw_status(::error_failed);
+     throw ::exception(::error_failed);
 
    }
 
@@ -2788,7 +2788,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const char * pszImp
    if (!pfolder)
    {
 
-      throw_status(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 
@@ -2884,7 +2884,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 #else
       pathCache.replace_with("_/", "://");
 #endif
-      pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache;
+      pathCache = m_pcontext->m_papexcontext->dir().cache() / (pathCache + ".cache");
 
    }
 
@@ -3458,7 +3458,7 @@ bool file_context::is_link(string strPath)
 //::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 //{
 //
-//   return psystem->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_application());
+//   return psystem->m_spfile->copy(varTarget, varSource, bFailIfExists, eextract, get_app());
 //
 //}
 
@@ -3466,41 +3466,41 @@ bool file_context::is_link(string strPath)
 //::extended::status file_context::move(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
 //
-//   return psystem->m_spfile->move(pszNew, pszOld, get_application());
+//   return psystem->m_spfile->move(pszNew, pszOld, get_app());
 //
 //}
 
 //
 //::extended::status file_context::del(const ::file::path & psz)
 //{
-//   return psystem->m_spfile->del(psz, get_application());
+//   return psystem->m_spfile->del(psz, get_app());
 //}
 
 //::extended::status file_context::rename(const ::file::path & pszNew, const ::file::path & pszOld)
 //{
-//   return psystem->m_spfile->rename(pszNew, pszOld, get_application());
+//   return psystem->m_spfile->rename(pszNew, pszOld, get_app());
 //}
 
 //void file_context::trash_that_is_not_trash(const ::file::path & psz)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(psz, get_application());
+//   return psystem->m_spfile->trash_that_is_not_trash(psz, get_app());
 //}
 //
-//void file_context::trash_that_is_not_trash(::file::patha & stra)
+//void file_context::trash_that_is_not_trash(::file::path_array & stra)
 //{
-//   return psystem->m_spfile->trash_that_is_not_trash(stra, get_application());
+//   return psystem->m_spfile->trash_that_is_not_trash(stra, get_app());
 //}
 
 //::extended::status file_context::replace(const ::file::path & pszContext, const string & pszFind, const string & pszReplace)
 //{
-//   return psystem->m_spfile->replace(pszContext, pszFind, pszReplace, get_application());
+//   return psystem->m_spfile->replace(pszContext, pszFind, pszReplace, get_app());
 //}
 
 
 //bool file_context::exists(const ::file::path & pszPath)
 //{
 //
-//   return psystem->m_spfile->exists(pszPath, get_application());
+//   return psystem->m_spfile->exists(pszPath, get_app());
 //
 //}
 
@@ -3516,7 +3516,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 /*  bool file_context::exists(const ::string & strPath)
    {
 
-      return psystem->m_spfile->exists(strPath, get_application());
+      return psystem->m_spfile->exists(strPath, get_app());
 
    }
 
@@ -3526,7 +3526,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
       const ::string & strPath = payload.get_string();
 
 
-      return psystem->m_spfile->exists(strPath, get_application());
+      return psystem->m_spfile->exists(strPath, get_app());
 
    }*/
 
@@ -3534,7 +3534,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::length(const ::file::path & pszPath)
 //{
 //
-//   return psystem->m_spfile->length(pszPath, get_application());
+//   return psystem->m_spfile->length(pszPath, get_app());
 //
 //}
 
@@ -3543,7 +3543,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //{
 
 
-//   return psystem->m_spfile->length(strPath, get_application());
+//   return psystem->m_spfile->length(strPath, get_app());
 
 //}
 
@@ -3551,7 +3551,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::length(const ::payload & payload)
 //{
 
-//   return psystem->m_spfile->length(payload.get_string(), get_application());
+//   return psystem->m_spfile->length(payload.get_string(), get_app());
 
 //}
 
@@ -3559,7 +3559,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::file::path file_context::time(const ::file::path & pszBasePath, i32 iDepth, const string & pszPrefix, const string & pszSuffix)
 //{
 //
-//   return psystem->m_spfile->time(get_application(), pszBasePath, iDepth, pszPrefix, pszSuffix);
+//   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
 //
 //}
 
@@ -3567,25 +3567,25 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
 //{
 //
-//   return psystem->m_spfile->time_square(get_application(), pszPrefix, pszSuffix);
+//   return psystem->m_spfile->time_square(get_app(), pszPrefix, pszSuffix);
 //
 //}
 
 //::file::path file_context::time_log(const string & pszId)
 //{
-//   return psystem->m_spfile->time_log(get_application(), pszId);
+//   return psystem->m_spfile->time_log(get_app(), pszId);
 //}
 //
 //file_pointer file_context::time_square_file(const char * pszPrefix, const char * pszSuffix)
 //{
-//   return psystem->m_spfile->time_square_file(get_application(), pszPrefix, pszSuffix);
+//   return psystem->m_spfile->time_square_file(get_app(), pszPrefix, pszSuffix);
 //}
 
 
 //file_pointer file_context::get(const ::file::path & name)
 //{
 //
-//   return psystem->m_spfile->get(name, get_application());
+//   return psystem->m_spfile->get(name, get_app());
 //
 //}
 
@@ -3593,7 +3593,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::payload file_context::as_network_payload(const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->as_network_payload(get_application(), payloadFile);
+//   return psystem->m_spfile->as_network_payload(get_app(), payloadFile);
 //
 //}
 
@@ -3601,7 +3601,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //string file_context::as_string(const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->as_string(get_application(), payloadFile);
+//   return psystem->m_spfile->as_string(get_app(), payloadFile);
 //
 //}
 //
@@ -3609,7 +3609,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
 //{
 //
-//   return psystem->m_spfile->as_memory(get_application(), payloadFile, mem);
+//   return psystem->m_spfile->as_memory(get_app(), payloadFile, mem);
 //
 //}
 
@@ -3617,25 +3617,25 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::lines(string_array & stra, const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->lines(stra, payloadFile, get_application());
+//   return psystem->m_spfile->lines(stra, payloadFile, get_app());
 //
 //}
 //
 //
 //void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
 //{
-//   return psystem->m_spfile->put_lines(payloadFile, stra, get_application());
+//   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
 //}
 //
 //bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count)
 //{
-//   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_application());
+//   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_app());
 //}
 //
 //bool file_context::put_contents(const ::payload & payloadFile, const char * pcszContents)
 //
 //{
-//   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_application());
+//   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_app());
 //
 //}
 //
@@ -3643,7 +3643,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::add_contents(const ::payload & payloadFile, const char * pcszContents)
 //{
 //
-//   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_application());
+//   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_app());
 //
 //}
 
@@ -3651,7 +3651,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_contents(const ::payload & payloadFile, const ::stream & stream)
 //{
 
-//   return psystem->m_spfile->put_contents(payloadFile, stream, get_application());
+//   return psystem->m_spfile->put_contents(payloadFile, stream, get_app());
 
 //}
 
@@ -3659,7 +3659,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_contents(const ::payload & payloadFile, memory & mem)
 //{
 //
-//   return psystem->m_spfile->put_contents(payloadFile, mem, get_application());
+//   return psystem->m_spfile->put_contents(payloadFile, mem, get_app());
 //
 //}
 //
@@ -3667,14 +3667,14 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //bool file_context::put_text_utf8(const ::payload & payloadFile, const char * pcszContents)
 //{
 //
-//   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_application());
+//   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_app());
 //
 //}
 
 //
 //string file_context::sys_temp(const char * lpszName, const char * pszExtension)
 //{
-//   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_application());
+//   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
 //}
 
 
@@ -3708,7 +3708,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().get_file(get_application(), payloadFile, nOpenFlags);
+//   return m_pcontext->m_papexcontext->file().get_file(get_app(), payloadFile, nOpenFlags);
 //
 //}
 
@@ -3717,21 +3717,21 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::dtf(const ::file::path & pszFile, const ::file::path & pszDir)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, pszDir, get_application());
+//   return psystem->m_spfile->dtf(pszFile, pszDir, get_app());
 //
 //}
 
 //bool file_context::is_read_only(const path & psz)
 //{
 //
-//   return psystem->m_spfile->is_read_only(psz, get_application());
+//   return psystem->m_spfile->is_read_only(psz, get_app());
 //}
 
 
-//void file_context::dtf(const ::file::path & pszFile, ::file::patha & stra, ::file::patha & straRelative)
+//void file_context::dtf(const ::file::path & pszFile, ::file::path_array & stra, ::file::path_array & straRelative)
 //{
 //
-//   return psystem->m_spfile->dtf(pszFile, stra, get_application());
+//   return psystem->m_spfile->dtf(pszFile, stra, get_app());
 //
 //}
 //
@@ -3739,7 +3739,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //void file_context::ftd(const ::file::path & pszDir, const ::file::path & pszFile)
 //{
 //
-//   return psystem->m_spfile->ftd(pszDir, pszFile, get_application());
+//   return psystem->m_spfile->ftd(pszDir, pszFile, get_app());
 //
 //}
 
@@ -3792,7 +3792,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), pathOut, pszSource);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pszSource);
 
 
 //}
@@ -3801,7 +3801,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), pathOut, pfileIn);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, pfileIn);
 
 //}
 
@@ -3809,7 +3809,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(const path & pathOut, ::file::file & reader)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), pathOut, reader);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pathOut, reader);
 
 //}
 
@@ -3817,7 +3817,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), pfileOut, pfileIn);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
 //
 //}
 
@@ -3825,7 +3825,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), pfileOut, pfileIn);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), pfileOut, pfileIn);
 
 //}
 
@@ -3833,7 +3833,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(file * pfileOut, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), *pfileOut, is);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), *pfileOut, is);
 
 //}
 
@@ -3841,7 +3841,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, const path & pszSource)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), os, pszSource);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pszSource);
 
 //}
 
@@ -3849,7 +3849,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file * pfileIn)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), os, pfileIn);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, pfileIn);
 
 //}
 
@@ -3857,7 +3857,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //bool file_context::transfer(::file::file & os, ::file::file & is)
 //{
 
-//   return m_pcontext->m_papexcontext->file().transfer(get_application(), os, is);
+//   return m_pcontext->m_papexcontext->file().transfer(get_app(), os, is);
 
 //}
 

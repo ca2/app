@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "app_core.h"
-#include "static_setup.h"
+#include "system_setup.h"
 #include "aura/os/_os.h"
 #include "aura/node/_node.h"
 #include "aura/platform/static_start.h"
@@ -763,7 +763,7 @@ void app_core::system_end()
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
@@ -863,7 +863,7 @@ void app_core::system_end()
 
             char szTimeMessage1[2048];
 
-            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
+            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 
             if (file_length_raw(szEllapsed) > 0)
             {
@@ -1726,13 +1726,13 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_pappStartup);
 //
-//      ::aura::get_system()->set_context_app(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->set_context_app(::aura::get_system()->m_pappStartup);
 //
-//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_pappStartup);
 //
-//      ::aura::get_system()->set_context(::aura::get_system()->m_papplicationStartup);
+//      ::aura::get_system()->set_context(::aura::get_system()->m_pappStartup);
 //
 //   }
 //
@@ -1848,7 +1848,7 @@ __pointer(::aura::application) app_core::get_new_application(::object* pobject, 
    else
    {
 
-      auto psetup = static_setup::get_first(::static_setup::flag_application, strAppId);
+      auto psetup = system_setup::get_first(::system_setup::flag_application, strAppId);
 
       if (psetup)
       {
@@ -1921,7 +1921,7 @@ __pointer(::aura::application) app_core::get_new_application(::object* pobject, 
 
 #ifndef _UWP
 
-               output_error_message("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 

@@ -305,7 +305,7 @@ pacmedir->create(lpszFileName.folder());
 
          }
 
-         ::file::throw_status(error_disk_full, -1, m_path);
+         throw ::file::exception(error_disk_full, -1, m_path);
 
       }
 

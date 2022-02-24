@@ -113,7 +113,7 @@ namespace draw2d_cairo
       if (size.is_empty())
       {
 
-         throw_status(error_invalid_empty_argument);
+         throw ::exception(error_invalid_empty_argument);
 
       }
 
@@ -761,7 +761,7 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectangleWindow);
 //
-//      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
+//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
 //      return true;
 //
@@ -890,7 +890,7 @@ namespace draw2d_cairo
 ////
 ////      ::rectangle_i32 rectangle(rectangleWindow);
 ////
-//////      papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//////      papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
 ////      return true;
 ////
@@ -935,7 +935,7 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectangleWindow);
 //
-//      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //
 //      return true;
 //

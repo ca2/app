@@ -82,12 +82,12 @@ void object::process_exit_status(const ::e_status & estatus)
 ::application* object::_get_application()
 {
 
-   return m_papplication;
+   return m_papp;
 
 }
 
 
-   //inline ::application* object::application() { return m_papplication; }
+   //inline ::application* object::application() { return m_papp; }
 
 
    //template < typename BASE_TYPE >
@@ -189,10 +189,10 @@ void object::process_exit_status(const ::e_status & estatus)
 
       }
 
-      if (!m_papplication)
+      if (!m_papp)
       {
 
-         m_papplication = pobject->m_papplication;
+         m_papp = pobject->m_papp;
 
       }
 
@@ -213,10 +213,10 @@ void object::process_exit_status(const ::e_status & estatus)
       if (!get_context())
       {
 
-         if (m_papplication)
+         if (m_papp)
          {
 
-            m_pcontext = m_papplication;
+            m_pcontext = m_papp;
 
          }
          else if (m_psession)
@@ -300,7 +300,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
    //inline ::thread* object::get_thread() const { return m_pthread; }
 
-   //inline ::application* object::get_application() const { return m_papplication; }
+   //inline ::application* object::get_app() const { return m_papp; }
 
    //inline ::apex::session* object::get_session() const { return m_psession; }
 
@@ -308,7 +308,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papp; }
 
     string object::get_text(const ::payload& payload, const ::atom& atom)
     {
@@ -548,10 +548,10 @@ void object::delete_this()
     ::property_object* object::parent_property_set_holder() const
     {
 
-       if (m_papplication && m_papplication.m_p != this)
+       if (m_papp && m_papp.m_p != this)
        {
 
-          return m_papplication.m_p;
+          return m_papp.m_p;
 
        }
 

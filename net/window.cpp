@@ -40,9 +40,9 @@ namespace app_net
 
       //ModifyStyleEx(0, WS_EX_LAYERED);
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->m_bInterprocessIntercommunication = false;
+      papp->m_bInterprocessIntercommunication = false;
 
       ::user::interaction * p = this;
 
@@ -146,9 +146,9 @@ namespace app_net
 
             set["raw_http"] = true;
 
-            auto papplication = get_application();
+            auto papp = get_app();
 
-            string strGet = papplication->http().get(m_strUrl, set);
+            string strGet = papp->http().get(m_strUrl, set);
 
             {
 

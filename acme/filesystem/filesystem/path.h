@@ -229,7 +229,7 @@ namespace file
       path operator / (const char * psz) const;
       path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
-      patha operator / (const string_array & path) const;
+      path_array operator / (const string_array & path) const;
 
       path & operator /= (const path & path);
       path & operator /= (const ::string & str);
@@ -317,9 +317,9 @@ namespace file
       void split(string_array & patha) const;
       bool is_relative();
 
-      patha & ascendants_path(patha & pathaFolder, patha * ppathaRelative = nullptr) const;
+      path_array & ascendants_path(path_array & pathaFolder, path_array * ppathaRelative = nullptr) const;
       string_array & ascendants_name(string_array & namea) const;
-      patha ascendants_path() const;
+      path_array ascendants_path() const;
       string_array ascendants_name() const;
 
       path relative() const;

@@ -9,11 +9,27 @@
 #include <X11/Xlib.h>
 
 
+namespace x11
+{
+
+
+   class display;
+   class window;
+
+
+} // namespace x11
+
+
+#include "event_listener.h"
+
 #include "font.h"
 
 #include "device.h"
 
 #include "window.h"
+
+
+#include "display.h"
 
 
 

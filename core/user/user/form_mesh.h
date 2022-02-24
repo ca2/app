@@ -15,37 +15,37 @@ namespace user
       class CLASS_DECL_CORE control_keep
       {
       public:
-         inline control_keep(form_mesh * pformmesh, const ::item & item)
+         inline control_keep(form_mesh * pformmesh, ::item * pitem)
          {
             m_pformmesh                      = pformmesh;
-            m_item                           = pformmesh->m_itemControl;
-            pformmesh->m_itemControl         = item;
+            m_pitem                          = pformmesh->m_pitemControl;
+            pformmesh->m_pitemControl        = pitem;
          }
          inline control_keep(form_mesh * pformmesh,const ::point_i32 & point)
          {
             m_pformmesh                      = pformmesh;
-            m_item                           = pformmesh->m_itemControl;
+            m_pitem                          = pformmesh->m_pitemControl;
             pformmesh->control_001DisplayHitTest(point);
          }
          inline ~control_keep()
          {
-            m_pformmesh->m_itemControl      = m_item;
+            m_pformmesh->m_pitemControl      = m_pitem;
          }
          form_mesh *             m_pformmesh;
-         item                    m_item;
+         ::item_pointer          m_pitem;
       };
 
 
-      __pointer(::user::interaction)     m_pcontrolEdit;
+      __pointer(::user::interaction)      m_pcontrolEdit;
 
-      ::count           m_iClickCount;
-      item              m_itemClick;
+      ::count                             m_iClickCount;
+      ::item_pointer                      m_pitemClick;
 
-      item              m_itemControl;
+      ::item_pointer                      m_pitemControl;
 
 
       form_mesh();
-      virtual ~form_mesh();
+      ~form_mesh() override;
 
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -77,7 +77,7 @@ namespace user
       void _001SetEditControl(::user::interaction * pinteraction);
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
       virtual ::user::interaction * _001GetControl(index iItem, index iSubItem);
-      virtual bool on_click(const ::item & item) override;
+      virtual bool on_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
       virtual void _001GetSelection(::database::key & key,::database::selection & selection) override;

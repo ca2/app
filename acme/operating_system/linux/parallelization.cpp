@@ -2,14 +2,19 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
-bool task_set_name(htask_t htask, const char * psz)
+void task_set_name(htask_t htask, const char * psz)
 {
 
    string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np((pthread_t) htask, strName);
+   if(pthread_setname_np((pthread_t) htask, strName))
+   {
+
+      throw exception(error_failed);
+
+   }
 
 }
 

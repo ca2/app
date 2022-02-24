@@ -14,7 +14,7 @@ namespace apex
 
 
       string_to_ptr                                   m_appmap;
-      ::file::patha                                   m_straMatterLocator;
+      ::file::path_array                                   m_straMatterLocator;
       string_table                                    m_stringtable;
       string_table                                    m_stringtableStd;
       map < atom, atom, string, string >                  m_stringmap;

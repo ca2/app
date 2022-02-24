@@ -14,6 +14,9 @@ namespace windows
    public:
 
 
+      //CreatableFromBase(nano_brush, ::nano_brush);
+
+
       nano_brush();
       ~nano_brush() override;
 

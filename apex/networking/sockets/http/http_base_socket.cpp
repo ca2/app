@@ -378,10 +378,10 @@ namespace sockets
 
 
 
-      if (str::ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
-      {
-         debug_print("%s", strName.c_str());
-      }
+//      if (str::ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
+  //    {
+    //     debug_print("%s", strName.c_str());
+      //}
 
       if (bMd5Request)
       {

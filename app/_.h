@@ -23,3 +23,5 @@ namespace app_app
 
 
 
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS ::app_app::application

@@ -60,7 +60,7 @@ namespace simple_shader
 
       int iPane;
 
-      if (papplication->m_bMultiverseChat)
+      if (papp->m_bMultiverseChat)
       {
 
          SetPaneCount(2);

@@ -123,9 +123,9 @@ namespace app_just_message_box
       //                  if (future->m_edialogresult == e_dialog_result_yes)
       //                  {
 
-      //                     auto papplication = get_application();
+      //                     auto papp = get_app();
 
-      //                     papplication->_001TryCloseApplication();
+      //                     papp->_001TryCloseApplication();
 
       //                  }
       //                  else

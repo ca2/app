@@ -38,7 +38,7 @@
 //
 //      main();
 //
-//      estatus = get_application()->m_estatus;
+//      estatus = get_app()->m_estatus;
 //
 //   }
 //
@@ -72,11 +72,11 @@
 //
 //            m_psystem = ::move_transfer(platform_create_system(strAppId));
 //
-////            auto papplicationStartup = m_psystem->new_application(strAppId);
+////            auto pappStartup = m_psystem->new_application(strAppId);
 ////
-////            m_psystem->__refer(m_psystem->m_papplicationStartup, papplicationStartup);
+////            m_psystem->__refer(m_psystem->m_pappStartup, pappStartup);
 ////
-////            m_psystem->set_main_struct(*m_psystem->m_papplicationStartup);
+////            m_psystem->set_main_struct(*m_psystem->m_pappStartup);
 //
 //            m_psystem->m_bConsole = true;
 //
@@ -128,7 +128,7 @@
 //         int result()
 //         {
 //
-//            m_estatus = m_psystem->m_papplicationStartup->m_estatus;
+//            m_estatus = m_psystem->m_pappStartup->m_estatus;
 //
 //            ::i32 iErrorStatus = m_estatus.error_status();
 //

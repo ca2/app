@@ -185,7 +185,7 @@ namespace introjection
 //   void compiler::prepare_compile_and_link_environment()
 //   {
 //
-//      //auto papplication = get_application();
+//      //auto papp = get_app();
 //
 //      auto pcontext = get_context();
 //
@@ -232,9 +232,9 @@ namespace introjection
 //
 //         }
 //
-//         __pointer(application) papplication = get_application();
+//         __pointer(application) papp = get_app();
 //
-//         m_strVCVersion = papplication->get_visual_studio_build();
+//         m_strVCVersion = papp->get_visual_studio_build();
 //
 //      }
 //      else if (m_strVs == "2017")
@@ -260,9 +260,9 @@ namespace introjection
 //
 //         }
 //
-//         __pointer(application) papplication = get_application();
+//         __pointer(application) papp = get_app();
 //
-//         m_strVCVersion = papplication->get_visual_studio_build();
+//         m_strVCVersion = papp->get_visual_studio_build();
 //
 //      }
 //      else if (m_strVs == "2015")
@@ -328,7 +328,7 @@ namespace introjection
 //      m_strLibPlatform = "x86/";
 //#endif
 //
-//      //pcontext->m_papexcontext->file().lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_application());
+//      //pcontext->m_papexcontext->file().lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_app());
 //#if defined(LINUX)
 //      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
 //               m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
@@ -430,12 +430,12 @@ namespace introjection
 //   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
 //   {
 //
-//      //auto papplication = get_application();
+//      //auto papp = get_app();
 //
 //#ifdef WINDOWS
 //      //sleep(15000_ms);
 //
-//      __pointer(application) papplication = get_application();
+//      __pointer(application) papp = get_app();
 //
 //      string strBuildCmd = m_strEnv;
 //
@@ -448,7 +448,7 @@ namespace introjection
 //      else if (m_strVs >= "2017")
 //      {
 //
-//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+//         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
 //
 //      }
 //

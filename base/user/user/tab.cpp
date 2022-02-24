@@ -539,7 +539,7 @@ namespace user
             bNeedLayout = true;
 
          }
-         else if(::is_set(get_application()) && ::is_set(get_application()->get_session()))
+         else if(::is_set(get_app()) && ::is_set(get_app()->get_session()))
          {
 
             ::rectangle_i32 rectangleWindow;
@@ -782,7 +782,9 @@ namespace user
 
                   ppath->close_figure();
 
-                  if (m_itemHover == iIndex && m_itemHover != ::e_element_close_tab_button && !m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(m_pitemHover, iIndex) 
+                     && !::is_element(m_pitemHover, ::e_element_close_tab_button)
+                     && !in_element_range(m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -894,7 +896,9 @@ namespace user
 
                   ppath->close_figure();
 
-                  if (m_itemHover == iIndex  && m_itemHover != ::e_element_close_tab_button && !m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(m_pitemHover, iIndex) 
+                     && !::is_element(m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -961,7 +965,7 @@ namespace user
 
                pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-               if (m_itemHover == iIndex && m_itemHover == ::e_element_close_tab_button)
+               if (::is_item(m_pitemHover, iIndex) && ::is_element(m_pitemHover, ::e_element_close_tab_button))
                {
 
                   pbrushText = get_data()->m_pbrushCloseHover;
@@ -1100,7 +1104,7 @@ namespace user
                pgraphics->line_to(rectangleBorder.right, rectangleBorder.top);
                pgraphics->line_to(rectangleBorder.right, rectangleBorder.bottom);
 
-               if(m_itemHover == iVisiblePane && m_itemHover != e_element_close_tab_button)
+               if(::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {
 
                   auto pstyle = get_style(pgraphics);
@@ -1181,7 +1185,7 @@ namespace user
                pgraphics->line_to(rectangleBorder.right - 1, rectangleClient.bottom);
                pgraphics->line_to(rectangleBorder.left, rectangleClient.bottom);
 
-               if (m_itemHover == iVisiblePane && m_itemHover != e_element_close_tab_button)
+               if (::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {
 
                   pgraphics->set(get_font(pstyle, e_state_hover));
@@ -1216,7 +1220,7 @@ namespace user
 
             pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-            if (m_itemHover == iVisiblePane  && m_itemHover == e_element_close_tab_button)
+            if (::is_item(m_pitemHover, iVisiblePane)  && ::is_element(m_pitemHover, e_element_close_tab_button))
             {
 
                pbrushText = get_data()->m_pbrushCloseSel;
@@ -1697,13 +1701,13 @@ namespace user
 
       pmouse->previous();
 
-      m_itemClick = hit_test(pmouse);
+      m_pitemClick = hit_test(pmouse);
 
       get_data()->m_bDrag = false;
 
       get_data()->m_iClickTab = -1;
 
-      if(m_itemClick.m_eelement == e_element_tab_near_scroll)
+      if(::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
          if(m_iTabScroll > 0)
@@ -1726,7 +1730,7 @@ namespace user
          }
 
       }
-      else if(m_itemClick.m_eelement == e_element_tab_far_scroll)
+      else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
          if(m_iTabScroll < m_iTabScrollMax)
@@ -1750,15 +1754,15 @@ namespace user
 
       }
 
-      if(m_itemClick.m_iItem >= 0)
+      if(::is_set(m_pitemClick) && m_pitemClick->m_iItem >= 0)
       {
 
          index iIndex = get_current_tab_index();
 
-         if(m_itemClick == e_element_close_tab_button)
+         if(::is_element(m_pitemClick, e_element_close_tab_button))
          {
 
-            get_data()->m_iClickTab = m_itemClick.m_iItem;
+            get_data()->m_iClickTab = m_pitemClick->m_iItem;
 
             pmouse->m_bRet = true;
 
@@ -1767,16 +1771,16 @@ namespace user
             m_estate = state_close_button_down;
 
          }
-         else if(m_itemClick.m_iItem != iIndex)
+         else if(m_pitemClick->m_iItem != iIndex)
          {
 
-            get_data()->m_iClickTab = m_itemClick.m_iItem;
+            get_data()->m_iClickTab = m_pitemClick->m_iItem;
 
-            set_mouse_capture();
+            //set_mouse_capture();
 
             //SetTimer(e_timer_drag_start, 300, nullptr);
 
-            g_tickDragStart.Now();
+            //g_tickDragStart.Now();
 
             pmouse->m_bRet = true;
 
@@ -1811,7 +1815,7 @@ namespace user
 
       }
 
-      auto item = hit_test(pmouse);
+      auto pitem = hit_test(pmouse);
 
       index iClickTab = get_data()->m_iClickTab;
 
@@ -1832,29 +1836,34 @@ namespace user
 
       }
 
-      if(item.m_iItem >= 0 && iClickTab == item.m_iItem && m_itemClick == item)
+      if (::is_set(pitem))
       {
 
-         if (item == e_element_close_tab_button)
+         if (pitem->m_iItem >= 0 && iClickTab == pitem->m_iItem && ::is_same_item(m_pitemClick, pitem))
          {
 
-            _001OnTabClose(item.m_iItem);
+            if (::is_element(pitem, e_element_close_tab_button))
+            {
+
+               _001OnTabClose(pitem->m_iItem);
+
+            }
+            else
+            {
+
+               _001OnTabClick(pitem->m_iItem);
+
+            }
+
+            set_need_redraw();
+
+            post_redraw();
+
+            pmouse->m_bRet = true;
+
+            pmouse->m_lresult = 1;
 
          }
-         else
-         {
-
-            _001OnTabClick(item.m_iItem);
-
-         }
-
-         set_need_redraw();
-
-         post_redraw();
-
-         pmouse->m_bRet = true;
-
-         pmouse->m_lresult = 1;
 
       }
 
@@ -1873,7 +1882,7 @@ namespace user
       if(m_bMouseDown)
       {
 
-         if(m_itemClick.m_eelement == e_element_tab_far_scroll)
+         if(::is_element(m_pitemClick, e_element_tab_far_scroll))
          {
 
             if(m_iTabScroll < m_iTabScrollMax)
@@ -1892,7 +1901,7 @@ namespace user
             }
 
          }
-         else if(m_itemClick.m_eelement == e_element_tab_near_scroll)
+         else if(::is_element(m_pitemClick, e_element_tab_near_scroll))
          {
 
             if(m_iTabScroll > 0)
@@ -2365,7 +2374,7 @@ namespace user
    }
 
 
-   void tab::on_hit_test(::item & item)
+   ::item_pointer tab::on_hit_test(const ::point_i32 &point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -2380,12 +2389,10 @@ namespace user
          if(get_element_rect(-1,rectangleScroll, ::e_element_tab_near_scroll))
          {
 
-            if(rectangleScroll.contains(item.m_pointHitTest))
+            if(rectangleScroll.contains(point))
             {
 
-               item = ::item(::e_element_tab_near_scroll, -1);
-
-               return;
+               return __new(::item(::e_element_tab_near_scroll, -1));
 
             }
 
@@ -2394,19 +2401,16 @@ namespace user
          if(get_element_rect(-1,rectangleScroll, ::e_element_tab_far_scroll))
          {
 
-            if(rectangleScroll.contains(item.m_pointHitTest))
+            if(rectangleScroll.contains(point))
             {
 
-               item = ::item(::e_element_tab_far_scroll, -1);
-
-               return;
+               return __new(::item(::e_element_tab_far_scroll, -1));
 
             }
 
          }
 
       }
-
 
       ::rectangle_i32 rectangle;
 
@@ -2423,7 +2427,7 @@ namespace user
             if(get_element_rect(iIndex, rectangleText, e_element_text))
             {
 
-               if(rectangleText.contains(item.m_pointHitTest))
+               if(rectangleText.contains(point))
                {
 
                   for(int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
@@ -2433,12 +2437,10 @@ namespace user
 
                      rectangleText.right = rectangleText.left + get_data()->m_sizeSep.cx;
 
-                     if(rectangleText.contains(item.m_pointHitTest))
+                     if(rectangleText.contains(point))
                      {
 
-                        item = ::item((enum_element)((int)e_element_split + iTitle), iIndex );
-
-                        return;
+                        return __new(::item((enum_element)((int)e_element_split + iTitle), iIndex ));
 
                      }
 
@@ -2455,12 +2457,10 @@ namespace user
          if(get_element_rect(iIndex, rectangle, e_element_close_tab_button) )
          {
 
-            if(rectangle.contains(item.m_pointHitTest))
+            if(rectangle.contains(point))
             {
 
-               item = ::item(e_element_close_tab_button, iIndex);
-
-               return;
+               return __new(::item(e_element_close_tab_button, iIndex));
 
             }
 
@@ -2469,12 +2469,10 @@ namespace user
          if(get_element_rect(iIndex, rectangle, e_element_tab))
          {
 
-            if(rectangle.contains(item.m_pointHitTest))
+            if(rectangle.contains(point))
             {
 
-               item = ::item(e_element_tab, iIndex);
-
-               return;
+               return __new(::item(e_element_tab, iIndex));
 
             }
 
@@ -2482,7 +2480,7 @@ namespace user
 
       }
 
-      item = e_element_none;
+      return nullptr;
 
    }
 
@@ -3132,9 +3130,9 @@ namespace user
 
       }
 
-      __pointer(::base::application) papplication = get_application();
+      __pointer(::base::application) papp = get_app();
 
-      papplication->on_change_cur_sel(this);
+      papp->on_change_cur_sel(this);
 
    }
 
@@ -3538,11 +3536,11 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         auto item = hit_test(pointCursor);
+         auto pitem = hit_test(pointCursor);
 
          index iClickTab = get_data()->m_iClickTab;
 
-         if(item.is_set() && item == iClickTab)
+         if(::is_item(pitem, iClickTab))
          {
 
             get_data()->m_bDrag = true;

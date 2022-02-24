@@ -171,7 +171,7 @@ namespace user
       //if (::is_null(puserinteraction))
       //{
 
-      //   return get_application();
+      //   return get_app();
 
       //}
 
@@ -811,7 +811,7 @@ namespace user
    //i32 element::sync_message_box_timeout(const ::string & pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
-   //   return papplication->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
+   //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
 
    //}
 
@@ -3879,7 +3879,7 @@ namespace user
 
    //   }
 
-   //   return get_application();
+   //   return get_app();
 
    //}
 
@@ -4052,7 +4052,7 @@ namespace user
    bool element::keyboard_focus_is_focusable() const
    {
 
-      //return papplication->keyboard_focus_is_focusable(this);
+      //return papp->keyboard_focus_is_focusable(this);
       return false;
 
    }
@@ -4124,7 +4124,7 @@ namespace user
 
      //}
 
-     //single_lock(puiThis->get_application()->mutex(), true);
+     //single_lock(puiThis->get_app()->mutex(), true);
 
      //__pointer(element) pprimitive;
 

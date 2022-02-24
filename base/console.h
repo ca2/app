@@ -21,11 +21,11 @@
 //   
 //   console console(argc, argv);
 //
-//   papplication->m_estatus = ::undefined;
+//   papp->m_estatus = ::undefined;
 //
 //   main();
 //
-//   int iStatus = (int)papplication->m_estatus;
+//   int iStatus = (int)papp->m_estatus;
 //
 //   int iError = 0;
 //

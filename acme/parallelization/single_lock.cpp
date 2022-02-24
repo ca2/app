@@ -48,7 +48,7 @@ void single_lock::_wait()
    if (m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -90,7 +90,7 @@ bool single_lock::_wait(const class ::wait& wait)
    if (m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -143,7 +143,7 @@ void single_lock::wait()
    if(m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -184,7 +184,7 @@ bool single_lock::wait(const class ::wait & wait)
    if(m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
       //return estatus;
 
    }
@@ -240,7 +240,7 @@ void single_lock::unlock()
    if (!m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -262,7 +262,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
    if (!m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -330,14 +330,14 @@ void _single_lock::_wait()
    if (m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
    if (m_psync == nullptr)
    {
 
-      //throw_status(error_wrong_state);
+      //throw ::exception(error_wrong_state);
 
       return;
 
@@ -358,7 +358,7 @@ void _single_lock::_wait()
 
    ///m_bAcquired = estatus.signaled();
 
-   //throw_status(
+   //throw ::exception(
 
    m_bAcquired = true;
 
@@ -375,7 +375,7 @@ bool _single_lock::_wait(const class ::wait & wait)
    if (m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -384,7 +384,7 @@ bool _single_lock::_wait(const class ::wait & wait)
 
       //return estatus;
 
-      //throw_status(error_invalid_empty_argument);
+      //throw ::exception(error_invalid_empty_argument);
 
       return true;
 
@@ -474,7 +474,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
    if (m_bAcquired)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 

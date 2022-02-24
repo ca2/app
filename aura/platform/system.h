@@ -371,8 +371,8 @@ namespace aura
       virtual __pointer(::factory::factory)& imaging_factory();
       virtual string imaging_get_default_library_name();
 
-      virtual void init_thread() override;
-      virtual void term_thread() override;
+      virtual void init_task() override;
+      virtual void term_task() override;
 
 
       virtual void thread_loop() override;
@@ -663,7 +663,7 @@ namespace aura
 //
 //#endif
 
-      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
+      //virtual void post_fork_uri(const ::string & pszUri,application_bias * pappbias);
 
 
 

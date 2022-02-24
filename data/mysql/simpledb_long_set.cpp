@@ -60,7 +60,7 @@ public:
    class db_long_sync_queue *                m_pqueue;
 
    db_long_set_core(db_server * pserver):
-      matter(pserver->get_application()),
+      matter(pserver->get_app()),
       db_set(pserver,"integertable"),
       m_handler(this),
       
@@ -190,7 +190,7 @@ void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
 
 
 db_long_set::db_long_set(db_server * pserver):
-matter(pserver->get_application())
+matter(pserver->get_app())
 {
 
    m_pcore = new db_long_set_core(pserver);

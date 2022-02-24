@@ -47,7 +47,7 @@ namespace regular_expression_pcre2
       if (m_pcode == nullptr)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

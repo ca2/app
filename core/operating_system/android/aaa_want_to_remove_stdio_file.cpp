@@ -83,7 +83,7 @@
 //
 //      if (m_pStream == nullptr)
 //      {
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //         // an error somewhere along the way...
 //         //if (pException != nullptr)
 //         {
@@ -113,11 +113,11 @@
 //      ::u32 nRead = 0;
 //
 //      if ((nRead = fread(lpBuf, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //      if (ferror(m_pStream))
 //      {
 //         clearerr(m_pStream);
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //      }
 //      return nRead;
 //   }
@@ -129,7 +129,7 @@
 ////   ASSERT(fx_is_valid_address(lpBuf, nCount, false));
 //
 //      if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //   }
 //
 //   void stdio_file::write_string(const ::string & lpsz)
@@ -138,7 +138,7 @@
 //      ASSERT(m_pStream != nullptr);
 //
 //      if (fputs(lpsz, m_pStream) == EOF)
-//         ::file::throw_status(error_disk_full, errno, m_strFileName);
+//         throw ::file::exception(error_disk_full, errno, m_strFileName);
 //
 //   }
 //
@@ -157,7 +157,7 @@
 //
 //         clearerr(m_pStream);
 //
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //
 //      }
 //
@@ -188,7 +188,7 @@
 //         if (lpszResult == nullptr && !feof(m_pStream))
 //         {
 //            clearerr(m_pStream);
-//            ::file::throw_status(error_file, errno,
+//            throw ::file::exception(error_file, errno,
 //                                  m_strFileName);
 //         }
 //
@@ -217,7 +217,7 @@
 //      ASSERT(m_pStream != nullptr);
 //
 //      if (fputws(lpsz, m_pStream) == _TEOF)
-//         ::file::throw_status(error_diskFull, errno, m_strFileName);
+//         throw ::file::exception(error_diskFull, errno, m_strFileName);
 //   }*/
 //
 //   /*unichar * stdio_file::read_string(unichar * lpsz, ::u32 nMax)
@@ -230,7 +230,7 @@
 //      if (lpszResult == nullptr && !feof(m_pStream))
 //      {
 //         clearerr(m_pStream);
-//         ::file::throw_status(error_file, errno, m_strFileName);
+//         throw ::file::exception(error_file, errno, m_strFileName);
 //      }
 //      return lpszResult;
 //   }*/
@@ -254,11 +254,11 @@
 //         nFrom = SEEK_CUR;
 //         break;
 //      default:
-//         ::file::throw_status(error_bad_seek, -1, m_strFileName);
+//         throw ::file::exception(error_bad_seek, -1, m_strFileName);
 //      }
 //
 //      if (fseek(m_pStream, lOff, nFrom) != 0)
-//         ::file::throw_status(error_bad_seek, errno,
+//         throw ::file::exception(error_bad_seek, errno,
 //                               m_strFileName);
 //
 //      long pos = ftell(m_pStream);
@@ -272,7 +272,7 @@
 //
 //      long pos = ftell(m_pStream);
 //      if (pos == -1)
-//         ::file::throw_status(error_invalid_file, errno,
+//         throw ::file::exception(error_invalid_file, errno,
 //                               m_strFileName);
 //      return pos;
 //   }
@@ -282,7 +282,7 @@
 //      ASSERT_VALID(this);
 //
 //      if (m_pStream != nullptr && fflush(m_pStream) != 0)
-//         ::file::throw_status(error_disk_full, errno,
+//         throw ::file::exception(error_disk_full, errno,
 //                               m_strFileName);
 //   }
 //
@@ -299,7 +299,7 @@
 //      m_pStream = nullptr;
 //
 //      if (nErr != 0)
-//         ::file::throw_status(error_disk_full, errno, m_strFileName);
+//         throw ::file::exception(error_disk_full, errno, m_strFileName);
 //   }
 //
 //   void stdio_file::Abort()
@@ -358,18 +358,18 @@
 //
 //      nCurrent = ftell(m_pStream);
 //      if (nCurrent == -1)
-//         ::file::throw_status(error_invalid_file, errno, m_strFileName);
+//         throw ::file::exception(error_invalid_file, errno, m_strFileName);
 //
 //      nResult = fseek(m_pStream, 0, SEEK_END);
 //      if (nResult != 0)
-//         ::file::throw_status(error_bad_seek, errno, m_strFileName);
+//         throw ::file::exception(error_bad_seek, errno, m_strFileName);
 //
 //      nLength = ftell(m_pStream);
 //      if (nLength == -1)
-//         ::file::throw_status(error_invalid_file, errno, m_strFileName);
+//         throw ::file::exception(error_invalid_file, errno, m_strFileName);
 //      nResult = fseek(m_pStream, nCurrent, SEEK_SET);
 //      if (nResult != 0)
-//         ::file::throw_status(error_bad_seek, errno, m_strFileName);
+//         throw ::file::exception(error_bad_seek, errno, m_strFileName);
 //
 //      return nLength;
 //   }

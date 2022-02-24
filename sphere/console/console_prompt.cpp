@@ -13,13 +13,13 @@ namespace console
       ::user::single_document_template* pdoctemplate;
 
       pdoctemplate = new ::user::single_document_template(
-      get_application(),
+      get_app(),
       "system/form",
       __type(prompt_document),
       __type(prompt_frame),
       __type(prompt_impact));
 
-      papplication->add_document_template(pdoctemplate);
+      papp->add_document_template(pdoctemplate);
 
       m_pdocumenttemplate = pdoctemplate;
 
@@ -34,7 +34,7 @@ namespace console
       if(m_pdocumenttemplate->get_document() == nullptr)
       {
 
-         papplication->send_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
+         papp->send_message(WM_APP + 3243,(bShow ? 1 : 0) | (bCreateMini ? 2 : 0));
 
       }
 

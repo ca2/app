@@ -214,7 +214,7 @@ void property_parse_network_payload_id(atom & atom, const char *& pszJson, const
 
    strsize iBuffer = sizeof(sz);
 
-   ::str::consume_quoted_value_ex2(pszJson, pszEnd, &psz, iBuffer);
+   ::str::no_escape_consume_quoted_value(pszJson, pszEnd, &psz, iBuffer);
 
    atom = psz;
 

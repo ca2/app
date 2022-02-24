@@ -1,7 +1,7 @@
 //#include "acme/_start.h"
 //#include "aqua/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/platform/static_setup.h"
+//#include "acme/platform/system_setup.h"
 //#include "aqua/_defer.h"
 
 //

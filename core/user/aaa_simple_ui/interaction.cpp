@@ -298,12 +298,12 @@ namespace simple_ui
 //
 //      auto item = hit_test(pmouse);
 //
-//      if (item != m_itemHover)
+//      if (item != m_pitemHover)
 //      {
 //
-//         auto itemOldHover = m_itemHover;
+//         auto pitemOldHover = m_pitemHover;
 //
-//         m_itemHover = item;
+//         m_pitemHover = item;
 //
 //         set_need_redraw();
 //
@@ -314,7 +314,7 @@ namespace simple_ui
 //
 //         }
 //
-//         if (!itemOldHover)
+//         if (!pitemOldHover)
 //         {
 //
 //            ::topic topic;
@@ -351,11 +351,11 @@ namespace simple_ui
 //
 //      __pointer(::user::message) pusermessage(pmessage);
 //
-//      auto itemOldHover = m_itemHover;
+//      auto pitemOldHover = m_pitemHover;
 //
-//      m_itemHover = ::e_element_none;
+//      m_pitemHover = ::e_element_none;
 //
-//      if (itemOldHover)
+//      if (pitemOldHover)
 //      {
 //
 //         set_need_redraw();
@@ -387,7 +387,7 @@ namespace simple_ui
 //
 //   }
 //
-//   void interaction::on_hit_test(::item & item)
+//   ::item_pointer interaction::on_hit_test(const ::point_i32 &point)
 //   {
 //
 //      auto rectangle = this->rectangle(::e_element_client);
@@ -930,7 +930,7 @@ namespace simple_ui
 //   }
 //
 //
-//   //void interaction::on_hit_test(::item & item)
+//   //::item_pointer interaction::on_hit_test(const ::point_i32 &point)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();

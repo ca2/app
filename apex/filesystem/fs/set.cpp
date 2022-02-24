@@ -378,7 +378,7 @@ namespace fs
    }
 
 
-   //void set::get_ascendants_path(const ::file::path & psz,::file::patha & stra)
+   //void set::get_ascendants_path(const ::file::path & psz,::file::path_array & stra)
    //{
 
    //   ::fs::data * pdata = path_data(psz);

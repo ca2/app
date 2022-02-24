@@ -2949,7 +2949,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(iDisplayItemLButtonUp);
+                     on_click(__new(::item(::e_element_item, iDisplayItemLButtonUp)));
 
                   }
                   else
@@ -3053,7 +3053,7 @@ namespace user
    }
 
 
-   bool mesh::on_click(const ::item & item)
+   bool mesh::on_click(::item * pitem)
    {
 
       auto ptopic = create_topic(::id_list_clicked);
@@ -5423,19 +5423,19 @@ namespace user
    }
 
 
-   void mesh::set_current_item(const ::item & item, const ::action_context & context)
+   void mesh::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       m_rangeSelection.clear();
 
-      if (item.is_set())
+      if (::is_set(pitem))
       {
 
          item_range itemrange;
 
-         itemrange.set_lower_bound(item);
+         itemrange.set_lower_bound(pitem->item_index());
 
-         itemrange.set_upper_bound(item);
+         itemrange.set_upper_bound(pitem->item_index());
 
          _001AddSelection(itemrange);
 
@@ -5460,24 +5460,24 @@ namespace user
    }
 
 
-   item mesh::current_item()
+   item_pointer mesh::current_item()
    {
 
       if (m_rangeSelection.get_item_count() != 1)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
       if (m_rangeSelection.ItemAt(0).get_lower_bound() == m_rangeSelection.ItemAt(0).get_upper_bound() && m_rangeSelection.ItemAt(0).get_lower_bound() >= 0)
       {
 
-         return m_rangeSelection.ItemAt(0).get_lower_bound();
+         return new_item_with_index(m_rangeSelection.ItemAt(0).get_lower_bound());
 
       }
 
-      return -1;
+      return nullptr;
 
    }
 
@@ -5689,7 +5689,7 @@ namespace user
             pimage1->get_graphics()->set(m_pfont);
             pimage1->get_graphics()->_DrawText(m_strText,rectangleCache,m_ealign, m_edrawtext);
 
-            //::aura::application * get_application() = m_pmesh->get_application();
+            //::aura::application * get_app() = m_pmesh->get_app();
 
             auto psystem = m_psystem->m_paurasystem;
 

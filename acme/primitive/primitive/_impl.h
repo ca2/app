@@ -638,7 +638,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   //stream.set_fail_bit();
 
-                  throw_status(error_io);
+                  throw ::exception(error_io);
 
                }
                else if(__type_name(m_p) != strText)
@@ -648,7 +648,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   //stream.set_fail_bit();
 
-                  throw_status(error_io);
+                  throw ::exception(error_io);
 
                }
 
@@ -684,7 +684,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
                   //stream.set_fail_bit();
 
-                  throw_status(error_io);
+                  throw ::exception(error_io);
 
                }
                else
@@ -2229,10 +2229,10 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::application* object::get_application() const 
+inline ::app * object::get_app() const
 { 
    
-   return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication : (m_psystem ? m_psystem->m_papplicationMain.get() : nullptr);
+   return m_pcontext && m_pcontext->m_papp ? m_pcontext->m_papp : (m_psystem ? m_psystem->m_pappMain.get() : nullptr);
 
 }
 
@@ -2254,7 +2254,7 @@ inline __pointer(TYPE) object::__create()
    if (!pfactory)
    {
 
-      throw_status(::error_not_implemented);
+      throw ::exception(::error_not_implemented);
 
    }
 
@@ -2263,7 +2263,7 @@ inline __pointer(TYPE) object::__create()
    if (!ptypeNew)
    {
 
-      throw_status(::error_no_memory);
+      throw ::exception(::error_no_memory);
 
    }
 
@@ -2274,7 +2274,7 @@ inline __pointer(TYPE) object::__create()
    if (!p)
    {
 
-      throw_status(::error_wrong_type);
+      throw ::exception(::error_wrong_type);
 
    }
 
@@ -2296,7 +2296,7 @@ inline __pointer(TYPE) object::__id_create(const ::atom& atom)
    if (!pfactory)
    {
    
-      throw_status(error_no_factory);
+      throw ::exception(error_no_factory);
    
    }
    
@@ -2305,7 +2305,7 @@ inline __pointer(TYPE) object::__id_create(const ::atom& atom)
    if (!ptypeNew)
    {
    
-      throw_status(error_no_memory);
+      throw ::exception(error_no_memory);
    
    }
    
@@ -2316,7 +2316,7 @@ inline __pointer(TYPE) object::__id_create(const ::atom& atom)
    if (!p)
    {
    
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
    
    }
    
@@ -2370,7 +2370,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pfactory)
       {
 
-         throw_status(error_no_factory);
+         throw ::exception(error_no_factory);
 
       }
 
@@ -2379,7 +2379,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pelement)
       {
 
-         throw_status(error_no_memory);
+         throw ::exception(error_no_memory);
 
       }
 
@@ -2388,7 +2388,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
       if (!pcomposite)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 
@@ -2429,7 +2429,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pfactory)
       {
 
-         throw_status(::error_no_factory);
+         throw ::exception(::error_no_factory);
 
       }
 
@@ -2438,7 +2438,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pelement)
       {
 
-         throw_status(::error_no_memory);
+         throw ::exception(::error_no_memory);
 
       }
 
@@ -2447,7 +2447,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
       if (!pusermessage)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 
@@ -2476,7 +2476,7 @@ inline void object::__compose(__composite(BASE_TYPE)& pcomposite, const SOURCE* 
    if (!pcomposite)
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -2505,7 +2505,7 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const SO
    if (!pusermessage)
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -2543,7 +2543,7 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::a
    if (!pfactory)
    {
 
-      throw_status(::error_no_factory);
+      throw ::exception(::error_no_factory);
 
    }
 
@@ -2552,7 +2552,7 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::a
    if (!ptypeNew)
    {
 
-      throw_status(::error_no_memory);
+      throw ::exception(::error_no_memory);
 
    }
 
@@ -2561,7 +2561,7 @@ inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::a
    if (!pusermessage)
    {
 
-      throw_status(::error_wrong_type);
+      throw ::exception(::error_wrong_type);
 
    }
 
@@ -2597,7 +2597,7 @@ inline void object::__raw_compose_new(__composite(TYPE)& p)
    if (!ptypeNew)
    {
 
-      throw_status(::error_no_memory);
+      throw ::exception(::error_no_memory);
 
    }
 
@@ -2628,7 +2628,7 @@ inline void object::__compose_new(__composite(TYPE)& p)
    if (!ptypeNew)
    {
 
-      throw_status(::error_no_memory);
+      throw ::exception(::error_no_memory);
 
    }
 
@@ -2698,7 +2698,7 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct has failed to find factory_item for type \"" <<  __type_name < TYPE >() << "\"");
 
-      throw_status(::error_not_implemented);
+      throw ::exception(::error_not_implemented);
 
    }
    
@@ -2709,7 +2709,7 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name < TYPE >() + "\"");
 
-      throw_status(::error_no_memory);
+      throw ::exception(::error_no_memory);
    
    }
 
@@ -2722,7 +2722,7 @@ inline void object::__construct(__pointer(TYPE) & p)
 
       ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" << __type_name < TYPE >() << "\"");
 
-      throw_status(::error_wrong_type);
+      throw ::exception(::error_wrong_type);
    
    }
    
@@ -2740,7 +2740,7 @@ inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
    if (!pfactory)
    {
 
-      throw_status(error_no_factory);
+      throw ::exception(error_no_factory);
 
    }
 
@@ -2758,7 +2758,7 @@ inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
    if (!p)
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -2789,7 +2789,7 @@ inline void object::__construct_new(__pointer(TYPE)& p)
    if (!p)
    {
 
-      throw_status(error_no_memory);
+      throw ::exception(error_no_memory);
 
    }
 
@@ -2911,7 +2911,7 @@ inline void object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* ps
    if (!preference)
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -2979,7 +2979,7 @@ inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_C
    if (::is_null(pelement))
    {
 
-      throw_status(error_wrong_type);
+      throw ::exception(error_wrong_type);
 
    }
 
@@ -3321,7 +3321,7 @@ inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_pr
    if (!p)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -3369,7 +3369,7 @@ inline void object::defer_branch(::task_pointer& ptask, const ::routine& routine
 
    ptask->m_pelement = routine;
 
-   return ptask->branch();
+   ptask->branch();
 
 }
 
@@ -3396,7 +3396,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
    if(!proutine)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -3604,7 +3604,7 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
    psignalization->m_evReady.wait(proutine->timeout());
    //{
 
-   //   throw_status(error_timeout);
+   //   throw ::exception(error_timeout);
 
    //}
 

@@ -67,7 +67,7 @@ namespace user
    }
 
 
-   bool menu_view::on_click(const ::item & item)
+   bool menu_view::on_click(::item * pitem)
    {
 
       if (!is_window_enabled())
@@ -79,11 +79,11 @@ namespace user
 
       //auto point = item.m_pointHitTest;
 
-      auto itemHit = item;
+      auto pitemHit = pitem;
 
       ::atom idCommand;
 
-      if (itemHit.menu_view_command() >= 0)
+      if (::is_set(pitemHit) && pitemHit->menu_view_command() >= 0)
       {
 
          xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
@@ -95,12 +95,12 @@ namespace user
 
          }
 
-         xml::node * pnode = pnodeMain->get_child_at("menubar", itemHit.menu_view_group(), 1);
+         xml::node * pnode = pnodeMain->get_child_at("menubar", pitemHit->menu_view_group(), 1);
 
          if (pnode != nullptr)
          {
 
-            xml::node * pnodeItem = pnode->child_at(itemHit.menu_view_command());
+            xml::node * pnodeItem = pnode->child_at(pitemHit->menu_view_command());
 
             if (pnodeItem != nullptr)
             {
@@ -119,7 +119,7 @@ namespace user
 
       }
 
-      m_itemCurrent = itemHit;
+      m_pitemCurrent = pitemHit;
 
       set_need_redraw();
 
@@ -175,9 +175,9 @@ namespace user
 
       string strText;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_get(m_atom + ".cur_text", strText);
+      papp->data_get(m_atom + ".cur_text", strText);
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -296,7 +296,7 @@ namespace user
    }
 
 
-   void menu_view::on_hit_test(::item & item)
+   ::item_pointer menu_view::on_hit_test(const ::point_i32 &point)
    {
 
       index iPos = 0;
@@ -321,12 +321,10 @@ namespace user
 
          get_item_rect(iPos, rectangle);
 
-         if (rectangle.contains(item.m_pointHitTest))
+         if (rectangle.contains(point))
          {
 
-            item = ::item(::e_element_item, iPos, iMenu, -1);
-
-            return;
+            return __new(::item(::e_element_item, iPos, iMenu, -1));
 
          }
 
@@ -337,12 +335,10 @@ namespace user
 
             get_item_rect(iPos, rectangle);
 
-            if (rectangle.contains(item.m_pointHitTest))
+            if (rectangle.contains(point))
             {
 
-               item = ::item(::e_element_item, iPos, iMenu, iCommand);
-
-               return;
+               return __new(::item(::e_element_item, iPos, iMenu, iCommand));
 
             }
 
@@ -352,7 +348,9 @@ namespace user
 
       }
 
-      item = ::e_element_none;
+      //item = ::e_element_none;
+
+      return nullptr;
 
    }
 
@@ -464,10 +462,10 @@ namespace user
 
                ::item item(::e_element_item, iPos, i, j);
 
-               if (m_itemHover == item)
+               if (::is_set(m_pitemHover) && *m_pitemHover == item)
                {
 
-                  if (m_itemCurrent == item)
+                  if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
                   {
 
                      pgraphics->set(m_pbrushBkHoverSel);
@@ -485,7 +483,7 @@ namespace user
                   }
 
                }
-               else if (m_itemCurrent == item)
+               else if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
                {
 
                   pgraphics->set(m_pbrushBkSel);
@@ -502,7 +500,7 @@ namespace user
 
                pgraphics->set(m_pfont);
 
-               if (m_itemCurrent == item)
+               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
                {
 
                   pgraphics->set_text_color(argb(255, 0, 148, 202));
@@ -521,7 +519,7 @@ namespace user
 
                ::image_pointer pimage1;
 
-               if (m_itemCurrent == item)
+               if (::is_set(m_pitemCurrent) && *m_pitemCurrent == item)
                {
 
                   pgraphics->set(m_ppenBkSel);
@@ -681,7 +679,7 @@ namespace user
 
       int iCommand;
 
-//      auto papplication = get_application();
+//      auto papp = get_app();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 

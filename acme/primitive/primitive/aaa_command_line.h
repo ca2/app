@@ -65,7 +65,7 @@ public:
    ::user::primitive *           m_puserinteractionParent;
    index                         m_iEdge;
    manual_reset_event            m_eventReady;
-   //application_bias *            m_papplicationbias;
+   //application_bias *            m_pappbias;
    __pointer(::layered)          m_playeredCreate;
    string                        m_strCommandLine;
 

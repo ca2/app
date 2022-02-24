@@ -81,7 +81,7 @@ void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 
    open(path, str, iShare);
 
-   //throw_status(
+   //throw ::exception(
 
    //if (!estatus)
    //{
@@ -101,6 +101,10 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
    m_path = path;
 
 #ifdef WINDOWS
+
+   bool bTriedSetFileNormal = false;
+
+   try_again:
 
    wstring wstrPath(path);
 
@@ -133,7 +137,34 @@ void stdio_file::open(const ::file::path & path, const ::string & strAttributes,
 
          }
 
-         throw_status(estatus, string("Error with file: ") + path);
+#ifdef WINDOWS
+
+         if (estatus == error_file_access_denied)
+         {
+
+            if (m_psystem->m_pacmefile->exists(path))
+            {
+
+               if (!bTriedSetFileNormal)
+               {
+
+                  m_psystem->m_pacmefile->set_file_normal(path);
+
+                  m_psystem->m_pacmefile->clear_read_only(path);
+
+                  bTriedSetFileNormal = true;
+
+                  goto try_again;
+
+               }
+
+            }
+
+         }
+
+#endif
+
+         throw ::exception(estatus, string("Error with file: ") + path);
 
       }
 
@@ -235,7 +266,7 @@ memsize stdio_file::read(void * pdata, memsize nCount)
       if (iError > 0)
       {
 
-         ::file::throw_status(error_file, iError, m_strFileName);
+         throw ::file::exception(error_file, -1, ::file::dos_to_os_error(iError), m_strFileName);
 
          return 0;
 

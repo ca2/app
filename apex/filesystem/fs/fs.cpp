@@ -32,7 +32,7 @@ namespace fs
 
       //}
 //
-//      if(get_application()->is_system())
+//      if(get_app()->is_system())
 //      {
 //
 ///*       

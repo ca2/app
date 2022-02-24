@@ -80,7 +80,7 @@ namespace filehandler
 
       }
 
-      papplication->filehandler()->m_ppaneview = this;
+      papp->filehandler()->m_ppaneview = this;
 
       add_tab("New", impact_new);
 
@@ -106,7 +106,7 @@ namespace filehandler
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      //         __pointer(application) papp =  (( (get_parent_frame()))->get_application());
+      //         __pointer(application) papp =  (( (get_parent_frame()))->get_app());
 
       string strFile = pimpactdata->m_atom;
 

@@ -239,14 +239,14 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //
 //   }
 //
-//   if(pinteraction->get_application() == nullptr)
+//   if(pinteraction->get_app() == nullptr)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   itask_t idthread = pinteraction->get_application()->get_ithread();
+//   itask_t idthread = pinteraction->get_app()->get_ithread();
 //
 //   message_queue * pmq = get_message_queue(idthread, false);
 //

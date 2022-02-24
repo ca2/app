@@ -81,8 +81,8 @@ namespace user
 #endif
 
 
-      virtual void init_thread() override;
-      virtual void term_thread() override;
+      virtual void init_task() override;
+      virtual void term_task() override;
 
 
 //#ifdef WINDOWS_DESKTOP

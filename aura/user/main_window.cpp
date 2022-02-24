@@ -43,7 +43,7 @@ namespace user
 
       defer_set_icon();
 
-      add_user_item({ ::e_element_close_button, ::id_close_app });
+      add_user_item(__new(::item( ::e_element_close_button, ::id_close_app)));
 
    }
 
@@ -57,9 +57,9 @@ namespace user
 
       place(rectangleWindow);
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
-      string strCaption = papplication->get_app_user_friendly_task_bar_name();
+      string strCaption = papp->get_app_user_friendly_task_bar_name();
 
       set_window_text(strCaption);
 

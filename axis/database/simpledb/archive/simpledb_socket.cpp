@@ -11,7 +11,7 @@ namespace simpledb
 
 
    socket::socket() :
-      object(h.get_application()),
+      object(h.get_app()),
       base_socket(h),
       ::sockets::socket(h),
       stream_socket(h),
@@ -129,11 +129,11 @@ namespace simpledb
          domain.create(purl->get_server(strValue));
          if(domain.m_strRadix == "ca2open")
          {
-            strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
+            strValue = "https://" + papp->m_strFontopusServer + purl->get_object(strValue);
          }
          else if(domain.m_strName == "account.ca2.software" && purl->get_protocol(strValue) == "https")
          {
-            strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
+            strValue = "https://" + papp->m_strFontopusServer + purl->get_object(strValue);
          }
       }
       strValue.trim();

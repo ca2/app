@@ -85,7 +85,7 @@ namespace userfs
    }
 
 
-   bool list::on_click(const ::item & item)
+   bool list::on_click(::item * pitem)
    {
 
       ::user::range range;
@@ -245,7 +245,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_user_path(::file::patha & patha)
+   void list::get_selected_user_path(::file::path_array & patha)
    {
 
       patha.erase_all();
@@ -262,7 +262,7 @@ namespace userfs
    }
 
 
-   void list::get_selected_final_path(::file::patha & patha)
+   void list::get_selected_final_path(::file::path_array & patha)
    {
 
       patha.erase_all();
@@ -309,10 +309,10 @@ namespace userfs
    }
 
 
-   ::file::patha list::get_selected_user_path()
+   ::file::path_array list::get_selected_user_path()
    {
 
-      ::file::patha patha;
+      ::file::path_array patha;
 
       get_selected_user_path(patha);
 
@@ -321,10 +321,10 @@ namespace userfs
    }
 
 
-   ::file::patha list::get_selected_final_path()
+   ::file::path_array list::get_selected_final_path()
    {
 
-      ::file::patha patha;
+      ::file::path_array patha;
 
       get_selected_final_path(patha);
 

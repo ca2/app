@@ -21,7 +21,7 @@ namespace helloaura
    int main_window(::helloaura::render * prender)
    {
 
-      HINSTANCE hInstance = Sys(prender->get_application()).m_hinstance;
+      HINSTANCE hInstance = Sys(prender->get_app()).m_hinstance;
       // TODO: Place code here.
 
       // Initialize global strings

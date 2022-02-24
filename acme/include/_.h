@@ -131,7 +131,7 @@ CLASS_DECL_ACME void acme_ref();
 
 
 class system; // acme - cam
-class application; // apex - tbs
+class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
 
 
 
@@ -139,7 +139,24 @@ namespace acme
 {
 
 
+   CLASS_DECL_ACME void increment_reference_count();
+   CLASS_DECL_ACME void decrement_reference_count();
+
+
+   class reference
+   {
+   public:
+
+
+      reference() { increment_reference_count(); }
+      ~reference() { decrement_reference_count(); }
+
+
+   };
+
+
    class node;
+   class library;
 
 
    namespace posix
@@ -164,7 +181,15 @@ namespace acme
 
 
 } // namespace acme
-
+//class ____start
+//{
+//public:
+//
+//   ____start() {::acme::initialize();}
+//    ~____start() {::acme::finalize();}
+//
+//};
+//
 
 namespace apex
 {
@@ -256,6 +281,9 @@ namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace OPERATING_SYSTEM_NAMESPACE
+
+
+#define APPLICATION_CLASS app
 
 
 namespace windowing_x11
@@ -356,6 +384,7 @@ namespace desktop_environment_xfce
 #ifndef  __STRING
 #  define   __STRING(x) "x"
 #endif
+
 
 #include "acme/exception/_c.h"
 
@@ -489,6 +518,52 @@ template<class T>
 template<class T>
    class pointer_array;
 
+
+//#define __FACTORY(xxx) __CONCAT(xxx, _factory)
+//
+//#define DECLARE_FACTORY(decl, xxx) extern "C" decl void __FACTORY(xxx)(::factory::factory * pfactory)
+//
+//#define BEGIN_FACTORY(xxx) extern "C" CLASS_DECL_EXPORT void __FACTORY(xxx)(::factory::factory * pfactory) { 
+//
+//#define FACTORY_DEPENDENCY(aaa) __FACTORY(aaa)(pfactory);
+//
+//#define FACTORY_ITEM(iii) iii::_add_to_factory(pfactory);
+//
+//#define END_FACTORY() }
+//
+//
+//#define _creatable(expr) static void _add_to_factory(::factory::factory * pfactory) { pfactory->expr; }
+//#define _creatable2(expr1, expr2) static void _add_to_factory(::factory::factory * pfactory) { pfactory->expr1; pfactory->expr2; }
+//
+//
+//#define ____creatable(type) add_factory_item < type >()
+//
+//
+//#define ____creatable_from_base(type, base) add_factory_item < type, base >()
+//
+//
+//#define ____creatable_from_id(type, id) add_factory_item < type >(id)
+//
+//
+////#define ____creatable_from_library(type, base, source) ::factory::_add_factory_item_from < type, base >(source)
+//
+//
+////#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+//
+//
+//#define __creatable_from_id(type, id) _creatable(____creatable_from_id(type, id))
+//
+//
+//#define __creatable_from_base(type, base) _creatable(____creatable_from_base(type, base))
+//
+//
+//#define __creatable_and_from_base(type, base) _creatable(____creatable(type), ____creatable_from_base(type, base))
+//
+//
+////#define __creatable_from_library(type, base, source) _creatable(____creatable_from_library(type, base, source))
+//
+//
+//#define __creatable(type) _creatable(____creatable(type))
 
 
 #include <type_traits>
@@ -741,7 +816,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char *pszFileName, int iLineNumb
 
 CLASS_DECL_ACME int is_debugger_attached(void);
 
-CLASS_DECL_ACME void debug_print(const char *psz, ...);
+CLASS_DECL_ACME void debug_print(const char * pszFormat, ...);
 
 CLASS_DECL_ACME void throw_todo();
 
@@ -985,7 +1060,7 @@ enum enum_optional
 #include <intsafe.h>
 #else
 
-#include "acme/operating_system/cross/windows/_include.h"
+//#include "acme/operating_system/cross/windows/_include.h"
 
 #endif
 
@@ -2026,6 +2101,13 @@ inline bool is_null(POINTER p)
 }
 
 
+template < typename CHAR_STRING >
+inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
+
+inline bool is_empty(const ansichar * p) { return is_string_empty(p); }
+inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
+inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
+
 
 
 template < a_pointer POINTER >
@@ -2329,7 +2411,7 @@ namespace file
    class path;
 
 
-   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > patha;
+   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > path_array;
 
 
    class file;
@@ -2587,6 +2669,9 @@ namespace acme
    class file;
 
 
+   mutex * get_global_mutex();
+
+
    namespace trace
    {
 
@@ -2673,7 +2758,7 @@ namespace html
 
 // throw ::exception( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) throw ::exception(e(get_app(), __result__)); }
 #endif
 
 
@@ -2754,6 +2839,9 @@ namespace calculator
 
 template < typename POINTER_TYPE >
 class cotaskptr;
+
+template < typename POINTER_TYPE >
+class cotaskptr_array;
 
 #endif
 
@@ -3132,6 +3220,9 @@ class memory_base;
 #include "acme/memory/chunk.h"
 
 
+#include "acme/memory/_memory.h"
+
+
 #include "acme/memory/memory.h"
 
 
@@ -3149,8 +3240,8 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
-inline void throw_status(const ::e_status& estatus, const char * pszMessage = nullptr);
-inline void throw_status(const ::enum_status& estatus, const char* pszMessage = nullptr);
+//inline void throw ::exception(const ::e_status& estatus, const char * pszMessage = nullptr);
+//inline void throw ::exception(const ::enum_status& estatus, const char* pszMessage = nullptr);
 
 
 
@@ -3663,8 +3754,9 @@ class context_image;
 
 //#include "acme/primitive/geometry3d/_.h"
 
+//class message_box;
 
-class message_box;
+CLASS_DECL_ACME::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 #include "acme/memory/counter.h"
 
@@ -3688,7 +3780,7 @@ class message_box;
 
 #include "acme/primitive/primitive/traits.h"
 
-//#include "acme/static_setup.h"
+//#include "acme/system_setup.h"
 
 #include "acme/platform/string_exchange.h"
 
@@ -3696,20 +3788,19 @@ class message_box;
 CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 
 
-class callstack;
+//class callstack;
 
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
-                                                   void *caller_address = nullptr, iptr iCount = -1);
+//CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
+                                                   //void *caller_address = nullptr, iptr iCount = -1);
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
+//CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
+//CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
 
-CLASS_DECL_ACME e_callstack get_callstack_mask();
+//CLASS_DECL_ACME e_callstack get_callstack_mask();
 
-
-inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
+//inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
 
 
 #include "acme/platform/fixed_alloc.h"
@@ -3900,7 +3991,7 @@ namespace mathematics
 
 
 
-CLASS_DECL_ACME string get_status_message(::e_status estatus);
+CLASS_DECL_ACME string get_status_message(const ::e_status & estatus);
 
 
 #include "acme/platform/flags.h"
@@ -4264,7 +4355,7 @@ class wcsdup_array;
 #include "acme/platform/main.h"
 
 
-#include "acme/platform/acme_main_data.h"
+#include "acme/platform/acme_main_struct.h"
 
 
 CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation);
@@ -4351,9 +4442,19 @@ class task_tool;
 
 
 
+#include "acme/platform/app_core.h"
+
+
+
+#include "acme/platform/app.h"
+
+
 
 #include "acme/platform/system.h"
 
+
+
+#include "acme/primitive/duration/_duration.h"
 
 
 

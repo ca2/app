@@ -22,6 +22,8 @@ namespace app_message_box
 } // namespace app_message_box
 
 
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS ::app_message_box::application
 
 
 

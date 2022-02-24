@@ -1,6 +1,14 @@
 #include "framework.h"
 
 
+//BEGIN_FACTORY(gpu_opengl)
+//FACTORY_ITEM(::opengl::opengl)
+//FACTORY_ITEM(::opengl::program)
+//FACTORY_ITEM(::opengl::shader)
+//FACTORY_ITEM(::opengl::buffer)
+//END_FACTORY()
+
+
 __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 {
 
@@ -10,3 +18,6 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::opengl::buffer, ::gpu::buffer >();
 
 }
+
+
+

@@ -79,7 +79,7 @@ namespace sockets
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
 #if !defined(BSD_STYLE_SOCKETS)
-      ,m_event(h.get_application())
+      ,m_event(h.get_app())
 #endif
    {
       m_pmemfileInput = nullptr;

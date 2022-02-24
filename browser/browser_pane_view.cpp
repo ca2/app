@@ -19,7 +19,7 @@ namespace browser
       m_prollfps = nullptr;
       m_pviewdataTopic = nullptr;
 
-      papplication->m_ppaneview = this;
+      papp->m_ppaneview = this;
 
    }
 
@@ -302,7 +302,7 @@ namespace browser
       case MENU_IMPACT:
       {
 
-         m_pdocMenu = papplication->create_child_form(this,pimpactdata->m_pplaceholder);
+         m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
@@ -321,14 +321,14 @@ namespace browser
       case MAIN_IMPACT:
       {
 
-         papplication->m_ptemplateHelloBrowserView->create_subdocument(pimpactdata);
+         papp->m_ptemplateHelloBrowserView->create_subdocument(pimpactdata);
 
       }
       break;
       case MAIN_SWITCHER_IMPACT:
       {
 
-         papplication->m_ptemplateHelloBrowserSwitcher->create_subdocument(pimpactdata);
+         papp->m_ptemplateHelloBrowserSwitcher->create_subdocument(pimpactdata);
 
       }
       break;

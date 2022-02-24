@@ -469,6 +469,9 @@ namespace user
 
       create_file_icon_image("dropbox://", e_file_attribute_directory, e_icon_open, "icon://dropbox", getfileimage);
 
+      create_file_icon_image("dropbox-app://", e_file_attribute_directory, e_icon_normal, "icon://dropbox", getfileimage);
+
+      create_file_icon_image("dropbox-app://", e_file_attribute_directory, e_icon_open, "icon://dropbox", getfileimage);
 
    }
 

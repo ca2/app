@@ -62,7 +62,7 @@ namespace acme
 
       }
 
-      throw_status(error_not_found);
+      throw ::exception(error_not_found);
 
    }
 

@@ -281,9 +281,9 @@ namespace user
 
       m_straValue.erase_all();
 
-      m_itemCurrent = -1;
+      m_pitemCurrent = nullptr;
 
-      m_itemHover = -1;
+      m_pitemHover = nullptr;
 
    }
 
@@ -300,7 +300,7 @@ namespace user
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(ptopic->m_item, ptopic->m_actioncontext);
+               m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -308,7 +308,7 @@ namespace user
             else
             {
 
-               set_current_item(ptopic->m_item, ptopic->m_actioncontext);
+               set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
             }
 
@@ -429,9 +429,9 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      auto itemHover = hover_item();
+      auto pitemHover = hover_item();
 
-      auto itemCurrent = current_item();
+      auto pitemCurrent = current_item();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
@@ -450,7 +450,7 @@ namespace user
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (itemHover == iItem)
+         if (::is_set(pitemHover) && pitemHover->m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -463,7 +463,7 @@ namespace user
 
          }
 
-         if (itemCurrent == iItem)
+         if (::is_set(pitemCurrent) && pitemCurrent->m_iItem == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -840,7 +840,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_pcombo->m_itemHover = m_pcombo->m_itemCurrent;
+         m_pcombo->m_pitemHover = m_pcombo->m_pitemCurrent;
 
          set_need_redraw();
 
@@ -925,19 +925,19 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_itemHover = minimum(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, minimum(m_pcombo->m_pitemHover + 1, m_pcombo->_001GetListCount() - 1)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_itemHover = maximum(m_pcombo->m_itemHover - 1, 0);
+         m_pcombo->m_pitemHover = __new(::item(e_element_item, maximum(m_pcombo->m_pitemHover - 1, 0)));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
+         m_pcombo->set_current_item(m_pcombo->m_pitemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -1029,10 +1029,10 @@ namespace user
 
       //auto itemHover = hit_test(pmouse);
 
-      //if (itemHover != m_pcombo->m_itemHover)
+      //if (itemHover != m_pcombo->m_pitemHover)
       //{
 
-      //   m_pcombo->m_itemHover = itemHover.m_iItem;
+      //   m_pcombo->m_pitemHover = itemHover.m_iItem;
 
       //   set_need_redraw();
 
@@ -1053,7 +1053,7 @@ namespace user
    }
 
 
-   item list_box::current_item()
+   item_pointer list_box::current_item()
    {
 
       return ::user::interaction::current_item();
@@ -1061,7 +1061,7 @@ namespace user
    }
 
 
-   item list_box::hover_item()
+   item_pointer list_box::hover_item()
    {
 
       return ::user::interaction::hover_item();
@@ -1069,17 +1069,8 @@ namespace user
    }
 
 
-   void list_box::on_hit_test(::item & item)
+   ::item_pointer list_box::on_hit_test(const ::point_i32 & point)
    {
-
-      /*if (m_pcombo == nullptr)
-      {
-
-         item = ::e_element_none;
-
-         return;
-
-      }*/
 
       ::count iItemCount = _001GetListCount();
 
@@ -1103,15 +1094,12 @@ namespace user
 
          rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
-         if (rectangleItem.contains(item.m_pointHitTest))
+         if (rectangleItem.contains(point))
          {
 
-            item  = ::item(::e_element_item, iItem );
-
-            return;
+            return new_item_with_index(iItem);
 
          }
-
 
       }
 
@@ -1119,16 +1107,14 @@ namespace user
 
       rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
-      if (rectangleItem.contains(item.m_pointHitTest))
+      if (rectangleItem.contains(point))
       {
 
-         item = e_element_search_edit;
-
-         return;
+         return __new(item(e_element_search_edit));
 
       }
 
-      item = e_element_none;
+      return nullptr;
 
    }
 
@@ -1211,16 +1197,16 @@ namespace user
 
          }
 
-         m_pcombo->m_itemHover = current_item();
+         m_pcombo->m_pitemHover = current_item();
 
-         if (!m_pcombo->m_itemHover.is_set())
+         if (!::is_set(m_pcombo->m_pitemHover))
          {
 
-            m_pcombo->m_itemHover = 0;
+            m_pcombo->m_pitemHover = 0;
 
          }
 
-         _001EnsureVisible(m_pcombo->m_itemHover);
+         _001EnsureVisible(m_pcombo->m_pitemHover);
 
          if (i < 0)
          {
@@ -1279,41 +1265,19 @@ namespace user
    }
 
 
-   void list_box::set_current_item(const ::item & item, const ::action_context & context)
+   void list_box::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       if(m_pcombo)
       {
 
-         //auto estatus = 
-         
-         m_pcombo->set_current_item(item, context);
-
-         //if(!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         //return estatus;
+         m_pcombo->set_current_item(pitem, context);
 
       }
       else
       {
 
-         //auto estatus =
-         
-         ::user::scroll_base::set_current_item(item, context);
-
-         //if(!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         //return estatus;
+         ::user::scroll_base::set_current_item(pitem, context);
 
       }
 
@@ -1332,7 +1296,7 @@ namespace user
 
       }
 
-      set_current_item(iSel, context);
+      set_current_item(__new(::item(::e_element_item, iSel)), context);
 
    }
 
@@ -1349,7 +1313,7 @@ namespace user
 
       }
 
-      set_current_item(iSel, context);
+      set_current_item(__new(::item(::e_element_item, iSel)), context);
 
    }
 

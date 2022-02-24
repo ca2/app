@@ -25,14 +25,16 @@ enum enum_nano_control
 #include "device.h"
 #include "child.h"
 
+#include "button.h"
+#include "still.h"
+
 
 #include "window_interface.h"
 #include "window_implementation.h"
 #include "window.h"
 
 
-#include "button.h"
-#include "still.h"
+#include "popup_button.h"
 
 
 #include "message_box.h"

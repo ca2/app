@@ -231,7 +231,7 @@ bool condition::wait(const class ::wait & wait)
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
       return false;
 

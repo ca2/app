@@ -144,7 +144,7 @@ CLASS_DECL_ACME void __call(const ::routine & routine);
 
 
 CLASS_DECL_ACME void task_set_name(const char * psz);
-//CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName);
 
 
 CLASS_DECL_ACME string task_get_name();

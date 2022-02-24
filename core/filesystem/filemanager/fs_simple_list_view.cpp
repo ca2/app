@@ -294,19 +294,19 @@ namespace filemanager
          }
 
 
-         bool list_view::on_click(const ::item & item)
+         bool list_view::on_click(::item * pitem)
          {
 
-            if(m_itema[item.item_index()]->IsFolder())
+            if(m_itema[pitem->item_index()]->IsFolder())
             {
 
-               m_pserver->open_folder(m_itema[item.item_index()]->m_iFolder);
+               m_pserver->open_folder(m_itema[pitem->item_index()]->m_iFolder);
 
             }
             else
             {
 
-               m_pserver->open_file(m_iParentFolder, m_itema[item.item_index()]->m_strFileName, m_itema[item.item_index()]->m_strExtension);
+               m_pserver->open_file(m_iParentFolder, m_itema[pitem->item_index()]->m_strFileName, m_itema[pitem->item_index()]->m_strExtension);
 
             }
 

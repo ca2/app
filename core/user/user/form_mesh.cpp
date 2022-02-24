@@ -44,32 +44,32 @@ namespace user
    }
 
 
-   bool form_mesh::on_click(const ::item & item)
+   bool form_mesh::on_click(::item * pitem)
    {
       
-      if (!item.is_set())
+      if (!::is_set(pitem))
       {
 
          return false;
 
       }
 
-      ::user::interaction * pinteraction = _001GetControl(item.item_index(), item.subitem_index());
+      ::user::interaction * pinteraction = _001GetControl(pitem->item_index(), pitem->subitem_index());
 
       if(pinteraction != nullptr)
       {
+
          if(pinteraction->has_function(::user::e_control_function_action))
          {
+
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
                auto pextendedtopic = __new(::extended_topic(::id_click));
 
-               pextendedtopic->m_puserelement        = pinteraction;
+               pextendedtopic->m_puserelement         = pinteraction;
 
-               //topic.m_atom                = ;
-
-               m_itemControl              = item;
+               m_pitemControl                         = pitem;
 
                send_message(e_message_subject,0, pextendedtopic);
 
@@ -79,7 +79,7 @@ namespace user
          else
          {
 
-            _001PlaceControl(pinteraction, item, true);
+            _001PlaceControl(pinteraction, pitem->item_index(), true);
 
          }
 
@@ -424,8 +424,8 @@ namespace user
 
       draw_mesh_item item(this);
 
-      return m_itemControl.is_set()
-         && m_itemControl.m_iSubItem == pinteraction->m_iSubItem;
+      return ::is_set(m_pitemControl)
+         && m_pitemControl->m_iSubItem == pinteraction->m_iSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -659,7 +659,7 @@ namespace user
    bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point,m_itemControl.m_iItem, m_itemControl.m_iSubItem);
+      return _001DisplayHitTest(point, m_pitemControl->m_iItem, m_pitemControl->m_iSubItem);
 
    }
 

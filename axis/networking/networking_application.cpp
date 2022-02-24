@@ -139,7 +139,7 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
    if (::is_null(phandler))
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 

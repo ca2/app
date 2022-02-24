@@ -116,7 +116,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
       dir.m_durationLast.now();
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
       return listing;
 
@@ -229,10 +229,10 @@ bool ifs::has_subdir(const ::file::path & path)
    ////   m_mapdirFolderDir[strDir] = __new(bool_array);
 
 
-   ////::file::patha  & straThisDir         = m_mapdirFolder[strDir];
-   ////::file::patha  & straThisDirName     = m_mapdirFolderName[strDir];
-   ////::file::patha  & straThisFile        = m_mapdirFile[strDir];
-   ////::file::patha  & straThisFileName    = m_mapdirFileName[strDir];
+   ////::file::path_array  & straThisDir         = m_mapdirFolder[strDir];
+   ////::file::path_array  & straThisDirName     = m_mapdirFolderName[strDir];
+   ////::file::path_array  & straThisFile        = m_mapdirFile[strDir];
+   ////::file::path_array  & straThisFileName    = m_mapdirFileName[strDir];
    ////i64_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
    ////i64_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];

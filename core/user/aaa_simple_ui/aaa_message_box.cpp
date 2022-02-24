@@ -535,7 +535,7 @@ namespace simple_ui
 //
 //   {
 //
-//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_application(),pText,lpCaption,uFlags));
+//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_app(),pText,lpCaption,uFlags));
 //
 //      try
 //      {

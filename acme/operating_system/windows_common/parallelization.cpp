@@ -67,7 +67,7 @@ string get_task_name(htask_t htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME bool task_set_name(htask_t htask, const char* pszName)
+CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName)
 {
 
    bool bOk1 = false;
@@ -96,7 +96,12 @@ CLASS_DECL_ACME bool task_set_name(htask_t htask, const char* pszName)
 
 #endif
 
-   return bOk1;
+   if (!bOk1)
+   {
+
+      throw ::exception(error_failed);
+
+   }
 
 }
 

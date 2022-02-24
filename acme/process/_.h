@@ -98,6 +98,7 @@ CLASS_DECL_ACME void prepare_argc_argv(int & argc, char ** argv, char * cmd_line
 
 CLASS_DECL_ACME string transform_to_c_arg(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_from_string(const char* psz);
+CLASS_DECL_ACME string_array no_escape_get_c_args_from_string(const char * psz);
 CLASS_DECL_ACME string_array get_c_args_from_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_for_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);

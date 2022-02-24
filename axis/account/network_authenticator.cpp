@@ -35,14 +35,14 @@ namespace account
       if(pcredentials->m_puser->m_strSessId.is_empty())
       {
 
-         throw_status(error_pre_authentication_missing_sessid);
+         throw ::exception(error_pre_authentication_missing_sessid);
 
       }
 
       if(pcredentials->m_puser->m_strAccountServer.is_empty())
       {
 
-         throw_status(error_pre_authentication_missing_account_server);
+         throw ::exception(error_pre_authentication_missing_account_server);
 
       }
 
@@ -163,7 +163,7 @@ namespace account
 
          TRACE("Host is missing. Has pre_login been called and succeeded?");
 
-         throw_status(error_authentication_missing_host);
+         throw ::exception(error_authentication_missing_host);
 
       }
 
@@ -180,14 +180,14 @@ namespace account
       if(strSessId.is_empty())
       {
 
-         throw_status(error_pre_authentication_missing_sessid);
+         throw ::exception(error_pre_authentication_missing_sessid);
 
       }
 
       if(strRsa.is_empty())
       {
 
-         throw_status(error_pre_authentication_invalid);
+         throw ::exception(error_pre_authentication_invalid);
 
       }
 
@@ -244,7 +244,7 @@ namespace account
 
       set["post"]["entered_user"] = puser->m_strLogin;
 
-      set["app"] = get_application();
+      set["app"] = get_app();
 
       set["user"] = puser;
 
@@ -323,7 +323,7 @@ namespace account
       if(::failed(set["get_status"]))
       {
 
-         throw_status(set["get_status"].estatus());
+         throw ::exception(set["get_status"].estatus());
 
       }
 
@@ -336,7 +336,7 @@ namespace account
       if(strNode.is_empty())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

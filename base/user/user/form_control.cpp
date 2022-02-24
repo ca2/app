@@ -92,9 +92,9 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      ::u32 uNotificationCode = HIWORD(wparam);
+      ::u32 uNotificationCode = second_u16(wparam);
 
-      ::atom atom(LOWORD(wparam));
+      ::atom atom(first_u16(wparam));
 
       __pointer(::user::interaction) pinteraction = get_child_by_id(atom);
 
@@ -1005,7 +1005,7 @@ namespace user
    void form_control::_001UpdateFunctionStatic()
    {
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       for(auto pinteraction : proper_children())
       {
@@ -1015,7 +1015,7 @@ namespace user
 
             string str;
 
-            str = papplication->load_string(pinteraction->m_atom);
+            str = papp->load_string(pinteraction->m_atom);
 
             pinteraction->set_window_text(str);
 
@@ -1025,7 +1025,7 @@ namespace user
 
             string str;
 
-            str = papplication->load_string(pinteraction->m_uiText);
+            str = papp->load_string(pinteraction->m_uiText);
 
             pinteraction->set_window_text(str);
 
@@ -1659,9 +1659,9 @@ namespace user
 
          pextendedtopic->m_etimer = ptimer->m_etimer;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         papplication->route(pextendedtopic);
+         papp->route(pextendedtopic);
 
          if(pextendedtopic->m_bRet)
          {
@@ -1712,7 +1712,7 @@ namespace user
    //::type form_control::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return papplication->user_default_controltype_to_typeinfo(econtroltype);
+   //   return papp->user_default_controltype_to_typeinfo(econtroltype);
 
    //}
 

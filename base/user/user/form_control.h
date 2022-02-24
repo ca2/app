@@ -28,7 +28,7 @@ namespace user
 
 
 
-      inline ::base::application* get_application() const;
+      inline ::base::application* get_app() const;
       inline ::base::session* get_session() const;
       inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }

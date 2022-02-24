@@ -15,6 +15,9 @@ namespace windows
    public:
 
 
+      //__CreatableFromBase(nano_pen, ::nano_pen);
+
+
       nano_pen();
       ~nano_pen() override;
 

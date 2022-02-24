@@ -8,7 +8,7 @@ namespace extended
 {
 
 
-    i32 g_iSkipCallStack = SKIP_callstack;
+    i32 g_iSkipCallStack = SKIP_CALLSTACK;
 
 
 

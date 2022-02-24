@@ -22,6 +22,7 @@ public:
 
    }
 
+
    integral_duration(enum_now)
    {
 
@@ -35,7 +36,7 @@ public:
    static inline integral_duration now() { return e_now; }
 
 
-   inline integral_duration elapsed(const integral_duration & durationStop = ::now < integral_duration >()) const
+   inline integral_duration elapsed(const integral_duration & durationStop = ::e_now) const
    {
 
       return typename DURATION::BASE_TYPE(durationStop.m_i - this->m_i);
@@ -103,17 +104,17 @@ public:
 //   bool operator <=(const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
 //   bool operator !=(const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
 
-
-   string get_string() const
-   {
-
-      string str;
-
-      to_string(str, (const typename DURATION::BASE_TYPE &) *this);
-
-      return str;
-
-   }
+//
+//   string get_string() const
+//   {
+//
+//      string str;
+//
+//      to_string(str, (const typename DURATION::BASE_TYPE &) *this);
+//
+//      return str;
+//
+//   }
 
 };
 

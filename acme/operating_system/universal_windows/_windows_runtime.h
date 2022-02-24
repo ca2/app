@@ -3,7 +3,7 @@
 
 #undef ::acme::get_system()
 //#undef Platform
-////#undef papplication
+////#undef papp
 ////#undef Session
 
 

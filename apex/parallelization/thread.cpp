@@ -183,10 +183,10 @@ void thread::thread_common_construct()
 
    m_bDedicated = false;
 
-   if (get_application() != nullptr && get_application()->get_session() != nullptr)
+   if (get_app() != nullptr && get_app()->get_session() != nullptr)
    {
 
-      m_bZipIsDir2 = get_application()->get_session()->m_bZipIsDir2;
+      m_bZipIsDir2 = get_app()->get_session()->m_bZipIsDir2;
 
    }
 
@@ -257,7 +257,7 @@ void thread::on_pos_run_thread()
 }
 
 
-void thread::term_thread()
+void thread::term_task()
 {
 
    if (m_pcounter.is_set())
@@ -272,12 +272,12 @@ void thread::term_thread()
    case id_application:
    {
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      if (papplication)
+      if (papp)
       {
 
-         papplication->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(papplication));
+         papp->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(papp));
 
       }
 
@@ -333,7 +333,7 @@ void thread::term_thread()
 
 //   channel::on_finish();
 
-   term_task();
+   task::term_task();
 
    //if (this)
    //{
@@ -390,10 +390,10 @@ void thread::term_thread()
 }
 
 
-void thread::osthread_term()
+void thread::task_osterm()
 {
 
-   ::task::osthread_term();
+   ::task::task_osterm();
 
 #ifndef WINDOWS_DESKTOP
 
@@ -1006,8 +1006,8 @@ bool thread::pump_message()
 
       handle_exception(e);
 
-      //// get_application() may be it self, it is ok...
-      //if (get_application()->final_handle_exception(e))
+      //// get_app() may be it self, it is ok...
+      //if (get_app()->final_handle_exception(e))
       //{
 
       //   return true;
@@ -1124,8 +1124,8 @@ bool thread::raw_pump_message()
 
       //}
 
-      //// get_application() may be it self, it is ok...
-      //if (get_application()->final_handle_exception(e))
+      //// get_app() may be it self, it is ok...
+      //if (get_app()->final_handle_exception(e))
       //{
 
       //   return true;
@@ -1879,14 +1879,14 @@ void thread::main()
 
       //estatusOs = osthread_init();
 
-      osthread_init();
+      task_osinit();
 
       try
       {
 
          //if (::succeeded(estatusOs))
 
-         __thread_init();
+         __task_init();
          //estatusStart = __thread_init();
 
       //}
@@ -1948,9 +1948,9 @@ void thread::main()
 
          destroy_tasks();
 
-         __thread_term();
+         __task_term();
 
-         osthread_term();
+         task_osterm();
 
 
    }
@@ -2004,16 +2004,16 @@ void thread::main()
 //}
 
 
-void thread::init_thread()
+void thread::init_task()
 {
 
-   if (get_application() && get_application() != this)
+   if (get_app() && get_app()->m_papplication != this)
    {
 
       try
       {
 
-         get_application()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_application()));
+         get_app()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_app()));
 
          m_atomContextReference = id_application;
 
@@ -2193,10 +2193,10 @@ void thread::app_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      if(get_application() != nullptr && !get_application()->is_system() && !get_application()->is_session())
+      if(get_app() != nullptr && get_app()->m_papplication)
       {
 
-         get_application()->pre_translate_message(pmessage);
+         get_app()->m_papplication->pre_translate_message(pmessage);
 
          if(pmessage->m_bRet)
          {
@@ -2222,13 +2222,13 @@ void thread::session_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      if(get_application() != nullptr)
+      if(get_app() != nullptr)
       {
 
-         if(get_application()->get_session() != nullptr)
+         if(get_app()->get_session() != nullptr)
          {
 
-            get_application()->get_session()->pre_translate_message(pmessage);
+            get_app()->get_session()->pre_translate_message(pmessage);
 
             if(pmessage->m_bRet)
             {
@@ -2309,7 +2309,7 @@ void thread::process_window_procedure_exception(const ::exception & e,::message:
 void thread::process_message_filter(i32 code,::message::message * pmessage)
 {
 
-   get_application()->process_message_filter(code,pmessage);
+   get_app()->m_papplication->process_message_filter(code,pmessage);
 
 }
 
@@ -2358,7 +2358,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+__pointer(::task) thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    unset_finishing();
@@ -2433,54 +2433,56 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 
    }
 
-   ::task::branch(epriority, nStackSize, uiCreateFlags);
+   auto ptask = ::task::branch(epriority, nStackSize, uiCreateFlags);
 
-   if(m_htask == 0)
-   {
+//   if(m_htask == 0)
+//   {
+//
+//      if (::is_set(this))
+//      {
+//
+//         this->release_reference(this);
+//
+//      }
+//
+//      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//
+//      throw ::exception(error_resource);
+//
+//   }
 
-      if (::is_set(this))
-      {
+//#ifndef WINDOWS
+//
+//   if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
+//   {
+//
+//      INFORMATION("create_thread success");
+//
+//   }
+//
+//#endif
 
-         this->release_reference(this);
-
-      }
-
-      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-
-      throw_status(error_resource);
-
-   }
-
-#ifndef WINDOWS
-
-   if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
-   {
-
-      INFORMATION("create_thread success");
-
-   }
-
-#endif
-
-   if (m_peventInitialization)
-   {
-
-      m_peventInitialization->wait();
-
-      ::e_status estatus = get_result_status();
-
-      if (failed(estatus))
-      {
-
-         ::e_status estatusExit = m_estatus;
-
-         throw_status(estatusExit);
-
-      }
-
-   }
+//   if (m_peventInitialization)
+//   {
+//
+//      m_peventInitialization->wait();
+//
+//      ::e_status estatus = get_result_status();
+//
+//      if (failed(estatus))
+//      {
+//
+//         ::e_status estatusExit = m_estatus;
+//
+//         throw ::exception(estatusExit);
+//
+//      }
+//
+//   }
 
    //return ::success;
+
+   return ptask;
 
 }
 
@@ -2505,138 +2507,12 @@ void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFla
 //}
 
 
-void thread::begin_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+__pointer(::task) thread::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   unset_finishing();
+   auto ptask = task::branch_synchronously(epriority, nStackSize, uiCreateFlags PARAM_SEC_ATTRS);
 
-   ENSURE(m_htask == (htask_t) nullptr);
-
-   //if(m_atom.is_empty())
-   //{
-
-   //   m_atom = __type_name(this);
-
-   //}
-
-//#ifdef __DEBUG
-//
-//   string strId = m_atom;
-//
-//   if (strId.contains_ci("forking_thread"))
-//   {
-//
-//#if 0
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::exception_engine().reset();
-//
-//      OS_DWORD                dwDisplacement;
-//
-//      OS_DWORD                uia[4096];
-//
-//      dwDisplacement = 0;
-//
-//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
-//
-//      ULONG BackTraceHash;
-//
-//      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID*>(&uia), &BackTraceHash);
-//
-//      char sz[1024];
-//
-//      __zero(sz);
-//
-//      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
-//
-//      u32 uiLine = 0;
-//
-//      {
-//         critical_section_lock csl(&::exception_engine().m_criticalsection);
-//
-//         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
-//
-//      }
-//
-//      strId =  string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
-//
-//#endif
-//
-//#endif
-//
-//   }
-//
-//   m_pszDebug = strdup(strId);
-//
-//#endif
-//
-   auto pobject = this;
-
-   if (::is_set(pobject) && pobject != this)
-   {
-
-      pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
-
-   }
-
-   //if (bSynchInitialization)
-   {
-
-      m_peventInitialization = __new(manual_reset_event());
-
-   }
-
-   //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
-
-   branch(epriority, nStackSize, uiCreateFlags);
-
-   if (m_htask == 0)
-   {
-
-      if (::is_set(this))
-      {
-
-         this->release_reference(this);
-
-      }
-
-      decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-
-      throw_status(error_resource);
-
-   }
-
-#ifndef WINDOWS
-
-   if (pthread_equal((pthread_t)m_htask, (pthread_t)m_itask))
-   {
-
-      INFORMATION("create_thread success");
-
-   }
-
-#endif
-
-   if (m_peventInitialization)
-   {
-
-      m_peventInitialization->wait();
-
-      ::e_status estatus = get_result_status();
-
-      if (failed(estatus))
-      {
-
-         ::e_status estatusExit = m_estatus;
-
-         throw_status(estatusExit);
-
-      }
-
-   }
-
-   //return ::success;
+   return ptask;
 
 }
 
@@ -2666,7 +2542,7 @@ void thread::inline_init()
    set_current_handles();
 
    //::e_status estatus = 
-   __thread_init();
+   __task_init();
 
    //if (!estatus)
    //{
@@ -2690,7 +2566,7 @@ void thread::inline_term()
 
       //estatus = __thread_term();
 
-   __thread_term();
+   __task_term();
 
    //}
    //catch (...)
@@ -2847,7 +2723,7 @@ void thread::__os_finalize()
 //}
 
 
-void thread::osthread_init()
+void thread::task_osinit()
 {
 
    set_current_handles();
@@ -3233,7 +3109,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
          auto estatus = ::get_last_status();
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -3263,14 +3139,14 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::element * peleme
    if (!atom.is_message())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
    if(m_bThreadClosed)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3285,7 +3161,7 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::element * peleme
    {
 
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3309,7 +3185,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
    if(m_bThreadClosed)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3401,19 +3277,20 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 //}
 
 
-void thread::__thread_init()
+void thread::__task_init()
 {
 
-   //m_estatus =
-   
-   on_thread_init();
-
-   if (m_peventInitialization)
-   {
-
-      m_peventInitialization->set_event();
-
-   }
+   task::__task_init();
+//   //m_estatus =
+//
+//   on_thread_init();
+//
+//   if (m_peventInitialization)
+//   {
+//
+//      m_peventInitialization->set_event();
+//
+//   }
    
    //m_result = m_estatus;
 
@@ -3422,16 +3299,18 @@ void thread::__thread_init()
 }
 
 
-void thread::on_thread_init()
+void thread::on_task_init()
 {
 
    init_task();
 
    install_message_routing(this);
 
-   init_thread();
+   //init_task();
       
    on_pre_run_task();
+
+   m_estatus = ::success;
 
 }
 
@@ -3999,7 +3878,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          auto estatus = last_error_to_status(lastError);
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
       else if (iRet == 0)
@@ -4102,15 +3981,15 @@ void thread::add_task(::object* pobjectTask)
 }
 
 
-void thread::__thread_term()
+void thread::__task_term()
 {
 
-   return on_thread_term();
+   return on_task_term();
 
 }
 
 
-void thread::on_thread_term()
+void thread::on_task_term()
 {
 
    {
@@ -4143,7 +4022,7 @@ void thread::on_thread_term()
    try
    {
 
-      term_thread();
+      term_task();
 
    }
    catch (...)
@@ -4371,10 +4250,10 @@ bool thread::process_message()
 
       __pointer(::message::message) pmessage;
 
-      if (get_application())
+      if (get_app())
       {
 
-         pmessage = get_application()->get_message(&message);
+         pmessage = get_app()->m_papplication->get_message(&message);
 
       }
       else if(get_session())

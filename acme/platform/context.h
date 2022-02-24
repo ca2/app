@@ -11,15 +11,16 @@ namespace acme
    public:
 
 
-      ::apex::context *                               m_papexcontext;
-      ::aura::context *                               m_pauracontext;
-      ::application *                           m_papexapplication;
+      ::app *                                         m_papp;
+      ::application *                                 m_papplication;
       ::aqua::application *                           m_paquaapplication;
       ::aura::application *                           m_pauraapplication;
       ::axis::application *                           m_paxisapplication;
       ::base::application *                           m_pbaseapplication;
       ::bred::application *                           m_pbredapplication;
       ::core::application *                           m_pcoreapplication;
+      ::apex::context *                               m_papexcontext;
+      ::aura::context *                               m_pauracontext;
       ::apex::session *                               m_papexsession;
       ::aqua::session *                               m_paquasession;
       ::aura::session *                               m_paurasession;

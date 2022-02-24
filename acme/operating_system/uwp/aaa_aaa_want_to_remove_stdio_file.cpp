@@ -145,7 +145,7 @@ namespace universal_windows
       ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
-         ::file::throw_status(error_file, _doserrno, m_path);
+         throw ::file::exception(error_file, _doserrno, m_path);
    }
 
    void stdio_file::write_string(const char * lpsz)
@@ -154,7 +154,7 @@ namespace universal_windows
       ASSERT(m_pStream != nullptr);
 
       if (fputs(lpsz, m_pStream) == _TEOF)
-         ::file::throw_status(error_disk_full, _doserrno, m_path);
+         throw ::file::exception(error_disk_full, _doserrno, m_path);
    }
 
    char * stdio_file::read_string(char * lpsz, ::u32 nMax)
@@ -167,7 +167,7 @@ namespace universal_windows
       if (lpszResult == nullptr && !feof(m_pStream))
       {
          clearerr(m_pStream);
-         ::file::throw_errno(_doserrno, m_path);
+         ::throw ::file::exception(_doserrno, m_path);
       }
       return lpszResult;
    }
@@ -191,7 +191,7 @@ namespace universal_windows
          if (lpszResult == nullptr && !feof(m_pStream))
          {
             clearerr(m_pStream);
-            ::file::throw_status(error_file, _doserrno, m_path);
+            throw ::file::exception(error_file, _doserrno, m_path);
          }
 
          // if string is read completely or EOF
@@ -224,7 +224,7 @@ namespace universal_windows
       if (fseek(m_pStream, (long)lOff, nFrom) != 0)
       {
 
-         ::file::throw_status(error_bad_seek, _doserrno, m_path);
+         throw ::file::exception(error_bad_seek, _doserrno, m_path);
 
       }
 
@@ -242,7 +242,7 @@ namespace universal_windows
 
       long pos = ftell(m_pStream);
       if (pos == -1)
-         ::file::throw_status(error_invalid_file, _doserrno,  m_path);
+         throw ::file::exception(error_invalid_file, _doserrno,  m_path);
       return pos;
    }
 
@@ -251,7 +251,7 @@ namespace universal_windows
       ASSERT_VALID(this);
 
       if (m_pStream != nullptr && fflush(m_pStream) != 0)
-         ::file::throw_status(error_disk_full, _doserrno,  m_path);
+         throw ::file::exception(error_disk_full, _doserrno,  m_path);
    }
 
    void stdio_file::close()
@@ -269,7 +269,7 @@ namespace universal_windows
       m_pStream = nullptr;
 
       if (nErr != 0)
-         ::file::throw_status(error_disk_full, _doserrno,  m_path);
+         throw ::file::exception(error_disk_full, _doserrno,  m_path);
    }
 
    void stdio_file::Abort()
@@ -336,18 +336,18 @@ namespace universal_windows
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)
-         ::file::throw_status(error_invalid_file, _doserrno, m_path);
+         throw ::file::exception(error_invalid_file, _doserrno, m_path);
 
       nResult = fseek(m_pStream, 0, SEEK_END);
       if (nResult != 0)
-         ::file::throw_status(error_bad_seek, _doserrno,  m_path);
+         throw ::file::exception(error_bad_seek, _doserrno,  m_path);
 
       nLength = ftell(m_pStream);
       if (nLength == -1)
-         ::file::throw_status(error_invalid_file, _doserrno,  m_path);
+         throw ::file::exception(error_invalid_file, _doserrno,  m_path);
       nResult = fseek(m_pStream, nCurrent, SEEK_SET);
       if (nResult != 0)
-         ::file::throw_status(error_bad_seek, _doserrno,   m_path);
+         throw ::file::exception(error_bad_seek, _doserrno,   m_path);
 
       return nLength;
    }

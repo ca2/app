@@ -45,7 +45,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_get_filea(::file::patha & patha, e_op & eop)
+   bool copydesk::_get_filea(::file::path_array & patha, e_op & eop)
    {
 
       defer_main_thread([&patha, this]()
@@ -92,7 +92,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
+   bool copydesk::_set_filea(const ::file::path_array & patha, e_op eop)
    {
 
       throw ::exception(todo);

@@ -142,6 +142,132 @@ string_array get_c_args_from_string(const char * psz)
 }
 
 
+string_array no_escape_get_c_args_from_string(const char * psz)
+{
+
+   string_array stra;
+
+   if (psz == nullptr)
+   {
+
+      return stra;
+
+   }
+
+   string_array straBeforeColon;
+
+   string_array straAfterColon;
+
+   const char * pszEnd = psz + strlen(psz);
+
+   string str;
+
+   int i = 0;
+
+   bool bColon = false;
+
+   while (psz < pszEnd)
+   {
+
+      ::str::consume_spaces(psz, 0, pszEnd);
+
+      if (psz >= pszEnd)
+      {
+
+         break;
+
+      }
+      if (*psz == '\"')
+      {
+
+         str = ::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+      }
+      else if (*psz == '\'')
+      {
+
+         str = ::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+      }
+      else
+      {
+
+         const char * pszValueStart = psz;
+
+         while (!::str::ch::is_whitespace(psz))
+         {
+
+            psz = str::utf8_inc(psz);
+
+            if (psz >= pszEnd)
+            {
+
+               break;
+
+            }
+
+            if (*psz == '\"')
+            {
+
+               //::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+               throw ::exception(error_parsing, "Quote character not expected here");
+
+            }
+            else if (*psz == '\'')
+            {
+
+               //::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+               throw ::exception(error_parsing, "Quote character not expected here");
+
+            }
+
+         }
+
+         str = string(pszValueStart, psz - pszValueStart);
+
+      }
+
+      if (str == ":")
+      {
+
+         bColon = true;
+
+      }
+      else if (!bColon && (i == 0 || str[0] != '-'))
+      {
+
+         straBeforeColon.add(str);
+
+      }
+      else
+      {
+
+         straAfterColon.add(str);
+
+      }
+
+      i++;
+
+   }
+
+   stra = straBeforeColon;
+
+   if (straAfterColon.has_elements())
+   {
+
+      stra.add(":");
+
+      stra += straAfterColon;
+
+   }
+
+   return stra;
+
+}
+
+
 
 
 

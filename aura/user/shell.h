@@ -167,7 +167,7 @@ namespace user
       virtual ::file::path & processed_path(_get_file_image_ & getfileimage);
       virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
-      inline ::aura::application * get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
+      inline ::aura::application * get_app() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
       inline ::aura::session * get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
       inline ::aura::system * get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
 

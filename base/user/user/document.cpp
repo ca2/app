@@ -302,7 +302,7 @@ namespace user
    //   }
 
    //   // last but not least, pump through cast
-   //   ::aura::application* papp = get_application();
+   //   ::aura::application* papp = get_app();
 
    //   if (papp != nullptr)
    //   {
@@ -360,7 +360,7 @@ namespace user
       if (!has_toolbar())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -385,7 +385,7 @@ namespace user
 
       call_routines_with_id(CREATE_ROUTINE);
 
-      //::database::client::initialize_data_client(papplication->dataserver());
+      //::database::client::initialize_data_client(papp->dataserver());
 
    }
 
@@ -419,9 +419,9 @@ namespace user
    void document::update_title()
    {
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      string str = papplication->m_strAppName;
+      string str = papp->m_strAppName;
 
       str += " : ";
 
@@ -1380,9 +1380,9 @@ namespace user
          if (strName.is_empty())
          {
 
-            auto papplication = get_application();
+            auto papp = get_app();
 
-            strName = papplication->load_string("Untitled");
+            strName = papp->load_string("Untitled");
 
          }
 
@@ -1528,7 +1528,7 @@ namespace user
             }
          }
 
-         //if (!papplication->do_prompt_file_name(newName, __string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papp->do_prompt_file_name(newName, __string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }
@@ -1752,14 +1752,14 @@ namespace user
       if (pview->m_pdocument)
       {
 
-         throw_status(::error_bad_argument);// must not be already attached
+         throw ::exception(::error_bad_argument);// must not be already attached
 
       }
 
       if (!m_viewa.add_unique(pview))
       {
 
-         throw_status(::error_already_added);// must not be already added
+         throw ::exception(::error_already_added);// must not be already added
 
       }
 
@@ -1782,14 +1782,14 @@ namespace user
       if(pview->get_document() != this)
       {
 
-         throw_status(::error_bad_argument); // must be attached to us
+         throw ::exception(::error_bad_argument); // must be attached to us
 
       }
 
       if (m_viewa.erase(pview) < 0)
       {
 
-         throw_status(::error_not_found);
+         throw ::exception(::error_not_found);
 
       }
 
@@ -1828,7 +1828,7 @@ namespace user
    //   string strUrl(payloadFile);
    //   if(::str::begins_eat(strUrl,"ext://"))
    //   {
-   //      papplication->open_link(strUrl,"", pszTargetFrameName);
+   //      papp->open_link(strUrl,"", pszTargetFrameName);
 
    //      /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
    //      launcher.execute();*/

@@ -982,7 +982,7 @@ namespace write_text
       if (::is_null(pgraphics))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 

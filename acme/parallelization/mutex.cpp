@@ -505,7 +505,7 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
 }
 
 mutexmutex(const mutex & m):
-   matter(m.get_application()),
+   matter(m.get_app()),
    synchronization_object(m.m_pszName)
 {
 
@@ -534,7 +534,7 @@ mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 }
 
 //mutexmutex(const mutex & m) :
-//   matter(m.get_application()),
+//   matter(m.get_app()),
 //   synchronization_object(m.m_pszName)
 //{
 //
@@ -561,7 +561,7 @@ mutexmutex(e_create_new enew, const char * pstrName, key_t key, i32 semid, bool 
 
 
 //mutexmutex(const mutex & m):
-//   matter(m.get_application()),
+//   matter(m.get_app()),
 //   synchronization_object(m.m_pszName)
 //{
 //
@@ -894,7 +894,7 @@ bool mutex::_wait(const class ::wait & wait)
       if(rc != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -985,7 +985,7 @@ bool mutex::_wait(const class ::wait & wait)
             if(iError != 0)
             {
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -999,7 +999,7 @@ bool mutex::_wait(const class ::wait & wait)
 
             ASSERT(iError == 0);
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1019,7 +1019,7 @@ bool mutex::_wait(const class ::wait & wait)
       if(iError != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1120,7 +1120,7 @@ void mutex::lock()
       if (rc < 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1186,7 +1186,7 @@ void mutex::lock()
 
                   ASSERT(iError == 0);
 
-                  throw_status(error_failed);
+                  throw ::exception(error_failed);
 
                }
 
@@ -1201,7 +1201,7 @@ void mutex::lock()
 
             ASSERT(false);
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1212,7 +1212,7 @@ void mutex::lock()
          if (rc < 0)
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1260,7 +1260,7 @@ void mutex::lock()
       if(rc != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1276,7 +1276,7 @@ void mutex::lock()
 
             ASSERT(iError == 0);
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1296,7 +1296,7 @@ void mutex::lock()
       if(iError != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
          
       }
 
@@ -1364,7 +1364,7 @@ void mutex::unlock()
 
       auto estatus = failed_errno_to_status(last_error);
 
-      //throw_status(estatus);
+      //throw ::exception(estatus);
 
    }
 
@@ -1390,7 +1390,7 @@ void mutex::unlock()
       if (rc < 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1403,7 +1403,7 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1436,7 +1436,7 @@ void mutex::unlock()
       if(rc != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1470,7 +1470,7 @@ void mutex::unlock()
       if(rc < 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1483,7 +1483,7 @@ void mutex::unlock()
 
          ASSERT(iError == 0);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1503,7 +1503,7 @@ void mutex::unlock()
 
             int iError = pthread_mutex_unlock(&m_mutex);
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -1518,7 +1518,7 @@ void mutex::unlock()
       if(iError != 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
          
       }
 

@@ -23,7 +23,7 @@ namespace core
 
 
    template < typename CORE_OBJECT >
-   inline ::core::application* core < CORE_OBJECT >::get_application() const 
+   inline ::core::application* core < CORE_OBJECT >::get_app() const
    {
       
       return this->m_pcontext ? this->m_pcontext->m_pcoreapplication : nullptr;

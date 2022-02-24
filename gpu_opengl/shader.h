@@ -9,10 +9,13 @@ namespace opengl
       virtual public ::gpu::shader
    {
    public:
+
+
+      //__creatable_from_base(shader, ::gpu::shader);
       
       
       shader();
-      virtual ~shader();
+      ~shader() override;
 
       
       virtual void create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr) override;

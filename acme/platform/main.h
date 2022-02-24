@@ -3,7 +3,7 @@
 #pragma once
 
 
-struct CLASS_DECL_ACME PLAIN_MAIN
+struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
 {
 
 
@@ -47,8 +47,15 @@ struct CLASS_DECL_ACME PLAIN_MAIN
    ::boolean                     m_bShowApplicationInformation;
    //::boolean                     m_bPreferNoFrameWindow;
 
-
 };
+
+
+//#ifdef LINUX
+//
+//extern char _binary__matter_zip_start[] __attribute__((weak_import));
+//extern char _binary__matter_zip_end[] __attribute__((weak_import));
+//
+//#endif
 
 
 class CLASS_DECL_ACME main :
@@ -60,6 +67,18 @@ public:
    
    string                        m_strCommandLine;
    string                        m_strAppId;
+
+
+   main();
+   ~main();
+
+
+//   main(int argc, char * argv[], char * envp[])
+//   {
+//
+//
+//   }
+
 
 
    virtual void system_construct(const main& main);
@@ -93,3 +112,46 @@ namespace acme
 
 
 
+class embed_resource
+{
+public:
+
+   inline embed_resource(main & main, char * start, char * end)
+   {
+
+      main.m_pchar_binary__matter_zip_start = start;
+      main.m_pchar_binary__matter_zip_end = end;
+
+   }
+
+};
+
+
+class CLASS_DECL_ACME app_flag
+{
+public:
+
+
+   app_flag(::main & main, const char * pszFlag);
+
+
+};
+
+
+#ifdef LINUX
+
+
+#define __embed_resource(app) \
+extern char _binary__matter_zip_start[]; \
+extern char _binary__matter_zip_end[];   \
+embed_resource g_embed_resource(app, _binary__matter_zip_start, _binary__matter_zip_end);
+
+#else
+
+#define __embed_resource(app)
+
+#endif
+
+
+#define __app_flag(app, flag) \
+app_flag g_appflag ## __LINE__(app, flag);

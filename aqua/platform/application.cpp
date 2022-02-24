@@ -5,8 +5,14 @@ namespace aqua
 {
 
 
+   void initialize_system();
+
+
    application::application()
    {
+
+
+      initialize_system();
 
       m_paquaapplication = this;
       ///set_layer(LAYERED_AQUA, this);

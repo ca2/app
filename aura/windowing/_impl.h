@@ -5,10 +5,10 @@ namespace windowing
 {
 
 
-   inline ::aura::application* cursor_manager::get_application() const
+   inline ::aura::application* cursor_manager::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -29,10 +29,10 @@ namespace windowing
    }
 
 
-   inline ::aura::application* windowing::get_application() const
+   inline ::aura::application* windowing::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
 
    }
 
@@ -53,10 +53,10 @@ namespace windowing
    }
 
 
-   inline ::aura::application* window::get_application() const
+   inline ::aura::application* window::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
 
    }
 

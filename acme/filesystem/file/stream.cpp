@@ -17,7 +17,7 @@
 void stream::add_exception(const ::exception & exception)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -25,7 +25,7 @@ void stream::add_exception(const ::exception & exception)
 void stream::on_catch_all_exception()
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -105,7 +105,7 @@ bool stream::set_internal_data_size(memsize c)
    if (c != 0)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
       return false;
 
@@ -265,7 +265,7 @@ void stream::getline(char * sz, strsize n)
    if (n > 0)
    {
 
-      throw_status(error_io);
+      throw ::exception(error_io);
 
    }
   // m_pfile->getline(sz, n);
@@ -560,7 +560,7 @@ void stream::write(const ::matter & matter)
 void stream::write(const ::property_set & set)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -694,7 +694,7 @@ void stream::write(const memory_base & m)
 void stream::read(bool & b)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -702,7 +702,7 @@ void stream::read(bool & b)
 void stream::read(char & ch)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -710,7 +710,7 @@ void stream::read(char & ch)
 void stream::read(uchar & uch)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -719,7 +719,7 @@ void stream::read(uchar & uch)
 void stream::read(unichar & wch)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -729,7 +729,7 @@ void stream::read(unichar & wch)
 void stream::read(i8 & i)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -737,7 +737,7 @@ void stream::read(i8 & i)
 void stream::read(i16 & i)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -745,7 +745,7 @@ void stream::read(i16 & i)
 void stream::read(u16 & u)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -753,7 +753,7 @@ void stream::read(u16 & u)
 void stream::read(i32 & i)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -761,7 +761,7 @@ void stream::read(i32 & i)
 void stream::read(u32 & u)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -769,7 +769,7 @@ void stream::read(u32 & u)
 void stream::read(i64 & i)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -777,7 +777,7 @@ void stream::read(i64 & i)
 void stream::read(u64 & u)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -788,7 +788,7 @@ void stream::read(u64 & u)
 void stream::read(long& l)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -796,7 +796,7 @@ void stream::read(long& l)
 void stream::read(unsigned long & u)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -807,7 +807,7 @@ void stream::read(unsigned long & u)
 void stream::read(float & f)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -815,7 +815,7 @@ void stream::read(float & f)
 void stream::read(double & d)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -823,7 +823,7 @@ void stream::read(double & d)
 //void stream::read(POINT_I32 & point)
 //{
 //
-//   throw_status(error_io);
+//   throw ::exception(error_io);
 //
 //}
 //
@@ -831,7 +831,7 @@ void stream::read(double & d)
 //void stream::read(SIZE_I32 & size)
 //{
 //
-//   throw_status(error_io);
+//   throw ::exception(error_io);
 //
 //}
 //
@@ -839,7 +839,7 @@ void stream::read(double & d)
 //void stream::read(RECTANGLE_I32 & rectangle)
 //{
 //
-//   throw_status(error_io);
+//   throw ::exception(error_io);
 //
 //}
 
@@ -847,7 +847,7 @@ void stream::read(double & d)
 void stream::read(atom & atom)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -855,7 +855,7 @@ void stream::read(atom & atom)
 void stream::read(::payload & payload)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -863,7 +863,7 @@ void stream::read(::payload & payload)
 void stream::read_var_type(enum_type & etype)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -871,7 +871,7 @@ void stream::read_var_type(enum_type & etype)
 void stream::read_var_body(::payload & payload, enum_type etype)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -879,7 +879,7 @@ void stream::read_var_body(::payload & payload, enum_type etype)
 void stream::read(property & property)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -887,7 +887,7 @@ void stream::read(property & property)
 void stream::read(string & str)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -895,7 +895,7 @@ void stream::read(string & str)
 void stream::read(::matter& matter)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 
 }
@@ -904,7 +904,7 @@ void stream::read(::matter& matter)
 void stream::read(::property_set& set)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 
@@ -913,7 +913,7 @@ void stream::read(::property_set& set)
 void stream::read(block & block)
 {
 
-   throw_status(error_io);
+   throw ::exception(error_io);
 
 }
 

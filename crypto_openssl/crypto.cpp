@@ -92,7 +92,7 @@ namespace crypto_openssl
 
       #endif
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -113,7 +113,7 @@ namespace crypto_openssl
 
 #endif
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -499,7 +499,7 @@ namespace crypto_openssl
       if (iShaLen <= 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -518,7 +518,7 @@ namespace crypto_openssl
 
          EVP_CIPHER_CTX_free(pctx);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -531,7 +531,7 @@ namespace crypto_openssl
 
          EVP_CIPHER_CTX_free(pctx);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -1082,7 +1082,7 @@ namespace crypto_openssl
 //               ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 //
 //
-//         return __new(::crypto::rsa(get_application(), provider->CreateKeyPair(1024)));
+//         return __new(::crypto::rsa(get_app(), provider->CreateKeyPair(1024)));
 //
 //      }
 //

@@ -174,7 +174,7 @@ namespace dynamic_source
 //#define Sess(pcontextsession) (pcontextsession->cast < SESSION_TYPE >())
 //
 //#undef App
-//#define App(pobject) (*(::get_application(pobject))->cast < APP_TYPE >())
+//#define App(pobject) (*(::get_app(pobject))->cast < APP_TYPE >())
 
 
 

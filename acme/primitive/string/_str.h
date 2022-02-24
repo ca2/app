@@ -5,20 +5,20 @@ namespace str
 {
 
 
-   enum e_pad
+   enum enum_pad
    {
 
-      pad_left,
-      pad_right
+      e_pad_left,
+      e_pad_right
 
    };
 
 
-   enum e_err
+   enum enum_error
    {
 
-      err_none,
-      err_invalid_utf8_character
+      e_error_none,
+      e_error_invalid_utf8_character
 
    };
 
@@ -33,7 +33,7 @@ namespace str
    template < typename CHAR_TYPE >
    inline string_base < CHAR_TYPE > repeat(const CHAR_TYPE * psz, strsize c);
 
-   CLASS_DECL_ACME extern e_err g_eerr;
+   CLASS_DECL_ACME extern enum_error g_eerror;
 
 
 
@@ -108,9 +108,9 @@ namespace str
 
    inline const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   inline e_err           err() { return g_eerr; }
-   inline void            set_err(e_err eerr) { g_eerr = eerr; }
-   inline void            clear_err() { g_eerr = err_none; }
+   inline enum_error      get_error() { return g_eerror; }
+   inline void            set_error(enum_error eerror) { g_eerror = eerror; }
+   inline void            clear_error() { g_eerror = e_error_none; }
 
    CLASS_DECL_ACME  const ansichar *    utf8_inc(const ansichar * psz);
    CLASS_DECL_ACME  const ansichar *    utf8_inc_slide(strsize * pslide, const ansichar * psz);
@@ -249,7 +249,8 @@ namespace str
    CLASS_DECL_ACME string consume_non_spaces(string & str);
    CLASS_DECL_ACME string consume_nc_name(const ansichar * & pszParse);
    //CLASS_DECL_ACME string consume_quoted_value(const ansichar * & pszParse);
-   CLASS_DECL_ACME void consume_quoted_value_ex2(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
+   CLASS_DECL_ACME void no_escape_consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
+   CLASS_DECL_ACME string no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd);
    CLASS_DECL_ACME void skip_quoted_value_ex2(const ansichar * & pszParse, const ansichar * pszEnd);
    CLASS_DECL_ACME string consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
    CLASS_DECL_ACME string consume_quoted_value_ex(const ansichar * & pszParse,const ansichar * pszEnd);
@@ -273,7 +274,7 @@ namespace str
 
    CLASS_DECL_ACME string line(string& str, bool bWithNewLine = false);
 
-   CLASS_DECL_ACME string pad(const ansichar * psz, ::count iLen, const ansichar * pszPattern, e_pad epad);
+   CLASS_DECL_ACME string pad(const ansichar * psz, ::count iLen, const ansichar * pszPattern, enum_pad epad);
 
 
    inline i64 length(const ansichar * pansichar) { return (i64) ansi_length(pansichar); }

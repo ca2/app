@@ -757,7 +757,7 @@ namespace html
 
       //}
 
-      payloadFile["http_set"]["app"] = get_application();
+      payloadFile["http_set"]["app"] = get_app();
 
       //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
       payloadFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";

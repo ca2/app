@@ -14,11 +14,11 @@ namespace sockets
 
 
    sip_base_client_socket::sip_base_client_socket() :
-      object(h.get_application()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
-      m_request(h.get_application()),
-      m_response(h.get_application()),
+      m_request(h.get_app()),
+      m_response(h.get_app()),
       m_bFirst(true)
       ,m_bHeader(true)
       ,m_bRequest(false)
@@ -39,11 +39,11 @@ namespace sockets
 
 
    sip_base_client_socket::sip_base_client_socket(const sip_base_client_socket& s) :
-      object(s.get_application()),
+      object(s.get_app()),
       base_socket(s),
       socket(s),
-      m_request(s.get_application()),
-      m_response(s.get_application())
+      m_request(s.get_app()),
+      m_response(s.get_app())
    {
    }
 

@@ -187,11 +187,11 @@ namespace file
 //
 //      // find extend equalitys..
 //
-//      ::file::patha patha1;
+//      ::file::path_array patha1;
 //
 //      split(patha1);
 //
-//      ::file::patha patha2;
+//      ::file::path_array patha2;
 //
 //      path.split(patha2);
 //
@@ -230,7 +230,7 @@ namespace file
    }
 
 
-   patha & path::ascendants_path(patha & straParam, patha * ppathaRelative) const
+   path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
    {
 
       string_array stra;
@@ -439,10 +439,10 @@ namespace file
    }
 
 
-   patha path::operator / (const string_array & stra) const
+   path_array path::operator / (const string_array & stra) const
    {
 
-      patha patha;
+      path_array patha;
 
       for (auto str : stra)
       {

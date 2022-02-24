@@ -34,7 +34,7 @@ namespace crypto_openssl
       if (!::is_set(m_pmd))
       {
        
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 

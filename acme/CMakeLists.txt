@@ -158,8 +158,9 @@ list(APPEND library_source
    networking/url_domain.h
    operating_system/ansi/_pthread.h
    operating_system/ansi/base.cpp
+   operating_system/ansi/callstack.cpp
+   operating_system/ansi/callstack.h
    operating_system/ansi/datetime.cpp
-   operating_system/ansi/exception_engine.cpp
    operating_system/ansi/file.cpp
    operating_system/ansi/file_raw.cpp
    operating_system/ansi/file_std.cpp
@@ -167,7 +168,7 @@ list(APPEND library_source
    operating_system/ansi/memory.cpp
    operating_system/ansi/process.cpp
    operating_system/ansi/user.cpp
-   operating_system/ansi/win.cpp
+   #operating_system/ansi/win.cpp
    operating_system/_const_console.h
    operating_system/_.cpp
    operating_system/argcargv.cpp
@@ -206,8 +207,18 @@ list(APPEND library_source
    parallelization/thread_os.cpp
    parallelization/waitable.cpp
    platform/_.cpp
-   platform/acme_main_data.cpp
-   platform/acme_main_data.h
+   platform/acme.cpp
+   platform/acme.h
+   platform/acme_main_struct.cpp
+   platform/acme_main_struct.h
+   platform/apex_main_data.cpp
+   platform/apex_main_data.h
+   platform/apex_main_struct.cpp
+   platform/apex_main_struct.h
+   platform/app.cpp
+   platform/app.h
+   platform/app_core.cpp
+   platform/app_core.h
    platform/assert.cpp
    platform/aura_str_pool.cpp
    platform/build_debug.cpp
@@ -252,11 +263,9 @@ list(APPEND library_source
    platform/serial.cpp
    #platform/simple_trace.cpp
    #platform/sprintf.cpp
-   platform/static_setup.cpp
-   platform/static_setup.h
-   platform/static_start.cpp
-   platform/static_start_aura.cpp
    platform/system.cpp
+   platform/system_setup.cpp
+   platform/system_setup.h
    platform/text.cpp
    platform/timer.cpp
    platform/timer_array.cpp
@@ -516,6 +525,8 @@ list(APPEND library_source
    user/nano/object.h
    user/nano/pen.cpp
    user/nano/pen.h
+   user/nano/popup_button.cpp
+   user/nano/popup_button.h
    user/nano/still.cpp
    user/nano/still.h
    user/nano/window.cpp
@@ -614,6 +625,7 @@ list(APPEND library_source
    #exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
+   exception/exception.cpp
    exception/exception.h
    exception/exception2.h
    exception/exit.cpp
@@ -642,6 +654,7 @@ list(APPEND library_source
    #exception/result.h
    #exception/runtime.h
    #exception/simple.h
+   exception/standard.cpp
    exception/standard.h
    #exception/system.h
    #exception/temporary.h
@@ -800,7 +813,7 @@ list(APPEND library_source
    operating_system/ansi/binreloc.h
    operating_system/ansi/callstack.h
    operating_system/ansi/datetime_c.h
-   operating_system/ansi/exception_engine.h
+   #operating_system/ansi/exception_engine.h
    operating_system/ansi/file.h
    operating_system/ansi/file_c.h
    operating_system/ansi/file_raw.h
@@ -1011,8 +1024,8 @@ list(APPEND library_source
    platform/simple_log.cpp
    platform/simple_log.h
    #platform/sprintf.h
-   platform/static_start.h
-   platform/static_start_internal.h
+   #platform/static_start.h
+   #platform/static_start_internal.h
    platform/status.h
    platform/string_exchange.h
    platform/system.h
@@ -1500,12 +1513,17 @@ else ()
    list(APPEND library_source
       #operating_system/posix/file_memory_map.cpp
       #operating_system/posix/file_memory_map.h
+      operating_system/ansi/time.cpp
       operating_system/ansi/dir.cpp
       operating_system/ansi/parallelization.cpp
-      operating_system/cross/windows/user.cpp
-      operating_system/cross/windows/file.cpp
-      operating_system/cross/windows/dir.cpp
-      operating_system/cross/windows/time.cpp
+      operating_system/ansi/windows_time.cpp
+      operating_system/ansi/windows_time.h
+      operating_system/ansi/windows_unicode.cpp
+      operating_system/ansi/windows_unicode.h
+      #operating_system/cross/windows/user.cpp
+      #operating_system/cross/windows/file.cpp
+      #operating_system/cross/windows/dir.cpp
+      #operating_system/cross/windows/time.cpp
       #operating_system/cross/windows/crt.cpp
       #operating_system/cross/windows/crt_debug.cpp
       #operating_system/cross/windows/datetime.cpp
@@ -2058,7 +2076,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+add_library(acme SHARED ${library_source} operating_system/x11/nano/display.h operating_system/x11/nano/event_listener.h operating_system/x11/nano/display.cpp platform/app.h platform/app.cpp)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

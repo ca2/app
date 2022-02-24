@@ -737,7 +737,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
          else if(strMember == "on_additional_local_instance")
          {
 
-            payload["continue"] = papplication->on_additional_local_instance(payload["handled"], payloada[0], payloada[1], payloada[2]);
+            payload["continue"] = papp->on_additional_local_instance(payload["handled"], payloada[0], payloada[1], payloada[2]);
 
          }
          else if (strMember == "on_new_instance")
@@ -757,7 +757,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       defer_add_module(strModule, idPid);
 
-      papplication->on_new_instance(strModule, idPid);
+      papp->on_new_instance(strModule, idPid);
 
    }
 

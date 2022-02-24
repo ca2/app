@@ -138,12 +138,12 @@ namespace experience
    }
 
 
-   void button::on_hit_test(::item & item)
+   ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pregion.is_null() || !m_pregion->contains(item.m_pointHitTest))
+      if (m_pregion.is_null() || !m_pregion->contains(point))
       {
 
          if(m_bMouseHoverOnCapture)
@@ -152,9 +152,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               item = ::e_element_non_client;
-
-               return;
+               return __new(::item(::e_element_non_client));
 
             }
 
@@ -165,9 +163,7 @@ namespace experience
             if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
             {
 
-               item = ::e_element_non_client;
-
-               return;
+               return __new(::item(::e_element_non_client));
 
             }
 
@@ -175,10 +171,9 @@ namespace experience
 
       }
 
-      ::user::button::on_hit_test(item);
+      return ::user::button::on_hit_test(point);
 
    }
-
 
 
    bool button::keyboard_focus_is_focusable() const

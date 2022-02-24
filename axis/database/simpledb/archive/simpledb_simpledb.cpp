@@ -43,7 +43,7 @@ namespace simpledb
 
       }
 
-      if(get_application()->is_system())
+      if(get_app()->is_system())
       {
 //#ifndef _UWP
 //         /* initialize client library */
@@ -55,7 +55,7 @@ namespace simpledb
 //#endif
       }
 
-      m_pserver = __new(db_server(get_application()));
+      m_pserver = __new(db_server(get_app()));
 
 
       m_pserver->add_client(this);
@@ -83,7 +83,7 @@ namespace simpledb
 
       }
 
-      get_application()->m_psession->on_set_locale(lpcsz, context);
+      get_app()->m_psession->on_set_locale(lpcsz, context);
 
    }
 
@@ -98,7 +98,7 @@ namespace simpledb
 
       }
 
-      get_application()->m_psession->on_set_schema(lpcsz,context);
+      get_app()->m_psession->on_set_schema(lpcsz,context);
 
    }
 
@@ -144,16 +144,16 @@ namespace simpledb
    bool simpledb::init2()
    {
 
-      if(get_application()->m_varTopicQuery["locale"].get_count() > 0)
+      if(get_app()->m_varTopicQuery["locale"].get_count() > 0)
       {
-         string str = get_application()->m_varTopicQuery["locale"].stra()[0];
-         get_application()->m_psession->set_locale(str,::e_source_database);
+         string str = get_app()->m_varTopicQuery["locale"].stra()[0];
+         get_app()->m_psession->set_locale(str,::e_source_database);
       }
 
-      if(get_application()->m_varTopicQuery["schema"].get_count() > 0)
+      if(get_app()->m_varTopicQuery["schema"].get_count() > 0)
       {
-         string str = get_application()->m_varTopicQuery["schema"].stra()[0];
-         get_application()->m_psession->set_schema(str,::e_source_database);
+         string str = get_app()->m_varTopicQuery["schema"].stra()[0];
+         get_app()->m_psession->set_schema(str,::e_source_database);
       }
 
 //      if(&AppUser(this) == nullptr)

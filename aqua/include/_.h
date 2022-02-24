@@ -29,7 +29,7 @@
 
 //#define get_system() (psystem->m_paquasystem)
 //#define Sess(pcontextsession) (pcontextsession->m_paquasession)
-//#define App(playered) (*::get_application(playered)->m_paquaapplication)
+//#define App(playered) (*::get_app(playered)->m_paquaapplication)
 
 
 //#define Au(playered) (*(::get_context_audio(playered)))
@@ -63,6 +63,8 @@ namespace multimedia
 } // namespace multimedia
 
 
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS ::aqua::application
 
 #include "aqua/multimedia/_c.h"
 

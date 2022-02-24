@@ -65,7 +65,7 @@ namespace userex
 
       virtual ::userex::image_list_view * add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
 
-      void set_current_item(const ::item & item, const ::action_context & action_context) override;
+      void set_current_item(::item * pitem, const ::action_context & action_context) override;
 
       virtual bool show_group(::atom idGroup, ::file::path pathFolder = "");
 

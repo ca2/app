@@ -6,7 +6,7 @@
 
 //#undef ::aura::get_system()
 //#undef Platform
-//#undef papplication
+//#undef papp
 //#undef Session
 
 

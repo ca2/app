@@ -134,7 +134,7 @@ namespace account
       if(!m_bInteractive)
       {
 
-         throw_status(error_credentials_no_valid_cached_credentials);
+         throw ::exception(error_credentials_no_valid_cached_credentials);
 
       }
 
@@ -151,9 +151,9 @@ namespace account
 
       }
 
-      __pointer(::axis::application) papplication = get_application();
+      __pointer(::axis::application) papp = get_app();
 
-      papplication->interactive_credentials(this);
+      papp->interactive_credentials(this);
 
       //return m_estatus;
 
@@ -354,7 +354,7 @@ namespace account
 
          set("open", strOpenResult);
 
-         throw_status(error_authentication);
+         throw ::exception(error_authentication);
 
       }
 

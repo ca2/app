@@ -307,7 +307,7 @@ namespace android
       if(m_oswindow == nullptr)
       {
 
-         if (get_application() == nullptr)
+         if (get_app() == nullptr)
          {
 
             post_non_client_destroy();
@@ -615,7 +615,7 @@ namespace android
    void interaction_impl::post_non_client_destroy()
    {
 
-      single_lock synchronouslock(m_puserinteraction->get_application()->mutex(), true);
+      single_lock synchronouslock(m_puserinteraction->get_app()->mutex(), true);
 
       ::user::interaction_impl * pwindow;
 
@@ -1118,7 +1118,7 @@ namespace android
 
       if(pmessage->m_atom == e_message_timer)
       {
-//         m_puserinteraction->get_application()->step_timer();
+//         m_puserinteraction->get_app()->step_timer();
       }
       else if(pmessage->m_atom == e_message_left_button_down)
       {
@@ -1147,7 +1147,7 @@ namespace android
       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
       __pointer(::aura::application)* ppapp= (__pointer(::aura::application)*) pusermessage->m_lparam;
-      *ppapp = get_application();
+      *ppapp = get_app();
       pusermessage->m_bRet = true;
       return;
       }
@@ -1400,7 +1400,7 @@ namespace android
    //i32 interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
-   //      lpszCaption = papplication->m_strAppName;
+   //      lpszCaption = papp->m_strAppName;
    //   i32 nResult = ::message_box(get_handle(),lpszText,lpszCaption,nType);
    //   return nResult;
    //}
@@ -1823,7 +1823,7 @@ namespace android
       else
       {
 
-         //m_pthreadDraw = ::fork(get_application(), [&]()
+         //m_pthreadDraw = ::fork(get_app(), [&]()
          //{
 
          //   ::u32 tickStart;
@@ -1926,7 +1926,7 @@ namespace android
    //      try
    //      {
    //         HANDLE hevent = (HANDLE)pprintwindow->m_event.get_os_data();
-   //         throw ::exception(not_implemented(pprintwindow->get_application()));
+   //         throw ::exception(not_implemented(pprintwindow->get_app()));
    //         /*            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
    //         ::SetEvent(hevent);*/
    //      }
@@ -2850,7 +2850,7 @@ namespace android
       if (::get_task() == nullptr)
       {
 
-         ::set_thread(m_puserinteraction->get_application());
+         ::set_thread(m_puserinteraction->get_app());
 
       }
 
@@ -3381,7 +3381,7 @@ namespace android
 
    //   //__UNREFERENCED_PARAMETER(lpfnTimer);
 
-   //   //m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+   //   //m_puserinteraction->get_app()->set_timer(m_puserinteraction, uEvent, nElapse);
 
    //   //return uEvent;
 
@@ -3397,7 +3397,7 @@ namespace android
 
    //   return ::user::interaction_impl::KillTimer(uEvent);
 
-   //   //m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
+   //   //m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 
    //   //return true;
 

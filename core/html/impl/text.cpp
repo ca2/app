@@ -677,7 +677,7 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, color32))
                {
-                  App(pdata->get_application()).imaging().color_blend(
+                  App(pdata->get_app()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   color32,
@@ -685,7 +685,7 @@ namespace html
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
-                  App(pdata->get_application()).imaging().color_blend(
+                  App(pdata->get_app()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   color32,
@@ -693,7 +693,7 @@ namespace html
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
-                  App(pdata->get_application()).imaging().color_blend(
+                  App(pdata->get_app()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   color32,
@@ -781,7 +781,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size_f32 size3;
-         draw2d::graphics_extension(pdata->m_pcoredata->get_application()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
+         draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
          i32 maxcy = size3.cy;
 
          _001GetImpactSel(iSelStart, iSelEnd);

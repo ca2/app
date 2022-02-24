@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/operating_system/time.h"
+#if !defined(WINDOWS)
+#include "acme/operating_system/ansi/windows_time.h"
+#endif
 #include <time.h>
 #if defined(LINUX) || defined(__APPLE__)
 #include <unistd.h>
@@ -225,25 +228,9 @@ void file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
 
    system_time_t systemtime{};
 
-   /*auto estatus = */ file_time_to_system_time(&systemtime, pfiletime);
+   file_time_to_system_time(&systemtime, pfiletime);
 
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /* estatus = */ system_time_to_time(ptime, &systemtime);
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
+   system_time_to_time(ptime, &systemtime);
 
 }
 
@@ -293,6 +280,44 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
    psystemtime->wYear      = ptm->tm_year    ;
 
    //return ::success;
+
+}
+
+
+
+
+//void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime);
+
+
+
+//void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime);
+
+
+
+void GetSystemTime(system_time_t* psystemtime);
+
+
+
+void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+{
+
+   FileTimeToSystemTime(pfiletime, psystemtime);
+
+}
+
+
+void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+{
+
+   SystemTimeToFileTime(psystemtime, pfiletime);
+
+}
+
+
+void get_system_time(system_time_t * psystemtime)
+{
+
+   GetSystemTime(psystemtime);
 
 }
 

@@ -24,7 +24,7 @@ namespace user
       ~form_view() override;
 
 
-      inline ::base::application * get_application() const { return form_control::get_application(); }
+      inline ::base::application * get_app() const { return form_control::get_app(); }
       inline ::base::session * get_session() const { return form_control::get_session(); }
       inline ::base::system * get_system() const { return form_control::get_system(); }
       inline ::base::user * user() const { return form_control::user(); }

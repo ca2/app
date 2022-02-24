@@ -77,10 +77,10 @@ namespace dynamic_source
    }
 
 
-   //::aura::application * library_class::get_application() const
+   //::aura::application * library_class::get_app() const
    //{
 
-   //   return m_pmanager->get_application();
+   //   return m_pmanager->get_app();
 
    //}
 

@@ -15,7 +15,7 @@ namespace browser
 
 
    render::render(::object * pobjectParent, bool bAlternate) :
-      object(pobjectParent->get_application()),
+      object(pobjectParent->get_app()),
       thread(pobjectParent),
       m_pfont(e_create),
 
@@ -137,9 +137,9 @@ namespace browser
 
       m_pslideshow = __new(::gcom::slide_show(this));
 
-      //      ::database::client::initialize_data_client(&papplication->dataserver());
+      //      ::database::client::initialize_data_client(&papp->dataserver());
 
-      if (papplication->m_XstrAppId == "app-core/flag")
+      if (papp->m_XstrAppId == "app-core/flag")
       {
 
          slideshow().add_slide("matter://cat.gif");
@@ -889,12 +889,12 @@ namespace browser
       }
 
 #if 0
-      if (papplication->m_iErrorAiFont == 0)
+      if (papp->m_iErrorAiFont == 0)
       {
 
-         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
+         synchronous_lock slAiFont(&papp->m_mutexAiFont);
 
-         FT_Face & face = (FT_Face &)papplication->m_faceAi;
+         FT_Face & face = (FT_Face &)papp->m_faceAi;
 
          i32 error;
 
@@ -1057,7 +1057,7 @@ namespace browser
 
       }
 
-      if (papplication->m_etype == application::type_mili)
+      if (papp->m_etype == application::type_mili)
       {
 
          {

@@ -14,6 +14,9 @@ namespace aura
    public:
 
 
+      //__creatable_from_base(idpool, ::acme::idpool);
+
+
       static idpool* g_pthis;
 
 

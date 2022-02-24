@@ -240,12 +240,12 @@ namespace userex
    }
 
 
-   void group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
+   void group_image_list_view::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       //auto estatus = 
       
-      ::user::impact::set_current_item(item, context);
+      ::user::impact::set_current_item(pitem, context);
 
       //if(estatus != success)
       //{
@@ -254,12 +254,12 @@ namespace userex
 
       //}
 
-      auto pgroup = m_groupa[item];
+      auto pgroup = m_groupa[pitem->item_index()];
 
       if (!pgroup)
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 
@@ -267,7 +267,7 @@ namespace userex
 
       //auto * plist = get_group_list(strGroup);
 
-     //::image_pointer pimage = papplication->matter_image(pgroup->m_strIcon);
+     //::image_pointer pimage = papp->matter_image(pgroup->m_strIcon);
 
       //m_buttonMenu.set_window_text(get_group_title(pgroup));
 
@@ -307,7 +307,7 @@ namespace userex
 
       auto * plist = get_group_list(idGroup);
 
-      m_itemCurrent = plist->m_iIndex;
+      m_pitemCurrent = __new(::item(::e_element_item, plist->m_iIndex));
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -426,7 +426,7 @@ namespace userex
 
       index i = 0;
 
-      auto itemCurrent = current_item();
+      auto pitemCurrent = current_item();
 
       for (auto & item : *m_pmenu->m_pmenuitem->m_pmenuitema)
       {
@@ -441,7 +441,7 @@ namespace userex
 
          pbutton->m_pbitmap->m_pimage = pimage;
 
-         if (itemCurrent == i)
+         if (::is_item(pitemCurrent, i))
          {
 
             pbutton->_001SetCheck(::check_checked, ::e_source_sync);

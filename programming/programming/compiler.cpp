@@ -147,7 +147,7 @@ namespace programming
 
 #endif
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = get_app();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -159,7 +159,7 @@ namespace programming
 
             m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
-            m_strVCVersion = papplication->get_visual_studio_build();
+            m_strVCVersion = papp->get_visual_studio_build();
 
          }
          else if (m_strVs == "2019")
@@ -167,7 +167,7 @@ namespace programming
 
             m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
-            m_strVCVersion = papplication->get_visual_studio_build();
+            m_strVCVersion = papp->get_visual_studio_build();
 
          }
          else if (m_strVs == "2017")
@@ -187,7 +187,7 @@ namespace programming
 
             m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
 
-            m_strVCVersion = papplication->get_visual_studio_build();
+            m_strVCVersion = papp->get_visual_studio_build();
 
          }
          else if (m_strVs == "2015")
@@ -320,7 +320,7 @@ namespace programming
       string strLog;
 
 
-      __pointer(::application) papplication = get_application();
+      __pointer(::application) papp = get_app();
 
 
 #ifdef WINDOWS
@@ -337,19 +337,19 @@ namespace programming
       else if (m_strVs == "2017")
       {
 
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
 
       }
       else if (m_strVs == "2019")
       {
 
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
 
       }
       else if (m_strVs == "2022")
       {
 
-         //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
+         //strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papp->get_visual_studio_build();
 
          strBuildCmd = "\"C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Auxiliary/Build/vcvars64.bat\"";
 

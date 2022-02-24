@@ -20,13 +20,13 @@ namespace linux
    }
 
 
-   //AudioVideo   papplication for presenting, creating, or processing multimedia (audio/video)
+   //AudioVideo   papp for presenting, creating, or processing multimedia (audio/video)
    //Audio        An audio application                                                          Desktop entry must include AudioVideo as well
    //Video        A video application	                                                         Desktop entry must include AudioVideo as well
    //Development  An application for development
    //Education    Educational software
    //Game         A game
-   //Graphics     papplication for viewing, creating, or processing graphics
+   //Graphics     papp for viewing, creating, or processing graphics
    //Network      Network application such as a web browser
    //Office       An office type application
    //Science      Scientific software
@@ -166,7 +166,7 @@ namespace linux
 
 pacmedir->localconfig() / "monitor-0/desk/2desk";
 
-      string strPrgName = papplication->m_strAppId;
+      string strPrgName = papp->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -192,7 +192,7 @@ pacmedir->home();
 
       path /= ".local/share/applications";
 
-      string strPrgName = papplication->m_strAppId;
+      string strPrgName = papp->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -210,7 +210,7 @@ pacmedir->home();
 
       string_array & straLine = m_straLine;
 
-      string strPrgName = papplication->m_strAppId;
+      string strPrgName = papp->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -218,7 +218,7 @@ pacmedir->home();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
-      straLine.add("Type=papplication");
+      straLine.add("Type=papp");
       straLine.add("Name=");
       straLine.add("GenericName=");
       straLine.add("Comment=");
@@ -247,11 +247,11 @@ pacmedir->home();
 
       }
 
-      string strTitle = papplication->get_title();
+      string strTitle = papp->get_title();
 
-      string_array straCategories = proper_category(papplication->get_categories());
+      string_array straCategories = proper_category(papp->get_categories());
 
-      string strPrgName = papplication->m_strAppId;
+      string strPrgName = papp->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -263,7 +263,7 @@ pacmedir->home();
 
       string strName;
 
-      strName = papplication->m_strAppId;
+      strName = papp->m_strAppId;
 
       strName.replace("-", "_");
 
@@ -420,7 +420,7 @@ pacmedir->home() / "bin" / strName;
    bool desktop_file::bamf_set_icon(oswindow oswindow)
    {
 
-      ::file::path path = get_file_path(papplication);
+      ::file::path path = get_file_path(papp);
 
       output_debug_string("\nlinux::interaction_impl::set_window_text");
 

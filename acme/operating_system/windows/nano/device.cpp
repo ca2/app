@@ -92,7 +92,7 @@ namespace windows
       if (!::GetTextExtentPoint32W(m_hdc, wstr, (int) wstr.length(), &size))
       {
 
-         throw exception(error_failed);
+         throw ::exception(error_failed);
 
       }
 

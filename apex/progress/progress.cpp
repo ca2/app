@@ -12,9 +12,9 @@ namespace progress
 
       auto puserinteractionTopLevel = pprimitiveParent->get_top_level();
 
-      auto papplication = pprimitiveParent->get_application();
+      auto papp = pprimitiveParent->get_app();
 
-      auto pprogress = papplication->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
+      auto pprogress = papp->m_papplication->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
 
       ___pointer<::progress::real>::operator =(pprogress);
 

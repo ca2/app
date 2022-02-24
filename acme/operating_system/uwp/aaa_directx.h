@@ -47,10 +47,10 @@ namespace universal_windows
       directx_base();
 
 
-      ::acme::application * get_application() const
+      ::acme::application * get_app() const
       {
 
-         return get_application();
+         return get_app();
 
       }
 

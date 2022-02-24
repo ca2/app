@@ -19,7 +19,7 @@ public:
 
    //virtual bool extract(const char * pszFileName, const char * pszExtractFileName, ::file::enum_type * petype = nullptr);
 
-   virtual bool extract_all(const char * pszDir,::payload payloadFile, ::file::patha * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
+   virtual bool extract_all(const char * pszDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
    virtual bool is_unzippable(const char * pszFileName);
 
    virtual bool has_sub_folder(const char * pszFileName);

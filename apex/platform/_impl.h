@@ -272,7 +272,7 @@
 //CLASS_DECL_APEX inline ::object * get_app_object()
 //{
 //
-//   return ::get_application();
+//   return ::get_app();
 //
 //}
 
@@ -285,7 +285,7 @@
 //}
 
 
-//CLASS_DECL_APEX inline ::application * get_application(::application * papp)
+//CLASS_DECL_APEX inline ::application * get_app(::application * papp)
 //{
 //
 //  return papp;
@@ -596,7 +596,7 @@
 //inline void object::set_context_app(::application* pappContext)
 //{
 //
-//   m_papplication = pappContext;
+//   m_papp = pappContext;
 //
 //}
 

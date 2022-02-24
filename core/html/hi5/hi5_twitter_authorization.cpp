@@ -131,9 +131,9 @@ namespace hi5
 
          string strAppName;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         if(papplication->m_strAppName == "winactionarea")
+         if(papp->m_papplication->m_strAppName == "winactionarea")
          {
 
             strAppName = "_set_windesk";
@@ -142,7 +142,7 @@ namespace hi5
          else
          {
 
-            strAppName = papplication->m_strAppName;
+            strAppName = papp->m_papplication->m_strAppName;
 
          }
 

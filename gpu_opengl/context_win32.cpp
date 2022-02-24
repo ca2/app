@@ -47,7 +47,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -81,7 +81,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -100,7 +100,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -128,7 +128,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -143,7 +143,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -158,7 +158,7 @@ namespace opengl
 
          ReleaseDC(window, hdc);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -173,7 +173,7 @@ namespace opengl
          
          ReleaseDC(window, hdc);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -257,7 +257,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

@@ -34,7 +34,7 @@ namespace base
       virtual ~user();
 
 
-      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
       inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
       inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
 
@@ -108,7 +108,7 @@ namespace base
       //virtual ::type get_simple_child_frame_type_info();
 
 
-      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
+      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
 
 

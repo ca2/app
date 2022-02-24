@@ -1,6 +1,13 @@
 #include "framework.h"
 
 
+//BEGIN_FACTORY(crypto_openssl)
+//FACTORY_ITEM(::crypto_openssl::crypto)
+//FACTORY_ITEM(::crypto_openssl::initializer)
+//FACTORY_ITEM(::crypto_openssl::hasher_algorithm)
+//END_FACTORY()
+
+
 __FACTORY_EXPORT void crypto_openssl_factory(::factory::factory * pfactory)
 {
 

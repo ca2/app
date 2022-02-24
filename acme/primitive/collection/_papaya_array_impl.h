@@ -632,12 +632,12 @@ namespace papaya
       inline ::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
-      inline ::index add(::file::patha & patha, const char * psz) { return patha.add_item(psz); }
-      inline ::index add(::file::patha & patha, const char & ch) { return patha.add_item(ch); }
-      inline ::index add(::file::patha & patha, const ansistring & str) { return patha.add_item(str); }
-      inline ::index add(::file::patha & patha, const wd16string & str) { return patha.add_item(str); }
-      inline ::index add(::file::patha & patha, const wd32string & str) { return patha.add_item(str); }
-      inline ::index add(::file::patha & patha, const ::file::path & path) { return patha.add_item(path); }
+      inline ::index add(::file::path_array & patha, const char * psz) { return patha.add_item(psz); }
+      inline ::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
+      inline ::index add(::file::path_array & patha, const ansistring & str) { return patha.add_item(str); }
+      inline ::index add(::file::path_array & patha, const wd16string & str) { return patha.add_item(str); }
+      inline ::index add(::file::path_array & patha, const wd32string & str) { return patha.add_item(str); }
+      inline ::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
 
 
       inline ::index add(string_array & stra, const ::payload & payload)
@@ -717,9 +717,9 @@ namespace papaya
 
       inline ::index add(string_array & stra, const string_array & straSource) { return add_array(stra, straSource); }
 
-      inline ::index add(::file::patha & patha, const string_array & stra) { return add_array(patha, stra); }
-      inline ::index add(::file::patha & patha, const ::file::patha & pathaSrc) { return add_array(patha, pathaSrc); }
-      inline ::index add(::file::patha & patha, const ::file::listing & listing) { return add_array(patha, listing); }
+      inline ::index add(::file::path_array & patha, const string_array & stra) { return add_array(patha, stra); }
+      inline ::index add(::file::path_array & patha, const ::file::path_array & pathaSrc) { return add_array(patha, pathaSrc); }
+      inline ::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
 
 
       template < typename TYPE, enum_type t_etypePayload >

@@ -197,7 +197,7 @@ namespace colorertake5
             {
                // debug_break();
             }
-            ::file::listing patha(get_application());
+            ::file::listing patha(get_app());
             patha.rls(path);
             file_pointer spfile(e_create);
             for(i32 i = 0; i < patha.get_count(); i++)

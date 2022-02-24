@@ -55,7 +55,7 @@ public:
 
 
    //::task_pointer                                 m_pthread;
-   //__pointer(::application)                            m_papplication;
+   //__pointer(::application)                            m_papp;
    //__pointer(::apex::session)                          m_psession;
    //__pointer(class ::system)                           m_psystem;
    ::acme::context *                                     m_pcontext;
@@ -118,10 +118,10 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
-   //inline ::application* application() { return m_papplication; }
+   //inline ::application* application() { return m_papp; }
 
 
-   //inline ::application* get_application() { return _get_application(); }
+   //inline ::application* get_app() { return _get_application(); }
 
    //virtual ::application* _get_application() override;
 
@@ -153,7 +153,7 @@ public:
       if (::is_null(proutinea))
       {
 
-         throw_status(error_not_found);
+         throw ::exception(error_not_found);
 
       }
 
@@ -277,7 +277,7 @@ public:
 
    //inline ::thread* get_thread() const { return m_pthread; }
 
-   //inline ::application* get_application() const { return m_papplication; }
+   //inline ::application* get_app() const { return m_papp; }
 
    //inline ::apex::session* get_session() const { return m_psession; }
 
@@ -285,7 +285,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papp; }
 
    virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
@@ -629,18 +629,28 @@ public:
    }
 
 
-   __pointer(::task) branch_element(element* pelement,
+   virtual __pointer(::task) branch_element(element* pelement,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+
+   virtual __pointer(::task) branch_element_synchronously(element* pelement,
+                                    ::enum_priority epriority = e_priority_normal,
+                                    ::u32 nStackSize = 0,
+                                    ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    template < typename PREDICATE >
    inline ::task_pointer predicate_run(bool bSync, PREDICATE pred);
 
    //using property_object::branch;
 
-   __pointer(::task) branch(
+   virtual __pointer(::task) branch(
+      ::enum_priority epriority = ::e_priority_normal,
+      ::u32 nStackSize = 0,
+      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+
+   virtual __pointer(::task) branch_synchronously(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -770,7 +780,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
-   //inline ::application* application() { return m_papplication; }
+   //inline ::application* application() { return m_papp; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -830,7 +840,7 @@ public:
 
    //inline ::context* get_context() const { return m_pcontext; }
 
-   inline ::application * get_application() const;
+   inline ::app * get_app() const;
 
    inline ::apex::session * get_session() const;
 
@@ -838,7 +848,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papp; }
 
    //virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
@@ -1336,8 +1346,8 @@ CLASS_DECL_ACME void call_sync(const ::routine_array& routinea);
 
 
 
-#define __PROPERTIES(xxx)\
-class xxx ## _properties: \
+#define __PROPERTIES(xxx) \
+class __ ## xxx ## _properties : \
    public property_set \
 { \
 public: \
@@ -1348,10 +1358,15 @@ public: \
 
 
 #define __END_PROPERTIES(xxx) }; \
-xxx ## _properties & properties() {return *m_pobjectproperties;} \
-const xxx ## _properties & properties() const {return *m_pobjectproperties;} \
-inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __new(xxx ## _properties());} \
-__pointer(xxx ## _properties) m_pobjectproperties
+__ ## xxx ## _properties &  xxx ## _properties() {return *m_p ## xxx ## properties;} \
+const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx ## properties;} \
+inline void create_ ## xxx ## _properties() \
+{ \
+   if(::is_set(m_p ## xxx ## properties)) return; \
+   m_p ## xxx ## properties = __new(__ ## xxx ## _properties()); \
+   m_ppropertyset = m_p ## xxx ## properties; \
+} \
+__pointer(__ ## xxx ## _properties) m_p ## xxx ## properties
 
 
 

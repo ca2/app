@@ -13,6 +13,9 @@ namespace draw2d
    {
    public:
 
+
+      ///__creatable_from_library(::draw2d::task_tool_item, ::task_tool_item, "draw2d");
+
       enum e_op
       {
 

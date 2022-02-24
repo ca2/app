@@ -316,10 +316,10 @@ void object::dev_log(string strMessage) const
 
 #ifdef __DEBUG
 
-   if (get_application())
+   if (get_app())
    {
 
-      get_application()->post_critical_error_message(strMessage);
+      get_app()->post_critical_error_message(strMessage);
 
    }
 
@@ -648,14 +648,14 @@ void object::defer_update_object_id()
 void object::enable_application_events(bool bEnable)
 {
 
-   if(::is_null(get_application()))
+   if(::is_null(get_app()))
    {
 
       return false;
 
    }
 
-   if(!get_application()->enable_application_events(this, bEnable))
+   if(!get_app()->enable_application_events(this, bEnable))
    {
 
       return false;
@@ -739,10 +739,10 @@ void     object::do_request(::create * pcreate)
 //
 //   }
 //
-//   if (get_application())
+//   if (get_app())
 //   {
 //
-//      return get_application()->message_box(payload);
+//      return get_app()->message_box(payload);
 //
 //   }
 //
@@ -786,7 +786,7 @@ void object::on_request(::create* pcreateParam)
 
       }
 
-      estatus = pcreate->initialize_create(get_application()->m_strAppId, ::e_type_empty, true);
+      estatus = pcreate->initialize_create(get_app()->m_strAppId, ::e_type_empty, true);
 
       if (!estatus)
       {
@@ -869,7 +869,7 @@ void object::destroy()
 
    m_pthread.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_papplication.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_papp.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    m_psession.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -952,7 +952,7 @@ void object::delete_this()
 string object::lstr(const ::atom & atom, string strDefault)
 {
 
-   return get_application()->lstr(atom,strDefault);
+   return get_app()->lstr(atom,strDefault);
 
 }
 
@@ -962,7 +962,7 @@ void object::copy_from(const object & o)
 
    m_pthread = o.m_pthread;
 
-   m_papplication = o.m_papplication;
+   m_papp = o.m_papp;
 
    m_psession = o.m_psession;
 
@@ -1489,14 +1489,14 @@ void object::finish(::property_object * pcontextobjectFinish)
 string object::__get_text(string str)
 {
 
-   if(get_application() == nullptr)
+   if(get_app() == nullptr)
    {
 
       return ::__get_text(str);
 
    }
 
-   return get_application()->__get_text(str);
+   return get_app()->__get_text(str);
 
 }
 
@@ -1813,7 +1813,7 @@ void object::sleep(const ::duration& duration)
 
          }
 
-         if (m_papplication && m_papplication->finish_bit())
+         if (m_papp && m_papp->finish_bit())
          {
 
             return error_exit_application;
@@ -1858,7 +1858,7 @@ void object::sleep(const ::duration& duration)
 
       }
 
-      if (m_papplication && m_papplication->finish_bit())
+      if (m_papp && m_papp->finish_bit())
       {
 
          return error_exit_application;
@@ -2095,7 +2095,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 ::object * object::parent_property_set_holder() const
 {
 
-   return get_application();
+   return get_app();
 
 }
 
@@ -2309,7 +2309,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
    //   if(strTitle.is_empty())
    //   {
 
-   //      auto papp = get_application();
+   //      auto papp = get_app();
 
    //      if(papp)
    //      {
@@ -2379,7 +2379,7 @@ void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_C
 void object::set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   m_papplication.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

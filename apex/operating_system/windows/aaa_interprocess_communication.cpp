@@ -340,7 +340,7 @@
          else
          {
 
-            get_application()->fork([=]()
+            get_app()->fork([=]()
             {
 
                if (m_preceiver != nullptr)

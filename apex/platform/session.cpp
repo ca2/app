@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/id.h"
-#include "apex/platform/app_core.h"
-#include "acme/platform/static_setup.h"
+//#include "apex/platform/app_core.h"
+#include "acme/platform/system_setup.h"
 #include "apex/message/command.h"
 #include "acme/primitive/text/context.h"
 #include "apex/user/primitive.h"
@@ -138,7 +138,7 @@ namespace apex
 
       }
 
-      //m_papplicationCurrent                    = nullptr;
+      //m_pappCurrent                    = nullptr;
 
       m_bZipIsDir2                     = true;
 
@@ -146,7 +146,7 @@ namespace apex
 
       m_bShowPlatform                  = false;
 
-      m_papplicationCurrent                    = nullptr;
+      m_pappCurrent                    = nullptr;
 
       //return ::success;
 
@@ -401,12 +401,14 @@ namespace apex
    //}
 
 
-   void session::init_thread()
+   void session::init_task()
    {
+
+      init_session();
 
       //auto estatus =
       
-      process_init();
+      //process_init();
 
       //if (!estatus)
       //{
@@ -419,7 +421,7 @@ namespace apex
 
       //estatus = 
       
-      init_session();
+      //init_session();
 
       //if (!estatus)
       //{
@@ -449,7 +451,7 @@ namespace apex
    }
 
 
-   void session::term_thread()
+   void session::term_task()
    {
 
       try
@@ -474,7 +476,7 @@ namespace apex
 
       }
 
-      ::thread::term_thread();
+      ::thread::term_task();
 
    }
 
@@ -516,6 +518,10 @@ namespace apex
 
    void session::init_session()
    {
+
+
+      process_init();
+
 
       //auto estatus = 
       init1();
@@ -601,9 +607,9 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      __pointer(::application) papplication(pmessage->m_lparam);
+      __pointer(::application) papp(pmessage->m_lparam);
 
-      erase_application(papplication);
+      erase_application(papp);
 
    }
 
@@ -655,7 +661,7 @@ namespace apex
       if (pcreate->m_ecommand == command_protocol)
       {
 
-         m_papplicationCurrent->do_request(pcreate);
+         m_pappCurrent->do_request(pcreate);
 
          return;
 
@@ -717,10 +723,10 @@ namespace apex
             if (!open_by_file_extension(pcreate))
             {
                
-               if (m_papplicationCurrent != nullptr)
+               if (m_pappCurrent != nullptr)
                {
                   
-                  m_papplicationCurrent->request(pcreate);
+                  m_pappCurrent->request(pcreate);
 
                }
 
@@ -858,7 +864,7 @@ namespace apex
 
                }
 
-               m_papplicationCurrent = papp;
+               m_pappCurrent = papp;
 
             }
 
@@ -890,7 +896,7 @@ namespace apex
 
       return open_by_file_extension(pcreateNew);
 
-      //return get_application()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return get_app()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -898,7 +904,7 @@ namespace apex
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return get_application()->platform_open_by_file_extension(m_iEdge, pcc);
+      //return get_app()->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -1498,10 +1504,10 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_papplicationCurrent))
+      if (::is_set(m_pappCurrent))
       {
 
-         m_papplicationCurrent->pre_translate_message(pmessage);
+         m_pappCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -1624,7 +1630,7 @@ namespace apex
 
       auto psession = get_session();
 
-      return psession->m_papplicationCurrent;
+      return psession->m_pappCurrent;
 
    }
 
@@ -1736,7 +1742,7 @@ namespace apex
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::application & app = App(pmainframe->get_application());
+   //   ::application & app = App(pmainframe->get_app());
 
    //   string strAppName = app.m_strAppName;
 
@@ -2046,7 +2052,7 @@ namespace apex
    //            rectangleEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   //            if (ptab->m_itemHover == (::enum_element)(::e_element_split + i))
+   //            if (ptab->m_pitemHover == (::enum_element)(::e_element_split + i))
    //            {
    //               pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_pbrushTextHover);

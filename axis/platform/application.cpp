@@ -9,8 +9,19 @@ namespace axis
 {
 
 
+   void initialize()
+   {
+
+      ::factory::add_factory_item< ::axis::system, class ::system>();
+
+   }
+
+
    application::application()
    {
+
+
+      ::axis::initialize();
 
       m_paxisapplication = this;
       m_bInitializeDataCentral = true;
@@ -1087,17 +1098,17 @@ namespace axis
 
       //}
 
-      //if (papplication->payload("locale").get_count() > 0)
+      //if (papp->payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = papplication->payload("locale").stra()[0];
+      //   strLocale = papp->payload("locale").stra()[0];
 
       //}
 
-      //if (papplication->payload("schema").get_count() > 0)
+      //if (papp->payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = papplication->payload("schema").stra()[0];
+      //   strSchema = papp->payload("schema").stra()[0];
 
       //}
 

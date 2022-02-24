@@ -27,10 +27,10 @@
 #pragma once
 
 
-class CLASS_DECL_ACME callstack :
-   virtual public ::matter
-{
-public:
+//class CLASS_DECL_ACME callstack :
+//   virtual public ::matter
+//{
+//public:
 
 
    /*
@@ -50,32 +50,41 @@ public:
    */
 
 
-   char                 _str[4096];
-   char                 _strBuf[4096];
-   char                 _strFile[4096];
-   char                 _strSymbol[4096];
-   char                 _strS[4 * 1024 * 1024];
+   //char                 _str[4096];
+   //char                 _strBuf[4096];
+   //char                 _strFile[4096];
+   //char                 _strSymbol[4096];
+   //char                 _strS[4 * 1024 * 1024];
 
 
-   const char *         m_pszFormat;
-   const char *         m_pszCallStack;
+   /*const char *         m_pszFormat;
+   string               m_strCallStack;
    int                  m_iCount;
 
    void *               m_caller_address;
+*/
 
 
-   callstack(const char * pszFormat = default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
-   ~callstack() override;
+inline const char* callstack_default_format() { return "%f(%l) %s\n"; }
 
 
-   //static void global_enable_stack_trace(bool bEnable = true);
-   static const char* default_format() { return "%f(%l) %s\n"; }
-
-   const char * get_dup(const char * pszFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
-
-   const char * stack_trace() const;
-
-};
+CLASS_DECL_ACME string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
 
 
 
+//   ~callstack() override;
+
+//
+//   //static void global_enable_stack_trace(bool bEnable = true);
+//   static const char* default_format() { return "%f(%l) %s\n"; }
+//
+//   //string get_dup(const char * pszFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//
+//   void trace(const char* pszFormat = default_format(), i32 uiSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+//
+//   //string xxxstack_trace() const;
+//
+//};
+//
+//
+//

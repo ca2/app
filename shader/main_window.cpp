@@ -78,7 +78,7 @@ namespace app_shader
 
       {
 
-         add_user_item({ ::e_element_switch_button, ::id_close_app });
+         add_user_item(__new(::item(::e_element_switch_button, ::id_close_app )));
 
          auto pitem = get_user_item(::e_element_switch_button);
 
@@ -187,7 +187,7 @@ namespace app_shader
 
                     string strDate = pdatetime->international().get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
-                    //auto papplication = get_application();
+                    //auto papp = get_app();
 
                     auto pcontext = m_pcontext;
 
@@ -233,10 +233,10 @@ namespace app_shader
    }
 
 
-   bool main_window::on_click(const ::item& item)
+   bool main_window::on_click(::item * pitem)
    {
 
-      if (::user::interaction::on_click(item))
+      if (::user::interaction::on_click(pitem))
       {
 
          return true;
@@ -300,9 +300,9 @@ namespace app_shader
    void main_window::switch_shader()
    {
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      auto strNextShaderPath = papplication->get_next_shader_path(m_strCurrentShaderPath);
+      auto strNextShaderPath = papp->get_next_shader_path(m_strCurrentShaderPath);
 
       if (strNextShaderPath == m_strCurrentShaderPath)
       {

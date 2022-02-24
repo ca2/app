@@ -74,7 +74,7 @@ namespace acme
       int result()
       {
 
-         //m_estatus = papplication->m_estatus;
+         //m_estatus = papp->m_estatus;
 
          ::i32 iErrorStatus = m_estatus.error_status();
 

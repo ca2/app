@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "aura/platform/static_start.h"
+#include "aura/platform/aura.h"
 #include "image_array.h"
 #include "graphics.h"
 #include "image.h"
@@ -436,7 +436,7 @@ namespace draw2d
       if (::is_null(pbitmap))
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -454,7 +454,7 @@ namespace draw2d
       if (::is_null(ppen))
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -469,7 +469,7 @@ namespace draw2d
       if (::is_null(pbrush))
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -484,7 +484,7 @@ namespace draw2d
       if (::is_null(pregion))
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1126,7 +1126,7 @@ namespace draw2d
       if (!has_blender())
       {
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -1588,7 +1588,7 @@ namespace draw2d
       if (block.get_size() <= 0)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -3120,7 +3120,7 @@ namespace draw2d
          _add_shape(pshape->shape < ::polygon >());
          break;
       default:
-         throw_status(error_not_implemented);
+         throw ::exception(error_not_implemented);
          break;
       }
 
@@ -4929,7 +4929,7 @@ namespace draw2d
          if(pimage->area() <= 0)
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 

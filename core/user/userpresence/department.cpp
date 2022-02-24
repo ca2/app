@@ -91,16 +91,16 @@ namespace userpresence
 
       }
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      if(papplication->is_true("install") || papplication->is_true("uninstall"))
+      if(papp->is_true("install") || papp->is_true("uninstall"))
       {
 
          return true;
 
       }
 
-      if(papplication->payload("app") == "simpledbcfg" || papplication->payload("app") == "app-core/netnodelite")
+      if(papp->payload("app") == "simpledbcfg" || papp->payload("app") == "app-core/netnodelite")
       {
 
          return true;

@@ -205,7 +205,7 @@ namespace experience
    }
 
 
-   void button::on_hit_test(::item & item)
+   ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -213,8 +213,7 @@ namespace experience
       if (m_spregion.is_null())
       {
 
-         item= ::e_element_none;
-         return;
+         return nullptr;
 
       }
 
@@ -226,15 +225,14 @@ namespace experience
 
       //}
 
-      if (!m_spregion->contains(item.m_pointHitTest))
+      if (!m_spregion->contains(point))
       {
 
-         item = ::e_element_none;
-         return;
+         return nullptr;
 
       }
 
-      item= ::e_element_client;
+      return __new(::item(::e_element_client));
 
    }
 

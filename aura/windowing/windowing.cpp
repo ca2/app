@@ -619,7 +619,7 @@ namespace windowing
 
          //return ::error_bad_argument;
 
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
 
       }
 
@@ -741,7 +741,7 @@ namespace windowing
          //
          //#endif
 
-                  //papplication->on_create_keyboard();
+                  //papp->on_create_keyboard();
 
          initialize_keyboard(m_pkeyboard);
 

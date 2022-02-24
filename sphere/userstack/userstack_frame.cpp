@@ -161,8 +161,8 @@ namespace userstack
    void frame::_000OnMouse(::message::mouse * pmouse)
    {
       psession->m_pointCursor = pmouse->m_point;
-//      ::aspheresp(::aura::application) pappParent = &App(papplication->get_application()->m_pcoreapp);
-//      ::aspheresp(::aura::application) papp = &papplication;
+//      ::aspheresp(::aura::application) pappParent = &App(papp->get_app()->m_pcoreapp);
+//      ::aspheresp(::aura::application) papp = &papp;
       /*      if(pmouse->m_uiMessage == e_message_mouse_move
             && m_pdocument != nullptr
             && m_pdocument->m_pplatformdocument != nullptr
@@ -212,7 +212,7 @@ namespace userstack
    {
       if(layout().is_full_screen())
       {
-         //      bergedge::get_application()->show_platform();
+         //      bergedge::get_app()->show_platform();
       }
       else
       {
@@ -396,7 +396,7 @@ namespace userstack
 
             ::pointer < ::user::message > spbase;
 
-            spbase = papplication->get_message_base(pmsg);
+            spbase = papp->get_message_base(pmsg);
 
             pre_translate_message(spbase);
 

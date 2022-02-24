@@ -24,7 +24,7 @@ namespace imaging_freeimage
       if (!mem)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -222,7 +222,7 @@ namespace imaging_freeimage
       {
          //return false;
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

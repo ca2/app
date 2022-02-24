@@ -31,7 +31,7 @@
 **************************************************************************/
 
 TCHAR g_szTSFMainClassName[] = TEXT("TSFMainWndClass");
-TCHAR g_szTSFAppTitle[] = TEXT("TSF Test papplication");
+TCHAR g_szTSFAppTitle[] = TEXT("TSF Test papp");
 
 #define THIS_POINTER_OFFSET   GWLP_USERDATA
 

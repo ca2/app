@@ -41,12 +41,16 @@
 
 #define PRIestatus PRIi64
 
+
+constexpr ::i64 minimum_int_minus(::i64 i) { return ((::i64) INT_MIN) - i; }
+
+
 enum enum_status : ::i64
 {
 
-   e_status_none = 0x8000000000000000,
+   e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = 0xffffffff00000000,
+   e_status_process_result_negative_base = minimum_int_minus(1),
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,
@@ -123,6 +127,7 @@ error_function_entry_not_found,
 error_some_error_has_occurred,
 error_library_not_found,
 error_library_not_loaded,
+error_debug_testing,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

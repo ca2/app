@@ -6,7 +6,7 @@
 
 #include "_data.h"
 #include "core/user/user/_tree.h"
-#include "aura/platform/static_start.h"
+//#include "aura/platform/static_start.h"
 #include "aura/astr.h"
 
 
@@ -134,10 +134,10 @@ namespace filemanager
    }
 
 
-   bool data::open(::application * pappOnBehalfOf, ::file::path path, const ::action_context & context)
+   bool data::open(::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
    {
 
-      __pointer(::core::application) papplicationOnBehalfOf = pappOnBehalfOf;
+      __pointer(::core::application) pappOnBehalfOf = pappOnBehalfOfParam;
 
       if (::is_null(m_pdocument))
       {
@@ -166,25 +166,25 @@ namespace filemanager
 
          }
 
-         if(::is_null(papplicationOnBehalfOf))
+         if(::is_null(pappOnBehalfOf))
          {
 
             if (::is_set(puiParent))
             {
 
-               pappOnBehalfOf = puiParent->get_application();
+               pappOnBehalfOf = puiParent->get_app();
 
             }
-            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_application())))
+            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_app(get_app())))
             {
 
-               papplicationOnBehalfOf = m_pcreate->create_get_application(get_application());
+               pappOnBehalfOf = m_pcreate->create_get_app(get_app());
 
             }
-            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_application()))
+            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_app()))
             {
 
-               papplicationOnBehalfOf = m_pdocumentTopic->get_application();
+               pappOnBehalfOf = m_pdocumentTopic->get_app();
 
             }
 
@@ -193,10 +193,10 @@ namespace filemanager
          if (::is_null(puiParent))
          {
 
-            if (::is_set(papplicationOnBehalfOf->m_puiMainContainer))
+            if (::is_set(pappOnBehalfOf->m_puiMainContainer))
             {
 
-               puiParent = papplicationOnBehalfOf->m_puiMainContainer;
+               puiParent = pappOnBehalfOf->m_puiMainContainer;
 
             }
 
@@ -275,11 +275,11 @@ namespace filemanager
 
       string strPath;
 
-      __pointer(::core::application) papplication = pobject->get_application();
+      __pointer(::core::application) papp = pobject->get_app();
 
       auto pcontext = m_pcontext;
 
-      if (papplication->data_get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
+      if (papp->data_get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -291,7 +291,7 @@ namespace filemanager
 
             strId = m_datakey.m_strDataKey +".last_browse_folder." + __string(idMachine);
 
-            if (!papplication->data_get({ m_datakey.m_bLocalData, strId }, strPath))
+            if (!papp->data_get({ m_datakey.m_bLocalData, strId }, strPath))
             {
 
                strPath.empty();
@@ -356,19 +356,19 @@ namespace filemanager
 
       string strPath(path);
 
-      __pointer(::core::application) papplication = pobject->get_application();
+      __pointer(::core::application) papp = pobject->get_app();
 
       if (::str::begins(path, astr.UifsProtocol)
          || ::str::begins(path, astr.FsProtocol))
       {
 
-         papplication->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
+         papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         papplication->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
+         papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
@@ -376,7 +376,7 @@ namespace filemanager
 
          strId = m_datakey.m_strDataKey+".last_browse_folder." + __string(idMachine);
 
-         papplication->data_set({ m_datakey.m_bLocalData, strId }, strPath);
+         papp->data_set({ m_datakey.m_bLocalData, strId }, strPath);
 
       }
 

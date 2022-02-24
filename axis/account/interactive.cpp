@@ -26,9 +26,9 @@ namespace account
          else
          {
 
-            __pointer(::axis::application) papplication = get_application();
+            __pointer(::axis::application) papp = get_app();
 
-            papplication->interactive_credentials(pcredentials);
+            papp->interactive_credentials(pcredentials);
 
          }
 

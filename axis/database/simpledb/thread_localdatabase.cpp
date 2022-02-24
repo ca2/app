@@ -41,7 +41,7 @@ namespace simpledb
             try
             {
 
-               if (get_application() == nullptr)
+               if (get_app() == nullptr)
                {
 
                   break;

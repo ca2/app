@@ -30,7 +30,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::e_element_close_button)
+      if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
       {
 
          color.alpha = 180;
@@ -92,7 +92,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::e_element_switch_button)
+      if (::is_element(puserinteraction->m_pitemHover, ::e_element_switch_button))
       {
 
          color.alpha = 180;

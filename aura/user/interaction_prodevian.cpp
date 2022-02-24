@@ -120,7 +120,7 @@ namespace user
          else
          {
 
-            init_thread();
+            init_task();
 
          }
 
@@ -299,7 +299,7 @@ namespace user
    }
 
 
-   void prodevian::term_thread()
+   void prodevian::term_task()
    {
 
       if (m_pimpl)
@@ -316,7 +316,7 @@ namespace user
 
       m_nanosecondtimer.close_timer();
 
-      ::thread::term_thread();
+      ::thread::term_task();
 
       m_pimpl.release();
 
@@ -1382,7 +1382,7 @@ namespace user
       if (!is_graphical())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 

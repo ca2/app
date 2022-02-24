@@ -61,9 +61,9 @@ namespace filemanager
 
       //}
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      initialize_data_client(papplication->dataserver());
+      initialize_data_client(papp->m_papplication->dataserver());
 
       //return estatus;
 

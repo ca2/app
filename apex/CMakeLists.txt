@@ -363,7 +363,7 @@ list(APPEND apex_source
    operating_system/graphics.h
    operating_system/http.cpp
    operating_system/openssl_crypt.cpp
-   operating_system/operating_system.h
+   #operating_system/operating_system.h
    operating_system/operating_system.cpp
    #operating_system/os_windowing2.h
    #operating_system/process.h
@@ -406,22 +406,24 @@ list(APPEND apex_source
    platform/api.h
    platform/api_client.cpp
    platform/api_client.h
+   platform/apex.cpp
+   platform/apex.h
    platform/apex_aura.h
-   platform/apex_main_data.cpp
-   platform/apex_main_data.h
-   platform/apex_main_struct.cpp
-   platform/apex_main_struct.h
-   platform/app_core.cpp
-   platform/app_core.h
+   #platform/apex_main_data.cpp
+   #platform/apex_main_data.h
+   #platform/apex_main_struct.cpp
+   #platform/apex_main_struct.h
+   #platform/app_core.cpp
+   #platform/app_core.h
+   platform/app_consumer.h
+   platform/app_container.cpp
+   platform/app_container.h
    platform/app_launcher.cpp
    platform/app_launcher.h
    platform/application.cpp
    platform/application.h
    platform/application_array.cpp
    platform/application_array.h
-   platform/application_consumer.h
-   platform/application_container.cpp
-   platform/application_container.h
    platform/application_exit.cpp
    platform/application_exit.h
    platform/application_heap.h
@@ -491,9 +493,9 @@ list(APPEND apex_source
    platform/simple_app.h
    #platform/simple_log.cpp
    #platform/simple_log.h
-   platform/static_start.cpp
-   platform/static_start.h
-   platform/static_start_apex.cpp
+   #platform/static_start.cpp
+   #platform/static_start.h
+   #platform/static_start_apex.cpp
    platform/system.cpp
    platform/system.h
    platform/text.cpp

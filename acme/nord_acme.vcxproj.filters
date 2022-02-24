@@ -4789,6 +4789,7 @@
     <None Include="exception\_.inl">
       <Filter>Header Files\exception</Filter>
     </None>
+    <None Include="..\..\..\..\Users\camilo\Desktop\app.lnk" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="acme\compress\zip\zip_algorithm.txt">

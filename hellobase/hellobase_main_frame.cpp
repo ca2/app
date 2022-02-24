@@ -11,11 +11,11 @@ namespace hellobase
 
       WfiEnableFullScreen();
 
-      m_bWindowFrame = !papplication->m_bExperienceMainFrame;
+      m_bWindowFrame = !papp->m_bExperienceMainFrame;
 
 
 
-      if (papplication->has_property("opaque"))
+      if (papp->has_property("opaque"))
       {
 
          m_bExplicitTranslucency = true;

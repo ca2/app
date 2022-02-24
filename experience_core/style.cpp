@@ -180,9 +180,9 @@ namespace experience
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
@@ -211,9 +211,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if(ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if(::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -307,9 +307,9 @@ namespace experience
 
                   pgraphics->draw_path(ppath);
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
@@ -338,9 +338,9 @@ namespace experience
 
                   ppath->close_figure();
 
-                  if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
+                  if (::is_item(ptab->m_pitemHover, iTab)
+                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                   {
 
                      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -407,8 +407,8 @@ namespace experience
 
                pgraphics->set_font(ptab, ::e_element_close_tab_button);
 
-               if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::e_element_close_tab_button)
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
                {
 
                   pbrushText = ptab->get_data()->m_pbrushCloseHover;
@@ -513,7 +513,7 @@ namespace experience
 
                   status < ::color::color > colorText;
 
-                  if(ptab->m_itemHover == (::index) ::e_element_split + i)
+                  if(::is_item(ptab->m_pitemHover,(::index) ::e_element_split + i))
                   {
 
                      pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 190, 255));
@@ -1698,7 +1698,8 @@ namespace experience
 
          ::rectangle_i32 rectangle;
 
-         if (pbar->m_itemCurrent == ::e_element_scrollbar_pageA || pbar->m_itemHover == ::e_element_scrollbar_pageA)
+         if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
+            || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
          {
 
             pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
@@ -1710,7 +1711,8 @@ namespace experience
             pgraphics->fill_rectangle(rectangle);
 
          }
-         else if (pbar->m_itemCurrent == ::e_element_scrollbar_pageB || pbar->m_itemHover == ::e_element_scrollbar_pageB)
+         else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
+            || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
          {
 
             pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);

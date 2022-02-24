@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 //void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);
@@ -418,10 +418,12 @@ namespace user
    void interaction_child::destroy_window()
    {
 
+      auto puserinteraction = m_puserinteraction;
+
       try
       {
 
-         m_puserinteraction->send_message(e_message_destroy);
+         puserinteraction->send_message(e_message_destroy);
 
       }
       catch (...)
@@ -433,7 +435,7 @@ namespace user
       try
       {
 
-         m_puserinteraction->send_message(e_message_non_client_destroy);
+         puserinteraction->send_message(e_message_non_client_destroy);
 
       }
       catch (...)

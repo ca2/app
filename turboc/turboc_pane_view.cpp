@@ -71,7 +71,7 @@ namespace turboc
       {
       case MAIN_IMPACT:
          {
-         papplication->m_ptemplateHelloMultiverseView->open_document_file(get_application(), NULL,true,pcreatordata->m_pholder);
+         papp->m_ptemplateHelloMultiverseView->open_document_file(get_app(), NULL,true,pcreatordata->m_pholder);
 
 
          }
@@ -81,7 +81,7 @@ namespace turboc
       case PaneViewHelloMultiverseSwitcher:
       {
 
-         papplication->m_ptemplateHelloMultiverseSwitcher->open_document_file(get_application(), NULL,true,pcreatordata->m_pholder);
+         papp->m_ptemplateHelloMultiverseSwitcher->open_document_file(get_app(), NULL,true,pcreatordata->m_pholder);
 
 
 

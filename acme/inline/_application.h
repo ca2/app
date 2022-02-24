@@ -16,7 +16,7 @@ public:
    __pointer(::acme::application)   m_papp;
 
 
-   //static application *             s_papplication;
+   //static application *             s_papp;
 
 
    application();

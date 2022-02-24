@@ -228,7 +228,7 @@
 //::count compress_context::extract_all(const ::file::path & pszDir, const ::file::path & pszFile, ::application * pobject)
 //{
 //   
-//   ::file::patha patha;
+//   ::file::path_array patha;
 //
 //   //zip_context zip(this);
 //   zip_context zip(this);

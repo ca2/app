@@ -21,7 +21,7 @@
 ::file::path macos_app_path(::acme_dir * pacmedir, string strApp)
 {
 
-   ::file::path path = pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path = pacmedir->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
    return pacmedir->m_pacmefile->as_string(path);
 
@@ -111,7 +111,7 @@ CLASS_DECL_ACME ::file::path core_app_path(::acme_dir * pacmedir, string strApp)
 
    ::file::path path = getenv("HOME");
 
-   path /= "Library/papplication Support/ca2/mypath" / strApp;
+   path /= "Library/papp Support/ca2/mypath" / strApp;
 
    path += ".txt";
 

@@ -7,7 +7,7 @@ namespace sockets
 
 
    sip_udp_client_socket::sip_udp_client_socket() :
-      object(h.get_application()),
+      object(h.get_app()),
       base_socket(h),
       socket(h),
       udp_socket(h),

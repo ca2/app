@@ -7,20 +7,22 @@
 #include "acme/user/nano/_nano.h"
 
 
+
 namespace x11
 {
 
 
    class CLASS_DECL_ACME nano_window :
-      virtual public ::nano_window_implementation
+      virtual public ::nano_window_implementation,
+      virtual public event_listener
    {
    public:
 
 
-      Display *                        m_pdisplay;
-      Window                           m_window;
-      cairo_surface_t *                m_psurface;
-      __pointer(nano_device)           m_pnanodevice;
+      __pointer(display)              m_pdisplay;
+      Window                          m_window;
+      cairo_surface_t *               m_psurface;
+      __pointer(nano_device)          m_pnanodevice;
       //__pointer(nano_font)          m_pfont;
       //color32_t                     m_colorText;
       //color32_t                     m_colorFocus;
@@ -28,6 +30,7 @@ namespace x11
       //string                        m_strTitle;
       //bool                          m_bNcActive;
 
+      manual_reset_event              m_eventEnd;
       //rectangle_i32                 m_rectangle;
       //rectangle_i32                 m_rectangleClient;
 
@@ -50,13 +53,13 @@ namespace x11
 
       void display_synchronously() override;
 
-      virtual void _on_event(XEvent *pevent);
+      virtual bool _on_event(XEvent *pevent);
 
       virtual void _update_window();
 
-      void message_loop() override;
+      //void message_loop() override;
 
-      virtual bool message_loop_step();
+      //virtual bool message_loop_step();
 
       virtual void _draw(nano_device * pnanodevice);
 
@@ -90,7 +93,13 @@ namespace x11
 
       void on_left_button_up(int x, int y) override;
 
+      void on_right_button_down(int x, int y) override;
+
+      void on_right_button_up(int x, int y) override;
+
       void on_click(const ::atom & atom) override;
+
+      void on_right_click(const ::atom & atom) override;
 
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);

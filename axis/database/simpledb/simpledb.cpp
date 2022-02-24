@@ -58,7 +58,7 @@ namespace simpledb
       if (::is_null(pserver) || pserver->m_pstorage.is_null())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -67,7 +67,7 @@ namespace simpledb
       if (!pstorage)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -90,7 +90,7 @@ namespace simpledb
       if (::is_null(pserver))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -112,7 +112,7 @@ namespace simpledb
 
          }
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -122,7 +122,7 @@ namespace simpledb
       if (pstorage.is_null())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -193,9 +193,9 @@ namespace simpledb
 
          synchronouslock.unlock();
 
-         __pointer(::axis::application) papplication = get_application();
+         __pointer(::axis::application) papp = get_app();
 
-         papplication->assert_user_logged_in();
+         papp->assert_user_logged_in();
 
          synchronouslock.lock();
 
@@ -309,7 +309,7 @@ namespace simpledb
       if (::is_null(pserver))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -341,7 +341,7 @@ namespace simpledb
       if (::is_null(pstorage))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -355,7 +355,7 @@ namespace simpledb
          if (pserver->get_local_database().is_null())
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 

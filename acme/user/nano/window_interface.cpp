@@ -151,6 +151,28 @@ void nano_window_interface::on_click(const ::atom & atom)
 }
 
 
+void nano_window_interface::on_right_button_down(int x, int y)
+{
+
+
+}
+
+
+void nano_window_interface::on_right_button_up(int x, int y)
+{
+
+
+}
+
+
+void nano_window_interface::on_right_click(const ::atom & atom)
+{
+
+}
+
+
+
+
 void nano_window_interface::move_to(int x, int y)
 {
 

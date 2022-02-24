@@ -139,10 +139,17 @@ void channel::route_message(::message::message * pmessage)
 
    }
 
-   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
+   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 
-      auto pdispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
+      auto & pdispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
+
+      if (::is_null(pdispatcher))
+      {
+
+         break;
+
+      }
 
       pdispatcher->handle(pmessage); if(pmessage->m_bRet) return;
 

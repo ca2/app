@@ -43,7 +43,7 @@ namespace account
 //   bool storage::get(string strKey, string strToken, string & strValue)
 //   {
 //      
-//      return psystem->crypto().file_get(pathPrefix + strKey, strValue, strToken, get_application());
+//      return psystem->crypto().file_get(pathPrefix + strKey, strValue, strToken, get_app());
 //      
 //   }
 //   
@@ -51,7 +51,7 @@ namespace account
 //   bool storage::set(string strKey, string strToken, string strValue)
 //   {
 //      
-//      return psystem->crypto().file_set(pathPrefix + strKey, strValue, strToken, get_application());
+//      return psystem->crypto().file_set(pathPrefix + strKey, strValue, strToken, get_app());
 //      
 //   }
 

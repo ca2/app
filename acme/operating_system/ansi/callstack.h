@@ -1,27 +1,15 @@
+//
+//  callstack.hpp
+//  acme
+//
+//  Created by Camilo Sasuke <3 Thomas Borregaard Sørensen on 14/02/22.
+//  15:33
+//  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//
 #pragma once
 
 
-namespace ansios
-{
-
-
-   class CLASS_DECL_ACME callstack :
-      public ::callstack
-   {
-   public:
-
-
-      callstack();
-      virtual ~callstack();
-
-
-      virtual const char * get_dup(const char * pszFormat, i32 iSkip, int iCount);
-
-
-   };
-
-
-} // namespace ansios
+CLASS_DECL_ACME string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat);
 
 
 

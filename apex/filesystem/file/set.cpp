@@ -51,7 +51,7 @@ namespace file
    }
 
 
-   void set::add_search(const ::file::patha & pathaSearchFolder, const bool_array & baRecursive)
+   void set::add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive)
    {
 
       // derived classes may perform specific actions this add_search...

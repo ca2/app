@@ -1625,7 +1625,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
       //return true;
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -2207,7 +2207,7 @@ void imaging::blur(::image * pimage, i32 iRadius)
    if (!pimage->is_ok())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -2226,7 +2226,7 @@ void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
    if (!pimage->is_ok())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -2933,7 +2933,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
    if (size.cx <= 0 || size.cy <= 0)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -2942,7 +2942,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
    if (!pimageDst)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -2951,7 +2951,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
    if (!pimageSrc)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3013,7 +3013,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
    if (size.area() <= 0)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3022,7 +3022,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
    if (!pimageDst)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3031,7 +3031,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
    if (!pimageSrc)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3092,14 +3092,14 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 {
 
    if(iRadius <= 0)
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    i32 cx = pimageDst->width();
    i32 cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    byte * pDst = (byte *)pimageDst->get_data();
 
@@ -3385,14 +3385,14 @@ void imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
 {
 
    if(iRadius <= 0)
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    i32 cx = pimageDst->width();
    i32 cy = pimageDst->height();
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    pimageDst->map();
 
@@ -3697,7 +3697,7 @@ byte * pFilter)
    if (size.cx <= 0 || size.cy <= 0)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3706,7 +3706,7 @@ byte * pFilter)
    if (!pimageDst)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3715,7 +3715,7 @@ byte * pFilter)
    if (!pimageSrc)
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3732,7 +3732,7 @@ byte * pFilter)
       /*if (!*/pdcSrc->draw(imagedrawing);/*)
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }*/
 
@@ -3790,7 +3790,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    if(cx != pimageSrc->width()
          || cy != pimageSrc->height())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    byte * pDst = (byte *)pimageDst->get_data();
 
@@ -4904,7 +4904,7 @@ i32 iChannel,i32 iRadius,
 {
 
    if (size.is_empty())
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
@@ -5004,7 +5004,7 @@ i32 iRadius,
 {
 
    if (size.is_empty())
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
@@ -5073,7 +5073,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (iRadius <= 1)
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -5187,7 +5187,7 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (cx != pimageSrc->width() || cy != pimageSrc->height())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -7088,7 +7088,7 @@ void context_image::load_svg(::image * pimage, memory & memory)
 
       //return pimage->m_estatus;
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 

@@ -248,28 +248,28 @@ namespace user
 
       bool                                         m_bOverdraw;
       ::index                                      m_iIndex;
-      ::item                                 m_itemLButtonDown;
-      ::item                                 m_itemCurrent;
-      ::item                                 m_itemHover;
-      ::item                                 m_itemHoverMouse;
-      ::item                                 m_itemPressed;
-      ::size_i32                                       m_sizeRestoreBroad;
-      ::size_i32                                       m_sizeRestoreCompact;
-      enumeration < e_non_client >                       m_flagNonClient;
+      __pointer(::item)                            m_pitemLButtonDown;
+      __pointer(::item)                            m_pitemCurrent;
+      __pointer(::item)                            m_pitemHover;
+      __pointer(::item)                            m_pitemHoverMouse;
+      __pointer(::item)                            m_pitemPressed;
+      ::size_i32                                   m_sizeRestoreBroad;
+      ::size_i32                                   m_sizeRestoreCompact;
+      enumeration < e_non_client >                 m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
-      ::duration                                     m_durationMouseMoveSkip;
-      ::point_i32                                      m_pointMouseMoveSkip;
-      ::duration                                     m_durationMouseMovePeriod;
+      ::duration                                   m_durationMouseMoveSkip;
+      ::point_i32                                  m_pointMouseMoveSkip;
+      ::duration                                   m_durationMouseMovePeriod;
       bool                                         m_bMouseMovePending;
-      ::point_i32                                      m_pointMouseMove;
+      ::point_i32                                  m_pointMouseMove;
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
-      ::duration                                         m_durationLastRedraw;
-      ::atom                                         m_atomImpact;
-      ::color::color                                      m_colorBackground;
+      ::duration                                   m_durationLastRedraw;
+      ::atom                                       m_atomImpact;
+      ::color::color                               m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
-      point_i32                                        m_pointScroll;
+      point_i32                                    m_pointScroll;
       bool                                         m_bHideOnTransparentFrame;
       bool                                         m_bOffScreenRender;
       bool                                         m_bMoveWindow;
@@ -283,15 +283,15 @@ namespace user
       //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::duration                                     m_durationMouseMove;
-      ::duration                                     m_durationMouseMoveIgnore;
+      ::duration                                   m_durationMouseMove;
+      ::duration                                   m_durationMouseMoveIgnore;
       double                                       m_dItemHeight;
-      point_i32                                        m_pointMoveCursor;
+      point_i32                                    m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
       bool                                         m_bBackgroundBypass;
-      ::duration                                       m_durationLastFullUpdate;
+      ::duration                                   m_durationLastFullUpdate;
       bool                                         m_bSizeMove;
-      ::duration                                       m_durationLastVisualChange;
+      ::duration                                   m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
@@ -363,7 +363,7 @@ namespace user
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
-      inline ::aura::application * get_application() const;
+      inline ::aura::application * get_app() const;
       inline ::aura::session * get_session() const;
       inline ::aura::system * get_system() const;
 
@@ -387,7 +387,7 @@ namespace user
 
       ::user::interaction * get_host_window() const override;
 
-      ::item * get_user_item(const ::item& item);
+      ::item_pointer get_user_item(const ::item & item);
 
       virtual ::user::enum_state get_user_state() const;
 
@@ -749,11 +749,11 @@ namespace user
       virtual bool is_left_button_pressed() const;
 
 
-      virtual void set_current_item(const ::item & item, const ::action_context & action_context);
-      virtual ::item current_item();
+      virtual void set_current_item(item * pitem, const ::action_context & action_context);
+      virtual ::item_pointer current_item();
 
 
-      virtual ::item hover_item();
+      virtual ::item_pointer hover_item();
 
 
       virtual bool _is_window() const override;
@@ -1717,8 +1717,8 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
-      virtual bool on_click(const ::item & item);
-      virtual bool on_right_click(const ::item & item);
+      virtual bool on_click(::item * pitem);
+      virtual bool on_right_click(::item * pitem);
 
 
       virtual int width();
@@ -1764,20 +1764,22 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
+      ::item_pointer hit_test(::message::mouse * pmouse) override;
+
       using ::aura::drawable::hit_test;
-      virtual void hit_test(::item& item, const ::point_i32 & point) override;
+      virtual ::item_pointer hit_test(const ::point_i32 & point) override;
 
       using ::aura::drawable::on_hit_test;
-      virtual void on_hit_test(::item & item) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);
 
-      virtual bool get_rect(::item& item);
+      //virtual bool get_rectangle(::item * pitem);
 
-      inline auto rectangle(const ::item& item) { get_rect((::item &) item); return item.m_rectangle; }
+      //inline auto rectangle(::item * pitem) { get_rect((::item *) pitem); return pitem->m_rectangle; }
 
-      virtual __pointer(::item) add_user_item(const ::item & item);
+      virtual void add_user_item(::item * pitem);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
 
@@ -1828,7 +1830,7 @@ namespace user
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
-      //virtual void on_hit_test(::item & item) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
       //DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);

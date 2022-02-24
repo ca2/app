@@ -42,7 +42,7 @@ namespace sphere
    //   if (ecolor == ::user::color_text || ecolor == ::user::color_edit_text)
    //   {
 
-   //      color32 = papplication->get_theme_fg_color();
+   //      color32 = papp->get_theme_fg_color();
 
    //   }
    //   else if (ecolor == ::user::color_text_selected)
@@ -69,7 +69,7 @@ namespace sphere
    //   {
 
 
-   //      color32 = papplication->get_theme_bg_color();
+   //      color32 = papp->get_theme_bg_color();
 
    //   }
    //   else if (ecolor == ::user::color_background_selected)

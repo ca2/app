@@ -5,7 +5,23 @@
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
+#include "acme/platform/acme.h"
 #include "acme/platform/set_app_id.h"
+
+
+main::main()
+{
+
+}
+
+
+main::~main()
+{
+
+
+}
+
+
 
 
 
@@ -56,6 +72,16 @@ void main::system_construct(const main& main)
    m_strAppId = main.m_strAppId;
 
    m_pfnImplement = main.m_pfnImplement;
+
+   if(!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
+   && main.m_pchar_binary__matter_zip_start && main.m_pchar_binary__matter_zip_end)
+   {
+
+      m_pchar_binary__matter_zip_start = main.m_pchar_binary__matter_zip_start;
+
+      m_pchar_binary__matter_zip_end = main.m_pchar_binary__matter_zip_end;
+
+   }
 
    //return ::success;
 
@@ -109,6 +135,15 @@ string main::get_argument1(int iArgument) const
 CLASS_DECL_ACME void set_main_thread();
 
 
+void __main()
+{
+
+
+
+
+}
+
+
 void __main(main& main)
 {
 
@@ -118,35 +153,75 @@ void __main(main& main)
 
    ::e_status estatusEnd = error_failed;
 
-   auto psystem = platform_create_system(main.m_strAppId);
+   string strAppId;
 
-   /*estatus =*/ psystem->system_construct(main);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /*estatus = */ psystem->call_init_system();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
+   if (!main.m_bConsole)
    {
 
-      auto pnode = psystem->node();
-
-      /*estatus =*/ pnode->implement(pnode, psystem);
+      strAppId = main.m_strAppId;
 
    }
 
+   auto pfactoryitem = ::factory::get_factory()->get_factory_item<class::system>();
+
+   __pointer(class ::system) psystem = pfactoryitem->create_element();
+
+   psystem->system_construct(main);
+
+   psystem->create_os_node();
+
+   auto pnode = psystem->node();
+
+   pnode->implement(pnode, psystem);
+
+   //}
+
+   //auto psystem = platform_create_system(strAppId);
+
+   /*estatus =*/
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   /*estatus = */ //psystem->__task_init();
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+
    //return estatus;
+
+}
+
+
+app_flag::app_flag(::main & main, const char * pszFlag)
+{
+
+   if(!::is_empty(pszFlag))
+   {
+
+      if(!strcmp(pszFlag, "no_audio"))
+      {
+
+         main.m_bAudio = false;
+
+      }
+      else if(!strcmp(pszFlag, "no_imaging"))
+      {
+
+         main.m_bImaging = false;
+
+      }
+
+   }
 
 }
 

@@ -258,9 +258,9 @@ namespace account
    bool user_array::is_authenticated(::file::path pathUrl, bool bInteractive)
    {
 
-      __pointer(::axis::application) papplication = get_application();
+      __pointer(::axis::application) papp = get_app();
 
-      auto puser = papplication->get_user(pathUrl, true, bInteractive);
+      auto puser = papp->get_user(pathUrl, true, bInteractive);
 
       if(::is_null(puser))
       {

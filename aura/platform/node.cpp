@@ -62,7 +62,7 @@ namespace aura
    void node::message_box_factory()
    {
 
-      ::factory::add_factory_item < ::user::default_message_box, ::user::message_box >();
+      //::factory::add_factory_item < ::user::default_message_box, ::user::message_box >();
 
    }
 
@@ -109,7 +109,7 @@ namespace aura
    }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::application * papplication)
+   void node::set_application_menu(::application_menu * pmenu, ::application * papp)
    {
 
    }

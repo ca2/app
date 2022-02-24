@@ -409,7 +409,7 @@ namespace sqlite
 
       }
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -485,7 +485,7 @@ namespace sqlite
       if (isActive())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -500,7 +500,7 @@ namespace sqlite
       catch (...)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -742,7 +742,7 @@ namespace sqlite
 
                   m_pstmtReplace = nullptr;
 
-                  throw_status(error_failed);
+                  throw ::exception(error_failed);
 
                }
 
@@ -768,7 +768,7 @@ namespace sqlite
 
                TRACE("failure to bind text");
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -779,7 +779,7 @@ namespace sqlite
 
                TRACE("failure to bind blob");
 
-               throw_status(error_failed);
+               throw ::exception(error_failed);
 
             }
 
@@ -791,7 +791,7 @@ namespace sqlite
       catch (...)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -821,7 +821,7 @@ namespace sqlite
 
             m_pstmtSelect = nullptr;
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -842,7 +842,7 @@ namespace sqlite
 
             m_pstmtSelect = nullptr;
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -855,7 +855,7 @@ namespace sqlite
       if (res != SQLITE_OK)
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -877,7 +877,7 @@ namespace sqlite
 
          //return payload.get_string();
 
-         //throw_status(error_failed);
+         //throw ::exception(error_failed);
 
          return false;
 
@@ -890,7 +890,7 @@ namespace sqlite
       if (!getmemory.get(psz, iLen))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

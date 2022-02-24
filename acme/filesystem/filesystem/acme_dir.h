@@ -128,13 +128,13 @@ public:
          virtual void erase(const char* path);
 
 
-         virtual void rls(::file::patha & stra, const char * psz);
-         virtual void rls_dir(::file::patha & stra, const char * psz);
+         virtual void rls(::file::path_array & stra, const char * psz);
+         virtual void rls_dir(::file::path_array & stra, const char * psz);
 
-         virtual void ls(::file::patha & stra, const char * psz);
-         virtual void ls_dir(::file::patha & stra, const char * psz);
+         virtual void ls(::file::path_array & stra, const char * psz);
+         virtual void ls_dir(::file::path_array & stra, const char * psz);
 
-         virtual void ls_file(::file::patha & stra, const char * psz);
+         virtual void ls_file(::file::path_array & stra, const char * psz);
 
          virtual int make_path(const char * psz);
 
@@ -150,11 +150,11 @@ public:
             //virtual bool _is(const char * path);
             //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
             //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
-            //virtual void ls(::file::patha & patha, const char * path);
-            //virtual void ls_dir(::file::patha & patha, const char * path);
-            //virtual void ls_file(::file::patha & patha, const char * path);
-            //virtual void rls(::file::patha & patha, const char * path);
-            //virtual void rls_dir(::file::patha & patha, const char * path);
+            //virtual void ls(::file::path_array & patha, const char * path);
+            //virtual void ls_dir(::file::path_array & patha, const char * path);
+            //virtual void ls_file(::file::path_array & patha, const char * path);
+            //virtual void rls(::file::path_array & patha, const char * path);
+            //virtual void rls_dir(::file::path_array & patha, const char * path);
 
 
             //virtual::file::path ca2_module();
@@ -166,6 +166,8 @@ public:
    virtual string get_current();
    virtual void change_current(const char * psz);
    virtual void change_to_home();
+
+
 
 
 

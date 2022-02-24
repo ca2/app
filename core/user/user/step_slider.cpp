@@ -11,7 +11,7 @@ namespace user
    {
 
       //m_iHover = 0x80000000;
-      //m_itemHover = false;
+      //m_pitemHover = false;
 
    }
 
@@ -50,10 +50,10 @@ namespace user
       ::user::interaction::_001OnTimer(ptimer);;
       if(ptimer->m_uEvent == 1)
       {
-         if(m_itemHover.is_set())
+         if(::is_set(m_pitemHover))
          {
             update_hover();
-            if(!m_itemHover.is_set())
+            if(!::is_set(m_pitemHover))
                KillTimer(1);
          }
       }
@@ -64,7 +64,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_itemLButtonDown = hit_test(pmouse);
+      m_pitemLButtonDown = hit_test(pmouse);
 
    }
 
@@ -74,12 +74,12 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto item = hit_test(pmouse);
+      auto pitem = hit_test(pmouse);
 
-      if(item == m_itemLButtonDown)
+      if(pitem == m_pitemLButtonDown)
       {
 
-         m_scalar.set(item);
+         m_scalar.set(pitem);
 
       }
 
@@ -93,7 +93,7 @@ namespace user
 
       SetTimer(1, 200_ms, nullptr);
 
-      m_itemHover = true;
+      m_pitemHover = __new(::item(::e_element_client));
 
       update_hover();
 
@@ -126,7 +126,7 @@ namespace user
          if(i == iVal)
          {
             
-            if(m_itemHover.item_index() == i)
+            if(m_pitemHover->item_index() == i)
             {
 
                pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));
@@ -143,7 +143,7 @@ namespace user
          else
          {
          
-            if(m_itemHover.item_index() == i)
+            if(::is_item(m_pitemHover, i))
             {
                
                pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 180, 180));
@@ -202,7 +202,7 @@ namespace user
    }
 
 
-   void step_slider::on_hit_test(::item & item)
+   ::item_pointer step_slider::on_hit_test(const ::point_i32 &point)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -212,9 +212,7 @@ namespace user
       if (rectangleClient.width() == 0)
       {
 
-         item = ::e_element_none;
-
-         return;
+         return nullptr;
 
       }
 
@@ -224,7 +222,7 @@ namespace user
 
       iMax = m_scalar.maximum();
 
-      item = (index) (iMin + (((item.m_pointHitTest.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()));
+      return __new(::item((index) (iMin + (((point.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()))));
 
    }
 
@@ -240,7 +238,7 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      m_itemHover = hit_test(pointCursor);
+      m_pitemHover = hit_test(pointCursor);
 
       set_need_redraw();
 
@@ -248,7 +246,18 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      m_itemHover = rectangleClient.contains(pointCursor) != false;
+      if (rectangleClient.contains(pointCursor))
+      {
+
+         m_pitemHover = __new(::item(e_element_client));
+
+      }
+      else
+      {
+
+         m_pitemHover = nullptr;
+
+      }
 
    }
 

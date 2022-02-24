@@ -639,16 +639,16 @@ void acme_dir::set_path_install_folder(const string & strPath)
 ::file::path acme_dir::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
 {
 
-   ::file::patha stra;
+   ::file::path_array patha;
 
-   stra.add_tokens(pszEnv, ":", false);
+   patha.add_tokens(pszEnv, ":", false);
 
    string strCandidate;
 
-   for (i32 i = 0; i < stra.get_count(); i++)
+   for (i32 i = 0; i < patha.get_count(); i++)
    {
 
-      strCandidate = stra[i] / pszTopic;
+      strCandidate = patha[i] / pszTopic;
 
       //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
       if (m_pacmefile->exists(strCandidate))
@@ -663,7 +663,6 @@ void acme_dir::set_path_install_folder(const string & strPath)
    return "";
 
 }
-
 
 
 ::file::path acme_dir::get_memory_map_base_folder_path()
@@ -752,16 +751,16 @@ void acme_dir::create(const char * pathParam)
 
    strsize iLastPo = -1;
 
-   ::file::patha stra;
+   ::file::path_array patha;
 
-   path.ascendants_path(stra);
+   path.ascendants_path(patha);
 
-   index i = stra.get_upper_bound();
+   index i = patha.get_upper_bound();
 
    for (; i >= 0; i--)
    {
 
-      string strDir = stra[i];
+      string strDir = patha[i];
 
       if (is(strDir))
       {
@@ -781,10 +780,10 @@ void acme_dir::create(const char * pathParam)
 
    }
 
-   for (; i < stra.get_count(); i++)
+   for (; i < patha.get_count(); i++)
    {
 
-      string strDir = stra[i];
+      string strDir = patha[i];
 
       _create2(strDir);
 
@@ -833,14 +832,14 @@ bool acme_dir::is(const char * path)
    if(::is_null(path))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if(*path == '\0')
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -851,7 +850,7 @@ bool acme_dir::is(const char * path)
 //string name(string path);
 
 
-void acme_dir::rls(::file::patha & stra, const char * psz)
+void acme_dir::rls(::file::path_array & stra, const char * psz)
 {
 
    throw ::interface_only();
@@ -859,7 +858,7 @@ void acme_dir::rls(::file::patha & stra, const char * psz)
 }
 
 
-void acme_dir::rls_dir(::file::patha & stra, const char * psz)
+void acme_dir::rls_dir(::file::path_array & stra, const char * psz)
 {
 
    throw ::interface_only();
@@ -869,7 +868,7 @@ void acme_dir::rls_dir(::file::patha & stra, const char * psz)
 }
 
 
-void acme_dir::ls(::file::patha & stra, const char * psz)
+void acme_dir::ls(::file::path_array & stra, const char * psz)
 {
 
    throw ::interface_only();
@@ -877,7 +876,7 @@ void acme_dir::ls(::file::patha & stra, const char * psz)
 }
 
 
-void acme_dir::ls_dir(::file::patha & stra, const char * psz)
+void acme_dir::ls_dir(::file::path_array & stra, const char * psz)
 {
 
    throw ::interface_only();
@@ -885,7 +884,7 @@ void acme_dir::ls_dir(::file::patha & stra, const char * psz)
 }
 
 
-void acme_dir::ls_file(::file::patha & stra, const char * psz)
+void acme_dir::ls_file(::file::path_array & stra, const char * psz)
 {
 
    throw ::interface_only();
@@ -928,11 +927,11 @@ int acme_dir::make_path(const char * psz)
       //bool _is(const char * path);
       //bool mk(const  char * path); // makes a directory path (all intermediates too)
       //bool mkdir(const  char * path); // only creates if parent dir already exists
-      //void ls(::file::patha & patha, const char * path);
-      //void ls_dir(::file::patha & patha, const char * path);
-      //void ls_file(::file::patha & patha, const char * path);
-      //void rls(::file::patha & patha, const char * path);
-      //void rls_dir(::file::patha & patha, const char * path);
+      //void ls(::file::path_array & patha, const char * path);
+      //void ls_dir(::file::path_array & patha, const char * path);
+      //void ls_file(::file::path_array & patha, const char * path);
+      //void rls(::file::path_array & patha, const char * path);
+      //void rls_dir(::file::path_array & patha, const char * path);
 
 
 //::file::path acme_dir::module_folder()

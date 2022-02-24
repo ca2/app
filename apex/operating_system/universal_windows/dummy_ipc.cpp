@@ -234,7 +234,7 @@
 //               for(auto & strLine : stra)
 //               {
 //
-//                  ::fork(get_application(),[=]()
+//                  ::fork(get_app(),[=]()
 //                  {
 //
 //                     on_receive(this,strLine);

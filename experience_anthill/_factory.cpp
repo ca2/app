@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "apex/platform/static_setup.h"
+//#include "apex/platform/system_setup.h"
 //
 //
 //namespace experience

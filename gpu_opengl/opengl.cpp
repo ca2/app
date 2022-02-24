@@ -96,7 +96,7 @@ namespace opengl
          if (!m_atomClass)
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -171,7 +171,7 @@ namespace opengl
             // Problem: glewInit failed, something is seriously wrong.
             FORMATTED_TRACE("glewInit failed: %s (%d)\n", pszErrorString, err);
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
          

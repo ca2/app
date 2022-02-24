@@ -11,7 +11,7 @@ public:
    virtual ~image_array();
 
 
-   //::aura::application * application() { return m_papplication.cast < ::aura::application > (); }
+   //::aura::application * application() { return m_papp.cast < ::aura::application > (); }
 
 
    virtual bool explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);

@@ -297,9 +297,9 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
          bool bWfiDown = true;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         papplication->data_get("wfi_down", bWfiDown);
+         papp->data_get("wfi_down", bWfiDown);
 
          if (bWfiDown)
          {
@@ -361,9 +361,9 @@ void simple_frame_window::WindowDataSaveWindowRect()
 
       bDown = m_eupdown != updown_up;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      papplication->data_set("wfi_down", bDown);
+      papp->data_set("wfi_down", bDown);
 
    }
 
@@ -553,12 +553,12 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    }
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   if(papplication->m_puserinteractionMain != nullptr)
+   if(papp->m_puserinteractionMain != nullptr)
    {
 
-      __pointer(::simple_frame_window) pframe = papplication->m_puserinteractionMain.get();
+      __pointer(::simple_frame_window) pframe = papp->m_puserinteractionMain.get();
 
       if(pframe.is_set())
       {
@@ -650,7 +650,7 @@ void simple_frame_window::initialize_frame_window_experience()
    {
 
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -747,12 +747,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
    if (m_bWindowFrame.is_none())
    {
 
-      auto& bApplicationExperienceMainFrame = papplication->m_bExperienceMainFrame;
+      auto& bApplicationExperienceMainFrame = papp->m_bExperienceMainFrame;
 
       if(bApplicationExperienceMainFrame.is_set())
       {
@@ -889,7 +889,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (get_parent() == nullptr && m_strFrameTitle.is_empty())
    {
 
-      m_strFrameTitle = papplication->get_app_user_friendly_task_bar_name();
+      m_strFrameTitle = papp->get_app_user_friendly_task_bar_name();
 
    }
 
@@ -904,7 +904,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   auto textAppTitle = papplication->m_textAppTitle;
+   auto textAppTitle = papp->m_textAppTitle;
 
    string strAppTitle;
 
@@ -919,7 +919,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       string_array stra;
 
-      stra.explode("/", papplication->m_strAppId);
+      stra.explode("/", papp->m_strAppId);
 
       strAppTitle = stra.slice(1).implode(" ");
 
@@ -952,12 +952,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
-            auto c = papplication->applicationmenu().get_count();
+            auto c = papp->applicationmenu().get_count();
 
             for (auto i = 0; i < c; i++)
             {
 
-               auto & item = papplication->applicationmenu()[i];
+               auto & item = papp->applicationmenu()[i];
 
                m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
@@ -1189,9 +1189,9 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   if (papplication->m_bExperienceMainFrame.is_false() && get_parent() == nullptr)
+   if (papp->m_bExperienceMainFrame.is_false() && get_parent() == nullptr)
    {
 
       auto rectangle = get_host_window()->get_client_rect();
@@ -1612,9 +1612,9 @@ void simple_frame_window::on_message_app_exit(::message::message * pmessage)
 
    }
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   papplication->request_exit_application();
+   papp->request_exit_application();
 
    if (pmessage != nullptr)
    {
@@ -1637,12 +1637,12 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       bool bShow = false;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       if (::str::ends_eat_ci(strImpact, "::frame"))
       {
 
-         papplication->data_set("frame::" + strImpact + ".visible", bShow);
+         papp->data_set("frame::" + strImpact + ".visible", bShow);
 
       }
 
@@ -1779,9 +1779,9 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       }
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
-      //::aura::application * papp = &papplication;
+      //::aura::application * papp = &papp;
 
       if (get_parent() != nullptr)
       {
@@ -1810,7 +1810,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       //   }
 
       //}
-      else if(papplication->on_close_frame_window(this))
+      else if(papp->on_close_frame_window(this))
       {
 
          return;
@@ -1942,12 +1942,12 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
    if (puiParent == nullptr)
    {
 
-      puiParent = papplication->get_request_parent_ui(this, pusersystem);
+      puiParent = papp->get_request_parent_ui(this, pusersystem);
 
    }
 
@@ -2197,7 +2197,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    //}
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
    try
    {
@@ -2219,19 +2219,19 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             display(e_display_full_screen);
 
          }
-         else if (papplication->has_property("full_screen"))
+         else if (papp->has_property("full_screen"))
          {
 
             display(e_display_full_screen);
 
          }
-         else if (papplication->has_property("wfi_maximize") && is_top_level_window())
+         else if (papp->has_property("wfi_maximize") && is_top_level_window())
          {
 
             display(e_display_zoomed);
 
          }
-            //else if(papplication->m_bExperienceMainFrame)
+            //else if(papp->m_bExperienceMainFrame)
             //{
 
             //   if(is_frame_experience_enabled())
@@ -2263,7 +2263,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
       m_bInitialFramePosition = true;
 
-      get_application()->on_initial_frame_position(this);
+      get_app()->on_initial_frame_position(this);
 
       //on_frame_position();
 
@@ -2308,8 +2308,8 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
    auto psession = get_session();
 
-   if(get_application() == nullptr
-         || get_application()->get_session() == nullptr
+   if(get_app() == nullptr
+         || get_app()->get_session() == nullptr
          || psession->m_psavings == nullptr)
    {
 
@@ -2741,9 +2741,9 @@ bool simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 bool simple_frame_window::is_application_main_window()
 {
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   return papplication->m_puserinteractionMain == this;
+   return papp->m_puserinteractionMain == this;
 
 }
 
@@ -2770,7 +2770,7 @@ void simple_frame_window::defer_create_notification_icon()
 //
 //      }
 
-      //auto papplication = get_application();
+      //auto papp = get_app();
 
       if (!m_piconNotify)
       {
@@ -2782,7 +2782,7 @@ void simple_frame_window::defer_create_notification_icon()
          //if(estatus.succeeded())
          {
 
-            //const char * pszAppName = papplication->m_strAppName;
+            //const char * pszAppName = papp->m_strAppName;
 
             m_piconNotify->load_app_tray_icon("notify_icon");
 
@@ -2920,7 +2920,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   SetActiveWindow();      // activate us first !
 //   ::u32 nFiles = ::DragQueryFile(hDropInfo, (::u32)-1, nullptr, 0);
 //
-//   ::file::patha patha;
+//   ::file::path_array patha;
 //
 //   natural_wstring pwszFileName(char_count, _MAX_PATH);
 //
@@ -2954,7 +2954,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //   }
 //
-//   papplication->close(::apex::e_end_system);
+//   papp->close(::apex::e_end_system);
 //
 //}
 //
@@ -2983,7 +2983,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   ::aura::application* pApp = &papplication;
+//   ::aura::application* pApp = &papp;
 //   if (pApp != nullptr &&
 //         LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
 //         (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
@@ -3123,7 +3123,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // then update the state of all floating windows owned by the parent
 //#ifdef WINDOWS_DESKTOP
 //
-//   __pointer(::user::interaction) oswindowDesktop = papplication->get_desktop_window();
+//   __pointer(::user::interaction) oswindowDesktop = papp->get_desktop_window();
 //
 //   if (oswindowDesktop.is_null())
 //      return;
@@ -3153,12 +3153,12 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    __pointer(::user::message) pusermessage(pmessage);
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   if (::is_set(papplication) && papplication->m_puserinteractionMain == this)
+   if (::is_set(papp) && papp->m_puserinteractionMain == this)
    {
 
-      pusermessage->m_lresult = papplication->save_all_modified();
+      pusermessage->m_lresult = papp->save_all_modified();
 
       pusermessage->m_bRet = true;
 
@@ -4100,7 +4100,7 @@ void simple_frame_window::on_select_user_style()
          
          auto puser = psession->user();
 
-         auto pstyle = puser->get_user_style(strSchema, get_application());
+         auto pstyle = puser->get_user_style(strSchema, get_app());
 
          __refer(m_puserstyle, pstyle);
 

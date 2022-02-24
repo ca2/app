@@ -285,7 +285,7 @@ namespace user
          if(bHasFocus)
          {
 
-            if (m_itemHover.is_set())
+            if (::is_set(m_pitemHover))
             {
 
                colorDropDown = ::color::color(200, 200, 250, 255);
@@ -302,7 +302,7 @@ namespace user
          else
          {
 
-            if (m_itemHover.is_set())
+            if (::is_set(m_pitemHover))
             {
 
                colorDropDown = ::color::color(200, 200, 250, 255);
@@ -396,7 +396,7 @@ namespace user
 //      if(m_bEdit)
 //      {
 //
-//         if(!m_itemCurrent.is_set())
+//         if(!m_pitemCurrent.is_set())
 //         {
 //
 //            ::user::plain_edit::_001GetText(str);
@@ -405,7 +405,7 @@ namespace user
 //         else
 //         {
 //
-//            _001GetListText(m_itemCurrent, str);
+//            _001GetListText(m_pitemCurrent, str);
 //
 //         }
 //
@@ -413,7 +413,7 @@ namespace user
 //      else
 //      {
 //
-//         if(!m_itemCurrent.is_set())
+//         if(!m_pitemCurrent.is_set())
 //         {
 //
 //            str = m_strText;
@@ -422,7 +422,7 @@ namespace user
 //         else
 //         {
 //
-//            _001GetListText(m_itemCurrent, str);
+//            _001GetListText(m_pitemCurrent, str);
 //
 //         }
 //
@@ -483,7 +483,7 @@ namespace user
    }
 
 
-   void combo_box::on_hit_test(::item & item)
+   ::item_pointer combo_box::on_hit_test(const ::point_i32 & point)
    {
 
       ::rectangle_i32 rectangleElement;
@@ -491,12 +491,14 @@ namespace user
       if(get_element_rect(rectangleElement, e_element_drop_down))
       {
 
-         if (rectangleElement.contains(item.m_pointHitTest))
+         if (rectangleElement.contains(point))
          {
 
-            item = e_element_drop_down;
+            auto pitem = __new(::item(e_element_drop_down));
 
-            return;
+            pitem->m_rectangle = rectangleElement;
+
+            return pitem;
 
          }
 
@@ -504,16 +506,18 @@ namespace user
 
       auto rectangleClient = get_client_rect(::user::e_layout_sketch);
 
-      if (rectangleClient.contains(item.m_pointHitTest))
+      if (rectangleClient.contains(point))
       {
 
-         item = e_element_text;
+         auto pitem = __new(::item(e_element_text));
 
-         return;
+         pitem->m_rectangle = rectangleElement;
+
+         return pitem;
 
       }
 
-      item = e_element_none;
+      return nullptr;
 
    }
 
@@ -601,7 +605,7 @@ namespace user
       if (is_window_enabled())
       {
 
-         if (!m_bEdit || m_itemHover == e_element_drop_down)
+         if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_eelement == e_element_drop_down))
          {
 
             auto psession = get_session();
@@ -628,7 +632,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = e_element_none;
+      m_pitemHover = nullptr;
 
       set_need_redraw();
 
@@ -643,9 +647,9 @@ namespace user
       if (is_window_enabled())
       {
 
-         auto eelementHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse);
 
-         if (eelementHit.is_set() && (!m_bEdit || eelementHit == e_element_drop_down))
+         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
 
             ::duration tickLastVisibilityChangeElapsed;
@@ -689,9 +693,9 @@ namespace user
 
          //auto point = screen_to_client(pmouse->m_point);
 
-         auto eelementHit = hit_test(pmouse);
+         auto pitemHit = hit_test(pmouse);
 
-         if (eelementHit.is_set() && (!m_bEdit || eelementHit == e_element_drop_down))
+         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_eelement == e_element_drop_down))
          {
 
             pmouse->m_bRet = true;
@@ -826,22 +830,22 @@ namespace user
    }
 
 
-   void combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
+   void combo_box::set_current_item(::item * pitem, const ::action_context & actioncontext)
    {
 
-      if (m_itemCurrent == item)
+      if (::is_same_item(m_pitemCurrent, pitem))
       {
 
          return;
 
       }
       
-      ::user::plain_edit::set_current_item(item, actioncontext);
+      ::user::plain_edit::set_current_item(pitem, actioncontext);
 
       if(m_plistbox)
       {
 
-         m_plistbox->m_itemCurrent = m_itemCurrent;
+         m_plistbox->m_pitemCurrent = m_pitemCurrent;
 
       }
 
@@ -856,7 +860,7 @@ namespace user
 
       string strItem;
 
-      _001GetListText(item, strItem);
+      _001GetListText(pitem->m_iItem, strItem);
 
       _001SetText(strItem, actioncontext);
 
@@ -917,7 +921,7 @@ namespace user
 
          auto itemCurrent = _001FindListText(str);
 
-         set_current_item(itemCurrent, actioncontext);
+         set_current_item(__new(::item(e_element_item, itemCurrent)), actioncontext);
 
       }
 
@@ -942,7 +946,7 @@ namespace user
          if (puserinteraction == m_plistbox)
          {
 
-            set_current_item(ptopic->m_item, ptopic->m_actioncontext);
+            set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
             _001ShowDropDown(false);
 
@@ -1481,7 +1485,7 @@ namespace user
    bool combo_box::has_action_hover()
    {
 
-      return ::user::plain_edit::m_itemHover.is_set() || is_drop_down();
+      return ::is_set(m_pitemHover) || is_drop_down();
 
    }
 

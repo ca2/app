@@ -62,9 +62,10 @@ namespace user
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual ::item current_item() override;
+      virtual ::item_pointer current_item() override;
 
-      virtual ::item hover_item() override;
+      virtual ::item_pointer hover_item() override;
+
 
       string get_cur_sel_face_name();
 
@@ -81,7 +82,7 @@ namespace user
 
       virtual void _001OnTimer(::timer * ptimer) override;
 
-      virtual void on_hit_test(::item & item) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

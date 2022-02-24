@@ -13,6 +13,9 @@ namespace crypto_openssl
    public:
 
 
+      //__creatable_from_base(hasher_algorithm, ::crypto::hasher_algorithm);
+
+
       //int SHA1_Init(SHA_CTX* c);
       //int SHA1_Update(SHA_CTX* c, const void* data, size_t len);
       //int SHA1_Final(unsigned char* md, SHA_CTX* c);

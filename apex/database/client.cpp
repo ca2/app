@@ -36,7 +36,7 @@ namespace database
 
       //auto linkedproperty = fetch_property(atom);
 
-      auto psignal = get_application()->get_signal(linkedproperty->m_atom);
+      auto psignal = get_app()->m_papplication->get_signal(linkedproperty->m_atom);
 
       psignal->add_handler(predicate([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
@@ -47,7 +47,7 @@ namespace database
 
          }));
 
-      //::add_routine(get_application()->m_routinemap[idProcedure], [this, atom]()
+      //::add_routine(get_app()->m_routinemap[idProcedure], [this, atom]()
       //   {
 
       //      auto pproperty = fetch_property(atom);
@@ -147,7 +147,7 @@ namespace database
       if(::is_null(m_pdataserver))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -166,7 +166,7 @@ namespace database
       if (::is_null(m_pdataserver))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -373,7 +373,7 @@ namespace database
    key client::calc_parent_data_key()
    {
 
-      return get_application()->calc_data_key();
+      return get_app()->m_papplication->calc_data_key();
 
    }
 

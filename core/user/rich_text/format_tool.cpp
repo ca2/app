@@ -613,7 +613,7 @@ namespace user
       if (m_pformata->is_empty() || !m_pformata->first())
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -622,12 +622,12 @@ namespace user
       if (bSaveAndValidate)
       {
 
-         if (m_pcomboFamily->m_itemCurrent.is_set())
+         if (m_pcomboFamily->m_pitemCurrent.is_set())
          {
 
             auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
-            auto itemCurrent = m_pcomboFamily->m_itemCurrent;
+            auto itemCurrent = m_pcomboFamily->m_pitemCurrent;
 
             __pointer(::user::font_list) pfontlist = pcombolistbox;
 
@@ -705,21 +705,23 @@ namespace user
 
          index iIndex = pfontlist->m_pfontlist->find_name(m_pformata->first()->m_strFontFamily);
 
-         m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
+         throw "";
 
-         set_font_size(m_pformata->first()->m_dFontSize);
+         //m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
 
-         m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         //set_font_size(m_pformata->first()->m_dFontSize);
 
-         bool bLeft = m_pformata->first()->m_ealign == e_align_left;
-         bool bCenter = m_pformata->first()->m_ealign == e_align_center;
-         bool bRight = m_pformata->first()->m_ealign == e_align_right;
+         //m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         //m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         //m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
-         m_pbuttonAlignLeft->_001SetCheck(bLeft, ::e_source_sync);
-         m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
-         m_pbuttonAlignRight->_001SetCheck(bRight, ::e_source_sync);
+         //bool bLeft = m_pformata->first()->m_ealign == e_align_left;
+         //bool bCenter = m_pformata->first()->m_ealign == e_align_center;
+         //bool bRight = m_pformata->first()->m_ealign == e_align_right;
+
+         //m_pbuttonAlignLeft->_001SetCheck(bLeft, ::e_source_sync);
+         //m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
+         //m_pbuttonAlignRight->_001SetCheck(bRight, ::e_source_sync);
 
       }
 

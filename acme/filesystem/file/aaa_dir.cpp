@@ -604,7 +604,7 @@ namespace dir
 
    #endif
 
-      ::file::patha stra;
+      ::file::path_array stra;
 
       path.ascendants_path(stra);
 
@@ -905,7 +905,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    }
 
 
-   void rls(::file::patha & stra, const file::path & psz)
+   void rls(::file::path_array & stra, const file::path & psz)
    {
       ::count start = stra.get_count();
       ls(stra, psz);
@@ -921,7 +921,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    }
 
 
-   void rls_dir(::file::patha & stra,const ::file::path & psz)
+   void rls_dir(::file::path_array & stra,const ::file::path & psz)
    {
 
       ::count start = stra.get_count();
@@ -942,7 +942,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    }
 
 
-   void ls(::file::patha & stra,const ::file::path & psz)
+   void ls(::file::path_array & stra,const ::file::path & psz)
    {
 
    #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
@@ -1251,7 +1251,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    }
 
 
-   void ls_dir(::file::patha & stra,const ::file::path & psz)
+   void ls_dir(::file::path_array & stra,const ::file::path & psz)
    {
 
    #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
@@ -1333,7 +1333,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    }
 
 
-   void ls_file(::file::patha & stra,const ::file::path & psz)
+   void ls_file(::file::path_array & stra,const ::file::path & psz)
    {
 
    #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)

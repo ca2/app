@@ -64,11 +64,11 @@ namespace linux
 
       if ((nRead = fread(pdata, sizeof(byte), nCount, m_pStream)) == 0 && !feof(m_pStream))
 
-         ::file::throw_status(error_file, errno, m_path);
+         throw ::file::exception(error_file, errno, m_path);
       if (ferror(m_pStream))
       {
          clearerr(m_pStream);
-         ::file::throw_status(error_file, errno, m_path);
+         throw ::file::exception(error_file, errno, m_path);
       }
       return nRead;
    }
@@ -83,7 +83,7 @@ namespace linux
 
       if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
 
-         ::file::throw_status(error_file, errno, m_path);
+         throw ::file::exception(error_file, errno, m_path);
    }
 
    void stdio_file::write_string(const ::string & psz)
@@ -95,7 +95,7 @@ namespace linux
 
       if (fputs(psz, m_pStream) == EOF)
 
-         ::file::throw_status(error_disk_full, errno, m_path);
+         throw ::file::exception(error_disk_full, errno, m_path);
    }
 
    char * stdio_file::read_string(char * psz, ::u32 nMax)
@@ -113,7 +113,7 @@ namespace linux
 
       {
          clearerr(m_pStream);
-         ::file::throw_status(error_file, errno, m_path);
+         throw ::file::exception(error_file, errno, m_path);
       }
       return pszResult;
 
@@ -144,7 +144,7 @@ namespace linux
 
          {
             clearerr(m_pStream);
-            ::file::throw_status(error_file, errno, m_path);
+            throw ::file::exception(error_file, errno, m_path);
          }
 
          // if string is read completely or EOF
@@ -183,7 +183,7 @@ namespace linux
 
       if (fputws(psz, m_pStream) == _TEOF)
 
-         ::file::throw_status(error_diskFull, errno, m_path);
+         throw ::file::exception(error_diskFull, errno, m_path);
    }*/
 
    /*unichar * stdio_file::read_string(unichar * psz, ::u32 nMax)
@@ -201,7 +201,7 @@ namespace linux
 
       {
          clearerr(m_pStream);
-         ::file::throw_status(error_type_generic, errno, m_path);
+         throw ::file::exception(error_type_generic, errno, m_path);
       }
       return pszResult;
 
@@ -226,11 +226,11 @@ namespace linux
          nFrom = SEEK_CUR;
          break;
       default:
-         ::file::throw_status(error_bad_seek, -1, m_path);
+         throw ::file::exception(error_bad_seek, -1, m_path);
       }
 
       if (fseek(m_pStream, lOff, nFrom) != 0)
-         ::file::throw_status(error_bad_seek, errno, m_path);
+         throw ::file::exception(error_bad_seek, errno, m_path);
 
       long pos = ftell(m_pStream);
       return pos;
@@ -243,7 +243,7 @@ namespace linux
 
       long pos = ftell(m_pStream);
       if (pos == -1)
-         ::file::throw_status(error_invalid_file, errno, m_path);
+         throw ::file::exception(error_invalid_file, errno, m_path);
       return pos;
    }
 
@@ -254,7 +254,7 @@ namespace linux
       if (m_pStream != nullptr && fflush(m_pStream) != 0)
       {
 
-         ::file::throw_status(error_disk_full, errno, m_path);
+         throw ::file::exception(error_disk_full, errno, m_path);
 
       }
 
@@ -275,7 +275,7 @@ namespace linux
       m_pStream = nullptr;
 
       if (nErr != 0)
-         ::file::throw_status(error_disk_full, errno, m_path);
+         throw ::file::exception(error_disk_full, errno, m_path);
    }
 
    void stdio_file::Abort()
@@ -340,19 +340,19 @@ namespace linux
 
       nCurrent = ftell(m_pStream);
       if (nCurrent == -1)
-         ::file::throw_status(error_invalid_file, errno, m_path);
+         throw ::file::exception(error_invalid_file, errno, m_path);
 
       nResult = fseek(m_pStream, 0, SEEK_END);
       if (nResult != 0)
-         ::file::throw_status(error_bad_seek, errno, m_path);
+         throw ::file::exception(error_bad_seek, errno, m_path);
 
       nLength = ftell(m_pStream);
       if (nLength == -1)
-         ::file::throw_status(error_invalid_file, errno,
+         throw ::file::exception(error_invalid_file, errno,
                                m_path);
       nResult = fseek(m_pStream, nCurrent, SEEK_SET);
       if (nResult != 0)
-         ::file::throw_status(error_bad_seek, errno,
+         throw ::file::exception(error_bad_seek, errno,
                                m_path);
 
       return nLength;

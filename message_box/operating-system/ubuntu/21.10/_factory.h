@@ -1,0 +1,7 @@
+BEGIN_FACTORY(app_message_box) 
+FACTORY_DEPENDENCY(draw2d_cairo) 
+FACTORY_DEPENDENCY(node_linux) 
+FACTORY_DEPENDENCY(windowing_x11) 
+FACTORY_DEPENDENCY(write_text_pango) 
+FACTORY_DEPENDENCY(app_message_box) 
+END_FACTORY() 

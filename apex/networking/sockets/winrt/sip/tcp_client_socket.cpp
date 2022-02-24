@@ -6,7 +6,7 @@ namespace sockets
 
 
    sip_tcp_client_socket::sip_tcp_client_socket() :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       tcp_socket(h),

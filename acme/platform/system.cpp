@@ -4,9 +4,8 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/platform/static_start_internal.h"
-#include "acme/platform/static_setup.h"
-#include "simple_log.h"
+#include "acme/platform/acme.h"
+#include "acme/platform/system_setup.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/compress/_.h"
 #include "library.h"
@@ -42,9 +41,9 @@ m_bJoinable = true;
 
    trace_category_static_init(this);
 
-   ::factory::add_factory_item < simple_log, logger >();
+   //____creatable_from_base(simple_log, logger);
 
-   ::factory::add_factory_item < task >();
+   //____creatable(task);
       
    m_bPostedInitialRequest = false;
 
@@ -183,6 +182,17 @@ void system::create_os_node()
       //return ::success;
 
       return;
+
+   }
+
+   auto & pfactory = node_factory();
+
+   if (!pfactory)
+   {
+
+      //FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
+
+      throw ::exception(error_resource);
 
    }
 
@@ -338,6 +348,11 @@ void system::process_init()
 
    m_pacmedir->initialize(this);
 
+
+   //throw ::exception(error_failed);
+
+
+
    //if (!estatus)
    //{
 
@@ -394,7 +409,7 @@ void system::TermSystem()
    try
    {
 
-      ::factory::factory_close();
+      ::acme::acme::g_p->factory_close();
 
    }
    catch (...)
@@ -464,7 +479,7 @@ void system::open_link(string strUrl, string strProfile, string strTarget)
 void system::open_url(string strUrl, string strProfile, string strTarget)
 {
 
-   throw_status(::error_interface_only);
+   throw ::exception(::error_interface_only);
 
 }
 
@@ -573,6 +588,25 @@ void system::unset_task(itask_t itask, ::task * ptask)
 
 }
 
+
+void system::init_task()
+{
+
+   task::init_task();
+
+   init_system();
+
+}
+
+
+void system::term_task()
+{
+
+   //term_system();
+
+   task::term_task();
+
+}
 
 string system::__get_text(const ::string & str)
 {
@@ -708,97 +742,10 @@ task_tool * system::task_tool(::enum_task_tool etool)
 }
 
 
-
-//      string strComponent(pszComponent);
-//
-//      string strImplementation(pszImplementation);
-//
-//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
-//
-//      ::str::begins_eat_ci(strImplementation, strComponent);
-//
-//      string strLibrary = strComponent + "_" + strImplementation;
-//
-//   #ifdef CUBE
-//
-//      auto pfnFactoryExchange = ::static_setup::get_factory_item_exchange(strLibrary);
-//
-//      //if (::is_null(pfnFactoryExchange))
-//      if (::is_null(pfnFactoryExchange))
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-//
-////      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
-//
-//      ::factory * pfactory = ::factory_item::get_factory();
-//
-//      pfnFactoryExchange(pfactory);
-//
-//      return ::success;
-//
-//   #else
-//
-//      auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
-//
-//      if (!plibrary)
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-//
-//      PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strComponent + "_" + strImplementation + "_factory");
-//
-//      if (([a-z0-9_]+)_factory == nullptr)
-//      {
-//
-//         ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >(strComponent + "_factory");
-//
-//         if (([a-z0-9_]+)_factory == nullptr)
-//         {
-//
-//            ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("factory_exchange");
-//
-//            if (([a-z0-9_]+)_factory == nullptr)
-//            {
-//
-//               return ::error_failed;
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//      ::factory* pfactory = ::factory_item::get_factory();
-//
-//      ([a-z0-9_]+)_factory(pfactory);
-//
-//      return ::success;
-//
-//   #endif
-
-//   }
-
-
 void system::inline_init()
 {
 
-   //auto estatus = init_system();
-
    init_system();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
 
 }
 
@@ -806,20 +753,20 @@ void system::inline_init()
 void system::call_init_system()
 {
 
-   //auto estatus = init_system();
+   try
+   {
 
-   init_system();
+      init_system();
 
-   //if(!estatus)
-   //{
+   }
+   catch (::exception & exception)
+   {
 
-   //   FATAL("system init_system has failed " << estatus);
+      os_message_box(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
 
-   //   return estatus;
+      m_estatus = exception.m_estatus;
 
-   //}
-
-   //return estatus;
+   }
 
 }
 
@@ -829,19 +776,49 @@ void system::init_system()
 
    set_current_handles();
 
-   auto & pfactory = node_factory();
+   ::app * pappStartup = ::app::g_p;
 
-   if (!pfactory)
+   if(::is_null(pappStartup))
    {
 
-      //FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
-
-      throw_status(error_resource);
+      pappStartup = new_app(m_strAppId);
 
    }
 
-   //auto estatus = create_os_node();
-   create_os_node();
+   //if (!pappStartup)
+   //{
+
+   //   return -1;
+
+   //}
+
+   __refer(m_pappStartup, pappStartup);
+
+   m_pappStartup->initialize(this);
+
+   m_pappStartup->get_property_set().merge(get_property_set());
+
+   set_main_struct(*m_pappStartup);
+
+   process_init();
+
+   init1();
+
+   init2();
+
+//   auto & pfactory = node_factory();
+//
+//   if (!pfactory)
+//   {
+//
+//      //FATAL("node_factory has failed (status=" << (const void &) pfactory << ")");
+//
+//      throw ::exception(error_resource);
+//
+//   }
+//
+//   //auto estatus = create_os_node();
+//   create_os_node();
 
    //if (!estatus)
    //{
@@ -890,6 +867,14 @@ void system::init1()
 }
 
 
+void system::init2()
+{
+
+   //return ::success;
+
+}
+
+
 void system::set_current_handles()
 {
 
@@ -902,7 +887,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
 
 #ifdef CUBE
 
-   auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+   auto plibraryfactory = ::system_setup::get_first(::system_setup::flag_library, strLibrary);
 
    if (!plibraryfactory)
    {
@@ -934,7 +919,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
    if (!plibrary->is_opened())
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -953,7 +938,7 @@ __pointer(::acme::library)& system::library(const ::string& str)
    if (str.is_empty())
    {
 
-      throw_status(error_bad_argument);
+      throw ::exception(error_bad_argument);
 
    }
 
@@ -1027,7 +1012,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strComponent, con
 
 #ifdef CUBE
 
-      auto pfnFactory = ::static_setup::get_factory_function(strLibrary);
+      auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
 
       if (pfnFactory)
       {
@@ -1043,11 +1028,11 @@ __pointer(::factory::factory)& system::factory(const ::string& strComponent, con
 #endif
 
       //pfactory = (const ::extended::status&)plibrary;
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
-   pfactory = plibrary->create_factory(strLibrary);
+   pfactory = plibrary->create_factory();
 
    return pfactory;
 
@@ -1077,11 +1062,11 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
    if (!plibrary)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
-   pfactory = plibrary->create_factory(strLibrary);
+   pfactory = plibrary->create_factory();
 
    if (!pfactory)
    {
@@ -1174,7 +1159,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 
 //#ifdef CUBE
 
-//   auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
+//   auto plibraryfactory = ::system_setup::get_first(::system_setup::flag_library, strLibrary);
 
 //   if (!plibraryfactory)
 //   {
@@ -1272,7 +1257,7 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 //
 //      string strLibrary = strComponent + "_" + strImplementation;
 //
-//      auto pfnFactoryExchange = ::static_setup::get_factory_item_exchange(strLibrary);
+//      auto pfnFactoryExchange = ::system_setup::get_factory_item_exchange(strLibrary);
 //
 //      //if (::is_null(pfnFactoryExchange))
 //      if (::is_null(pfnFactoryExchange))
@@ -1391,7 +1376,7 @@ __pointer(::regular_expression::context) system::get_regular_expression_context(
       if(!pfactory)
       {
 
-         throw_status(error_resource);
+         throw ::exception(error_resource);
 
       }
 
@@ -1651,7 +1636,7 @@ void system::end()
 }
 
 
-::application* system::get_main_application()
+::app * system::get_main_app()
 {
 
 
@@ -1684,6 +1669,8 @@ __pointer(::factory::factory) & system::folder_factory()
 
 void system::system_construct(const ::main & main)
 {
+
+   m_strAppId = main.m_strAppId;
 
    enum_trace_level etracelevel;
 
@@ -1827,7 +1814,7 @@ void system::new_compress(::compress ** ppcompress, const char* pszImplementatio
    if (!pcompress)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -1848,7 +1835,7 @@ void system::new_uncompress(::uncompress ** ppuncompress, const char* pszImpleme
    if (!puncompress)
    {
 
-      throw_status(error_resource);
+      throw ::exception(error_resource);
 
    }
 
@@ -2062,7 +2049,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
 #endif
 
-   auto pstaticsetup = ::static_setup::get_first(::static_setup::flag_system, "");
+   auto pstaticsetup = ::system_setup::get_first(::system_setup::flag_system, "");
 
    if (!pstaticsetup)
    {
@@ -2089,7 +2076,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
    }
 
-   psystem->m_strAppId = strAppId;
+   //psystem->m_strAppId = strAppId;
 
    return ::move(psystem);
 
@@ -2120,5 +2107,216 @@ __pointer(::sequence < ::conversation >) system::message_box(const ::string & st
    return psequence;
 
 }
+
+
+__pointer(::app) system::new_app(const char* pszAppId)
+{
+
+   __pointer(::app) papp;
+
+   string strAppId = pszAppId;
+
+   auto psetup = system_setup::get_first(::system_setup::flag_application, strAppId);
+
+   if (psetup)
+   {
+
+      auto pelementApp = psetup->create_application_as_element();
+
+      papp = pelementApp;
+
+      papp.reset(papp.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+
+      if (papp)
+      {
+
+         strAppId = papp->m_strAppId;
+
+      }
+
+   }
+
+//#ifndef CUBE
+
+   if (!papp)
+   {
+
+      if (strAppId.is_empty() || m_bConsole)
+      {
+
+         papp = __create < ::app >();
+
+         papp->increment_reference_count();
+
+      }
+      else
+      {
+
+         string strLibrary = strAppId;
+
+         strLibrary.replace_with("_", "/");
+
+         strLibrary.replace_with("_", "-");
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+
+         }
+
+         //auto psystem = get_system()->m_papexsystem;
+
+         auto psystem = get_system();
+
+         auto & plibrary = psystem->library(strLibrary);
+
+         if (!plibrary)
+         {
+
+#ifndef _UWP
+
+//            output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+
+            //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
+
+            output_debug_string("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. "+ "ca2");
+
+#endif
+
+            return nullptr;
+
+         }
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+
+         }
+
+         // error anticipation is not perfect prediction and may affect results
+         // so anticipation may be counter-self-healing
+         // specially if what it would avoid on error is exactly we want if successful
+         // who doesn't try it, won't taste it neither possibly enjoy it
+         //          if (!plibrary->is_opened())
+         //          {
+         //
+         //             ::output_debug_string("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+         //
+         //             return nullptr;
+         //
+         //          }
+
+         if (is_verbose())
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+
+         }
+
+         auto pfactory = plibrary->create_factory();
+
+         if (pfactory)
+         {
+
+            papp = pfactory->create < ::app >();
+
+            if (!papp)
+            {
+
+               ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+
+            }
+
+            ::e_status estatus;
+
+            //         if(papp)
+            //         {
+            //
+            //            estatus = papp->initialize(pobject);
+            //
+            //         }
+
+            ::output_debug_string("\n\n\n|(4)----");
+            ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|\n");
+            ::output_debug_string("|----");
+
+         }
+
+      }
+
+   }
+
+//#endif
+
+   if (!papp)
+   {
+
+      return nullptr;
+
+   }
+
+#ifdef WINDOWS_DESKTOP
+
+   WCHAR wsz[1024];
+
+   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+
+   GetUserNameW(wsz, &dwSize);
+
+   string strUserName = wsz;
+
+#endif // WINDOWS_DESKTOP
+
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(3)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
+//
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(2)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
+//
+//
+//   if (is_verbose())
+//   {
+//
+//      ::output_debug_string("\n\n\n|(1)----");
+//      ::output_debug_string("| app : " + strAppId + "\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|\n");
+//      ::output_debug_string("|----");
+//
+//   }
+
+   papp->m_strAppId = strAppId;
+
+   if(m_strAppId.is_empty())
+   {
+
+      m_strAppId = strAppId;
+
+   }
+
+   return papp;
+
+}
+
 
 

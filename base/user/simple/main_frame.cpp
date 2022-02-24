@@ -44,12 +44,12 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   auto papplication = get_application();
+   auto papp = get_app();
 
-   if (papplication->m_puserinteractionMain.is_null())
+   if (papp->m_puserinteractionMain.is_null())
    {
 
-      papplication->__refer(papplication->m_puserinteractionMain, this);
+      papp->__refer(papp->m_puserinteractionMain, this);
 
    }
 
@@ -64,11 +64,11 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
    else
    {
 
-      m_bWindowFrame = papplication->m_bExperienceMainFrame;
+      m_bWindowFrame = papp->m_bExperienceMainFrame;
 
    }
 
-   if (papplication->is_true("opaque"))
+   if (papp->is_true("opaque"))
    {
 
       m_bExplicitTranslucency = true;

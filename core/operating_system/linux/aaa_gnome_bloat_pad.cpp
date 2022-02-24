@@ -160,16 +160,16 @@ void apex_application_shutdown(GApplication *application)
 void apex_application_class_init (BloatPadClass * pclass)
 {
 
-   GApplicationClass *papplicationclass    = G_APPLICATION_CLASS (pclass);
+   GApplicationClass *pappclass    = G_APPLICATION_CLASS (pclass);
 
    GObjectClass *pobjectclass              = G_OBJECT_CLASS (pclass);
 
-   papplicationclass->startup              = apex_application_startup;
-   papplicationclass->shutdown             = apex_application_shutdown;
-   papplicationclass->activate             = apex_application_activate;
-   papplicationclass->open                 = apex_application_open;
+   pappclass->startup              = apex_application_startup;
+   pappclass->shutdown             = apex_application_shutdown;
+   pappclass->activate             = apex_application_activate;
+   pappclass->open                 = apex_application_open;
 
-   papplicationclass->run_mainloop         = apex_application_run_mainloop;
+   pappclass->run_mainloop         = apex_application_run_mainloop;
 
    pobjectclass->destroy                  = apex_application_finalize;
 

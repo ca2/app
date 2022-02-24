@@ -333,7 +333,7 @@ namespace opengl
 
          strSummary.format("FORMATTED_ERROR::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed, "Shader Compilation Error", strSummary);
 
       }
 
@@ -368,7 +368,7 @@ namespace opengl
 
          strSummary.format("FORMATTED_ERROR::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 

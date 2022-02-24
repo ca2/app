@@ -202,12 +202,12 @@ namespace user
    }
 
 
-   void thread::init_thread()
+   void thread::init_task()
    {
 
       //auto estatus = 
       
-      ::thread::init_thread();
+      ::thread::init_task();
 
    /*   if (!estatus)
       {
@@ -499,8 +499,8 @@ namespace user
 
          //}
 
-         //// get_application() may be it self, it is ok...
-         //if (papplication->final_handle_exception(e))
+         //// get_app() may be it self, it is ok...
+         //if (papp->final_handle_exception(e))
          //{
 
          //   return true;
@@ -1162,7 +1162,7 @@ namespace user
    }
 
 
-   void thread::term_thread()
+   void thread::term_task()
    {
 
       if (m_pimpl && m_pimpl->m_puserinteraction && m_pimpl->m_puserinteraction->m_strName.contains("notify_icon"))
@@ -1182,7 +1182,7 @@ namespace user
       //   m_pthreadmgr = NULL;
       //}
 
-      ::thread::term_thread();
+      ::thread::term_task();
 
    }
 

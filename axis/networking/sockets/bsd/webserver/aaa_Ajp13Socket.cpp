@@ -292,8 +292,8 @@ namespace sockets
                {
                   for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
                   {
-                     Utility::ncmap<i32>::const_iterator it2 = dynamic_cast < application_interface * >(::get_application())->m_pajpaxissocketinit->ResponseHeader.find( __id(set_cookie) );
-                     if (it2 != dynamic_cast < application_interface * >(::get_application())->m_pajpaxissocketinit->ResponseHeader.end())
+                     Utility::ncmap<i32>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.find( __id(set_cookie) );
+                     if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpaxissocketinit->ResponseHeader.end())
                      {
                         put_integer(msg, ptr, it2 -> element2());
                      }

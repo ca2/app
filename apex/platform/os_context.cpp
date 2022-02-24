@@ -418,7 +418,7 @@
    void os_context::edit_link_target(const ::file::path & path, const ::file::path & pathLink)
    {
 
-      throw_status(error_interface_only);
+      throw ::exception(error_interface_only);
 
    }
 
@@ -426,7 +426,7 @@
    void os_context::edit_link_folder(const ::file::path & path, const ::file::path & pathLink)
    {
 
-      throw_status(error_interface_only);
+      throw ::exception(error_interface_only);
 
    }
 
@@ -501,6 +501,57 @@
 
 #ifndef WINDOWS
 
+
+#if 0
+
+
+
+      if (::is_null(psz))
+      {
+
+         return false;
+
+      }
+
+
+
+
+      char* pszRealPath = ::realpath(psz, NULL);
+
+      if (pszRealPath == NULL)
+      {
+
+         return false;
+
+      }
+
+      if (strcmp(psz, pszRealPath) == 0)
+      {
+
+         ::free(pszRealPath);
+
+         return false;
+
+      }
+
+      try
+      {
+
+         path = pszRealPath;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::free(pszRealPath);
+
+      return true;
+
+   }
+
+#else
          string strLink;
 
          char * psz = strLink.get_string_buffer(4096);
@@ -539,6 +590,8 @@
          path = strLink;
 
          return true;
+
+#endif
 
 #endif
 
@@ -746,17 +799,17 @@
    }
 
 
-   void os_context::list_process(::file::patha & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
 
    }
 
 
-   ::file::patha os_context::list_process_path()
+   ::file::path_array os_context::list_process_path()
    {
 
-      ::file::patha patha;
+      ::file::path_array patha;
 
       u32_array uaPid;
 

@@ -672,7 +672,7 @@
 ////            //#ifdef WINDOWS_DESKTOP
 ////            //            puserinteraction->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
 ////            //#else
-////            throw ::exception(todo(puserinteraction->get_application()));
+////            throw ::exception(todo(puserinteraction->get_app()));
 ////            //#endif
 ////         }
 ////         if (pcontrolex != nullptr)
@@ -861,7 +861,7 @@
 //   //}
 //
 //
-//   //void control::on_hit_test(::item & item)
+//   //::item_pointer control::on_hit_test(const ::point_i32 &point)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();

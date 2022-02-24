@@ -11,6 +11,8 @@ nano_message_box::nano_message_box()
 
    m_bStartCentered = true;
 
+   m_strLabelDetails = "Details...";
+
 }
 
 
@@ -44,17 +46,24 @@ void nano_message_box::on_draw(nano_device * pnanodevice)
 }
 
 
-void nano_message_box::add_button(const char * pszText, enum_dialog_result edialogresult)
+
+void nano_message_box::defer_create_details_still()
 {
 
-   auto pbutton = __new(nano_button);
+   if (m_strDetails.has_char())
+   {
 
-   pbutton->m_strText = pszText;
-   pbutton->m_atom = edialogresult;
+      m_pstillDetails = __new(nano_still);
 
-   m_buttona.add(pbutton);
+      m_pstillDetails->m_atom = "details";
 
-   add_child(pbutton);
+      m_pstillDetails->m_strText = m_strLabelDetails;
+
+      m_pstillDetails->m_bHyperlink = true;
+
+      add_child(m_pstillDetails);
+
+   }
 
 }
 
@@ -95,8 +104,6 @@ void nano_message_box::calculate_size()
    int y = (hScreen - h) / 2;
 
    m_rectangle.set_dim(x, y, w, h);
-
-
 
 }
 
@@ -148,20 +155,7 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
          break;
    }
 
-   if (strDetails.has_char())
-   {
-
-      m_pstillDetails = __new(nano_still);
-
-      m_pstillDetails->m_atom = "details";
-
-      m_pstillDetails->m_strText = "Details...";
-
-      m_pstillDetails->m_bHyperlink = true;
-
-      add_child(m_pstillDetails);
-
-   }
+   defer_create_details_still();
 
    if (emessagebox & e_message_box_default_button_mask)
    {
@@ -208,7 +202,6 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
 
    create();
 
-
    nano_window::display_synchronously();
 
 }
@@ -227,7 +220,6 @@ void nano_message_box::on_create()
       m_pstillDetails->m_rectangle.move_left_to(25);
 
    }
-
 
 }
 
@@ -281,7 +273,6 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
 void nano_message_box::on_click(const ::atom & atom)
 {
 
-
    if (atom == "details")
    {
 
@@ -289,7 +280,7 @@ void nano_message_box::on_click(const ::atom & atom)
 
       pdetailswindow->m_strMessage = m_strDetails;
 
-      pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok);
+      pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 
       m_atomResult.clear();
 
@@ -300,6 +291,25 @@ void nano_message_box::on_click(const ::atom & atom)
    m_atomResult = atom;
 
    destroy();
+
+}
+
+
+void nano_message_box::on_right_click(const ::atom & atom)
+{
+
+   auto pbutton = __create_new < popup_button >();
+
+   pbutton->display_synchronously("Dump to File...");
+
+   auto idResult = pbutton->get_result();
+
+   if (idResult == e_dialog_result_yes)
+   {
+
+      display_temporary_file_with_text(m_strMessage + "\n\n" + m_strDetails);
+
+   }
 
 }
 

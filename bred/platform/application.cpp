@@ -5,8 +5,18 @@ namespace bred
 {
 
 
+   void initialize()
+   {
+
+      ::factory::add_factory_item < ::bred::system, class ::system >();
+
+   }
+
+
    application::application()
    {
+
+      ::bred::initialize();
 
    }
 

@@ -576,26 +576,26 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::aura::application * get_application(::object * pobject)
+//CLASS_DECL_AURA inline ::aura::application * get_app(::object * pobject)
 //{
 //
 //   if (pobject == nullptr)
 //   {
 //
-//      return ::get_application();
+//      return ::get_app();
 //
 //   }
 //
-//   ::aura::application * papplication = pobject->get_application();
+//   ::aura::application * papp = pobject->get_app();
 //
-//   if (papplication != nullptr)
+//   if (papp != nullptr)
 //   {
 //
-//      return papplication;
+//      return papp;
 //
 //   }
 //
-//   return ::get_application();
+//   return ::get_app();
 //
 //}
 
@@ -651,7 +651,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //CLASS_DECL_AURA inline ::object * get_app_object()
 //{
 //
-//   return ::get_application();
+//   return ::get_app();
 //
 //}
 
@@ -664,7 +664,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//CLASS_DECL_AURA inline ::aura::application * get_application(::aura::application * papp)
+//CLASS_DECL_AURA inline ::aura::application * get_app(::aura::application * papp)
 //{
 //
 //   return papp;
@@ -1237,7 +1237,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //inline void object::set_context_app(::aura::application* pappContext)
 //{
 //
-//   m_papplication = pappContext;
+//   m_papp = pappContext;
 //
 //}
 //
@@ -1281,10 +1281,10 @@ namespace aura
    }
 
 
-   //inline ::aura::application* object::get_application()
+   //inline ::aura::application* object::get_app()
    //{
    //   
-   //   return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+   //   return m_papp ? m_papp.cast < ::aura::application >() : nullptr;
    //
    //}
 
@@ -1305,10 +1305,10 @@ namespace aura
    //}
 
 
-   //inline ::aura::application* drawable::get_application()
+   //inline ::aura::application* drawable::get_app()
    //{ 
    //   
-   //   return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+   //   return m_papp ? m_papp.cast < ::aura::application >() : nullptr;
    //
    //}
 

@@ -2,7 +2,7 @@
 #include "aura/user/_user.h"
 #include "aura/update.h"
 //#include "simple_view.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "shell.h"
@@ -403,14 +403,14 @@ namespace user
       ::factory::add_factory_item <::user::check_box >();
       ::factory::add_factory_item <::user::still >();
       //add_factory_item <::user::document >();
-#ifdef WINDOWS_DESKTOP
-      ::factory::add_factory_item <::user::message_window >();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      ::factory::add_factory_item <::user::message_window >();
+//#endif
       //add_factory_item <::user::simple_view >();
       //add_factory_item <::user::place_holder >();
       //add_factory_item <::user::font_combo_box >();
 
-      //if(get_application()->is_system())
+      //if(get_app()->is_system())
       //{
 
       //   add_factory_item <keyboard_layout >();
@@ -492,7 +492,7 @@ namespace user
       //if(strStyleUser.has_char())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
-      //string strLicense = papplication->get_license_id();
+      //string strLicense = papp->get_license_id();
 
 
       //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
@@ -503,9 +503,9 @@ namespace user
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      debug_print("user::initialize bHasInstall %c", bHasInstall);
+      FORMATTED_INFORMATION("user::initialize bHasInstall %c", bHasInstall);
 
-      debug_print("user::initialize bHasUninstall %c", bHasUninstall);
+      FORMATTED_INFORMATION("user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 
@@ -694,16 +694,16 @@ namespace user
 
       auto psession = get_session();
 
-      for (auto& papplication : psession->m_applicationa)
+      for (auto& papp : psession->m_applicationa)
       {
 
-         __pointer(::aura::application) papplicationAura = papplication;
+         __pointer(::aura::application) pappAura = papp;
 
-         synchronous_lock synchronouslock(&papplicationAura->m_mutexFrame);
+         synchronous_lock synchronouslock(&pappAura->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (papplicationAura->get_frame(pinteraction))
+         while (pappAura->get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -1018,7 +1018,7 @@ namespace aura
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         psession->m_papplicationCurrent = &App(pobject);
+//         psession->m_pappCurrent = &App(pobject);
 //
 //      }
 //
@@ -1055,11 +1055,11 @@ namespace aura
 //         //}
 //      }
 //
-////      if (psession->m_papplicationCurrent != nullptr && psession->m_papplicationCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_papplicationCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -1206,9 +1206,9 @@ namespace aura
 //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent);
 //      }
 
-//      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
+//      if (puiParent == nullptr && pcreate->m_pappbias.is_set())
 //      {
-//         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
+//         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_pappbias->m_puserinteractionParent);
 //      }
 
 
@@ -1226,10 +1226,10 @@ namespace aura
 
       }*/
 
-      __pointer(::aura::application) papplication = get_application();
+      __pointer(::aura::application) papp = pinteraction->get_app();
 
       if (pcreate->m_bExperienceMainFrame ||
-            papplication->m_bExperienceMainFrame ||
+            papp->m_bExperienceMainFrame ||
             pcreate->m_bOuterPopupAlertLike)
       {
          
@@ -1251,7 +1251,7 @@ namespace aura
 
       //}
 
-      auto papp = pinteraction->get_application();
+      //auto papp = pinteraction->get_app();
 
       string strAppName = papp->m_strAppName;
 
@@ -1541,7 +1541,7 @@ namespace user
    }
 
 
-   __namespace_object_factory(user, ::static_setup::flag_object_user);
+   __namespace_object_factory(user, ::system_setup::flag_object_user);
 
 
 } // namespace user

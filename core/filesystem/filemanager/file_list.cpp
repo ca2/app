@@ -79,18 +79,18 @@ namespace filemanager
 
 
 
-   bool file_list::on_click(const ::item & item)
+   bool file_list::on_click(::item * pitem)
    {
 
-      if (item.m_iSubItem == m_iNameSubItem ||
+      if (::is_item(pitem, m_iNameSubItem) ||
          ((m_eview == impact_list || m_eview == impact_report)
-         && item.m_iSubItem < 0))
+         && subitem_less_than(pitem, 0)))
       {
 
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            index iStrict = item.item_index();
+            index iStrict = pitem->item_index();
 
             auto pitem = fs_list_item(iStrict);
 
@@ -100,15 +100,15 @@ namespace filemanager
 
       }
 
-      return ::user::list::on_click(item);
+      return ::user::list::on_click(pitem);
 
    }
 
 
-   bool file_list::on_right_click(const ::item & item)
+   bool file_list::on_right_click(::item * pitem)
    {
 
-      if(item.is_set())
+      if(::is_set(pitem))
       {
 
          _017OpenContextMenuSelected(::e_source_user);
@@ -247,7 +247,7 @@ namespace filemanager
 
    //         bool bPendingSize;
 
-   //         single_lock lock(get_application()->mutex());
+   //         single_lock lock(get_app()->mutex());
 
    //         if (!lock.lock(::duration(2000)))
    //         {
@@ -1006,11 +1006,11 @@ namespace filemanager
 
          string_array stra;
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
          auto pcontext = get_context();
 
-         papplication->data_get(filemanager_data()->m_dataidStatic, stra);
+         papp->data_get(filemanager_data()->m_dataidStatic, stra);
 
          synchronous_lock lock(fs_list()->mutex());
 
@@ -1059,7 +1059,7 @@ namespace filemanager
 
       string_array straStrictOrder;
 
-//      papplication->data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
+//      papp->data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
 
       index_biunique iaDisplayToStrict;
 
@@ -1067,7 +1067,7 @@ namespace filemanager
 
       __construct_new(piconlayout);
 
-//      papplication->data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
+//      papp->data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 
       iaDisplayToStrict = piconlayout->m_iaDisplayToStrict;
 
@@ -1217,7 +1217,7 @@ namespace filemanager
       }*/
       //if (m_eview == impact_icon)
       //{
-         //papplication->data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
+         //papp->data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
          //m_piconlayout->m_iaDisplayToStrict = iaDisplayToStrictNew;
          //data_set_DisplayToStrict();
       //}
@@ -1987,14 +1987,14 @@ namespace filemanager
 
       ::userfs::list::handle(ptopic, pcontext);
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       if (m_bStatic && ptopic->m_atom == id_add_location)
       {
 
-         ::file::patha filepatha;
+         ::file::path_array filepatha;
 
-         filepatha = papplication->data_get(filemanager_data()->m_dataidStatic);
+         filepatha = papp->data_get(filemanager_data()->m_dataidStatic);
 
          ::file::path filepath = filemanager_item()->get_user_path();
 
@@ -2010,7 +2010,7 @@ namespace filemanager
 
                ::papaya::array::copy(stra, filepatha);
 
-               papplication->data_set(filemanager_data()->m_dataidStatic, stra);
+               papp->data_set(filemanager_data()->m_dataidStatic, stra);
 
                add_fs_item(filemanager_item()->get_user_path(),
                   filemanager_item()->get_final_path(), filemanager_item()->m_filepathUser.name());

@@ -20,6 +20,10 @@ namespace app_message_box
 } // namespace flag
 
 
+#undef APPLICATION_CLASS
+#define APPLICATION_CLASS ::app_just_message_box::application
+
+
 #include "application.h"
 
 

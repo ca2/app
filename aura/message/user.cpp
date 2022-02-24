@@ -166,7 +166,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_eactivate = (enum_activate)(LOWORD(wparam));
+      m_eactivate = (enum_activate)(first_u16(wparam));
 
       if(lparam == 0)
       {
@@ -189,7 +189,7 @@ namespace message
 
       }
 
-      m_bMinimized = HIWORD(wparam) != false;
+      m_bMinimized = second_u16(wparam) != false;
 
    }
 
@@ -236,9 +236,9 @@ namespace message
 
       m_nChar = static_cast<::u32>(wparam);
 
-      m_nRepCnt = LOWORD(lparam);
+      m_nRepCnt = first_u16(lparam);
 
-      m_nFlags = HIWORD(lparam);
+      m_nFlags = second_u16(lparam);
       
       m_iVirtualKey = (int)wparam;
 
@@ -282,7 +282,7 @@ namespace message
 
       m_nType     = static_cast < ::u32 > (wparam);
 
-      m_size      = ::size_i32(LOWORD(lparam),HIWORD(lparam));
+      m_size      = ::size_i32(x_i16(lparam), y_i16(lparam));
 
    }
 
@@ -408,7 +408,7 @@ namespace message
    ::u32 mouse_activate::GetHitTest()
    {
 
-      return LOWORD(m_lparam);
+      return first_u16(m_lparam);
 
    }
 
@@ -416,7 +416,7 @@ namespace message
    ::u32 mouse_activate::get_message()
    {
 
-      return HIWORD(m_lparam);
+      return second_u16(m_lparam);
 
    }
 
@@ -501,9 +501,9 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_ecommand = (enum_scroll_command) (i16)LOWORD(wparam);
+      m_ecommand = (enum_scroll_command) (i16)first_u16(wparam);
 
-      m_nPos = (i16)HIWORD(wparam);
+      m_nPos = (i16)second_u16(wparam);
 
    }
 
@@ -535,9 +535,9 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-      m_point.x = GET_X_LPARAM(m_lparam);
+      m_point.x = x_i16(m_lparam);
       
-      m_point.y = GET_Y_LPARAM(m_lparam);
+      m_point.y = y_i16(m_lparam);
 
    }
 
@@ -597,17 +597,17 @@ namespace message
 
    ::u32 mouse_wheel::GetFlags()
    {
-      return LOWORD(m_wparam);
+      return first_u16(m_wparam);
    }
 
    i16 mouse_wheel::GetDelta()
    {
-      return (i16)HIWORD(m_wparam);
+      return second_i16(m_wparam);
    }
 
    point_i32 mouse_wheel::GetPoint()
    {
-      return point_i32(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
+      return point_i32(x_i16(m_lparam), y_i16(m_lparam));
    }
 
 

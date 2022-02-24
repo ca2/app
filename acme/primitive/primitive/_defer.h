@@ -14,7 +14,6 @@ namespace factory
    CLASS_DECL_ACME critical_section * get_factory_critical_section();
 
 
-
    template < typename TYPE, typename BASE_TYPE>
    inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::atom & atom)
    {
@@ -26,6 +25,33 @@ namespace factory
       ::factory::get_factory()->set_at(atom, pfactory);
 
       return pfactory;
+
+   }
+
+
+   CLASS_DECL_ACME ::factory::factory * loading_library_factory();
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom & atomSource)
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = ::factory::loading_library_factory();
+
+      if (::is_set(pfactory))
+      {
+
+         return pfactory->add_factory_item < TYPE, BASE_TYPE >();
+
+      }
+
+      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
+
+      return pfactoryitem;
 
    }
 

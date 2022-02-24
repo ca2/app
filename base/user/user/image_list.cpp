@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   bool image_list::on_click(const ::item & item)
+   bool image_list::on_click(::item * pitem)
    {
 
       index_array iaSel = m_iaSel;
@@ -135,10 +135,10 @@ namespace user
       if (psession->is_key_pressed(::user::e_key_shift) && m_bMultiSel)
       {
 
-         if (m_itemCurrent.is_set())
+         if (m_pitemCurrent.is_set())
          {
 
-            for (index i = m_itemCurrent; i <= item.m_iItem; i++)
+            for (index i = m_pitemCurrent; i <= pitem->m_iItem; i++)
             {
 
                iaSel.add_unique(i);
@@ -151,13 +151,13 @@ namespace user
       else
       {
 
-         iaSel.add_unique(item);
+         iaSel.add_unique(pitem->m_iItem);
 
       }
 
       auto ptopic = create_topic(id_image_list_action);
 
-      ptopic->m_item = item;
+      ptopic->m_pitem = pitem;
 
       ptopic->m_puserelement = this;
 
@@ -165,7 +165,7 @@ namespace user
 
       _001SetSelection(iaSel, ::e_source_user);
 
-      m_itemCurrent     = item;
+      m_pitemCurrent     = pitem;
 
       return true;
 
@@ -193,174 +193,176 @@ namespace user
    }
 
 
-   bool image_list::get_rect(::item & item)
+   //bool image_list::get_rectangle(::item & item)
+   //{
+
+   //   if (item == ::e_element_item)
+   //   {
+
+   //      if (!item.is_valid_item(m_imagea.get_count()))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      int pad = m_iPad;
+
+   //      int text_height = m_bNoName ? 0 : m_iTextHeight;
+
+   //      int xpad = m_iPad;
+
+   //      auto rectangleClient = get_client_rect();
+
+   //      int cx = rectangleClient.width();
+
+   //      int w = m_size.cx;
+
+   //      int h = m_size.cy;
+
+   //      int iColCount = (cx - xpad) / (w + xpad);
+
+   //      int cxInternal = iColCount * (w + xpad) - xpad;
+
+   //      int xLeft;
+
+   //      if (m_ealign & e_align_horizontal_center)
+   //      {
+
+   //         xLeft = (cx - cxInternal) / 2;
+
+   //      }
+   //      else
+   //      {
+
+   //         xLeft = xpad;
+
+   //      }
+
+   //      int x = xLeft;
+
+   //      int y = pad;
+
+   //      for (index pos = 0; pos < item.m_iItem; pos++)
+   //      {
+
+   //         if (x + w + pad + w + pad >= cx)
+   //         {
+
+   //            x = xLeft;
+
+   //            y += h + pad + text_height;
+
+   //         }
+   //         else
+   //         {
+
+   //            x += w + pad;
+
+   //         }
+
+   //      }
+
+   //      item.m_rectangle.left = x;
+
+   //      item.m_rectangle.right = x + w;
+
+   //      item.m_rectangle.top = y;
+
+   //      item.m_rectangle.bottom = y + h + text_height;
+
+   //      return true;
+
+   //   }
+   //   else if (item == ::e_element_icon)
+   //   {
+
+   //      {
+
+   //         __stack(item.m_eelement, e_element_item);
+
+   //         if (!get_rect(item))
+   //         {
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+   //      if (!m_bNoName)
+   //      {
+
+   //         item.m_rectangle.bottom -= m_iTextHeight;
+
+   //      }
+
+   //      return true;
+
+   //   }
+   //   else if (item == ::e_element_text)
+   //   {
+
+   //      if (m_bNoName)
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //      {
+
+   //         __stack(item.m_eelement, e_element_item);
+
+   //         if (!get_rect(item))
+   //         {
+
+   //            return false;
+
+   //         }
+
+   //      }
+
+   //      item.m_rectangle.top += m_size.cy;
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   ::item_pointer image_list::on_hit_test(const ::point_i32 & point)
    {
 
-      if (item == ::e_element_item)
-      {
+      //::count c = m_imagea.get_count();
 
-         if (!item.is_valid_item(m_imagea.get_count()))
-         {
+      //for (index i = 0; i < c; i++)
+      //{
 
-            return false;
+      //   //if(item = i;
 
-         }
+      //   //if (get_rect(item))
+      //   //{
 
-         int pad = m_iPad;
+      //   //   if (item.m_rectangle.contains(item.m_pointHitTest))
+      //   //   {
 
-         int text_height = m_bNoName ? 0 : m_iTextHeight;
+      //   //      return;
 
-         int xpad = m_iPad;
+      //   //   }
 
-         auto rectangleClient = get_client_rect();
+      //   //}
 
-         int cx = rectangleClient.width();
+      //}
 
-         int w = m_size.cx;
+      ////item = -1;
 
-         int h = m_size.cy;
+      ////item = ::e_element_none;
 
-         int iColCount = (cx - xpad) / (w + xpad);
-
-         int cxInternal = iColCount * (w + xpad) - xpad;
-
-         int xLeft;
-
-         if (m_ealign & e_align_horizontal_center)
-         {
-
-            xLeft = (cx - cxInternal) / 2;
-
-         }
-         else
-         {
-
-            xLeft = xpad;
-
-         }
-
-         int x = xLeft;
-
-         int y = pad;
-
-         for (index pos = 0; pos < item.m_iItem; pos++)
-         {
-
-            if (x + w + pad + w + pad >= cx)
-            {
-
-               x = xLeft;
-
-               y += h + pad + text_height;
-
-            }
-            else
-            {
-
-               x += w + pad;
-
-            }
-
-         }
-
-         item.m_rectangle.left = x;
-
-         item.m_rectangle.right = x + w;
-
-         item.m_rectangle.top = y;
-
-         item.m_rectangle.bottom = y + h + text_height;
-
-         return true;
-
-      }
-      else if (item == ::e_element_icon)
-      {
-
-         {
-
-            __stack(item.m_eelement, e_element_item);
-
-            if (!get_rect(item))
-            {
-
-               return false;
-
-            }
-
-         }
-
-         if (!m_bNoName)
-         {
-
-            item.m_rectangle.bottom -= m_iTextHeight;
-
-         }
-
-         return true;
-
-      }
-      else if (item == ::e_element_text)
-      {
-
-         if (m_bNoName)
-         {
-
-            return false;
-
-         }
-
-         {
-
-            __stack(item.m_eelement, e_element_item);
-
-            if (!get_rect(item))
-            {
-
-               return false;
-
-            }
-
-         }
-
-         item.m_rectangle.top += m_size.cy;
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   void image_list::on_hit_test(::item& item)
-   {
-
-      ::count c = m_imagea.get_count();
-
-      for (index i = 0; i < c; i++)
-      {
-
-         item = i;
-
-         if (get_rect(item))
-         {
-
-            if (item.m_rectangle.contains(item.m_pointHitTest))
-            {
-
-               return;
-
-            }
-
-         }
-
-      }
-
-      item = -1;
-
-      item = ::e_element_none;
+      return nullptr;
 
    }
 
@@ -386,204 +388,204 @@ namespace user
 
       ::count cCount = m_imagea.get_count();
 
-      for (::item item = 0; item.m_iItem < cCount; item.m_iItem++)
-      {
+      //for (::item item = 0; item.m_iItem < cCount; item.m_iItem++)
+      //{
 
-         ::item itemText;
+      //   ::item itemText;
 
-         ::rectangle_i32 rectangleSel;
+      //   ::rectangle_i32 rectangleSel;
 
-         itemText = e_element_text;
+      //   itemText = e_element_text;
 
-         bool bRectText = get_rect(itemText);
+      //   bool bRectText = get_rect(itemText);
 
-         item = e_element_icon;
+      //   item = e_element_icon;
 
-         if (get_rect(item))
-         {
+      //   if (get_rect(item))
+      //   {
 
-            ::image_pointer pimageSrc = m_imagea[item];
+      //      ::image_pointer pimageSrc = m_imagea[item];
 
-            if (::is_ok(pimageSrc))
-            {
+      //      if (::is_ok(pimageSrc))
+      //      {
 
-               if (m_imageaThumb.get_size() < m_imagea.get_size())
-               {
+      //         if (m_imageaThumb.get_size() < m_imagea.get_size())
+      //         {
 
-                  m_imageaThumb.set_size(m_imagea.get_size());
+      //            m_imageaThumb.set_size(m_imagea.get_size());
 
-               }
+      //         }
 
-               if (m_imageaThumb[item]->is_null())
-               {
+      //         if (m_imageaThumb[item]->is_null())
+      //         {
 
-                  m_imageaThumb[item].create(this);
+      //            m_imageaThumb[item].create(this);
 
-               }
+      //         }
 
-               ::image_pointer pimage = m_imageaThumb[item];
+      //         ::image_pointer pimage = m_imageaThumb[item];
 
-               if (pimage->area() <= 0)
-               {
+      //         if (pimage->area() <= 0)
+      //         {
 
-                  ::rectangle_i32 rectangleImage;
+      //            ::rectangle_i32 rectangleImage;
 
-                  double dW = (double)rectangle.width() / (double)pimageSrc->width();
+      //            double dW = (double)rectangle.width() / (double)pimageSrc->width();
 
-                  double dH = (double)rectangle.height() / (double)pimageSrc->height();
+      //            double dH = (double)rectangle.height() / (double)pimageSrc->height();
 
-                  double dMin = minimum(dW, dH);
+      //            double dMin = minimum(dW, dH);
 
-                  ::size_i32 szNew = pimageSrc->get_size() * dMin;
+      //            ::size_i32 szNew = pimageSrc->get_size() * dMin;
 
-                  pimage = m_pcontext->context_image()->create_image(szNew);
+      //            pimage = m_pcontext->context_image()->create_image(szNew);
 
-                  pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+      //            pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  image_source imagesource(pimageSrc);
+      //            image_source imagesource(pimageSrc);
 
-                  rectangle_f64 rectangle(szNew);
+      //            rectangle_f64 rectangle(szNew);
 
-                  image_drawing_options imagedrawingoptions(rectangle);
+      //            image_drawing_options imagedrawingoptions(rectangle);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //            image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-                  pimage->g()->draw(imagedrawing);
+      //            pimage->g()->draw(imagedrawing);
 
-               }
+      //         }
 
-               ::rectangle_i32 rectangleImage;
+      //         ::rectangle_i32 rectangleImage;
 
-               rectangleImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
+      //         rectangleImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
 
-               rectangleImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
+      //         rectangleImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
 
-               rectangleImage.right = rectangleImage.left + pimage->width();
+      //         rectangleImage.right = rectangleImage.left + pimage->width();
 
-               rectangleImage.bottom = rectangleImage.top + pimage->height();
+      //         rectangleImage.bottom = rectangleImage.top + pimage->height();
 
-               rectangleSel = rectangleImage;
+      //         rectangleSel = rectangleImage;
 
-               if (!m_bNoName)
-               {
+      //         if (!m_bNoName)
+      //         {
 
-                  rectangleSel.bottom = itemText.m_rectangle.bottom;
+      //            rectangleSel.bottom = itemText.m_rectangle.bottom;
 
-               }
+      //         }
 
-               rectangleSel.inflate(5, 5);
+      //         rectangleSel.inflate(5, 5);
 
-               ::color::color crBorder = 0;
+      //         ::color::color crBorder = 0;
 
-               ::color::color crSel = 0;
+      //         ::color::color crSel = 0;
 
-               bool bSel;
+      //         bool bSel;
 
-               bool bHover;
+      //         bool bHover;
 
-               if (m_iaSel.contains(item))
-               {
+      //         if (m_iaSel.contains(item))
+      //         {
 
-                  bSel = true;
+      //            bSel = true;
 
-                  if (m_itemHover == item)
-                  {
+      //            if (m_pitemHover == item)
+      //            {
 
-                     crBorder = argb(255, 100, 180, 240);
+      //               crBorder = argb(255, 100, 180, 240);
 
-                     crSel = argb(108, 100, 180, 240);
+      //               crSel = argb(108, 100, 180, 240);
 
-                     bHover = true;
+      //               bHover = true;
 
-                  }
-                  else
-                  {
+      //            }
+      //            else
+      //            {
 
-                     crBorder = argb(255, 80, 140, 200);
+      //               crBorder = argb(255, 80, 140, 200);
 
-                     crSel = argb(108, 80, 140, 200);
+      //               crSel = argb(108, 80, 140, 200);
 
-                     bHover = false;
+      //               bHover = false;
 
-                  }
+      //            }
 
-               }
-               else
-               {
+      //         }
+      //         else
+      //         {
 
-                  bSel = false;
+      //            bSel = false;
 
-                  if (m_itemHover == item)
-                  {
+      //            if (m_pitemHover == item)
+      //            {
 
-                     crBorder = argb(255, 80, 130, 180);
+      //               crBorder = argb(255, 80, 130, 180);
 
-                     crSel = argb(108, 80, 130, 180);
+      //               crSel = argb(108, 80, 130, 180);
 
-                     bHover = true;
+      //               bHover = true;
 
-                  }
-                  else
-                  {
+      //            }
+      //            else
+      //            {
 
-                     crBorder = argb(255, 100, 100, 100);
+      //               crBorder = argb(255, 100, 100, 100);
 
-                     bHover = false;
+      //               bHover = false;
 
-                  }
+      //            }
 
-               }
+      //         }
 
-               if (bSel || bHover)
-               {
+      //         if (bSel || bHover)
+      //         {
 
-                  pgraphics->fill_rectangle(rectangleSel, crSel);
+      //            pgraphics->fill_rectangle(rectangleSel, crSel);
 
-               }
+      //         }
 
-               image_source imagesource(pimage);
+      //         image_source imagesource(pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleImage);
+      //         image_drawing_options imagedrawingoptions(rectangleImage);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      //         image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               pgraphics->draw(imagedrawing);
+      //         pgraphics->draw(imagedrawing);
 
-               if (bSel)
-               {
+      //         if (bSel)
+      //         {
 
 
-                  rectangleImage.inflate(1, 1);
+      //            rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
+      //            pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
-                  rectangleImage.inflate(1, 1);
+      //            rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
+      //            pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-         if (bRectText)
-         {
+      //   if (bRectText)
+      //   {
 
-            string str;
+      //      string str;
 
-            if (_001GetItemText(str, item))
-            {
+      //      if (_001GetItemText(str, item))
+      //      {
 
-               pgraphics->set_text_color(get_color(pstyle, e_element_text));
+      //         pgraphics->set_text_color(get_color(pstyle, e_element_text));
 
-               pgraphics->draw_text(str, itemText.m_rectangle, e_align_center);
+      //         pgraphics->draw_text(str, itemText.m_rectangle, e_align_center);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -605,26 +607,26 @@ namespace user
 
       ::size_i32 sizeImage;
 
-      for (index i = 0; i < m_imagea.get_count(); i++)
-      {
+      //for (index i = 0; i < m_imagea.get_count(); i++)
+      //{
 
-         ::item item(e_element_item, i);
+      //   ::item item(e_element_item, i);
 
-         if (get_rect(item))
-         {
+      //   if (get_rect(item))
+      //   {
 
-            if (i == 0)
-            {
+      //      if (i == 0)
+      //      {
 
-               sizeImage = item.m_rectangle;
+      //         sizeImage = item.m_rectangle;
 
-            }
+      //      }
 
-            rectangleTotal.unite(rectangleTotal, item.m_rectangle);
+      //      rectangleTotal.unite(rectangleTotal, item.m_rectangle);
 
-         }
+      //   }
 
-      }
+      //}
 
       if (m_sizeImage != sizeImage)
       {
@@ -734,7 +736,7 @@ namespace user
    }
 
 
-   ::item image_list::current_item()
+   ::item_pointer image_list::current_item()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -742,11 +744,11 @@ namespace user
       if (m_iaSel.get_count() == 1)
       {
 
-         return m_iaSel[0];
+         return __new(::item(e_element_item, m_iaSel[0]));
 
       }
 
-      return -1;
+      return nullptr;
 
    }
 
@@ -787,7 +789,7 @@ namespace user
 
          ptopic->m_puserelement = this;
 
-         ptopic->m_item = current_item();
+         ptopic->m_pitem = current_item();
 
          ptopic->m_atom = ::id_after_change_cur_sel;
 

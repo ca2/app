@@ -43,7 +43,7 @@ namespace sockets
      /* if (plogger == nullptr)
       {
 
-         ::application* papp = ::get_application(pobject);
+         ::application* papp = ::get_app(pobject);
 
          if (psystem != nullptr)
          {

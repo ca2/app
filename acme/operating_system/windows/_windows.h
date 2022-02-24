@@ -13,7 +13,7 @@ inline void __throw_last_error(DWORD dwLastError)
 
    auto estatus = last_error_to_status(dwLastError);
 
-   throw_status(estatus);
+   throw ::exception(estatus);
 
 }
 

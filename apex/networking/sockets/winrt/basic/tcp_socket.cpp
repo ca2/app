@@ -26,7 +26,7 @@ namespace sockets
 #pragma warning(disable:4355)
 #endif
    tcp_socket::tcp_socket() :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
   //    base_socket(h),
 //      socket(h),
 //      stream_socket(h),
@@ -61,7 +61,7 @@ namespace sockets
 #pragma warning(disable:4355)
 #endif
    tcp_socket::tcp_socket(memsize isize,memsize osize) :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
   //    base_socket(h),
 //      socket(h),
 //      stream_socket(h),
@@ -124,7 +124,7 @@ namespace sockets
 
    /*   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
       {
-         ipv4_address ad(get_application(), ip, port);
+         ipv4_address ad(get_app(), ip, port);
          ipv4_address local(this);
          return open(ad, local, skip_socks);
       }
@@ -132,7 +132,7 @@ namespace sockets
 
       bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
       {
-         ipv6_address ad(get_application(), ip, port);
+         ipv6_address ad(get_app(), ip, port);
          return open(ad, skip_socks);
       }
       */
@@ -282,7 +282,7 @@ namespace sockets
             }
             if (!skip_socks && GetSocks4Host() && GetSocks4Port())
             {
-               ipv4_address sa(get_application(), GetSocks4Host(), GetSocks4Port());
+               ipv4_address sa(get_app(), GetSocks4Host(), GetSocks4Port());
                {
                   string sockshost;
                   psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
@@ -361,7 +361,7 @@ namespace sockets
                SetCloseAndDelete();
                return false;
             }
-            ipv6_address ad(get_application(), a, port);
+            ipv6_address ad(get_app(), a, port);
             ipv6_address local(this);
             if(!open(ad, local))
                return false;
@@ -380,7 +380,7 @@ namespace sockets
             SetCloseAndDelete();
             return false;
          }
-         ipv4_address ad(get_application(), l, port);
+         ipv4_address ad(get_app(), l, port);
          ipv4_address local(this);
          m_strHost = host;
          if(!open(ad, local))
@@ -425,7 +425,7 @@ namespace sockets
       {
          if (atom == m_resolver_id)
          {
-            ipv6_address ad(get_application(), a, port);
+            ipv6_address ad(get_app(), a, port);
             if (ad.IsValid())
             {
                ipv6_address local(this);

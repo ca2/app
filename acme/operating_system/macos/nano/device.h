@@ -4,11 +4,6 @@
 #pragma once
 
 
-//#include <cairo/cairo-features.h>
-//#include <cairo/cairo.h>
-//#include <cairo/cairo-ft.h>
-//#include <cairo/cairo-xlib.h>
-
 namespace quartz2d
 {
 
@@ -19,26 +14,28 @@ namespace quartz2d
 
 
       CGContextRef                  m_pdc;
+      bool                          m_bOwn;
 
       
+      nano_device();
       nano_device(CGContextRef pdc);
       ~nano_device() override;
 
 
       void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
       
-      
+      ::size_i32 get_text_extents(const ::string & str, ::nano_font * pnanofont) override;
+
       void rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen) override;
 
-
-      //XColor _alloc_xcolor(const ::color::color & color);
-      //void _set_foreground(const ::color::color & color);
-      //void _set_background(const ::color::color & color);
 
       void _set_source(const ::color::color & color);
 
 
       void _set_fill_color(const ::color::color & color);
+      
+      
+      void _select_font(::nano_font * pnanofont);
       
       
    };

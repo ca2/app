@@ -259,9 +259,9 @@ namespace user
       if(!_create_impact(pcreator, pimpactdata))
       {
 
-         auto papplication = get_application();
+         auto papp = get_app();
 
-         if (!_create_impact(papplication->cast< ::user::impact_creator>(), pimpactdata))
+         if (!_create_impact(papp->cast< ::user::impact_creator>(), pimpactdata))
          {
 
             if (!_create_impact(this, pimpactdata))
@@ -403,7 +403,7 @@ namespace user
 
       //   string strImpact = pupdown->m_atom;
 
-      //   auto& app = papplication;
+      //   auto& app = papp;
 
       //   auto pdataclient = app.cast < ::database::client >();
 
@@ -435,7 +435,7 @@ namespace user
 
       //   string strImpact = pupdown->m_atom;
 
-      //   auto pdataclient = papplication->cast < ::database::client > ();
+      //   auto pdataclient = papp->cast < ::database::client > ();
 
       //   if (pdataclient)
       //   {
@@ -465,7 +465,7 @@ namespace user
 
       //   string strImpact = pupdown->m_atom;
 
-      //   auto pdataclient = papplication->cast < ::database::client >();
+      //   auto pdataclient = papp->cast < ::database::client >();
 
       //   if (pdataclient)
       //   {
@@ -495,7 +495,7 @@ namespace user
 
          string strImpact = pupdown->m_atom;
 
-         auto pdataclient = papplication->cast < ::database::client >();
+         auto pdataclient = papp->cast < ::database::client >();
 
          if (pdataclient)
          {

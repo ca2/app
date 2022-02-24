@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
-#include "acme/platform/static_start_internal.h"
+#include "acme/platform/acme.h"
 
 
 #include "acme/operating_system/ansi/_pthread.h"

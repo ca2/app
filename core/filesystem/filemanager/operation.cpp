@@ -214,7 +214,7 @@ namespace filemanager
 
             //   });
 
-            //papplication->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papp->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{
@@ -243,7 +243,7 @@ namespace filemanager
 
       m_fileDst = pcontext->m_papexcontext->file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       if(m_fileDst.is_null())
       {
@@ -254,7 +254,7 @@ namespace filemanager
 
          propertyset["filepath"] = strDst;
 
-         papplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
+         papp->m_papplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
          return false;
 
@@ -290,7 +290,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strName, m_str))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -312,7 +312,7 @@ namespace filemanager
          if (!open_src_dst(m_stra[m_iFile], strPath, m_str))
          {
 
-            throw_status(error_failed);
+            throw ::exception(error_failed);
 
          }
 
@@ -787,14 +787,14 @@ namespace filemanager
    }
 
 
-   void operation::expand(::file::listing & listingExpanded,::file::patha & pathaExpand)
+   void operation::expand(::file::listing & listingExpanded,::file::path_array & pathaExpand)
    {
 
       auto pcontext = m_pcontext->m_pauracontext;
 
       listingExpanded.m_pprovider = pcontext;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {

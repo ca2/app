@@ -69,7 +69,7 @@ void delete_file(const char* path)
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -228,10 +228,6 @@ bool is_directory(const char* path)
 }
 
 
-
-
-
-
 void create_directory(const char* path)
 {
 
@@ -255,6 +251,13 @@ void create_directory(const char* path)
 
       auto lastError = ::GetLastError();
 
+      if (lastError == ERROR_ALREADY_EXISTS)
+      {
+
+         return;
+
+      }
+
       if (windows_get_alternate_path(wstr))
       {
 
@@ -263,9 +266,20 @@ void create_directory(const char* path)
 
             auto lastError = ::GetLastError();
 
+            if (lastError == ERROR_ALREADY_EXISTS)
+            {
+
+               return;
+
+            }
+
             auto estatus = last_error_to_status(lastError);
 
-            throw_status(estatus);
+            string strDetails;
+
+            strDetails.format("Failed to create directory (2) \"%s\"", string(wstr).c_str());
+
+            throw ::exception(estatus, nullptr, strDetails);
 
          }
 
@@ -275,8 +289,11 @@ void create_directory(const char* path)
 
          auto estatus = last_error_to_status(lastError);
 
-         throw_status(estatus);
+         string strDetails;
 
+         strDetails.format("Failed to create directory (1) \"%s\"", string(wstr).c_str());
+
+         throw ::exception(estatus, nullptr, strDetails);
 
       }
 
@@ -285,8 +302,6 @@ void create_directory(const char* path)
    //return true;
 
 }
-
-
 
 
 void erase_directory(const char* path)
@@ -316,7 +331,7 @@ void erase_directory(const char* path)
 
       auto estatus = last_error_to_status(lastError);
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 
@@ -324,19 +339,19 @@ void erase_directory(const char* path)
 
 
 
-int_handle::~int_handle()
-{
+// int_handle::~int_handle()
+// {
 
-   if (m_i >= 0)
-   {
+//    if (m_i >= 0)
+//    {
 
-      ::_close(m_i);
+//       ::_close(m_i);
 
-      m_i = -1;
+//       m_i = -1;
 
-   }
+//    }
 
-}
+// }
 
 
 

@@ -749,10 +749,10 @@ namespace sockets
 
       string strAddUp;
 
-      if (get_application()->m_strHttpUserAgentToken.has_char() && get_application()->m_strHttpUserAgentVersion.has_char())
+      if (get_app()->m_papplication->m_strHttpUserAgentToken.has_char() && get_app()->m_papplication->m_strHttpUserAgentVersion.has_char())
       {
 
-         strAddUp = get_application()->m_strHttpUserAgentToken + "/" + get_application()->m_strHttpUserAgentVersion;
+         strAddUp = get_app()->m_papplication->m_strHttpUserAgentToken + "/" + get_app()->m_papplication->m_strHttpUserAgentVersion;
 
       }
       else
@@ -783,10 +783,10 @@ namespace sockets
 //
 //      string strOpSys = op_sys();
 //
-//      if (get_application()->m_strAppName.has_char())
+//      if (get_app()->m_strAppName.has_char())
 //      {
 //
-//         str += get_application()->m_strAppName;
+//         str += get_app()->m_strAppName;
 //
 //         str += " (";
 //

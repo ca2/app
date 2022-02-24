@@ -237,7 +237,7 @@ template < typename PRED >
 //
 //         auto pcallstack = get_callstack(callstack_fork_global, iCallStackAddUp);
 //
-//         strTag = pcallstack->stack_trace();
+//         strTag = pcallstack->xxxstack_trace();
 //
 //         strTag.trim();
 //

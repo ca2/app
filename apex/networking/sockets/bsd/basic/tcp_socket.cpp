@@ -50,7 +50,7 @@ void SSL_init_app_data2_3_idx(void)
    {
       SSL_app_data2_idx =
       SSL_get_ex_new_index(0,
-                           (void *) "Second papplication Data for SSL",
+                           (void *) "Second papp Data for SSL",
                            nullptr, nullptr, nullptr);
    }
 
@@ -61,7 +61,7 @@ void SSL_init_app_data2_3_idx(void)
 
    SSL_app_data3_idx =
    SSL_get_ex_new_index(0,
-                        (void *) "Third papplication Data for SSL",
+                        (void *) "Third papp Data for SSL",
                         nullptr, nullptr, nullptr);
 
 }
@@ -321,7 +321,7 @@ namespace sockets
    /*
    bool tcp_socket::open(in_addr ip,port_t port,bool skip_socks)
    {
-      address ad(get_application(), ip, port);
+      address ad(get_app(), ip, port);
       address local(this);
       return open(ad, local, skip_socks);
    }
@@ -329,7 +329,7 @@ namespace sockets
 
    bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
    {
-      address ad(get_application(), ip, port);
+      address ad(get_app(), ip, port);
       return open(ad, skip_socks);
    }
    */
@@ -1915,7 +1915,7 @@ namespace sockets
 
          m_psslcontext->m_pclientcontext = __new (ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method()));
 
-         m_psslcontext->m_pclientcontext->initialize(get_application());
+         m_psslcontext->m_pclientcontext->initialize(get_app());
 
       }
 

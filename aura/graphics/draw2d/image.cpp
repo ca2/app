@@ -259,7 +259,7 @@ void image::create(::draw2d::graphics* pgraphics)
    if (::is_null(bitmap))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -379,7 +379,7 @@ void image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 
    //}
 
-   //fork_count_end(get_application(), imagea.get_count(),
+   //fork_count_end(get_app(), imagea.get_count(),
    //               [&](index i)
    //{
 
@@ -527,14 +527,14 @@ void image::stretch_image(::image* pimage)
    if (::is_null(pgraphics))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if (this->size().is_empty())
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -638,14 +638,14 @@ void image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image* pimageS
    if (xEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
    if (yEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -776,7 +776,7 @@ void image::blend(const ::rectangle_i32& rectangleDstParam, ::image* pimageSrc, 
    if (yEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -883,14 +883,14 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
    if (xEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
    if (yEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -1088,14 +1088,14 @@ void image::blend(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::
    if (xEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
    if (yEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -1425,14 +1425,14 @@ void image::precision_blend(const ::point_i32& pointDstParam, ::image* pimageSrc
    if (xEnd < 0)
    {
     
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
    if (yEnd < 0)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -3873,7 +3873,7 @@ void image::Blend(::image* pimage, i32 A)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -3899,7 +3899,7 @@ void image::Blend(::image* pDib, ::image* DibA, i32 A)
 {
    if (size() != pDib->size() ||
       size() != DibA->size())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    u8* src = (u8*)pDib->get_data();
    u8* dst = (u8*)get_data();
@@ -3927,7 +3927,7 @@ void image::Blend(::image* pDib, ::image* DibA)
 {
    if (size() != pDib->size() ||
       size() != DibA->size())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    map();
    pDib->map();
@@ -3958,7 +3958,7 @@ void image::blend(::image* pimage, ::image* pimageRate)
 {
    if (size() != pimage->size() ||
       size() != pimageRate->size())
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    u8* src = (u8*)pimage->get_data();
    u8* dst = (u8*)get_data();
@@ -4002,7 +4002,7 @@ void image::Darken(::image* pimage)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4030,7 +4030,7 @@ void image::Difference(::image* pimage)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4062,7 +4062,7 @@ void image::Lighten(::image* pimage)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4111,7 +4111,7 @@ void image::Multiply(::image* pimage)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -4139,7 +4139,7 @@ void image::Screen(::image* pimage)
    if (size() != pimage->size())
    {
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -7647,7 +7647,7 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
       //return false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -7658,7 +7658,7 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
       //return false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -7669,7 +7669,7 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 
       //return false;
 
-      throw_status(error_wrong_state);
+      throw ::exception(error_wrong_state);
 
    }
 
@@ -9857,7 +9857,7 @@ stream& image::read(::stream& stream)
    {
       //stream.setstate(::file::badbit);
 
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9866,7 +9866,7 @@ stream& image::read(::stream& stream)
    if (height <= 0)
    {
 
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9875,7 +9875,7 @@ stream& image::read(::stream& stream)
    if (widthAlloc <= 0)
    {
       
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9884,7 +9884,7 @@ stream& image::read(::stream& stream)
    if (heightAlloc <= 0)
    {
      
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9893,7 +9893,7 @@ stream& image::read(::stream& stream)
    if (iScan <= 0)
    {
       
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9902,7 +9902,7 @@ stream& image::read(::stream& stream)
    if (widthAlloc < width)
    {
       
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9911,7 +9911,7 @@ stream& image::read(::stream& stream)
    if (heightAlloc < height)
    {
      
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9920,7 +9920,7 @@ stream& image::read(::stream& stream)
    if (iScan < widthAlloc / (i32)sizeof(color32_t))
    {
       
-      throw_status(::error_io);
+      throw ::exception(::error_io);
 
       return stream;
 
@@ -9931,7 +9931,7 @@ stream& image::read(::stream& stream)
    //if (!create({ widthAlloc, heightAlloc }))
    //{
 
-   //   throw_status(::error_io);
+   //   throw ::exception(::error_io);
 
    //   return stream;
 
@@ -9961,7 +9961,7 @@ stream& image::read(::stream& stream)
 
          // stream.setstate(::file::badbit);
 
-         throw_status(error_io);
+         throw ::exception(error_io);
 
          return stream;
 
@@ -10072,7 +10072,7 @@ void image::transform(enum_image eimage)
 
    //return ::error_not_found;
 
-   throw_status(error_not_found);
+   throw ::exception(error_not_found);
 
 }
 

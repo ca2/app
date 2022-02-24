@@ -111,7 +111,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual void on_hit_test(::item & item) override;
+      //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);

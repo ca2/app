@@ -101,7 +101,7 @@ void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMM
    if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
-      throw_status(success_none);
+      throw ::exception(success_none);
 
 //#ifdef _DEBUG
 //
@@ -293,10 +293,10 @@ void object::dev_log(string strMessage)
 
 //#ifdef __DEBUG
 //
-//   if (get_application())
+//   if (get_app())
 //   {
 //
-//      get_application()->post_critical_error_message(strMessage);
+//      get_app()->post_critical_error_message(strMessage);
 //
 //   }
 //
@@ -701,14 +701,14 @@ void object::defer_update_object_id()
 //void object::enable_application_events(bool bEnable)
 //{
 //
-//   if (::is_null(get_application()))
+//   if (::is_null(get_app()))
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   if (!get_application()->enable_application_events(this, bEnable))
+//   if (!get_app()->enable_application_events(this, bEnable))
 //   {
 //
 //      return false;
@@ -792,10 +792,10 @@ void object::do_request(::create* pcreate)
 //
 //   }
 //
-//   if (get_application())
+//   if (get_app())
 //   {
 //
-//      return get_application()->message_box(payload);
+//      return get_app()->message_box(payload);
 //
 //   }
 //
@@ -848,7 +848,7 @@ void object::on_request(::create * pcreate)
 
    //   }
 
-   //   estatus = pcreate->initialize_create(get_application()->m_XstrAppId, ::e_type_empty, true);
+   //   estatus = pcreate->initialize_create(get_app()->m_XstrAppId, ::e_type_empty, true);
 
    //   if (!estatus)
    //   {
@@ -979,7 +979,7 @@ void     object::run()
 //
 //   //m_pthread.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
-//   //m_papplication.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+//   //m_papp.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
 //   //m_psession.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
@@ -1681,14 +1681,14 @@ bool object::__is_child_task(::object * pobjectTask) const
 //string object::__get_text(string str)
 //{
 //
-//   if (get_application() == nullptr)
+//   if (get_app() == nullptr)
 //   {
 //
 //      return ::__get_text(str);
 //
 //   }
 //
-//   return get_application()->__get_text(str);
+//   return get_app()->__get_text(str);
 //
 //}
 
@@ -1793,7 +1793,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
    if (::is_null(pelement))
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -1802,7 +1802,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
    if (!ptask)
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -1817,10 +1817,52 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 }
 
 
+
+__pointer(task) object::branch_element_synchronously(element * pelement, ::enum_priority epriority, ::u32 nStackSize,
+                                                     ::u32 dwCreateFlags)
+{
+
+   if (::is_null(pelement))
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+   auto ptask = __create_new < ::task >();
+
+   if (!ptask)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+   ptask->m_pelement = pelement;
+
+   ptask->m_atom = typeid(*pelement).name();
+
+   ptask->branch_synchronously(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+
+   return ptask;
+
+}
+
+
 __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_element(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+
+   return ptask;
+
+}
+
+
+__pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+{
+
+   auto ptask = branch_element_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -2045,7 +2087,7 @@ void object::sleep(const ::duration& duration)
       if (m_psystem && m_psystem->is_finishing())
       {
 
-         throw_status(error_exit_system);
+         throw ::exception(error_exit_system);
 
       }
 
@@ -2056,7 +2098,7 @@ void object::sleep(const ::duration& duration)
 
       //}
 
-      //if (m_papplication && m_papplication->finish_bit())
+      //if (m_papp && m_papp->finish_bit())
       //{
 
       //   return error_exit_application;
@@ -2094,7 +2136,7 @@ void object::sleep(const ::duration& duration)
       if (m_psystem && m_psystem->is_finishing())
       {
 
-         throw_status(error_exit_system);
+         throw ::exception(error_exit_system);
 
       }
 
@@ -2105,7 +2147,7 @@ void object::sleep(const ::duration& duration)
 
       //}
 
-      //if (m_papplication && m_papplication->finish_bit())
+      //if (m_papp && m_papp->finish_bit())
       //{
 
       //   return error_exit_application;
@@ -2583,7 +2625,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //void object::set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_papplication.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 //
@@ -2704,12 +2746,12 @@ element* object::get_taskpool_container()
 //::application* object::_get_application()
 //{
 //
-//   return m_papplication;
+//   return m_papp;
 //
 //}
 
 
-//inline ::application* object::application() { return m_papplication; }
+//inline ::application* object::application() { return m_papp; }
 
 
 //template < typename BASE_TYPE >
@@ -2828,10 +2870,10 @@ void object::initialize(::object* pobject)
 
    //}
 
-   //if (!m_papplication)
+   //if (!m_papp)
    //{
 
-   //   m_papplication = pobject->m_papplication;
+   //   m_papp = pobject->m_papp;
 
    //}
 
@@ -2852,10 +2894,10 @@ void object::initialize(::object* pobject)
    //if (!get_context())
    //{
 
-   //   if (m_papplication)
+   //   if (m_papp)
    //   {
 
-   //      m_pcontext = m_papplication;
+   //      m_pcontext = m_papp;
 
    //   }
    //   else if (m_psession)
@@ -2947,7 +2989,7 @@ void object::initialize(::object* pobject)
 
 //inline ::thread* object::get_thread() const { return m_pthread; }
 
-//inline ::application* object::get_application() const { return m_papplication; }
+//inline ::application* object::get_app() const { return m_papp; }
 
 //inline ::apex::session* object::get_session() const { return m_psession; }
 
@@ -2955,7 +2997,7 @@ void object::initialize(::object* pobject)
 
 //::object * get_context_user() const { return m_puserContext; }
 
-//inline ::application * application() const { return m_papplication; }
+//inline ::application * application() const { return m_papp; }
 
 //string object::get_text(const ::payload& payload, const ::atom& atom)
 //{
@@ -3195,10 +3237,10 @@ void object::operator()()
 //::property_object* object::parent_property_set_holder() const
 //{
 //
-//   if (m_papplication && m_papplication.m_p != this)
+//   if (m_papp && m_papp.m_p != this)
 //   {
 //
-//      return m_papplication.m_p;
+//      return m_papp.m_p;
 //
 //   }
 //

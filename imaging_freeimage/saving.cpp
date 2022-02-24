@@ -192,7 +192,7 @@ namespace imaging_freeimage
       if (::is_null(pimage))
       {
 
-         throw_status(error_invalid_empty_argument);
+         throw ::exception(error_invalid_empty_argument);
 
       }
 
@@ -258,7 +258,7 @@ namespace imaging_freeimage
          }
          break;
       default:
-         throw_status(error_bad_argument);
+         throw ::exception(error_bad_argument);
       }
 
       eformat = FreeImage_GetFIFFromFilename(strFile);

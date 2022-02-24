@@ -351,7 +351,7 @@ namespace universal_windows
    interaction_impl::~interaction_impl()
    {
 
-      if(get_application() != nullptr)
+      if(get_app() != nullptr)
       {
 
          ::aura::get_system()->window_map().m_map.erase_key((oswindow)(iptr)(void *)get_handle());
@@ -1006,7 +1006,7 @@ namespace universal_windows
 
       if(pusermessage->m_atom == e_message_timer)
       {
-//         m_puserinteraction->get_application()->step_timer();
+//         m_puserinteraction->get_app()->step_timer();
       }
       else if(pusermessage->m_atom == e_message_left_button_down)
       {
@@ -1017,7 +1017,7 @@ namespace universal_windows
       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
       ::aura::application ** ppapp= (::aura::application **) pusermessage->m_lparam;
-      *ppapp = get_application();
+      *ppapp = get_app();
       pusermessage->m_bRet = true;
       return;
       }
@@ -1055,18 +1055,18 @@ namespace universal_windows
          psession->on_ui_mouse_message(pmouse);
 
 
-         //papplication->m_pointCursor = pmouse->m_point;
-         //if(get_application()->m_pcoreapp->m_psession != nullptr)
+         //papp->m_pointCursor = pmouse->m_point;
+         //if(get_app()->m_pcoreapp->m_psession != nullptr)
          //{
          //   psession->m_pointCursor = pmouse->m_point;
          //}
-         //if(m_puserinteraction != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != get_application()->m_pcoreapp->m_psession)
+         //if(m_puserinteraction != nullptr && m_puserinteraction->get_app()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_app()->m_pcoreapp->m_psession != get_app()->m_pcoreapp->m_psession)
          //{
-         //   Sess(m_puserinteraction->get_application()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
+         //   Sess(m_puserinteraction->get_app()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
          //}
 
          //__pointer(base_session) psession;
-         //if(get_application()->m_pcoreapp->is_system())
+         //if(get_app()->m_pcoreapp->is_system())
          //{
          //   psession = ::aura::get_system()->query_session(0);
          //   if(psession != nullptr && psession->m_bSessionSynchronizedCursor)
@@ -1810,7 +1810,7 @@ return true;
    //int interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
-   //      lpszCaption = papplication->m_strAppName;
+   //      lpszCaption = papp->m_strAppName;
    //   int nResult = ::message_box(get_handle(),lpszText,lpszCaption,nType,callback);
    //   return nResult;
    //}
@@ -2340,7 +2340,7 @@ return true;
    //void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    //{
 
-   //   throw ::exception(todo(::get_application()));
+   //   throw ::exception(todo(::get_app()));
 
    //   //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    //}
@@ -2377,7 +2377,7 @@ return true;
 
    //    void     c_cdecl print_window(LPVOID pvoid)
    //   {
-   //      throw ::exception(todo(::get_application()));
+   //      throw ::exception(todo(::get_app()));
 
    //      //print_window * pprintwindow = (print_window *) pvoid;
    //      //try
@@ -2780,8 +2780,8 @@ return true;
 //      //  m_puserinteraction->m_iModalCount++;
 //
 //      //m_puserinteraction->m_threadptraModal.add(::get_task());
-//      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_application());
-//      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_application());
+//      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_app());
+//      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_app());
 //      // acquire and dispatch messages until the modal state is done
 //      MESSAGE msg;
 //      for(;;)
@@ -3042,8 +3042,8 @@ return true;
    //{
    //   /*bool b;
    //   bool * pb = &b;
-   //   if(get_application()->m_pcoreapp->s_ptwf != nullptr)
-   //   pb = &get_application()->m_pcoreapp->s_ptwf->m_bProDevianMode;
+   //   if(get_app()->m_pcoreapp->s_ptwf != nullptr)
+   //   pb = &get_app()->m_pcoreapp->s_ptwf->m_bProDevianMode;
    //   keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
    //   */
    //   //ASSERT(::is_window(get_handle()));
@@ -5240,7 +5240,7 @@ return true;
       {
          try
          {
-            if(App(pinteraction->get_application()).on_run_exception((::exception &) e))
+            if(App(pinteraction->get_app()).on_run_exception((::exception &) e))
                goto run;
          }
          catch(...)
@@ -5584,7 +5584,7 @@ CLASS_DECL_AURA const char * __register_window_class(::u32 nClassStyle,
    char * lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
-   HINSTANCE hInst = Sys(::universal_windows::get_task()->get_application()).m_hInstance;
+   HINSTANCE hInst = Sys(::universal_windows::get_task()->get_app()).m_hInstance;
 
    if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
    {
@@ -5734,7 +5734,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
    WNDCLASS wndcls;
    __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = Sys(::universal_windows::get_task()->get_application()).m_hInstance;
+   wndcls.hInstance = Sys(::universal_windows::get_task()->get_app()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;

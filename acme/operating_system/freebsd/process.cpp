@@ -482,7 +482,7 @@
 //
 //   int_array ia;
 //
-//   ::file::patha stra;
+//   ::file::path_array stra;
 //
 //   ::dir::ls_dir(stra, "/proc/");
 //
@@ -526,7 +526,7 @@
 //
 //         id_array ia;
 //
-//         ::file::patha stra;
+//         ::file::path_array stra;
 //
 //         ::dir::ls_dir(stra, "/proc/");
 //

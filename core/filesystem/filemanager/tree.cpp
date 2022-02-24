@@ -140,7 +140,7 @@ namespace filemanager
 
       ::file::path strDir;
 
-      auto papplication = get_application();
+      auto papp = get_app();
 
       auto pcontext = m_pcontext;
 
@@ -232,7 +232,7 @@ namespace filemanager
 
          ::data::tree_item * ptreeitemParent = get_base_item();
 
-         ::file::patha patha;
+         ::file::path_array patha;
 
          pathUser.ascendants_path(patha);
 
@@ -390,7 +390,7 @@ namespace filemanager
             if (pathUser.has_char())
             {
 
-               ::file::patha filepatha;
+               ::file::path_array filepatha;
 
                pathUser.ascendants_path(filepatha);
 

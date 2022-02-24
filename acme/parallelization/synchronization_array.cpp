@@ -11,6 +11,20 @@
 #endif
 
 
+#if !defined(WINDOWS)
+
+
+#define MWMO_WAITALL        0x0001
+
+
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+
+
+#endif
+
+
 synchronization_array::synchronization_array()
 {
 
@@ -196,7 +210,7 @@ void synchronization_array::wait()
    if (is_empty())
    {
 
-      throw_status(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -310,7 +324,7 @@ void synchronization_array::wait()
    else if (failed(estatus))
    {
 
-      throw_status(estatus);
+      throw ::exception(estatus);
 
    }
 

@@ -18,10 +18,10 @@ namespace draw2d
 
 
 
-   //::aura::application* object::get_application() 
+   //::aura::application* object::get_app()
    //{
    //   
-   //   return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+   //   return m_papp ? m_papp.cast < ::aura::application >() : nullptr;
    //
    //}
 

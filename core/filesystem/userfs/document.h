@@ -30,7 +30,7 @@ namespace userfs
       ::user::document * get_document();
 
 
-      //virtual ::aura::application * get_application() const override;
+      //virtual ::aura::application * get_app() const override;
 
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;

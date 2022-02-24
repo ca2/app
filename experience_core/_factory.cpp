@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_setup.h"
+#include "acme/platform/system_setup.h"
 
 //
 //namespace experience
@@ -67,6 +67,8 @@
 //
 //} // namespace experience
 //
+
+
 
 __FACTORY_EXPORT void experience_core_factory(::factory::factory* pfactory)
 {

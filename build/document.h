@@ -6,7 +6,7 @@ namespace app_core_build
 
 
    class CLASS_DECL_APP_CORE_BUILD document :
-      virtual public ::application_consumer < application, ::user::document >
+      virtual public ::app_consumer < application, ::user::document >
    {
    public:
 

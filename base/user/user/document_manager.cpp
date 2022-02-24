@@ -570,7 +570,7 @@ namespace user
       pMainWnd->SetForegroundWindow();
 
       // then open the document
-      psystem->open_document_file(get_application(), cmdInfo.m_varFile);
+      psystem->open_document_file(get_app(), cmdInfo.m_varFile);
 
 
       // next time, show the window as default
@@ -648,7 +648,7 @@ namespace user
       i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
-      pDoc = psystem->open_document_file(get_application(), cmdInfo.m_varFile);
+      pDoc = psystem->open_document_file(get_app(), cmdInfo.m_varFile);
       //psystem->m_pCmdInfo = &cmdInfo;
       psystem->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
       //psystem->m_pCmdInfo = nullptr;
@@ -688,7 +688,7 @@ namespace user
    ASSERT(ptemplate != nullptr);
    ASSERT_KINDOF(impact_system, ptemplate);
 
-   ptemplate->open_document_file(get_application(), nullptr, true, psystem->m_puiInitialPlaceHolderContainer);
+   ptemplate->open_document_file(get_app(), nullptr, true, psystem->m_puiInitialPlaceHolderContainer);
    // if returns nullptr, the ::account::user has already been alerted*/
    //   return true;
    //}
@@ -930,14 +930,14 @@ namespace user
 //
 //   //{
 //
-//   //   ASSERT(papplication->m_pdocmanager != nullptr);
+//   //   ASSERT(papp->m_pdocmanager != nullptr);
 //
 //   //   __pointer(::create) cc(e_create);
 //
 //   //   cc->m_pcommandline->m_varFile = pszFileName;
 //
 //
-//   //   papplication->document_manager()->request(cc);
+//   //   papp->document_manager()->request(cc);
 //
 //   //   return ::user::__document(cc);
 //

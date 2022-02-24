@@ -187,6 +187,8 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 #ifndef CUBE
 
 
+CLASS_DECL_ACME void defer_initialize_callstack();
+
 
 //#ifdef _UWP
 //[MTAThread]
@@ -205,6 +207,8 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
+
+      defer_initialize_callstack();
 
       if (iLibMainDebugBox & e_library_main_process_attach)
       {

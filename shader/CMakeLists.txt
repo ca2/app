@@ -61,7 +61,8 @@ target_include_directories(app_shader PRIVATE ${library_include_directories})
 target_compile_definitions(app_shader PRIVATE _APP_SIMPLE_DRAWING_LIBRARY)
 
 
-add_executable(_${PROJECT_NAME} operating-system/${SLASHED_OPERATING_SYSTEM}/_${PROJECT_NAME}.cpp)
+#add_executable(_${PROJECT_NAME} _main.cpp)
+add_executable(_${PROJECT_NAME} _main.cpp)
 
 
 list(APPEND executable_references

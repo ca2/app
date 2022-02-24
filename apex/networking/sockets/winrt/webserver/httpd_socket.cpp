@@ -11,7 +11,7 @@ namespace sockets
 
 
    httpd_socket::httpd_socket() :
-      ::object(h.get_application()),
+      ::object(h.get_app()),
       base_socket(h),
       socket(h),
       stream_socket(h),

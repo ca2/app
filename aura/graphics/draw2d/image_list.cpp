@@ -666,21 +666,21 @@ void image_list::get_image_info(i32 nImage, info * pinfo) const
    if(nImage < 0 || nImage >= get_image_count())
    {
 
-      throw_status(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
 
    }
 
    if(::is_null(m_pimage))
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 
    if (!m_pimage->is_ok())
    {
 
-      throw_status(error_null_pointer);
+      throw ::exception(error_null_pointer);
 
    }
 

@@ -18,10 +18,10 @@ namespace ios
       virtual bool initialize();
       virtual bool destroy();
 
-      virtual void _set_filea(const ::file::patha & patha);
+      virtual void _set_filea(const ::file::path_array & patha);
 
       virtual i32 _get_file_count();
-      virtual void _get_filea(::file::patha & patha);
+      virtual void _get_filea(::file::path_array & patha);
 
       virtual void _set_plain_text(const ::string & psz);
       virtual string _get_plain_text();

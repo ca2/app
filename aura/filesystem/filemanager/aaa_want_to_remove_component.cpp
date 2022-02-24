@@ -319,7 +319,7 @@ namespace filemanager
    //   //                       __type(impact)));
    //   //}
 
-   //   //papplication->add_document_template(pdoctemplate);
+   //   //papp->add_document_template(pdoctemplate);
 
    //   //pdata->m_pdocumenttemplate = pdoctemplate;
 
@@ -629,7 +629,7 @@ pacmedir->localconfig() / "user.component";
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new(::create(papplication->handler(), payloadFile, true));
+      //   pcreate = __new(::create(papp->handler(), payloadFile, true));
 
       //}
 
@@ -663,7 +663,7 @@ pacmedir->localconfig() / "user.component";
 
       //   string strManagerId;
 
-      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_application());
+      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_app());
 
       //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 

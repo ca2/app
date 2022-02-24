@@ -48,7 +48,7 @@ namespace opengl
       if (::is_null(popengl))
       {
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -98,7 +98,7 @@ namespace opengl
 
          fprintf(stderr, "P-Buffers not supported.");
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -111,7 +111,7 @@ namespace opengl
 
          printf("Invalid GLX version");
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -133,7 +133,7 @@ namespace opengl
 
          fprintf(stderr, "Failed to create P-Buffer.");
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -145,7 +145,7 @@ namespace opengl
 
          fprintf(stderr, "Failed to create graphics context.");
 
-         throw_status(error_failed);
+         throw ::exception(error_failed);
 
       }
 
@@ -156,7 +156,7 @@ namespace opengl
 //      if(!estatus)
 //      {
 //
-//         throw_status(estatus);
+//         throw ::exception(estatus);
 //
 //      }
 
@@ -209,7 +209,7 @@ namespace opengl
       if(!estatus)
       {
 
-         throw_status(estatus);
+         throw ::exception(estatus);
 
       }
 
@@ -261,7 +261,7 @@ namespace opengl
       if (pbuffer == None)
       {
 
-         throw_status(::error_failed);
+         throw ::exception(::error_failed);
 
       }
 

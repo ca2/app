@@ -17,7 +17,7 @@ inline void stream::default_exchange(TYPE & t) { is_loading() ? read(t) : write(
 
 
 template < typename TYPE >
-inline void stream::write_only(TYPE & t) { is_loading() ? throw_status(error_io) : write(t); }
+inline void stream::write_only(TYPE & t) { is_loading() ? throw ::exception(error_io) : write(t); }
 
 
 template < typename TYPE >

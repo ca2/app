@@ -137,6 +137,13 @@ void element::operator()(const ::payload & payload)
 }
 
 
+void element::init_task()
+{
+
+   
+}
+
+
 void element::run()
 {
 

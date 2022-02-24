@@ -12,9 +12,9 @@ namespace simpledb
 
       single_lock synchronouslock(mutex());
 
-      __pointer(::axis::application) papplication = get_application();
+      __pointer(::axis::application) papp = get_app();
 
-      __pointer(::axis::session) psession = papplication->get_session();
+      __pointer(::axis::session) psession = papp->get_session();
 
       try
       {
@@ -34,7 +34,7 @@ namespace simpledb
 
                }
 
-               if (papplication->interactive_get_user() == nullptr)
+               if (papp->interactive_get_user() == nullptr)
                {
 
                   sleep(5000_ms);

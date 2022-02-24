@@ -164,7 +164,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    INFORMATION("simple_menu_bar::_track_popup_menu" << iItem);
    
    m_iTracking = iItem;
-   m_itemPressed = iItem;
+   m_pitemPressed = __new(::item(::e_element_item, iItem));
    set_need_redraw();
    ::rectangle_i32 rectangle;
    _001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_none);
@@ -402,13 +402,19 @@ i32_spreadset * prel,
 
 void simple_menu_bar::RemoveAllButtons()
 {
-   m_itema.erase_all();
+   
+   m_useritema.erase_all();
+
 }
+
 
 void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
 {
+
    pmessage->previous();
+
 }
+
 
 void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool bDisableIfNoHndler)
 {
@@ -775,14 +781,14 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       ::rectangle_i32 rectangleShadow;
       _001GetItemRect(iItem, rectangleShadow, e_element_item);
 
-      ::draw2d::pen_pointer ppenShadow(get_application(), PS_SOLID, 1, rgb(127, 127, 127));
-      ::draw2d::brush_pointer pbrushShadow(get_application(), rgb(127, 127, 127));
+      ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
+      ::draw2d::brush_pointer pbrushShadow(get_app(), rgb(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(ppenShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(pbrushShadow);
       pgraphics->rectangle(rectangleShadow);
 
-      ::draw2d::pen_pointer pen(get_application(), PS_SOLID, 1, rgb(92, 92, 92));
-      ::draw2d::brush_pointer brush(get_application(), rgb(255, 255, 255));
+      ::draw2d::pen_pointer pen(get_app(), PS_SOLID, 1, rgb(92, 92, 92));
+      ::draw2d::brush_pointer brush(get_app(), rgb(255, 255, 255));
       pgraphics->set(ppen);
       pgraphics->set(pbrush);
       pgraphics->rectangle(rectangleItem);
@@ -881,7 +887,7 @@ void simple_menu_bar::_001OnDropDown(index iItem)
 }
 
 
-bool simple_menu_bar::on_click(const ::item & item)
+bool simple_menu_bar::on_click(::item * pitem)
 {
    
    return false;
@@ -892,7 +898,7 @@ bool simple_menu_bar::on_click(const ::item & item)
 //void simple_menu_bar::OnUpdateHover()
 //{
 //
-//   if (m_itemHover)
+//   if (m_pitemHover)
 //   {
 //
 //      //_track_popup_menu(m_iHover);

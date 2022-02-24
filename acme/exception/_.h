@@ -1,8 +1,8 @@
 #pragma once
 
 
-CLASS_DECL_ACME bool avoid_bad_status_exception();
-CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
+// CLASS_DECL_ACME bool avoid_bad_status_exception();
+// CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 
 #include "callstack.h"
@@ -13,7 +13,7 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 #include "interface_only.h"
 
-CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
+//CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 
 //#include "base.h"
 

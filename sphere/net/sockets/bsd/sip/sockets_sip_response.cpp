@@ -18,9 +18,9 @@ namespace sip
 
 
    response::response(const response& src) :
-   ::object(((response &)src).get_application()),
+   ::object(((response &)src).get_app()),
    transaction(src)
-   , m_memfileBody(((response &)src).get_application() )
+   , m_memfileBody(((response &)src).get_app() )
    {
       m_memfileBody = src.m_memfileBody;
    }

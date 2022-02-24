@@ -218,7 +218,7 @@ namespace user
       if (!m_pdocument && pdocument)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 
@@ -360,7 +360,7 @@ namespace user
    //   // invalidate the entire pane, erase background too
    //   //Invalidate(true);
 
-   //   //papplication->on_update_view(this,pSender,lHint,pHint);
+   //   //papp->on_update_view(this,pSender,lHint,pHint);
 
    //}
 
@@ -418,7 +418,7 @@ namespace user
       if (!has_toolbar())
       {
 
-         throw_status(error_wrong_state);
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -727,7 +727,7 @@ namespace user
       if (!m_puserinteractionImpactNotify && puserinteractionNotify)
       {
 
-         throw_status(error_wrong_type);
+         throw ::exception(error_wrong_type);
 
       }
 
@@ -859,7 +859,7 @@ namespace user
 
       ASSERT(pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr);
 
-      ::application * papp = puserinteractionParent->get_application();
+      ::application * papp = puserinteractionParent->get_app();
 
       __pointer(::user::interaction) pinteraction;
 
@@ -883,7 +883,7 @@ namespace user
 
          }
 
-         if (pobject.is_null() || ::is_null(pobject->get_application()))
+         if (pobject.is_null() || ::is_null(pobject->get_app()))
          {
             
             _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");

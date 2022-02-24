@@ -10,13 +10,16 @@ namespace opengl
    {
    public:
 
-      
+
+      //__creatable_from_base(buffer, ::gpu::buffer);
+
 
       buffer();
-      virtual ~buffer();
+      ~buffer() override;
 
-      virtual void gpu_read() override;
-      virtual void gpu_write() override;
+
+      void gpu_read() override;
+      void gpu_write() override;
       
 
 

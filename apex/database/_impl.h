@@ -12,7 +12,7 @@ namespace database
       if (!::is_set(m_pdataserver))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 
@@ -46,7 +46,7 @@ namespace database
       if (::is_null(m_pdataserver))
       {
 
-         throw_status(error_null_pointer);
+         throw ::exception(error_null_pointer);
 
       }
 

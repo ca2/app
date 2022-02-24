@@ -56,10 +56,10 @@ namespace prompt
          __type(prompt::document),
          __type(prompt::frame),
          __type(prompt::pane_view));
-         papplication->add_document_template(pDocTemplate);
+         papp->add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
-         m_ptemplateCommandMain->open_new_document(get_application());
+         m_ptemplateCommandMain->open_new_document(get_app());
 
       }
 

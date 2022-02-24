@@ -64,7 +64,7 @@ namespace user
          crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
       }
-      else if (m_itemHover)
+      else if (m_pitemHover)
       {
 
          pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackSel);
@@ -195,7 +195,7 @@ namespace user
    }
 
 
-   void button::on_hit_test(::item & item)
+   ::item_pointer button::on_hit_test(const ::point_i32 &point)
    {
 
       synchronous_lock synchronouslock(mutex());

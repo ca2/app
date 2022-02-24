@@ -105,7 +105,7 @@ void * unaligned_memory_allocate(size_t size)
    else
    {
       //string strCallStack;
-      //g_ee->stack_trace(1);
+      //g_ee->xxxstack_trace(1);
       pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
       g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;
@@ -432,7 +432,7 @@ void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const
    else
    {
       //string strCallStack;
-      //g_ee->stack_trace(1);
+      //g_ee->xxxstack_trace(1);
       pblock->m_iStack = sizeof(pblock->m_puiStack) / sizeof(pblock->m_puiStack[0]);
       g_ee->backtrace(pblock->m_puiStack, pblock->m_iStack);
       pblock->m_pszFileName = nullptr;

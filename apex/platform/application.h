@@ -6,21 +6,22 @@
 
 
 class CLASS_DECL_APEX application :
-virtual public ::apex_main_struct,
-virtual public ::apex::context,
-virtual public int_scalar_source,
-virtual public ::database::client,
-virtual public ::application_exit
+   virtual public ::app,
+   //virtual public ::apex_main_struct,
+   virtual public ::apex::context,
+   virtual public int_scalar_source,
+   virtual public ::database::client,
+   virtual public ::application_exit
 {
 public:
 
 
-
+   //__creatable(application);
 
       void* m_pnativeapp;
 
 
-      class application_impl *                        m_papplicationimpl;
+      class application_impl *                        m_pappimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
@@ -29,7 +30,6 @@ public:
       //__reference(::application)                m_pappParent;
       string                                          m_strAppName;
       ::text::text                                    m_textAppTitle;
-      string                                          m_strAppId;
       string                                          m_strBaseSupportId;
       string                                          m_strDatabaseAppId;
       string                                          m_strRoot;
@@ -48,7 +48,7 @@ public:
 
       bool                                            m_bReadStringTable;
 
-      __composite(application_menu)                   m_papplicationmenu;
+      __composite(application_menu)                   m_pappmenu;
 
       //__composite(::game::game)                       m_pgame;
 
@@ -193,6 +193,7 @@ public:
       virtual void load_string_table(const string & pszApp, const string & pszId);
 
 
+      virtual bool is_application() const override;
 
       virtual bool is_system() const override;
       virtual bool is_session() const override;
@@ -516,10 +517,10 @@ public:
       virtual void term2();
       virtual void term3();
 
-      virtual void init_thread() override;
+      virtual void init_task() override;
       //virtual void init_application();
       //virtual void term_application();
-      virtual void term_thread() override;
+      virtual void term_task() override;
 
       //virtual void init_instance() override;
       virtual void term_instance();
@@ -687,9 +688,6 @@ public:
 
       virtual bool os_on_start_application();
 
-      virtual bool is_application() const override;
-
-
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       //virtual bool _001OnAgreeExit();
@@ -848,7 +846,7 @@ public:
 
       //virtual void     main() override;
 
-      //virtual ::application * get_application() const override;
+      //virtual ::application * get_app() const override;
 
 
       //virtual u32 guess_code_page(const string& str);

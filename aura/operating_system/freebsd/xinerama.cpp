@@ -211,7 +211,7 @@ int xinerama_get_screen_size(int& width, int& height)
 int get_best_ordered_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
 {
 
-   auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_application());
+   auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_app());
 
    index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, e_display_none, e_activation_default, zorder_none);
 

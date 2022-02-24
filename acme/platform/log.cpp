@@ -12,7 +12,7 @@
    log::log()
    {
 
-      m_bLog = false;
+      m_bLog = true;
       m_bExtendedLog = false;
       m_bLogFileName = false;
       m_bLogFunctionName = false;

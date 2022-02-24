@@ -47,6 +47,8 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
    ::boolean                     m_bShowApplicationInformation;
    //::boolean                     m_bPreferNoFrameWindow;
 
+   PLAIN_MAIN();
+
 };
 
 
@@ -111,6 +113,8 @@ namespace acme
 } // namespace acme
 
 
+#ifdef LINUX
+
 
 class embed_resource
 {
@@ -125,6 +129,9 @@ public:
    }
 
 };
+
+
+#endif
 
 
 class CLASS_DECL_ACME app_flag

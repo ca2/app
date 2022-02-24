@@ -16445,6 +16445,8 @@ order(zorderParam);
 
       synchronous_lock synchronouslock(mutex());
 
+      auto pointScroll = point + m_pointScroll;
+
       for (auto & pitem : m_useritema)
       {
 
@@ -16455,7 +16457,7 @@ order(zorderParam);
 
             auto pgraphics = pitem->m_pDraw2dGraphics.cast <::draw2d::graphics>();
 
-            if (ppath->contains(pgraphics, point))
+            if (ppath->contains(pgraphics, pointScroll))
             {
 
                return pitem;
@@ -16466,7 +16468,7 @@ order(zorderParam);
          else 
          {
 
-            if (pitem->m_rectangle.contains(point))
+            if (pitem->m_rectangle.contains(pointScroll))
             {
 
                return pitem;

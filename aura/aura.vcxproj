@@ -902,6 +902,7 @@
     <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="operating_system\_application.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\aura.cpp" />
     <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\drawable.cpp" />
@@ -909,9 +910,7 @@
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_open.cpp" />
-    <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="platform\theme.cpp" />
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\button.cpp" />
@@ -1210,7 +1209,6 @@
     <ClInclude Include="platform\progress.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_open.h" />
-    <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\theme.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />

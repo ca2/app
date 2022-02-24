@@ -16,11 +16,18 @@ critical_section::exit * critical_section::s_pexit = (critical_section::exit *):
 
 #else
 
+critical_section::critical_section() { ::InitializeCriticalSection((CRITICAL_SECTION *)this); }
+critical_section::~critical_section() { ::DeleteCriticalSection((CRITICAL_SECTION *)this); }
 
-critical_section::construct * critical_section::s_pconstruct = (critical_section::construct *)&::InitializeCriticalSection;
-critical_section::destruct * critical_section::s_pdestruct = (critical_section::destruct *)&::DeleteCriticalSection;
-critical_section::enter * critical_section::s_penter = (critical_section::enter *)::EnterCriticalSection;
-critical_section::exit * critical_section::s_pexit= (critical_section::exit *)::LeaveCriticalSection;
+
+void critical_section::lock() { ::EnterCriticalSection((CRITICAL_SECTION *)this); }
+void critical_section::unlock() { ::LeaveCriticalSection((CRITICAL_SECTION*)this); }
+
+
+//critical_section::construct * critical_section::s_pconstruct = (critical_section::construct *)&::InitializeCriticalSection;
+//critical_section::destruct * critical_section::s_pdestruct = (critical_section::destruct *)&::DeleteCriticalSection;
+//critical_section::enter * critical_section::s_penter = (critical_section::enter *)::EnterCriticalSection;
+//critical_section::exit * critical_section::s_pexit= (critical_section::exit *)::LeaveCriticalSection;
 
 
 #endif

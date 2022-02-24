@@ -11,7 +11,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
 #include "apex/operating_system.h"

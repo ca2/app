@@ -1,6 +1,6 @@
 // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardS�rensen!!
 #include "framework.h"
-#include "acme/exception/engine.h"
+//#include "acme/exception/engine.h"
 #include <dbghelp.h>
 #pragma comment(lib, "dbghelp.lib")
 
@@ -11,7 +11,7 @@
 bool g_bInitializeCallstack = false;
 
 
-CLASS_DECL_ACME class ::exception_engine& exception_engine();
+//CLASS_DECL_ACME class ::exception_engine& exception_engine();
 
 
 #endif

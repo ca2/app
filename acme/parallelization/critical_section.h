@@ -1,21 +1,23 @@
 #pragma once
 
+//#ifdef WINDOWS
+//
 
 class CLASS_DECL_ACME critical_section
 {
 public:
 
 
-   typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API construct(void *);
-   typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API destruct(void *);
-   typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API enter(void *);
-   typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API exit(void *);
+   //typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API construct(void *);
+   //typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API destruct(void *);
+   //typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API enter(void *);
+   //typedef CRITICAL_SECTION_FUNCTION_RETURN WINDOWS_API exit(void *);
 
 
-   static construct * s_pconstruct;
-   static destruct * s_pdestruct;
-   static enter * s_penter;
-   static exit * s_pexit;
+   //static construct * s_pconstruct;
+   //static destruct * s_pdestruct;
+   //static enter * s_penter;
+   //static exit * s_pexit;
 
 
 #ifdef WINDOWS
@@ -27,12 +29,12 @@ public:
 #endif
 
 
-   critical_section() { s_pconstruct(this); }
-   ~critical_section() { s_pdestruct(this); }
+   critical_section();
+   ~critical_section();
 
 
-   inline void lock() { s_penter(this); }
-   inline void unlock() { s_pexit(this); }
+   void lock();
+   void unlock();
 
 
 

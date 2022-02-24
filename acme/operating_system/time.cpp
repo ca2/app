@@ -294,14 +294,14 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-void GetSystemTime(system_time_t* psystemtime);
+//void GetSystemTime(system_time_t* psystemtime);
 
 
 
 void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
 {
 
-   FileTimeToSystemTime(pfiletime, psystemtime);
+   FileTimeToSystemTime((FILETIME *) pfiletime, (SYSTEMTIME *) psystemtime);
 
 }
 
@@ -309,7 +309,7 @@ void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pf
 void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
 {
 
-   SystemTimeToFileTime(psystemtime, pfiletime);
+   SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfiletime);
 
 }
 
@@ -317,7 +317,7 @@ void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psys
 void get_system_time(system_time_t * psystemtime)
 {
 
-   GetSystemTime(psystemtime);
+   GetSystemTime((SYSTEMTIME *) psystemtime);
 
 }
 

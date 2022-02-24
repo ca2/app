@@ -836,7 +836,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
-    <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\file_open.cpp" />
@@ -1156,7 +1155,12 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\waitable.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
-    <ClCompile Include="platform\acme_main_data.cpp" />
+    <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\acme_main_struct.cpp" />
+    <ClCompile Include="platform\apex_main_data.cpp" />
+    <ClCompile Include="platform\apex_main_struct.cpp" />
+    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
@@ -1185,6 +1189,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
+    <ClCompile Include="platform\options.cpp" />
     <ClCompile Include="platform\predicate_function.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
@@ -1194,10 +1199,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
-    <ClCompile Include="platform\static_setup.cpp" />
-    <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\string.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="platform\timer_array.cpp" />
@@ -1209,7 +1213,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\collection\rectangle_array.cpp" />
     <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\string_array.cpp" />
@@ -1498,7 +1501,23 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="parallelization\_thread_os_create_impl.h" />
     <ClInclude Include="parallelization\_types.h" />
+    <ClInclude Include="platform\aaa_acme.h" />
+    <ClInclude Include="platform\aaa_all.h" />
+    <ClInclude Include="platform\aaa_aura_regex.h" />
+    <ClInclude Include="platform\aaa_layer.h" />
+    <ClInclude Include="platform\aaa_message_box.h" />
+    <ClInclude Include="platform\aaa_regex.h" />
+    <ClInclude Include="platform\aaa_simple_app.h" />
+    <ClInclude Include="platform\aaa_sprintf.h" />
+    <ClInclude Include="platform\aaa_static_start_internal.h" />
+    <ClInclude Include="platform\aaa_system_impl.h" />
+    <ClInclude Include="platform\acme.h" />
     <ClInclude Include="platform\acme_main_data.h" />
+    <ClInclude Include="platform\acme_main_struct.h" />
+    <ClInclude Include="platform\apex_main_data.h" />
+    <ClInclude Include="platform\apex_main_struct.h" />
+    <ClInclude Include="platform\app.h" />
+    <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\aura_aura.h" />
     <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\auto.h" />
@@ -1533,6 +1552,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
     <ClInclude Include="platform\main.h" />
+    <ClInclude Include="platform\main1.h" />
+    <ClInclude Include="platform\message.h" />
     <ClInclude Include="platform\muldiv32.h" />
     <ClInclude Include="platform\muldiv64.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
@@ -1542,6 +1563,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\object_reference_count_debug.h" />
     <ClInclude Include="platform\object_reference_count_debug_impl.h" />
     <ClInclude Include="platform\object_type_counter.h" />
+    <ClInclude Include="platform\options.h" />
     <ClInclude Include="platform\predicate_function_pointer.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_process.h" />
@@ -1553,6 +1575,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\routine_array.h" />
     <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="platform\serial.h" />
+    <ClInclude Include="platform\serial_shared.h" />
     <ClInclude Include="platform\set_app_id.h" />
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_log.h" />
@@ -1563,6 +1586,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\synchronized_predicate_routine.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />
     <ClInclude Include="platform\timeout.h" />
     <ClInclude Include="platform\timer.h" />

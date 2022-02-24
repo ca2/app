@@ -1817,9 +1817,11 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 }
 
 
-
-__pointer(task) object::branch_element_synchronously(element * pelement, ::enum_priority epriority, ::u32 nStackSize,
-                                                     ::u32 dwCreateFlags)
+__pointer(::task) object::branch_element_synchronously(
+   element * pelement, 
+   ::enum_priority epriority, 
+   ::u32 nStackSize,
+   ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pelement))
@@ -1859,7 +1861,7 @@ __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u3
 }
 
 
-__pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+__pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_element_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);

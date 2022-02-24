@@ -111,7 +111,12 @@ namespace apex
 {
 
 
-   void initialize_system();
+   void initialize()
+   {
+
+      ::factory::add_factory_item < ::apex::system, class ::system >();
+
+   }
 
 
 } // namespace apex
@@ -120,8 +125,7 @@ namespace apex
 application::application()
 {
 
-
-   ::apex::initialize_system();
+   ::apex::initialize();
 
    m_bEnableAutoStartOption = false;
    //m_bProcessingApplicationExitRequest = false;

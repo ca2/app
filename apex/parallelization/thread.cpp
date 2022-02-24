@@ -2510,7 +2510,7 @@ __pointer(::task) thread::branch(::enum_priority epriority, ::u32 nStackSize, u3
 __pointer(::task) thread::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = task::branch_synchronously(epriority, nStackSize, uiCreateFlags PARAM_SEC_ATTRS);
+   auto ptask = ::task::branch_synchronously(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
 
    return ptask;
 

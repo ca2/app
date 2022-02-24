@@ -692,9 +692,6 @@
     <ClInclude Include="user\style_base.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="platform\static_start.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="message\timer.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
@@ -1321,9 +1318,6 @@
     <ClCompile Include="platform\session.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\static_start.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1350,9 +1344,6 @@
     </ClCompile>
     <ClCompile Include="gpu\gpu\shader.cpp">
       <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\static_start_aura.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\gpu\game</Filter>
@@ -1716,6 +1707,9 @@
     </ClCompile>
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\aura.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

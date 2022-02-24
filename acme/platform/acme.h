@@ -7,7 +7,7 @@
 //
 // Created by camilo on 14/04/2021. 00:30 BRT <3TBS_!!
 //
-#include "acme/exception/engine.h"
+//#include "acme/exception/engine.h"
 #pragma once
 
 
@@ -110,7 +110,7 @@ namespace acme
       extern ::mutex * g_pmutexCred;
 
 
-      extern class ::exception_engine * g_pengine;
+      //extern class ::exception_engine * g_pengine;
 
 
       extern ::mutex * g_pmutexMessageDispatch;

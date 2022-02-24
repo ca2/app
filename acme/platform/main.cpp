@@ -9,6 +9,25 @@
 #include "acme/platform/set_app_id.h"
 
 
+namespace acme
+{
+
+   
+   void initialize();
+
+
+} // namespace acme
+
+
+PLAIN_MAIN::PLAIN_MAIN()
+{
+
+   ::acme::initialize();
+
+}
+
+
+
 main::main()
 {
 
@@ -73,6 +92,8 @@ void main::system_construct(const main& main)
 
    m_pfnImplement = main.m_pfnImplement;
 
+#ifdef LINUX
+
    if(!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
    && main.m_pchar_binary__matter_zip_start && main.m_pchar_binary__matter_zip_end)
    {
@@ -83,7 +104,7 @@ void main::system_construct(const main& main)
 
    }
 
-   //return ::success;
+#endif
 
 }
 

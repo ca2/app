@@ -10,7 +10,7 @@ namespace acme
 {
 
 
-   void initialize_system();
+   void initialize();
 
 
 } // namespace acme
@@ -28,7 +28,7 @@ app::app()
 
    m_papp = this;
 
-   ::acme::initialize_system();
+   ::acme::initialize();
 
 }
 

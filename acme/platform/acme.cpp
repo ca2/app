@@ -244,7 +244,7 @@ namespace acme
    //::mutex * g_pmutexCred;
 
 
-   class ::exception_engine* g_pengine;
+   //class ::exception_engine* g_pengine;
 
 
    ::mutex * g_pmutexMessageDispatch;
@@ -412,7 +412,7 @@ namespace acme
 
       //g_pmutexCred = nullptr;
 
-      g_pengine = nullptr;
+      //g_pengine = nullptr;
       g_pmutexMessageDispatch = nullptr;
 
       g_paAura = nullptr;
@@ -1581,12 +1581,12 @@ namespace acme
 
    acme * acme::g_p = nullptr;
    int g_iReference = 0;
-critical_section g_cs;
+//critical_section g_cs;
 
    void increment_reference_count()
    {
 
-      critical_section_lock lock(&g_cs);
+//      critical_section_lock lock(&g_cs);
 
       g_iReference++;
 
@@ -1603,7 +1603,7 @@ critical_section g_cs;
    void decrement_reference_count()
    {
 
-      critical_section_lock lock(&g_cs);
+      //critical_section_lock lock(&g_cs);
 
       g_iReference--;
 
@@ -1620,15 +1620,16 @@ critical_section g_cs;
    reference g_reference;
 
 
-   void initialize_system()
+   void initialize()
    {
 
+      increment_reference_count();
 
    }
 
 
 
-   void finalize_system()
+   void finalize()
    {
 
 
@@ -1646,7 +1647,66 @@ critical_section g_cs;
 // _ACME_LINKER_FORCE_INCLUDE(g_acme);
 
 
+#ifdef WINDOWS
 
+
+#include "acme/operating_system.h"
+
+
+#ifndef __APP_ID
+
+
+#define __APP_ID ""
+
+
+#endif
+
+
+#include <tchar.h>
+
+
+CLASS_DECL_ACME i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
+{
+
+   ::app * papp = ::app::g_p;
+
+   papp->m_argc = __argc;
+   
+   papp->m_argv = __argv;
+   
+   papp->m_wargv = __wargv;
+
+   papp->m_envp = *__p__environ();
+
+   papp->m_wenvp = *__p__wenviron();
+
+   papp->m_hinstanceThis = hinstanceThis;
+
+   papp->m_hinstancePrev = hinstancePrev;
+
+   papp->m_strCommandLine = pCmdLine;
+
+   papp->m_nCmdShow = nCmdShow;
+
+   papp->m_bConsole = false;
+
+   int iExitCode = papp->main_loop();
+
+   return iExitCode;
+
+}
+
+
+#else
+
+
+//#ifdef CLASS_DECL_APEX
+//
+//
+//#include "openssl/applink.c"
+//
+//
+//#endif
 
 
 
@@ -1671,3 +1731,9 @@ int main(int argc, char * argv[], char * envp[])
    return iExitCode;
 
 }
+
+
+#endif
+
+
+

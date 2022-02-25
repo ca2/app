@@ -72,12 +72,6 @@ CLASS_DECL_ACME void os_term_windowing();
 //}
 
 
-extern ::app_core * g_pappcore;
-
-
-//extern bool g_bOutputDebugString;
-
-
 typedef int_bool DEFER_INIT();
 
 
@@ -125,16 +119,6 @@ string apple_get_bundle_identifier();
 app_core::app_core()
 {
 
-   //m_pmaindata = pdata;
-
-   //m_pappcore = this;
-
-   if(!g_pappcore)
-   {
-
-      g_pappcore = this;
-
-   }
 
    #ifndef WINDOWS
 
@@ -1965,9 +1949,6 @@ bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 //   ::set_thread(::psystem);
 //
 //}
-
-
-::app_core * g_pappcore = nullptr;
 
 
 static const char * g_pszCubeAppId = nullptr;

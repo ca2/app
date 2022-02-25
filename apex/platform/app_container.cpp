@@ -6,7 +6,7 @@
 #include "acme/parallelization/multiple_lock.h"
 
 
-extern ::app_core * g_pappcore;
+//extern ::app_core * g_pappcore;
 
 
 application_container::application_container()
@@ -325,7 +325,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          papp = psystem->new_app(strAppId);
 
-         ::g_pappcore->initialize_application(papp, this);
+         psystem->initialize_application(papp, this);
 
       }
 

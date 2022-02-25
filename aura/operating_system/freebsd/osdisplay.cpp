@@ -4,8 +4,6 @@
 //#include <gdk/gdk.h>
 
 //
-//extern ::app_core * g_pappcore;
-//
 ////Display * x11_get_display();
 //
 //::mutex * user_mutex();
@@ -114,7 +112,7 @@
 //
 //      ::display::s_pdataptra->add(pdisplaydata);
 //
-//      if(!::g_pappcore->m_bGtkApp)
+//      if(!::g_p///appcore->m_bGtkApp)
 //      {
 //
 //         if(!g_posdisplaydataMain)

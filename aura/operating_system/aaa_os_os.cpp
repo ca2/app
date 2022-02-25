@@ -2,13 +2,13 @@
 #include "apex/platform/app_core.h"
 
 
-extern ::app_core * g_pappcore;
+///extern ::app_core * g_pappcore;
 
 
 CLASS_DECL_AURA string & get_command_line_string()
 {
 
-   return ::g_pappcore->m_strCommandLine;
+   return ::app::g_p->m_strCommandLine;
 
 }
 

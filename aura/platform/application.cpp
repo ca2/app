@@ -10,8 +10,6 @@
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/primitive/string/base64.h"
 
-extern ::app_core * g_pappcore;
-
 
 extern "C"
 {

@@ -2,7 +2,7 @@
 
 
 exit_exception::exit_exception(__pointer(::task) playeredThreadExit, const char * pszMessage) :
-   exception(pszMessage),
+   exception(::error_failed, pszMessage),
    m_ptaskExit(playeredThreadExit)
 {
 

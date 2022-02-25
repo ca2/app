@@ -1370,13 +1370,17 @@ void application::init_task()
 
       handle_exception(e);
 
-///      return false;
+      m_papexsession->set_finish();
+
+      throw e;
 
    }
    catch (...)
    {
 
 //      return false;
+
+      throw ::exception(error_exception);
 
    }
 
@@ -1483,11 +1487,15 @@ void application::pre_run()
 
       handle_exception(e);
 
+      throw e;
+
    }
    catch (...)
    {
 
       INFORMATION("apex::application::pre_run exception.4");
+
+      throw ::exception(error_exception);
 
    }
 

@@ -1077,6 +1077,9 @@ public:
       #endif
 
 
+      void create_app_shortcut();
+
+
 };
 
 

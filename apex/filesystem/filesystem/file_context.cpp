@@ -1363,8 +1363,10 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                m_pcontext->m_papexcontext->dir().create(strDst.folder());
             }
             copy(strDst, strSrc, bFailIfExists, eextract == extract_all ? extract_all : extract_none);
+
          }
       }
+      return;
    }
    else
    {
@@ -1387,7 +1389,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          auto pathSource = psystem->defer_process_path(varSource.get_file_path());
 
-         pacmefile->copy(pathTarget, pathSource, !bFailIfExists);
+         if (exists(pathSource))
+         {
+
+            pacmefile->copy(pathTarget, pathSource, !bFailIfExists);
+
+            return;
+
+         }
 
       }
 

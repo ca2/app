@@ -2169,6 +2169,68 @@ if (!is_system() && !is_session())
 }
 //return true;
 
+
+
+}
+
+
+void application::create_app_shortcut()
+{
+
+   if (m_strAppId.has_char())
+   {
+
+      auto pathCreatedShortcut = m_psystem->m_pacmedir->localconfig() / m_strAppId / "created_shorcut.txt";
+
+      if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut))
+      {
+
+         auto pnode = m_psystem->node()->m_papexnode;
+
+         string strAppName;
+
+         if (m_strAppName.has_char())
+         {
+
+            strAppName = m_strAppName;
+
+         }
+         else
+         {
+
+            string strAppIdUnderscore = m_strAppId;
+
+            strAppIdUnderscore.find_replace("/", "_");
+
+            strAppIdUnderscore.find_replace("-", "_");
+
+            strAppName = strAppIdUnderscore;
+
+         }
+
+         string strRoot = m_strAppId.Left(m_strAppId.find('/'));
+
+         auto path = m_psystem->m_pacmefile->module();
+
+         auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / strAppName;
+
+         auto pathIcon = path.folder() / "icon.ico";
+
+         if (!m_psystem->m_pacmefile->exists(pathIcon))
+         {
+
+            file().copy(pathIcon, "matter://main/icon.ico", false);
+
+         }
+
+         pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
+
+         m_psystem->m_pacmefile->touch(pathCreatedShortcut);
+
+      }
+
+   }
+
 }
 
 

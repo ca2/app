@@ -5,7 +5,6 @@
 #include "apex/platform/app_core.h"
 #include "apex_application.h"
 
-extern ::app_core * g_pappcore;
 
 void os_post_quit();
 Display * x11_get_display();
@@ -66,7 +65,7 @@ void sn_start_context()
 
    int iScreen = DefaultScreen(dpy);
 
-   g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
+   g_psncontext = sn_launchee_context_new(pd, iScreen, ::app::g_p->m_strProgName);
 
 }
 

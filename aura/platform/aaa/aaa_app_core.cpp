@@ -54,7 +54,7 @@ void set_verbose(bool bVerbose)
 }
 
 
-extern ::app_core * g_pappcore;
+//extern ::app_core * g_pappcore;
 
 
 //extern bool g_bOutputDebugString;
@@ -111,12 +111,12 @@ app_core::app_core()
 
    //m_pappcore = this;
 
-   if(!g_pappcore)
-   {
+   //if(!g_pappcore)
+   //{
 
-      g_pappcore = this;
+   //   g_pappcore = this;
 
-   }
+   //}
 
    #ifndef WINDOWS
 

@@ -119,9 +119,6 @@ string apple_get_bundle_identifier();
 app_core::app_core()
 {
 
-   //m_pmaindata = pdata;
-
-   //m_pappcore = this;
 
    #ifndef WINDOWS
 

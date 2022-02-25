@@ -564,7 +564,7 @@ namespace core
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
+         pcreate->m_pcommandline->m_payloadFile = payload.get_file_path();
 
       }
 
@@ -1042,7 +1042,7 @@ namespace core
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
+         pcreate->m_pcommandline->m_payloadFile = payload.get_file_path();
 
       }
 
@@ -1124,7 +1124,7 @@ namespace core
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
+         pcreate->m_pcommandline->m_payloadFile = payload.get_file_path();
 
          string strPath = payload.get_file_path();
 
@@ -1215,7 +1215,7 @@ namespace core
 
          pcreate->m_pcommandline.defer_create(this);
 
-         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
+         pcreate->m_pcommandline->m_payloadFile = payload.get_file_path();
 
       }
 
@@ -1299,7 +1299,7 @@ namespace core
 
          ::file::path path = payload.get_file_path();
 
-         pcreate->m_pcommandline->m_varFile = path;
+         pcreate->m_pcommandline->m_payloadFile = path;
 
       }
 
@@ -1409,7 +1409,7 @@ namespace core
 
          pcreate->m_pcommandline.create(this);
 
-         pcreate->m_pcommandline->m_varFile = payload.get_file_path();
+         pcreate->m_pcommandline->m_payloadFile = payload.get_file_path();
 
       }
 
@@ -1977,7 +1977,7 @@ namespace core
 
          __pointer(::create) pcreate(e_create, this);
 
-         pcreate->m_pcommandline->m_varFile = path;
+         pcreate->m_pcommandline->m_payloadFile = path;
 
          do_request(pcreate);
 

@@ -98,7 +98,7 @@ void create::initialize_create(string strAppId, ::payload payloadFile, const ::p
 
    //}
    
-   m_pcommandline->m_varFile = payloadFile;
+   m_pcommandline->m_payloadFile = payloadFile;
 
    m_puserprimitiveParent = puiParent;
 
@@ -224,14 +224,14 @@ index create::get_edge()
 bool create::has_file() const
 {
 
-   if (!m_varFile.is_empty())
+   if (!m_payloadFile.is_empty())
    {
 
       return true;
 
    }
 
-   if (m_pcommandline && !m_pcommandline->m_varFile.is_empty())
+   if (m_pcommandline && !m_pcommandline->m_payloadFile.is_empty())
    {
 
       return true;
@@ -246,17 +246,17 @@ bool create::has_file() const
 ::payload create::get_file() const
 {
 
-   if (!m_varFile.is_empty())
+   if (!m_payloadFile.is_empty())
    {
 
-      return m_varFile;
+      return m_payloadFile;
 
    }
 
-   if (m_pcommandline && !m_pcommandline->m_varFile.is_empty())
+   if (m_pcommandline && !m_pcommandline->m_payloadFile.is_empty())
    {
 
-      return m_pcommandline->m_varFile;
+      return m_pcommandline->m_payloadFile;
 
    }
 
@@ -268,12 +268,12 @@ bool create::has_file() const
 void create::set_file_path(const ::payload& payload)
 {
 
-   m_varFile = payload;
+   m_payloadFile = payload;
 
    if (m_pcommandline)
    {
 
-      m_pcommandline->m_varFile = payload;
+      m_pcommandline->m_payloadFile = payload;
 
    }
 

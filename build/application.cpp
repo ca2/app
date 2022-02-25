@@ -153,7 +153,7 @@ namespace app_core_build
       if (m_ptemplateHelloMultiverseMain->get_document_count() == 0)
       {
 
-         if (pcreate->m_pcommandline->m_varFile.is_empty())
+         if (pcreate->m_pcommandline->m_payloadFile.is_empty())
          {
 
             ::file::path path;
@@ -167,7 +167,7 @@ namespace app_core_build
 
             }
 
-            pcreate->m_pcommandline->m_varFile = path;
+            pcreate->m_pcommandline->m_payloadFile = path;
 
             pcreate->m_pcommandline->m_ecommand = ::command_line::command_file_open;
 

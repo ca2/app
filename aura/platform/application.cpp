@@ -441,7 +441,7 @@ namespace aura
 
          string str;
          
-         str = pcreate->m_varFile;
+         str = pcreate->m_payloadFile;
 
          if (!m_pinterprocessintercommunication)
          {
@@ -598,7 +598,7 @@ namespace aura
          try
          {
 
-            pcreate->m_pcommandline->m_varQuery.unset("document");
+            pcreate->m_pcommandline->get_property_set().unset("document");
 
          }
          catch (...)
@@ -606,7 +606,7 @@ namespace aura
 
          }
 
-         //__pointer(::aura::session) pbergedge = pcreate->m_pcommandline->m_varQuery["bergedge_callback"].cast < ::aura::session >();
+         //__pointer(::aura::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::aura::session >();
          // todobergedge
          /*if(pbergedge != nullptr)
          {

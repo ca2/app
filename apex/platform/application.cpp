@@ -23,9 +23,6 @@
 
 
 
-extern ::app_core * g_pappcore;
-
-
 //extern "C"
 //{
 //
@@ -702,7 +699,7 @@ do_request(pcreate);
 
 //   string str;
 //
-//   str = pcreate->m_varFile;
+//   str = pcreate->m_payloadFile;
 
 //      // apex commented
 //      //throw ::exception(todo("interaction"));
@@ -855,7 +852,7 @@ psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers tha
 try
 {
 
-pcreate->m_pcommandline->m_varQuery.unset("document");
+pcreate->m_pcommandline->get_property_set().unset("document");
 
 }
 catch (...)
@@ -863,7 +860,7 @@ catch (...)
 
 }
 
-//__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->m_varQuery["bergedge_callback"].cast < ::apex::session >();
+//__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::apex::session >();
 // todobergedge
 /*if(pbergedge != nullptr)
 {
@@ -2368,6 +2365,13 @@ on_update_matter_locator();
 }
 catch (const ::exit_exception & exception)
 {
+
+   if (exception.m_strMessage == "moved")
+   {
+
+      throw exception;
+    
+   }
 
    handle_exception(exception);
 

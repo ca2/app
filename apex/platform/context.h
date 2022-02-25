@@ -31,7 +31,7 @@ namespace apex
       string_array                        m_straMatterLocatorPriority;
       string_array                        m_straMatterLocator;
 
-      ::payload                                    m_varFile;
+      ::payload                                    m_payloadFile;
       __reference_array(::create)            m_createaPending;
       __reference_array(::create)            m_createaHistory;
       __reference(::create)                  m_pcreate;

@@ -98,7 +98,7 @@ namespace apex
 
       //void *                                           m_ftlibrary;
 
-      ::payload                                          m_varFile;
+      ::payload                                          m_payloadFile;
 //    ::payload                                          m_
 
       __pointer(::mutex)                                 m_pmutexUserAppData;

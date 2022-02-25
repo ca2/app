@@ -12,13 +12,13 @@ namespace aura
    public:
 
 
-      ::payload                                    m_varFile;
+      ::payload                                    m_payloadFile;
       __reference_array(::create)            m_createaPending;
       __reference_array(::create)            m_createaHistory;
       // current Topic Create
       __reference(::create)                  m_pcreate;
       /// accumulatted, reset, set, or clear as handler history passes
-      //::payload                                    m_varFile;
+      //::payload                                    m_payloadFile;
       ///// accumulatted, reset, set, or clear as handler history passes
       //::payload                                    m_varQuery;
 

@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   ::payload         m_varFile;
+//   ::payload         m_payloadFile;
 //   ::payload         m_varQuery;
 //
 //

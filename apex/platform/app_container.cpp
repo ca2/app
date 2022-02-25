@@ -6,8 +6,6 @@
 #include "acme/parallelization/multiple_lock.h"
 
 
-//extern ::app_core * g_pappcore;
-
 
 application_container::application_container()
 {
@@ -325,7 +323,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          papp = psystem->new_app(strAppId);
 
-         psystem->initialize_application(papp, this);
+         ::app::g_p->initialize_application(papp, this);
 
       }
 
@@ -456,8 +454,8 @@ __pointer(::application) application_container::start_application(const char * p
 
    }
 
-   if (pcreate->m_pcommandline->m_varQuery.has_property("install")
-      || pcreate->m_pcommandline->m_varQuery.has_property("uninstall"))
+   if (pcreate->m_pcommandline->has_property("install")
+      || pcreate->m_pcommandline->has_property("uninstall"))
    {
 
       m_applicationa.erase(papp);

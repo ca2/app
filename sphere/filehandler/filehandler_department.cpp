@@ -85,10 +85,10 @@ namespace filehandler
 
       }
 
-      if(m_ppaneview != nullptr && pcreate->m_pcommandline->m_varFile.get_type() == ::e_type_string)
+      if(m_ppaneview != nullptr && pcreate->m_pcommandline->m_payloadFile.get_type() == ::e_type_string)
       {
 
-         m_ppaneview->set_current_tab_by_id("default_file_handler://" + pcreate->m_pcommandline->m_varFile.get_string());
+         m_ppaneview->set_current_tab_by_id("default_file_handler://" + pcreate->m_pcommandline->m_payloadFile.get_string());
 
       }
 

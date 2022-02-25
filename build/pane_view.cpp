@@ -114,7 +114,7 @@ namespace app_core_build
 
          auto pcommandline = pcreate->m_pcommandline;
 
-         auto& payloadFile = pcommandline->m_varFile;
+         auto& payloadFile = pcommandline->m_payloadFile;
 
          auto papp = get_app();
 

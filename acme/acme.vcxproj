@@ -221,9 +221,6 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
-      <AdditionalOptions>/EXPORT:wWinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
@@ -569,8 +566,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <SubSystem>Windows</SubSystem>
       <MapFileName>
       </MapFileName>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
       <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
@@ -732,9 +727,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
-      <AdditionalOptions>/EXPORT:wWinMain %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)

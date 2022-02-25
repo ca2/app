@@ -639,7 +639,7 @@ pacmedir->localconfig() / "user.component";
 
       //pcreate->prop("component::callback") = pcallback;
 
-      //pcreate->m_pcommandline->m_varFile = payloadFile;
+      //pcreate->m_pcommandline->m_payloadFile = payloadFile;
 
       //m_pdocumenttemplateProject->m_bQueueDocumentOpening = false;
 
@@ -798,7 +798,7 @@ pacmedir->localconfig() / "user.component";
 //   if (pcreate->m_pcommandline->m_ecommand == ::command_line::command_file_open)
 //   {
 
-//      pathFolder = pcreate->m_pcommandline->m_varFile;
+//      pathFolder = pcreate->m_pcommandline->m_payloadFile;
 
 //      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {
@@ -929,7 +929,7 @@ pacmedir->localconfig() / "user.component";
 //   if (pcreate->m_pcommandline->m_ecommand == ::command_line::command_file_open)
 //   {
 
-//      pathFolder = pcreate->m_pcommandline->m_varFile;
+//      pathFolder = pcreate->m_pcommandline->m_payloadFile;
 
 //      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {

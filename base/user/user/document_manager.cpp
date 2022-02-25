@@ -544,7 +544,7 @@ namespace user
       if (i == -1)
       return false; // illegally terminated
 
-      cmdInfo.m_varFile = strCommand.Left(i);
+      cmdInfo.m_payloadFile = strCommand.Left(i);
       strCommand = strCommand.Right(strCommand.get_length() - i);
 
       //command_line* pOldInfo = nullptr;
@@ -570,7 +570,7 @@ namespace user
       pMainWnd->SetForegroundWindow();
 
       // then open the document
-      psystem->open_document_file(get_app(), cmdInfo.m_varFile);
+      psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
 
 
       // next time, show the window as default
@@ -648,7 +648,7 @@ namespace user
       i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
-      pDoc = psystem->open_document_file(get_app(), cmdInfo.m_varFile);
+      pDoc = psystem->open_document_file(get_app(), cmdInfo.m_payloadFile);
       //psystem->m_pCmdInfo = &cmdInfo;
       psystem->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
       //psystem->m_pCmdInfo = nullptr;
@@ -701,7 +701,7 @@ namespace user
 
       __pointer(::create) pcreate(e_create, this);
 
-      if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
+      if (!do_prompt_file_name(pcreate->m_pcommandline->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
       auto psession = get_session();
@@ -754,7 +754,7 @@ namespace user
    void document_manager::request(::create * pcreate)
    {
 
-      if(pcreate->m_pcommandline->m_varFile.is_empty())
+      if(pcreate->m_pcommandline->m_payloadFile.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -804,7 +804,7 @@ namespace user
 
          ::user::impact_system::Confidence match;
          ASSERT(pOpenDocument == nullptr);
-         match = ptemplate->MatchDocType(pcreate->m_pcommandline->m_varFile, pOpenDocument);
+         match = ptemplate->MatchDocType(pcreate->m_pcommandline->m_payloadFile, pOpenDocument);
          if (match > bestMatch)
          {
             bestMatch = match;
@@ -843,7 +843,7 @@ namespace user
          else
             CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
 
-         pcreate->m_pcommandline->m_varQuery["document"] = pOpenDocument;
+         pcreate->m_pcommandline->payload("document") = pOpenDocument;
       }
 
       if (pBestTemplate == nullptr)
@@ -934,7 +934,7 @@ namespace user
 //
 //   //   __pointer(::create) cc(e_create);
 //
-//   //   cc->m_pcommandline->m_varFile = pszFileName;
+//   //   cc->m_pcommandline->m_payloadFile = pszFileName;
 //
 //
 //   //   papp->document_manager()->request(cc);

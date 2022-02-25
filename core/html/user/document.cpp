@@ -173,7 +173,7 @@ property_set * html_document::form_document_get_property_set()
 //
 //   }
 //
-//   return open_document(pcreate->m_pcommandline->m_varFile);
+//   return open_document(pcreate->m_pcommandline->m_payloadFile);
 //
 //}
 

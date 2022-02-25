@@ -86,7 +86,7 @@ public:
 
    //virtual void system_call();
 
-   void set_command_line(const char * psz);
+   void on_command_line();
 
    string get_command_line();
 

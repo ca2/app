@@ -190,12 +190,12 @@ namespace userstack
             if(papp->has_property(strId))
             {
 
-               pcreate->m_pcommandline->m_varQuery.propset().merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
+               pcreate->m_pcommandline->).merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
 
                if(papp->m_varTopicQuery[(const ::string &) strId].has_property("file"))
                {
 
-                  pcreate->m_pcommandline->m_varFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
+                  pcreate->m_pcommandline->m_payloadFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
 
                }
 

@@ -92,7 +92,7 @@ namespace user
       if(pcreate->m_pcommandline)
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"] = (::object *) nullptr;
+         pcreate->m_pcommandline->payload("document") = (::object *) nullptr;
 
       }
 
@@ -183,7 +183,7 @@ namespace user
             return;
 
          }
-         //pdocument->set_path_name(pcreate->m_pcommandline->m_varFile);
+         //pdocument->set_path_name(pcreate->m_pcommandline->m_payloadFile);
 
          pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
       }
@@ -200,7 +200,7 @@ namespace user
       if (pcreate->m_pcommandline)
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+         pcreate->m_pcommandline->payload("document") = pdocument;
 
       }
 

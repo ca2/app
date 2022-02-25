@@ -162,7 +162,7 @@ namespace base
       if (itema.get_size() == 1)
       {
 
-         pcreate->m_varFile = itema[0]->get_final_path();
+         pcreate->m_payloadFile = itema[0]->get_final_path();
 
       }
       else
@@ -177,7 +177,7 @@ namespace base
 
          }
 
-         pcreate->m_varFile = stra;
+         pcreate->m_payloadFile = stra;
 
       }
 

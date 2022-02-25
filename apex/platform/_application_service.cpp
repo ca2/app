@@ -76,13 +76,13 @@ void application::on_service_request(::create * pcreate)
 
    }
 
-   if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
+   if (pcreate->m_pcommandline->has_property("create_service"))
    {
 
       enable_service();
 
    }
-   else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
+   else if (pcreate->m_pcommandline->has_property("start_service"))
    {
 
       service_handler()->defer_service();
@@ -90,13 +90,13 @@ void application::on_service_request(::create * pcreate)
       service_handler()->start_service();
 
    }
-   else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
+   else if (pcreate->m_pcommandline->has_property("stop_service"))
    {
 
       service_handler()->stop_service();
 
    }
-   else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
+   else if (pcreate->m_pcommandline->has_property("erase_service"))
    {
 
       disable_service();

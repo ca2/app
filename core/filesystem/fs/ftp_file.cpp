@@ -12,7 +12,7 @@ ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 
    m_pclient = pclient;
 
-   m_varFile = m_pclient->m_pcontext->m_papexcontext->file().time(m_pclient->m_pcontext->m_papexcontext->dir().time());
+   m_payloadFile = m_pclient->m_pcontext->m_papexcontext->file().time(m_pclient->m_pcontext->m_papexcontext->dir().time());
 
 }
 
@@ -70,7 +70,7 @@ retry:
 
    string strRemoteFile = purl->get_object(m_filepath);
 
-   if (!pclient->UploadFile(m_varFile, strRemoteFile))
+   if (!pclient->UploadFile(m_payloadFile, strRemoteFile))
    {
 
       if (iTry > 3)
@@ -103,7 +103,7 @@ void ftpfs_file::open(const ::file::path & filepath, const ::file::e_open & eope
 
    m_filepath = filepath;
 
-   return m_pfile->open(m_varFile, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
+   return m_pfile->open(m_payloadFile, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
 }
 

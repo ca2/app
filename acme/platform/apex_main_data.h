@@ -12,7 +12,7 @@ class CLASS_DECL_ACME apex_main_data :
 public:
 
 
-   int                              m_iPathInstallFolderExeArg;
+   ///int                              m_iPathInstallFolderExeArg;
    bool                             m_bFork;
    string                           m_strStandalone;
    //LPFN_MAIN_RUNNER                 m_mainrunnera[64];

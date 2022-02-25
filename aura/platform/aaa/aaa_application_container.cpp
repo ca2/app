@@ -371,8 +371,8 @@ __pointer(::aura::application) application_container::start_application(const ::
 
    }
 
-   if (pcreate->m_pcommandline->m_varQuery.has_property("install")
-      || pcreate->m_pcommandline->m_varQuery.has_property("uninstall"))
+   if (pcreate->m_pcommandline->has_property("install")
+      || pcreate->m_pcommandline->has_property("uninstall"))
    {
 
       m_applicationa.erase(papp);

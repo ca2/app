@@ -700,12 +700,12 @@ namespace apex
 
       }
 
-      m_varCurrentImpactFile = pcreate->m_pcommandline->m_varFile;
+      m_varCurrentImpactFile = pcreate->m_pcommandline->m_payloadFile;
 
       //string strApp;
 
-      //if ((pcreate->m_pcommandline->m_varQuery["app"].array_get_count() > 1
-      //      || pcreate->m_pcommandline->m_varQuery["show_platform"] == 1 || m_varTopicQuery["show_platform"] == 1)
+      //if ((pcreate->m_pcommandline->payload("app").array_get_count() > 1
+      //      || pcreate->m_pcommandline->payload("show_platform"] == 1 || m_varTopicQuery["show_platform") == 1)
       //      && (!(bool)pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !(bool)m_bExperienceMainFrame)
       //      && (!pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !m_bExperienceMainFrame))
       //{
@@ -746,7 +746,7 @@ namespace apex
             //   }
             //}
          }
-         if (pcreate->m_pcommandline->m_varQuery["app"].array_get_count() <= 0)
+         if (pcreate->m_pcommandline->payload("app").array_get_count() <= 0)
          {
             bCreate = false;
          }
@@ -755,9 +755,9 @@ namespace apex
       {
          if (pcreate->m_pcommandline->m_strApp == "bergedge")
          {
-            if (pcreate->m_pcommandline->m_varQuery.has_property("session_start"))
+            if (pcreate->m_pcommandline->has_property("session_start"))
             {
-               strApp = pcreate->m_pcommandline->m_varQuery["session_start"];
+               strApp = pcreate->m_pcommandline->payload("session_start");
             }
             else
             {
@@ -770,17 +770,17 @@ namespace apex
          }
 
 
-         if (pcreate->m_pcommandline->m_varQuery["app"].stra().find_first_ci(strApp) < 0)
+         if (pcreate->m_pcommandline->payload("app").stra().find_first_ci(strApp) < 0)
          {
 
-            pcreate->m_pcommandline->m_varQuery["app"].stra().insert_at(0, strApp);
+            pcreate->m_pcommandline->payload("app").stra().insert_at(0, strApp);
 
          }
 
-         for (i32 i = 0; i < pcreate->m_pcommandline->m_varQuery["app"].stra().get_count(); i++)
+         for (i32 i = 0; i < pcreate->m_pcommandline->payload("app").stra().get_count(); i++)
          {
 
-            strApp = pcreate->m_pcommandline->m_varQuery["app"].stra()[i];
+            strApp = pcreate->m_pcommandline->payload("app").stra()[i];
 
             if (strApp.is_empty() || strApp == "bergedge")
             {
@@ -890,7 +890,7 @@ namespace apex
 
       auto pcreateNew = __create_new < ::create >();
 
-      pcreateNew->m_pcommandline->m_varFile = pszPathName;
+      pcreateNew->m_pcommandline->m_payloadFile = pszPathName;
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
@@ -908,7 +908,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_varFile.get_string());
+      string strOriginalPathName(pcreate->m_pcommandline->m_payloadFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -941,7 +941,7 @@ namespace apex
 
          ::str::begins_eat(str, "/");
 
-         pcreate->m_pcommandline->m_varFile = str;
+         pcreate->m_pcommandline->m_payloadFile = str;
 
       }
       else

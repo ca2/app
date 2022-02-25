@@ -1813,10 +1813,10 @@ namespace user
    void document::on_request(::create * pcreate)
    {
 
-      if(!on_open_document(pcreate->m_pcommandline->m_varFile))
+      if(!on_open_document(pcreate->m_pcommandline->m_payloadFile))
          return;
 
-      pcreate->m_pcommandline->m_varQuery["document"] = this;
+      pcreate->m_pcommandline->payload("document") = this;
 
    }
 
@@ -1892,7 +1892,7 @@ namespace user
       }
 
 
-      return pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document >();
+      return pcreate->m_pcommandline->payload("document").cast < ::user::document >();
 
 
    }

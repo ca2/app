@@ -180,14 +180,14 @@ namespace turboc
 
       }
 
-      if(pcreate->m_pcommandline->m_varFile.has_char())
+      if(pcreate->m_pcommandline->m_payloadFile.has_char())
       {
 
          m_ptemplateHelloMultiverseView->do_request(pcreate);
 
       }
 
-      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_type_impact < pane_view >()->get_parent_frame()->display(e_display_restore);
+      //pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < pane_view >()->get_parent_frame()->display(e_display_restore);
 
    }
 

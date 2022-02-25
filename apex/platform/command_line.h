@@ -37,15 +37,14 @@ public:
    bool                             m_bRunAutomated;
    i32                              m_nCmdShow;
 
-   // not valid for file_new
-   ::payload                              m_varFile;
+   // not ok for file_new
+   ::payload                        m_payloadFile;
 
-   // valid only for file_print_to
+   // ok only for file_print_to
    string                           m_strPrinterName;
    string                           m_strDriverName;
    string                           m_strPortName;
 
-   ::payload                        m_varQuery;
    ::file::item_array *             m_pitema;
 
    __pointer(::acme::context)       m_pcontextFork;
@@ -60,7 +59,7 @@ public:
 
 
    command_line();
-   virtual ~command_line();
+   ~command_line() override;
 
 
    void common_construct();

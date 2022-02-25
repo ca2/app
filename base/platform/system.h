@@ -91,7 +91,7 @@ namespace base
 //
 //      void *                                             m_ftlibrary;
 //
-//      ::payload                                                m_varFile;
+//      ::payload                                                m_payloadFile;
 ////      ::payload                                                m_
 //
 //      ::mutex                                 m_spmutexUserAppData;

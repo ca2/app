@@ -733,7 +733,7 @@ void object::defer_update_object_id()
 //
 //   auto pcommandline = __create_new< command_line >();
 //
-//   pcommandline->m_varFile = payloadFile;
+//   pcommandline->m_payloadFile = payloadFile;
 //
 //   pcommandline->m_varQuery = varQuery;
 //

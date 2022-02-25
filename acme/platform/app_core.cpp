@@ -72,12 +72,6 @@ CLASS_DECL_ACME void os_term_windowing();
 //}
 
 
-extern ::app_core * g_pappcore;
-
-
-//extern bool g_bOutputDebugString;
-
-
 typedef int_bool DEFER_INIT();
 
 
@@ -128,13 +122,6 @@ app_core::app_core()
    //m_pmaindata = pdata;
 
    //m_pappcore = this;
-
-   if(!g_pappcore)
-   {
-
-      g_pappcore = this;
-
-   }
 
    #ifndef WINDOWS
 
@@ -252,151 +239,156 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 void app_core::system_init()
 {
 
-   /// string test (NEW STRING 2019-11-26)
-   {
+   ///// string test (NEW STRING 2019-11-26)
+   //{
 
-      //string str1 = "\"teste\\\"teste2\"";
+   //   //string str1 = "\"teste\\\"teste2\"";
 
-      //const char * psz = str1;
+   //   //const char * psz = str1;
 
-      //string str = str::consume_quoted_value(psz);
+   //   //string str = str::consume_quoted_value(psz);
 
-      //output_debug_string(str);
+   //   //output_debug_string(str);
 
-   }
+   //}
 
-   if (m_iPathInstallFolderExeArg >= 0 && m_iPathInstallFolderExeArg < m_argc)
-   {
+   //if (m_iPathInstallFolderExeArg >= 0 && m_iPathInstallFolderExeArg < m_argc)
+   //{
 
-      ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
+   //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-      m_psystem->m_pacmedir->set_path_install_folder(pathModule.folder(4));
+   //   m_psystem->m_pacmedir->set_path_install_folder(pathModule.folder(4));
 
-   }
+   //}
 
-   string strAppId;
+   on_command_line();
 
-   string_array stra1;
-
-#ifdef WINDOWS
-
-   {
-
-      auto pwsz = ::GetCommandLineW();
-
-      string strCommandLine(pwsz);
-
-      //stra1 = get_c_args_from_string(strCommandLine);
-
-      /// <summary>
-      /// This no_escape_get_c_args_from_string
-      /// considers the string literally,
-      /// that is, it doesn't parse escape sequences.
-      /// </summary>
-      stra1 = no_escape_get_c_args_from_string(strCommandLine);
-
-   }
-
-#elif defined(ANDROID)
-
-   {
-
-      string strCommandLine(m_strCommandLine);
-
-      stra1 = get_c_args_from_string(strCommandLine);
-
-   }
-
-#else
-
-
-   stra1 = get_c_args(m_argc, m_argv);
-
-#endif
-
-   string_array stra2;
-
-   stra2 = get_c_args_from_string(m_strCommandLine);
-
-   string_array stra3;
-
-//#ifdef WINDOWS_DESKTOP
+//   string strAppId;
 //
-//   stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
+//   string_array stra1;
 //
-////#elif defined(__APPLE__)
-////
-////   stra3 =  get_c_args_for_c(ca2_command_line2());
-////
-////#else
-////
-////   stra3 = get_c_args_from_c(ca2_command_line());
+//#ifdef WINDOWS
+//
+//   {
+//
+//      auto pwsz = ;
+//
+//      string strCommandLine(pwsz);
+//
+//      set_command_line(strCommandLine);
+//
+//      //stra1 = get_c_args_from_string(strCommandLine);
+//
+//      /// <summary>
+//      /// This no_escape_get_c_args_from_string
+//      /// considers the string literally,
+//      /// that is, it doesn't parse escape sequences.
+//      /// </summary>
+//      stra1 = no_escape_get_c_args_from_string(strCommandLine);
+//
+//   }
+//
+//#elif defined(ANDROID)
+//
+//   {
+//
+//      string strCommandLine(m_strCommandLine);
+//
+//      stra1 = get_c_args_from_string(strCommandLine);
+//
+//   }
+//
+//#else
+//
+//
+//   stra1 = get_c_args(m_argc, m_argv);
 //
 //#endif
-
-   string_array stra5;
-
-   if(m_pszMain)
-   {
-
-      stra5 = get_c_args_from_string(m_pszMain);
-
-   }
-
-   string_array stra4;
-
-   string strCommandLine = merge_colon_args(
-      {
-
-         stra1, stra2, stra3, stra5
-
-
-      });
-
-   set_command_line(strCommandLine);
-
-#if !defined(WINDOWS)
-
-   string strUid;
-
-   get_command_line_param(strUid, strCommandLine, "uid");
-
-   if (strUid.has_char())
-   {
-
-      uid_t uid = atoi(strUid);
-
-      output_error_message("going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
-
-      if (seteuid(uid) == 0)
-      {
-
-         output_error_message("uid=" + __string(uid), "seteuid success", e_message_box_ok);
-
-      }
-      else
-      {
-
-         int iErr = errno;
-
-         string strError;
-
-         strError.format("errno=%d uid=%d", iErr);
-
-         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
-
-      }
-
-   }
-
-#endif
+//
+//   string_array stra2;
+//
+//   stra2 = get_c_args_from_string(m_strCommandLine);
+//
+//   string_array stra3;
+//
+////#ifdef WINDOWS_DESKTOP
+////
+////   stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
+////
+//////#elif defined(__APPLE__)
+//////
+//////   stra3 =  get_c_args_for_c(ca2_command_line2());
+//////
+//////#else
+//////
+//////   stra3 = get_c_args_from_c(ca2_command_line());
+////
+////#endif
+//
+//   //string_array stra5;
+//
+//   //if(m_pszMain)
+//   //{
+//
+//   //   stra5 = get_c_args_from_string(m_pszMain);
+//
+//   //}
+//
+//   //string_array stra4;
+//
+//   //string strCommandLine = merge_colon_args(
+//   //   {
+//
+//   //      stra1, stra2, stra3, stra5
+//
+//
+//   //   });
+//
+//   set_command_line(strCommandLine);
+//
+//#if !defined(WINDOWS)
+//
+//   string strUid;
+//
+//   get_command_line_param(strUid, strCommandLine, "uid");
+//
+//   if (strUid.has_char())
+//   {
+//
+//      uid_t uid = atoi(strUid);
+//
+//      output_error_message("going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
+//
+//      if (seteuid(uid) == 0)
+//      {
+//
+//         output_error_message("uid=" + __string(uid), "seteuid success", e_message_box_ok);
+//
+//      }
+//      else
+//      {
+//
+//         int iErr = errno;
+//
+//         string strError;
+//
+//         strError.format("errno=%d uid=%d", iErr);
+//
+//         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+//
+//      }
+//
+//   }
+//
+//#endif
+//
 
    if (!m_bShowApplicationInformation)
    {
 
       string strShowApplicationInformation;
 
-      if (is_command_line_param_true(strShowApplicationInformation, strCommandLine, "show_application_information"))
+      if (is_command_line_param_true(strShowApplicationInformation, m_strCommandLine, "show_application_information"))
       {
 
          m_bShowApplicationInformation = true;
@@ -405,23 +397,22 @@ void app_core::system_init()
 
    }
 
-   string strNoDock;
+   //string strNoDock;
 
-   get_command_line_param(strAppId, strCommandLine, "app");
+   //get_command_line_param(strAppId, strCommandLine, "app");
 
-   if (strAppId.has_char())
-   {
+   //if (strAppId.has_char())
+   //{
 
-      m_strAppId = strAppId;
+   //   m_strAppId = strAppId;
 
-   }
-   else if(m_strAppId.has_char())
-   {
+   //}
+   //else if(m_strAppId.has_char())
+   //{
 
-      strCommandLine += " app=" +m_strAppId;
+   //   strCommandLine += " app=" +m_strAppId;
 
-   }
-
+   //}
 
    {
 
@@ -435,9 +426,9 @@ void app_core::system_init()
 
    }
 
-   string strDerivedApplication;
+   //string strDerivedApplication;
 
-   get_command_line_param(strDerivedApplication, strCommandLine, "derived_application");
+   //get_command_line_param(strDerivedApplication, strCommandLine, "derived_application");
 
    //g_iDerivedApplication = atoi(strDerivedApplication);
 
@@ -539,10 +530,10 @@ void app_core::system_init()
    psystem->m_durationMainStart = m_durationStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
+//
+  // ::file::path pathOutputDebugString = m_psystem->m_pacmedir->system() / strAppId / "output_debug_string.txt" ;
 
-   ::file::path pathOutputDebugString = m_psystem->m_pacmedir->system() / strAppId / "output_debug_string.txt" ;
-
-   ::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedir->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedir->config() / "output_debug_string.txt" ;
 
    //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
@@ -561,25 +552,23 @@ string app_core::get_command_line()
 }
 
 
-void app_core::set_command_line(const char * psz)
+void app_core::on_command_line()
 {
 
-   m_strCommandLine = psz;
-
-   ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "program";
-
-   string strAppId = get_command_line_param(psz, "app");
+   string strAppId = m_strAppId;
 
    if (strAppId.has_char())
    {
+
+      ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "program";
 
       pathFolder /= strAppId;
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      m_psystem->m_pacmefile->put_contents(path, get_command_line());
+      m_psystem->m_pacmefile->put_contents(path, m_strCommandLine);
 
-      ::file::path pathExecutable = consume_param(psz, nullptr);
+      ::file::path pathExecutable = consume_param(m_strCommandLine, nullptr);
 
       string strAppTitle = executable_title_from_appid(strAppId);
 
@@ -1958,16 +1947,6 @@ bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
 }
 
 
-
-//void set_apex_system_as_thread()
-//{
-//
-//   ::set_thread(::psystem);
-//
-//}
-
-
-::app_core * g_pappcore = nullptr;
 
 
 static const char * g_pszCubeAppId = nullptr;

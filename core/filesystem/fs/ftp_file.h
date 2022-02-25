@@ -9,7 +9,7 @@ public:
 
    __pointer(ftpfs)                 m_pftp;
    file_pointer                     m_pfile;
-   ::payload                        m_varFile;
+   ::payload                        m_payloadFile;
    ::file::path                     m_filepath;
    __pointer(::ftp::client_socket)  m_pclient;
 

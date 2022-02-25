@@ -96,13 +96,13 @@ namespace user
       if (pcreate->m_pcommandline)
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"].release();
+         pcreate->m_pcommandline->payload("document").release();
 
       }
 
-      //bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
-      //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
-      //   __pointer(::user::impact) pviewAlloc = pcreate->m_pcommandline->m_varQuery["allocation_view"].cast < ::user::impact > ();
+      //bool bMakeVisible = pcreate->m_pcommandline->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
+      //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->payload("parent_user_interaction").cast < ::user::interaction > ();
+      //   __pointer(::user::impact) pviewAlloc = pcreate->m_pcommandline->payload("allocation_view").cast < ::user::impact > ();
 
       __pointer(::user::document) pdocument;
 
@@ -204,7 +204,7 @@ namespace user
       if (pcreate->m_pcommandline)
       {
 
-         bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"].get_bool() || pcreate->m_bMakeVisible;
+         bMakeVisible = pcreate->m_pcommandline->payload("make_visible_boolean").get_bool() || pcreate->m_bMakeVisible;
 
       }
 
@@ -317,13 +317,13 @@ namespace user
       if (pcreate->m_pcommandline)
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+         pcreate->m_pcommandline->payload("document") = pdocument;
 
       }
       else
       {
 
-         //pcreate->m_varQuery["document"] = pdocument;
+         //pcreate->payload("document") = pdocument;
 
       }
 

@@ -185,7 +185,7 @@ namespace filemanager
 
          }
 
-         pcreate->m_pcommandline->m_varFile = strVarFile;
+         pcreate->m_pcommandline->m_payloadFile = strVarFile;
 
          //puser->filemanager()->m_pdocumenttemplateChild->m_bQueueDocumentOpening = false;
 

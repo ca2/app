@@ -2,16 +2,6 @@
 //#include "apex/platform/app_core.h"
 
 
-extern ::app_core * g_pappcore;
-
-
-//CLASS_DECL_APEX string & get_command_line_string()
-//{
-//
-//   return ::g_pappcore->m_strCommandLine;
-//
-//}
-
 
 //CLASS_DECL_APEX string get_command_line()
 //{

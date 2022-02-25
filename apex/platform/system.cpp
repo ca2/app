@@ -1704,7 +1704,7 @@ pacmedir->create("/ca2core");
 
       pcreate->m_pcommandline = __create_new < command_line >();
 
-      string strCommandLine = get_command_line();
+      string strCommandLine = m_strCommandLine;
 
       pcreate->m_pcommandline->initialize_command_line(strCommandLine);
 
@@ -3283,7 +3283,7 @@ pacmedir->create("/ca2core");
       else if(line->m_ecommand == command_line::command_file_open)
       {
 
-         pcreate->m_pcommandline->m_varFile.stra().add_unique_ci(line->m_varFile.stra());
+         pcreate->m_pcommandline->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
 
          pcreate->m_pcommandline->m_ecommand = command_line::command_file_open;
 
@@ -3291,7 +3291,7 @@ pacmedir->create("/ca2core");
       else if(line->m_ecommand == command_line::command_application_start)
       {
 
-         pcreate->m_pcommandline->m_varFile.stra().add(line->m_varFile.stra());
+         pcreate->m_pcommandline->m_payloadFile.stra().add(line->m_payloadFile.stra());
 
          pcreate->m_pcommandline->m_ecommand = command_line::command_application_start;
 

@@ -48,7 +48,7 @@ public:
    i32                       m_nCmdShow;
 
    // not valid for file_new
-   ::payload                           m_varFile;
+   ::payload                           m_payloadFile;
 
    // valid only for file_print_to
    string                        m_strPrinterName;

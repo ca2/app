@@ -1187,10 +1187,10 @@ namespace aura
 
       __pointer(::user::interaction) puserinteractionParent;
 
-      if (pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >() != nullptr)
+      if (pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >() != nullptr)
       {
 
-         puserinteractionParent = pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >();
+         puserinteractionParent = pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >();
 
       }
 

@@ -248,7 +248,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 
 
 //inline bool thread::has_property(const ::atom& atom) const { return command() && has_property(atom); }
-//inline ::payload thread::command_value(const ::atom& atom) const { return has_property(atom) ? (const ::payload&)&command()->m_varQuery[atom] : (const ::payload&)e_type_new; }
+//inline ::payload thread::command_value(const ::atom& atom) const { return has_property(atom) ? (const ::payload&)&command()->payload(atom) : (const ::payload&)e_type_new; }
 //inline bool thread::command_value_is_true(const ::atom& atom) const { return has_property(atom) ? command()->m_varQuery.is_true(atom) : false; }
 
 

@@ -10,7 +10,7 @@ public:
 
    ::memory_file                        m_httpfile;
    ::memory_file                        m_memfile;
-   ::payload                                          m_varFile;
+   ::payload                                          m_payloadFile;
 
 
    ifs_file(::payload payloadFile);

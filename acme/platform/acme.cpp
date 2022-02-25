@@ -1664,8 +1664,7 @@ namespace acme
 
 #include <tchar.h>
 
-
-CLASS_DECL_ACME i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
+i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR * pCmdLine, int nCmdShow)
 {
 
    ::app * papp = ::app::g_p;
@@ -1684,7 +1683,7 @@ CLASS_DECL_ACME i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstanc
 
    papp->m_hinstancePrev = hinstancePrev;
 
-   papp->m_strCommandLine = pCmdLine;
+   papp->m_strCommandLine = ::GetCommandLineW();
 
    papp->m_nCmdShow = nCmdShow;
 

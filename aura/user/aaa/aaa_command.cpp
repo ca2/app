@@ -142,7 +142,7 @@ namespace user
 
    //   m_ecommand = command.m_ecommand;
    //   m_strCommandLine = command.m_strCommandLine;
-   //   m_varFile = command.m_varFile;
+   //   m_payloadFile = command.m_payloadFile;
 
    //   return *this;
 

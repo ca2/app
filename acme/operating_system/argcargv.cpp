@@ -194,6 +194,8 @@ string_array no_escape_get_c_args_from_string(const char * psz)
 
          const char * pszValueStart = psz;
 
+         char chQuote = '\0';
+
          while (!::str::ch::is_whitespace(psz))
          {
 
@@ -209,17 +211,55 @@ string_array no_escape_get_c_args_from_string(const char * psz)
             if (*psz == '\"')
             {
 
-               //::str::no_escape_consume_quoted_value(psz, pszEnd);
+               if (chQuote == '\"')
+               {
 
-               throw ::exception(error_parsing, "Quote character not expected here");
+
+
+               }
+               else if (chQuote == '\0')
+               {
+
+                  chQuote = '\"';
+
+               }
+               else
+               {
+
+                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+                  throw ::exception(error_parsing, "Quote character not expected here");
+
+               }
 
             }
             else if (*psz == '\'')
             {
 
-               //::str::no_escape_consume_quoted_value(psz, pszEnd);
+               if (chQuote == '\'')
+               {
 
-               throw ::exception(error_parsing, "Quote character not expected here");
+
+
+               }
+               else if (chQuote == '\0')
+               {
+
+                  chQuote = '\'';
+
+               }
+               else
+               {
+
+                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+                  throw ::exception(error_parsing, "Quote character not expected here");
+
+               }
+
+               ////::str::no_escape_consume_quoted_value(psz, pszEnd);
+
+               //throw ::exception(error_parsing, "Quote character not expected here");
 
             }
 

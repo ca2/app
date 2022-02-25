@@ -258,11 +258,11 @@ namespace filehandler
 
          pcreate->m_pcommandline->m_strApp = m_plist->operator [](item)->m_strApp;
 
-         pcreate->m_pcommandline->m_varFile                = m_strName;
+         pcreate->m_pcommandline->m_payloadFile                = m_strName;
 
          psession->do_request(pcreate);
 
-         //payloadFile = pcreate->m_pcommandline->m_varFile;
+         //payloadFile = pcreate->m_pcommandline->m_payloadFile;
 
       }
 

@@ -542,7 +542,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    else
    {
 
-      pset->operator[](straKey[i])= payload(pszValue);
+      pset->operator[](straKey[i])= pszValue;
 
    }
 
@@ -552,8 +552,12 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp)
 {
 
-   if(pszCmdLine == nullptr)
+   if (pszCmdLine == nullptr)
+   {
+
       return;
+
+   }
 
    //string_array stra = get_c_args_for_c(pszCmdLine);
    //string_array stra = get_c_args_from_c(pszCmdLine);
@@ -631,7 +635,9 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & pay
 
          }
 
-         _008Add(str.Left(iFindEqual), strValue);
+         string strKey = str.Left(iFindEqual);
+
+         _008Add(strKey, strValue);
 
       }
       else

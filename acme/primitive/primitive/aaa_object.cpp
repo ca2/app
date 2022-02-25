@@ -680,7 +680,7 @@ void     object::request_file(const ::payload& payloadFile,::payload varQuery)
 
    auto pcommandline = __create_new< command_line >();
 
-   pcommandline->m_varFile = payloadFile;
+   pcommandline->m_payloadFile = payloadFile;
 
    pcommandline->m_varQuery = varQuery;
 

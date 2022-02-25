@@ -684,7 +684,7 @@ namespace sphere
                get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).do_request(pcreate);
-            if(pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document > () == nullptr)
+            if(pcreate->m_pcommandline->payload("document").cast < ::user::document > () == nullptr)
             {
                goto alt1;
             }
@@ -693,11 +693,11 @@ namespace sphere
          else
          {
             alt1:
-            if(pcreate->m_pcommandline->m_varFile.get_type() == ::e_type_string)
+            if(pcreate->m_pcommandline->m_payloadFile.get_type() == ::e_type_string)
             {
-               if(::str::ends_ci(pcreate->m_pcommandline->m_varFile, ".ca2"))
+               if(::str::ends_ci(pcreate->m_pcommandline->m_payloadFile, ".ca2"))
                {
-                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_pcommandline->m_varFile);
+                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_pcommandline->m_payloadFile);
                   if(::str::begins_eat(strCommand, "ca2prompt\r")
                   || ::str::begins_eat(strCommand, "ca2prompt\n"))
                   {

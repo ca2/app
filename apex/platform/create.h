@@ -18,7 +18,7 @@ public:
    string                                                      m_strDescription;
    enum_command                                                m_ecommand;
    string                                                      m_strAppId;
-   ::payload                                                   m_varFile;
+   ::payload                                                   m_payloadFile;
    ::payload                                                   m_varArgs;
    ::payload                                                   m_varOptions;
    string                                                      m_strExtra;

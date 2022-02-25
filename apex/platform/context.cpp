@@ -1296,22 +1296,20 @@ namespace apex
    void context::on_command_create(::create* pcreate)
    {
 
-      if (m_varFile.is_empty())
+      if (m_payloadFile.is_empty())
       {
 
-         m_varFile = pcreate->m_pcommandline->m_varFile;
+         m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
 
       }
       else
       {
 
-         m_varFile.payloada().add(pcreate->m_pcommandline->m_varFile);
+         m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
 
       }
 
-      //m_varQuery.propset().merge(pcreate->m_pcommandline->m_varQuery.propset());
-
-      get_property_set().merge(pcreate->m_pcommandline->m_varQuery.propset());
+      get_property_set().merge(pcreate->m_pcommandline->get_property_set());
 
 
    }
@@ -1383,20 +1381,20 @@ namespace apex
    //void command::on_create(::create* pcreate)
    //{
 
-   //   if (m_varFile.is_empty())
+   //   if (m_payloadFile.is_empty())
    //   {
 
-   //      m_varFile = pcreate->m_pcommandline->m_varFile;
+   //      m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
 
    //   }
    //   else
    //   {
 
-   //      m_varFile.payloada().add(pcreate->m_pcommandline->m_varFile);
+   //      m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
 
    //   }
 
-   //   m_varQuery.propset().merge(pcreate->m_pcommandline->m_varQuery.propset());
+   //   ).merge(pcreate->m_pcommandline->));
 
    //}
 

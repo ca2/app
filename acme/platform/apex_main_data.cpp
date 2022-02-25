@@ -52,7 +52,7 @@ void apex_main_data::system_construct(const ::main & main)
 
    //}
 
-   m_iPathInstallFolderExeArg = -1;
+   //m_iPathInstallFolderExeArg = -1;
 
 #ifdef WINDOWS_DESKTOP
 

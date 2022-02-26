@@ -1076,8 +1076,8 @@ namespace aura
 
       ::e_status estatus = ::success;
 
-      try
-      {
+      //try
+      //{
 
          m_pfactoryDraw2d = draw2d_factory();
 
@@ -1096,13 +1096,13 @@ namespace aura
 
          //}
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         estatus = error_exception;
+      //   estatus = error_exception;
 
-      }
+      //}
 
       //if (!estatus)
       //{

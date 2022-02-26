@@ -1631,7 +1631,7 @@ namespace experience
 
                rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
 
-               rectangleMachineThumb.constraint_v7(rectangleTrack);
+               rectangleMachineThumb._007Constrain(rectangleTrack);
 
                rectangleMachineThumb.deflate(1, 1);
 

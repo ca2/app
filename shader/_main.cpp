@@ -7,5 +7,10 @@
 //#include "acme/application.h"
 
 
-
 ::app_shader::application g_app;
+
+
+__embed_resource(g_app);
+
+
+

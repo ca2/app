@@ -16,6 +16,15 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
 
+
+
+void shell_notify_folder_change(const wchar_t * pwsz);
+void shell_notify_item_change(const wchar_t * pwsz);
+void shell_notify_assoc_change();
+//void shell_restart();
+//int shell_pin_to_taskbar(const wchar_t * path);
+//int shell_unpin_from_taskbar(const wchar_t * path);
+
 //#include "apex/operating_system/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
@@ -315,7 +324,7 @@ return *m_pappmenu;
 ::file::path application::local_application_path()
 {
 
-return m_psystem->m_pacmedir->localconfig() / "application" / m_strAppName ;
+return m_psystem->m_pacmedir->roaming() / "application" / m_strAppName ;
 
 
 }
@@ -624,7 +633,7 @@ return m_straAppCategory;
 ::file::path application::get_app_localconfig_folder()
 {
 
-::file::path pathFolder = m_psystem->m_pacmedir->localconfig() / m_strAppName;
+::file::path pathFolder = m_psystem->m_pacmedir->roaming() / m_strAppName;
 
 return pathFolder;
 
@@ -2174,15 +2183,64 @@ if (!is_system() && !is_session())
 }
 
 
+void application::on_create_app_shortcut()
+{
+
+   string strAppName;
+
+   if (m_strAppName.has_char())
+   {
+
+      strAppName = m_strAppName;
+
+   }
+   else
+   {
+
+      string strAppIdUnderscore = m_strAppId;
+
+      strAppIdUnderscore.find_replace("/", "_");
+
+      strAppIdUnderscore.find_replace("-", "_");
+
+      strAppName = strAppIdUnderscore;
+
+   }
+
+   string strRoot = m_strAppId.Left(m_strAppId.find('/'));
+
+   auto pathCreatedShortcut = m_psystem->m_pacmedir->roaming() / m_strAppId / "created_shortcut.txt";
+
+   auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+
+   auto path = m_psystem->m_pacmefile->module();
+
+   ::file::path pathTarget;
+
+   if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
+      || (m_psystem->m_pacmefile->exists(pathShortcut)
+         && 
+         (!m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
+            ||
+         !m_psystem->m_pacmepath->final_is_same(
+            pathTarget,
+            path))))
+   {
+
+      create_app_shortcut();
+
+   }
+
+}
+
+
 void application::create_app_shortcut()
 {
 
-   if (m_strAppId.has_char())
+   fork([this]()
    {
 
-      auto pathCreatedShortcut = m_psystem->m_pacmedir->localconfig() / m_strAppId / "created_shorcut.txt";
-
-      if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut))
+      if (m_strAppId.has_char())
       {
 
          auto pnode = m_psystem->node()->m_papexnode;
@@ -2208,11 +2266,20 @@ void application::create_app_shortcut()
 
          }
 
-         string strRoot = m_strAppId.Left(m_strAppId.find('/'));
+         string strRoot;
 
+         auto findRootEnd = m_strAppId.find('/');
+
+         if (findRootEnd > 0)
+         {
+
+            strRoot = m_strAppId.Left(findRootEnd);
+
+         }
+         
          auto path = m_psystem->m_pacmefile->module();
 
-         auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / strAppName;
+         auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
          auto pathIcon = path.folder() / "icon.ico";
 
@@ -2225,11 +2292,37 @@ void application::create_app_shortcut()
 
          pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
 
+         if (payload("pin_app_to_taskbar").is_true())
+         {
+
+            ::file::path pathUserPinned = m_psystem->m_pacmedir->roaming() / "Microsoft/Internet Explorer/Quick Launch/User Pinned/TaskBar" / pathShortcut.name();
+
+            wstring wstrShortcut;
+
+            wstrShortcut = pathShortcut;
+
+            m_psystem->m_pacmefile->copy(pathUserPinned, pathShortcut, true);
+
+            wstring wstr;
+
+            wstr = pathUserPinned.folder();
+
+            shell_notify_folder_change(wstr);
+
+            shell_notify_item_change(wstr);
+
+            shell_notify_assoc_change();
+
+         }
+
+         auto pathCreatedShortcut = m_psystem->m_pacmedir->roaming() / m_strAppId / "created_shortcut.txt";
+
          m_psystem->m_pacmefile->touch(pathCreatedShortcut);
 
       }
 
-   }
+   });
+
 
 }
 
@@ -5556,6 +5649,8 @@ bool application::on_start_application()
       return false;
 
    }
+
+   on_create_app_shortcut();
 
    return true;
 

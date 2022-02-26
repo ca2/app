@@ -11,6 +11,8 @@ namespace windows
    nano_window::nano_window()
    {
 
+      m_bDestroy = false;
+
    }
 
 
@@ -801,6 +803,7 @@ namespace windows
 
    void nano_window::display_synchronously()
    {
+
       ShowWindow(m_hwnd, SW_SHOW);
 
       UpdateWindow(m_hwnd);
@@ -820,6 +823,24 @@ namespace windows
          TranslateMessage(&msg);
 
          DispatchMessage(&msg);
+
+         if (m_bDestroy)
+         {
+
+            ::DestroyWindow(m_hwnd);
+
+            while (PeekMessage(&msg, NULL, 0, 0, TRUE))
+            {
+
+               TranslateMessage(&msg);
+
+               DispatchMessage(&msg);
+
+            }
+
+            break;
+
+         }
 
       }
 
@@ -844,7 +865,9 @@ namespace windows
    void nano_window::destroy()
    {
 
-      ::DestroyWindow(m_hwnd);
+      m_bDestroy = true;
+
+      PostMessage(m_hwnd, WM_ENTERIDLE, 0, 0);
 
    }
 
@@ -889,15 +912,32 @@ namespace windows
 //}
 
 
-   void nano_window::on_click(const ::atom & atom)
+   void nano_window::on_click(const ::atom & atomParam, int x, int y)
    {
 
+      auto atom = atomParam;
+
+      fork([this, atom, x, y]()
+         {
+
+            m_pinterface->on_click(atom, x, y);
+
+         });
 
    }
 
 
-   void nano_window::on_right_click(const ::atom & atom)
+   void nano_window::on_right_click(const ::atom & atomParam, int x, int y)
    {
+
+      auto atom = atomParam;
+
+      fork([this, atom, x, y]()
+         {
+
+            m_pinterface->on_right_click(atom, x, y);
+
+         });
 
 
    }

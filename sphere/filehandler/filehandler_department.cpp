@@ -23,11 +23,6 @@ namespace filehandler
    void department::construct()
    {
 
-      //m_strAppName         = "default_file_handler";
-      //m_strBaseSupportId   = "default_file_handler";
-      //m_strInstallToken    = "default_file_handler";
-      //m_bLicense           = false;
-
    }
 
    bool department::init_instance()

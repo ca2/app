@@ -54,7 +54,7 @@ void nano_still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pwindow->on_click(m_atom);
+      m_pwindow->on_click(m_atom, INT_MIN, INT_MIN);
 
    }
 

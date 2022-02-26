@@ -30,6 +30,7 @@ public:
    virtual bool is_user_service() const;
 
    void set_args(int argc, char * argv[], char * envp[]);
+   void get_arguments_from_command_line();
 
    int main_loop();
 

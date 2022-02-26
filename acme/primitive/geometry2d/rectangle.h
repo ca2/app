@@ -724,7 +724,7 @@ public:
  }
 
 
- void constraint_v5(const rectangle_type & rectangle, const SIZE_TYPE & sizeMin)
+ void _005Constrain(const rectangle_type & rectangle, const SIZE_TYPE & sizeMin)
  {
     if (this->left < rectangle.left)
        this->left = rectangle.left;
@@ -742,7 +742,7 @@ public:
 
  }
 
- void constraint_v7(const rectangle_type & rectangle)
+ void _007Constrain(const rectangle_type & rectangle)
  {
 
     const SIZE_TYPE& size = this->size();
@@ -797,17 +797,17 @@ public:
 
  }
 
- void _001Constraint(const rectangle_type & rectangle)
+ void _001Constrain(const rectangle_type & rectangle)
  {
 
-    _001ConstraintX(rectangle);
+    _001ConstrainX(rectangle);
 
-    _001ConstraintY(rectangle);
+    _001ConstrainY(rectangle);
 
  }
 
 
- void _001ConstraintX(const rectangle_type & rectangle)
+ void _001ConstrainX(const rectangle_type & rectangle)
  {
 
     if (this->right > rectangle.right)
@@ -827,7 +827,7 @@ public:
  }
 
 
- void _001ConstraintY(const rectangle_type & rectangle)
+ void _001ConstrainY(const rectangle_type & rectangle)
  {
 
     if (this->bottom > rectangle.bottom)
@@ -847,20 +847,20 @@ public:
  }
 
 
- void _001Constraint(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
+ void _001Constrain(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
 
  {
 
-    _001ConstraintX(rectangle, prectangleBounding);
+    _001ConstrainX(rectangle, prectangleBounding);
 
 
-    _001ConstraintY(rectangle, prectangleBounding);
+    _001ConstrainY(rectangle, prectangleBounding);
 
 
  }
 
 
- void _001ConstraintX(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
+ void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
 
  {
 
@@ -885,7 +885,7 @@ public:
  }
 
 
- void _001ConstraintY(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
+ void _001ConstrainY(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
 
  {
 

@@ -291,7 +291,7 @@ namespace experience
 
             ::rectangle_i32 rectangleNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
-            rectangleNew._001Constraint(rectangleWork);
+            rectangleNew._001Constrain(rectangleWork);
 
             if(rectangleNew != rectangleScreenOld)
             {

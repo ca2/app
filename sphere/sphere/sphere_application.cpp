@@ -446,19 +446,6 @@ namespace sphere
    }
 
 
-
-
-   //void department::construct()
-   //{
-
-   //   m_strAppName = "userstack";
-   //   m_strBaseSupportId = "ca2_userstack";
-   //   m_strInstallToken = "userstack";
-   //   m_bLicense = false;
-   //   m_eexclusiveinstance = ::ExclusiveInstanceNone;
-
-   //}
-
    console::department * application::console()
    {
 

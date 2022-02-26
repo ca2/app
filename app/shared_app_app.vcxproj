@@ -353,6 +353,7 @@
   <ItemGroup>
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="_app_app.cpp" />
+    <ClCompile Include="_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

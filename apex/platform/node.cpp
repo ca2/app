@@ -166,6 +166,16 @@ namespace apex
    }
 
 
+   bool node::shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
    // void node::parallelization_initialize()
    // {
 

@@ -11,7 +11,7 @@ namespace app_just_message_box
 
       m_strAppId = "app/just_message_box";
 
-      m_strAppName = "app/just_message_box";
+      m_strAppName = "Just Message Box";
 
       m_strBaseSupportId = "app/just_message_box";
 

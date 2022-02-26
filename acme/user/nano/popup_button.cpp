@@ -22,9 +22,8 @@ popup_button::~popup_button()
 
 
 
-void popup_button::calculate_size()
+void popup_button::calculate_size_and_position(int x, int y)
 {
-
 
    auto sizeScreen = operating_system_get_main_screen_size();
 
@@ -33,18 +32,33 @@ void popup_button::calculate_size()
 
    int w = 150;
    int h = 50 * 2;
-   int x = (wScreen - w) / 2;
-   int y = (hScreen - h) / 2;
+   
+   if (x == INT_MIN || y == INT_MIN)
+   {
+
+      x = (wScreen - w) / 2;
+
+      y = (hScreen - h) / 2;
+
+   }
 
    m_rectangle.set_dim(x, y, w, h);
+
+   ::rectangle_i32 rectangleMainScreen;
+
+   rectangleMainScreen.set_dim(0, 0, wScreen, hScreen);
+
+   rectangleMainScreen.deflate(10);
+
+   m_rectangle._001Constrain(rectangleMainScreen);
 
 }
 
 
-void popup_button::display_synchronously(const ::string & strText)
+void popup_button::display_synchronously(const ::string & strText, int x, int y)
 {
 
-   calculate_size();
+   calculate_size_and_position(x, y);
 
    add_button(strText, e_dialog_result_yes);
 

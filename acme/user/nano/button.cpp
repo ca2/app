@@ -49,7 +49,7 @@ void nano_button::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pwindow->on_click(m_atom);
+      m_pwindow->on_click(m_atom, INT_MIN, INT_MIN);
 
    }
 
@@ -79,7 +79,7 @@ bool nano_button::is_focusable() const
 //}
 
 
-void popup_button::on_click(const ::atom & atom)
+void popup_button::on_click(const ::atom & atom, int x, int y)
 {
 
    m_atomResult = atom;

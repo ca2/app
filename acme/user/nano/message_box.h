@@ -29,9 +29,9 @@ public:
 
    void on_draw(nano_device * pnanodevice) override;
 
-   void on_click(const ::atom & atom) override;
+   void on_click(const ::atom & atom, int x, int y) override;
 
-   void on_right_click(const ::atom & atom) override;
+   void on_right_click(const ::atom & atom, int x, int y) override;
 
    void defer_create_details_still();
 

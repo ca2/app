@@ -20,7 +20,7 @@ public:
 
 
 
-   void on_click(const ::atom& atom) override;
+   void on_click(const ::atom& atom, int x, int y) override;
 
 
 };

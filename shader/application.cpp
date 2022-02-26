@@ -11,7 +11,7 @@ namespace app_shader
 
       m_strAppId = "app/shader";
 
-      m_strAppName = "app/shader";
+      m_strAppName = "Shader";
 
       m_strBaseSupportId = "app/shader";
 

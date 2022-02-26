@@ -91,10 +91,10 @@ public:
    void on_mouse_move(int x, int y) override;
    void on_left_button_down(int x, int y) override;
    void on_left_button_up(int x, int y) override;
-   void on_click(const ::atom & atom) override;
+   void on_click(const ::atom & atom, int x, int y) override;
    void on_right_button_down(int x, int y) override;
    void on_right_button_up(int x, int y) override;
-   void on_right_click(const ::atom & atom) override;
+   void on_right_click(const ::atom & atom, int x, int y) override;
 
    void move_to(int x, int y) override;
 

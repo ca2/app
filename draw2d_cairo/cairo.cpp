@@ -4,13 +4,13 @@
 
 static ::mutex * s_pmutex = nullptr;
 
-extern string_map < i32_map < FT_Face > > * g_pmapFontFace ;
+extern string_map < i32_map < FT_Face > > * g_pmapFontFace;
 
 extern string_to_int * g_pmapFontError ;
 
 extern string_to_int * g_pmapFontError2 ;
 
-extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace ;
+extern string_map < cairo_font_face_t * > * g_pmapCairoFontFace;
 
 //extern CLASS_DECL_AURA array < matter * > * g_paAura;
 
@@ -66,9 +66,13 @@ void term_cairo_mutex()
 
    ::acme::del(g_pmapFontFace);
 
+#ifdef LINUX
+
    ::acme::del(g_pmapFontPath);
 
    ::acme::del(g_pmutexFc);
+
+#endif
 
    ::acme::del(s_pmutex);
 

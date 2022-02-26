@@ -1077,7 +1077,8 @@ public:
       #endif
 
 
-      void create_app_shortcut();
+      virtual void on_create_app_shortcut();
+      virtual void create_app_shortcut();
 
 
 };

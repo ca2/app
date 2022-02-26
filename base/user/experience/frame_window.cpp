@@ -1813,7 +1813,7 @@ namespace experience
 
             rectangle.set_height(sizeMinimum.cy);
 
-            rectangle._001ConstraintY(rectangleWorkspace);
+            rectangle._001ConstrainY(rectangleWorkspace);
 
          }
 
@@ -1822,14 +1822,14 @@ namespace experience
 
             rectangle.set_width(sizeMinimum.cx);
 
-            rectangle._001ConstraintX(rectangleWorkspace);
+            rectangle._001ConstrainX(rectangleWorkspace);
 
          }
 
          if (iBestWorkspace >= 0)
          {
 
-            rectangle._001Constraint(rectangleWorkspace);
+            rectangle._001Constrain(rectangleWorkspace);
 
          }
 

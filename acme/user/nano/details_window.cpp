@@ -44,9 +44,8 @@ void nano_details_window::calculate_size()
 }
 
 
-void nano_details_window::on_click(const ::atom& atom)
+void nano_details_window::on_click(const ::atom& atom, int x, int y)
 {
-
 
    if (atom == "details")
    {
@@ -63,8 +62,7 @@ void nano_details_window::on_click(const ::atom& atom)
 
    }
 
-   nano_message_box::on_click(atom);
-
+   nano_message_box::on_click(atom, x, y);
 
 }
 

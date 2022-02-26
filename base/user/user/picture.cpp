@@ -994,7 +994,7 @@ namespace user
 
       update_region();
 
-      m_ppictureimpl->m_rectangle._001Constraint(rectangleMargin, m_ppictureimpl->m_rectangleBounding);
+      m_ppictureimpl->m_rectangle._001Constrain(rectangleMargin, m_ppictureimpl->m_rectangleBounding);
 
       update_drawing_rect(sizePage, sizeClient);
 

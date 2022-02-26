@@ -96,6 +96,32 @@ void app::set_args(int argc, char * argv[], char * envp[])
 }
 
 
+void app::get_arguments_from_command_line()
+{
+
+#ifdef WINDOWS
+
+   m_argc = __argc;
+
+   m_argv = __argv;
+
+   m_envp = *__p__environ();
+
+   m_wargv = __wargv;
+
+   m_wenvp = *__p__wenviron();
+
+#else
+
+
+   throw "todo";
+
+
+#endif
+
+}
+
+
 int app::main_loop()
 {
 

@@ -744,7 +744,6 @@ namespace acme
 
       //g_pmapFontFaceName = new string_to_string();
 
-      init();
 
 
 #ifdef LINUX
@@ -764,12 +763,17 @@ namespace acme
 
       //::acme::library::s_pmutexLoading = new ::mutex();
 
+      init();
+
 
    }
 
 
    acme::~acme()
    {
+
+
+      term();
 
       //::acme::del(::acme::library::s_pmutexLoading);
 
@@ -781,8 +785,7 @@ namespace acme
 
 #endif
 
-      term();
-
+      
       //::acme::del(g_pmapFontFaceName);
 
       //::acme::del(g_pcsFont);
@@ -1131,6 +1134,8 @@ namespace acme
       //([a-z0-9_]+)_factory(::factory_item::get_factory());
 
       //return true;
+
+      ::factory::add_factory_item < class ::system >();
 
    }
 

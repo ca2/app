@@ -479,7 +479,7 @@ void nano_window::on_left_button_up(int x, int y)
 
       m_atomResult = m_atomLeftButtonUp;
 
-      m_pimplementation->on_click(m_atomResult);
+      m_pimplementation->on_click(m_atomResult, x, y);
 
    }
 
@@ -538,21 +538,21 @@ void nano_window::on_right_button_up(int x, int y)
    if (m_atomRightButtonUp == m_atomRightButtonDown)
    {
 
-      m_pimplementation->on_right_click(m_atomLeftButtonUp);
+      m_pimplementation->on_right_click(m_atomLeftButtonUp, x, y);
 
    }
 
 }
 
 
-void nano_window::on_click(const ::atom & atom)
+void nano_window::on_click(const ::atom & atom, int x, int y)
 {
 
    
 }
 
 
-void nano_window::on_right_click(const ::atom & atom)
+void nano_window::on_right_click(const ::atom & atom, int x, int y)
 {
 
 

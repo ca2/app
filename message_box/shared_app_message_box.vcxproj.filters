@@ -29,6 +29,9 @@
     <ClCompile Include="_app_message_box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc">

@@ -97,15 +97,11 @@ service* service_handler::get_service()
 
       throw ::interface_only();
 
-      throw ::interface_only();
-
    }
 
 
    void service_handler::stop_service()
    {
-
-      throw ::interface_only();
 
       throw ::interface_only();
 

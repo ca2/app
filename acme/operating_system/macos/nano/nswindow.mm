@@ -54,9 +54,50 @@
    
    m_pwindowcontroller = [ [ NSWindowController alloc ] initWithWindow : self ];
 
+   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidMove:) name: NSWindowDidMoveNotification object: self];
+
+   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: self];
+
    [ self create_view ];
    
    return self;
+   
+}
+
+
+- (void)windowDidMove:(NSNotification *)notification
+{
+   
+   NSRect rectFrame = [ self frame ];
+   
+   int x = rectFrame.origin.x;
+   
+   int y = (int) [[NSScreen mainScreen] frame].size.height - rectFrame.origin.y - rectFrame.size.height;
+   
+   int w = rectFrame.size.width;
+   
+   int h = rectFrame.size.height;
+   
+   m_pwindowbridge->on_layout(x, y, w, h);
+   
+}
+
+
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+   
+   NSRect rectFrame = [ self frame ];
+   
+   int x = rectFrame.origin.x;
+   
+   int y = (int) [[NSScreen mainScreen] frame].size.height - rectFrame.origin.y - rectFrame.size.height;
+   
+   int w = rectFrame.size.width;
+   
+   int h = rectFrame.size.height;
+   
+   m_pwindowbridge->on_layout(x, y, w, h);
    
 }
 
@@ -204,6 +245,34 @@ void nano_window_bridge::stop()
 {
    
    [NSApp stopModal];
+   
+   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+   
+   [ pnanowindow close ];
+   
+}
+
+
+void nano_window_bridge::move_to(int x, int y)
+{
+   
+   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+   
+   NSPoint point;
+   
+   point.x = x;
+   
+   point.y = y;
+   
+   NSRect frame = [ pnanowindow frame ];
+   
+   int w = frame.size.width;
+   
+   int h = frame.size.height;
+   
+   point.y = (int) [[NSScreen mainScreen] frame].size.height - point.y - h;
+
+   [ pnanowindow setFrameOrigin:point ];
    
 }
 

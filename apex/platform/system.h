@@ -202,7 +202,7 @@ namespace apex
 
       virtual void init1() override;
 
-      virtual void init2();
+      virtual void init2() override;
 
       virtual void post_initial_request() override;
 

@@ -178,14 +178,16 @@ namespace apex
       else
       {
          
-         auto estatus = pnode->call_async(path, "", "", e_display_none, false);
+         pnode->call_async(path, "", "", e_display_none, false);
+         
+         //auto estatus = pnode->call_async(path, "", "", e_display_none, false);
 
-         if (::succeeded(estatus))
-         {
-
-            return true;
-
-         }
+//         if (::succeeded(estatus))
+//         {
+//
+//            return true;
+//
+//         }
          
       }
 

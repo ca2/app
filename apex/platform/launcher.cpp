@@ -8,8 +8,6 @@ void launcher::start()
 
    throw ::interface_only();
 
-   throw ::interface_only();
-
 }
 
 

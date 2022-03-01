@@ -20,12 +20,16 @@ namespace macos
 class nano_window;
 
 }
+
+
 class nano_window_bridge :
    virtual public ::element
 {
 public:
+
    
    ::macos::nano_window * m_pwindow;
+   
 #ifdef __OBJC__
    
    CFTypeRef  m_pnsnanowindow;
@@ -47,6 +51,10 @@ public:
 
    virtual void on_left_button_down(int x, int y);
 
+   virtual void on_right_button_up(int x, int y);
+
+   virtual void on_right_button_down(int x, int y);
+
    virtual void on_mouse_move(int x, int y);
    
    virtual void on_char(int iChar);
@@ -56,6 +64,10 @@ public:
    virtual void redraw();
 
    virtual void stop();
+   
+   virtual void move_to(int x, int y);
+
+   virtual void on_layout(int x, int y, int w, int h);
    
    
 };

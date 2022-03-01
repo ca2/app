@@ -257,7 +257,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
          if(m_psystem->m_pacmefile->exists(path2))
          {
 
-            m_psystem->m_pacmefile->delete_file(path2);
+            m_psystem->m_pacmefile->erase(path2);
 
          }
 
@@ -274,7 +274,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
             
             auto pacmefile = pacmedir->m_pacmefile;
             
-            pacmefile->delete_file(path2);
+            pacmefile->erase(path2);
             
             auto pacmepath = pacmedir->m_pacmepath;
 

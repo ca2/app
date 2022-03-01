@@ -105,6 +105,7 @@
    
 }
 
+
 - (void) mouseUp: (NSEvent *) event
 {
 
@@ -197,6 +198,53 @@
    p->on_left_button_down(x, y);
    
 }
+
+
+- (void) rightMouseUp: (NSEvent *) event
+{
+
+   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   
+   if(p == NULL)
+   {
+      
+      return;
+      
+   }
+    
+   NSPoint point = [self screenLocationEx: event];
+   
+   int x = point.x;
+   
+   int y = point.y;
+ 
+   p->on_right_button_up(x, y);
+   
+}
+
+
+- (void) rightMouseDown: (NSEvent *) event
+{
+   
+   nano_window_bridge * p = m_pnanowindow->m_pwindowbridge;
+   
+   if(p == NULL)
+   {
+      
+      return;
+      
+   }
+   
+   NSPoint point = [self screenLocationEx: event];
+   
+   int x = point.x;
+   
+   int y = point.y;
+
+   p->on_right_button_down(x, y);
+   
+}
+
 
 
 

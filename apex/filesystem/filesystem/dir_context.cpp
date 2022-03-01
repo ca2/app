@@ -2783,26 +2783,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    if (!m_pcontext->m_papexcontext->file().exists(pathNetworkPayload))
    {
 
-      ::file::path pathTxt;
+      auto pathHome =  m_pcontext->m_papexcontext->dir().home();
 
-#ifdef _UWP
-
-      if (m_psystem->m_bConsole)
-      {
-
-         auto home = getenv("USERPROFILE");
-
-         pathTxt = ::file::path(home) / "dropbox.txt";
-
-      }
-      else
-#endif
-      {
-
-         pathTxt = m_pcontext->m_papexcontext->dir().home() / "dropbox.txt";
-
-      }
-
+      auto pathTxt = pathHome / "dropbox.txt";
 
       string strPath = m_pcontext->m_papexcontext->file().as_string(pathTxt);
 

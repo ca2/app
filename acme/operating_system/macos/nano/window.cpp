@@ -115,6 +115,7 @@ namespace macos
 
    }
 
+
    void nano_window::on_left_button_down(int x, int y)
    {
 
@@ -127,6 +128,23 @@ namespace macos
    {
 
       m_pinterface->on_left_button_up(x, y);
+
+   }
+
+
+   void nano_window::on_right_button_down(int x, int y)
+   {
+
+      m_pinterface->on_right_button_down(x, y);
+
+   }
+
+
+   void nano_window::on_right_button_up(int x, int y)
+   {
+
+      m_pinterface->on_right_button_up(x, y);
+
    }
 
 
@@ -168,8 +186,6 @@ namespace macos
    {
 
    }
-
-
 
 
    void nano_window::_update_window()
@@ -222,10 +238,18 @@ namespace macos
    }
 
 
-   void nano_window::on_click(const ::atom & atom)
+   void nano_window::on_click(const ::atom & atom, int x, int y)
    {
 
-      m_pinterface->on_click(atom);
+      m_pinterface->on_click(atom, x, y);
+
+   }
+
+
+   void nano_window::on_right_click(const ::atom & atom, int x, int y)
+   {
+
+      m_pinterface->on_right_click(atom, x, y);
 
    }
 
@@ -233,6 +257,8 @@ namespace macos
    void nano_window::move_to(int x, int y)
    {
 
+      m_pwindowbridge->move_to(x, y);
+      
    }
 
 
@@ -279,6 +305,22 @@ void nano_window_bridge::on_left_button_down(int x, int y)
 }
 
 
+void nano_window_bridge::on_right_button_up(int x, int y)
+{
+   
+   m_pwindow->on_right_button_up(x, y);
+   
+}
+
+
+void nano_window_bridge::on_right_button_down(int x, int y)
+{
+   
+   m_pwindow->on_right_button_down(x, y);
+   
+}
+
+
 void nano_window_bridge::on_mouse_move(int x, int y)
 {
    
@@ -306,3 +348,15 @@ void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 
 
 
+void nano_window_bridge::on_layout(int x, int y, int w, int h)
+{
+   
+   m_pwindow->m_pinterface->m_rectangle.left = x;
+   
+   m_pwindow->m_pinterface->m_rectangle.top = y;
+   
+   m_pwindow->m_pinterface->m_rectangle.right = x + w;
+   
+   m_pwindow->m_pinterface->m_rectangle.bottom = y + h;
+   
+}

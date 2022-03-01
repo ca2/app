@@ -106,7 +106,7 @@ public:
    virtual bool on_get_task_name(string & strThreadName);
 
 
-   virtual void init_task();
+   void init_task() override;
    virtual void term_task();
    //virtual void do_task() override;
    //virtual void on_task() override;
@@ -155,8 +155,8 @@ public:
 
    //virtual ::property_object * thread_parent();
 
-   virtual void __task_init();
-   virtual void __task_term();
+   void __task_init() override;
+   void __task_term() override;
 
 
    virtual void on_task_init();

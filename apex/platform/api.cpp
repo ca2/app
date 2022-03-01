@@ -138,8 +138,6 @@ void api::api_get(string& strNetworkPayload, const string& strUrl, property_set&
 
    throw ::interface_only();
 
-   throw ::interface_only();
-
 }
 
 
@@ -167,8 +165,6 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 
 void api::api_download(string strGet, const ::file::path& path, property_set& set)
 {
-
-   throw ::interface_only();
 
    throw ::interface_only();
 

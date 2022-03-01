@@ -23,7 +23,7 @@ public:
 
    void on_click(const ::atom & atom, int x, int y) override;
 
-   void on_draw(nano_device * pnanodevice);
+   void on_draw(nano_device * pnanodevice) override;
 
 
 };

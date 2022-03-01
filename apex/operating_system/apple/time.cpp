@@ -6,7 +6,7 @@
 //
 
 #include "framework.h"
-#include "apex/platform/static_start.h"
+//#include "apex/platform/static_start.h"
 
 
 

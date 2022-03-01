@@ -235,8 +235,6 @@ namespace apex
    void node::_001InitializeShellOpen()
    {
 
-      throw ::exception(::error_interface_only);
-
       throw ::interface_only();
 
    }
@@ -250,8 +248,6 @@ namespace apex
 
    void node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
-
-      throw ::interface_only();
 
       throw ::interface_only();
 

@@ -1052,8 +1052,6 @@ namespace user
 
       throw ::interface_only();
 
-      throw ::interface_only();
-
    }
 
 

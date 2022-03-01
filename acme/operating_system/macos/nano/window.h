@@ -91,8 +91,13 @@ namespace macos
 
       void on_left_button_up(int x, int y) override;
 
-      void on_click(const ::atom & atom) override;
+      void on_click(const ::atom & atom, int x, int y) override;
 
+      void on_right_button_down(int x, int y) override;
+
+      void on_right_button_up(int x, int y) override;
+
+      void on_right_click(const ::atom & atom, int x, int y) override;
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

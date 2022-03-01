@@ -55,7 +55,7 @@ inline ::file::file & operator << (::file::file & file, const TYPE & t);
 
  inline void __exchange(::stream & s, float & f);
  inline void __exchange(::stream & s, double & d);
- inline void __exchange(::stream & s, ::datetime::time & time);
+ inline void __exchange(::stream & s, ::earth::time & time);
  inline void __exchange(::stream & s, const char * psz);
  inline void __exchange(::stream & s, string & str);
  inline void __exchange(::stream & s, ::file::path & path);
@@ -901,19 +901,19 @@ namespace std
 //
 //
 //
-//inline stream & operator <<(stream & s, const ::datetime::time & time);
+//inline stream & operator <<(stream & s, const ::earth::time & time);
 //
 //
-//inline stream & operator >>(stream & s, ::datetime::time & time);
-//
-//
-//
-//
-//inline stream & operator >>(stream & s, ::datetime::zonetime & z);
+//inline stream & operator >>(stream & s, ::earth::time & time);
 //
 //
 //
-//inline stream & operator <<(stream & s, const ::datetime::zonetime & z);
+//
+//inline stream & operator >>(stream & s, ::earth::zonetime & z);
+//
+//
+//
+//inline stream & operator <<(stream & s, const ::earth::zonetime & z);
 //
 ////
 ////inline stream & operator >>(stream & s, ::datetime::department::time_zone & z);

@@ -35,9 +35,9 @@ namespace userex
 
       m_pcolorview = nullptr;
 
-      m_pfilemanager = nullptr;
+      //m_pfilemanager = nullptr;
 
-      m_pfilemanagerTabbed = nullptr;
+      //m_pfilemanagerTabbed = nullptr;
 
    }
 
@@ -222,7 +222,9 @@ namespace userex
       if (::is_set(pdocument))
       {
 
-         FileManagerSaveAs(pdocument);
+         set_current_tab_by_id("file_manager_save");
+
+         filemanager_document("file_manager_save")->FileManagerSaveAs(pdocument);
 
       }
 
@@ -255,10 +257,10 @@ namespace userex
 
          }
 
-         if (::is_set(filemanager_document()))
+         if (::is_set(filemanager_document("file_manager_save")))
          {
 
-            filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
+            filemanager_document("file_manager_save")->filemanager_data()->m_pdocumentTopic = nullptr;
 
          }
 
@@ -666,7 +668,7 @@ namespace userex
          if(pdocument != nullptr)
          {
 
-            m_pfilemanager = pdocument;
+            m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
             __pointer(::user::impact) pview = pdocument->get_view();
 
@@ -765,40 +767,42 @@ namespace userex
    }
 
 
-   ::filemanager::document * pane_tab_view::filemanager_document()
+   ::filemanager::document * pane_tab_view::filemanager_document(const ::atom & atomFileManager)
    {
 
-      return  (m_pfilemanager == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (m_pfilemanager));
+      auto pobject = m_mapFileManager[atomFileManager];
+
+      return  (pobject == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (pobject.m_p));
 
    }
 
 
-   ::filemanager::document * pane_tab_view::tabbed_filemanager_manager()
-   {
-
-      return  (m_pfilemanagerTabbed == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (m_pfilemanagerTabbed));
-
-   }
-
-
-   void pane_tab_view::FileManagerSaveAs(::user::document * pdocument)
-   {
-
-      set_current_tab_by_id(impact_filemanager_main);
-
-      filemanager_document()->FileManagerSaveAs(pdocument);
-
-   }
+//   ::filemanager::document * pane_tab_view::tabbed_filemanager_manager()
+//   {
+//
+//      return  (m_pfilemanagerTabbed == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (m_pfilemanagerTabbed));
+//
+//   }
 
 
-   void pane_tab_view::TabbedFileManagerSaveAs(::user::document * pdocument)
-   {
-
-      set_current_tab_by_id("tabbed_file_manager");
-
-      tabbed_filemanager_manager()->FileManagerSaveAs(pdocument);
-
-   }
+//   void pane_tab_view::FileManagerSaveAs(::user::document * pdocument)
+//   {
+//
+//      set_current_tab_by_id(impact_filemanager_main);
+//
+//      filemanager_document()->FileManagerSaveAs(pdocument);
+//
+//   }
+//
+//
+//   void pane_tab_view::TabbedFileManagerSaveAs(::user::document * pdocument)
+//   {
+//
+//      set_current_tab_by_id("tabbed_file_manager");
+//
+//      tabbed_filemanager_manager()->FileManagerSaveAs(pdocument);
+//
+//   }
 
 
    void pane_tab_view::_001OnTabClose(index iTab)
@@ -806,8 +810,8 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(get_parent_frame()->ContinueModal() && ::is_set(filemanager_document())
-            && filemanager_document()->filemanager_data()->m_pdocumentTopic!= nullptr)
+      if(get_parent_frame()->ContinueModal() && ::is_set(filemanager_document("file_manager_save"))
+            && filemanager_document("file_manager_save")->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
          get_parent_frame()->EndModalLoop("yes");

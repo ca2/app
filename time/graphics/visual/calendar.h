@@ -31,7 +31,7 @@ namespace datetime
          virtual void initialize(::object * pobject) override;
 
 
-         virtual void GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect);
+         virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
          virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
 
@@ -41,7 +41,7 @@ namespace datetime
 
          virtual enum_element hit_test(const ::point_i32& point);
          virtual bool hit_test(enum_element eelement, const ::point_i32& point);
-         virtual bool time_hit_test(::datetime::time& time, const ::point_i32& point);
+         virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
 
       };
 

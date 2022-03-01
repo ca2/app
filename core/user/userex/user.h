@@ -221,18 +221,14 @@ namespace core
 
       }
 
+
       ::user::document * hold(__pointer(::user::interaction) pinteraction);
-
-
-
-
-
 
 
       virtual void     initialize(::object * pobject) override;
 
 
-      virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument, const atom & atomFileManager = "file_manager_save");
 
 
       virtual void initialize_userex();

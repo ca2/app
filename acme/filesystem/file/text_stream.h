@@ -22,7 +22,7 @@ inline void __string_exchange(text_stream & s, u32 & u);
 inline void __string_exchange(text_stream & s, u64 & u);
 inline void __string_exchange(text_stream & s, float & f);
 inline void __string_exchange(text_stream & s, double & d);
-inline void __string_exchange(text_stream & s, ::datetime::time & time);
+inline void __string_exchange(text_stream & s, ::earth::time & time);
 inline void __string_exchange(text_stream & s, const char * psz);
 inline void __string_exchange(text_stream & s, char * sz);
 inline void __string_exchange(text_stream & s, string & str);
@@ -161,7 +161,7 @@ public:
    //virtual void exchange(const ::atom &, u64 & u) { default_exchange(u); }
    //virtual void exchange(const ::atom &, float & f) { default_exchange(f); }
    //virtual void exchange(const ::atom &, double & d) { default_exchange(d); }
-   //virtual void exchange(const ::atom &, ::datetime::time & time) { default_exchange(time.m_time); }
+   //virtual void exchange(const ::atom &, ::earth::time & time) { default_exchange(time.m_time); }
    //virtual void exchange(const ::atom &, const char * psz) { write_only(psz); }
    //virtual void exchange(const ::atom &, string & str) { default_exchange(str); }
    //virtual void exchange(const ::atom &, ::file::path & path) { default_exchange(path); }

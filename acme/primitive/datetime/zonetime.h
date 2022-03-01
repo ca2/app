@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace datetime
+namespace earth
 {
 
 
@@ -11,7 +11,7 @@ namespace datetime
    public:
 
 
-      time_t        m_iZoneOffset;
+      time_shift     m_timeshift;
 
 
       static zonetime get_current_time(time_t iZone) noexcept;
@@ -44,11 +44,11 @@ namespace datetime
    };
 
 
-} // namespace datetime
+} // namespace earth
 
 
 #ifdef __DEBUG
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetime::zonetime time);
+CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime time);
 #endif
 
 

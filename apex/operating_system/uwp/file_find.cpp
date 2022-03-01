@@ -165,42 +165,42 @@ namespace universal_windows
          return false;
    }
 
-   bool file_find::GetLastAccessTime(::datetime::time& refTime) const
+   bool file_find::GetLastAccessTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastAccessTime);
+         refTime = ::earth::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastAccessTime);
          return true;
       }
       else
          return false;
    }
 
-   bool file_find::GetLastWriteTime(::datetime::time& refTime) const
+   bool file_find::GetLastWriteTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastWriteTime);
+         refTime = ::earth::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastWriteTime);
          return true;
       }
       else
          return false;
    }
 
-   bool file_find::GetCreationTime(::datetime::time& refTime) const
+   bool file_find::GetCreationTime(::earth::time& refTime) const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
+         refTime = ::earth::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
          return true;
       }
       else

@@ -16,7 +16,7 @@ namespace introjection
       ::file::path                              m_pathScript;
       ::string_stream                           m_memfileError;
       string                                    m_strError;
-      filetime_set                              m_filetimeset;
+      file_time_set                              m_filetimeset;
 
 
       library();

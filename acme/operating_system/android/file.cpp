@@ -79,12 +79,12 @@ namespace android
       rStatus.m_size = st.st_size;
 
       // convert times as appropriate
-      /*rStatus.m_ctime = ::datetime::time(findFileData.ftCreationTime);
-      rStatus.m_atime = ::datetime::time(findFileData.ftLastAccessTime);
-      rStatus.m_mtime = ::datetime::time(findFileData.ftLastWriteTime);*/
-      rStatus.m_ctime = ::datetime::time(st.st_mtime);
-      rStatus.m_atime = ::datetime::time(st.st_atime);
-      rStatus.m_mtime = ::datetime::time(st.st_ctime);
+      /*rStatus.m_ctime = ::earth::time(findFileData.ftCreationTime);
+      rStatus.m_atime = ::earth::time(findFileData.ftLastAccessTime);
+      rStatus.m_mtime = ::earth::time(findFileData.ftLastWriteTime);*/
+      rStatus.m_ctime = ::earth::time(st.st_mtime);
+      rStatus.m_atime = ::earth::time(st.st_atime);
+      rStatus.m_mtime = ::earth::time(st.st_ctime);
 
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;
@@ -706,9 +706,9 @@ pacmedir->create(path.folder());
 
          rStatus.m_attribute = 0;
 
-         rStatus.m_ctime = ::datetime::time(st.st_mtime);
-         rStatus.m_atime = ::datetime::time(st.st_atime);
-         rStatus.m_mtime = ::datetime::time(st.st_ctime);
+         rStatus.m_ctime = ::earth::time(st.st_mtime);
+         rStatus.m_atime = ::earth::time(st.st_atime);
+         rStatus.m_mtime = ::earth::time(st.st_ctime);
 
          if (rStatus.m_ctime.get_time() == 0)
             rStatus.m_ctime = rStatus.m_mtime;

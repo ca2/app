@@ -241,7 +241,7 @@ namespace account
 
       Session.account()->on_user_logon(this);
 
-      m_timeAuthentication = ::datetime::time::get_current_time();
+      m_timeAuthentication = ::earth::time::get_current_time();
 
    }
 
@@ -249,7 +249,7 @@ namespace account
    ::e_status user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
-      m_timeAuthenticationRequest = ::datetime::time::get_current_time();
+      m_timeAuthenticationRequest = ::earth::time::get_current_time();
 
       m_bDeferRegistration = bInteractive;
 
@@ -431,9 +431,9 @@ namespace account
          if(m_estatusAuthentication == success_authenticated)
          {
 
-            auto authenticationRequestElapsed = ::datetime::time::get_current_time() - m_timeAuthenticationRequest;
+            auto authenticationRequestElapsed = ::earth::time::get_current_time() - m_timeAuthenticationRequest;
 
-            auto authenticationDoneElapsed = ::datetime::time::get_current_time() - m_timeAuthentication;
+            auto authenticationDoneElapsed = ::earth::time::get_current_time() - m_timeAuthentication;
 
             auto authenticationElapsed = min(authenticationRequestElapsed, authenticationDoneElapsed);
 

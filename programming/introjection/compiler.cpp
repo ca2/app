@@ -578,7 +578,7 @@ namespace introjection
 
       }
       else if(!bNew)
-//         if(get_filetime(strFilePath) == lib->m_filetime)
+//         if(get_file_time(strFilePath) == lib->m_filetime)
       {
 
 //          bNew = false;
@@ -609,7 +609,7 @@ namespace introjection
 
       bNew = true;
 
-      plibrary->m_filetimeset = get_filetime_set(pathFile);
+      plibrary->m_filetimeset = get_file_time_set(pathFile);
 
       ::file::path strName(pathFile);
 

@@ -489,7 +489,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //} // namespace aura
 
 
-inline stream & operator >> (stream & s, ::datetime::time & time);
+inline stream & operator >> (stream & s, ::earth::time & time);
 
 
 //template < typename BASE >

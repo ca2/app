@@ -2247,6 +2247,12 @@ void application::create_app_shortcut()
 
          string strAppName;
 
+         string strAppIdUnderscore = m_strAppId;
+
+         strAppIdUnderscore.find_replace("/", "_");
+
+         strAppIdUnderscore.find_replace("-", "_");
+
          if (m_strAppName.has_char())
          {
 
@@ -2255,12 +2261,6 @@ void application::create_app_shortcut()
          }
          else
          {
-
-            string strAppIdUnderscore = m_strAppId;
-
-            strAppIdUnderscore.find_replace("/", "_");
-
-            strAppIdUnderscore.find_replace("-", "_");
 
             strAppName = strAppIdUnderscore;
 
@@ -2281,6 +2281,8 @@ void application::create_app_shortcut()
 
          auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
+#ifdef WINDOWS
+
          auto pathIcon = path.folder() / "icon.ico";
 
          if (!m_psystem->m_pacmefile->exists(pathIcon))
@@ -2289,6 +2291,21 @@ void application::create_app_shortcut()
             file().copy(pathIcon, "matter://main/icon.ico", false);
 
          }
+
+#else
+
+         auto pathIcon = path.folder() / (strAppIdUnderscore + "-256.png");
+
+         if (!m_psystem->m_pacmefile->exists(pathIcon))
+         {
+
+            file().copy(pathIcon, "matter://main/icon-256.png", false);
+
+         }
+
+#endif
+
+#ifdef WINDOWS
 
          pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
 
@@ -2314,6 +2331,12 @@ void application::create_app_shortcut()
             shell_notify_assoc_change();
 
          }
+
+#else
+
+         //pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
+
+#endif
 
          auto pathCreatedShortcut = m_psystem->m_pacmedir->roaming() / m_strAppId / "created_shortcut.txt";
 

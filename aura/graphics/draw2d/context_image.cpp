@@ -857,27 +857,20 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pimage->set_ok();
 
-   //for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
-   //{
+   ::duration durationTotal;
 
-   //   auto pframe = pframea->element_at(iFrame);
+   for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
+   {
 
-   //   auto pimage = pframe->m_pimage;
+      auto pframe = pframea->element_at(iFrame);
 
-   //   pimage->m_iFrame = iFrame;
+      auto duration = pframe->m_duration;
 
-   //   pimage->extension()->m_pframea = pframea;
+      durationTotal += duration;
 
-   //   if (pimage != this)
-   //   {
+   }
 
-   //      pimage->set_ok();
-
-   //   }
-
-   //}
-
-   return;
+   pframea->m_durationTotal = durationTotal;
 
 }
 

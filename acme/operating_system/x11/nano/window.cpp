@@ -812,30 +812,30 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::on_click(const ::atom & atomParam)
+   void nano_window::on_click(const ::atom & atomParam, int x, int y)
    {
 
       atom atom(atomParam);
 
-      fork([this, atom]()
+      fork([this, atom, x, y]()
            {
 
-              m_pinterface->on_click(atom);
+              m_pinterface->on_click(atom, x, y);
 
            });
 
    }
 
 
-   void nano_window::on_right_click(const ::atom & atomParam)
+   void nano_window::on_right_click(const ::atom & atomParam, int x, int y)
    {
 
       atom atom(atomParam);
 
-      fork([this, atom]()
+      fork([this, atom, x, y]()
            {
 
-              m_pinterface->on_right_click(atom);
+              m_pinterface->on_right_click(atom, x, y);
 
            });
 

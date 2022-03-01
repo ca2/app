@@ -1386,6 +1386,8 @@ void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pima
 
       }
 
+      pimage->defer_update_image();
+
       auto pgraphicsSrc = pimage->get_graphics();
 
       if (::is_null(pgraphicsSrc))

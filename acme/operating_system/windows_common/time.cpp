@@ -117,10 +117,10 @@ void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nD
 }
 
 
-//void system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
+//void system_time_to_file_time(file_time_t* pfile_time, const system_time_t* psystemtime)
 //{
 //
-//   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
+//   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfile_time))
 //   {
 //
 //      throw ::exception(error_failed);
@@ -146,7 +146,7 @@ void time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
 }
 
 
-CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
+CLASS_DECL_ACME void time_to_file_time(file_time_t* pfile_time, const time_t* ptime)
 {
 
    system_time_t systemtime;
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 
    //}
 
-   /* estatus = */ system_time_to_file_time(pfiletime, &systemtime);
+   /* estatus = */ system_time_to_file_time(pfile_time, &systemtime);
 
    //if (!estatus)
    //{
@@ -179,7 +179,7 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 
 
 //
-//CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+//CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 //{
 //
 //   return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
@@ -188,10 +188,10 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 //
 //
 //
-//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+//CLASS_DECL_ACME void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
 //{
 //
-//   FileTimeToSystemTime((FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime);
+//   FileTimeToSystemTime((FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime);
 //   //{
 //
 //   //   return error_failed;
@@ -207,10 +207,10 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 
 //
 //
-//void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+//void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
 //{
 //
-//   if (!FileTimeToSystemTime((FILETIME *)pfiletime, (SYSTEMTIME *)psystemtime))
+//   if (!FileTimeToSystemTime((FILETIME *)pfile_time, (SYSTEMTIME *)psystemtime))
 //   {
 //
 //      return error_failed;
@@ -224,7 +224,7 @@ CLASS_DECL_ACME void time_to_file_time(filetime_t* pfiletime, const time_t* ptim
 
 
 
-CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
+CLASS_DECL_ACME int_bool get_file_time(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 {
 
    return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
@@ -235,10 +235,10 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 
 
 
-void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime)
+void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemtime)
 {
 
-   if (!FileTimeToSystemTime((LPFILETIME) pfiletime, (LPSYSTEMTIME) psystemtime))
+   if (!FileTimeToSystemTime((LPFILETIME) pfile_time, (LPSYSTEMTIME) psystemtime))
    {
 
       throw ::exception(error_failed);
@@ -249,10 +249,10 @@ void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtim
 
 
 
-void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime)
+void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time)
 {
 
-   if (!SystemTimeToFileTime((LPSYSTEMTIME)pfiletime, (LPFILETIME)psystemtime))
+   if (!SystemTimeToFileTime((LPSYSTEMTIME)pfile_time, (LPFILETIME)psystemtime))
    {
 
       throw ::exception(error_failed);
@@ -260,7 +260,6 @@ void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletim
    }
 
 }
-
 
 
 void GetSystemTime(system_time_t* psystemtime)
@@ -272,5 +271,37 @@ void GetSystemTime(system_time_t* psystemtime)
 
 }
 
+
+void file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
+{
+
+   FileTimeToSystemTime((FILETIME *) pfile_time, (SYSTEMTIME *) psystemtime);
+
+}
+
+
+void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
+{
+
+   SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfile_time);
+
+}
+
+
+void get_system_time(system_time_t * psystemtime)
+{
+
+   GetSystemTime((SYSTEMTIME *) psystemtime);
+
+}
+
+
+
+void get_system_time(system_time_t * psystemtime)
+{
+
+   GetSystemTime((SYSTEMTIME *) psystemtime);
+
+}
 
 

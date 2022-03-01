@@ -249,9 +249,9 @@ CLASS_DECL_APEX bool shell_execute_sync(const char * pszPath, const char * pszPa
    if (!create_process(strCmdLine, &processId))
       return -1;
 
-   ::datetime::time timeEnd = ::datetime::time::now() + durationTimeout;
+   ::earth::time timeEnd = ::earth::time::now() + durationTimeout;
 
-   while (::datetime::time::now() < timeEnd)
+   while (::earth::time::now() < timeEnd)
    {
 
       if (kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId

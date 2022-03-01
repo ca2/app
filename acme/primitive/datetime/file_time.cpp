@@ -93,7 +93,7 @@ bool file_time::operator>=(file_time ft) const noexcept
 file_time_t file_time::get_time() const noexcept
 {
 
-   return m_file_time;
+   return m_filetime;
 
 }
 
@@ -101,7 +101,7 @@ file_time_t file_time::get_time() const noexcept
 void file_time::SetTime(file_time_t nTime) noexcept
 {
 
-   m_file_time = nTime;
+   m_filetime = nTime;
 
 }
 
@@ -175,7 +175,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //
 //      auto pnode = get_system()->node();
 //
-//      pnode->get_system_time_as_file_time(&file_time.m_file_time);
+//      pnode->get_system_time_as_file_time(&file_time.m_filetime);
 //
 //      return file_time;
 //
@@ -190,7 +190,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //
 //      ::file_time localtime;
 //
-//      auto estatus = file_time_to_local_file_time(&localtime.m_file_time, pfile_time);
+//      auto estatus = file_time_to_local_file_time(&localtime.m_filetime, pfile_time);
 //
 //      if(!estatus)
 //      {
@@ -202,7 +202,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 //      // then convert that time to system time
 //      system_time systemtime;
 //
-//      estatus = file_time_to_system_time(&systemtime, &localtime.m_file_time);
+//      estatus = file_time_to_system_time(&systemtime, &localtime.m_filetime);
 //
 //      if(!estatus)
 //      {
@@ -250,7 +250,7 @@ CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
 bool get_file_time_set(const char * psz, file_time_set & file_timeset)
 {
 
-   return get_file_time_set(psz, file_timeset.m_file_timeCreation, file_timeset.m_file_timeModified);
+   return get_file_time_set(psz, file_timeset.m_filetimeCreation, file_timeset.m_filetimeModified);
 
 }
 
@@ -292,12 +292,12 @@ bool get_file_time_set(const char * psz, file_time & file_timeCreation, file_tim
 }
 
 
-CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::datetime::time& time)
+CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::earth::time& time)
 {
 
    ::file_time file_time;
 
-   time_to_file_time(&file_time.m_file_time, &time.m_i);
+   time_to_file_time(&file_time.m_filetime, &time.m_i);
 
    return set_modified_file_time(psz, file_time);
 
@@ -378,9 +378,9 @@ bool get_file_time_set(const char * psz, file_time & creation, file_time & modif
 
    stat(psz, &st);
 
-   creation.m_file_time = st.st_ctime;
+   creation.m_filetime = st.st_ctime;
 
-   modified.m_file_time = st.st_mtime;
+   modified.m_filetime = st.st_mtime;
 
    return true;
 
@@ -396,7 +396,7 @@ void copy(payload * ppayload, const file_time * pfile_time)
 
    ppayload->set_type(e_type_file_time, false);
 
-   ppayload->m_file_time = pfile_time->m_file_time;
+   ppayload->m_filetime = pfile_time->m_filetime;
 
 }
 

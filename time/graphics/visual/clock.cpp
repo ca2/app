@@ -39,7 +39,7 @@ namespace datetime
 
       auto pmathematics = ::mathematics::mathematics();
 
-      ::datetime::time timeNow = ::datetime::time::now() + m_timespan;
+      ::earth::time timeNow = ::earth::time::now() + m_timespan;
 
       rectangle_i32 rectangle;
       GetRect(&rectangle,e_element_clock);

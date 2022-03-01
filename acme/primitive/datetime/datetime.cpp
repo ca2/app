@@ -266,7 +266,7 @@ namespace datetime
 //
 //   value strtotime(::matter * pobject, const ::text::context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
 //   {
-//      ::datetime::time time;
+//      ::earth::time time;
 //      string str(psz);
 //      str.trim();
 //      str += " ";
@@ -305,14 +305,14 @@ namespace datetime
 //               time_t nowUtc = mktime(gmtime(&now));
 //               time_t tDiff = difftime(nowUtc, now);*/
 //#ifdef WINDOWS
-//               time = ::datetime::time(_mkgmtime64(&atm));
+//               time = ::earth::time(_mkgmtime64(&atm));
 //#else
-//               time = ::datetime::time(timegm(&atm));
+//               time = ::earth::time(timegm(&atm));
 //#endif
 //            }
 //            else
 //            {
-//               time = ::datetime::time(
+//               time = ::earth::time(
 //                      set["year"],
 //                      set["month"],
 //                      set["day"],
@@ -331,7 +331,7 @@ namespace datetime
 //         {
 //            bBaseTime = true;
 //            Sys(pobject).datetime().international().parse_str(str,set);
-//            time = ::datetime::time(
+//            time = ::earth::time(
 //                   set["year"],
 //                   set["month"],
 //                   set["day"],
@@ -350,7 +350,7 @@ namespace datetime
 //            bBaseTime = true;
 //            parse_br_str(str,set);
 //
-//            time = ::datetime::time(
+//            time = ::earth::time(
 //                   set["year"],
 //                   set["month"],
 //                   set["day"],
@@ -364,26 +364,26 @@ namespace datetime
 //            ::str::begins_eat(str,"today") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:today"))))
 //      {
-//         time = ::datetime::time::now();
-//         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
+//         time = ::earth::time::now();
+//         time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"tomorrow") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:tomorrow"))))
 //      {
-//         time = ::datetime::time::now();
-//         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
-//         time += ::datetime::time_span(1,0,0,0);
+//         time = ::earth::time::now();
+//         time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
+//         time += ::earth::time_span(1,0,0,0);
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"yesterday") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:yesterday"))))
 //      {
-//         time = ::datetime::time::now();
-//         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
-//         time -= ::datetime::time_span(1,0,0,0);
+//         time = ::earth::time::now();
+//         time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
+//         time -= ::earth::time_span(1,0,0,0);
 //         bBaseTime = true;
 //      }
 //      if(!bBaseTime && (
@@ -391,7 +391,7 @@ namespace datetime
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:now"))))
 //      {
 //         
-//         time = ::datetime::time::now();
+//         time = ::earth::time::now();
 //         
 //         bBaseTime = true;
 //
@@ -403,7 +403,7 @@ namespace datetime
 //
 //      if(!bBaseTime && pcre1->matches(stra, str) >= 5)
 //      {
-//         time = ::datetime::time::now();
+//         time = ::earth::time::now();
 //         i32 i1 = atoi(stra[2]);
 //         i32 i2 = atoi(stra[3]);
 //         i32 iCount = 0;
@@ -428,17 +428,17 @@ namespace datetime
 //            {
 //               i32 iDay = i2;
 //               i32 iMonth = i1;
-//               time = ::datetime::time(time.GetYear(),iMonth,iDay,
+//               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
-//               time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
+//               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //            }
 //            else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
 //            {
 //               i32 iDay = i1;
 //               i32 iMonth = i2;
-//               time = ::datetime::time(time.GetYear(),iMonth,iDay,
+//               time = ::earth::time(time.GetYear(),iMonth,iDay,
 //                                       time.GetHour(),time.GetMinute(),time.GetSecond());
-//               time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
+//               time = ::earth::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //            }
 //            iPath = iPath / iCount;
 //            iPathCount = iPathCount * iCount;
@@ -557,7 +557,7 @@ namespace datetime
 //      }
 //      else
 //      {
-//         ::datetime::time time = value.get_time();
+//         ::earth::time time = value.get_time();
 //         if(time.GetSecond() == 0)
 //         {
 //            if(time.GetHour() == 0 && time.GetMinute() == 0)

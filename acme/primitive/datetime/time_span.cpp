@@ -1,25 +1,11 @@
 #include "framework.h"
 
 
-namespace datetime
+namespace earth
 {
 
 
    const char * const szInvalidDateTimeSpan = "Invalid DateTimeSpan";
-
-
-   //date_span::date_span()
-   //{
-   //   m_iMonth = 0;
-   //   m_iYear = 0;
-   //   m_bConstraintMonth = 0;
-
-   //}
-   /////////////////////////////////////////////////////////////////////////////
-   // time_span
-   /////////////////////////////////////////////////////////////////////////////
-
-
 
 
 } // namespace datetime
@@ -30,7 +16,7 @@ namespace datetime
 #ifdef __DEBUG
 
 
-dump_context & operator <<(dump_context & dumpcontext,::datetime::time_span timeSpan)
+dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpan)
 {
    dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
                timeSpan.GetHours() << " hours, " <<
@@ -40,9 +26,11 @@ dump_context & operator <<(dump_context & dumpcontext,::datetime::time_span time
    return dumpcontext;
 }
 
+
 #endif
 
-stream & operator << (stream & os, ::datetime::time_span span)
+
+stream & operator << (stream & os, ::earth::time_span span)
 {
 
    os.write((i64)span.m_i);
@@ -52,7 +40,7 @@ stream & operator << (stream & os, ::datetime::time_span span)
 }
 
 
-stream & operator >> (stream & is, ::datetime::time_span & span)
+stream & operator >> (stream & is, ::earth::time_span & span)
 {
 
    is.read((i64 &)span.m_i);
@@ -62,11 +50,11 @@ stream & operator >> (stream & is, ::datetime::time_span & span)
 }
 
 
-namespace datetime
+namespace earth
 {
 
 
-   string format(const char* pFormat, const ::datetime::time_span& span, const ::time_shift& timeshift)
+   string format(const char* pFormat, const time_span& span, const time_shift& timeshift)
    {
       // formatting timespans is a little trickier than formatting CTimes
       //  * we are only interested in relative time formats, ie. it is illegal
@@ -148,7 +136,7 @@ namespace datetime
    }
 
 
-} // namespace datetime
+} // namespace earth
 
 
 

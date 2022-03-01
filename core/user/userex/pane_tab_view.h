@@ -18,8 +18,7 @@ namespace userex
       
       id_map < __pointer(::form_document) >  m_mapForm;
       __pointer(pane_view)                   m_ppaneview;
-      ::object *                             m_pfilemanager;
-      ::object *                             m_pfilemanagerTabbed;
+      id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
       font_view *                            m_pfontview;
       color_view *                           m_pcolorview;
@@ -65,13 +64,11 @@ namespace userex
 
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
-      virtual ::filemanager::document * filemanager_document();
+      virtual ::filemanager::document * filemanager_document(const ::atom & atom);
 
-      virtual ::filemanager::document * tabbed_filemanager_manager();
+//      virtual void FileManagerSaveAs(::user::document * pdocument);
 
-      virtual void FileManagerSaveAs(::user::document * pdocument);
-
-      virtual void TabbedFileManagerSaveAs(::user::document * pdocument);
+//      virtual void TabbedFileManagerSaveAs(::user::document * pdocument);
 
       void _001OnTabClose(index iTab) override;
 

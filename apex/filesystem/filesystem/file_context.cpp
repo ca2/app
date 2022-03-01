@@ -1433,7 +1433,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                        ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
                        ::file::e_open_share_deny_write);
 
-      if (ofile.is_null())
+      if (!::is_ok(ofile))
       {
          string strError;
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
@@ -1448,9 +1448,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       try
       {
 
-         auto ifile = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
+         auto pfileInput = get_reader(varSource, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-         if (!ifile)
+         if (!::is_ok(pfileInput))
          {
             string strError;
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
@@ -1462,17 +1462,30 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          //stream istream(ifile, FIRST_VERSION);
 
-         m_pcontext->m_papexcontext->file().transfer(ostream.m_p, ifile);
+         m_pcontext->m_papexcontext->file().transfer(ostream.m_p, pfileInput);
 
-         ::file_pointer pfileInput = ifile;
+         bool bStatusFail = false;
 
-         if (pfileInput)
+         ::file::file_status st;
+
+         try
          {
 
-            bool bStatusFail = false;
+            pfileInput->get_status(st);
 
-            ::file::file_status st;
+         }
+         catch (...)
+         {
 
+            bStatusFail = true;
+
+            INFORMATION("During copy, failed to get status from input file \"" <<
+                  varSource.get_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+
+         }
+
+         if (!bStatusFail)
+         {
             try
             {
 
@@ -1484,28 +1497,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
                bStatusFail = true;
 
-               INFORMATION("During copy, failed to get status from input file \"" << 
-                     varSource.get_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
-
-            }
-
-            if (!bStatusFail)
-            {
-               try
-               {
-
-                  pfileInput->get_status(st);
-
-               }
-               catch (...)
-               {
-
-                  bStatusFail = true;
-
-                  INFORMATION("During copy, failed to set status to output file \""
-                     << varTarget.get_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
-
-               }
+               INFORMATION("During copy, failed to set status to output file \""
+                  << varTarget.get_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
             }
 
@@ -2525,7 +2518,7 @@ string file_context::nessie(const ::payload &payloadFile)
 }
 
 
-void file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
+void file_context::get_last_write_time(file_time_t *pfile_time, const string &strFilename)
 {
 
    throw ::interface_only();

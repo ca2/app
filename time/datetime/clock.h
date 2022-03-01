@@ -15,7 +15,7 @@ namespace datetime
       protected:
 
 
-         ::datetime::time_span    m_timespan;
+         ::earth::time_span    m_timespan;
 
 
       public:
@@ -28,8 +28,8 @@ namespace datetime
          virtual void GetRect(RECTANGLE_I32 * lprect, enum_element eelement);
 
 
-         virtual void set_time(const ::datetime::time& time);
-         virtual void get_time(::datetime::time& time);
+         virtual void set_time(const ::earth::time& time);
+         virtual void get_time(::earth::time& time);
 
          virtual void _001OnDraw(::draw2d::graphics* pgraphics);
 

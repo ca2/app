@@ -352,7 +352,7 @@ typedef CLASS_DECL_ACME __pointer_array(index_array) index_2darray;
 #include "priority_queue.h"
 
 class CLASS_DECL_ACME time_array :
-   public array < ::datetime::time, ::datetime::time & >
+   public array < ::earth::time, ::earth::time & >
 {
 };
 

@@ -750,7 +750,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-::datetime::time acme_file::modification_time(const char* psz)
+::earth::time acme_file::modification_time(const char* psz)
 {
 
    throw ::interface_only();
@@ -761,7 +761,7 @@ void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-void acme_file::set_modification_time(const char* psz, const ::datetime::time& time)
+void acme_file::set_modification_time(const char* psz, const ::earth::time& time)
 {
 
    throw ::interface_only();
@@ -867,9 +867,7 @@ void acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddE
 void acme_file::put_contents(const char * path, const memory_base & memory)
 {
 
-   throw ::interface_only();
-
-   //return false;
+   put_block(path, memory);
 
 }
 

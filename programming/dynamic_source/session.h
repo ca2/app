@@ -13,7 +13,7 @@ namespace dynamic_source
 
       string                                             m_strSessid;
       property_set                                       m_set;
-      ::datetime::time                                   m_timeExpiry;
+      ::earth::time                                   m_timeExpiry;
       __reference(::dynamic_source::script_manager)      m_pmanager;
 
 

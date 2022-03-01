@@ -57,7 +57,7 @@ namespace ftp
       e_size      m_esize;
       filesize m_filesize;                   ///< number of octets
       e_time      m_etimeModification;
-      ::datetime::time       m_timeModification;                   ///< modification time
+      ::earth::time       m_timeModification;                   ///< modification time
       string      m_strAttributes;           ///< file attributes
       string      m_strUID;                  ///< user identifier (owner of file)
       string      m_strGID;                  ///< group identifier

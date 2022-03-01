@@ -39,14 +39,14 @@ namespace datetime
       }
 
 
-      void clock::set_time(const ::datetime::time & time)
+      void clock::set_time(const ::earth::time & time)
       {
-         m_timespan = time - ::datetime::time::now();
+         m_timespan = time - ::earth::time::now();
       }
 
-      void clock::get_time(::datetime::time & time)
+      void clock::get_time(::earth::time & time)
       {
-         time = ::datetime::time::now() + m_timespan;
+         time = ::earth::time::now() + m_timespan;
       }
 
 
@@ -54,21 +54,21 @@ namespace datetime
 
       void clock::previous_minute()
       {
-         m_timespan -= ::datetime::time_span(0, 0, 1, 0);
+         m_timespan -= ::earth::time_span(0, 0, 1, 0);
       }
       void clock::next_minute()
       {
-         m_timespan += ::datetime::time_span(0, 0, 1, 0);
+         m_timespan += ::earth::time_span(0, 0, 1, 0);
       }
 
       void clock::next_hour()
       {
-         m_timespan += ::datetime::time_span(0, 1, 0, 0);
+         m_timespan += ::earth::time_span(0, 1, 0, 0);
       }
 
       void clock::previous_hour()
       {
-         m_timespan -= ::datetime::time_span(0, 1, 0, 0);
+         m_timespan -= ::earth::time_span(0, 1, 0, 0);
       }
 
 

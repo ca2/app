@@ -1094,14 +1094,14 @@ namespace datetime
 {
 
 
-   float_time &float_time::operator=(const FILETIME &filetimeSrc) RELEASENOTHROW
+   float_time &float_time::operator=(const FILETIME &file_timeSrc) RELEASENOTHROW
    {
       
       FILETIME ftl;
 
       SYSTEMTIME st;
 
-      m_estatus =  ::FileTimeToLocalFileTime(&filetimeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? e_status_valid : e_status_invalid;
+      m_estatus =  ::FileTimeToLocalFileTime(&file_timeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? e_status_valid : e_status_invalid;
 
       return *this;
 

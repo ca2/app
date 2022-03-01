@@ -363,9 +363,9 @@ namespace dynamic_source
 
       //string strCompileLogUnique;
 
-      ::datetime::time timeNow = ::datetime::time::now();
+      ::earth::time timeNow = ::earth::time::now();
 
-      string strCompileLogUnique = ::datetime::format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
+      string strCompileLogUnique = ::earth::format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
       strClog.format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
@@ -1043,7 +1043,7 @@ pacmedir->create(pathDVP_Folder);
    void script_compiler::cppize(ds_script * pscript)
    {
 
-      auto ftDs = get_filetime_set(pscript->m_strSourcePath);
+      auto ftDs = get_file_time_set(pscript->m_strSourcePath);
 
       if(m_pcontext->m_papexcontext->file().exists(pscript->m_strCppPath))
       {

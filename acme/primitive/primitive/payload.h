@@ -65,8 +65,8 @@ public:
       ::f64                     m_f64;
       ::f64 * m_pf64;
       payload * m_ppayload;
-      ::datetime::time           m_time;
-      filetime_t                 m_filetime;
+      ::earth::time           m_time;
+      file_time_t                 m_filetime;
       atom * m_pid;
       ::property * m_pproperty;
       integral_nanosecond        m_integralnanosecond;
@@ -151,7 +151,7 @@ public:
    payload(const ::string & str);
    payload(const ::type & type);
    payload(const ::atom & atom);
-   payload(const ::datetime::time & time);
+   payload(const ::earth::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
    payload(const ::element & element);
@@ -485,8 +485,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::file::path() const;
 
 
-   ::filetime filetime() const;
-   ::datetime::time datetime_time() const;
+   ::file_time file_time() const;
+   ::earth::time datetime_time() const;
    ::color::color color() const;
    ::color::hls color_hls() const;
    ::block block() const;
@@ -498,8 +498,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::file::path & as_file_path();
 
 
-   ::filetime & as_filetime();
-   ::datetime::time & as_datetime_time();
+   ::file_time & as_file_time();
+   ::earth::time & as_datetime_time();
    ::color::color & as_color();
    ::color::hls & as_color_hls();
 
@@ -633,7 +633,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 #ifdef WINDOWS
    payload & operator = (long l);
 #endif
-   payload & operator = (const ::datetime::time & time);
+   payload & operator = (const ::earth::time & time);
    payload & operator = (const ::color::color & color);
    payload & operator = (const ::color::hls & color);
    inline payload & operator = (const char * psz);
@@ -1041,7 +1041,7 @@ public:
    //operator nanosecond & () { return m_payload.as_nanos(); }
 
    operator duration & () { return m_payload.as_duration(); }
-   operator datetime::time & () { return m_payload.as_datetime_time(); }
+   operator earth::time & () { return m_payload.as_datetime_time(); }
 
 
    operator string & () { return m_payload.as_string(); }
@@ -1091,7 +1091,7 @@ public:
    operator f64 ()const { return m_payload.f64(); }
 
    operator duration ()const { return m_payload.duration(); }
-   operator datetime::time ()const { return m_payload.datetime_time(); }
+   operator earth::time ()const { return m_payload.datetime_time(); }
 
 
    operator string ()const { return m_payload.string(); }

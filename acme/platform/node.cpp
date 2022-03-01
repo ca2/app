@@ -620,7 +620,7 @@ namespace acme
    }
 
 
-   void node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   void node::datetime_to_file_time(::file_time_t* pfile_time, const ::earth::time& time)
    {
 
       throw ::interface_only();
@@ -1137,7 +1137,7 @@ namespace acme
 
    }
 
-//void node::get_system_time_as_file_time(filetime_t * pfiletime)
+//void node::get_system_time_as_file_time(file_time_t * pfile_time)
    //{
 
    //   throw ::interface_only();
@@ -1145,7 +1145,7 @@ namespace acme
    //}
 
 
-   //void node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   //void node::file_time_to_system_time(system_time_t * psystemtime, const file_time_t * pfile_time)
    //{
 
    //   throw ::interface_only();
@@ -1161,7 +1161,7 @@ namespace acme
    //}
 
 
-   //void node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   //void node::system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
    //{
 
    //   throw ::interface_only();
@@ -1177,7 +1177,7 @@ namespace acme
    //}
 
 
-   //void node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   //void node::time_to_file_time(file_time_t * pfile_time, const time_t * ptime)
    //{
 
    //   throw ::interface_only();

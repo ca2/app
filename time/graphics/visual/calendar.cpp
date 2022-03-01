@@ -37,11 +37,11 @@ namespace datetime
 
          pgraphics->set(m_pfont);
 
-         ::datetime::time timeNow = ::datetime::time::now();
+         ::earth::time timeNow = ::earth::time::now();
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
-         ::datetime::time time(iYear,iMonth,1,0,0,0);
-         ::datetime::time_span timespan(1,0,0,0);
+         ::earth::time time(iYear,iMonth,1,0,0,0);
+         ::earth::time_span timespan(1,0,0,0);
          color32_t crBorder;
          rectangle_i32 rectangleDay;
          int32_t iDay;
@@ -96,7 +96,7 @@ namespace datetime
             strDay.format("%d",timeNow.day());
             pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
-         ::datetime::time timeEmp = m_time;
+         ::earth::time timeEmp = m_time;
          for(int32_t iDay = timeEmp.day(); time.year() == iYear
                && time.month() == iMonth &&
                (m_time.day() == iDay || (
@@ -139,10 +139,10 @@ namespace datetime
       }
 
 
-      void graphics::GetRectDay(::datetime::time & time,RECTANGLE_I32 * lprect)
+      void graphics::GetRectDay(::earth::time & time,RECTANGLE_I32 * lprect)
       {
          int32_t iWeekDay = time.day_of_week();
-         ::datetime::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
+         ::earth::time timeMonth(m_iYear,m_iMonth,1,0,0,0);
          int32_t iWeek = get_week_of_month(time);
          GetRectDay(iWeekDay,iWeek + 1,lprect);
       }
@@ -221,12 +221,12 @@ namespace datetime
       }
 
 
-      bool graphics::time_hit_test(::datetime::time & timeRet,const point_i32 & point)
+      bool graphics::time_hit_test(::earth::time & timeRet,const point_i32 & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
-         ::datetime::time time(iYear,iMonth,1,0,0,0);
-         ::datetime::time_span timespan(1,0,0,0);
+         ::earth::time time(iYear,iMonth,1,0,0,0);
+         ::earth::time_span timespan(1,0,0,0);
          rectangle_i32 rectangleDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 33; iDay++)

@@ -162,7 +162,7 @@ namespace datetime
 #endif
 
       float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
-      float_time(const FILETIME& filetimeSrc) RELEASENOTHROW;
+      float_time(const FILETIME& file_timeSrc) RELEASENOTHROW;
 
       float_time(
       int32_t nYear,
@@ -215,7 +215,7 @@ namespace datetime
 #endif
 
       float_time& operator=(const SYSTEMTIME& systimeSrc) RELEASENOTHROW;
-      float_time& operator=(const FILETIME& filetimeSrc) RELEASENOTHROW;
+      float_time& operator=(const FILETIME& file_timeSrc) RELEASENOTHROW;
       float_time& operator=(const UDATE& udate) RELEASENOTHROW;
 
       bool operator==(const float_time& date) const RELEASENOTHROW;
@@ -567,10 +567,10 @@ inline float_time::float_time(const SYSTEMTIME& systimeSrc) RELEASENOTHROW :
       *this = systimeSrc;
    }
 
-inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
+inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
    {
-      *this = filetimeSrc;
+      *this = file_timeSrc;
    }
 
    inline float_time::float_time(

@@ -17,26 +17,17 @@ class CLASS_DECL_ACME file_time
 public:
 
 
-   file_time_t           m_file_time;
+   file_time_t           m_filetime;
 
 
-   file_time() noexcept { m_file_time = 0; }
-   file_time(file_time_t file_time) noexcept { m_file_time = file_time; }
+   file_time() noexcept { m_filetime = 0; }
+   file_time(file_time_t file_time) noexcept { m_filetime = file_time; }
 
    static file_time get_current_time() noexcept;
 
-//#ifdef WINDOWS
-//
-//   file_time & operator=(const FILETIME & file_time) noexcept { m_file_time = make64_from32(file_time.dwLowDateTime, file_time.dwHighDateTime); return *this; }
-//   inline FILETIME get_FILETIME() const noexcept { return {lower32_from64(m_file_time), upper32_from64(m_file_time)}; }
-//
-//   operator FILETIME * ()  { return (FILETIME *)&m_file_time; }
-//   operator const FILETIME * () const { return (const FILETIME *)&m_file_time; }
-//
-//#endif
 
-   explicit operator file_time_t &() { return m_file_time; }
-   explicit operator file_time_t () const { return m_file_time; }
+   explicit operator file_time_t &() { return m_filetime; }
+   explicit operator file_time_t () const { return m_filetime; }
 
 
    file_time& operator+=(file_time_span span) noexcept;
@@ -85,9 +76,9 @@ struct CLASS_DECL_ACME file_time_set
 {
 
 
-   file_time       m_file_timeCreation;
-   file_time       m_file_timeModified;
-   file_time       m_file_timeAccess; // Not used at Windows?
+   file_time       m_filetimeCreation;
+   file_time       m_filetimeModified;
+   file_time       m_filetimeAccess; // Not used at Windows?
 
 
    file_time_set()
@@ -103,9 +94,9 @@ struct CLASS_DECL_ACME file_time_set
       return
          &file_timeset == this ||
          (
-         m_file_timeCreation == file_timeset.m_file_timeCreation
-      && m_file_timeModified == file_timeset.m_file_timeModified
-	   && m_file_timeAccess == file_timeset.m_file_timeAccess
+         m_filetimeCreation == file_timeset.m_filetimeCreation
+      && m_filetimeModified == file_timeset.m_filetimeModified
+	   && m_filetimeAccess == file_timeset.m_filetimeAccess
             );
    }
 
@@ -114,7 +105,7 @@ struct CLASS_DECL_ACME file_time_set
    bool modified_timeout(const file_time & current, int iSeconds) const
    {
 
-      if (current - m_file_timeModified > (iSeconds * 10'000'000))
+      if (current - m_filetimeModified > (iSeconds * 10'000'000))
       {
 
          return true;
@@ -146,7 +137,7 @@ CLASS_DECL_ACME bool get_file_time_set(const char * psz, file_time_set & time);
 
 CLASS_DECL_ACME bool get_file_time_set(const char * psz, file_time & creation, file_time & modified);
 
-CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::datetime::time & time);
+CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const ::earth::time & time);
 
 CLASS_DECL_ACME bool set_modified_file_time(const char* psz, const file_time & modified);
 
@@ -169,7 +160,7 @@ inline file_time_set get_file_time_set(const char * psz)
 }
 
 
-//CLASS_DECL_ACME file_time __file_time(const ::datetime::time & time);
+//CLASS_DECL_ACME file_time __file_time(const ::earth::time & time);
 
 
 //time_t __time(const file_time & file_time);

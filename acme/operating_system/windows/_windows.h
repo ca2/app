@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline filetime __filetime(const FILETIME & filetime) { return make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); }
+inline file_time __file_time(const FILETIME & file_time) { return make64_from32(file_time.dwLowDateTime, file_time.dwHighDateTime); }
 
 
 CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);

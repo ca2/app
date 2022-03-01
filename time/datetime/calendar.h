@@ -19,8 +19,8 @@ namespace datetime
          int32_t      m_iMonth;
          int32_t      m_iYear;
          bool     m_bRange;
-         ::datetime::time    m_time;
-         ::datetime::time    m_timeEnd;
+         ::earth::time    m_time;
+         ::earth::time    m_timeEnd;
 
 
          calendar();
@@ -29,19 +29,19 @@ namespace datetime
 
          virtual void initialize(::object * pobject) override;
 
-         virtual void GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect);
+         virtual void GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
          virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
 
          virtual void set_month(int32_t iYear, int32_t iMonth);
-         virtual void set_time(const ::datetime::time& time);
-         virtual void set_time_range(const ::datetime::time& time, const ::datetime::time& timeEnd);
-         virtual void set_time_end(const ::datetime::time& timeEnd);
-         virtual void get_time(::datetime::time& time);
+         virtual void set_time(const ::earth::time& time);
+         virtual void set_time_range(const ::earth::time& time, const ::earth::time& timeEnd);
+         virtual void set_time_end(const ::earth::time& timeEnd);
+         virtual void get_time(::earth::time& time);
          virtual int32_t get_month();
          virtual int32_t get_year();
 
-         virtual int32_t get_week_of_month(::datetime::time& time);
+         virtual int32_t get_week_of_month(::earth::time& time);
 
          virtual void _001OnDraw(::draw2d::graphics* pgraphics);
 
@@ -60,7 +60,7 @@ namespace datetime
 
          virtual enum_element hit_test(const ::point_i32 & point);
          virtual bool hit_test(enum_element eelement, const ::point_i32& point);
-         virtual bool time_hit_test(::datetime::time& time, const ::point_i32& point);
+         virtual bool time_hit_test(::earth::time& time, const ::point_i32& point);
 
 
       };

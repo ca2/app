@@ -1695,7 +1695,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 //}
 //
 //
-//bool get_filetime_set(::winrt::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+//bool get_file_time_set(::winrt::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
 //{
 //
 //   if (lpCreationTime != nullptr)

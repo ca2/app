@@ -71,7 +71,7 @@ namespace user
 
 //CLASS_DECL_AURA ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName);
 //CLASS_DECL_AURA::winrt::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
-//CLASS_DECL_AURA bool get_filetime(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
+//CLASS_DECL_AURA bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
 #include "file_winrt.h"

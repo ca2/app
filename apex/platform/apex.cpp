@@ -4,7 +4,7 @@
 #include "apex/networking/sockets/_sockets.h"
 //#include "apex/platform/app_core.h"
 #include "apex/astr.h"
-#include "acme/exception/engine.h"
+//#include "acme/exception/engine.h"
 #include "system.h"
 
 
@@ -109,7 +109,7 @@ namespace apex
    ::mutex * g_pmutexCred;
 
 
-   class ::exception_engine* g_pexceptionengine;
+   //class ::exception_engine* g_pexceptionengine;
 
    ::mutex * g_pmutexMessageDispatch;
 

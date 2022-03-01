@@ -177,9 +177,11 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
       bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
 
-      ptabview->filemanager_document()->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+      auto atomFileManager = filemanager_data()->m_atom;
 
-      ptabview->filemanager_document()->get_operation_doc(true)->m_thread.kick();
+      ptabview->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+
+      ptabview->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.kick();
 
    }
 

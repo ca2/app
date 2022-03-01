@@ -11,7 +11,7 @@
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, u64 & u) { s.default_exchange(atom, u); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, float & f) { s.default_exchange(atom, f); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, double & d) { s.default_exchange(atom, d); }
-//inline void __var_exchange(payload_stream & s, const ::atom & atom, ::datetime::time & time) { s.default_exchange(atom, time.m_iSecond); }
+//inline void __var_exchange(payload_stream & s, const ::atom & atom, ::earth::time & time) { s.default_exchange(atom, time.m_iSecond); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, const char * psz) { s.write_only(atom, psz); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, string & str) { s.default_exchange(atom, str); }
 //inline void __var_exchange(payload_stream & s, const ::atom & atom, ::file::path & path) { s.default_exchange(atom, path); }
@@ -38,7 +38,7 @@ inline void __exchange(::payload_stream& s, u32& u) { s.default_exchange(u); }
 inline void __exchange(::payload_stream& s, u64& u) { s.default_exchange(u); }
 inline void __exchange(::payload_stream& s, float& f) { s.default_exchange(f); }
 inline void __exchange(::payload_stream& s, double& d) { s.default_exchange(d); }
-inline void __exchange(::payload_stream& s, ::datetime::time& time) { s.default_exchange(time.m_i); }
+inline void __exchange(::payload_stream& s, ::earth::time& time) { s.default_exchange(time.m_i); }
 inline void __exchange(::payload_stream& s, const char* psz) { s.write_only(psz); }
 inline void __exchange(::payload_stream& s, string& str) { s.default_exchange(str); }
 inline void __exchange(::payload_stream& s, ::file::path& path) { s.default_exchange(path); }

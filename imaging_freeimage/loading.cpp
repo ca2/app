@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_imaging_freeimage.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
@@ -327,13 +328,17 @@ namespace imaging_freeimage
 
       bool bJpegEnds = memory.ends("\x0FF\x0D9", 2);
 
+      bool bGif87a = memory.begins("GIF87a", 6);
+
+      bool bGif89a = memory.begins("GIF89a", 6);
+
       bool bJpeg =  bJpegBegins && bJpegEnds;
 
       bool bJfif = memory.begins("JFIF", 4);
 
       bool bExif = memory.begins("Exif", 4);
 
-      bool bGif = memory.begins("GIF", 3);
+      bool bGif = bGif87a || bGif89a;
 
       bool bBinary = *pszData == '\0';
 
@@ -341,28 +346,27 @@ namespace imaging_freeimage
       && !bBinary
       && !bJpeg
       && !bJfif
-      && !bExif)
+      && !bExif
+      && !bGif
+      )
       {
 
          //estatus = 
          
          pcontextimage->load_svg(pimage, memory);
 
-         //if (::succeeded(estatus))
+         if (::is_ok(pimage))
          {
-
-            auto pdata = pimage->get_data();
-
-            //return estatus;
 
             return;
 
          }
 
       }
-
-      if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
+   else if (bGif)
       {
+
+      //m_psystem->m_pacmefile->put_contents("/home/camilo/a.gif", memory);
 
          _load_multi_frame_image(pimage, memory);
 

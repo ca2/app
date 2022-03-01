@@ -370,7 +370,7 @@ payload::payload(::duration * pduration)
 }
 
 
-payload::payload(const ::datetime::time & time)
+payload::payload(const ::earth::time & time)
 {
    
    m_etype = e_type_time;
@@ -885,7 +885,7 @@ class ::payload & payload::operator = (::u64 * pinteraction)
 }
 
 
-class ::payload & payload::operator = (const ::datetime::time & time)
+class ::payload & payload::operator = (const ::earth::time & time)
 {
 
     set_type(e_type_time, false);
@@ -924,12 +924,12 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //#ifdef WINDOWS
 //
 //
-//class ::payload & payload::operator = (const FILETIME & filetime)
+//class ::payload & payload::operator = (const FILETIME & file_time)
 //{
 //
-//   set_type(type_filetime, false);
+//   set_type(type_file_time, false);
 //
-//   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+//   m_u64 = make64_from32(file_time.dwLowDateTime, file_time.dwHighDateTime);
 //
 //   return *this;
 //
@@ -5433,7 +5433,7 @@ bool payload::is_natural() const
 //
 //   }
 //   else if (m_etype == e_type_key_exists
-//            || m_etype == e_type_filetime
+//            || m_etype == e_type_file_time
 //            || m_etype == e_type_time)
 //   {
 //
@@ -6466,7 +6466,7 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_time:
-   case e_type_filetime:
+   case e_type_file_time:
       return false;
 
    case e_type_id:
@@ -6851,7 +6851,7 @@ bool payload::is_false() const
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
       return !m_time.m_i;
-   case e_type_filetime:
+   case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
       return m_ppayload || !*m_ppayload;
@@ -7037,7 +7037,7 @@ bool payload::is_set_false() const
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
       return !m_time.m_i;
-   case e_type_filetime:
+   case e_type_file_time:
       return !m_filetime;
    case e_type_payload_pointer:
       return m_ppayload || !*m_ppayload;
@@ -7269,7 +7269,7 @@ void unit_test_primitive_var_acme_block()
 #endif //UNIT_TEST
 
 
-::datetime::time payload::datetime_time () const
+::earth::time payload::datetime_time () const
 {
 
    return i64();
@@ -7277,7 +7277,7 @@ void unit_test_primitive_var_acme_block()
 }
 
 
-::datetime::time & payload::as_datetime_time()
+::earth::time & payload::as_datetime_time()
 {
 
    if (m_etype == e_type_payload_pointer)

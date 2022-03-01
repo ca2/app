@@ -200,7 +200,7 @@ enum enum_type
    e_type_id,
    e_type_pid,
    e_type_time,
-   e_type_filetime,
+   e_type_file_time,
    e_type_property,
    e_type_payload_pointer,
    e_type_color,

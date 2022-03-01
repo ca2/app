@@ -6,17 +6,11 @@
 #endif
 
 
-//#if defined(__APPLE__)
-//int makgmtime(struct tm * atm);
-//
-//#endif
-
-
-namespace datetime
+namespace earth
 {
 
 
-   ::datetime::zonetime zonetime::get_current_time(time_t iZoneOffset) noexcept
+   ::earth::zonetime zonetime::get_current_time(time_t iZoneOffset) noexcept
    {
 
       zonetime t;
@@ -31,7 +25,7 @@ namespace datetime
 
 #endif
 
-      t.m_iZoneOffset = iZoneOffset;
+      t.m_timeshift = (double) iZoneOffset;
 
       return t;
 
@@ -39,35 +33,32 @@ namespace datetime
 
    
    zonetime::zonetime() noexcept :
-      time(0),
-      m_iZoneOffset(0)
+      time(0)
    {
 
    }
 
 
-zonetime::zonetime(const zonetime & zonetime) noexcept :
-   time(zonetime.m_i),
-   m_iZoneOffset(zonetime.m_iZoneOffset)
+   zonetime::zonetime(const zonetime & zonetime) noexcept :
+      time(zonetime.m_i),
+      m_timeshift(zonetime.m_timeshift)
    {
 
 
    }
 
 
-zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
-   time(zonetime),
-   m_iZoneOffset(iZoneOffset)
+   zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
+      time(zonetime),
+      m_timeshift((double)iZoneOffset)
    {
+
    }
+
 
    zonetime::zonetime(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 iZoneOffset)
    {
-#pragma warning (push)
-#pragma warning (disable: 4127)  // conditional expression constant
 
-
-#pragma warning (pop)
 
       struct tm atm;
 
@@ -98,9 +89,6 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       }
 
    }
-
-
-
 
 
    struct tm* zonetime::GetZoneTm(struct tm* ptm) const
@@ -135,13 +123,17 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
          time_t t = m_i;
 
-         t += m_iZoneOffset;
+         t += (time_t) m_timeshift.m_d;
 
          ptmTemp = gmtime(&t);
 
          // gmtime can return nullptr
          if (ptmTemp == nullptr)
+         {
+
             return nullptr;
+
+         }
 
          // but don't throw ::exception( exception or generate error...
          // (reason for commenting out below, fat to be erased...)
@@ -168,65 +160,99 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
    i32 zonetime::GetZoneYear() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? (ptm->tm_year) + 1900 : 0;
+
    }
+
 
    i32 zonetime::GetZoneMonth() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_mon + 1 : 0;
+
    }
+
 
    i32 zonetime::GetZoneDay() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_mday : 0;
+
    }
+
 
    i32 zonetime::GetZoneHour() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_hour : -1;
+
    }
+
 
    i32 zonetime::GetZoneMinute() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_min : -1;
+
    }
+
 
    i32 zonetime::GetZoneSecond() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_sec : -1;
+
    }
+
 
    i32 zonetime::GetZoneDayOfWeek() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetZoneTm(&ttm);
+
       return ptm ? ptm->tm_wday + 1 : 0;
+      
    }
 
 
@@ -287,13 +313,13 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
    }
 
 
-} // namespace datetime
+} // namespace earth
 
 
 #ifdef __DEBUG
 
 
-dump_context & operator <<(dump_context & dumpcontext, ::datetime::zonetime zonetime)
+dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime zonetime)
 {
    char psz[32];
    psz[0] = '\0';
@@ -305,13 +331,13 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::zonetime zone
 
    if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
    {
-      dumpcontext << "::datetime::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
+      dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
 
       return dumpcontext;
    }
 
    // format it
-   dumpcontext << "::datetime::zonetime(\"" << psz << "\")";
+   dumpcontext << "::earth::zonetime(\"" << psz << "\")";
 
    return dumpcontext;
 }

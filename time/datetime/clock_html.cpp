@@ -13,7 +13,7 @@ namespace datetime
       visual::visual()
    {
 
-      //   ::datetime::time time = ::datetime::time::now();
+      //   ::earth::time time = ::earth::time::now();
 
    }
 

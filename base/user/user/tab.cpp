@@ -2977,6 +2977,38 @@ namespace user
    }
 
 
+   bool tab::hide_place_holder_by_id(const ::atom & atomTab)
+   {
+
+      auto ptabpane = get_tab_by_id(atomTab);
+
+      if (::is_null(ptabpane))
+      {
+
+         return false;
+
+      }
+
+      auto pplaceholder = ptabpane->m_pplaceholder;
+
+      if(::is_null(pplaceholder))
+      {
+
+         return false;
+
+      }
+
+      pplaceholder->hide();
+
+      pplaceholder->set_need_redraw();
+
+      pplaceholder->post_redraw();
+
+      return true;
+
+   }
+
+
    ::user::interaction * tab::tab_window(::index iIndex)
    {
 

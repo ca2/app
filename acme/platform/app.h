@@ -29,8 +29,15 @@ public:
    virtual bool is_service() const;
    virtual bool is_user_service() const;
 
-   void set_args(int argc, char * argv[], char * envp[]);
+#ifdef WINDOWS
+
    void get_arguments_from_command_line();
+
+#else
+
+   void set_args(int argc, char * argv[], char * envp[]);
+
+#endif
 
    int main_loop();
 

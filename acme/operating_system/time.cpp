@@ -146,7 +146,7 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
 }
 
 
-void get_system_time_as_file_time(filetime_t* pfiletime)
+void get_system_time_as_file_time(file_time_t* pfile_time)
 {
 
    system_time_t systemtime;
@@ -162,7 +162,7 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 
    //}
 
-   /*estatus = */ system_time_to_file_time(pfiletime, &systemtime);
+   /*estatus = */ system_time_to_file_time(pfile_time, &systemtime);
 
    //if (!estatus)
    //{
@@ -176,10 +176,10 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 }
 
 
-//void file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
+//void file_time_to_system_time(system_time_t* psystemtime, const file_time_t* pfile_time)
 //{
 //
-//   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime))
+//   if (!FileTimeToSystemTime((const FILETIME*)pfile_time, (SYSTEMTIME*)psystemtime))
 //   {
 //
 //      return error_failed;
@@ -191,10 +191,10 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 //}
 //
 //
-//void file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime)
+//void file_time_to_local_file_time(file_time_t* pfile_timeLocal, const file_time_t* pfile_time)
 //{
 //
-//   if (!FileTimeToLocalFileTime((const FILETIME*)pfiletime, (FILETIME*)pfiletimeLocal))
+//   if (!FileTimeToLocalFileTime((const FILETIME*)pfile_time, (FILETIME*)pfile_timeLocal))
 //   {
 //
 //      return error_failed;
@@ -206,12 +206,12 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 //}
 //
 //
-//void is_valid_filetime(const filetime_t* pfiletime)
+//void is_valid_file_time(const file_time_t* pfile_time)
 //{
 //
 //   SYSTEMTIME systemtime{};
 //
-//   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)&systemtime))
+//   if (!FileTimeToSystemTime((const FILETIME*)pfile_time, (SYSTEMTIME*)&systemtime))
 //   {
 //
 //      return error_failed;
@@ -223,24 +223,24 @@ void get_system_time_as_file_time(filetime_t* pfiletime)
 //}
 
 
-void file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
+void file_time_to_time(time_t* ptime, const file_time_t* pfile_time, i32 nDST)
 {
 
    system_time_t systemtime{};
 
-   file_time_to_system_time(&systemtime, pfiletime);
+   file_time_to_system_time(&systemtime, pfile_time);
 
    system_time_to_time(ptime, &systemtime);
 
 }
 
 
-filetime get_filetime_now()
+file_time get_file_time_now()
 {
 
-   filetime_t filetime=0;
+   file_time_t file_time=0;
 
-   /*auto estatus = */ get_system_time_as_file_time(&filetime);
+   /*auto estatus = */ get_system_time_as_file_time(&file_time);
 
    //if(!estatus)
    //{
@@ -249,7 +249,7 @@ filetime get_filetime_now()
 
    //}
 
-   return filetime;
+   return file_time;
 
 }
 
@@ -286,11 +286,11 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-//void FileTimeToSystemTime(const filetime_t* pfiletime, system_time_t* psystemtime);
+//void FileTimeToSystemTime(const file_time_t* pfile_time, system_time_t* psystemtime);
 
 
 
-//void SystemTimeToFileTime(const system_time_t* psystemtime, filetime_t* pfiletime);
+//void SystemTimeToFileTime(const system_time_t* psystemtime, file_time_t* pfile_time);
 
 
 
@@ -298,28 +298,6 @@ void tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
 
 
 
-void file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
-{
-
-   FileTimeToSystemTime((FILETIME *) pfiletime, (SYSTEMTIME *) psystemtime);
-
-}
-
-
-void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
-{
-
-   SystemTimeToFileTime((SYSTEMTIME *) psystemtime, (FILETIME *) pfiletime);
-
-}
-
-
-void get_system_time(system_time_t * psystemtime)
-{
-
-   GetSystemTime((SYSTEMTIME *) psystemtime);
-
-}
 
 
 

@@ -130,7 +130,7 @@ namespace dynamic_source
 
       bool bMatches = false;
 
-      auto ft = get_filetime_set(m_strSourcePath);
+      auto ft = get_file_time_set(m_strSourcePath);
 
       bMatches = m_ftDs == ft;
 
@@ -580,7 +580,7 @@ namespace dynamic_source
 
       m_durationLastBuildTime= ::duration::now();
 
-      //m_ft = get_filetime_set(m_strSourcePath);
+      //m_ft = get_file_time_set(m_strSourcePath);
 
       Load();
 

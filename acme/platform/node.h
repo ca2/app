@@ -185,7 +185,7 @@ namespace acme
 
       //virtual ::file::path memory_counter_base_path();
 
-      virtual void datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time);
+      virtual void datetime_to_file_time(::file_time_t* pfile_time, const ::earth::time& time);
 
 
 

@@ -18,7 +18,7 @@ inline void __exchange(::payload_stream & s, u32 & u);
 inline void __exchange(::payload_stream & s, u64 & u);
 inline void __exchange(::payload_stream & s, float & f);
 inline void __exchange(::payload_stream & s, double & d);
-inline void __exchange(::payload_stream & s, ::datetime::time & time);
+inline void __exchange(::payload_stream & s, ::earth::time & time);
 inline void __exchange(::payload_stream & s, const char * psz);
 inline void __exchange(::payload_stream & s, string & str);
 inline void __exchange(::payload_stream & s, ::file::path & path);

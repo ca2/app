@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   result::result(const ::datetime::time & time)
+   result::result(const ::earth::time & time)
    {
 
       operator =(time);
@@ -79,7 +79,7 @@ namespace datetime
    }
 
 
-   ::datetime::time result::get_time() const
+   ::earth::time result::get_time() const
    {
 
       ASSERT(!m_bSpan);
@@ -87,7 +87,7 @@ namespace datetime
       try
       {
 
-         return ::datetime::time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
+         return ::earth::time(m_iYear, m_iMonth, m_iDay, m_iHour, m_iMinute, m_iSecond);
 
       }
       catch(...)
@@ -100,17 +100,17 @@ namespace datetime
    }
 
 
-   ::datetime::time_span result::GetSpan() const
+   ::earth::time_span result::GetSpan() const
    {
 
       ASSERT(m_bSpan);
 
-      return ::datetime::time_span((::i32) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
+      return ::earth::time_span((::i32) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
 
    }
 
 
-   result & result::operator = (const ::datetime::time & time)
+   result & result::operator = (const ::earth::time & time)
    {
 
       m_bSpan     = false;
@@ -160,7 +160,7 @@ datetime::result operator + (const datetime::result & val1, const datetime::resu
          pdate = &val1;
          pspan = &val2;
       }
-      val = ::datetime::time(pdate->get_time() + pspan->GetSpan());
+      val = ::earth::time(pdate->get_time() + pspan->GetSpan());
    }
    else
    {
@@ -197,7 +197,7 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    {
       const datetime::result * pdate = &val1;
       const datetime::result * pspan = &val2;
-      val = ::datetime::time(pdate->get_time() - pspan->GetSpan());
+      val = ::earth::time(pdate->get_time() - pspan->GetSpan());
    }
    else
    {

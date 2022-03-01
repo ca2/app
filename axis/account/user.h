@@ -20,8 +20,8 @@ namespace account
       ::e_status                                m_estatus;
       ::e_status                                m_estatusAuthentication;
 
-      ::datetime::time                          m_timeAuthenticationRequest;
-      ::datetime::time                          m_timeAuthentication;
+      ::earth::time                          m_timeAuthenticationRequest;
+      ::earth::time                          m_timeAuthentication;
 
       ::file::path                              m_pathFolder;
       __pointer(contact_list)                          m_pcontactlist;

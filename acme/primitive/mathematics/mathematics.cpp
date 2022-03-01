@@ -172,7 +172,7 @@ namespace mathematics
 
          //   //int c = prime100k_count();
 
-         //   ::datetime::time time = ::datetime::time::now();
+         //   ::earth::time time = ::earth::time::now();
 
          //   int l = get_nanos() % c;
 

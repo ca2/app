@@ -544,9 +544,9 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::datetime::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
+      ::earth::zonetime timeSunrise(v["sys"]["sunrise"].i64(), iTimeZone);
 
-      ::datetime::zonetime timeSunset(v["sys"]["sunset"].i64(), iTimeZone);
+      ::earth::zonetime timeSunset(v["sys"]["sunset"].i64(), iTimeZone);
 
       iRise = (int)timeSunrise.GetZoneTimeOfDay();
 

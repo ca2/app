@@ -267,7 +267,7 @@ namespace acme
 } // namespace acme
 
 
-inline stream & operator >> (stream & s, ::datetime::time & time);
+inline stream & operator >> (stream & s, ::earth::time & time);
 
 
 template < typename BASE >

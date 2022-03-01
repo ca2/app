@@ -14,7 +14,7 @@ list(APPEND library_source
     framework.cpp
     framework.h
     loading.cpp
-    loading_gif.cpp
+    loading_multi_frame.cpp
     saving.cpp)
 
 

@@ -1067,12 +1067,12 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 #endif // !defined(_UWP)
 
 
-void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time)
 {
 
    SYSTEMTIME systemtime;
 
-   if (!FileTimeToSystemTime((FILETIME *) &filetime, Systemtime))
+   if (!FileTimeToSystemTime((FILETIME *) &file_time, Systemtime))
    {
 
       time = 0;

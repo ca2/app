@@ -73,7 +73,7 @@ namespace acme
 
    }
 
-   void acme::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   void acme::datetime_to_file_time(::file_time_t* pfile_time, const ::earth::time& time)
    {
 
       throw ::interface_only();

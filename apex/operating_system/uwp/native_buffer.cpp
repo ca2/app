@@ -213,9 +213,9 @@ namespace universal_windows
       rStatus.m_size = (::i32)findnative_bufferData.nnative_bufferSizeLow;
 
       // convert times as appropriate
-      rStatus.m_ctime = ::datetime::time(findnative_bufferData.ftCreationTime);
-      rStatus.m_atime = ::datetime::time(findnative_bufferData.ftLastAccessTime);
-      rStatus.m_mtime = ::datetime::time(findnative_bufferData.ftLastWriteTime);
+      rStatus.m_ctime = ::earth::time(findnative_bufferData.ftCreationTime);
+      rStatus.m_atime = ::earth::time(findnative_bufferData.ftLastAccessTime);
+      rStatus.m_mtime = ::earth::time(findnative_bufferData.ftLastWriteTime);
 
       if (rStatus.m_ctime.get_time() == 0)
          rStatus.m_ctime = rStatus.m_mtime;

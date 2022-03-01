@@ -253,7 +253,7 @@ namespace account
 
       psession->account()->on_user_logon(this);
 
-      m_timeAuthentication = ::datetime::time::now();
+      m_timeAuthentication = ::earth::time::now();
 
    }
 
@@ -261,7 +261,7 @@ namespace account
    void user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
-      m_timeAuthenticationRequest = ::datetime::time::now();
+      m_timeAuthenticationRequest = ::earth::time::now();
 
       m_bDeferRegistration = bInteractive;
 
@@ -468,9 +468,9 @@ namespace account
          if(m_estatusAuthentication == ::success_authenticated)
          {
 
-            auto authenticationRequestElapsed = ::datetime::time::now() - m_timeAuthenticationRequest;
+            auto authenticationRequestElapsed = ::earth::time::now() - m_timeAuthenticationRequest;
 
-            auto authenticationDoneElapsed = ::datetime::time::now() - m_timeAuthentication;
+            auto authenticationDoneElapsed = ::earth::time::now() - m_timeAuthentication;
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 

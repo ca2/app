@@ -253,7 +253,7 @@ namespace simple_ui
 
          get_client_rect(rectangleClient);
 
-         ::datetime::time timeNow = ::datetime::time::now();
+         ::earth::time timeNow = ::earth::time::now();
 
          if (is_hover() || m_bDown || m_bMouseMove)
          {
@@ -425,7 +425,7 @@ namespace simple_ui
 
       get_client_rect(rectangleClient);
 
-      ::datetime::time timeNow = ::datetime::time::now();
+      ::earth::time timeNow = ::earth::time::now();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -47,8 +47,8 @@ namespace dynamic_source
       __pointer(::acme::library)       m_plibrary;
 
 
-      filetime_set                     m_ft;
-      filetime_set                     m_ftDs;
+      file_time_set                     m_ft;
+      file_time_set                     m_ftDs;
 
       bool                             m_bLastVersionCheck;
       ::duration                           m_durationLastVersionCheck;

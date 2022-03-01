@@ -2163,7 +2163,7 @@ namespace hi5
             {
                string strAuth = set["get_headers"]["Authorization"];
                string strDate = set["get_headers"]["date"];
-               ::datetime::time time(iTime);
+               ::earth::time time(iTime);
                string strDateHere = pdatetime->international().get_gmt_date_time(time);
                /* Tell OAuth object to save access token and secret from web response */
                m_oauth.extractOAuthTokenKeySecret(get_response());

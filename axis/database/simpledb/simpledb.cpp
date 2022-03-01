@@ -254,7 +254,7 @@ namespace simpledb
 
             auto ptextcontext = get_session()->text_context();
 
-            ::datetime::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
+            ::earth::time timeListing(pdatetime->from_string(ptextcontext, strListingTime));
 
             if (timeListing.abs_diff(e_now) > 5_s)
             {

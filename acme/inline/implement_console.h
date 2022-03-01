@@ -37,9 +37,15 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    APPLICATION_CLASS app;
 
+#ifdef WINDOWS
+
    app.get_arguments_from_command_line();
 
-   //app.set_args(argc, argv, envp);
+#else
+
+   app.set_args(argc, argv, envp);
+
+#endif
 
 
 //   {

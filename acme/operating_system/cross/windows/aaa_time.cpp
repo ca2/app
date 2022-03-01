@@ -1000,7 +1000,7 @@ int NtSetSystemTime(const u64 *NewTime, u64 *OldTime)
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const filetime_t *localft, filetime_t * utcft )
+CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const file_time_t *localft, file_time_t * utcft )
 {
 
    int status;
@@ -1018,7 +1018,7 @@ CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const filetime_t *localft, fil
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const filetime_t *utcft, filetime_t * localft )
+CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const file_time_t *utcft, file_time_t * localft )
 {
    int status;
    if ((status = RtlSystemTimeToLocalTime( utcft, localft )))
@@ -1037,7 +1037,7 @@ CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const filetime_t *utcft, filet
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-int_bool FileTimeToSystemTime( const filetime_t *ft, system_time_t * syst )
+int_bool FileTimeToSystemTime( const file_time_t *ft, system_time_t * syst )
 {
 
    TIME_FIELDS tf;
@@ -1059,7 +1059,7 @@ int_bool FileTimeToSystemTime( const filetime_t *ft, system_time_t * syst )
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-int_bool SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
+int_bool SystemTimeToFileTime( const system_time_t *syst, file_time_t * ft )
 {
    TIME_FIELDS tf;
    u64 t;
@@ -1095,7 +1095,7 @@ int_bool SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
  *   Nothing.
  */
 CLASS_DECL_ACME void GetSystemTimeAsFileTime(
-   filetime_t * time) /* [out] Destination for the current utc time */
+   file_time_t * time) /* [out] Destination for the current utc time */
 {
    u64 t;
    NtQuerySystemTime( &t );
@@ -1117,7 +1117,7 @@ CLASS_DECL_ACME void GetSystemTimeAsFileTime(
  */
 CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 {
-   filetime_t ft;
+   file_time_t ft;
    u64 t;
 
    NtQuerySystemTime(&t);
@@ -1214,10 +1214,10 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
    }
 
 
-   void system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * psystemtime)
    {
 
-      if(!SystemTimeToFileTime(psystemtime, pfiletime))
+      if(!SystemTimeToFileTime(psystemtime, pfile_time))
       {
 
          throw ::exception(error_failed);
@@ -1231,10 +1231,10 @@ CLASS_DECL_ACME void GetSystemTime(system_time_t * systime)
 
    
 
-   void file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime)
+   void file_time_to_local_file_time(file_time_t * pfile_timeLocal, const file_time_t * pfile_time)
    {
 
-      if(!FileTimeToLocalFileTime(pfiletime, pfiletimeLocal))
+      if(!FileTimeToLocalFileTime(pfile_time, pfile_timeLocal))
       {
 
          throw ::exception(error_failed);

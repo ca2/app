@@ -698,7 +698,7 @@ typedef struct tagPROPVARIANT
       ULARGE_INTEGER updateVal;
       VARIANT_BOOL boolVal;
       SCODE scode;
-      FILETIME filetime;
+      FILETIME file_time;
       BSTR bstrVal;
    };
 } PROPVARIANT;

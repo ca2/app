@@ -190,6 +190,9 @@ namespace user
       virtual bool hide_tab(::index iTab);
 
 
+      virtual bool hide_place_holder_by_id(const ::atom & atomTab);
+
+
       virtual bool set_title(::index iTab, const ::string & psz);
       virtual bool set_title_by_id(const ::atom & idTab, const ::string & psz);
 

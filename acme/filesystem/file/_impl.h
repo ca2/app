@@ -411,7 +411,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 
 
 
-inline stream & operator <<(stream & s, const ::datetime::time & time)
+inline stream & operator <<(stream & s, const ::earth::time & time)
 {
 
    s << time.m_i;
@@ -422,7 +422,7 @@ inline stream & operator <<(stream & s, const ::datetime::time & time)
 
 
 
-inline stream & operator >>(stream & s, ::datetime::time & time)
+inline stream & operator >>(stream & s, ::earth::time & time)
 {
 
    s >> time.m_i;
@@ -456,11 +456,11 @@ inline stream & operator >>(stream & s, ::memory_base & memory)
 
 
 
-inline stream & operator >>(stream & s, ::datetime::zonetime & z)
+inline stream & operator >>(stream & s, ::earth::zonetime & z)
 {
 
    s.write((i64)z.m_i);
-   s.write((i32)z.m_iZoneOffset);
+   s.write((f64)z.m_timeshift);
 
    return s;
 
@@ -468,18 +468,15 @@ inline stream & operator >>(stream & s, ::datetime::zonetime & z)
 
 
 
-inline stream & operator <<(stream & s, const ::datetime::zonetime & z)
+inline stream & operator <<(stream & s, const ::earth::zonetime & z)
 {
 
    s.read((i64 &)z.m_i);
-   s.read((i32 &)z.m_iZoneOffset);
+   s.read((f64 &)z.m_timeshift);
 
    return s;
 
 }
-
-
-
 
 
 inline stream & operator << (stream & s, ::file::file * pfile)
@@ -501,16 +498,6 @@ inline stream & operator << (stream & s, ::file::file * pfile)
    return s;
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 template < typename BASE_TYPE >
@@ -862,7 +849,7 @@ inline void __exchange(::stream & s, u32 & u) { s.default_exchange(u); }
 inline void __exchange(::stream & s, u64 & u) { s.default_exchange(u); }
 inline void __exchange(::stream & s, float & f) { s.default_exchange(f); }
 inline void __exchange(::stream & s, double & d) { s.default_exchange(d); }
-inline void __exchange(::stream & s, ::datetime::time & time) { s.default_exchange(time.m_i); }
+inline void __exchange(::stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }
 inline void __exchange(::stream & s, ::duration & duration) { s.default_exchange(duration.m_iSecond); s.default_exchange(duration.m_iNanosecond); }
 inline void __exchange(::stream & s, const char * psz) { s.write_only(psz); }
 inline void __exchange(::stream & s, string & str) { s.default_exchange(str); }

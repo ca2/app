@@ -1158,10 +1158,10 @@ namespace dynamic_source
       if (ppair != nullptr)
       {
 
-         if (::datetime::time::now() < ppair->element2()->m_timeExpiry)
+         if (::earth::time::now() < ppair->element2()->m_timeExpiry)
          {
 
-            ppair->element2()->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
+            ppair->element2()->m_timeExpiry = ::earth::time::now() + m_secsSessionExpiration;
 
             return ppair->element2();
 
@@ -1183,7 +1183,7 @@ namespace dynamic_source
 
       psession->initialize_dynamic_source_session(pszId, this);
 
-      psession->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
+      psession->m_timeExpiry = ::earth::time::now() + m_secsSessionExpiration;
 
       m_mapSession.set_at(pszId, psession);
 
@@ -1197,9 +1197,9 @@ namespace dynamic_source
       
       single_lock synchronouslock(&m_mutexSession, true);
       
-      ::datetime::time timeNow;
+      ::earth::time timeNow;
       
-      timeNow = ::datetime::time::now();
+      timeNow = ::earth::time::now();
       
       auto passoc = m_mapSession.get_start();
       

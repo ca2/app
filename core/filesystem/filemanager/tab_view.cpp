@@ -203,7 +203,7 @@ namespace filemanager
          if(pdocument != nullptr)
          {
 
-            m_pfilemanager = pdocument;
+            m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
 //            pdocument->filemanager_data()->m_iTemplate = puser->filemanager()->m_iTemplate;
 
@@ -261,7 +261,7 @@ namespace filemanager
 
       pmessage->previous();
 
-      m_pfilemanager = get_document();
+      // = get_document();
 
    }
 

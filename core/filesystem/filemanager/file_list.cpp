@@ -828,7 +828,7 @@ namespace filemanager
    //      }
    //   }
 
-   //   ::datetime::time time = ::datetime::time::now();
+   //   ::earth::time time = ::earth::time::now();
 
    //   string strTime;
 
@@ -923,7 +923,7 @@ namespace filemanager
 
    //   }
 
-   //   ::datetime::time time = ::datetime::time::now();
+   //   ::earth::time time = ::earth::time::now();
 
    //   string strTime;
 

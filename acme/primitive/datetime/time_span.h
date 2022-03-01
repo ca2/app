@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace datetime
+namespace earth
 {
 
 
@@ -33,24 +33,6 @@ namespace datetime
       time_span& operator+=(time_span span) noexcept;
       time_span& operator-=(time_span span) noexcept;
 
-
-//      using integral_second::operator==;
-//      using integral_second::operator!=;
-//      using integral_second::operator<;
-//      using integral_second::operator<=;
-//      using integral_second::operator>;
-//      using integral_second::operator>=;
-
-
-//      bool operator==(time_span span) const noexcept;
-//      bool operator!=(time_span span) const noexcept;
-//      bool operator<(time_span span) const noexcept;
-//      bool operator>(time_span span) const noexcept;
-//      bool operator<=(time_span span) const noexcept;
-//      bool operator>=(time_span span) const noexcept;
-
-      //string Format(const char * pszFormat) const;
-      
       operator duration() const
       {
 
@@ -64,8 +46,8 @@ namespace datetime
 
    inline time_span::time_span() noexcept
    {
-   }
 
+   }
 
 
    inline time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
@@ -78,102 +60,104 @@ namespace datetime
 
    inline i64 time_span::GetDays() const noexcept
    {
-      return(m_i / (24 * 3600));
+
+      return m_i / (24 * 3600);
+
    }
+
 
    inline i64 time_span::GetTotalHours() const noexcept
    {
-      return(m_i / 3600);
+
+      return m_i / 3600;
+
    }
+
 
    inline i32 time_span::GetHours() const noexcept
    {
-      return(::i32(GetTotalHours() - (GetDays() * 24)));
+
+      return ::i32(GetTotalHours() - (GetDays() * 24));
+
    }
+
 
    inline i64 time_span::GetTotalMinutes() const noexcept
    {
-      return(m_i / 60);
+
+      return m_i / 60;
+
    }
+
 
    inline i32 time_span::GetMinutes() const noexcept
    {
-      return(::i32(GetTotalMinutes() - (GetTotalHours() * 60)));
+
+      return ::i32(GetTotalMinutes() - (GetTotalHours() * 60));
+
    }
+
 
    inline i64 time_span::GetTotalSeconds() const noexcept
    {
-      return(m_i);
+      return m_i;
+
    }
+
 
    inline i32 time_span::GetSeconds() const noexcept
    {
+
       return(::i32(GetTotalSeconds() - (GetTotalMinutes() * 60)));
+
    }
+
 
    inline time_t time_span::GetTimeSpan() const noexcept
    {
+
       return(m_i);
+
    }
+
 
    inline time_span time_span::operator+(time_span span) const noexcept
    {
+
       return INTEGRAL_SECOND(m_i + span.m_i);
+
    }
+
 
    inline time_span time_span::operator-(time_span span) const noexcept
    {
+
       return INTEGRAL_SECOND(m_i - span.m_i);
+
    }
+
 
    inline time_span& time_span::operator+=(time_span span) noexcept
    {
+
       m_i += span.m_i;
+
       return *this;
+
    }
+
 
    inline time_span& time_span::operator-=(time_span span) noexcept
    {
+
       m_i -= span.m_i;
+
       return *this;
+
    }
 
-//   inline bool time_span::operator==(time_span span) const noexcept
-//   {
-//      return(m_i == span.m_i);
-//   }
-//
-//   inline bool time_span::operator!=(time_span span) const noexcept
-//   {
-//      return(m_i != span.m_i);
-//   }
-//
-//   inline bool time_span::operator<(time_span span) const noexcept
-//   {
-//      return(m_i < span.m_i);
-//   }
-//
-//   inline bool time_span::operator>(time_span span) const noexcept
-//   {
-//      return(m_i > span.m_i);
-//   }
-//
-//   inline bool time_span::operator<=(time_span span) const noexcept
-//   {
-//      return(m_i <= span.m_i);
-//   }
-//
-//   inline bool time_span::operator>=(time_span span) const noexcept
-//   {
-//      return(m_i >= span.m_i);
-//   }
 
-
-
-} // namespace datetime
-
-
-//COMPARISON_WITH_DURATION(::datetime::time_span)
+} // namespace earth
 
 
 

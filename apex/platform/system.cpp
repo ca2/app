@@ -222,7 +222,7 @@ namespace apex
 
       __compose_new(m_pthreading);
 
-      ::datetime::time timeNow = ::datetime::time::now();
+      ::earth::time timeNow = ::earth::time::now();
 
       auto pnode = node();
 
@@ -3716,7 +3716,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       }
 
-      ::datetime::time timeNow = ::datetime::time::now();
+      ::earth::time timeNow = ::earth::time::now();
 
       if (timeNow.GetMonth() == 12)
       {

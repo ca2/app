@@ -3977,7 +3977,7 @@ namespace aura
 //
 //      }
 //
-//      ::datetime::time timeNow = ::datetime::time::now();
+//      ::earth::time timeNow = ::earth::time::now();
 //
 //      if (timeNow.GetMonth() == 12)
 //      {

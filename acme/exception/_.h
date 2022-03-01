@@ -115,9 +115,9 @@ namespace datetime
 
 class dump_context;
 
-// ::datetime::time_span diagnostics and serialization
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time_span & dateSpanSrc);
-CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::datetime::time & dateSrc);
+// ::earth::time_span diagnostics and serialization
+CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time_span & dateSpanSrc);
+CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::earth::time & dateSrc);
 
 
 

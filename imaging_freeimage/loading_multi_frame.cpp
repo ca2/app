@@ -112,7 +112,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                            {
 
-                              pframea->m_countLoop = (unsigned int)*((long *)FreeImage_GetTagValue(ptag));
+                              pframea->m_countLoop = (unsigned int)*((::u32 *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -190,9 +190,24 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                         {
 
-                           pframe->m_duration = INTEGRAL_MILLISECOND(*(long *)FreeImage_GetTagValue(ptag));
+                           ::u32 uMillisecond = *(::u32 *)FreeImage_GetTagValue(ptag);
+
+                           pframe->m_duration = INTEGRAL_MILLISECOND(uMillisecond);
 
                         }
+
+                     }
+
+                     if(pframe->m_duration < 1_ms)
+                     {
+
+                        pframe->m_duration = 1_ms;
+
+                     }
+                     else if(pframe->m_duration > 1_s)
+                     {
+
+                        INFORMATION("Long frame duration " << pframe->m_duration.integral_second());
 
                      }
 

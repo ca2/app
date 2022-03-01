@@ -2784,7 +2784,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //const char * pszAppName = papp->m_strAppName;
 
-            m_piconNotify->load_app_tray_icon("notify_icon");
+            m_piconNotify->load_app_tray_icon(get_app()->m_strAppId);
 
          }
 
@@ -2793,7 +2793,7 @@ void simple_frame_window::defer_create_notification_icon()
       __defer_construct(m_pnotifyicon);
 
       //m_pnotifyicon->m_puserinteraction = this;
-      m_pnotifyicon->create_notify_icon(1, this, m_piconNotify);
+      m_pnotifyicon->create_notify_icon("(application_default_notify_icon)", this, m_piconNotify);
       //if (!)
       //{
 

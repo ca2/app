@@ -12,7 +12,7 @@ public:
 
 
    string               m_str;
-   ::datetime::time     m_duration; /// time when this network_payload was last updated
+   ::earth::time     m_duration; /// time when this network_payload was last updated
 
 
    bool is_valid(const ::duration& durationTimeOut) const

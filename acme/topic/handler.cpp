@@ -7,15 +7,25 @@
 #include "framework.h"
 
 
+extern class ::system * g_psystem;
+
+
 CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, ::matter * pmatter)
 {
 
-   if (iData == 0 && ::is_null(pmatter))
+   if (::is_null(pmatter))
    {
 
-      ::topic topic(atom);
+      auto ptopic = g_psystem->create_topic(atom);
 
-      phandler->handle(&topic, nullptr);
+      if(iData != 0)
+      {
+
+         ptopic->payload("iptr_data") = iData;
+
+      }
+
+      phandler->handle(ptopic, nullptr);
 
    }
    else
@@ -26,22 +36,18 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
       if (iData != 0)
       {
 
-         pextendedtopic->m_payload = iData;
+         pextendedtopic->payload("iptr_data") = iData;
 
       }
 
-      if (pmatter != nullptr)
-      {
-
-         pextendedtopic->m_pmatter = pmatter;
-
-      }
+      pextendedtopic->m_pmatter = pmatter;
 
       phandler->handle(pextendedtopic, nullptr);
 
    }
 
 }
+
 
 
 //

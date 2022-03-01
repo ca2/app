@@ -264,11 +264,17 @@ namespace linux
 
       pathUserBin = pacmedir->home() / "bin" / strName;
 
-      ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
+      //::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 
+      ::file::path pathModuleIcon256 = m_psystem->m_pacmedir->module() / (strName + "-256.png");
+
+      if(!m_psystem->m_pacmefile->exists(pathModuleIcon256))
       {
 
-         pcontext->m_papexcontext->file().get_file(pathIcon, ::file::e_open_read);
+         auto pfileMainIcon256 = pcontext->m_papexcontext->file().get_file("matter://main/icon-256.png",
+                                                                           ::file::e_open_read);
+
+         papp->file().copy(pathModuleIcon256, pfileMainIcon256);
 
       }
 
@@ -343,10 +349,10 @@ namespace linux
       straLine._007SetLine("[Desktop Entry]", "Exec", strModule + " %U");
       //straLine._007SetLine("Path", string(pcontext->m_papexcontext->file().module().folder()));
 
-      if(pcontext->m_papexcontext->file().exists(pathIcon))
+      if(pcontext->m_papexcontext->file().exists(pathModuleIcon256))
       {
 
-         straLine._007SetLine("[Desktop Entry]", "Icon", pathIcon);
+         straLine._007SetLine("[Desktop Entry]", "Icon", pathModuleIcon256);
 
       }
 

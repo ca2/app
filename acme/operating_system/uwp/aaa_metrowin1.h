@@ -22,7 +22,7 @@ namespace universal_windows
    CLASS_DECL_ACME HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, ::u32 nIconIndex);
    CLASS_DECL_ACME bool        DeleteFile(const char * lpFileName);
    CLASS_DECL_ACME int         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
-   CLASS_DECL_ACME void        TimeToFileTime(::matter * pobject, const ::datetime::time& time, LPFILETIME pFileTime);
+   CLASS_DECL_ACME void        TimeToFileTime(::matter * pobject, const ::earth::time& time, LPFILETIME pFileTime);
 
 
 } // namespace universal_windows

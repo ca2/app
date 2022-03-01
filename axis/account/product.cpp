@@ -40,7 +40,7 @@ namespace account
    bool product::do_license(string strAppId, bool bInteractive)
    {
 
-      m_timeRequest = ::datetime::time::now();
+      m_timeRequest = ::earth::time::now();
 
       m_strAppId = strAppId;
 

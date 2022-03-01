@@ -387,7 +387,7 @@ pacmedir->system() / "log.txt"))
 
       string strPre;
 
-      ::datetime::time time;
+      ::earth::time time;
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;

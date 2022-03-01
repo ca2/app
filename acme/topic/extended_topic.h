@@ -15,10 +15,10 @@ public:
    enum_timer                             m_etimer;
    u32                                    m_uiVKey;
    u32                                    m_uiFlags;
-   ::datetime::time                       m_timeOuterBeg;
-   ::datetime::time                       m_timeOuterEnd;
-   ::datetime::time                       m_timeBeg;
-   ::datetime::time                       m_timeEnd;
+   ::earth::time                       m_timeOuterBeg;
+   ::earth::time                       m_timeOuterEnd;
+   ::earth::time                       m_timeBeg;
+   ::earth::time                       m_timeEnd;
 
 
    ::payload                              m_payload;

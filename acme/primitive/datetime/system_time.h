@@ -4,9 +4,10 @@
 #pragma pack(push, system_time, 1)
 
 
-
 struct system_time_t
 {
+
+
    unsigned short wYear;
    unsigned short wMonth;
    unsigned short wDayOfWeek;
@@ -15,10 +16,9 @@ struct system_time_t
    unsigned short wMinute;
    unsigned short wSecond;
    unsigned short wMilliseconds;
+
+
 };
-
-
-
 
 
 #pragma pack(pop, system_time)

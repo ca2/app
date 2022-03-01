@@ -1767,10 +1767,10 @@ namespace user
       ::item_pointer hit_test(::message::mouse * pmouse) override;
 
       using ::aura::drawable::hit_test;
-      virtual ::item_pointer hit_test(const ::point_i32 & point) override;
+      ::item_pointer hit_test(const ::point_i32 & point) override;
 
       using ::aura::drawable::on_hit_test;
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);

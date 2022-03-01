@@ -241,7 +241,7 @@ namespace http
 
                      string strFormat;
 
-                     ::datetime::time t = ::datetime::time::now();
+                     ::earth::time t = ::earth::time::now();
 
                      string strTime;
 
@@ -258,7 +258,7 @@ namespace http
                      while (true)
                      {
 
-                        strTime = ::datetime::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
+                        strTime = ::earth::format("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
 
                         strIndex.format("%08x\\", i);
 

@@ -19,7 +19,7 @@ namespace datetime
       bool           m_bSpan;
 
 
-      result(const ::datetime::time & time);
+      result(const ::earth::time & time);
       result();
       ~result();
 
@@ -32,9 +32,9 @@ namespace datetime
       double get_minutes() const;
       double get_seconds() const;
 
-      ::datetime::time get_time() const;
-      ::datetime::time_span GetSpan() const;
-      result & operator = (const ::datetime::time & time);
+      ::earth::time get_time() const;
+      ::earth::time_span GetSpan() const;
+      result & operator = (const ::earth::time & time);
 
 
    };

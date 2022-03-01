@@ -56,9 +56,12 @@ namespace data
 
       pdata->m_atom = atom;
 
-      pdata->initialize_data(this);
+      if(!add_data(pdata))
+      {
 
-      m_datamap.set_at(pdata->m_atom, pdata);
+         return false;
+
+      }
 
       return true;
 
@@ -67,13 +70,6 @@ namespace data
 
    bool data_container_base::add_data(::data::data * pdata)
    {
-      
-      if (m_datamap.contains(pdata->m_atom))
-      {
-
-         return false;
-
-      }
 
       pdata->initialize_data(this);
 

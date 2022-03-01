@@ -13,7 +13,7 @@ namespace datetime
       calendar::calendar()
       {
 
-         ::datetime::time time = ::datetime::time::now();
+         ::earth::time time = ::earth::time::now();
          m_iYear = time.year();
          m_iMonth = time.month();
          m_bRange = false;
@@ -55,7 +55,7 @@ namespace datetime
       }
 
 
-      void calendar::GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect)
+      void calendar::GetRectDay(::earth::time& time, RECTANGLE_I32 * lprect)
       {
 
          int32_t iWeekDay = time.day_of_week();
@@ -84,7 +84,7 @@ namespace datetime
       }
 
 
-      void calendar::set_time(const ::datetime::time& time)
+      void calendar::set_time(const ::earth::time& time)
       {
 
          m_time = time;
@@ -92,7 +92,7 @@ namespace datetime
       }
 
 
-      void calendar::set_time_range(const ::datetime::time& time, const ::datetime::time& timeEnd)
+      void calendar::set_time_range(const ::earth::time& time, const ::earth::time& timeEnd)
       {
 
          m_time = time;
@@ -102,7 +102,7 @@ namespace datetime
       }
 
 
-      void calendar::set_time_end(const ::datetime::time& timeEnd)
+      void calendar::set_time_end(const ::earth::time& timeEnd)
       {
 
          m_timeEnd = timeEnd;
@@ -111,7 +111,7 @@ namespace datetime
       }
 
 
-      void calendar::get_time(::datetime::time& time)
+      void calendar::get_time(::earth::time& time)
       {
 
          time = m_time;
@@ -131,7 +131,7 @@ namespace datetime
       void calendar::GetDateTime(const ::text::context* pcontext, string& strDateTime)
       {
 
-         ::datetime::time time = ::datetime::time::now();
+         ::earth::time time = ::earth::time::now();
          string strDate;
          string strWeekDay;
          string strTime;
@@ -262,12 +262,12 @@ namespace datetime
       }
 
 
-      bool calendar::time_hit_test(::datetime::time& timeRet, const point_i32 & point)
+      bool calendar::time_hit_test(::earth::time& timeRet, const point_i32 & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
-         ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
-         ::datetime::time_span timespan(1, 0, 0, 0);
+         ::earth::time time(iYear, iMonth, 1, 0, 0, 0);
+         ::earth::time_span timespan(1, 0, 0, 0);
          rectangle_i32 rectangleDay;
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
@@ -298,10 +298,10 @@ namespace datetime
       }
 
 
-      int32_t calendar::get_week_of_month(::datetime::time& time)
+      int32_t calendar::get_week_of_month(::earth::time& time)
       {
          
-         ::datetime::time timeMonth(time.year(), time.month(), 1, 0, 0, 0);
+         ::earth::time timeMonth(time.year(), time.month(), 1, 0, 0, 0);
          
          return (time.day() + timeMonth.day_of_week() - 2) / 7;
 

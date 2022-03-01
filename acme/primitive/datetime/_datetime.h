@@ -4,8 +4,8 @@
 #ifdef __DEBUG
 
 
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::time time);
+CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::time_span time);
 
 
 #endif
@@ -27,15 +27,16 @@ CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetim
 //#include "acme/primitive/datetime/duration.h"
 
 
-class filetime;
+class file_time;
+
 
 
 #include "acme/primitive/datetime/date_span.h"
 #include "acme/primitive/datetime/time_span.h"
 #include "acme/primitive/datetime/time.h"
 #include "acme/primitive/datetime/zonetime.h"
-#include "acme/primitive/datetime/filetime_span.h"
-#include "acme/primitive/datetime/filetime.h"
+#include "acme/primitive/datetime/file_time_span.h"
+#include "acme/primitive/datetime/file_time.h"
 
 
 CLASS_DECL_ACME void preempt(const ::duration & duration);

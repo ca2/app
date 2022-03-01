@@ -28,10 +28,10 @@
 //      u32                              m_uiFlags;
 //      bool                             m_bRet;
 //      bool                             m_bOk;
-//      ::datetime::time                 m_timeOuterBeg;
-//      ::datetime::time                 m_timeOuterEnd;
-//      ::datetime::time                 m_timeBeg;
-//      ::datetime::time                 m_timeEnd;
+//      ::earth::time                 m_timeOuterBeg;
+//      ::earth::time                 m_timeOuterEnd;
+//      ::earth::time                 m_timeBeg;
+//      ::earth::time                 m_timeEnd;
 //      item                             m_item;
 //
 //

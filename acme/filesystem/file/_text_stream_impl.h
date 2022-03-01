@@ -24,7 +24,7 @@ inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l);
 #endif
 inline void __string_exchange(text_stream & s, float & f) { s.number_exchange(f); }
 inline void __string_exchange(text_stream & s, double & d) { s.number_exchange(d); }
-inline void __string_exchange(text_stream & s, ::datetime::time & time) { s.number_exchange(time.m_i); }
+inline void __string_exchange(text_stream & s, ::earth::time & time) { s.number_exchange(time.m_i); }
 inline void __string_exchange(text_stream & s, const char * psz) { s.write_only(psz); }
 inline void __string_exchange(text_stream & s, char * psz) { s.string_exchange(psz); }
 inline void __string_exchange(text_stream & s, string & str) { s.string_exchange(str); }

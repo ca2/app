@@ -246,7 +246,7 @@ namespace prompt
 
    void impact::GetDateTime(string & strDateTime)
    {
-      ::datetime::time time = ::datetime::time::now();
+      ::earth::time time = ::earth::time::now();
       string strDate;
       string strWeekDay;
       string strTime;

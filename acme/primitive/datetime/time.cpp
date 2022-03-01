@@ -5,17 +5,17 @@
 #include "acme/operating_system/time.h"
 
 
-void mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
+void mkgmtime_from_filetime(time_t & time, const ::file_time_t & file_time);
 
 
-namespace datetime
+namespace earth
 {
 
 
    const char * const szInvalidDateTime = "Invalid DateTime";
 
 
-   ::datetime::time time::now() noexcept
+   ::earth::time time::now() noexcept
    {
 
 #ifdef WINDOWS
@@ -31,7 +31,7 @@ namespace datetime
    }
 
 
-   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const ::time_shift & timeshift)
+   time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, const ::earth::time_shift & timeshift)
    {
 
 
@@ -114,17 +114,17 @@ namespace datetime
 #endif
 
    
-   time::time(const filetime & filetime)
+   time::time(const file_time & file_time)
    {
 
       //auto pnode = get_system()->node();
 
-      file_time_to_time((time_t *)&m_i, &filetime.m_filetime);
+      file_time_to_time((time_t *)&m_i, &file_time.m_filetime);
 
    }
 
 
-   ::datetime::time & time::operator=(const time & time) noexcept
+   ::earth::time & time::operator=(const time & time) noexcept
    {
 
       m_i = time.m_i;
@@ -134,7 +134,7 @@ namespace datetime
    }
 
    
-   ::datetime::time & time::operator+=( time_span span ) noexcept
+   ::earth::time & time::operator+=( time_span span ) noexcept
    {
 
       m_i += span.GetTimeSpan();
@@ -144,7 +144,7 @@ namespace datetime
    }
 
 
-   ::datetime::time & time::operator-=( time_span span ) noexcept
+   ::earth::time & time::operator-=( time_span span ) noexcept
    {
 
       m_i -= span.GetTimeSpan();
@@ -154,7 +154,7 @@ namespace datetime
    }
 
 
-   ::datetime::time & time::operator+=( date_span span )
+   ::earth::time & time::operator+=( date_span span )
    {
 
       __UNREFERENCED_PARAMETER(span);
@@ -166,7 +166,7 @@ namespace datetime
    }
 
 
-   ::datetime::time& time::operator-=( date_span span )
+   ::earth::time& time::operator-=( date_span span )
    {
 
        __UNREFERENCED_PARAMETER(span);
@@ -178,7 +178,7 @@ namespace datetime
    }
 
 
-   ::datetime::time time::operator-( date_span span ) const
+   ::earth::time time::operator-( date_span span ) const
    {
 
        __UNREFERENCED_PARAMETER(span);
@@ -190,7 +190,7 @@ namespace datetime
    }
 
 
-   ::datetime::time time::operator+( date_span span ) const
+   ::earth::time time::operator+( date_span span ) const
    {
 
        __UNREFERENCED_PARAMETER(span);
@@ -202,10 +202,12 @@ namespace datetime
    }
 
 
-   struct tm* time::tm_struct(struct tm* ptm, const ::time_shift & timeshift) const
+   struct tm* time::tm_struct(struct tm* ptm, const ::earth::time_shift & timeshift) const
    {
 
-      time_t time = m_i + (time_t) timeshift.m_d;
+      time_t timeOffset = (time_t) timeshift.m_d;
+
+      time_t time = m_i + timeOffset;
 
       if (ptm != nullptr)
       {
@@ -318,7 +320,7 @@ namespace datetime
    }
 
 
-   i32 time::year(const ::time_shift & timeshift) const noexcept
+   i32 time::year(const ::earth::time_shift & timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -332,7 +334,7 @@ namespace datetime
    }
 
 
-   i32 time::month(const ::time_shift& timeshift) const noexcept
+   i32 time::month(const ::earth::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -346,7 +348,7 @@ namespace datetime
    }
 
 
-   i32 time::day(const ::time_shift& timeshift) const noexcept
+   i32 time::day(const ::earth::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -360,7 +362,7 @@ namespace datetime
    }
 
 
-   i32 time::hour(const ::time_shift& timeshift) const noexcept
+   i32 time::hour(const ::earth::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -374,7 +376,7 @@ namespace datetime
    }
 
 
-   i32 time::minute(const ::time_shift& timeshift) const noexcept
+   i32 time::minute(const ::earth::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -388,7 +390,7 @@ namespace datetime
    }
 
 
-   i32 time::second(const ::time_shift& timeshift) const noexcept
+   i32 time::second(const ::earth::time_shift& timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -402,7 +404,7 @@ namespace datetime
    }
 
 
-   i32 time::day_of_week(const ::time_shift & timeshift) const noexcept
+   i32 time::day_of_week(const ::earth::time_shift & timeshift) const noexcept
    {
 
       struct tm ttm;
@@ -531,7 +533,7 @@ namespace datetime
    time_span time::elapsed() const
    {
 
-      return ::datetime::time::now() - *this;
+      return ::earth::time::now() - *this;
 
    }
 
@@ -599,48 +601,7 @@ namespace datetime
 
    //}
 
-
-} // namespace datetime
-
-
-
-#ifdef __DEBUG
-
-dump_context & operator <<(dump_context & dumpcontext, ::datetime::time & time)
-{
-   char psz[32];
-   psz[0] = '\0';
-
-//   time_t tmp = time.get_time();
-//   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
-
-   errno_t err = 0;
-
-   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
-   {
-      dumpcontext << "::datetime::time(invalid #" << (iptr) time.get_time() << ")";
-
-      return dumpcontext;
-   }
-
-   // format it
-   dumpcontext << "::datetime::time(\"" << psz << "\")";
-
-   return dumpcontext;
-}
-
-#endif
-
-stream & operator <<(stream & os, ::datetime::time & time)
-{
-
-   os.write((i64) time.m_i);
-
-   return os;
-
-}
-
-//stream & operator >>(stream & is, ::datetime::time & rtime)
+//stream & operator >>(stream & is, ::earth::time & rtime)
 //{
 //
 //   is.read((i64 &) rtime.m_time);
@@ -653,7 +614,7 @@ stream & operator <<(stream & os, ::datetime::time & time)
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
+CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 {
 
    SYSTEMTIME st = {};
@@ -678,7 +639,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 }
 
 
-//filetime __filetime(const ::datetime::time & time)
+//file_time __file_time(const ::earth::time & time)
 //{
 //
 //   auto pnode = get_system()->node();
@@ -687,9 +648,9 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //
 //   pnode->system_time_to_time(__systemtime();
 //
-//   filetime filetime = {};
+//   file_time file_time = {};
 //
-//   if (!SystemTimeToFileTime(Systemtime, (FILETIME *) &filetime))
+//   if (!SystemTimeToFileTime(Systemtime, (FILETIME *) &file_time))
 //   {
 //
 //#ifdef WINDOWS
@@ -700,23 +661,23 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //
 //      //TRACELASTERROR();
 //
-//      __zero(filetime);
+//      __zero(file_time);
 //
 //   }
 //
-//   return filetime;
+//   return file_time;
 //
 //}
 
 
-CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
+CLASS_DECL_ACME FILETIME __FILETIME(const ::earth::time & time)
 {
 
    SYSTEMTIME systemtime = __SYSTEMTIME(time);
 
-   FILETIME filetime = {};
+   FILETIME file_time = {};
 
-   if (!SystemTimeToFileTime(&systemtime, &filetime))
+   if (!SystemTimeToFileTime(&systemtime, &file_time))
    {
 
 #ifdef WINDOWS
@@ -727,11 +688,11 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 
       //TRACELASTERROR();
 
-      __zero(filetime);
+      __zero(file_time);
 
    }
 
-   return filetime;
+   return file_time;
 
 }
 
@@ -744,12 +705,12 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 //#define INTEL 1
 
 //
-//time_t __time(const filetime & filetime)
+//time_t __time(const file_time & file_time)
 //{
 //
-//   auto time = __time(*(FILETIME *)&filetime);
+//   auto time = __time(*(FILETIME *)&file_time);
 //
-//   auto estatus = mkgmtime_from_filetime(time.m_time, filetime.m_filetime);
+//   auto estatus = mkgmtime_from_filetime(time.m_time, file_time.m_filetime);
 //
 //   if (!estatus)
 //   {
@@ -763,11 +724,9 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 //}
 
 
-namespace datetime
-{
 
 
-   string format(const ::string & strFormat, const ::datetime::time & time, const ::time_shift& timeshift)
+   string format(const ::string & strFormat, const ::earth::time & time, const ::earth::time_shift& timeshift)
    {
 
       string str;
@@ -851,12 +810,10 @@ namespace datetime
 
    #endif
 
-
-
    }
 
 
-   //string utc_format(const string & strFormat, const ::datetime::time & time)
+   //string utc_format(const string & strFormat, const ::earth::time & time)
    //{
 
    //   string str;
@@ -907,7 +864,152 @@ namespace datetime
    //}
 
 
-} // namespace datetime
+   namespace gregorian
+   {
+
+
+      time_t time::get_time_t()
+      {
+
+         struct tm tm;
+
+         get(&tm);
+
+         ::time_t time;
+
+#ifdef WINDOWS
+
+         time = _mkgmtime64(&tm);
+
+#else
+         time = timegm(&tm);
+
+#endif
+
+         return time;
+
+      }
+
+
+      void time::get(system_time_t * psystemtime)
+      {
+
+         psystemtime->wDayOfWeek = m_iDayOfWeek;
+
+         psystemtime->wMilliseconds = m_iNanoSecond / 1'000'000;
+
+         psystemtime->wSecond = m_iSecond;
+         psystemtime->wMinute = m_iMinute;
+         psystemtime->wHour = m_iHour;
+         psystemtime->wDay = m_iDay;
+         psystemtime->wMonth = m_iMonth;
+         psystemtime->wYear = m_iYear;
+
+      }
+
+
+      void time::set(const system_time_t * psystemtime)
+      {
+
+          m_iDayOfWeek = psystemtime->wDayOfWeek   ;
+
+          m_iNanoSecond = psystemtime->wMilliseconds *  1'000'000;
+
+          m_iSecond = psystemtime->wSecond      ;
+          m_iMinute = psystemtime->wMinute      ;
+          m_iHour = psystemtime->wHour        ;
+          m_iDay = psystemtime->wDay         ;
+          m_iMonth = psystemtime->wMonth       ;
+          m_iYear = psystemtime->wYear        ;
+
+      }
+
+
+      void time::get(file_time_t * pfiletime)
+      {
+
+         system_time systemtime;
+
+         get(&systemtime);
+
+         system_time_to_file_time(pfiletime, &systemtime);
+
+      }
+
+
+      void time::set(const file_time_t * pfiletime)
+      {
+
+         system_time systemtime;
+
+         file_time_to_system_time(&systemtime, pfiletime);
+
+         set(&systemtime);
+
+      }
+
+
+      void time::Now(const time_shift & timeshift)
+      {
+
+         ::duration duration;
+
+         duration.Now();
+
+         set(duration, timeshift);
+
+      }
+
+
+
+   } // namespace gregorian
+
+
+} // namespace earth
+
+
+
+
+
+
+
+
+#ifdef __DEBUG
+
+dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
+{
+   char psz[32];
+   psz[0] = '\0';
+
+//   time_t tmp = time.get_time();
+//   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+
+   errno_t err = 0;
+
+   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
+   {
+      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
+
+      return dumpcontext;
+   }
+
+   // format it
+   dumpcontext << "::earth::time(\"" << psz << "\")";
+
+   return dumpcontext;
+}
+
+#endif
+
+stream & operator <<(stream & os, ::earth::time & time)
+{
+
+   os.write((i64) time.m_i);
+
+   return os;
+
+}
+
 
 
 

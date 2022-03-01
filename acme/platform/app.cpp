@@ -81,25 +81,11 @@ bool app::is_user_service() const
 }
 
 
-void app::set_args(int argc, char * argv[], char * envp[])
-{
-
-   m_argc = argc;
-
-   m_argv = argv;
-
-   m_envp = envp;
-
-//m_pmain->m_strAppId = __APP_ID;
-
-   //m_bConsole = false;
-}
+#ifdef WINDOWS
 
 
 void app::get_arguments_from_command_line()
 {
-
-#ifdef WINDOWS
 
    m_argc = __argc;
 
@@ -111,15 +97,25 @@ void app::get_arguments_from_command_line()
 
    m_wenvp = *__p__wenviron();
 
+}
+
+
 #else
 
 
-   throw "todo";
+void app::set_args(int argc, char * argv[], char * envp[])
+{
+
+   m_argc = argc;
+
+   m_argv = argv;
+
+   m_envp = envp;
+
+}
 
 
 #endif
-
-}
 
 
 int app::main_loop()

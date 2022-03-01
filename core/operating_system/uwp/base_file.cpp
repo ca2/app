@@ -1661,7 +1661,7 @@ int_bool close_handle(HANDLE h)
 }
 
 
-bool get_filetime(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
+bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
 {
 
    if(lpCreationTime != nullptr)

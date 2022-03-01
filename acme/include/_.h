@@ -3813,27 +3813,82 @@ CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 #include "acme/primitive/primitive/atom.h"
 
 
-inline bool is_filemanager(::atom atom) { return is_impact_group(atom.i64(), FILEMANAGER_IMPACT); }
-
-
-inline bool is_filemanager_group(::atom atom, ::i64 iGroup)
+inline bool is_filemanager(const ::atom & atom)
 {
-   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
+
+   if(atom.is_text())
+   {
+
+      return ::str::begins(atom.m_psz, "file_manager_");
+
+   }
+
+   return is_impact_group(atom.i64(), FILEMANAGER_IMPACT);
+
 }
 
 
-inline bool is_color_sel(::atom atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
+inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
+{
+
+   if(!atom.is_text())
+   {
+
+      return false;
+
+   }
+
+   string strFileManagerGroup;
+
+   strFileManagerGroup.format("file_manager_%s", pszGroup);
+
+   if(atom == strFileManagerGroup)
+   {
+
+      return true;
+
+   }
+
+   strFileManagerGroup += "_";
+
+   if(::str::begins(atom.m_psz, strFileManagerGroup))
+   {
 
 
-inline bool is_font_sel(::atom atom) { return is_impact_group(atom.i64(), FONTSEL_IMPACT); }
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+inline bool is_filemanager_group(const ::atom & atom, int iGroup)
+{
+
+   if(atom.is_text())
+   {
+
+      return false;
+
+   }
+
+   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
+
+}
+
+
+inline bool is_color_sel(const ::atom & atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
+
+
+inline bool is_font_sel(const ::atom & atom) { return is_impact_group(atom.i64(), FONTSEL_IMPACT); }
 
 
 #include "acme/primitive/string/composite.h"
-//#include "acme/primitive/string/base64.h"
+
 
 #include "acme/primitive/collection/composite_array.h"
-
-
 
 
 namespace acme

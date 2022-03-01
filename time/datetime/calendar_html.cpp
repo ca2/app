@@ -14,7 +14,7 @@ namespace datetime
    visual::visual()
    {
 
-      ::datetime::time time = ::datetime::time::now();
+      ::earth::time time = ::earth::time::now();
       
       m_iYear = time.year();
 
@@ -59,7 +59,7 @@ namespace datetime
       {
 
          // pszSchema can be ignored if the object has only one implemented schema
-         ::datetime::time timeNow = ::datetime::time::now();
+         ::earth::time timeNow = ::earth::time::now();
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
 
@@ -68,10 +68,10 @@ namespace datetime
 
          int32_t iWeekDay;
 
-         ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
-         ::datetime::time_span timespan(1, 0, 0, 0);
-         ::datetime::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
-         timeLastDayOfMonth -= ::datetime::time_span(1, 0, 0, 0);
+         ::earth::time time(iYear, iMonth, 1, 0, 0, 0);
+         ::earth::time_span timespan(1, 0, 0, 0);
+         ::earth::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
+         timeLastDayOfMonth -= ::earth::time_span(1, 0, 0, 0);
          int32_t iFirstDayOfWeek = time.day_of_week();
 
          if (pfile->m_strOptions.find("<monday-first>") >= 0 && iFirstDayOfWeek == 1)
@@ -81,7 +81,7 @@ namespace datetime
 
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.day_of_week();
-         int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).day();
+         int32_t iLastDayPreviousMonth = (time - ::earth::time_span(1, 0, 0, 0)).day();
          rectangle_i32 rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
@@ -133,13 +133,13 @@ namespace datetime
                if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
                   
-                  w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(pdatetime->strftime("%V", (time_t)::earth::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
 
                }
                else
                {
 
-                  w = atoi(pdatetime->strftime("%U", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(pdatetime->strftime("%U", (time_t)::earth::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
 
                }
 
@@ -162,8 +162,8 @@ namespace datetime
                   && iYear == m_time.year()
                   && iDay == m_time.day()) ||
                   (m_bRange &&
-                     ::datetime::time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
-                     && ::datetime::time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
+                     ::earth::time(iYear, iMonth, iDay, 23, 59, 59) >= m_time
+                     && ::earth::time(iYear, iMonth, iDay, 0, 0, 0) <= m_timeEnd))
                {
                   pfile->raw_print("<div class=\"" + pfile->m_strStyle + "calendar-sel\">");
                }

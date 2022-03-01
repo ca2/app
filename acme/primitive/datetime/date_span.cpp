@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace datetime
+namespace earth
 {
 
 
@@ -17,12 +17,7 @@ namespace datetime
    }
 
 
-} // namespace datetime
-
-
-
-
-
+} // namespace earth
 
 
 

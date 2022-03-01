@@ -10,6 +10,81 @@ list(APPEND library_source
    #compress/zip/memory_buffer.cpp
    #compress/zip/unzip.cpp
    #compress/zip/zip.cpp
+   #exception/archive.cpp
+   #exception/archive_exception.cpp
+   #exception/base.cpp
+   #exception/engine.cpp
+   #exception/exit.cpp
+   #exception/hresult.cpp
+   #exception/index_out_of_bounds.cpp
+   #exception/installing.cpp
+   #exception/invalid_argument.cpp
+   #exception/invalid_character.cpp
+   #exception/invalid_handle.cpp
+   #exception/invalid_index.cpp
+   #exception/not_installed.cpp
+   #exception/not_licensed.cpp
+   #exception/not_supported.cpp
+   #exception/operation_canceled.cpp
+   #exception/os.cpp
+   #exception/overflow.cpp
+   #exception/range.cpp
+   #exception/result.cpp
+   #exception/runtime.cpp
+   #exception/simple.cpp
+   #exception/standard_translator.cpp
+   #exception/temporary.cpp
+   #exception/todo.cpp
+   #exception/user.cpp
+   #exception/void_implementation.cpp
+   #exception/wtf.cpp
+   #filesystem/file/_.cpp
+   #filesystem/file/dir.cpp
+   #filesystem/file/stdio_file.cpp
+   #memory/heap.cpp
+   #memory/plex.cpp
+   #memory/plex_heap.cpp
+   #operating_system/ansi/win.cpp
+   #parallelization/file_change_event.cpp
+   #platform/regex.cpp
+   #platform/simple_trace.cpp
+   #platform/sprintf.cpp
+   #platform/update.cpp
+   #primitive/primitive/application_bias.h
+   #primitive/primitive/block.inl
+   #primitive/primitive/collection.h
+   #primitive/primitive/command.h
+   #primitive/primitive/edit.h
+   #primitive/primitive/layered.h
+   #primitive/primitive/primitive_update.h
+   #primitive/primitive/request_signal.h
+   #primitive/promise/_.h
+   #primitive/promise/context.cpp
+   #primitive/promise/context.h
+   #primitive/promise/handler1.cpp
+   #primitive/promise/handler1.h
+   #primitive/promise/manager.cpp
+   #primitive/promise/manager.h
+   #primitive/promise/process.cpp
+   #primitive/promise/promise.cpp
+   #primitive/promise/promise.h
+   #primitive/promise/promise1.h
+   #primitive/promise/routine.cpp
+   #primitive/promise/routine.h
+   #primitive/promise/routine_array.cpp
+   #primitive/promise/routine_array.h
+   #primitive/promise/subject.cpp
+   #primitive/promise/subject.h
+   #primitive/promise_predicate/predicate_function.cpp
+   #primitive/promise_predicate/predicate_function.cpp
+   #primitive/promise_predicate/predicate_function_pointer.h
+   #primitive/promise_predicate/predicate_holdercpp.cpp
+   #primitive/promise_predicate/predicate_holder.h
+   #primitive/promise_predicate/predicate_process.h
+   #primitive/promise_predicate/synchronized_predicate_routine.h
+   #process/_.cpp
+   _.cpp
+   __matter_ca2.cpp
    compress/_.h
    compress/compress.cpp
    compress/compress.h
@@ -18,12 +93,7 @@ list(APPEND library_source
    constant/_.h
    constant/code_page.h
    constant/idpool.cpp
-   #exception/overflow.cpp
-   #exception/range.cpp
-   #exception/runtime.cpp
-   #exception/archive.cpp
-   #exception/archive_exception.cpp
-   #exception/base.cpp
+   context_glx.cpp
    exception/callstack.cpp
    exception/cancel.cpp
    exception/const.cpp
@@ -33,8 +103,6 @@ list(APPEND library_source
    exception/dump_floating_point.cpp
    exception/dump_output.cpp
    exception/exception.cpp
-   exception/engine.cpp
-   #exception/exit.cpp
    exception/extended_status.cpp
    exception/extended_status.h
    exception/extended_transport.h
@@ -42,46 +110,24 @@ list(APPEND library_source
    exception/file.h
    exception/file_open.cpp
    exception/file_open.h
-   #exception/hresult.cpp
-   #exception/index_out_of_bounds.cpp
-   #exception/installing.cpp
    exception/interface_only.cpp
-   #exception/invalid_argument.cpp
-   #exception/invalid_character.cpp
-   #exception/invalid_handle.cpp
-   #exception/invalid_index.cpp
    exception/io.cpp
    exception/no_memory.cpp
    exception/no_memory.h
    exception/not_implemented.cpp
-   #exception/not_installed.cpp
-   #exception/not_licensed.cpp
-   #exception/not_supported.cpp
-   #exception/operation_canceled.cpp
-   #exception/os.cpp
    exception/parsing.cpp
    exception/resource.cpp
-   #exception/result.cpp
    exception/serialization.cpp
    exception/serialization.h
-   #exception/simple.cpp
-   #exception/standard_translator.cpp
-   #exception/temporary.cpp
    exception/throw.cpp
-   #exception/todo.cpp
    exception/translator.cpp
    exception/translator.h
-   #exception/user.cpp
-   #exception/void_implementation.cpp
-   #exception/wtf.cpp
-   #filesystem/file/_.cpp
    filesystem/file/binary_stream.cpp
    filesystem/file/buffered_buffer.cpp
    filesystem/file/c.cpp
    filesystem/file/circular_buffer.cpp
    filesystem/file/composite.cpp
    filesystem/file/cpp.cpp
-   #filesystem/file/dir.cpp
    filesystem/file/dir2.cpp
    filesystem/file/exception.cpp
    filesystem/file/file.cpp
@@ -92,10 +138,10 @@ list(APPEND library_source
    filesystem/file/memory_file.cpp
    filesystem/file/memory_map.cpp
    filesystem/file/path.cpp
+   filesystem/file/payload_stream.cpp
    filesystem/file/seekable.cpp
    filesystem/file/serializable.cpp
    filesystem/file/serialize.cpp
-   #filesystem/file/stdio_file.cpp
    filesystem/file/stream.cpp
    filesystem/file/streamable.cpp
    filesystem/file/streamable.h
@@ -106,7 +152,6 @@ list(APPEND library_source
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp
    filesystem/file/transfer.h
-   filesystem/file/payload_stream.cpp
    filesystem/filesystem/acme_dir.cpp
    filesystem/filesystem/acme_dir.h
    filesystem/filesystem/acme_file.cpp
@@ -118,12 +163,14 @@ list(APPEND library_source
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
+   framework.cpp
    graphics/draw2d/_.cpp
    graphics/draw2d/_system_color.h
    graphics/draw2d/color.cpp
    graphics/draw2d/color32.h
    graphics/draw2d/colorref_array.cpp
    graphics/draw2d/os_font_name.cpp
+   filesystem/filesystem/acme_file.cpp
    include/_.cpp
    memory/alloc.cpp
    memory/allocate_mid_big.cpp
@@ -134,14 +181,11 @@ list(APPEND library_source
    memory/array_memory_allocate.cpp
    memory/array_memory_allocate.h
    memory/counter.cpp
-   #memory/heap.cpp
    memory/memory_allocate.cpp
    memory/memory_allocate.h
    memory/memory_management.cpp
    memory/memory_management.h
    memory/new.cpp
-   #memory/plex.cpp
-   #memory/plex_heap.cpp
    memory/property_memory_allocate.cpp
    memory/property_memory_allocate.h
    memory/secondary_memory_allocate.cpp
@@ -156,6 +200,8 @@ list(APPEND library_source
    networking/url_department.h
    networking/url_domain.cpp
    networking/url_domain.h
+   operating_system/_.cpp
+   operating_system/_const_console.h
    operating_system/ansi/_pthread.h
    operating_system/ansi/base.cpp
    operating_system/ansi/callstack.cpp
@@ -168,9 +214,6 @@ list(APPEND library_source
    operating_system/ansi/memory.cpp
    operating_system/ansi/process.cpp
    operating_system/ansi/user.cpp
-   #operating_system/ansi/win.cpp
-   operating_system/_const_console.h
-   operating_system/_.cpp
    operating_system/argcargv.cpp
    operating_system/chronometer.cpp
    operating_system/console.cpp
@@ -188,17 +231,12 @@ list(APPEND library_source
    parallelization/condition_variable.h
    parallelization/critical_section.cpp
    parallelization/event.cpp
-   #parallelization/file_change_event.cpp
    parallelization/install_mutex.cpp
    parallelization/manual_reset_event.cpp
    parallelization/multiple_lock.cpp
    parallelization/multiple_lock.h
    parallelization/mutex.cpp
    parallelization/pool.cpp
-   #primitive/promise/handler1.cpp
-   #primitive/promise/manager.cpp
-   #primitive/promise/routine_array.cpp
-   #primitive/promise/_.h
    parallelization/semaphore.cpp
    parallelization/single_lock.cpp
    parallelization/socket_event.cpp
@@ -245,24 +283,21 @@ list(APPEND library_source
    platform/main.cpp
    platform/main.h
    platform/math.cpp
-   platform/message_box.cpp
    platform/message.h
+   platform/message_box.cpp
    platform/muldiv64.cpp
    platform/nanosecond_timer.cpp
    platform/nanosecond_timer.h
    platform/net.cpp
    platform/node.cpp
    platform/node.h
-   platform/printf.cpp
    platform/predicate_holder.cpp
    platform/predicate_holder.h
+   platform/printf.cpp
    platform/profiler.cpp
    platform/routine.cpp
    platform/routine.h
-   #platform/regex.cpp
    platform/serial.cpp
-   #platform/simple_trace.cpp
-   #platform/sprintf.cpp
    platform/system.cpp
    platform/system_setup.cpp
    platform/system_setup.h
@@ -276,16 +311,7 @@ list(APPEND library_source
    platform/trace.cpp
    platform/trace.h
    platform/trace_category.cpp
-   #platform/update.cpp
    platform/version.cpp
-   #process/_.cpp
-   process/_.h
-   process/bidirectional_pipe.cpp
-   process/bidirectional_pipe.h
-   process/exit_status.cpp
-   process/exit_status.h
-   process/pipe.cpp
-   process/pipe.h
    primitive/collection/2d_array.cpp
    primitive/collection/array.cpp
    primitive/collection/bit_array.cpp
@@ -297,15 +323,16 @@ list(APPEND library_source
    primitive/collection/map_misc.cpp
    primitive/collection/map_test_51778915.cpp
    primitive/collection/numeric_array.cpp
+   primitive/collection/payload_array.cpp
    primitive/collection/point_array.cpp
    primitive/collection/rectangle_array.cpp
    primitive/collection/sort.cpp
+   primitive/collection/string_array.cpp
    primitive/collection/string_array_base.cpp
    primitive/collection/string_list.cpp
+   primitive/collection/string_list.cpp
    primitive/collection/string_to_string_map.cpp
-   primitive/collection/string_array.cpp
    primitive/collection/stringl.cpp
-   primitive/collection/payload_array.cpp
    primitive/comparison/var_strict.cpp
    primitive/data/_.h
    primitive/data/_data.h
@@ -328,159 +355,363 @@ list(APPEND library_source
    primitive/data/tree_item.cpp
    primitive/data/tree_item.h
    primitive/datetime/_.cpp
+   primitive/datetime/_.h
    primitive/datetime/_c.cpp
+   primitive/datetime/_c.h
+   primitive/datetime/_impl.h
    primitive/datetime/date_span.cpp
+   primitive/datetime/date_span.h
    primitive/datetime/datetime.cpp
    primitive/datetime/department.cpp
    primitive/datetime/department.h
-   primitive/datetime/filetime.cpp
-   primitive/datetime/filetime_span.cpp
+   primitive/datetime/file_time.cpp
+   primitive/datetime/file_time.h
+   primitive/datetime/file_time_span.cpp
+   primitive/datetime/file_time_span.h
    primitive/datetime/microsecond_sleep.cpp
    primitive/datetime/microsecond_sleep.h
    primitive/datetime/mktime.cpp
-   primitive/datetime/time.cpp
-   primitive/datetime/time_span.cpp
    primitive/datetime/result.cpp
    primitive/datetime/result.h
+   primitive/datetime/system_time.cpp
+   primitive/datetime/time.cpp
+   primitive/datetime/time.h
+   primitive/datetime/time_span.cpp
+   primitive/datetime/time_span.h
    primitive/datetime/zonetime.cpp
+   primitive/datetime/zonetime.h
+   primitive/duration/duration/_.h
    primitive/duration/duration/duration.cpp
    primitive/duration/duration/duration.h
-   primitive/duration/duration/_.h
-   primitive/duration/integral/_.h
    primitive/duration/floating/_.h
+   primitive/duration/integral/_.h
    primitive/geometry2d/_.cpp
+   primitive/geometry2d/_.h
+   primitive/geometry2d/_collection.h
+   primitive/geometry2d/_collection_bounding_rect.h
+   primitive/geometry2d/_collection_contains.h
+   primitive/geometry2d/_defer.h
+   primitive/geometry2d/_impl.h
+   primitive/geometry2d/_rect_impl.h
    primitive/geometry2d/_shape.cpp
    primitive/geometry2d/_shape.h
+   primitive/geometry2d/_size_impl.h
+   primitive/geometry2d/_struct.h
+   primitive/geometry2d/align.h
+   primitive/geometry2d/angle.h
+   primitive/geometry2d/arc.h
+   primitive/geometry2d/bounding_rect.h
+   primitive/geometry2d/collection.h
+   primitive/geometry2d/contains.h
+   primitive/geometry2d/ellipse.h
    primitive/geometry2d/geometry.cpp
+   primitive/geometry2d/geometry.h
+   primitive/geometry2d/line.h
+   primitive/geometry2d/lines.h
    primitive/geometry2d/point.cpp
+   primitive/geometry2d/point.h
+   primitive/geometry2d/point_array.h
+   primitive/geometry2d/polygon.h
    primitive/geometry2d/rectangle.cpp
+   primitive/geometry2d/rectangle.h
+   primitive/geometry2d/rectangle_array.h
    primitive/geometry2d/shape.cpp
+   primitive/geometry2d/shape.h
+   primitive/geometry2d/shape_array.h
    primitive/geometry2d/size.cpp
+   primitive/geometry2d/size.h
+   primitive/geometry2d/size_array.h
    primitive/geometry2d/types.cpp
+   primitive/geometry2d/types.h
+   primitive/geometry3d/_.h
    primitive/geometry3d/box.cpp
+   primitive/geometry3d/box.h
+   primitive/geometry3d/dimension.h
    primitive/geometry3d/location.cpp
+   primitive/geometry3d/location.h
+   primitive/geometry3d/quaternions.h
    primitive/mathematics/_.cpp
+   primitive/mathematics/_.h
+   primitive/mathematics/_impl.h
    primitive/mathematics/binary_operation.cpp
+   primitive/mathematics/binary_operation.h
+   primitive/mathematics/c_number.h
+   primitive/mathematics/cast.h
    primitive/mathematics/cast.inl
+   primitive/mathematics/classes.h
+   primitive/mathematics/complex.h
+   primitive/mathematics/count.h
    primitive/mathematics/cvt.cpp
    primitive/mathematics/cvt_g.cpp
+   primitive/mathematics/filestream.h
+   primitive/mathematics/index.h
    primitive/mathematics/int_biunique.cpp
+   primitive/mathematics/math_clip.h
+   primitive/mathematics/math_int_biunique.h
    primitive/mathematics/mathematics.cpp
    primitive/mathematics/mathematics.h
    primitive/mathematics/mkint_c.cpp
+   primitive/mathematics/mkint_c.h
    primitive/mathematics/natural.cpp
+   primitive/mathematics/natural.h
    primitive/mathematics/number.cpp
+   primitive/mathematics/number.h
    primitive/mathematics/number_double.cpp
+   primitive/mathematics/number_double.h
    primitive/mathematics/number_float.cpp
+   primitive/mathematics/number_float.h
    primitive/mathematics/number_integer.cpp
+   primitive/mathematics/number_integer.h
+   primitive/mathematics/numeric_info.h
+   primitive/mathematics/objects.h
    primitive/mathematics/random_number_generator.cpp
+   primitive/mathematics/random_number_generator.h
    primitive/mathematics/scalar.cpp
+   primitive/mathematics/scalar.h
+   primitive/mathematics/scalar_enum.h
+   primitive/mathematics/static_numeric_info.h
+   primitive/mathematics/std_template.h
    primitive/mathematics/value.cpp
+   primitive/mathematics/value.h
    primitive/primitive/_.cpp
-   #primitive/promise/subject.cpp
+   primitive/primitive/_.h
+   primitive/primitive/_atom_impl.h
+   primitive/primitive/_c_memory.h
+   primitive/primitive/_defer.h
+   primitive/primitive/_factory_impl.h
+   primitive/primitive/_factory_prefix.h
+   primitive/primitive/_impl.h
+   primitive/primitive/_memory.h
+   primitive/primitive/_papaya.h
+   primitive/primitive/_papaya_impl.h
+   primitive/primitive/_payload_impl.h
+   primitive/primitive/_property_object_impl.h
+   primitive/primitive/action_context.h
    primitive/primitive/application_bias.cpp
+   primitive/primitive/atom.cpp
+   primitive/primitive/atom.h
+   primitive/primitive/atom_space.cpp
+   primitive/primitive/atom_space.h
+   primitive/primitive/atomic.h
    primitive/primitive/bit.cpp
+   primitive/primitive/bit.h
    primitive/primitive/block.cpp
-   #primitive/primitive/block.inl
-   #primitive/promise/context.cpp
+   primitive/primitive/block.h
+   primitive/primitive/collection_file.h
    primitive/primitive/command.cpp
+   primitive/primitive/compare_predicate.h
    primitive/primitive/context_object_traits.cpp
    primitive/primitive/edit.cpp
    primitive/primitive/element.cpp
+   primitive/primitive/element.cpp
    primitive/primitive/element.h
-   primitive/primitive/estatus.cpp
+   primitive/primitive/element.h
    primitive/primitive/element_array.cpp
+   primitive/primitive/element_array.h
    primitive/primitive/element_array.h
    primitive/primitive/enum_bitset.h
    primitive/primitive/enumeration.h
+   primitive/primitive/enumeration.h
+   primitive/primitive/enumeration.h
+   primitive/primitive/eobject.h
+   primitive/primitive/estatus.cpp
+   primitive/primitive/estatus.h
    primitive/primitive/factory.cpp
-   #primitive/promise_predicate/predicate_function.cpp
-   #primitive/promise/process.cpp
+   primitive/primitive/factory.h
    primitive/primitive/handler.cpp
-   primitive/primitive/atom.cpp
    primitive/primitive/id_array.cpp
-   primitive/primitive/material_object.cpp
-   primitive/primitive/material_object.h
-   primitive/primitive/atom_space.cpp
+   primitive/primitive/id_array.h
    primitive/primitive/interlocked.h
    primitive/primitive/interlocked_count.h
    primitive/primitive/interlocked_long_pulse.cpp
-   primitive/primitive/object.cpp
-   primitive/primitive/object.h
-   primitive/primitive/property_object.cpp
-   primitive/primitive/property_object.h
+   primitive/primitive/interlocked_long_pulse.h
    primitive/primitive/linked_property.cpp
    primitive/primitive/linked_property.h
+   primitive/primitive/logic.h
+   primitive/primitive/malloc.h
+   primitive/primitive/map.h
    primitive/primitive/match.cpp
+   primitive/primitive/match.h
+   primitive/primitive/material_object.cpp
    primitive/primitive/material_object.cpp
    primitive/primitive/material_object.h
+   primitive/primitive/material_object.h
    primitive/primitive/matter.cpp
+   primitive/primitive/matter.h
+   primitive/primitive/member.h
    primitive/primitive/memory.cpp
+   primitive/primitive/memory.h
    primitive/primitive/memory_base.cpp
+   primitive/primitive/memory_base.h
    primitive/primitive/memory_c.cpp
    primitive/primitive/memory_container.cpp
+   primitive/primitive/memory_container.h
+   primitive/primitive/natural.h
+   primitive/primitive/number.h
+   primitive/primitive/object.cpp
    primitive/primitive/object.cpp
    primitive/primitive/object.h
-   #primitive/promise/routine.cpp
-   #primitive/promise/promise.cpp
+   primitive/primitive/object.h
+   primitive/primitive/papaya.h
+   primitive/primitive/payload.cpp
+   primitive/primitive/payload.h
+   primitive/primitive/payload2.h
+   primitive/primitive/pointer.h
+   primitive/primitive/pointer2.h
    primitive/primitive/property.cpp
+   primitive/primitive/property.h
+   primitive/primitive/property_object.cpp
    primitive/primitive/property_object.cpp
    primitive/primitive/property_object.h
+   primitive/primitive/property_object.h
    primitive/primitive/property_set.cpp
+   primitive/primitive/property_set.h
    primitive/primitive/property_set_composite.cpp
    primitive/primitive/property_set_papaya.cpp
-   primitive/primitive/element.cpp
-   primitive/primitive/element.h
+   primitive/primitive/property_set_papaya.h
+   primitive/primitive/request_interface.h
    primitive/primitive/runnable.cpp
+   primitive/primitive/runnable.h
    primitive/primitive/shared_memory.cpp
-   primitive/primitive/traits.cpp
-   primitive/primitive/type.cpp
-   primitive/primitive/payload.cpp
+   primitive/primitive/shared_memory.h
+   primitive/primitive/simple_object.h
+   primitive/primitive/stick.h
+   primitive/primitive/str.h
    primitive/primitive/tracer.cpp
    primitive/primitive/tracer.h
+   primitive/primitive/trait.h
+   primitive/primitive/trait_predicate.h
+   primitive/primitive/traits.cpp
+   primitive/primitive/traits.h
+   primitive/primitive/type.cpp
+   primitive/primitive/type.h
+   primitive/primitive/uid.h
+   primitive/primitive/util.h
+   primitive/primitive/value.h
    primitive/primitive/var_element.cpp
    primitive/primitive/virtual_memory.cpp
+   primitive/primitive/virtual_memory.h
    primitive/primitive/work.cpp
+   primitive/primitive/work.h
    primitive/promise/signalization.cpp
    primitive/promise/signalization.h
+   primitive/string/_.cpp
    primitive/string/_.h
+   primitive/string/_.h
+   primitive/string/___ch_impl.h
+   primitive/string/__c_ansi.h
+   primitive/string/__c_ansi_impl.h
+   primitive/string/__c_wd16.h
+   primitive/string/__c_wd16_impl.h
+   primitive/string/__c_wd32.h
+   primitive/string/__c_wd32_impl.h
+   primitive/string/__c_wide.h
+   primitive/string/__c_wide_impl.h
+   primitive/string/_base.h
    primitive/string/_base.h
    primitive/string/_base_impl.h
-   primitive/string/_.cpp
+   primitive/string/_base_impl.h
    primitive/string/_c.cpp
+   primitive/string/_c.h
+   primitive/string/_c_impl.h
+   primitive/string/_c_inline.h
+   primitive/string/_c_str.h
+   primitive/string/_c_str_impl.h
+   primitive/string/_c_trait.h
    primitive/string/_c_trait_ansi.cpp
+   primitive/string/_c_trait_ansi.h
+   primitive/string/_c_trait_ansi_impl.h
+   primitive/string/_c_trait_impl.h
+   primitive/string/_c_trait_wd16.h
+   primitive/string/_c_trait_wd16_impl.h
+   primitive/string/_c_trait_wd32.h
+   primitive/string/_c_trait_wd32_impl.h
    primitive/string/_c_trait_wide.cpp
+   primitive/string/_c_trait_wide.h
+   primitive/string/_c_trait_wide_impl.h
+   primitive/string/_c_unicode.h
+   primitive/string/_compare.h
+   primitive/string/_compare_impl.h
+   primitive/string/_conv.h
    primitive/string/_conv_ansi.cpp
+   primitive/string/_conv_ansi.h
+   primitive/string/_conv_ansi_impl.h
+   primitive/string/_defer.h
+   primitive/string/_impl.h
+   primitive/string/_impl_prio.h
+   primitive/string/_international.h
+   primitive/string/_natural.h
+   primitive/string/_str.h
+   primitive/string/_str_impl.h
+   primitive/string/_string_wide.h
+   primitive/string/_trait.h
+   primitive/string/_trait_ansi.h
+   primitive/string/_trait_ansi_impl.h
+   primitive/string/_trait_impl.h
+   primitive/string/_trait_wd16.h
+   primitive/string/_trait_wd16_impl.h
+   primitive/string/_trait_wd32.h
+   primitive/string/_trait_wd32_impl.h
+   primitive/string/_uhash.h
    primitive/string/_unicode.cpp
+   primitive/string/_unicode.h
    primitive/string/_unicode16.cpp
    primitive/string/_unicode16_32.cpp
    primitive/string/_unicode32.cpp
+   primitive/string/_unicode_impl.h
    primitive/string/base64.cpp
+   primitive/string/base64.h
+   primitive/string/bstr.h
    primitive/string/bstring.cpp
+   primitive/string/bstring.h
    primitive/string/ch.cpp
+   primitive/string/ch.h
    primitive/string/ch_class.cpp
+   primitive/string/ch_class.h
+   primitive/string/composite.h
    primitive/string/dup.cpp
    primitive/string/from_integer.cpp
+   primitive/string/from_integer.h
    primitive/string/hex.cpp
+   primitive/string/hex.h
    primitive/string/international.cpp
+   primitive/string/international.h
+   primitive/string/international2.h
    primitive/string/manager.cpp
    primitive/string/parse.cpp
+   primitive/string/parse.h
    primitive/string/simple.cpp
+   primitive/string/static_string.h
+   primitive/string/stdstring.h
    primitive/string/str.cpp
    primitive/string/string_ansi.cpp
+   primitive/string/string_file.h
+   primitive/string/string_inst.h
    primitive/string/string_wide.cpp
    primitive/string/string_wide_conversion.cpp
+   primitive/string/string_wide_conversion.h
    primitive/string/stringtow.cpp
+   primitive/string/stringtow.h
    primitive/string/strw.cpp
    primitive/string/strx.cpp
    primitive/string/sz.cpp
+   primitive/string/sz.h
    primitive/string/to_integer.cpp
+   primitive/string/to_integer.h
    primitive/string/tokenizer.cpp
+   primitive/string/tokenizer.h
    primitive/string/x.cpp
+   primitive/string/x.h
+   primitive/string/x/x_charcategory.h
+   primitive/string/x/x_charcategory2.h
+   primitive/string/x/x_charcategory_names.h
+   primitive/string/x/x_defines.h
+   primitive/string/x/x_encodings.h
+   primitive/string/x/x_tables.h
    primitive/text/context.cpp
    primitive/text/context.h
-   primitive/text/data.h
    primitive/text/data.cpp
+   primitive/text/data.h
    primitive/text/international.cpp
    primitive/text/international.h
    primitive/text/international_locale_schema.cpp
@@ -489,6 +720,14 @@ list(APPEND library_source
    primitive/text/text.h
    primitive/text/translator.cpp
    primitive/text/translator.h
+   process/_.h
+   process/bidirectional_pipe.cpp
+   process/bidirectional_pipe.h
+   process/exit_status.cpp
+   process/exit_status.h
+   process/pipe.cpp
+   process/pipe.h
+   promise.cpp
    regular_expression/_regular_expression.h
    regular_expression/context.cpp
    regular_expression/context.h
@@ -506,19 +745,19 @@ list(APPEND library_source
    topic/topic.h
    user/nano/_nano.cpp
    user/nano/_nano.h
-   user/nano/device.h
    user/nano/brush.cpp
    user/nano/brush.h
    user/nano/button.cpp
    user/nano/button.h
-   user/nano/font.cpp
-   user/nano/font.h
    user/nano/child.cpp
    user/nano/child.h
    user/nano/details_window.cpp
    user/nano/details_window.h
    user/nano/device.cpp
    user/nano/device.h
+   user/nano/device.h
+   user/nano/font.cpp
+   user/nano/font.h
    user/nano/message_box.cpp
    user/nano/message_box.h
    user/nano/object.cpp
@@ -548,11 +787,6 @@ list(APPEND library_source
    user/user/text.cpp
    user/user/text.h
    user/user/theme_colors.h
-   _.cpp
-   __matter_ca2.cpp
-   context_glx.cpp
-   framework.cpp
-   promise.cpp
    update.h)
 
 
@@ -624,7 +858,7 @@ list(APPEND library_source
    exception/cancel.h
    #exception/debug_stream.h
    exception/dump_context.h
-   exception/engine.h
+   #exception/engine.h
    exception/exception.cpp
    exception/exception.h
    exception/exception2.h
@@ -1139,238 +1373,6 @@ list(APPEND library_source
    primitive/comparison/md5.h
    primitive/comparison/sign.h
    primitive/comparison/var_strict.h
-   primitive/datetime/_.h
-   primitive/datetime/_c.h
-   primitive/datetime/_impl.h
-   primitive/datetime/date_span.h
-   primitive/datetime/filetime.h
-   primitive/datetime/filetime_span.h
-   primitive/datetime/system_time.cpp
-   primitive/datetime/time.h
-   primitive/datetime/time_span.h
-   primitive/datetime/zonetime.h
-   primitive/geometry2d/_.h
-   primitive/geometry2d/_collection.h
-   primitive/geometry2d/_collection_bounding_rect.h
-   primitive/geometry2d/_collection_contains.h
-   primitive/geometry2d/_defer.h
-   primitive/geometry2d/_impl.h
-   primitive/geometry2d/_rect_impl.h
-   primitive/geometry2d/_size_impl.h
-   primitive/geometry2d/_struct.h
-   primitive/geometry2d/align.h
-   primitive/geometry2d/angle.h
-   primitive/geometry2d/arc.h
-   primitive/geometry2d/bounding_rect.h
-   primitive/geometry2d/collection.h
-   primitive/geometry2d/contains.h
-   primitive/geometry2d/geometry.h
-   primitive/geometry2d/line.h
-   primitive/geometry2d/lines.h
-   primitive/geometry2d/ellipse.h
-   primitive/geometry2d/point.h
-   primitive/geometry2d/point_array.h
-   primitive/geometry2d/polygon.h
-   primitive/geometry2d/rectangle.h
-   primitive/geometry2d/rectangle_array.h
-   primitive/geometry2d/shape.h
-   primitive/geometry2d/shape_array.h
-   primitive/geometry2d/size.h
-   primitive/geometry2d/size_array.h
-   primitive/geometry2d/types.h
-   primitive/geometry3d/_.h
-   primitive/geometry3d/box.h
-   primitive/geometry3d/dimension.h
-   primitive/geometry3d/location.h
-   primitive/geometry3d/quaternions.h
-   primitive/mathematics/_.h
-   primitive/mathematics/_impl.h
-   primitive/mathematics/binary_operation.h
-   primitive/mathematics/c_number.h
-   primitive/mathematics/cast.h
-   primitive/mathematics/classes.h
-   primitive/mathematics/complex.h
-   primitive/mathematics/count.h
-   primitive/mathematics/filestream.h
-   primitive/mathematics/index.h
-   primitive/mathematics/math_clip.h
-   primitive/mathematics/math_int_biunique.h
-   primitive/mathematics/mkint_c.h
-   primitive/mathematics/natural.h
-   primitive/mathematics/number.h
-   primitive/mathematics/number_double.h
-   primitive/mathematics/number_float.h
-   primitive/mathematics/number_integer.h
-   primitive/mathematics/numeric_info.h
-   primitive/mathematics/objects.h
-   primitive/mathematics/random_number_generator.h
-   primitive/mathematics/scalar.h
-   primitive/mathematics/scalar_enum.h
-   primitive/mathematics/static_numeric_info.h
-   primitive/mathematics/std_template.h
-   primitive/mathematics/value.h
-   primitive/primitive/_.h
-   primitive/primitive/_c_memory.h
-   primitive/primitive/_property_object_impl.h
-   primitive/primitive/_defer.h
-   primitive/primitive/_factory_impl.h
-   primitive/primitive/_factory_prefix.h
-   primitive/primitive/_atom_impl.h
-   primitive/primitive/_impl.h
-   primitive/primitive/_memory.h
-   primitive/primitive/_papaya.h
-   primitive/primitive/_papaya_impl.h
-   primitive/primitive/_payload_impl.h
-   primitive/primitive/action_context.h
-   #primitive/primitive/application_bias.h
-   primitive/primitive/atomic.h
-   primitive/primitive/bit.h
-   primitive/primitive/block.h
-   #primitive/primitive/collection.h
-   primitive/primitive/collection_file.h
-   #primitive/primitive/command.h
-   primitive/primitive/compare_predicate.h
-   #primitive/primitive/edit.h
-   primitive/primitive/element_array.h
-   primitive/primitive/enumeration.h
-   primitive/primitive/enumeration.h
-   primitive/primitive/eobject.h
-   primitive/primitive/estatus.h
-   primitive/primitive/factory.h
-   primitive/primitive/atom.h
-   primitive/primitive/id_array.h
-   primitive/primitive/atom_space.h
-   primitive/primitive/interlocked_long_pulse.h
-   #primitive/primitive/layered.h
-   primitive/primitive/logic.h
-   primitive/primitive/malloc.h
-   primitive/primitive/map.h
-   primitive/primitive/match.h
-   primitive/primitive/matter.h
-   primitive/primitive/member.h
-   primitive/primitive/memory.h
-   primitive/primitive/memory_base.h
-   primitive/primitive/memory_container.h
-   primitive/primitive/natural.h
-   primitive/primitive/number.h
-   primitive/primitive/papaya.h
-   primitive/primitive/payload.h
-   primitive/primitive/pointer.h
-   primitive/primitive/pointer2.h
-   #primitive/primitive/primitive_update.h
-   primitive/primitive/property.h
-   primitive/primitive/property_set.h
-   primitive/primitive/property_set_papaya.h
-   primitive/primitive/request_interface.h
-   #primitive/primitive/request_signal.h
-   primitive/primitive/runnable.h
-   primitive/primitive/shared_memory.h
-   primitive/primitive/simple_object.h
-   primitive/primitive/stick.h
-   primitive/primitive/str.h
-   primitive/primitive/trait.h
-   primitive/primitive/trait_predicate.h
-   primitive/primitive/traits.h
-   primitive/primitive/type.h
-   primitive/primitive/uid.h
-   primitive/primitive/util.h
-   primitive/primitive/value.h
-   primitive/primitive/payload2.h
-   primitive/primitive/virtual_memory.h
-   primitive/primitive/work.h
-   #primitive/promise/context.h
-   #primitive/promise/handler1.h
-   #primitive/promise/manager.h
-   #primitive/promise/promise.h
-   #primitive/promise/promise1.h
-   #primitive/promise/routine.h
-   #primitive/promise/routine_array.h
-   #primitive/promise/subject.h
-   #primitive/promise_predicate/predicate_function_pointer.h
-   #primitive/promise_predicate/predicate_process.h
-   #primitive/promise_predicate/predicate_function.cpp
-   #primitive/promise_predicate/predicate_holder.cpp
-   #primitive/promise_predicate/predicate_holder.h
-   #primitive/promise_predicate/synchronized_predicate_routine.h
-   primitive/string/_.h
-   primitive/string/___ch_impl.h
-   primitive/string/__c_ansi.h
-   primitive/string/__c_ansi_impl.h
-   primitive/string/__c_wd16.h
-   primitive/string/__c_wd16_impl.h
-   primitive/string/__c_wd32.h
-   primitive/string/__c_wd32_impl.h
-   primitive/string/__c_wide.h
-   primitive/string/__c_wide_impl.h
-   primitive/string/_base.h
-   primitive/string/_base_impl.h
-   primitive/string/_c.h
-   primitive/string/_c_impl.h
-   primitive/string/_c_inline.h
-   primitive/string/_c_str.h
-   primitive/string/_c_str_impl.h
-   primitive/string/_c_trait.h
-   primitive/string/_c_trait_ansi.h
-   primitive/string/_c_trait_ansi_impl.h
-   primitive/string/_c_trait_impl.h
-   primitive/string/_c_trait_wd16.h
-   primitive/string/_c_trait_wd16_impl.h
-   primitive/string/_c_trait_wd32.h
-   primitive/string/_c_trait_wd32_impl.h
-   primitive/string/_c_trait_wide.h
-   primitive/string/_c_trait_wide_impl.h
-   primitive/string/_c_unicode.h
-   primitive/string/_compare.h
-   primitive/string/_compare_impl.h
-   primitive/string/_conv.h
-   primitive/string/_conv_ansi.h
-   primitive/string/_conv_ansi_impl.h
-   primitive/string/_defer.h
-   primitive/string/_impl.h
-   primitive/string/_impl_prio.h
-   primitive/string/_international.h
-   primitive/string/_natural.h
-   primitive/string/_str.h
-   primitive/string/_str_impl.h
-   primitive/string/_string_wide.h
-   primitive/string/_trait.h
-   primitive/string/_trait_ansi.h
-   primitive/string/_trait_ansi_impl.h
-   primitive/string/_trait_impl.h
-   primitive/string/_trait_wd16.h
-   primitive/string/_trait_wd16_impl.h
-   primitive/string/_trait_wd32.h
-   primitive/string/_trait_wd32_impl.h
-   primitive/string/_uhash.h
-   primitive/string/_unicode.h
-   primitive/string/_unicode_impl.h
-   primitive/string/base64.h
-   primitive/string/bstr.h
-   primitive/string/bstring.h
-   primitive/string/ch.h
-   primitive/string/ch_class.h
-   primitive/string/composite.h
-   primitive/string/from_integer.h
-   primitive/string/hex.h
-   primitive/string/international.h
-   primitive/string/international2.h
-   primitive/string/parse.h
-   primitive/string/static_string.h
-   primitive/string/stdstring.h
-   primitive/string/string_file.h
-   primitive/string/string_inst.h
-   primitive/string/string_wide_conversion.h
-   primitive/string/stringtow.h
-   primitive/string/sz.h
-   primitive/string/to_integer.h
-   primitive/string/tokenizer.h
-   primitive/string/x.h
-   primitive/string/x/x_charcategory.h
-   primitive/string/x/x_charcategory2.h
-   primitive/string/x/x_charcategory_names.h
-   primitive/string/x/x_defines.h
-   primitive/string/x/x_encodings.h
-   primitive/string/x/x_tables.h
    procedure.h
    process/main.cpp
    template/list.h
@@ -1402,7 +1404,7 @@ if (UWP)
       operating_system/universal_windows/direct2d_tls.cpp
       operating_system/universal_windows/dpi.cpp
       operating_system/universal_windows/dummy_ipc.cpp
-      operating_system/universal_windows/exception_engine.cpp
+      #operating_system/universal_windows/exception_engine.cpp
       operating_system/universal_windows/file.cpp
       operating_system/universal_windows/file_memory_map.cpp
       operating_system/universal_windows/graphics.cpp
@@ -1600,6 +1602,9 @@ if(WITH_X11)
       operating_system/x11/nano/_nano.h
       operating_system/x11/nano/device.cpp
       operating_system/x11/nano/device.h
+      operating_system/x11/nano/display.cpp
+      operating_system/x11/nano/display.h
+      operating_system/x11/nano/event_listener.h
       operating_system/x11/nano/font.cpp
       operating_system/x11/nano/font.h
       operating_system/x11/nano/window.h
@@ -1637,7 +1642,7 @@ if (LINUX)
       operating_system/linux/cross_win_file.cpp
       operating_system/linux/cross_win_gdi.cpp
       operating_system/linux/debug.cpp
-      operating_system/linux/exception_engine.cpp
+      #operating_system/linux/exception_engine.cpp
       operating_system/linux/file.cpp
       operating_system/linux/file_lock.cpp
       #operating_system/linux/gdk.cpp
@@ -1673,7 +1678,7 @@ if (LINUX)
       operating_system/linux/cross_win_gdi.h
       operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.h
-      operating_system/linux/exception_engine.h
+      #operating_system/linux/exception_engine.h
       operating_system/linux/file.h
       #operating_system/linux/gdk.h
       operating_system/linux/linux_linux.h
@@ -2076,7 +2081,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} operating_system/x11/nano/display.h operating_system/x11/nano/event_listener.h operating_system/x11/nano/display.cpp platform/app.h platform/app.cpp)
+add_library(acme SHARED ${library_source} constant/earth.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

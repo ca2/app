@@ -2,18 +2,15 @@
 #pragma once
 
 
-namespace datetime
+namespace earth
 {
 
 
-   //string Format(string & str, const ::string & strFormat) const;
-   //string FormatGmt(string & str, const ::string & strFormat) const;
-   CLASS_DECL_ACME string format(const ::string& strFormat, const ::datetime::time_span& timespan, const ::time_shift & timeshift = ::time_shift::none());
-   CLASS_DECL_ACME string format(const ::string& strFormat, const ::datetime::time& time, const ::time_shift& timeshift = ::time_shift::none());
-   //CLASS_DECL_ACME string utc_format(const ::string& strFormat, const::datetime::time& time);
+   CLASS_DECL_ACME string format(const ::string& strFormat, const time_span& timespan, const time_shift & timeshift = time_shift::none());
+   CLASS_DECL_ACME string format(const ::string& strFormat, const time& time, const time_shift& timeshift = time_shift::none());
 
 
-} // namespace datetime
+} // namespace earth
 
 
 

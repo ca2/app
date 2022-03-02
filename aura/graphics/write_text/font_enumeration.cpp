@@ -304,7 +304,7 @@ namespace write_text
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 

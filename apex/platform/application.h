@@ -28,22 +28,14 @@ public:
       __composite(::user::language_map)               m_puserlanguagemap;
 
       //__reference(::application)                m_pappParent;
-      string                                          m_strAppName;
       ::text::text                                    m_textAppTitle;
       string                                          m_strBaseSupportId;
       string                                          m_strDatabaseAppId;
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLibraryName;
       string                                          m_strRelativeFolder;
-      string                                          m_strBuild;
-      string                                          m_strInstallToken;
       string                                          m_strInstallTraceLabel;
       string                                          m_strInstallBuild;
       string                                          m_strHttpUserAgentToken;
       string                                          m_strHttpUserAgentVersion;
-      string_array                                    m_straAppCategory;
-      bool                                            m_bLicense;
       bool                                            m_bRequiresInstallation;
 
       bool                                            m_bReadStringTable;

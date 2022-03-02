@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */; };
+		9A22742D27CF3A4C0042BAC2 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742C27CF3A4C0042BAC2 /* _main.cpp */; };
 		9A46D37726785AD0000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9A46D37C26785B51000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
 		9A46D37D26785B51000B22D0 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -27,7 +28,6 @@
 		9A46D3A626785B85000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A64C1D02660C7890074030F /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3AE26785D9A000B22D0 /* libapp_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B5278538E500B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A8C5BA62783E76C000C8587 /* _app_message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C5B6A2783E76C000C8587 /* _app_message_box.cpp */; };
 		9A8C81712783F8A7000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81702783F8A7000C8587 /* _matter.zip */; };
 		9A8C81782783F8C5000C8587 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81732783F8C5000C8587 /* MainMenu.xib */; };
 		9A8C81792783F8C5000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81752783F8C5000C8587 /* Images.xcassets */; };
@@ -187,6 +187,7 @@
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8F021B6E53FA00D26137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
+		9A22742C27CF3A4C0042BAC2 /* _main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main.cpp; sourceTree = "<group>"; };
 		9A46D36526785A76000B22D0 /* libapp_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_message_box.xcodeproj; sourceTree = "<group>"; };
 		9A46D37B26785B51000B22D0 /* libacme_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,13 +204,6 @@
 		9A4E96B3278538E500B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../operating-system/operating-system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
-		9A8C5B692783E76C000C8587 /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
-		9A8C5B6A2783E76C000C8587 /* _app_message_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _app_message_box.cpp; sourceTree = "<group>"; };
-		9A8C5B6B2783E76C000C8587 /* _dependencies.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _dependencies.txt; sourceTree = "<group>"; };
-		9A8C5B6C2783E76C000C8587 /* _packages.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _packages.txt; sourceTree = "<group>"; };
-		9A8C5B6D2783E76C000C8587 /* _extensions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _extensions.txt; sourceTree = "<group>"; };
-		9A8C5B6E2783E76C000C8587 /* _static_factory.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _static_factory.inl; sourceTree = "<group>"; };
-		9A8C5B6F2783E76C000C8587 /* _references.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _references.txt; sourceTree = "<group>"; };
 		9A8C81702783F8A7000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
 		9A8C81742783F8C5000C8587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9A8C81752783F8C5000C8587 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -324,28 +318,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A8C5B672783E76C000C8587 /* platform */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C5B682783E76C000C8587 /* macos */,
-			);
-			path = platform;
-			sourceTree = "<group>";
-		};
-		9A8C5B682783E76C000C8587 /* macos */ = {
-			isa = PBXGroup;
-			children = (
-				9A8C5B692783E76C000C8587 /* _main.inl */,
-				9A8C5B6A2783E76C000C8587 /* _app_message_box.cpp */,
-				9A8C5B6B2783E76C000C8587 /* _dependencies.txt */,
-				9A8C5B6C2783E76C000C8587 /* _packages.txt */,
-				9A8C5B6D2783E76C000C8587 /* _extensions.txt */,
-				9A8C5B6E2783E76C000C8587 /* _static_factory.inl */,
-				9A8C5B6F2783E76C000C8587 /* _references.txt */,
-			);
-			path = macos;
-			sourceTree = "<group>";
-		};
 		9A8C81722783F8C5000C8587 /* macos */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,9 +331,9 @@
 		9AB3DCD32783849D0025099F /* message_box */ = {
 			isa = PBXGroup;
 			children = (
+				9A22742C27CF3A4C0042BAC2 /* _main.cpp */,
 				9A8C81722783F8C5000C8587 /* macos */,
 				9A8C81702783F8A7000C8587 /* _matter.zip */,
-				9A8C5B672783E76C000C8587 /* platform */,
 			);
 			name = message_box;
 			sourceTree = "<group>";
@@ -613,7 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8C5BA62783E76C000C8587 /* _app_message_box.cpp in Sources */,
+				9A22742D27CF3A4C0042BAC2 /* _main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +703,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -792,7 +763,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

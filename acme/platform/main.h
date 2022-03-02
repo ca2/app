@@ -67,8 +67,11 @@ class CLASS_DECL_ACME main :
 public:
 
    
-   string                        m_strCommandLine;
-   string                        m_strAppId;
+   string                              m_strCommandLine;
+   string                              m_strAppId;
+   __pointer(::app)                    m_pappStartup;
+   __pointer(::app)                    m_pappMain;
+
 
 
    main();

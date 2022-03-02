@@ -118,7 +118,7 @@ namespace write_text
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -128,7 +128,7 @@ namespace write_text
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 

@@ -3,6 +3,8 @@
 //#include "system_impl.h"
 #include "library.h"
 
+CLASS_DECL_ACME bool is_verbose_log();
+
 
 //typedef  void(*PFN_create_factory)();
 
@@ -202,7 +204,14 @@ namespace acme
 
       //}
 
-      INFORMATION("acme::library::open success : " << m_strMessage);
+      //INFORMATION("acme::library::open success : " << m_strMessage);
+      
+      if(is_verbose_log())
+      {
+      
+         INFORMATION("acme::library::open success : " << m_strName);
+         
+      }
 
       if (m_strName.has_char())
       {

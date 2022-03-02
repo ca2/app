@@ -7586,7 +7586,7 @@ void interaction::show_control_bar(::user::control_bar * pcontrolbar)
 
    throw ::interface_only();
 
-   throw ::interface_only();
+   //throw ::interface_only();
 
 }
 
@@ -7596,7 +7596,7 @@ void interaction::hide_control_bar(::user::control_bar * pcontrolbar)
 
    throw ::interface_only();
 
-   throw ::interface_only();
+   //throw ::interface_only();
 
 }
 

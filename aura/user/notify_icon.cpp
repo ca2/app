@@ -26,7 +26,7 @@ namespace user
       
       throw ::interface_only();
       
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -53,7 +53,7 @@ namespace user
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 

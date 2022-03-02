@@ -7,20 +7,20 @@
 //
 #include "framework.h"
 
-
-namespace aura
-{
-
-
-   HCURSOR application::load_default_cursor(e_cursor ecursor)
-   {
-      
-      return nscursor_system(ecursor);
-      
-   }
-
-
-} // namespace aura
-
+//
+//namespace aura
+//{
+//
+//
+//   HCURSOR application::load_default_cursor(e_cursor ecursor)
+//   {
+//      
+//      return nscursor_system(ecursor);
+//      
+//   }
+//
+//
+//} // namespace aura
+//
 
 

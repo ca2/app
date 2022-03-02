@@ -792,7 +792,7 @@ void system::init_system()
 
    //}
 
-   __refer(m_pappStartup, pappStartup);
+   m_pappStartup = pappStartup;
 
    m_pappStartup->initialize(this);
 
@@ -1720,6 +1720,14 @@ void system::system_construct(const ::main & main)
    }
 
    return estatus;*/
+   
+   if(m_pappStartup)
+   {
+      
+      m_pappStartup->m_psystem = this;
+      
+   }
+   
 
 }
 
@@ -1793,7 +1801,7 @@ void system::on_open_untitled_file()
       
 //      throw ::interface_only();
    
-   throw ::interface_only();
+   //throw ::interface_only();
    
 }
 

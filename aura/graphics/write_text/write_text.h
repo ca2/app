@@ -19,16 +19,19 @@ namespace write_text
       __pointer(class fonts)           m_pfonts;
 
 
+      critical_section                 m_csFont;
+      string_to_string                 m_mapFontFaceName;
+
 
       write_text();
-      virtual ~write_text();
+      ~write_text() override;
 
       
       class fonts * fonts();
 
 
-      virtual void destroy() override;
-      virtual void term() override;
+      void destroy() override;
+      void term() override;
 
 
       virtual void handle_font_enumeration(::topic* ptopic);
@@ -38,6 +41,9 @@ namespace write_text
 
 
       virtual font_pointer create_font();
+
+      
+      virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);
 
 
    };

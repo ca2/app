@@ -4976,7 +4976,7 @@ namespace apex
       if(ptopic->m_atom == id_set_dark_mode)
       {
          
-         if(ptopic->_extended_topic()->m_payload.is_true())
+         if(ptopic->payload("iptr_data").is_true())
          {
 
             m_pnode->background_color(::color::black);

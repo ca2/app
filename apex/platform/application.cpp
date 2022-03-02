@@ -10243,7 +10243,7 @@ void application_on_menu_action(void * pApplication, const char * pszCommand)
 void * application_system(void * pApplication)
 {
    
-   auto papp = (::application *) pApplication;
+   auto papp = (::app *) pApplication;
    
    return papp->m_psystem;
    

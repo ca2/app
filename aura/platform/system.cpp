@@ -1369,7 +1369,7 @@ namespace aura
 
       }
 
-      throw(error_not_found, "No draw2d plugin available");
+      throw ::exception(error_not_found, "No draw2d plugin available");
 
    //destroy:
 

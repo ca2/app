@@ -18,9 +18,6 @@ public:
    bool                                                              m_bPostedInitialRequest;
 
 
-   __reference(::app)                                                m_pappStartup;
-   __reference(::app)                                                m_pappMain;
-
    __composite(::apex::system)                                       m_psystemParent;
 
    ::mutex                                                           m_mutexLibrary4;

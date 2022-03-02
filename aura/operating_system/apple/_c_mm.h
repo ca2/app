@@ -20,6 +20,9 @@ char * ns_string(NSString * str);
 //CGRect mm_get_workspace_rect();
 
 
+#include <CoreGraphics/CoreGraphics.h>
+
+
 void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
 void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
 void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource);

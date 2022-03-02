@@ -6,4 +6,12 @@
 //
 
 #include "framework.h"
-
+//#include <Foundation/Foundation.h>
+//
+//
+//NSWindow * __nswindow(oswindow oswindow)
+//{
+//
+//   return (NSWindow *) oswindow->window();
+//
+//}

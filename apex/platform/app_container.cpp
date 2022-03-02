@@ -313,9 +313,9 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          papp = psystem->m_pappStartup;
 
-         __refer(psystem->m_pappMain, psystem->m_pappStartup.get());
+         psystem->m_pappMain =  psystem->m_pappStartup;
 
-         __unbind(psystem, m_pappStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(psystem, ""));
+         psystem->m_pappStartup.release();
 
       }
       else

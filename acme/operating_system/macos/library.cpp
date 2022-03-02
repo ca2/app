@@ -9,6 +9,25 @@
 #endif
 
 
+bool g_bVerboseLog = false;
+
+
+void set_verbose_log(bool bVerbose)
+{
+   
+   g_bVerboseLog = bVerbose;
+   
+}
+
+
+bool is_verbose_log()
+{
+ 
+   return g_bVerboseLog;
+   
+}
+
+
 string apple_app_module_folder();
 
 
@@ -71,11 +90,11 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    }
 
-   ::output_debug_string("\n\nGoing to dlopen: \"" + strPath + "\"");
+   //::output_debug_string("\n\nGoing to dlopen: \"" + strPath + "\"");
 
    path = ::file::path(::get_exe_path()).folder() / strPath;
 
-   ::output_debug_string("\nFirst path to try: \"" + path + "\"");
+   //::output_debug_string("\nFirst path to try: \"" + path + "\"");
 
    void * plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 
@@ -145,17 +164,26 @@ finished:
    if(plibrary != nullptr)
    {
 
-      strMessage = "__node_library_open (1) Succeeded " + path;
+      strMessage = "__node_library_open Succeeded " + string(pszPath);
+      
+      if(is_verbose_log())
+      {
+         
+         ::output_debug_string("\n" + strMessage + "\n\n");
+         
+      }
 
    }
    else
    {
 
       strMessage = "__node_library_open : Failed with : " + strMessage;
+      
+      ::output_debug_string("\n" + strMessage + "\n\n");
 
    }
 
-   ::output_debug_string("\n" + strMessage + "\n\n");
+   
 
    return plibrary;
 
@@ -215,6 +243,13 @@ void * __node_library_open_ca2(const char * pszPath, string & strMessage)
 
       strMessage = "__node_library_open_ca2 Succeeded " + strPath;
 
+      if(is_verbose_log())
+      {
+         
+         ::output_debug_string("\n\n" + strMessage + "\n\n");
+         
+      }
+      
    }
    else
    {
@@ -225,9 +260,9 @@ void * __node_library_open_ca2(const char * pszPath, string & strMessage)
 
       strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
 
-   }
+      ::output_debug_string("\n\n" + strMessage + "\n\n");
 
-   ::output_debug_string("\n\n" + strMessage + "\n\n");
+   }
 
    return plibrary;
 

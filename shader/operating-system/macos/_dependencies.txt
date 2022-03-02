@@ -1,6 +1,6 @@
-operating-system-apple/draw2d_quartz2d
+platform-apple/draw2d_quartz2d
 app/gpu_opengl
-operating-system-macos/node_macos
-operating-system-macos/windowing_macos
-operating-system-apple/write_text_quartz2d
+platform-macos/node_macos
+platform-macos/windowing_macos
+platform-apple/write_text_quartz2d
 app/crypto_openssl

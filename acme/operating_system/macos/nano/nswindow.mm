@@ -12,7 +12,7 @@
 #include "nswindow.h"
 #include "window_bridge.h"
 #include "nsimpact.h"
-
+void ns_main_sync(dispatch_block_t block);
  
 @implementation ns_nano_window : NSWindow
 
@@ -183,11 +183,16 @@ nano_window_bridge::~nano_window_bridge()
 void nano_window_bridge::create_ns_nano_window(CGRect cgrect)
 {
    
+   ns_main_sync(^()
+                {
+   
    m_pnsnanowindow = (__bridge_retained CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect ];
    
    auto pnsnanowindow = (__bridge ns_nano_window *) m_pnsnanowindow;
    
    pnsnanowindow->m_pwindowbridge = this;
+      
+   });
    
 }
 
@@ -195,6 +200,9 @@ void nano_window_bridge::create_ns_nano_window(CGRect cgrect)
 void nano_window_bridge::do_modal()
 {
    
+   ns_main_sync(^()
+   {
+      
    auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
    
    id appName = [ [ NSProcessInfo processInfo ] processName ];
@@ -227,6 +235,9 @@ void nano_window_bridge::do_modal()
    [ pnanowindow makeFirstResponder : nil ];
    [ NSApp activateIgnoringOtherApps : YES ];
    [ NSApp runModalForWindow : pnanowindow ];
+   
+   });
+   
    
 }
 

@@ -694,9 +694,9 @@ namespace draw2d
       //virtual void draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
-      virtual bool has_blender() const;
+      bool has_blender() const override;
 
-      virtual void _draw_blend(const ::image_drawing & imagedrawing) override;
+      void _draw_blend(const ::image_drawing & imagedrawing) override;
 
       
       //virtual void _draw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;

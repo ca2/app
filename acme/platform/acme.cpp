@@ -488,11 +488,6 @@ namespace acme
 
 #endif
 
-      //g_pcsFont = nullptr;
-
-      //g_pmapFontFaceName = nullptr;
-
-
 #ifdef WINDOWS
 
 
@@ -740,10 +735,7 @@ namespace acme
       g_iObjTypCtrInit = 1;
 #endif
 
-      //g_pcsFont = new critical_section();
-
-      //g_pmapFontFaceName = new string_to_string();
-
+     
 
 
 #ifdef LINUX
@@ -785,10 +777,6 @@ namespace acme
 
 #endif
 
-      
-      //::acme::del(g_pmapFontFaceName);
-
-      //::acme::del(g_pcsFont);
 
 #if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 0;

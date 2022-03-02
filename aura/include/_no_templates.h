@@ -36,7 +36,7 @@ typedef iptr strsize;
 //#include "acme/operating_system/thread.h"
 //#include "aura/platform/struct.h"
 #include "aura/operating_system/cross/cross.h"
-#include "aura/operating_system/operating_system.h"
+#include "aura/operating_system/_c.h"
 
 
 #include "aura/include/_c.h"

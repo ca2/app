@@ -1860,7 +1860,7 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
 
    auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile);
 
-   if (!preader)
+   if (!::is_ok(preader))
    {
 
       throw ::exception(error_io);

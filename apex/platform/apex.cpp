@@ -63,10 +63,10 @@ namespace apex
    bool g_bApex;
 
 
-   //CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
+   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 
 
-   //CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
+   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
 
 
    ::mutex * g_pmutexChildren;
@@ -409,9 +409,9 @@ namespace apex
       g_iObjTypCtrInit = 1;
 #endif
 
-      //g_pcsFont = new critical_section();
+      g_pcsFont = new critical_section();
 
-      //g_pmapFontFaceName = new string_to_string();
+      g_pmapFontFaceName = new string_to_string();
 
       //g_pmutexThreadDeferredCreation = new ::mutex;
 
@@ -475,9 +475,9 @@ namespace apex
 
 //      ::acme::del(g_pmutexThreadDeferredCreation);
 
-      //::acme::del(g_pmapFontFaceName);
+      ::acme::del(g_pmapFontFaceName);
 
-      //::acme::del(g_pcsFont);
+      ::acme::del(g_pcsFont);
 
 #if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 0;

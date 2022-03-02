@@ -18,13 +18,13 @@ namespace user
 
 } // namespace user
 
-#ifndef __OBJC__
-
-struct NSWindow;
-
-#endif
-
-NSWindow * __nswindow(oswindow oswindow);
+//#ifndef __OBJC__
+//
+//struct NSWindow;
+//
+//#endif
+//
+//NSWindow * __nswindow(oswindow oswindow);
 
 
 //#include "oswindow_data.h"

@@ -269,12 +269,17 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
          
          string strDestination = m_psystem->m_pacmepath->symbolic_link_destination(path2);
 
-         if(!bFilePathIsLink || strDestination != path)
+         if(!bFilePathIsLink ||  strDestination!= path)
          {
             
             auto pacmefile = pacmedir->m_pacmefile;
             
-            pacmefile->erase(path2);
+            if(pacmefile->exists(path2))
+            {
+            
+               pacmefile->erase(path2);
+               
+            }
             
             auto pacmepath = pacmedir->m_pacmepath;
 

@@ -105,6 +105,13 @@ void main::system_construct(const main& main)
    }
 
 #endif
+   
+   if(!m_pappStartup && main.m_pappStartup)
+   {
+    
+      m_pappStartup = main.m_pappStartup;
+      
+   }
 
 }
 

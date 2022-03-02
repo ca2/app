@@ -163,7 +163,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
       
    }
 
@@ -243,7 +243,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -274,7 +274,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -742,7 +742,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -772,7 +772,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -874,7 +874,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -892,7 +892,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -1083,7 +1083,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -1093,7 +1093,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -1103,7 +1103,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 

@@ -12,10 +12,19 @@ class CLASS_DECL_ACME app :
 public:
 
 
-   static app *    g_p;
+   static app *                                    g_p;
 
-   int               m_iExitCode;
+   int                                             m_iExitCode;
 
+   string                                          m_strAppName;
+   string                                          m_strRoot;
+   string                                          m_strDomain;
+   string                                          m_strLibraryName;
+   string                                          m_strBuild;
+   string                                          m_strInstallToken;
+   string_array                                    m_straAppCategory;
+   bool                                            m_bLicense;
+   
 
    app();
    ~app() override;

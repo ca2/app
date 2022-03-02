@@ -44,7 +44,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    }
 
-   ::output_debug_string("\n\nGoing to dlopen : \"" + strPath + "\"");
+   //::output_debug_string("\n\nGoing to dlopen : \"" + strPath + "\"");
 
    ::file::path path;
 

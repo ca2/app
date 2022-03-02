@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "aura/platform/aura.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 #include "image_array.h"
 #include "graphics.h"
 #include "image.h"
@@ -3132,7 +3133,7 @@ namespace draw2d
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -3142,7 +3143,7 @@ namespace draw2d
    
       throw ::interface_only();
    
-      throw ::interface_only();
+      //throw ::interface_only();
    
    }
 
@@ -3172,7 +3173,7 @@ namespace draw2d
    
       throw ::interface_only();
    
-      throw ::interface_only();
+      //throw ::interface_only();
    
    }
 
@@ -3192,7 +3193,7 @@ namespace draw2d
 
       throw ::interface_only();
 
-      throw ::interface_only();
+      //throw ::interface_only();
 
    }
 
@@ -5098,13 +5099,13 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      critical_section_lock synchronouslock(::aura::g_pcsFont);
+      critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = (*::aura::g_pmapFontFaceName)[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

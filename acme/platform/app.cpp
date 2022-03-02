@@ -27,6 +27,10 @@ app::app()
    }
 
    m_papp = this;
+   
+   m_pappStartup = this;
+   
+   m_pappMain = this;
 
    ::acme::initialize();
 

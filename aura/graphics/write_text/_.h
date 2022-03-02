@@ -43,6 +43,8 @@ CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::draw_text
 
 #include "font.h"
 
+#include "font_enumeration_item.h"
+
 #include "font_enumeration.h"
 
 #include "fonts.h"

@@ -10,6 +10,8 @@
 #include "main.h"
 #include "aura/operating_system/_.h"
 #include "aura/update.h"
+#include <dispatch/dispatch.h>
+#include <CoreGraphics/CoreGraphics.h>
 //char * ns_realpath(const ::string & pszPath);
 //char * mm_ca2_command_line();
 
@@ -356,7 +358,7 @@ i64 oswindow_id(oswindow w)
 
 int is_window(oswindow window)
 {
-   return (window == nullptr) ? false : (window->m_pimpl!= nullptr);
+   return (window == nullptr) ? false : (window->m_puserinteractionimpl!= nullptr);
 }
 
 

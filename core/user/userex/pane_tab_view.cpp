@@ -764,6 +764,8 @@ namespace userex
 
       }
 
+      ::user::tab_view::on_create_impact(pimpactdata);
+      
    }
 
 

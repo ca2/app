@@ -16427,8 +16427,12 @@ order(zorderParam);
 
    ::item_pointer interaction::hit_test(const ::point_i32 & point)
    {
+      
+      ::point_i32 pointScroll;
+      
+      pointScroll = point + m_pointScroll;
 
-      auto pitem = on_hit_test(point);
+      auto pitem = on_hit_test(pointScroll);
 
       if (pitem.is_set())
       {

@@ -4360,6 +4360,8 @@ return "";
       __pointer(::message::key) ptext = pmessage;
       
       on_text_composition(ptext->m_strText);
+      
+      pmessage->m_bRet = true;
 
       //      string strText;
       //

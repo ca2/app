@@ -1917,6 +1917,8 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
 ::file::path dir_context::matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir)
 {
+   
+   bool bOk = true;
 
    if (patha.is_empty())
    {
@@ -2198,7 +2200,9 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
    }
 
    }
-
+   
+   bOk = false;
+   
    path = "itdoesntexist." + __string(get_integral_millisecond().m_i);
 
 ret:
@@ -2232,6 +2236,13 @@ ret:
 
       ((enumeration < ::file::enum_flag >&)path) = patha[0];
 
+   }
+   
+   if(!bOk)
+   {
+      
+      throw exception(error_not_found);
+      
    }
 
    return path;

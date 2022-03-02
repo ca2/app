@@ -80,6 +80,8 @@ namespace user
       void rotate() override;
 
       ::user::tab_pane * create_tab_by_id(const ::atom & idTab) override;
+      
+      void on_create_impact(::user::impact_data * pimpactdata) override;
 
       virtual void create_impact_menu(::user::impact_data * pimpactdata);
 

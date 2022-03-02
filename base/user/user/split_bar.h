@@ -28,15 +28,15 @@ namespace user
       ~split_bar() override;
 
 
-      void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       //using ::user::interaction::create_interaction;
       //virtual bool create_child(split_layout * psplitlayoutParent);
-      virtual bool pre_create_window(::user::system * pusersystem);
+      bool pre_create_window(::user::system * pusersystem) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -44,7 +44,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      
 
    };
 

@@ -260,10 +260,17 @@ namespace windowing
       auto pcontext = get_context();
 
       ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
+      
+      if(pathArrow.is_empty())
+      {
+         
+         return;
+         
+      }
 
       ::file::path pathFolder = pathArrow.folder();
 
-      return set_cursor_set_from_dir(pathFolder);
+      set_cursor_set_from_dir(pathFolder);
 
    }
 

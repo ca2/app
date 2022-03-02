@@ -1807,11 +1807,11 @@ namespace axis
          {
 
             handle_exception(e);
-            {
-
-               goto resume_on_exception;
-
-            }
+//            {
+//
+//               goto resume_on_exception;
+//
+//            }
 
             m_estatus = e.m_estatus;
 

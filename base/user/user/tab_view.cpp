@@ -694,6 +694,18 @@ namespace user
    }
 
 
+   void tab_view::on_create_impact(::user::impact_data * pimpactdata)
+   {
+   
+      if(pimpactdata->m_atom == MENU_IMPACT)
+      {
+         
+         create_impact_menu(pimpactdata);
+         
+      }
+      
+   }
+
    void tab_view::on_change_cur_sel()
    {
 
@@ -702,9 +714,15 @@ namespace user
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
 
-         create_impact_menu(m_pimpactdata);
+       //  create_impact_menu(m_pimpactdata);
 
          __pointer(::user::menu) pmenu = get_view_uie();
+         
+         pmenu->m_menua.erase_all();
+         
+         pmenu->m_pmenuitem.release();
+         
+         pmenu->m_puserinteractionpointeraChild.release();
 
          prepare_impact_menu(pmenu);
 

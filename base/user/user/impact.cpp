@@ -863,7 +863,7 @@ namespace user
 
       __pointer(::user::interaction) pinteraction;
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
       if (pusersystem->m_puserprimitiveNew != nullptr)
       {

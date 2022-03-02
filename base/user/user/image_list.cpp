@@ -386,7 +386,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::count cCount = m_imagea.get_count();
+      //::count cCount = m_imagea.get_count();
 
       //for (::item item = 0; item.m_iItem < cCount; item.m_iItem++)
       //{

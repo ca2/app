@@ -402,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"",
+				
 					"$(WorkspaceDir)/platform/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";
@@ -443,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"",
+				
 					"$(WorkspaceDir)/platform/thirdparty/include",
 				);
 				INSTALL_PATH = "@executable_path";

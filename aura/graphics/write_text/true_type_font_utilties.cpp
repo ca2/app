@@ -1,5 +1,7 @@
+// Brought back on 2022-03-01 22:57 <3ThomasBorregaardS~rensen!!
 #include "framework.h"
-#include "ttf_util.h"
+#include "true_type_font_utilities.h"
+#include "acme/operating_system/_c.h"
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
@@ -45,21 +47,21 @@ typedef struct _tagTT_NAME_RECORD
 
 
 
-ttf_util::ttf_util()
+true_type_font_utilities::true_type_font_utilities()
 {
 
 
 }
 
 
-ttf_util::~ttf_util()
+true_type_font_utilities::~true_type_font_utilities()
 {
 
 
 }
 
 
-string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
+string true_type_font_utilities::GetFontNameFromFile(::file::path lpszFilePath)
 {
 
    auto pcontext = m_pcontext;
@@ -105,7 +107,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
 
    if (bFound)
    {
-      f->seek(tblDir.uOffset, ::e_seek_set);
+      f->set_position(tblDir.uOffset);
       TT_NAME_TABLE_HEADER ttNTHeader;
       f->read(&ttNTHeader, sizeof(TT_NAME_TABLE_HEADER));
       ttNTHeader.uNRCount = SWAPWORD(ttNTHeader.uNRCount);
@@ -124,7 +126,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
             
             auto nPos = f->get_position();
             
-            f->seek(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset, ::e_seek_set);
+            f->set_position(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset);
 
             //bug fix: see the post by SimonSays to read more about it
             char* lpszNameBuf = csTemp.get_string_buffer(ttRecord.uStringLength + 1);
@@ -140,7 +142,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
 
             }
 
-            f->seek(nPos, ::e_seek_set);
+            f->set_position(nPos);
 
          }
 

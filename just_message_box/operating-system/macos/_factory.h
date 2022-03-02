@@ -1,0 +1,7 @@
+BEGIN_FACTORY(app_just_message_box) 
+FACTORY_DEPENDENCY(draw2d_quartz2d) 
+FACTORY_DEPENDENCY(node_macos) 
+FACTORY_DEPENDENCY(windowing_macos) 
+FACTORY_DEPENDENCY(write_text_quartz2d) 
+FACTORY_DEPENDENCY(app_just_message_box) 
+END_FACTORY() 

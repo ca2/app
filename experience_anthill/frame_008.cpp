@@ -225,7 +225,7 @@ SizingNone:
 
                }
 
-               auto psession = get_session();
+             //  auto psession = get_session();
 
                auto estyle = get_style();
 
@@ -242,7 +242,7 @@ SizingNone:
                else
                {
 
-                  auto psession = get_session();
+                 // auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 

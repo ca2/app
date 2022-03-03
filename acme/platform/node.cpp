@@ -1744,7 +1744,7 @@ namespace acme
    }
 
 
-   void node::create_app_shorcut(::app * papp)
+   void node::create_app_shortcut(::app * papp)
    {
 
 

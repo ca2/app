@@ -195,7 +195,7 @@ SizingNone:;
             void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_border eside)
             {
                
-               auto psession = get_session();
+         //      auto psession = get_session();
 
                ::rectangle_i32 rectangleClient(rectangleClientParam);
 
@@ -219,7 +219,7 @@ SizingNone:;
                }
                else
                {
-                  auto psession = get_session();
+               //   auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -1138,7 +1138,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangle(rectangleParam);
 
-               auto psession = get_session();
+             //  auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

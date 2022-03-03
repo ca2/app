@@ -718,13 +718,18 @@ namespace user
 
          __pointer(::user::menu) pmenu = get_view_uie();
          
-         pmenu->m_menua.erase_all();
+         if(pmenu)
+         {
          
-         pmenu->m_pmenuitem.release();
-         
-         pmenu->m_puserinteractionpointeraChild.release();
+            pmenu->m_menua.erase_all();
+            
+            pmenu->m_pmenuitem.release();
+            
+            pmenu->m_puserinteractionpointeraChild.release();
 
-         prepare_impact_menu(pmenu);
+            prepare_impact_menu(pmenu);
+            
+         }
 
          return;
 

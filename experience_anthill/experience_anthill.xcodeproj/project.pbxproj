@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
 		9A415C52247393F100EF2BCD /* button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB47624498E380056E362 /* button.cpp */; };
 		9A415C53247393F100EF2BCD /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB48824498E390056E362 /* control_box.cpp */; };
 		9A415C54247393F100EF2BCD /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB48124498E380056E362 /* experience.cpp */; };
@@ -26,8 +25,8 @@
 		9A833BC024F5424A00C079FB /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833BBE24F5424A00C079FB /* style.cpp */; };
 		9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BAB24F5423900C079FB /* libbase.dylib */; };
 		9A833BDE24F5437200C079FB /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A833BBE24F5424A00C079FB /* style.cpp */; };
+		9A8C7DE527D14A0800025329 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8C7DE427D1449200025329 /* _factory.cpp */; };
 		9A8EB48C24498E390056E362 /* frame_013.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB47024498E370056E362 /* frame_013.h */; };
-		9A8EB48D24498E390056E362 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB47124498E380056E362 /* library.cpp */; };
 		9A8EB48F24498E390056E362 /* frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB47324498E380056E362 /* frame_011.cpp */; };
 		9A8EB49024498E390056E362 /* frame_005.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB47424498E380056E362 /* frame_005.h */; };
 		9A8EB49124498E390056E362 /* frame_001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB47524498E380056E362 /* frame_001.h */; };
@@ -46,7 +45,6 @@
 		9A8EB49F24498E390056E362 /* frame_Minimal001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48324498E390056E362 /* frame_Minimal001.h */; };
 		9A8EB4A024498E390056E362 /* control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48424498E390056E362 /* control_box.h */; };
 		9A8EB4A124498E390056E362 /* frame_002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB48524498E390056E362 /* frame_002.cpp */; };
-		9A8EB4A224498E390056E362 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48624498E390056E362 /* library.h */; };
 		9A8EB4A424498E390056E362 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB48824498E390056E362 /* control_box.cpp */; };
 		9A8EB4A524498E390056E362 /* experience.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48924498E390056E362 /* experience.h */; };
 		9A8EB4A624498E390056E362 /* frame_011.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48A24498E390056E362 /* frame_011.h */; };
@@ -118,6 +116,7 @@
 		9A833BA624F5423900C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
 		9A833BBE24F5424A00C079FB /* style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A833BBF24F5424A00C079FB /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
+		9A8C7DE427D1449200025329 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A8EB47024498E370056E362 /* frame_013.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame_013.h; sourceTree = "<group>"; };
 		9A8EB47124498E380056E362 /* library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library.cpp; sourceTree = "<group>"; };
 		9A8EB47324498E380056E362 /* frame_011.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_011.cpp; sourceTree = "<group>"; };
@@ -185,7 +184,6 @@
 				9A4E5CB62519348700CC6817 /* libacme.dylib in Frameworks */,
 				9A4E5CB82519348700CC6817 /* libapex.dylib in Frameworks */,
 				9A833BC924F5428700C079FB /* libbase.dylib in Frameworks */,
-				07B6597D190F44A9002DAADE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +201,7 @@
 		9A8F8901240C031B0097E249 /* experience_anthill */ = {
 			isa = PBXGroup;
 			children = (
+				9A8C7DE427D1449200025329 /* _factory.cpp */,
 				9A8EB48B24498E390056E362 /* _.h */,
 				9A8EB47624498E380056E362 /* button.cpp */,
 				9A8EB48224498E380056E362 /* button.h */,
@@ -302,7 +301,6 @@
 				9A8EB49024498E390056E362 /* frame_005.h in Headers */,
 				9A8F8958240C031B0097E249 /* framework.h in Headers */,
 				9A8EB49424498E390056E362 /* frame_008.h in Headers */,
-				9A8EB4A224498E390056E362 /* library.h in Headers */,
 				9A8EB4A524498E390056E362 /* experience.h in Headers */,
 				9A8EB48C24498E390056E362 /* frame_013.h in Headers */,
 				9A8EB49324498E390056E362 /* frame_002.h in Headers */,
@@ -351,9 +349,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_anthill" */;
 			buildPhases = (
+				9AEB75F216F78EDC0085103B /* Headers */,
 				9AEB75F016F78EDC0085103B /* Sources */,
 				9AEB75F116F78EDC0085103B /* Frameworks */,
-				9AEB75F216F78EDC0085103B /* Headers */,
 			);
 			buildRules = (
 			);
@@ -371,7 +369,7 @@
 		9AEB75EC16F78EDC0085103B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE24E681904CFE2001AEFFB = {
@@ -462,10 +460,10 @@
 				9A8F8948240C031B0097E249 /* framework.cpp in Sources */,
 				9A8EB49224498E390056E362 /* button.cpp in Sources */,
 				9A8EB49B24498E390056E362 /* frame_001.cpp in Sources */,
+				9A8C7DE527D14A0800025329 /* _factory.cpp in Sources */,
 				9A8EB4A124498E390056E362 /* frame_002.cpp in Sources */,
 				9A8EB49A24498E390056E362 /* frame_008.cpp in Sources */,
 				9A8EB49624498E390056E362 /* frame_013.cpp in Sources */,
-				9A8EB48D24498E390056E362 /* library.cpp in Sources */,
 				9A8EB49924498E390056E362 /* frame_Minimal001.cpp in Sources */,
 				9A8EB48F24498E390056E362 /* frame_011.cpp in Sources */,
 				9A8EB49824498E390056E362 /* frame.cpp in Sources */,
@@ -538,7 +536,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "app_core_uinteraction_iosTests/app_core_uinteraction_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -570,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "app_core_uinteraction_iosTests/app_core_uinteraction_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -583,10 +581,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
@@ -603,28 +600,31 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+					_DEBUG,
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -633,21 +633,19 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				STRIP_INSTALLED_PRODUCT = NO;
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/operating-system/operating-system-apple $(WorkspaceDir)/operating-system/operating-system-posix $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
@@ -657,10 +655,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
@@ -677,6 +674,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -684,13 +682,17 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -699,20 +701,17 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = "-all_load";
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/operating-system/operating-system-apple $(WorkspaceDir)/operating-system/operating-system-posix $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
@@ -721,7 +720,9 @@
 		9AEB75F916F78EDC0085103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -729,7 +730,9 @@
 		9AEB75FA16F78EDC0085103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

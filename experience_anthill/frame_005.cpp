@@ -49,7 +49,7 @@ namespace experience
                
                __construct(m_pbrushTextCaption);
 
-               auto psession = get_session();
+            //   auto psession = get_session();
 
                m_pbrushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
@@ -236,7 +236,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+         //      auto psession = get_session();
 
                ::color::color    colorMoveableBorder;
                ::color::color    colorMoveableBorderHilight;
@@ -251,7 +251,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = get_session();
+           //       auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -714,7 +714,7 @@ SizingNone:;
             void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
             {
 
-               auto psession = get_session();
+         //      auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

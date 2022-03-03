@@ -1612,7 +1612,7 @@ namespace experience
 
       auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
 
-      auto estyle = ptoolbar->get_item_style(iItem);
+      //auto estyle = ptoolbar->get_item_style(iItem);
 
 //      bool bHover = ptoolbar->m_pitemHover == iItem;
 

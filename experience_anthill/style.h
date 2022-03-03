@@ -35,10 +35,10 @@ namespace experience
          }
 
 
-         virtual void initialize_theme();
+         void initialize_theme() override;
 
 
-         virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const override;
+         ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const override;
 
 
    //      virtual bool get_color(color32_t & color32, ::user::e_color ecolor, ::user::interaction * pframewindow) override;

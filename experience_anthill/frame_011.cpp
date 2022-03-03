@@ -215,7 +215,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                ::color::color    colorMoveableBorder;
                ::color::color    colorMoveableBorderHilight;
@@ -230,7 +230,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = get_session();
+                  //auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -603,10 +603,10 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleParam)
             {
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectangleParam);
-
+//
                auto pframewindow = m_pframewindow;
 
                auto pstyle = pframewindow->get_style(pgraphics);

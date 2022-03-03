@@ -2241,7 +2241,9 @@ ret:
    if(!bOk)
    {
       
-      throw exception(error_not_found);
+      return {};
+      
+      //throw exception(error_not_found);
       
    }
 

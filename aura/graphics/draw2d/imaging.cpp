@@ -5073,7 +5073,9 @@ void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    if (iRadius <= 1)
    {
 
-      throw ::exception(error_bad_argument);
+      //throw ::exception(error_bad_argument);
+      
+      return;
 
    }
 

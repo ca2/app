@@ -604,8 +604,28 @@
    
    bool os_context::has_alias_in_path(const char * psz, bool bNoUI, bool bNoMount)
    {
+      
+      ::file::path pathSource(psz);
 
-      throw interface_only();
+      ::file::path_array patha;
+
+      ::file::path_array pathaRelative;
+
+      pathSource.ascendants_path(patha, &pathaRelative);
+
+      for (index i = 0; i < patha.get_count(); i++)
+      {
+
+         ::file::path path = patha[i];
+
+         if (is_alias(path))
+         {
+
+            return true;
+
+         }
+
+      }
 
       return false;
 
@@ -615,9 +635,7 @@
    bool os_context::is_alias(const char * psz)
    {
 
-      throw interface_only();
-
-      return false;
+      return m_pcontext->m_papexcontext->os_is_alias(psz);
 
    }
 

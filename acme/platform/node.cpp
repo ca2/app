@@ -1744,6 +1744,13 @@ namespace acme
    }
 
 
+   void node::create_app_shorcut(::app * papp)
+   {
+
+
+   }
+
+
 } // namespace acme
 
 

@@ -414,6 +414,9 @@ namespace acme
       virtual void on_start_system();
 
 
+      virtual void create_app_shorcut(::app * papp);
+
+
    };
 
 

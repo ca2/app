@@ -18,9 +18,6 @@
 
 
 
-void shell_notify_folder_change(const wchar_t * pwsz);
-void shell_notify_item_change(const wchar_t * pwsz);
-void shell_notify_assoc_change();
 //void shell_restart();
 //int shell_pin_to_taskbar(const wchar_t * path);
 //int shell_unpin_from_taskbar(const wchar_t * path);
@@ -2237,115 +2234,7 @@ void application::on_create_app_shortcut()
 void application::create_app_shortcut()
 {
 
-   fork([this]()
-   {
-
-      if (m_strAppId.has_char())
-      {
-
-         auto pnode = m_psystem->node()->m_papexnode;
-
-         string strAppName;
-
-         string strAppIdUnderscore = m_strAppId;
-
-         strAppIdUnderscore.find_replace("/", "_");
-
-         strAppIdUnderscore.find_replace("-", "_");
-
-         if (m_strAppName.has_char())
-         {
-
-            strAppName = m_strAppName;
-
-         }
-         else
-         {
-
-            strAppName = strAppIdUnderscore;
-
-         }
-
-         string strRoot;
-
-         auto findRootEnd = m_strAppId.find('/');
-
-         if (findRootEnd > 0)
-         {
-
-            strRoot = m_strAppId.Left(findRootEnd);
-
-         }
-         
-         auto path = m_psystem->m_pacmefile->module();
-
-         auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
-
-#ifdef WINDOWS
-
-         auto pathIcon = path.folder() / "icon.ico";
-
-         if (!m_psystem->m_pacmefile->exists(pathIcon))
-         {
-
-            file().copy(pathIcon, "matter://main/icon.ico", false);
-
-         }
-
-#else
-
-         auto pathIcon = path.folder() / (strAppIdUnderscore + "-256.png");
-
-         if (!m_psystem->m_pacmefile->exists(pathIcon))
-         {
-
-            file().copy(pathIcon, "matter://main/icon-256.png", false);
-
-         }
-
-#endif
-
-#ifdef WINDOWS
-
-         pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
-
-         if (payload("pin_app_to_taskbar").is_true())
-         {
-
-            ::file::path pathUserPinned = m_psystem->m_pacmedir->roaming() / "Microsoft/Internet Explorer/Quick Launch/User Pinned/TaskBar" / pathShortcut.name();
-
-            wstring wstrShortcut;
-
-            wstrShortcut = pathShortcut;
-
-            m_psystem->m_pacmefile->copy(pathUserPinned, pathShortcut, true);
-
-            wstring wstr;
-
-            wstr = pathUserPinned.folder();
-
-            shell_notify_folder_change(wstr);
-
-            shell_notify_item_change(wstr);
-
-            shell_notify_assoc_change();
-
-         }
-
-#else
-
-         //pnode->shell_create_link(path, pathShortcut, "Link for " + strAppName, pathIcon);
-
-#endif
-
-         auto pathCreatedShortcut = m_psystem->m_pacmedir->roaming() / m_strAppId / "created_shortcut.txt";
-
-         m_psystem->m_pacmefile->touch(pathCreatedShortcut);
-
-      }
-
-   });
-
+   m_psystem->node()->create_app_shortcut(this);
 
 }
 

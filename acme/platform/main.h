@@ -94,6 +94,8 @@ public:
 
    inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
+   string_array get_arguments();
+
    string get_executable() const;
 
    string get_argument1(int iArgument) const;

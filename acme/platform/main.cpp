@@ -152,6 +152,44 @@ string main::get_executable() const
 }
 
 
+string_array main::get_arguments()
+{
+
+   string_array stra;
+
+   for (::index i = 0; i < m_argc; i++)
+   {
+
+      string strArgument;
+
+      if (m_wargv && m_wargv[i])
+      {
+
+      strArgument = m_wargv[i];
+
+      }
+      else if (m_argv && m_argv[i])
+      {
+
+         strArgument = m_argv[i];
+
+      }
+      else
+      {
+
+         break;
+
+      }
+
+      stra.add(strArgument);
+
+   }
+
+   return ::move(stra);
+
+}
+
+
 string main::get_argument1(int iArgument) const
 {
 

@@ -277,6 +277,9 @@ public:
    void _008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp);
    void _008Add(const char * pszKey, const char * pszValue);
 
+   void _008ParseCommandArguments(const string_array & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseArguments(bool bApp, const string_array & straArguments, ::payload & payloadFile, string & strApp);
+
 
    void clear();
 

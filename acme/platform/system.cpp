@@ -248,7 +248,9 @@ void system::process_init()
 {
 
    ::acme::idpool::init(this);
-      
+
+   __compose_new(m_pdatetime);
+
    m_pnode->m_htaskSystem = m_htask;
       
    //auto estatus = __defer_construct_new(m_pfactorysquare);
@@ -361,6 +363,10 @@ void system::process_init()
    //}
 
    //return estatus;
+
+   report_system_instance();
+
+
 
 }
 
@@ -1634,6 +1640,51 @@ void system::end()
    //return estatus;
 
 }
+
+
+void system::report_system_instance()
+{
+
+   string strAppId = m_strAppId;
+
+   if (strAppId.has_char())
+   {
+
+      string strModifier;
+
+      string strDate;
+
+      strDate = m_psystem->datetime()->international().get_date_time_for_file_with_no_spaces();
+
+      string strPid;
+
+      strPid = __string(get_current_process_id());
+
+      strModifier = strDate + "_" + strPid;
+
+      ::file::path pathFolder = m_psystem->m_pacmedir->roaming();
+
+      pathFolder /= strAppId;
+
+      pathFolder /= "instance";
+
+      ::file::path path = pathFolder / (strModifier + "_command_line.txt");
+
+      m_psystem->m_pacmefile->put_contents(path, m_strCommandLine);
+
+      ::file::path pathExecutable = m_psystem->m_pacmefile->module();
+
+      string strAppTitle = executable_title_from_appid(strAppId);
+
+      path = pathFolder / (strModifier + "_executable.txt");
+
+      m_psystem->m_pacmefile->put_contents(path, pathExecutable);
+
+   }
+
+}
+
+
 
 
 ::app * system::get_main_app()

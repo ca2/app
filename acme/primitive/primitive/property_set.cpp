@@ -500,6 +500,14 @@ void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload 
 }
 
 
+void property_set::_008ParseCommandArguments(const string_array & straArguments, ::payload & payloadFile, string & strApp)
+{
+
+   _008ParseArguments(true, straArguments, payloadFile, strApp);
+
+}
+
+
 void property_set::_008Add(const char * pszKey, const char * pszValue)
 {
 
@@ -644,6 +652,62 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & pay
       {
 
          _008Add(str, nullptr);
+
+      }
+
+   }
+
+}
+
+
+void property_set::_008ParseArguments(bool bApp, const ::string_array & straArguments, ::payload & payloadFile, string & strApp)
+{
+
+   int i = 0;
+
+   if (bApp && straArguments.has_element())
+   {
+
+      strApp = straArguments.first();
+
+      i++;
+
+   }
+
+   for (; i < straArguments.get_size(); i++)
+   {
+
+      string strArgument = straArguments[i];
+
+      index iFindEqual = strArgument.find('=');
+
+      index iFindQuote = strArgument.find('\"');
+
+      if (iFindEqual >= 0)
+      {
+
+         string strValue;
+
+         strValue = strArgument.Mid(iFindEqual + 1);
+
+         if (iFindEqual + 1 == iFindQuote)
+         {
+
+            const char * pszValue = strValue;
+
+            strValue = ::str::consume_quoted_value(pszValue);
+
+         }
+
+         string strKey = strArgument.Left(iFindEqual);
+
+         _008Add(strKey, strValue);
+
+      }
+      else
+      {
+
+         _008Add(strArgument, nullptr);
 
       }
 

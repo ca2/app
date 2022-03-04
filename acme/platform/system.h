@@ -267,6 +267,9 @@ public:
 
    virtual void on_end();
 
+
+   virtual void report_system_instance();
+
    //using ::manager::on_subject;
    //virtual void on_subject(::topic * ptopic) override;
 

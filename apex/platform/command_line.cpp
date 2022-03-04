@@ -28,12 +28,24 @@ command_line::~command_line()
 }
 
 
-void command_line::initialize_command_line(const string& strCommandLine)
+void command_line::initialize_command_line2(const string& strCommandLine)
 {
 
    common_construct();
 
    _001ParseCommandFork(strCommandLine);
+
+   //return ::success;
+
+}
+
+
+void command_line::initialize_arguments(const ::string_array & straArguments)
+{
+
+   common_construct();
+
+   _001ParseCommandArguments(straArguments);
 
    //return ::success;
 
@@ -342,6 +354,77 @@ void command_line::_001ParseCommandFork(const ::string & strCommandFork)
 
 }
 
+
+void command_line::_001ParseCommandArguments(const ::string_array & straArguments)
+{
+
+   get_property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);
+
+   if (!m_payloadFile.is_empty())
+   {
+
+      m_ecommand = command_line::command_file_open;
+
+   }
+
+   if (has_property("uri"))
+   {
+
+      if (m_payloadFile.has_char())
+      {
+
+         m_payloadFile += ";";
+
+         m_payloadFile += payload("uri");
+
+      }
+      else
+      {
+
+         m_payloadFile = payload("uri");
+
+      }
+
+      if (m_ecommand == command_line::command_file_new)
+      {
+
+         m_ecommand = command_line::command_file_open;
+
+      }
+
+   }
+
+   if (m_ecommand == command_line::command_file_open)
+   {
+
+      payload("show_platform") = 1;
+
+   }
+
+   if (has_property("app"))
+   {
+
+      m_strApp = payload("app");
+
+   }
+
+   if (m_strApp == "session" && has_property("session_start"))
+   {
+
+      m_strApp = payload("session_start");
+
+   }
+
+   if (has_property("app_type"))
+   {
+
+      m_strAppType = payload("app_type");
+
+   }
+
+   //      m_pthreadParent->consolidate(this);
+
+}
 
 
 void command_line::_001ParseCommandForkUri(const ::string & strCommandFork)

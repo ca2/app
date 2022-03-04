@@ -4150,7 +4150,7 @@ void application::on_additional_local_instance(bool & bHandled, string strModule
 
 auto pcommandline = __create_new < command_line >();
 
-pcommandline->initialize_command_line(strCommandLine);
+pcommandline->initialize_command_line2(strCommandLine);
 
 process_command_line(pcommandline);
 

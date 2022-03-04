@@ -53,7 +53,7 @@ public:
    string                              m_strProgName;
    PFN_DEFER_TERM                      m_pfnDeferTerm;
    ::duration                          m_durationStart;
-   ::duration                         m_durationAfterApplicationFirstRequest;
+   ::duration                          m_durationAfterApplicationFirstRequest;
    //::apex::system *                  m_psystem;
    //__pointer(apex_main_data)         m_pmaindata;
    __pointer(::acme::library)          m_plibrary;
@@ -85,8 +85,6 @@ public:
    //virtual void system_main();
 
    //virtual void system_call();
-
-   void on_command_line();
 
    string get_command_line();
 

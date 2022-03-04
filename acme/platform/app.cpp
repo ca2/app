@@ -101,6 +101,8 @@ void app::get_arguments_from_command_line()
 
    m_wenvp = *__p__wenviron();
 
+   m_strCommandLine = ::GetCommandLineW();
+
 }
 
 

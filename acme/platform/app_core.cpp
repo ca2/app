@@ -258,7 +258,7 @@ void app_core::system_init()
 
    //}
 
-   on_command_line();
+   //on_command_line();
 
 //   string strAppId;
 //
@@ -549,46 +549,6 @@ string app_core::get_command_line()
 }
 
 
-void app_core::on_command_line()
-{
-
-   string strAppId = m_strAppId;
-
-   if (strAppId.has_char())
-   {
-
-      ::file::path pathFolder = m_psystem->m_pacmedir->roaming();
-
-      pathFolder /= strAppId;
-
-      string strDate;
-
-      strDate = m_psystem->datetime()->international().get_date_time_for_file_with_no_spaces();
-
-      string strPid;
-
-      strPid = __string(get_current_process_id());
-
-      ::file::path path = pathFolder / "last_command_line_" +strDate + "_" + strPid + ".txt";
-
-      m_psystem->m_pacmefile->put_contents(path, m_strCommandLine);
-
-      ::file::path pathExecutable = consume_param(m_strCommandLine, nullptr);
-
-      string strAppTitle = executable_title_from_appid(strAppId);
-
-      path = pathFolder / "last_executable.txt";
-
-      if (file_path_is_equal(pathExecutable.title(), strAppTitle))
-      {
-
-         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
-
-      }
-
-   }
-
-}
 
 
 //void app_core::defer_load_backbone_libraries(string strAppId)

@@ -372,7 +372,6 @@ namespace apex
       //::factory::add_factory_item < int_array >();
 
       ///estatus = 
-      __compose_new(m_pdatetime);
 
       //if (!estatus)
       //{
@@ -1672,16 +1671,6 @@ pacmedir->create("/ca2core");
    void system::post_initial_request()
    {
 
-      //auto papp = m_pappMain;
-
-      //auto psession = m_papexsession;
-
-      //papp->initialize(psession);
-
-      //set_main_struct(*papp);
-
-      //papp->inline_init();
-      
       m_bPostedInitialRequest = true;
 
       auto pcreate = __create_new< ::create>();
@@ -1704,9 +1693,22 @@ pacmedir->create("/ca2core");
 
       pcreate->m_pcommandline = __create_new < command_line >();
 
-      string strCommandLine = m_strCommandLine;
+      auto straArguments = get_arguments();
 
-      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+      if (straArguments.has_element())
+      {
+
+         pcreate->m_pcommandline->initialize_arguments(straArguments);
+
+      }
+      else
+      {
+
+         string strCommandLine = m_strCommandLine;
+
+         pcreate->m_pcommandline->initialize_command_line2(strCommandLine);
+
+      }
 
       pcreate->finish_initialization();
 
@@ -1714,36 +1716,15 @@ pacmedir->create("/ca2core");
 
       post_creation_requests();
 
-      //return ::success;
-
    }
 
 
    void system::inline_init()
    {
 
-      //auto estatus = 
       ::system::inline_init();
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      
       ::apex::context::inline_init();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
 
@@ -1751,15 +1732,7 @@ pacmedir->create("/ca2core");
    void system::inline_term()
    {
 
-      //::e_status estatus =
       ::apex::context::inline_term();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
@@ -1782,15 +1755,6 @@ pacmedir->create("/ca2core");
       }
 
 #endif
-
-      //if (m_papp)
-      //{
-
-      //   estatus = m_papp->m_estatus;
-
-      //}
-
-      //return estatus;
 
    }
 

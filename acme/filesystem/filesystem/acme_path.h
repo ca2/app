@@ -47,6 +47,10 @@ public:
 
 
    virtual bool has_custom_icon(const char * path);
+
+
+   ::file::path defer_process_relative_path(const ::file::path & path);
+
    
 
 };

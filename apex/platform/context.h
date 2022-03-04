@@ -110,6 +110,8 @@ namespace apex
 
       virtual ::file::path defer_process_matter_path(::file::path path);
 
+      //virtual ::file::path defer_process_relative_path(const ::file::path & path);
+
       virtual ::file::path get_matter_path(string strMatter);
       virtual ::file::path get_matter_cache_path(::file::path path);
       virtual ::file::path side_get_matter_path(string strMatter);

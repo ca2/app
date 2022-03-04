@@ -432,6 +432,8 @@ namespace apex
 
       path = defer_process_matter_path(path);
 
+      path = m_psystem->m_pacmepath->defer_process_relative_path(path);
+
       if (::str::begins_eat_ci(path, "music://"))
       {
 
@@ -545,6 +547,10 @@ namespace apex
       return path;
 
    }
+
+   
+
+
 
    ::file::path context::get_matter_path(string strMatter)
    {

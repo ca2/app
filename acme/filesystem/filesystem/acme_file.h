@@ -41,6 +41,7 @@ public:
    virtual memory as_memory(const char* path, strsize iReadAtMostByteCount = -1);
 
 
+
    virtual memsize as_memory(const char * path, void * p, memsize s);
    virtual string as_string(const char * path, strsize iReadAtMostByteCount = -1, bool bNoExceptionIfNotFound = true);
 

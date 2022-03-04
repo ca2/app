@@ -232,3 +232,23 @@ bool acme_path::has_custom_icon(const char * path)
 
 
 
+::file::path acme_path::defer_process_relative_path(const ::file::path & path)
+{
+
+   if (file_path_is_absolute(path))
+   {
+
+      return path;
+
+   }
+
+   auto pathFolderCurrent = m_psystem->m_pacmedir->get_current();
+
+   ::file::path pathAbsolute = pathFolderCurrent / path;
+
+   return pathAbsolute;
+
+}
+
+
+

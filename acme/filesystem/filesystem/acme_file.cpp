@@ -5,6 +5,7 @@
 #include "acme/operating_system.h"
 #include "acme_dir.h"
 #include "acme_file.h"
+#include "acme_path.h"
 #include <stdio.h>
 
 
@@ -122,7 +123,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
 
 
 
-file_pointer acme_file::open(const ::file::path & path, const ::file::e_open & eopen)
+file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_open & eopen)
 {
 
    auto pfile = m_psystem->__create_new < ::file::file >();
@@ -134,6 +135,8 @@ file_pointer acme_file::open(const ::file::path & path, const ::file::e_open & e
 
    }
 
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
+
    pfile->open(path, eopen);
 
    return pfile;
@@ -141,7 +144,7 @@ file_pointer acme_file::open(const ::file::path & path, const ::file::e_open & e
 }
 
 
-file_pointer acme_file::stdio_open(const char * path, const char * attrs, int iShare)
+file_pointer acme_file::stdio_open(const char * pathParam, const char * attrs, int iShare)
 {
 
    auto pfile = m_psystem->__create_new < ::stdio_file >();
@@ -152,6 +155,8 @@ file_pointer acme_file::stdio_open(const char * path, const char * attrs, int iS
       return pfile;
 
    }
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    pfile->open(path, attrs, iShare);
 
@@ -170,7 +175,7 @@ memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-string acme_file::as_string(const char * path, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string acme_file::as_string(const char * pathParam, strsize iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
    auto pfile = m_psystem->__create_new < stdio_file >();
@@ -181,6 +186,8 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount, boo
       pfile->m_eflag |= stdio_file::flag_no_exception_if_not_found;
 
    }
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    pfile->open(path, "r", _SH_DENYNO);
 
@@ -242,10 +249,12 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount, boo
 }
 
 
-memsize acme_file::as_memory(const char * path, void * p, memsize s)
+memsize acme_file::as_memory(const char * pathParam, void * p, memsize s)
 {
 
    stdio_file file;
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    file.open(path, "r", _SH_DENYNO);
 
@@ -276,12 +285,14 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
 }
 
 
-void acme_file::as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount)
+void acme_file::as_memory(memory_base & memory, const char * pathParam, memsize iReadAtMostByteCount)
 {
 
    memory.set_size(0);
 
    stdio_file file;
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    file.open(path, "r", _SH_DENYNO);
 
@@ -550,22 +561,24 @@ void acme_file::append(const char * strFile, const block & block)
 }
 
 
-bool acme_file::exists(const char * path)
+bool acme_file::exists(const char * pathParam)
 {
 
-   if(::is_null(path))
+   if(::is_null(pathParam))
    {
 
       throw ::exception(error_null_pointer);
 
    }
 
-   if(*path == '\0')
+   if(*pathParam == '\0')
    {
 
       throw ::exception(error_bad_argument);
 
    }
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    auto bExists = _exists(path);
 
@@ -689,22 +702,24 @@ void acme_file::move(const char * pszNewName, const char * pszOldName)
 }
 
 
-void acme_file::erase(const char * path)
+void acme_file::erase(const char * pathParam)
 {
 
-   if(::is_null(path))
+   if(::is_null(pathParam))
    {
 
       throw ::exception(error_null_pointer);
 
    }
 
-   if(*path == '\0')
+   if(*pathParam == '\0')
    {
 
       throw ::exception(error_bad_argument);
 
    }
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
     _erase(path);
 
@@ -913,10 +928,12 @@ string acme_file::first_line(const char * path)
 }
 
 
-string acme_file::line(const char * path, index iLine)
+string acme_file::line(const char * pathParam, index iLine)
 {
 
    string str;
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
 #ifdef WINDOWS
 
@@ -988,8 +1005,10 @@ string acme_file::line(const char * path, index iLine)
 }
 
 
-string_array acme_file::lines(const char * path)
+string_array acme_file::lines(const char * pathParam)
 {
+
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    auto pfile = open(path, ::file::e_open_read);
 
@@ -1016,7 +1035,7 @@ string_array acme_file::lines(const char * path)
 }
 
 
-void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine)
+void acme_file::set_line(const char * pathParam, index iLine, const char * pszLine)
 {
 
    if (iLine < 0)
@@ -1028,7 +1047,7 @@ void acme_file::set_line(const char * pszPath, index iLine, const char * pszLine
 
    string str;
 
-   ::file::path path(pszPath);
+   auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
    m_pacmedir->create(path.folder());
 

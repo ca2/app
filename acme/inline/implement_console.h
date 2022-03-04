@@ -35,15 +35,15 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   APPLICATION_CLASS app;
+   __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
 
 #ifdef WINDOWS
 
-   app.get_arguments_from_command_line();
+   papp->get_arguments_from_command_line();
 
 #else
 
-   app.set_args(argc, argv, envp);
+   papp->set_args(argc, argv, envp);
 
 #endif
 
@@ -75,13 +75,13 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //
 //#endif
 
-      app.m_pfnImplement = &::implement;
+      papp->m_pfnImplement = &::implement;
 
-      app.m_bConsole = true;
+      papp->m_bConsole = true;
 
-      app.m_strAppId = __APP_ID;
+      papp->m_strAppId = __APP_ID;
 
-      int iExitCode = app.main_loop();
+      int iExitCode = papp->main_loop();
 
       return iExitCode;
 

@@ -557,11 +557,19 @@ void app_core::on_command_line()
    if (strAppId.has_char())
    {
 
-      ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "program";
+      ::file::path pathFolder = m_psystem->m_pacmedir->roaming();
 
       pathFolder /= strAppId;
 
-      ::file::path path = pathFolder / "last_command_line.txt";
+      string strDate;
+
+      strDate = m_psystem->datetime()->international().get_date_time_for_file_with_no_spaces();
+
+      string strPid;
+
+      strPid = __string(get_current_process_id());
+
+      ::file::path path = pathFolder / "last_command_line_" +strDate + "_" + strPid + ".txt";
 
       m_psystem->m_pacmefile->put_contents(path, m_strCommandLine);
 

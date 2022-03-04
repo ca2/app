@@ -104,7 +104,7 @@ namespace earth
 
          time_t t = m_i;
 
-         t += m_iZoneOffset;
+         t += (::i32) m_timeshift;
 
          errno_t err = _gmtime64_s(&tmTemp, &t);
 

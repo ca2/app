@@ -36,6 +36,7 @@ CLASS_DECL_ACME void file_time_to_local_file_time(file_time_t* pfile_timeLocal, 
 CLASS_DECL_ACME void is_valid_file_time(const file_time_t* pfile_time);
 CLASS_DECL_ACME void system_time_to_tm(tm * ptm, const system_time_t * psystemtime);
 CLASS_DECL_ACME void tm_to_system_time(system_time_t * psystemtime, const tm * ptm);
+CLASS_DECL_ACME void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time);
 CLASS_DECL_ACME file_time get_file_time_now();
 
 

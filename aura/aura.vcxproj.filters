@@ -1151,6 +1151,12 @@
     <ClInclude Include="_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\write_text\font_enumeration_item.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\true_type_font_utilities.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1710,6 +1716,12 @@
     </ClCompile>
     <ClCompile Include="platform\aura.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_enumeration_item.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\true_type_font_utilties.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1234,8 +1234,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\data\tree.cpp" />
     <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\department.cpp" />
-    <ClCompile Include="primitive\datetime\filetime.cpp" />
-    <ClCompile Include="primitive\datetime\filetime_span.cpp" />
+    <ClCompile Include="primitive\datetime\file_time.cpp" />
+    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\duration\duration\duration.cpp" />
@@ -1695,8 +1695,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\data\_impl.h" />
     <ClInclude Include="primitive\data\_tree.h" />
     <ClInclude Include="primitive\datetime\department.h" />
-    <ClInclude Include="primitive\datetime\filetime.h" />
-    <ClInclude Include="primitive\datetime\filetime_span.h" />
+    <ClInclude Include="primitive\datetime\file_time.h" />
+    <ClInclude Include="primitive\datetime\file_time_span.h" />
     <ClInclude Include="primitive\datetime\microsecond_sleep.h" />
     <ClInclude Include="primitive\datetime\micro_duration.h" />
     <ClInclude Include="primitive\datetime\result.h" />

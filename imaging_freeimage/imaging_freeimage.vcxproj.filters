@@ -40,9 +40,6 @@
     <ClCompile Include="loading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="loading_gif.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="saving.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="context_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="loading_multi_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

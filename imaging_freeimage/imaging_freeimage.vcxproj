@@ -895,6 +895,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="context_image.cpp" />
+    <ClCompile Include="loading_multi_frame.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="file_procedure.cpp" />
     <ClCompile Include="file_procedure_ex1.cpp" />
@@ -908,7 +909,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="loading_gif.cpp" />
     <ClCompile Include="loading.cpp" />
     <ClCompile Include="saving.cpp" />
     <ClCompile Include="_.cpp" />

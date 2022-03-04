@@ -588,143 +588,6 @@ namespace earth
    }
 
 
-   //i64 time::GetGmtDaySig() const noexcept
-   //{
-
-   //   struct tm ttm;
-
-   //   struct tm * ptm;
-
-   //   ptm = GetGmtTm(&ttm);
-
-   //   return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
-
-   //}
-
-//stream & operator >>(stream & is, ::earth::time & rtime)
-//{
-//
-//   is.read((i64 &) rtime.m_time);
-//
-//   return is;
-//
-//}
-
-
-#ifdef WINDOWS
-
-
-CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
-{
-
-   SYSTEMTIME st = {};
-
-   struct tm ttm;
-
-   struct tm * ptm;
-
-   ptm = time.tm_struct(&ttm);
-
-   st.wDay = ptm->tm_mday;
-   st.wDayOfWeek = ptm->tm_wday;
-   st.wHour = ptm->tm_hour;
-   st.wMilliseconds = 0;
-   st.wMinute = ptm->tm_min;
-   st.wMonth = ptm->tm_mon + 1;
-   st.wSecond = ptm->tm_sec;
-   st.wYear = 1900 + ptm->tm_year;
-
-   return st;
-
-}
-
-
-//file_time __file_time(const ::earth::time & time)
-//{
-//
-//   auto pnode = get_system()->node();
-//
-//   SYSTEMTIME systemtime;
-//
-//   pnode->system_time_to_time(__systemtime();
-//
-//   file_time file_time = {};
-//
-//   if (!SystemTimeToFileTime(Systemtime, (FILETIME *) &file_time))
-//   {
-//
-//#ifdef WINDOWS
-//
-//      DWORD dwLastError = ::GetLastError();
-//
-//#endif
-//
-//      //TRACELASTERROR();
-//
-//      __zero(file_time);
-//
-//   }
-//
-//   return file_time;
-//
-//}
-
-
-CLASS_DECL_ACME FILETIME __FILETIME(const ::earth::time & time)
-{
-
-   SYSTEMTIME systemtime = __SYSTEMTIME(time);
-
-   FILETIME file_time = {};
-
-   if (!SystemTimeToFileTime(&systemtime, &file_time))
-   {
-
-#ifdef WINDOWS
-
-      DWORD dwLastError = ::GetLastError();
-
-#endif
-
-      //TRACELASTERROR();
-
-      __zero(file_time);
-
-   }
-
-   return file_time;
-
-}
-
-
-#endif
-
-
-
-
-//#define INTEL 1
-
-//
-//time_t __time(const file_time & file_time)
-//{
-//
-//   auto time = __time(*(FILETIME *)&file_time);
-//
-//   auto estatus = mkgmtime_from_filetime(time.m_time, file_time.m_filetime);
-//
-//   if (!estatus)
-//   {
-//
-//      throw ::exception(::exception(estatus));
-//
-//   }
-//
-//   return time;
-//
-//}
-
-
-
 
    string format(const ::string & strFormat, const ::earth::time & time, const ::earth::time_shift& timeshift)
    {
@@ -1010,6 +873,144 @@ stream & operator <<(stream & os, ::earth::time & time)
 
 }
 
+
+
+
+
+//i64 time::GetGmtDaySig() const noexcept
+//{
+
+//   struct tm ttm;
+
+//   struct tm * ptm;
+
+//   ptm = GetGmtTm(&ttm);
+
+//   return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
+
+//}
+
+//stream & operator >>(stream & is, ::earth::time & rtime)
+//{
+//
+//   is.read((i64 &) rtime.m_time);
+//
+//   return is;
+//
+//}
+
+
+#ifdef WINDOWS
+
+
+CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
+{
+
+   SYSTEMTIME st = {};
+
+   struct tm ttm;
+
+   struct tm * ptm;
+
+   ptm = time.tm_struct(&ttm);
+
+   st.wDay = ptm->tm_mday;
+   st.wDayOfWeek = ptm->tm_wday;
+   st.wHour = ptm->tm_hour;
+   st.wMilliseconds = 0;
+   st.wMinute = ptm->tm_min;
+   st.wMonth = ptm->tm_mon + 1;
+   st.wSecond = ptm->tm_sec;
+   st.wYear = 1900 + ptm->tm_year;
+
+   return st;
+
+}
+
+
+//file_time __file_time(const ::earth::time & time)
+//{
+//
+//   auto pnode = get_system()->node();
+//
+//   SYSTEMTIME systemtime;
+//
+//   pnode->system_time_to_time(__systemtime();
+//
+//   file_time file_time = {};
+//
+//   if (!SystemTimeToFileTime(Systemtime, (FILETIME *) &file_time))
+//   {
+//
+//#ifdef WINDOWS
+//
+//      DWORD dwLastError = ::GetLastError();
+//
+//#endif
+//
+//      //TRACELASTERROR();
+//
+//      __zero(file_time);
+//
+//   }
+//
+//   return file_time;
+//
+//}
+
+
+CLASS_DECL_ACME FILETIME __FILETIME(const ::earth::time & time)
+{
+
+   SYSTEMTIME systemtime = __SYSTEMTIME(time);
+
+   FILETIME file_time = {};
+
+   if (!SystemTimeToFileTime(&systemtime, &file_time))
+   {
+
+#ifdef WINDOWS
+
+      DWORD dwLastError = ::GetLastError();
+
+#endif
+
+      //TRACELASTERROR();
+
+      __zero(file_time);
+
+   }
+
+   return file_time;
+
+}
+
+
+#endif
+
+
+
+
+//#define INTEL 1
+
+//
+//time_t __time(const file_time & file_time)
+//{
+//
+//   auto time = __time(*(FILETIME *)&file_time);
+//
+//   auto estatus = mkgmtime_from_filetime(time.m_time, file_time.m_filetime);
+//
+//   if (!estatus)
+//   {
+//
+//      throw ::exception(::exception(estatus));
+//
+//   }
+//
+//   return time;
+//
+//}
 
 
 

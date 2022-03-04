@@ -122,12 +122,12 @@ struct CLASS_DECL_ACME file_time_set
 };
 
 
-namespace datetime
+namespace earth
 {
 
    class time;
 
-} // namespace datetime
+} // namespace earth
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds);

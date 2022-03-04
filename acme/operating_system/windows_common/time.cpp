@@ -288,6 +288,15 @@ void system_time_to_file_time(file_time_t * pfile_time, const system_time_t * ps
 }
 
 
+//void get_system_time(system_time_t * psystemtime)
+//{
+//
+//   GetSystemTime((SYSTEMTIME *) psystemtime);
+//
+//}
+
+
+
 void get_system_time(system_time_t * psystemtime)
 {
 
@@ -296,12 +305,50 @@ void get_system_time(system_time_t * psystemtime)
 }
 
 
-
-void get_system_time(system_time_t * psystemtime)
+void datetime_to_filetime(::file_time_t * pfiletime, const ::earth::time & time)
 {
 
-   GetSystemTime((SYSTEMTIME *) psystemtime);
+   SYSTEMTIME sysTime;
+
+   sysTime.wYear = (::u16)time.year();
+   sysTime.wMonth = (::u16)time.month();
+   sysTime.wDay = (::u16)time.day();
+   sysTime.wHour = (::u16)time.hour();
+   sysTime.wMinute = (::u16)time.minute();
+   sysTime.wSecond = (::u16)time.second();
+   sysTime.wMilliseconds = 0;
+
+   // convert system time to local file time
+   FILETIME localTime;
+
+   DWORD dwLastError = ::GetLastError();
+
+   if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+   {
+
+      DWORD dwLastError = ::GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      throw ::exception(estatus);
+
+   }
+
+   // convert local file time to UTC file time
+   if (!LocalFileTimeToFileTime(&localTime, (FILETIME *)pfiletime))
+   {
+
+      DWORD dwLastError = ::GetLastError();
+
+      auto estatus = last_error_to_status(dwLastError);
+
+      throw ::exception(estatus);
+
+   }
+
+   //return ::success;
 
 }
+
 
 

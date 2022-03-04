@@ -499,6 +499,16 @@ namespace datetime
 
 
    class department;
+
+
+} // namespace datetime
+
+
+
+namespace earth
+{
+
+
    class time;
    class time_span;
 

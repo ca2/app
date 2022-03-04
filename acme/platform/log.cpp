@@ -121,3 +121,25 @@
 //
 //
 //
+
+
+
+
+
+bool g_bVerboseLog = false;
+
+
+void set_verbose_log(bool bVerbose)
+{
+
+   g_bVerboseLog = bVerbose;
+
+}
+
+
+bool is_verbose_log()
+{
+
+   return g_bVerboseLog;
+
+}

@@ -352,7 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="_main.cpp" />
+    <ClCompile Include="operating-system\windows\_app_message_box.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

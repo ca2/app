@@ -712,10 +712,10 @@ bool file_path_is_absolute(const char * psz)
    }
       
    while (*psz
-      || ansi_char_is_alphabetic(*psz)
+      && (ansi_char_is_alphabetic(*psz)
       || ansi_char_is_digit(*psz)
       || *psz == '-'
-      || *psz == '_')
+      || *psz == '_'))
    {
 
       psz++;

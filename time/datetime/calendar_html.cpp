@@ -133,13 +133,13 @@ namespace datetime
                if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
                   
-                  w = atoi(pdatetime->strftime("%V", (time_t)::earth::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(pdatetime->strftime("%V",::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
 
                }
                else
                {
 
-                  w = atoi(pdatetime->strftime("%U", (time_t)::earth::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  w = atoi(pdatetime->strftime("%U", ::earth::time(iYear, iMonth, iDay, 0, 0, 0)));
 
                }
 

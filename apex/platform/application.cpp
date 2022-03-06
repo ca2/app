@@ -630,7 +630,7 @@ return m_straAppCategory;
 ::file::path application::get_app_localconfig_folder()
 {
 
-::file::path pathFolder = m_psystem->m_pacmedir->roaming() / m_strAppName;
+::file::path pathFolder = m_psystem->m_pacmedir->roaming() / m_strAppId;
 
 return pathFolder;
 

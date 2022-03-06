@@ -701,10 +701,14 @@ namespace experience
                   || hwndDraw == hwndActiveWindowParent
                   || puiInactiveTopLevel == puiActiveTopLevel)
                   && m_colorActiveCaptionTextBk != 0)*/
+            pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
+            pgraphics->set_compositing_quality(::draw2d::compositing_quality_none);
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
             if(m_pframewindow->is_active_window())
             {
-
-               pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
                pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorActiveCaptionTextBk);
 
@@ -712,12 +716,9 @@ namespace experience
             else
             {
 
-
                pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
 
             }
-
-            //printf("D. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
             ::duration tick3;
 
@@ -818,9 +819,11 @@ namespace experience
 
             pgraphics->set_font(pframewindow, ::e_element_window_title);
 
-            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
-            //printf("G. frame::on_draw_frame %d\n", tick5.elapsed().m_i);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
          }
 

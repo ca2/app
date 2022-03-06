@@ -16,7 +16,7 @@ namespace experience
 
 
                frame_013();
-               virtual ~frame_013();
+               ~frame_013() override;
 
 
             };

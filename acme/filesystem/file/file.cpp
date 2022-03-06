@@ -639,9 +639,18 @@ namespace file
          if (i == EOF)
          {
 
-            set_position(position);
+            if (get_position() > position)
+            {
 
-            return false;
+               return true;
+
+            }
+            else
+            {
+
+               return false;
+
+            }
 
          }
 
@@ -668,8 +677,6 @@ namespace file
             return true;
 
          }
-
-
 
          char ch = i;
 

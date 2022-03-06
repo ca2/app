@@ -8,6 +8,7 @@ namespace experience
    namespace tranquillum
    {
 
+
       class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
          public ::experience::frame
       {
@@ -43,8 +44,8 @@ namespace experience
 
 
                frame();
+               ~frame() override;
 
-               virtual ~frame();
 
                virtual status < ::color::color > get_border_main_body_color() override;
 

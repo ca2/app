@@ -368,22 +368,11 @@ SizingNone:
 
 
             void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
-
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
 
-
                auto eborder = pmovemanager->GetBorderMask();
-
-               //if(m_pframewindow->layout().is_zoomed())
-               //{
-               //   eborder = (enum_border)
-               //             (eborder &
-               //              ~(e_border_right
-               //                | e_border_bottom
-               //                | e_border_left));
-               //}
 
                auto rectangleMargin = get_margin_rect();
 
@@ -391,125 +380,16 @@ SizingNone:
 
                auto estyle = pframewindow->m_estyle;
 
-               if(m_bHollow)
-               {
-                  //return;
-                  ::rectangle_i32 rectangleA(rectangleClient);
+               ::rectangle_i32 rectangleA(rectangleClient);
 
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-                  pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
-                  auto iMaxBorder = rectangleMargin.max_dimension();
-
-                  if (iMaxBorder > 0)
-                  {
-
-                     ::rectangle_i32 rectangleDeflate(
-                        rectangleMargin.left / iMaxBorder,
-                        rectangleMargin.top / iMaxBorder,
-                        rectangleMargin.right / iMaxBorder,
-                        rectangleMargin.bottom / iMaxBorder);
-
-                     for (index i = 0; i < iMaxBorder; i++)
-                     {
-
-                        pgraphics->draw_inset_rectangle(rectangleA, argb(0, 0, 0, 0), eborder);
-
-                        rectangleA.deflate(rectangleDeflate);
-
-                     }
-
-                     pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-                     pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
-
-                     if (m_pframewindow->is_active_window())
-                     {
-
-                        ::rectangle_i32 rectangleA(rectangleClient);
-
-                        for (index i = 0; i < iMaxBorder; i++)
-                        {
-
-                           auto ppen = __create < ::draw2d::pen > ();
-
-                           ppen->create_solid(1.0, argb((byte) ((i+1) * 5), 0, 0, 0));
-//                           ppen->create_solid(1.0, argb(255, 0, 0, 0));
-
-                           pgraphics->draw_round_rect(rectangleA, ppen, (int)(10 - i), eborder);
-
-                           rectangleA.deflate(rectangleDeflate);
-
-                        }
-
-                        //rectangleA.deflate(9, 9, 9, 9);
-
-                        pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-                        pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
-
-                        if (estyle == ::user::StyleRedOrange)
-                        {
-
-                           pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 170, 136), eborder);
-
-                        }
-                        else if (estyle == ::user::StyleLightGreen)
-                        {
-
-                           pgraphics->draw_inset_rectangle(rectangleA, argb(255, 128, 230, 150), eborder);
-
-                        }
-                        else
-                        {
-
-                           pgraphics->draw_inset_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), eborder);
-
-                        }
-
-                     }
-                     else
-                     {
-
-                        //rectangleA.deflate(9, 9, 9, 9);
-                        pgraphics->draw_inset_rectangle(rectangleA, argb(255, 128, 128, 128));
-
-                     }
-
-                  }
-
-
-               }
-               else
-               {
-
-                  if(eborder & e_border_top)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_top);
-
-                  }
-                  if(eborder & e_border_right)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_right);
-
-                  }
-                  if(eborder & e_border_bottom)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_bottom);
-
-                  }
-                  if(eborder & e_border_left)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_left);
-
-                  }
-
-               }
+              pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), eborder);
 
             }
+
 
             void frame_008::GetBorderRect(
             const ::rectangle_i32 & rectangleClient,

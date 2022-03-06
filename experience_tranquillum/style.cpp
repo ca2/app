@@ -18,86 +18,8 @@ namespace tranquillum
 
 
    style::style()
-      //m_pfontEdit(e_create),
-      //m_pfontList(e_create)
    {
 
-//      m_pfontEdit->create_point_font("MS Sans Serif", 9.0);
-
-      //    m_pfontList->create_point_font(pnode->font_name(e_font_sans_ui), 10, e_font_weight_bold);
-
-      //theme_current_control(::user::control_none);
-
-      //create_translucency(::e_element_none, ::user::e_translucency_none);
-
-      //create_point_font(::user::font_default,pnode->font_name(e_font_sans_ui), 12.0);
-      //create_point_font(::user::font_button, pnode->font_name(e_font_sans_ui), 12.0, 800);
-      //create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 12.0, 800);
-      //create_point_font(::user::font_list_header, pnode->font_name(e_font_sans_ui), 12.0, 800);
-
-      //create_point_font(::user::font_tab, pnode->font_name(e_font_sans_ui), 13.0, 400);
-      //{
-      //   auto font = create_point_font(::user::font_tab_hover, pnode->font_name(e_font_sans_ui), 13.0, 400);
-      //   pfont->m_bUnderline = true;
-      //}
-      //create_point_font(::user::font_tab_sel, pnode->font_name(e_font_sans_ui), 13.0, 800);
-      //{
-      //   auto font = create_point_font(::user::font_tab_sel_hover, pnode->font_name(e_font_sans_ui), 13.0, 800);
-      //   pfont->m_bUnderline = true;
-      //}
-      //create_point_font(::user::font_tab_big_bold, pnode->font_name(e_font_sans_ui), 13.0, 800);
-
-      //create_rect_coord(::user::rect_edit_padding, 0.2, 0.2, 0.2, 0.2);
-
-      //create_double(::user::double_list_item_height_rate, 1.65);
-
-      //create_pixel_rect_coord(::user::rect_menu_item_padding, 5, 5, 5, 5);
-
-      //create_int(::user::int_element_padding, 4);
-
-      //m_colorBackground = argb(255, 255, 255, 255);
-      //m_colorText = argb(255, 0, 0, 0);
-
-
-      //create_color(::user::color_background, argb(255, 255, 255, 255));
-      //create_color(::user::color_text, argb(255, 0, 0, 0));
-      //create_color(::user::color_edit_text, argb(255, 0, 0, 0));
-      //create_color(::user::color_edit_text_selected, argb(255, 255, 255, 255));
-      //create_color(::user::color_edit_background_selected, argb(255, 100, 150, 230));
-      //create_color(::user::color_text_selected, argb(255, 255, 255, 255));
-      //create_color(::user::color_text_selected_highlight, argb(255, 255, 255, 255));
-      //create_color(::user::color_text_highlight, argb(255, 255, 255, 255));
-      //create_color(::user::color_text_hover, argb(255, 20, 55, 255));
-      //create_color(::user::color_background_selected, argb(255, 100, 150, 230));
-      //create_color(::user::color_background_selected_highlight, argb(255, 110, 180, 240));
-      //create_color(::user::color_background_highlight, argb(255, 120, 200, 250));
-      //create_color(::user::color_background_hover, argb(255, 120, 200, 250));
-      //create_color(::user::color_background_selected_hover, argb(255, 130, 220, 252));
-      //create_color(::user::color_background, argb(255, 255, 255, 255));
-      //create_color(::user::color_button_text, argb(255, 255, 255, 255));
-      //create_color(::user::color_list_header, argb(255, 40, 40, 40));
-      //create_color(::user::color_list_header_background, argb(255, 230, 230, 230));
-      //create_color(::user::color_list_background, argb(255, 255, 255, 255));
-      //create_color(::user::color_list_item_text, argb(255, 50, 50, 50));
-      //create_color(::user::color_list_item_text_hover, argb(255, 50, 50, 50));
-      //create_color(::user::color_list_item_text_selected, argb(255, 250, 250, 250));
-      //create_color(::user::color_list_item_text_selected_hover, argb(255, 250, 250, 250));
-      //create_color(::user::color_list_item_background, argb(255, 255, 255, 255));
-      //create_color(::user::color_list_item_background_hover, argb(255, 205, 235, 255));
-      //create_color(::user::color_list_item_background_selected, argb(255, 100, 150, 230));
-      //create_color(::user::color_list_item_background_selected_hover, argb(255, 130, 180, 240));
-      //create_color(::user::color_button_background, argb(255, 80, 150, 220));
-      //create_color(::user::color_button_background_hover, argb(255, 110, 180, 240));
-      //create_color(::user::color_button_background_press, argb(255, 95, 165, 230));
-      //create_color(::user::color_button_background_disabled, argb(255, 160, 160, 160));
-      //create_color(::user::color_button_text, argb(255, 255, 255, 255));
-      //create_color(::user::color_button_text_hover, argb(255, 255, 255, 255));
-      //create_color(::user::color_button_text_press, argb(255, 255, 255, 255));
-      //create_color(::user::color_button_text_disabled, argb(255, 200, 210, 220));
-      //create_color(::user::color_scrollbar_strong, argb(255, 210, 210, 210));
-      //create_color(::user::color_scrollbar_strong_hover, argb(255, 200, 200, 200));
-      //create_color(::user::color_scrollbar, argb(255, 230, 230, 230));
-      //create_color(::user::color_scrollbar_hover, argb(255, 225, 225, 225));
 
 
    }
@@ -120,36 +42,161 @@ namespace tranquillum
          if (econtroltype == ::user::e_control_type_tab)
          {
 
-            if (is_dark_mode())
+
+            if (eelement == ::e_element_tab_layout_background)
             {
 
-               if (eelement == ::e_element_tab_layout_background)
+               if (is_dark_mode())
                {
 
                   return argb(255, 51, 51, 45);
 
                }
-               else if (eelement == ::e_element_tab_client_background)
+               else
+               {
+      
+                  return argb(255, 255, 255, 255);
+
+               }
+
+            }
+            else if (eelement == ::e_element_tab_client_background)
+            {
+
+               if (is_dark_mode())
                {
 
                   return argb(255, 51, 51, 51);
 
                }
-
-            }
-            else
-            {
-
-               if (eelement == ::e_element_tab_layout_background)
-               {
-
-                  return argb(255, 242, 250, 253);
-
-               }
-               else if (eelement == ::e_element_tab_client_background)
+               else
                {
 
                   return argb(255, 255, 255, 255);
+
+               }
+
+
+            }
+            else if (eelement == ::e_element_item_text)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  if (estate & ::user::e_state_new_input)
+                  {
+
+                     return argb(255, 128, 128, 128);
+
+                  }
+                  else if (estate & ::user::e_state_hover)
+                  {
+
+                     return argb(255, 80, 80, 255);
+
+
+                  }
+                  else if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 40, 40, 40);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 200, 200, 200);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 80, 80, 120);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 80, 80, 80);
+
+                  }
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_background)
+            {
+
+               if (is_dark_mode())
+               {
+                  
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return argb(255, 200, 200, 240);
+
+                     }
+                     else
+                     {
+                        return argb(255, 220, 220, 220);
+
+                     }
+
+                  }
+                  else if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 200, 200, 200);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 40, 40, 40);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return argb(255, 200, 200, 240);
+
+                     }
+                     else
+                     {
+                        return argb(255, 220, 220, 220);
+
+                     }
+
+                  }
+                  else if (estate & ::user::e_state_selected)
+                  {
+
+                     return argb(255, 200, 200, 200);
+
+                  }
+                  else
+                  {
+
+                     return argb(255, 200, 200, 200);
+
+                  }
 
                }
 
@@ -302,6 +349,7 @@ namespace tranquillum
 
          if (is_dark_mode())
          {
+
             if (estate & ::user::e_state_new_input)
             {
 
@@ -477,7 +525,15 @@ namespace tranquillum
    {
 
       if (!ptab->get_data()->m_bCreated)
+      {
+
          return false;
+
+      }
+
+      ptab->get_data()->m_rectangleTextMargin.left = 4;
+
+      ptab->get_data()->m_rectangleTextMargin.right = 4;
 
       ptab->m_bDrawTabAtBackground = true;
 
@@ -658,6 +714,7 @@ namespace tranquillum
                                  + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
             x += pane.m_size.cx;
+
          }
 
          // close tab button
@@ -826,6 +883,28 @@ namespace tranquillum
             continue;
 
          }
+
+         ::user::e_state estate = ::user::e_state_none;
+
+         if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
+         {
+
+            estate |= ::user::e_state_selected;
+
+         }
+
+         if (::is_item(ptab->m_pitemHover, iTab))
+         {
+
+            estate |= ::user::e_state_hover;
+
+         }
+
+         pane.m_pbrushFill->create_solid(ptab->get_color(pstyle, ::e_element_item_background, estate));
+
+         pgraphics->set(pane.m_pbrushFill);
+
+         pgraphics->fill_rectangle(rectangle);
 
          if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
          {
@@ -1073,12 +1152,6 @@ namespace tranquillum
                   }
                   else
                   {
-
-                     pane.m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
-
-                     pgraphics->set(pane.m_pbrushFill);
-
-                     pgraphics->fill_path(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 

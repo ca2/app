@@ -14,7 +14,7 @@ namespace experience
 
          m_bHollow = true;
 
-         m_rectangleMarginNormal.set(10, 10, 10, 10);
+         m_rectangleMarginNormal.set(1, 1, 1, 1);
 
       }
 

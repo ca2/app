@@ -15,7 +15,7 @@ namespace experience
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
-      m_rectangleCaptionTextPadding.set(0, 0, 0, 0);
+      m_rectangleCaptionTextPadding.set(4);
 
       m_rectangleMarginFullScreen.set(0, 0, 0, 0);
       m_rectangleMarginZoomed.set(0, 0, 0, 0);
@@ -724,7 +724,7 @@ namespace experience
       }
 
 
-      i32 iCaptionHeight = iCaptionTextHeight + rectangleCaptionTextPadding.top + rectangleCaptionTextPadding.bottom;
+      i32 iCaptionHeight = iCaptionTextHeight;
 
       m_rectangleCaption.left = rectangleClient.left + rectangleMargin.left;
       m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
@@ -771,17 +771,6 @@ namespace experience
       ::rectangle_i32 rectangleIcon;
 
       bool bIcon = get_element_rect(rectangleIcon, ElementTopLeftIcon);
-
-      //if (bIcon)
-      //{
-
-      //   m_pointWindowIcon.x = rectangleIcon.left;
-
-      //}
-
-      //m_pointMoveGripMinimal.x = m_pointWindowIcon.x - 2;
-
-      //m_pointMoveGripMinimal.y = rectangleMargin.top + rectangleControlBoxMargin.top;
 
       m_pointWindowIcon.y = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) /2 );
 
@@ -933,7 +922,6 @@ namespace experience
 
 
    bool frame::get_draw_client_rect(RECTANGLE_I32 * prectangle)
-
    {
 
       ::rectangle_i32 rectangle;

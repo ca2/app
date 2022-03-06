@@ -16,7 +16,7 @@ namespace experience
 
 
                frame_008();
-               virtual ~frame_008();
+               ~frame_008() override;
 
 
                virtual string get_default_user_style() const override;

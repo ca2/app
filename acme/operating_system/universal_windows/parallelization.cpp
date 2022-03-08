@@ -114,7 +114,7 @@ void _on_aura_thread_detach()
 //}
 
 
-//void __node_init_multithreading()
+//void __node_init_multitasking()
 //{
 //
 //   __node_init_cross_windows_threading();
@@ -122,7 +122,7 @@ void _on_aura_thread_detach()
 //}
 //
 //
-//void __node_term_multithreading()
+//void __node_term_multitasking()
 //{
 //
 //   __node_term_cross_windows_threading();
@@ -198,7 +198,7 @@ void _on_aura_thread_detach()
 
 
 
-void _on_os_hthread_end()
+void _on_os_htask_end()
 {
 
 }
@@ -224,7 +224,7 @@ htask_t g_hMainThread = nullptr;
 itask_t g_iMainThread = -1;
 
 
-void set_main_hthread(htask_t htask)
+void set_main_user_htask(htask_t htask)
 {
 
    g_hMainThread = htask;
@@ -232,7 +232,7 @@ void set_main_hthread(htask_t htask)
 }
 
 
-void set_main_ithread(itask_t itask)
+void set_main_user_itask(itask_t itask)
 {
 
    g_iMainThread = itask;
@@ -240,7 +240,7 @@ void set_main_ithread(itask_t itask)
 }
 
 
-htask_t get_main_hthread()
+htask_t get_main_user_htask()
 {
 
    return g_hMainThread;
@@ -248,7 +248,7 @@ htask_t get_main_hthread()
 }
 
 
-itask_t get_main_ithread()
+itask_t get_main_user_itask()
 {
 
    return g_iMainThread;

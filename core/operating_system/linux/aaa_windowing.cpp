@@ -4971,7 +4971,7 @@ void x11_thread(osdisplay_data * pdisplaydata);
 //pthread_t g_pthreadX11;
 
 ::task_pointer g_pthreadXlib;
-itask_t g_ithreadXlib;
+itask_t g_itaskXlib;
 
 //void * x11_thread_proc(void * p)
 //{
@@ -5006,7 +5006,7 @@ void x11_start()
    g_pthreadXlib = psession->fork([]()
    {
 
-      g_ithreadXlib = ::get_current_itask();
+      g_itaskXlib = ::get_current_itask();
 
       auto posdisplay = x11_main_display();
 

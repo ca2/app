@@ -19,9 +19,9 @@ namespace windowing
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////
-////      auto pmultithread = pdraw2d->direct2d()->m_d2dMultithread.Get();
+////      auto pmultitask = pdraw2d->direct2d()->m_d2dMultitask.Get();
 ////
-////      pmultithread->Enter();
+////      pmultitask->Enter();
 ////
 ////#endif
 //
@@ -33,15 +33,15 @@ namespace windowing
 //
 ////#ifdef _UWP
 ////
-////      //m_D2DMultithread->Leave();
+////      //m_D2DMultitask->Leave();
 ////
 ////      __pointer(::aura::system) psystem = m_psystem;
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////
-////      auto pmultithread = pdraw2d->direct2d()->m_d2dMultithread.Get();
+////      auto pmultitask = pdraw2d->direct2d()->m_d2dMultitask.Get();
 ////
-////      pmultithread->Leave();
+////      pmultitask->Leave();
 ////
 ////#endif
 //

@@ -73,9 +73,9 @@ namespace apex
 
       //m_strProgName = "com." + strPrgName;
 
-      //::set_main_hthread(m_htask);
+      //::set_main_user_htask(m_htask);
 
-      //::set_main_ithread(m_uthread);
+      //::set_main_user_itask(m_uthread);
 
       //// ::apex::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 

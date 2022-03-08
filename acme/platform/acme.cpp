@@ -1099,7 +1099,7 @@ namespace acme
       //}
 
       // acme commented for apex
-      //::parallelization::init_multithreading();
+      //::parallelization::init_multitasking();
 
       //if (!__node_acme_pos_init())
       __node_acme_pos_init();
@@ -1144,7 +1144,7 @@ namespace acme
       //on_term_thread();
 
       // acme commented for apex
-      //::parallelization::term_multithreading();
+      //::parallelization::term_multitasking();
 
       __node_acme_pre_term();
 

@@ -28,12 +28,12 @@
 //CLASS_DECL_APEX int_bool main_finalize();
 
 
-//CLASS_DECL_APEX void set_main_hthread(htask_t htask);
-//CLASS_DECL_APEX void set_main_ithread(itask_t itask);
+//CLASS_DECL_APEX void set_main_user_htask(htask_t htask);
+//CLASS_DECL_APEX void set_main_user_itask(itask_t itask);
 
 
-//CLASS_DECL_APEX htask_t get_main_hthread();
-//CLASS_DECL_APEX ::u32 get_main_ithread();
+//CLASS_DECL_APEX htask_t get_main_user_htask();
+//CLASS_DECL_APEX ::u32 get_main_user_itask();
 
 //CLASS_DECL_APEX oswindow get_focus();
 //CLASS_DECL_APEX oswindow set_focus(oswindow oswindow);

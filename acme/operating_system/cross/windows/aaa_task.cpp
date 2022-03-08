@@ -13,7 +13,7 @@ task::task()
 #endif
    m_bIsRunning = false;
    m_bIsPredicate = true;
-   m_htask = null_hthread;
+   m_htask = null_htask;
    m_itask = 0;
 
 }

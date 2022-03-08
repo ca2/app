@@ -43,7 +43,7 @@ task::task()
    
 #endif
    
-   m_htask = null_hthread;
+   m_htask = null_htask;
    m_itask = 0;
 
 }

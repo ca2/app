@@ -213,7 +213,7 @@
 //#endif
 //
 //
-//CLASS_DECL_ACME void set_main_thread();
+//CLASS_DECL_ACME void set_main_user_thread();
 //
 //
 //#ifdef _APP_ID

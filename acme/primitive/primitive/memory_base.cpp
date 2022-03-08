@@ -180,6 +180,7 @@ void memory_base::impl_free(byte * pdata)
 
 }
 
+
 bool memory_base::allocate_internal(memsize dwNewLength)
 {
 
@@ -189,23 +190,37 @@ bool memory_base::allocate_internal(memsize dwNewLength)
    //   return false;
    //}
 
-   if(dwNewLength <= 0)
+   if(dwNewLength < 0)
    {
+
+      throw ::exception(error_invalid_parameter);
+
+   }
+   else if(dwNewLength == 0)
+   {
+
       return true;
+
    }
 
    erase_offset();
 
    memsize dwAllocation = calc_allocation(dwNewLength);
 
-   byte * pb;
+   if(dwAllocation < 0)
+   {
 
+
+      printf("Negative amount of memory to allocate");
+
+   }
+
+   byte * pb;
 
    if(m_memory.m_pbStorage == nullptr || !m_memory.m_bOwn)
    {
 
       pb = (byte *) impl_alloc(dwAllocation);
-
 
       if(pb == nullptr)
 

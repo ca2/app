@@ -15,7 +15,7 @@
 #include "android_main.cpp"
 #include "android_MessageBoxA.cpp"
 #include "android_message_loop.cpp"
-#include "android_multithreading.cpp"
+#include "android_multitasking.cpp"
 #include "android_process.cpp"
 #include "android_process_pid.cpp"
 #include "android_simple_shell_launcher.cpp"

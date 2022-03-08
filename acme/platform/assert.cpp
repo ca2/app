@@ -115,6 +115,21 @@ class ::system * get_system();
 CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
+#ifdef LINUX
+
+   if(is_main_thread())
+   {
+
+      // Cannot display synchronously in user/main thread.
+
+      // Cannot show user interface on break of user/main thread.
+
+      return false;
+
+   }
+
+#endif
+
    auto edialogresult = __cpp_assert_failed_line(pszFileName, iLineNumber);
 
    if(edialogresult == e_dialog_result_cancel)

@@ -1,5 +1,5 @@
 //
-//  multithreading_set_event_on_exit.h
+//  multitasking_set_event_on_exit.h
 //  acme
 //
 //

@@ -5220,13 +5220,13 @@ void x11_thread(osdisplay_data * pdisplaydata);
 ::task_pointer g_pthreadXlib;
 
 
-itask_t g_ithreadXlib;
+itask_t g_itaskXlib;
 
 
-itask_t x11_get_ithread()
+itask_t x11_get_itask()
 {
 
-   return g_ithreadXlib;
+   return g_itaskXlib;
 
 }
 

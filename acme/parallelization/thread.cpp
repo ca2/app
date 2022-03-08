@@ -175,13 +175,21 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //
 
 
-thread_local bool t_bMainThread = false;
+CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
 
-CLASS_DECL_ACME void set_main_thread()
+CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
+
+
+CLASS_DECL_ACME itask_t get_main_user_itask();
+
+
+CLASS_DECL_ACME void set_main_user_thread()
 {
 
-   t_bMainThread = true;
+   set_main_user_itask(get_current_itask());
+
+   set_main_user_htask(get_current_htask());
 
 }
 
@@ -189,7 +197,7 @@ CLASS_DECL_ACME void set_main_thread()
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return t_bMainThread;
+   return get_current_itask() == get_main_user_itask();
 
 }
 

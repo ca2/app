@@ -2578,12 +2578,13 @@ void image::mult_alpha()
       dst += 4 * 8;
       size -= 8;
    }
-   while (size--)
+   while (size > 0)
    {
       dst[0] = byte_clip2(((i32)dst[0] * (i32)dst[3]) / 255);
       dst[1] = byte_clip2(((i32)dst[1] * (i32)dst[3]) / 255);
       dst[2] = byte_clip2(((i32)dst[2] * (i32)dst[3]) / 255);
       dst += 4;
+      size--;
    }
 
    //return true;

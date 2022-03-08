@@ -22,12 +22,16 @@ namespace opengl
    void buffer::gpu_read()
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       if (!::is_ok(m_pimage))
       {
 
          return;
 
       }
+
+      m_pimage->map();
 
       glReadBuffer(GL_BACK);
       
@@ -48,12 +52,22 @@ namespace opengl
       
 #else
       
-      glReadPixels(
+      glReadnPixels(
          0, 0,
          cx, cy,
          GL_BGRA,
          GL_UNSIGNED_BYTE,
+         cx * cy * 4,
          m_pimage->m_pcolorrefRaw);
+
+      int iError = glGetError();
+
+      if(iError != 0)
+      {
+
+         printf("glReadnPixels error");
+
+      }
 
 #endif
       
@@ -65,12 +79,16 @@ namespace opengl
    void buffer::gpu_write()
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       if (!::is_ok(m_pimage))
       {
 
          return;
 
       }
+
+      m_pimage->map();
 
 //      glDrawPixels(
 //         m_pimage->m_size.cx, m_pimage->m_size.cy,

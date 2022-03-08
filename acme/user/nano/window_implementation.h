@@ -22,7 +22,12 @@ public:
    bool get_dark_mode() override;
    bool is_active() override;
 
+   virtual void nano_window_on_create();
+
    virtual void on_create();
+
+
+   void handle(::topic * ptopic, ::context * pcontext) override;
 
 
 };

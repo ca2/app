@@ -190,6 +190,8 @@ list(APPEND library_source
    graphics/write_text/fonts.h
    graphics/write_text/font_enumeration.cpp
    graphics/write_text/font_enumeration.h
+   graphics/write_text/font_enumeration_item.cpp
+   graphics/write_text/font_enumeration_item.h
    graphics/write_text/font_list.cpp
    graphics/write_text/font_list.h
    graphics/write_text/text.h
@@ -200,6 +202,8 @@ list(APPEND library_source
    graphics/write_text/text_out.h
    graphics/write_text/text_out_array.cpp
    graphics/write_text/text_out_array.h
+   graphics/write_text/true_type_font_utilities.cpp
+   graphics/write_text/true_type_font_utilities.h
    graphics/write_text/write_text.cpp
    graphics/write_text/write_text.h
    graphics/_.h

@@ -1,5 +1,5 @@
 //
-//  multithreading_thread_impl.h
+//  multitasking_thread_impl.h
 //  apex
 //
 //
@@ -74,7 +74,7 @@
 //inline bool EqualElements<itask_t>(itask_t r1, itask_t r2)
 //{
 //
-//   return ithread_equals(r1, r2) != 0;
+//   return itask_equals(r1, r2) != 0;
 //
 //}
 

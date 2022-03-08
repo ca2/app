@@ -701,6 +701,16 @@ namespace file
    {
 
       auto fileLen = get_size();
+      if(fileLen > 100000000000000)
+      {
+
+         int i = 1;
+
+         int j = 2;
+
+         int l = i+j;
+
+      }
 
       memory.set_size((memsize)fileLen);
 

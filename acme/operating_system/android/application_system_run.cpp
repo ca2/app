@@ -74,9 +74,9 @@ namespace acme
 
       //psystem->m_strProgName = "com." + strPrgName;
 
-      //::set_main_hthread(psystem->m_htask);
+      //::set_main_user_htask(psystem->m_htask);
 
-      //::set_main_ithread(psystem->m_uThread);
+      //::set_main_user_itask(psystem->m_uThread);
 
       //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 

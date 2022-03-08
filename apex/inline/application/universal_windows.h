@@ -65,7 +65,7 @@ RunBeforeMain go;
 //
 //   string strAppId = pszAppId;
 //
-//   set_main_thread();
+//   set_main_user_thread();
 //
 //   auto psystem = platform_create_system(strAppId);
 //

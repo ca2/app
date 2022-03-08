@@ -36,7 +36,7 @@ namespace write_text
    #endif
       font_enumeration_item(const ::string & strName);
       font_enumeration_item(const ::string & strFile, const ::string & strName);
-      virtual ~font_enumeration_item();
+      ~font_enumeration_item() override;
 
 
       bool operator < (const font_enumeration_item & item) const

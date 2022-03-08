@@ -5,7 +5,7 @@ context::context()
 {
 
    m_iUpdateSerial = -1;
-   m_bFork = false;
+   //m_bFork = false;
 
 }
 

@@ -2,9 +2,10 @@
 //  font_enumeration_item.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 04/03/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sï¿½rensen on 04/03/22.
 //  00:43
 #include "framework.h"
+#include "font.h"
 #include "font_enumeration_item.h"
 
 

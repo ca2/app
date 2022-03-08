@@ -82,8 +82,8 @@ CLASS_DECL_APEX void __dec_threading_count();
 //CLASS_DECL_APEX bool task_get_run();
 
 
-CLASS_DECL_APEX void __node_init_multithreading();
-CLASS_DECL_APEX void __node_term_multithreading();
+CLASS_DECL_APEX void __node_init_multitasking();
+CLASS_DECL_APEX void __node_term_multitasking();
 
 
 //thread_local __pointer(property_set) t_ppropertyset;

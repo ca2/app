@@ -28,12 +28,12 @@ CLASS_DECL_CORE int_bool main_initialize();
 CLASS_DECL_CORE int_bool main_finalize();
 
 
-CLASS_DECL_CORE void set_main_hthread(htask_t htask);
-CLASS_DECL_CORE void set_main_ithread(itask_t itask);
+CLASS_DECL_CORE void set_main_user_htask(htask_t htask);
+CLASS_DECL_CORE void set_main_user_itask(itask_t itask);
 
 
-CLASS_DECL_CORE htask_t get_main_hthread();
-CLASS_DECL_CORE ::u32 get_main_ithread();
+CLASS_DECL_CORE htask_t get_main_user_htask();
+CLASS_DECL_CORE ::u32 get_main_user_itask();
 
 CLASS_DECL_CORE oswindow get_focus();
 CLASS_DECL_CORE oswindow set_focus(oswindow oswindow);

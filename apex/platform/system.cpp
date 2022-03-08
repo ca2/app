@@ -4906,6 +4906,31 @@ namespace apex
    }
 
 
+   void system::add_handler(::matter * pmatter, bool bPriority)
+   {
+
+      ::apex::context::add_handler(pmatter, bPriority);
+
+   }
+
+
+   void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
+   {
+
+      auto psignal = get_signal(atomSignal);
+
+      if(::is_null(psignal))
+      {
+
+         throw ::exception(error_resource);
+
+      }
+
+      psignal->add_handler(pmatter);
+
+   }
+
+
    void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 

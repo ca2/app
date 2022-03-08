@@ -79,7 +79,20 @@ namespace graphics
 //
 //            }
 //
-// 
+//
+
+         if(sizeWindow.cx == 1)
+         {
+
+            printf("cx=1");
+
+         }
+         else
+         {
+            printf("cx!=1");
+
+         }
+
           pimage->create(sizeWindow);
             //if (!pimage->create(sizeWindow))
             //{
@@ -189,6 +202,7 @@ namespace graphics
    bool double_buffer::buffer_lock_round_swap_key_buffers()
    {
 
+      synchronous_lock slBuffer(get_buffer_sync());
       synchronous_lock slScreen(get_screen_sync());
 
       if (m_iCurrentBuffer == 0)

@@ -11,7 +11,7 @@
 #include "metrowin_local_memory_map.cpp"
 #include "metrowin_lock.cpp"
 #include "metrowin_MessageBoxW.cpp"
-#include "metrowin_multithreading.cpp"
+#include "metrowin_multitasking.cpp"
 #include "metrowin_process.cpp"
 #include "metrowin_simple_app.cpp"
 #include "metrowin_simple_shell_launcher.cpp"

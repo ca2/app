@@ -32,7 +32,7 @@ public:
 
    virtual void notify();
 
-   virtual void add_handler(::matter * pmatter, bool bForkWhenNotify = false);
+   virtual void add_handler(::matter * pmatter);
 
    virtual void erase_handler(::matter * pmatter);
 

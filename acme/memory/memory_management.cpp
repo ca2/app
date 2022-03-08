@@ -7,6 +7,8 @@
 #include "property_memory_allocate.h"
 #include "string_memory_allocate.h"
 
+extern iptr g_iMonitor;
+
 
 memory_management g_memorymanagement;
 
@@ -94,5 +96,14 @@ CLASS_DECL_ACME void manage_memory_free(enum_memory_heap ememoryheap, void* p)
 
 }
 
+
+
+iptr g_iMonitor = 0;
+void monitor_pointer(void * p)
+{
+
+   g_iMonitor = (iptr) p;
+
+}
 
 

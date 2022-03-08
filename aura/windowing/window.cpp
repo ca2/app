@@ -1348,7 +1348,7 @@ namespace windowing
       if (puserinteraction && puserinteraction->m_pthreadUserInteraction)
       {
 
-         itask = puserinteraction->m_pthreadUserInteraction->get_ithread();
+         itask = puserinteraction->m_pthreadUserInteraction->get_itask();
 
       }
       else

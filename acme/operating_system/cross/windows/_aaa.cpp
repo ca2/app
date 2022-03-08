@@ -39,7 +39,7 @@ namespace parallelization
    //CLASS_DECL_ACMEcritical_section * s_pcs2 = nullptr;
 
 
-   //CLASS_DECL_ACME void init_multithreading()
+   //CLASS_DECL_ACME void init_multitasking()
    //{
 
    //   //s_pcs2 = new critical_section();
@@ -48,15 +48,15 @@ namespace parallelization
 
    //   //s_pthreadptra2 = new __pointer_array(thread);
 
-   //   __node_init_multithreading();
+   //   __node_init_multitasking();
 
    //}
 
 
-   //CLASS_DECL_ACME void term_multithreading()
+   //CLASS_DECL_ACME void term_multitasking()
    //{
 
-   //   __node_term_multithreading();
+   //   __node_term_multitasking();
 
    //   //::acme::del(s_pthreadptra2);
 

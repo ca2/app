@@ -68,9 +68,9 @@ string ca2_command_line()
 //
 //   psystem->m_strProgName = "com." + strPrgName;
 //
-//   ::set_main_hthread(psystem->m_htask);
+//   ::set_main_user_htask(psystem->m_htask);
 //
-//   ::set_main_ithread(psystem->m_uThread);
+//   ::set_main_user_itask(psystem->m_uThread);
 //
 //   // psystem->m_strAppId = m_pmaindata->m_strAppId;
 //

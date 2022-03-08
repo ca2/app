@@ -31,7 +31,7 @@ bool on_term_thread()
 
 
 
- void __node_init_multithreading()
+ void __node_init_multitasking()
  {
 
     //__node_init_cross_windows_threading();
@@ -39,7 +39,7 @@ bool on_term_thread()
  }
 
 
- void __node_term_multithreading()
+ void __node_term_multitasking()
  {
 
     //__node_term_cross_windows_threading();

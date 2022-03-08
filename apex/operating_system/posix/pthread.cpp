@@ -277,7 +277,7 @@ CLASS_DECL_APEX itask_t get_current_itask()
 }
 
 
-// void __node_init_multithreading()
+// void __node_init_multitasking()
 // {
 
 //    //__node_init_cross_windows_threading();
@@ -285,7 +285,7 @@ CLASS_DECL_APEX itask_t get_current_itask()
 // }
 
 
-// void __node_term_multithreading()
+// void __node_term_multitasking()
 // {
 
 //    //__node_term_cross_windows_threading();
@@ -381,7 +381,7 @@ static htask_t g_hMainThread = (htask_t) nullptr;
 static itask_t g_uiMainThread = (itask_t)-1;
 
 
-CLASS_DECL_APEX void set_main_hthread(htask_t htask)
+CLASS_DECL_APEX void set_main_user_htask(htask_t htask)
 {
 
    // MESSAGE msg;
@@ -394,7 +394,7 @@ CLASS_DECL_APEX void set_main_hthread(htask_t htask)
 }
 
 
-CLASS_DECL_APEX void set_main_ithread(itask_t itask)
+CLASS_DECL_APEX void set_main_user_itask(itask_t itask)
 {
 
    //   MESSAGE msg;
@@ -407,7 +407,7 @@ CLASS_DECL_APEX void set_main_ithread(itask_t itask)
 }
 
 
-CLASS_DECL_APEX htask_t get_main_hthread()
+CLASS_DECL_APEX htask_t get_main_user_htask()
 {
 
    return g_hMainThread;
@@ -415,7 +415,7 @@ CLASS_DECL_APEX htask_t get_main_hthread()
 }
 
 
-CLASS_DECL_APEX itask_t get_main_ithread()
+CLASS_DECL_APEX itask_t get_main_user_itask()
 {
 
    return g_uiMainThread;

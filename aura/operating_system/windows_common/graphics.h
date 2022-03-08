@@ -18,20 +18,20 @@
 //   {
 //   public:
 //
-//      comptr < ID2D1Multithread > m_D2DMultithread;
+//      comptr < ID2D1Multitask > m_D2DMultitask;
 //
-//      device_lock(ID2D1Multithread * pmultithread) :
-//         m_D2DMultithread(pmultithread)
+//      device_lock(ID2D1Multitask * pmultitask) :
+//         m_D2DMultitask(pmultitask)
 //      {
 //
-//            m_D2DMultithread->Enter();
+//            m_D2DMultitask->Enter();
 //      }
 //
 //      ~device_lock()
 //      {
 //
 //
-//            m_D2DMultithread->Leave();
+//            m_D2DMultitask->Leave();
 //
 //      }
 //

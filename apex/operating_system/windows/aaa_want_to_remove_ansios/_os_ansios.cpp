@@ -18,7 +18,7 @@
 #include "ansios_cross_win_file.cpp"
 
 #include "ansios_local_memory_map.cpp"
-#include "ansios_multithreading.cpp"
+#include "ansios_multitasking.cpp"
 #include "ansios_process.cpp"
 #include "ansios_time.cpp"
 #endif

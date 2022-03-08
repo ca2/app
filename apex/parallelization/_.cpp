@@ -20,7 +20,7 @@ namespace parallelization
 
       //s_pthreadptra2 = new __pointer_array(thread);
 
-      __node_init_multithreading();
+      __node_init_multitasking();
 
    }
 
@@ -28,7 +28,7 @@ namespace parallelization
    CLASS_DECL_APEX void destroy()
    {
 
-      __node_term_multithreading();
+      __node_term_multitasking();
 
       //::acme::del(s_pthreadptra2);
 

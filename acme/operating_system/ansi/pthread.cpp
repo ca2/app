@@ -10,7 +10,7 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
-int ithread_equals(itask_t a, itask_t b)
+int itask_equals(itask_t a, itask_t b)
 {
 
    return pthread_equal(a, b);

@@ -78,9 +78,9 @@
 //      try
 //      {
 //
-////         set_main_hthread(GetCurrentThread());
+////         set_main_user_htask(GetCurrentThread());
 //
-//  //       set_main_ithread(GetCurrentThreadId());
+//  //       set_main_user_itask(GetCurrentThreadId());
 //
 //         if(!pre_run())
 //         {

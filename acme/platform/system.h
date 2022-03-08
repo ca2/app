@@ -118,8 +118,6 @@ public:
 
    inline ::url::department* url() { return m_purldepartment; }
 
-   //inline class ::trace::log& log() { return *m_ptracelog; }
-
    virtual void defer_audio();
 
    virtual bool has_audio();
@@ -127,8 +125,6 @@ public:
    virtual void init1();
 
    virtual void init2();
-
-   //virtual logger & log() { return *m_plogger; }
 
    virtual void set_current_handles();
 
@@ -172,24 +168,6 @@ public:
 
    virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
-   //virtual enum_linux_distribution get_linux_distribution() const;
-
-   //virtual enum_operating_system get_operating_system() const;
-
-   //virtual ::user::enum_desktop get_edesktop();
-
-   //virtual ::user::enum_desktop calc_edesktop();
-
-//#ifdef LINUX
-//    inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
-//#endif
-
-   //virtual void defer_calc_os_dark_mode();
-
-   //virtual ::user::enum_desktop calc_edesktop();
-
-   //virtual void defer_calc_os_user_theme();
-
    void process_exit_status(::object* pobject, const ::e_status& estatus);
 
 
@@ -200,14 +178,6 @@ public:
 
 
    void system_construct(const ::main & main) override;
-
-   //using main::operator =;
-   
-
-
-   //virtual void system_construct(int argc, char** argv, char** envp);
-   //virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
-
 
 #ifdef WINDOWS_DESKTOP
 
@@ -438,6 +408,10 @@ public:
    virtual void get_public_internet_domain_extension_list(string_array& stra);
 
    virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
+
+   virtual void add_handler(::matter * pmatter, bool bPriority = false);
+
+   virtual void add_signal_handler(::matter * pmatter, const ::atom & atomSignal);
 
    virtual void node_will_finish_launching();
    

@@ -224,7 +224,7 @@ namespace draw2d_direct2d
       );
 
 
-      d2d1_factory1()->QueryInterface(IID_PPV_ARGS(&m_d2dMultithread));
+      d2d1_factory1()->QueryInterface(IID_PPV_ARGS(&m_d2dMultitask));
 
       return ::success;
 

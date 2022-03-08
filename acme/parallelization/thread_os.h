@@ -85,8 +85,8 @@ CLASS_DECL_ACME bool task_get_run();
 inline void preempt();
 
 
-//CLASS_DECL_ACME void __node_init_multithreading();
-//CLASS_DECL_ACME void __node_term_multithreading();
+//CLASS_DECL_ACME void __node_init_multitasking();
+//CLASS_DECL_ACME void __node_term_multitasking();
 
 
 
@@ -95,8 +95,8 @@ inline void preempt();
 //{
 //
 //
-//   //CLASS_DECL_ACME void init_multithreading();
-//   //CLASS_DECL_ACME void term_multithreading();
+//   //CLASS_DECL_ACME void init_multitasking();
+//   //CLASS_DECL_ACME void term_multitasking();
 //
 //   //CLASS_DECL_ACME bool thread_registered(::thread * pthread);
 //   //CLASS_DECL_ACME bool thread_id_registered(itask_t atom);

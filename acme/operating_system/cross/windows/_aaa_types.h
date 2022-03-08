@@ -28,7 +28,7 @@ typedef iptr htask_t;
 #define NULL_ITHREAD ((itask_t)0)
 
 
-inline int ithread_equals(itask_t a, itask_t b) { return a == b; }
+inline int itask_equals(itask_t a, itask_t b) { return a == b; }
 
 #else
 
@@ -41,7 +41,7 @@ inline int ithread_equals(itask_t a, itask_t b) { return a == b; }
 #define NULL_HTHREAD ((htask_t)0)
 #define NULL_ITHREAD ((itask_t)0)
 
-inline int ithread_equals(itask_t a, itask_t b) { return pthread_equal(a, b); }
+inline int itask_equals(itask_t a, itask_t b) { return pthread_equal(a, b); }
 
 
 #endif

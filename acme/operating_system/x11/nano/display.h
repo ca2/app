@@ -8,6 +8,9 @@ namespace x11
 {
 
 
+   class nano_window;
+
+
    class display :
       virtual public ::object,
       virtual public event_listener
@@ -15,6 +18,7 @@ namespace x11
    public:
 
 
+      bool                                   m_bUnhook;
       Display   *                            m_pdisplay;
       __pointer_array(event_listener)        m_eventlistenera;
       __pointer_array(nano_window)           m_windowa;
@@ -31,7 +35,7 @@ namespace x11
 
       //void wait_timer_or_event();
 
-      static display * get(::object * pobject);
+      static display * get(::object * pobject, bool bBranch = true);
 
       bool message_loop_step();
       void message_loop();
@@ -41,6 +45,9 @@ namespace x11
       void run() override;
 
 
+      bool is_branch_current() const override;
+
+
       void add_listener(event_listener * plistener);
       void add_window(nano_window * pwindow);
 
@@ -48,6 +55,10 @@ namespace x11
       void erase_window(nano_window * pwindow);
 
       bool _on_event(XEvent * pevent) override;
+
+      virtual bool x11_event(XEvent * pevent);
+
+      virtual bool x11_posted();
 
       void display_post(const ::routine & routine);
       void display_send(const ::routine & routine);

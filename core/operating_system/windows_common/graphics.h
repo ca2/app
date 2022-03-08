@@ -17,7 +17,7 @@ namespace draw2d
 
       static ID2D1Factory1 * g_pfactory;
 
-      comptr < ID2D1Multithread > m_D2DMultithread;
+      comptr < ID2D1Multitask > m_D2DMultitask;
 
       device_lock()
       {
@@ -25,9 +25,9 @@ namespace draw2d
          if (g_pfactory != nullptr)
          {
 
-            g_pfactory->QueryInterface(IID_PPV_ARGS(&m_D2DMultithread));
+            g_pfactory->QueryInterface(IID_PPV_ARGS(&m_D2DMultitask));
 
-            m_D2DMultithread->Enter();
+            m_D2DMultitask->Enter();
 
          }
 
@@ -36,10 +36,10 @@ namespace draw2d
       ~device_lock()
       {
 
-         if (m_D2DMultithread.m_p != nullptr)
+         if (m_D2DMultitask.m_p != nullptr)
          {
 
-            m_D2DMultithread->Leave();
+            m_D2DMultitask->Leave();
 
          }
 

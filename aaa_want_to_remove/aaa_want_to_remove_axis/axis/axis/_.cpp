@@ -134,7 +134,7 @@ bool axis_term()
    */
 //   ::user::term_windowing();
    /*
-   ::parallelization::term_multithreading();
+   ::parallelization::term_multitasking();
 
    //__term_threading_count();
 

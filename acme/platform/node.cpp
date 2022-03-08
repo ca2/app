@@ -656,24 +656,6 @@ namespace acme
 
 
 
-
-
-   //bool node::get_app_dark_mode()
-   //{
-
-   //   return get_system_dark_mode();
-
-   //}
-
-
-   //bool node::get_system_dark_mode()
-   //{
-
-   //   return get_app_dark_mode();
-
-   //}
-
-   
    void node::fetch_user_color()
    {
 
@@ -699,45 +681,6 @@ namespace acme
 
 
    }
-
-
-   //void node::defer_update_dark_mode()
-   //{
-
-   //}
-
-
-   //void node::set_user_dark_mode(bool bSet)
-   //{
-
-   //   if (::is_different(m_bUserDarkMode, bSet))
-   //   {
-
-   //      m_bUserDarkMode = bSet;
-
-   //      on_dark_mode_change();
-
-   //   }
-
-   //   return ::success;
-
-   //}
-
-
-   //bool node::is_user_dark_mode()
-   //{
-
-   //   return m_bUserDarkMode;
-
-   //}
-
-   //
-   //::color::color node::get_user_background_color()
-   //{
-
-   //   return m_colorUserBackground;
-
-   //}
 
 
    void node::background_color(const ::color::color & color)
@@ -791,53 +734,6 @@ namespace acme
       m_iWeatherDarkness = iWeatherDarkness;
 
    }
-
-
-   ///// returns true if the operating system dark mode has changed
-   //bool node::_os_calc_user_dark_mode()
-   //{
-
-   //   bool bDarkModeApp = _os_calc_app_dark_mode();
-
-   //   bool bDarkModeSystem = _os_calc_system_dark_mode();
-
-   //   if (m_bLastDarkModeApp != bDarkModeApp
-   //      || m_bLastDarkModeSystem != bDarkModeSystem)
-   //   {
-
-   //      m_bLastDarkModeApp = bDarkModeApp;
-
-   //      m_bLastDarkModeSystem = bDarkModeSystem;
-
-   //      return true;
-
-   //   }
-
-   //   return false;
-
-   //}
-
-
-   //void node::os_calc_user_dark_mode()
-   //{
-
-   //   bool bChanged = _os_calc_user_dark_mode();
-
-   //   if(bChanged)
-   //   {
-   //   
-   //      on_os_dark_mode_change();
-
-   //   }
-
-   //}
-
-
- /*  void node::on_os_dark_mode_change()
-   {
-
-
-   }*/
 
 
    string node::os_get_user_theme()

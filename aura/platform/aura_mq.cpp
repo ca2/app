@@ -73,7 +73,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    }
 
-   itask_t idthread = pinteraction->get_app()->get_ithread();
+   itask_t idthread = pinteraction->get_app()->get_itask();
 
    message_queue * pmq = get_message_queue(idthread, false);
 

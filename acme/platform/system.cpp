@@ -551,7 +551,7 @@ itask_t system::get_task_id(const ::task * ptask)
 
    synchronous_lock synchronouslock(&m_mutexTask);
 
-   itask_t itask = null_ithread;
+   itask_t itask = null_itask;
 
    if (!m_taskidmap.lookup((::task *const ) ptask, itask))
    {
@@ -660,18 +660,6 @@ string system::__get_text(const ::string & str)
 //      return estatus;
 
 //   }
-
-//   return estatus;
-
-//}
-
-
-//void system::_on_initialize_window_object()
-//{
-
-//   ::e_status estatus = ::success;
-// 
-//   m_pnode->_os_calc_user_dark_mode();
 
 //   return estatus;
 
@@ -1822,6 +1810,20 @@ i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 
 
 void system::system_id_update(::i64 iId, ::i64 iPayload)
+{
+
+
+}
+
+
+void system::add_handler(::matter * pmatter, bool bPriority)
+{
+
+
+}
+
+
+void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
 {
 
 

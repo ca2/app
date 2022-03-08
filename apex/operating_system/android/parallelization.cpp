@@ -462,14 +462,14 @@ bool on_term_thread()
 
 
 
-void __node_init_multithreading()
+void __node_init_multitasking()
 {
 
 }
 
 
 
-void __node_term_multithreading()
+void __node_term_multitasking()
 {
 
 }

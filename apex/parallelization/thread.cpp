@@ -221,7 +221,7 @@ thread::~thread()
 htask_t thread::get_os_handle() const
 {
 
-   return get_hthread();
+   return get_htask();
 
 }
 
@@ -2581,7 +2581,7 @@ void thread::inline_term()
 }
 
 
-htask_t thread::get_hthread() const
+htask_t thread::get_htask() const
 {
 
    return m_htask;
@@ -2589,7 +2589,7 @@ htask_t thread::get_hthread() const
 }
 
 
-itask_t thread::get_ithread() const
+itask_t thread::get_itask() const
 {
 
    return m_itask;
@@ -4374,7 +4374,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 ::enum_priority thread::thread_priority()
 {
 
-   ASSERT(m_htask != null_hthread);
+   ASSERT(m_htask != null_htask);
 
    i32 nPriority = ::GetThreadPriority(m_htask);
 
@@ -4427,7 +4427,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //u32 thread::ResumeThread()
 //{
 //
-//   ASSERT(m_htask != null_hthread);
+//   ASSERT(m_htask != null_htask);
 //
 //#if defined (WINDOWS_DESKTOP)
 //

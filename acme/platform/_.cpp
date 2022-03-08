@@ -303,73 +303,8 @@ extern "C"
 
    typedef FN_VOID* PFN_VOID;
 
+
 } // extern "C"
-
-
-
-//PFN_CALL_UPDATE g_pfnCallUpdateSystem = nullptr;
-//
-//
-//void set_system_update(PFN_CALL_UPDATE pfnCallUpdate)
-//{
-//
-//   g_pfnCallUpdateSystem = pfnCallUpdate;
-//
-//}
-//
-//
-//void system_update(const ::atom & atom, const ::payload & payload)
-//{
-//
-//   if(g_pfnCallUpdateSystem)
-//   {
-//
-//      g_pfnCallUpdateSystem(atom, payload);
-//
-//   }
-//   else if(atom == id_dark_mode)
-//   {
-//
-//      ::user::os_calc_dark_mode();
-//
-//   }
-//
-//}
-
-
-//PFN_SET_MODIFIED g_pfnSetModifiedSystem = nullptr;
-
-
-//void set_system_set_modified(PFN_SET_MODIFIED pfnSetModified)
-//{
-//
-//   g_pfnSetModifiedSystem = pfnSetModified;
-//
-//}
-//
-//
-//void system_set_modified(const ::atom & atom)
-//{
-//
-//   if (g_pfnSetModifiedSystem)
-//   {
-//
-//      g_pfnSetModifiedSystem(atom);
-//
-//   }
-//
-//}
-
-
-//void int_system_call_update(int iUpdate, int iArg)
-//{
-//
-//   get_system()->apply_update(iUpdate, iArg);
-//
-//}
-
-
-
 
 
 void safe_free(void * pfree)

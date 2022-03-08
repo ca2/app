@@ -236,6 +236,13 @@ memory::~memory()
 byte * memory::impl_alloc(memsize dwAllocation)
 {
 
+   if(dwAllocation < 0)
+   {
+
+      printf("Negative");
+
+   }
+
 #if !MEMDLEAK
 
    if(m_bAligned)

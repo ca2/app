@@ -147,18 +147,18 @@ void signal::notify()
 
       }
 
-      if (pcontext->m_bFork)
-      {
-
-         branch_element(pmatter);
-
-      }
-      else
-      {
+//      if (pcontext->m_bFork)
+//      {
+//
+//         branch_element(pmatter);
+//
+//      }
+//      else
+//      {
 
          pmatter->handle(this, pcontext);
 
-      }
+//      }
 
    }
 
@@ -230,7 +230,7 @@ void signal::set_up_to_date(::context * pcontext)
 
 
 
-void signal::add_handler(::matter * pmatter, bool bForkWhenNotify)
+void signal::add_handler(::matter * pmatter)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -265,7 +265,7 @@ void signal::add_handler(::matter * pmatter, bool bForkWhenNotify)
 
    }
 
-   pcontext->m_bFork = bForkWhenNotify;
+   //pcontext->m_bFork = bForkWhenNotify;
 
    //pmatter->on_subject(this, pcontext);
 

@@ -15997,7 +15997,20 @@ order(zorderParam);
                else
                {
                
-                  ::atom atom = translate_property_id(m_atom);
+                  ::atom atom;
+
+                  if(m_pitemLButtonDown->m_atom.is_empty())
+                  {
+
+                     atom = translate_property_id(m_atom);
+
+                  }
+                  else
+                  {
+
+                     atom = translate_property_id(m_pitemLButtonDown->m_atom);
+
+                  }
                   
                   if(has_handler())
                   {
@@ -16959,10 +16972,10 @@ order(zorderParam);
          rectangleRate.set_dim(100, 100, 800, 400);
 
       }
-      else if(abs(rectangleRate.left) < 10.0
-      && abs(rectangleRate.right) < 10.0
-      && abs(rectangleRate.bottom) < 10.0
-      && abs(rectangleRate.top) < 10.0)
+      else if(fabs(rectangleRate.left) < 10.0
+      && fabs(rectangleRate.right) < 10.0
+      && fabs(rectangleRate.bottom) < 10.0
+      && fabs(rectangleRate.top) < 10.0)
       {
 
          rectangleRate *= rectangle_f64(rectangleMainMonitor.width(), rectangleMainMonitor.height(), rectangleMainMonitor.width(), rectangleMainMonitor.height());

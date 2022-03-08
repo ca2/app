@@ -15,7 +15,7 @@ namespace gpu
 
 
       buffer();
-      virtual ~buffer();
+      ~buffer() override;
 
       virtual void gpu_read();
       virtual void gpu_write();

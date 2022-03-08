@@ -168,19 +168,11 @@ namespace x11
    {
 
 
-//{
-//
-//   XEvent e;
-//   const char * msg = "Hello, World!";
-//   int s;
-//
       m_pdisplay = ::x11::display::get(this);
 
       if (!m_pdisplay)
       {
-         //fprintf(stderr,
-         //"Cannot open display\n");
-        // exit(1);
+
         throw ::exception(error_null_pointer);
 
       }
@@ -256,9 +248,7 @@ namespace x11
 
          XSelectInput(m_pdisplay->m_pdisplay, windowRoot, PropertyChangeMask);
 
-         create_drawing_objects();
-
-         on_create();
+         nano_window_on_create();
 
       }));
 
@@ -494,6 +484,19 @@ nano_child * nano_window::hit_test(int x, int y)
 void nano_window::display_synchronously()
 {
 
+   if(is_main_thread())
+   {
+
+      // Cannot display synchronously in user/main thread.
+
+      // Cannot show user interface on break of user/main thread.
+
+      debug_break();
+
+      return;
+
+   }
+
    _wm_nodecorations(false);
 
    XMapWindow(m_pdisplay->m_pdisplay, m_window);
@@ -538,139 +541,146 @@ void nano_window::set_active()
 bool nano_window::_on_event(XEvent *pevent)
 {
 
-   if (pevent->xany.window == m_window)
+   if(m_window == None)
    {
 
-      if (pevent->type == ConfigureNotify)
+      return false;
+
+   }
+
+   if (pevent->xany.window != m_window)
+   {
+
+      return false;
+
+   }
+
+   if (pevent->type == ConfigureNotify)
+   {
+
+      m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+
+      m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+
+      m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+
+      m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+
+      if (m_psurface)
       {
 
-         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
-
-         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
-
-         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
-
-         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
-
-         if (m_psurface)
-         {
-
-            cairo_xlib_surface_set_size(m_psurface, m_pinterface->m_rectangle.width(),
-                                        m_pinterface->m_rectangle.height());
-
-         }
-
-      }
-      else if (pevent->type == MapNotify)
-      {
-
-         if (!m_psurface)
-         {
-
-            rectangle_i32 r;
-
-            get_client_rectangle(r);
-
-            m_psurface = cairo_xlib_surface_create(
-               m_pdisplay->m_pdisplay,
-               m_window,
-               DefaultVisual(m_pdisplay->m_pdisplay, DefaultScreen(m_pdisplay->m_pdisplay)),
-               m_pinterface->m_rectangle.width(),
-               m_pinterface->m_rectangle.height());
-
-            auto pdc = cairo_create(m_psurface);
-
-            m_pnanodevice = __new(::x11::nano_device(pdc));
-
-         }
-
-         _update_window();
-
-      }
-      else if (pevent->type == Expose)
-      {
-
-         _update_window();
-
-      }
-      else if (pevent->type == PropertyNotify)
-      {
-
-
-      }
-      else if (pevent->type == KeyPress)
-      {
-
-         auto keysym = XkbKeycodeToKeysym(m_pdisplay->m_pdisplay, pevent->xkey.keycode, 0, pevent->xkey.state & ShiftMask ? 1 : 0);
-
-         int iChar = xkb_keysym_to_utf32(keysym);
-
-         on_char(iChar);
-
-      }
-      else if (pevent->type == KeyRelease)
-      {
-
-      }
-      else if (pevent->type == ButtonPress)
-      {
-
-         if (pevent->xbutton.button == Button1)
-         {
-
-            on_left_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
-
-         }
-         else if (pevent->xbutton.button == Button3)
-         {
-
-            on_right_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
-
-         }
-
-      }
-      else if (pevent->type == ButtonRelease)
-      {
-
-         if (pevent->xbutton.button == Button1)
-         {
-
-            on_left_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
-
-         }
-         else if (pevent->xbutton.button == Button3)
-         {
-
-            on_right_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
-
-         }
-
-      }
-      else if (pevent->type == MotionNotify)
-      {
-
-         on_mouse_move(pevent->xmotion.x_root, pevent->xmotion.y_root);
-
-      }
-      else if (pevent->type == LeaveNotify)
-      {
-
-         if (m_pinterface->m_pchildHover)
-         {
-
-            m_pinterface->m_pchildHover->on_mouse_move(-100000, -10000);
-
-            m_pinterface->m_pchildHover = nullptr;
-
-            m_pinterface->redraw();
-
-         }
+         cairo_xlib_surface_set_size(m_psurface, m_pinterface->m_rectangle.width(),
+                                     m_pinterface->m_rectangle.height());
 
       }
 
    }
+   else if (pevent->type == MapNotify)
+   {
 
-   return m_window != None;
+      if (!m_psurface)
+      {
+
+         rectangle_i32 r;
+
+         get_client_rectangle(r);
+
+         m_psurface = cairo_xlib_surface_create(
+            m_pdisplay->m_pdisplay,
+            m_window,
+            DefaultVisual(m_pdisplay->m_pdisplay, DefaultScreen(m_pdisplay->m_pdisplay)),
+            m_pinterface->m_rectangle.width(),
+            m_pinterface->m_rectangle.height());
+
+         auto pdc = cairo_create(m_psurface);
+
+         m_pnanodevice = __new(::x11::nano_device(pdc));
+
+      }
+
+      _update_window();
+
+   }
+   else if (pevent->type == Expose)
+   {
+
+      _update_window();
+
+   }
+   else if (pevent->type == PropertyNotify)
+   {
+
+
+   }
+   else if (pevent->type == KeyPress)
+   {
+
+      auto keysym = XkbKeycodeToKeysym(m_pdisplay->m_pdisplay, pevent->xkey.keycode, 0, pevent->xkey.state & ShiftMask ? 1 : 0);
+
+      int iChar = xkb_keysym_to_utf32(keysym);
+
+      on_char(iChar);
+
+   }
+   else if (pevent->type == KeyRelease)
+   {
+
+   }
+   else if (pevent->type == ButtonPress)
+   {
+
+      if (pevent->xbutton.button == Button1)
+      {
+
+         on_left_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+      else if (pevent->xbutton.button == Button3)
+      {
+
+         on_right_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+
+   }
+   else if (pevent->type == ButtonRelease)
+   {
+
+      if (pevent->xbutton.button == Button1)
+      {
+
+         on_left_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+      else if (pevent->xbutton.button == Button3)
+      {
+
+         on_right_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
+
+      }
+
+   }
+   else if (pevent->type == MotionNotify)
+   {
+
+      on_mouse_move(pevent->xmotion.x_root, pevent->xmotion.y_root);
+
+   }
+   else if (pevent->type == LeaveNotify)
+   {
+
+      if (m_pinterface->m_pchildHover)
+      {
+
+         m_pinterface->m_pchildHover->on_mouse_move(-100000, -10000);
+
+         m_pinterface->m_pchildHover = nullptr;
+
+         m_pinterface->redraw();
+
+      }
+
+   }
 
 }
 

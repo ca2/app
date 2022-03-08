@@ -249,7 +249,8 @@ namespace app_shader
 
    void render::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      
+
+
       ::gpu::context_lock lock(m_pcontext);
 
       defer_update_shader();
@@ -258,11 +259,13 @@ namespace app_shader
         ::is_set(m_pcontext->m_pprogram) &&
        m_pcontext->m_pbuffer && ::is_ok(m_pcontext->m_pbuffer->m_pimage))
       {
-         
+
+         single_lock slImage(m_pcontext->m_pbuffer->mutex());
+
          {
 
             ::gpu::context_lock lock(m_pcontext);
-            
+
             m_pcontext->make_current();
 
             m_pcontext->start();
@@ -312,11 +315,12 @@ namespace app_shader
 
             m_pcontext->prepare_for_gpu_read();
 
+            slImage.lock();
+
             m_pcontext->m_pbuffer->gpu_read();
-            
+
          }
-      
-         
+
 #if !defined(__APPLE__)
 
          ::draw2d::matrix matrixOriginal;

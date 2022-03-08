@@ -17,10 +17,10 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
 
-CLASS_DECL_ACME void set_main_hthread(htask_t htask);
-CLASS_DECL_ACME void set_main_ithread(itask_t itask);
-CLASS_DECL_ACME htask_t get_main_hthread();
-CLASS_DECL_ACME itask_t get_main_ithread();
+CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
+CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
+CLASS_DECL_ACME htask_t get_main_user_htask();
+CLASS_DECL_ACME itask_t get_main_user_itask();
 
 
 

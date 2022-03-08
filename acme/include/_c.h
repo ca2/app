@@ -49,6 +49,30 @@ CLASS_DECL_ACME::u32 __u32_hash(const char* psz);
 typedef u64 file_time_t;
 
 
+#ifndef HIBYTE
+#define HIBYTE(x) (((x) >> 8) & 0x00ff)
+#endif
+
+
+#ifndef HIWORD
+#define HIWORD(x) (((x) >> 16) & 0x0000ffff)
+#endif
+
+
+#ifndef LOWORD
+#define LOWORD(x) ((x) & 0x0000ffff)
+#endif
+
+
+#ifndef MAKEWORD
+#define MAKEWORD(lo, hi) (((lo) & 0xff) | (((hi) << 8) & 0xff00))
+#endif
+
+
+#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), __LOBYTE(x))
+#define SWAPLONG(x)		__MAKE_LONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
+
+
 #include "acme/constant/_constant.h"
 #include "acme/constant/_enumeration.h"
 #include "acme/primitive/duration/_struct.h"

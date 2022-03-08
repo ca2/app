@@ -6,6 +6,9 @@
 #include "_nano.h"
 
 
+void set_main_user_thread();
+
+
 namespace x11
 {
 
@@ -15,6 +18,8 @@ namespace x11
 
    display::display()
    {
+
+      m_bUnhook = false;
 
       if(!g_p)
       {
@@ -78,6 +83,13 @@ namespace x11
 
    void display::display_send(const ::routine & routine)
    {
+
+      if(m_bUnhook)
+      {
+
+
+
+      }
 
       /*auto estatus = */ __send_routine(this, &display::display_post, routine);
 
@@ -156,7 +168,7 @@ namespace x11
 //}
 //
 
-   display * display::get(::object * pobject)
+   display * display::get(::object * pobject, bool bBranch)
    {
 
       synchronous_lock lock(::acme::get_global_mutex());
@@ -170,21 +182,24 @@ namespace x11
 
          p->add_listener(p);
 
-         p->branch_synchronously();
+         if(bBranch)
+         {
+
+            p->branch_synchronously();
+
+         }
+         else
+         {
+
+            p->init_task();
+
+         }
 
       }
 
       return g_p;
 
    }
-
-
-//   void hook_into_message_loop(x11_event_listener * plistener)
-//   {
-//
-//      g_px11display->add_listener(plistener);
-//
-//   }
 
 
    void display::add_listener(event_listener * plistener)
@@ -241,37 +256,51 @@ namespace x11
 
       XNextEvent(m_pdisplay, &event);
 
+      x11_event(&event);
+
+      return true;
+
+   }
+
+
+   bool display::x11_posted()
+   {
+
+      return display_posted_routine_step();
+
+   }
+
+
+   bool display::x11_event(XEvent * pevent)
+   {
+
+      bool bHandled = false;
+
       ::index i = 0;
 
       synchronous_lock synchronouslock(mutex());
 
-      for (; i < m_eventlistenera.get_count();)
+      for (; i < m_eventlistenera.get_count(); i++)
       {
 
          auto plistener = m_eventlistenera[i];
 
          synchronouslock.unlock();
 
-         if (!plistener->_on_event(&event))
+         if (plistener->_on_event(pevent))
          {
 
-            synchronouslock.lock();
+            bHandled = true;
 
-            m_eventlistenera.erase(plistener);
-
-         }
-         else
-         {
-
-            i++;
-
-            synchronouslock.lock();
+            break;
 
          }
+
+         synchronouslock.lock();
 
       }
 
-      return false;
+      return bHandled;
 
    }
 
@@ -279,25 +308,39 @@ namespace x11
    void display::message_loop()
    {
 
-      bool bProcessedSomething1;
+      bool bHandled1;
 
-      bool bProcessedSomething2;
+      bool bHandled2;
 
       while (::task_get_run())
       {
 
-         bProcessedSomething1 = false;
-
-         while (message_loop_step())
+         if(m_bUnhook)
          {
 
-            bProcessedSomething1 = true;
+            break;
 
          }
 
-         bProcessedSomething2 = display_posted_routine_step();
+         bHandled1 = false;
 
-         if (!bProcessedSomething1 && !bProcessedSomething2)
+         bHandled2 = false;
+
+         while(message_loop_step())
+         {
+
+            bHandled1 = true;
+
+         }
+
+         if(!bHandled1)
+         {
+
+            bHandled2 = x11_posted();
+
+         }
+
+         if(!bHandled1 && !bHandled2)
          {
 
             preempt(5_ms);
@@ -306,7 +349,7 @@ namespace x11
 
       }
 
-      INFORMATION("Finished display::message_loop");
+      INFORMATION("Finished display::message_loop for nano::display");
 
    }
 
@@ -328,9 +371,18 @@ namespace x11
    }
 
 
+   bool display::is_branch_current() const
+   {
+
+      return !m_bUnhook && ::object::is_branch_current();
+
+   }
+
+
    void display::run()
    {
 
+      set_main_user_thread();
 
       message_loop();
 
@@ -386,7 +438,7 @@ namespace x11
 
       }
 
-      return true;
+      return false;
 
    }
 

@@ -69,7 +69,7 @@ namespace draw2d_direct2d
       comptr<ID3D11Device1> m_pd3device1;
       comptr<IDXGIDevice> m_pdxgidevice;
 
-      comptr<ID2D1Multithread> m_d2dMultithread;
+      comptr<ID2D1Multitask> m_d2dMultitask;
 
       D3D_FEATURE_LEVEL m_featurelevel;
 

@@ -20,11 +20,14 @@ point_i32 g_pointLastBottomRight;
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
+#include <mutex>
+
 
 #ifdef WINDOWS_DESKTOP
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #endif
 
+void monitor_pointer(void * p);
 
 #define REDRAW_HINTING
 //CLASS_DECL_AURA bool task_set_name(const ::string &psz);
@@ -4278,6 +4281,18 @@ namespace user
 
             //CINFO(prodevian)("going to update_window (1)");
 
+            auto puserinteraction = m_puserinteraction.m_p;
+
+            int * pi= (int*) puserinteraction;
+
+            auto & i = *pi;
+
+            //monitor_pointer(puserinteraction);
+
+            auto & iStateCount = m_puserinteraction->layout().m_iStateCount;
+
+            monitor_pointer(&iStateCount);
+
             m_pgraphics->update_window();
 
             m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
@@ -5995,11 +6010,11 @@ namespace user
 
          //}
 
-         //m_puserinteraction->set_reposition();
-
-         //m_puserinteraction->set_need_redraw();
-
-         //m_puserinteraction->post_redraw();
+//         m_puserinteraction->set_reposition();
+//
+//         m_puserinteraction->set_need_redraw();
+//
+//         m_puserinteraction->post_redraw();
 
       }
 

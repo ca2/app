@@ -2274,7 +2274,7 @@ void application::application_pre_run()
 //if (!is_system() && is_true("SessionSynchronizedInput"))
 //{
 //
-//::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
+//::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_itask(), true);
 //
 //}
 //

@@ -487,7 +487,7 @@ void attach_thread_input_to_main_thread(bool bAttach)
 
    }
 
-   AttachThreadInput(::GetCurrentThreadId(), (DWORD)get_main_ithread(), bAttach ? true : false);
+   AttachThreadInput(::GetCurrentThreadId(), (DWORD)get_main_user_itask(), bAttach ? true : false);
 
 }
 

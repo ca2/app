@@ -826,7 +826,7 @@ namespace ios
       //ASSERT(dynamic_cast < ::user::interaction *  > (p) == this);   // must be us
 
       // Note: if either of the above asserts fire and you are
-      // writing a multithreaded application, it is likely that
+      // writing a multitasked application, it is likely that
       // you have passed a C++ object from one thread to another
       // and have used that object in a way that was not intended.
       // (only simple inline wrapper functions should be used)

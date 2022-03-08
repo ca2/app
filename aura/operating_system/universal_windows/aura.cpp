@@ -184,9 +184,9 @@ bool os_finalize()
 //      }
 //      */
 //
-//   //t_phthread = new htask();
+//   //t_phtask = new htask();
 //
-//   //t_phthread->m_bRun = true;
+//   //t_phtask->m_bRun = true;
 //
 //   //currentThread = new htask();
 //

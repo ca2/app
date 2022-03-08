@@ -92,9 +92,21 @@ namespace graphics
 
       }
 
-      auto size = m_pimpl->m_puserinteraction->layout().design().size();
+      auto & d = m_pimpl->m_puserinteraction->layout().design();
 
-      return size;
+      if(d.m_size.cx == 1)
+      {
+
+         printf("cx=1");
+
+      }
+      else
+      {
+         printf("cx!=1");
+
+      }
+
+      return d.m_size;
 
    }
 

@@ -198,7 +198,7 @@ string main::get_argument1(int iArgument) const
 }
 
 
-CLASS_DECL_ACME void set_main_thread();
+CLASS_DECL_ACME void set_main_user_thread();
 
 
 void __main()
@@ -213,7 +213,7 @@ void __main()
 void __main(main& main)
 {
 
-   set_main_thread();
+   set_main_user_thread();
 
    ::e_status estatus = error_failed;
 

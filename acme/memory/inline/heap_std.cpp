@@ -9,6 +9,13 @@
 void * aligned_memory_allocate(memsize size, memsize align)
 {
 
+   if(size < 0)
+   {
+
+      throw ::exception(::error_bad_argument, "Bad Argument: Negative amount of memory to allocate");
+
+   }
+
    void * paligned;
 
    align = align <= 0 ? ALIGN_BYTE_COUNT : align;

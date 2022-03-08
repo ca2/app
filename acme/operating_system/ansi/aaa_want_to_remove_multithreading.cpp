@@ -205,7 +205,7 @@
 //
 //
 //
-//void __node_init_multithreading()
+//void __node_init_multitasking()
 //{
 //
 //   //s_pmapHthreadHthread = new map < htask_t,htask_t,htask_t,htask_t >();
@@ -223,7 +223,7 @@
 //
 //
 //
-//void __node_term_multithreading()
+//void __node_term_multitasking()
 //{
 //
 //   // delete freeTlsIndices;
@@ -1002,7 +1002,7 @@
 ////static HANDLE g_hMainThread = NULL;
 ////static ::u32 g_iMainThread = -1;
 ////
-////CLASS_DECL_ACME void set_main_hthread(htask_t htask)
+////CLASS_DECL_ACME void set_main_user_htask(htask_t htask)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1015,7 +1015,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_ACME void set_main_ithread(itask_t itask)
+////CLASS_DECL_ACME void set_main_user_itask(itask_t itask)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1029,12 +1029,12 @@
 ////}
 ////
 ////
-////CLASS_DECL_ACME HANDLE get_main_hthread()
+////CLASS_DECL_ACME HANDLE get_main_user_htask()
 ////{
 ////   return g_hMainThread;
 ////
 ////}
-////CLASS_DECL_ACME ::u32   get_main_ithread()
+////CLASS_DECL_ACME ::u32   get_main_user_itask()
 ////{
 ////   return g_iMainThread;
 ////}
@@ -1050,7 +1050,7 @@
 ////
 ////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
-////   //   AttachThreadInput(::GetCurrentThreadId(), get_main_ithread(), bAttach ? true : false); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
+////   //   AttachThreadInput(::GetCurrentThreadId(), get_main_user_itask(), bAttach ? true : false); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
 ////
 ////}
 ////*/

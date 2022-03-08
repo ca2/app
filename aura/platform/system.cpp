@@ -4606,7 +4606,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(&m_mutexTask);
 //
-//      itask_t itask = null_ithread;
+//      itask_t itask = null_itask;
 //
 //      if (!m_threadidmap.lookup(pthread, itask))
 //      {

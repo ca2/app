@@ -22,7 +22,7 @@ namespace draw2d
 //
 ////#ifdef _UWP
 ////
-////      comptr < ID2D1Multithread > m_D2DMultithread;
+////      comptr < ID2D1Multitask > m_D2DMultitask;
 ////
 ////#endif
 //

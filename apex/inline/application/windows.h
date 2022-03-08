@@ -1,7 +1,7 @@
 //#include "apex/operating_system.h"
 //
 //
-//CLASS_DECL_ACME void set_main_thread();
+//CLASS_DECL_ACME void set_main_user_thread();
 //
 //
 //i32 WINAPI _tWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, TCHAR * pCmdLine, int nCmdShow)
@@ -30,7 +30,7 @@
 //
 //   mainarguments.m_bConsole = false;
 //
-////   set_main_thread();
+////   set_main_user_thread();
 ////
 ////   string strAppId;
 ////

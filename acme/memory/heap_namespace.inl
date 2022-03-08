@@ -11,6 +11,9 @@
 
 CLASS_DECL_ACME void simple_debug_print(const char* psz);
 
+extern iptr g_iMonitor;
+
+
 
 namespace HEAP_NAMESPACE
 {

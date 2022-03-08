@@ -11,6 +11,8 @@ namespace gpu
    buffer::buffer()
    {
 
+      defer_create_mutex();
+
    }
 
 

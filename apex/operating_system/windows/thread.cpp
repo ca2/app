@@ -38,14 +38,14 @@ bool on_term_thread()
 
 
 
-void __node_init_multithreading()
+void __node_init_multitasking()
 {
 
 }
 
 
 
-void __node_term_multithreading()
+void __node_term_multitasking()
 {
 
 }
@@ -99,7 +99,7 @@ bool __os_init_thread()
 
 
 
-//void _on_os_hthread_end(int iRet)
+//void _on_os_htask_end(int iRet)
 //{
 //
 //   // allow C-runtime to cleanup, and exit the thread

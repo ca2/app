@@ -30,9 +30,9 @@
 //
 //   }
 //
-//   set_main_hthread(psystem->m_htask);
+//   set_main_user_htask(psystem->m_htask);
 //
-//   set_main_ithread(psystem->m_uThread);
+//   set_main_user_itask(psystem->m_uThread);
 //
 //   apex_application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);
 //

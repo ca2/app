@@ -169,8 +169,8 @@ public:
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
-   virtual htask_t get_hthread() const;
-   virtual itask_t get_ithread() const;
+   virtual htask_t get_htask() const;
+   virtual itask_t get_itask() const;
 
 
    virtual bool task_active() const override;

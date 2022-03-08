@@ -193,6 +193,8 @@ namespace gpu
 
       }
 
+      synchronous_lock synchronouslock(m_pbuffer->mutex());
+
       m_pbuffer->m_pimage->create(size);
 
       //return ::success_none;

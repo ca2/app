@@ -3,7 +3,7 @@
 
 
 extern ::task_pointer g_pthreadXlib;
-extern itask_t g_ithreadXlib;
+extern itask_t g_itaskXlib;
 
 
 void x11_kick_idle();
@@ -17,7 +17,7 @@ template < typename PRED >
 void x11_fork(PRED pred)
 {
 
-   if(::get_current_itask() == g_ithreadXlib)
+   if(::get_current_itask() == g_itaskXlib)
    {
 
       pred();

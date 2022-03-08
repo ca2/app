@@ -5,7 +5,7 @@
 static HANDLE g_hMainThread = nullptr;
 static itask_t g_iMainThread = -1;
 
-void set_main_hthread(htask_t htask)
+void set_main_user_htask(htask_t htask)
 {
 
    MSG msg;
@@ -17,7 +17,7 @@ void set_main_hthread(htask_t htask)
 }
 
 
-void set_main_ithread(itask_t itask)
+void set_main_user_itask(itask_t itask)
 {
 
    MSG msg;
@@ -29,7 +29,7 @@ void set_main_ithread(itask_t itask)
 }
 
 
-htask_t get_main_hthread()
+htask_t get_main_user_htask()
 {
 
    return (htask_t)g_hMainThread;
@@ -37,7 +37,7 @@ htask_t get_main_hthread()
 }
 
 
-itask_t get_main_ithread()
+itask_t get_main_user_itask()
 {
 
    return (itask_t)g_iMainThread;

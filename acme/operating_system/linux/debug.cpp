@@ -15,13 +15,81 @@
 int gdb_check();
 
 
+::duration g_durationLastDebuggerAttachedCheck;
+::i32 g_iLastIsDebuggerAttached;
+::i32 g_iLastIsDebuggerAttachedOptimizedCount;
+
 i32 __node_is_debugger_attached()
 {
 
-   return gdb_check();
+   critical_section_lock lock(::acme::g_pcsGlobal);
+
+   if(g_durationLastDebuggerAttachedCheck.elapsed() > 300_ms)
+   {
+
+      g_iLastIsDebuggerAttached = gdb_check();
+
+      g_durationLastDebuggerAttachedCheck.elapsed();
+
+   }
+   else
+   {
+
+      printf("\nOptimized times %d", g_iLastIsDebuggerAttachedOptimizedCount++);
+
+   }
+
+   return g_iLastIsDebuggerAttached;
+
 
 }
 
+
+
+#include <sys/stat.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <ctype.h>
+
+// https://stackoverflow.com/questions/3596781/how-to-detect-if-the-current-process-is-being-run-by-gdb
+// https://stackoverflow.com/users/63550/peter-mortensen
+// https://stackoverflow.com/users/75501/sam-liao
+
+int gdb_check()
+{
+   char buf[4096];
+
+   const int status_fd = ::open("/proc/self/status", O_RDONLY);
+   if (status_fd == -1)
+      return false;
+
+   const ssize_t num_read = ::read(status_fd, buf, sizeof(buf) - 1);
+   ::close(status_fd);
+
+   if (num_read <= 0)
+      return false;
+
+   buf[num_read] = '\0';
+   constexpr char tracerPidString[] = "TracerPid:";
+   const auto tracer_pid_ptr = ::strstr(buf, tracerPidString);
+   if (!tracer_pid_ptr)
+      return false;
+
+   for (const char* characterPtr = tracer_pid_ptr + sizeof(tracerPidString) - 1; characterPtr <= buf + num_read; ++characterPtr)
+   {
+      if (::isspace(*characterPtr))
+         continue;
+      else
+      {
+         int iDebuggerAttached = ::isdigit(*characterPtr) != 0 && *characterPtr != '0';
+
+         return iDebuggerAttached;
+      }
+   }
+
+   return false;
+}
 
 
 /*
@@ -70,56 +138,56 @@ i32 gdb_check()
 }
 */
 
-
-
-static void*
-test_trace(void* ignored)
-{
-   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
-}
-
-i32
-gdb_check(void)
-{
-
-   pthread_attr_t attr;
-   void* result;
-   pthread_t thread;
-
-   pthread_attr_init(&attr);
-   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-   if (pthread_create(&thread, &attr, test_trace, nullptr) != 0)
-   {
-      pthread_attr_destroy(&attr);
-      return false;
-   }
-   pthread_attr_destroy(&attr);
-   if (pthread_join(thread, &result) != 0)
-   {
-      return false;
-   }
-
-   return result != nullptr;
-}
-
-
-
-//
-//  macos_debug.cpp
-//  acme
-//
-//  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //
 //
-
+//static void*
+//test_trace(void* ignored)
+//{
+//   return (void*)ptrace(PTRACE_TRACEME, 0, nullptr, nullptr);
+//}
 //
-//  macos_debug.cpp
-//  ca
+//i32
+//gdb_check(void)
+//{
 //
-//  Created by Lion User on 26/05/2012.
-//  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//   pthread_attr_t attr;
+//   void* result;
+//   pthread_t thread;
 //
-
+//   pthread_attr_init(&attr);
+//   pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+//   if (pthread_create(&thread, &attr, test_trace, nullptr) != 0)
+//   {
+//      pthread_attr_destroy(&attr);
+//      return false;
+//   }
+//   pthread_attr_destroy(&attr);
+//   if (pthread_join(thread, &result) != 0)
+//   {
+//      return false;
+//   }
+//
+//   return result != nullptr;
+//}
+//
+//
+//
+////
+////  macos_debug.cpp
+////  acme
+////
+////  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
+////
+////
+//
+////
+////  macos_debug.cpp
+////  ca
+////
+////  Created by Lion User on 26/05/2012.
+////  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+////
+//
 
 
 

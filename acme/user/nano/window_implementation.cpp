@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "_nano.h"
+#include "acme/id.h"
 
 
 nano_window_implementation::nano_window_implementation()
@@ -43,10 +44,39 @@ bool nano_window_implementation::is_active()
 }
 
 
+void nano_window_implementation::nano_window_on_create()
+{
+
+   m_psystem->node()->fetch_user_color();
+
+   m_psystem->add_signal_handler(this, id_operating_system_user_color_change);
+
+   create_drawing_objects();
+
+   on_create();
+
+}
+
+
 void nano_window_implementation::on_create()
 {
 
    return m_pinterface->on_create();
+
+}
+
+
+void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
+{
+
+   if(ptopic->m_atom == id_operating_system_user_color_change)
+   {
+
+      update_drawing_objects();
+
+      redraw();
+
+   }
 
 }
 

@@ -284,7 +284,7 @@ namespace universal_windows
 
       //m_d2dDevice = global_draw_get_d2d1_device();
 
-      //::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.As(&m_d2dMultithread);
+      //::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.As(&m_d2dMultitask);
 
    }
 

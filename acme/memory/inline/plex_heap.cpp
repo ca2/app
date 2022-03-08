@@ -15,6 +15,8 @@
 //
 //#endif
 
+
+
 #include "acme/platform/acme.h"
 
 #undef new
@@ -658,6 +660,13 @@ void * plex_heap_alloc_sync::Alloc()
 
    critical_section_lock synchronouslock(&m_criticalsection);
 
+//   if(m_nAllocSize == 8192)
+//   {
+//
+//      printf("Alloc 8192");
+//
+//   }
+
    if (m_pnodeFree == nullptr)
    {
 
@@ -692,8 +701,26 @@ CLASS_DECL_ACME void set_debug_pointer(void * p)
 
 }
 
+
 void plex_heap_alloc_sync::Free(void * pParam)
 {
+
+   iptr i = (iptr) pParam;
+
+   if(i > g_iMonitor - m_nAllocSize && i < g_iMonitor + m_nAllocSize)
+   {
+
+      printf("MAKING FREE");
+
+   }
+
+//   if(m_nAllocSize == 8192)
+//   {
+//
+//      printf("Free 8192");
+//
+//   }
+
    if (m_nAllocSize == 128)
    {
       u64 & u = ((u64 &)pParam);
@@ -825,6 +852,13 @@ plex_heap * plex_heap::create(plex_heap * & pheapHead, uptr nMax, uptr cbElement
    }
 
    auto pheap = (plex_heap *) system_heap_alloc(sizeof(plex_heap) + nMax * cbElement);
+
+   if((iptr) pheap > g_iMonitor - 8192 && (iptr) pheap < g_iMonitor + 8192)
+   {
+
+      printf("MAKING FREE");
+
+   }
 
 #ifdef XXDEBUG
 

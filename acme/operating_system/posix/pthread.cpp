@@ -269,7 +269,7 @@ CLASS_DECL_ACME itask_t get_current_itask()
 //void __node_init_cross_windows_threading();
 
 
-void __node_init_multithreading()
+void __node_init_multitasking()
 {
 
    //__node_init_cross_windows_threading();
@@ -280,7 +280,7 @@ void __node_init_multithreading()
 //void __node_term_cross_windows_threading();
 
 
-void __node_term_multithreading()
+void __node_term_multitasking()
 {
 
    //__node_term_cross_windows_threading();
@@ -366,7 +366,7 @@ static htask_t g_hMainThread = (htask_t) nullptr;
 static itask_t g_uiMainThread = (itask_t)-1;
 
 
-CLASS_DECL_ACME void set_main_hthread(htask_t htask)
+CLASS_DECL_ACME void set_main_user_htask(htask_t htask)
 {
 
    // MESSAGE msg;
@@ -379,7 +379,7 @@ CLASS_DECL_ACME void set_main_hthread(htask_t htask)
 }
 
 
-CLASS_DECL_ACME void set_main_ithread(itask_t itask)
+CLASS_DECL_ACME void set_main_user_itask(itask_t itask)
 {
 
    //   MESSAGE msg;
@@ -392,7 +392,7 @@ CLASS_DECL_ACME void set_main_ithread(itask_t itask)
 }
 
 
-CLASS_DECL_ACME htask_t get_main_hthread()
+CLASS_DECL_ACME htask_t get_main_user_htask()
 {
 
    return g_hMainThread;
@@ -400,7 +400,7 @@ CLASS_DECL_ACME htask_t get_main_hthread()
 }
 
 
-CLASS_DECL_ACME itask_t get_main_ithread()
+CLASS_DECL_ACME itask_t get_main_user_itask()
 {
 
    return g_uiMainThread;
@@ -723,7 +723,7 @@ string task_get_name()
 
 
 
-CLASS_DECL_ACME int ithread_equals(itask_t a, itask_t b)
+CLASS_DECL_ACME int itask_equals(itask_t a, itask_t b)
 {
    
    return pthread_equal((pthread_t) a, (pthread_t) b);
@@ -731,7 +731,7 @@ CLASS_DECL_ACME int ithread_equals(itask_t a, itask_t b)
 }
 
 
-CLASS_DECL_ACME int hthread_equals(itask_t a, itask_t b)
+CLASS_DECL_ACME int htask_equals(itask_t a, itask_t b)
 {
    
    return pthread_equal((pthread_t) a, (pthread_t) b);

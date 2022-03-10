@@ -66,8 +66,7 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
       close(stderr_fds[0]);
       close(stderr_fds[1]);
 
-
-      sleep(20);
+      //sleep(20);
 
       wordexp_t we{};
 

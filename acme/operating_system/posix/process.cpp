@@ -111,6 +111,66 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
    while(true)
    {
 
+      bool bRead = false;
+
+      while(true)
+      {
+
+         const ssize_t iOutRead = read(stdout_fds[0], buffer, buf_size);
+
+         if (iOutRead > 0)
+         {
+
+            bRead = true;
+
+            string strMessage(buffer, iOutRead);
+
+            strOutput += strMessage;
+
+            if(ecommandsystem & e_command_system_inline_log)
+            {
+
+               printf("%s", strMessage.c_str());
+
+            }
+
+         }
+
+         const ssize_t iErrRead = read(stderr_fds[0], buffer, buf_size);
+
+         if (iErrRead > 0)
+         {
+
+            bRead = true;
+
+            string strMessage(buffer, iErrRead);
+
+            strError += strMessage;
+
+            if(ecommandsystem & e_command_system_inline_log)
+            {
+
+               fprintf(stderr, "%s", strMessage.c_str());
+
+            }
+
+         }
+
+         if(iOutRead > 0 || iErrRead > 0)
+         {
+
+            bRead = true;
+
+         }
+         else
+         {
+
+            break;
+
+         }
+
+      }
+
       {
 
          int status = 0;
@@ -125,11 +185,11 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
             if(iErrorNo != ECHILD)
             {
 
-               break;
                // No child with specified pid
 
-            }
+               break;
 
+            }
 
          }
          else if(iWaitPid == pid)
@@ -150,53 +210,12 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
       }
 
-
-      preempt(100_ms);
-
+      if(!bRead)
       {
 
-         const ssize_t iOutRead = read(stdout_fds[0], buffer, buf_size);
-
-         if (iOutRead > 0)
-         {
-
-            string strMessage(buffer, iOutRead);
-
-            strOutput += strMessage;
-
-            if(ecommandsystem & e_command_system_inline_log)
-            {
-
-               printf("%s", strMessage.c_str());
-
-            }
-
-         }
+         preempt(25_ms);
 
       }
-
-      {
-
-         const ssize_t iErrRead = read(stderr_fds[0], buffer, buf_size);
-
-         if (iErrRead > 0)
-         {
-
-            string strMessage(buffer, iErrRead);
-
-            strError += strMessage;
-
-            if(ecommandsystem & e_command_system_inline_log)
-            {
-
-               fprintf(stderr, "%s", strMessage.c_str());
-
-            }
-
-         }
-
-      }
-
 
    }
 

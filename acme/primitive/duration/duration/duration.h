@@ -135,7 +135,7 @@ public:
    operator timespec * () { return (timespec *) this; }
    
    //static inline class ::duration first();
-   static inline class ::duration now() { duration duration; duration.Now(); return duration; }
+   static inline class ::duration now() { return e_now; }
 
    inline bool is_past() const { return now() > *this; }
 
@@ -560,10 +560,13 @@ inline duration::duration(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanosec
 
    m_iNanosecond = iNanoseconds % 1'000'000'000;
    
-   if(m_iNanosecond < 0)
+   while(m_iNanosecond < 0)
    {
+
       m_iSecond--;
+
       m_iNanosecond += 1'000'000'000;
+
    }
 
 }

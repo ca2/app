@@ -294,6 +294,9 @@
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\audio\_c_audio.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

@@ -27,7 +27,7 @@ point_i32 g_pointLastBottomRight;
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #endif
 
-void monitor_pointer(void * p);
+CLASS_DECL_ACME void monitor_pointer(void * p);
 
 #define REDRAW_HINTING
 //CLASS_DECL_AURA bool task_set_name(const ::string &psz);

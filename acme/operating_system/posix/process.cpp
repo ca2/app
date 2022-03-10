@@ -51,7 +51,7 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
    }
 
-   string strCommandLine(psz);
+   auto pszCommandLine = strdup(psz);
 
    const pid_t pid = fork();
 
@@ -67,11 +67,11 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
       close(stderr_fds[1]);
 
 
-      //sleep(20);
+      sleep(20);
 
       wordexp_t we{};
 
-      wordexp(strCommandLine, &we, 0);
+      wordexp(pszCommandLine, &we, 0);
 
       char ** argv = new char *[we.we_wordc+1];
 
@@ -91,6 +91,8 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
       delete []argv;
 
       wordfree(&we);
+
+      free(pszCommandLine);
 
       _exit(iErrNo);
 

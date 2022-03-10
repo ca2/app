@@ -98,12 +98,6 @@ CLASS_DECL_ACME void manage_memory_free(enum_memory_heap ememoryheap, void* p)
 
 
 
-iptr g_iMonitor = 0;
-void monitor_pointer(void * p)
-{
 
-   g_iMonitor = (iptr) p;
-
-}
 
 

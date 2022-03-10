@@ -1729,5 +1729,13 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 
 
+iptr g_iMonitor = 0;
+CLASS_DECL_ACME void monitor_pointer(void * p)
+{
+
+   g_iMonitor = (iptr)p;
+
+}
+
 
 

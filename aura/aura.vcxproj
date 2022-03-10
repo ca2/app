@@ -886,7 +886,7 @@
     <ClCompile Include="graphics\write_text\text_box.cpp" />
     <ClCompile Include="graphics\write_text\text_out.cpp" />
     <ClCompile Include="graphics\write_text\text_out_array.cpp" />
-    <ClCompile Include="graphics\write_text\true_type_font_utilties.cpp" />
+    <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\command.cpp" />

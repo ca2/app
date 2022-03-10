@@ -49,6 +49,20 @@ CLASS_DECL_ACME::u32 __u32_hash(const char* psz);
 typedef u64 file_time_t;
 
 
+#if !defined(WINDOWS)
+
+
+typedef struct _GUID {
+   unsigned long  Data1;
+   unsigned short Data2;
+   unsigned short Data3;
+   unsigned char  Data4[ 8 ];
+} GUID;
+
+
+#endif
+
+
 #ifndef HIBYTE
 #define HIBYTE(x) (((x) >> 8) & 0x00ff)
 #endif

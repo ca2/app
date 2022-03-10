@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-09 21:11 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-09 21:11 <3ThomasBorregaardSï¿½rensen!!
 
 
 #ifdef WINDOWS
@@ -11,12 +11,16 @@
 //
 ////#include "acme/operating_system/cross/windows/windows_mmeapi.h"
 ////#include "acme/operating_system/cross/windows/windows_defs.h"
+
+/*
 typedef struct _GUID {
    unsigned long  Data1;
    unsigned short Data2;
    unsigned short Data3;
    unsigned char  Data4[ 8 ];
 } GUID;
+*/
+
 typedef struct {
    ::u16  wFormatTag;
    ::u16  nChannels;

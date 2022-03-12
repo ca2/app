@@ -472,14 +472,27 @@ namespace file
 
       string str = path;
 
-      if (m_epath == e_path_url || strPath.Right(3) == "://")
+      bool bJustAfterProtocol = strPath.Right(3) == "://";
+
+      if (bJustAfterProtocol || m_epath == e_path_url)
       {
 
          str.replace_with("/", "\\");
 
-         str.trim_left("/");
+         //str.trim_left("/");
 
-         return ::file::path(strPath + "/" + str, m_epath, path.m_iDir);
+         if (bJustAfterProtocol)
+         {
+
+            return ::file::path(strPath + str, m_epath, path.m_iDir);
+
+         }
+         else
+         {
+
+            return ::file::path(strPath + "/" + str, m_epath, path.m_iDir);
+
+         }
 
       }
 

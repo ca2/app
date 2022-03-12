@@ -369,3 +369,16 @@ namespace color
 
 
 
+
+::e_status hresult_to_status(HRESULT hr)
+{
+
+   if (SUCCEEDED(hr))
+      return ::success;
+   else
+      return error_failed;
+
+}
+
+
+

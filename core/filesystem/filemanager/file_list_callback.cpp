@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/image_list.h"
-#include "aura/graphics/draw2d/imaging.h"
+#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/imaging.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif

@@ -273,7 +273,7 @@ namespace userex
 
             auto strOptionsImpact = get_app()->prepare_impact_options();
 
-#ifdef _DEBUG
+#if defined(_DEBUG) && !defined(_UWP)
 
             auto pcontext = m_pcontext->m_papexcontext;
 

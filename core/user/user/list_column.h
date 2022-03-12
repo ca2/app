@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/draw2d/icon.h"
+#include "aura/graphics/image/icon.h"
 
 
 namespace user

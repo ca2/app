@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/id.h"
-#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/image/context_image.h"
 #include "acme/platform/hyperlink.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"

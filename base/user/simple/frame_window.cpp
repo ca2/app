@@ -934,6 +934,8 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (!(m_ewindowflag & e_window_flag_window_created))
    {
 
+#if !defined(_UWP)
+
       if (m_bDefaultNotifyIcon)
       {
 
@@ -983,6 +985,8 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          }
 
       }
+
+#endif
 
    }
 

@@ -47,37 +47,47 @@ namespace url
 } // namespace url
 
 
+CLASS_DECL_ACME bool is_like_url_protocol(const char * psz)
+{
 
+   if (is_empty(psz))
+   {
 
+      return false;
 
+   }
 
+   if (::str::ch::is_letter(*psz))
+   {
 
+      psz++;
 
+   }
 
+   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   {
 
+      return true;
 
+   }
 
+   while (::str::ch::is_letter_or_digit(*psz) || *psz == '-' || *psz == '_' || *psz == '.')
+   {
 
+      psz++;
 
+   }
 
+   if (*psz == ':' && (psz[1] == '\0' || (psz[1] == '/' && psz[2] == '/' && psz[3] == '\0')))
+   {
 
+      return true;
 
+   }
 
+   return false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

@@ -6,6 +6,9 @@
 #include "acme_path.h"
 
 
+CLASS_DECL_ACME bool is_like_url_protocol(const char * psz);
+
+
 acme_dir::acme_dir()
 {
 
@@ -736,6 +739,13 @@ void acme_dir::set_path_install_folder(const string & strPath)
 
 void acme_dir::create(const char * pathParam)
 {
+
+   if (is_like_url_protocol(pathParam))
+   {
+
+      return;
+
+   }
 
    if (is(pathParam))
    {

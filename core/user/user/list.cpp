@@ -4,6 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/primitive/collection/sort.h"
 #include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/image/list.h"
 
 
 #define DBLCLKMS 500_ms

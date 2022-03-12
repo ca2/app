@@ -2878,11 +2878,6 @@ namespace user
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-#if defined(MACOS) || defined(LINUX) || defined(_UWP)
-
-      //return;
-
-#endif
 
       try
       {
@@ -2903,6 +2898,16 @@ namespace user
             output_debug_string("control box on clip");
 
          }
+#if defined(MACOS) || defined(LINUX) || defined(_UWP)
+
+         if (strType.contains_ci("pane"))
+         {
+
+            output_debug_string("a");
+
+         }
+
+#endif
 
          if (pdrawcontext != nullptr)
          {

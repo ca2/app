@@ -47,7 +47,7 @@ namespace user
 
       m_bNoTabs                        = false;
 
-      m_bDrawTabAtBackground           = false;
+      m_bDrawTabAtBackground           = true;
 
    }
 

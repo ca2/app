@@ -82,21 +82,6 @@
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{4ca1c752-1ef2-40dc-ac0f-eaa6b04641b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{4807c9e5-63b5-4018-8c5d-2c0fbef3df16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows">
-      <UniqueIdentifier>{44bea3df-db55-49d3-a9d3-ced7fbfea4b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{9ed8c153-da9d-4785-99c2-32d3855b1b28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{35a419be-8205-410b-894f-6055fbdee270}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{f66aaed5-8c34-42e6-a4dc-c12e79bbefeb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{756ae88e-f469-42e8-8f72-6e19150124c9}</UniqueIdentifier>
     </Filter>
@@ -169,23 +154,11 @@
     <Filter Include="Source Files\include">
       <UniqueIdentifier>{be486e04-a87d-4da5-8dc1-f9a9d6354058}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{c70f9c39-d673-49fb-a7de-43f6dfb88fe1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{6e5858ed-593b-4efe-a231-23c0f5649632}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\asset">
       <UniqueIdentifier>{65aef251-9c52-476d-b93c-33579a7b0c62}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{062c77e9-de3c-472e-b0b3-04717fc151ef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\universal_windows">
-      <UniqueIdentifier>{87d20dfb-f4da-4de9-870b-5dab08de1043}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\universal_windows">
-      <UniqueIdentifier>{d9e0eae9-a79f-43e4-a757-5ccc1de8e877}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html\element">
       <UniqueIdentifier>{69f0a763-0ed0-41f3-ab45-1d6a5febaf95}</UniqueIdentifier>
@@ -207,13 +180,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="astr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -228,34 +195,10 @@
     <ClInclude Include="message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_generic_object_constructor_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_.h">
@@ -1170,84 +1113,6 @@
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
-    <ClInclude Include="os\core.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\aura_gdk.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\threading.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_c.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows_impl.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\cross.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1256,15 +1121,6 @@
     </ClInclude>
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="node\universal_windows\shell_uwp.h">
-      <Filter>Header Files\node\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\universal_windows\_.h">
-      <Filter>Header Files\node\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\universal_windows\_uwp.h">
-      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\element.h">
       <Filter>Header Files\html\impl</Filter>
@@ -1902,9 +1758,6 @@
     </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="asset\cube_new.cpp">
       <Filter>Source Files\asset</Filter>

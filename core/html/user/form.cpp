@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_user.h"
 #include "aura/update.h"
-#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/image/context_image.h"
 
 
 html_form::html_form()

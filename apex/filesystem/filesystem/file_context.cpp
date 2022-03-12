@@ -184,6 +184,17 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
+   auto preader = get_reader(path, ::file::e_open_no_exception_on_open);
+
+   if (::is_ok(preader))
+   {
+
+      *petype = ::file::e_type_file;
+
+      return true;
+
+   }
+
    return m_psystem->m_pacmepath->is_file_or_dir(path, petype) != false;
 
 }

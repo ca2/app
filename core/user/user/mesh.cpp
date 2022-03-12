@@ -4,6 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/image/list.h"
 
 
 #define DBLCLKMS 500

@@ -6,10 +6,12 @@
 
 #ifdef WINDOWS_DESKTOP
 
+#include "windows_common/_.h"
 #include "windows/_.h"
 
 #elif defined(_UWP)
 
+#include "windows_common/_.h"
 #include "universal_windows/_.h"
 
 #elif defined(MACOS)

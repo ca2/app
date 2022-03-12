@@ -1650,7 +1650,7 @@ namespace aura
 
       //auto estatus =
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
       
       __compose(m_pshellopen);
 

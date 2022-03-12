@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/image/image.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"
 #endif

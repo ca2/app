@@ -24,7 +24,7 @@
     <ClCompile Include="regular_expression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="topic.cpp">
+    <ClCompile Include="result.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -46,15 +46,6 @@
     <ClInclude Include="_regular_expression_pcre2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_code.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_regular_expression.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -67,10 +58,10 @@
     <ClInclude Include="regular_expression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="topic.h">
+    <ClInclude Include="util_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util_impl.h">
+    <ClInclude Include="result.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,7 +8,20 @@ namespace draw2d
 {
 
 
-   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y);
+   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
+   {
+
+#ifdef __APPLE__
+
+      return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
+
+#else
+
+      return ((::color32_t *)&((u8 *)pdata)[iScan * y])[x];
+
+#endif
+
+   }
 
 
 } // namespace draw2d

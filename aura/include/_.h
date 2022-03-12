@@ -80,6 +80,9 @@ namespace OPERATING_SYSTEM_NAMESPACE
 #include "aura/graphics/draw2d/_.h"
 
 
+#include "aura/graphics/image/_.h"
+
+
 #include "aura/message/_.h"
 
 

@@ -269,11 +269,11 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
    string strAppId(strApp);
 
-   strAppId.replace("\\","-");
+   strAppId.find_replace("\\","-");
 
-   strAppId.replace("/","-");
+   strAppId.find_replace("/","-");
 
-   strAppId.replace("-","-");
+   strAppId.find_replace("-","-");
 
    strKey = strAppId;
 

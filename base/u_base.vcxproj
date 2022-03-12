@@ -71,10 +71,7 @@
     <ClInclude Include="callback.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
-    <ClInclude Include="const\GLOBAL_ID.h" />
-    <ClInclude Include="const\procedure.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
@@ -102,12 +99,6 @@
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="net\_net_impl.h" />
-    <ClInclude Include="node\opengl\buffer.h" />
-    <ClInclude Include="node\opengl\context.h" />
-    <ClInclude Include="node\opengl\opengl.h" />
-    <ClInclude Include="node\opengl\program.h" />
-    <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
@@ -116,7 +107,6 @@
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\experience\button.h" />
     <ClInclude Include="user\experience\control_box.h" />
@@ -244,7 +234,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="include\_.cpp" />
-    <ClCompile Include="node\windows\frame_window.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

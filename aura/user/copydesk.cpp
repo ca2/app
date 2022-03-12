@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/draw2d/save_image.h"
-#include "aura/graphics/draw2d/image_frame_array.h"
-#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/image/save_image.h"
+#include "aura/graphics/image/frame_array.h"
+#include "aura/graphics/image/context_image.h"
 #include "acme/primitive/string/base64.h"
 
 

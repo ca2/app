@@ -48,7 +48,7 @@ public:
 #ifdef __DEBUG
    char *                                          m_pszDebug;
 #endif
-   __pointer(counter32)                            m_pcounter;
+   __pointer(counter)                              m_pcounter;
    ::task_pointer                                  m_ptask;
    ::routine                                       m_routineNext;
    ::routine_array                                 m_routinea;

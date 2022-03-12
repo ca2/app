@@ -844,7 +844,16 @@ bool acme_dir::is(const char * path)
 
    }
 
-   return _is(path);
+   bool bDir;
+
+   if (_is(bDir, path))
+   {
+
+      return bDir;
+
+   }
+
+   return false;
 
 }
 
@@ -950,12 +959,12 @@ int acme_dir::make_path(const char * psz)
 //} // namespace dir
 
 
-bool acme_dir::_is(const char * path)
+bool acme_dir::_is(bool & bDir, const char * path)
 {
 
-   bool bIsDirectory = ::is_directory(path);
+   bDir = ::is_directory(path);
 
-   return bIsDirectory;
+   return true;
 
 }
 

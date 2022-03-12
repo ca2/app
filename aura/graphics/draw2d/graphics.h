@@ -4,16 +4,16 @@
 #include "aura/platform/draw_context2.h"
 
 
-#include "image_drawer.h"
-
-
-#include "image_source.h"
-
-
 #include "aura/graphics/write_text/_.h"
 
 
 #include "aura/graphics/write_text/drawer.h"
+
+
+#include "aura/graphics/image/drawer.h"
+
+
+#include "aura/graphics/image/source.h"
 
 
 #include "region.h"

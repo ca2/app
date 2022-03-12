@@ -58,12 +58,6 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0b3f946e-721f-4f91-8603-c298751c5449}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{2839d0aa-9a07-4149-b98f-9c472946dd51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{ad55d56f-01be-40f7-b420-9acadea1aad5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{70ad3e80-24b3-41e4-a0ee-dffee8ed5f8f}</UniqueIdentifier>
     </Filter>
@@ -81,16 +75,7 @@
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="id.h">
@@ -99,28 +84,7 @@
     <ClInclude Include="message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user.h">
@@ -765,9 +729,6 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\frame_window.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab_data.cpp">
       <Filter>Source Files\user\user</Filter>

@@ -557,7 +557,7 @@ void memory_file::write_file(::file::file* pfileIn, memsize uiBufSize)
       if (increase_internal_data_size((memsize) size))
       {
 
-         auto read = pfileIn->read((byte *) get_internal_data() + get_position(), size);
+         auto read = pfileIn->read((byte *) get_internal_data() + get_position(), (memsize) size);
 
          if (read != size)
          {
@@ -624,7 +624,7 @@ void memory_file::to(::file::file* pfileOut, memsize uiSize)
 bool memory_file::get_status(::file::file_status & status) const
 {
 
-   status.m_size = get_size();
+   status.m_filesize = get_size();
 
    status.m_mtime = 0;
 

@@ -1887,11 +1887,11 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
 }
 
 
-void file_context::get_status(const ::file::path &path, ::file::file_status &status)
+void file_context::get_status(::file::file_status & status, const ::file::path &path)
 {
 
-   __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
+   __UNREFERENCED_PARAMETER(path);
 
    throw ::interface_only();
 

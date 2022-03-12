@@ -249,7 +249,7 @@ void apex_main_data::system_construct(const ::string_array & straParam)
 
    //__zero(m_mainrunnera);
 
-   return ::success;
+   //return ::success;
 
 }
 

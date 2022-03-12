@@ -2,7 +2,7 @@
 #include "text_box.h"
 #include "font_list.h"
 #include "text_box.h"
-#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 

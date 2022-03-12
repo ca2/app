@@ -161,3 +161,10 @@ public:
 
 
 #include "_conv.h"
+
+
+
+CLASS_DECL_ACME string string_format(const char * pszFormat, ...);
+
+
+

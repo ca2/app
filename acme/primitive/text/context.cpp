@@ -198,11 +198,11 @@ namespace text
 
       //}
 
-#ifdef _UWP
-
-      return estatus;
-
-#endif
+//#ifdef _UWP
+//
+//      return estatus;
+//
+//#endif
 
       //return estatus;
 

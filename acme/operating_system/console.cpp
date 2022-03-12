@@ -222,7 +222,7 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 }
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox)
+CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox, const char * pszDetails)
 {
 
    string strLine;
@@ -253,6 +253,13 @@ CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char * psz, con
    else if (etype == e_message_box_yes_no)
    {
       str += "y/n";
+   }
+
+   if (!::is_empty(pszDetails))
+   {
+
+      str += "/d";
+
    }
 
    bool bDefault = false;
@@ -335,6 +342,20 @@ repeat:
       int c = safe_get_char(stdin, 100_ms);
 
       c = ::ansi_tolower(c);
+
+      if (!::is_empty(pszDetails))
+      {
+
+         if (c == 'd')
+         {
+
+            printf("%s", pszDetails);
+
+            goto repeat;
+
+         }
+
+      }
 
       bAnswer = ::ansi_chr(pszAcceptedAnswer, c) != nullptr;
 

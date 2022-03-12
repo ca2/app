@@ -1,10 +1,9 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-//#include "_uwp.h"
 #include "acme/id.h"
 
 
-bool __node_acme_pre_init()
+void __node_acme_pre_init()
 {
 
    //xxdebug_box("__node_acme_pre_init","box",e_message_box_ok);
@@ -60,7 +59,7 @@ bool __node_acme_pre_init()
 
 // #endif // SMALLCODE
 
-   return true;
+   //return true;
 
 }
 
@@ -69,7 +68,7 @@ bool __node_acme_pre_init()
 
 
 
-bool __node_acme_pos_init()
+void __node_acme_pos_init()
 {
 
    _set_purecall_handler(_ca2_purecall);
@@ -82,21 +81,22 @@ bool __node_acme_pos_init()
 
 
 
-   return true;
+   //return true;
 
 }
 
 
-bool __node_acme_pre_term()
+void __node_acme_pre_term()
 {
 
 
 
-   return true;
+   //return true;
 
 }
 
-bool __node_acme_pos_term()
+
+void __node_acme_pos_term()
 {
 
 
@@ -142,7 +142,7 @@ bool __node_acme_pos_term()
    WSACleanup();
 
 
-   return true;
+   //return true;
 
 }
 
@@ -150,31 +150,31 @@ bool __node_acme_pos_term()
 
 
 
-::duration os_get_system_update_poll_time(const ::atom & atom)
-{
+// ::duration os_get_system_update_poll_time(const ::atom & atom)
+// {
 
-   if (atom == id_user_color)
-   {
+//    if (atom == id_user_color)
+//    {
 
-      return 500_ms;
+//       return 500_ms;
 
-   }
-   else if (atom == id_os_font_change)
-   {
+//    }
+//    else if (atom == id_os_font_change)
+//    {
 
-      return 0_s;
+//       return 0_s;
 
-   }
-   else if (atom == id_font_enumeration)
-   {
+//    }
+//    else if (atom == id_font_enumeration)
+//    {
 
-      return 0_s;
+//       return 0_s;
 
-   }
+//    }
 
-   return 500_ms;
+//    return 500_ms;
 
-}
+// }
 
 
 

@@ -461,12 +461,14 @@ namespace user
 
 #if defined(_UWP)
 
-         if (!create_interaction(puiParent))
-         {
+         create_interaction(puiParent);
 
-            return false;
+         //if (!create_interaction(puiParent))
+         //{
 
-         }
+         //   return false;
+
+         //}
 
 #else
          //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));

@@ -13,6 +13,10 @@ class CLASS_DECL_ACME nano_window :
 public:
 
 
+   string                                 m_strMessage;
+   //string                                 m_strTitle;
+
+
    __pointer(nano_window_implementation)  m_pimplementation;
    __pointer(nano_brush)                  m_pbrushWindow;
    __pointer(nano_brush)                  m_pbrushText;

@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "base/user/menu/_menu.h"
 #include "aqua/xml.h"
-#include "aura/graphics/draw2d/context_image.h"
-#include "aura/graphics/draw2d/image_drawing.h"
-#include "aura/graphics/draw2d/image_list.h"
-#include "aura/graphics/draw2d/imaging.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/imaging.h"
 
 
 namespace user

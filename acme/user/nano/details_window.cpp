@@ -27,6 +27,8 @@ void nano_details_window::calculate_size()
 {
 
 
+#if !defined(_UWP)
+
    auto sizeScreen = operating_system_get_main_screen_size();
 
    int wScreen = sizeScreen.cx;
@@ -39,7 +41,7 @@ void nano_details_window::calculate_size()
 
    m_rectangle.set_dim(x, y, w, h);
 
-
+#endif
 
 }
 

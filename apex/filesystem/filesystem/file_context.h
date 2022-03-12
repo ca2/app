@@ -54,7 +54,7 @@ public:
    virtual __pointer(::handle::ini) get_ini(const ::payload& payloadFile);
 
 
-   virtual void get_status(const ::file::path & path, ::file::file_status & status);
+   virtual void get_status(::file::file_status & status, const ::file::path & path);
    virtual void set_status(const ::file::path & path, const ::file::file_status & status);
 
 

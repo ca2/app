@@ -7,33 +7,10 @@
 #pragma once
 
 
-
-
-
-
 namespace draw2d
 {
 
 
-
-
-
-   //::aura::application* object::get_app()
-   //{
-   //   
-   //   return m_papp ? m_papp.cast < ::aura::application >() : nullptr;
-   //
-   //}
-
-
-   //::aura::session* object::get_session()
-   //{
-   //   
-   //   return m_psession ? m_psession.cast < ::aura::session >() : nullptr; 
-   //
-   //}
-
-   
    ::aura::system* object::get_system()
    {
       

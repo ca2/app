@@ -49,3 +49,26 @@ int debug_string_iterator()
    return iLinkLen;
 
 }
+
+
+
+
+string string_format(const char * pszFormat, ...)
+{
+
+   string str;
+
+   va_list argList;
+
+   va_start(argList, pszFormat);
+
+   str.format_arguments(pszFormat, argList);
+
+   va_end(argList);
+
+   return ::move(str);
+
+}
+
+
+

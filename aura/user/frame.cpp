@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "aura/graphics/draw2d/icon.h"
+#include "aura/graphics/image/icon.h"
 #include "acme/parallelization/pool.h"
 
 

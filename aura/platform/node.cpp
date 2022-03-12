@@ -42,7 +42,7 @@ namespace aura
 
       //}
 
-      message_box_factory();
+      //message_box_factory();
 
       m_psystem->m_pauranode = this;
 
@@ -59,12 +59,12 @@ namespace aura
    }
 
 
-   void node::message_box_factory()
-   {
+   //void node::message_box_factory()
+   //{
 
-      //::factory::add_factory_item < ::user::default_message_box, ::user::message_box >();
+   //   //::factory::add_factory_item < ::user::default_message_box, ::user::message_box >();
 
-   }
+   //}
 
 
    string node::system_options_html()

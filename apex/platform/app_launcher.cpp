@@ -117,7 +117,9 @@ namespace apex
 
 #ifdef _UWP
 
-      return false;
+      //return false;
+
+      return;
 
 #elif defined(WINDOWS)
 

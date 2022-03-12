@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "graphics.h"
 #include "brush.h"
-#include "image.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace draw2d

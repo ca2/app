@@ -3,7 +3,7 @@
 #include <math.h>
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace draw3d

@@ -35,7 +35,7 @@ namespace message
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/particle.h"
-#include "acme/topic/handler.h"
+#include "acme/handler/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/filesystem/file/translatable.h"

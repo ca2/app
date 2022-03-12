@@ -40,7 +40,7 @@ namespace aura
 
       virtual void dpi_os_initialize();
 
-      virtual void message_box_factory();
+      //virtual void message_box_factory();
 
 
       string system_options_html() override;

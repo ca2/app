@@ -454,7 +454,7 @@ void event::_wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         throw ::exception(signaled_base);
+         return;
 
       }
       else if (iResult == WAIT_TIMEOUT)

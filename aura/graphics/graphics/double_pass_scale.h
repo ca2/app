@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "filters.h"
-#include "aura/graphics/draw2d/_image.h"
+#include "aura/graphics/image/_image.h"
 
 typedef struct
 {

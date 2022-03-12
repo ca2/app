@@ -2,14 +2,14 @@
 #include "aura/user/_user.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/draw2d/_draw2d.h"
-#include "image_array.h"
+#include "aura/graphics/image/array.h"
 #include "graphics.h"
-#include "image.h"
+#include "aura/graphics/image/image.h"
 #include "brush.h"
 #include "pen.h"
 #include "path.h"
-#include "image_drawing.h"
-#include "context_image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/context_image.h"
 //#include <math.h>
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)

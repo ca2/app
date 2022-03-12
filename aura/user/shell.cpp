@@ -8,10 +8,10 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "aura/graphics/draw2d/image_list.h"
-#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/image/list.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/icon.h"
+#include "aura/graphics/image/icon.h"
 
 
 #if defined(RASPBIAN)

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/user/close_button.h"
 
 
@@ -166,7 +167,7 @@ namespace app_net
    }
 
    
-   bool window::on_click(const ::item& item)
+   bool window::on_click(::item * pitem)
    {
 
       start_getting_url();

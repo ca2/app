@@ -1,7 +1,10 @@
 #pragma once
 
 
-class interlocked_i64
+#if defined(WINDOWS) && OSBIT == 64
+
+
+class INLINE_CLASS_DECL_ACME interlocked_i64
 {
 protected:
 
@@ -37,7 +40,10 @@ public:
 };
 
 
-class interlocked_i32
+#endif
+
+
+class INLINE_CLASS_DECL_ACME interlocked_i32
 {
 protected:
 
@@ -81,6 +87,8 @@ using interlocked_count = ::interlocked_i64;
 
 #endif
 
+
+#if defined(WINDOWS) && OSBIT == 64
 
 
 inline void interlocked_i64::construct(::i64 l)
@@ -180,7 +188,7 @@ inline interlocked_i64& interlocked_i64::operator-=(::i64 l)
 
 
 
-
+#endif
 
 
 

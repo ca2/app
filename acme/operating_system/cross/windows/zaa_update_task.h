@@ -5,8 +5,6 @@ typedef ::i64 UPDATE_SERIAL();
 using PFN_UPDATE_SERIAL = UPDATE_SERIAL *;
 
 
-//CLASS_DECL_ACME int os_get_system_update_poll_time(const :: atom & atom);
-
 
 struct CLASS_DECL_ACME update_task :
    virtual public ::matter

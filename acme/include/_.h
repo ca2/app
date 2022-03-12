@@ -3397,7 +3397,7 @@ template < typename TYPE > class sequence;
 
 
 #include "acme/primitive/primitive/particle.h"
-#include "acme/topic/handler.h"
+#include "acme/handler/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/user/user/conversation.h"
@@ -4455,9 +4455,9 @@ namespace user
 DECLARE_ENUMERATION(e_element, enum_element);
 
 
-#include "acme/topic/item.h"
-#include "acme/topic/topic.h"
-#include "acme/topic/extended_topic.h"
+#include "acme/handler/item.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 
 
 

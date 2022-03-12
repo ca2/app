@@ -54,7 +54,8 @@ namespace app_net
 
       virtual void start_getting_url();
 
-      virtual bool on_click(const ::item& item) override;
+      virtual bool on_click(::item *pitem) override;
+
 
    };
 

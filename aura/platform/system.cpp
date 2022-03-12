@@ -14,7 +14,7 @@
 //#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
-#include "aura/const/idpool.h"
+#include "aura/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 //#ifdef _UWP

@@ -6,6 +6,9 @@
 #include "_nano.h"
 
 
+bool is_ui_possible();
+
+
 nano_message_box::nano_message_box()
 {
 
@@ -93,6 +96,8 @@ void nano_message_box::calculate_size()
 {
 
 
+#if !defined(_UWP)
+
    auto sizeScreen = operating_system_get_main_screen_size();
 
    int wScreen = sizeScreen.cx;
@@ -104,6 +109,8 @@ void nano_message_box::calculate_size()
    int y = (hScreen - h) / 2;
 
    m_rectangle.set_dim(x, y, w, h);
+
+#endif
 
 }
 
@@ -258,6 +265,23 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
 {
 
    initialize_nano();
+
+#if defined(_UWP)
+
+   if(pobject->m_psystem->m_bConsole || !is_ui_possible())
+   {
+
+      return message_box_for_console(pszMessage, pszTitle, emessagebox, strDetails);
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+   
+#endif
 
    auto pmessagebox = pobject->__create_new < nano_message_box >();
 

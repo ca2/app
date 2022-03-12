@@ -434,7 +434,7 @@ bool os_finalize()
 //bool defer_initialize_winsock();
 
 
-bool __node_aura_pre_init()
+void __node_aura_pre_init()
 {
 
    //HRESULT hresult = ::CoInitializeEx(nullptr,COINIT_MULTITHREADED);
@@ -468,13 +468,13 @@ bool __node_aura_pre_init()
 
    //}
 
-   return true;
+   ///return true;
 
 }
 
 //void CLASS_DECL_AURA __cdecl _ca2_purecall();
 
-bool __node_aura_pos_init()
+void __node_aura_pos_init()
 {
 
    //_set_purecall_handler(_ca2_purecall);
@@ -516,24 +516,25 @@ bool __node_aura_pos_init()
 
    //}
 
-   return true;
+   //return true;
 
 }
 
 
-bool __node_aura_pre_term()
+void __node_aura_pre_term()
 {
 
-   return true;
+   //return true;
 
 }
 
-bool __node_aura_pos_term()
+
+void __node_aura_pos_term()
 {
 
    //::CoUninitialize();
 
-   return true;
+   //return true;
 
 }
 

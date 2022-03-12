@@ -7062,7 +7062,9 @@ if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
 
 #ifdef _UWP
 
-return -1;
+//return -1;
+
+   return;
 
 #else
 

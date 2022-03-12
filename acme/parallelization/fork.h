@@ -538,16 +538,16 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    }
 
-   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+   ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-   auto pcounter = __new(::counter32(i32(iScan)));
+   auto pcounter = __new(::counter(cScan));
 
    auto ptask = ::get_task();
 
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
+   for (index iOrder = 0; iOrder < cScan; iOrder++)
    {
 
-      auto ppredtask = __new(forking_count_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+      auto ppredtask = __new(forking_count_task < PRED >(pobjectParent, iOrder, iOrder + iStart, cScan, iCount, pred));
 
       if (::is_set(ptask))
       {

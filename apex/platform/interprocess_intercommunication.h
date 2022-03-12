@@ -86,9 +86,9 @@
 
 
 
-      interlocked_i64                                             m_iTaskSeed;
+      interlocked_count                                           m_iTaskSeed;
       string                                                      m_strApp;
-      ::atom                                                        m_atomApp;
+      ::atom                                                      m_atomApp;
       string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
       string_map < __pointer(::mutex) >                           m_mapAppMutex;
       __pointer(::interprocess_communication::rx)                 m_prx;

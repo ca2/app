@@ -780,6 +780,7 @@
     </None>
     <None Include="uwp_app_net_TemporaryKey.pfx" />
     <None Include="uwp_app_simple_app_TemporaryKey.pfx" />
+    <None Include="_main.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -803,6 +804,15 @@
     <ClCompile Include="_app_net.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\node_universal_windows\u_node_universal_windows.vcxproj">
+      <Project>{6a3e3812-82b9-4423-bb63-c9687c967c67}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\windowing_universal_windows\u_windowing_universal_windows.vcxproj">
+      <Project>{320713e0-cea7-4ef5-a154-ab3a96d41a52}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\draw2d_direct2d\u_draw2d_direct2d.vcxproj">
+      <Project>{4dba8b7c-bb83-4098-8901-08e3f5aee45e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
@@ -817,6 +827,9 @@
     </ProjectReference>
     <ProjectReference Include="..\crypto_openssl\u_crypto_openssl.vcxproj">
       <Project>{bc919186-f67a-4ffc-b6be-0e63dc652a63}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\folder_zip\u_folder_zip.vcxproj">
+      <Project>{fc96f9e0-d65e-4286-95b1-f1ff4873dace}</Project>
     </ProjectReference>
     <ProjectReference Include="u_app_net.vcxproj">
       <Project>{3c40c5d6-4aa7-4e7d-8f7a-a9d61bf70929}</Project>

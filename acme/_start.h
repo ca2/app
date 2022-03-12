@@ -39,6 +39,14 @@
 #endif
 
 
+#ifdef _UWP
+#define INLINE_CLASS_DECL_ACME CLASS_DECL_ACME
+#else
+#define INLINE_CLASS_DECL_ACME
+#endif
+
+
+
 #ifdef DEBUG
 #ifndef _DEBUG
 #define _DEBUG

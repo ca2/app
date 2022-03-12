@@ -3,7 +3,7 @@
 
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/region.h"
-#include "aura/graphics/draw2d/fastblur.h"
+#include "aura/graphics/image/fastblur.h"
 
 
 namespace user

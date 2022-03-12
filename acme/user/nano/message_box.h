@@ -11,9 +11,6 @@ class nano_message_box :
 public:
 
 
-   string                              m_strMessage;
-   string                              m_strTitle;
-
    string                              m_strLabelDetails;
 
 

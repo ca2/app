@@ -101,6 +101,9 @@
     <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
+    <None Include="_main.inl">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

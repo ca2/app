@@ -10,16 +10,7 @@
 #include "aura/graphics/write_text/write_text.h"
 
 
-#include "image_source.h"
-
-
-#include "image_drawing.h"
-
-
-#include "image.h"
-
-
-#include "imaging.h"
+#include "aura/graphics/image/_image.h"
 
 
 #include "brush.h"
@@ -28,7 +19,7 @@
 #include "graphics.h"
 
 
-#include "fastblur.h"
+//#include "fastblur.h"
 
 
 class save_image;

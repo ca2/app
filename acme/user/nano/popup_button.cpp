@@ -25,6 +25,8 @@ popup_button::~popup_button()
 void popup_button::calculate_size_and_position(int x, int y)
 {
 
+#if !defined(_UWP)
+
    auto sizeScreen = operating_system_get_main_screen_size();
 
    int wScreen = sizeScreen.cx;
@@ -51,6 +53,8 @@ void popup_button::calculate_size_and_position(int x, int y)
    rectangleMainScreen.deflate(10);
 
    m_rectangle._001Constrain(rectangleMainScreen);
+
+#endif
 
 }
 

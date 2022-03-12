@@ -30,14 +30,7 @@ namespace app_net
    void application::init_instance()
    {
 
-      if (!::aura::application::init_instance())
-      {
-
-         return false;
-
-      }
-
-      return true;
+      ::aura::application::init_instance();
 
    }
 

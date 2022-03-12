@@ -3,12 +3,6 @@
 #include "acme/operating_system.h"
 
 
-CLASS_DECL_ACME::u32 get_current_process_id()
-{
-
-   return ::GetCurrentProcessId();
-
-}
 
 
 CLASS_DECL_ACME::u64 translate_processor_affinity(int iOrder)

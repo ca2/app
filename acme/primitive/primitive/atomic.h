@@ -22,7 +22,7 @@
 #endif
 
 #ifdef WINDOWS
-  
+
 #define atomic_increment64(pi) _interlockedincrement64((::i64 *) (pi))
   
 #else
@@ -73,7 +73,7 @@ inline i32 atomic_increment32(i32* pi)
 
 
 #ifdef WINDOWS
-  
+
    #define atomic_decrement64(pi) _interlockeddecrement64((::i64 *)(pi))
   
 #else

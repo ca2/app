@@ -234,7 +234,7 @@ string normalize_path(const char * lpcszPath)
 
       oldpath = path;
 
-      path.replace("\\\\", "\\");
+      path.find_replace("\\\\", "\\");
 
    }
 
@@ -245,7 +245,7 @@ string normalize_path(const char * lpcszPath)
 
       oldpath = path;
 
-      path.replace("...", "..");
+      path.find_replace("...", "..");
 
    }
 

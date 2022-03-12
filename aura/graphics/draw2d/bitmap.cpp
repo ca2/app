@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "bitmap.h"
 #include "graphics.h"
-#include "pixmap.h"
+#include "aura/graphics/image/pixmap.h"
+//#include "pixmap.h"
 //#include "draw2d_bitmap.h"
 
 

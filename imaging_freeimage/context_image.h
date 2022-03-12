@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/draw2d/context_image.h"
+#include "aura/graphics/image/context_image.h"
 
 
 namespace imaging_freeimage

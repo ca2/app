@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/image/image.h"
 #ifdef WINDOWS_DESKTOP
 #include <gl/glew.h>
 #include <gl/gl.h>

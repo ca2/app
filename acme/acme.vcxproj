@@ -901,6 +901,10 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
     <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="handler\extended_topic.cpp" />
+    <ClCompile Include="handler\handler.cpp" />
+    <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="memory\alloc.cpp" />
     <ClCompile Include="memory\allocate_mid_big.cpp" />
@@ -953,6 +957,11 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="handler\extended_topic.h" />
+    <ClInclude Include="handler\handler.h" />
+    <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\topic.h" />
+    <ClInclude Include="include\_c_swap.h" />
     <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\implement_console.h" />
@@ -1132,6 +1141,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows_common\process.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />
     <ClCompile Include="operating_system\windows_common\unicode.cpp" />
     <ClCompile Include="operating_system\windows_common\windows_common.cpp" />
@@ -1287,10 +1297,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
-    <ClCompile Include="topic\extended_topic.cpp" />
-    <ClCompile Include="topic\handler.cpp" />
-    <ClCompile Include="topic\item.cpp" />
-    <ClCompile Include="topic\topic.cpp" />
     <ClCompile Include="user\nano\brush.cpp" />
     <ClCompile Include="user\nano\button.cpp" />
     <ClCompile Include="user\nano\child.cpp" />
@@ -1854,10 +1860,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\result.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
-    <ClInclude Include="topic\extended_topic.h" />
-    <ClInclude Include="topic\handler.h" />
-    <ClInclude Include="topic\item.h" />
-    <ClInclude Include="topic\topic.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user\nano\brush.h" />
     <ClInclude Include="user\nano\button.h" />

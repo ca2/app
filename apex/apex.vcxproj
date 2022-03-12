@@ -864,6 +864,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="handler\context.cpp" />
+    <ClCompile Include="handler\handler.cpp" />
+    <ClCompile Include="handler\manager.cpp" />
+    <ClCompile Include="handler\process.cpp" />
+    <ClCompile Include="handler\promise.cpp" />
+    <ClCompile Include="handler\routine.cpp" />
+    <ClCompile Include="handler\signal.cpp" />
+    <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\application.cpp" />
     <ClCompile Include="message\base.cpp" />
@@ -949,6 +957,15 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="crypto\initializer.h" />
+    <ClInclude Include="handler\context.h" />
+    <ClInclude Include="handler\manager.h" />
+    <ClInclude Include="handler\predicate.h" />
+    <ClInclude Include="handler\promise.h" />
+    <ClInclude Include="handler\promise1.h" />
+    <ClInclude Include="handler\signal.h" />
+    <ClInclude Include="handler\source.h" />
+    <ClInclude Include="handler\_.h" />
+    <ClInclude Include="handler\_impl.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
     <ClCompile Include="operating_system\debug.cpp" />
@@ -1015,14 +1032,6 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="topic\context.cpp" />
-    <ClCompile Include="topic\handler.cpp" />
-    <ClCompile Include="topic\manager.cpp" />
-    <ClCompile Include="topic\process.cpp" />
-    <ClCompile Include="topic\promise.cpp" />
-    <ClCompile Include="topic\routine.cpp" />
-    <ClCompile Include="topic\signal.cpp" />
-    <ClCompile Include="topic\source.cpp" />
     <ClCompile Include="user\command.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
@@ -1277,15 +1286,6 @@
     <ClInclude Include="progress\progress.h" />
     <ClInclude Include="progress\real.h" />
     <ClInclude Include="progress\_.h" />
-    <ClInclude Include="topic\context.h" />
-    <ClInclude Include="topic\manager.h" />
-    <ClInclude Include="topic\predicate.h" />
-    <ClInclude Include="topic\promise.h" />
-    <ClInclude Include="topic\promise1.h" />
-    <ClInclude Include="topic\signal.h" />
-    <ClInclude Include="topic\source.h" />
-    <ClInclude Include="topic\_.h" />
-    <ClInclude Include="topic\_impl.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="user\aaa_item.h" />

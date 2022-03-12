@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "context_win32.h"
-#include "aura/graphics/draw2d/image.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace opengl

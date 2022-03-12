@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_imaging_freeimage.h"
-#include "aura/graphics/draw2d/save_image.h"
+#include "aura/graphics/image/save_image.h"
 
 
 namespace imaging_freeimage

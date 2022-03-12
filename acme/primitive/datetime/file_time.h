@@ -1,15 +1,6 @@
 #pragma once
 
 
-#define make64_from32(l, h) ((::u64) (l)) | (((::u64) (h)) << 32)
-#define first_u16(u) ((u) & 0xffff)
-#define second_u16(u) (((u) >> 16) & 0xffff)
-#define first_i16(u) ((::i16)(((::i32)(u)) & 0xffff)) // signed first_u16 or at least should be designed to be signed
-#define second_i16(u) ((::i16)((((::i32)(u)) >> 16) & 0xffff)) // signed second_u16 or at least should be designed to be signed
-#define x_i16(u) first_i16(u)
-#define y_i16(u) second_i16(u)
-#define lower32_from64(u) ((u) & 0xffffffff)
-#define upper32_from64(u) ((u >> 32) & 0xffffffff)
 
 
 class CLASS_DECL_ACME file_time

@@ -759,7 +759,7 @@ namespace earth
 
          psystemtime->wDayOfWeek = m_iDayOfWeek;
 
-         psystemtime->wMilliseconds = m_iNanoSecond / 1'000'000;
+         psystemtime->wMilliseconds = (unsigned short) (m_iNanoSecond / 1'000'000);
 
          psystemtime->wSecond = m_iSecond;
          psystemtime->wMinute = m_iMinute;

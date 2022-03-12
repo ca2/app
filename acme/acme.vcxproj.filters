@@ -246,12 +246,6 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{029fd5d0-35f1-489e-a65d-bf45039ad5f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\topic">
-      <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\topic">
-      <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\operating_system">
       <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
     </Filter>
@@ -290,6 +284,12 @@
     </Filter>
     <Filter Include="Source Files\operating_system\ansi">
       <UniqueIdentifier>{4725469b-f38f-40cb-90b5-5a1e0a0a55ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\handler">
+      <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\handler">
+      <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2621,18 +2621,6 @@
     <ClInclude Include="primitive\primitive\holder.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="topic\extended_topic.h">
-      <Filter>Header Files\topic</Filter>
-    </ClInclude>
-    <ClInclude Include="topic\handler.h">
-      <Filter>Header Files\topic</Filter>
-    </ClInclude>
-    <ClInclude Include="topic\item.h">
-      <Filter>Header Files\topic</Filter>
-    </ClInclude>
-    <ClInclude Include="topic\topic.h">
-      <Filter>Header Files\topic</Filter>
-    </ClInclude>
     <ClInclude Include="exception\library_not_loaded.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2938,6 +2926,21 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\file_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\topic.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\item.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\handler.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\extended_topic.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_c_swap.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3910,18 +3913,6 @@
     <ClCompile Include="filesystem\file\payload_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="topic\extended_topic.cpp">
-      <Filter>Source Files\topic</Filter>
-    </ClCompile>
-    <ClCompile Include="topic\handler.cpp">
-      <Filter>Source Files\topic</Filter>
-    </ClCompile>
-    <ClCompile Include="topic\item.cpp">
-      <Filter>Source Files\topic</Filter>
-    </ClCompile>
-    <ClCompile Include="topic\topic.cpp">
-      <Filter>Source Files\topic</Filter>
-    </ClCompile>
     <ClCompile Include="exception\library_not_loaded.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -4134,6 +4125,21 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\_main.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\extended_topic.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\handler.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\item.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\topic.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\process.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

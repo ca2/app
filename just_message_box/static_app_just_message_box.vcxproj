@@ -307,7 +307,7 @@
     <None Include="_matter.zip" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_app_just_message_box.cpp" />
+    <ClCompile Include="operating-system\windows\_app_just_message_box.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

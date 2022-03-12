@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "_imaging_freeimage.h"
 #include <math.h>
-#include "aura/graphics/draw2d/image_frame.h"
-#include "aura/graphics/draw2d/image_frame_array.h"
+#include "aura/graphics/image/frame.h"
+#include "aura/graphics/image/frame_array.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 

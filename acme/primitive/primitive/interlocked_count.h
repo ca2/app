@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(WINDOWS) && OSBIT == 64
+#if OSBIT == 64
 
 
 class INLINE_CLASS_DECL_ACME interlocked_i64
@@ -88,7 +88,7 @@ using interlocked_count = ::interlocked_i64;
 #endif
 
 
-#if defined(WINDOWS) && OSBIT == 64
+#if OSBIT == 64
 
 
 inline void interlocked_i64::construct(::i64 l)

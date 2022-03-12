@@ -170,7 +170,14 @@ list(APPEND library_source
    graphics/draw2d/color32.h
    graphics/draw2d/colorref_array.cpp
    graphics/draw2d/os_font_name.cpp
-   filesystem/filesystem/acme_file.cpp
+   handler/extended_topic.cpp
+   handler/extended_topic.h
+   handler/handler.cpp
+   handler/handler.h
+   handler/item.cpp
+   handler/item.h
+   handler/topic.cpp
+   handler/topic.h
    include/_.cpp
    memory/alloc.cpp
    memory/allocate_mid_big.cpp
@@ -735,14 +742,6 @@ list(APPEND library_source
    regular_expression/regular_expression.h
    regular_expression/result.cpp
    regular_expression/result.h
-   topic/extended_topic.cpp
-   topic/extended_topic.h
-   topic/handler.cpp
-   topic/handler.h
-   topic/item.cpp
-   topic/item.h
-   topic/topic.cpp
-   topic/topic.h
    user/nano/_nano.cpp
    user/nano/_nano.h
    user/nano/brush.cpp

@@ -131,6 +131,18 @@ list(APPEND apex_source
    filesystem/fs/set.h
    filesystem/_impl.h
    filesystem/filesystem.h
+   handler/context.cpp
+   handler/context.h
+   handler/manager.cpp
+   handler/manager.h
+   handler/process.cpp
+   handler/promise.cpp
+   handler/promise.h
+   handler/routine.cpp
+   handler/signal.cpp
+   handler/signal.h
+   handler/source.cpp
+   handler/source.h
    include/_.cpp
    include/_.h
    include/_c.h
@@ -514,18 +526,6 @@ list(APPEND apex_source
    progress/real.cpp
    progress/real.h
    progress/_.h
-   topic/context.cpp
-   topic/context.h
-   topic/manager.cpp
-   topic/manager.h
-   topic/process.cpp
-   topic/promise.cpp
-   topic/promise.h
-   topic/routine.cpp
-   topic/signal.cpp
-   topic/signal.h
-   topic/source.cpp
-   topic/source.h
    template/list.h
    user/_.h
    user/_const_key.h

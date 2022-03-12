@@ -572,7 +572,7 @@ list(APPEND library_source
    __matter_ca2.cpp
    _defer.h
    application.h
-   astr.h
+   #astr.h
    callback.h
    console.h
    context_glx.cpp
@@ -586,7 +586,8 @@ list(APPEND library_source
    #timer.mm
    update.h
    user.h
-   xml.h)
+   #xml.h
+   )
 
 if (WIN32)
    list(APPEND core_source

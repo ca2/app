@@ -12,8 +12,8 @@ list(APPEND library_source
    axispolicy/policy_winrt.h
    #const/_const.h
    #const/charset.h
-   const/idpool.cpp
-   const/idpool.h
+   constant/idpool.cpp
+   constant/idpool.h
    filesystem/filemanager/callback.cpp
    filesystem/filemanager/callback.h
    filesystem/filemanager/item_action.cpp
@@ -41,8 +41,6 @@ list(APPEND library_source
    graphics/draw2d/_.cpp
    graphics/draw2d/_.h
    graphics/draw2d/_draw2d.h
-   graphics/draw2d/_image.h
-   graphics/draw2d/_image_impl.h
    graphics/draw2d/_impl.h
    graphics/draw2d/_visual_impl.h
    graphics/draw2d/alpha.cpp
@@ -58,17 +56,11 @@ list(APPEND library_source
    graphics/draw2d/color_matrix.cpp
    graphics/draw2d/color_matrix.h
    graphics/draw2d/common.h
-   graphics/draw2d/context_image.cpp
-   graphics/draw2d/context_image.h
-   graphics/draw2d/cursor.cpp
-   graphics/draw2d/cursor.h
    graphics/draw2d/debug.cpp
    graphics/draw2d/device_lock.cpp
    graphics/draw2d/device_lock.h
    graphics/draw2d/draw2d.cpp
    graphics/draw2d/draw2d.h
-   graphics/draw2d/fastblur.cpp
-   graphics/draw2d/fastblur.h
    graphics/draw2d/fwd.h
    graphics/draw2d/glyph.cpp
    graphics/draw2d/glyph.h
@@ -78,45 +70,9 @@ list(APPEND library_source
    graphics/draw2d/graphics.h
    graphics/draw2d/graphics_extension.cpp
    graphics/draw2d/graphics_extension.h
-   graphics/draw2d/icon.cpp
-   graphics/draw2d/icon.h
-   graphics/draw2d/image.cpp
-   graphics/draw2d/image.h
-   graphics/draw2d/image_array.cpp
-   graphics/draw2d/image_array.h
-   graphics/draw2d/image_drawer.cpp
-   graphics/draw2d/image_drawer.h
-   graphics/draw2d/image_drawing.cpp
-   graphics/draw2d/image_drawing.h
-   graphics/draw2d/image_dynamic.cpp
-   graphics/draw2d/image_dynamic.h
-   graphics/draw2d/image_extension.cpp
-   graphics/draw2d/image_extension.h
-   graphics/draw2d/image_frame.cpp
-   graphics/draw2d/image_frame.h
-   graphics/draw2d/image_frame_array.h
-   graphics/draw2d/image_gif_antialias_8bit.cpp
-   graphics/draw2d/image_gif_detect_8bit_borders.cpp
-   graphics/draw2d/image_header.h
-   graphics/draw2d/image_list.cpp
-   graphics/draw2d/image_list.h
-   graphics/draw2d/image_map.cpp
-   graphics/draw2d/image_map.h
-   graphics/draw2d/image_map_ex1.h
-   graphics/draw2d/image_meta.cpp
-   graphics/draw2d/image_meta.h
-   graphics/draw2d/image_nanosvg.cpp
-   graphics/draw2d/image_object.cpp
-   graphics/draw2d/image_palette.h
-   graphics/draw2d/image_pointer_array.cpp
-   graphics/draw2d/image_source.cpp
-   graphics/draw2d/image_source.h
-   graphics/draw2d/imaging.cpp
-   graphics/draw2d/imaging.h
    graphics/draw2d/item.h
    graphics/draw2d/keep.cpp
    graphics/draw2d/keep.h
-   graphics/draw2d/load_gif_frame.cpp
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
    graphics/draw2d/matrix.cpp
@@ -131,12 +87,10 @@ list(APPEND library_source
    graphics/draw2d/path.h
    graphics/draw2d/pen.cpp
    graphics/draw2d/pen.h
-   graphics/draw2d/pixmap.h
    graphics/draw2d/printer.cpp
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
-   graphics/draw2d/save_image.h
    graphics/draw2d/task_tool.cpp
    graphics/draw2d/task_tool.h
    #graphics/draw2d/ttf_util.cpp
@@ -172,6 +126,50 @@ list(APPEND library_source
    graphics/graphics/window.h
    graphics/graphics/window_buffer.h
    graphics/graphics/window_dc.h
+   graphics/image/_image.h
+   graphics/image/_image_impl.h
+   graphics/image/context_image.cpp
+   graphics/image/context_image.h
+   graphics/image/cursor.cpp
+   graphics/image/cursor.h
+   graphics/image/icon.cpp
+   graphics/image/icon.h
+   graphics/image/image.cpp
+   graphics/image/image.h
+   graphics/image/array.cpp
+   graphics/image/array.h
+   graphics/image/drawer.cpp
+   graphics/image/drawer.h
+   graphics/image/drawing.cpp
+   graphics/image/drawing.h
+   graphics/image/dynamic.cpp
+   graphics/image/dynamic.h
+   graphics/image/extension.cpp
+   graphics/image/extension.h
+   graphics/image/fastblur.cpp
+   graphics/image/fastblur.h
+   graphics/image/frame.cpp
+   graphics/image/frame.h
+   graphics/image/frame_array.h
+   graphics/image/gif_antialias_8bit.cpp
+   graphics/image/gif_detect_8bit_borders.cpp
+   graphics/image/header.h
+   graphics/image/list.cpp
+   graphics/image/list.h
+   graphics/image/map.cpp
+   graphics/image/map.h
+   graphics/image/map_ex1.h
+   graphics/image/meta.cpp
+   graphics/image/meta.h
+   graphics/image/nanosvg.cpp
+   graphics/image/object.cpp
+   graphics/image/palette.h
+   graphics/image/pointer_array.cpp
+   graphics/image/source.cpp
+   graphics/image/source.h
+   graphics/image/imaging.cpp
+   graphics/image/imaging.h
+   graphics/image/pixmap.h
    graphics/user/close_button.cpp
    graphics/user/close_button.h
    graphics/user/close_icon.cpp

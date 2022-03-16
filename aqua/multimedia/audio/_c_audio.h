@@ -12,14 +12,20 @@
 ////#include "acme/operating_system/cross/windows/windows_mmeapi.h"
 ////#include "acme/operating_system/cross/windows/windows_defs.h"
 
-/*
+#if defined(WINDOWS)
+
+#include <guiddef.h>
+
+#else
+
 typedef struct _GUID {
    unsigned long  Data1;
    unsigned short Data2;
    unsigned short Data3;
    unsigned char  Data4[ 8 ];
 } GUID;
-*/
+
+#endif
 
 typedef struct {
    ::u16  wFormatTag;

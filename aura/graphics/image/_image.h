@@ -1,4 +1,4 @@
-// From draw2d/_image.h by camilo on 2022-03-11 19:53 <3ThomasBorregaardSørensen!!
+// From draw2d/_image.h by camilo on 2022-03-11 19:53 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -39,22 +39,6 @@ namespace draw2d
    CLASS_DECL_AURA void image_create_image(::image * pimage, const ::size_i32 & size);
    CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
    CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);
-
-
-   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
-   {
-
-#ifdef __APPLE__
-
-      return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
-
-#else
-
-      return ((::color32_t *)&((u8 *)pdata)[iScan * y])[x];
-
-#endif
-
-   }
 
 
 } // namespace draw2d
@@ -409,12 +393,12 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 
 
 
-inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
-{
-
-   return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
-
-}
+//inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
+//{
+//
+//   return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+//
+//}
 
 
 inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)

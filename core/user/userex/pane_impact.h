@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE pane_view :
+   class CLASS_DECL_CORE pane_impact :
       virtual public ::user::impact,
       virtual public ::user::impact_creator
    {
@@ -26,8 +26,8 @@ namespace userex
       pointer_array < menu > m_menua;
 
 
-      pane_view();
-      virtual ~pane_view();
+      pane_impact();
+      virtual ~pane_impact();
 
 
       void on_create_impact(::user::impact_data * pimpactdata) override;

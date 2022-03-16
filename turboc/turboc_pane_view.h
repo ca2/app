@@ -5,8 +5,8 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC pane_view : 
-      public ::userex::pane_tab_view
+   class CLASS_DECL_TURBOC pane_impact : 
+      public ::userex::pane_tab_impact
    {
    public:
 
@@ -14,8 +14,8 @@ namespace turboc
       ::turboc::impact *                     m_pflagview;
 
 
-      pane_view(::object * pobject);
-	   virtual ~pane_view();
+      pane_impact(::object * pobject);
+	   virtual ~pane_impact();
 
       
       void on_create_impact(::user::impact_data * pcreatordata);

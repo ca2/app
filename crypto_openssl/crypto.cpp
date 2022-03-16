@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "initializer.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 #include <zlib.h>
@@ -1004,7 +1004,7 @@ namespace crypto_openssl
       //::file::path crypto::get_crypt_key_file_path()
       //{
 
-      //   return m_psystem->m_pacmedir->system() / "user" / "databin.bin";
+      //   return m_psystem->m_pacmedirectory->system() / "user" / "databin.bin";
 
       //}
 

@@ -625,17 +625,17 @@
 //
 ////   LRESULT control_view_impl::BaseControlExOnIdleUpdateCmdUI(WPARAM wParam, LPARAM)
 ////   {
-////      __pointer(::user::interaction) pview = get_window();
+////      __pointer(::user::interaction) pimpact = get_window();
 ////
 ////      // handle delay hide/show
-////      bool bVis = (pview->GetStyle() & WS_VISIBLE) != 0;
+////      bool bVis = (pimpact->GetStyle() & WS_VISIBLE) != 0;
 ////
 ////      // the style must be visible
 ////      if (bVis)
 ////      {
-////         __pointer(::user::frame_window) pTarget = pview->get_owner();
+////         __pointer(::user::frame_window) pTarget = pimpact->get_owner();
 ////         if (pTarget == nullptr)
-////            pTarget = pview->get_parent_frame();
+////            pTarget = pimpact->get_parent_frame();
 ////         if (pTarget != nullptr)
 ////            BaseControlExOnUpdateCmdUI(pTarget, wParam != false);
 ////      }
@@ -648,13 +648,13 @@
 ////   void control_view_impl::BaseControlExOnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler)
 ////   {
 ////
-////      __pointer(::user::interaction) pview = get_window();
+////      __pointer(::user::interaction) pimpact = get_window();
 ////
 ////      ::message::command & state = m_commandui;
 ////
-////      state.m_puiOther = pview;
+////      state.m_puiOther = pimpact;
 ////
-////      __pointer(::user::interaction) puserinteractionIterator = pview->GetTopWindow();
+////      __pointer(::user::interaction) puserinteractionIterator = pimpact->GetTopWindow();
 ////
 ////      __pointer(::user::interaction) puserinteraction;
 ////
@@ -689,13 +689,13 @@
 ////            if ((puserinteraction->GetStyle() & WS_VISIBLE))
 ////            {
 ////               // allow reflections
-////               if (pview->on_command_probe(&state))
+////               if (pimpact->on_command_probe(&state))
 ////               {
 ////                  continue;
 ////               }
 ////
 ////               // allow the toolbar itself to have update handlers
-////               if (pview->on_command_probe(&state))
+////               if (pimpact->on_command_probe(&state))
 ////                  //               {
 ////                    //                state.DoUpdate(pTarget, bDisableIfNoHndler);
 ////                  continue;

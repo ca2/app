@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/install_mutex.h"
@@ -472,7 +472,7 @@ namespace acme
 
       strFolder.replace_with("", ":");
 
-      return m_psystem->m_pacmedir->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+      return m_psystem->m_pacmedirectory->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
 
    }
 
@@ -491,7 +491,7 @@ namespace acme
 
       ::file::path pathFolder;
 
-      pathFolder = m_psystem->m_pacmedir->stage(strAppId, pszPlatform, pszConfiguration);
+      pathFolder = m_psystem->m_pacmedirectory->stage(strAppId, pszPlatform, pszConfiguration);
 
       string strName;
 
@@ -537,7 +537,7 @@ namespace acme
 
       }
 
-      ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
+      ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
 
       return pathFile;
 

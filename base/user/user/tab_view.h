@@ -41,6 +41,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
 
+      virtual bool add_impact(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
+      virtual bool add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;
+
+
       void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
 
       void on_erase_child(::user::interaction* pinteraction) override;

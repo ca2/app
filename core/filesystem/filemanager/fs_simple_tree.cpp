@@ -59,11 +59,15 @@ namespace filemanager
 //
 //#endif
 
-            m_iIconFolderNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
-            m_iIconFolderSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_selected"));
-            m_iIconArtistNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
-            m_iIconArtistSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_selected"));
+            //m_iIconFolderNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            //m_iIconFolderSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_selected"));
+            //m_iIconArtistNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            //m_iIconArtistSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_selected"));
             //return estatus;
+            m_iIconFolderNormal = m_pimagelist->add(icon_payload(this, "icon://karaoke_library_folder_normal"));
+            m_iIconFolderSelected = m_pimagelist->add(icon_payload(this, "icon://karaoke_library_folder_selected"));
+            m_iIconArtistNormal = m_pimagelist->add(icon_payload(this, "icon://karaoke_library_artist_normal"));
+            m_iIconArtistSelected = m_pimagelist->add(icon_payload(this, "icon://karaoke_library_artist_selected"));
 
          }
 

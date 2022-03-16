@@ -659,12 +659,16 @@
 
       pathFolder = "https://server.ca2.software/image/cc/ca2core/bkimageoftheday/common/";
 
+      pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
+
       for (auto & str : stra)
       {
 
          ::file::path path = pathFolder / (str + string("?sessid=noauth"));
 
-         pfileset->m_listingAddUp.add(path);
+         path.m_iDir = 0;
+
+         pfileset->m_listingAddUp.defer_add(path);
 
       }
 

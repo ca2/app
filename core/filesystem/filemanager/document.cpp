@@ -64,7 +64,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_view * pview = pdocument->get_type_impact < tab_view >();
+      tab_view * pimpact = pdocument->get_type_impact < tab_view >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -73,16 +73,16 @@ namespace filemanager
 //      i32 iWidth = rectangleOpen.width();
 //      i32 iHeight = rectangleOpen.width();
 //      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
-//      pview->get_parent_frame()->order(e_zorder_top);
-//      pview->get_parent_frame()->place(rectangleOpen);
-//      pview->get_parent_frame()->display();
+//      pimpact->get_parent_frame()->order(e_zorder_top);
+//      pimpact->get_parent_frame()->place(rectangleOpen);
+//      pimpact->get_parent_frame()->display();
 //
 //#endif
-      pview->set_current_tab_by_id(1);
-      pview->get_parent_frame()->set_need_redraw();
-      pview->get_parent_frame()->RunModalLoop();
+      pimpact->set_current_tab_by_id(1);
+      pimpact->get_parent_frame()->set_need_redraw();
+      pimpact->get_parent_frame()->RunModalLoop();
       payloadFile = pdocument->m_strTopic;
-      pview->get_parent_frame()->destroy_window();
+      pimpact->get_parent_frame()->destroy_window();
       return true;
 
    }
@@ -469,15 +469,15 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_view) ptabview = get_type_impact < tab_view >();
+      __pointer(tab_view) ptabimpact = get_type_impact < tab_view >();
 
-      if (ptabview.is_set())
+      if (ptabimpact.is_set())
       {
 
-         for (index i = 0; i < ptabview->get_tab_count(); i++)
+         for (index i = 0; i < ptabimpact->get_tab_count(); i++)
          {
 
-            ::user::tab_pane * ptabpane = ptabview->get_tab(i);
+            ::user::tab_pane * ptabpane = ptabimpact->get_tab(i);
 
             if (ptabpane != nullptr && ptabpane->m_pplaceholder != nullptr)
             {
@@ -839,17 +839,17 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      __pointer(impact) pview = get_type_impact<impact>();
+      __pointer(impact) pimpact = get_type_impact<impact>();
 
-      if (pview.is_set())
+      if (pimpact.is_set())
       {
 
-         __pointer(tab_view) ptabview = pview->GetTypedParent <tab_view>();
+         __pointer(tab_view) ptabimpact = pimpact->GetTypedParent <tab_view>();
 
-         if (ptabview.is_set())
+         if (ptabimpact.is_set())
          {
 
-            pdocument = ptabview->get_document();
+            pdocument = ptabimpact->get_document();
 
          }
 
@@ -1295,34 +1295,34 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_view * ptabview = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_view >();
+      //::filemanager::tab_view * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_view >();
 
-      //if (ptabview == nullptr)
+      //if (ptabimpact == nullptr)
       //{
 
       //   return nullptr;
 
       //}
 
-      //ASSERT(ptabview != nullptr);
+      //ASSERT(ptabimpact != nullptr);
 
-      //if (ptabview != nullptr)
+      //if (ptabimpact != nullptr)
       //{
 
       //   if (bSwitch)
       //   {
 
-      //      ptabview->set_current_tab_by_id("filemanager::operation");
+      //      ptabimpact->set_current_tab_by_id("filemanager::operation");
 
       //   }
       //   else
       //   {
 
-      //      ptabview->create_tab_by_id("filemanager::operation");
+      //      ptabimpact->create_tab_by_id("filemanager::operation");
 
       //   }
 
-      //   return dynamic_cast < operation_document * > (ptabview->get("filemanager::operation")->m_pdocument);
+      //   return dynamic_cast < operation_document * > (ptabimpact->get("filemanager::operation")->m_pdocument);
 
       //}
 

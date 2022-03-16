@@ -6,10 +6,10 @@ namespace filehandler
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -48,7 +48,7 @@ namespace filehandler
 
    }
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
    }
 
@@ -56,21 +56,21 @@ namespace filehandler
 
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
       ::user::impact::assert_ok();
    }
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
       ::user::impact::dump(dumpcontext);
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // pane_view message handlers
+   // pane_impact message handlers
 
-   void pane_view::on_message_create(::message::message * pmessage)
+   void pane_impact::on_message_create(::message::message * pmessage)
    {
 
       if (pmessage->previous())
@@ -80,14 +80,14 @@ namespace filehandler
 
       }
 
-      papp->filehandler()->m_ppaneview = this;
+      papp->filehandler()->m_ppaneimpact = this;
 
       add_tab("New", impact_new);
 
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);
@@ -96,14 +96,14 @@ namespace filehandler
 
 
 
-   bool pane_view::pre_create_window(::user::system * pusersystem)
+   bool pane_impact::pre_create_window(::user::system * pusersystem)
    {
 
 
       return ::user::impact::pre_create_window(pusersystem);
    }
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       //         __pointer(application) papp =  (( (get_parent_frame()))->get_app());
@@ -113,14 +113,14 @@ namespace filehandler
       if(::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         __pointer(::filehandler::impact) pview = create_view < ::filehandler::impact > (pimpactdata);
+         __pointer(::filehandler::impact) pimpact = create_view < ::filehandler::impact > (pimpactdata);
 
-         pimpactdata->m_puserinteraction = pview;
+         pimpactdata->m_puserinteraction = pimpact;
 
          pimpactdata->m_pdocument = get_document();
 
-         pview->m_strName = strFile;
-         //pview->on_layout(pgraphics);
+         pimpact->m_strName = strFile;
+         //pimpact->on_layout(pgraphics);
 
       }
 
@@ -134,11 +134,11 @@ namespace filehandler
          rtprxsp(::document) pdocument = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->do_request(pcreate));
          if(pdocument != nullptr)
          {
-         __pointer(::user::impact) pview = pdocument->get_view();
-         pview->call_update(INITIAL_UPDATE);
-         if(pview != nullptr)
+         __pointer(::user::impact) pimpact = pdocument->get_view();
+         pimpact->call_update(INITIAL_UPDATE);
+         if(pimpact != nullptr)
          {
-         __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
+         __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
          if(pframe != nullptr)
          {
          pimpactdata->m_pdocument = pdocument;
@@ -152,13 +152,13 @@ namespace filehandler
          cc.m_pCurrentDoc = get_document();
          cc.m_typeNewView =  __type(rtprx::impact);
 
-         __pointer(::user::impact) pview = (CreateView(&cc, 101, this));
-         if(pview != nullptr)
+         __pointer(::user::impact) pimpact = (CreateView(&cc, 101, this));
+         if(pimpact != nullptr)
          {
          pimpactdata = new ViewData();
          pimpactdata->m_eview = eview;
          pimpactdata->m_pdocument = get_document();
-         pimpactdata->m_puserinteraction = pview;
+         pimpactdata->m_puserinteraction = pimpact;
          }*/
       }
       break;
@@ -168,22 +168,22 @@ namespace filehandler
       }
    }
 
-   void pane_view::rotate()
+   void pane_impact::rotate()
    {
    }
 
-   void pane_view::_001OnMenuMessage(::message::message * pmessage)
+   void pane_impact::_001OnMenuMessage(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_atom);
    }
 
-   void pane_view::install_message_routing(::channel * pchannel)
+   void pane_impact::install_message_routing(::channel * pchannel)
    {
-      ::userex::pane_tab_view::install_message_routing(pchannel);
+      ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &pane_view::_001OnMenuMessage);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &pane_impact::_001OnMenuMessage);
    }
 
 

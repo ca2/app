@@ -5,7 +5,7 @@
 //#include "acme/compress/zip/_.h"
 //#include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "aura/graphics/image/list.h"
@@ -1842,7 +1842,7 @@ namespace user
 
          auto pcontextimage = pcontext->context_image();
 
-         ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "matter/icon";
+         ::file::path pathFolder = m_psystem->m_pacmedirectory->ca2roaming() / "matter/icon";
 
          __pointer(::image) pimage;
 

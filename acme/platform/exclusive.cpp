@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "exclusive.h"
 
 
@@ -71,7 +71,7 @@ namespace acme
 
       path /= strId;
 
-      m_psystem->m_pacmedir->create(path.folder());
+      m_psystem->m_pacmedirectory->create(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

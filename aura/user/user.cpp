@@ -1024,12 +1024,12 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_view >()->get_view_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_view_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_view >()->get_parent_frame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -1261,12 +1261,12 @@ namespace aura
       //   if (get_document() != nullptr)
       //   {
 
-      //      //if(get_document()->get_type_impact < ::bergedge::pane_view >() != nullptr)
+      //      //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
       //      //{
 
-      //      //   get_document()->get_type_impact < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
+      //      //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 
-      //      //   puiParent = get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
+      //      //   puiParent = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
 
       //      //}
       //      //else

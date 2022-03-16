@@ -5,8 +5,8 @@ namespace helloworld
 {
 
 
-   class CLASS_DECL_APP_HELLOWORLD pane_view :
-      virtual public ::userex::pane_tab_view,
+   class CLASS_DECL_APP_HELLOWORLD pane_impact :
+      virtual public ::userex::pane_tab_impact,
       virtual public ::user::form_callback
    {
    public:
@@ -24,8 +24,8 @@ namespace helloworld
       array < ::user::check_box * >                   m_checkptraBilbo;
 
 
-      pane_view(::object * pobject);
-      virtual ~pane_view();
+      pane_impact(::object * pobject);
+      virtual ~pane_impact();
 
 
       void on_create_impact(::user::impact_data * pimpactdata);

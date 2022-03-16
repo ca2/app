@@ -1,7 +1,7 @@
 // Create on 2021-03-21 00:11 <3ThomasBS_
 #include "framework.h"
 #include "acme_path.h"
-#include "acme_dir.h"
+#include "acme_directory.h"
 
 
 acme_path::acme_path()
@@ -249,7 +249,7 @@ bool acme_path::has_custom_icon(const char * path)
 
    }
 
-   auto pathFolderCurrent = m_psystem->m_pacmedir->get_current();
+   auto pathFolderCurrent = m_psystem->m_pacmedirectory->get_current();
 
    ::file::path pathAbsolute = pathFolderCurrent / path;
 

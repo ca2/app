@@ -161,27 +161,27 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    strDir = filemanager_item()->m_filepathUser;
 
-   auto pview  = this;
+   auto pimpact  = this;
 
-   if(pview == nullptr)
+   if(pimpact == nullptr)
    {
 
       return;
 
    }
 
-   auto ptabview = GetTypedParent <::filemanager::tab_view >();
+   auto ptabimpact = GetTypedParent <::filemanager::tab_view >();
 
-   if(ptabview != nullptr)
+   if(ptabimpact != nullptr)
    {
 
       bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
 
       auto atomFileManager = filemanager_data()->m_atom;
 
-      ptabview->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
 
-      ptabview->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.kick();
+      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.kick();
 
    }
 

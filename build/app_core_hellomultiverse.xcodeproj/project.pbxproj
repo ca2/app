@@ -28,7 +28,7 @@
 		9A97275B244A01CF001A16AE /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97273A244A01CD001A16AE /* frame.h */; };
 		9A97275C244A01CF001A16AE /* gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97273B244A01CD001A16AE /* gcom.cpp */; };
 		9A97275D244A01CF001A16AE /* main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97273C244A01CD001A16AE /* main_impact.cpp */; };
-		9A97275E244A01CF001A16AE /* pane_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97273D244A01CD001A16AE /* pane_view.h */; };
+		9A97275E244A01CF001A16AE /* pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97273D244A01CD001A16AE /* pane_impact.h */; };
 		9A97275F244A01CF001A16AE /* render_yee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97273E244A01CD001A16AE /* render_yee.cpp */; };
 		9A972762244A01CF001A16AE /* impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A972741244A01CE001A16AE /* impact.cpp */; };
 		9A972763244A01CF001A16AE /* switcher_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A972742244A01CE001A16AE /* switcher_view.cpp */; };
@@ -38,7 +38,7 @@
 		9A972767244A01CF001A16AE /* yee_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A972746244A01CE001A16AE /* yee_socket.cpp */; };
 		9A972768244A01CF001A16AE /* yee.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A972747244A01CE001A16AE /* yee.h */; };
 		9A972769244A01CF001A16AE /* main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A972748244A01CE001A16AE /* main_frame.h */; };
-		9A97276A244A01CF001A16AE /* pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A972749244A01CE001A16AE /* pane_view.cpp */; };
+		9A97276A244A01CF001A16AE /* pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A972749244A01CE001A16AE /* pane_impact.cpp */; };
 		9A97276B244A01CF001A16AE /* document.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97274A244A01CE001A16AE /* document.h */; };
 		9A97276C244A01CF001A16AE /* switcher_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97274B244A01CE001A16AE /* switcher_view.h */; };
 		9A97276D244A01CF001A16AE /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97274C244A01CE001A16AE /* main_frame.cpp */; };
@@ -141,7 +141,7 @@
 		9A97273A244A01CD001A16AE /* frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = frame.h; sourceTree = "<group>"; };
 		9A97273B244A01CD001A16AE /* gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gcom.cpp; sourceTree = "<group>"; };
 		9A97273C244A01CD001A16AE /* main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_impact.cpp; sourceTree = "<group>"; };
-		9A97273D244A01CD001A16AE /* pane_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pane_view.h; sourceTree = "<group>"; };
+		9A97273D244A01CD001A16AE /* pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pane_impact.h; sourceTree = "<group>"; };
 		9A97273E244A01CD001A16AE /* render_yee.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render_yee.cpp; sourceTree = "<group>"; };
 		9A972741244A01CE001A16AE /* impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact.cpp; sourceTree = "<group>"; };
 		9A972742244A01CE001A16AE /* switcher_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = switcher_view.cpp; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		9A972746244A01CE001A16AE /* yee_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = yee_socket.cpp; sourceTree = "<group>"; };
 		9A972747244A01CE001A16AE /* yee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yee.h; sourceTree = "<group>"; };
 		9A972748244A01CE001A16AE /* main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
-		9A972749244A01CE001A16AE /* pane_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pane_view.cpp; sourceTree = "<group>"; };
+		9A972749244A01CE001A16AE /* pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pane_impact.cpp; sourceTree = "<group>"; };
 		9A97274A244A01CE001A16AE /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
 		9A97274B244A01CE001A16AE /* switcher_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = switcher_view.h; sourceTree = "<group>"; };
 		9A97274C244A01CE001A16AE /* main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_frame.cpp; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 				9A972748244A01CE001A16AE /* main_frame.h */,
 				9A97273C244A01CD001A16AE /* main_impact.cpp */,
 				9A97274D244A01CE001A16AE /* main_impact.h */,
-				9A972749244A01CE001A16AE /* pane_view.cpp */,
-				9A97273D244A01CD001A16AE /* pane_view.h */,
+				9A972749244A01CE001A16AE /* pane_impact.cpp */,
+				9A97273D244A01CD001A16AE /* pane_impact.h */,
 				9A97273E244A01CD001A16AE /* render_yee.cpp */,
 				9A972743244A01CE001A16AE /* render.cpp */,
 				9A972744244A01CE001A16AE /* render.h */,
@@ -341,7 +341,7 @@
 				9AEB75DE16F78E600085103B /* framework.h in Headers */,
 				9A972768244A01CF001A16AE /* yee.h in Headers */,
 				9A972757244A01CF001A16AE /* _hellomultiverse.h in Headers */,
-				9A97275E244A01CF001A16AE /* pane_view.h in Headers */,
+				9A97275E244A01CF001A16AE /* pane_impact.h in Headers */,
 				9A972759244A01CF001A16AE /* gcom.h in Headers */,
 				9A972772244A01CF001A16AE /* _.h in Headers */,
 				9A972765244A01CF001A16AE /* render.h in Headers */,
@@ -530,7 +530,7 @@
 				9A97276D244A01CF001A16AE /* main_frame.cpp in Sources */,
 				9A97275D244A01CF001A16AE /* main_impact.cpp in Sources */,
 				9A972762244A01CF001A16AE /* impact.cpp in Sources */,
-				9A97276A244A01CF001A16AE /* pane_view.cpp in Sources */,
+				9A97276A244A01CF001A16AE /* pane_impact.cpp in Sources */,
 				9A972758244A01CF001A16AE /* frame.cpp in Sources */,
 				9A972773244A01CF001A16AE /* document.cpp in Sources */,
 				9A97275C244A01CF001A16AE /* gcom.cpp in Sources */,

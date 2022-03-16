@@ -13,7 +13,7 @@ public:
    ::user::enum_key                       m_ekey;
    bool                                m_bEnterKeyPressed;
    ::payload                                 m_payloadFile;
-   e_impact                            m_epaneview;
+   e_impact                            m_epaneimpact;
    string                              m_strImpact;
    __pointer_array(::user::impact)     m_viewaAttachable;
    __pointer(::user::impact)           m_pviewTopic;

@@ -107,7 +107,9 @@ namespace userex
 
             m_plisting->erase_all();
 
-            pcontext->m_papexcontext->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
+            m_plisting->initialize_file_listing_pattern(m_pathFolder, get_ls_pattern_stra());
+
+            pcontext->m_papexcontext->dir().enumerate(*m_plisting);
 
          }
 

@@ -38,7 +38,7 @@ namespace filemanager
          "system/auth",
          __type(::user::document),
          __type(simple_frame_window),
-         __type(::userex::pane_tab_view)));
+         __type(::userex::pane_tab_impact)));
 
       //return estatus;
 
@@ -69,17 +69,21 @@ namespace filemanager
 
       __pointer(::user::document) pdocument = ::user::__document(pcreate);
 
-      __pointer(::userex::pane_tab_view) pview = pdocument->get_type_impact < ::userex::pane_tab_view > ();
+      __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact > ();
 
-      m_ptabview = pview;
+      m_ptabimpact = ptabimpact;
 
-      pview->create_impact(1, "general", this);
+      auto pimpactkit = ptabimpact->get_impact_kit();
 
-      pview->create_impact(2, "advanced", this);
+      pimpactkit->add_impact_item(1, "general", this);
 
-      pview->set_current_tab_by_id(1);
+      pimpactkit->add_impact_item(2, "advanced", this);
 
-      return pview->get_parent_frame();
+      ptabimpact->add_impact_kit_items();
+
+      ptabimpact->set_current_tab_by_id(1);
+
+      return ptabimpact->get_parent_frame();
 
    }
 
@@ -120,6 +124,18 @@ namespace filemanager
    }
 
 
+   //__pointer(::user::impact_kit) file_properties_form::get_impact_kit()
+   //{
+
+   //   auto pimpactkit = __create_new < ::user::impact_kit >();
+
+   //   pimpactkit->add_impact_item(1, "general", this);
+
+
+
+   //}
+
+
    void file_properties_form::on_create_impact(::user::impact_data * pimpactdata)
    {
       switch(pimpactdata->m_atom)
@@ -133,7 +149,7 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         m_pdocGeneral = puser->create_form(this, this, m_ptabview);
+         m_pdocGeneral = puser->create_form(this, this, m_ptabimpact);
 
          if(m_pdocGeneral != nullptr)
          {
@@ -146,7 +162,7 @@ namespace filemanager
       break;
       case 2:
       {
-         /*if(m_netcfg.create(m_ptabview))
+         /*if(m_netcfg.create(m_ptabimpact))
          {
             pimpactdata->m_pdocument = m_netcfg.m_pdocument;
             pimpactdata->m_puserinteraction = m_netcfg.m_pimpact->get_parent_frame();

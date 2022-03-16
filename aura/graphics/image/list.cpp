@@ -162,6 +162,13 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(mutex());
 
+   if (!::is_ok(m_pimage.get()))
+   {
+
+      return;
+
+   }
+
    __UNREFERENCED_PARAMETER(iFlag);
 
    if (opacity.is_opaque())

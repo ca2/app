@@ -1241,13 +1241,13 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ImpactOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
+void simple_frame_window::ImpactOnActivateFrame(__pointer(::user::impact) pimpact, ::u32 user, __pointer(::user::interaction) pframe)
 {
-   __UNREFERENCED_PARAMETER(pview);
+   __UNREFERENCED_PARAMETER(pimpact);
    __UNREFERENCED_PARAMETER(user);
    __UNREFERENCED_PARAMETER(pframe);
-   //   if(pview != nullptr)
-   //      pview->OnActivateFrame(WA_INACTIVE, (__pointer(::user::simple_frame_window)) pframe);
+   //   if(pimpact != nullptr)
+   //      pimpact->OnActivateFrame(WA_INACTIVE, (__pointer(::user::simple_frame_window)) pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
@@ -3264,14 +3264,14 @@ string simple_frame_window::get_window_default_matter()
 //   {
 //      __pointer(::user::frame_window) pframe = (this);
 //      // if the frame does not have an active ::user::impact, set to first pane
-//      __pointer(::user::impact) pview;
+//      __pointer(::user::impact) pimpact;
 //      if (pframe->get_active_view() == nullptr)
 //      {
 //         __pointer(::user::interaction) pwindow = pframe->get_child_by_id(FIRST_PANE);
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
-//            pview = (pwindow.m_p);
-//            pframe->set_active_view(pview, false);
+//            pimpact = (pwindow.m_p);
+//            pframe->set_active_view(pimpact, false);
 //         }
 //      }
 //
@@ -3281,8 +3281,8 @@ string simple_frame_window::get_window_default_matter()
 //         pframe->send_message_to_descendants(WM_INITIALUPDATE, 0, (LPARAM)0, true, true);
 //
 //         // give ::user::impact a chance to save the focus (CFormImpact needs this)
-//         if (pview != nullptr)
-//            pview->OnActivateFrame(WA_INACTIVE, pframe);
+//         if (pimpact != nullptr)
+//            pimpact->OnActivateFrame(WA_INACTIVE, pframe);
 //
 //         // finally, activate the frame
 //         // (send the default show command unless the main desktop u)
@@ -3303,8 +3303,8 @@ string simple_frame_window::get_window_default_matter()
 //         {
 //            pframe->ActivateFrame(edisplay);
 //         }
-//         if (pview != nullptr)
-//            pview->OnActivateImpact(true, pview, pview);
+//         if (pimpact != nullptr)
+//            pimpact->OnActivateImpact(true, pimpact, pimpact);
 //
 //      }
 //
@@ -3380,10 +3380,10 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         string strType = __type_name(pinteraction);
 
-                        //if(strType.contains("pane_view"))
+                        //if(strType.contains("pane_impact"))
                         //{
 
-                          // output_debug_string("paneview\n");
+                          // output_debug_string("paneimpact\n");
 
                         //}
 

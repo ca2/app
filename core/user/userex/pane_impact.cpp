@@ -9,19 +9,19 @@ namespace userex
 {
 
 
-   pane_view::pane_view()
+   pane_impact::pane_impact()
    {
 
    }
 
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
 
    }
 
 
-   void pane_view::on_command_probe(::message::command * pcommand)
+   void pane_impact::on_command_probe(::message::command * pcommand)
    {
 
       for(i32 i = 0; i < m_menua.get_size(); i++)
@@ -45,7 +45,7 @@ namespace userex
    }
 
 
-   void pane_view::on_command(::message::command * pcommand)
+   void pane_impact::on_command(::message::command * pcommand)
    {
 
       for(i32 i = 0; i < m_menua.get_size(); i++)
@@ -69,7 +69,7 @@ namespace userex
    }
 
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
       
       for(i32 i = 0; i < m_menua.get_size(); i++)
@@ -82,27 +82,27 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeNewImpact = __type(::user::menu_list_view);
 
-            __pointer(::user::impact) pview = create_view < ::user::impact > ();
-            if(pview != nullptr)
+            __pointer(::user::impact) pimpact = create_view < ::user::impact > ();
+            if(pimpact != nullptr)
             {
-//               __pointer(::user::menu_list_view) pmenuview = (__pointer(::user::menu_list_view)) pview;
+//               __pointer(::user::menu_list_view) pmenuview = (__pointer(::user::menu_list_view)) pimpact;
    /* xxx           xml::node node(this);
                node.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().matter(
                   "mplite_popup_lyricview.xml")));
                pmenuview->LoadMenu(&node);*/
-               pimpactdata->m_puserinteraction = pview;
+               pimpactdata->m_puserinteraction = pimpact;
             }
             break;
          }
       }
    }
 
-   void pane_view::set_new_pane_info(atom atom, const ::string & pszMatter)
+   void pane_impact::set_new_pane_info(atom atom, const ::string & pszMatter)
    {
       set_menu_info(atom, pszMatter, "new_pane");
    }
 
-   void pane_view::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
+   void pane_impact::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
    {
 
       __pointer(menu) pmenu;

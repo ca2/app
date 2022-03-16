@@ -7,9 +7,9 @@
 #include "framework.h"
 #include "system_storage.h"
 #include "network_authenticator.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/parallelization/pool.h"
 
 
@@ -47,7 +47,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return m_psystem->m_pacmedir->system() / "credential_storage";
+      return m_psystem->m_pacmedirectory->system() / "credential_storage";
 
    }
 

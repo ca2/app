@@ -28,7 +28,7 @@
     <ClCompile Include="main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pane_view.cpp">
+    <ClCompile Include="pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="render.cpp">
@@ -84,7 +84,7 @@
     <ClInclude Include="main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pane_view.h">
+    <ClInclude Include="pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render.h">

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/update.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "aura/operating_system.h"
 
 namespace app_core_build
@@ -124,7 +124,7 @@ namespace app_core_build
 
    ::file::path pathEnvTxt;
 
-   auto pacmedir = m_psystem->m_pacmedir;
+   auto pacmedir = m_psystem->m_pacmedirectory;
 
    pathEnvTxt = pacmedir->system() / "env.txt";
 
@@ -224,7 +224,7 @@ namespace app_core_build
 
       string_array straLine;
 
-      m_pcontext->m_papexcontext->file().get_lines(straLine, m_psystem->m_pacmedir->home() /"build.log");
+      m_pcontext->m_papexcontext->file().get_lines(straLine, m_psystem->m_pacmedirectory->home() /"build.log");
 
       ::point_i32 p;
 

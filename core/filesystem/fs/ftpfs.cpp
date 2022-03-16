@@ -100,9 +100,9 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   listing.m_pathUser = path;
+   listing.initialize_file_listing(path);
 
-   ls(listing);
+   enumerate(listing);
 
    return listing.get_count() > 0;
 
@@ -116,7 +116,9 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    path = "ftp://";
 
-   listing.add(path);
+   path.m_iDir = 1;
+
+   listing.defer_add(path);
 
    listing.m_straTitle.add("FTP sites");
 
@@ -125,7 +127,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 }
 
 
-::file::listing & ftpfs::ls(::file::listing & listing)
+bool ftpfs::enumerate(::file::listing & listing)
 {
 
    if (listing.m_pathUser == "ftp://")
@@ -150,7 +152,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
       }
 
-      return listing;
+      return true;
 
    }
 
@@ -167,7 +169,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
          listing = dir;
 
-         return listing;
+         return true;
 
       }
 
@@ -368,9 +370,9 @@ int ftpfs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      listing.m_pathUser = path.folder();
+      listing.initialize_file_listing(path.folder());
 
-      ls(listing);
+      enumerate(listing);
 
    }
 

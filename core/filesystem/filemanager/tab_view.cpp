@@ -142,9 +142,9 @@ namespace filemanager
 
          }
 
-         __pointer(::user::impact) pview = pdocument->get_view(0);
+         __pointer(::user::impact) pimpact = pdocument->get_view(0);
 
-         pimpactdata->m_puserinteraction = pview->get_parent_frame();
+         pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -209,9 +209,9 @@ namespace filemanager
 
             //          pdocument->filemanager_data()->m_iDocument = puser->filemanager()->m_iNextDocument++;
 
-            __pointer(::user::impact) pview = pdocument->get_view(0);
+            __pointer(::user::impact) pimpact = pdocument->get_view(0);
 
-            __pointer(simple_frame_window) puserinteraction = (pview->get_parent_frame());
+            __pointer(simple_frame_window) puserinteraction = (pimpact->get_parent_frame());
 
             bool bPathIsDir = false;
 
@@ -245,7 +245,7 @@ namespace filemanager
 
             }
 
-            pview->set_need_layout(true);
+            pimpact->set_need_layout(true);
 
          }
 

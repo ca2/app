@@ -8,7 +8,7 @@
 //#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 //#include "apex/compress/zip/_.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -213,7 +213,7 @@ application::application()
 
    //m_pmainpane = nullptr;
 
-   //m_ppaneviewMain = nullptr;
+   //m_ppaneimpactMain = nullptr;
 
    // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
    //::increment_reference_count(this);
@@ -321,7 +321,7 @@ return *m_pappmenu;
 ::file::path application::local_application_path()
 {
 
-return m_psystem->m_pacmedir->roaming() / "application" / m_strAppName ;
+return m_psystem->m_pacmedirectory->roaming() / "application" / m_strAppName ;
 
 
 }
@@ -630,7 +630,7 @@ return m_straAppCategory;
 ::file::path application::get_app_localconfig_folder()
 {
 
-::file::path pathFolder = m_psystem->m_pacmedir->roaming() / m_strAppId;
+::file::path pathFolder = m_psystem->m_pacmedirectory->roaming() / m_strAppId;
 
 return pathFolder;
 
@@ -2206,9 +2206,9 @@ void application::on_create_app_shortcut()
 
    string strRoot = m_strAppId.Left(m_strAppId.find('/'));
 
-   auto pathCreatedShortcut = m_psystem->m_pacmedir->roaming() / m_strAppId / "created_shortcut.txt";
+   auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
 
-   auto pathShortcut = m_psystem->m_pacmedir->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
+   auto pathShortcut = m_psystem->m_pacmedirectory->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
    auto path = m_psystem->m_pacmefile->module();
 
@@ -2435,7 +2435,7 @@ init_instance();
 //
 //}
 
-on_update_matter_locator();
+//on_update_matter_locator();
 
 }
 catch (const ::exit_exception & exception)
@@ -4824,7 +4824,7 @@ void application::handle(::topic * ptopic, ::context * pcontext)
 ::file::path application::get_executable_path()
 {
 
-return m_psystem->m_pacmedir->module() / (get_executable_title() + get_executable_extension());
+return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
 
 
 }
@@ -5365,7 +5365,7 @@ bool application::is_equal_file_path(const ::file::path & path1Param, const ::fi
 ::file::path application::appconfig_folder()
 {
 
-return m_psystem->m_pacmedir->config() / m_strAppName;
+return m_psystem->m_pacmedirectory->config() / m_strAppName;
 
 }
 
@@ -5535,7 +5535,7 @@ bool application::on_start_application()
 
    auto& file = psystem->file();
 
-   string strNetworkPayload = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.network_payload");
+   string strNetworkPayload = file.as_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
 
    if (strNetworkPayload.has_char())
    {
@@ -6702,10 +6702,10 @@ bool application::assert_user_logged_in()
 
    string strRequestUrl;
 
-   if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+   if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
    {
 
-      strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+      strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
    }
 
@@ -7074,7 +7074,7 @@ auto psystem = m_psystem;
 
 auto pnode = psystem->node();
 
-return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_minute, set);
+return pnode->call_sync(m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_minute, set);
 
 #endif
 
@@ -7124,7 +7124,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string & pszCom
 //}
 
 
-//void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+//void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
 //{
 
 
@@ -7306,7 +7306,7 @@ return m_datakey.m_bLocalData;
 
 //   m_pmainpane = nullptr;
 
-//   m_ppaneviewMain = nullptr;
+//   m_ppaneimpactMain = nullptr;
 
 //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
 //   //::increment_reference_count(this);
@@ -9942,7 +9942,7 @@ void application::on_song_added(const string& str)
 string application::get_visual_studio_build()
 {
 
-   ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
+   ::file::path path = m_psystem->m_pacmedirectory->config() / "programming/vs_build.txt";
 
    string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
 

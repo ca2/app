@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -258,10 +258,10 @@ void command_line::_001ParseCommandLine(const ::string & strCommandLine)
    if (!has_property("build") || payload("build").is_empty())
    {
 
-      if (m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt"))
+      if (m_psystem->m_pacmefile->exists(m_psystem->m_pacmedirectory->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt");
+         string str = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\plugin\\build.txt");
 
          payload("build") = str;
 

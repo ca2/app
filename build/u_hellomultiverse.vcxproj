@@ -93,7 +93,7 @@
     <ClCompile Include="impact_base.cpp" />
     <ClCompile Include="main_frame.cpp" />
     <ClCompile Include="main_impact.cpp" />
-    <ClCompile Include="pane_view.cpp" />
+    <ClCompile Include="pane_impact.cpp" />
     <ClCompile Include="render.cpp" />
     <ClCompile Include="render_yee.cpp" />
     <ClCompile Include="switcher_view.cpp" />
@@ -111,7 +111,7 @@
     <ClInclude Include="impact_base.h" />
     <ClInclude Include="main_frame.h" />
     <ClInclude Include="main_impact.h" />
-    <ClInclude Include="pane_view.h" />
+    <ClInclude Include="pane_impact.h" />
     <ClInclude Include="render.h" />
     <ClInclude Include="switcher_view.h" />
     <ClInclude Include="impact.h" />

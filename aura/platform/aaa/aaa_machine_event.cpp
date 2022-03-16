@@ -90,7 +90,7 @@ bool machine_event::write(machine_event_data * pdata)
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(::file_path_folder(machine_event_file_path()));
 

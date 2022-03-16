@@ -68,7 +68,7 @@ namespace experience
 
 
       control_box();
-      virtual ~control_box();
+      ~control_box() override;
 
 
       virtual void set_button_color_system_default_001();

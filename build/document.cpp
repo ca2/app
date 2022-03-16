@@ -61,9 +61,9 @@ namespace app_core_build
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_type_impact < impact >();
+      impact * pimpact = get_type_impact < impact >();
 
-      if(pview == nullptr)
+      if(pimpact == nullptr)
       {
 
          return true;

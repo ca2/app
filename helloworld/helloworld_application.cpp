@@ -65,7 +65,7 @@ namespace helloworld
       add_factory_item <::helloworld::impact >();
       add_factory_item <::helloworld::main_impact >();
       add_factory_item <::helloworld::switcher_view >();
-      add_factory_item <::helloworld::pane_view >();
+      add_factory_item <::helloworld::pane_impact >();
 
       if (!::aura::application::init_instance())
       {
@@ -93,7 +93,7 @@ namespace helloworld
                              "main",
                              __type(document),
                              __type(main_frame),
-                             __type(pane_view)));
+                             __type(pane_impact)));
       m_ptemplateHelloWorldMain = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -171,7 +171,7 @@ namespace helloworld
       if (m_varTopicQuery["wfi_maximize"].is_set())
       {
 
-         pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < ::userex::pane_tab_view >()->top_level_frame()->_001WindowMaximize();
+         pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < ::userex::pane_tab_impact >()->top_level_frame()->_001WindowMaximize();
 
       }
 

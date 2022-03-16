@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 #ifdef MACOS
@@ -194,7 +194,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(::file::path(strName).folder());
 
@@ -261,7 +261,7 @@ pacmedir->create(::file::path(strName).folder());
 
          path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
@@ -279,7 +279,7 @@ pacmedir->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
          path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
@@ -302,7 +302,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
       path /= pstrName;
 
-      m_psystem->m_pacmedir->create(path.folder());
+      m_psystem->m_pacmedirectory->create(path.folder());
 
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 
@@ -362,7 +362,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(path.folder());
 
@@ -1633,7 +1633,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
    path /= lpszName;
 
-   auto pacmedir = pmatter->m_psystem->m_pacmedir;
+   auto pacmedir = pmatter->m_psystem->m_pacmedirectory;
 
    pacmedir->create(path.folder());
 

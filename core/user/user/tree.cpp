@@ -2050,16 +2050,16 @@ namespace user
 
       ptree->m_usertreea.add_unique(this);
 
-      __pointer(::user::impact) pview = this;
+      __pointer(::user::impact) pimpact = this;
 
-      if(pview.is_set())
+      if(pimpact.is_set())
       {
 
-         pview->get_document()->add_data(ptree);
+         pimpact->get_document()->add_data(ptree);
 
       }
 
-      ptree->install_message_routing(m_pinteractionimpl);
+      ptree->install_message_routing(m_pprimitiveimpl);
 
       return true;
 

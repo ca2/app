@@ -3,7 +3,7 @@
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/graphics/_.h"
@@ -522,7 +522,7 @@ namespace user
 
                   auto pcontextimage = pcontext->context_image();
 
-                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
+                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -566,7 +566,7 @@ namespace user
 
                   }
 
-                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
+                  pcontextimage->save_image(m_psystem->m_pacmedirectory->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -1189,7 +1189,7 @@ namespace user
    {
 
       // if the frame does not have an active ::user::impact, set to first pane
-      __pointer(::user::impact) pview;
+      __pointer(::user::impact) pimpact;
 
       if (get_active_view() == nullptr)
       {
@@ -1199,9 +1199,9 @@ namespace user
          if (pwindow != nullptr && base_class < ::user::impact > ::bases(pwindow))
          {
 
-            pview = pwindow;
+            pimpact = pwindow;
 
-            set_active_view(pview, false);
+            set_active_view(pimpact, false);
 
          }
 
@@ -1222,10 +1222,10 @@ namespace user
          send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
 
          // give ::user::impact a chance to save the focus (CFormImpact needs this)
-         if (pview != nullptr)
+         if (pimpact != nullptr)
          {
 
-            pview->OnActivateFrame(e_activate_inactive, this);
+            pimpact->OnActivateFrame(e_activate_inactive, this);
 
          }
 
@@ -1233,10 +1233,10 @@ namespace user
          // (send the default show command unless the main desktop interaction_impl)
          ActivateFrame(e_display_default);
 
-         if (pview != nullptr)
+         if (pimpact != nullptr)
          {
 
-            pview->OnActivateImpact(true, pview, pview);
+            pimpact->OnActivateImpact(true, pimpact, pimpact);
 
          }
 
@@ -1337,9 +1337,9 @@ namespace user
       POSITION pos = pdocument->get_view_count();
       while (pos != nullptr)
       {
-      __pointer(::user::impact) pview = pdocument->get_view(pos);
-      ENSURE_VALID(pview);
-      if (pview->get_parent_frame() != this)
+      __pointer(::user::impact) pimpact = pdocument->get_view(pos);
+      ENSURE_VALID(pimpact);
+      if (pimpact->get_parent_frame() != this)
       {
       bOtherFrame = true;
       break;
@@ -1382,12 +1382,12 @@ namespace user
       if (bRouteToKeyDescendant)
       {
 
-         __pointer(::user::impact) pview = get_active_view();
+         __pointer(::user::impact) pimpact = get_active_view();
 
-         if (pview != nullptr)
+         if (pimpact != nullptr)
          {
 
-            pview->route_command(pcommand, false);
+            pimpact->route_command(pcommand, false);
 
             if (pcommand->m_bRet)
             {
@@ -1832,12 +1832,12 @@ namespace user
 
       ASSERT_VALID(this);
 
-      __pointer(::user::impact) pview = get_active_view();
+      __pointer(::user::impact) pimpact = get_active_view();
 
-      if (pview != nullptr)
+      if (pimpact != nullptr)
       {
 
-         return pview->get_document();
+         return pimpact->get_document();
 
       }
 

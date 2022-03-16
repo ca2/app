@@ -10,7 +10,7 @@ namespace filehandler
    {
 
       m_ptemplateMenu   = nullptr;
-      m_ppaneview       = nullptr;
+      m_ppaneimpact       = nullptr;
 
    }
 
@@ -29,7 +29,7 @@ namespace filehandler
    {
 
 
-      add_factory_item <pane_view >();
+      add_factory_item <pane_impact >();
       add_factory_item <document >();
       add_factory_item <frame >();
       add_factory_item <impact >();
@@ -44,7 +44,7 @@ namespace filehandler
       "html/frame",
       __type(document),
       __type(frame),       // top level SDI frame::user::interaction_impl
-      __type(pane_view));
+      __type(pane_impact));
       papp->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
@@ -73,17 +73,17 @@ namespace filehandler
    void department::on_request(::create * pcreate)
    {
 
-      if(m_ppaneview == nullptr)
+      if(m_ppaneimpact == nullptr)
       {
 
          m_ptemplateMenu->do_request(pcreate);
 
       }
 
-      if(m_ppaneview != nullptr && pcreate->m_pcommandline->m_payloadFile.get_type() == ::e_type_string)
+      if(m_ppaneimpact != nullptr && pcreate->m_pcommandline->m_payloadFile.get_type() == ::e_type_string)
       {
 
-         m_ppaneview->set_current_tab_by_id("default_file_handler://" + pcreate->m_pcommandline->m_payloadFile.get_string());
+         m_ppaneimpact->set_current_tab_by_id("default_file_handler://" + pcreate->m_pcommandline->m_payloadFile.get_string());
 
       }
 

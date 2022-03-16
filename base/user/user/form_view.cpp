@@ -61,6 +61,21 @@ namespace user
          ptopic->payload(id_form) = this;
 
       }
+      else if (ptopic->m_atom == id_new_document)
+      {
+
+         auto strOpenOnCreate = m_strOpenOnCreate;
+
+         m_strOpenOnCreate.Empty();
+
+         if (strOpenOnCreate.has_char())
+         {
+
+            get_document()->on_open_document(strOpenOnCreate);
+
+         }
+
+      }
 
       if(m_pcallback != nullptr)
       {
@@ -122,7 +137,12 @@ namespace user
 
             m_pform->set_parent_form(this);
 
-            m_pform->set_form_callback(m_pcallback);
+            if (m_pcallback)
+            {
+
+               m_pform->set_form_callback(m_pcallback);
+
+            }
 
             if (strHtml.has_char())
             {
@@ -171,14 +191,14 @@ namespace user
       if(pformOld)
       {
 
-//         __pointer(::user::form_view) pview = pformOld;
+//         __pointer(::user::form_view) pimpact = pformOld;
 
-         //if (pview)
+         //if (pimpact)
          //{
 
-         //   pview->set_finish();
+         //   pimpact->set_finish();
 
-         //   //get_document()->erase_view(pview);
+         //   //get_document()->erase_view(pimpact);
 
          //}
 

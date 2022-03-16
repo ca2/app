@@ -19,6 +19,7 @@ enum enum_element : ::i64
    e_element_list,
    e_element_item_text,
    e_element_item_background,
+   e_element_item_border,
    e_element_hilite_text,
    e_element_icon,
    e_element_background,

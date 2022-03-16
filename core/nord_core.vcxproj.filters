@@ -550,10 +550,10 @@
     <ClCompile Include="user\userex\pane_split_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\pane_tab_view.cpp">
+    <ClCompile Include="user\userex\pane_tab_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\pane_view.cpp">
+    <ClCompile Include="user\userex\pane_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\progress.cpp">
@@ -1170,10 +1170,10 @@
     <ClInclude Include="user\userex\pane_split_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\pane_tab_view.h">
+    <ClInclude Include="user\userex\pane_tab_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\pane_view.h">
+    <ClInclude Include="user\userex\pane_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\property_page.h">

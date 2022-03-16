@@ -18,7 +18,7 @@ namespace core
    ::type user::get_pane_tab_view_type_info()
    {
 
-      return __type(::userex::pane_tab_view);
+      return __type(::userex::pane_tab_impact);
 
    }
 
@@ -30,7 +30,7 @@ namespace userex
 {
 
 
-   pane_tab_view::pane_tab_view()
+   pane_tab_impact::pane_tab_impact()
    {
 
       m_pcolorview = nullptr;
@@ -42,13 +42,13 @@ namespace userex
    }
 
 
-   pane_tab_view::~pane_tab_view()
+   pane_tab_impact::~pane_tab_impact()
    {
 
    }
 
 
-   ::user::interaction * pane_tab_view::get_view_uie()
+   ::user::interaction * pane_tab_impact::get_view_uie()
    {
 
       return ::user::tab_view::get_view_uie();
@@ -56,7 +56,7 @@ namespace userex
    }
 
 
-   atom pane_tab_view::get_view_id()
+   atom pane_tab_impact::get_view_id()
    {
 
       return ::user::tab_view::get_view_id();
@@ -64,7 +64,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::GetTabClientRect(RECTANGLE_I32 * prectangle)
+   void pane_tab_impact::GetTabClientRect(RECTANGLE_I32 * prectangle)
 
    {
 
@@ -145,20 +145,20 @@ namespace userex
    }
 
 
-   void pane_tab_view::install_message_routing(::channel * pchannel)
+   void pane_tab_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::tab_view::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
-      add_command_handler("file_save_as", this, &pane_tab_view::_001OnFileSaveAs);
-      add_command_prober("file_save_as", this, &pane_tab_view::_001OnUpdateFileSaveAs);
+      add_command_handler("file_save_as", this, &pane_tab_impact::_001OnFileSaveAs);
+      add_command_prober("file_save_as", this, &pane_tab_impact::_001OnUpdateFileSaveAs);
 
    }
 
 
-   void pane_tab_view::on_message_create(::message::message * pmessage)
+   void pane_tab_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -212,7 +212,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::_001OnFileSaveAs(::message::message * pmessage)
+   void pane_tab_impact::_001OnFileSaveAs(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -230,7 +230,7 @@ namespace userex
 
    }
 
-   void pane_tab_view::_001OnUpdateFileSaveAs(::message::message * pmessage)
+   void pane_tab_impact::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
       __pointer(::message::command) pcommand(pmessage);
@@ -242,7 +242,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::on_change_cur_sel()
+   void pane_tab_impact::on_change_cur_sel()
    {
 
       ::user::tab_view::on_change_cur_sel();
@@ -304,7 +304,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_prepare_impact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
       pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
@@ -321,7 +321,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_after_create_impact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
       ::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
@@ -331,7 +331,7 @@ namespace userex
 
          __keep(m_bDisableSavingRestorableTabs, true);
 
-         if (!add_tab(pimpactdata->m_atomTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
+         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
          {
 
             return false;
@@ -383,7 +383,7 @@ namespace userex
    }
 
 
-   bool pane_tab_view::on_place_hold(::user::interaction * pinteraction,::user::place_holder * pholder)
+   bool pane_tab_impact::on_place_hold(::user::interaction * pinteraction,::user::place_holder * pholder)
    {
 
       if (!::user::place_holder_container::on_place_hold(pinteraction, pholder))
@@ -426,7 +426,7 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * pane_tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
       ::user::impact_data * pimpactdata = get_impact_data(atom, get_data()->m_rectangleTabClient);
@@ -454,7 +454,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       ::acme::library * plibrary = nullptr;
@@ -470,14 +470,14 @@ namespace userex
          if (pimpactdata->m_atom == "account")
       {
 
-         __pointer(::account::impact) pview = create_view < ::account::impact >();
+         __pointer(::account::impact) pimpact = create_view < ::account::impact >();
 
-         if (pview.is_set())
+         if (pimpact.is_set())
          {
 
             pimpactdata->m_pdocument = get_document();
 
-            pimpactdata->m_puserinteraction = pview;
+            pimpactdata->m_puserinteraction = pimpact;
 
             pimpactdata->m_iExtendOnParent = 0;
 
@@ -493,11 +493,17 @@ namespace userex
       else if (pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
-         auto puser = user()->m_pcoreuser;
+            if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
+               || pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_no_interaction())
+            {
 
-         m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+               auto puser = user()->m_pcoreuser;
 
-         pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
+               m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+
+               pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
+
+            }
 
       }
       else if (is_font_sel(pimpactdata->m_atom))
@@ -539,12 +545,12 @@ namespace userex
          
          m_pfontview->m_pimpact->add_handler(this);
 
-         __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
+         __pointer(::user::interaction) pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
 
-         if(pview)
+         if(pimpact)
          {
 
-            m_pfontview->m_pimpact->add_handler(pview);
+            m_pfontview->m_pimpact->add_handler(pimpact);
 
          }
 
@@ -574,12 +580,12 @@ namespace userex
          
          m_pcolorview->add_handler(this);
 
-         __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
+         __pointer(::user::interaction) pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
-         if(pview)
+         if(pimpact)
          {
 
-            m_pcolorview->add_handler(pview);
+            m_pcolorview->add_handler(pimpact);
 
          }
 
@@ -670,12 +676,12 @@ namespace userex
 
             m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-            __pointer(::user::impact) pview = pdocument->get_view();
+            __pointer(::user::impact) pimpact = pdocument->get_view();
 
-            if(pview != nullptr)
+            if(pimpact != nullptr)
             {
 
-               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
+               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pimpact->get_parent_frame();
 
                if(pframe != nullptr)
                {
@@ -704,12 +710,12 @@ namespace userex
 
       //      m_pfilemanagerTabbed = pmanager;
 
-      //      __pointer(::user::impact) pview = pmanager->get_view();
+      //      __pointer(::user::impact) pimpact = pmanager->get_view();
 
-      //      if(pview != nullptr)
+      //      if(pimpact != nullptr)
       //      {
 
-      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
+      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pimpact->get_parent_frame();
 
       //         if(pframe != nullptr)
       //         {
@@ -752,9 +758,9 @@ namespace userex
 
                pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
 
-               ::user::impact * pview = pdocument->get_view(0);
+               ::user::impact * pimpact = pdocument->get_view(0);
 
-               pimpactdata->m_puserinteraction = pview->get_parent_frame();
+               pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
                prepare_form(pimpactdata->m_atom, pdocument);
 
@@ -769,7 +775,7 @@ namespace userex
    }
 
 
-   ::filemanager::document * pane_tab_view::filemanager_document(const ::atom & atomFileManager)
+   ::filemanager::document * pane_tab_impact::filemanager_document(const ::atom & atomFileManager)
    {
 
       auto pobject = m_mapFileManager[atomFileManager];
@@ -779,7 +785,7 @@ namespace userex
    }
 
 
-//   ::filemanager::document * pane_tab_view::tabbed_filemanager_manager()
+//   ::filemanager::document * pane_tab_impact::tabbed_filemanager_manager()
 //   {
 //
 //      return  (m_pfilemanagerTabbed == nullptr ? nullptr : dynamic_cast < ::filemanager::document * > (m_pfilemanagerTabbed));
@@ -787,7 +793,7 @@ namespace userex
 //   }
 
 
-//   void pane_tab_view::FileManagerSaveAs(::user::document * pdocument)
+//   void pane_tab_impact::FileManagerSaveAs(::user::document * pdocument)
 //   {
 //
 //      set_current_tab_by_id(impact_filemanager_main);
@@ -797,7 +803,7 @@ namespace userex
 //   }
 //
 //
-//   void pane_tab_view::TabbedFileManagerSaveAs(::user::document * pdocument)
+//   void pane_tab_impact::TabbedFileManagerSaveAs(::user::document * pdocument)
 //   {
 //
 //      set_current_tab_by_id("tabbed_file_manager");
@@ -807,7 +813,7 @@ namespace userex
 //   }
 
 
-   void pane_tab_view::_001OnTabClose(index iTab)
+   void pane_tab_impact::_001OnTabClose(index iTab)
    {
 
       ::user::tab::_001OnTabClose(iTab);
@@ -823,28 +829,28 @@ namespace userex
    }
 
 
-   void pane_tab_view::interactive_credentials(::account::credentials * pcredentials)
+   void pane_tab_impact::interactive_credentials(::account::credentials * pcredentials)
    {
 
       pcredentials->m_estatus = error_credentials;
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::impact) pview = get_view();
+      __pointer(::account::impact) pimpact = get_view();
 
-      if (pview.is_null())
+      if (pimpact.is_null())
       {
 
          return;
 
       }
 
-      pview->interactive_credentials(pcredentials);
+      pimpact->interactive_credentials(pcredentials);
 
    }
 
 
-   void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::tab_view::handle(ptopic, pcontext);
@@ -871,7 +877,7 @@ namespace userex
    }
 
 
-//   void pane_tab_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+//   void pane_tab_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
 //
@@ -881,7 +887,7 @@ namespace userex
 //   }
 
 
-   //void pane_tab_view::handle(::topic * ptopic, ::context * pcontext)
+   //void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   if (ptopic->m_atom == ::id_context_menu_close)
@@ -905,7 +911,7 @@ namespace userex
    //}
 
 
-   //bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)
+   //bool pane_tab_impact::create_app_options(::user::impact_data * pimpactdata)
    //{
 
    //   string strAppOptions = "matter://options.html";
@@ -953,7 +959,7 @@ namespace userex
    //}
 
 
-   void pane_tab_view::prepare_form(atom atom, ::form_document * pdocument)
+   void pane_tab_impact::prepare_form(atom atom, ::form_document * pdocument)
    {
 
       auto papp = get_app();
@@ -963,7 +969,7 @@ namespace userex
    }
 
 
-   void pane_tab_view::_001OnRemoveTab(::user::tab_pane * ptab)
+   void pane_tab_impact::_001OnRemoveTab(::user::tab_pane * ptab)
    {
 
       ::user::tab_view::_001OnRemoveTab(ptab);
@@ -973,7 +979,7 @@ namespace userex
    }
 
 
-   //::form_property_set * pane_tab_view::get_form_property_set()
+   //::form_property_set * pane_tab_impact::get_form_property_set()
    //{
    //
    //   auto pset = form_callback::get_form_property_set();
@@ -1007,7 +1013,7 @@ namespace userex
 //::type system::get_pane_tab_view_type_info()
 //{
 //
-//   return __type(userex::pane_tab_view);
+//   return __type(userex::pane_tab_impact);
 //
 //}
 //

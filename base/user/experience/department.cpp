@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 namespace experience
@@ -105,7 +105,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papp->m_papplication->m_strAppName / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / papp->m_papplication->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -113,7 +113,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papp->m_papplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papplication->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -121,7 +121,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papp->m_papplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papplication->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -129,7 +129,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -137,7 +137,7 @@ namespace experience
 
                {
 
-                  string strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
+                  string strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / "system/experience.txt");
 
                   straExperience.add(strExperience);
 

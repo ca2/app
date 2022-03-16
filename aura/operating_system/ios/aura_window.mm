@@ -176,33 +176,33 @@ void aura_window::round_window_set_sel(long iBeg, long iEnd)
 {
    
    // UITextView --> UIView
-//   UITextView * pview = m_proundwindow->m_controller->childContentView;
+//   UITextView * pimpact = m_proundwindow->m_controller->childContentView;
 //
-//   UITextPosition * beg = [pview beginningOfDocument];
+//   UITextPosition * beg = [pimpact beginningOfDocument];
 //
-//   UITextPosition * selbeg = [pview endOfDocument];
+//   UITextPosition * selbeg = [pimpact endOfDocument];
 //
 //   UITextPosition * selend = selbeg;
 //
-//   long iLen = (long) strlen([[pview text] UTF8String]);
+//   long iLen = (long) strlen([[pimpact text] UTF8String]);
 //
 //   if(iBeg >= 0 && iBeg < iLen)
 //   {
 //
-//      selbeg = [pview positionFromPosition: beg offset: iBeg];
+//      selbeg = [pimpact positionFromPosition: beg offset: iBeg];
 //
 //   }
 //
 //   if(iEnd >= 0 && iEnd < iLen)
 //   {
 //
-//      selend = [pview positionFromPosition: beg offset: iEnd];
+//      selend = [pimpact positionFromPosition: beg offset: iEnd];
 //
 //   }
 //
-//   UITextRange * sel = [pview textRangeFromPosition: selbeg toPosition: selend];
+//   UITextRange * sel = [pimpact textRangeFromPosition: selbeg toPosition: selend];
 //
-//   [pview setSelectedTextRange: sel];
+//   [pimpact setSelectedTextRange: sel];
    
 }
 
@@ -211,17 +211,17 @@ void aura_window::round_window_get_sel(long & iBeg, long & iEnd)
 {
    
    // UITextView --> UIView
-//   UITextView * pview = m_proundwindow->m_controller->childContentView;
+//   UITextView * pimpact = m_proundwindow->m_controller->childContentView;
 //
-//   UITextPosition * beg = [pview beginningOfDocument];
+//   UITextPosition * beg = [pimpact beginningOfDocument];
 //
-//   UITextPosition * selbeg = [[pview selectedTextRange] start];
+//   UITextPosition * selbeg = [[pimpact selectedTextRange] start];
 //
-//   UITextPosition * selend = [[pview selectedTextRange] start];
+//   UITextPosition * selend = [[pimpact selectedTextRange] start];
 //
-//   iBeg = [pview offsetFromPosition: beg toPosition: selbeg];
+//   iBeg = [pimpact offsetFromPosition: beg toPosition: selbeg];
 //
-//   iEnd = [pview offsetFromPosition: beg toPosition: selend];
+//   iEnd = [pimpact offsetFromPosition: beg toPosition: selend];
    
 }
 

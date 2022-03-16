@@ -181,7 +181,7 @@
 }
 
 
-- (BOOL)textViewShouldBeginEditing:(UITextView * ) pview
+- (BOOL)textViewShouldBeginEditing:(UITextView * ) pimpact
 {
    
    aura_window * p = m_pwindow->m_pwindow;

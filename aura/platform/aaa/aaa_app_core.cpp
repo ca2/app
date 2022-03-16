@@ -520,13 +520,13 @@ void app_core::system_init()
 
    ::file::path pathOutputDebugString =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / strAppId / "output_debug_string.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->config() / "output_debug_string.txt" ;
 
@@ -552,7 +552,7 @@ void app_core::set_command_line(const ::string & psz)
 
    ::file::path pathFolder =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->ca2roaming() / "program";
 

@@ -59,7 +59,7 @@ namespace turboc
       add_factory_item <::turboc::impact >();
       add_factory_item <::turboc::main_impact >();
       add_factory_item <::turboc::switcher_view >();
-      add_factory_item <::turboc::pane_view >();
+      add_factory_item <::turboc::pane_impact >();
 
       if(!::console::application::initialize_application())
          return false;
@@ -70,7 +70,7 @@ namespace turboc
       "main",
       __type(::turboc::document),
       __type(::turboc::frame),       // top level SDI frame::user::interaction_impl
-      __type(::turboc::pane_view));
+      __type(::turboc::pane_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
       pDocTemplate = new ::user::single_document_template(
@@ -187,7 +187,7 @@ namespace turboc
 
       }
 
-      //pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < pane_view >()->get_parent_frame()->display(e_display_restore);
+      //pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < pane_impact >()->get_parent_frame()->display(e_display_restore);
 
    }
 
@@ -211,13 +211,13 @@ namespace turboc
    ::u32 application::thread_proc_load_ai_font(void * pparam)
    {
 
-      application * pview = (application *)pparam;
+      application * pimpact = (application *)pparam;
 
-      pview->m_iErrorAiFont = -1;
+      pimpact->m_iErrorAiFont = -1;
 
-      //pview->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pview->get_app()).ftlibrary(),Sess(pview->get_app()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pview->m_faceAi);
+      //pimpact->m_iErrorAiFont = FT_New_Face((FT_Library)Sys(pimpact->get_app()).ftlibrary(),Sess(pimpact->get_app()).dir().matter_file("font/truetype/arialuni.ttf"),0,(FT_Face *)&pimpact->m_faceAi);
 
-      return pview->m_iErrorAiFont;
+      return pimpact->m_iErrorAiFont;
 
    }
 

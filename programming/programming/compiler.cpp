@@ -1,6 +1,6 @@
 // Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardS�rensen!!
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"
@@ -44,7 +44,7 @@ namespace programming
 
       {
 
-         auto pacmedir = m_psystem->m_pacmedir;
+         auto pacmedir = m_psystem->m_pacmedirectory;
 
          ::file::path path;
 
@@ -130,7 +130,7 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedir = m_psystem->m_pacmedir;
+      auto pacmedir = m_psystem->m_pacmedirectory;
 
       m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
 
@@ -359,7 +359,7 @@ namespace programming
 
       ::file::path pathEnvTxt;
 
-      auto pacmedir = m_psystem->m_pacmedir;
+      auto pacmedir = m_psystem->m_pacmedirectory;
 
       pathEnvTxt = pacmedir->system() / "env.txt";
 
@@ -460,7 +460,7 @@ namespace programming
       //
       //   ::file::path pathCommand =          auto psystem = m_psystem;
 
-      //         auto pacmedir = psystem->m_pacmedir;
+      //         auto pacmedir = psystem->m_pacmedirectory;
       //
       //pacmedir->system() / "env.bat";
       //
@@ -579,7 +579,7 @@ namespace programming
 
       //string strEnv = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-   //         auto pacmedir = psystem->m_pacmedir;
+   //         auto pacmedir = psystem->m_pacmedirectory;
    //
    //pacmedir->system() / "env.txt");
 

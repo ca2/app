@@ -707,18 +707,18 @@ namespace turboc
 
       {
 
-         __pointer(impact) pview = pviewParam;
+         __pointer(impact) pimpact = pviewParam;
 
-         while(::task_get_run() && pview->IsWindow())
+         while(::task_get_run() && pimpact->IsWindow())
          {
 
             try
             {
 
-               if(pview->m_bHelloRender)
+               if(pimpact->m_bHelloRender)
                {
 
-                  pview->full_render();
+                  pimpact->full_render();
 
                }
 

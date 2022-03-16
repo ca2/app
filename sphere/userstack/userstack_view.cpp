@@ -22,7 +22,7 @@ namespace userstack
       m_i_winactionarea = 4;
       m_i_winactionarea_h = 49;
       m_i_winactionarea_w = 49;
-      m_ppaneview = nullptr;
+      m_ppaneimpact = nullptr;
 
    }
 
@@ -170,7 +170,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneview = (create_view(__type(pane_view), get_document(), this, 102));
+      m_ppaneimpact = (create_view(__type(pane_impact), get_document(), this, 102));
 
 
    }
@@ -364,9 +364,9 @@ namespace userstack
    {
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);
-      if(m_ppaneview != nullptr)
+      if(m_ppaneimpact != nullptr)
       {
-         m_ppaneview->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);
+         m_ppaneimpact->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);
       }
       else
       {

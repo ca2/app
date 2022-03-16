@@ -77,10 +77,10 @@ auto m_durationRoll = ::duration::now();
    void impact_base::on_message_left_button_down(::message::message * pmessage)
    {
 
-      if(papp->m_ppaneview != nullptr)
+      if(papp->m_ppaneimpact != nullptr)
       {
 
-         papp->m_ppaneview->m_pviewLast = this;
+         papp->m_ppaneimpact->m_pviewLast = this;
 
       }
 
@@ -234,7 +234,7 @@ auto m_durationRoll = ::duration::now();
 
       //d.save_to_file(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "obs.png");
 

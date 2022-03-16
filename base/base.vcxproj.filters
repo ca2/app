@@ -769,6 +769,9 @@
     <ClCompile Include="operating_system\windows\frame_window.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\impact_kit.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">

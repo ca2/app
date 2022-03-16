@@ -697,7 +697,7 @@ namespace dir
 
             //TRACE("         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
@@ -1476,7 +1476,7 @@ extern "C" int make_path(const char * psz)
 
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(psz) != false;
 

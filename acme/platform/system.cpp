@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/id.h"
 #include "node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/acme.h"
@@ -55,7 +55,7 @@ m_bJoinable = true;
    ::factory::add_factory_item<acme::idpool>();
 
    //m_pacme = nullptr;
-   //m_pacmedir = nullptr;
+   //m_pacmedirectory = nullptr;
    //m_pacmepath = nullptr;
 
    m_pacmesystem = this;
@@ -280,9 +280,9 @@ void system::process_init()
 
    //}
 
-   //auto estatus = __raw_compose(m_pacmedir);
+   //auto estatus = __raw_compose(m_pacmedirectory);
 
-   __raw_compose(m_pacmedir);
+   __raw_compose(m_pacmedirectory);
 
    /*if (!estatus)
    {
@@ -291,9 +291,9 @@ void system::process_init()
 
    }*/
 
-//      m_pacmedir = pacmedir;
+//      m_pacmedirectory = pacmedir;
 
-//    m_pacmedir->increment_reference_count();
+//    m_pacmedirectory->increment_reference_count();
 
    //estatus = __raw_compose(m_pacmefile);
 
@@ -317,11 +317,11 @@ void system::process_init()
 
    //}
 
-   m_pacmedir->m_pacmefile = m_pacmefile;
-   m_pacmedir->m_pacmepath = m_pacmepath;
-   m_pacmefile->m_pacmedir = m_pacmedir;
+   m_pacmedirectory->m_pacmefile = m_pacmefile;
+   m_pacmedirectory->m_pacmepath = m_pacmepath;
+   m_pacmefile->m_pacmedirectory = m_pacmedirectory;
    m_pacmefile->m_pacmepath = m_pacmepath;
-   m_pacmepath->m_pacmedir = m_pacmedir;
+   m_pacmepath->m_pacmedirectory = m_pacmedirectory;
    m_pacmepath->m_pacmefile = m_pacmefile;
 
    //estatus = m_pacmefile->initialize(this);
@@ -346,9 +346,9 @@ void system::process_init()
 
    //}
 
-   //estatus = m_pacmedir->initialize(this);
+   //estatus = m_pacmedirectory->initialize(this);
 
-   m_pacmedir->initialize(this);
+   m_pacmedirectory->initialize(this);
 
 
    //throw ::exception(error_failed);
@@ -1650,7 +1650,7 @@ void system::report_system_instance()
 
       strModifier = strDate + "_" + strPid;
 
-      ::file::path pathFolder = m_psystem->m_pacmedir->roaming();
+      ::file::path pathFolder = m_psystem->m_pacmedirectory->roaming();
 
       pathFolder /= strAppId;
 

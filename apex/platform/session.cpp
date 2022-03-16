@@ -1746,12 +1746,12 @@ namespace apex
 
    //   string strAppName = app.m_strAppName;
 
-   //   //if(get_document()->get_type_impact < ::bergedge::pane_view >() != nullptr)
+   //   //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
    //   //{
 
-   //   //   get_document()->get_type_impact < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
+   //   //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 
-   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName)));
+   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName)));
 
    //   //}
    //   //else
@@ -1786,21 +1786,21 @@ namespace apex
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_view) ppaneview = get_document()->get_type_impact < ::bergedge::pane_view >();
+         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_type_impact < ::bergedge::pane_impact >();
 
-         //if(ppaneview != nullptr)
+         //if(ppaneimpact != nullptr)
          //{
 
          //   string strAppName(pszAppId);
 
-         //   ::user::tab::pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
+         //   ::user::tab::pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 
          //   if(ppane != nullptr)
          //   {
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->on_layout(pgraphics);
+         //      ppaneimpact->on_layout(pgraphics);
 
          //   }
 

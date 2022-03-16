@@ -159,7 +159,9 @@ namespace filemanager
 
          strDir = pathUser;
 
-         pcontext->m_papexcontext->dir().ls(listing, pathUser);
+         listing.initialize_file_listing(pathUser);
+
+         pcontext->m_papexcontext->dir().enumerate(listing);
 
       }
 
@@ -168,7 +170,7 @@ namespace filemanager
 
          ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
-         listingFinal.add(pathFinal);
+         listingFinal.defer_add(pathFinal);
 
       }
 

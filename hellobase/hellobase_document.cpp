@@ -51,9 +51,9 @@ namespace hellobase
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_type_impact < impact >();
+      impact * pimpact = get_type_impact < impact >();
 
-      if(pview == nullptr)
+      if(pimpact == nullptr)
       {
 
          return true;
@@ -69,7 +69,7 @@ namespace hellobase
 
       string str;
 
-      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
+      if(pimpact->m_prender->m_pimageImage->load_image(payloadFile))
       {
 
          get_type_impact < impact >()->m_strImage = payloadFile["url"];

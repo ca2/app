@@ -391,23 +391,28 @@ namespace html
 
       }
 
-      m_pgraphics = pgraphics;
+      if (m_pelement)
+      {
 
-      m_layoutstate1.reset();
+         m_pgraphics = pgraphics;
 
-      m_layoutstate2.reset();
+         m_layoutstate1.reset();
 
-      m_layoutstate3.reset();
+         m_layoutstate2.reset();
 
-      m_pelement->on_layout(this);
+         m_layoutstate3.reset();
+
+         m_pelement->on_layout(this);
+
+      }
 
       if (m_pcallback != nullptr)
       {
-         
+
          auto pextendedtopic = create_topic(::id_form_initialize);
 
          pextendedtopic->m_puserelement = m_puserinteraction;
-         
+
          m_puserinteraction->route(pextendedtopic);
 
       }

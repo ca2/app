@@ -75,7 +75,7 @@ namespace app_core_build
       ::factory::add_factory_item <::user::button_view >();
       ::factory::add_factory_item <::app_core_build::impact >();
       ::factory::add_factory_item <::app_core_build::main_impact >();
-      ::factory::add_factory_item <::app_core_build::pane_view >();
+      ::factory::add_factory_item <::app_core_build::pane_impact >();
 
       if (!::core::application::init_instance())
       {
@@ -97,7 +97,7 @@ namespace app_core_build
                             "main",
                             __type(simple_pane_document),
                             __type(main_frame),
-                            __type(pane_view)));
+                            __type(pane_impact)));
 
       m_ptemplateHelloMultiverseMain = ptemplate;
 

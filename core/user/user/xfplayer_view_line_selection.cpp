@@ -148,8 +148,8 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
 
                   if(viewline.get_link(str, pointCursor))
                   {
-                     //usersp(::user::impact) pview = viewline.get_interaction();
-                     //pview->on_link_click(str);
+                     //usersp(::user::impact) pimpact = viewline.get_interaction();
+                     //pimpact->on_link_click(str);
                   }
                }
             }
@@ -580,8 +580,8 @@ bool XfplayerImpactLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u
             string str;
             if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
-               //                   usersp(::user::impact) pview = viewline.get_interaction();
-               //                 pview->on_link_click(str);
+               //                   usersp(::user::impact) pimpact = viewline.get_interaction();
+               //                 pimpact->on_link_click(str);
             }
          }
          return true;
@@ -661,8 +661,8 @@ bool XfplayerImpactLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u
             string str;
             if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
-               //                   usersp(::user::impact) pview = viewline.get_interaction();
-               //                 pview->on_link_click(str);
+               //                   usersp(::user::impact) pimpact = viewline.get_interaction();
+               //                 pimpact->on_link_click(str);
             }
          }
          return true;

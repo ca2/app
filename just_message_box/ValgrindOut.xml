@@ -29958,7 +29958,7 @@
     <frame>
       <ip>0xD47E698</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -39709,7 +39709,7 @@
     <frame>
       <ip>0x12252CFA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::pane_tab_view, userex::pane_tab_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::pane_tab_impact, userex::pane_tab_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -91359,7 +91359,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -91367,7 +91367,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -91375,7 +91375,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -91465,7 +91465,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -91473,7 +91473,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -91481,7 +91481,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -91571,7 +91571,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -91579,7 +91579,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -91587,7 +91587,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -91677,7 +91677,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -91685,7 +91685,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -91693,7 +91693,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98102,7 +98102,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98110,7 +98110,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98118,7 +98118,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98208,7 +98208,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98216,7 +98216,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98224,7 +98224,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98314,7 +98314,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98322,7 +98322,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98330,7 +98330,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98420,7 +98420,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98428,7 +98428,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98436,7 +98436,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98526,7 +98526,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98534,7 +98534,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98542,7 +98542,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98632,7 +98632,7 @@
     <frame>
       <ip>0xD492F44</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::pane_view(object*)</fn>
+      <fn>simple_drawing::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>14</line>
@@ -98640,7 +98640,7 @@
     <frame>
       <ip>0xD47F294</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory&lt;simple_drawing::pane_view, simple_drawing::pane_view&gt;::alloc(object*)</fn>
+      <fn>alloc_factory&lt;simple_drawing::pane_impact, simple_drawing::pane_impact&gt;::alloc(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>50</line>
@@ -98648,7 +98648,7 @@
     <frame>
       <ip>0xD47F213</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>alloc_factory_base&lt;simple_drawing::pane_view&gt;::alloc_object(object*)</fn>
+      <fn>alloc_factory_base&lt;simple_drawing::pane_impact&gt;::alloc_object(object*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>27</line>
@@ -98746,7 +98746,7 @@
     <frame>
       <ip>0xD494C4D</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>60</line>
@@ -98754,7 +98754,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -98852,7 +98852,7 @@
     <frame>
       <ip>0xD494C4D</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>60</line>
@@ -98860,7 +98860,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -98958,7 +98958,7 @@
     <frame>
       <ip>0xD494C4D</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>60</line>
@@ -98966,7 +98966,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99064,7 +99064,7 @@
     <frame>
       <ip>0xD494CDE</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>61</line>
@@ -99072,7 +99072,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99170,7 +99170,7 @@
     <frame>
       <ip>0xD494CDE</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>61</line>
@@ -99178,7 +99178,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99276,7 +99276,7 @@
     <frame>
       <ip>0xD494CDE</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>61</line>
@@ -99284,7 +99284,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99382,7 +99382,7 @@
     <frame>
       <ip>0xD494D69</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>62</line>
@@ -99390,7 +99390,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99488,7 +99488,7 @@
     <frame>
       <ip>0xD494D69</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>62</line>
@@ -99496,7 +99496,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99594,7 +99594,7 @@
     <frame>
       <ip>0xD494D69</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>62</line>
@@ -99602,7 +99602,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99700,7 +99700,7 @@
     <frame>
       <ip>0xD494DF4</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>63</line>
@@ -99708,7 +99708,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99806,7 +99806,7 @@
     <frame>
       <ip>0xD494DF4</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>63</line>
@@ -99814,7 +99814,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -99912,7 +99912,7 @@
     <frame>
       <ip>0xD494DF4</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>63</line>
@@ -99920,7 +99920,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100018,7 +100018,7 @@
     <frame>
       <ip>0xD494E7F</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>64</line>
@@ -100026,7 +100026,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100124,7 +100124,7 @@
     <frame>
       <ip>0xD494E7F</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>64</line>
@@ -100132,7 +100132,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100230,7 +100230,7 @@
     <frame>
       <ip>0xD494E7F</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>64</line>
@@ -100238,7 +100238,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100336,7 +100336,7 @@
     <frame>
       <ip>0xD494F0A</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>65</line>
@@ -100344,7 +100344,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100442,7 +100442,7 @@
     <frame>
       <ip>0xD494F0A</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>65</line>
@@ -100450,7 +100450,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100548,7 +100548,7 @@
     <frame>
       <ip>0xD494F0A</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>65</line>
@@ -100556,7 +100556,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100654,7 +100654,7 @@
     <frame>
       <ip>0xD494F93</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>66</line>
@@ -100662,7 +100662,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100760,7 +100760,7 @@
     <frame>
       <ip>0xD494F93</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>66</line>
@@ -100768,7 +100768,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100866,7 +100866,7 @@
     <frame>
       <ip>0xD494F93</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>66</line>
@@ -100874,7 +100874,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -100972,7 +100972,7 @@
     <frame>
       <ip>0xD49501C</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>67</line>
@@ -100980,7 +100980,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -101078,7 +101078,7 @@
     <frame>
       <ip>0xD49501C</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>67</line>
@@ -101086,7 +101086,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -101184,7 +101184,7 @@
     <frame>
       <ip>0xD49501C</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>67</line>
@@ -101192,7 +101192,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -101635,7 +101635,7 @@
     <frame>
       <ip>0x12215297</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>userex::pane_tab_view::_001OnCreate(message::message*)</fn>
+      <fn>userex::pane_tab_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app/aura/user/userex</dir>
       <file>userex_pane_tab_view.cpp</file>
       <line>164</line>
@@ -101643,7 +101643,7 @@
     <frame>
       <ip>0x1221C805</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>message::receiver_route&lt;userex::pane_tab_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;userex::pane_tab_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app/aura/../aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -101659,7 +101659,7 @@
     <frame>
       <ip>0xD494BB6</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>simple_drawing::pane_view::_001OnCreate(message::message*)</fn>
+      <fn>simple_drawing::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing</dir>
       <file>simple_drawing_pane_view.cpp</file>
       <line>57</line>
@@ -101667,7 +101667,7 @@
     <frame>
       <ip>0xD49D09B</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_drawing.so</obj>
-      <fn>message::receiver_route&lt;simple_drawing::pane_view, message::message&gt;::on_message(message::message*)</fn>
+      <fn>message::receiver_route&lt;simple_drawing::pane_impact, message::message&gt;::on_message(message::message*)</fn>
       <dir>/xcore/app-simple/simple_drawing/../../app/aura/message</dir>
       <file>message_route.h</file>
       <line>64</line>
@@ -105751,7 +105751,7 @@
     <frame>
       <ip>0x12215721</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>userex::pane_tab_view::on_prepare_impact_data(user::impact_data*)</fn>
+      <fn>userex::pane_tab_impact::on_prepare_impact_data(user::impact_data*)</fn>
       <dir>/xcore/app/aura/user/userex</dir>
       <file>userex_pane_tab_view.cpp</file>
       <line>264</line>

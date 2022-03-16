@@ -162,7 +162,7 @@ namespace linux
 
       path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->localconfig() / "monitor-0/desk/2desk";
 
@@ -186,7 +186,7 @@ pacmedir->localconfig() / "monitor-0/desk/2desk";
 
       path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home();
 
@@ -273,13 +273,13 @@ pacmedir->home();
 
       //pathLaunch =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
 
       pathUserBin =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home() / "bin" / strName;
 

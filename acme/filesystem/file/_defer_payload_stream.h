@@ -38,6 +38,7 @@ inline void __exchange(::payload_stream& stream, ::string_array_base < Type, Raw
 }
 
 
+
 template < class ARRAY >
 inline void __exchange_array(::payload_stream& stream, ARRAY& array)
 {

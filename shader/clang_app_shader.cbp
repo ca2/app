@@ -129,8 +129,8 @@
 		</Unit>
 		<Unit filename="main_frame.cpp" />
 		<Unit filename="main_frame.h" />
-		<Unit filename="pane_view.cpp" />
-		<Unit filename="pane_view.h" />
+		<Unit filename="pane_impact.cpp" />
+		<Unit filename="pane_impact.h" />
 		<Unit filename="simple_shader.cpp" />
 		<Unit filename="simple_shader.h" />
 		<Unit filename="impact.cpp" />

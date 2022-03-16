@@ -945,7 +945,7 @@
     </ClCompile>
     <ClCompile Include="main_impact.cpp" />
     <ClCompile Include="main_frame.cpp" />
-    <ClCompile Include="pane_view.cpp" />
+    <ClCompile Include="pane_impact.cpp" />
     <ClCompile Include="impact.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
@@ -957,7 +957,7 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="main_frame.h" />
     <ClInclude Include="main_impact.h" />
-    <ClInclude Include="pane_view.h" />
+    <ClInclude Include="pane_impact.h" />
     <ClInclude Include="impact.h" />
     <ClInclude Include="_app_core_build.h" />
   </ItemGroup>

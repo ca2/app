@@ -109,7 +109,7 @@ int dir_mk(const char * psz)
 {
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(psz) != 0;
 }

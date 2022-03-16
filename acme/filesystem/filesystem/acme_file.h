@@ -9,7 +9,7 @@ public:
 
 
    ::OPERATING_SYSTEM_NAMESPACE::acme_file *    m_pplatformfile;
-   acme_dir *                                   m_pacmedir;
+   acme_directory *                                   m_pacmedirectory;
    acme_path *                                  m_pacmepath;
 
    ::file::path                                 m_pathExecutable;

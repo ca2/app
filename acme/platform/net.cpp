@@ -437,13 +437,13 @@ void openURL(const string &url_str)
 //
 //   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "config\\user.txt");
 ////
 ////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "config\\pass.txt");
 ////
@@ -1005,13 +1005,13 @@ void openURL(const string& url_str)
 //
 //   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-   /*      auto pacmedir = psystem->m_pacmedir;
+   /*      auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "config\\user.txt")*/;
 //
 //   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "config\\pass.txt");
 //

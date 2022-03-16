@@ -403,7 +403,7 @@ namespace user
 
       void plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, index iLine = -1);
       void plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iLine = -1);
-      //void _001OnCalcLayoutProc(::user::primitive * pview);
+      //void _001OnCalcLayoutProc(::user::primitive * pimpact);
 
       void FileSave();
       void plain_edit_on_file_update(::draw2d::graphics_pointer& pgraphics);

@@ -208,16 +208,16 @@ namespace browser
       try
       {
 
-         auto pview = m_pimpact;
+         auto pimpact = m_pimpact;
 
-         if(::is_null(pview))
+         if(::is_null(pimpact))
          {
 
             return 0.0;
 
          }
 
-         double dFps = pview->get_config_fps();
+         double dFps = pimpact->get_config_fps();
 
          return dFps / 4.0;
 

@@ -120,10 +120,310 @@ namespace user
    }
 
 
-   impact_data * impact_host::new_impact_data(const atom & atom, const ::atom & idTitle)
+
+   void impact_host::add_impact_kit2(::user::impact_kit * pimpactkit)
    {
 
-      auto pimpactdata  = __new(::user::impact_data(atom, idTitle));
+      // try to find exclusive id for the new impact kit
+
+      while (find_impact_kit(pimpactkit->m_atom))
+      {
+
+         pimpactkit->m_atom = pimpactkit->m_atom.i64() + 1;
+
+      }
+
+      m_impactkita.add(pimpactkit);
+
+   }
+
+
+   ::user::impact_kit * impact_host::find_impact_kit(const ::atom & atom)
+   {
+
+      for (auto & pimpactkit : m_impactkita)
+      {
+
+         if (pimpactkit->m_atom == atom)
+         {
+
+            return pimpactkit;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::user::impact_kit * impact_host::get_impact_kit(const ::atom & atom)
+   {
+
+      {
+
+         auto pimpactkit = find_impact_kit(atom);
+
+         if (::is_set(pimpactkit))
+         {
+
+            return pimpactkit;
+
+         }
+
+      }
+
+      {
+
+         auto pimpactkit = __create_new < ::user::impact_kit >();
+
+         add_impact_kit2(pimpactkit);
+
+         return pimpactkit;
+
+      }
+
+   }
+   
+
+   void impact_host::add_impact_kit_items()
+   {
+
+      for (auto & pimpactkit : m_impactkita)
+      {
+
+         for (auto & pitem : pimpactkit->m_itema)
+         {
+
+            if (m_impactkititema.add_unique(pitem))
+            {
+
+               if (pitem->m_strIcon.has_char())
+               {
+
+                  add_impact_with_icon(pitem->m_strName, pitem->m_strIcon, pitem->m_atom, pitem->m_bVisible, pitem->m_bPermanent);
+
+               }
+               else
+               {
+
+                  add_impact(pitem->m_strName, pitem->m_atom, pitem->m_bVisible, pitem->m_bPermanent);
+
+               }
+
+            }
+
+         }
+
+      }
+
+
+   }
+
+
+
+   bool impact_host::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   bool impact_host::add_impact_with_icon(const ::string & strName, const ::string & strImage, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   bool impact_host::set_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
+   {
+
+      return add_impact(strName, atomImpact, bVisible, true, pplaceholder);
+
+   }
+
+
+   bool impact_host::set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, ::user::place_holder * pplaceholder)
+   {
+
+      return add_impact_with_icon(strName, strIcon, atomImpact, bVisible, true, pplaceholder);
+
+   }
+
+
+
+   impact_data * impact_host::create_impact_by_id(const ::atom & atom)
+   {
+
+      impact_data * pimpactdata = allocate_impact_data(atom);
+
+      try
+      {
+
+         if (create_impact(pimpactdata))
+         {
+
+
+            on_after_host_impact(pimpactdata);
+
+         }
+
+      }
+      catch (const exception & exception)
+      {
+
+         if (exception.m_atom == atom)
+         {
+
+            //::acme::del(pimpactdata);
+            // todo
+            //erase_impact_data(pimpactdata);
+
+            return nullptr;
+
+         }
+
+         throw ::move(exception);
+
+
+      }
+      catch (...)
+      {
+
+         return nullptr;
+
+      }
+
+      if (!pimpactdata->m_bOk)
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpactdata;
+
+   }
+
+
+   bool impact_host::create_impact(::user::impact_data * pimpactdata)
+   {
+
+      if (::user::impact_creator::create_impact(pimpactdata))
+      {
+
+         return true;
+
+      }
+
+      for (auto & pimpactkit : m_impactkita)
+      {
+
+         for (auto & pitem : pimpactkit->m_itema)
+         {
+
+            if (pitem->m_pimpactcreator)
+            {
+
+               if (pitem->m_pimpactcreator->create_impact(pimpactdata))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      auto papp = get_app();
+
+      auto pimpactcreator = papp->cast< ::user::impact_creator>();
+
+      if (pimpactcreator->create_impact(pimpactdata))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+
+
+   //void impact_host::create_impact(impact_data * pimpactdata, impact_creator * pcreator)
+   //{
+
+   //   auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
+   //   if (puserinteractionpointeraChild && puserinteractionpointeraChild->interaction_count() > 0)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   bool bCreated = false;
+
+   //   if (pcreator == nullptr)
+   //   {
+
+   //      if (create_impact(pimpactdata))
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //   }
+   //   else
+   //   {
+
+   //      if (!_create_impact(pcreator, pimpactdata))
+   //      {
+
+   //         auto papp = get_app();
+
+   //         if (!_create_impact(papp->cast< ::user::impact_creator>(), pimpactdata))
+   //         {
+
+   //            if (!_create_impact(this, pimpactdata))
+   //            {
+
+   //               return;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //   }
+
+   //   on_after_host_impact(pimpactdata);
+
+   //}
+
+
+
+
+
+   impact_data * impact_host::new_impact_data(const atom & atom)
+   {
+
+      auto pimpactdata  = __new(::user::impact_data(atom));
 
       m_impactdatamap[atom] = pimpactdata;
 
@@ -132,10 +432,10 @@ namespace user
    }
 
 
-   impact_data * impact_host::allocate_impact_data(const atom & atom, const ::atom & idTitle)
+   impact_data * impact_host::allocate_impact_data(const atom & atom)
    {
 
-      impact_data * pimpactdata = new_impact_data(atom, idTitle);
+      impact_data * pimpactdata = new_impact_data(atom);
 
       try
       {
@@ -185,155 +485,61 @@ namespace user
    }
 
 
-   impact_data * impact_host::create_impact(const ::atom & atom, const ::string & strTitle,  impact_creator * pcreator)
-   {
 
-      impact_data * pimpactdata = allocate_impact_data(atom, strTitle);
+   //bool impact_host::_create_impact(impact_creator * pcreator, impact_data * pimpactdata)
+   //{
 
-      try
-      {
+   //   if(!::is_set(pcreator))
+   //   {
 
-         create_impact(pimpactdata);
+   //      return false;
 
-      }
-      catch (const exception& exception)
-      {
+   //   }
 
-         if (exception.m_atom == atom)
-         {
+   //   try
+   //   {
 
-            //::acme::del(pimpactdata);
-            // todo
-            //erase_impact_data(pimpactdata);
+   //      if(!pcreator->create_impact(pimpactdata))
+   //      {
 
-            return nullptr;
+   //         return false;
 
-         }
+   //      }
+   //   }
+   //   catch (const exception& exception)
+   //   {
+   //      if (exception.m_atom == pimpactdata->m_atom)
+   //      {
 
-         throw ::move(exception);
+   //         //::acme::del(pimpactdata);
 
+   //         return false;
 
-      }
-      catch (const ::exception & exception)
-      {
+   //      }
 
-         handle_exception(exception);
+   //      throw ::move(exception);
 
-         return nullptr;
+   //   }
+   //   catch (const ::exception & exception)
+   //   {
 
-      }
-      catch(...)
-      {
+   //      m_impactdatamap.erase_key(pimpactdata->m_atom);
 
-         return nullptr;
+   //      handle_exception(exception);
 
-      }
+   //      return false;
 
-      if (!pimpactdata->m_bOk)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         //::acme::del(pimpactdata);
-         // todo
-         //erase_impact_data(pimpactdata);
+   //      return false;
 
-         return nullptr;
+   //   }
 
-      }
+   //   return false;
 
-      return pimpactdata;
-
-   }
-
-
-   void impact_host::create_impact(impact_data * pimpactdata, impact_creator * pcreator)
-   {
-
-      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
-      if (puserinteractionpointeraChild && puserinteractionpointeraChild->interaction_count() > 0)
-      {
-
-         return;
-
-      }
-
-      if(!_create_impact(pcreator, pimpactdata))
-      {
-
-         auto papp = get_app();
-
-         if (!_create_impact(papp->cast< ::user::impact_creator>(), pimpactdata))
-         {
-
-            if (!_create_impact(this, pimpactdata))
-            {
-
-               return;
-
-            }
-
-         }
-
-      }
-
-      on_after_host_impact(pimpactdata);
-
-   }
-
-
-   bool impact_host::_create_impact(impact_creator * pcreator, impact_data * pimpactdata)
-   {
-
-      if(!::is_set(pcreator))
-      {
-
-         return false;
-
-      }
-
-      try
-      {
-
-         if(!pcreator->create_impact(pimpactdata))
-         {
-
-            return false;
-
-         }
-      }
-      catch (const exception& exception)
-      {
-         if (exception.m_atom == pimpactdata->m_atom)
-         {
-
-            //::acme::del(pimpactdata);
-
-            return false;
-
-         }
-
-         throw ::move(exception);
-
-      }
-      catch (const ::exception & exception)
-      {
-
-         m_impactdatamap.erase_key(pimpactdata->m_atom);
-
-         handle_exception(exception);
-
-         return false;
-
-      }
-      catch (...)
-      {
-
-         return false;
-
-      }
-
-      return false;
-
-   }
+   //}
 
 
 /*
@@ -371,13 +577,13 @@ namespace user
       if (!bCallOnCreateImpact)
       {
 
-         pimpactdata = allocate_impact_data(atom, "");
+         pimpactdata = allocate_impact_data(atom);
 
          return pimpactdata;
 
       }
 
-      pimpactdata = create_impact(atom, "");
+      pimpactdata = create_impact_by_id(atom);
 
       if (pimpactdata == nullptr)
       {
@@ -512,7 +718,8 @@ namespace user
 
    }
 
-   ::user::impact_data * impact_host::impact_host_get_impact_data(const atom& atom, const ::atom& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument)
+   
+   ::user::impact_data * impact_host::impact_host_get_impact_data(const atom& atom, ::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
       auto pimpactdata = m_impactdatamap[atom];
@@ -524,7 +731,7 @@ namespace user
 
       }
 
-      pimpactdata = allocate_impact_data(atom, idTitle);
+      pimpactdata = allocate_impact_data(atom);
 
       if (!pimpactdata)
       {
@@ -547,7 +754,7 @@ namespace user
    ::user::place_holder * impact_host::updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_atom, pinteraction->get_window_text(), pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_atom, pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {
@@ -561,7 +768,7 @@ namespace user
    }
 
 
-   impact_data * impact_host::host_impact(const atom & atom, const ::atom & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument)
+   impact_data * impact_host::host_impact(const atom & atom, ::user::interaction * pinteraction, ::user::document * pdocument)
    {
 
 
@@ -573,7 +780,7 @@ namespace user
       INFORMATION("");
 
 
-      auto pimpactdata = impact_host_get_impact_data(atom, idTitle, pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(atom, pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
 
 
@@ -182,7 +182,7 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -311,7 +311,7 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedirectory->config() / "weather_state.txt";
 
       auto pcontext = get_context();
 
@@ -453,7 +453,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->dir().matter_ls("sphere/theme", patha);
+      pcontext->m_papexcontext->dir().matter_enumerate("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -475,7 +475,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedir->config(), this, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedirectory->config(), this, false);
       
       on_change_theme();
 

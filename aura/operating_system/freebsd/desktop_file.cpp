@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_freebsd.h"
 #include "_user.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 namespace linux
@@ -163,7 +163,7 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       path = pacmedir->localconfig() / "desk/monitor-0/2desk";
 
@@ -259,7 +259,7 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pathUserBin = pacmedir->home() / "bin" / strName;
 

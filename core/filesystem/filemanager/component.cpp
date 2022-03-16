@@ -4,9 +4,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
+#include "_tree.h"
 #include "aura/user/shell.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();
@@ -215,6 +215,7 @@ namespace filemanager
       ::factory::add_factory_item <save_as_button>();
       ::factory::add_factory_item <fs::simple::impact >();
       ::factory::add_factory_item <fs::simple::list_view >();
+      ::factory::add_factory_item <fs::simple::tree >();
 
       //__compose_new(this, m_pmap);
 
@@ -414,7 +415,7 @@ namespace filemanager
                || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
-            m_pathFilemanagerProject = m_psystem->m_pacmedir->localconfig() / "user.component";
+            m_pathFilemanagerProject = m_psystem->m_pacmedirectory->localconfig() / "user.component";
 
          }
          else
@@ -675,16 +676,16 @@ namespace filemanager
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabview = pdocument->get_type_impact < tab_view >();
+      //tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
 
-      //if (ptabview != nullptr)
+      //if (ptabimpact != nullptr)
       //{
 
       //   string strManagerId;
 
       //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_app());
 
-      //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
+      //   ptabimpact->set_current_tab_by_id("verifile://" + pathFolder);
 
       //}
 
@@ -877,24 +878,24 @@ namespace filemanager
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabview = pdocument->get_type_impact < tab_view >();
+//      tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {
 
-//         if (ptabview != nullptr)
+//         if (ptabimpact != nullptr)
 //         {
 
-//            if (ptabview->get_tab_count() <= 0)
+//            if (ptabimpact->get_tab_count() <= 0)
 //            {
 
-//               ptabview->set_current_tab_by_id("verifile://" + pathFolder);
+//               ptabimpact->set_current_tab_by_id("verifile://" + pathFolder);
 
 //            }
 //            else
 //            {
 
-//               __pointer(::user::frame_window) pframe = ptabview->get_pane(0)->m_pholder->get_hold();
+//               __pointer(::user::frame_window) pframe = ptabimpact->get_pane(0)->m_pholder->get_hold();
 
 //               document * pdocument = pframe->get_active_document();
 
@@ -908,10 +909,10 @@ namespace filemanager
 //      else
 //      {
 
-//         if (ptabview->get_tab_count() <= 0)
+//         if (ptabimpact->get_tab_count() <= 0)
 //         {
 
-//            ptabview->set_current_tab_by_id("0");
+//            ptabimpact->set_current_tab_by_id("0");
 
 //         }
 

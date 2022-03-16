@@ -51,9 +51,9 @@ namespace browser
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_type_impact < impact >();
+      impact * pimpact = get_type_impact < impact >();
 
-      if(pview == nullptr)
+      if(pimpact == nullptr)
       {
 
          return true;
@@ -75,21 +75,21 @@ namespace browser
 
          {
 
-            synchronous_lock synchronouslock(pview->mutex());
+            synchronous_lock synchronouslock(pimpact->mutex());
 
-/*            pview->m_prender->m_pimageImage = pimage;
+/*            pimpact->m_prender->m_pimageImage = pimage;
 
-            pview->m_strImage = strPath;
+            pimpact->m_strImage = strPath;
 
-            pview->m_prender->m_bImageChanged = true;
+            pimpact->m_prender->m_bImageChanged = true;
 
          }
 
          {
 
-            synchronous_lock slText(&pview->m_mutexText);
+            synchronous_lock slText(&pimpact->m_mutexText);
 
-            pview->m_strHelloBrowser = "image:" + pview->m_strImage + "," + pview->m_strHelloBrowser;
+            pimpact->m_strHelloBrowser = "image:" + pimpact->m_strImage + "," + pimpact->m_strHelloBrowser;
 
          }
 
@@ -102,10 +102,10 @@ namespace browser
          get_type_impact < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
 
       }
-      else if(get_type_impact < ::userex::pane_tab_view >() != nullptr)
+      else if(get_type_impact < ::userex::pane_tab_impact >() != nullptr)
       {
 
-         get_type_impact < ::userex::pane_tab_view >()->set_current_tab_by_id(MAIN_IMPACT);
+         get_type_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(MAIN_IMPACT);
 
       }
 

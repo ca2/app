@@ -15,7 +15,7 @@
 
    ::file::path path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
@@ -349,7 +349,7 @@ bool launch_command(const ::string & const pszCommand)
    
    if (call_async("/bin/bash", strParams,          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home(), e_display_none, false) != 0)
    {

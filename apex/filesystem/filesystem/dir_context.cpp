@@ -2,7 +2,7 @@
 //#include "apex/platform/app_core.h"
 //#include "apex/compress/zip/_.h"
 #include "acme/id.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
@@ -389,7 +389,41 @@ inline bool myspace(char ch)
 }
 
 
-bool dir_context::ls(::file::listing & listing)
+//bool dir_context::enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag, enum_depth edepth)
+//{
+//
+//   listing.m_pathUser = path;
+//
+//   listing.m_eflag = eflag;
+//
+//   listing.m_edepth = edepth;
+//
+//   return enumerate(listing);
+//
+//}
+//
+//
+//bool dir_context::enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
+//{
+//
+//   listing.m_straPattern = straPattern;
+//
+//   return enumerate(listing, path, eflag, edepth);
+//
+//}
+
+
+//bool dir_context::enumerates(::file::listing & listing)
+//{
+//
+//
+//   return true;
+//
+//}
+
+
+
+bool dir_context::enumerate(::file::listing & listing)
 {
 
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -399,12 +433,9 @@ bool dir_context::ls(::file::listing & listing)
 
       ::str::begins_eat_ci(listing.m_pathFinal, "matter://");
 
-      if (matter_ls(listing.m_pathFinal, listing))
-      {
+      matter_enumerate(listing.m_pathFinal, listing);
 
-         return true;
-
-      }
+      return true;
 
    }
 
@@ -458,7 +489,7 @@ bool dir_context::ls(::file::listing & listing)
 
                compress_not_dir notdir;
 
-               pfolder->perform_file_listing(listing);
+               pfolder->enumerate(listing);
 
                return true;
 
@@ -483,257 +514,259 @@ bool dir_context::ls(::file::listing & listing)
 }
 
 
-bool dir_context::ls_relative_name(::file::listing & listing)
-{
-
-   if (listing.m_bRecursive)
-   {
-
-      return false;
-
-   }
-
-   if (::str::begins_ci(listing.m_pathUser, "http://") || ::str::begins_ci(listing.m_pathUser, "https://"))
-   {
-
-      property_set set;
-
-      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathUser, set);
-
-      listing.add_tokens(str, "\n", false);
-
-      return true;
-
-   }
-   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
-   {
-
-      auto & pfactory = m_psystem->folder_factory();
-
-      if (!pfactory)
-      {
-
-         throw ::exception(error_no_factory);
-
-      }
-      else
-      {
-
-         auto pfolder = pfactory->create < ::folder >();
-
-         if (!pfolder)
-         {
-
-            throw ::exception(error_no_factory);
-
-         }
-         else
-         {
-
-            file_pointer pfile;
-
-            {
-
-               compress_not_dir notdir;
-
-               pfolder->perform_file_relative_name_listing(listing);
-
-               return true;
-
-               //   pfile = 
-
-               //pfilecontainer->open_for_reading()
-
-               //zip_context zip(this);
-
-               //zip.ls(listing);
-
-            }
-
-         }
-
-      }
-
-
-   }
-
-   return false;
-
-}
-
-
-bool dir_context::rls(::file::listing& listing)
-{
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = true;
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::rls_relative_name(::file::listing& listing)
-{
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = true;
-
-   return ls_relative_name(listing);
-
-}
-
-
-bool dir_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
-{
-
-   listing.m_pathUser = path;
-
-   listing.m_bRecursive = false;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = true;
-
-   listing.m_straPattern = straPattern;
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
-{
-
-   listing.m_pathUser = path;
-
-   listing.m_bRecursive = false;
-
-   listing.m_bDir = false;
-
-   listing.m_bFile = true;
-
-   listing.m_straPattern = straPattern;
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
-{
-
-   listing.m_pathUser = path;
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = true;
-
-   listing.m_straPattern = straPattern;
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
-{
-
-   listing.m_pathUser = path;
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = false;
-
-   listing.m_bFile = true;
-
-   listing.m_straPattern = straPattern;
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::ls_file(::file::listing& listing)
-{
-
-   listing.m_bRecursive = false;
-
-   listing.m_bDir = false;
-
-   listing.m_bFile = true;
-
-   //listing.m_straPattern.erase_all();
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::ls_dir(::file::listing& listing)
-{
-
-   listing.m_bRecursive = false;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = false;
-
-   listing.m_straPattern.erase_all();
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::rls_file(::file::listing& listing)
-{
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = false;
-
-   listing.m_bFile = true;
-
-   listing.m_straPattern.erase_all();
-
-   return ls(listing);
-
-}
-
-
-bool dir_context::rls_dir(::file::listing& listing)
-{
-
-   listing.m_bRecursive = true;
-
-   listing.m_bDir = true;
-
-   listing.m_bFile = false;
-
-   listing.m_straPattern.erase_all();
-
-   return ls(listing);
-
-}
+//bool dir_context::ls_relative_name(::file::listing & listing)
+//{
+//
+//   if (listing.m_bRecursive)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (::str::begins_ci(listing.m_pathUser, "http://") || ::str::begins_ci(listing.m_pathUser, "https://"))
+//   {
+//
+//      property_set set;
+//
+//      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathUser, set);
+//
+//      listing.add_tokens(str, "\n", false);
+//
+//      return true;
+//
+//   }
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   {
+//
+//      auto & pfactory = m_psystem->folder_factory();
+//
+//      if (!pfactory)
+//      {
+//
+//         throw ::exception(error_no_factory);
+//
+//      }
+//      else
+//      {
+//
+//         auto pfolder = pfactory->create < ::folder >();
+//
+//         if (!pfolder)
+//         {
+//
+//            throw ::exception(error_no_factory);
+//
+//         }
+//         else
+//         {
+//
+//            file_pointer pfile;
+//
+//            {
+//
+//               compress_not_dir notdir;
+//
+//               pfolder->perform_file_relative_name_listing(listing);
+//
+//               return true;
+//
+//               //   pfile = 
+//
+//               //pfilecontainer->open_for_reading()
+//
+//               //zip_context zip(this);
+//
+//               //zip.ls(listing);
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//
+//   }
+//
+//   return false;
+//
+//}
+
+
+//bool dir_context::rls(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = true;
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::rls_relative_name(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = true;
+//
+//   return ls_relative_name(listing);
+//
+//}
+//
+//
+//bool dir_context::ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//{
+//
+//   listing.m_pathUser = path;
+//
+//   listing.m_bRecursive = false;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = true;
+//
+//   listing.m_straPattern = straPattern;
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//{
+//
+//   listing.m_pathUser = path;
+//
+//   listing.m_bRecursive = false;
+//
+//   listing.m_bDir = false;
+//
+//   listing.m_bFile = true;
+//
+//   listing.m_straPattern = straPattern;
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//{
+//
+//   listing.m_pathUser = path;
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = true;
+//
+//   listing.m_straPattern = straPattern;
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+//{
+//
+//   listing.m_pathUser = path;
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = false;
+//
+//   listing.m_bFile = true;
+//
+//   listing.m_straPattern = straPattern;
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::ls_file(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = false;
+//
+//   listing.m_bDir = false;
+//
+//   listing.m_bFile = true;
+//
+//   //listing.m_straPattern.erase_all();
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::ls_dir(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = false;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = false;
+//
+//   listing.m_straPattern.erase_all();
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::rls_file(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = false;
+//
+//   listing.m_bFile = true;
+//
+//   listing.m_straPattern.erase_all();
+//
+//   return ls(listing);
+//
+//}
+//
+//
+//bool dir_context::rls_dir(::file::listing& listing)
+//{
+//
+//   listing.m_bRecursive = true;
+//
+//   listing.m_bDir = true;
+//
+//   listing.m_bFile = false;
+//
+//   listing.m_straPattern.erase_all();
+//
+//   return ls(listing);
+//
+//}
 
 
 bool dir_context::has_subdir(const ::file::path & pathFolder)
 {
 
-   ::file::listing ls;
+   ::file::listing listing;
 
-   m_pcontext->m_papexcontext->dir().ls_dir(ls, pathFolder);
+   listing.initialize_file_listing(pathFolder, ::file::e_flag_folder);
 
-   return ls.get_count() > 0;
+   //enumerate(listing, pathFolder, ::file::e_flag_folder);
+
+   return listing.has_element();
 
 }
 
@@ -1640,7 +1673,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 void dir_context::create(const ::file::path & path)
 {
 
-   m_psystem->m_pacmedir->create(path);
+   m_psystem->m_pacmedirectory->create(path);
 
 }
 
@@ -1651,23 +1684,25 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
    if (bRecursive)
    {
 
-      ::file::listing patha;
+      ::file::listing listing;
 
-      ls(patha, path);
+      listing.initialize_file_listing(path);
 
-      for (auto& pathItem : patha)
+      enumerate(listing);
+
+      for (auto& path : listing)
       {
 
-         if (is(pathItem))
+         if (is(path))
          {
 
-            erase(pathItem, true);
+            erase(path, true);
 
          }
          else
          {
 
-            m_psystem->m_pacmefile->erase(pathItem);
+            m_psystem->m_pacmefile->erase(path);
 
          }
 
@@ -1675,10 +1710,28 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 
    }
 
-   m_psystem->m_pacmedir->erase(path);
+   m_psystem->m_pacmedirectory->erase(path);
 
 }
 
+
+void dir_context::get_matter_locator(string_array & straMatterLocator, bool bIncludeMain)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   straMatterLocator.erase_all();
+
+   straMatterLocator.add(m_pcontext->m_papexcontext->m_straMatterLocatorPriority);
+
+   if (bIncludeMain)
+   {
+
+      straMatterLocator.add(m_pcontext->m_papexcontext->matter_locator("app/main"));
+
+   }
+
+}
 
 
 ::file::path dir_context::locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
@@ -1701,7 +1754,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 }
 
 
-bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
+bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & listing, ::file::e_flag eflag, enum_depth edepth)
 {
 
    auto psystem = get_system()->m_papexsystem;
@@ -1783,7 +1836,7 @@ bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
       }
 
-      string_array straLs;
+      string_array straLocaleSchema;
 
       string_array straSep;
 
@@ -1791,21 +1844,18 @@ bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
       straSep.add("\n");
       straSep.add("\r\n");
 
-      straLs.add_smallest_tokens(strLs, straSep, false);
+      fix_file_listing_flag(listing.m_eflag);
 
-      for (index i = 0; i < straLs.get_count(); i++)
+      straLocaleSchema.add_smallest_tokens(strLs, straSep, false);
+
+      for (index i = 0; i < straLocaleSchema.get_count(); i++)
       {
 
-         ::file::path strPath = strDir / straLs[i];
+         ::file::path path = strDir / straLocaleSchema[i];
 
-         if (::str::ends(straLs[i], "/"))
-         {
+         path.m_iDir = straLocaleSchema[i].ends("/") ? 1 : 0;
 
-            strPath.m_iDir = 1;
-
-         }
-
-         stra.add(strPath);
+         listing.defer_add(path);
 
       }
 
@@ -1815,26 +1865,29 @@ bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
       auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
 
-   string strPrefix(strDir);
-   strPrefix.begins_eat_ci("zipresource:");
-   strPrefix.trim("\\/");
+      string strPrefix(strDir);
 
-   stra.m_pathFinal = strPrefix;
-   stra.m_pathUser = strPrefix;
+      strPrefix.begins_eat_ci("zipresource:");
 
-   pfolder->perform_file_listing(stra);
+      strPrefix.trim("\\/");
 
-   for (auto& path : stra)
-   {
-      path = "zipresource://" + path;
-   }
+      listing.m_pathFinal = strPrefix;
+
+      listing.m_pathUser = strPrefix;
+
+      pfolder->enumerate(listing);
+
+      listing.patch_base_path("zipresource://");
+
    }
    else
    {
 
       strDir = m_pcontext->m_papexcontext->get_matter_cache_path(strDir);
 
-      m_pcontext->m_papexcontext->dir().ls(stra, strDir);
+      listing.initialize_file_listing(strDir);
+
+      m_pcontext->m_papexcontext->dir().enumerate(listing);
 
    }
 
@@ -1843,76 +1896,76 @@ bool dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 }
 
 
-bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
-{
-
-   ::file::path strDir = matter(str, true);
-
-   auto psystem = get_system()->m_papexsystem;
-
-   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
-   {
-
-      property_set set;
-
-      set["raw_http"] = true;
-
-      string strFile = m_pcontext->m_papexcontext->dir().cache() / strDir / "list_dir.list_dir";
-
-      strsize iFind = strFile.find(DIR_SEPARATOR);
-
-      if (iFind > 0)
-      {
-
-         strFile.replace_with("_", ":", iFind + 1);
-
-      }
-
-      strFile.replace_with("//", "////");
-      strFile.replace_with("\\", "\\\\", 1);
-
-      string strLs;
-
-      if (m_pcontext->m_papexcontext->file().exists(strFile))
-      {
-
-         strLs = m_pcontext->m_papexcontext->file().as_string(strFile);
-
-      }
-
-
-      ::file::path_array straLs;
-
-      string_array straSep;
-
-      straSep.add("\r");
-      straSep.add("\n");
-      straSep.add("\r\n");
-
-      straLs.add_smallest_tokens(strLs, straSep, false);
-
-      for (index i = 0; i < straLs.get_count(); i++)
-      {
-
-         if (!::str::ends(straLs[i], "/"))
-         {
-            ::file::path strPath = strDir / straLs[i];
-            stra.add(strPath);
-         }
-
-      }
-
-   }
-   else
-   {
-
-      m_pcontext->m_papexcontext->dir().ls(stra, strDir);
-
-   }
-
-   return true;
-
-}
+//bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & stra)
+//{
+//
+//   ::file::path strDir = matter(str, true);
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
+//   {
+//
+//      property_set set;
+//
+//      set["raw_http"] = true;
+//
+//      string strFile = m_pcontext->m_papexcontext->dir().cache() / strDir / "list_dir.list_dir";
+//
+//      strsize iFind = strFile.find(DIR_SEPARATOR);
+//
+//      if (iFind > 0)
+//      {
+//
+//         strFile.replace_with("_", ":", iFind + 1);
+//
+//      }
+//
+//      strFile.replace_with("//", "////");
+//      strFile.replace_with("\\", "\\\\", 1);
+//
+//      string strLs;
+//
+//      if (m_pcontext->m_papexcontext->file().exists(strFile))
+//      {
+//
+//         strLs = m_pcontext->m_papexcontext->file().as_string(strFile);
+//
+//      }
+//
+//
+//      ::file::path_array straLocaleSchema;
+//
+//      string_array straSep;
+//
+//      straSep.add("\r");
+//      straSep.add("\n");
+//      straSep.add("\r\n");
+//
+//      straLocaleSchema.add_smallest_tokens(strLs, straSep, false);
+//
+//      for (index i = 0; i < straLocaleSchema.get_count(); i++)
+//      {
+//
+//         if (!::str::ends(straLocaleSchema[i], "/"))
+//         {
+//            ::file::path strPath = strDir / straLocaleSchema[i];
+//            stra.add(strPath);
+//         }
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      m_pcontext->m_papexcontext->dir().ls(stra, strDir);
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 ::file::path dir_context::matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir)
@@ -2019,9 +2072,9 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    string strSchema;
 
-   string_array straLs;
+   string_array straLocaleSchema;
 
-   m_pcontext->m_papexcontext->locale_schema_matter(straLs, straMatterLocator, strLocale, strSchema);
+   m_pcontext->m_papexcontext->locale_schema_matter(straLocaleSchema, straMatterLocator, strLocale, strSchema);
 
    auto psession = get_session();
 
@@ -2034,7 +2087,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       string strMatter;
 
-      for (auto & strLs : straLs)
+      for (auto & strLs : straLocaleSchema)
       {
 
          for (auto & pathItem : patha)
@@ -2042,7 +2095,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             strMatter = strLs / pathItem;
 
-            path = m_psystem->m_pacmedir->ca2roaming() / "_matter" / strMatter;
+            path = m_psystem->m_pacmedirectory->ca2roaming() / "_matter" / strMatter;
 
             //                  if (::m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
             //                  {
@@ -2133,7 +2186,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
          if (bDir)
          {
 
-            m_psystem->m_pacmedir->create(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            m_psystem->m_pacmedirectory->create(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
 
          }
 
@@ -2145,30 +2198,30 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
    else if(psystem->m_pdirsystem->m_bMatterFromResource)
    {
 
-   string strMatter;
+      string strMatter;
 
-   for (auto& strLs : straLs)
-   {
-
-      for (auto& pathItem : patha)
+      for (auto& strLs : straLocaleSchema)
       {
 
-         strMatter = strLs / pathItem;
-
-         strMatter.replace_with("/", "\\");
-
-         if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
+         for (auto& pathItem : patha)
          {
 
-            path = "zipresource://" + strMatter;
+            strMatter = strLs / pathItem;
 
-            goto ret;
+            strMatter.replace_with("/", "\\");
+
+            if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
+            {
+
+               path = "zipresource://" + strMatter;
+
+               goto ret;
+
+            }
 
          }
 
       }
-
-   }
 
    }
    else
@@ -2178,7 +2231,7 @@ bool dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    string strMatter;
 
-   for (auto& strLs : straLs)
+   for (auto& strLs : straLocaleSchema)
    {
 
       for (auto& pathItem : patha)
@@ -2257,7 +2310,9 @@ ret:
 
    ::file::path_array patha;
 
-   ::str::begins_eat_ci((string &) path, "matter://");
+   path.begins_eat_ci("matter://");
+   
+   path.begins_eat_ci("appmatter://");
 
    patha.add(path);
 
@@ -2288,13 +2343,19 @@ ret:
 
    string_array straMatterLocator;
 
-   {
+   get_matter_locator(straMatterLocator, true);
 
-      synchronous_lock synchronouslock(mutex());
+   return matter_from_locator(path, straMatterLocator, bDir);
 
-      straMatterLocator = m_pcontext->m_papexcontext->m_straMatterLocator;
+}
 
-   }
+
+::file::path dir_context::appmatter(::file::path path, bool bDir)
+{
+
+   string_array straMatterLocator;
+
+   get_matter_locator(straMatterLocator, false);
 
    return matter_from_locator(path, straMatterLocator, bDir);
 
@@ -2358,14 +2419,12 @@ ret:
 
    auto psystem = get_system()->m_papexsystem;
 
-   ::file::path point = psystem->local_get_matter_cache_path(
+   ::file::path path = psystem->local_get_matter_cache_path(
       ::file::path(strRepo) / "_matter" / strApp / "_std" / "_std" / pathRel);
 
-   return point;
+   return path;
 
 }
-
-
 
 
 ::file::path dir_context::commonappdata(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
@@ -2464,7 +2523,7 @@ ret:
 
       string strAppFolder = _002Underscore(strAppId);
 
-      return m_psystem->m_pacmedir->home() / "application" / strAppFolder;
+      return m_psystem->m_pacmedirectory->home() / "application" / strAppFolder;
 
    }
 
@@ -2473,7 +2532,7 @@ ret:
 ::file::path dir_context::cache()
 {
 
-   return m_psystem->m_pacmedir->ca2roaming() / "cache";
+   return m_psystem->m_pacmedirectory->ca2roaming() / "cache";
 
 }
 
@@ -2704,7 +2763,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::bookmark()
 {
 
-   return m_psystem->m_pacmedir->bookmark();
+   return m_psystem->m_pacmedirectory->bookmark();
 
 }
 
@@ -2712,7 +2771,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //::file::path dir_context::home()
 //{
 
-//   return m_psystem->m_pacmedir->home();
+//   return m_psystem->m_pacmedirectory->home();
 
 //}
 
@@ -2911,7 +2970,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    auto psystem = get_system()->m_papexsystem;
 
-   return m_psystem->m_pacmedir->roaming() / psystem->m_strStandalone;
+   return m_psystem->m_pacmedirectory->roaming() / psystem->m_strStandalone;
 
 }
 
@@ -3072,7 +3131,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
 {
 
-   return m_psystem->m_pacmedir->pathfind(pszEnv, pszTopic, pszMode);
+   return m_psystem->m_pacmedirectory->pathfind(pszEnv, pszTopic, pszMode);
 
 }
 

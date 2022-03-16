@@ -73,9 +73,13 @@ namespace fs
    ::file::listing & remote_native::root_ones(::file::listing & listing)
    {
 
-      ::file::path & path = listing[listing.add("fs://")];
+      ::file::path path;
 
       path.m_iDir = 1;
+
+      path = "fs://";
+
+      listing.defer_add(path);
 
       listing.m_straTitle.add("Remote File psystem");
 
@@ -84,8 +88,7 @@ namespace fs
    }
 
 
-
-   ::file::listing & remote_native::ls(::file::listing & listing)
+   bool remote_native::enumerate(::file::listing & listing)
    {
 
       try
@@ -218,9 +221,11 @@ namespace fs
          if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
-            ::file::listing l;
+            ::file::listing listing;
 
-            m_pcontext->m_papexcontext->dir().ls(l, path);
+            listing.initialize_file_listing(path);
+
+            m_pcontext->m_papexcontext->dir().enumerate(listing);
             
          }
          else
@@ -238,9 +243,12 @@ namespace fs
          if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
-            ::file::listing l;
+            ::file::listing listing;
 
-            m_pcontext->m_papexcontext->dir().ls(l, path);
+            listing.initialize_file_listing(path);
+
+            m_pcontext->m_papexcontext->dir().enumerate(listing);
+
          }
          else
          {

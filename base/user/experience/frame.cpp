@@ -15,7 +15,11 @@ namespace experience
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
-      m_rectangleCaptionTextPadding.set(4);
+      m_rectangleCaptionTextPadding.left = 4;
+      m_rectangleCaptionTextPadding.right = 4;
+      m_rectangleCaptionTextPadding.top = 0;
+      m_rectangleCaptionTextPadding.bottom = 0;
+
 
       m_rectangleMarginFullScreen.set(0, 0, 0, 0);
       m_rectangleMarginZoomed.set(0, 0, 0, 0);
@@ -708,21 +712,6 @@ namespace experience
 
       i32 iCaptionTextHeight = calc_caption_height(pgraphics);
 
-      pgraphics->set_font(pframewindow, ::e_element_window_title);
-
-      if (pgraphics->m_pfont)
-      {
-
-         m_iTitleBottom = (::i32) (m_pcontrolbox->m_iDefaultButtonMargin + pgraphics->m_pfont->get_height(pgraphics));
-
-      }
-      else
-      {
-
-         m_iTitleBottom = iCaptionTextHeight;
-
-      }
-
 
       i32 iCaptionHeight = iCaptionTextHeight;
 
@@ -730,6 +719,8 @@ namespace experience
       m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
       m_rectangleCaption.right = rectangleClient.right - rectangleMargin.right;
       m_rectangleCaption.bottom = m_rectangleCaption.top + iCaptionHeight;
+
+      m_iTitleBottom = m_rectangleCaption.bottom;
 
       rectangleClient.deflate(rectangleMargin);
 

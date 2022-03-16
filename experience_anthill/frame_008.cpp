@@ -30,6 +30,12 @@ namespace experience
 
                m_bHollow = false;
 
+               m_rectangleCaptionTextPadding.left = 4;
+               m_rectangleCaptionTextPadding.right = 4;
+               m_rectangleCaptionTextPadding.top = 0;
+               m_rectangleCaptionTextPadding.bottom = 0;
+
+
                // set_style(StyleTranslucidWarmLiteGray);
 
                m_ppenHollow1.create(this);
@@ -37,6 +43,10 @@ namespace experience
                m_ppenHollow3.create(this);
                m_ppenHollow4.create(this);
                m_ppenHollow5.create(this);
+
+               m_rectangleMarginNormal.set(10, 10, 10, 10);
+
+
 
             }
 
@@ -647,8 +657,6 @@ SizingNone:
 
                on_style_change_001_and_002(pgraphics);
 
-               m_rectangleMarginNormal.set(10, 10, 10, 10);
-
                auto colorMoveableBorder = m_colorMoveableBorder;
 
                m_colorActiveCaptionTextBk = colorMoveableBorder;
@@ -668,11 +676,21 @@ SizingNone:
                   //m_ppenHollow3->create_solid(1.0, argb(100, 40, 40, 40));
                   //m_ppenHollow4->create_solid(1.0, argb(140, 60, 60, 60));
                   //m_ppenHollow5->create_solid(1.0, argb(255, 90, 220, 100));
-                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
+                  m_colorCaptionTextBk = argb(255, 135, 32, 32);
                   m_colorActiveCaptionTextBk = argb(255, 165, 32, 32);
 //                  create_color(::user::color_button_background, argb(255, 165, 32, 32));
 //                  create_color(::user::color_button_background_hover, argb(255, 195, 64, 64));
 //                  create_color(::user::color_button_background_press, argb(255, 208, 72, 72));
+
+                  if (m_pcontrolbox)
+                  {
+
+
+                     m_pcontrolbox->m_ppenButtonBack->create_solid(2, argb(255, 255, 180, 170));
+                     m_pcontrolbox->m_ppenButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
+
+
+                  }
 
                }
                else if (estyle == ::user::StyleLightGreen)
@@ -699,9 +717,9 @@ SizingNone:
                if (m_pcontrolbox.is_set())
                {
 
-                  m_pcontrolbox->m_pbrushButtonBackSel = m_pcontrolbox->m_pbrushButtonBack;
-                  m_pcontrolbox->m_ppenButtonBackSel = m_pcontrolbox->m_ppenButtonBack;
-                  m_pcontrolbox->m_colorButtonForeSel = m_pcontrolbox->m_colorButtonFore;
+                  //m_pcontrolbox->m_pbrushButtonBackSel = m_pcontrolbox->m_pbrushButtonBack;
+                  //m_pcontrolbox->m_ppenButtonBackSel = m_pcontrolbox->m_ppenButtonBack;
+                  //m_pcontrolbox->m_colorButtonForeSel = m_pcontrolbox->m_colorButtonFore;
 
                }
 

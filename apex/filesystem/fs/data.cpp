@@ -111,24 +111,24 @@ namespace fs
    //}
 
 
-   ::file::listing & data::ls(::file::listing & listing)
+   bool data::enumerate(::file::listing & listing)
    {
 
       __UNREFERENCED_PARAMETER(listing);
 
-      return listing;
+      return true;
 
    }
 
 
-   ::file::listing & data::ls_relative_name(::file::listing & listing)
-   {
+   //::file::listing & data::ls_relative_name(::file::listing & listing)
+   //{
 
-      __UNREFERENCED_PARAMETER(listing);
+   //   __UNREFERENCED_PARAMETER(listing);
 
-      return listing;
+   //   return listing;
 
-   }
+   //}
 
 
    int data::is_dir(const ::file::path & pszPath)
@@ -210,7 +210,9 @@ namespace fs
 
       ::file::listing listing;
 
-      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
+      listing.initialize_file_listing(path.folder());
+
+      enumerate(listing);
 
       return listing.contains_ci(path.name());
 
@@ -222,12 +224,18 @@ namespace fs
 
       ::file::listing listing;
 
-      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
+      listing.initialize_file_listing(path.folder());
+
+      enumerate(listing);
 
       index iFind = listing.find_first_ci(path.name());
 
       if (iFind < 0)
+      {
+
          return payload(::e_type_null);
+
+      }
 
       return listing[iFind].m_iSize;
 
@@ -265,20 +273,20 @@ namespace fs
    }
 
 
-   bool data::perform_file_listing(::file::listing & listing)
-   {
+   //bool data::_enumerateperform_file_listing(::file::listing & listing)
+   //{
 
-      return ls(listing);
+   //   return ls(listing);
 
-   }
+   //}
 
 
-   bool data::perform_file_relative_name_listing(::file::listing & listing)
-   {
+   //bool data::perform_file_relative_name_listing(::file::listing & listing)
+   //{
 
-      return ls_relative_name(listing);
+   //   return ls_relative_name(listing);
 
-   }
+   //}
 
 
 } // namespace fs

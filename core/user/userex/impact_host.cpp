@@ -17,6 +17,7 @@
 #endif
 
 #include "apex/message/simple_command.h"
+#include "base/user/user/tab_pane.h"
 
 
 namespace userex
@@ -185,7 +186,7 @@ namespace userex
    }
 
 
-   __pointer(::userex::pane_tab_view) impact_host::get_pane_tab_view()
+   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_view()
    {
 
       if (m_ptemplateTab == nullptr)
@@ -195,7 +196,7 @@ namespace userex
             "main",
             __type(::user::document),
             __type(simple_child_frame),
-            __type(::userex::pane_tab_view));
+            __type(::userex::pane_tab_impact));
 
       }
 
@@ -208,7 +209,7 @@ namespace userex
 
       }
 
-      return pdocTab->get_type_impact < ::userex::pane_tab_view >();
+      return pdocTab->get_type_impact < ::userex::pane_tab_impact >();
 
    }
 
@@ -231,11 +232,11 @@ namespace userex
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
 
-         auto ptabview = get_pane_tab_view();
+         auto ptabimpact = get_pane_tab_view();
 
          {
 
-            if (ptabview->is_hosting(pframewindow))
+            if (ptabimpact->is_hosting(pframewindow))
             {
 
                return;
@@ -264,9 +265,10 @@ namespace userex
             INFORMATION("");
             INFORMATION("");
 
-            //::user::impact_data* pimpactdata = ptabview->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
-            ptabview->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
+            //::user::impact_data* pimpactdata = ptabimpact->host_impact(atom, strTitle, pframewindow, pframewindow->get_active_document());
+            ptabimpact->host_impact(atom, pframewindow, pframewindow->get_active_document());
 
+            ptabimpact->get_tab_by_id(atom)->set_title(strTitle);
 
             INFORMATION("-------------------------------------------------------------------");
             INFORMATION("");
@@ -287,7 +289,7 @@ namespace userex
                INFORMATION("");
 
 
-               ptabview->set_current_tab_by_id(atom);
+               ptabimpact->set_current_tab_by_id(atom);
 
                pframewindow->set_need_layout();
 
@@ -317,7 +319,7 @@ namespace userex
             INFORMATION("");
             INFORMATION("");
 
-            ptabview->get_parent_frame()->display();
+            ptabimpact->get_parent_frame()->display();
 
             set_need_layout();
 
@@ -375,9 +377,9 @@ namespace userex
                if (pdocument.is_set())
                {
 
-                  __pointer(::userex::pane_tab_view) ptabview = pdocument->get_type_impact < ::userex::pane_tab_view >();
+                  __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
 
-                  pframewindowTab = ptabview->get_parent_frame();
+                  pframewindowTab = ptabimpact->get_parent_frame();
 
 
                }
@@ -404,16 +406,16 @@ namespace userex
                   if (pdocument.is_set())
                   {
 
-                     __pointer(::userex::pane_tab_view) ptabview = pdocument->get_type_impact < ::userex::pane_tab_view >();
+                     __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
 
-                     ptabview->erase_tab_by_id(pframewindow->m_atom);
+                     ptabimpact->erase_tab_by_id(pframewindow->m_atom);
 
-                     if (ptabview.is_set() && ptabview->get_tab_count() <= 0)
+                     if (ptabimpact.is_set() && ptabimpact->get_tab_count() <= 0)
                      {
 
-                        ptabview->get_parent_frame()->hide();
+                        ptabimpact->get_parent_frame()->hide();
 
-                        ptabview->get_parent_frame()->set_need_redraw();
+                        ptabimpact->get_parent_frame()->set_need_redraw();
 
                      }
 
@@ -451,14 +453,14 @@ namespace userex
          if (pdocument != nullptr)
          {
 
-            __pointer(::userex::pane_tab_view) ptabview = pdocument->get_type_impact < ::userex::pane_tab_view >();
+            __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
 
-            if (ptabview != nullptr)
+            if (ptabimpact != nullptr)
             {
 
-               auto pframewindowTab = ptabview->GetTypedParent < simple_frame_window >();
+               auto pframewindowTab = ptabimpact->GetTypedParent < simple_frame_window >();
 
-               bool bShow = ptabview->get_tab_count() >= 1;
+               bool bShow = ptabimpact->get_tab_count() >= 1;
 
                if(!bShow)
                {
@@ -556,16 +558,16 @@ namespace userex
 
       }
 
-      __pointer(::userex::font_view) pview = _001GetImpact(idImpact);
+      __pointer(::userex::font_view) pimpact = _001GetImpact(idImpact);
 
-      if(pview.is_null())
+      if(pimpact.is_null())
       {
 
          return false;
 
       }
 
-      m_mapframe[idImpact] = dynamic_cast < simple_frame_window * > (pview->get_parent_frame());
+      m_mapframe[idImpact] = dynamic_cast < simple_frame_window * > (pimpact->get_parent_frame());
 
       m_mapframe[idImpact]->display(e_display_none);
 
@@ -579,7 +581,7 @@ namespace userex
    __pointer(::user::impact) impact_host::_001DetachImpact(::atom idImpact)
    {
 
-      __pointer(::user::impact) pview = _001GetImpact(idImpact);
+      __pointer(::user::impact) pimpact = _001GetImpact(idImpact);
 
       if (m_mapframe[idImpact] == nullptr)
       {
@@ -592,7 +594,7 @@ namespace userex
 
       m_mapframe[idImpact] = nullptr;
 
-      return pview;
+      return pimpact;
 
    }
 

@@ -32,35 +32,64 @@ namespace user
       };
 
 
-      impact_data_map      m_impactdatamap;
+      impact_data_map                              m_impactdatamap;
+
+      __pointer_array(::user::impact_kit)          m_impactkita;
+      __pointer_array(::user::impact_kit::item)    m_impactkititema;
 
 
       impact_host();
-      virtual ~impact_host();
+      ~impact_host() override;
 
 
       void install_message_routing(::channel * pchannel) override;
 
 
+
+
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      //virtual class impact_data * new_impact_data(impact_creator * pimpactcreator, atom atom);
+
+      virtual void add_impact_kit2(::user::impact_kit * pimpactkit);
+
+      //virtual void _add_impact_kit(::user::impact_kit * pimpactkit);
+
+      ::user::impact_kit * find_impact_kit(const ::atom & atom = nullptr);
+
+      ::user::impact_kit * get_impact_kit(const ::atom & atom = nullptr);
+
+
+      virtual void add_impact_kit_items();
+
+
+      virtual bool add_impact(const ::string & strName, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+
+      virtual bool set_impact(const ::string & strName, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
+      virtual bool set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
+
+      
+      bool create_impact(::user::impact_data * pimpactdata) override;
+
+
+      impact_data * create_impact_by_id(const ::atom & atom);
+
 
       virtual bool on_prepare_impact_data(::user::impact_data * pimpactdata);
       virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata);
       virtual void on_change_cur_sel();
 
 
-      virtual ::user::impact_data * new_impact_data(const atom & idconst, const ::atom & idTitle = "");
-      virtual ::user::impact_data * allocate_impact_data(const atom & atom, const ::atom & idTitle = "");
+      virtual ::user::impact_data * new_impact_data(const atom & atom);
+      virtual ::user::impact_data * allocate_impact_data(const atom & atom);
 
 
-      virtual ::user::impact_data * host_impact(const atom& atom, const ::atom & idTitle, ::user::interaction * pinteraction, ::user::document * pdocument);
+      virtual ::user::impact_data * host_impact(const atom& atom, ::user::interaction * pinteraction, ::user::document * pdocument);
 
       virtual ::user::place_holder* updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
 
-      virtual ::user::impact_data * impact_host_get_impact_data(const atom& atom, const ::atom& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument);
+      virtual ::user::impact_data * impact_host_get_impact_data(const atom& atom, ::user::interaction* pinteraction, ::user::document* pdocument);
 
 
       virtual void on_erase_child(::user::interaction* pinteraction) override;
@@ -90,9 +119,9 @@ namespace user
       }
 
 
-      virtual ::user::impact_data * create_impact(const atom  & atom, const string& strTitle = "", impact_creator * pcreator = nullptr);
-      virtual void create_impact(::user::impact_data * pimpactdata, impact_creator * pcreator = nullptr);
-      virtual bool _create_impact(impact_creator * pcreator, ::user::impact_data * pimpactdata);
+      //virtual ::user::impact_data * create_impact(const atom  & atom, const string& strTitle = "", impact_creator * pcreator = nullptr);
+      //virtual void create_impact(::user::impact_data * pimpactdata, impact_creator * pcreator = nullptr);
+      //virtual bool _create_impact(impact_creator * pcreator, ::user::impact_data * pimpactdata);
 
 
       virtual void on_after_host_impact(::user::impact_data * pimpactdata);

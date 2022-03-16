@@ -14,9 +14,10 @@ namespace user
       m_flagNonClient.erase(non_client_background);
       m_flagNonClient.erase(non_client_focus_rect);
 
-      m_pimpactdata                   = nullptr;
-      m_pimpactdataOld                = nullptr;
-      m_bCloseDocumentIfNoTabs      = false;
+      m_pimpactdata                    = nullptr;
+      m_pimpactdataOld                 = nullptr;
+      m_bCloseDocumentIfNoTabs         = false;
+      m_bAutoCreateTabsOnCreate        = false;
 
    }
 
@@ -67,6 +68,18 @@ namespace user
 
       impact::handle(ptopic, pcontext);
 
+      if (!m_bCreatedTabs)
+      {
+
+         if (ptopic->m_atom == id_new_document || ptopic->m_atom == id_open_document)
+         {
+
+            create_tabs();
+
+         }
+
+      }
+
    }
 
 
@@ -85,21 +98,37 @@ namespace user
    }
 
 
+   bool tab_view::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   {
+
+      return add_tab(strName, atomImpact, bVisible, bPermanent, pplacehoder);
+
+   }
+
+
+   bool tab_view::add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   {
+
+      return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, bPermanent, pplacehoder);
+
+   }
+
+
    void tab_view::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
       __pointer(::user::interaction) pinteraction = get_view_uie();
 
-      __pointer(::user::impact) pview = pinteraction;
+      __pointer(::user::impact) pimpact = pinteraction;
 
-      if (pview.is_null() && pinteraction.is_set())
+      if (pimpact.is_null() && pinteraction.is_set())
       {
 
          if (pinteraction->is_place_holder())
          {
 
             auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-            pview = puserinteractionpointeraChild->first_interaction();
+            pimpact = puserinteractionpointeraChild->first_interaction();
 
          }
          else
@@ -110,7 +139,7 @@ namespace user
             if (pframe.is_set())
             {
 
-               pview = pframe->get_active_view();
+               pimpact = pframe->get_active_view();
 
             }
 
@@ -118,10 +147,10 @@ namespace user
 
       }
 
-      if (pview.is_set() && pview != this)
+      if (pimpact.is_set() && pimpact != this)
       {
 
-         pview->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
+         pimpact->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
       }
       else
@@ -527,7 +556,7 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               if (pimpactdata->m_atomTitle.has_char())
+               if (pimpactdata->m_strTitle.has_char())
                {
 
                   index iTab = get_current_tab_index();
@@ -535,7 +564,7 @@ namespace user
                   if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_atom == pimpactdata->m_atom)
                   {
 
-                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_atomTitle);
+                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_strTitle);
 
                   }
 
@@ -660,19 +689,19 @@ namespace user
 
       }
 
-      ::user::impact * pview = nullptr;
+      ::user::impact * pimpact = nullptr;
 
       if (m_pimpactdata->m_puserinteraction)
       {
 
-         pview = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
+         pimpact = m_pimpactdata->m_puserinteraction.cast < ::user::impact >();
 
       }
 
-      if (pview == nullptr)
+      if (pimpact == nullptr)
       {
 
-         pview = this;
+         pimpact = this;
 
       }
 
@@ -681,7 +710,7 @@ namespace user
       if (::is_set(pframe))
       {
 
-         pframe->set_active_view(pview);
+         pframe->set_active_view(pimpact);
 
       }
 
@@ -1046,7 +1075,7 @@ namespace user
       if (!ptabpane)
       {
 
-         if (!add_tab(pimpactdata->m_atomTitle, pimpactdata->m_atom))
+         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom))
          {
 
             return false;
@@ -1089,7 +1118,7 @@ namespace user
 
       ::user::impact_host::on_after_host_impact(pimpactdata);
 
-      throw ::exception(todo, "experience");
+      //throw ::exception(todo, "experience");
 
       //__pointer(::user::frame) pframewindow = pimpactdata->m_puserinteraction;
 

@@ -4,7 +4,7 @@
 #include "app_launcher.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 namespace apex
@@ -80,7 +80,7 @@ namespace apex
 
       }
 
-      return m_psystem->m_pacmedir->app_app(m_strPlatform, process_configuration_dir_name());
+      return m_psystem->m_pacmedirectory->app_app(m_strPlatform, process_configuration_dir_name());
 
    }
 

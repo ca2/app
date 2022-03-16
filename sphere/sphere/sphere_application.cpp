@@ -22,7 +22,7 @@ namespace sphere
       m_pappCurrent = nullptr;
       m_bLicense = false;
 
-      m_ppaneview = nullptr;
+      m_ppaneimpact = nullptr;
 
       m_strAppName = "app/sphere";
 
@@ -593,7 +593,7 @@ namespace sphere
 
       add_factory_item < ::userstack::document >();
       add_factory_item < ::userstack::impact >();
-      add_factory_item < ::userstack::pane_view >();
+      add_factory_item < ::userstack::pane_impact >();
       add_factory_item < ::userstack::frame >();
 
       m_ptemplate_pane = new ::user::single_document_template(
@@ -601,7 +601,7 @@ namespace sphere
       "bergedge/frame",
       __type(::userstack::document),
       __type(::userstack::frame),
-      __type(::userstack::pane_view));
+      __type(::userstack::pane_impact));
 
    }
 
@@ -666,9 +666,9 @@ namespace sphere
             && (pcreate->m_pcommandline->m_strApp.is_empty()
             ||App(m_pappCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
          {
-            if(get_document() != nullptr && get_document()->get_type_impact < pane_view >() != nullptr)
+            if(get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr)
             {
-               get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).do_request(pcreate);
             if(pcreate->m_pcommandline->payload("document").cast < ::user::document > () == nullptr)
@@ -699,11 +699,11 @@ namespace sphere
                }
             }
             else if(pcreate->m_pcommandline->m_strApp.has_char() &&
-               get_document() != nullptr && get_document()->get_type_impact < pane_view >() != nullptr
+               get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
-               get_document()->get_type_impact < pane_view >()->set_current_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
+               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
                App(m_pappCurrent).do_request(pcreate);
             }
             else
@@ -818,21 +818,21 @@ namespace sphere
       if (appptra().lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
       {
 
-         //__pointer(pane_view) ppaneview = m_ppaneview;
+         //__pointer(pane_impact) ppaneimpact = m_ppaneimpact;
 
-         //if (ppaneview != nullptr)
+         //if (ppaneimpact != nullptr)
          //{
 
          //   string strAppName(pszAppId);
 
-         //   ::user::tab_pane * ppane = ppaneview->get_pane_by_id("app:" + strAppName);
+         //   ::user::tab_pane * ppane = ppaneimpact->get_pane_by_id("app:" + strAppName);
 
          //   if (ppane != nullptr)
          //   {
 
          //      ppane->set_title(pszTitle);
 
-         //      ppaneview->on_layout(pgraphics);
+         //      ppaneimpact->on_layout(pgraphics);
 
          //   }
 

@@ -13,7 +13,7 @@
 #include <unistd.h>
 #endif
 #include "apex/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
@@ -333,7 +333,7 @@ namespace apex
 
       //    bool bGlobalEnableStackTrace = true;
 
-      //    ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
+      //    ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedirectory->config() / "system/no_exception_stack_trace.txt";
 
       //    if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
       //    {
@@ -748,12 +748,12 @@ namespace apex
       //
       //         string str;
       //
-      //         str = m_psystem->m_pacmedir->home() / ".profile";
+      //         str = m_psystem->m_pacmedirectory->home() / ".profile";
       //
       //         if(!m_psystem->m_pacmefile->exists(str))
       //         {
       //
-      //            str = m_psystem->m_pacmedir->home() / ".bashrc";
+      //            str = m_psystem->m_pacmedirectory->home() / ".bashrc";
       //
       //         }
       //
@@ -888,7 +888,7 @@ namespace apex
 
                            auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create("/ca2core");
 
@@ -1074,7 +1074,7 @@ pacmedir->create("/ca2core");
 
          string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
 
-         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
+         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedirectory->home() / "application" / strCmdLineDumpFileName;
 
          m_psystem->m_pacmefile->put_contents(pathCmdLineDumpFile, strCmd);
 
@@ -1117,7 +1117,7 @@ pacmedir->create("/ca2core");
 
          string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
 
-         ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
+         ::file::path pathEnvDumpFile = m_psystem->m_pacmedirectory->home() / "application" / strEnvDumpFileName;
 
          m_psystem->m_pacmefile->put_contents(pathEnvDumpFile, strEnv);
 
@@ -1183,7 +1183,7 @@ pacmedir->create("/ca2core");
 
       //}
 
-      on_update_matter_locator();
+      //on_update_matter_locator();
 
       //estatus = 
       initialize_sockets();
@@ -1228,7 +1228,7 @@ pacmedir->create("/ca2core");
 
             ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
-            bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
+            bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
 
             bMatterFromHttpCache = !bFileSystemMatter;
 
@@ -2790,7 +2790,7 @@ pacmedir->create("/ca2core");
    ::file::path system::local_get_matter_path()
    {
 
-      return m_psystem->m_pacmedir->ca2roaming() / "appmatter";
+      return m_psystem->m_pacmedirectory->ca2roaming() / "appmatter";
 
    }
 
@@ -2814,7 +2814,7 @@ pacmedir->create("/ca2core");
    ::file::path system::local_get_matter_cache_path()
    {
 
-      return m_psystem->m_pacmedir->ca2roaming() / "cache/appmatter";
+      return m_psystem->m_pacmedirectory->ca2roaming() / "cache/appmatter";
 
    }
 
@@ -3512,7 +3512,7 @@ pacmedir->create("/ca2core");
 
 //         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
-            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
+            ::file::path pathScript = m_psystem->m_pacmedirectory->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
             ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
@@ -3669,7 +3669,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
-         strWeather = m_pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
+         strWeather = m_pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->system() / "browser_weather.txt");
 
       }
 
@@ -3952,7 +3952,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
       pathDir = path.folder();
 
-      ::file::path pathAppDataDir(m_psystem->m_pacmedir->ca2roaming());
+      ::file::path pathAppDataDir(m_psystem->m_pacmedirectory->ca2roaming());
 
       ::file::path pathProfile;
 
@@ -4034,7 +4034,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
             }
 
-            strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+            strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 
             auto psystem = m_psystem;
 
@@ -4052,7 +4052,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          sa.add("--user-data-dir=" + pathProfile + "");
 
-         string strChrome = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+         string strChrome = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 
          string_array sa2 = get_c_args_for_c(strChrome);
 
@@ -4083,7 +4083,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
-         strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+         strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 
          string strCmd = path + " " + strParam;
 
@@ -4222,11 +4222,11 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strBrowser.has_char())
       {
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser.txt", strBrowser);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_path.txt", strBrowserPath);
 
-         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+         m_pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_dir.txt", strBrowserDir);
 
       }
 

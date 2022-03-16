@@ -10,7 +10,7 @@ namespace apex
    class CLASS_DECL_APEX context :
       virtual public ::thread,
       virtual public ::acme::context,
-      virtual public ::file::listing_provider
+      virtual public ::file::enumerator
    {
    public:
 
@@ -31,15 +31,10 @@ namespace apex
       string_array                        m_straMatterLocatorPriority;
       string_array                        m_straMatterLocator;
 
-      ::payload                                    m_payloadFile;
-      __reference_array(::create)            m_createaPending;
-      __reference_array(::create)            m_createaHistory;
-      __reference(::create)                  m_pcreate;
-      //__pointer(::task_pool)                 m_ptaskpool;
-
-
-      // context_thread();
-      // virtual ~context_thread();
+      ::payload                           m_payloadFile;
+      __reference_array(::create)         m_createaPending;
+      __reference_array(::create)         m_createaHistory;
+      __reference(::create)               m_pcreate;
 
 
       context();
@@ -138,8 +133,9 @@ namespace apex
 
       virtual string load_string(const char* psz);
 
-      virtual bool perform_file_listing(::file::listing& listing) override;
-      virtual bool perform_file_relative_name_listing(::file::listing& listing) override;
+      //bool _enumerates(::file::listing & listing) override;
+      bool enumerate(::file::listing& listing) override;
+      //virtual bool perform_file_relative_name_listing(::file::listing& listing) override;
 
 
       //virtual ::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
@@ -177,7 +173,6 @@ namespace apex
       virtual string matter_locator(string strApp);
       virtual string matter_locator(::application* papp);
 
-      virtual void on_update_matter_locator();
 
       virtual void add_matter_locator(string strApp);
       virtual void add_matter_locator(::application* papp);

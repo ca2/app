@@ -5,8 +5,8 @@ namespace userstack
 {
 
 
-   class CLASS_DECL_SPHERE pane_view :
-      public ::userex::pane_tab_view,
+   class CLASS_DECL_SPHERE pane_impact :
+      public ::userex::pane_tab_impact,
       public ::filemanager::callback,
       public ::userstack::form_callback
    {
@@ -25,8 +25,8 @@ namespace userstack
 
 
 
-      pane_view(::object * pobject);
-      virtual ~pane_view();
+      pane_impact(::object * pobject);
+      virtual ~pane_impact();
 
       using ::user::tab_view::on_change_cur_sel;
       using ::userstack::form_callback::update;

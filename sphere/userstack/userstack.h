@@ -8,7 +8,7 @@ namespace userstack
 {
 
    class impact;
-   class pane_view;
+   class pane_impact;
    class document;
 
 

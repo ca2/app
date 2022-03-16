@@ -7,10 +7,10 @@ namespace browser
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       object(pobject),
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -19,18 +19,18 @@ namespace browser
       m_prollfps = nullptr;
       m_pviewdataTopic = nullptr;
 
-      papp->m_ppaneview = this;
+      papp->m_ppaneimpact = this;
 
    }
 
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
 
    }
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -38,7 +38,7 @@ namespace browser
    }
 
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -46,17 +46,17 @@ namespace browser
    }
 
 
-   void pane_view::install_message_routing(::channel * pchannel)
+   void pane_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::userex::pane_tab_view::install_message_routing(pchannel);
+      ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
 
    }
 
 
-   void pane_view::on_message_create(::message::message * pmessage)
+   void pane_impact::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -76,26 +76,26 @@ namespace browser
    }
 
 
-   void pane_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::userex::pane_tab_view::_001OnNcDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnNcDraw(pgraphics);
 
    }
 
 
-   void pane_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::userex::pane_tab_view::_001OnDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnDraw(pgraphics);
 
    }
 
 
-   void pane_view::on_change_cur_sel()
+   void pane_impact::on_change_cur_sel()
    {
 
-      ::userex::pane_tab_view::on_change_cur_sel();
+      ::userex::pane_tab_impact::on_change_cur_sel();
       string strId = get_view_id();
       string_array stra;
       m_prollfps = nullptr;
@@ -214,9 +214,9 @@ namespace browser
 
          string str;
 
-         ::user::impact * pview = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_prollfps = dynamic_cast <::user::plain_edit_view *> (pview->get_child_by_id("roll_fps"));
+         m_prollfps = dynamic_cast <::user::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
 
          m_pviewLast->data_get("cur_fps_text", str);
 
@@ -235,7 +235,7 @@ namespace browser
             for (auto & pslide : m_pviewLastBilbo->m_prender->slideshow())
             {
 
-               __pointer(::user::check_box) pcheck = pview->get_child_by_id("slide" + __string(i));
+               __pointer(::user::check_box) pcheck = pimpact->get_child_by_id("slide" + __string(i));
 
                m_checkptraBilbo.add(pcheck);
 
@@ -294,7 +294,7 @@ namespace browser
 
 
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       switch(pimpactdata->m_atom)
@@ -304,9 +304,9 @@ namespace browser
 
          m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
-         ::user::impact * pview = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_pimpactdata->m_puserinteraction = pview->get_parent_frame();
+         m_pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
       }
       break;
@@ -334,12 +334,12 @@ namespace browser
       break;
       }
 
-      ::userex::pane_tab_view::on_create_impact(pimpactdata);
+      ::userex::pane_tab_impact::on_create_impact(pimpactdata);
 
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_view(0)))
@@ -536,12 +536,12 @@ namespace browser
       }
 
 
-      ::userex::pane_tab_view::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, pcontext);
 
    }
 
 
-   ::file::path pane_view::prepare_menu_view()
+   ::file::path pane_impact::prepare_menu_view()
    {
 
       string str;
@@ -607,12 +607,12 @@ namespace browser
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
 
 
-      ::userex::pane_tab_view::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, pcontext);
 
    }
 

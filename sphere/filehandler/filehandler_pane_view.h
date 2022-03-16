@@ -5,13 +5,13 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_SPHERE pane_view :
-      virtual public ::userex::pane_tab_view
+   class CLASS_DECL_SPHERE pane_impact :
+      virtual public ::userex::pane_tab_impact
    {
    public:
 
 
-            pane_view(::object * pobject);
+            pane_impact(::object * pobject);
 
       void rotate() override;
 
@@ -22,7 +22,7 @@ namespace filehandler
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
-      virtual ~pane_view();
+      virtual ~pane_impact();
 
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;

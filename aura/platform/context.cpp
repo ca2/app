@@ -308,7 +308,7 @@ namespace aura
 //      else if (::str::begins_eat_ci(path, "usersystem://"))
 //      {
 //
-//         path = m_psystem->m_pacmedir->system() / path;
+//         path = m_psystem->m_pacmedirectory->system() / path;
 //
 //      }
 //      else if (::str::begins_eat_ci(path, "desktop://"))
@@ -710,7 +710,7 @@ namespace aura
 //   ::handle::ini context::local_ini()
 //   {
 //
-//      ::file::path pathFolder = m_psystem->m_pacmedir->localconfig();
+//      ::file::path pathFolder = m_psystem->m_pacmedirectory->localconfig();
 //
 //      return ini_from_path(pathFolder);
 //
@@ -847,7 +847,7 @@ namespace aura
 //   bool context::sys_set(string strPath, string strValue)
 //   {
 //
-//      return file().put_text_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
+//      return file().put_text_utf8(m_psystem->m_pacmedirectory->config() / strPath, strValue);
 //
 //   }
 //
@@ -855,7 +855,7 @@ namespace aura
 //   string context::sys_get(string strPath, string strDefault)
 //   {
 //
-//      string strValue = file().as_string(m_psystem->m_pacmedir->config() / strPath);
+//      string strValue = file().as_string(m_psystem->m_pacmedirectory->config() / strPath);
 //
 //      if (strValue.is_empty())
 //      {

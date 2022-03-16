@@ -304,7 +304,9 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    synchronous_lock synchronouslock(mutex());
 
-   if(::is_set(get_html_data()) && ::is_set(get_html_data()->m_pcoredata))
+   if(::is_set(get_html_data()) 
+      && ::is_set(get_html_data()->m_pcoredata) 
+      && ::is_set(get_html_data()->m_pcoredata->m_pelement))
    {
 
       synchronous_lock synchronouslock(get_html_data()->mutex());
@@ -812,19 +814,6 @@ void html_form::handle(::topic * ptopic, ::context * pcontext)
 
    }
 
-   if (ptopic->m_atom == id_open_document)
-   {
-
-      if (m_strOpenOnCreate.has_char())
-      {
-
-         get_document()->on_open_document(m_strOpenOnCreate);
-
-         m_strOpenOnCreate.Empty();
-
-      }
-
-   }
 
 }
 

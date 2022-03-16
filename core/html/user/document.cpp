@@ -427,10 +427,10 @@ __pointer(::user::interaction) html_document::get_frame()
 
 
 
-void html_document::form_document_set_view(::user::form * pview)
+void html_document::form_document_set_view(::user::form * pimpact)
 {
 
-   get_html_data()->m_pcoredata->m_pform = dynamic_cast < ::html_form *> (pview);
+   get_html_data()->m_pcoredata->m_pform = dynamic_cast < ::html_form *> (pimpact);
 
 }
 

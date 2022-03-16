@@ -3,7 +3,7 @@
 #include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/primitive/string/base64.h"
@@ -334,7 +334,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
    m_pcontext->m_papexcontext->dir().create(str);
 
-   ::file::listing ls;
+   ::file::listing listing;
 
    string strFormat;
 
@@ -352,12 +352,14 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
       }
 
-      m_pcontext->m_papexcontext->dir().ls(ls, str);
+      listing.initialize_file_listing(str);
+
+      m_pcontext->m_papexcontext->dir().enumerate(listing);
 
       if (i < iMaxLevel)
       {
 
-         i32 iMax = filterex_time_square("", ls);
+         i32 iMax = filterex_time_square("", listing);
 
          if (iMax == -1)
          {
@@ -404,9 +406,11 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       else // if i == iMaxLevel
       {
 
-         m_pcontext->m_papexcontext->dir().ls(ls, str);
+         listing.initialize_file_listing(str);
 
-         i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, ls);
+         m_pcontext->m_papexcontext->dir().enumerate(listing);
+
+         i32 iMax = bTryDelete ? 0 : filterex_time_square(pszPrefix, listing);
 
          do
          {
@@ -1334,9 +1338,11 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
        (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
    {
 
-      ::file::listing patha;
+      ::file::listing listing;
 
-      m_pcontext->m_papexcontext->dir().rls(patha, varSource);
+      listing.initialize_file_listing(varSource, ::file::e_flag_file_or_folder, e_depth_recursively);
+
+      m_pcontext->m_papexcontext->dir().enumerate(listing);
 
       ::file::path strDst;
       ::file::path strSrc;
@@ -1350,14 +1356,20 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      for (i32 i = 0; i < patha.get_size(); i++)
+      for (i32 i = 0; i < listing.get_size(); i++)
       {
-         strSrc = patha[i];
+
+         strSrc = listing[i];
+
          strDst = strSrc;
+
          ::str::begins_eat_ci(strDst, strDirSrc);
+
          strDst = strDirDst / strDst;
+
          if (m_pcontext->m_papexcontext->dir().is(strSrc))
          {
+
             if ((eextract == extract_first || eextract == extract_none) &&
                 (::str::ends_ci(varSource.get_file_path(), ".zip")))
             {
@@ -1933,7 +1945,9 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    string strNewName;
 
-   m_pcontext->m_papexcontext->dir().ls(listing, pathContext);
+   listing.initialize_file_listing(pathContext);
+
+   m_pcontext->m_papexcontext->dir().enumerate(listing);
 
    for (i32 i = 0; i < listing.get_size(); i++)
    {
@@ -2040,7 +2054,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 {
 
 
-   string strTempDir = m_psystem->m_pacmedir->sys_temp();
+   string strTempDir = m_psystem->m_pacmedirectory->sys_temp();
 
    if (!::str::ends(strTempDir, "\\") && !::str::ends(strTempDir, "/"))
    {
@@ -2082,7 +2096,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 ::file::path file_context::sys_temp_unique(const ::file::path &lpszName)
 {
 
-   return m_psystem->m_pacmedir->sys_temp() / lpszName;
+   return m_psystem->m_pacmedirectory->sys_temp() / lpszName;
 
 }
 
@@ -3421,7 +3435,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathNetworkPayload;
 
-   pathNetworkPayload = m_psystem->m_pacmedir->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
+   pathNetworkPayload = m_psystem->m_pacmedirectory->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
 
    return pathNetworkPayload;
 
@@ -3433,7 +3447,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni;
 
-   pathGlobalIni = m_psystem->m_pacmedir->ca2roaming() / "OneDrive/settings/Personal/global.ini";
+   pathGlobalIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/settings/Personal/global.ini";
 
    return pathGlobalIni;
 
@@ -3462,7 +3476,7 @@ bool file_context::is_link(string strPath)
    
    strCid = set["cid"];
 
-   ::file::path pathIni = m_psystem->m_pacmedir->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
+   ::file::path pathIni = m_psystem->m_pacmedirectory->ca2roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
 
    return pathIni;
 

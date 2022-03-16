@@ -4,7 +4,7 @@
 #include "app_core.h"
 #include "acme/platform/system_setup.h"
 //#include "apex/platform/static_start.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include <stdio.h>
 #include <time.h>
@@ -254,7 +254,7 @@ void app_core::system_init()
 
    //   ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-   //   m_psystem->m_pacmedir->set_path_install_folder(pathModule.folder(4));
+   //   m_psystem->m_pacmedirectory->set_path_install_folder(pathModule.folder(4));
 
    //}
 
@@ -528,9 +528,9 @@ void app_core::system_init()
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 //
-  // ::file::path pathOutputDebugString = m_psystem->m_pacmedir->system() / strAppId / "output_debug_string.txt" ;
+  // ::file::path pathOutputDebugString = m_psystem->m_pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
 
-   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedir->config() / "output_debug_string.txt" ;
+   //::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedirectory->config() / "output_debug_string.txt" ;
 
    //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 

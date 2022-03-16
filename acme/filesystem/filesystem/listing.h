@@ -12,7 +12,7 @@ namespace file
    {
 
 
-      listing_provider *   m_pprovider = nullptr;
+      enumerator *         m_penumerator = nullptr;
       bool                 m_bFile = true;
       bool                 m_bDir = true;
       bool                 m_bRecursive = false;
@@ -27,20 +27,39 @@ namespace file
       public ::file::path_array,
       public LISTING
    {
+   protected:
+
+      
+      using ::file::path_array::add;
+
+
    public:
 
       
       ::file::path            m_pathUser;
       ::file::path            m_pathFinal;
+      ::file::e_flag          m_eflag;
+      ::enum_depth            m_edepth;
       string_array            m_straPattern;
       string_array            m_straIgnoreName;
-      //::e_status             m_estatus;
       string_array            m_straTitle;
 
 
       listing();
       listing(const listing & listing);
       ~listing() override;
+
+
+
+      inline void fix_flag()
+      {
+
+         fix_file_listing_flag(m_eflag);
+
+      }
+
+
+      virtual bool on_start_enumerating(::file::enumerator * penumerator);
 
       
       //bool succeeded() const
@@ -75,6 +94,13 @@ namespace file
 
 
       //listing& operator = (const ::e_status & estatus) { return *this; }
+      template < container_type CONTAINER >
+      inline ::index add_listing(const CONTAINER & container)
+      {
+
+         return ::file::path_array::add(container);
+
+      }
 
 
       void operator()(const ::file::path& path)
@@ -187,6 +213,30 @@ namespace file
          return count;
       }
 
+
+      void defer_add(::file::path & path);
+
+
+      void initialize_file_listing(const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none)
+      {
+
+         m_pathUser = path;
+
+         m_eflag = eflag;
+
+         m_edepth = edepth;
+
+      }
+
+
+      void initialize_file_listing_pattern(const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none)
+      {
+
+         m_straPattern = straPattern;
+
+         initialize_file_listing(path, eflag, edepth);
+
+      }
 
 
    };

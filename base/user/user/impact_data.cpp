@@ -14,9 +14,8 @@ namespace user
    }
 
 
-   impact_data::impact_data(const ::atom& atom, const ::atom & idTitle) :
-      m_atom(atom),
-      m_atomTitle(idTitle)
+   impact_data::impact_data(const ::atom& atom) :
+      ::PARTICLE(atom)
    {
 
       impact_data_common_construct();
@@ -30,7 +29,7 @@ namespace user
       m_iId = m_atom.is_integer() ? m_atom.i64() : -1;
       m_iExtendOnParent = 0;
       m_pimpactdata = nullptr;
-      m_bOk = true;
+      m_bOk = false;
 
    }
 

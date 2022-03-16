@@ -6,10 +6,10 @@ namespace prompt
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -17,25 +17,25 @@ namespace prompt
    }
 
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
 
    }
 
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
       ::user::impact::assert_ok();
    }
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
       ::user::impact::dump(dumpcontext);
    }
 
 
-   void pane_view::on_message_create(::message::message * pmessage)
+   void pane_impact::on_message_create(::message::message * pmessage)
    {
 
       if (pmessage->previous())
@@ -56,7 +56,7 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::tab_view::handle(ptopic, pcontext);
@@ -64,9 +64,9 @@ namespace prompt
    }
 
 
-   void pane_view::on_change_cur_sel()
+   void pane_impact::on_change_cur_sel()
    {
-      ::userex::pane_tab_view::on_change_cur_sel();
+      ::userex::pane_tab_impact::on_change_cur_sel();
       __pointer(frame) pframe = GetTypedParent < frame > ();
 
       if(get_view_id() == FILEMANAGER_IMPACT)
@@ -91,14 +91,14 @@ namespace prompt
    }
 
 
-   void pane_view::on_message_size(::message::message * pmessage)
+   void pane_impact::on_message_size(::message::message * pmessage)
    {
       pmessage->previous();
 
    }
 
 
-   bool pane_view::pre_create_window(::user::system * pusersystem)
+   bool pane_impact::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -106,7 +106,7 @@ namespace prompt
    }
 
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
       switch(pimpactdata->m_atom)
       {
@@ -133,11 +133,11 @@ namespace prompt
             ////pdocument->Initialize(true);
             ////pdocument->update_all_views(id_unknown); // 1234);
             ////pdocument->update_all_views(id_unknown); //123458);
-            __pointer(::user::impact) pview = pdata->m_pdocument->get_view();
+            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_view();
 
-            if(pview != nullptr)
+            if(pimpact != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
+               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -153,11 +153,11 @@ namespace prompt
       break;
       case impact_primary_command:
       {
-         __pointer(::user::impact) pview = create_view < primary_view > ();
-         if(pview != nullptr)
+         __pointer(::user::impact) pimpact = create_view < primary_view > ();
+         if(pimpact != nullptr)
          {
             pimpactdata->m_pdocument = get_document();
-            pimpactdata->m_puserinteraction = pview;
+            pimpactdata->m_puserinteraction = pimpact;
             pimpactdata->m_iExtendOnParent = 0;
          }
       }
@@ -171,10 +171,10 @@ namespace prompt
 //            pdocument->Initialize(true);
 //            pdocument->update_all_views(id_unknown); //1234);
 //            pdocument->update_all_views(id_unknown); //123458);
-//            __pointer(::user::impact) pview = pdocument->get_view();
-//            if(pview != nullptr)
+//            __pointer(::user::impact) pimpact = pdocument->get_view();
+//            if(pimpact != nullptr)
 //            {
-//               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
+//               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
 //               if(pframe != nullptr)
 //               {
 //#ifdef WINDOWS_DESKTOP
@@ -216,13 +216,13 @@ namespace prompt
             //pdocument->Initialize(true);
             //pdocument->update_all_views(id_unknown); // 1234);
             //pdocument->update_all_views(id_unknown); //123458);
-            __pointer(::user::impact) pview = pdata->m_pdocument->get_view();
+            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_view();
 
             //pdocument->FileManagerBrowse();
 
-            if(pview != nullptr)
+            if(pimpact != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
+               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -244,7 +244,7 @@ namespace prompt
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
-         __pointer(::user::impact) pview = pdocument->get_type_impact < ::user::impact > ();
+         __pointer(::user::impact) pimpact = pdocument->get_type_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;
@@ -258,7 +258,7 @@ namespace prompt
          pdocument->update_all_views(pupdate);
 
 
-         pimpactdata->m_puserinteraction = (pview->get_parent_frame());
+         pimpactdata->m_puserinteraction = (pimpact->get_parent_frame());
 //         __pointer(form_child_frame) pframe = (pimpactdata->m_puserinteraction);
          //pframe->m_iTabId = iId;
          pimpactdata->m_pdocument = pdocument;
@@ -269,12 +269,12 @@ namespace prompt
          break;
       }
 
-      pane_tab_view::on_create_impact(pimpactdata);
+      pane_tab_impact::on_create_impact(pimpactdata);
 
    }
 
 
-   void pane_view::_001OnMenuMessage(::message::message * pmessage)
+   void pane_impact::_001OnMenuMessage(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -284,19 +284,19 @@ namespace prompt
    }
 
 
-   void pane_view::install_message_routing(::channel * pchannel)
+   void pane_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &pane_view::on_message_size);
-      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(e_message_size, pchannel, this, &pane_impact::on_message_size);
+      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
 
    }
 
 
-   void pane_view::rotate()
+   void pane_impact::rotate()
    {
 
       atom idNew;
@@ -329,7 +329,7 @@ namespace prompt
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::prompt::form_callback::handle(ptopic, pcontext);
@@ -341,12 +341,12 @@ namespace prompt
 
       }
 
-      ::userex::pane_tab_view::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, pcontext);
 
    }
 
 
-   void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
+   void pane_impact::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    {
 
       __UNREFERENCED_PARAMETER(pdata);

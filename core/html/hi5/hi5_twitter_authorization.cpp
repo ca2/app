@@ -29,7 +29,7 @@ namespace hi5
          m_pviewAuth       = nullptr;
          m_pdocAuth        = nullptr;
          m_pdocument            = nullptr;
-         m_ptabview        = nullptr;
+         m_ptabimpact        = nullptr;
       }
 
       authorization::~authorization()
@@ -78,9 +78,9 @@ namespace hi5
             return "";
 
          m_pviewAuth->SetTimer(8888, 500_ms, nullptr);
-         //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+         //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
-         m_ptabview->get_wnd()->RunModalLoop();
+         m_ptabimpact->get_wnd()->RunModalLoop();
 
 
          m_ptemplatePane->close_all_documents(false);
@@ -112,10 +112,15 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_view) pview = m_pdocument->get_type_impact < user::tab_view >();
-         m_ptabview = pview;
-         pview->create_impact("twitter_authorization", "ca2open", this);
-         pview->set_current_tab_by_id("twitter_authorization");
+         __pointer(user::tab_view) ptabimpact = m_pdocument->get_type_impact < user::tab_view >();
+         m_ptabimpact = ptabimpact;
+
+         auto pimpactkit = ptabimpact->get_impact_kit();
+
+         pimpactkit->add_impact_item("twitter_authorization", "ca2open", this);
+
+         // pimpact->create_impact
+         ptabimpact->set_current_tab_by_id("twitter_authorization");
       }
 
 
@@ -201,7 +206,7 @@ namespace hi5
 
          ::rectangle_i32 rectangleOpen;
 
-         m_ptabview->get_parent_frame()->best_top_level_parent(rectangleOpen);
+         m_ptabimpact->get_parent_frame()->best_top_level_parent(rectangleOpen);
 
          i32 iWidth = rectangleOpen.width();
 
@@ -220,13 +225,13 @@ namespace hi5
 
          //}
 
-         m_ptabview->get_parent_frame()->order_front();
+         m_ptabimpact->get_parent_frame()->order_front();
 
-         m_ptabview->get_parent_frame()->place(rectangleOpen);
+         m_ptabimpact->get_parent_frame()->place(rectangleOpen);
 
          m_pviewAuth->get_parent_frame()->set_foreground_window();
 
-         m_ptabview->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
+         m_ptabimpact->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
 
       }
 
@@ -242,11 +247,11 @@ namespace hi5
 
          m_pdocAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
          display_main_frame();
-         //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
+         //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
-         m_ptabview->get_wnd()->RunModalLoop();
+         m_ptabimpact->get_wnd()->RunModalLoop();
 
-         m_ptabview->get_wnd()->EndModalLoop(e_dialog_result_ok);
+         m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
       }
 
@@ -309,9 +314,9 @@ namespace hi5
 
                pinteraction->_001GetText(m_strPin);
 
-               m_ptabview->get_wnd()->EndModalLoop(e_dialog_result_ok);
+               m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
-               m_ptabview->get_parent_frame()->display(e_display_none);
+               m_ptabimpact->get_parent_frame()->display(e_display_none);
 
             }
 

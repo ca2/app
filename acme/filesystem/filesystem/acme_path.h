@@ -11,7 +11,7 @@ public:
    ::OPERATING_SYSTEM_NAMESPACE::acme_path *   m_pplatformpath;
 
 
-   acme_dir *                          m_pacmedir;
+   acme_directory *                          m_pacmedirectory;
    acme_file *                         m_pacmefile;
 
 

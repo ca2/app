@@ -602,10 +602,10 @@ namespace filemanager
          }
          }*/
 
-         /*list_view::FillTask::FillTask(__pointer(list_view) pview, LPWString pcsz)
+         /*list_view::FillTask::FillTask(__pointer(list_view) pimpact, LPWString pcsz)
 
          :
-         m_pimpact(pview),m_wstrFile(pcsz)
+         m_pimpact(pimpact),m_wstrFile(pcsz)
 
          {
          }*/

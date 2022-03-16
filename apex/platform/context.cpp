@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/id.h"
 //#include "apex/platform/app_core.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
@@ -231,7 +231,7 @@ namespace apex
 
       }*/
 
-      on_update_matter_locator();
+      //on_update_matter_locator();
 
       //return ::success;
 
@@ -491,7 +491,7 @@ namespace apex
       else if (::str::begins_eat_ci(path, "usersystem://"))
       {
 
-         path = m_psystem->m_pacmedir->system() / path;
+         path = m_psystem->m_pacmedirectory->system() / path;
 
       }
       else if (::str::begins_eat_ci(path, "desktop://"))
@@ -540,7 +540,16 @@ namespace apex
       if (path.begins_ci("appmatter://"))
       {
 
-         path = get_matter_cache_path(path);
+         path = dir().appmatter(path, false);
+
+      }
+
+      if (path.begins_eat_ci("icon://"))
+      {
+
+         path += ".ico";
+
+         path = dir().matter(path, false);
 
       }
 
@@ -929,20 +938,20 @@ namespace apex
 #endif
 
 
-   bool context::perform_file_listing(::file::listing & listing)
+   bool context::enumerate(::file::listing & listing)
    {
 
-      return dir().ls(listing);
+      return dir().enumerate(listing);
 
    }
 
 
-   bool context::perform_file_relative_name_listing(::file::listing & listing)
+   /*bool context::perform_file_relative_name_listing(::file::listing & listing)
    {
 
       return dir().ls_relative_name(listing);
 
-   }
+   }*/
 
 
    string context::http_get(const ::string & strUrl, ::property_set & set)
@@ -1002,7 +1011,7 @@ namespace apex
    ::handle::ini context::local_ini()
    {
 
-      ::file::path pathFolder = m_psystem->m_pacmedir->localconfig();
+      ::file::path pathFolder = m_psystem->m_pacmedirectory->localconfig();
 
       return ini_from_path(pathFolder);
 
@@ -1141,7 +1150,7 @@ namespace apex
    void context::sys_set(string strPath, string strValue)
    {
 
-      file().put_text_utf8(m_psystem->m_pacmedir->config() / strPath, strValue);
+      file().put_text_utf8(m_psystem->m_pacmedirectory->config() / strPath, strValue);
 
    }
 
@@ -1149,7 +1158,7 @@ namespace apex
    string context::sys_get(string strPath, string strDefault)
    {
 
-      string strValue = file().as_string(m_psystem->m_pacmedir->config() / strPath);
+      string strValue = file().as_string(m_psystem->m_pacmedirectory->config() / strPath);
 
       if (strValue.is_empty())
       {
@@ -1171,21 +1180,10 @@ namespace apex
    }
 
 
-   void context::on_update_matter_locator()
-   {
+   //void context::on_update_matter_locator()
+   //{
 
-      synchronous_lock synchronouslock(mutex());
-
-      m_straMatterLocator.erase_all();
-
-      m_straMatterLocator.add(m_straMatterLocatorPriority);
-
-      m_straMatterLocator.add(matter_locator("app/main"));
-
-   }
-
-
-
+   //}
 
 
    string context::matter_locator(string strApp)
@@ -1231,12 +1229,7 @@ namespace apex
 
       m_straMatterLocatorPriority.add(strMatterLocator);
 
-   //   on_update_matter_locator();
-
-
    }
-
-
 
 
    void context::add_matter_locator(::application * papp)
@@ -1248,7 +1241,7 @@ namespace apex
 
       add_matter_locator(strMatterLocator);
 
-      on_update_matter_locator();
+      //on_update_matter_locator();
 
    }
 

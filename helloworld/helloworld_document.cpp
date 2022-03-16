@@ -51,9 +51,9 @@ namespace helloworld
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pview = get_type_impact < impact >();
+      impact * pimpact = get_type_impact < impact >();
 
-      if(pview == nullptr)
+      if(pimpact == nullptr)
       {
 
          return true;
@@ -69,7 +69,7 @@ namespace helloworld
 
       string str;
 
-/*      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
+/*      if(pimpact->m_prender->m_pimageImage->load_image(payloadFile))
       {
 
          get_type_impact < impact >()->m_strImage = payloadFile["url"];
@@ -93,10 +93,10 @@ namespace helloworld
          get_type_impact < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
 
       }
-      else if(get_type_impact < ::userex::pane_tab_view >() != nullptr)
+      else if(get_type_impact < ::userex::pane_tab_impact >() != nullptr)
       {
 
-         get_type_impact < ::userex::pane_tab_view >()->set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
+         get_type_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
 
       }
 

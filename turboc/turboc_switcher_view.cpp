@@ -98,9 +98,9 @@ namespace turboc
          if(ptopic->user_element_id() == "switcher_toggle")
          {
 
-            __pointer(impact) pview = m_pimpact;
+            __pointer(impact) pimpact = m_pimpact;
 
-            if(base_class < lite_view >::bases(pview))
+            if(base_class < lite_view >::bases(pimpact))
             {
 
                m_pimpact = create_view < full_view >();
@@ -126,7 +126,7 @@ namespace turboc
 
             SetPane(1,m_pimpact,false);
 
-            pview->DestroyWindow();
+            pimpact->DestroyWindow();
 
          }
 

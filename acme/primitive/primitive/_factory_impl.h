@@ -743,7 +743,7 @@ namespace factory
       critical_section_lock cs(::factory::get_factory_critical_section());
 
 
-      return (*get_factory())[atom];
+      return this->operator[](atom);
 
    }
 
@@ -859,7 +859,7 @@ namespace factory
 
       auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
 
-      get_factory_item < BASE_TYPE >() = pfactory;
+      this->get_factory_item < BASE_TYPE >() = pfactory;
 
       return pfactory;
 

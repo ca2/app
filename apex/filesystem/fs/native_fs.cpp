@@ -29,12 +29,10 @@ namespace fs
    }
 
 
-   ::file::listing & native::ls(::file::listing & listing)
+   bool native::enumerate(::file::listing & listing)
    {
 
-      m_pcontext->m_papexcontext->dir().ls(listing);
-
-      return listing;
+      return m_pcontext->m_papexcontext->dir().enumerate(listing);
 
    }
 
@@ -62,14 +60,14 @@ namespace fs
 
 
 
-   ::file::listing & native::ls_relative_name(::file::listing & listing)
+   /*::file::listing & native::ls_relative_name(::file::listing & listing)
    {
 
       m_pcontext->m_papexcontext->dir().ls_relative_name(listing);
 
       return listing;
 
-   }
+   }*/
 
 
 

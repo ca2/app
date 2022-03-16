@@ -2,7 +2,7 @@
 #include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -287,7 +287,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #ifdef LINUX
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -309,7 +309,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
+   strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 
 #endif
@@ -608,7 +608,7 @@ id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    ::file::path pathModule;
 
-   pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
+   pathModule = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication";
 
    pathModule /= strApp + ".module_list";
 
@@ -706,7 +706,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    m_straModule.erase_all();
 
-   pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
+   pathModule = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication";
 
    pathModule /= m_strApp + ".module_list";
    

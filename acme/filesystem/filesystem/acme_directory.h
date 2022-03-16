@@ -9,22 +9,23 @@
 #endif
 
 
-class CLASS_DECL_ACME acme_dir :
-   virtual public ::matter
+class CLASS_DECL_ACME acme_directory :
+   virtual public ::matter,
+   virtual public ::file::enumerator
 {
 public:
 
 
-   ::OPERATING_SYSTEM_NAMESPACE::acme_dir *          m_pplatformdir;
-   acme_file *                               m_pacmefile;
-   acme_path *                               m_pacmepath;
+   ::OPERATING_SYSTEM_NAMESPACE::acme_directory *  m_pplatformdir;
+   acme_file *                                     m_pacmefile;
+   acme_path *                                     m_pacmepath;
 
-   ::file::path                              m_pathInstallFolder;
-   ::file::path                              m_pathModuleFolder;
+   ::file::path                                    m_pathInstallFolder;
+   ::file::path                                    m_pathModuleFolder;
    
 
-   acme_dir();
-   ~acme_dir() override;
+   acme_directory();
+   ~acme_directory() override;
 
 
    void initialize(::object * pobject) override;
@@ -98,7 +99,7 @@ public:
    virtual bool is(const char * path1);
    virtual bool _is(bool & bDir, const char * path1);
    // From acme/filesystem/file/dir.cpp by camilo 
-   // From acme_posix/acme_dir.h
+   // From acme_posix/acme_directory.h
 // on 2021-08-09 03:20 BRT
 // <3ThomasBorregaardS�rensen!!
 
@@ -107,14 +108,14 @@ public:
    //{
 
 
-   //   class CLASS_DECL_ACME_POSIX acme_dir :
-   //      virtual public ::acme_dir
+   //   class CLASS_DECL_ACME_POSIX acme_directory :
+   //      virtual public ::acme_directory
    //   {
 
    //   public:
 
-   //      acme_dir();
-   //      ~acme_dir();
+   //      acme_directory();
+   //      ~acme_directory();
 
          //virtual string name(const char * path1);
 
@@ -128,13 +129,18 @@ public:
          virtual void erase(const char* path);
 
 
-         virtual void rls(::file::path_array & stra, const char * psz);
-         virtual void rls_dir(::file::path_array & stra, const char * psz);
+         //virtual void enumerate_recursively(::file::path_array & stra, const char * psz);
+         //virtual void enumerate_recursively_directory(::file::path_array & stra, const char * psz);
 
-         virtual void ls(::file::path_array & stra, const char * psz);
-         virtual void ls_dir(::file::path_array & stra, const char * psz);
+         //bool _enumerates(::file::listing & listing) override;
+         
+         bool enumerate(::file::listing & listing) override;
 
-         virtual void ls_file(::file::path_array & stra, const char * psz);
+
+         //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_directory(::file::path_array & stra, const char * psz, enum_depth edepth = e_depth_none);
+         //virtual void enumerate_file(::file::path_array & stra, const char * psz, enum_depth edepth = e_depth_none);
 
          virtual int make_path(const char * psz);
 

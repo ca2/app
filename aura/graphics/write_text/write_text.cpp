@@ -2,7 +2,7 @@
 #include "_.h"
 #include "aqua/xml/_.h"
 #include "true_type_font_utilities.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -238,11 +238,13 @@ void write_text::enum_write_text_fonts(::write_text::font_enumeration_item_array
    if (dAndroid >= 8.0)
    {
 
-      ::file::path_array patha;
+      ::file::listing listing;
 
-      m_psystem->m_pacmedir->ls(patha, "/system/fonts");
+      listing.initialize_file_listing("/system/fonts");
 
-      for (auto& path : patha)
+      m_psystem->m_pacmedirectory->enumerate(listing);
+
+      for (auto & path : listing)
       {
 
          pitem = __new(::write_text::font_enumeration_item);

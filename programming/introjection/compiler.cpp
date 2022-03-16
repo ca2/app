@@ -5,7 +5,7 @@
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"
 #endif
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 #include <sys/stat.h>
@@ -19,7 +19,7 @@ string vs_build(::object * pobject)
 
    ::file::path path;
 
-   auto pacmedir = pobject->m_psystem->m_pacmedir;
+   auto pacmedir = pobject->m_psystem->m_pacmedirectory;
 
    path = pacmedir->config() / "programming/vs_build.txt";
 
@@ -80,7 +80,7 @@ namespace introjection
 //
 //         ::file::path path;
 //
-//         auto pacmedir = m_psystem->m_pacmedir;
+//         auto pacmedir = m_psystem->m_pacmedirectory;
 //
 //         path = pacmedir->config() / "programming/vs.txt";
 //
@@ -189,7 +189,7 @@ namespace introjection
 //
 //      auto pcontext = get_context();
 //
-//      auto pacmedir = m_psystem->m_pacmedir;
+//      auto pacmedir = m_psystem->m_pacmedirectory;
 //
 //      pcontext->m_papexcontext->dir().create(pacmedir->system() / "introjection\\symbols");
 //
@@ -456,7 +456,7 @@ namespace introjection
 //
 //      ::file::path pathEnvTxt;
 //
-//      auto pacmedir = m_psystem->m_pacmedir;
+//      auto pacmedir = m_psystem->m_pacmedirectory;
 //
 //      pathEnvTxt = pacmedir->system() / "env.txt";
 //
@@ -694,7 +694,7 @@ namespace introjection
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create("/var/tmp/ca2/intermediate");
 
@@ -1060,7 +1060,7 @@ pacmedir->create("/var/tmp/ca2/intermediate");
 
       strRndTitle.release_string_buffer();
 
-      auto pacmedir = m_psystem->m_pacmedir;
+      auto pacmedir = m_psystem->m_pacmedirectory;
 
       strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strRndTitle;
       strHmhLctvWildPdbPath.find_replace("\\","/");

@@ -5,25 +5,25 @@ namespace turboc
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       ::object(pobject),
       ::user::tab(pobject),
 
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
 
    }
 
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
 
    }
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
 
 	   ::aura::impact::assert_ok();
@@ -31,7 +31,7 @@ namespace turboc
    }
 
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
 
 	   ::aura::impact::dump(dumpcontext);
@@ -39,17 +39,17 @@ namespace turboc
    }
 
 
-   void pane_view::install_message_handling(::message::dispatch * pchannel)
+   void pane_impact::install_message_handling(::message::dispatch * pchannel)
    {
 
-      ::userex::pane_tab_view::install_message_handling(pchannel);
+      ::userex::pane_tab_impact::install_message_handling(pchannel);
 
-	   IGUI_WIN_MSG_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
+	   IGUI_WIN_MSG_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
 
    }
 
 
-   void pane_view::on_message_create(signal_details * pmessage)
+   void pane_impact::on_message_create(signal_details * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -64,7 +64,7 @@ namespace turboc
    }
 
 
-   void pane_view::on_create_impact(::user::impact_data * pcreatordata)
+   void pane_impact::on_create_impact(::user::impact_data * pcreatordata)
    {
 
       switch(pcreatordata->m_atom)
@@ -95,7 +95,7 @@ namespace turboc
 
       }
 
-      ::userex::pane_tab_view::on_create_impact(pcreatordata);
+      ::userex::pane_tab_impact::on_create_impact(pcreatordata);
 
    }
 

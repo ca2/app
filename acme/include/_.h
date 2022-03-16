@@ -790,7 +790,7 @@ namespace acme
 } // namespace acme
 
 
-class acme_dir;
+class acme_directory;
 
 class acme_file;
 
@@ -801,7 +801,7 @@ namespace OPERATING_SYSTEM_NAMESPACE
 {
 
 
-   class acme_dir;
+   class acme_directory;
 
    class acme_file;
 
@@ -891,6 +891,11 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #endif
+
+#include "acme/primitive/primitive/enumeration.h"
+
+
+
 
 
 #include "acme/parallelization/_types.h"
@@ -1812,7 +1817,7 @@ class synchronization_object;
 
 //#include "acme/user/user/_experience_const.h"
 
-#include "acme/filesystem/file/_const.h"
+#include "acme/filesystem/file/_constant.h"
 
 //#include "acme/graphics/draw2d/_const.h"
 
@@ -2409,9 +2414,6 @@ namespace file
 
 
    class path;
-
-
-   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > path_array;
 
 
    class file;
@@ -3229,9 +3231,6 @@ class memory_base;
 #include "acme/memory/malloc.h"
 
 
-#include "acme/primitive/primitive/enumeration.h"
-
-
 //#include "acme/constant/user.h"
 
 
@@ -3650,7 +3649,16 @@ CLASS_DECL_ACME task_bitset& task_flag();
 #include "acme/user/user/conversation.h"
 
 
-//CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) xxxshow_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
+namespace file
+{
+
+
+   class path;
+   class path_object;
+   class path_array;
+
+
+} // namespace file
 
 
 #include "acme/primitive/comparison/var_strict.h"
@@ -3659,11 +3667,19 @@ CLASS_DECL_ACME task_bitset& task_flag();
 
 #include "acme/filesystem/filesystem/file_path.h"
 
+#include "acme/primitive/datetime/file_time_span.h"
+
+#include "acme/primitive/datetime/file_time.h"
+
 #include "acme/filesystem/filesystem/path.h"
 
 #include "acme/filesystem/filesystem/path_object.h"
 
 #include "acme/primitive/collection/_.h"
+
+#include "acme/filesystem/filesystem/path_array.h"
+
+#include "acme/filesystem/filesystem/enumerator.h"
 
 #include "acme/platform/predicate_routine.h"
 
@@ -3937,7 +3953,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/text_stream.h"
 
 
-//#include "acme/filesystem/filesystem/acme_dir.h"
+//#include "acme/filesystem/filesystem/acme_directory.h"
 //#include "acme/filesystem/filesystem/acme_file.h"
 //#include "acme/filesystem/filesystem/acme_path.h"
 

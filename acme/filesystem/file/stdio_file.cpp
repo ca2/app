@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -36,7 +36,7 @@ void stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
    if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
    {
 
-      m_psystem->m_pacmedir->create(path.folder());
+      m_psystem->m_pacmedirectory->create(path.folder());
 
    }
 

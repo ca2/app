@@ -5,10 +5,10 @@ namespace userstack
 {
 
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       ::object(pobject),
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -21,39 +21,39 @@ namespace userstack
 
       m_iDisplay        = -1;
       m_ppropform       = nullptr;
-      //m_dataid          = "ca2::bergedge::pane_view";
+      //m_dataid          = "ca2::bergedge::pane_impact";
 
       get_data()->m_matchanyRestore.add(new ::aura::match::prefix("app:"));
 
    }
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
    }
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
       ::user::impact::assert_ok();
    }
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
       ::user::impact::dump(dumpcontext);
    }
 
 
-   void pane_view::on_message_create(::message::message * pmessage)
+   void pane_impact::on_message_create(::message::message * pmessage)
    {
 
       if(pmessage->previous())
          return;
 
       __pointer(frame) pframe =  (get_parent_frame());
-      pframe->m_ppaneview = this;
+      pframe->m_ppaneimpact = this;
 
 
-      papp->m_ppaneview = this;
+      papp->m_ppaneimpact = this;
 
 
 
@@ -83,7 +83,7 @@ namespace userstack
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::tab_view::handle(ptopic, pcontext);
@@ -91,9 +91,9 @@ namespace userstack
    }
 
 
-   void pane_view::on_change_cur_sel()
+   void pane_impact::on_change_cur_sel()
    {
-      ::userex::pane_tab_view::on_change_cur_sel();
+      ::userex::pane_tab_impact::on_change_cur_sel();
 //      __pointer(frame) pframe =  (get_parent_frame());
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
@@ -114,8 +114,8 @@ namespace userstack
       }
       //   else if(get_view_id() == CONTEXT_MENU_IMPACT)
       //   {
-      //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
-      //      __pointer(::filemanager::document) pdocument = (pview->get_document());
+      //      /*bergedge::menu_view * pimpact = dynamic_cast < bergedge::menu_view *  > (get_view());
+      //      __pointer(::filemanager::document) pdocument = (pimpact->get_document());
       //      pdocument->FileManagerBrowse(pcontext->m_papexcontext->dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
@@ -156,7 +156,7 @@ namespace userstack
       }*/
    }
 
-   bool pane_view::pre_create_window(::user::system * pusersystem)
+   bool pane_impact::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -164,7 +164,7 @@ namespace userstack
    }
 
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       string strId = pimpactdata->m_atom;
@@ -242,32 +242,32 @@ namespace userstack
 
       }
 
-      ::userex::pane_tab_view::on_create_impact(pimpactdata);
+      ::userex::pane_tab_impact::on_create_impact(pimpactdata);
 
    }
 
 
 
-   void pane_view::_001OnMenuMessage(::message::message * pmessage)
+   void pane_impact::_001OnMenuMessage(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_atom);
    }
 
-   void pane_view::install_message_routing(::channel * pchannel)
+   void pane_impact::install_message_routing(::channel * pchannel)
    {
-      ::userex::pane_tab_view::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_view::on_message_right_button_up);
-      add_command_handler("properties", &pane_view::_001OnProperties);
+      ::userex::pane_tab_impact::install_message_routing(pchannel);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
+      MESSAGE_LINK(WM_USER + 1122, this, this, &pane_impact::_001OnMenuMessage);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_impact::on_message_right_button_up);
+      add_command_handler("properties", &pane_impact::_001OnProperties);
    }
 
-   void pane_view::rotate()
+   void pane_impact::rotate()
    {
    }
 
-   /*void pane_view::OnFileManagerOpenFile(
+   /*void pane_impact::OnFileManagerOpenFile(
          ::filemanager::data * pdata,
          ::file::item_array & itema)
    {
@@ -290,7 +290,7 @@ namespace userstack
       //get_parent_frame()->hide();
    }*/
 
-   void pane_view::check_menu_dir(const ::file::path & psz)
+   void pane_impact::check_menu_dir(const ::file::path & psz)
    {
 
       ::file::listing straPath(get_app());
@@ -326,7 +326,7 @@ namespace userstack
    }
 
 
-   void pane_view::check_3click_dir(const ::file::path & psz)
+   void pane_impact::check_3click_dir(const ::file::path & psz)
    {
 
       if(pcontext->m_papexcontext->dir().is(psz))
@@ -374,7 +374,7 @@ namespace userstack
    }
 
 
-   void pane_view::check_desktop_dir(const ::file::path & psz)
+   void pane_impact::check_desktop_dir(const ::file::path & psz)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -431,7 +431,7 @@ namespace userstack
    }
 
 
-   void pane_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if(m_iNewArea != m_iArea)
@@ -471,18 +471,18 @@ namespace userstack
 
       //m_pimage->to(pgraphics, 0, 0, rectangleClient->right, rectangleClient->bottom);
 
-      ::userex::pane_tab_view::_001OnDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnDraw(pgraphics);
 
    }
 
 
 
-   void pane_view::set_display(i32 iDisplay)
+   void pane_impact::set_display(i32 iDisplay)
    {
       m_iDisplay = iDisplay;
    }
 
-   void pane_view::on_message_right_button_up(::message::message * pmessage)
+   void pane_impact::on_message_right_button_up(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_union.m_pmouse;
@@ -496,7 +496,7 @@ namespace userstack
       }*/
    }
 
-   void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
+   void pane_impact::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
 
       __UNREFERENCED_PARAMETER(pdata);
@@ -514,11 +514,11 @@ namespace userstack
 
    }
 
-   /*void pane_view::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::file::item & item)
+   /*void pane_impact::OnFileManagerOpenContextMenuFolder(::filemanager::data * pdata, ::file::item & item)
    {
    }
    */
-   void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::file::item_array & itema)
+   void pane_impact::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::file::item_array & itema)
    {
       __UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
@@ -527,7 +527,7 @@ namespace userstack
 
 
 
-   void pane_view::_001OnProperties(::message::message * pmessage)
+   void pane_impact::_001OnProperties(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
 //      if(get_view_id() == ::bergedge::impact_winactionarea)
@@ -547,7 +547,7 @@ namespace userstack
    }
 
 
-   void pane_view::_001InitializeFormPreData(::user::form * pform)
+   void pane_impact::_001InitializeFormPreData(::user::form * pform)
    {
 
       auto pinteraction = pform->new_form_control();;
@@ -581,7 +581,7 @@ namespace userstack
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

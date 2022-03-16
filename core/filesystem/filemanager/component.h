@@ -66,8 +66,8 @@ namespace filemanager
 
 
       /// atom = FILEMANAGER_IMPACT - behaviour
-      /// if there is main "pane_view" (create this concecpt of main pane_view!!)
-      /// open the (already existing concept) of "pane_view" FILEMANAGER_IMPACT
+      /// if there is main "pane_impact" (create this concecpt of main pane_impact!!)
+      /// open the (already existing concept) of "pane_impact" FILEMANAGER_IMPACT
       /// (even if the tab is not already there)
       /// otherwise open a detached window
 

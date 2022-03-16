@@ -42,12 +42,6 @@
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{b26a6098-cf09-41e7-9741-3dd479fc2a8f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\filesystem">
-      <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\geometry2d">
       <UniqueIdentifier>{db93c184-411b-46d7-ace7-052cd69de598}</UniqueIdentifier>
     </Filter>
@@ -113,9 +107,6 @@
     </Filter>
     <Filter Include="Source Files\memory\os_alloc">
       <UniqueIdentifier>{f1d64368-6958-4b0f-a00d-2213b49194d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\filesystem">
-      <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
@@ -290,6 +281,15 @@
     </Filter>
     <Filter Include="Header Files\handler">
       <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem">
+      <UniqueIdentifier>{e735cbc7-6be2-44c9-b19a-0c3d6ee00183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\file">
+      <UniqueIdentifier>{3a2d58e0-3564-457f-ad53-2b26fdc8b2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\filesystem">
+      <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -890,7 +890,7 @@
     <ClInclude Include="primitive\primitive\eobject.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\_const.h">
+    <ClInclude Include="filesystem\file\_constant.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
@@ -1934,7 +1934,7 @@
     <ClInclude Include="platform\static_setup.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\acme_dir.h">
+    <ClInclude Include="filesystem\filesystem\acme_directory.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\acme_path.h">
@@ -2942,6 +2942,15 @@
     <ClInclude Include="include\_c_swap.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="exception\bad_file_format.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\enumerator.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_array.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3679,7 +3688,7 @@
     <ClCompile Include="platform\library.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_dir.cpp">
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\acme_path.cpp">
@@ -4140,6 +4149,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\process.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\bad_file_format.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\path_array.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

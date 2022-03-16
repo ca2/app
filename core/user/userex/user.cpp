@@ -416,7 +416,7 @@ namespace core
       //set_data_server(papp->dataserver());
 
 
-      ::factory::add_factory_item <::userex::pane_tab_view >();
+      ::factory::add_factory_item <::userex::pane_tab_impact >();
       ::factory::add_factory_item <form_frame >();
       ::factory::add_factory_item <form_child_frame >();
 
@@ -960,15 +960,15 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_view) pview = pdocument->get_type_impact < ::userex::color_view >();
+      __pointer(::userex::color_view) pimpact = pdocument->get_type_impact < ::userex::color_view >();
 
-      __pointer(::user::frame_window) pframe = pview->top_level_frame();
+      __pointer(::user::frame_window) pframe = pimpact->top_level_frame();
 
       pframe->set_owner(puiOwner);
 
       pframe->_001RunModalLoop();
 
-      hls = pview->m_hls;
+      hls = pimpact->m_hls;
 
       return true;
 
@@ -1015,7 +1015,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1031,7 +1031,7 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puserprimitiveAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pimpact;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1162,7 +1162,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1204,7 +1204,7 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puserprimitiveAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pimpact;
 
       pcreate->m_varArgs = varArgs;
 

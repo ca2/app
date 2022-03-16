@@ -392,6 +392,9 @@ namespace user
 #include "impact_data.h"
 
 
+#include "impact_kit.h"
+
+
 #include "impact_host.h"
 
 

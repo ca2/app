@@ -20,11 +20,12 @@ namespace fs
 
 
       link();
-      virtual ~link();
+      ~link() override;
 
       virtual void initialize(::object * pobject) override;
 
-      virtual ::file::listing & ls(::file::listing & listing) override;
+      //virtual bool _enumerates(::file::listing & listing) override;
+      bool enumerate(::file::listing & listing) override;
 
 
       virtual void defer_fill_folder(string strTitle, ::file::path pathFolder);

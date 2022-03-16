@@ -362,7 +362,7 @@ namespace folder_zip
    }
 
 
-   bool folder::perform_file_listing(::file::listing & listing)
+   bool folder::enumerate(::file::listing & listing)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -399,7 +399,9 @@ namespace folder_zip
 
       int err = unzGoToFirstFile(pf);
 
+      ::file::path path;
 
+      ::file::path pathBaseFolder(strPrefix);
 
       while (err == UNZ_OK)
       {
@@ -427,11 +429,15 @@ namespace folder_zip
                if (strTitle.has_char())
                {
 
-                  listing.add(::file::path(strPrefix) / ::file::path(strTitle));
+                  path = pathBaseFolder / strTitle;
 
-                  listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+                  path.m_iBasePathLength = pathBaseFolder.get_length() + 1;
 
-                  listing.last().m_iSize = unzfileinfo.uncompressed_size;
+                  path.m_iDir = strTitle.ends("/") || strTitle.ends("\\") || strTitle.ends(".zip");
+
+                  path.m_iSize = unzfileinfo.uncompressed_size;
+
+                  listing.defer_add(path);
 
                }
 
@@ -443,74 +449,74 @@ namespace folder_zip
 
       }
 
-      return listing;
+      return true;
 
    }
 
 
-   bool folder::perform_file_relative_name_listing(::file::listing & listing)
-   {
+   //bool folder::perform_file_relative_name_listing(::file::listing & listing)
+   //{
 
-      synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
-      unzFile pf = m_unzfile;
+   //   unzFile pf = m_unzfile;
 
-      if (pf == nullptr)
-      {
+   //   if (pf == nullptr)
+   //   {
 
-         //listing = error_failed;
+   //      //listing = error_failed;
 
-         //return listing;
+   //      //return listing;
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-      string str;
-      string wstrFolder;
-      string_array wstraFolder;
-      unz_file_info unzfileinfo;
+   //   string str;
+   //   string wstrFolder;
+   //   string_array wstraFolder;
+   //   unz_file_info unzfileinfo;
 
-      while (true)
-      {
+   //   while (true)
+   //   {
 
-         char szTitle[_MAX_PATH];
+   //      char szTitle[_MAX_PATH];
 
-         unzGetCurrentFileInfo(
-         pf,
-         &unzfileinfo,
-         szTitle,
-         _MAX_PATH,
-         nullptr, // extra Field
-         0,
-         nullptr, // comment
-         0);
-            
-         string strTitle(szTitle);
+   //      unzGetCurrentFileInfo(
+   //      pf,
+   //      &unzfileinfo,
+   //      szTitle,
+   //      _MAX_PATH,
+   //      nullptr, // extra Field
+   //      0,
+   //      nullptr, // comment
+   //      0);
+   //         
+   //      string strTitle(szTitle);
 
-         if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
-         {
+   //      if (listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
+   //      {
 
-            listing.add(::file::path(strTitle));
+   //         listing.add(::file::path(strTitle));
 
-            listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+   //         listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
 
-            listing.last().m_iSize = unzfileinfo.uncompressed_size;
+   //         listing.last().m_iSize = unzfileinfo.uncompressed_size;
 
-         }
+   //      }
 
-         if (unzGoToNextFile(pf) != UNZ_OK)
-         {
+   //      if (unzGoToNextFile(pf) != UNZ_OK)
+   //      {
 
-            break;
+   //         break;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return listing;
+   //   return listing;
 
-   }
+   //}
 
 
    ::file_pointer folder::get_file(const char* pszFile)
@@ -570,7 +576,7 @@ namespace folder_zip
 
       ::file::listing listing;
 
-      perform_file_listing(listing);
+      enumerate(listing);
 
       ::file::path pathTargetFolder;
 

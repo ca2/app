@@ -33,7 +33,7 @@ namespace app_core_build
       ::user::plain_edit_view *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloMultiverseMain;
       ::user::single_document_template *     m_ptemplateHelloMultiverseView;
-      pane_view *                            m_ppaneview;
+      pane_impact *                            m_ppaneimpact;
 
 
       ::file::path_array                          m_pathaCommandLineSlide;

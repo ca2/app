@@ -94,9 +94,9 @@ namespace android
 
          {
 
-            __restore(listing.m_pathFinal);
+            __scoped_restore(listing.m_pathFinal);
 
-            __restore(listing.m_eextract);
+            __scoped_restore(listing.m_eextract);
 
             ::file::listing straDir;
 
@@ -135,7 +135,7 @@ namespace android
          if (listing.m_bFile)
          {
 
-            __restore(listing.m_bRecursive);
+            __scoped_restore(listing.m_bRecursive);
 
             listing.m_bRecursive = false;
 
@@ -1006,13 +1006,13 @@ namespace android
 
       //nodeos_set_home(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "home");
 
       //nodeos_set_temp(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "temp");
 
@@ -1143,7 +1143,7 @@ pacmedir->system() / "temp");
 
       str =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / ".ca2/app/appdata";
       

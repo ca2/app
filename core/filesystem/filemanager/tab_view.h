@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE tab_view :
-      virtual public ::userex::pane_tab_view
+      virtual public ::userex::pane_tab_impact
    {
    public:
 

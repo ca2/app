@@ -816,11 +816,11 @@ namespace user
 
       if (pOpenDocument != nullptr)
       {
-         __pointer(::user::impact) pview = pOpenDocument->get_view(0); // get first one
-         if(pview != nullptr)
+         __pointer(::user::impact) pimpact = pOpenDocument->get_view(0); // get first one
+         if(pimpact != nullptr)
          {
-            ASSERT_VALID(pview);
-            __pointer(::user::frame_window) pFrame = pview->get_parent_frame();
+            ASSERT_VALID(pimpact);
+            __pointer(::user::frame_window) pFrame = pimpact->get_parent_frame();
 
             if (pFrame == nullptr)
             {

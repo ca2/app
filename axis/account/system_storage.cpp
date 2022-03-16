@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 12/12/18.
 //
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "system_storage.h"
 
 
@@ -109,7 +109,7 @@ namespace account
       
       auto psystem = m_psystem->m_papexsystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pacmedir->create(path);
 

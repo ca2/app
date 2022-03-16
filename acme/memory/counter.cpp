@@ -1,7 +1,7 @@
 // Created on 2021-03-21 16:35 <3ThomasBS_!!
 #include "framework.h"
 #include "acme/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -29,7 +29,7 @@ bool initialize_memory_counter(::matter* pmatter)
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = pmatter->m_psystem->m_pacmefile->exists(pmatter->m_psystem->m_pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = pmatter->m_psystem->m_pacmefile->exists(pmatter->m_psystem->m_pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -59,13 +59,13 @@ bool initialize_memory_counter(::matter* pmatter)
 //
 //#if defined(_UWP)
 //
-//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters";
+//      string strBasePath = pmatter->m_psystem->m_pacmedirectory->system() / "memory_counters";
 //
 //#else
 //
 //      ::file::path strModule = module_path_from_pid(get_current_process_id());
 //
-//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __string(get_current_process_id());
+//      string strBasePath = pmatter->m_psystem->m_pacmedirectory->system() / "memory_counters" / strModule.title() / __string(get_current_process_id());
 //
 //#endif
 //

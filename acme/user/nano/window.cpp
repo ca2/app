@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "_nano.h"
 #include "acme/id.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -665,7 +665,7 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    strAppId = m_psystem->m_strAppId;
 
-   ::file::path pathFolder = m_psystem->m_pacmedir->home() / "application" / strAppId / "details";
+   ::file::path pathFolder = m_psystem->m_pacmedirectory->home() / "application" / strAppId / "details";
 
    auto pathDetails = m_psystem->m_pacmefile->time_put_contents(pathFolder, "details", "txt", str);
 

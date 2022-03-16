@@ -161,7 +161,7 @@
     <ClInclude Include="frame.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="main_frame.h" />
-    <ClInclude Include="pane_view.h" />
+    <ClInclude Include="pane_impact.h" />
     <ClInclude Include="simple_shader.h" />
     <ClInclude Include="impact.h" />
     <ClInclude Include="_.h" />
@@ -173,7 +173,7 @@
     <ClCompile Include="frame.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="main_frame.cpp" />
-    <ClCompile Include="pane_view.cpp" />
+    <ClCompile Include="pane_impact.cpp" />
     <ClCompile Include="simple_shader.cpp" />
     <ClCompile Include="simple_shader_1through3.cpp" />
     <ClCompile Include="simple_shader_arcs.cpp" />

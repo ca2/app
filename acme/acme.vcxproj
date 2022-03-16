@@ -844,6 +844,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
@@ -867,11 +868,13 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="exception\serialization.cpp" />
     <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="exception\translator.cpp" />
-    <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
@@ -944,6 +947,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_enumeration.h" />
     <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\file_open.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\io.h" />
@@ -951,7 +955,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="exception\serialization.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
+    <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\path_array.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\plain_text_file_options.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
@@ -1378,7 +1384,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="exception\_const.h" />
     <ClInclude Include="exception\_dump_context.h" />
     <ClInclude Include="exception\_impl.h" />
-    <ClInclude Include="filesystem\filesystem\acme_dir.h" />
+    <ClInclude Include="filesystem\filesystem\acme_directory.h" />
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
@@ -2002,7 +2008,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="filesystem\file\byte_stream_memory_file.h" />
     <ClInclude Include="filesystem\file\circular_file.h" />
     <ClInclude Include="filesystem\file\composite.h" />
-    <ClInclude Include="filesystem\file\_const.h" />
+    <ClInclude Include="filesystem\file\_constant.h" />
     <ClInclude Include="filesystem\file\cpp.h" />
     <ClInclude Include="filesystem\file\dir.h" />
     <ClInclude Include="filesystem\file\aaa_edit_file.h" />

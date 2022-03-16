@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 //CLASS_DECL_APEX string ca2_command_line(hinstance hinstance);
@@ -117,9 +117,9 @@ bool application::os_on_start_application()
       strLinkTitle.replace_with("_", "\\");
       strLinkTitle.replace_with("_", "-");
 
-      pathLnk = m_psystem->m_pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+      pathLnk = m_psystem->m_pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-      m_psystem->m_pacmedir->create(pathLnk.folder());
+      m_psystem->m_pacmedirectory->create(pathLnk.folder());
 
       m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 

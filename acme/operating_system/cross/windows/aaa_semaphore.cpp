@@ -83,7 +83,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
          strPath =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
       }
@@ -94,7 +94,7 @@ pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(::file::path(strPath).folder());
 

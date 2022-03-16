@@ -33,7 +33,7 @@ namespace browser
       ::user::single_document_template *     m_ptemplateHelloBrowserMain;
       ::user::single_document_template *     m_ptemplateHelloBrowserView;
       ::user::single_document_template *     m_ptemplateHelloBrowserSwitcher;
-      pane_view *                            m_ppaneview;
+      pane_impact *                            m_ppaneimpact;
 
 
       application(::object * pobject);

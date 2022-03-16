@@ -4,26 +4,10 @@
 namespace file
 {
 
-   class path;
-
-}
-
-
-
-
-namespace file
-{
-
-   class path;
-   class path_object;
-   
-   //typedef CLASS_DECL_ACME string_array_base < ::file::path, string, e_type_payload > patha;
-
-
-   
 
    struct CLASS_DECL_ACME path_meta :
-      public enumeration < ::file::enum_flag >
+      public enumeration < ::file::enum_flag >,
+      public file_time_set
    {
 
       enum_path                  m_epath;
@@ -31,18 +15,18 @@ namespace file
       i64                        m_iSize; // if negative, not set/calculated/retrieved the file size_i32(for directories would be all contained elements total sum size_i32)
       int                        m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize                    m_iName; // if negative, not set/calculated/retrieved where name starts
-      strsize                    m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
+      strsize                    m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path
       __pointer(::matter)        m_pmatterOsPath;
 
 
-      path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
+      path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
       {
 
          m_epath                             = epath;
          m_iSize                             = iSize;
          m_iDir                              = iDir;
          m_iName                             = (strsize) iName;
-         m_iRelative                         = iRelative;
+         m_iBasePathLength                   = iBasePathLength;
          enumeration < ::file::enum_flag >::m_eenum   = eflag.enumeration < ::file::enum_flag >::m_eenum;
 
       }
@@ -336,6 +320,30 @@ namespace file
       using path_meta::operator -=;
 
       inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
+
+
+      ::file::path & patch_base_path(const ::file::path & pathBase)
+      {
+
+         auto iBasePathLength = m_iBasePathLength;
+
+         if (iBasePathLength < 0)
+         {
+
+            iBasePathLength = 0;
+
+         }
+
+         auto pszRelative = c_str() + iBasePathLength;
+
+         *this = pathBase / pszRelative;
+
+         m_iBasePathLength = pathBase.length() + 1;
+
+         return *this;
+
+      }
+
 
    };
 

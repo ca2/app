@@ -1994,7 +1994,7 @@ namespace filemanager
 
          ::file::path_array filepatha;
 
-         filepatha = papp->data_get(filemanager_data()->m_dataidStatic);
+         filepatha.add(papp->data_get(filemanager_data()->m_dataidStatic).stra());
 
          ::file::path filepath = filemanager_item()->get_user_path();
 

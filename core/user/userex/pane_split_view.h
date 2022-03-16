@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class pane_view;
+   class pane_impact;
 
 
    class CLASS_DECL_CORE pane_split_view:
@@ -14,7 +14,7 @@ namespace userex
    public:
 
 
-      __pointer(pane_view) m_ppaneview;
+      __pointer(pane_impact) m_ppaneimpact;
 
 
       pane_split_view();

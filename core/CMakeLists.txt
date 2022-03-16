@@ -536,10 +536,10 @@ list(APPEND library_source
    user/userex/mini_dock_frame_window.h
    user/userex/pane_split_view.cpp
    user/userex/pane_split_view.h
-   user/userex/pane_tab_view.cpp
-   user/userex/pane_tab_view.h
-   user/userex/pane_view.cpp
-   user/userex/pane_view.h
+   user/userex/pane_tab_impact.cpp
+   user/userex/pane_tab_impact.h
+   user/userex/pane_impact.cpp
+   user/userex/pane_impact.h
    user/userex/progress.cpp
    user/userex/progress.h
    user/userex/property_page.cpp

@@ -20,12 +20,12 @@ namespace core
          if (pdocument->get_view() != nullptr)
          {
 
-            auto ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view >();
+            auto ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_impact >();
 
             if (ppanetabview)
             {
 
-               ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view >();
+               ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_impact >();
 
                auto pfilemanagerdocument = ppanetabview->filemanager_document(atomFileManager);
 

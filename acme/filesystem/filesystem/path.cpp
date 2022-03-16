@@ -884,10 +884,11 @@ namespace file
 
    }
 
+
    path path::relative() const
    {
 
-      return Mid(maximum(0,m_iRelative));
+      return Mid(maximum(0, m_iBasePathLength));
 
    }
 

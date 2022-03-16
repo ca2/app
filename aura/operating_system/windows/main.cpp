@@ -111,13 +111,13 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         pathLnk =          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //                  auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->create(pathLnk.folder());
 //

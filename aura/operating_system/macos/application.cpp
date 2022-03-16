@@ -316,14 +316,14 @@ namespace aura
 //      
 //      if(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->is(path))
 //      {
 //
 //         ::file::path path2 =          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         
@@ -338,7 +338,7 @@ namespace aura
 //         
 //                  auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->create(pathFolder2);
 //         
@@ -346,7 +346,7 @@ namespace aura
 //         
 //         if(!bFilePathIsLink &&          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->is(pathFolder2))
 //         {

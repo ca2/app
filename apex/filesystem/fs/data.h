@@ -13,7 +13,7 @@ namespace fs
 
    class CLASS_DECL_APEX data :
       virtual public ::data::data,
-      virtual public ::file::listing_provider
+      virtual public ::file::enumerator
    {
    public:
 
@@ -27,8 +27,9 @@ namespace fs
 
       // optional if ls_dir is implemented
       virtual bool has_subdir(const ::file::path & pszPath);
-      virtual ::file::listing & ls(::file::listing & listing);
-      virtual ::file::listing & ls_relative_name(::file::listing & listing);
+      //virtual bool _enumerates(::file::listing & listing) override;
+      virtual bool enumerate(::file::listing & listing) override;
+      //virtual ::file::listing & ls_relative_name(::file::listing & listing);
       virtual int is_dir(const ::file::path & pszPath);
       virtual ::file::listing & root_ones(::file::listing & listing);
 
@@ -56,8 +57,8 @@ namespace fs
       virtual bool is_zero_latency(const ::file::path & psz);
 
 
-      virtual bool perform_file_listing(::file::listing & listing) override;
-      virtual bool perform_file_relative_name_listing(::file::listing & listing) override;
+      //bool _enumerate(::file::listing & listing) override;
+      //virtual bool perform_file_relative_name_listing(::file::listing & listing) override;
 
 
    };

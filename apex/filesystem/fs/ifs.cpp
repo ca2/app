@@ -13,6 +13,13 @@ ifs::ifs(const char * pszRoot)
 }
 
 
+ifs::~ifs()
+{
+
+
+}
+
+
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
@@ -53,7 +60,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   m_pcontext->m_papexcontext->dir().ls(listing, path);
+   listing.initialize_file_listing(path);
+
+   enumerate(listing);
 
    synchronouslock.lock();
 
@@ -65,25 +74,27 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::root_ones(::file::listing & listing)
 {
 
-   ::file::path & path = listing[listing.add("uifs://")];
+   ::file::path path;
+
+   path = "uifs://";
 
    path.m_iDir = 1;
 
+   listing.defer_add(path);
+
    listing.m_straTitle.add("User Intelligent File psystem");
-
-
 
    return listing;
 
 }
 
 
-::file::listing & ifs::ls(::file::listing & listing)
+bool ifs::enumerate(::file::listing & listing)
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   dir_listing & dir = m_map[listing.m_pathUser];
+   auto & dir = m_map[listing.m_pathUser];
 
    auto psystem = m_psystem->m_papexsystem;
 
@@ -301,7 +312,9 @@ int ifs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
+      listing.initialize_file_listing(path.folder());
+
+      m_pcontext->m_papexcontext->dir().enumerate(listing);
 
    }
 

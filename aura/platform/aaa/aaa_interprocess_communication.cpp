@@ -491,7 +491,7 @@ started:
 
       strKey =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
@@ -517,7 +517,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       strKey =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 

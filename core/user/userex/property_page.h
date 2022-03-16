@@ -9,7 +9,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE  property_page:
-      virtual public ::userex::pane_tab_view
+      virtual public ::userex::pane_tab_impact
    {
    public:
 

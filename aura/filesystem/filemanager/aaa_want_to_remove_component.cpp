@@ -391,7 +391,7 @@ namespace filemanager
 
             m_pathFilemanagerProject =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->localconfig() / "user.component";
 
@@ -656,16 +656,16 @@ pacmedir->localconfig() / "user.component";
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabview = pdocument->get_type_impact < tab_view >();
+      //tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
 
-      //if (ptabview != nullptr)
+      //if (ptabimpact != nullptr)
       //{
 
       //   string strManagerId;
 
       //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_app());
 
-      //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
+      //   ptabimpact->set_current_tab_by_id("verifile://" + pathFolder);
 
       //}
 
@@ -859,24 +859,24 @@ pacmedir->localconfig() / "user.component";
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabview = pdocument->get_type_impact < tab_view >();
+//      tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {
 
-//         if (ptabview != nullptr)
+//         if (ptabimpact != nullptr)
 //         {
 
-//            if (ptabview->get_tab_count() <= 0)
+//            if (ptabimpact->get_tab_count() <= 0)
 //            {
 
-//               ptabview->set_current_tab_by_id("verifile://" + pathFolder);
+//               ptabimpact->set_current_tab_by_id("verifile://" + pathFolder);
 
 //            }
 //            else
 //            {
 
-//               __pointer(::user::frame_window) pframe = ptabview->get_pane(0)->m_pholder->get_hold();
+//               __pointer(::user::frame_window) pframe = ptabimpact->get_pane(0)->m_pholder->get_hold();
 
 //               document * pdocument = pframe->get_active_document();
 
@@ -890,10 +890,10 @@ pacmedir->localconfig() / "user.component";
 //      else
 //      {
 
-//         if (ptabview->get_tab_count() <= 0)
+//         if (ptabimpact->get_tab_count() <= 0)
 //         {
 
-//            ptabview->set_current_tab_by_id("0");
+//            ptabimpact->set_current_tab_by_id("0");
 
 //         }
 

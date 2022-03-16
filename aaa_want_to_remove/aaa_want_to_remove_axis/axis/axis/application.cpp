@@ -1122,14 +1122,14 @@ m_durationHeartBeat.Now();
 
       if(m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
          strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
@@ -1545,7 +1545,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    }
 
 
-   void application::on_update_view(::user::impact * pview,::user::impact * pviewSender,LPARAM lHint,object* pHint)
+   void application::on_update_view(::user::impact * pimpact,::user::impact * pviewSender,LPARAM lHint,object* pHint)
    {
 
 

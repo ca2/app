@@ -167,7 +167,8 @@ namespace user
 
          // it worked, now bump untitled count
          m_nUntitledCount++;
-         pdocument->id_update_all_views(NEW_DOCUMENT_UPDATE);
+         pdocument->id_update_all_views(id_new_document);
+
       }
       else
       {
@@ -185,7 +186,8 @@ namespace user
          }
          //pdocument->set_path_name(pcreate->m_pcommandline->m_payloadFile);
 
-         pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
+         pdocument->id_update_all_views(id_open_document);
+
       }
 
       if(!pcreate->m_bHold)

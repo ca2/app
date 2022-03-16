@@ -34,7 +34,7 @@ namespace prompt
       add_factory_item <prompt::document >();
       add_factory_item <prompt::frame >();
       add_factory_item <prompt::impact >();
-      add_factory_item <prompt::pane_view >();
+      add_factory_item <prompt::pane_impact >();
       add_factory_item <prompt::primary_view >();
 
       if (!::acme::department::init_instance())
@@ -55,7 +55,7 @@ namespace prompt
          "system/form",
          __type(prompt::document),
          __type(prompt::frame),
-         __type(prompt::pane_view));
+         __type(prompt::pane_impact));
          papp->add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 

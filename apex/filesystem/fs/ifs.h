@@ -41,11 +41,13 @@ public:
 
 
    ifs( const char * pszRoot);
+   ~ifs() override;
 
 
    virtual bool has_subdir(const ::file::path & pszPath) override;
    virtual bool fast_has_subdir(const ::file::path  & pszPath) override;
-   virtual ::file::listing & ls(::file::listing & listing) override;
+   //virtual bool _enumerates(::file::listing & listing) override;
+   virtual bool enumerate(::file::listing & listing) override;
    virtual int is_dir(const ::file::path & path) override;
    virtual ::file::listing & root_ones(::file::listing & listing) override;
 

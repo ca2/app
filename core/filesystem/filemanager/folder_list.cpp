@@ -132,18 +132,20 @@ namespace filemanager
 
       Folder folder;
 
-      ::file::listing patha;
+      ::file::listing listing;
 
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->dir().ls(patha, strParent);
+      listing.initialize_file_listing(strParent);
 
-      for (i32 i = 0; i < patha.get_count(); i++)
+      pcontext->m_papexcontext->dir().enumerate(listing);
+
+      for (i32 i = 0; i < listing.get_count(); i++)
       {
 
-         folder.m_strFolderPath = patha[i];
+         folder.m_strFolderPath = listing[i];
 
-         folder.m_strName = patha[i].title();
+         folder.m_strName = listing[i].title();
 
          m_foldera.AddFolder(folder);
 

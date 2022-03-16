@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/networking/sockets/_.h"
 //#include "apex/platform/app_core.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -148,7 +148,7 @@ namespace apex
       m_bInitialized = true;
 
 
-      ::file::path pathTrace = m_psystem->m_pacmedir->system() / "trace.txt";
+      ::file::path pathTrace = m_psystem->m_pacmedirectory->system() / "trace.txt";
 
 #ifdef __DEBUG
 
@@ -177,7 +177,7 @@ namespace apex
 
 #endif
 
-      if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedir->system() / "log.txt"))
+      if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedirectory->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -472,14 +472,14 @@ namespace apex
 ////
 ////         strIndex.format("%d-%05d", get_current_process_id(), iRetry);
 ////
-////         m_strLogPath = m_psystem->m_pacmedir->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
+////         m_strLogPath = m_psystem->m_pacmedirectory->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
 ////
 ////         try
 ////         {
 ////
 ////                     auto psystem = m_psystem;
 //
-////         auto pacmedir = psystem->m_pacmedir;
+////         auto pacmedir = psystem->m_pacmedirectory;
 ////
 ////pacmedir->create(::file_path_folder(m_strLogPath));
 ////
@@ -556,7 +556,7 @@ namespace apex
 ////
 ////                  sleep(1_s);
 ////
-////                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
+////                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedirectory->system() / "logviewer.txt"))
 ////                  {
 ////
 ////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);

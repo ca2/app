@@ -108,7 +108,7 @@ namespace aura
 
       //__pointer(::simpledb::server)                   m_psimpledb;
 
-      //::userex::pane_tab_view *                       m_pmainpane;
+      //::userex::pane_tab_impact *                       m_pmainpane;
 
 
 //      string                                          m_strHelpFilePath;
@@ -128,7 +128,7 @@ namespace aura
 //      // true if we're in SHIFT+F1 mode.
 //      bool                                            m_bHelpMode;
 //
-//      //::userex::pane_tab_view *                       m_ppaneviewMain;
+//      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
 //
 //      string                                          m_strProfileName;
 //
@@ -340,7 +340,7 @@ namespace aura
       //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
       //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
-      //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint);
+      //virtual void on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* pevent);

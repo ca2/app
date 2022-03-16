@@ -14,16 +14,13 @@ namespace experience
       frame::frame()
       {
 
+         m_pointWindowIcon.x = 14;
+
          m_colorActiveCaptionTextBk = ::color::transparent;
-         //m_rectangleControlBoxMarginNormal = nullp();
 
          m_rectangleMarginNormal.set(5, 5, 5, 5);
 
          m_colorCaptionText = argb(255, 255, 255, 255);
-
-         //m_rectangleClient = nullptr;
-
-         //               m_iMargin = 7;
 
       }
 

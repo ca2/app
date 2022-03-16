@@ -195,12 +195,12 @@ namespace console
       
       hide();
 
-      __pointer(prompt_impact) pview = m_pviewMain;
+      __pointer(prompt_impact) pimpact = m_pviewMain;
 
-      if(pview.is_set())
+      if(pimpact.is_set())
       {
 
-         pview->clear();
+         pimpact->clear();
 
       }
 

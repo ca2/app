@@ -80,8 +80,6 @@ namespace userex
    bool split_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      pimpactdata->m_atom = pimpactdata->m_atomTitle;
-
       pimpactdata->m_pplaceholder = get_pane_holder((::index) pimpactdata->m_iId);
 
       return true;
@@ -106,7 +104,7 @@ namespace userex
 
       ppane->m_pplaceholder->get_client_rect(rectangleClient);
 
-      ::user::impact_data * pdata = create_impact(atom);
+      ::user::impact_data * pdata = create_impact_by_id(atom);
 
       if (pdata == nullptr)
       {

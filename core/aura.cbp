@@ -3131,10 +3131,10 @@
 		<Unit filename="user/userex/mini_dock_frame_window.h" />
 		<Unit filename="user/userex/pane_split_view.cpp" />
 		<Unit filename="user/userex/pane_split_view.h" />
-		<Unit filename="user/userex/pane_tab_view.cpp" />
-		<Unit filename="user/userex/pane_tab_view.h" />
-		<Unit filename="user/userex/pane_view.cpp" />
-		<Unit filename="user/userex/pane_view.h" />
+		<Unit filename="user/userex/pane_tab_impact.cpp" />
+		<Unit filename="user/userex/pane_tab_impact.h" />
+		<Unit filename="user/userex/pane_impact.cpp" />
+		<Unit filename="user/userex/pane_impact.h" />
 		<Unit filename="user/userex/progress.cpp" />
 		<Unit filename="user/userex/progress.h" />
 		<Unit filename="user/userex/property_page.cpp" />

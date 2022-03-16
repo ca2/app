@@ -67,21 +67,23 @@ namespace fs
    }
 
 
-   ::file::listing & link::ls(::file::listing & listing)
+   bool link::enumerate(::file::listing & listing)
    {
 
       listing.clear_results();
 
       defer_fill_folder(m_strTitle, m_plisting->m_pathUser);
 
-      if(listing.m_pathUser == m_plisting->m_pathUser)
+      if (listing.m_pathUser != m_plisting->m_pathUser)
       {
 
-         listing = *m_plisting;
+         return false;
 
       }
 
-      return listing;
+      listing = *m_plisting;
+
+      return true;
 
    }
 
@@ -153,11 +155,9 @@ namespace fs
 
       m_plisting->m_pathUser = pathFolder;
 
-      m_plisting->m_pprovider = m_pcontext->m_papexcontext;
-
       m_plisting->clear_results();
 
-      m_pcontext->m_papexcontext->dir().ls(*m_plisting);
+      m_pcontext->m_papexcontext->dir().enumerate(*m_plisting);
 
    }
 

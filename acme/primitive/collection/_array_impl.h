@@ -294,9 +294,20 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::add(ARG_TYP
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 template < container_type CONTAINER >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::add(const CONTAINER & src)
+inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::add(const CONTAINER & container)
 {
-   return append(src);
+
+   ::index i = -1;
+   
+   for(auto & item : container)
+   { 
+   
+      i = add_item(item);
+   
+   }
+
+   return i;
+   
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >

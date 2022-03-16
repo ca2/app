@@ -1,6 +1,6 @@
 // Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardS�rensen!!
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -52,7 +52,7 @@
 
       }
 
-      //if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedir->system() / "log.txt"))
+      //if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedirectory->system() / "log.txt"))
       //{
 
       //   m_bLog = true;

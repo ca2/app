@@ -60,6 +60,19 @@ namespace user
       if(::is_set(pimpactdata->m_puserinteraction) || ::is_set(pimpactdata->m_pdocument))
       {
 
+         pimpactdata->m_bOk = true;
+
+         return true;
+
+      }
+
+      if (::is_set(pimpactdata->m_pplaceholder) 
+         && ::is_set(pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild)
+         && pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_interaction())
+      {
+
+         pimpactdata->m_bOk = true;
+
          return true;
 
       }

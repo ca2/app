@@ -419,7 +419,7 @@ namespace user
 
                strIcon =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
@@ -814,7 +814,7 @@ pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExt
 
          if (         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->is(strPath))
          {

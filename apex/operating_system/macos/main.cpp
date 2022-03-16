@@ -14,7 +14,7 @@
 // //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 // //
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 // #include <assert.h>
@@ -241,14 +241,14 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
 
       path -= 3;
       
-      auto pacmedir = m_psystem->m_pacmedir;
+      auto pacmedir = m_psystem->m_pacmedirectory;
 
       if(pacmedir->is(path))
       {
 
          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
          
          string strName =path.name();
 

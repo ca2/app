@@ -5,12 +5,12 @@
 namespace helloworld
 {
 
-   pane_view::pane_view(::object * pobject) :
+   pane_impact::pane_impact(::object * pobject) :
       object(pobject),
       ::user::tab(pobject),
 
       ::user::tab_view(pobject),
-      ::userex::pane_tab_view(pobject),
+      ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
       m_pviewLast = nullptr;
@@ -20,13 +20,13 @@ namespace helloworld
    }
 
 
-   pane_view::~pane_view()
+   pane_impact::~pane_impact()
    {
 
    }
 
 
-   void pane_view::assert_ok() const
+   void pane_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -34,7 +34,7 @@ namespace helloworld
    }
 
 
-   void pane_view::dump(dump_context & dumpcontext) const
+   void pane_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -42,17 +42,17 @@ namespace helloworld
    }
 
 
-   void pane_view::install_message_routing(::channel * pchannel)
+   void pane_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::userex::pane_tab_view::install_message_routing(pchannel);
+      ::userex::pane_tab_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &pane_impact::on_message_create);
 
    }
 
 
-   void pane_view::on_message_create(::message::message * pmessage)
+   void pane_impact::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -74,26 +74,26 @@ namespace helloworld
 
 
 
-   void pane_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::userex::pane_tab_view::_001OnNcDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnNcDraw(pgraphics);
 
    }
 
 
-   void pane_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void pane_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::userex::pane_tab_view::_001OnDraw(pgraphics);
+      ::userex::pane_tab_impact::_001OnDraw(pgraphics);
 
    }
 
 
-   void pane_view::on_change_cur_sel()
+   void pane_impact::on_change_cur_sel()
    {
 
-      ::userex::pane_tab_view::on_change_cur_sel();
+      ::userex::pane_tab_impact::on_change_cur_sel();
       string strId = get_view_id();
       string_array stra;
       m_prollfps = nullptr;
@@ -178,9 +178,9 @@ namespace helloworld
 
          string str;
 
-         ::user::impact * pview = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_prollfps = dynamic_cast <::calculator::plain_edit_view *> (pview->get_child_by_id("roll_fps"));
+         m_prollfps = dynamic_cast <::calculator::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
 
          m_pviewLast->data_get("cur_fps_text", str);
 
@@ -199,7 +199,7 @@ namespace helloworld
             for (auto & bilbo : m_pviewLastBilbo->m_prender->m_bilboa)
             {
 
-               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __string(i))));
+               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + __string(i))));
 
                m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
@@ -229,7 +229,7 @@ namespace helloworld
 
 
 
-   void pane_view::on_create_impact(::user::impact_data * pimpactdata)
+   void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       switch(pimpactdata->m_atom)
@@ -239,9 +239,9 @@ namespace helloworld
 
          m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
-         ::user::impact * pview = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_pimpactdata->m_puserinteraction = pview->get_parent_frame();
+         m_pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
 
          //::file::path path = prepare_menu_view();
@@ -249,7 +249,7 @@ namespace helloworld
          //m_pdocMenu->open_document(path);
 
 
-//         m_prollspf = pview->get_child_by_id("roll_spf");
+//         m_prollspf = pimpact->get_child_by_id("roll_spf");
          //try
          //{
          //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(papp->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
@@ -294,15 +294,15 @@ namespace helloworld
       break;
       }
 
-      ::userex::pane_tab_view::on_create_impact(pimpactdata);
+      ::userex::pane_tab_impact::on_create_impact(pimpactdata);
 
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pimpact) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
       {
 
          if(ptopic->m_atom == ::id_after_change_text)
@@ -440,7 +440,7 @@ namespace helloworld
    }
 
 
-   ::file::path pane_view::prepare_menu_view()
+   ::file::path pane_impact::prepare_menu_view()
    {
 
       string str;
@@ -506,7 +506,7 @@ namespace helloworld
    }
 
 
-   void pane_view::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -556,7 +556,7 @@ namespace helloworld
 
       }
 
-      ::userex::pane_tab_view::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, pcontext);
 
    }
 

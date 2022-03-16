@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/primitive/string/base64.h"
 #include "_openssl.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 
@@ -1084,7 +1084,7 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return m_psystem->m_pacmedir->system() / "user" / "databin.bin";
+      return m_psystem->m_pacmedirectory->system() / "user" / "databin.bin";
 
    }
 

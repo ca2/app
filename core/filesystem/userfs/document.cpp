@@ -128,7 +128,9 @@ namespace userfs
       else
       {
 
-         pcontext->m_papexcontext->dir().ls(listingUser, pitem->m_filepathFinal);
+         listingUser.initialize_file_listing(pitem->m_filepathFinal);
+
+         pcontext->m_papexcontext->dir().enumerate(listingUser);
 
          listingUser.m_pathUser = pitem->m_filepathUser;
 
@@ -143,6 +145,8 @@ namespace userfs
             listingUserFormatted.m_pathUser = pitem->m_filepathUser;
 
             listingUserFormatted.m_pathFinal = listingUser.m_pathFinal;
+
+            listingUserFormatted.m_eflag = ::file::e_flag_file_or_folder;
 
             for (auto & item : listingUser)
             {
@@ -164,7 +168,7 @@ namespace userfs
 
                pathUser.m_iDir = item.m_iDir;
 
-               listingUserFormatted.add(pathUser);
+               listingUserFormatted.defer_add(pathUser);
 
             }
 
@@ -184,6 +188,8 @@ namespace userfs
 
       listingFinal.m_pathFinal = pitem->m_filepathFinal;
 
+      listingFinal.m_eflag = ::file::e_flag_file_or_folder;
+
       for (auto & pathItem : listingUser)
       {
 
@@ -200,13 +206,17 @@ namespace userfs
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
-         listingFinal.add(pathFinal);
+         listingFinal.defer_add(pathFinal);
 
       }
 
       ::file::listing listingFolderUser;
 
       ::file::listing listingFolderFinal;
+
+      listingFolderUser.m_eflag = ::file::e_flag_folder;
+
+      listingFolderFinal.m_eflag = ::file::e_flag_folder;
 
       ASSERT(listingUser.get_count() == listingFinal.get_count());
 
@@ -246,9 +256,9 @@ namespace userfs
 
          auto pathFolderFinal = listingFinal[i];
 
-         listingFolderUser.add(pathFolderUser);
+         listingFolderUser.defer_add(pathFolderUser);
 
-         listingFolderFinal.add(pathFolderFinal);
+         listingFolderFinal.defer_add(pathFolderFinal);
 
       }
 

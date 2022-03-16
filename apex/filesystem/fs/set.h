@@ -6,7 +6,8 @@ namespace fs
 
 
    class CLASS_DECL_APEX set :
-      virtual public ::fs::data
+      virtual public ::fs::data,
+      virtual public ::file::enumerator
    {
    public:
 
@@ -16,7 +17,7 @@ namespace fs
 
 
       set();
-      virtual ~set();
+      ~set() override;
 
 
       string_map < __pointer(data) > & fsmap();
@@ -26,8 +27,9 @@ namespace fs
       virtual __pointer(data) path_data(const ::file::path & psz)override;
       virtual __pointer(data) node_path_data(const ::file::path & psz)override;
       virtual ::file::listing & root_ones(::file::listing & listing)override;
-      virtual ::file::listing & ls(::file::listing & listing)override;
-      virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
+      //virtual bool _enumerates(::file::listing & listing)override;
+      virtual bool enumerate(::file::listing & listing)override;
+      //virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
       virtual int is_dir(const ::file::path & psz)override;
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc)override;
       virtual bool has_subdir(const ::file::path & psz)override;

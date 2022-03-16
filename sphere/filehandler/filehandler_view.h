@@ -33,7 +33,7 @@ namespace filehandler
 
          void parse(const ::string & pszApp);
 
-         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
+         void draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
       };
 
@@ -50,7 +50,7 @@ namespace filehandler
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
          void on_layout(const RECTANGLE_I32 * lpcrect);
-         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics);
+         void draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics);
 
       };
 

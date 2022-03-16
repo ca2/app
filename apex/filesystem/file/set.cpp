@@ -126,26 +126,32 @@ namespace file
 
          }
 
-         m_listing.m_pprovider = m_pcontext->m_papexcontext;
-
          ::file::path & pathFolder = m_ppathaSearch->element_at(i);
 
-         if(bRecursive)
+         m_listing.m_pathUser = pathFolder;
+
+         m_listing.m_straPattern = m_straFilter;
+
+         if (bRecursive)
          {
 
-            m_pcontext->m_papexcontext->dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
+            m_listing.m_edepth = e_depth_recursively;
 
          }
-         else
-         {
 
-            m_pcontext->m_papexcontext->dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
+         m_pcontext->m_papexcontext->enumerate(m_listing);
 
-         }
+         //}
+         //else
+         //{
+
+         //   m_pcontext->m_papexcontext->dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
+
+         //}
 
       }
 
-      m_listing.add(m_listingAddUp);
+      m_listing.add_listing(m_listingAddUp);
 
    }
 

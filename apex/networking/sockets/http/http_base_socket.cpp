@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/string/base64.h"
 
@@ -470,7 +470,7 @@ namespace sockets
       if (!m_psystem->m_pacmefile->exists(pcsz))
       {
 
-         if (m_psystem->m_pacmedir->is(pcsz))
+         if (m_psystem->m_pacmedirectory->is(pcsz))
          {
             
             outattr(__id(http_status_code)) = 200;

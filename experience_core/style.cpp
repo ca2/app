@@ -98,6 +98,22 @@ namespace experience
 
             }
 
+            ::user::e_state estate = ::user::e_state_none;
+
+            if (ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+            {
+
+               estate |= ::user::e_state_selected;
+
+            }
+
+            if (::is_item(ptab->m_pitemHover, iTab))
+            {
+
+               estate |= ::user::e_state_hover;
+
+            }
+
             iTab++;
 
             if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
@@ -398,7 +414,7 @@ namespace experience
             if(bTextRect)
             {
 
-               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText);
+               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText, estate);
 
             }
 
@@ -457,7 +473,7 @@ namespace experience
       }
 
 
-      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & pbrushText)
+      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
       {
 
          string_array & straTitle = pane.m_straTitle;

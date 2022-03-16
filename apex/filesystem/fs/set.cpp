@@ -70,29 +70,29 @@ namespace fs
 
       m_fsdatamap.erase_all();
 
-      ::file::listing straFsPath;
+      ::file::listing listingFsPath;
 
       for(i32 i = 0; i < m_spafsdata.get_count(); i++)
       {
 
-         straFsPath.clear_results();
+         listingFsPath.clear_results();
 
          data * pdata =  m_spafsdata[i];
 
          synchronouslock.unlock();
 
-         pdata->root_ones(straFsPath);
+         pdata->root_ones(listingFsPath);
 
          synchronouslock.lock();
 
-         listing.add(straFsPath);
+         listing.add_listing(listingFsPath);
 
-         listing.m_straTitle.add(straFsPath.m_straTitle);
+         listing.m_straTitle.add(listingFsPath.m_straTitle);
 
-         for(i32 j = 0; j < straFsPath.get_size(); j++)
+         for(i32 j = 0; j < listing.get_size(); j++)
          {
 
-            m_fsdatamap[straFsPath[j]] = m_spafsdata[i];
+            m_fsdatamap[listing[j]] = m_spafsdata[i];
 
          }
 
@@ -183,7 +183,8 @@ namespace fs
 
    }
 
-   ::file::listing & set::ls(::file::listing & listing)
+   
+   bool set::enumerate(::file::listing & listing)
    {
 
       if(listing.m_pathUser.is_empty())
@@ -198,7 +199,7 @@ namespace fs
       if(pdata != nullptr)
       {
 
-         return pdata->ls(listing);
+         return pdata->enumerate(listing);
 
       }
 
@@ -209,30 +210,30 @@ namespace fs
    }
 
 
-   ::file::listing & set::ls_relative_name(::file::listing & listing)
-   {
+   //::file::listing & set::ls_relative_name(::file::listing & listing)
+   //{
 
-      if (listing.m_pathFinal.is_empty())
-      {
+   //   if (listing.m_pathFinal.is_empty())
+   //   {
 
-         return root_ones(listing);
+   //      return root_ones(listing);
 
-      }
+   //   }
 
-      ::fs::data * pdata = path_data(listing.m_pathFinal);
+   //   ::fs::data * pdata = path_data(listing.m_pathFinal);
 
-      if (pdata != nullptr)
-      {
+   //   if (pdata != nullptr)
+   //   {
 
-         return pdata->ls_relative_name(listing);
+   //      return pdata->ls_relative_name(listing);
 
-      }
+   //   }
 
-      //return listing = ::error_failed;
+   //   //return listing = ::error_failed;
 
-      return listing;
+   //   return listing;
 
-   }
+   //}
 
 
    int set::is_dir(const ::file::path & path)

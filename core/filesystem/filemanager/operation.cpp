@@ -792,7 +792,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      listingExpanded.m_pprovider = pcontext;
+      listingExpanded.m_penumerator = pcontext;
 
       auto papp = get_app();
 
@@ -802,13 +802,15 @@ namespace filemanager
          if(pcontext->m_papexcontext->dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
          {
 
-            pcontext->m_papexcontext->dir().rls(listingExpanded, pathaExpand[i]);
+            listingExpanded.initialize_file_listing(pathaExpand[i]);
+
+            pcontext->m_papexcontext->dir().enumerate(listingExpanded);
 
          }
          else
          {
 
-            listingExpanded.add(pathaExpand[i]);
+            listingExpanded.defer_add(pathaExpand[i]);
 
          }
 

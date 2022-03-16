@@ -286,10 +286,10 @@ namespace filemanager
 
       }
 
-      //tab_view * ptabview = get_parent_frame()->GetTypedParent < tab_view >();
-      //if (ptabview != nullptr)
+      //tab_view * ptabimpact = get_parent_frame()->GetTypedParent < tab_view >();
+      //if (ptabimpact != nullptr)
       //{
-      //   ptabview->on_update(this, eupdate, pobject);
+      //   ptabimpact->on_update(this, eupdate, pobject);
       //}
 
    }

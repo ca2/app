@@ -5,8 +5,8 @@ namespace prompt
 {
 
 
-   class CLASS_DECL_SPHERE pane_view :
-      virtual public ::userex::pane_tab_view,
+   class CLASS_DECL_SPHERE pane_impact :
+      virtual public ::userex::pane_tab_impact,
       virtual public ::filemanager::callback,
       virtual public prompt::form_callback
    {
@@ -16,8 +16,8 @@ namespace prompt
       
 
 
-      pane_view(::object * pobject);
-      virtual ~pane_view();
+      pane_impact(::object * pobject);
+      virtual ~pane_impact();
 
 
       void rotate() override;

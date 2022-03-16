@@ -109,7 +109,7 @@ namespace universal_windows
 
       m_pdirsystem->m_pathHome =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->roaming() / "home";
 
@@ -157,11 +157,11 @@ pacmedir->roaming() / "home";
 
          {
 
-            __restore(listing.m_pathUser);
+            __scoped_restore(listing.m_pathUser);
 
-            __restore(listing.m_pathFinal);
+            __scoped_restore(listing.m_pathFinal);
 
-            __restore(listing.m_eextract);
+            __scoped_restore(listing.m_eextract);
 
             if(::dir_context::ls(listing))
             {

@@ -81,7 +81,7 @@ public:
 
    virtual ::color::color get_border_main_body_color() override;
 
-   void ImpactOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
+   void ImpactOnActivateFrame(__pointer(::user::impact) pimpact, ::u32 user, __pointer(::user::interaction) pframe);
 
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;

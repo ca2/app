@@ -67,7 +67,7 @@ namespace browser
 
                   auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - needs include shlobj.h
 
@@ -92,7 +92,7 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
       add_factory_item <::browser::impact >();
       add_factory_item <::browser::main_impact >();
       add_factory_item <::browser::switcher_view >();
-      add_factory_item <::browser::pane_view >();
+      add_factory_item <::browser::pane_impact >();
       add_factory_item <::browser::gcom >();
       add_matter_locator("app-core/hellomultiverse");
 
@@ -122,7 +122,7 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
                           "main",
                           __type(document),
                           __type(main_frame),
-                          __type(pane_view)));
+                          __type(pane_impact)));
       m_ptemplateHelloBrowserMain = pDocTemplate;
       add_document_template(pDocTemplate);
 

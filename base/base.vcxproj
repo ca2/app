@@ -870,6 +870,7 @@
     <ClCompile Include="user\user\impact_creator.cpp" />
     <ClCompile Include="user\user\impact_data.cpp" />
     <ClCompile Include="user\user\impact_host.cpp" />
+    <ClCompile Include="user\user\impact_kit.cpp" />
     <ClCompile Include="user\user\impact_system.cpp" />
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />

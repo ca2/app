@@ -53,6 +53,165 @@ namespace experience
 
             auto econtroltype = pinteraction->get_control_type();
 
+            if (econtroltype == ::user::e_control_type_tab)
+            {
+
+               if (eelement == ::e_element_item_background)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return argb(128, 255, 255, 255);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return argb(128, 205, 205, 255);
+
+                     }
+                     else
+                     {
+
+                        return argb(0, 0, 0, 0);
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return argb(128, 192, 192, 192);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return argb(128, 205, 205, 255);
+
+                     }
+                     else
+                     {
+
+                        return argb(0, 0, 0, 0);
+
+                     }
+
+                  }
+
+               }
+               else if (eelement == ::e_element_item_border)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return __acolor(255, 255, 255, 255);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return __acolor(255, 235, 235, 255);
+
+                     }
+                     else
+                     {
+
+                        return __acolor(255, 200, 200, 200);
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return __acolor(255, 255, 255, 255);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return __acolor(255, 20, 20, 20);
+
+                     }
+                     else
+                     {
+
+                        return __acolor(255, 55, 55, 55);
+
+                     }
+
+                  }
+
+               }
+               else if (eelement == ::e_element_item_text)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return __acolor(255, 255, 255, 255);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return __acolor(255, 235, 235, 255);
+
+                     }
+                     else
+                     {
+
+                        return __acolor(255, 200, 200, 200);
+
+                     }
+
+                  }
+                  else
+                  {
+
+                     if (estate & ::user::e_state_selected)
+                     {
+
+                        return __acolor(255, 255, 255, 255);
+
+                     }
+                     else if (estate & ::user::e_state_hover)
+                     {
+
+                        return __acolor(255, 20, 20, 20);
+
+                     }
+                     else
+                     {
+
+                        return __acolor(255, 100, 100, 100);
+
+                     }
+
+                  }
+
+               }
+
+            }
+
             if (econtroltype == ::user::e_control_type_list)
             {
 
@@ -164,7 +323,7 @@ namespace experience
             if (estate & ::user::e_state_selected)
             {
 
-                              if (is_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 185, 185, 180);
@@ -182,7 +341,7 @@ namespace experience
             else
             {
 
-                              if (is_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 125, 125, 120);
@@ -486,6 +645,22 @@ namespace experience
 
          iTab++;
 
+         ::user::e_state estate = ::user::e_state_none;
+
+         if (ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+         {
+
+            estate |= ::user::e_state_selected;
+
+         }
+
+         if (::is_item(ptab->m_pitemHover, iTab))
+         {
+
+            estate |= ::user::e_state_hover;
+
+         }
+
          if(!ptab->get_element_rect(iTab,rectangle,::e_element_tab))
             continue;
 
@@ -531,7 +706,7 @@ namespace experience
 
                   ppath->close_figure();
 
-                  ::color::color colorSel1 = ptab->get_color(pstyle, ::e_element_tab_item_background, ::user::e_state_selected);
+                  ::color::color colorSel1 = ptab->get_color(pstyle, ::e_element_item_background, ::user::e_state_selected);
 
                   ::color::color colorSel2(colorSel1);
 
@@ -666,138 +841,127 @@ namespace experience
             if(true)
             {
 
-               auto ppath = __create < ::draw2d::path > ();
+               //auto ppath = __create < ::draw2d::path > ();
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+               ::color::color colorBackground = ptab->get_color(pstyle, ::e_element_item_background, estate);
+
+               pgraphics->fill_rectangle(rectangleBorder, colorBackground);
+
+               ::color::color colorBorder = ptab->get_color(pstyle, ::e_element_item_border, estate);
+
+               ppenBorder->create_solid(2.0, colorBorder);
+
+               pgraphics->set(ppenBorder);
+
+               ::size_i32 sizeTopOffset(0, 2);
+
+               pgraphics->move_to(rectangleBorder.bottom_right());
+
+               pgraphics->line_to(rectangleBorder.top_right() + sizeTopOffset);
+
+               if (estate & ::user::e_state_selected)
                {
 
-                  if (iPane > 0)
-                  {
+                  pgraphics->line_to(rectangleBorder.top_left() + sizeTopOffset);
 
-                     ppath->add_line(rectangle.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
+               }
 
-                  }
+               //pgraphics->set(ppenBorder);
 
-                  ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
-
-                  ppath->add_line(rectangleClient.right,rectangleBorder.top);
-
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
-
-                  ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
-
-                  ppath->close_figure();
-
-                  ::color::color colorSel1 = ptab->get_color(pstyle, ::e_element_tab_item_background, ::user::e_state_selected);
-
-                  ::color::color colorSel2(colorSel1);
-
-                  colorSel2.hls_rate(0.0, 0.2, 0.0);
-
-                  ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),colorSel1, colorSel2);
-
-                  pgraphics->set(ppane->m_pbrushFillSel);
-
-                  pgraphics->fill_path(ppath);
-
-                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
-
-                  pgraphics->set(ppenBorder);
-
-                  pgraphics->draw_path(ppath);
+               //pgraphics->draw_path(ppath);
                   
-                  auto pstyle = ptab->get_style(pgraphics);
+               //auto pstyle = ptab->get_style(pgraphics);
 
-                  if (::is_item(ptab->m_pitemHover, iTab)
-                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
-                  {
+               //if (::is_item(ptab->m_pitemHover, iTab)
+               //   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+               //   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
+               //{
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
+               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
 
-                  }
-                  else
-                  {
+               //}
+               //else
+               //{
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
-                  }
+               //}
 
-                  ::color::color colorText = ptab->get_color(pstyle, ::e_element_text);
+               ::color::color colorText = ptab->get_color(pstyle, ::e_element_item_text, estate);
 
-                  pbrushText->create_solid(colorText);
+               pbrushText->create_solid(colorText);
 
-               }
-               else
-               {
+               //}
+               //else
+               //{
 
-                  //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
+               //   //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  if (iPane > 0)
-                  {
+               //   //if (iPane > 0)
+               //   //{
 
-                     ppath->add_line(rectangle.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
+               //   //   ppath->add_line(rectangle.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
 
-                  }
+               //   //}
 
-                  ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
+               //   //ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
 
-                  ppath->add_line(rectangleClient.right,rectangleBorder.top);
+               //   //ppath->add_line(rectangleClient.right,rectangleBorder.top);
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+               //   //ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
 
-                  ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
+               //   //ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
 
-                  ppath->close_figure();
+               //   //ppath->close_figure();
 
-                  if (::is_item(ptab->m_pitemHover, iTab)
-                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
-                  {
+               //   if (::is_item(ptab->m_pitemHover, iTab)
+               //      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+               //      && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
+               //   {
 
-                     ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+               //      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(ppane->m_pbrushFillHover);
+               //      pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+               //      //pgraphics->fill_path(ppath);
 
-                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+               //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->set(ppenBorder);
+               //      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+               //      //pgraphics->draw_path(ppath);
 
-                     auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
+               //      auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
 
-                     pgraphics->set(pfont);
+               //      pgraphics->set(pfont);
 
-                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
+               //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
-                  }
-                  else
-                  {
+               //   }
+               //   else
+               //   {
 
-                     ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(), color1, color2);
+               //      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(), color1, color2);
 
-                     pgraphics->set(ppane->m_pbrushFill);
+               //      pgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+               //      //pgraphics->fill_path(ppath);
 
-                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+               //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                     pgraphics->set(ppenBorder);
+               //      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+               //      //pgraphics->draw_path(ppath);
 
-                     auto pfont = ptab->get_font(pstyle);
+               //      auto pfont = ptab->get_font(pstyle);
 
-                     pgraphics->set(pfont);
+               //      pgraphics->set(pfont);
 
-                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item, ::user::e_state_hover));
+               //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
-                  }
+               //   }
 
-               }
+               //}
 
             }
 
@@ -825,7 +989,7 @@ namespace experience
             if(ptab->get_element_rect(iTab,rectangleText, ::e_element_text))
             {
 
-               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText);
+               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText, estate);
 
             }
 
@@ -868,7 +1032,7 @@ namespace experience
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       auto pstyle = ptab->get_style(pgraphics);
@@ -897,6 +1061,22 @@ namespace experience
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
             rectangleText.right =rectangleText.left + s.cx;
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               pfont->m_iFontWeight = 800;
+
+            }
+            else
+            {
+
+               pfont->m_iFontWeight = 400;
+
+            }
+
+            pfont->m_bUpdated2 = true;
+
             pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;
             if(i < straTitle.get_upper_bound())
@@ -968,6 +1148,10 @@ namespace experience
 
       pdata->m_rectangleTextMargin = ptab->get_padding(pstyle);
 
+      int iTextLeftMargin = 4;
+
+      pdata->m_rectangleTextMargin.left += iTextLeftMargin;
+
       if (pdata->m_bVertical)
       {
 
@@ -1024,7 +1208,10 @@ namespace experience
                size.cx += ppane->m_pimage->width() + 2;
                size.cy = maximum(size.cy,ppane->m_pimage->height());
             }
-            cx = size.cx + 2;
+
+            int iTextLeftMargin = 4;
+
+            cx = size.cx + 2 + iTextLeftMargin;
 
             if(!ppane->m_bPermanent)
             {

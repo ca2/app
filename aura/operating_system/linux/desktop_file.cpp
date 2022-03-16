@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "_user.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
@@ -164,7 +164,7 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       path = pacmedir->localconfig() / "desk/monitor-0/2desk";
 
@@ -260,13 +260,13 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pathUserBin = pacmedir->home() / "bin" / strName;
 
       //::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 
-      ::file::path pathModuleIcon256 = m_psystem->m_pacmedir->module() / (strName + "-256.png");
+      ::file::path pathModuleIcon256 = m_psystem->m_pacmedirectory->module() / (strName + "-256.png");
 
       if(!m_psystem->m_pacmefile->exists(pathModuleIcon256))
       {

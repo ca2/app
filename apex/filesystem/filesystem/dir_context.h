@@ -6,7 +6,8 @@
 
 
    class CLASS_DECL_APEX dir_context :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::file::enumerator
    {
    public:
 
@@ -30,32 +31,36 @@
       ::file::watcher & watcher();
 
 
-      virtual bool ls(::file::listing & listing);
-      virtual bool ls_relative_name(::file::listing & listing);
 
-      virtual bool rls(::file::listing& listing);
-      virtual bool rls_relative_name(::file::listing& listing);
+      //bool _enumerates(::file::listing & listing) override;
+      bool enumerate(::file::listing & listing) override;
 
-      virtual bool ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      virtual bool ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
-      virtual bool rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
-      virtual bool rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
 
-      virtual bool ls_file(::file::listing& listing);
-      virtual bool ls_dir(::file::listing& listing);
+      //virtual bool list_relative_name(::file::listing & listing);
 
-      virtual bool rls_file(::file::listing& listing);
-      virtual bool rls_dir(::file::listing& listing);
+      //virtual bool list_recursively(::file::listing& listing);
+      //virtual bool list_recursively_relative_name(::file::listing& listing);
 
-      inline bool ls(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
+      //virtual bool list_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      //virtual bool list_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
+      //virtual bool list_recursively_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      //virtual bool list_recursively_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
 
-      inline bool rls(::file::listing& listing, const ::file::path& path) { listing(path); return rls(listing); }
+      //virtual bool list_file(::file::listing& listing);
+      //virtual bool list_directory(::file::listing& listing);
 
-      inline bool ls_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
-      inline bool ls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
+      //virtual bool list_recursively_file(::file::listing& listing);
+      //virtual bool list_recursively_directory(::file::listing& listing);
 
-      inline bool rls_file(::file::listing& listing, const ::file::path& path) { listing(path); return rls_file(listing); }
-      inline bool rls_dir(::file::listing& listing, const ::file::path& path) { listing(path); return rls_dir(listing); }
+      //inline bool enumerate(::file::listing& listing, const ::file::path& path) { listing(path); return ls(listing); }
+
+      //inline bool list_recursively(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively(listing); }
+
+      //inline bool list_file(::file::listing& listing, const ::file::path & path) { listing(path); return ls_file(listing); }
+      //inline bool list_directory(::file::listing& listing, const ::file::path& path) { listing(path); return ls_dir(listing); }
+
+      //inline bool list_recursively_file(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_file(listing); }
+      //inline bool list_recursively_directory(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
       virtual bool  is(const ::file::path & pcsz);
@@ -97,19 +102,24 @@
       virtual ::file::path time_log(const ::string & strId);
 
 
+      virtual void get_matter_locator(string_array & straMatterLocator, bool bIncludeMain = true);
+
+
       virtual ::file::path locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
       virtual ::file::path matter(const ::file::path & path, bool bDir, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
       virtual ::file::path matter(const ::file::path_array & patha, bool bDir = false);
       virtual ::file::path matter(::file::path path, bool bDir = false);
 
+      virtual ::file::path appmatter(::file::path path, bool bDir = false);
+
       virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir = false);
       virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator, bool bDir = false);
 
       virtual ::file::path appmatter(string strApp, ::file::path pathRel);
 
-      virtual bool matter_ls(const ::file::path & str, ::file::listing & stra);
-      virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
+      virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
+      //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
       virtual ::file::path commonappdata(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr);
       virtual ::file::path commonappdata_locale_schema(const char * pszAppId, const char * pszBuild = nullptr, const char * pszPlatform = nullptr, const char * pszConfiguration = nullptr, const char * pszLocale = nullptr, const char * pszSchema = nullptr);

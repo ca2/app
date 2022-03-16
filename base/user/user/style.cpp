@@ -65,7 +65,7 @@ namespace base
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText, const ::user::e_state & estate)
    {
 
 

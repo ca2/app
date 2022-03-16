@@ -19,7 +19,7 @@ namespace userstack
 
       set_translucent();
 
-      m_ppaneview = nullptr;
+      m_ppaneimpact = nullptr;
 
       m_bMouseOver = false;
 

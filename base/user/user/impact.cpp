@@ -535,9 +535,9 @@ namespace user
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
    // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   __pointer(::user::impact) pview = pParentFrame->get_active_view();
+   __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
    oswindow oswindow_Focus = ::GetFocus();
-   if (pview == this &&
+   if (pimpact == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
    {
    // re-activate this ::user::impact
@@ -920,12 +920,12 @@ namespace user
 
       //}
 
-      __pointer(::user::impact) pview = pinteraction;
+      __pointer(::user::impact) pimpact = pinteraction;
 
-      if (pview.is_set())
+      if (pimpact.is_set())
       {
 
-         auto pdocument = pview->get_document();
+         auto pdocument = pimpact->get_document();
 
          pdocument->signal(id_initial_update);
 
@@ -1150,7 +1150,7 @@ namespace user
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->get_active_view();
+         __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
 
          auto psession = get_session();
 
@@ -1161,7 +1161,7 @@ namespace user
 
             __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
-            if (pview == this
+            if (pimpact == this
             && this != puserinteractionFocus
             && !is_child(puserinteractionFocus))
             {
@@ -1220,7 +1220,7 @@ namespace user
          || pmouseactivate->get_desktop_window()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->get_active_view();
+         __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
 
          auto psession = get_session();
 
@@ -1228,7 +1228,7 @@ namespace user
 
          __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
-         if (pview == this
+         if (pimpact == this
          && this != puserinteractionFocus
          && !is_child(puserinteractionFocus))
          {
@@ -1351,33 +1351,33 @@ namespace user
    ASSERT(pContext->m_typeNewImpact != nullptr);
 
    // Note: can be a ::user::interaction with post_non_client_destroy self cleanup
-   __pointer(::user::interaction) pview =  (psystem->alloc(pContext->m_typeNewImpact));
-   if (pview == nullptr)
+   __pointer(::user::interaction) pimpact =  (psystem->alloc(pContext->m_typeNewImpact));
+   if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeNewImpact.name());
    return nullptr;
    }
-   ASSERT_KINDOF(::user::interaction, pview);
+   ASSERT_KINDOF(::user::interaction, pimpact);
 
    // views are always created with a border!
-   if (!pview->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
+   if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
    rectangle_i32(0,0,0,0), this, nID, (__pointer(::create)) pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   __pointer(::user::impact) pview =  (pview);
-   pview->handle(::topic * ptopic, ::context * pcontext);
-   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
+   __pointer(::user::impact) pimpact =  (pimpact);
+   pimpact->handle(::topic * ptopic, ::context * pcontext);
+   if (afxData.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
    }*/
-   /*   return pview;
+   /*   return pimpact;
    }*/
 
 
@@ -1388,32 +1388,32 @@ namespace user
    ASSERT(pContext->m_typeNewImpact != nullptr);
 
    // Note: can be a interaction_impl with post_non_client_destroy self cleanup
-   ::user::interaction_impl * pview = (puserinteractionParent->psystem->alloc(pContext->m_typeNewImpact));
-   if (pview == nullptr)
+   ::user::interaction_impl * pimpact = (puserinteractionParent->psystem->alloc(pContext->m_typeNewImpact));
+   if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
    pContext->m_typeNewImpact.name());
    return nullptr;
    }
-   ASSERT_KINDOF(interaction_impl, pview);
+   ASSERT_KINDOF(interaction_impl, pimpact);
 
    // views are always created with a border!
-   if (!pview->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
+   if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
    rectangle_i32(0,0,0,0), puserinteractionParent, nID, (__pointer(::create)) pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->handle(::topic * ptopic, ::context * pcontext);
-   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
+   ( (pimpact))->handle(::topic * ptopic, ::context * pcontext);
+   if (afxData.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
    //  providing it.
    // make sure to recalc the non-client area
    ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_FRAMECHANGED);
    }*/
-   //   return pview;
+   //   return pimpact;
    //}
 
 
@@ -1529,16 +1529,16 @@ namespace user
    ::user::document * get_document(::user::interaction * pinteraction)
    {
 
-      __pointer(::user::impact) pview = pinteraction;
+      __pointer(::user::impact) pimpact = pinteraction;
 
-      if (pview != nullptr)
+      if (pimpact != nullptr)
       {
 
          return nullptr;
 
       }
 
-      return pview->get_document();
+      return pimpact->get_document();
 
    }
 */

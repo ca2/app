@@ -110,8 +110,16 @@ void folder::extract_all(const char* pszTargetDir, ::file::path_array * ppatha, 
 
 }
 
+//
+//bool folder::enumerates(::file::listing & listing)
+//{
+//
+//   return true;
+//
+//}
 
-bool folder::perform_file_listing(::file::listing& listing)
+
+bool folder::enumerate(::file::listing& listing)
 {
 
    throw ::interface_only();
@@ -121,14 +129,14 @@ bool folder::perform_file_listing(::file::listing& listing)
 }
 
 
-bool folder::perform_file_relative_name_listing(::file::listing& listing)
-{
-
-   throw ::interface_only();
-
-   return false;
-
-}
+//bool folder::perform_file_relative_name_listing(::file::listing& listing)
+//{
+//
+//   throw ::interface_only();
+//
+//   return false;
+//
+//}
 
 
 void folder::open_for_writing(file_pointer pfile)

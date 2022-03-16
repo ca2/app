@@ -716,7 +716,7 @@ namespace user
       inline bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
 
 
-      virtual void create_message_queue(const ::string & lpszName) override;
+      virtual void create_message_queue(const ::string & strName) override;
 
 
       virtual bool has_text_input();

@@ -4,7 +4,7 @@
 //#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -177,7 +177,7 @@ namespace aura
 
       //m_pmainpane = nullptr;
 
-      //m_ppaneviewMain = nullptr;
+      //m_ppaneimpactMain = nullptr;
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
@@ -277,7 +277,7 @@ namespace aura
    //::file::path application::local_application_path()
    //{
 
-   //   return m_psystem->m_pacmedir->localconfig() / "application" / m_strAppName ;
+   //   return m_psystem->m_pacmedirectory->localconfig() / "application" / m_strAppName ;
 
 
    //}
@@ -3463,7 +3463,7 @@ retry_license:
    //::file::path application::get_executable_path()
    //{
 
-   //   return m_psystem->m_pacmedir->module() / (get_executable_title() + get_executable_extension());
+   //   return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
 
 
    //}
@@ -3561,7 +3561,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content_type = L"application/x-spa";
 //
-//      wstring app(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//      wstring app(m_psystem->m_pacmedirectory->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
 //
 //      wstring icon(app);
 //
@@ -3608,7 +3608,7 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//      wstring wstr(m_psystem->m_pacmedirectory->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
@@ -3617,7 +3617,7 @@ retry_license:
 //
 //                  auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->create(::file_path_folder(utf8(wstr.c_str())).c_str());
 //
@@ -4312,7 +4312,7 @@ retry_license:
    //::file::path application::appconfig_folder()
    //{
 
-   //   return m_psystem->m_pacmedir->config() / m_strAppName;
+   //   return m_psystem->m_pacmedirectory->config() / m_strAppName;
 
    //}
 
@@ -4469,7 +4469,7 @@ retry_license:
 
    //   auto& file = psystem->file();
 
-   //   string strNetworkPayload = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.network_payload");
+   //   string strNetworkPayload = file.as_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
 
    //   if (strNetworkPayload.has_char())
    //   {
@@ -5292,10 +5292,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -5702,7 +5702,7 @@ retry_license:
    //}
 
 
-   //void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint)
+   //void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint)
    //{
 
 
@@ -5894,7 +5894,7 @@ namespace aura
 
    //   m_pmainpane = nullptr;
 
-   //   m_ppaneviewMain = nullptr;
+   //   m_ppaneimpactMain = nullptr;
 
    //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
    //   //::increment_reference_count(this);
@@ -8981,7 +8981,7 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt");
 
          if(::str::ends_ci(strIgnitionServer,".ca2.software"))
          {
@@ -9230,7 +9230,7 @@ namespace aura
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
+      ::file::path path = m_psystem->m_pacmedirectory->config() / "programming/vs_build.txt";
 
       string strBuild = file().as_string(path);
 

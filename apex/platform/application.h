@@ -102,7 +102,7 @@ public:
 
       //__pointer(::simpledb::server)                   m_psimpledb;
 
-      //::userex::pane_tab_view *                       m_pmainpane;
+      //::userex::pane_tab_impact *                       m_pmainpane;
 
 
       string                                          m_strHelpFilePath;
@@ -122,7 +122,7 @@ public:
       // true if we're in SHIFT+F1 mode.
       bool                                            m_bHelpMode;
 
-      //::userex::pane_tab_view *                       m_ppaneviewMain;
+      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
 
       string                                          m_strProfileName;
 
@@ -861,7 +861,7 @@ public:
 
 
 
-      //user virtual void on_create_split_view(::user::split_view* pview);
+      //user virtual void on_create_split_view(::user::split_view* pimpact);
 
 
       //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;

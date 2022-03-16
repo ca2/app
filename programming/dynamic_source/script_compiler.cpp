@@ -8,7 +8,7 @@
 #include "acme_windows/_acme_windows.h"
 //#include "acme/operating_system/windows/environment_variable.h"
 #endif
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 
@@ -85,7 +85,7 @@ namespace dynamic_source
 //   void script_compiler::prepare_compile_and_link_environment()
 //   {
 //
-//      auto pacmedir = m_psystem->m_pacmedir;
+//      auto pacmedir = m_psystem->m_pacmedirectory;
 //
 //      m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
 //
@@ -426,7 +426,7 @@ namespace dynamic_source
 
                   auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->create(pathDVP_Folder);
 
@@ -918,7 +918,7 @@ pacmedir->create(pathDVP_Folder);
 
          strSymbolName += strRndTitle;
 
-         auto pacmedir = m_psystem->m_pacmedir;
+         auto pacmedir = m_psystem->m_pacmedirectory;
 
          strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strSymbolName;
 

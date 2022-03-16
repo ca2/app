@@ -111,7 +111,7 @@ namespace filehandler
 
    }
 
-   void impact::item::draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist)
+   void impact::item::draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist)
    {
 
       __UNREFERENCED_PARAMETER(plist);
@@ -119,9 +119,9 @@ namespace filehandler
 
 
       color32_t color32;
-      __pointer(::aura::application) papp = pview->get_app();
+      __pointer(::aura::application) papp = pimpact->get_app();
       
-      bool bHover = pview->m_pitemHover == m_iIndex;
+      bool bHover = pimpact->m_pitemHover == m_iIndex;
 
       color32 = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
       if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
@@ -187,11 +187,11 @@ namespace filehandler
       }
    }
 
-   void impact::list::draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics)
+   void impact::list::draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics)
    {
       for(i32 i = 0; i < get_count(); i++)
       {
-         element_at(i)->draw(pview, pgraphics, this);
+         element_at(i)->draw(pimpact, pgraphics, this);
       }
    }
 

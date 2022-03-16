@@ -73,8 +73,8 @@ namespace user
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::impact) pview = get_view(index);
-         ASSERT_VALID(pview);
+         __pointer(::user::impact) pimpact = get_view(index);
+         ASSERT_VALID(pimpact);
       }
    }
 
@@ -102,10 +102,10 @@ namespace user
 
       ::user::interaction_array uia;
 
-      for (auto & pview : m_viewa)
+      for (auto & pimpact : m_viewa)
       {
 
-         uia.add_unique_interaction(pview->get_top_level());
+         uia.add_unique_interaction(pimpact->get_top_level());
 
       }
 
@@ -203,8 +203,8 @@ namespace user
          ::count count = get_view_count();
          for (index index = 0; index < count; index++)
          {
-            __pointer(::user::impact) pview = get_view(index);
-            dumpcontext << "\nwith ::user::impact " << (void *)pview;
+            __pointer(::user::impact) pimpact = get_view(index);
+            dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
          }
       }
 
@@ -432,12 +432,12 @@ namespace user
 
       }
 
-      auto pview = get_view(0);
+      auto pimpact = get_view(0);
 
-      if (pview)
+      if (pimpact)
       {
 
-         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
          while (pframe.is_set())
          {
@@ -469,13 +469,13 @@ namespace user
       for (index index = 0; index < m_viewa.get_count(); index++)
       {
 
-         __pointer(::user::impact) pview = m_viewa[index];
+         __pointer(::user::impact) pimpact = m_viewa[index];
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         ASSERT_KINDOF(::user::impact, pview);
+         ASSERT_KINDOF(::user::impact, pimpact);
 
-         pview->__release(pview->m_pdocument);
+         pimpact->__release(pimpact->m_pdocument);
 
       }
 
@@ -521,11 +521,11 @@ namespace user
 
       }
 
-      __pointer(::user::impact) pview = m_viewa[index];
+      __pointer(::user::impact) pimpact = m_viewa[index];
 
-      ASSERT_KINDOF(::user::impact, pview);
+      ASSERT_KINDOF(::user::impact, pimpact);
 
-      return pview;
+      return pimpact;
 
    }
 
@@ -541,14 +541,14 @@ namespace user
    //   ::count count = get_view_count();
    //   for (index index = 0; index < count; index++)
    //   {
-   //      __pointer(::user::impact) pview = get_view(index);
+   //      __pointer(::user::impact) pimpact = get_view(index);
 
    //      ptask = new update;
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;
-   //      if (pview != pSender)
-   //         pview->send_message(WM_VIEW, 0, (LPARAM)ptask);
+   //      if (pimpact != pSender)
+   //         pimpact->send_message(WM_VIEW, 0, (LPARAM)ptask);
    //   }
    //}
 
@@ -570,20 +570,20 @@ namespace user
 
       ::count countFind = 0;
 
-      __pointer(::user::impact) pview;
+      __pointer(::user::impact) pimpact;
 
       for (index index = 0; index < countImpact; index++)
       {
 
-         pview = get_view(index);
+         pimpact = get_view(index);
 
-         if (info == __type_name(pview))
+         if (info == __type_name(pimpact))
          {
 
             if (indexFind == countFind)
             {
 
-               return pview;
+               return pimpact;
 
             }
             else
@@ -607,14 +607,14 @@ namespace user
       single_lock synchronouslock(mutex(), true);
       ::count countImpact = get_view_count();
       ::count countFind = 0;
-      __pointer(::user::impact) pview;
+      __pointer(::user::impact) pimpact;
       for (index index = 0; index < countImpact; index++)
       {
-         pview = get_view(index);
-         if (info == __type_name(pview))
+         pimpact = get_view(index);
+         if (info == __type_name(pimpact))
          {
-            if (atom == pview->m_atom)
-               return pview;
+            if (atom == pimpact->m_atom)
+               return pimpact;
             else
                countFind++;
          }
@@ -633,11 +633,11 @@ namespace user
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pview = get_view(index);
+         __pointer(::user::impact) pimpact = get_view(index);
 
          enum_activation eactivation = e_activation_default;
 
-         pview->get_parent_frame()->display(edisplay, eactivation);
+         pimpact->get_parent_frame()->display(edisplay, eactivation);
 
       }
 
@@ -1084,10 +1084,10 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         for (auto & pview : m_viewa.ptra())
+         for (auto & pimpact : m_viewa.ptra())
          {
 
-            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
             if (pframe.is_set())
             {
@@ -1135,10 +1135,10 @@ namespace user
 
       synchronouslock.unlock();
 
-      for(auto & pview : viewptra.ptra())
+      for(auto & pimpact : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1151,10 +1151,10 @@ namespace user
 
       }
 
-      for(auto & pview : viewptra.ptra())
+      for(auto & pimpact : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1331,11 +1331,11 @@ namespace user
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pview = get_view(index);
+         __pointer(::user::impact) pimpact = get_view(index);
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
          // assume frameless views are ok to close
          if (pframe != nullptr)
@@ -1621,14 +1621,14 @@ namespace user
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pview = get_view(index);
+         ::user::impact * pimpact = get_view(index);
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         if (pview->is_window_visible())
+         if (pimpact->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -1649,14 +1649,14 @@ namespace user
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pview = get_view(index);
+         ::user::impact * pimpact = get_view(index);
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         if (pview->is_window_visible())
+         if (pimpact->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == -1)
             {
@@ -1681,14 +1681,14 @@ namespace user
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pview = get_view(index);
+         ::user::impact * pimpact = get_view(index);
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         if (pview->is_window_visible())   // Do not ::count invisible windows.
+         if (pimpact->is_window_visible())   // Do not ::count invisible windows.
          {
 
-            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
+            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == iFrame)
             {
@@ -1742,28 +1742,28 @@ namespace user
    // ::user::impact operations
 
 
-   void document::add_view(::user::impact * pview)
+   void document::add_view(::user::impact * pimpact)
    {
 
       single_lock synchronouslock(mutex(), true);
 
-      ASSERT_VALID(pview);
+      ASSERT_VALID(pimpact);
 
-      if (pview->m_pdocument)
+      if (pimpact->m_pdocument)
       {
 
          throw ::exception(::error_bad_argument);// must not be already attached
 
       }
 
-      if (!m_viewa.add_unique(pview))
+      if (!m_viewa.add_unique(pimpact))
       {
 
          throw ::exception(::error_already_added);// must not be already added
 
       }
 
-      pview->initialize_view(this);
+      pimpact->initialize_view(this);
 
       on_changed_view_list();    // must be the last thing done to the document
 
@@ -1772,28 +1772,28 @@ namespace user
    }
 
 
-   void document::erase_view(::user::impact * pview)
+   void document::erase_view(::user::impact * pimpact)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      ASSERT_VALID(pview);
+      ASSERT_VALID(pimpact);
 
-      if(pview->get_document() != this)
+      if(pimpact->get_document() != this)
       {
 
          throw ::exception(::error_bad_argument); // must be attached to us
 
       }
 
-      if (m_viewa.erase(pview) < 0)
+      if (m_viewa.erase(pimpact) < 0)
       {
 
          throw ::exception(::error_not_found);
 
       }
 
-      pview->__release(pview->m_pdocument);
+      pimpact->__release(pimpact->m_pdocument);
 
       on_changed_view_list();    // must be the last thing done to the document
 
@@ -1911,15 +1911,15 @@ namespace user
 
       ASSERT(ptopic->m_psender == nullptr || !m_viewa.is_empty());
 
-      for (auto & pview : m_viewa.ptra())
+      for (auto & pimpact : m_viewa.ptra())
       {
 
-         ASSERT_VALID(pview);
+         ASSERT_VALID(pimpact);
 
-         if (pview != ptopic->m_psender)
+         if (pimpact != ptopic->m_psender)
          {
 
-            pview->handle(ptopic, nullptr);
+            pimpact->handle(ptopic, nullptr);
 
             if(ptopic->m_bRet)
             {

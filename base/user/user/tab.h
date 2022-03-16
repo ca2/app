@@ -70,6 +70,8 @@ namespace user
       int                              m_iTabScrollMax;
       int                              m_iTabSize;
       bool                             m_bMouseDown;
+      bool                             m_bCreatedTabs;
+      bool                             m_bAutoCreateTabsOnCreate;
 
 
       tab();
@@ -174,13 +176,13 @@ namespace user
       virtual void GetTabClientRect(RECTANGLE_I64 * prectangle);
 
 
-      virtual bool add_tab(const ::string & pcsz, const ::atom & idTab = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_tab(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
       virtual bool set_tab(const ::string & pcsz, const ::atom & idTab = nullptr, bool bVisible = true);
 
-      virtual bool add_image_tab(const ::string & pcsz, const ::string & pszImage, const ::atom & idTab = nullptr, bool bVisible = true, bool bPermanent = false);
+      virtual bool add_tab_with_icon(const ::string & strName, const ::string & strImage, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_image_tab(const ::string & pcsz, const ::string & pszImage, const ::atom & idTab = nullptr, bool bVisible = true);
+      virtual bool set_tab_with_icon(const ::string & pcsz, const ::string & pszImage, const ::atom & idTab = nullptr, bool bVisible = true);
 
       virtual bool erase_tab_by_id(const ::atom & idTab);
       virtual void erase_tab(::index iTab, bool bVisible = true);
@@ -237,6 +239,7 @@ namespace user
       virtual void _001ConnectParent(::channel * pchannel);
 
 
+      virtual void create_tabs();
       virtual bool has_restore_tab();
       virtual void get_restore_tab(payload_array & payloada);
       virtual bool matches_restorable_tab(const ::payload & varId, ::user::place_holder * pholder = nullptr);

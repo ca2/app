@@ -5,8 +5,8 @@ namespace app_core_build
 {
 
 
-   class CLASS_DECL_APP_CORE_BUILD pane_view :
-      virtual public ::app_consumer < application, ::userex::pane_tab_view, ::user::form_callback >
+   class CLASS_DECL_APP_CORE_BUILD pane_impact :
+      virtual public ::app_consumer < application, ::userex::pane_tab_impact, ::user::form_callback >
    {
    public:
 
@@ -16,8 +16,8 @@ namespace app_core_build
       string                                          m_strTopicTitle;
 
 
-      pane_view();
-      ~pane_view() override;
+      pane_impact();
+      ~pane_impact() override;
 
 
       void on_create_impact(::user::impact_data * pimpactdata) override;

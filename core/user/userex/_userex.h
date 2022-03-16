@@ -55,9 +55,9 @@ namespace userex
 
 #include "core/filesystem/filemanager/impact_base.h"
 
-#include "pane_tab_view.h"
+#include "pane_tab_impact.h"
 #include "pane_split_view.h"
-#include "pane_view.h"
+#include "pane_impact.h"
 
 #include "split_view.h"
 

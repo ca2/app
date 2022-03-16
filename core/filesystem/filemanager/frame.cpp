@@ -60,11 +60,11 @@ namespace filemanager
 
       string str;
 
-      ::filemanager::tab_view * ptabview = GetTypedParent < ::filemanager::tab_view >();
-      if (ptabview != nullptr)
+      ::filemanager::tab_view * ptabimpact = GetTypedParent < ::filemanager::tab_view >();
+      if (ptabimpact != nullptr)
       {
          get_window_text(str);
-         ptabview->set_title_by_id(m_atomTab, str);
+         ptabimpact->set_title_by_id(m_atomTab, str);
       }
 
    }

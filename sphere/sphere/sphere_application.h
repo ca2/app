@@ -28,7 +28,7 @@ namespace sphere
       __pointer(::user::single_document_template)         m_ptemplate_main;
       __pointer(::user::single_document_template)         m_ptemplate_pane;
 
-      ::userstack::pane_view *                     m_ppaneview;
+      ::userstack::pane_impact *                     m_ppaneimpact;
 
 
       ::payload                                          m_varTopicFile;

@@ -15,25 +15,26 @@ namespace fs
 
 
       native();
-      virtual ~native();
+      ~native() override;
 
 
-      virtual ::file::listing & ls(::file::listing & listing) override;
-      virtual ::file::listing & ls_relative_name(::file::listing & listing) override;
+      //bool _enumerates(::file::listing & listing) override;
+      bool enumerate(::file::listing & listing) override;
+      // virtual ::file::listing & ls_relative_name(::file::listing & listing) override;
 
 
-      virtual bool is_link(const ::file::path & path) override;
+      bool is_link(const ::file::path & path) override;
 
       // optional if ls_dir is implemented
-      virtual bool has_subdir(const ::file::path & pszPath) override;
-      virtual int is_dir(const ::file::path & path) override;
-      virtual ::file::listing & root_ones(::file::listing & listing) override;
+      bool has_subdir(const ::file::path & pszPath) override;
+      int is_dir(const ::file::path & path) override;
+      ::file::listing & root_ones(::file::listing & listing) override;
 
-      virtual bool file_exists(const ::file::path & pszPath) override;
+      bool file_exists(const ::file::path & pszPath) override;
 
-      virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
+      bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
 
-      virtual file_pointer get_file(const ::file::path & path, const ::file::e_open & eopen) override;
+      file_pointer get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
 
    };

@@ -3,7 +3,7 @@
 // 04:38 BRT <3ThomasBorregaardS�rensen
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "acme_dir.h"
+#include "acme_directory.h"
 #include "acme_file.h"
 #include "acme_path.h"
 #include <stdio.h>
@@ -495,7 +495,7 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 void acme_file::append_wait(const char * strFile, const block & block, const ::duration & duration)
 {
 
-   auto pacmedir = m_pacmedir;
+   auto pacmedir = m_pacmedirectory;
 
    pacmedir->create(::file_path_folder(strFile));
 
@@ -1049,7 +1049,7 @@ void acme_file::set_line(const char * pathParam, index iLine, const char * pszLi
 
    auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
-   m_pacmedir->create(path.folder());
+   m_pacmedirectory->create(path.folder());
 
    auto pfile = open(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
 
@@ -1380,9 +1380,9 @@ void acme_file::append(const ::string & strFile, const block & block)
 void acme_file::append_wait(const ::string & strFile, const block & block, const ::duration & duration)
 {
 
-   m_pacmedir->create(::file_path_folder(strFile));
+   m_pacmedirectory->create(::file_path_folder(strFile));
 
-   if (!m_pacmedir->is(::file_path_folder(strFile)))
+   if (!m_pacmedirectory->is(::file_path_folder(strFile)))
    {
 
       throw ::exception(false);

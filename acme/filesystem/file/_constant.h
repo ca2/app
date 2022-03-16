@@ -1,11 +1,17 @@
 #pragma once
 
 
-namespace file
+enum enum_depth : ::i32
 {
 
+   e_depth_none = 0,
+   e_depth_recursively = INT_MAX,
+
+};
 
 
+namespace file
+{
 
 
    enum enum_flag :
@@ -13,17 +19,19 @@ namespace file
    {
 
       e_flag_none = 0,
-      e_flag_required = 1 << 0,
-      e_flag_bypass_cache = 1 << 1,
-      e_flag_dont_resolve_alias = 1 << 2,
-      e_flag_resolve_alias = 1 << 3,
-      e_flag_get_local_path = 1 << 4,
-      e_flag_in_zip = 1 << 5,
-      e_flag_folder = 1 << 6,
-      e_flag_folder_ex001 = 1 << 7,
-      e_flag_folder_ex001_calc = 1 << 8,
-      e_flag_has_subfolder = 1 << 9,
-      e_flag_has_subfolder_unknown = 1 << 10
+      e_flag_file = 1,
+      e_flag_folder = 2,
+      e_flag_file_or_folder = 3,
+      e_flag_folder_ex001 = 1 << 2,
+      e_flag_folder_ex001_calc = 1 << 3,
+      e_flag_required = 1 << 4,
+      e_flag_bypass_cache = 1 << 5,
+      e_flag_dont_resolve_alias = 1 << 6,
+      e_flag_resolve_alias = 1 << 7,
+      e_flag_get_local_path = 1 << 8,
+      e_flag_in_zip = 1 << 9,
+      e_flag_has_subfolder = 1 << 10,
+      e_flag_has_subfolder_unknown = 1 << 11
 
    };
 
@@ -74,9 +82,24 @@ namespace file
    };
 
 
+   DECLARE_ENUMERATION(e_flag, enum_flag);
+
 } // namespace file
 
 
+inline ::file::e_flag & fix_file_listing_flag(::file::e_flag & eflag)
+{
+
+   if ((eflag & ::file::e_flag_file_or_folder) == 0)
+   {
+
+      eflag |= ::file::e_flag_file_or_folder;
+
+   }
+
+   return eflag;
+
+}
 
 
 enum e_str_flag

@@ -49,6 +49,10 @@ namespace user
 
       m_bDrawTabAtBackground           = true;
 
+      m_bCreatedTabs                   = false;
+
+      m_bAutoCreateTabsOnCreate        = true;
+
    }
 
 
@@ -169,31 +173,22 @@ namespace user
    }
 
 
-   bool tab::set_tab(const ::string & pcsz, const ::atom & atom, bool bVisible)
+   //bool tab::set_tab(const ::string & pcsz, const ::atom & atom, bool bVisible)
+   //{
+
+   //   return add_tab(pcsz, atom, bVisible, true);
+
+   //}
+
+
+   bool tab::add_tab(const ::string & strTitle, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
    {
 
-      return add_tab(pcsz, atom, bVisible, true);
-
-   }
-
-
-   bool tab::add_tab(const ::string & pcsz, const ::atom & idParam, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
-   {
-
-      ::atom atom(idParam);
+      ::atom atom(atomImpact);
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
-      //auto estatus = 
-      
       __compose_new(ppane);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
 
       ppane->initialize_tab_pane(this);
 
@@ -201,7 +196,7 @@ namespace user
       // if the text is a ID, the ID will be result when no translation
       // if the text is a text (in English), the text (in English) will be the result when there is no translation.
       //set_tille("text://hellomultiverse/AKDFJG./:Main Tab"));
-      ppane->set_title(pcsz);
+      ppane->set_title(strTitle);
 
       ppane->m_bTabPaneVisible   = bVisible;
       ppane->m_bPermanent        = bPermanent;
@@ -224,7 +219,63 @@ namespace user
 
    }
 
+   
+   bool tab::set_tab(const ::string & strName, const ::atom & atomImpact, bool bVisible)
+   {
 
+      return add_tab(strName, atomImpact, bVisible, true);
+
+   }
+
+
+   bool tab::add_tab_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplaceholder)
+   {
+
+      ::atom atom(atomImpact);
+
+      auto & ppane = get_data()->m_tabpanecompositea.add_new();
+
+      __compose_new(ppane);
+
+      ppane->initialize_tab_pane(this);
+
+      ppane->m_bTabPaneVisible = bVisible;
+      ppane->m_bPermanent = bPermanent;
+      ppane->set_title(strName);
+
+      synchronous_lock synchronouslock(mutex());
+
+      if (atom.is_empty())
+      {
+
+         atom = get_data()->m_tabpanecompositea.get_size();
+
+      }
+
+      ppane->m_atom = atom;
+      ppane->m_pplaceholder = pplaceholder;
+
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      ppane->m_pimage = pcontextimage->load_image(strIcon, { .cache = false });
+
+      on_change_tab_count({ ppane });
+
+      return true;
+
+   }
+
+
+   bool tab::set_tab_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible)
+   {
+
+      return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, true);
+
+   }
+      
+      
    void tab::_001OnRemoveTab(class tab_pane * ptab)
    {
 
@@ -272,61 +323,14 @@ namespace user
    }
 
 
-   bool tab::set_image_tab(const ::string & pcszTitle, const ::string & pszImage, const ::atom & atom, bool bVisible)
-   {
+   //bool tab::set_image_tab(const ::string & pcszTitle, const ::string & pszImage, const ::atom & atom, bool bVisible)
+   //{
 
-      return add_image_tab(pcszTitle, pszImage, atom, bVisible, true);
+   //   return add_image_tab(pcszTitle, pszImage, atom, bVisible, true);
 
-   }
+   //}
 
 
-   bool tab::add_image_tab(const ::string & pcszTitle, const ::string & pszImage, const ::atom & idParam, bool bVisible, bool bPermanent)
-   {
-
-      ::atom atom(idParam);
-
-      auto & ppane = get_data()->m_tabpanecompositea.add_new();
-
-      //auto estatus =
-      
-      __compose_new(ppane);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
-
-      ppane->initialize_tab_pane(this);
-
-      ppane->m_bTabPaneVisible = bVisible;
-      ppane->m_bPermanent  = bPermanent;
-      ppane->set_title(pcszTitle);
-
-      synchronous_lock synchronouslock(mutex());
-      
-      if (atom.is_empty())
-      {
-
-         atom = get_data()->m_tabpanecompositea.get_size();
-
-      }
-
-      ppane->m_atom          = atom;
-      ppane->m_pplaceholder = nullptr;
-
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->context_image();
-
-      ppane->m_pimage = pcontextimage->load_image(pszImage, { .cache = false });
-
-      on_change_tab_count({ ppane });
-
-      return true;
-
-   }
 
 
    void tab::erase_tab(::index iIndex, bool bVisible)
@@ -700,6 +704,23 @@ namespace user
 
          }
 
+
+         ::user::e_state estate = ::user::e_state_none;
+
+         if (get_data()->m_idaSel.contains(ppane->m_atom))
+         {
+
+            estate |= ::user::e_state_selected;
+
+         }
+
+         if (::is_item(m_pitemHover, iIndex))
+         {
+
+            estate |= ::user::e_state_hover;
+
+         }
+
          iIndex++;
 
          if (!get_element_rect(iIndex, rectangle, ::e_element_tab))
@@ -952,7 +973,7 @@ namespace user
             if (pbasestyle && get_element_rect(iIndex, rectangleText, ::e_element_text))
             {
 
-               pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText);
+               pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectangleText, pbrushText, estate);
 
             }
 
@@ -2545,7 +2566,6 @@ namespace user
 
       set_mouse_cursor(pcursor);
 
-
       __construct_new(get_data()->m_pimagelist);
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
@@ -2562,10 +2582,12 @@ namespace user
 
       //post_message(WM_USER + 1342);
 
-      m_iRestoredTabCount = restore_tabs();
+      if (m_bAutoCreateTabsOnCreate)
+      {
 
-      on_create_tabs();
+         create_tabs();
 
+      }
 
    }
 
@@ -4008,6 +4030,18 @@ namespace user
          }
 
       }
+
+   }
+
+
+   void tab::create_tabs()
+   {
+
+      m_iRestoredTabCount = restore_tabs();
+
+      on_create_tabs();
+
+      m_bCreatedTabs = true;
 
    }
 

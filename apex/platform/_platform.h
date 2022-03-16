@@ -112,7 +112,7 @@ namespace userex
 
 
    class userex;
-   //class pane_tab_view;
+   //class pane_tab_impact;
 
 
 } // namespace userex

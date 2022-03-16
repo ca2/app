@@ -399,9 +399,13 @@ const char* status_short_description(const ::e_status & estatus)
 
       return "Specified device identifier is out of range.";
 
-   case error_bad_format:
+   case error_bad_file_format:
 
-      return "Attempted to open with an unsupported waveform-audio_mmsystem format.";
+      return "Attempted to open file with an unsupported waveform-audio_mmsystem format.";
+
+   case error_bad_data_format:
+
+      return "Attempted to access data with an unsupported waveform-audio_mmsystem format.";
 
    default:
 

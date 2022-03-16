@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "apex/platform/app_core.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "file_watcher.h"
 
 
@@ -30,7 +30,7 @@ void dir_system::initialize(::object * pobject)
 
    auto psystem = m_psystem;
 
-   m_pathModule = psystem->m_pacmedir->module();
+   m_pathModule = psystem->m_pacmedirectory->module();
 
    //return true;
 
@@ -47,7 +47,7 @@ void dir_system::init_system()
 //
 //   }
 //
-   m_pathInstall = m_psystem->m_pacmedir->install();
+   m_pathInstall = m_psystem->m_pacmedirectory->install();
 
    auto psystem = get_system()->m_papexsystem;
 
@@ -67,7 +67,7 @@ void dir_system::init_system()
 
    //auto psystem = get_system()->m_papexsystem;
 
-   auto pacmedir = psystem->m_pacmedir;
+   auto pacmedir = psystem->m_pacmedirectory;
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
 
@@ -91,7 +91,7 @@ void dir_system::init_system()
 
    m_pfilewatcher.create(this);
 
-   pacmedir->create(m_psystem->m_pacmedir->bookmark());
+   pacmedir->create(m_psystem->m_pacmedirectory->bookmark());
 
    //if (!update_module_path())
    //{
@@ -107,9 +107,9 @@ void dir_system::init_system()
 
    //}
 
-   string strRelative = m_psystem->m_pacmedir->app_relative();
+   string strRelative = m_psystem->m_pacmedirectory->app_relative();
 
-   m_pathDefaultAppData = m_psystem->m_pacmedir->home() / "application";
+   m_pathDefaultAppData = m_psystem->m_pacmedirectory->home() / "application";
 
    string strAppFolder;
 

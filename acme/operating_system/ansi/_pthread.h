@@ -7,7 +7,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#undef __restore
+#undef __scoped_restore
 
 
 #include <pthread.h>

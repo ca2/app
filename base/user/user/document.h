@@ -84,8 +84,8 @@ namespace user
       virtual bool is_new_document();
 
       // Operations
-      void add_view(::user::impact * pview);
-      void erase_view(::user::impact * pview);
+      void add_view(::user::impact * pimpact);
+      void erase_view(::user::impact * pimpact);
       virtual ::count get_view_count() const;
       virtual __pointer(::user::impact) get_view(index index = 0) const;
 

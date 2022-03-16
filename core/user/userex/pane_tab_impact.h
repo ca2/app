@@ -5,10 +5,10 @@ namespace userex
 {
 
 
-   class pane_view;
+   class pane_impact;
 
 
-   class CLASS_DECL_CORE pane_tab_view :
+   class CLASS_DECL_CORE pane_tab_impact :
       virtual public ::user::tab_view,
       virtual public ::user::form_callback
    {
@@ -17,7 +17,7 @@ namespace userex
 
       
       id_map < __pointer(::form_document) >  m_mapForm;
-      __pointer(pane_view)                   m_ppaneview;
+      __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
       font_view *                            m_pfontview;
@@ -26,8 +26,8 @@ namespace userex
 
 
 
-      pane_tab_view();
-      ~pane_tab_view() override;
+      pane_tab_impact();
+      ~pane_tab_impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

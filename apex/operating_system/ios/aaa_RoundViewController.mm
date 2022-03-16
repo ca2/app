@@ -181,7 +181,7 @@
 }
 
 
-- (BOOL)textViewShouldBeginEditing:(UITextView * ) pview
+- (BOOL)textViewShouldBeginEditing:(UITextView * ) pimpact
 {
    
    round_window * p = m_pwindow->m_pwindow;

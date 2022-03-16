@@ -377,8 +377,8 @@
     <ClCompile Include="user\userex\menu_view.cpp" />
     <ClCompile Include="user\userex\message_box.cpp" />
     <ClCompile Include="user\userex\pane_split_view.cpp" />
-    <ClCompile Include="user\userex\pane_tab_view.cpp" />
-    <ClCompile Include="user\userex\pane_view.cpp" />
+    <ClCompile Include="user\userex\pane_tab_impact.cpp" />
+    <ClCompile Include="user\userex\pane_impact.cpp" />
     <ClCompile Include="user\userex\property_page.cpp" />
     <ClCompile Include="user\userex\property_sheet.cpp" />
     <ClCompile Include="user\userex\split_view.cpp" />
@@ -650,8 +650,8 @@
     <ClInclude Include="user\userex\message_box.h" />
     <ClInclude Include="user\userex\mini_dock_frame_window.h" />
     <ClInclude Include="user\userex\pane_split_view.h" />
-    <ClInclude Include="user\userex\pane_tab_view.h" />
-    <ClInclude Include="user\userex\pane_view.h" />
+    <ClInclude Include="user\userex\pane_tab_impact.h" />
+    <ClInclude Include="user\userex\pane_impact.h" />
     <ClInclude Include="user\userex\property_page.h" />
     <ClInclude Include="user\userex\property_sheet.h" />
     <ClInclude Include="user\userex\split_view.h" />

@@ -118,7 +118,7 @@ bool db_server::initialize()
 
    //str =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
+         auto pacmedir = psystem->m_pacmedirectory;
 
 pacmedir->system() / "database.sqlite";
 

@@ -15,7 +15,7 @@
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/constant/idpool.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 //#ifdef _UWP
 //#include "aura/node/universal_windows/directx_application.h"
@@ -216,7 +216,7 @@ namespace aura
 
       //   bool bGlobalEnableStackTrace = true;
 
-      //   ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
+      //   ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedirectory->config() / "system/no_exception_stack_trace.txt";
 
       //   if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
       //   {
@@ -746,12 +746,12 @@ namespace aura
 //
 //         string str;
 //
-//         str = m_psystem->m_pacmedir->home() / ".profile";
+//         str = m_psystem->m_pacmedirectory->home() / ".profile";
 //
 //         if(!m_psystem->m_pacmefile->exists(str))
 //         {
 //
-//            str = m_psystem->m_pacmedir->home() / ".bashrc";
+//            str = m_psystem->m_pacmedirectory->home() / ".bashrc";
 //
 //         }
 //
@@ -888,7 +888,7 @@ namespace aura
 //
 //                           auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->create("/ca2core");
 //
@@ -1199,7 +1199,7 @@ namespace aura
 
       string str;
 
-      ::file::path path = m_psystem->m_pacmedir->config() / "system/draw2d.txt";
+      ::file::path path = m_psystem->m_pacmedirectory->config() / "system/draw2d.txt";
 
       str = m_psystem->m_pacmefile->as_string(path);
 
@@ -1210,7 +1210,7 @@ namespace aura
 
       }
 
-      path = m_psystem->m_pacmedir->appdata() / "draw2d.txt";
+      path = m_psystem->m_pacmedirectory->appdata() / "draw2d.txt";
 
       str = m_psystem->m_pacmefile->as_string(path);
 
@@ -1714,7 +1714,7 @@ namespace aura
 //
 //#endif
 
-      on_update_matter_locator();
+      //on_update_matter_locator();
 
       //
       //    estatus = initialize_sockets();
@@ -1739,11 +1739,11 @@ namespace aura
       //
       //         bool bFileSystemMatter =          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->is(pathSide) ||          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->is(pathLocal);
       //
@@ -2866,7 +2866,7 @@ namespace aura
    //::file::path system::local_get_matter_path()
    //{
 
-   //   return m_psystem->m_pacmedir->ca2roaming() / "appmatter";
+   //   return m_psystem->m_pacmedirectory->ca2roaming() / "appmatter";
 
    //}
 
@@ -2890,7 +2890,7 @@ namespace aura
    //::file::path system::local_get_matter_cache_path()
    //{
 
-   //   return m_psystem->m_pacmedir->ca2roaming() / "cache/appmatter";
+   //   return m_psystem->m_pacmedirectory->ca2roaming() / "cache/appmatter";
 
    //}
 
@@ -3966,7 +3966,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
 //      {
 //
-//         strWeather = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->system() / "browser_weather.txt");
+//         strWeather = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4249,7 +4249,7 @@ namespace aura
 //
 //      pathDir = path.folder();
 //
-//      ::file::path pathAppDataDir(m_psystem->m_pacmedir->ca2roaming());
+//      ::file::path pathAppDataDir(m_psystem->m_pacmedirectory->ca2roaming());
 //
 //      ::file::path pathProfile;
 //
@@ -4333,7 +4333,7 @@ namespace aura
 //
 //            strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -4351,7 +4351,7 @@ namespace aura
 //
 //         string strChrome = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -4380,7 +4380,7 @@ namespace aura
 //
 //         strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
@@ -4546,11 +4546,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser.txt", strBrowser);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser.txt", strBrowser);
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_path.txt", strBrowserPath);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedir->system() / "browser_dir.txt", strBrowserDir);
+//         pcontext->m_papexcontext->file().put_text_utf8(m_psystem->m_pacmedirectory->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -5106,7 +5106,7 @@ namespace aura
 //CLASS_DECL_AURA ::file::path get_last_run_application_path_file(string strAppId)
 //{
 //
-//   ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
+//   ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
 //
 //   return pathFile;
 //
@@ -6360,7 +6360,7 @@ namespace aura
    //::type system::get_pane_tab_view_type_info()
    //{
 
-   //   return __type(userex::pane_tab_view);
+   //   return __type(userex::pane_tab_impact);
 
    //}
 

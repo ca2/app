@@ -1,6 +1,6 @@
 // Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 namespace geo
@@ -48,9 +48,9 @@ namespace geo
 
       //}
 
-      m_pathCityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_cityTimeZone.bin";
+      m_pathCityTimeZoneFile = m_psystem->m_pacmedirectory->system() / "datetime_departament_cityTimeZone.bin";
 
-      m_pathLocalityTimeZoneFile = m_psystem->m_pacmedir->system() / "datetime_departament_LocalityTimeZone.bin";
+      m_pathLocalityTimeZoneFile = m_psystem->m_pacmedirectory->system() / "datetime_departament_LocalityTimeZone.bin";
 
       //return estatus;
 
@@ -73,7 +73,7 @@ namespace geo
 
       }
 
-      ::file::path pathFolder = m_psystem->m_pacmedir->system();
+      ::file::path pathFolder = m_psystem->m_pacmedirectory->system();
 
       bool bOk = false;
 
@@ -93,27 +93,27 @@ namespace geo
 
          //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "weather-cit.bin");
          //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "weather-cil.bin");
          //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "weather-ids.bin");
          //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "weather-lon.bin");
          //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedir;
+//         auto pacmedir = psystem->m_pacmedirectory;
 //
 //pacmedir->system() / "weather-lat.bin");
 
@@ -725,7 +725,7 @@ namespace geo
       //
       //         m_countryLocalityTimeZone[strCountry][strLocality] = timezone;
       //
-      //         ::file::path path = m_psystem->m_pacmedir->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
+      //         ::file::path path = m_psystem->m_pacmedirectory->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
       //         auto & file = pcontext->m_papexcontext->file().friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //

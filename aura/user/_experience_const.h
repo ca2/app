@@ -8,17 +8,17 @@ namespace experience
    enum e_hittest
    {
 
-      hittest_none = 0,
-      hittest_sizing_left = 1,
-      hittest_sizing_top = 2,
-      hittest_sizing_right = 4,
-      hittest_sizing_bottom = 8,
-      hittest_sizing_top_left = hittest_sizing_top | hittest_sizing_left,
-      hittest_sizing_top_right = hittest_sizing_top | hittest_sizing_right,
-      hittest_sizing_bottom_left = hittest_sizing_bottom | hittest_sizing_left,
-      hittest_sizing_bottom_right = hittest_sizing_bottom | hittest_sizing_right,
-      hittest_client = 16,
-      hittest_move = 32,
+      ::experience::e_frame_none = 0,
+      ::experience::e_frame_sizing_left = 1,
+      ::experience::e_frame_sizing_top = 2,
+      ::experience::e_frame_sizing_right = 4,
+      ::experience::e_frame_sizing_bottom = 8,
+      ::experience::e_frame_sizing_top_left = ::experience::e_frame_sizing_top | ::experience::e_frame_sizing_left,
+      ::experience::e_frame_sizing_top_right = ::experience::e_frame_sizing_top | ::experience::e_frame_sizing_right,
+      ::experience::e_frame_sizing_bottom_left = ::experience::e_frame_sizing_bottom | ::experience::e_frame_sizing_left,
+      ::experience::e_frame_sizing_bottom_right = ::experience::e_frame_sizing_bottom | ::experience::e_frame_sizing_right,
+      ::experience::e_frame_client = 16,
+      ::experience::e_frame_move = 32,
 
    };
 

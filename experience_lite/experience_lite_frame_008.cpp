@@ -54,7 +54,7 @@
 
             e_hittest frame_008::_001HitTest(::point_i32 pointCursor)
             {
-               e_hittest etest = hittest_client;
+               e_hittest etest = ::experience::e_frame_client;
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectangleEvent;
@@ -77,7 +77,7 @@
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_top_left;
+                        etest = ::experience::e_frame_sizing_top_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -85,7 +85,7 @@
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_top_left;
+                        etest = ::experience::e_frame_sizing_top_left;
                         goto SizingSuccess;
                      }
                   }
@@ -96,7 +96,7 @@
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_top_right;
+                        etest = ::experience::e_frame_sizing_top_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -104,7 +104,7 @@
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_top_right;
+                        etest = ::experience::e_frame_sizing_top_right;
                         goto SizingSuccess;
                      }
                   }
@@ -115,7 +115,7 @@
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_bottom_right;
+                        etest = ::experience::e_frame_sizing_bottom_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -123,7 +123,7 @@
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_bottom_right;
+                        etest = ::experience::e_frame_sizing_bottom_right;
                         goto SizingSuccess;
                      }
                   }
@@ -134,7 +134,7 @@
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_bottom_left;
+                        etest = ::experience::e_frame_sizing_bottom_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -142,7 +142,7 @@
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_bottom_left;
+                        etest = ::experience::e_frame_sizing_bottom_left;
                         goto SizingSuccess;
                      }
                   }
@@ -154,7 +154,7 @@
                      rectangle.bottom = rectangleEvent.top + 5;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_top;
+                        etest = ::experience::e_frame_sizing_top;
                         goto SizingSuccess;
                      }
                   }
@@ -166,7 +166,7 @@
                      rectangle.bottom = rectangleEvent.bottom;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_bottom;
+                        etest = ::experience::e_frame_sizing_bottom;
                         goto SizingSuccess;
                      }
                   }
@@ -178,7 +178,7 @@
                      rectangle.bottom = rectangleEvent.bottom;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_left;
+                        etest = ::experience::e_frame_sizing_left;
                         goto SizingSuccess;
                      }
                   }
@@ -190,7 +190,7 @@
                      rectangle.bottom = rectangleEvent.bottom;
                      if(rectangle.contains(pointHitTest))
                      {
-                        etest = hittest_sizing_right;
+                        etest = ::experience::e_frame_sizing_right;
                         goto SizingSuccess;
                      }
                   }
@@ -200,7 +200,7 @@ SizingSuccess:
 SizingNone:
                   ;
                }
-               return hittest_client;
+               return ::experience::e_frame_client;
             }
 
 

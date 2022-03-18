@@ -1,16 +1,11 @@
 #pragma once
 
 
-
-namespace experience
+namespace experience_anthill
 {
 
 
-   namespace anthill
-   {
-
-
-   class CLASS_DECL_APP_EXPERIENCE_ANTHILL button :
+   class CLASS_DECL_APP_EXPERIENCE_ANTHILL control_box_button :
       virtual public ::experience::button
    {
    public:
@@ -21,8 +16,8 @@ namespace experience
       ::draw2d::brush_pointer                  m_pbrush;
 
 
-      button();
-      virtual ~button();
+      control_box_button();
+      ~control_box_button() override;
 
 
       virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
@@ -44,9 +39,6 @@ namespace experience
 
    };
 
-
-
-   } // namespace anthill
 
 
 } // namespace experience

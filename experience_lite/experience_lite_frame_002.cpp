@@ -62,7 +62,7 @@ color32_t SetAValue(byte a, color32_t color32)
 
             e_hittest frame_002::_001HitTest(::point_i32 pointCursor)
             {
-               e_hittest etest = hittest_client;
+               e_hittest etest = ::experience::e_frame_client;
                {
                   //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectangleEvent;
@@ -78,7 +78,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_top_left;
+                        etest = ::experience::e_frame_sizing_top_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -86,7 +86,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_top_left;
+                        etest = ::experience::e_frame_sizing_top_left;
                         goto SizingSuccess;
                      }
                   }
@@ -97,7 +97,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_top_right;
+                        etest = ::experience::e_frame_sizing_top_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -105,7 +105,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_top_right;
+                        etest = ::experience::e_frame_sizing_top_right;
                         goto SizingSuccess;
                      }
                   }
@@ -116,7 +116,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_bottom_right;
+                        etest = ::experience::e_frame_sizing_bottom_right;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -124,7 +124,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_bottom_right;
+                        etest = ::experience::e_frame_sizing_bottom_right;
                         goto SizingSuccess;
                      }
                   }
@@ -135,7 +135,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_bottom_left;
+                        etest = ::experience::e_frame_sizing_bottom_left;
                         goto SizingSuccess;
                      }
                      rectangle = rectangleEvent;
@@ -143,7 +143,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_bottom_left;
+                        etest = ::experience::e_frame_sizing_bottom_left;
                         goto SizingSuccess;
                      }
                   }
@@ -155,7 +155,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangleEvent.top + 5;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_top;
+                        etest = ::experience::e_frame_sizing_top;
                         goto SizingSuccess;
                      }
                   }
@@ -167,7 +167,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = rectangleEvent.bottom;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_bottom;
+                        etest = ::experience::e_frame_sizing_bottom;
                         goto SizingSuccess;
                      }
                   }
@@ -179,7 +179,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = ptCenter.y + 8;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_left;
+                        etest = ::experience::e_frame_sizing_left;
                         goto SizingSuccess;
                      }
                   }
@@ -191,7 +191,7 @@ color32_t SetAValue(byte a, color32_t color32)
                      rectangle.bottom = ptCenter.y + 8;
                      if(rectangle.contains(pointCursor))
                      {
-                        etest = hittest_sizing_right;
+                        etest = ::experience::e_frame_sizing_right;
                         goto SizingSuccess;
                      }
                   }
@@ -200,7 +200,7 @@ SizingSuccess:
                   return etest;
 SizingNone:;
                }
-               return hittest_client;
+               return ::experience::e_frame_client;
             }
 
 

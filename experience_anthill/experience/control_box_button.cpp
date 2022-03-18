@@ -2,40 +2,37 @@
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
-namespace experience
+namespace experience_anthill
 {
 
 
-   namespace anthill
-   {
 
-
-   button::button()
+   control_box_button::control_box_button()
    {
 
    }
 
 
-   button::~button()
+   control_box_button::~control_box_button()
    {
 
    }
 
 
-   void button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::experience::button::_001OnClip(pgraphics);
 
    }
 
-   void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
    }
 
 
-   void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
@@ -133,12 +130,12 @@ namespace experience
       {
 
          m_pbrush->create_solid(::is_set(pgraphics->get_current_pen())
-                               ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+            ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_pbrush);
 
          m_ppen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
-                             ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
+            ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_ppen);
 
@@ -155,7 +152,7 @@ namespace experience
    }
 
 
-   void button::install_message_routing(::channel * pchannel)
+   void control_box_button::install_message_routing(::channel * pchannel)
    {
 
       ::user::button::install_message_routing(pchannel);
@@ -164,7 +161,7 @@ namespace experience
 
    }
 
-   void button::on_message_show_window(::message::message * pmessage)
+   void control_box_button::on_message_show_window(::message::message * pmessage)
    {
 
 
@@ -187,7 +184,7 @@ namespace experience
    }
 
 
-   void button::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void control_box_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -203,7 +200,7 @@ namespace experience
    }
 
 
-   ::item_pointer button::on_hit_test(const ::point_i32 &point)
+   ::item_pointer control_box_button::on_hit_test(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -235,7 +232,7 @@ namespace experience
    }
 
 
-   bool button::keyboard_focus_is_focusable() const
+   bool control_box_button::keyboard_focus_is_focusable() const
    {
 
       //return false && ::user::button::keyboard_focus_is_focusable();
@@ -248,10 +245,7 @@ namespace experience
 
 
 
-         } // namespace anthill
-
-
-   } // namespace experience
+} // namespace experience_anthill
 
 
 

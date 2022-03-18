@@ -802,7 +802,7 @@ namespace filemanager
          if(pcontext->m_papexcontext->dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
          {
 
-            listingExpanded.initialize_file_listing(pathaExpand[i]);
+            listingExpanded.set_listing(pathaExpand[i]);
 
             pcontext->m_papexcontext->dir().enumerate(listingExpanded);
 

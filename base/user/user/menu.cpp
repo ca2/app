@@ -517,7 +517,7 @@ namespace user
 
             //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
             //if (!m_pitemClose->m_puserinteraction->create_child(this))
-            m_pitemClose->m_puserinteraction->create_child(this);
+            m_pitemClose->m_puserinteraction->create_control(this, m_pitemClose->m_atom);
             //{
 
             //   return false;

@@ -43,31 +43,31 @@ namespace gpu
 
    void context::draw()
    {
-
-      if (m_VAO != 0)
-      {
-
-         //return ::success;
-         return;
-
-      }
-      //glGenBuffers(1, &VAO);
+//
+//      if (m_VAO != 0)
+//      {
+//
+//         //return ::success;
+//         return;
+//
+//      }
+//      //glGenBuffers(1, &VAO);
+////      float vertices[] = {
+//         // positions         // colors
+//  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
+//    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
+//      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
+//      //};
 //      float vertices[] = {
-         // positions         // colors
-  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
-      //};
-      float vertices[] = {
-         // first triangle
-          1.f,  1.f, 0.0f,  // top right
-          1.f, -1.f, 0.0f,  // bottom right
-         -1.f,  1.f, 0.0f,  // top left
-         // second triangle
-          1.f, -1.f, 0.0f,  // bottom right
-         -1.f, -1.f, 0.0f,  // bottom left
-         -1.f,  1.f, 0.0f   // top left
-      };
+//         // first triangle
+//          1.f,  1.f, 0.0f,  // top right
+//          1.f, -1.f, 0.0f,  // bottom right
+//         -1.f,  1.f, 0.0f,  // top left
+//         // second triangle
+//          1.f, -1.f, 0.0f,  // bottom right
+//         -1.f, -1.f, 0.0f,  // bottom left
+//         -1.f,  1.f, 0.0f   // top left
+//      };
 
       //glGenVertexArrays(1, &m_VAO);
       //glGenBuffers(1, &m_VBO);
@@ -133,6 +133,61 @@ namespace gpu
       //glDrawArrays(GL_TRIANGLES, 0, 6);
 
       //return ::success;
+
+   }
+
+
+   void context::set_bitmap_1(::image * pimage)
+   {
+
+
+
+   }
+
+
+   void context::create_window_buffer(void * pHwnd)
+   {
+
+      __pointer(::aura::system) psystem = m_psystem;
+
+      auto pgpu = psystem->get_gpu();
+
+      if (::is_null(pgpu))
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+      //__construct(m_pbuffer);
+
+      //m_pbuffer->m_pimage = m_pcontext->context_image()->create_image(size);
+
+      //if (!::is_ok(m_pbuffer->m_pimage))
+      //{
+
+      //   throw ::exception(error_resource);
+
+      //}
+
+      _create_window_buffer(pHwnd);
+
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return ::success_none;
+
+   }
+
+
+   void context::_create_window_buffer(void * pHwnd)
+   {
+
+      //return ::success_none;
 
    }
 

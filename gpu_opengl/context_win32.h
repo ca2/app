@@ -19,20 +19,24 @@ namespace opengl
 
 
       context_win32();
-      virtual ~context_win32();
+      ~context_win32() override;
 
 
-
-      virtual void _create_offscreen_buffer(const ::size_i32& size) override;
-      virtual void resize_offscreen_buffer(const ::size_i32& size) override;
-      virtual void destroy_offscreen_buffer() override;
-
-      virtual void make_current() override;
+      virtual HWND _create_offscreen_window(const ::size_i32 & size);
 
 
-      virtual string get_shader_version_text() override;
+      void _create_window_buffer(void * pHwnd) override;
+      void _create_offscreen_buffer(const ::size_i32& size) override;
+      void resize_offscreen_buffer(const ::size_i32& size) override;
+      void destroy_offscreen_buffer() override;
 
-      virtual void _translate_shader(string_array & straFragment) override;
+      void make_current() override;
+
+      void render();
+
+      string get_shader_version_text() override;
+
+      void _translate_shader(string_array & straFragment) override;
 
 
    };

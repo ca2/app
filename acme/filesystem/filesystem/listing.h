@@ -217,8 +217,10 @@ namespace file
       void defer_add(::file::path & path);
 
 
-      void initialize_file_listing(const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none)
+      void set_listing(const ::file::path & path, enum_depth edepth = e_depth_none, ::file::e_flag eflag = ::file::e_flag_none)
       {
+
+         m_penumerator = nullptr;
 
          m_pathUser = path;
 
@@ -229,12 +231,44 @@ namespace file
       }
 
 
-      void initialize_file_listing_pattern(const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none)
+      void set_folder_listing(const ::file::path & path, enum_depth edepth = e_depth_none)
+      {
+
+         set_listing(path, edepth, ::file::e_flag_folder);
+
+      }
+
+
+      void set_file_listing(const ::file::path & path, enum_depth edepth = e_depth_none)
+      {
+
+         set_listing(path, edepth, ::file::e_flag_file);
+
+      }
+
+
+      void set_pattern_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none, ::file::e_flag eflag = ::file::e_flag_none)
       {
 
          m_straPattern = straPattern;
 
-         initialize_file_listing(path, eflag, edepth);
+         set_listing(path, edepth, eflag);
+
+      }
+
+
+      void set_pattern_folder_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none)
+      {
+
+         set_pattern_listing(path, straPattern, edepth, ::file::e_flag_folder);
+
+      }
+
+
+      void set_pattern_file_listing(const ::file::path & path, const ::string_array & straPattern, enum_depth edepth = e_depth_none)
+      {
+
+         set_pattern_listing(path, straPattern, edepth, ::file::e_flag_file);
 
       }
 

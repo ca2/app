@@ -1178,6 +1178,13 @@ namespace user
    void combo_box::reset_content()
    {
 
+      if (!m_plistbox)
+      {
+
+         return;
+
+      }
+
       m_plistbox->reset_content();
 
    }
@@ -1516,6 +1523,13 @@ namespace user
 
    string combo_box::get_current_item_string_value()
    {
+
+      if (::is_null(m_plistbox))
+      {
+
+         return {};
+
+      }
 
       return m_plistbox->get_current_item_string_value();
 

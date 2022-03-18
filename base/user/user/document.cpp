@@ -960,6 +960,13 @@ namespace user
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
+      if (payloadFile.is_empty())
+      {
+
+         return on_new_document();
+
+      }
+
       auto pcontext = get_context();
 
       auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);

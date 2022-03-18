@@ -701,7 +701,7 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size_i32", idName) == 0)
+               else if(ansi_compare_ci("font-size", idName) == 0)
                {
                   str = "30";
                   return true;
@@ -726,7 +726,7 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size_i32", idName) == 0)
+               else if(ansi_compare_ci("font-size", idName) == 0)
                {
                   str = "23";
                   return true;
@@ -751,7 +751,7 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size_i32", idName) == 0)
+               else if(ansi_compare_ci("font-size", idName) == 0)
                {
                   str = "11";
                   return true;
@@ -776,7 +776,7 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size_i32", idName) == 0)
+               else if(ansi_compare_ci("font-size", idName) == 0)
                {
                   str = "18";
                   return true;
@@ -812,7 +812,7 @@ namespace html
       }
       str = m_propertyset[idName];
       string strEm = str;
-      if(string(idName).compare_ci("font-size_i32") == 0)
+      if(string(idName).compare_ci("font-size") == 0)
       {
          if(::str::find_awwci("em", str) > 0)
          {

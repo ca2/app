@@ -423,10 +423,10 @@ namespace datetime
    //}
 
 
-   string department::international::get_date_time_for_file(const ::earth::time_shift& timeshift)
+   string department::international::get_date_time_for_file(const ::earth::time_shift& timeshift, const ::earth::time & time)
    {
 
-      return get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
+      return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
 
    }
 
@@ -463,10 +463,10 @@ namespace datetime
    //}
 
 
-   string department::international::get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift)
+   string department::international::get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift, const ::earth::time & time)
    {
 
-      string str = get_date_time_for_file(timeshift);
+      string str = get_date_time_for_file(timeshift, time);
 
       str.replace_with("_", " ");
 

@@ -15,19 +15,9 @@ namespace user
 
       m_bClickDefaultMouseHandling = true;
 
-      payload(FONTSEL_IMPACT) = true;
-
       m_flagNonClient.erase(non_client_background);
 
       m_flagNonClient.erase(non_client_focus_rect);
-
-      m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
-
-      m_pbrushBkSel->create_solid(argb(255, 240, 240, 240));
-
-      m_ppenBkSel->create_solid(3.0, argb(255, 0, 148, 202));
-
-      m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
 
    }
 
@@ -126,9 +116,7 @@ namespace user
       if (!idCommand.is_empty())
       {
 
-         ::message::command command;
-
-         command.m_atom = idCommand;
+         ::message::command command(idCommand);
 
          route_command(&command);
 
@@ -144,10 +132,19 @@ namespace user
    void menu_view::on_message_create(::message::message * pmessage)
    {
 
+      payload(FONTSEL_IMPACT) = true;
+
       m_pbrushBkSel.create(this);
       m_pbrushBkHoverSel.create(this);
       m_ppenBkSel.create(this);
       m_ppen.create(this);
+
+
+      m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
+      m_pbrushBkSel->create_solid(argb(255, 240, 240, 240));
+      m_ppenBkSel->create_solid(3.0, argb(255, 0, 148, 202));
+      m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
+
 
       __pointer(::message::create) pcreate(pmessage);
 
@@ -360,7 +357,7 @@ namespace user
 
       ::image_pointer pimage1;
 
-      __defer_construct_new(m_pimageMem);
+      __defer_construct(m_pimageMem);
 
       pimage1 = m_pimageMem;
 

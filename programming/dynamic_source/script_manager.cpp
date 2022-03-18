@@ -238,7 +238,9 @@ namespace dynamic_source
 
       auto papp = get_app();
 
-      pcontext->m_papexcontext->dir().ls_dir(listing, m_strNetnodePath);
+      listing.set_listing(m_strNetnodePath);
+         
+      pcontext->m_papexcontext->dir().enumerate(listing);
 
       forallref(listing)
       {

@@ -1378,13 +1378,15 @@ pacmedir->create(pathDVP_Folder);
 
       auto papp = get_app();
 
-      l.m_straLibSourcePath.m_pprovider = papp->m_papplication;
+      //l.m_straLibSourcePath.m_pprovider = papp->m_papplication;
 
       l.m_straLibSourcePath.clear_results();
 
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->dir().rls(l.m_straLibSourcePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
+
+      pcontext->m_papexcontext->dir().enumerate(l.m_straLibSourcePath);
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
@@ -1406,9 +1408,10 @@ pacmedir->create(pathDVP_Folder);
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
-      l.m_straLibIncludePath.m_pprovider = papp->m_papplication;
+      //l.m_straLibIncludePath.m_pprovider = papp->m_papplication;
       l.m_straLibIncludePath.clear_results();
-      pcontext->m_papexcontext->dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
+      pcontext->m_papexcontext->dir().enumerate(l.m_straLibIncludePath);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
@@ -2568,7 +2571,9 @@ ch_else:
 
       auto pcontext = m_pcontext;
 
-      pcontext->m_papexcontext->dir().rls(stra, strPath);
+      stra.set_listing(strPath, e_depth_recursively);
+
+      pcontext->m_papexcontext->dir().enumerate(stra);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -2853,7 +2858,9 @@ ch_else:
       if (pcontext->m_papexcontext->dir().is(pathPstrSet))
       {
 
-         pcontext->m_papexcontext->dir().rls(straFile, pathPstrSet);
+         straFile.set_listing(pathPstrSet, ::e_depth_recursively);
+
+         pcontext->m_papexcontext->dir().enumerate(straFile);
 
       }
 

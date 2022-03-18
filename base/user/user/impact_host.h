@@ -101,10 +101,10 @@ namespace user
 
 
       template < class VIEW >
-      __pointer(VIEW) host_view(const ::atom & atom, const ::atom & idTitle = "")
+      __pointer(VIEW) host_view(const ::atom & atom)
       {
 
-         impact_data* pimpactdata = allocate_impact_data(atom, idTitle);
+         impact_data* pimpactdata = allocate_impact_data(atom);
 
          pimpactdata->m_puserinteraction = create_view <VIEW>(pimpactdata);
 

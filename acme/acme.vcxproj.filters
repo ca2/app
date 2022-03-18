@@ -207,18 +207,6 @@
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\duration">
-      <UniqueIdentifier>{8177ae06-3813-4278-9ac7-bce64a71d8b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\duration\integral_duration">
-      <UniqueIdentifier>{0f869d69-05d3-464a-80d8-3d86518e9e0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\duration\floating_duration">
-      <UniqueIdentifier>{ec0c0b57-7dbe-412a-b7fd-ab46dba48376}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\duration\duration">
-      <UniqueIdentifier>{2cbe4311-e05f-4365-b2d7-b56e10861e4c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\duration">
       <UniqueIdentifier>{c9b96c03-98bc-4996-81e2-5c78e5017706}</UniqueIdentifier>
     </Filter>
@@ -290,6 +278,18 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration">
+      <UniqueIdentifier>{8177ae06-3813-4278-9ac7-bce64a71d8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\integral_duration">
+      <UniqueIdentifier>{0f869d69-05d3-464a-80d8-3d86518e9e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\floating_duration">
+      <UniqueIdentifier>{ec0c0b57-7dbe-412a-b7fd-ab46dba48376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\duration">
+      <UniqueIdentifier>{2cbe4311-e05f-4365-b2d7-b56e10861e4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -4158,6 +4158,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path_array.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="email.cpp">
+      <Filter>Source Files\primitive\text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

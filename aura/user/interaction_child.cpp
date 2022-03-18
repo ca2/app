@@ -68,6 +68,13 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
+         if (::is_null(m_psystem))
+         {
+
+            initialize(pprimitiveParent);
+
+         }
+
          //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
          m_puserinteraction->m_pprimitiveimpl = this;

@@ -762,9 +762,9 @@ bool dir_context::has_subdir(const ::file::path & pathFolder)
 
    ::file::listing listing;
 
-   listing.initialize_file_listing(pathFolder, ::file::e_flag_folder);
+   listing.set_folder_listing(pathFolder);
 
-   //enumerate(listing, pathFolder, ::file::e_flag_folder);
+   enumerate(listing);
 
    return listing.has_element();
 
@@ -1686,11 +1686,11 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(path);
+      listing.set_listing(path);
 
       enumerate(listing);
 
-      for (auto& path : listing)
+      for (auto & path : listing)
       {
 
          if (is(path))
@@ -1877,7 +1877,13 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
       pfolder->enumerate(listing);
 
-      listing.patch_base_path("zipresource://");
+      ::file::path pathBasePath;
+
+      pathBasePath = "zipresource://";
+
+      pathBasePath /= strPrefix;
+
+      listing.patch_base_path(pathBasePath);
 
    }
    else
@@ -1885,7 +1891,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
       strDir = m_pcontext->m_papexcontext->get_matter_cache_path(strDir);
 
-      listing.initialize_file_listing(strDir);
+      listing.set_listing(strDir);
 
       m_pcontext->m_papexcontext->dir().enumerate(listing);
 

@@ -50,7 +50,7 @@ public:
 
    using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >     POINTER;
-   typedef string_array_base < string_base >                           STRINGA;
+   typedef string_array_base < string_base, string_base, e_type_string_array > STRINGA;
 
 
    string_base() { }

@@ -453,6 +453,20 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    __scoped_restore(pcommand->m_atom.m_etype);
 
+   string strText = pcommand->m_atom.to_string();
+
+   if (strText.has_char())
+   {
+
+      if (m_idaHandledCommands.contains(strText))
+      {
+
+         return true;
+
+      }
+
+   }
+
    pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
    if (m_idaHandledCommands.contains(pcommand->m_atom))

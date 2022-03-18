@@ -111,6 +111,10 @@ namespace userfs
 
       auto pcontext = m_pcontext;
 
+      listingUser.clear();
+
+      listingUser.m_straTitle.clear();
+
       if(strlen(pitem->m_filepathUser) == 0)
       {
 
@@ -128,7 +132,7 @@ namespace userfs
       else
       {
 
-         listingUser.initialize_file_listing(pitem->m_filepathFinal);
+         listingUser.set_listing(pitem->m_filepathFinal);
 
          pcontext->m_papexcontext->dir().enumerate(listingUser);
 

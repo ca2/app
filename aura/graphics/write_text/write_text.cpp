@@ -240,7 +240,7 @@ void write_text::enum_write_text_fonts(::write_text::font_enumeration_item_array
 
       ::file::listing listing;
 
-      listing.initialize_file_listing("/system/fonts");
+      listing.set_file_listing("/system/fonts");
 
       m_psystem->m_pacmedirectory->enumerate(listing);
 

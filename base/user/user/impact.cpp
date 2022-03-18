@@ -892,6 +892,10 @@ namespace user
 
          }
 
+         auto pcontextJustForInspection = pobject->m_pcontext;
+
+         string strType = typeid(*pcontextJustForInspection).name();
+
          //estatus = 
          pobject->__id_construct(pinteraction, pusersystem->m_typeNewImpact);
 

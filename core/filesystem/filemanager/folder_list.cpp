@@ -136,7 +136,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
 
-      listing.initialize_file_listing(strParent);
+      listing.set_listing(strParent);
 
       pcontext->m_papexcontext->dir().enumerate(listing);
 

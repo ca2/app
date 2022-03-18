@@ -159,7 +159,7 @@ namespace filemanager
 
          strDir = pathUser;
 
-         listing.initialize_file_listing(pathUser);
+         listing.set_listing(pathUser);
 
          pcontext->m_papexcontext->dir().enumerate(listing);
 

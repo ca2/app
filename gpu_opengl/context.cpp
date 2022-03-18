@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_.h"
+#include "aura/graphics/image/image.h"
 
 
 namespace opengl
@@ -10,6 +11,12 @@ namespace opengl
    {
 
       m_emode = e_mode_none;
+      m_itaskGpu = 0;
+      m_iLastBitmap1Scan = -1;
+
+      m_gluTextureBitmap1 = 0;
+      m_VAO = 0;
+      m_VBO = 0;
 
    }
 
@@ -39,6 +46,8 @@ namespace opengl
 
    void context::draw()
    {
+
+      ASSERT(m_itaskGpu == ::get_current_itask());
 
       if (m_VAO != 0)
       {
@@ -98,7 +107,9 @@ namespace opengl
    void context::start()
    {
 
-      glClearColor(0.2f, 0.3f, 0.3f, 0.3f);
+      ASSERT(m_itaskGpu == ::get_current_itask());
+
+      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
       glClear(GL_COLOR_BUFFER_BIT);
 
@@ -126,22 +137,111 @@ namespace opengl
    void context::render()
    {
 
+      ASSERT(m_itaskGpu == ::get_current_itask());
+
 //#ifdef __APPLE__
 
       //glBindVertexArrayAPPLE(m_VAO);
 
 //#else
 
-      glBindVertexArray(m_VAO);
+      if (m_gluTextureBitmap1)
+      {
 
-//#endif
+         //glMatrixMode(GL_PROJECTION);
+         //glOrtho(0, 800, 0, 600, -1, 1);
+         // glMatrixMode(GL_MODELVIEW);
 
-      glDrawArrays(GL_TRIANGLES, 0, 6);
+         //clear and draw quad with texture (could be in display callback)
+         //glClear(GL_COLOR_BUFFER_BIT);
+         //glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
+         ////glEnable(GL_TEXTURE_2D);
+         //glBegin(GL_QUADS);
+         //glTexCoord2i(0, 0); glVertex2f(-1.0, -1.0);
+         //glTexCoord2i(0, 1); glVertex2f(-1.0, 1.0);
+         //glTexCoord2i(1, 1); glVertex2f(1.0, 1.0);
+         //glTexCoord2i(1, 0); glVertex2f(1.0, -1.0);
+         //glEnd();
+         //glDisable(GL_TEXTURE_2D);
+         //glBindTexture(GL_TEXTURE_2D, 0);
+         //glFlush();
+
+         GLuint readFboId = 0;
+         glGenFramebuffers(1, &readFboId);
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
+         glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+            GL_TEXTURE_2D, m_gluTextureBitmap1, 0);
+         glBlitFramebuffer(0, 0, m_sizeBitmap1.cx, m_sizeBitmap1.cy,
+            0, 0, m_size.cx, m_size.cy,
+            GL_COLOR_BUFFER_BIT, GL_LINEAR);
+         glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+         glDeleteFramebuffers(1, &readFboId);
+      }
+      else
+      {
+
+         glBindVertexArray(m_VAO);
+
+         //#endif
+
+         glDrawArrays(GL_TRIANGLES, 0, 6);
+
+      }
 
       //return ::success;
 
    }
 
+
+   void context::set_bitmap_1(::image * pimage)
+   {
+
+      ASSERT(m_itaskGpu == ::get_current_itask());
+
+      if (!m_gluTextureBitmap1)
+      {
+
+         glGenTextures(1, &m_gluTextureBitmap1); // generate texture id for your texture (can skip this line)
+         glEnable(GL_TEXTURE_2D);
+         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
+
+         glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); // set clamp (GL_CLAMP_TO_EDGE would be better)
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
+
+      }
+
+      if (::is_ok(pimage))
+      {
+
+         pimage->map();
+
+         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
+
+         if (m_iLastBitmap1Scan != pimage->m_iScan)
+         {
+
+            m_iLastBitmap1Scan = pimage->m_iScan;
+
+            glPixelStorei(GL_UNPACK_ROW_LENGTH, pimage->m_iScan / 4);
+
+         }
+
+         m_sizeBitmap1 = pimage->size();
+
+         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+            m_sizeBitmap1.cx,
+            m_sizeBitmap1.cy,
+            0, GL_RGBA, GL_UNSIGNED_BYTE,
+            pimage->get_data()); // upload image data to the textur
+
+
+
+      }
+
+   }
 
    //void context::create_offscreen_buffer(const ::size_i32& size)
    //{

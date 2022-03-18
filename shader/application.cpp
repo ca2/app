@@ -125,7 +125,9 @@ namespace app_shader
 
       auto pcontext = m_pcontext->m_papexcontext;
 
-      pcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+      listing.set_pattern_file_listing("dropbox://shader/simple shader/", { "*.frag" });
+
+      pcontext->dir().enumerate(listing);
 
       listing.sort();
 

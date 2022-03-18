@@ -193,22 +193,27 @@ namespace fs
 
       if(path.is_empty())
       {
+         
          return 1;
+
       }
 
       if(ansi_compare_ci(path, "fs://") == 0)
       {
+         
          return 1;
+
       }
 
       auto psystem = m_psystem;
 
       auto purl = psystem->url();
 
-      if(purl->get_script(path).is_empty() ||
-         purl->get_script(path) == "/")
+      if(purl->get_script(path).is_empty() || purl->get_script(path) == "/")
       {
+         
          return 1;
+
       }
 
       defer_initialize();
@@ -223,7 +228,7 @@ namespace fs
             
             ::file::listing listing;
 
-            listing.initialize_file_listing(path);
+            listing.set_listing(path);
 
             m_pcontext->m_papexcontext->dir().enumerate(listing);
             
@@ -245,7 +250,7 @@ namespace fs
             
             ::file::listing listing;
 
-            listing.initialize_file_listing(path);
+            listing.set_listing(path);
 
             m_pcontext->m_papexcontext->dir().enumerate(listing);
 

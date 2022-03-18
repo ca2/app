@@ -43,8 +43,6 @@ namespace gpu
       point_i32                            m_pointTranslate;
       __pointer(::gpu::buffer)         m_pbuffer;
       __pointer(::gpu::program)        m_pprogram;
-      unsigned int                     m_VAO;
-      unsigned int                     m_VBO;
 
 
       context();
@@ -63,6 +61,12 @@ namespace gpu
       virtual void start();
       virtual void render();
 
+
+      virtual void set_bitmap_1(::image * pimage);
+
+
+      virtual void create_window_buffer(void * pHwnd);
+      virtual void _create_window_buffer(void * pHwnd);
       virtual void create_offscreen_buffer(const ::size_i32& size);
       virtual void _create_offscreen_buffer(const ::size_i32& size);
 

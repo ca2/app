@@ -89,6 +89,7 @@ namespace html
          //       ansi_count_copy(lf.lfFaceName, stra[0], iLen);
          //     lf.lfFaceName[iLen] = '\0';
          strName.trim();
+         strName.trim("\"\'");
       }
       else
       {

@@ -1199,7 +1199,7 @@ namespace tranquillum
             if (ptab->get_element_rect(iTab, rectangleText, ::e_element_text))
             {
 
-               _001OnTabPaneDrawTitle(pane, ptab, pgraphics, rectangleText, pbrushText);
+               _001OnTabPaneDrawTitle(pane, ptab, pgraphics, rectangleText, pbrushText, estate);
 
             }
 
@@ -1242,7 +1242,7 @@ namespace tranquillum
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,::draw2d::brush_pointer & pbrushText)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       string_array & straTitle = pane.m_straTitle;

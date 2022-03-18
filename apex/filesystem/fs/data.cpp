@@ -210,7 +210,7 @@ namespace fs
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(path.folder());
+      listing.set_file_listing(path.folder());
 
       enumerate(listing);
 
@@ -224,7 +224,7 @@ namespace fs
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(path.folder());
+      listing.set_file_listing(path.folder());
 
       enumerate(listing);
 

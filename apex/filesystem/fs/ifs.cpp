@@ -60,7 +60,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   listing.initialize_file_listing(path);
+   listing.set_folder_listing(path);
 
    enumerate(listing);
 
@@ -312,7 +312,7 @@ int ifs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(path.folder());
+      listing.set_listing(path.folder());
 
       m_pcontext->m_papexcontext->dir().enumerate(listing);
 

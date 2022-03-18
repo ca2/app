@@ -6228,6 +6228,13 @@ void interaction::create_child(::user::interaction * puserinteractionParent)
 
       }
 
+      if (::is_null(m_psystem))
+      {
+
+         initialize(puserinteractionParent);
+
+      }
+
       ::e_status estatus = error_exception;
 
       //try

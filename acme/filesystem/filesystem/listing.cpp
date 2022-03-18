@@ -85,7 +85,7 @@ namespace file
 
          }
 
-         if (::is_set(m_penumerator) && m_edepth >= 0)
+         if (::is_set(m_penumerator) && m_edepth > 0)
          {
 
             __scoped_restore(m_pathUser);

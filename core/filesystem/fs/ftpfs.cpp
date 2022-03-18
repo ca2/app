@@ -100,7 +100,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   listing.initialize_file_listing(path);
+   listing.set_listing(path);
 
    enumerate(listing);
 
@@ -370,7 +370,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(path.folder());
+      listing.set_listing(path.folder());
 
       enumerate(listing);
 

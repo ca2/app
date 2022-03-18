@@ -352,7 +352,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
 
       }
 
-      listing.initialize_file_listing(str);
+      listing.set_listing(str);
 
       m_pcontext->m_papexcontext->dir().enumerate(listing);
 
@@ -406,7 +406,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       else // if i == iMaxLevel
       {
 
-         listing.initialize_file_listing(str);
+         listing.set_listing(str);
 
          m_pcontext->m_papexcontext->dir().enumerate(listing);
 
@@ -1340,7 +1340,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::file::listing listing;
 
-      listing.initialize_file_listing(varSource, ::file::e_flag_file_or_folder, e_depth_recursively);
+      listing.set_listing(varSource, e_depth_recursively);
 
       m_pcontext->m_papexcontext->dir().enumerate(listing);
 
@@ -1945,7 +1945,7 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 
    string strNewName;
 
-   listing.initialize_file_listing(pathContext);
+   listing.set_listing(pathContext);
 
    m_pcontext->m_papexcontext->dir().enumerate(listing);
 

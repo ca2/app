@@ -47,7 +47,7 @@ namespace datetime
 
          string get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
          string get_date_time(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT, const ::earth::time_shift& timeshift = ::earth::time_shift::none());
-         string get_date_time_for_file(const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+         string get_date_time_for_file(const ::earth::time_shift& timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
          
 
          //string local_get_date_time(const ::earth::time & time, string strFormat = INTERNATIONAL_DATE_TIME_FORMAT);
@@ -55,7 +55,7 @@ namespace datetime
          //string local_get_date_time_for_file();
 
 
-         string get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift = ::earth::time_shift::none());
+         string get_date_time_for_file_with_no_spaces(const ::earth::time_shift& timeshift = ::earth::time_shift::none(), const ::earth::time & time = ::earth::time::now());
          //string local_get_date_time_for_file_with_no_spaces();
 
 

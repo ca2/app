@@ -29,27 +29,9 @@ namespace opengl
 
    }
 
-
-
-   void context_win32::_create_offscreen_buffer(const ::size_i32& size)
+   
+   HWND context_win32::_create_offscreen_window(const ::size_i32 & size)
    {
-
-      auto psystem = get_system()->m_paurasystem;
-
-      auto pgpu = psystem->get_gpu();
-
-      auto popengl = pgpu->cast < ::opengl::opengl >();
-
-      if (!popengl->m_atomClass)
-      {
-
-         TRACE("MS GDI - RegisterClass failed\n");
-
-         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
-
-         throw ::exception(error_failed);
-
-      }
 
       LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
       LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
@@ -72,12 +54,39 @@ namespace opengl
       HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
       LPVOID lpParam = nullptr;
 
-      HWND window = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+      HWND hwnd = CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 
-      if (!window)
+      if (!hwnd)
       {
 
          TRACE("MS GDI - CreateWindow failed\n");
+
+         FORMATTED_TRACE("last-error code: %d\n", GetLastError());
+
+         throw ::exception(error_failed);
+
+      }
+
+      return hwnd;
+
+   }
+
+   
+   void context_win32::_create_window_buffer(void * pHwnd)
+   {
+
+      HWND hwnd = (HWND)pHwnd;
+
+      auto psystem = get_system()->m_paurasystem;
+
+      auto pgpu = psystem->get_gpu();
+
+      auto popengl = pgpu->cast < ::opengl::opengl >();
+
+      if (!popengl->m_atomClass)
+      {
+
+         TRACE("MS GDI - RegisterClass failed\n");
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
@@ -91,11 +100,11 @@ namespace opengl
 
       int chosenformat;
 
-      HDC hdc = GetDC(window);
+      HDC hdc = GetDC(hwnd);
 
       if (!hdc)
       {
-         
+
          TRACE("MS GDI - GetDC failed\n");
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
@@ -110,9 +119,10 @@ namespace opengl
       pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
       pixformat.iPixelType = PFD_TYPE_RGBA;
       pixformat.cColorBits = 32;
-      //pixformat.cGreenBits = 8;
-      //pixformat.cRedBits = 8;
-      //pixformat.cBlueBits = 8;
+      pixformat.cRedShift = 24;
+      pixformat.cGreenShift = 8;
+      pixformat.cBlueShift = 0;
+      pixformat.cAlphaShift = 24;
       pixformat.cAlphaBits = 8;
       pixformat.cDepthBits = 24;
       pixformat.cStencilBits = 8;
@@ -121,12 +131,12 @@ namespace opengl
 
       if (chosenformat == 0)
       {
-         
+
          TRACE("MS GDI - ChoosePixelFormat failed\n");
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         ReleaseDC(window, hdc);
+         ReleaseDC(hwnd, hdc);
 
          throw ::exception(error_failed);
 
@@ -141,7 +151,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         ReleaseDC(window, hdc);
+         ReleaseDC(hwnd, hdc);
 
          throw ::exception(error_failed);
 
@@ -156,7 +166,7 @@ namespace opengl
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
 
-         ReleaseDC(window, hdc);
+         ReleaseDC(hwnd, hdc);
 
          throw ::exception(error_failed);
 
@@ -166,19 +176,19 @@ namespace opengl
 
       if (!bMakeCurrentOk)
       {
-         
+
          TRACE("MS WGL - wglMakeCurrent failed\n");
 
          FORMATTED_TRACE("last-error code: %d\n", GetLastError());
-         
-         ReleaseDC(window, hdc);
+
+         ReleaseDC(hwnd, hdc);
 
          throw ::exception(error_failed);
 
       }
 
       //::e_status estatus = 
-      
+
       popengl->defer_init_glew();
 
       //if (!estatus)
@@ -190,12 +200,29 @@ namespace opengl
 
       //}
 
-      m_hwnd = window;
+      m_hwnd = hwnd;
       m_hdc = hdc;
       m_hrc = hglrc;
-      m_size = size;
+
+      RECT rectClient;
+
+      ::GetClientRect(hwnd, &rectClient);
+
+      m_size = { rectClient.right - rectClient.left,
+         rectClient.bottom - rectClient.top };
+
+      m_itaskGpu = ::get_current_itask();
 
       //return ::success;
+   }
+
+
+   void context_win32::_create_offscreen_buffer(const ::size_i32& size)
+   {
+
+      HWND hwnd = _create_offscreen_window(size);
+      
+      _create_window_buffer(hwnd);
 
    }
 
@@ -246,6 +273,8 @@ namespace opengl
    void context_win32::make_current()
    {
 
+      ASSERT(m_itaskGpu == ::get_current_itask());
+
       ::e_status estatus = ::success;
 
       bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
@@ -269,6 +298,8 @@ namespace opengl
    void context_win32::destroy_offscreen_buffer()
    {
 
+      ASSERT(m_itaskGpu == ::get_current_itask());
+
       ::e_status estatus = ::success;
 
       if (m_hrc == NULL && m_hdc == NULL && m_hwnd == NULL)
@@ -288,6 +319,15 @@ namespace opengl
       m_hdc = NULL;
 
       //return estatus;
+
+   }
+
+   void context_win32::render()
+   {
+
+      ::opengl::context::render();
+
+      SwapBuffers(m_hdc);
 
    }
 

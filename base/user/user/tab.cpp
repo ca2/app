@@ -3292,12 +3292,21 @@ namespace user
 
          ::index iIndex = id_index(atom);
 
-         if(iIndex == -1)
+         if(iIndex < 0)
          {
 
             auto ptabpane = create_tab_by_id(atom);
 
             if (ptabpane == nullptr)
+            {
+
+               return false;
+
+            }
+
+            iIndex = id_index(atom);
+
+            if (iIndex < 0)
             {
 
                return false;

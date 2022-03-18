@@ -11,6 +11,18 @@ namespace opengl
    public:
 
 
+      itask_t									m_itaskGpu;
+
+
+      unsigned int                     m_VAO;
+      unsigned int                     m_VBO;
+
+      GLuint                           m_gluTextureBitmap1;
+      int                              m_iLastBitmap1Scan;
+      ::size_i32                       m_sizeBitmap1;
+
+      
+
       /*enum enum_mode
       {
          e_mode_none,
@@ -32,7 +44,7 @@ namespace opengl
 */
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       //virtual void initialize(::object * pobject) override;
@@ -43,6 +55,9 @@ namespace opengl
       virtual void draw() override;
       virtual void start() override;
       virtual void render() override;
+
+
+      void set_bitmap_1(::image * pimage) override;
 
       //virtual void create_offscreen_buffer(const ::size_i32& size);
       //virtual void _create_offscreen_buffer(const ::size_i32& size);

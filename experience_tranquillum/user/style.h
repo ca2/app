@@ -1,43 +1,40 @@
 #pragma once
 
 
-namespace experience
+namespace experience_tranquillum
 {
 
 
-   namespace tranquillum
+
+   class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM style :
+   virtual public ::base::style
    {
+   public:
 
 
-      class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM style :
-      virtual public ::base::style
-      {
-      public:
+      //::write_text::font_pointer                 m_pfont;
+      //::write_text::font_pointer                m_pfontList;
 
 
-         //::write_text::font_pointer                 m_pfont;
-         //::write_text::font_pointer                m_pfontList;
+      style();
+      virtual ~style();
+
+      //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //{
+
+      //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+      //}
+
+      //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      //{
+
+      //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+      //}
 
 
-         style();
-         virtual ~style();
-
-         //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
-         //{
-
-         //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-         //}
-
-         //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
-         //{
-
-         //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-         //}
-
-
-         virtual ::color::color get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const override;
+      virtual ::color::color get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const override;
       
       
          //    virtual bool get_font(::write_text::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;
@@ -65,10 +62,7 @@ namespace experience
 
 
 
-} // namespace tranquillum
-
-
-   } // namespace experience
+} // namespace experience_tranquillum
 
 
 

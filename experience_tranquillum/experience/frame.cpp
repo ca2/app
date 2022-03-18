@@ -2,12 +2,8 @@
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
-namespace experience
+namespace experience_tranquillum
 {
-
-
-   namespace tranquillum
-   {
 
 
       frame::frame()
@@ -171,18 +167,13 @@ namespace experience
       //}
 
 
-      frame::enum_element operator++(frame::enum_element & eelement, i32 i)
-      {
-         __UNREFERENCED_PARAMETER(i);
-         return (frame::enum_element) (*((i32*)&eelement))++;
-      }
 
       bool frame::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
-
       {
+
          switch (eelement)
          {
-         case ElementTopLeftIcon:
+         case e_element_top_left_icon:
 
             if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             {
@@ -201,7 +192,7 @@ namespace experience
 
             return true;
 
-         case ElementMoveGripMinimal:
+         case e_element_move_grip_minimal:
 
             if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                return false;
@@ -224,22 +215,7 @@ namespace experience
 
       }
 
-      bool frame::hit_test(const point_i32 &point, enum_element &eelementParam)
-      {
-         ::rectangle_i32 rectangle;
-         for (enum_element eelement = (enum_element)(ElementNone + 1);
-               eelement < ElementEnd;
-               eelement++)
-         {
-            get_element_rect(rectangle, eelement);
-            if (rectangle.contains(point))
-            {
-               eelementParam = eelement;
-               return true;
-            }
-         }
-         return false;
-      }
+
 
 
       void frame::set_moveable_border_color(const ::color::color & color32)
@@ -581,7 +557,7 @@ namespace experience
 
             tick2.Now();
 
-            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, e_element_top_left_icon))
             {
 
                auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -613,7 +589,7 @@ namespace experience
 
             ::rectangle_i32 rectangleGrip;
 
-            if (get_element_rect(rectangleGrip, ElementMoveGripMinimal))
+            if (get_element_rect(rectangleGrip, e_element_move_grip_minimal))
             {
 
                int i = 0;
@@ -775,7 +751,7 @@ namespace experience
 
             rectangle -= rectangle.top_left();
 
-            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, e_element_top_left_icon))
             {
 
                ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
@@ -858,10 +834,7 @@ namespace experience
       }
 
 
-   } // namespace tranquillum
-
-
-} // namespace experience
+} // namespace experience_tranquillum
 
 
 

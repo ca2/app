@@ -8,14 +8,8 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-namespace experience
+namespace experience_tranquillum
 {
-
-
-namespace tranquillum
-
-{
-
 
    style::style()
    {
@@ -2009,9 +2003,7 @@ namespace tranquillum
    }
 
 
-         } // namespace tranquillum
-
-   } // namespace experience
+} // namespace experience_tranquillum
 
 
 

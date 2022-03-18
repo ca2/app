@@ -79,9 +79,6 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="style.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="experience\control_box.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
@@ -126,6 +123,9 @@
     </ClInclude>
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="_experience_core.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

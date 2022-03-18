@@ -338,7 +338,7 @@ namespace experience_core
 
       return ::experience::frame::experience_frame_hit_test(point);
 //               ::rectangle_i32 rectangle;
-//               for(enum_element eelement = (enum_element)(ElementNone + 1);
+//               for(enum_element eelement = (enum_element)(::e_element_none + 1);
 //                     eelement < ElementEnd;
 //                     eelement++)
 //               {

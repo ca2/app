@@ -242,7 +242,7 @@ namespace experience
       {
          switch (eelement)
          {
-         case ElementTopLeftIcon:
+         case e_element_top_left_icon:
 
             if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
                return false;
@@ -256,7 +256,7 @@ namespace experience
 
             return true;
 
-         case ElementMoveGripMinimal:
+         case e_element_move_grip_minimal:
 
             if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                return false;
@@ -281,7 +281,7 @@ namespace experience
 
          ::rectangle_i32 rectangle;
 
-         for (enum_element eelement = (enum_element)(ElementNone + 1);
+         for (enum_element eelement = (enum_element)(::e_element_none + 1);
                eelement < ElementEnd;
                eelement++)
          {
@@ -582,7 +582,7 @@ namespace experience
 
             ::rectangle_i32 rectangleIcon;
 
-            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, e_element_top_left_icon))
             {
 
                auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -604,7 +604,7 @@ namespace experience
 
             ::rectangle_i32 rectangleGrip;
 
-            if (get_element_rect(rectangleGrip, ElementMoveGripMinimal))
+            if (get_element_rect(rectangleGrip, e_element_move_grip_minimal))
             {
 
                int i = 0;
@@ -685,7 +685,7 @@ namespace experience
 
             rectangle -= rectangle.top_left();
 
-            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, e_element_top_left_icon))
             {
 
                auto pdrawicon = m_pframewindow->get_draw_icon();

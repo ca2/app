@@ -237,7 +237,7 @@
             {
                switch (eelement)
                {
-               case ElementTopLeftIcon:
+               case e_element_top_left_icon:
 
                   if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
                      return false;
@@ -251,7 +251,7 @@
 
                   return true;
 
-               case ElementMoveGripMinimal:
+               case e_element_move_grip_minimal:
 
                   if (m_pframewindow == nullptr || m_pframewindow->get_appearance() != ::e_display_minimal)
                      return false;
@@ -273,7 +273,7 @@
             bool frame::hit_test(const POINT_I32 &point, enum_element &eelementParam)
             {
                ::rectangle_i32 rectangle;
-               for (enum_element eelement = (enum_element)(ElementNone + 1);
+               for (enum_element eelement = (enum_element)(::e_element_none + 1);
                      eelement < ElementEnd;
                      eelement++)
                {
@@ -553,7 +553,7 @@
 
                   ::rectangle_i32 rectangleIcon;
 
-                  if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+                  if (get_element_rect(rectangleIcon, e_element_top_left_icon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;
@@ -569,7 +569,7 @@
 
                   ::rectangle_i32 rectangleGrip;
 
-                  if (get_element_rect(rectangleGrip, ElementMoveGripMinimal))
+                  if (get_element_rect(rectangleGrip, e_element_move_grip_minimal))
                   {
 
                      int i = 0;
@@ -650,7 +650,7 @@
 
                   rectangle_i32 -= rectangle.top_left();
 
-                  if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
+                  if (get_element_rect(rectangleIcon, e_element_top_left_icon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;

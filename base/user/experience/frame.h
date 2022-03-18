@@ -14,9 +14,9 @@ namespace experience
       //enum enum_element
       //{
 
-      //   ElementNone,
-      //   ElementTopLeftIcon,
-      //   ElementMoveGripMinimal,
+      //   ::e_element_none,
+      //   e_element_top_left_icon,
+      //   e_element_move_grip_minimal,
       //   ElementEnd,
 
       //};

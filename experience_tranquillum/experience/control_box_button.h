@@ -1,15 +1,11 @@
 #pragma once
 
 
-namespace experience
+namespace experience_tranquillum
 {
 
 
-   namespace tranquillum
-   {
-
-
-      class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM button :
+   class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM control_box_button :
       virtual public ::experience::button
    {
    public:
@@ -20,8 +16,8 @@ namespace experience
       ::draw2d::brush_pointer                  m_pbrush;
 
 
-      button();
-      virtual ~button();
+      control_box_button();
+      ~control_box_button() override;
 
 
       virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
@@ -34,20 +30,17 @@ namespace experience
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
+      bool keyboard_focus_is_focusable() const override;
 
-      virtual bool keyboard_focus_is_focusable() const override;
 
    };
 
 
-
-} // namespace tranquillum
-
-
-   } // namespace experience
+} // namespace experience_tranquillum
 
 
 

@@ -183,7 +183,7 @@ namespace experience
       bool is_sysmenu_enabled();
 
 
-      e_hittest _001HitTest(const ::point_i32& point);
+      ::experience::enum_frame experience_frame_hit_test(const ::point_i32& point);
 
       
       virtual button * get_box_button(enum_button ebutton);

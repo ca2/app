@@ -14,1006 +14,791 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-namespace experience
+
+namespace experience_nanogui
 {
 
 
-   namespace anthill
+
+
+   frame_008::frame_008()
    {
 
+      m_bHollow = false;
 
+   }
 
 
+   frame_008::~frame_008()
+   {
 
-            frame_008::frame_008()
-            {
+   }
 
-               m_bHollow = false;
 
-               m_rectangleCaptionTextPadding.left = 4;
-               m_rectangleCaptionTextPadding.right = 4;
-               m_rectangleCaptionTextPadding.top = 0;
-               m_rectangleCaptionTextPadding.bottom = 0;
+   //string frame_008::get_default_user_style() const
+   //{
 
+   //   return "LightGreen";
 
-               // set_style(StyleTranslucidWarmLiteGray);
+   //}
 
-               m_ppenHollow1.create(this);
-               m_ppenHollow2.create(this);
-               m_ppenHollow3.create(this);
-               m_ppenHollow4.create(this);
-               m_ppenHollow5.create(this);
 
-               m_rectangleMarginNormal.set(10, 10, 10, 10);
+   ::experience::enum_frame frame_008::experience_frame_hit_test(const ::point_i32 & pointCursor)
+   {
+      ::experience::enum_frame etest = ::experience::e_frame_client;
+      {
+         //      m_pframewindow->screen_to_client(point);
+         ::rectangle_i32 rectangleEvent;
+         m_pframewindow->get_window_rect(rectangleEvent);
+         ::rectangle_i32 rectangle;
+         ::point_i32 pointCenter = rectangleEvent.center();
+         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
+         ::point_i32 pointHitTest = pointCursor;
 
+         //if(rectangleEvent.left < 0)
+         // pointHitTest.x -= rectangleEvent.left;
+         //if(rectangleEvent.top < 0)
+         // pointHitTest.y -= rectangleEvent.top;
 
-            }
-
-
-            frame_008::~frame_008()
-            {
-
-            }
-
-
-            //string frame_008::get_default_user_style() const
-            //{
-
-            //   return "TranslucidWarmLiteGray";
-
-            //}
-
-
-            
-
-            e_hittest frame_008::_001HitTest(const ::point_i32 & pointCursor)
-            {
-               e_hittest etest = hittest_client;
-               {
-                  //      m_pframewindow->GetEventWindow()->screen_to_client(point);
-                  ::rectangle_i32 rectangleEvent;
-                  m_pframewindow->get_window_rect(rectangleEvent);
-                  ::rectangle_i32 rectangle;
-                  //::point_i32 pointCenter = rectangleEvent.center();
-                  enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
-
-                  ::point_i32 pointHitTest = pointCursor;
-
-//                  if(rectangleEvent.left < 0)
-//                     pointHitTest.x -= rectangleEvent.left;
-//                  if(rectangleEvent.top < 0)
-//                     pointHitTest.y -= rectangleEvent.top;
-
-                  if(egrip & e_grip_top_left)
-                  {
-                     rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 16;
-                     rectangle.bottom = rectangle.top + 5;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_top_left;
-                        goto SizingSuccess;
-                     }
-                     rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 5;
-                     rectangle.bottom = rectangle.top + 16;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_top_left;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_top_right)
-                  {
-                     rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 16;
-                     rectangle.bottom = rectangle.top + 5;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_top_right;
-                        goto SizingSuccess;
-                     }
-                     rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 5;
-                     rectangle.bottom = rectangle.top + 16;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_top_right;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_bottom_right)
-                  {
-                     rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 16;
-                     rectangle.top = rectangle.bottom - 5;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_bottom_right;
-                        goto SizingSuccess;
-                     }
-                     rectangle = rectangleEvent;
-                     rectangle.left = rectangle.right - 5;
-                     rectangle.top = rectangle.bottom - 16;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_bottom_right;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_bottom_left)
-                  {
-                     rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 16;
-                     rectangle.top = rectangle.bottom - 5;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_bottom_left;
-                        goto SizingSuccess;
-                     }
-                     rectangle = rectangleEvent;
-                     rectangle.right = rectangle.left + 5;
-                     rectangle.top = rectangle.bottom - 16;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_bottom_left;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_top)
-                  {
-                     rectangle.top = rectangleEvent.top;
-                     rectangle.left = rectangleEvent.left;
-                     rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = rectangleEvent.top + 5;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_top;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_bottom)
-                  {
-                     rectangle.top = rectangleEvent.bottom - 5;
-                     rectangle.left = rectangleEvent.left;
-                     rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = rectangleEvent.bottom;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_bottom;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_left)
-                  {
-                     rectangle.top = rectangleEvent.top;
-                     rectangle.left = rectangleEvent.left;
-                     rectangle.right = rectangleEvent.left + 5;
-                     rectangle.bottom = rectangleEvent.bottom;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_left;
-                        goto SizingSuccess;
-                     }
-                  }
-                  if(egrip & e_grip_right)
-                  {
-                     rectangle.top = rectangleEvent.top;
-                     rectangle.left = rectangleEvent.right - 5;
-                     rectangle.right = rectangleEvent.right;
-                     rectangle.bottom = rectangleEvent.bottom;
-                     if(rectangle.contains(pointHitTest))
-                     {
-                        etest = hittest_sizing_right;
-                        goto SizingSuccess;
-                     }
-                  }
-                  goto SizingNone;
-SizingSuccess:
-                  return etest;
-SizingNone:
-                  ;
-               }
-               return hittest_client;
-            }
-
-
-
-
-
-
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside)
-            {
-
-               auto pframewindow = m_pframewindow;
-
-               if (pframewindow == nullptr)
-               {
-
-                  return;
-
-               }
-
-             //  auto psession = get_session();
-
-               auto estyle = get_style();
-
-               ::color::color    colorMoveableBorder;
-               ::color::color    colorMoveableBorderHilight;
-               ::color::color    colorMoveableBorderShadow;
-
-               if(pframewindow->m_fActive)
-               {
-                  colorMoveableBorder = m_colorMoveableBorder;
-                  colorMoveableBorderHilight = m_colorMoveableBorderHilight;
-                  colorMoveableBorderShadow = m_colorMoveableBorderShadow;
-               }
-               else
-               {
-
-                 // auto psession = get_session();
-
-                  auto pstyle = pframewindow->get_style(pgraphics);
-
-                  colorMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
-
-                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
-
-                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
-
-}
-
-               enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rectangle_i32 rectangleA(rectangleClient);
-
-               if(m_bHollow)
-               {
-
-                  int iR = 128;
-                  int iG = 128;
-                  int iB = 128;
-
-                  auto estyle = get_style();
-
-                  if (pframewindow->m_fActive)
-                  {
-
-                     if (estyle == ::user::StyleDarkRed)
-                     {
-
-                        iR = 220;
-                        iG = 40;
-                        iB = 60;
-
-                     }
-                     else if (estyle == ::user::StyleRedOrange)
-                     {
-
-                        iR = 255;
-                        iG = 170;
-                        iB =136;
-
-                     }
-                     else if (estyle == ::user::StyleLightGreen)
-                     {
-
-                        iR = 128;
-                        iG = 230;
-                        iB = 150;
-
-                     }
-                     else
-                     {
-
-                        iR = 0x07;
-                        iG = 0x6D;
-                        iB = 0x91;
-
-                     }
-
-                  }
-
-                  ::rectangle_i32 rectangleA(rectangleClient);
-
-                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-                  pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
-
-                  auto rectangle = get_margin_rect();
-
-
-         for (index i = 0; i < 11; i++)
+         if((egrip & e_grip_top_left) == e_grip_top_left)
          {
-            
-            auto ppen = __create < ::draw2d::pen > ();
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 16;
+            rectangle.bottom = rectangle.top + 5;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_top_left;
+               goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 5;
+            rectangle.bottom = rectangle.top + 16;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_top_left;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_top_right) == e_grip_top_right)
+         {
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 16;
+            rectangle.bottom = rectangle.top + 5;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_top_right;
+               goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 5;
+            rectangle.bottom = rectangle.top + 16;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_top_right;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_bottom_right) == e_grip_bottom_right)
+         {
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 16;
+            rectangle.top = rectangle.bottom - 5;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_bottom_right;
+               goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.left = rectangle.right - 5;
+            rectangle.top = rectangle.bottom - 16;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_bottom_right;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_bottom_left) == e_grip_bottom_left)
+         {
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 16;
+            rectangle.top = rectangle.bottom - 5;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_bottom_left;
+               goto SizingSuccess;
+            }
+            rectangle = rectangleEvent;
+            rectangle.right = rectangle.left + 5;
+            rectangle.top = rectangle.bottom - 16;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_bottom_left;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_top) == e_grip_top)
+         {
+            rectangle.top = rectangleEvent.top;
+            rectangle.left = pointCenter.x - 8;
+            rectangle.right = pointCenter.x + 8;
+            rectangle.bottom = rectangleEvent.top + 5;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_top;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_bottom) == e_grip_bottom)
+         {
+            rectangle.top = rectangleEvent.bottom - 5;
+            rectangle.left = pointCenter.x - 8;
+            rectangle.right = pointCenter.x + 8;
+            rectangle.bottom = rectangleEvent.bottom;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_bottom;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_left) == e_grip_left)
+         {
+            rectangle.top = pointCenter.y - 8;
+            rectangle.left = rectangleEvent.left;
+            rectangle.right = rectangleEvent.left + 5;
+            rectangle.bottom = pointCenter.y + 8;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_left;
+               goto SizingSuccess;
+            }
+         }
+         if((egrip & e_grip_right) == e_grip_right)
+         {
+            rectangle.top = pointCenter.y - 8;
+            rectangle.left = rectangleEvent.right - 5;
+            rectangle.right = rectangleEvent.right;
+            rectangle.bottom = pointCenter.y + 8;
+            if(rectangle.contains(pointHitTest))
+            {
+               etest = ::experience::e_frame_sizing_right;
+               goto SizingSuccess;
+            }
+         }
+         goto SizingNone;
+SizingSuccess:
+         return etest;
+SizingNone:;
+      }
+      return ::experience::e_frame_client;
+   }
 
-            ppen->create_solid(1.0, argb((byte) ((i + 1) * 10), iR, iG, iB));
 
-            pgraphics->set(ppen);
 
-            pgraphics->draw_rect_side(rectangleA, eside);
 
-            rectangleA.deflate(
-               rectangle.left > 0 ? 1 : 0,
-               rectangle.top > 0 ? 1 : 0,
-               rectangle.right > 0 ? 1 : 0,
-               rectangle.bottom > 0 ? 1 : 0);
+
+
+   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside)
+   {
+
+      auto pframewindow = m_pframewindow;
+
+      if (pframewindow == nullptr)
+      {
+
+         return;
+
+      }
+
+      //auto psession = get_session();
+
+      status < ::color::color > crMoveableBorder;
+      status < ::color::color > crMoveableBorderHilight;
+      status < ::color::color > crMoveableBorderShadow;
+
+      if(pframewindow->is_active_window())
+      {
+         crMoveableBorder = m_colorMoveableBorder;
+         crMoveableBorderHilight = m_colorMoveableBorderHilight;
+         crMoveableBorderShadow = m_colorMoveableBorderShadow;
+      }
+      else
+      {
+
+         auto pstyle = pframewindow->get_style(pgraphics);
+
+         crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
+
+         crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
+
+         crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
+
+      }
+
+      enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+      ::rectangle_i32 rectangleA(rectangleClient);
+
+      if(m_bHollow)
+      {
+
+         ::rectangle_i32 rectangle;
+         GetBorderRect(rectangleA, rectangle, eside);
+
+         pgraphics->fill_rectangle(rectangle, opaque(crMoveableBorder));//m_colorMoveableBorderDkShadow);
+
+         // rgb(255, 170, 136) RedOrange
+      }
+      else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
+      {
+         rectangleA.deflate(1,1,1,1);
+         Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,0);//m_colorMoveableBorderDkShadow);
+
+         if(!m_bHollow)
+         {
+
+            rectangleA.deflate(1,1,1,1);
+                     
+            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
+
+            rectangleA.deflate(1,1,1,1);
+                     
+            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+
+            rectangleA.deflate(1,1,1,1);
+                     
+            Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+
+            ::rectangle_i32 rectangle;
+                     
+            GetBorderRect(rectangleClient,rectangle,eside);
+                     
+            pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
 
          }
 
-         //if (m_pframewindow->is_active_window())
-         //{
+      }
+      else if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
+               || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
+               || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
+      {
+                  
+         ::rectangle_i32 rectangle;
+                  
+         GetBorderRect(rectangleClient, rectangle, eside);
+                  
+         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+                  
+      }
+      else
+      {
+                  
+         ::rectangle_i32 rectangle;
+                  
+         GetBorderRect(rectangleClient, rectangle, eside);
+                  
+         pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
 
-         //   ::rectangle_i32 rectangleA(rectangleClient);
+         ::rectangle_i32 rectangleClientB = rectangleA;
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         rectangleClientB.bottom--;
+         rectangleClientB.right--;
 
-         //   pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+         rectangleA.top++;
+         rectangleA.bottom--;
+         rectangleA.left++;
+         rectangleA.right--;
+         if(edock == e_dock_none)
+         {
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+         }
 
-         //   for (index i = 0; i < 9; i++)
-         //   {
+         rectangleA.top++;
+         rectangleA.bottom--;
+         rectangleA.left++;
+         rectangleA.right--;
+         Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
 
-         //      pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
+         rectangleA.top++;
+         rectangleA.bottom--;
+         rectangleA.left++;
+         rectangleA.right--;
+         if(edock == e_dock_none)
+         {
+            Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+         }
+      }
 
-         //      rectangleA.deflate(1, 1, 1, 1);
+   }
 
-         //   }
+   void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
+   {
 
-         //   //rectangleA.deflate(9, 9, 9, 9);
+      auto pframewindow = m_pframewindow;
 
-         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      if (pframewindow == nullptr)
+      {
 
-         //   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+         return;
 
+      }
 
+      if (!pframewindow->is_frame_experience_enabled())
+      {
 
+         return;
 
-               }
-               else if(estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
-               {
-                  //rectangleA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectangleA,eside, colorMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
+      }
 
-                  //if(!m_bHollow)
-                  //{
+      bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
-                  //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
+      string str;
 
-                  //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+      ::rectangle_i32 rectangleNClient;
 
-                  //   rectangleA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
+      pframewindow->get_window_rect(rectangleNClient);
 
-                  //   ::rectangle_i32 rectangle;
-                  //   GetBorderRect(rectangleClient,rectangle,eside);
-                  //   class imaging & imaging = psystem->imaging();
-                  //   imaging.fill_rectangle(pgraphics,
-                  //      rectangle,
-                  //      crMoveableBorder,
-                  //      127);
+      rectangleNClient -= rectangleNClient.top_left();
 
-                  //}
+      ////////////////////
+      //
+      // Routine:
+      // draw frame border
+      //
+      ////////////////////
 
-               }
-               else if(estyle == ::user::StyleTranslucidWarmGray
-                       || estyle == ::user::StyleTranslucidLightBlue
-                       || estyle == ::user::StyleTranslucidLightGreen)
-               {
-                  ::rectangle_i32 rectangle;
-                  GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->fill_rectangle(
-                                      rectangle,
-                                      colorMoveableBorder &
-                                      127_opacity);
-               }
-               else
-               {
-                  ::rectangle_i32 rectangle;
-                  GetBorderRect(rectangleClient, rectangle, eside);
+      if(!pframewindow->layout().is_full_screen())
+      {
 
-                  pgraphics->fill_rectangle(
-                                      rectangle,
-                                      colorMoveableBorder &
-                                      127_opacity);
+         DrawBorder(pgraphics, rectangleNClient);
 
-                  ::rectangle_i32 rectangleClientB = rectangleA;
+      }
 
-                  rectangleClientB.bottom--;
-                  rectangleClientB.right--;
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
-                  if(edock == e_dock_none)
-                  {
-                     Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
-                  }
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
-                  Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
+      ///////////////////////
+      //
+      // Routine:
+      // draw resize grip set
+      //
+      ///////////////////////
 
-                  rectangleA.top++;
-                  rectangleA.bottom--;
-                  rectangleA.left++;
-                  rectangleA.right--;
-                  if(edock == e_dock_none)
-                  {
-                     Draw3dRectSide(pgraphics, rectangleA, eside, m_colorDkShadow, m_colorDkShadow);
-                  }
-               }
+      if(!bZoomed && !pframewindow->layout().is_full_screen())
+      {
+         DrawGripSet(pgraphics, rectangleNClient);
+      }
 
-            }
+      //            pgraphics->SetBkMode(iOriginalBkMode);
+      //          pgraphics->set_text_color(crOriginalTextColor);
 
+   }
 
-            void frame_008::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
-            {
 
-               auto pframewindow = m_pframewindow;
+   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   {
 
-               if(pframewindow == nullptr)
-                  return;
+      // glxxx
+      //return;
 
-               if(!pframewindow->is_frame_experience_enabled())
-                  return;
+      auto pmovemanager = m_pframewindow->move_manager();
 
-               string str;
+      enum_border eborder = pmovemanager->GetBorderMask();
 
+      if(m_pframewindow->layout().is_zoomed())
+      {
+         eborder = (enum_border)
+                     (eborder &
+                     ~(e_border_right
+                        | e_border_bottom
+                        | e_border_left));
+      }
 
-               ::rectangle_i32 rectangleNClient;
 
-               pframewindow->get_window_rect(rectangleNClient);
 
-               rectangleNClient -= rectangleNClient.top_left();
+      if(m_bHollow && eborder == e_border_all)
+      {
 
-               ////////////////////
-               //
-               // Routine:
-               // draw frame border
-               //
-               ////////////////////
 
 
-               if(!pframewindow->layout().is_full_screen())
-               {
-                  DrawBorder(pgraphics, rectangleNClient);
-               }
+         ::rectangle_i32 rectangleA(rectangleClient);
 
+         rectangleA.bottom--;
+         rectangleA.right--;
 
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            }
+         pgraphics->set(m_ppenHollow0);
 
+         pgraphics->draw_rectangle(rectangleA);
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
-            {
+         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(8,50,100,200),argb(8,50,100,200));
+         rectangleA.deflate(1,1,1,1);
 
-               auto pmovemanager = m_pframewindow->move_manager();
+         pgraphics->set(m_ppenHollow1);
 
-               enum_border eborder = pmovemanager->GetBorderMask();
+         pgraphics->draw_rectangle(rectangleA);
 
-               if(m_pframewindow->layout().is_zoomed())
-               {
-                  eborder = (enum_border)
-                            (eborder &
-                             ~(e_border_right
-                               | e_border_bottom
-                               | e_border_left));
-               }
+         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(11,50,100,200),argb(11,50,100,200));
+         rectangleA.deflate(1,1,1,1);
 
+         pgraphics->set(m_ppenHollow2);
 
+         pgraphics->draw_rectangle(rectangleA);
 
-               //if(m_bHollow)
-               //{
-               //   //return;
-               //   ::rectangle_i32 rectangleA(rectangleClient);
+         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(23,50,100,200),argb(23,50,100,200));
+         rectangleA.deflate(1,1,1,1);
 
-               //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+         pgraphics->set(m_ppenHollow3);
 
-               //   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+         pgraphics->draw_rectangle(rectangleA);
 
-               //   for (index i = 0; i < 9; i++)
-               //   {
+         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(49,50,100,200),argb(49,50,100,200));
+         rectangleA.deflate(1,1,1,1);
 
-               //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
+         pgraphics->set(m_ppenHollow4);
 
-               //      rectangleA.deflate(1, 1, 1, 1);
+         pgraphics->draw_rectangle(rectangleA);
 
-               //   }
+         //Draw3dRectSide(pgraphics,rectangleA,eside,argb(49 +23,50,100,200),argb(49+23,50,100,200));
+         rectangleA.deflate(1,1,1,1);
 
-               //   if (m_pframewindow->is_active_window())
-               //   {
+         pgraphics->set(m_ppenHollow5);
 
-               //      ::rectangle_i32 rectangleA(rectangleClient);
+         pgraphics->draw_rectangle(rectangleA);
 
-               //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+         //Draw3dRectSide(pgraphics,rectangleA,eside,m_colorMoveableBorderDkShadow,m_colorMoveableBorderDkShadow);
 
-               //      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+      }
+      else
+      {
 
-               //      for (index i = 0; i < 9; i++)
-               //      {
+         if(eborder & e_border_top)
+         {
+            draw_border_side(pgraphics,rectangleClient,e_border_top);
+         }
+         if(eborder & e_border_right)
+         {
+            draw_border_side(pgraphics,rectangleClient,e_border_right);
+         }
+         if(eborder & e_border_bottom)
+         {
+            draw_border_side(pgraphics,rectangleClient,e_border_bottom);
+         }
+         if(eborder & e_border_left)
+         {
+            draw_border_side(pgraphics,rectangleClient,e_border_left);
+         }
 
-               //         auto ppen = __create < ::draw2d::pen > ();
+      }
 
-               //         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
+   }
 
-               //         pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
 
-               //         rectangleA.deflate(1, 1, 1, 1);
+   void frame_008::GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * lprect, enum_border eside)
+   {
+      ::rectangle_i32 rectangleBig(rectangleClient);
 
-               //      }
+      rectangleBig.deflate(m_rectangleMarginDock);
+      ::rectangle_i32 rectangleSmall(rectangleBig);
+      rectangleSmall.deflate(1);
 
-               //      //rectangleA.deflate(9, 9, 9, 9);
+      ::rectangle_i32 rectangle;
+      if(eside == e_border_top)
+      {
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleBig.top;
+         rectangle.bottom = rectangleSmall.top;
+      }
+      else if(eside == e_border_left)
+      {
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleSmall.left;
+         rectangle.top = rectangleSmall.top;
+         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.bottom++;
+      }
+      else if(eside == e_border_right)
+      {
+         rectangle.left = rectangleSmall.right;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleSmall.top;
+         rectangle.bottom = rectangleSmall.bottom;
+         rectangle.bottom++;
+      }
+      else if(eside == e_border_bottom)
+      {
+         rectangle.left = rectangleBig.left;
+         rectangle.right = rectangleBig.right;
+         rectangle.top = rectangleSmall.bottom;
+         rectangle.bottom = rectangleBig.bottom;
+      }
+      *lprect = rectangle;
+   }
 
-               //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               //      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+   void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
+   {
 
+      on_style_change_001_and_002(pgraphics);
 
-               //      if (m_estyle == StyleRedOrange)
-               //      {
+      ::color::color color = m_colorMoveableBorderDkShadow;
 
-               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
+      m_ppenHollow0.defer_create(this);
+      m_ppenHollow1.defer_create(this);
+      m_ppenHollow2.defer_create(this);
+      m_ppenHollow3.defer_create(this);
+      m_ppenHollow4.defer_create(this);
+      m_ppenHollow5.defer_create(this);
 
-               //      }
-               //      else if (m_estyle == StyleLightGreen)
-               //      {
+      color.alpha = 8;
 
-               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
+      m_ppenHollow0->create_solid(1.0,color);
 
-               //      }
-               //      else
-               //      {
+      color.alpha = 11;
 
-               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
+      m_ppenHollow1->create_solid(1.0,color);
 
-               //      }
+      color.alpha = 23;
 
-               //   }
-               //   else
-               //   {
+      m_ppenHollow2->create_solid(1.0,color);
 
-               //      //rectangleA.deflate(9, 9, 9, 9);
-               //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
-               //   }
+      color.alpha = 49;
 
+      m_ppenHollow3->create_solid(1.0,color);
 
-               //}
-               //else
-               {
+      color.alpha = 72;
 
-                  if(eborder & e_border_top)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_top);
-                  }
-                  if(eborder & e_border_right)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_right);
-                  }
-                  if(eborder & e_border_bottom)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_bottom);
-                  }
-                  if(eborder & e_border_left)
-                  {
-                     draw_border_side(pgraphics,rectangleClient,e_border_left);
-                  }
+      m_ppenHollow4->create_solid(1.0, color);
 
-               }
+      color.alpha = 255;
 
-            }
+      m_ppenHollow5->create_solid(1.0,color);
 
-            void frame_008::GetBorderRect(
-            const ::rectangle_i32 & rectangleClient,
-            RECTANGLE_I32 * lprect,
-            enum_border eside)
-            {
-               ::rectangle_i32 rectangleBig(rectangleClient);
-               ::rectangle_i32 rectangleSmall;
-               get_window_client_rect(rectangleSmall);
-               ::rectangle_i32 rectangle;
-               if(eside == e_border_top)
-               {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleBig.top;
-                  rectangle.bottom = rectangleSmall.top;
-               }
-               else if(eside == e_border_left)
-               {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleSmall.left;
-                  rectangle.top = rectangleSmall.top;
-                  rectangle.bottom = rectangleSmall.bottom;
-               }
-               else if(eside == e_border_right)
-               {
-                  rectangle.left = rectangleSmall.right;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleSmall.top;
-                  rectangle.bottom = rectangleSmall.bottom;
-               }
-               else if(eside == e_border_bottom)
-               {
-                  rectangle.left = rectangleBig.left;
-                  rectangle.right = rectangleBig.right;
-                  rectangle.top = rectangleSmall.bottom;
-                  rectangle.bottom = rectangleBig.bottom;
-               }
-               *lprect = rectangle;
-            }
 
+   }
 
-            void frame_008::_on_style_change(::draw2d::graphics_pointer& pgraphics)
-            {
+#define BEVEL_SMALL 2
+#define BEVEL_LARGE 5
+#define GRIP_SMALL 8
+#define GRIP_LARGE 30
 
-               frame::on_style_change();
 
-               on_style_change_001_and_002(pgraphics);
+   void frame_008::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClientParam, enum_grip egrip)
+   {
 
-               auto colorMoveableBorder = m_colorMoveableBorder;
+      // glxxx
+      //return;
 
-               m_colorActiveCaptionTextBk = colorMoveableBorder;
 
-               auto colorMoveableInactive = colorMoveableBorder;
+      const i32 size = 16;
 
-               colorMoveableBorder.make_black_and_white();
+      auto rectangleClient(rectangleClientParam);
+      //            ::rectangle_i32 rectangleClientB(rectangleClient);
+      ::rectangle_i32 rectangleA;
+      ::point_i32 pointA;
+      ::point_i32 pointB;
+      ::point_i32 pointC;
+      //            ::rectangle_i32 rectangle(rectangleClient);
+      switch(egrip)
+      {
+      case e_grip_top_left:
+      {
 
-               m_colorActiveCaptionTextBk = m_pframewindow->get_moveable_border_color();
+         rectangleA = rectangleClient;
 
-               auto estyle = get_style();
+         rectangleA.right = 4;
+         rectangleA.bottom = size;
 
-               if (estyle == ::user::StyleDarkRed)
-               {
-                  //m_ppenHollow1->create_solid(1.0, argb(20, 0, 0, 0));
-                  //m_ppenHollow2->create_solid(1.0, argb(60, 20, 20, 20));
-                  //m_ppenHollow3->create_solid(1.0, argb(100, 40, 40, 40));
-                  //m_ppenHollow4->create_solid(1.0, argb(140, 60, 60, 60));
-                  //m_ppenHollow5->create_solid(1.0, argb(255, 90, 220, 100));
-                  m_colorCaptionTextBk = argb(255, 135, 32, 32);
-                  m_colorActiveCaptionTextBk = argb(255, 165, 32, 32);
-//                  create_color(::user::color_button_background, argb(255, 165, 32, 32));
-//                  create_color(::user::color_button_background_hover, argb(255, 195, 64, 64));
-//                  create_color(::user::color_button_background_press, argb(255, 208, 72, 72));
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
-                  if (m_pcontrolbox)
-                  {
+         rectangleA.right = size;
+         rectangleA.bottom = 4;
 
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
-                     m_pcontrolbox->m_ppenButtonBack->create_solid(2, argb(255, 255, 180, 170));
-                     m_pcontrolbox->m_ppenButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
+      }
+      break;
+      case e_grip_top_right:
+      {
+         rectangleA = rectangleClient;
 
+         rectangleA.left = rectangleA.right - 4;
+         rectangleA.bottom = size;
 
-                  }
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
 
-               }
-               else if (estyle == ::user::StyleLightGreen)
-               {
-                  //m_ppenHollow1->create_solid(1.0, argb(20, 0, 0, 0));
-                  //m_ppenHollow2->create_solid(1.0, argb(60, 20, 20, 20));
-                  //m_ppenHollow3->create_solid(1.0, argb(100, 40, 40, 40));
-                  //m_ppenHollow4->create_solid(1.0, argb(140, 60, 60, 60));
-                  //m_ppenHollow5->create_solid(1.0, argb(255, 90, 220, 100));
-                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = argb(255, 140, 200, 160);
-               }
-               else
-               {
-                  m_colorCaptionTextBk = argb(255, 200, 200, 200);
-                  m_colorActiveCaptionTextBk = argb(255, 0x07, 0x6D, 0x91);
-                  //m_ppenHollow1->create_solid(1.0, argb(20, 50, 100, 200));
-                  //m_ppenHollow2->create_solid(1.0, argb(60, 50, 100, 200));
-                  //m_ppenHollow3->create_solid(1.0, argb(100, 50, 100, 200));
-                  //m_ppenHollow4->create_solid(1.0, argb(140, 50, 100, 200));
-                  //m_ppenHollow5->create_solid(1.0, argb(255, 50, 100, 200));
-               }
-
-               if (m_pcontrolbox.is_set())
-               {
-
-                  //m_pcontrolbox->m_pbrushButtonBackSel = m_pcontrolbox->m_pbrushButtonBack;
-                  //m_pcontrolbox->m_ppenButtonBackSel = m_pcontrolbox->m_ppenButtonBack;
-                  //m_pcontrolbox->m_colorButtonForeSel = m_pcontrolbox->m_colorButtonFore;
-
-               }
-
-            }
-
-
-            //color32_t frame_008::get_border_main_body_color()
-            //{
-
-            //   auto estyle = get_style();
-
-            //   if (estyle == ::user::StyleRedOrange)
-            //   {
-
-            //      return argb(255, 255, 170, 136);
-
-            //   }
-            //   else
-            //   {
-
-            //      return argb(255, 50, 100, 200);
-
-            //   }
-
-            //}
-
-
-//            bool frame_008::get_color(color32_t & color32, ::user::e_color ecolor, ::user::style_context * pcontext)
-//            {
-//
-//               //if (m_estyle == StyleLightGreen)
-//               //{
-//
-//               //   if (ecolor == ::user::color_face_lite)
-//               //   {
-//
-//               //      color32 = argb(80, 160, 160, 160);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_text)
-//               //   {
-//
-//               //      color32 = argb(200, 80, 80, 80);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_text_hover)
-//               //   {
-//
-//               //      color32 = argb(200, 80, 80, 80);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_text_highlight)
-//               //   {
-//
-//               //      color32 = argb(200, 80, 80, 80);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_background_hover)
-//               //   {
-//
-//               //      color32 = argb(20, 0, 0, 0);
-//
-//               //      return true;
-//
-//               //   }
-//
-//               //   return ::experience::frame::get_color(color32, ecolor, pcontext );
-//
-//               //}
-//               //else // if (m_estyle != StyleLightGreen)
-//               //{
-//
-//               //   if (ecolor == ::user::color_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_list_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_edit_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_tree_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_view_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_scrollbar_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_tab_layout_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_tab_client_background)
-//               //   {
-//
-//               //      color32 = argb(255, 0xF3, 0XF5, 0xF5);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_split_layout_background)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_background_selected)
-//               //   {
-//
-//               //      color32 = argb(255, 155, 185, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_list_header)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_list_header_background)
-//               //   {
-//
-//               //      color32 = argb(255, 0x58, 0x5C, 0x5D);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_list_item_background)
-//               //   {
-//
-//               //      color32 = argb(30, 0, 0, 0);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_list_header_separator)
-//               //   {
-//
-//               //      color32 = 0;
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_toolbar_background)
-//               //   {
-//
-//               //      color32 = argb(255, 0xF3, 0XF5, 0xF5);
-//
-//               //      return true;
-//
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_background_disabled)
-//               //   {
-//
-//               //      color32 = argb(255, 128, 128, 128);
-//
-//               //      return true;
-//
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_background_hover)
-//               //   {
-//
-//               //      if (m_estyle == StyleDarkRed)
-//               //      {
-//               //         color32 = argb(255, 205, 72, 72);
-//               //      }
-//               //      else
-//               //      {
-//               //         color32 = argb(255, 0x55, 0x99, 0xC2);
-//
-//               //      }
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_background)
-//               //   {
-//
-//               //      if (m_estyle == StyleDarkRed)
-//               //      {
-//               //         color32 = argb(255, 165, 32, 32);
-//               //      }
-//               //      else
-//               //      {
-//               //         color32 = argb(255, 0x30, 0x75, 0xA0);
-//               //      }
-//
-//
-//               //      return true;
-//               //   }
-//               //   else if (ecolor == ::user::color_button_background_press)
-//               //   {
-//
-//               //      color32 = argb(255, 0x07, 0x6D, 0x91);
-//
-//               //      return true;
-//               //   }
-//               //   else if (ecolor == ::user::color_button_text_disabled)
-//               //   {
-//
-//               //      color32 = argb(255, 0xD0, 0xD0, 0xD0);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_text_hover)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_text)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//               //   else if (ecolor == ::user::color_button_text_press)
-//               //   {
-//
-//               //      color32 = argb(255, 255, 255, 255);
-//
-//               //      return true;
-//
-//               //   }
-//
-//               //}
-//
-//               return frame::get_color(color32, ecolor, pcontext);
-//
-//            }
-
-
-
-         } // namespace anthill
-
-
-   } // namespace experience
+         rectangleA.left = rectangleA.right - size;
+         rectangleA.bottom = 4;
 
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      case e_grip_bottom_left:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.right = 4;
+         rectangleA.top = rectangleA.bottom - size;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+
+         rectangleA.right = size;
+         rectangleA.top = rectangleA.bottom - 4;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      case e_grip_bottom_right:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.left = rectangleA.right - 4;
+         rectangleA.top = rectangleA.bottom - size;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+
+         rectangleA.left = rectangleA.right - size;
+         rectangleA.top = rectangleA.bottom - 4;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      case e_grip_top:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
+         rectangleA.right = rectangleA.left + size;
+         rectangleA.bottom = 4;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+
+      }
+      break;
+      case e_grip_bottom:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.left = rectangleA.left + rectangleA.width() / 2 - size / 2;
+         rectangleA.right = rectangleA.left + size;
+         rectangleA.top = rectangleA.bottom - 4;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      case e_grip_left:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.right = 4;
+         rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
+         rectangleA.bottom = rectangleA.top + size;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      case e_grip_right:
+      {
+         rectangleA = rectangleClient;
+
+         rectangleA.left = rectangleA.right - 4;
+         rectangleA.top = rectangleA.top + rectangleA.height() / 2 - size / 2;
+         rectangleA.bottom = rectangleA.top + size;
+
+         pgraphics->fill_rectangle(rectangleA, argb(255, 0x60, 0x65, 0x55));
+      }
+      break;
+      default:
+         break;
+      }
+
+
+   }
+
+
+   void frame_008::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
+   {
+
+      //auto psession = get_session();
+
+      ::rectangle_i32 rectangle(rectangleParam);
+
+      auto pframewindow = m_pframewindow;
+
+      auto pstyle = pframewindow->get_style(pgraphics);
+
+      auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
+
+      auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
+
+      auto crButtonFace = pframewindow->get_color(pstyle, ::e_element_button_background);
+
+      auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
+
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonFace, crButtonDarkShadow);
+
+      rectangle.top++;
+      rectangle.bottom--;
+      rectangle.left++;
+      rectangle.right--;
+
+      pgraphics->draw_inset_3d_rectangle(rectangle, crButtonHilite, crButtonShadow);
+
+      rectangle.top++;
+      rectangle.bottom--;
+      rectangle.left++;
+      rectangle.right--;
+
+      pgraphics->fill_rectangle(rectangle, crButtonFace);
+
+   }
+
+
+   void frame_008::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
+   {
+
+      auto psizenager = m_pframewindow->size_manager();
+
+      enum_grip egrip = psizenager->GetGripMask();
+
+      if(egrip & e_grip_top)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_top);
+      }
+      if((egrip & e_grip_top_right) == e_grip_top_right)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
+      }
+      if(egrip & e_grip_right)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_right);
+      }
+      if((egrip & e_grip_bottom_right) == e_grip_bottom_right)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
+      }
+      if(egrip & e_grip_bottom)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
+      }
+      if((egrip & e_grip_bottom_left) == e_grip_bottom_left)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
+      }
+      if(egrip & e_grip_left)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_left);
+      }
+      if((egrip & e_grip_top_left) == e_grip_top_left)
+      {
+         DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
+      }
+
+   }
+
+
+} // namespace experience_nanogui
 
 
 

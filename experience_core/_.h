@@ -12,30 +12,9 @@
     #define CLASS_DECL_APP_EXPERIENCE_CORE  CLASS_DECL_IMPORT
 #endif
 
-#include "button.h"
-#include "control_box.h"
 
-
-#include "frame.h"
-
-
-#include "frame_001.h"
-#include "frame_002.h"
-#include "frame_005.h"
-#include "frame_008.h"
-#include "frame_011.h"
-#include "frame_013.h"
-#include "frame_Minimal001.h"
-
-
-#include "experience.h"
-
-
-#include "style.h"
-
-
-//#include "library.h"
-
+#include "experience/_experience.h"
+#include "user/_user.h"
 
 
 

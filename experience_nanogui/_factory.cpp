@@ -1,16 +1,16 @@
 #include "framework.h"
-//#include "apex/platform/system_setup.h"
-//
+#include "acme/platform/system_setup.h"
+
 //
 //namespace experience
 //{
 //
 //
-//   namespace anthill
+//   namespace core
 //   {
 //
 //
-//      library::library() 
+//      library::library()
 //      {
 //
 //      }
@@ -58,21 +58,19 @@
 //
 //      }
 //
+//   
+//      __namespace_library_factory("experience_core");
+//   
 //
-//      __namespace_library_factory("experience_anthill");
-//
-//
-//   } // namespace anthill
+//   } // namespace core
 //
 //
 //} // namespace experience
 //
-//
-//
 
 
 
-__FACTORY_EXPORT void experience_anthill_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void experience_core_factory(::factory::factory* pfactory)
 {
 
    //pfactory->add_factory_item < ::windows::dir_system, ::dir_system >();
@@ -91,11 +89,15 @@ __FACTORY_EXPORT void experience_anthill_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::windows::crypto, ::crypto::crypto >();
    //pfactory->add_factory_item < ::windows::ip_enum, ::net::ip_enum >();
 
-   pfactory->add_factory_item < ::experience::anthill::experience, ::experience::experience >();
-   pfactory->add_factory_item < ::experience::anthill::control_box, ::experience::control_box >();
-   pfactory->add_factory_item < ::experience::anthill::button, ::experience::button >();
-   pfactory->add_factory_item < ::experience::anthill::style, ::user::style >();
+   pfactory->add_factory_item < ::experience_nanogui::experience, ::experience::experience >();
+   pfactory->add_factory_item < ::experience_nanogui::control_box, ::experience::control_box >();
+   pfactory->add_factory_item < ::experience_nanogui::control_box_button, ::experience::button >();
+   pfactory->add_factory_item < ::experience_nanogui::style, ::user::style >();
+
+                
+   //pfactory->add_factory_item < ::experience_nanogui::still, ::user::still >();
 
 }
+
 
 

@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
-project(experience_anthill CXX)
+project(experience_core CXX)
 
 
 list(APPEND library_source
         _.cpp
         _.h
-        #aaa_want_to_erase_experience_anthill_style.cpp
+        #aaa_want_to_erase_experience_core_style.cpp
         button.cpp
         button.h
         control_box.cpp
@@ -13,7 +13,6 @@ list(APPEND library_source
         experience.cpp
         experience.h
         _factory.cpp
-
         frame.cpp
         frame.h
         frame_001.cpp
@@ -32,48 +31,45 @@ list(APPEND library_source
         frame_Minimal001.h
         framework.cpp
         framework.h
+        library.h
         style.cpp
         style.h)
 
 
-list(APPEND library_references
-   acme apex aqua aura axis base)
+add_library(experience_core SHARED ${library_source})
 
 
-
-add_library(experience_anthill SHARED ${library_source})
-
-
-target_precompile_headers(experience_anthill PRIVATE framework.h)
+target_precompile_headers(experience_core PRIVATE framework.h)
 
 
-set_target_properties(experience_anthill PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(experience_core PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-
-    target_compile_options(experience_anthill PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_anthill PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(experience_anthill PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_anthill.lib")
-    target_link_options(experience_anthill PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
-    target_link_libraries(experience_anthill PRIVATE ${library_references})
-
+    target_compile_options(experience_core PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_core PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(experience_core PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_core.lib")
+    target_link_options(experience_core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_core.def")
+    target_link_libraries(experience_core PRIVATE acme apex aqua aura axis base)
 elseif(LINUX)
-
-    target_compile_options(experience_anthill PRIVATE -fpermissive)
-    #target_link_options(experience_anthill PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(experience_anthill PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
-    target_link_options(experience_anthill PRIVATE -Wl,-z,defs)
-
+    target_compile_options(experience_core PRIVATE -fpermissive)
+    #target_link_options(experience_core PRIVATE -Wl,-rpath=$ORIGIN)
+    target_link_libraries(experience_core PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(experience_core PRIVATE acme apex aqua aura axis base)
+    target_link_options(experience_core PRIVATE -Wl,-z,defs)
 endif()
 
 
+target_include_directories(experience_core PRIVATE .)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_include_directories(experience_anthill PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(experience_anthill PRIVATE _APP_EXPERIENCE_ANTHILL_LIBRARY)
+target_compile_definitions(experience_core PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
 
 
 

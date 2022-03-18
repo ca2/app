@@ -1597,12 +1597,12 @@ namespace experience
 
 
    // point_i32 should be in screen coordinates
-   e_hittest frame_window::_001HitTest(const ::point_i32 & pointCursor)
+   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::point_i32 & pointCursor)
    {
 
       ASSERT(m_pframe != nullptr);
 
-      return m_pframe->_001HitTest(pointCursor);
+      return m_pframe->experience_frame_hit_test(pointCursor);
 
    }
 

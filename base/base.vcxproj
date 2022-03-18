@@ -955,7 +955,7 @@
     <ClInclude Include="user\experience\orto_button.h" />
     <ClInclude Include="user\experience\size_manager.h" />
     <ClInclude Include="user\experience\_.h" />
-    <ClInclude Include="user\experience\_const.h" />
+    <ClInclude Include="user\experience\_constant.h" />
     <ClInclude Include="user\experience\_experience.h" />
     <ClInclude Include="user\menu\button.h" />
     <ClInclude Include="user\menu\central.h" />

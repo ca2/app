@@ -1,555 +1,49 @@
 #include "framework.h"
-#include "base/user/menu/central.h"
+#include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/_draw2d.h"
-#include "aura/graphics/image/list.h"
+
+
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-namespace experience
+namespace experience_nanogui
 {
 
+   style::style()
+   {
 
-   namespace anthill
+   }
+
+
+   style::~style()
    {
 
 
-      style::style()
+   }
+
+
+   void style::on_initialize_object()
+   {
+
+      ::base::style::on_initialize_object();
+
+      if (::is_null(m_pfont))
       {
+
+         m_pfont.create(this);
+
+         auto pnode = m_psystem->node();
+
+         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12, e_font_weight_normal);
 
       }
 
+   }
 
-      style::~style()
-      {
-
-      }
-
-
-      void style::initialize_theme()
-      {
-
-         ::base::style::initialize_theme();
-
-         __defer_construct(m_pfont);
-
-         auto psystem = m_psystem->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 12.0);
-
-      }
-
-   
-      ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
-      {
-
-         if (::is_set(pinteraction))
-         {
-
-            auto econtroltype = pinteraction->get_control_type();
-
-            if (econtroltype == ::user::e_control_type_tab)
-            {
-
-               if (eelement == ::e_element_item_background)
-               {
-
-                  if (is_dark_mode())
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return argb(128, 255, 255, 255);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return argb(128, 205, 205, 255);
-
-                     }
-                     else
-                     {
-
-                        return argb(0, 0, 0, 0);
-
-                     }
-
-                  }
-                  else
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return argb(128, 192, 192, 192);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return argb(128, 205, 205, 255);
-
-                     }
-                     else
-                     {
-
-                        return argb(0, 0, 0, 0);
-
-                     }
-
-                  }
-
-               }
-               else if (eelement == ::e_element_item_border)
-               {
-
-                  if (is_dark_mode())
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return __acolor(255, 255, 255, 255);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return __acolor(255, 235, 235, 255);
-
-                     }
-                     else
-                     {
-
-                        return __acolor(255, 200, 200, 200);
-
-                     }
-
-                  }
-                  else
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return __acolor(255, 255, 255, 255);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return __acolor(255, 20, 20, 20);
-
-                     }
-                     else
-                     {
-
-                        return __acolor(255, 55, 55, 55);
-
-                     }
-
-                  }
-
-               }
-               else if (eelement == ::e_element_item_text)
-               {
-
-                  if (is_dark_mode())
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return __acolor(255, 255, 255, 255);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return __acolor(255, 235, 235, 255);
-
-                     }
-                     else
-                     {
-
-                        return __acolor(255, 200, 200, 200);
-
-                     }
-
-                  }
-                  else
-                  {
-
-                     if (estate & ::user::e_state_selected)
-                     {
-
-                        return __acolor(255, 255, 255, 255);
-
-                     }
-                     else if (estate & ::user::e_state_hover)
-                     {
-
-                        return __acolor(255, 20, 20, 20);
-
-                     }
-                     else
-                     {
-
-                        return __acolor(255, 100, 100, 100);
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-            if (econtroltype == ::user::e_control_type_list)
-            {
-
-               if (eelement == ::e_element_background)
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return __acolor(255, 0, 0, 0);
-
-                  }
-                  else
-                  {
-
-                     return __acolor(255, 255, 255, 255);
-
-                  }
-
-               }
-
-            }
-            else if (econtroltype == ::user::e_control_type_button)
-            {
-
-               if (eelement == ::e_element_background)
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     //return __acolor(255, 0x20, 0x45, 0x60);
-                     return pinteraction->top_level_frame()->get_moveable_border_color();
-
-                  }
-                  else
-                  {
-
-                     //return __acolor(255, 0x30, 0x75, 0xA0);
-                     return pinteraction->top_level_frame()->get_moveable_border_color();
-
-                  }
-
-
-               }
-
-            }
-            else if (econtroltype == ::user::e_control_type_toolbar)
-            {
-
-               if (eelement == ::e_element_background)
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return __acolor(255, 0, 0, 0);
-
-                  }
-                  else
-                  {
-
-                     return __acolor(255, 255, 255, 255);
-
-                  }
-
-               }
-               else if (eelement == ::e_element_face)
-               {
-                  
-                  if(estate & ::user::e_state_disabled)
-                  {
-                     
-                     return __acolor(255, 128, 128, 128);
-                     
-                  }
-
-                  if(estate & ::user::e_state_pressed)
-                  {
-                     
-                     return __acolor(255, 0x07, 0x6D, 0x91);
-                     
-                  }
-
-                  if(estate & ::user::e_state_hover)
-                  {
-                     
-                     auto colorHover = pinteraction->top_level_frame()->get_moveable_border_color();
-
-                     colorHover.lightness_rate(0.2);
-
-                     return colorHover;
-                     //return __acolor(255, 0x55, 0x99, 0xC2);
-                     
-                  }
-
-                  //return __acolor(255, 0x30, 0x75, 0xA0);
-                  return pinteraction->top_level_frame()->get_moveable_border_color();
-
-               }
-
-            }
-
-         }
-
-         if (eelement == ::e_element_tab_item_background)
-         {
-
-            if (estate & ::user::e_state_selected)
-            {
-
-               if (is_dark_mode())
-               {
-
-                  return __acolor(255, 185, 185, 180);
-
-               }
-               else
-               {
-
-
-                  return __acolor(255, 235, 235, 230);
-
-               }
-
-            }
-            else
-            {
-
-               if (is_dark_mode())
-               {
-
-                  return __acolor(255, 125, 125, 120);
-
-               }
-               else
-               {
-
-
-                  return __acolor(255, 175, 175, 170);
-
-               }
-
-            }
-
-         }
-         else if (eelement == ::e_element_background
-            || eelement == ::e_element_tab_client_background
-            || eelement == ::e_element_tab_layout_background)
-         {
-
-                           if (is_dark_mode())
-            {
-
-               return __acolor(255, 0, 0, 0);
-
-            }
-            else
-            {
-
-               return __acolor(255, 255, 255, 255);
-
-            }
-
-         }
-         else if (eelement == ::e_element_text)
-         {
-            
-                           if (is_dark_mode())
-            {
-
-
-               if (estate & ::user::e_state_new_input)
-               {
-
-                  return __acolor(255, 127, 127, 127);
-
-               }
-               else
-               {
-
-                  return __acolor(255, 255, 255, 255);
-
-               }
-
-            }
-            else
-            {
-
-               if (estate & ::user::e_state_new_input)
-               {
-
-                  return __acolor(255, 192, 192, 192);
-
-               }
-               else
-               {
-
-                  return __acolor(255, 0, 0, 0);
-
-               }
-
-            }
-
-         }
-         else if (eelement == ::e_element_border)
-         {
-
-            return __acolor(255, 127, 127, 127);
-         
-         }
-         else if (eelement == ::e_element_item_text)
-         {
-
-            if (estate & ::user::e_state_hover)
-            {
-
-                              if (is_dark_mode())
-               {
-
-                  return ::color::color(50, 120, 190, 127);
-
-               }
-               else
-               {
-
-                  return ::color::color(100, 160, 220, 127);
-
-               }
-
-            }
-            else
-            {
-
-                              if (is_dark_mode())
-               {
-
-                  return ::color::white;
-
-               }
-               else
-               {
-
-                  return ::color::black;
-
-               }
-
-            }
-
-         }
-         else if (eelement == ::e_element_item_background)
-         {
-
-            if (estate & ::user::e_state_selected)
-            {
-
-               if (estate & ::user::e_state_hover)
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return ::color::color(100, 110, 120, 127);
-
-                  }
-                  else
-                  {
-
-                     return ::color::color(180, 190, 200, 127);
-
-                  }
-
-               }
-               else
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return ::color::black;
-
-                  }
-                  else
-                  {
-
-                     return ::color::white;
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               if (estate & ::user::e_state_hover)
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return ::color::color(100, 160, 220, 127);
-
-                  }
-                  else
-                  {
-
-                     return ::color::color(50, 120, 190, 127);
-
-                  }
-
-               }
-               else
-               {
-
-               if (is_dark_mode())
-                  {
-
-                     return ::color::black;
-
-                  }
-                  else
-                  {
-
-                     return ::color::white;
-
-                  }
-
-               }
-
-            }
-
-         }
-
-         return ::color::color();
-
-      }
-   
 
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
@@ -561,21 +55,7 @@ namespace experience
       ::rectangle_i32 rectangleIcon;
       ::rectangle_i32 rectangleClose;
 
-      ::rectangle_i32 r1 = ptab->get_client_rect();
-
-      ::rectangle_f64 r2;
-
-      pgraphics->get_clip_box(&r2);
-
-      auto pstyle = ptab->get_style(pgraphics);
-
-      {
-
-         ::color::color colorBack = ptab->get_color(pstyle, ::e_element_background);
-
-         pgraphics->fill_rectangle(r1, colorBack);
-
-      }
+      //return true;
 
       ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
@@ -583,67 +63,35 @@ namespace experience
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rcTab;
+      index iTab = -1;
 
-      rcTab = ptab->get_data()->m_rectangleTab;
-
-      ::rectangle_i32 rcTabs(rcTab);
-      
       ::rectangle_i32 rcClient;
 
-      rcClient = ptab->get_data()->m_rectangleTabClient;
+      ptab->get_client_rect(rcClient);
 
-      int iTabHeight = ptab->get_data()->m_iTabHeight;
-
-      //int iB = rcClient.top;
-
-      rcTabs.bottom = rcTabs.top + iTabHeight - ptab->get_data()->m_rectangleBorder.bottom;
-
-      rcClient.top = rcTabs.bottom;
-      
-      auto colorBack = ptab->get_color(pstyle, ::e_element_tab_layout_background);
-      
-      if(colorBack.is_ok())
-      {
-
-         pgraphics->fill_rectangle(rcTabs, colorBack);
-         
-      }
-
-      colorBack = ptab->get_color(pstyle, ::e_element_tab_client_background);
-      
-      if(colorBack.is_ok())
-      {
-
-         pgraphics->fill_rectangle(rcClient, colorBack);
-         
-      }
-
-      ::color::color color1 = ptab->get_color(pstyle, ::e_element_tab_item_background);
-
-      ::color::color color2(color1);
-
-      color2.hls_rate(0.0, 0.2, 0.0);
-
-      ::index iTab = -1;
+      auto pstyle = ptab->get_style(pgraphics);
 
       auto pbrushText = __create < ::draw2d::brush > ();
 
       auto ppenBorder = __create < ::draw2d::pen > ();
 
+      static int iCurrentTab = -1;
+
+      int iTabWidth = 0;
+
+      int iTabHeight = 0;
+
       for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
-
+            
          auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
-          
+
             continue;
 
          }
-
-         iTab++;
 
          ::user::e_state estate = ::user::e_state_none;
 
@@ -661,14 +109,40 @@ namespace experience
 
          }
 
-         if(!ptab->get_element_rect(iTab,rectangle,::e_element_tab))
+         iTab++;
+
+         if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
+         {
+
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectangleBorder, ::e_element_border))
+         }
+
+         if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
+         {
+
             continue;
+
+         }
+
+         if(rectangleBorder.right > iTabWidth)
+         {
+
+            iTabWidth = rectangleBorder.right;
+
+         }
+
+         if(rectangleBorder.bottom > iTabHeight)
+         {
+
+            iTabHeight = rectangleBorder.bottom;
+
+         }
 
          if(!ptab->get_element_rect(iTab,rectangleClient, ::e_element_client))
             continue;
+
+         bool bTextRect = ptab->get_element_rect(iTab, rectangleText, ::e_element_text);
 
          if(ptab->get_data()->m_bVertical)
          {
@@ -690,115 +164,104 @@ namespace experience
 
             auto ppath = __create < ::draw2d::path > ();
 
-            if(true)
+            if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
             {
 
-               if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+               ppath->begin_figure();
+
+               ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
+
+               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+
+               ppath->add_line(rectangleClient.left,rectangleBorder.top);
+
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top);
+
+               ppath->close_figure();
+
+               ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
+
+               pgraphics->set(ppane->m_pbrushFillSel);
+
+               pgraphics->fill_path(ppath);
+
+               ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
+
+               pgraphics->set(ppenBorder);
+
+               pgraphics->draw_path(ppath);
+
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                  && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  //ppath->start_figure();
-
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
-                  //ppath->add_line(rectangleClient.right, rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
-                  ppath->add_line(rectangleClient.left,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
-
-                  ppath->close_figure();
-
-                  ::color::color colorSel1 = ptab->get_color(pstyle, ::e_element_item_background, ::user::e_state_selected);
-
-                  ::color::color colorSel2(colorSel1);
-
-                  colorSel2.hls_rate(0.0, 0.2, 0.0);
-
-                  ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),colorSel1,colorSel2);
-
-                  pgraphics->set(ppane->m_pbrushFillSel);
-
-                  pgraphics->fill_path(ppath);
-
-                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
-
-                  pgraphics->set(ppenBorder);
-
-                  pgraphics->draw_path(ppath);
-
-                  if (::is_item(ptab->m_pitemHover, iTab)
-                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-                     && !::in_element_range(ptab->m_pitemHover,::e_element_split, 100))
-                  {
-
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
-
-                  }
-                  else
-                  {
-
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
-
-                  }
-
-                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+                  pgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
 
                }
                else
                {
 
-                  //ppath->start_figure();
+                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
-                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
-                  ppath->add_line(rectangleText.left,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
-                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom);
+               }
 
-                  ppath->close_figure();
+               pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
-                  if (::is_item(ptab->m_pitemHover, iTab)
-                     && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-                     && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
-                  {
+            }
+            else
+            {
 
-                     ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+               ppath->begin_figure();
 
-                     pgraphics->set(ppane->m_pbrushFillHover);
+               ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
+               ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+               ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left,rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top);
+               ppath->add_line(rectangleBorder.right,rectangleBorder.bottom);
 
-                     pgraphics->fill_path(ppath);
+               ppath->close_figure();
 
-                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+               if(::is_item(ptab->m_pitemHover, iTab)
+                  && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                  && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
+               {
 
-                     pgraphics->set(ppenBorder);
-                     
-                     auto pstyle = ptab->get_style(pgraphics);
+                  ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_hover));
+                  pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
+                  pgraphics->fill_path(ppath);
 
-                  }
-                  else
-                  {
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
+                  pgraphics->set(ppenBorder);
 
-                     pgraphics->set(ppane->m_pbrushFill);
+                  pgraphics->draw_path(ppath);
 
-                     pgraphics->fill_path(ppath);
+                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
-                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
-                     pgraphics->set(ppenBorder);
-                     
-                     pgraphics->draw_path(ppath);
+               }
+               else
+               {
 
-                     auto pstyle = ptab->get_style(pgraphics);
+                  ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
-                     pgraphics->set(ptab->get_font(pstyle));
+                  pgraphics->set(ppane->m_pbrushFill);
 
-                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
+                  pgraphics->fill_path(ppath);
 
-                  }
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+
+                  pgraphics->set(ppenBorder);
+
+                  pgraphics->draw_path(ppath);
+
+                  pgraphics->set_font(ptab, ::e_element_none);
+
+                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
                }
 
@@ -822,206 +285,179 @@ namespace experience
                pgraphics->draw(imagedrawing);
 
             }
-            if (iPane == 0)
+
+            auto ppath = __create < ::draw2d::path >();
+
+            if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
             {
 
-               if (rcTab.left < rectangleBorder.left)
+               if (iPane != iCurrentTab)
                {
 
-                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
-
-                  pgraphics->set(ppenBorder);
-
-                  pgraphics->draw_line(rcTab.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
+                  iCurrentTab = iPane;
 
                }
 
-            }
+               ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
 
-            if(true)
-            {
+               ppath->add_line(rectangleClient.right,rectangleBorder.top);
 
-               //auto ppath = __create < ::draw2d::path > ();
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
 
-               ::color::color colorBackground = ptab->get_color(pstyle, ::e_element_item_background, estate);
+               ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
 
-               pgraphics->fill_rectangle(rectangleBorder, colorBackground);
+               ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-               ::color::color colorBorder = ptab->get_color(pstyle, ::e_element_item_border, estate);
+               pgraphics->set(ppane->m_pbrushFillSel);
 
-               ppenBorder->create_solid(2.0, colorBorder);
+               pgraphics->fill_path(ppath);
+
+               ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                pgraphics->set(ppenBorder);
 
-               ::size_i32 sizeTopOffset(0, 2);
-
-               pgraphics->move_to(rectangleBorder.bottom_right());
-
-               pgraphics->line_to(rectangleBorder.top_right() + sizeTopOffset);
-
-               if (estate & ::user::e_state_selected)
-               {
-
-                  pgraphics->line_to(rectangleBorder.top_left() + sizeTopOffset);
-
-               }
-
-               //pgraphics->set(ppenBorder);
-
-               //pgraphics->draw_path(ppath);
-                  
-               //auto pstyle = ptab->get_style(pgraphics);
-
-               //if (::is_item(ptab->m_pitemHover, iTab)
-               //   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-               //   && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
-               //{
-
-               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected | ::user::e_state_hover));
-
-               //}
-               //else
-               //{
-
-               //   pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
-
-               //}
-
-               ::color::color colorText = ptab->get_color(pstyle, ::e_element_item_text, estate);
-
-               pbrushText->create_solid(colorText);
-
-               //}
-               //else
-               //{
-
-               //   //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
-
-               //   //if (iPane > 0)
-               //   //{
-
-               //   //   ppath->add_line(rectangle.left, rectangleClient.bottom, rectangleBorder.left, rectangleClient.bottom);
-
-               //   //}
-
-               //   //ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
-
-               //   //ppath->add_line(rectangleClient.right,rectangleBorder.top);
-
-               //   //ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
-
-               //   //ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
-
-               //   //ppath->close_figure();
-
-               //   if (::is_item(ptab->m_pitemHover, iTab)
-               //      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
-               //      && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
-               //   {
-
-               //      ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
-
-               //      pgraphics->set(ppane->m_pbrushFillHover);
-
-               //      //pgraphics->fill_path(ppath);
-
-               //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
-
-               //      pgraphics->set(ppenBorder);
-
-               //      //pgraphics->draw_path(ppath);
-
-               //      auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
-
-               //      pgraphics->set(pfont);
-
-               //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
-
-               //   }
-               //   else
-               //   {
-
-               //      ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(), color1, color2);
-
-               //      pgraphics->set(ppane->m_pbrushFill);
-
-               //      //pgraphics->fill_path(ppath);
-
-               //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
-
-               //      pgraphics->set(ppenBorder);
-
-               //      //pgraphics->draw_path(ppath);
-
-               //      auto pfont = ptab->get_font(pstyle);
-
-               //      pgraphics->set(pfont);
-
-               //      pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
-
-               //   }
-
-               //}
-
-            }
-
-            if (iPane == ptab->get_data()->m_tabpanecompositea.get_upper_bound())
-            {
-
-               if (rectangleBorder.right - 1 < rcTab.right)
-               {
-
-                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
-
-                  pgraphics->set(ppenBorder);
-
-                  pgraphics->draw_line(rectangleBorder.right - 1, rectangleClient.bottom, rcTab.right, rectangleClient.bottom);
-
-               }
-
-            }
-
-         }
-
-         if(true)
-         {
-
-            if(ptab->get_element_rect(iTab,rectangleText, ::e_element_text))
-            {
-
-               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText, estate);
-
-            }
-
-         }
-
-         if(true)
-         {
-
-            if(ptab->get_element_rect(iTab,rectangleClose, ::e_element_close_tab_button))
-            {
-
-               pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
+               pgraphics->draw_path(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
-                  && ::is_element(ptab->m_pitemHover,::e_element_close_tab_button))
+                  && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                  && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
                {
 
-                  pbrushText = ptab->get_data()->m_pbrushCloseHover;
+                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
 
                }
                else
                {
 
-                  pbrushText = ptab->get_data()->m_pbrushClose;
+                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                }
 
-               pgraphics->set(pbrushText);
-
-               pgraphics->draw_text("x",rectangleClose,e_align_center);
+               pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
             }
+            else
+            {
+
+               ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
+
+               ppath->add_line(rectangleClient.right,rectangleBorder.top);
+
+               ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
+
+               ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
+
+               ppath->close_figure();
+
+               if (::is_item(ptab->m_pitemHover, iTab)
+                  && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
+                  && !::in_element_range(ptab->m_pitemHover, ::e_element_split, 100))
+               {
+
+                  ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+
+                  pgraphics->set(ppane->m_pbrushFillHover);
+
+                  pgraphics->fill_path(ppath);
+
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
+
+                  pgraphics->set(ppenBorder);
+
+                  pgraphics->draw_path(ppath);
+
+                  pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
+
+                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
+
+               }
+               else
+               {
+
+                  auto pbrushFill = __create < ::draw2d::brush >();
+
+                  pbrushFill->CreateLinearGradientBrush(
+                     rectangleBorder.top_left(),
+                     rectangleBorder.bottom_left(),
+                     argb(230, 175, 175, 170),
+                     argb(250, 195, 195, 190)); //*/
+
+                     // pbrushFill->create_solid(::color::color::white);
+
+                  pgraphics->set(pbrushFill);
+
+                  pgraphics->fill_path(ppath);
+
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
+
+                  pgraphics->set(ppenBorder);
+
+                  pgraphics->draw_path(ppath);
+
+                  pgraphics->set_font(ptab, ::e_element_none);
+
+                  auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
+
+                  pbrushText->create_solid(colorText);
+
+               }
+
+            }
+
+         }
+
+         if(bTextRect)
+         {
+
+            _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText, estate);
+
+         }
+
+         if(ptab->get_element_rect(iTab,rectangleClose, ::e_element_close_tab_button))
+         {
+
+            pgraphics->set_font(ptab, ::e_element_close_tab_button);
+
+            if (::is_item(ptab->m_pitemHover, iTab)
+               && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button))
+            {
+
+               pbrushText = ptab->get_data()->m_pbrushCloseHover;
+
+            }
+            else
+            {
+
+               pbrushText = ptab->get_data()->m_pbrushClose;
+
+            }
+
+            pgraphics->set(pbrushText);
+
+            pgraphics->draw_text("x",rectangleClose,e_align_center);
+
+         }
+
+      }
+
+      ::rectangle_i32 rectangleScroll;
+
+      bool bScroll = ptab->has_tab_scrolling();
+
+      if(bScroll)
+      {
+
+         if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_near_scroll))
+         {
+
+            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
+
+         }
+
+         if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_far_scroll))
+         {
+
+            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
          }
 
@@ -1032,10 +468,8 @@ namespace experience
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
-
-      auto pstyle = ptab->get_style(pgraphics);
 
       string_array & straTitle = pane.m_straTitle;
 
@@ -1043,6 +477,8 @@ namespace experience
 
       if(straTitle.get_count() <= 1)
       {
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
@@ -1053,59 +489,63 @@ namespace experience
          ::rectangle_i32 rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
+
          pfont = pgraphics->get_current_font();
+
          size_i32 sSep = ptab->get_data()->m_sizeSep;
+
          ::rectangle_i32 rectangleEmp;
+
          for(index i = 0; i < straTitle.get_size(); i++)
          {
+
             string str = straTitle[i];
+
             size_i32 s = pane.m_sizeaText[i];
+
             rectangleText.right =rectangleText.left + s.cx;
 
-            if (estate & ::user::e_state_selected)
-            {
+            pgraphics->_DrawText(str,rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-               pfont->m_iFontWeight = 800;
-
-            }
-            else
-            {
-
-               pfont->m_iFontWeight = 400;
-
-            }
-
-            pfont->m_bUpdated2 = true;
-
-            pgraphics->_DrawText(str,rectangleText,e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;
+
             if(i < straTitle.get_upper_bound())
             {
+
                rectangleText.right = rectangleText.left + sSep.cx;
+
                rectangleEmp = rectangleText;
-               rectangleEmp.deflate(1,1);
+
+               rectangleEmp.deflate(1, 1);
+
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
+
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(::is_element(ptab->m_pitemHover, (::enum_element)(::e_element_split + i)))
+
+               status < ::color::color > colorText;
+
+               if(::is_item(ptab->m_pitemHover,(::index) ::e_element_split + i))
                {
 
-                  pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 184, 255));
+                  pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 190, 255));
 
-                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
-
-                  pgraphics->set(pbrushText);
+                  colorText = ptab->get_color(this, ::e_element_item_text, ::user::e_state_hover);
 
                }
                else
                {
-                  
-                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
-                  pgraphics->set(pbrushText);
+                  colorText = ptab->get_color(this, ::e_element_item_text);
 
                }
 
-               pgraphics->set(ptab->get_font(pstyle, ::e_element_close_tab_button));
+               auto pbrush = __create < ::draw2d::brush >();
+
+               pbrush->create_solid(colorText);
+
+               pgraphics->set(pbrush);
+
+               pgraphics->set_font(ptab, ::e_element_close_tab_button);
 
                pgraphics->set_alpha_mode(emode);
 
@@ -1125,8 +565,6 @@ namespace experience
    bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
    {
 
-      auto pstyle = ptab->get_style(pgraphics);
-
       if (!ptab->get_data()->m_bCreated)
       {
 
@@ -1134,108 +572,92 @@ namespace experience
 
       }
 
-      ::user::tab_data * pdata = ptab->get_data();
-
-      ptab->m_bDrawTabAtBackground = true;
-
-      ptab->defer_handle_auto_hide_tabs(false);
-
-      pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
-
-      pdata->m_rectangleMargin = ptab->get_margin(pstyle);
-
-      pdata->m_rectangleBorder = ptab->get_border(pstyle);
-
-      pdata->m_rectangleTextMargin = ptab->get_padding(pstyle);
-
-      int iTextLeftMargin = 4;
-
-      pdata->m_rectangleTextMargin.left += iTextLeftMargin;
+      auto * pdata = ptab->get_data();
 
       if (pdata->m_bVertical)
       {
 
+         pdata->m_rectangleMargin.set(2, 3, 1, 0);
+
+         pdata->m_rectangleBorder.set(11, 1, 6, 0);
+
+         pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
+
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
-                                pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
+                                 pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
          pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
-                               pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
+                                 pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
       }
       else
       {
 
+         pdata->m_rectangleMargin.set(3, 2, 0, 1);
+
+         pdata->m_rectangleBorder.set(0, 1, 11, 6);
+
+         pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
+
          pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
-                                pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
+                                 pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
          pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
-                               pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
+                                 pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
       }
+
+      ptab->defer_handle_auto_hide_tabs(false);
+
+      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
       ptab->m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
       if(ptab->get_data()->m_bVertical)
       {
-
          i32 iTabWidth = 16;
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-
          for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
             auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-            if (!ppane->m_bTabPaneVisible)
-            {
-
+            if(!ppane->m_bTabPaneVisible)
                continue;
-
-            }
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension,pgraphics);
+            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
 
             ::size_i32 size;
 
             ptab->m_dcextension.get_text_extent(pgraphics,str, size);
+
+
 
             if(ppane->m_pimage->is_set())
             {
                size.cx += ppane->m_pimage->width() + 2;
                size.cy = maximum(size.cy,ppane->m_pimage->height());
             }
-
-            int iTextLeftMargin = 4;
-
-            cx = size.cx + 2 + iTextLeftMargin;
+            cx = size.cx + 2;
 
             if(!ppane->m_bPermanent)
             {
-               
                cx += 2 + 16 + 2;
-
             }
 
             if(cx > iTabWidth)
             {
-               
                iTabWidth = cx;
-
             }
-
             cy = size.cy + 2;
-
             if(cy > iTabHeight)
             {
-
                iTabHeight = cy;
-
             }
-
          }
 
          // close tab button
@@ -1246,14 +668,14 @@ namespace experience
          }
 
          iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right +
-                      ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
-                      ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
+                        ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
+                        ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
          ptab->get_data()->m_iTabWidth = iTabWidth;
 
          iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
-                       ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
+                        ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
+                        ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
@@ -1280,20 +702,18 @@ namespace experience
       }
       else
       {
-         i32 iTabHeight = 16;
-         i32 cy;
-//         ::draw2d::graphics_pointer graphics(e_create);
-  //       pgraphics->CreateCompatibleDC(nullptr);
-    //     ::draw2d::graphics_pointer & pgraphics = graphics;
 
-         pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
+         i32 iTabHeight = 16;
+
+         i32 cy;
+
+         pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ::rectangle_i32 rectangleClient = ptab->get_client_rect();
-
+         //ptab->get_client_rect(rectangleClient);
          int x = rectangleClient.left;
 
          i32 ixAdd;
-
          for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
@@ -1308,16 +728,16 @@ namespace experience
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension,pgraphics);
+            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
 
             size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics,str, size);
+            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
 
-            if(ppane->m_pimage)
+            if(::is_ok(ppane->m_pimage))
             {
 
-               size.cy = maximum(size.cy,ppane->m_pimage->height());
+               size.cy = maximum(size.cy,ppane->m_pimage->size().cy);
 
             }
 
@@ -1325,9 +745,7 @@ namespace experience
 
             if(cy > iTabHeight)
             {
-               
                iTabHeight = cy;
-
             }
 
             ppane->m_point.x = x;
@@ -1340,20 +758,19 @@ namespace experience
 
             ixAdd = 5;
 
-            if(ppane->m_pimage->is_set())
+            if(::is_ok(ppane->m_pimage))
             {
-               
                //::image_list::info ii;
                ixAdd += ppane->m_pimage->width() + 2;
-
             }
 
             if(!ppane->m_bPermanent)
             {
-               
                ixAdd += 2 + 16 + 2;
-
             }
+
+
+
 
             ppane->m_size.cx = size.cx + ixAdd
                                  + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
@@ -1361,21 +778,17 @@ namespace experience
                                  + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
             x += ppane->m_size.cx;
-
          }
 
          // close tab button
          cy = 2 + 16 + 2;
-
          if(cy > iTabHeight)
          {
-
             iTabHeight = cy;
-
          }
 
          iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
-                       ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
+                        ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
@@ -1404,21 +817,24 @@ namespace experience
          m_rectangleTab.height(),
          0);*/
 
-         auto & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
+         rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
-         rectangleTabClient.left       = ptab->get_data()->m_rectangleTab.left;
-         rectangleTabClient.top        = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
-         rectangleTabClient.right      = ptab->get_data()->m_rectangleTab.right;
-         rectangleTabClient.bottom     = rectangleClient.bottom;
+         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
+         bool bTabbedClient = ptab->m_bShowTabs;
+
+         rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
+         rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+         rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
+         rectangleTabClient.bottom = rectangleClient.bottom;
+
 
          //TRACE0("rectangleTabClient");
-
       }
 
       for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         if(iPane != ptab->get_current_tab_index())
+         if(iPane != ptab->get_current_tab_id())
          {
 
             ptab->layout_pane(iPane);
@@ -1427,167 +843,111 @@ namespace experience
 
       }
 
-      ptab->layout_pane(ptab->get_current_tab_index(), ptab->is_window_visible());
+      ptab->layout_pane(ptab->get_current_tab_index(), ptab->is_this_visible());
 
-      return true;
+      ::rectangle_i32 rcClient;
 
-   }
+      ptab->get_client_rect(rcClient);
 
-
-//   bool style::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
-//   {
-//
-//      if (eevent == ::id_calc_item_height)
-//      {
-//
-//         pframewindow->m_iItemHeight += 8;
-//
-//         return true;
-//
-//      }
-//
-//      return false;
-//
-//   }
-
-
-   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::index iItem, ::user::toolbar * ptoolbar)
-   {
-
-      _001DrawAnthillToolbarItem(pgraphics, iItem, ptoolbar);
-
-      return true;
-
-   }
-
-
-   void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::index iItem, ::user::toolbar * ptoolbar)
-   {
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      ::rectangle_i32 rectangleItem;
-
-      ::rectangle_i32 rectangleImage;
-
-      pgraphics->set_font(ptoolbar, ::e_element_none);
-
-      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
-
-      auto estyle = ptoolbar->get_item_style(iItem);
-
-      auto puser = user();
-
-      __pointer(::user::menu_central) pmenucentral = puser->menu();
-
-      ::u32 uImage = pmenucentral->command_image(pitem->m_atom);
-      
-      ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
-
-//      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
-//      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
-//      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-//      if ((nStyle & e_toolbar_item_style_separator) == 0)
-//      {
-//         if ((nStyle & e_toolbar_item_style_disabled) == 0)
-//         {
-//            // item is enabled
-//            if (ptoolbar->m_iButtonPressItem >= 0)
-//            {
-//               if (iItem == ptoolbar->m_iButtonPressItem)
-//               {
-//                  if (bHover)
-//                  {
-//                     eelement = ::user::toolbar::element_item_press;
-//                     eelementImage = ::user::toolbar::element_image_press;
-//                     eelementText = ::user::toolbar::element_text_press;
-//                  }
-//                  else
-//                  {
-//                     eelement = ::user::toolbar::element_item_hover;
-//                     eelementImage = ::user::toolbar::element_image_hover;
-//                     eelementText = ::user::toolbar::element_text_hover;
-//                  }
-//               }
-//            }
-//            else if (bHover)
-//            {
-//               eelement = ::user::toolbar::element_item_hover;
-//               eelementImage = ::user::toolbar::element_image_hover;
-//               eelementText = ::user::toolbar::element_text_hover;
-//            }
-//         }
-//         else
-//         {
-//            // item is disabled
-//            eelement = ::user::toolbar::e_element_item;
-//            eelementImage = ::user::toolbar::element_image;
-//            eelementText = ::user::toolbar::e_element_text;
-//         }
-//      }
-//      else
-//      {
-//         eelement = ::user::toolbar::e_element_item;
-//         eelementImage = ::user::toolbar::element_image;
-//         eelementText = ::user::toolbar::e_element_text;
-//      }
-
-
-      //int iOffsetX = 0;
-      //int iOffsetY = 0;
-
-      ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
-
-      ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
-
-      if ((estyle & e_toolbar_item_style_separator) != 0)
+      if(ptab->get_data()->m_bVertical)
       {
-         ::rectangle_i32 rectangleSeparator;
-         rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-         rectangleSeparator.right = rectangleSeparator.left + 2;
-         rectangleSeparator.top = rectangleImage.top;
-         rectangleSeparator.bottom = rectangleImage.bottom;
-         
-         pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
-         
+
+         ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
+
+         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
+
       }
       else
       {
 
-         if (estate & ::user::e_state_hover)
+         ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
+         ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
+
+         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
+
+      }
+
+
+      return true;
+
+   }
+
+
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   {
+
+      if (::is_set(pinteraction))
+      {
+
+         //string strType = __type_name(pinteraction);
+
+//            if (strType.contains("form"))
+//            {
+//
+//               output_debug_string("form");
+//
+//            }
+
+         auto econtroltype = pinteraction->get_control_type();
+
+         if (econtroltype == ::user::e_control_type_form)
          {
 
-            if (estate & ::user::e_state_checked)
+            if (eelement == ::e_element_background)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
-
-               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
-
-               if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+               if (is_dark_mode())
                {
 
-                  pgraphics->fill_inset_rectangle(rectangleItem, argb(208, 255, 255, 250));
+                  return ::color::color(80, 80, 80, 127);
 
-                  pgraphics->draw_inset_rectangle(rectangleItem, argb(255, 127, 127, 127));
-                  
+               }
+               else
+               {
+
+                  return ::color::color(255, 255, 255, 127);
+
                }
 
-               if (uImage != 0xffffffffu)
+            }
+
+         }
+         else if (econtroltype == ::user::e_control_type_edit)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (eelement == ::e_element_background)
                {
 
-                  if (!(estate & ::user::e_state_disabled))
+                  if (is_dark_mode())
                   {
 
-                     // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     return ::color::color(255, 255, 255, 127);
 
                   }
                   else
                   {
 
-                     // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     return ::color::color(80, 80, 80, 127);
+
+                  }
+
+               }
+               else if (eelement == ::e_element_text)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return ::color::color(80, 80, 80, 255);
+
+                  }
+                  else
+                  {
+
+                     return ::color::color(255, 255, 255, 255);
 
                   }
 
@@ -1597,273 +957,291 @@ namespace experience
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
-
-               ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::e_element_item, estate);
-
-               if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+               if (eelement == ::e_element_background)
                {
 
-                  auto ppen = __create < ::draw2d::pen > ();
-
-                  ppen->create_solid(1, argb(190, 92, 184, 92));
-                  auto pbrush = __create < ::draw2d::brush >();
-
-                  pbrush->create_solid(argb(123, 180, 184, 255));
-                  pgraphics->set(ppen);
-                  pgraphics->set(pbrush);
-                  pgraphics->rectangle(rectangleItem);
-
-               }
-
-               if (pitem->m_pimage->is_set())
-               {
-
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
-
-                  image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
-
-                  image_drawing_options imagedrawingoptions(rectangle);
-
-                  imagedrawingoptions.opacity(0.9);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  pgraphics->draw(imagedrawing);
-
-               }
-               else if (uImage != 0xffffffffu)
-               {
-
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
-
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
-
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-               }
-
-            }
-
-         }
-         else if (estate & ::user::e_state_pressed)
-         {
-
-            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-            {
-
-               auto ppen = __create < ::draw2d::pen > ();
-
-               ppen->create_solid(1, argb(255, 92, 92, 92));
-               auto pbrush = __create < ::draw2d::brush >();
-
-               pbrush->create_solid(argb(255, 255, 255, 255));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
-
-            }
-
-            if (pitem->m_pimage->is_set())
-            {
-
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
-
-               image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pgraphics->draw(imagedrawing);
-
-            }
-            else if (uImage != 0xffffffff)
-            {
-
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-            }
-
-         }
-         else
-         {
-
-            if (!(estate & ::user::e_state_disabled))
-            {
-
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
-
-               pgraphics->fill_rectangle(rectangleItem, argb(190, 255, 255, 255));
-
-            }
-
-            if (estate & ::user::e_state_checked)
-            {
-
-               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
-
-            }
-
-            if (pitem->m_pimage->is_set())
-            {
-
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_none);
-
-               image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               imagedrawingoptions.opacity(0.2);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pgraphics->draw(imagedrawing);
-
-            }
-            else if (uImage != 0xffffffff)
-            {
-
-               if (!(estate & ::user::e_state_disabled))
-               {
-
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-               }
-               else
-               {
-
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-               }
-
-            }
-
-         }
-
-      }
-
-      if (pitem->m_str.has_char())
-      {
-
-         pgraphics->set_font(ptoolbar, ::e_element_none);
-
-         ::rectangle_i32 rectangleText;
-
-         auto pbrushText = __create < ::draw2d::brush > ();
-
-         if (!(estyle & e_toolbar_item_style_disabled))
-         {
-
-            pbrushText->create_solid(argb(255, 0, 0, 0));
-
-         }
-         else
-         {
-
-            pbrushText->create_solid(argb(255, 120, 120, 118));
-
-         }
-
-         pgraphics->set(pbrushText);
-
-         if (ptoolbar->_001GetElementRect(iItem, rectangleText, ::e_element_text, ::user::e_state_none) && rectangleText.right > 0)
-         {
-
-            pgraphics->_DrawText(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
-
-         }
-
-      }
-
-   }
-
-   void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::index iItem, ::user::toolbar * ptoolbar)
-   {
-
-      auto pstyle = ptoolbar->get_style(pgraphics);
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      ::rectangle_i32 rectangleItem;
-
-      ::rectangle_i32 rectangleImage;
-
-      pgraphics->set_font(ptoolbar, ::e_element_none);
-
-      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
-
-      //auto estyle = ptoolbar->get_item_style(iItem);
-
-//      bool bHover = ptoolbar->m_pitemHover == iItem;
-
-      auto puser = user();
-
-      __pointer(::user::menu_central) pmenucentral = puser->menu();
-
-      ::u32 uImage = pmenucentral->command_image(pitem->m_atom);
-
-      ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
-
-      ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
-
-      ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
-
-      if (pitem->m_atom.compare_ci("separator") == 0)
-      {
-         /*::rectangle_i32 rectangleSeparator;
-         rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
-         rectangleSeparator.right = rectangleSeparator.left + 2;
-         rectangleSeparator.top = rectangleImage.top;
-         rectangleSeparator.bottom = rectangleImage.bottom;*/
-         //pgraphics->Draw3dRect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
-      }
-      else
-      {
-         
-         if (estate & ::user::e_state_hover)
-         {
-            
-            if (estate & ::user::e_state_checked)
-            {
-
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
-
-               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
-
-               if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-               {
-
-                  pgraphics->fill_rectangle(rectangleItem, argb(208, 255, 255, 250));
-
-                  pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
-
-               }
-
-               if (uImage != 0xffffffffu)
-               {
-
-                  if (!(estate & ::user::e_state_disabled))
+                  if (is_dark_mode())
                   {
 
-                     // button is enabled
-                     pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     return ::color::color(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     // button is disabled
-                     pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                     return ::color::color(255, 255, 255, 127);
 
                   }
+
+               }
+               else if (eelement == ::e_element_text)
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return ::color::color(255, 255, 255, 255);
+
+                  }
+                  else
+                  {
+
+                     return ::color::color(80, 80, 80, 255);
+
+                  }
+
+               }
+
+            }
+
+         }
+         else if (econtroltype == ::user::e_control_type_list
+         || econtroltype == ::user::e_control_type_tree)
+         {
+
+            if (eelement == ::e_element_background)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return argb(180, 80, 80, 80);
+
+               }
+               else
+               {
+
+                  return argb(127, 255, 255, 255);
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_background)
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return __acolor(127, 0, 0, 0);
+
+               }
+               else
+               {
+
+                  return ::color::color(0, 0, 0, 0);
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_text)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+         }
+         else if (econtroltype == ::user::e_control_type_tab)
+         {
+
+            if (eelement == ::e_element_item_text)
+            {
+
+               if(estate & ::user::e_state_hover)
+               {
+
+                  return ::color::color(255, 120, 150, 200);
+
+               }
+               else
+               {
+
+                  if (is_dark_mode())
+                  {
+
+                     return __acolor(255, 230, 230, 230);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 40, 40, 40);
+
+                  }
+
+               }
+
+            }
+            else if (eelement == ::e_element_item_background)
+            {
+
+               return ::color::color(0, 0, 0, 0);
+
+            }
+
+         }
+
+      }
+         
+      if (eelement == ::e_element_check)
+      {
+
+         //if (estate & ::user::e_state_hover)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 255, 255, 255);
+
+            }
+            else
+            {
+
+               return __acolor(255, 0, 0, 0);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_border)
+      {
+
+         if (estate & ::user::e_state_hover)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 255, 255, 255);
+
+            }
+            else
+            {
+
+               return __acolor(255, 0, 0, 0);
+
+            }
+
+         }
+         else if (estate & ::user::e_state_selected)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 255, 255, 255);
+
+            }
+            else
+            {
+
+               return __acolor(255, 0, 0, 0);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 210, 210, 200);
+
+            }
+            else
+            {
+
+               return __acolor(255, 90, 90, 80);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_scrollbar)
+      {
+
+         return __acolor(100, 192, 192, 192);
+
+      }
+      else if (eelement == ::e_element_scrollbar_rect)
+      {
+
+         return __acolor(160, 140, 140, 140);
+
+      }
+      else if (eelement == ::e_element_item_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return __acolor(255, 192, 192, 192);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return __acolor(255, 40, 40, 40);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_item_background)
+      {
+
+         if (estate & ::user::e_state_hover)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 150, 150, 150);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 160, 160, 160);
 
                }
 
@@ -1871,165 +1249,55 @@ namespace experience
             else
             {
 
-               ::rectangle_i32 rectangleShadow;
-
-               ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::e_element_item, estate);
-
-               if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
+               if (is_dark_mode())
                {
 
-                  auto ppen = __create < ::draw2d::pen > ();
-
-                  ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_hover));
-                  auto pbrush = __create < ::draw2d::brush >();
-
-                  pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_hover));
-                  pgraphics->set(ppen);
-                  pgraphics->set(pbrush);
-                  pgraphics->rectangle(rectangleItem);
-
-               }
-
-               if (pitem->m_pimage->is_set())
-               {
-
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
-
-                  image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
-
-                  image_drawing_options imagedrawingoptions(rectangle);
-
-                  imagedrawingoptions.opacity(0.8);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  pgraphics->draw(imagedrawing);
-
-               }
-               else if (uImage != 0xffffffffu)
-               {
-
-                  ::rectangle_i32 rectangle;
-
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
-
-                  pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
-
-                  pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-               }
-
-            }
-
-         }
-         else if (estate & ::user::e_state_pressed)
-         {
-
-            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-            {
-
-               auto ppen = __create < ::draw2d::pen > ();
-
-               ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_pressed));
-               auto pbrush = __create < ::draw2d::brush >();
-
-               pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, ::user::e_state_pressed));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
-
-            }
-
-            if (pitem->m_pimage->is_set())
-            {
-
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
-
-               image_source imagesource(pitem->m_pimage);
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pgraphics->draw(imagedrawing);
-
-            }
-            else if (uImage != 0xffffffff)
-            {
-
-               pmenucentral->MenuV033GetImageList()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
-
-            }
-
-         }
-         else
-         {
-
-            //if (!(estate & ::user::e_state_disabled))
-            //{
-
-            //   ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
-
-            //   pgraphics->fill_rectangle(rectangleItem, ptoolbar->get_color(pstyle, ::e_element_background));
-
-            //}
-
-            if (estate & ::user::e_state_checked)
-            {
-
-               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
-
-            }
-
-            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
-            {
-
-               auto ppen = __create < ::draw2d::pen > ();
-
-               ppen->create_solid(1, ptoolbar->get_color(pstyle, ::e_element_face, estate));
-               auto pbrush = __create < ::draw2d::brush >();
-
-               pbrush->create_solid(ptoolbar->get_color(pstyle, ::e_element_face, estate));
-               pgraphics->set(ppen);
-               pgraphics->set(pbrush);
-               pgraphics->rectangle(rectangleItem);
-
-            }
-
-            if (pitem->m_pimage->is_set())
-            {
-
-               ::rectangle_i32 rectangle;
-
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, estate);
-
-               image_source imagesource(pitem->m_pimage);
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               imagedrawingoptions.opacity(0.20);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pgraphics->draw(imagedrawing);
-
-            }
-            else if (uImage != 0xffffffff)
-            {
-
-               if (!(estate & ::user::e_state_disabled))
-               {
-
-                  pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  return __acolor(255, 110, 110, 110);
 
                }
                else
                {
 
-                  pmenucentral->MenuV033GetImageListHueLight()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
+                  return __acolor(255, 200, 200, 200);
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 130, 130, 130);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 180, 180, 180);
+
+               }
+
+            }
+            else
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 80, 80, 80);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 255, 255, 255);
 
                }
 
@@ -2038,92 +1306,458 @@ namespace experience
          }
 
       }
-
-      if (pitem->m_str.has_char())
+      else if (eelement == ::e_element_text)
       {
 
-         pgraphics->set_font(ptoolbar, ::e_element_none);
-
-         ::rectangle_i32 rectangleText;
-
-         auto pbrushText = __create < ::draw2d::brush > ();
-
-         if (!(estate & ::user::e_state_disabled))
+         if (estate & ::user::e_state_new_input)
          {
 
-            pbrushText->create_solid(argb(255, 255, 255, 255));
+            if (is_dark_mode())
+            {
 
-            pgraphics->set_text_color(argb(255, 255, 255, 255));
+               return __acolor(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return __acolor(255, 192, 192, 192);
+
+            }
 
          }
          else
          {
 
-            pbrushText->create_solid(ptoolbar->get_color(pstyle, ::e_element_background,
-            ::user::e_state_disabled));
+            if (is_dark_mode())
+            {
 
-            pgraphics->set_text_color(ptoolbar->get_color(pstyle, ::e_element_text,
-            ::user::e_state_disabled));
+               return __acolor(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return __acolor(255, 40, 40, 40);
+
+            }
 
          }
 
-         if (ptoolbar->_001GetElementRect(iItem, rectangleText, ::e_element_text, estate) && rectangleText.right > 0)
+      }
+      else if (eelement == ::e_element_border)
+      {
+
+         if (estate & ::user::e_state_new_input)
          {
 
-            pgraphics->set(pbrushText);
+            if (is_dark_mode())
+            {
 
-            pgraphics->draw_text(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
+               return __acolor(255, 130, 130, 130);
+
+            }
+            else
+            {
+
+               return __acolor(255, 192, 192, 192);
+
+            }
+
+         }
+         else
+         {
+
+            if (is_dark_mode())
+            {
+
+               return __acolor(255, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return __acolor(255, 40, 40, 40);
+
+            }
+
+         }
+
+      }
+      else if (eelement == ::e_element_background)
+      {
+
+         if (is_dark_mode())
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return __acolor(127, 120, 120, 120);
+
+            }
+            else
+            {
+
+               return __acolor(127, 80, 80, 80);
+
+            }
+
+         }
+         else
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               return __acolor(127, 230, 230, 230);
+
+            }
+            else
+            {
+
+               return __acolor(127, 210, 210, 210);
+
+            }
+
+
+         }
+
+      }
+      else
+      {
+
+         if (is_dark_mode())
+         {
+
+            return __acolor(255, 50, 50, 50);
+
+         }
+         else
+         {
+
+            return __acolor(255, 40, 40, 40);
 
          }
 
       }
 
+      return ::color::color();
+
    }
 
 
-   bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
+   bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
    {
 
-      ::rectangle_i32 rectangleClient = psplitlayout->get_client_rect();
+      ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
-      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
+      ::rectangle_i32 rectangleClient = pscrollbar->get_client_rect();
+
+      if (colorBackground.alpha != 0)
+      {
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         auto psession = get_session();
+
+         if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
+         {
+
+            colorBackground.alpha = 255;
+
+         }
+
+         pgraphics->fill_rectangle(rectangleClient, colorBackground);
+
+      }
+
+      ::rectangle_i32 rectangleTrack;
+
+      pscrollbar->GetTrackRect(rectangleTrack, pgraphics);
+
+      ::rectangle_i32 rectangleWindow;
+
+      pscrollbar->get_window_rect(rectangleWindow);
+
+      ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_rect);
+
+      auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
+
+      auto ppenDraw = __create < ::draw2d::pen > ();
+
+      ppenDraw->create_solid(1, colorBorder);
+
+      ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_rect);
+
+      auto pbrushDraw = __create < ::draw2d::brush > ();
+
+      pbrushDraw->create_solid(colorTrack);
+
+      pgraphics->set(ppenDraw);
+
+      pgraphics->set(pbrushDraw);
+
+      pgraphics->rectangle(rectangleTrack);
+
+      if (pbar->m_bTracking || pbar->is_true("tracking_on"))
+      {
+
+         auto periodFadeIn = 490_ms;
+
+         auto periodFadeOut = 490_ms;
+
+         double dRate = maximum(0u, minimum(1.0, pbar->find_u32("tracking_alpha")/255.0));
+
+         if (pbar->m_bTracking)
+         {
+
+            if (!pbar->is_true("tracking_on"))
+            {
+
+               pbar->payload("tracking_on") = true;
+               pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
+               pbar->payload("tracking_fade_in") = true;
+               pbar->payload("tracking_fade_out") = false;
+               pbar->payload("tracking_simple") = __random(1, 2) == 1;
+
+            }
+
+         }
+         else
+         {
+
+            if (!pbar->payload("tracking_fade_out"))
+            {
+
+               pbar->payload("tracking_fade_in") = false;
+               pbar->payload("tracking_fade_out") = true;
+               pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
+
+            }
+
+         }
+
+         ::point_i32 point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
+
+         pbar->client_to_screen(point1);
+
+         //auto psession = get_session();
+
+         //auto puser = psession->user();
+
+         //auto pwindowing = puser->windowing();
+
+         //auto pointCursor = pwindowing->get_cursor_position();
+
+         pbar->client_to_screen(point1);
+
+         //      prop("tracking_window").cast < trw >()->point1 = point1;
+
+         //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
+
+         byte uchAlpha;
+
+         if (pbar->is_true("tracking_fade_in"))
+         {
+
+            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed();
+
+            if (elapsed < periodFadeIn)
+            {
+
+               uchAlpha = __byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
+
+            }
+            else
+            {
+
+               uchAlpha = 255;
+
+               pbar->payload("tracking_fade_in") = false;
+
+            }
+
+         }
+         else if (pbar->is_true("tracking_fade_out"))
+         {
+
+            auto elapsed = pbar->payload("tracking_start_time").duration().elapsed().integral_millisecond();
+
+            if (elapsed < periodFadeOut)
+            {
+
+               uchAlpha = __byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
+
+            }
+            else
+            {
+
+               uchAlpha = 0;
+
+               pbar->payload("tracking_on") = false;
+
+               pbar->payload("tracking_fade_out") = false;
+
+            }
+
+         }
+         else
+         {
+            uchAlpha = 255;
+         }
+
+         ::rectangle_i32 rectangleMachineThumb;
+
+         bool bSimple = pbar->is_true("tracking_simple");
+
+         if (bSimple)
+         {
+
+            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+
+            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
+
+            ::rectangle_i32 rectangleIntersect;
+
+            rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
+
+            i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
+
+            rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+
+            pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+
+         }
+         else
+         {
+
+            int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
+
+            rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+
+            rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
+
+            rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
+
+            rectangleMachineThumb._007Constrain(rectangleTrack);
+
+            rectangleMachineThumb.deflate(1, 1);
+
+            pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
+
+         }
+
+         pbar->payload("tracking_alpha") = uchAlpha;
+
+      }
+
+      auto ppenGrip = __create < ::draw2d::pen > ();
+
+      ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rect));
+
+      pgraphics->set(ppenGrip);
+
+      ::point_i32 pointCenter = rectangleTrack.center();
+
+      if (pbar->m_eorientation == e_orientation_horizontal)
+      {
+
+         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->line_to(pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->move_to(pointCenter.x, pointCenter.y - 5);
+         pgraphics->line_to(pointCenter.x, pointCenter.y + 5);
+         pgraphics->move_to(pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+
+      }
+      else
+      {
+
+         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->line_to(pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->move_to(pointCenter.x - 5, pointCenter.y);
+         pgraphics->line_to(pointCenter.x + 5, pointCenter.y);
+         pgraphics->move_to(pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
+
+      }
+
+      auto ppenArrow = __create < ::draw2d::pen > ();
+
+      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+
+      pgraphics->set(ppenArrow);
+
+      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
+
+      pgraphics->set(pbar->m_pbrushDraw);
+
+      pgraphics->rectangle(pbar->m_rectangleA);
+
+      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+      pgraphics->set(ppenArrow);
+
+      pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
+
+      pgraphics->set(pbar->m_pbrushDraw);
+
+      pgraphics->rectangle(pbar->m_rectangleB);
+
+      ::rectangle_i32 rectangle;
+
+      if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageA)
+         || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageA))
+      {
+
+         pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
+
+         pgraphics->set(pbar->m_pbrushDraw);
+
+         pgraphics->fill_rectangle(rectangle);
+
+      }
+      else if (::is_element(pbar->m_pitemCurrent, ::e_element_scrollbar_pageB)
+         || ::is_element(pbar->m_pitemHover, ::e_element_scrollbar_pageB))
+      {
+
+         pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
+
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
+
+         pgraphics->set(pbar->m_pbrushDraw);
+
+         pgraphics->fill_rectangle(rectangle);
+
+      }
+
+      ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+      ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+      ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
+
+      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
+
+      pgraphics->set(ppenArrow);
+
+      pgraphics->polyline(pbar->m_pointaA, 3);
+
+      ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
+
+      pgraphics->set(ppenArrow);
+
+      pgraphics->polyline(pbar->m_pointaB, 3);
 
       return true;
 
    }
 
-//
-//   bool style::get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
-//   {
-//
-//      return ::user::style::get_font(sp, efont, pcontext);
-//
-//   }
 
-//
-//   bool style::get_double(double & d, ::user::e_double edouble, ::user::style_context * pcontext)
-//   {
-//
-//      if (edouble == ::user::double_list_item_height_rate)
-//      {
-//
-//         d = 1.65;
-//
-//         return true;
-//
-//      }
-//
-//      return ::user::style::get_double(d, edouble, pcontext);
-//
-//   }
-
-
-
-         } // namespace anthill
-
-
-   } // namespace experience
-
+} // namespace experience_nanogui
 
 
 

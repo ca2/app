@@ -422,7 +422,7 @@
     <ClInclude Include="user\experience\_.h">
       <Filter>Header Files\user\experience</Filter>
     </ClInclude>
-    <ClInclude Include="user\experience\_const.h">
+    <ClInclude Include="user\experience\_constant.h">
       <Filter>Header Files\user\experience</Filter>
     </ClInclude>
     <ClInclude Include="user\experience\_experience.h">

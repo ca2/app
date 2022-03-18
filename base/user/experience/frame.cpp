@@ -761,7 +761,7 @@ namespace experience
 
       ::rectangle_i32 rectangleIcon;
 
-      bool bIcon = get_element_rect(rectangleIcon, ElementTopLeftIcon);
+      bool bIcon = get_element_rect(rectangleIcon, ::e_element_top_left_icon);
 
       m_pointWindowIcon.y = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) /2 );
 
@@ -1381,7 +1381,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 * prectangle,enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 * prectangle,::enum_element eelement)
    {
 
       return false;
@@ -1443,12 +1443,12 @@ namespace experience
 //   }
 
 
-   e_hittest frame::_001HitTest(const ::point_i32 & point)
+   ::experience::enum_frame frame::experience_frame_hit_test(const ::point_i32 & point)
    {
 
       __UNREFERENCED_PARAMETER(point);
 
-      return hittest_client;
+      return e_frame_client;
 
    }
 

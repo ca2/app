@@ -11,15 +11,15 @@ namespace experience
    public:
 
 
-      enum enum_element
-      {
+      //enum enum_element
+      //{
 
-         ElementNone,
-         ElementTopLeftIcon,
-         ElementMoveGripMinimal,
-         ElementEnd,
+      //   ElementNone,
+      //   ElementTopLeftIcon,
+      //   ElementMoveGripMinimal,
+      //   ElementEnd,
 
-      };
+      //};
 
 
       status < ::color::color >       m_colorMoveableBorderHilight;
@@ -118,7 +118,7 @@ namespace experience
       //virtual void calc_window_client_rect(RECTANGLE_I32 * prectangle, const rectangle_i32 & lprectWindow);
 
 
-      virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement);
+      virtual bool get_element_rect(RECTANGLE_I32 * prectangle, ::enum_element eelement);
 
 
       virtual void get_parent_rect(RECTANGLE_I32 * prectangle);
@@ -156,7 +156,7 @@ namespace experience
 
       //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow);
 
-      virtual e_hittest _001HitTest(const ::point_i32 & point);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point);
 
 
       virtual status < ::color::color > get_border_main_body_color();

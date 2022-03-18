@@ -89,10 +89,11 @@ __FACTORY_EXPORT void experience_core_factory(::factory::factory* pfactory)
    //pfactory->add_factory_item < ::windows::crypto, ::crypto::crypto >();
    //pfactory->add_factory_item < ::windows::ip_enum, ::net::ip_enum >();
 
-   pfactory->add_factory_item < ::experience::core::experience, ::experience::experience >();
-   pfactory->add_factory_item < ::experience::core::control_box, ::experience::control_box >();
-   pfactory->add_factory_item < ::experience::core::button, ::experience::button >();
-   pfactory->add_factory_item < ::experience::core::style, ::user::style >();
+   pfactory->add_factory_item < ::experience_core::experience, ::experience::experience >();
+   pfactory->add_factory_item < ::experience_core::control_box, ::experience::control_box >();
+   pfactory->add_factory_item < ::experience_core::control_box_button, ::experience::button >();
+   pfactory->add_factory_item < ::experience_core::style, ::user::style >();
+
 
 }
 

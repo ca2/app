@@ -1,36 +1,38 @@
 #include "framework.h"
 
-
-namespace experience
+   
+namespace experience_nanogui
 {
 
 
-   namespace anthill
+
+   frame_013::frame_013()
    {
 
+      m_bHollow = true;
+
+   }
 
 
+   frame_013::~frame_013()
+   {
+
+   }
 
 
-            frame_013::frame_013()
-            {
+   void frame_013::destroy()
+   {
 
-               m_bHollow = true;
+      //auto estatus = 
+               
+      frame_008::destroy();
 
-            }
+      //return estatus;
 
-
-            frame_013::~frame_013()
-            {
-
-            }
+   }
 
 
-   } // namespace anthill
-
-
-} // namespace experience
-
+} // namespace experience_nanogui
 
 
 

@@ -5,13 +5,14 @@
 #include "base/user/user/_user.h"       // thank you (mummy)
 #include "base/user/experience/_experience.h"       // thank you (mummy)
 
-#ifdef _APP_EXPERIENCE_ANTHILL_LIBRARY
-#define CLASS_DECL_APP_EXPERIENCE_ANTHILL  CLASS_DECL_EXPORT
+
+#ifdef _APP_EXPERIENCE_CORE_LIBRARY
+    #define CLASS_DECL_APP_EXPERIENCE_CORE  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_APP_EXPERIENCE_ANTHILL  CLASS_DECL_IMPORT
+    #define CLASS_DECL_APP_EXPERIENCE_CORE  CLASS_DECL_IMPORT
 #endif
 
-#include "button.h"
+#include "control_box_button.h"
 #include "control_box.h"
 
 

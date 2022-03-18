@@ -23,7 +23,7 @@ namespace experience
 
 
       move_manager();
-      virtual ~move_manager();
+      ~move_manager() override;
 
 
       virtual void initialize_move_manager(::experience::frame_window* pframewindow);

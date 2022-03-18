@@ -11,26 +11,26 @@ namespace experience
    public:
 
 
-      ::experience::frame_window *  m_pframewindow;
-      e_hittest                     m_ehittestSizing;
-      e_hittest                     m_ehittestCursor;
-      point_i32                         m_pointCursorOrigin;
-      ::rectangle_i32                        m_rectangleWindowOrigin;
-      size_i32                          m_sizeMinimumBorder;
-      ::u32                          m_uiSWPFlags;
+      ::experience::frame_window *     m_pframewindow;
+      ::experience::enum_frame         m_eframeSizing;
+      ::experience::enum_frame         m_eframeCursor;
+      point_i32                        m_pointCursorOrigin;
+      ::rectangle_i32                  m_rectangleWindowOrigin;
+      size_i32                         m_sizeMinimumBorder;
+      ::u32                            m_uiSWPFlags;
       enum_grip                        m_egripMask;
-      i32                           m_iPaintCount;
+      i32                              m_iPaintCount;
 
 
       size_manager();
-      virtual ~size_manager();
+      ~size_manager() override;
 
       
       virtual void initialize_size_manager(::experience::frame_window* pframewindow);
 
 
-      virtual e_hittest _001HitTest(const ::point_i32 & pointCursor);
-      virtual enum_cursor translate(e_hittest ehittest);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & pointCursor);
+      virtual enum_cursor experience_frame_to_cursor(::experience::enum_frame eframeHitTest);
 
 
       bool on_message_left_button_down(::message::mouse * pmouse);
@@ -40,8 +40,8 @@ namespace experience
       //bool on_message_set_cursor(::message::set_cursor * psetcursor);
 
 
-      void NotifyFramework(e_hittest emode);
-      enum_grip hittest_mode_grip(e_hittest emode);
+      void NotifyFramework(enum_frame eframe);
+      enum_grip experience_frame_to_experience_grip(enum_frame eframe);
       enum_grip GetGripMask();
       void SetGripMask(enum_grip egrip);
       bool window_is_sizing();
@@ -49,7 +49,7 @@ namespace experience
       virtual ::size_i32 GetMinSize();
       bool set_frame_window(frame_window * pframewindow);
 
-      void size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking);
+      void size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking);
       void move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle);
 
       virtual bool window_stop_sizing(bool bApply = true, ::message::mouse * pmouse = nullptr);

@@ -1,0 +1,7 @@
+; app_core_uinteraction.def : Declares the module parameters for the DLL.
+
+LIBRARY      "experience_core"
+	;DESCRIPTION  'uinteraction Windows Dynamic Link Library'
+
+EXPORTS
+experience_core_factory

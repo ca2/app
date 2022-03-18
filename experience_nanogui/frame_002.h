@@ -2,15 +2,15 @@
 
 
 
-namespace experience
-{
 
-
-   namespace anthill
+   namespace experience_nanogui
    {
 
 
-            class CLASS_DECL_APP_EXPERIENCE_ANTHILL frame_002 :
+
+         
+
+            class CLASS_DECL_APP_EXPERIENCE_CORE frame_002 :
                public frame
             {
             public:
@@ -19,10 +19,8 @@ namespace experience
                frame_002();
                virtual ~frame_002();
 
-               
-               virtual string get_default_user_style() const override;
+               string get_default_user_style() const override;
                virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
-
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient);
@@ -32,21 +30,15 @@ namespace experience
                void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_grip egrip);
                void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
-               virtual e_hittest _001HitTest(const ::point_i32 & point) override;
+               ::experience::enum_frame experience_frame_hit_test(const ::point_i32 & point) override;
 
-               virtual status < ::color::color > get_border_main_body_color() override;
+               status < ::color::color > get_border_main_body_color() override;
 
 
             };
 
 
-
-
-   } // namespace anthill
-
-
-} // namespace experience
-
+   } // namespace experience_nanogui
 
 
 

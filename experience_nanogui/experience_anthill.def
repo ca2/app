@@ -1,0 +1,9 @@
+;
+;  Created by camilo on 2020-11-19. <3tbs CamiloSasukeThomasBorregaardSørensen
+;
+LIBRARY  "experience_anthill"
+
+
+EXPORTS
+experience_anthill_factory
+

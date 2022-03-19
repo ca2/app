@@ -345,6 +345,7 @@ namespace user
       __pointer(interaction)                       m_ptooltip;
       __pointer(::object)                          m_pmenuitem;
       __pointer_array(interaction)                 m_menua;
+      __pointer(::appearance::appearance)          m_pappearance;
 
 
       interaction();
@@ -360,6 +361,8 @@ namespace user
 
       bool is_ready_to_quit() const override;
 
+
+      virtual ::appearance::appearance * get_appearance();
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
@@ -627,7 +630,7 @@ namespace user
       virtual void design_reposition();
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
 
-
+      virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void prodevian_stop() override;

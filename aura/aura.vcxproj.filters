@@ -159,6 +159,12 @@
     <Filter Include="Source Files\graphics\image">
       <UniqueIdentifier>{ab116a12-cf51-40ca-8f21-81aa1b7d8924}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\appearance">
+      <UniqueIdentifier>{01191339-361e-4d0e-897c-95594d6e65df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\appearance">
+      <UniqueIdentifier>{e099431e-bcc3-49b8-84d8-21d83244e42b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics\double_buffer.h">
@@ -1055,6 +1061,15 @@
     <ClInclude Include="constant\idpool.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="user\appearance\still.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\appearance.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\_appearance.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1620,6 +1635,12 @@
     </ClCompile>
     <ClCompile Include="graphics\image\array.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appearance\appearance.cpp">
+      <Filter>Source Files\user\appearance</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appearance\still.cpp">
+      <Filter>Source Files\user\appearance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

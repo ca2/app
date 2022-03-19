@@ -50,11 +50,15 @@ namespace user
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
+
+      __pointer(::appearance::still)      m_pstillappearance;
       
 
       still();
-      virtual ~still();
+      ~still() override;
 
+
+      virtual ::appearance::appearance * get_appearance() override;
 
       //virtual bool should_hover();
 

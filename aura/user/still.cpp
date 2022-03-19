@@ -36,6 +36,16 @@ namespace user
    }
 
 
+   ::appearance::appearance * still::get_appearance()
+   {
+      
+      return m_pstillappearance; 
+   
+   }
+
+
+
+
    void still::install_message_routing(::channel * pchannel)
    {
 
@@ -49,6 +59,15 @@ namespace user
 
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      if (m_pstillappearance)
+      {
+
+         m_pstillappearance->_001OnDraw(pgraphics);
+
+         return;
+
+      }
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="appearance\style.cpp" />
     <ClCompile Include="experience\control_box.cpp" />
     <ClCompile Include="experience\control_box_button.cpp" />
     <ClCompile Include="experience\experience.cpp" />
@@ -46,7 +47,6 @@
     <ClCompile Include="experience\frame_011.cpp" />
     <ClCompile Include="experience\frame_013.cpp" />
     <ClCompile Include="experience\frame_Minimal001.cpp" />
-    <ClCompile Include="user\style.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -61,6 +61,8 @@
     <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="appearance\style.h" />
+    <ClInclude Include="appearance\_appearance.h" />
     <ClInclude Include="experience\control_box.h" />
     <ClInclude Include="experience\control_box_button.h" />
     <ClInclude Include="experience\experience.h" />
@@ -72,8 +74,6 @@
     <ClInclude Include="experience\frame_011.h" />
     <ClInclude Include="experience\frame_013.h" />
     <ClInclude Include="experience\_experience.h" />
-    <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\_user.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_experience_nanogui.h" />

@@ -12,17 +12,17 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{3ce4c3c0-474d-4293-bcfa-e5c676f7364e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user">
-      <UniqueIdentifier>{90834fce-3cc4-4c97-954b-439aab937670}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\experience">
       <UniqueIdentifier>{585e12d9-3764-4f98-b11c-b2f30f6007b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\experience">
       <UniqueIdentifier>{37dfdaa4-f530-4720-876b-aecc0ef6158c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user">
+    <Filter Include="Source Files\appearance">
       <UniqueIdentifier>{3256de12-e394-4390-9d34-e20e1b81a90f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\appearance">
+      <UniqueIdentifier>{90834fce-3cc4-4c97-954b-439aab937670}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,9 +34,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="experience\control_box.cpp">
       <Filter>Source Files\experience</Filter>
@@ -70,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="experience\frame_Minimal001.cpp">
       <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="appearance\style.cpp">
+      <Filter>Source Files\appearance</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,17 +109,17 @@
     <ClInclude Include="experience\frame_013.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="user\style.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="_experience_nanogui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="experience\_experience.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="user\_user.h">
-      <Filter>Header Files\user</Filter>
+    <ClInclude Include="appearance\style.h">
+      <Filter>Header Files\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="appearance\_appearance.h">
+      <Filter>Header Files\appearance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

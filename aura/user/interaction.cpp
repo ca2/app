@@ -3185,7 +3185,20 @@ auto tickStartWithLock = ::duration::now();
 
             __copy(pgraphics->m_rectangleDraw, rectangleDraw);
 
-            _001OnDraw(pgraphics);
+            auto pappearance = get_appearance();
+
+            if (::is_set(pappearance))
+            {
+
+               pappearance->_001OnDraw(pgraphics);
+
+            }
+            else
+            {
+
+               _001OnDraw(pgraphics);
+
+            }
 
 #ifdef __DEBUG
 
@@ -7580,6 +7593,14 @@ bool interaction::is_ready_to_quit() const
 }
 
 
+::appearance::appearance * interaction::get_appearance()
+{
+
+   return m_pappearance;
+
+}
+
+
 //void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
 //{
 
@@ -8363,6 +8384,23 @@ void interaction::design_reposition()
 }
 
 
+::size_i32 interaction::preferred_size(::draw2d::graphics_pointer & pgraphics)
+{
+
+   auto pappearance = get_appearance();
+
+   if (::is_set(pappearance))
+   {
+
+      return pappearance->preferred_size(pgraphics);
+
+   }
+
+   return {};
+
+}
+
+
 void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
@@ -8397,7 +8435,20 @@ void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
    m_pprimitiveimpl->on_layout(pgraphics);
 
-   on_layout(pgraphics);
+   auto pappearance = get_appearance();
+
+   if (::is_set(pappearance))
+   {
+
+      pappearance->perform_layout(pgraphics);
+
+   }
+   else
+   {
+
+      on_layout(pgraphics);
+
+   }
 
    auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 

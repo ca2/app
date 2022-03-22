@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 #include "aura/message.h"
 #include "aura/update.h"
-#include "aura/user/wait_cursor.h"
+#include "aura/user/user/wait_cursor.h"
 
 
 namespace user

@@ -25,8 +25,8 @@ NAMESPACE_BEGIN(nanogui)
  * is used, the text is wrapped when it surpasses the specified width.
  */
    class NANOGUI_EXPORT Label :
-      virtual public Widget,
-      virtual public ::appearance::still
+      virtual public Widget
+   //, virtual public ::appearance::still
    {
    public:
 

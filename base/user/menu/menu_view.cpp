@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "menu_view.h"
@@ -521,7 +521,7 @@ namespace user
 
                   pgraphics->set(m_ppenBkSel);
 
-                  pgraphics->move_to(rectangle.left + 1, rectangle.top);
+                  pgraphics->set_current_point(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
                   pimage1 = m_pimageMap[pnodeItem->attribute("id").atom()];
@@ -742,11 +742,11 @@ namespace user
    void menu_view::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.right, rectangle.top);
 
-      pgraphics->move_to(rectangle.left, rectangle.bottom);
+      pgraphics->set_current_point(rectangle.left, rectangle.bottom);
 
       pgraphics->line_to(rectangle.right, rectangle.bottom);
 
@@ -756,7 +756,7 @@ namespace user
    void menu_view::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32& point1, const ::point_i32& point2)
    {
 
-      pgraphics->move_to(point1);
+      pgraphics->set_current_point(point1);
       pgraphics->line_to(point2);
 
    }
@@ -767,11 +767,11 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right, rectangle.top);
 
       pgraphics->line_to(rectangle.right, rectangle.bottom);
 
@@ -784,11 +784,11 @@ namespace user
    void menu_view::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right, rectangle.top);
 
       pgraphics->line_to(rectangle.right, rectangle.bottom);
 
@@ -802,13 +802,13 @@ namespace user
       pgraphics->fill_rectangle(rectangle);
 
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.left, rectangle.bottom);
 
 
 
-      pgraphics->move_to(rectangle.right, rectangle.top);
+      pgraphics->set_current_point(rectangle.right, rectangle.top);
 
       pgraphics->line_to(rectangle.right, rectangle.bottom);
 
@@ -821,11 +821,11 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
 
       int h = ::height(rectangle);
 
@@ -852,11 +852,11 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->move_to(rectangle.left, rectangle.top);
+      pgraphics->set_current_point(rectangle.left, rectangle.top);
 
       pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rectangle.right, rectangle.bottom - 1);
+      pgraphics->set_current_point(rectangle.right, rectangle.bottom - 1);
 
       int h = ::height(rectangle);
 
@@ -884,7 +884,7 @@ namespace user
    void menu_view::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32 & point2)
    {
 
-      pgraphics->move_to(point1);
+      pgraphics->set_current_point(point1);
       pgraphics->line_to(point2);
    }
 

@@ -11,6 +11,7 @@
 context_image::context_image()
 {
 
+   m_iImageSeed = 1;
 
 }
 
@@ -47,6 +48,64 @@ void context_image::destroy_composites()
    return ::object::destroy_composites();
 
 }
+
+
+i32 context_image::image_integer(const char * path)
+{
+
+   synchronous_lock  synchronouslock(mutex());
+
+   auto & iImage = m_mapPathInt[path];
+
+   if (iImage <= 0)
+   {
+
+      iImage = m_iImageSeed;
+
+      m_mapIntPath[iImage] = path;
+
+      m_iImageSeed++;
+
+   }
+
+   return iImage;
+
+}
+
+
+image_pointer context_image::integer_image(i32 iImage)
+{
+
+   synchronous_lock  synchronouslock(mutex());
+
+   auto strPath = m_mapIntPath[iImage];
+
+   ASSERT(strPath.has_char());
+
+   return path_image(strPath);
+
+}
+
+
+image_pointer context_image::path_image(const char * path)
+{
+
+   synchronous_lock  synchronouslock(mutex());
+
+   auto & pimage = m_mapPathImage[path];
+
+   if (::is_null(pimage))
+   {
+
+      pimage = get_image(path);
+
+   }
+
+   return pimage;
+
+
+}
+
 
 
 ::image_pointer context_image::_load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions)

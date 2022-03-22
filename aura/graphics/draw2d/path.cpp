@@ -511,6 +511,16 @@ namespace draw2d
    }
 
 
+   bool path::add_ellipse(const ::ellipse_f64 & ellipseParam)
+   {
+
+      m_shapea.add_shape(ellipseParam);
+
+      return true;
+
+   }
+
+
    bool path::add_rect(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotationCenter)
    {
 
@@ -1467,6 +1477,8 @@ namespace draw2d
          return _set(pgraphics, pshape->shape < ::lines>());
       case e_shape_rectangle:
          return _set(pgraphics, pshape->shape < ::rectangle_f64>());
+      case e_shape_ellipse:
+         return _set(pgraphics, pshape->shape < ::ellipse_f64>());
       case e_shape_polygon:
          return _set(pgraphics, pshape->shape < ::polygon_f64>());
       case e_shape_draw_text:
@@ -1550,7 +1562,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & rectangle)
+   bool path::_set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & rectangle)
    {
 
       throw ::interface_only();
@@ -1559,6 +1571,16 @@ namespace draw2d
 
    }
 
+
+   bool path::_set(::draw2d::graphics * pgraphics, const ::ellipse_f64 & ellipse)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+   
 
    //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_i32& polygon_i32)
    //{
@@ -2028,6 +2050,31 @@ namespace draw2d
 
    }
 
+   path & path::operator = (const path & path)
+   {
+
+      if (this != &path)
+      {
+
+         m_shapea.erase_all();
+
+         for (auto & shape : path.m_shapea)
+         {
+
+            m_shapea.add(shape->clone());
+
+         }
+
+         m_bHasPoint = path.m_bHasPoint;
+         m_pointBegin = path.m_pointBegin;
+         m_pointEnd = path.m_pointEnd;
+         m_efillmode = path.m_efillmode;
+         m_pointOffset = path.m_pointOffset;
+
+      }
+
+      return *this;
+   }
 
 } // namespace draw2d
 

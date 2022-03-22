@@ -183,13 +183,13 @@ namespace experience_nanogui
 
                pgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill_path(ppath);
+               pgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                pgraphics->set(ppenBorder);
 
-               pgraphics->draw_path(ppath);
+               pgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -231,13 +231,13 @@ namespace experience_nanogui
 
                   pgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
@@ -251,13 +251,13 @@ namespace experience_nanogui
 
                   pgraphics->set(ppane->m_pbrushFill);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none);
 
@@ -310,13 +310,13 @@ namespace experience_nanogui
 
                pgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill_path(ppath);
+               pgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                pgraphics->set(ppenBorder);
 
-               pgraphics->draw_path(ppath);
+               pgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -358,13 +358,13 @@ namespace experience_nanogui
 
                   pgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
@@ -386,13 +386,13 @@ namespace experience_nanogui
 
                   pgraphics->set(pbrushFill);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none);
 
@@ -1665,22 +1665,22 @@ namespace experience_nanogui
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->move_to(pointCenter.x, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x, pointCenter.y + 5);
-         pgraphics->move_to(pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x + 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y);
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y + 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
 
       }

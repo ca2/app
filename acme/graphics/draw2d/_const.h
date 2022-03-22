@@ -231,6 +231,21 @@ namespace draw2d
    };
 
 
+
+   enum enum_brush
+   {
+
+      e_brush_null,
+      e_brush_solid,
+      e_brush_linear_gradient_point_color,
+      e_brush_radial_gradient_color,
+      e_brush_pattern,
+      e_brush_box_gradient,
+
+   };
+
+
+
    enum enum_line_cap
    {
 

@@ -381,6 +381,15 @@ namespace color
       //ASSERT(dS >= 0.0);
       //ASSERT(dS <= 1.0);
 
+      dH = fmod(dH, 1.0);
+
+      if (dH < 0.0)
+      {
+
+         dH += 1.0;
+
+      }
+
       double dR, dG, dB;
 
       if (dH >= 1.0)

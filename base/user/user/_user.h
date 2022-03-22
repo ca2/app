@@ -1,4 +1,9 @@
+#ifndef BASE_USER_CUBE_H
+#define BASE_USER_CUBE_H
+
+
 #pragma once
+
 
 
 //#if !BROAD_PRECOMPILED_HEADER
@@ -563,5 +568,7 @@ namespace base
 
 } // namespace base
 
+
+#endif // BASE_USER_CUBE_H
 
 

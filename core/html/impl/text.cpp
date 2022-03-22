@@ -885,12 +885,12 @@ namespace html
                   maxcy = maximum(maxcy,size3.cy);
                   if(m_bFocus && bCaretOn && i3 == str1.get_length())
                   {
-                     pgraphics->move_to(left + size1.cx,y);
+                     pgraphics->set_current_point(left + size1.cx,y);
                      pgraphics->line_to(left + size1.cx,y + maxcy);
                   }
                   if(m_bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
                   {
-                     pgraphics->move_to(left + size1.cx + size2.cx,y);
+                     pgraphics->set_current_point(left + size1.cx + size2.cx,y);
                      pgraphics->line_to(left + size1.cx + size2.cx,y + maxcy);
                   }
 

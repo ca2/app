@@ -68,7 +68,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      pgraphics->fill_path(pitem->m_pDraw2dPath.cast < ::draw2d::path>());
+      pgraphics->fill(pitem->m_pDraw2dPath.cast < ::draw2d::path>());
 
    }
 

@@ -110,10 +110,13 @@ NAMESPACE_BEGIN(nanogui)
 //#endif
 
 Screen::Screen()
-   : Widget(nullptr) /*, m_glfw_window(nullptr), m_nvg_context(nullptr),
+   : Widget(nullptr) /*, m_glfw_window(nullptr), ctx(nullptr),
    m_cursor(Cursor::Arrow), m_background(0.3f, 0.3f, 0.32f, 1.f),
    m_shutdown_glfw_on_destruct(false), m_fullscreen(false), m_depth_buffer(false),
-   m_stencil_buffer(false), m_float_buffer(false), m_redraw(false)*/ {
+   m_stencil_buffer(false), m_float_buffer(false)*/, m_redraw(false) {
+
+   m_pixel_ratio = 1.0f;
+
   /* memset(m_cursors, 0, sizeof(GLFWcursor *) * (size_t)Cursor::CursorCount);
 #if defined(NANOGUI_USE_OPENGL)
    GLint n_stencil_bits = 0, n_depth_bits = 0;
@@ -132,11 +135,11 @@ Screen::Screen()
 Screen::Screen(const Vector2i & size, const std::string & caption, bool resizable,
    bool fullscreen, bool depth_buffer, bool stencil_buffer,
    bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
-   : Widget(nullptr)/*,  m_glfw_window(nullptr), m_nvg_context(nullptr),
+   : Widget(nullptr)/*,  m_glfw_window(nullptr), ctx(nullptr),
    m_cursor(Cursor::Arrow), m_background(0.3f, 0.3f, 0.32f, 1.f), m_caption(caption),
    m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
-   m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer), m_redraw(false)*/ {
-   
+   m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false) {
+   m_size = size;
    set_theme(new Theme(nullptr));
 
    // memset(m_cursors, 0, sizeof(GLFWcursor *) * (int)Cursor::CursorCount);
@@ -465,23 +468,23 @@ Screen::Screen(const Vector2i & size, const std::string & caption, bool resizabl
 //#endif
 //
 //#if defined(NANOGUI_USE_OPENGL)
-//   m_nvg_context = nvgCreateGL3(flags);
+//   ctx = nvgCreateGL3(flags);
 //#elif defined(NANOGUI_USE_GLES)
-//   m_nvg_context = nvgCreateGLES2(flags);
+//   ctx = nvgCreateGLES2(flags);
 //#elif defined(NANOGUI_USE_METAL)
 //   void * nswin = glfwGetCocoaWindow(window);
 //   metal_window_init(nswin, m_float_buffer);
 //   metal_window_set_size(nswin, m_fbsize);
-//   m_nvg_context = nvgCreateMTL(metal_layer(),
+//   ctx = nvgCreateMTL(metal_layer(),
 //      metal_command_queue(),
 //      flags | NVG_TRIPLE_BUFFER);
 //#endif
 //
-//   if (!m_nvg_context)
+//   if (!ctx)
 //      throw std::runtime_error("Could not initialize NanoVG!");
 //
 //   m_visible = glfwGetWindowAttrib(window, GLFW_VISIBLE) != 0;
-//   set_theme(new Theme(m_nvg_context));
+//   set_theme(new Theme(ctx));
 //   m_mouse_pos = Vector2i(0);
 //   m_mouse_state = m_modifiers = 0;
 //   m_drag_active = false;
@@ -494,8 +497,8 @@ Screen::Screen(const Vector2i & size, const std::string & caption, bool resizabl
 //      m_cursors[i] = glfwCreateStandardCursor(GLFW_ARROW_CURSOR + (int)i);
 //
 //   /// Fixes retina display-related font rendering issue (#185)
-//   nvgBeginFrame(m_nvg_context, m_size[0], m_size[1], m_pixel_ratio);
-//   nvgEndFrame(m_nvg_context);
+//   nvgBeginFrame(ctx, m_size[0], m_size[1], m_pixel_ratio);
+//   nvgEndFrame(ctx);
 //}
 //
 Screen::~Screen() {
@@ -505,13 +508,13 @@ Screen::~Screen() {
    //      glfwDestroyCursor(m_cursors[i]);
    }
 //
-//   if (m_nvg_context) {
+//   if (ctx) {
 //#if defined(NANOGUI_USE_OPENGL)
-//      nvgDeleteGL3(m_nvg_context);
+//      nvgDeleteGL3(ctx);
 //#elif defined(NANOGUI_USE_GLES)
-//      nvgDeleteGLES2(m_nvg_context);
+//      nvgDeleteGLES2(ctx);
 //#elif defined(NANOGUI_USE_METAL)
-//      nvgDeleteMTL(m_nvg_context);
+//      nvgDeleteMTL(ctx);
 //#endif
 //   }
 //
@@ -553,7 +556,7 @@ Screen::~Screen() {
 //   CHK(glClearColor(m_background[0], m_background[1], m_background[2], m_background[3]));
 //   CHK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
 //#elif defined(NANOGUI_USE_METAL)
-//   mnvgClearWithColor(m_nvg_context, m_background);
+//   mnvgClearWithColor(ctx, m_background);
 //#endif
 //}
 //
@@ -565,7 +568,7 @@ Screen::~Screen() {
 //   metal_window_set_size(nswin, m_fbsize);
 //   m_metal_drawable = metal_window_next_drawable(nswin);
 //   m_metal_texture = metal_drawable_texture(m_metal_drawable);
-//   mnvgSetColorTexture(m_nvg_context, m_metal_texture);
+//   mnvgSetColorTexture(ctx, m_metal_texture);
 //#endif
 //
 //#if !defined(EMSCRIPTEN)
@@ -597,7 +600,7 @@ Screen::~Screen() {
 //#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
 //   glfwSwapBuffers(m_glfw_window);
 //#elif defined(NANOGUI_USE_METAL)
-//   mnvgSetColorTexture(m_nvg_context, nullptr);
+//   mnvgSetColorTexture(ctx, nullptr);
 //   metal_present_and_release_drawable(m_metal_drawable);
 //   m_metal_texture = nullptr;
 //   m_metal_drawable = nullptr;
@@ -628,77 +631,84 @@ Screen::~Screen() {
 //}
 //
 //void Screen::nvg_flush() {
-//   NVGparams * params = nvgInternalParams(m_nvg_context);
+//   NVGparams * params = nvgInternalParams(ctx);
 //   params->renderFlush(params->userPtr);
 //   params->renderViewport(params->userPtr, m_size[0], m_size[1], m_pixel_ratio);
 //}
 //
-//void Screen::draw_widgets() {
-//   nvgBeginFrame(m_nvg_context, m_size[0], m_size[1], m_pixel_ratio);
-//
-//   draw(m_nvg_context);
-//
-//   double elapsed = glfwGetTime() - m_last_interaction;
-//
-//   if (elapsed > 0.5f) {
-//      /* Draw tooltips */
-//      const Widget * widget = find_widget(m_mouse_pos);
-//      if (widget && !widget->tooltip().empty()) {
-//         int tooltip_width = 150;
-//
-//         float bounds[4];
-//         nvgFontFace(m_nvg_context, "sans");
-//         nvgFontSize(m_nvg_context, 15.0f);
-//         nvgTextAlign(m_nvg_context, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
-//         nvgTextLineHeight(m_nvg_context, 1.1f);
-//         Vector2i pos = widget->absolute_position() +
-//            Vector2i(widget->width() / 2, widget->height() + 10);
-//
-//         nvgTextBounds(m_nvg_context, pos.x(), pos.y(),
-//            widget->tooltip().c_str(), nullptr, bounds);
-//
-//         int h = (bounds[2] - bounds[0]) / 2;
-//         if (h > tooltip_width / 2) {
-//            nvgTextAlign(m_nvg_context, NVG_ALIGN_CENTER | NVG_ALIGN_TOP);
-//            nvgTextBoxBounds(m_nvg_context, pos.x(), pos.y(), tooltip_width,
-//               widget->tooltip().c_str(), nullptr, bounds);
-//
-//            h = (bounds[2] - bounds[0]) / 2;
-//         }
-//         int shift = 0;
-//
-//         if (pos.x() - h - 8 < 0) {
-//            /* Keep tooltips on screen */
-//            shift = pos.x() - h - 8;
-//            pos.x() -= shift;
-//            bounds[0] -= shift;
-//            bounds[2] -= shift;
-//         }
-//
-//         nvgGlobalAlpha(m_nvg_context,
-//            std::min(1.0, 2 * (elapsed - 0.5f)) * 0.8);
-//
-//         nvgBeginPath(m_nvg_context);
-//         nvgFillColor(m_nvg_context, Color(0, 255));
-//         nvgRoundedRect(m_nvg_context, bounds[0] - 4 - h, bounds[1] - 4,
-//            (int)(bounds[2] - bounds[0]) + 8,
-//            (int)(bounds[3] - bounds[1]) + 8, 3);
-//
-//         int px = (int)((bounds[2] + bounds[0]) / 2) - h + shift;
-//         nvgMoveTo(m_nvg_context, px, bounds[1] - 10);
-//         nvgLineTo(m_nvg_context, px + 7, bounds[1] + 1);
-//         nvgLineTo(m_nvg_context, px - 7, bounds[1] + 1);
-//         nvgFill(m_nvg_context);
-//
-//         nvgFillColor(m_nvg_context, Color(255, 255));
-//         nvgFontBlur(m_nvg_context, 0.0f);
-//         nvgTextBox(m_nvg_context, pos.x() - h, pos.y(), tooltip_width,
-//            widget->tooltip().c_str(), nullptr);
-//      }
-//   }
-//
-//   nvgEndFrame(m_nvg_context);
-//}
+
+void Screen::draw(NVGcontext * ctx) {
+   Widget::draw(ctx);
+
+   draw_widgets(ctx);
+
+}
+void Screen::draw_widgets(NVGcontext * ctx) {
+   //nvgBeginFrame(ctx, m_size[0], m_size[1], m_pixel_ratio);
+
+   //draw(ctx);
+
+   auto elapsed = m_last_interaction.elapsed();
+
+   if (elapsed > 0.5_s) {
+      /* Draw tooltips */
+      const Widget * widget = find_widget(m_mouse_pos);
+      if (widget && !widget->tooltip().empty()) {
+         int tooltip_width = 150;
+
+         float bounds[4];
+         nvgFontFace(ctx, "sans");
+         nvgFontSize(ctx, 15.0f);
+         nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
+         nvgTextLineHeight(ctx, 1.1f);
+         Vector2i pos = widget->absolute_position() +
+            Vector2i(widget->width() / 2, widget->height() + 10);
+
+         nvgTextBounds(ctx, pos.x(), pos.y(),
+            widget->tooltip().c_str(), nullptr, bounds);
+
+         int h = (bounds[2] - bounds[0]) / 2;
+         if (h > tooltip_width / 2) {
+            nvgTextAlign(ctx, NVG_ALIGN_CENTER | NVG_ALIGN_TOP);
+            nvgTextBoxBounds(ctx, pos.x(), pos.y(), tooltip_width,
+               widget->tooltip().c_str(), nullptr, bounds);
+
+            h = (bounds[2] - bounds[0]) / 2;
+         }
+         int shift = 0;
+
+         if (pos.x() - h - 8 < 0) {
+            /* Keep tooltips on screen */
+            shift = pos.x() - h - 8;
+            pos.x() -= shift;
+            bounds[0] -= shift;
+            bounds[2] -= shift;
+         }
+
+         nvgGlobalAlpha(ctx,
+            minimum(1.0, 2 * (elapsed - 0.5f)) * 0.8);
+
+         nvgBeginPath(ctx);
+         nvgFillColor(ctx, Color(0, 255));
+         nvgRoundedRect(ctx, bounds[0] - 4 - h, bounds[1] - 4,
+            (int)(bounds[2] - bounds[0]) + 8,
+            (int)(bounds[3] - bounds[1]) + 8, 3);
+
+         int px = (int)((bounds[2] + bounds[0]) / 2) - h + shift;
+         nvgMoveTo(ctx, px, bounds[1] - 10);
+         nvgLineTo(ctx, px + 7, bounds[1] + 1);
+         nvgLineTo(ctx, px - 7, bounds[1] + 1);
+         nvgFill(ctx);
+
+         nvgFillColor(ctx, Color(255, 255));
+         nvgFontBlur(ctx, 0.0f);
+         nvgTextBox(ctx, pos.x() - h, pos.y(), tooltip_width,
+            widget->tooltip().c_str(), nullptr);
+      }
+   }
+
+   //nvgEndFrame(ctx);
+}
 //
 //bool Screen::keyboard_event(int key, int scancode, int action, int modifiers) {
 //   if (m_focus_path.size() > 0) {
@@ -736,102 +746,131 @@ Screen::~Screen() {
 //   }
 //}
 //
-//void Screen::cursor_pos_callback_event(double x, double y) {
-//   Vector2i p((int)x, (int)y);
-//
+
+bool Screen::on_mouse_move(const ::point_i32 & point) 
+{
+   Vector2i p((int)point.x, (int)point.y);
+
 //#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
 //   p = Vector2i(Vector2f(p) / m_pixel_ratio);
 //#endif
-//
+
 //   m_last_interaction = glfwGetTime();
-//   try {
-//      p -= Vector2i(1, 2);
-//
-//      bool ret = false;
-//      if (!m_drag_active) {
-//         Widget * widget = find_widget(p);
-//         if (widget != nullptr && widget->cursor() != m_cursor) {
-//            m_cursor = widget->cursor();
-//            glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
-//         }
-//      }
-//      else {
-//         ret = m_drag_widget->mouse_drag_event(
-//            p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos,
-//            m_mouse_state, m_modifiers);
-//      }
-//
-//      if (!ret)
-//         ret = mouse_motion_event(p, p - m_mouse_pos, m_mouse_state, m_modifiers);
-//
-//      m_mouse_pos = p;
-//      m_redraw |= ret;
-//   }
-//   catch (const std::exception & e) {
-//      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
-//   }
-//}
-//
-//void Screen::mouse_button_callback_event(int button, int action, int modifiers) {
-//   m_modifiers = modifiers;
-//   m_last_interaction = glfwGetTime();
-//
+   m_last_interaction.Now();
+   //try {
+      p -= Vector2i(1, 2);
+
+      bool ret = false;
+      if (!m_drag_active) {
+         //Widget * widget = find_widget(p);
+         //if (widget != nullptr && widget->cursor() != m_cursor) {
+           // m_cursor = widget->cursor();
+            //glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
+         //}
+      }
+      else {
+         ret = m_drag_widget->mouse_drag_event(
+            p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos,
+            m_mouse_state, m_modifiers);
+      }
+
+      if (!ret)
+         ret = Widget::mouse_motion_event(p, p - m_mouse_pos, m_mouse_state, m_modifiers);
+
+      m_mouse_pos = p;
+      m_redraw |= ret;
+
+      if (m_redraw)
+      {
+
+         if (m_puserinteraction)
+         {
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
+
+      }
+   //}
+   //catch()
+   //catch (const std::exception & e) {
+     // std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //}
+      return ret;
+}
+
+bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) 
+{
+   m_modifiers = modifiers;
+  // m_last_interaction = glfwGetTime();
+   m_last_interaction.Now();
+
 //#if defined(__APPLE__)
-//   if (button == GLFW_MOUSE_BUTTON_1 && modifiers == GLFW_MOD_CONTROL)
-//      button = GLFW_MOUSE_BUTTON_2;
+   //if (button == GLFW_MOUSE_BUTTON_1 && modifiers == GLFW_MOD_CONTROL)
+      //button = GLFW_MOUSE_BUTTON_2;
 //#endif
-//
-//   try {
-//      if (m_focus_path.size() > 1) {
-//         const Window * window =
-//            dynamic_cast<Window *>(m_focus_path[m_focus_path.size() - 2]);
-//         if (window && window->modal()) {
-//            if (!window->contains(m_mouse_pos))
-//               return;
-//         }
-//      }
-//
-//      if (action == GLFW_PRESS)
-//         m_mouse_state |= 1 << button;
-//      else
-//         m_mouse_state &= ~(1 << button);
-//
-//      auto drop_widget = find_widget(m_mouse_pos);
-//      if (m_drag_active && action == GLFW_RELEASE &&
-//         drop_widget != m_drag_widget) {
-//         m_redraw |= m_drag_widget->mouse_button_event(
-//            m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
-//            false, m_modifiers);
-//      }
-//
-//      if (drop_widget != nullptr && drop_widget->cursor() != m_cursor) {
-//         m_cursor = drop_widget->cursor();
-//         glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
-//      }
-//
-//      bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-//
-//      if (!m_drag_active && action == GLFW_PRESS && btn12) {
-//         m_drag_widget = find_widget(m_mouse_pos);
-//         if (m_drag_widget == this)
-//            m_drag_widget = nullptr;
-//         m_drag_active = m_drag_widget != nullptr;
-//         if (!m_drag_active)
-//            update_focus(nullptr);
-//      }
-//      else if (m_drag_active && action == GLFW_RELEASE && btn12) {
-//         m_drag_active = false;
-//         m_drag_widget = nullptr;
-//      }
-//
-//      m_redraw |= mouse_button_event(m_mouse_pos, button,
-//         action == GLFW_PRESS, m_modifiers);
-//   }
-//   catch (const std::exception & e) {
-//      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
-//   }
-//}
-//
+
+   //try {
+      if (m_focus_path.size() > 1) {
+         const Window * window =
+            dynamic_cast<Window *>(m_focus_path[m_focus_path.size() - 2]);
+         if (window && window->modal()) {
+            if (!window->contains(m_mouse_pos))
+               return false;
+         }
+      }
+
+      //if (action == GLFW_PRESS)
+      if(down)
+         m_mouse_state |= 1 << button;
+      else
+         m_mouse_state &= ~(1 << button);
+
+      auto drop_widget = find_widget(m_mouse_pos);
+      //if (m_drag_active && action == GLFW_RELEASE &&
+      if (m_drag_active && !down &&
+         drop_widget != m_drag_widget) {
+         m_redraw |= m_drag_widget->mouse_button_event(
+            m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
+            false, m_modifiers);
+      }
+
+ /*     if (drop_widget != nullptr && drop_widget->cursor() != m_cursor) {
+         m_cursor = drop_widget->cursor();
+         glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
+      }*/
+
+      //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
+      bool btn12 = button == __MOUSE_LEFT_BUTTON || button == __MOUSE_RIGHT_BUTTON;
+
+      //if (!m_drag_active && action == GLFW_PRESS && btn12) {
+      if (!m_drag_active && down && btn12) {
+         m_drag_widget = find_widget(m_mouse_pos);
+         if (m_drag_widget == this)
+            m_drag_widget = nullptr;
+         m_drag_active = m_drag_widget != nullptr;
+         if (!m_drag_active)
+            update_focus(nullptr);
+      }
+      //else if (m_drag_active && action == GLFW_RELEASE && btn12) {
+      else if (m_drag_active && !down && btn12) {
+         m_drag_active = false;
+         m_drag_widget = nullptr;
+      }
+
+      bool bRet = Widget::mouse_button_event(m_mouse_pos, button,
+         down, m_modifiers);
+      m_redraw |= bRet;
+  //   action == GLFW_PRESS, m_modifiers);
+   //}
+   //catch (const std::exception & e) {
+   //   std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
+   //}
+      return bRet;
+}
+
 //void Screen::key_callback_event(int key, int scancode, int action, int mods) {
 //   m_last_interaction = glfwGetTime();
 //   try {
@@ -908,66 +947,71 @@ Screen::~Screen() {
 //   }
 //   redraw();
 //}
-//
-//void Screen::update_focus(Widget * widget) {
-//   for (auto w : m_focus_path) {
-//      if (!w->focused())
-//         continue;
-//      w->focus_event(false);
-//   }
-//   m_focus_path.clear();
-//   Widget * window = nullptr;
-//   while (widget) {
-//      m_focus_path.push_back(widget);
-//      if (dynamic_cast<Window *>(widget))
-//         window = widget;
-//      widget = widget->parent();
-//   }
-//   for (auto it = m_focus_path.rbegin(); it != m_focus_path.rend(); ++it)
-//      (*it)->focus_event(true);
-//
-//   if (window)
-//      move_window_to_front((Window *)window);
-//}
-//
-//void Screen::dispose_window(Window * window) {
-//   if (std::find(m_focus_path.begin(), m_focus_path.end(), window) != m_focus_path.end())
-//      m_focus_path.clear();
-//   if (m_drag_widget == window)
-//      m_drag_widget = nullptr;
-//   remove_child(window);
-//}
-//
-//void Screen::center_window(Window * window) {
-//   if (window->size() == 0) {
-//      window->set_size(window->preferred_size(m_nvg_context));
-//      window->perform_layout(m_nvg_context);
-//   }
-//   window->set_position((m_size - window->size()) / 2);
-//}
-//
-//void Screen::move_window_to_front(Window * window) {
-//   m_children.erase(std::remove(m_children.begin(), m_children.end(), window), m_children.end());
-//   m_children.push_back(window);
-//   /* Brute force topological sort (no problem for a few windows..) */
-//   bool changed = false;
-//   do {
-//      size_t base_index = 0;
-//      for (size_t index = 0; index < m_children.size(); ++index)
-//         if (m_children[index] == window)
-//            base_index = index;
-//      changed = false;
-//      for (size_t index = 0; index < m_children.size(); ++index) {
-//         Popup * pw = dynamic_cast<Popup *>(m_children[index]);
-//         if (pw && pw->parent_window() == window && index < base_index) {
-//            move_window_to_front(pw);
-//            changed = true;
-//            break;
-//         }
-//      }
-//   } while (changed);
-//}
-//
+
+void Screen::update_focus(Widget * widget) {
+   for (auto w : m_focus_path) {
+      if (!w->focused())
+         continue;
+      w->focus_event(false);
+   }
+   m_focus_path.clear();
+   Widget * window = nullptr;
+   while (widget) {
+      m_focus_path.push_back(widget);
+      if (dynamic_cast<Window *>(widget))
+         window = widget;
+      widget = widget->parent();
+   }
+   for (auto it = m_focus_path.rbegin(); it != m_focus_path.rend(); ++it)
+      (*it)->focus_event(true);
+
+   if (window)
+      move_window_to_front((Window *)window);
+}
+
+void Screen::dispose_window(Window * window) {
+   if (std::find(m_focus_path.begin(), m_focus_path.end(), window) != m_focus_path.end())
+      m_focus_path.clear();
+   if (m_drag_widget == window)
+      m_drag_widget = nullptr;
+   remove_child(window);
+}
+
+void Screen::center_window(Window * window, NVGcontext * pcontext) {
+   if (window->size() == 0) {
+      window->set_size(window->preferred_size(pcontext));
+      window->perform_layout(pcontext);
+   }
+   window->set_position((m_size - window->size()) / 2);
+}
+
+void Screen::move_window_to_front(Window * window) {
+   m_children.erase(std::remove(m_children.begin(), m_children.end(), window), m_children.end());
+   m_children.push_back(window);
+   /* Brute force topological sort (no problem for a few windows..) */
+   bool changed = false;
+   do {
+      size_t base_index = 0;
+      for (size_t index = 0; index < m_children.size(); ++index)
+         if (m_children[index] == window)
+            base_index = index;
+      changed = false;
+      for (size_t index = 0; index < m_children.size(); ++index) {
+         Popup * pw = dynamic_cast<Popup *>(m_children[index]);
+         if (pw && pw->parent_window() == window && index < base_index) {
+            move_window_to_front(pw);
+            changed = true;
+            break;
+         }
+      }
+   } while (changed);
+
+   m_puserinteraction->set_need_redraw();
+
+   m_puserinteraction->post_redraw();
+
+}
+
 //bool Screen::tooltip_fade_in_progress() const {
 //   double elapsed = glfwGetTime() - m_last_interaction;
 //   if (elapsed < 0.25f || elapsed > 1.25f)
@@ -1008,6 +1052,15 @@ void Screen::_nanogui_to_user(::user::interaction * puserinteraction)
 
    }
 
+   m_puserinteraction = puserinteraction;
+
+   puserinteraction->m_pappearance = this;
+
+   puserinteraction->set_need_layout();
+
+   puserinteraction->set_need_redraw();
+
+   puserinteraction->post_redraw();
    
 }
 

@@ -104,22 +104,25 @@ namespace write_text
    }
 
 
-   font & font::operator = (const font & pfontSrc)
+   font & font::operator = (const font & font)
    {
 
-      if (this != &pfontSrc)
+      if (this != &font)
       {
 
-         m_strFontFamilyName = pfontSrc.m_strFontFamilyName;
-         m_dFontSize = pfontSrc.m_dFontSize;
-         m_dFontWidth = pfontSrc.m_dFontWidth;
-         m_eunitFontSize = pfontSrc.m_eunitFontSize;
-         m_iFontWeight = pfontSrc.m_iFontWeight;
-         m_bItalic = pfontSrc.m_bItalic;
-         m_bUnderline = pfontSrc.m_bUnderline;
-         m_bStrikeout = pfontSrc.m_bStrikeout;
-         m_echaracterseta = pfontSrc.m_echaracterseta;
-         m_echaracterset = pfontSrc.m_echaracterset;
+         m_strFontFamilyName = font.m_strFontFamilyName;
+         m_path = font.m_path;
+         m_dFontSize = font.m_dFontSize;
+         m_dFontWidth = font.m_dFontWidth;
+         m_eunitFontSize = font.m_eunitFontSize;
+         m_iFontWeight = font.m_iFontWeight;
+         m_bItalic = font.m_bItalic;
+         m_bUnderline = font.m_bUnderline;
+         m_bStrikeout = font.m_bStrikeout;
+         m_echaracterseta = font.m_echaracterseta;
+         m_echaracterset = font.m_echaracterset;
+         //m_memory = font.m_memory;
+
          set_modified();
 
       }

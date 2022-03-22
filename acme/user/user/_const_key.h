@@ -120,6 +120,7 @@ namespace user
       e_key_f10,
       e_key_f11,
       e_key_f12,
+      e_key_system_command,
 
    };
 

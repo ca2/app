@@ -84,7 +84,10 @@ namespace color
 
       color() {}
       color(e_zero_init) { red = green = blue = alpha = 0; }
-      color(byte r, byte g, byte b, byte a = 255) { red = r; green = g; blue = b; alpha = a; }
+      template < typename R, typename G, typename B >
+      color(R r, G g, B b) { set_red(r); set_green(g); set_blue(b); }
+      template < typename R, typename G, typename B, typename A >
+      color(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_alpha(a); }
       color(::color32_t color32) { u32 = color32; }
       color(const ::color::color & color) { u32 = color.u32; }
       color(const ::color::color& color, const opacity& opacity) { u32 = color.u32; alpha = opacity.get_alpha(); }
@@ -163,17 +166,51 @@ namespace color
       //   operator rgba & () {return m_rgba;}
       //   operator const rgba & () const {return m_rgba;}
 
-      template < primitive_integral R, primitive_integral G, primitive_integral B, primitive_integral A >
-      void set(R r, G g, B b) { set_byte((byte)r, (byte)g, (byte)b); }
+      template < typename R, typename G, typename B >
+      void set(R r, G g, B b) { set_red(r); set_green(g); set_blue(b); }
 
-      template < primitive_integral R, primitive_integral G, primitive_integral B, primitive_integral A >
-      void set(R r, G g, B b, A a) { set_byte((byte)r, (byte)g, (byte)b, (byte)a); }
+      template < typename R, typename G, typename B, typename A >
+      void set(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_alpha(a); }
 
-      template < primitive_floating R, primitive_floating G, primitive_floating B >
-      void set(R r, G g, B b) { set_double((double)r, (double)g, (double)b); }
+      void set_red(byte r) { this->red = r; }
 
-      template < primitive_floating R, primitive_floating G, primitive_floating B, primitive_floating A >
-      void set(R r, G g, B b, A a) { set_double((double)r, (double)g, (double)b, (double)a); }
+      void set_green(byte g) { this->green = g; }
+
+      void set_blue(byte b) { this->blue = b; }
+
+      void set_alpha(byte a) { this->alpha = a; }
+
+      void set_red(::u16 r) { this->red = r >> 8; }
+
+      void set_green(::u16 g) { this->green = g >> 8; }
+
+      void set_blue(::u16 b) { this->blue = b >> 8; }
+
+      void set_alpha(::u16 a) { this->alpha = a >> 8; }
+
+      void set_red(::i32 r) { this->red = r; }
+
+      void set_green(::i32 g) { this->green = g; }
+
+      void set_blue(::i32 b) { this->blue = b; }
+
+      void set_alpha(::i32 a) { this->alpha = a; }
+
+      void set_red(float f) { this->red = (byte)(f * 255.0f); }
+
+      void set_green(float f) { this->green = (byte)(f * 255.0f); }
+
+      void set_blue(float f) { this->blue = (byte)(f * 255.0f); }
+
+      void set_alpha(float f) { this->alpha = (byte)(f * 255.0f); }
+
+      void set_red(double f) { this->red = (byte)(f * 255.0); }
+
+      void set_green(double f) { this->green = (byte)(f * 255.0); }
+
+      void set_blue(double f) { this->blue = (byte)(f * 255.0); }
+
+      void set_alpha(double f) { this->alpha = (byte)(f * 255.0); }
 
       void set_byte(byte R, byte G, byte B) { red = R; green = G; blue = B; alpha = 255; }
       void set_byte(byte R, byte G, byte B, byte A) { red = R; green = G; blue = B; alpha = A; }
@@ -361,9 +398,15 @@ inline auto red(const ::color::color & color) { return color.red; }
 inline auto green(const ::color::color & color) { return color.green; }
 inline auto blue(const ::color::color & color) { return color.blue; }
 inline auto alpha(const ::color::color & color) { return color.alpha; }
-auto inline rgb(byte r, byte g, byte b) { return ::color::color(r, g, b); }
-auto inline rgba(byte r, byte g, byte b, byte a) { return ::color::color(r, g, b, a); }
-auto inline argb(byte a, byte r, byte g, byte b) { return ::color::color(r, g, b, a); }
+
+template < typename R, typename G, typename B >
+auto inline rgb(R r, G g, B b) { return ::color::color(r, g, b); }
+
+template < typename R, typename G, typename B, typename A >
+auto inline rgba(R r, G g, B b, A a) { return ::color::color(r, g, b, a); }
+
+template < typename A, typename R, typename G, typename B >
+auto inline argb(A a, R r, G g, B b) { return ::color::color(r, g, b, a); }
 
 
 inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }

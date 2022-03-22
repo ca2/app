@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "image.h"
+#include "_image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "frame_array.h"
@@ -10195,6 +10195,31 @@ void image::_draw_raw(const image_drawing& imagedrawing)
    }
 
    return true;*/
+
+}
+
+
+
+image_pointer image::get_resized_image(const ::size_i32 & size)
+{
+
+   image_pointer pimage;
+
+   m_pcontext->__construct(pimage);
+
+   pimage->create(size);
+
+   ::rectangle_f64 rectangleTarget(point_f64(0, 0), ::size_f64(size));
+
+   ::image_source imagesource(this);
+
+   ::image_drawing_options imagedrawingoptions(rectangleTarget);
+
+   ::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   pimage->_draw_raw(imagedrawing);
+
+   return pimage;
 
 }
 

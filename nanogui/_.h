@@ -22,7 +22,3 @@ namespace nanogui
 } // namespace nanogui
 
 
-
-
-
-

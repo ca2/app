@@ -33,9 +33,6 @@ namespace write_text
 {
 
 
-
-
-
    class CLASS_DECL_AURA font :
       virtual public ::draw2d::object
    {
@@ -62,6 +59,7 @@ namespace write_text
 
 
       string                        m_strFontFamilyName;
+      ::file::path                  m_path;
       double                        m_dFontSize;
       double                        m_dFontWidth;
       ::draw2d::enum_unit           m_eunitFontSize;

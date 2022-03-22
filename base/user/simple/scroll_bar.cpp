@@ -1200,7 +1200,7 @@ public:
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      pgraphics->move_to(point1);
+      pgraphics->set_current_point(point1);
       pgraphics->line_to(point2);
    }
 };

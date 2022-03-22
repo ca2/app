@@ -36,14 +36,18 @@ namespace draw2d
       virtual bool has_current_point();
       virtual point_f64 get_current_point();
 
+
       inline bool set_current_point(double x, double y) { return set_current_point({ x, y }); }
       virtual bool set_current_point(const ::point_f64 & point);
+
 
       virtual void set_fill_mode(::draw2d::enum_fill_mode efillmode);
       virtual ::draw2d::enum_fill_mode get_fill_mode();
 
+
       virtual bool begin_figure();
       virtual bool close_figure();
+
 
       virtual bool add_arc_label(const ::rectangle_f64 & rectangle);
 
@@ -56,6 +60,8 @@ namespace draw2d
       virtual bool add_rect(const ::rectangle_f64& rectangle, const ::angle& angleCenterRotation);
 
       virtual bool add_rect(const ::rectangle_f64& rectangle);
+
+      virtual bool add_ellipse(const ::ellipse_f64 & ellipse);
 
       virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle& angleBeg, const ::angle& angleSweep);
       virtual bool varc(const ::point_f64 & point, double h, const ::angle & angle);
@@ -141,6 +147,8 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle & rectangle);
 
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::ellipse & ellipse);
+
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_i32 & ppolygon);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon & polygon);
@@ -149,6 +157,7 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::draw_text & drawtext);
 
+      path & operator = (const path & path);
 
    };
 

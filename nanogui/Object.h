@@ -36,7 +36,7 @@ NAMESPACE_BEGIN(nanogui)
       //int ref_count() const { return 1; };
 
       /// Increase the object's reference count by one
-      void inc_ref() const {}
+      void inc_ref() const;
 
       /** \brief Decrease the reference count of
        * the object and possibly deallocate it.
@@ -44,12 +44,12 @@ NAMESPACE_BEGIN(nanogui)
        * The object will automatically be deallocated once
        * the reference count reaches zero.
        */
-      void dec_ref(bool dealloc = true) const noexcept {}
+      void dec_ref(bool dealloc = true) const noexcept;
    protected:
       /** \brief Virtual protected deconstructor.
        * (Will only be called by \ref ref)
        */
-      virtual ~Object() {}
+      virtual ~Object();
    //private:
      mutable std::atomic<int> m_ref_count{ 0 };
 };

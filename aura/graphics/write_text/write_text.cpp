@@ -125,7 +125,26 @@ namespace write_text
       
    }
 
+   
+   memory_pointer write_text::get_file_memory(::acme::context * pcontext, const ::file::path & path)
+   {
 
+      auto & pmemory = m_mapFileMemory[path];
+
+      if (::is_set(pmemory))
+      {
+
+         return pmemory;
+
+      }
+
+      __construct_new(pmemory);
+
+      *pmemory = pcontext->m_papexcontext->file().as_memory(path);
+
+      return pmemory;
+
+   }
 
 
 void write_text::enum_write_text_fonts(::write_text::font_enumeration_item_array& itema)

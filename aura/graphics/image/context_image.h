@@ -13,6 +13,12 @@ class CLASS_DECL_AURA context_image :
 public:
 
 
+   i32_map < string > m_mapIntPath;
+   string_map < i32 > m_mapPathInt;
+   string_map < image_pointer > m_mapPathImage;
+   int         m_iImageSeed;
+
+
    context_image();
    ~context_image() override;
 
@@ -23,6 +29,11 @@ public:
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
 
    void destroy_composites() override;
+
+
+   virtual i32 image_integer(const char * path);
+   virtual image_pointer integer_image(i32 i);
+   virtual image_pointer path_image(const char *);
 
 
    virtual ::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());

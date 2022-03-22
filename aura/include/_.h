@@ -930,7 +930,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 ////#include "aura/exception/_const.h"
 //
-#include "aura/user/_const.h"
+#include "aura/user/user/_constant.h"
 //
 ////#include "aura/user/_experience_const.h"
 //
@@ -2810,7 +2810,7 @@ namespace draw2d
 
 #include "aura/graphics/_.h"
 
-#include "aura/user/_.h"
+#include "aura/user/user/_.h"
 
 //#include "aura/user/item.h"
 

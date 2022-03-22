@@ -934,6 +934,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Canvas.cpp" />
+    <ClCompile Include="CheckBox.cpp" />
+    <ClCompile Include="ColorPicker.cpp" />
+    <ClCompile Include="ColorWheel.cpp" />
+    <ClCompile Include="ComboBox.cpp" />
+    <ClCompile Include="common.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -944,40 +951,66 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="ImagePanel.cpp" />
+    <ClCompile Include="ImageView.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Layout.cpp" />
-    <ClCompile Include="nanovg\draw2d_NVGcontext.cpp" />
-    <ClCompile Include="nanovg\nanovg.cpp" />
-    <ClCompile Include="nanovg\NVGcontext.cpp" />
+    <ClCompile Include="MessageDialog.cpp" />
+    <ClCompile Include="nano2d\draw2d_context.cpp" />
+    <ClCompile Include="nano2d\context.cpp" />
+    <ClCompile Include="nano2d\nano2d.cpp" />
+    <ClCompile Include="Popup.cpp" />
+    <ClCompile Include="PopupButton.cpp" />
+    <ClCompile Include="ProgressBar.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="Slider.cpp" />
+    <ClCompile Include="TabWidget.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Theme.cpp" />
+    <ClCompile Include="VScrollPanel.cpp" />
     <ClCompile Include="Widget.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_nanogui_main_frame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Canvas.h" />
+    <ClInclude Include="CheckBox.h" />
+    <ClInclude Include="ColorPicker.h" />
+    <ClInclude Include="ColorWheel.h" />
+    <ClInclude Include="ComboBox.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="FormHelper.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Icons.h" />
+    <ClInclude Include="ImagePanel.h" />
+    <ClInclude Include="ImageView.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Layout.h" />
-    <ClInclude Include="nanovg\draw2d_NVGcontext.h" />
-    <ClInclude Include="nanovg\fontstash.h" />
-    <ClInclude Include="nanovg\NVGcontext.h" />
-    <ClInclude Include="nanovg\stb_image.h" />
-    <ClInclude Include="nanovg\stb_truetype.h" />
+    <ClInclude Include="MessageDialog.h" />
+    <ClInclude Include="nano2d\context.h" />
+    <ClInclude Include="nano2d\draw2d_context.h" />
+    <ClInclude Include="nano2d\_nano2d.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Popup.h" />
+    <ClInclude Include="PopupButton.h" />
+    <ClInclude Include="ProgressBar.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TabWidget.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="Theme.h" />
+    <ClInclude Include="ToolButton.h" />
     <ClInclude Include="traits.h" />
     <ClInclude Include="vector.h" />
+    <ClInclude Include="VScrollPanel.h" />
     <ClInclude Include="Widget.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_nanogui.h" />
-    <ClInclude Include="_nanogui_main_frame.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

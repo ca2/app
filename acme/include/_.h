@@ -3368,10 +3368,6 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 
 
 
-
-class function;
-
-
 namespace factory
 {
 
@@ -3399,6 +3395,7 @@ template < typename TYPE > class sequence;
 #include "acme/handler/handler.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
+#include "acme/primitive/primitive/function.h"
 #include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"

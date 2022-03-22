@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 #include "aura/update.h"
 #include "acme/constant/timer.h"
 #include "aqua/xml.h"
@@ -782,11 +782,11 @@ namespace user
 
                   pgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set(get_font(pstyle));
 
@@ -813,13 +813,13 @@ namespace user
 
                      pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set(get_font(pstyle, e_state_hover));
 
@@ -833,13 +833,13 @@ namespace user
 
                      pgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border));
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set(get_font(pstyle));
 
@@ -892,13 +892,13 @@ namespace user
 
                   pgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set(get_font(pstyle));
 
@@ -927,11 +927,11 @@ namespace user
 
                      pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set(get_font(pstyle, e_state_hover));
 
@@ -945,13 +945,13 @@ namespace user
 
                      pgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set(get_font(pstyle));
 
@@ -1097,7 +1097,7 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->move_to(rectangleBorder.right, rectangleBorder.bottom);
+               pgraphics->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
                pgraphics->line_to(rectangleBorder.left + 1, rectangleBorder.bottom);
                pgraphics->line_to(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
                pgraphics->line_to(rectangleClient.left, rectangleBorder.top);
@@ -1119,7 +1119,7 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->move_to(rectangleBorder.right, rectangleBorder.bottom);
+               pgraphics->set_current_point(rectangleBorder.right, rectangleBorder.bottom);
                pgraphics->line_to(rectangleBorder.left + 1, rectangleBorder.bottom);
                pgraphics->line_to(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
                pgraphics->line_to(rectangleText.left, rectangleBorder.top);
@@ -1178,7 +1178,7 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->move_to(rectangleBorder.left, rectangleClient.bottom);
+               pgraphics->set_current_point(rectangleBorder.left, rectangleClient.bottom);
                pgraphics->line_to(rectangleBorder.left, rectangleBorder.top);
                pgraphics->line_to(rectangleClient.right, rectangleBorder.top);
                pgraphics->line_to(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
@@ -1200,7 +1200,7 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->move_to(rectangleBorder.left, rectangleClient.bottom);
+               pgraphics->set_current_point(rectangleBorder.left, rectangleClient.bottom);
                pgraphics->line_to(rectangleBorder.left, rectangleBorder.top);
                pgraphics->line_to(rectangleClient.right, rectangleBorder.top);
                pgraphics->line_to(rectangleBorder.right, rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));

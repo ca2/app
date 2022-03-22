@@ -1,7 +1,9 @@
 #pragma once
 
 
-#include "base/user/user/_user.h"
+#ifndef BASE_USER_CUBE_H
+#include "base/user/user/_user2.h"
+#endif
 
 
 #include "button.h"

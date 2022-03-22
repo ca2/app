@@ -851,7 +851,7 @@ namespace experience_anthill
 
                ::size_i32 sizeTopOffset(0, 2);
 
-               pgraphics->move_to(rectangleBorder.bottom_right());
+               pgraphics->set_current_point(rectangleBorder.bottom_right());
 
                pgraphics->line_to(rectangleBorder.top_right() + sizeTopOffset);
 

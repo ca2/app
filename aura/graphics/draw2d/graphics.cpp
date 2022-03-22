@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/user/_user.h"
+//#include "aura/user/_user.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/image/array.h"
@@ -32,6 +32,8 @@ namespace draw2d
    {
 
 
+      m_bUseImageMipMapsOrResizedImages = true;
+
       //m_estatus = success;
       //m_estatusLast = success;
 
@@ -50,6 +52,7 @@ namespace draw2d
       m_bStoreThumbnails         = true;
       m_pdrawcontext             = nullptr;
       m_dFontFactor              = 1.0;
+      m_efillmode                = fill_mode_winding;
 
    }
 
@@ -707,7 +710,7 @@ namespace draw2d
    }
 
 
-   void graphics::move_to(double x, double y)
+   void graphics::set_current_point(double x, double y)
    {
 
       m_point.x = x;
@@ -812,38 +815,38 @@ namespace draw2d
    }
 
 
-   void graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
       double x = (x1 + x2) / 2.0;
 
       double y = (y1 + y2) / 2.0;
 
-      Arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
+      arc(x1, y1, x2 - x1, y2 - y1, atan2(x3 - x, y3 - y), atan2(x4 - x, y4 - y));
 
    }
 
 
-   void graphics::Arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
+      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), pointStart.x, pointStart.y, pointEnd.x, pointEnd.y);
 
    }
 
 
-   void graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
+   void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      Arc(rectangle_f64_dimension(x, y, w, h), start, extends);
+      arc(rectangle_f64_dimension(x, y, w, h), start, extends);
 
    }
 
 
-   void graphics::Arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
+   void graphics::arc(const ::rectangle_f64 & rectangle, angle start, angle extends)
    {
 
-      Arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
+      arc(rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), start, extends);
 
    }
 
@@ -1932,7 +1935,7 @@ namespace draw2d
    }
 
 
-   void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+   void graphics::angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       __UNREFERENCED_PARAMETER(x);
@@ -1946,7 +1949,7 @@ namespace draw2d
    }
 
 
-   void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+   void graphics::arc_to(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -2140,7 +2143,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_path(::draw2d::path * ppath)
+   void graphics::draw(::draw2d::path * ppath)
    {
 
       //return false;
@@ -2148,7 +2151,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
       //return false;
@@ -2156,7 +2159,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_path(::draw2d::path * ppath)
+   void graphics::fill(::draw2d::path * ppath)
    {
 
       //return false;
@@ -2164,7 +2167,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+   void graphics::fill(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
       //return false;
@@ -2176,12 +2179,28 @@ namespace draw2d
    {
 
       //bool bOk1 = 
-      fill_path(ppath);
+      fill(ppath);
 
       //bool bOk2 = 
-      draw_path(ppath);
+      draw(ppath);
 
       //return bOk1 && bOk2;
+
+   }
+
+
+   void graphics::intersect_clip(::draw2d::path * ppath)
+   {
+
+   }
+
+
+   void graphics::set_clip(::draw2d::path * ppath)
+   {
+
+      reset_clip();
+
+      intersect_clip(ppath);
 
    }
 
@@ -3010,7 +3029,7 @@ namespace draw2d
    /////////////////////////////////////////////////////////////////////////////
    // Advanced Win32 GDI functions
 
-   void graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+   void graphics::arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
       __UNREFERENCED_PARAMETER(x1);
       __UNREFERENCED_PARAMETER(y1);
@@ -3876,6 +3895,22 @@ namespace draw2d
    }
 
 
+   void graphics::set_fill_mode(::draw2d::enum_fill_mode efillmode)
+   {
+
+      m_efillmode = efillmode;
+
+   }
+
+
+   ::draw2d::enum_fill_mode graphics::get_fill_mode()
+   {
+
+      return m_efillmode;
+
+   }
+
+
    void graphics::flush()
    {
 
@@ -3942,7 +3977,7 @@ namespace draw2d
          if (ppath->add_round_rect(rectangle, radius, eborder))
          {
 
-            draw_path(ppath, ppen);
+            draw(ppath, ppen);
 
          }
 
@@ -4161,7 +4196,7 @@ namespace draw2d
 
       ppath->close_figure();
 
-      fill_path(ppath, pbrush);
+      fill(ppath, pbrush);
 
       //return true;
 
@@ -4709,9 +4744,9 @@ namespace draw2d
 
          m_ppen->m_dWidth *= 2.0;
          m_ppen->set_modified();
-         move_to(rectangle.top_left());
+         set_current_point(rectangle.top_left());
          line_to(rectangle.bottom_right());
-         move_to(rectangle.bottom_left());
+         set_current_point(rectangle.bottom_left());
          line_to(rectangle.top_right());
 
       }
@@ -4724,13 +4759,13 @@ namespace draw2d
 
          //m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
          //m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         //move_to(rectangle.top_left() + ::size_i32(0,(::i32) (ppen->m_dWidth/2.0)));
+         //set_current_point(rectangle.top_left() + ::size_i32(0,(::i32) (ppen->m_dWidth/2.0)));
          //line_to(rectangle.top_right() + ::size_i32(0,(::i32)(ppen->m_dWidth / 2.0)));
-         //move_to(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth)));
+         //set_current_point(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth)));
          //line_to(rectangle.top_right() + ::size_i32(0,(::i32)(ppen->m_dWidth)));
-         //move_to(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth *3.0 / 2.0)));
+         //set_current_point(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth *3.0 / 2.0)));
          //line_to(rectangle.top_right() + ::size_i32(0,(::i32)(ppen->m_dWidth *3.0 / 2.0)));
-         //move_to(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth*2.0)));
+         //set_current_point(rectangle.top_left() + ::size_i32(0,(::i32)(ppen->m_dWidth*2.0)));
          //line_to(rectangle.top_right() + ::size_i32(0,(::i32)(ppen->m_dWidth*2.0)));
 
       }
@@ -4751,17 +4786,17 @@ namespace draw2d
 
          m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-         move_to(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
+         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
          line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         move_to(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
+         set_current_point(rect2.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
          line_to(rect2.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
 
 
-         move_to(rect1.top_left());
+         set_current_point(rect1.top_left());
          line_to(rect1.top_right());
-         move_to(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
+         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
          line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth / 2.0)));
-         move_to(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
+         set_current_point(rect1.top_left() + ::size_f64(0.,(m_ppen->m_dWidth)));
          line_to(rect1.top_right() + ::size_f64(0.,(m_ppen->m_dWidth)));
 
 
@@ -4770,11 +4805,11 @@ namespace draw2d
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
 
-         move_to(rect1.top_left() + ::size_f64(0,(m_ppen->m_dWidth)));
+         set_current_point(rect1.top_left() + ::size_f64(0,(m_ppen->m_dWidth)));
          line_to(rect1.bottom_left());
          line_to(rect2.bottom_left());
 
-         move_to(rect1.top_right() + ::size_f64(0,(m_ppen->m_dWidth)));
+         set_current_point(rect1.top_right() + ::size_f64(0,(m_ppen->m_dWidth)));
          line_to(point_f64(rect1.right,(int)(rect2.top - (m_ppen->m_dWidth))));
 
       }
@@ -4785,15 +4820,15 @@ namespace draw2d
          rectangle.deflate(0, rectangle.height() / 7.0);
 
 
-         move_to(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
+         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
          line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
-         move_to(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
+         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
          line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
-         move_to(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
+         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
          line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
-         move_to(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
+         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
          line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
-         move_to(rectangle.bottom_left());
+         set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
 
       }
@@ -5402,7 +5437,7 @@ namespace draw2d
 
       begin_path();
 
-      move_to(point_f64(pts[0], pts[1]));
+      set_current_point(point_f64(pts[0], pts[1]));
 
       for (i = 0; i < npts - 1; i += 3)
       {
@@ -5416,7 +5451,7 @@ namespace draw2d
       if (closed)
       {
 
-         move_to(point_f64(pts[0], pts[1]));
+         set_current_point(point_f64(pts[0], pts[1]));
 
       }
 
@@ -5440,7 +5475,7 @@ namespace draw2d
 
          float * p = &pts[i * 2];
 
-         move_to(::point_i32((::i32)p[0], (::i32)p[1]));
+         set_current_point(::point_i32((::i32)p[0], (::i32)p[1]));
          line_to(::point_i32((::i32)p[2], (::i32)p[3]));
          line_to(::point_i32((::i32)p[4], (::i32)p[5]));
          line_to(::point_i32((::i32)p[6], (::i32)p[7]));
@@ -5756,7 +5791,7 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         move_to(rectangle.top_left());
+         set_current_point(rectangle.top_left());
 
          line_to(rectangle.top_right());
 
@@ -5765,7 +5800,7 @@ namespace draw2d
       if (eborder & e_border_right)
       {
 
-         move_to(rectangle.top_right());
+         set_current_point(rectangle.top_right());
 
          line_to(rectangle.bottom_right());
 
@@ -5774,7 +5809,7 @@ namespace draw2d
       if (eborder & e_border_bottom)
       {
 
-         move_to(rectangle.bottom_right());
+         set_current_point(rectangle.bottom_right());
 
          line_to(rectangle.bottom_left());
 
@@ -5783,7 +5818,7 @@ namespace draw2d
       if (eborder & e_border_left)
       {
 
-         move_to(rectangle.bottom_left());
+         set_current_point(rectangle.bottom_left());
 
          line_to(rectangle.top_left());
 

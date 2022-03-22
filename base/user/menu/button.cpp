@@ -97,7 +97,7 @@ namespace user
 
          //pgraphics->set(ppen);
 
-         //pgraphics->move_to(rectangleClient.left + rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
+         //pgraphics->set_current_point(rectangleClient.left + rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
 
          ///pgraphics->line_to(rectangleClient.right - rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
 

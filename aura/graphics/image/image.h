@@ -818,6 +818,7 @@ public:
 
    inline ::size_i32 get_size() const { return size(); }
 
+   virtual image_pointer get_resized_image(const ::size_i32 & size);
 
 
 };

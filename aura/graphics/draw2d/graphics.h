@@ -70,23 +70,24 @@ namespace draw2d
 
       bool                                   m_bAlphaBlend;
 
-      __reference(::text::context)       m_ptextcontext;
+      __reference(::text::context)           m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
       ::image_pointer                        m_pimageAlphaBlend;
-      ::point_f64                               m_pointAlphaBlend;
+      ::point_f64                            m_pointAlphaBlend;
       __pointer(::task)                      m_ptask;
 
 
-      image * m_pimage;
+      image *                                m_pimage;
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
 
-      ::point_f64                               m_point;
+      ::point_f64                            m_point;
 
       enum_alpha_mode                        m_ealphamode;
+      enum_fill_mode                         m_efillmode;
       e_smooth_mode                          m_esmoothmode;
       enum_interpolation_mode                m_einterpolationmode;
       e_compositing_quality                  m_ecompositingquality;
@@ -96,12 +97,13 @@ namespace draw2d
       ::draw2d::matrix                       m_matrixViewport;
       ::draw2d::matrix                       m_matrixTransform;
 
-      ::rectangle_f64                                m_rectangleDraw;
+      ::rectangle_f64                        m_rectangleDraw;
 
       bool                                   m_bPrinting;
-      void * m_osdata[8];
+      void *                                 m_osdata[8];
       ::user::style_pointer                  m_puserstyle;
-      ::point_f64                               m_pointAddShapeTranslate;
+      ::point_f64                            m_pointAddShapeTranslate;
+      bool                                   m_bUseImageMipMapsOrResizedImages;
 
       //::e_status                             m_estatus;
       //::e_status                             m_estatusLast;
@@ -319,6 +321,10 @@ namespace draw2d
 //      virtual void set_interpolation_mode(enum_interpolation_mode einterpolationmode);
 
 
+      virtual void set_fill_mode(::draw2d::enum_fill_mode efillmode);
+      virtual ::draw2d::enum_fill_mode get_fill_mode();
+
+
       virtual void flush();
       virtual void sync_flush();
 
@@ -463,24 +469,24 @@ namespace draw2d
 
       virtual ::point_f64 current_position();
 
-      //inline void move_to(double x, double y)
+      //inline void set_current_point(double x, double y)
       //{
 
-      //   return move_to({ x, y });
+      //   return set_current_point({ x, y });
 
       //}
 
 
-      virtual void move_to(double x, double y);
+      virtual void set_current_point(double x, double y);
       virtual void line_to(double x, double y);
       virtual void draw_line(double x1, double y1, double x2, double y2);
       virtual void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen);
 
       
-      inline void move_to(const ::point_f64 & point) 
+      inline void set_current_point(const ::point_f64 & point) 
       { 
       
-         return move_to(point.x, point.y); 
+         return set_current_point(point.x, point.y);
       
       }
 
@@ -517,25 +523,25 @@ namespace draw2d
 
 
 
-      virtual void Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-      virtual void Arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
-      virtual void Arc(double x1, double y1, double x2, double y2, angle start, angle extends);
-      virtual void Arc(const ::rectangle_f64 & rectangle, angle start, angle extends);
+      virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+      virtual void arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
+      virtual void arc(double x1, double y1, double x2, double y2, angle start, angle extends);
+      virtual void arc(const ::rectangle_f64 & rectangle, angle start, angle extends);
       
       
       virtual void polyline(const ::point_f64 * ppoints,count nCount);
 
 
-//      virtual void Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-//      virtual void Arc(const rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
+//      virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+//      virtual void arc(const rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
 
-//      virtual void Arc(double x1, double y1, double x2, double y2, angle start, angle extends);
-//      virtual void Arc(const rectangle_f64 & rectangle_f64, angle start, angle extends);
+//      virtual void arc(double x1, double y1, double x2, double y2, angle start, angle extends);
+//      virtual void arc(const rectangle_f64 & rectangle_f64, angle start, angle extends);
 
 
-      virtual void AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle);
-      virtual void ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
-      virtual void ArcTo(const ::rectangle_f64 & rectangle,const ::point_f64 & pointStart,const ::point_f64 & pointEnd);
+      virtual void angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle);
+      virtual void arc_to(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
+      virtual void arc_to(const ::rectangle_f64 & rectangle,const ::point_f64 & pointStart,const ::point_f64 & pointEnd);
       //virtual i32 GetArcDirectdion();
       //virtual i32 SetArcDirectdion(i32 nArcDirectdion);
 
@@ -1017,11 +1023,14 @@ namespace draw2d
 
       virtual void SelectClipPath(i32 nMode);
 
-      virtual void draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen);
-      virtual void draw_path(::draw2d::path * ppath);
-      virtual void fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush);
-      virtual void fill_path(::draw2d::path * ppath);
+      virtual void draw(::draw2d::path * ppath, ::draw2d::pen * ppen);
+      virtual void draw(::draw2d::path * ppath);
+      virtual void fill(::draw2d::path * ppath, ::draw2d::brush * pbrush);
+      virtual void fill(::draw2d::path * ppath);
       virtual void path(::draw2d::path * ppath);
+
+      virtual void intersect_clip(::draw2d::path * ppath);
+      virtual void set_clip(::draw2d::path * ppath);
 
       // Misc helper Functions
       virtual ::draw2d::brush * GetHalftoneBrush();
@@ -1139,8 +1148,8 @@ namespace draw2d
 
       virtual void is_valid_update_window_thread();
 
-      //virtual void move_to(double x, double y); // { return move_to(::::point_f64(x, y)); }
-      //inline void move_to(double x, double y) { return move_to(::point_f64(x, y)); }
+      //virtual void set_current_point(double x, double y); // { return set_current_point(::::point_f64(x, y)); }
+      //inline void set_current_point(double x, double y) { return set_current_point(::point_f64(x, y)); }
 
       //inline void line_to(double x, double y) { return line_to(::::point_f64(x, y)); }
       //inline void line_to(double x, double y) { return line_to(::point_f64(x, y)); }

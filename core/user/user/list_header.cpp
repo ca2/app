@@ -873,7 +873,7 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->move_to(rectangleDivider.left, rectangleDivider.top);
+         pgraphics->set_current_point(rectangleDivider.left, rectangleDivider.top);
 
          pgraphics->line_to(rectangleDivider.left, rectangleDivider.bottom);
 

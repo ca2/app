@@ -224,7 +224,7 @@ namespace user
       pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
-      //   pgraphics->move_to(rectangle.center());
+      //   pgraphics->set_current_point(rectangle.center());
       //   auto point = psession->get_cursor_position();
       //   screen_to_client(point);
       //   pgraphics->line_to(point);

@@ -250,7 +250,7 @@ namespace user
       if(m_bSlide)
       {
          
-         pgraphics->move_to(rectangle.center());
+         pgraphics->set_current_point(rectangle.center());
          
          auto psession = get_session();
 

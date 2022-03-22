@@ -71,25 +71,27 @@ void Label::draw(NVGcontext * ctx) {
 void Label::_nanogui_to_user(::user::interaction * puserinteraction)
 {
 
-   puserinteraction->__construct(m_pstill);
+   return;
 
-   m_pstill->m_pstillappearance = this;
+   //puserinteraction->__construct(m_pstill);
 
-   m_pstill->create_control(puserinteraction, (iptr)(void *)this);
+   //m_pstill->m_pappearance = this;
 
-   m_pstill->display();
+   //m_pstill->create_control(puserinteraction, (iptr)(void *)this);
 
-   m_pstill->place({ 10, 10, 99, 99 });
+   //m_pstill->display();
 
-   m_pstill->set_need_layout();
+   //m_pstill->place({ 10, 10, 99, 99 });
 
-   m_pstill->set_need_redraw();
+   //m_pstill->set_need_layout();
 
-   m_pstill->post_redraw();
+   //m_pstill->set_need_redraw();
 
-   m_pstill->set_window_text(m_caption.c_str());
+   //m_pstill->post_redraw();
 
-   Widget::_nanogui_to_user(m_pstill);
+   //m_pstill->set_window_text(m_caption.c_str());
+
+   //Widget::_nanogui_to_user(m_pstill);
 
 }
 

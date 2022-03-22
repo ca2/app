@@ -109,6 +109,16 @@ public:
 
    }
 
+   void create_array(::count c)
+   {
+      
+      destroy();
+      
+      m_bArray = true;
+      m_p = new T[(size_t)c];
+
+   }
+
 
    void destroy()
    {
@@ -116,9 +126,14 @@ public:
       if (m_bArray)
       {
 
-         delete[] m_p;
+         if (m_p)
+         {
 
-         m_p = NULL;
+            delete[] m_p;
+
+            m_p = NULL;
+
+         }
 
       }
       else

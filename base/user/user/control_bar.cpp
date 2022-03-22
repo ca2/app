@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 #include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -1008,7 +1008,7 @@ namespace user
             ppen->create_solid(1, clr);
 
             pgraphics->set(ppen);
-            pgraphics->move_to(0, 7);
+            pgraphics->set_current_point(0, 7);
             pgraphics->line_to(7, 0);
 
          }

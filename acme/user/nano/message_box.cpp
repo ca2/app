@@ -260,11 +260,20 @@ void nano_message_box::on_create()
 //}
 
 
+extern class ::system * g_psystem;
+
 
 CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const ::string & strDetails)
 {
 
    initialize_nano();
+
+   if (::is_null(pobject))
+   {
+
+      pobject = g_psystem;
+      
+   }
 
 #if defined(_UWP)
 

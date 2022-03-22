@@ -133,10 +133,10 @@ namespace axis
 
          pgraphics->set(ppen);
 
-         pgraphics->move_to(2 * w / 15, 8 * h / 15);
+         pgraphics->set_current_point(2 * w / 15, 8 * h / 15);
          pgraphics->line_to(6 * w / 15, 12 * h / 15);
          pgraphics->line_to(13 * w / 15, 5 * h / 15);
-         pgraphics->move_to(2 * w / 15, 9 * h / 15);
+         pgraphics->set_current_point(2 * w / 15, 9 * h / 15);
          pgraphics->line_to(6 * w / 15, 13 * h / 15);
          pgraphics->line_to(13 * w / 15, 6 * h / 15);
 

@@ -78,17 +78,17 @@ public:
    /// Return the size of the widget
    const Vector2i & size() const { return m_size; }
    /// set the size of the widget
-   void set_size(const Vector2i & size) { m_size = size; }
-
+   void set_size(const Vector2i & size);
+ 
    /// Return the width of the widget
    int width() const { return m_size.x(); }
    /// Set the width of the widget
-   void set_width(int width) { m_size.x() = width; }
+   void set_width(int width) { set_size({ width, m_size.v[1] }); }
 
    /// Return the height of the widget
    int height() const { return m_size.y(); }
    /// Set the height of the widget
-   void set_height(int height) { m_size.y() = height; }
+   void set_height(int height) { set_size({ m_size.v[0], height }); }
 
    /**
     * \brief Set the fixed size of this widget
@@ -147,52 +147,52 @@ public:
 
    /// Convenience function which appends a widget at the end
    void add_child(Widget * widget);
-//
-//   /// Remove a child widget by index
-//   void remove_child_at(int index);
-//
-//   /// Remove a child widget by value
-//   void remove_child(const Widget * widget);
-//
-//   /// Retrieves the child at the specific position
-//   const Widget * child_at(int index) const { return m_children[(size_t)index]; }
-//
-//   /// Retrieves the child at the specific position
-//   Widget * child_at(int index) { return m_children[(size_t)index]; }
-//
-//   /// Returns the index of a specific child or -1 if not found
-//   int child_index(Widget * widget) const;
-//
-//   /// Variadic shorthand notation to construct and add a child widget
-//   template<typename WidgetClass, typename... Args>
-//   WidgetClass * add(const Args&... args) {
-//      return new WidgetClass(this, args...);
-//   }
-//
-//   /// Walk up the hierarchy and return the parent window
-//   Window * window();
-//   /// Walk up the hierarchy and return the parent window (const version)
-//   const Window * window() const;
-//
-//   /// Walk up the hierarchy and return the parent screen
-//   Screen * screen();
-//   /// Walk up the hierarchy and return the parent screen (const version)
-//   const Screen * screen() const;
-//
-//   /// Return whether or not this widget is currently enabled
-//   bool enabled() const { return m_enabled; }
-//   /// Set whether or not this widget is currently enabled
-//   void set_enabled(bool enabled) { m_enabled = enabled; }
-//
-//   /// Return whether or not this widget is currently focused
-//   bool focused() const { return m_focused; }
-//   /// Set whether or not this widget is currently focused
-//   void set_focused(bool focused) { m_focused = focused; }
-//   /// Request the focus to be moved to this widget
-//   void request_focus();
-//
-//   const std::string & tooltip() const { return m_tooltip; }
-//   void set_tooltip(const std::string & tooltip) { m_tooltip = tooltip; }
+
+   /// Remove a child widget by index
+   void remove_child_at(int index);
+
+   /// Remove a child widget by value
+   void remove_child(const Widget * widget);
+
+   /// Retrieves the child at the specific position
+   const Widget * child_at(int index) const { return m_children[(size_t)index]; }
+
+   /// Retrieves the child at the specific position
+   Widget * child_at(int index) { return m_children[(size_t)index]; }
+
+   /// Returns the index of a specific child or -1 if not found
+   int child_index(Widget * widget) const;
+
+   /// Variadic shorthand notation to construct and add a child widget
+   template<typename WidgetClass, typename... Args>
+   WidgetClass * add(const Args&... args) {
+      return new WidgetClass(this, args...);
+   }
+
+   /// Walk up the hierarchy and return the parent window
+   Window * window();
+   /// Walk up the hierarchy and return the parent window (const version)
+   const Window * window() const;
+
+   /// Walk up the hierarchy and return the parent screen
+   Screen * screen();
+   /// Walk up the hierarchy and return the parent screen (const version)
+   const Screen * screen() const;
+
+   /// Return whether or not this widget is currently enabled
+   bool enabled() const { return m_enabled; }
+   /// Set whether or not this widget is currently enabled
+   void set_enabled(bool enabled) { m_enabled = enabled; }
+
+   /// Return whether or not this widget is currently focused
+   bool focused() const { return m_focused; }
+   /// Set whether or not this widget is currently focused
+   void set_focused(bool focused) { m_focused = focused; }
+   /// Request the focus to be moved to this widget
+   void request_focus();
+
+   const std::string & tooltip() const { return m_tooltip; }
+   void set_tooltip(const std::string & tooltip) { m_tooltip = tooltip; }
 //
 //   /// Return current font size. If not set the default of the current theme will be returned
    int font_size() const;
@@ -200,66 +200,77 @@ public:
    void set_font_size(int font_size) { m_font_size = font_size; }
    /// Return whether the font size is explicitly specified for this widget
    bool has_font_size() const { return m_font_size > 0; }
-//
-//   /**
-//    * The amount of extra scaling applied to *icon* fonts.
-//    * See \ref nanogui::Widget::m_icon_extra_scale.
-//    */
-//   float icon_extra_scale() const { return m_icon_extra_scale; }
-//
-//   /**
-//    * Sets the amount of extra scaling applied to *icon* fonts.
-//    * See \ref nanogui::Widget::m_icon_extra_scale.
-//    */
-//   void set_icon_extra_scale(float scale) { m_icon_extra_scale = scale; }
-//
-//   /// Return a pointer to the cursor of the widget
-//   Cursor cursor() const { return m_cursor; }
-//   /// Set the cursor of the widget
-//   void set_cursor(Cursor cursor) { m_cursor = cursor; }
-//
-//   /// Check if the widget contains a certain position
-//   bool contains(const Vector2i & p) const {
-//      Vector2i d = p - m_pos;
-//      return d.x() >= 0 && d.y() >= 0 &&
-//         d.x() < m_size.x() && d.y() < m_size.y();
-//   }
-//
-//   /// Determine the widget located at the given position value (recursive)
-//   Widget * find_widget(const Vector2i & p);
-//   const Widget * find_widget(const Vector2i & p) const;
-//
-//   /// Handle a mouse button event (default implementation: propagate to children)
-//   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers);
-//
-//   /// Handle a mouse motion event (default implementation: propagate to children)
-//   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
-//
-//   /// Handle a mouse drag event (default implementation: do nothing)
-//   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
-//
-//   /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
-//   virtual bool mouse_enter_event(const Vector2i & p, bool enter);
-//
-//   /// Handle a mouse scroll event (default implementation: propagate to children)
-//   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel);
-//
-//   /// Handle a focus change event (default implementation: record the focus status, but do nothing)
-//   virtual bool focus_event(bool focused);
-//
-//   /// Handle a keyboard event (default implementation: do nothing)
-//   virtual bool keyboard_event(int key, int scancode, int action, int modifiers);
-//
-//   /// Handle text input (UTF-32 format) (default implementation: do nothing)
-//   virtual bool keyboard_character_event(unsigned int codepoint);
-//
 
-   virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pointer) override;
+   /**
+    * The amount of extra scaling applied to *icon* fonts.
+    * See \ref nanogui::Widget::m_icon_extra_scale.
+    */
+   float icon_extra_scale() const { return m_icon_extra_scale; }
 
-   virtual void perform_layout(::draw2d::graphics_pointer & pointer) override;
+   /**
+    * Sets the amount of extra scaling applied to *icon* fonts.
+    * See \ref nanogui::Widget::m_icon_extra_scale.
+    */
+   void set_icon_extra_scale(float scale) { m_icon_extra_scale = scale; }
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pointer) override;
+   /// Return a pointer to the cursor of the widget
+   Cursor cursor() const { return m_cursor; }
+   /// Set the cursor of the widget
+   void set_cursor(Cursor cursor) { m_cursor = cursor; }
 
+   /// Check if the widget contains a certain position
+   bool contains(const Vector2i & p) const {
+      Vector2i d = p - m_pos;
+      return d.x() >= 0 && d.y() >= 0 &&
+         d.x() < m_size.x() && d.y() < m_size.y();
+   }
+
+   /// Determine the widget located at the given position value (recursive)
+   Widget * find_widget(const Vector2i & p);
+   const Widget * find_widget(const Vector2i & p) const;
+
+   /// Handle a mouse button event (default implementation: propagate to children)
+   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers);
+
+   /// Handle a mouse motion event (default implementation: propagate to children)
+   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
+
+   /// Handle a mouse drag event (default implementation: do nothing)
+   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
+
+   /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
+   virtual bool mouse_enter_event(const Vector2i & p, bool enter);
+
+   /// Handle a mouse scroll event (default implementation: propagate to children)
+   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel);
+
+   /// Handle a focus change event (default implementation: record the focus status, but do nothing)
+   virtual bool focus_event(bool focused);
+
+   /// Handle a keyboard event (default implementation: do nothing)
+   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, int modifiers);
+
+   /// Handle text input (UTF-32 format) (default implementation: do nothing)
+   virtual bool keyboard_character_event(unsigned int codepoint);
+
+
+   ::size_i32 preferred_size(::draw2d::graphics_pointer & pointer) override;
+
+   void perform_layout(::draw2d::graphics_pointer & pointer) override;
+
+   void _001OnDraw(::draw2d::graphics_pointer & pointer) override;
+
+   void on_mouse_enter(const ::point_i32 & point) override;
+   void on_mouse_leave() override;
+
+   bool on_button_down(const ::point_i32 & point) override;
+   bool on_button_up(const ::point_i32 & point) override;
+
+   bool on_mouse_move(const ::point_i32 & point) override;
+   bool on_mouse_drag(const ::point_i32 & point) override;
+
+   bool on_key_down(::user::enum_key ekey) override;
+   bool on_key_up(::user::enum_key ekey) override;
 
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(NVGcontext * ctx) const;
@@ -273,78 +284,81 @@ public:
 //protected:
    /// Free all resources used by the widget and any children
    virtual ~Widget();
-//
-//   /**
-//    * Convenience definition for subclasses to get the full icon scale for this
-//    * class of Widget.  It simple returns the value
-//    * ``m_theme->m_icon_scale * this->m_icon_extra_scale``.
-//    *
-//    * \remark
-//    *     See also: \ref nanogui::Theme::m_icon_scale and
-//    *     \ref nanogui::Widget::m_icon_extra_scale.  This tiered scaling
-//    *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
-//    */
-//   float icon_scale() const { return m_theme->m_icon_scale * m_icon_extra_scale; }
-//
+
+   /**
+    * Convenience definition for subclasses to get the full icon scale for this
+    * class of Widget.  It simple returns the value
+    * ``m_theme->m_icon_scale * this->m_icon_extra_scale``.
+    *
+    * \remark
+    *     See also: \ref nanogui::Theme::m_icon_scale and
+    *     \ref nanogui::Widget::m_icon_extra_scale.  This tiered scaling
+    *     strategy may not be appropriate with fonts other than ``entypo.ttf``.
+    */
+   float icon_scale() const { return m_theme->m_icon_scale * m_icon_extra_scale; }
+
 // protected:
    Widget * m_parent;
    ref<Theme> m_theme;
    ref<Layout> m_layout;
    Vector2i m_pos, m_size, m_fixed_size;
    std::vector<Widget *> m_children;
-//   /**
-//    * Whether or not this Widget is currently visible.  When a Widget is not
-//    * currently visible, no time is wasted executing its drawing method.
-//    */
+   /**
+    * Whether or not this Widget is currently visible.  When a Widget is not
+    * currently visible, no time is wasted executing its drawing method.
+    */
    bool m_visible;
-//
-//   /**
-//    * Whether or not this Widget is currently enabled.  Various different kinds
-//    * of derived types use this to determine whether or not user input will be
-//    * accepted.  For example, when ``m_enabled == false``, the state of a
-//    * CheckBox cannot be changed, or a TextBox will not allow new input.
-//    */
+
+   /**
+    * Whether or not this Widget is currently enabled.  Various different kinds
+    * of derived types use this to determine whether or not user input will be
+    * accepted.  For example, when ``m_enabled == false``, the state of a
+    * CheckBox cannot be changed, or a TextBox will not allow new input.
+    */
    bool m_enabled;
    bool m_focused, m_mouse_focus;
    std::string m_tooltip;
    int m_font_size;
-//
-//   /**
-//    * \brief The amount of extra icon scaling used in addition the the theme's
-//    *        default icon font scale.  Default value is ``1.0``, which implies
-//    *        that \ref nanogui::Widget::icon_scale simply returns the value
-//    *        of \ref nanogui::Theme::m_icon_scale.
-//    *
-//    * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
-//    * need to adjust the Theme's default icon scaling
-//    * (\ref nanogui::Theme::m_icon_scale) to properly display icons within their
-//    * bounds (upscale, or downscale).
-//    *
-//    * \rst
-//    * .. note::
-//    *
-//    *    When using ``nvgFontSize`` for icons in subclasses, make sure to call
-//    *    the :func:`nanogui::Widget::icon_scale` function.  Expected usage when
-//    *    *drawing* icon fonts is something like:
-//    *
-//    *    .. code-block:: cpp
-//    *
-//    *       virtual void draw(NVGcontext *ctx) {
-//    *           // fontSize depends on the kind of Widget.  Search for `FontSize`
-//    *           // in the Theme class (e.g., standard vs button)
-//    *           float ih = font_size;
-//    *           // assuming your Widget has a declared `mIcon`
-//    *           if (nvgIsFontIcon(mIcon)) {
-//    *               ih *= icon_scale();
-//    *               nvgFontFace(ctx, "icons");
-//    *               nvgFontSize(ctx, ih);
-//    *               /// remaining drawing code (see button.cpp for more)
-//    *           }
-//    *       }
-//    * \endrst
-//    */
-//   float m_icon_extra_scale;
-//   Cursor m_cursor;
+
+   /**
+    * \brief The amount of extra icon scaling used in addition the the theme's
+    *        default icon font scale.  Default value is ``1.0``, which implies
+    *        that \ref nanogui::Widget::icon_scale simply returns the value
+    *        of \ref nanogui::Theme::m_icon_scale.
+    *
+    * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
+    * need to adjust the Theme's default icon scaling
+    * (\ref nanogui::Theme::m_icon_scale) to properly display icons within their
+    * bounds (upscale, or downscale).
+    *
+    * \rst
+    * .. note::
+    *
+    *    When using ``nvgFontSize`` for icons in subclasses, make sure to call
+    *    the :func:`nanogui::Widget::icon_scale` function.  Expected usage when
+    *    *drawing* icon fonts is something like:
+    *
+    *    .. code-block:: cpp
+    *
+    *       virtual void draw(NVGcontext *ctx) {
+    *           // fontSize depends on the kind of Widget.  Search for `FontSize`
+    *           // in the Theme class (e.g., standard vs button)
+    *           float ih = font_size;
+    *           // assuming your Widget has a declared `mIcon`
+    *           if (nvgIsFontIcon(mIcon)) {
+    *               ih *= icon_scale();
+    *               nvgFontFace(ctx, "icons");
+    *               nvgFontSize(ctx, ih);
+    *               /// remaining drawing code (see button.cpp for more)
+    *           }
+    *       }
+    * \endrst
+    */
+   float m_icon_extra_scale;
+   Cursor m_cursor;
+
+   //::::function < void(NVGcontext *) >    m_callbackSizing;
+   ::function < void(NVGcontext *) >    m_callbackLayout;
 
    virtual void _nanogui_to_user(::user::interaction * puserinteraction);
 

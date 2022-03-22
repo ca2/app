@@ -76,6 +76,13 @@ public:
 
    begin_clip_shape():___shape(e_shape_begin_clip) {}
 
+   ::element * clone() const override
+   {
+
+      return new begin_clip_shape();
+
+   }
+
 };
 
 
@@ -85,6 +92,14 @@ virtual public ___shape
 public:
 
    intersect_clip_shape():___shape(e_shape_intersect_clip) {}
+
+
+   ::element * clone() const override
+   {
+
+      return new intersect_clip_shape();
+
+   }
 
 };
 
@@ -96,6 +111,13 @@ public:
 
    begin_figure_shape() :___shape(e_shape_begin_figure) {}
 
+   ::element * clone() const override
+   {
+
+      return new begin_figure_shape();
+
+   }
+
 };
 
 
@@ -106,6 +128,13 @@ public:
 
    close_figure_shape() :___shape(e_shape_close_figure) {}
 
+   ::element * clone() const override
+   {
+
+      return new close_figure_shape();
+
+   }
+
 };
 
 
@@ -115,6 +144,14 @@ class CLASS_DECL_ACME end_figure_shape :
 public:
 
    end_figure_shape() :___shape(e_shape_end_figure) {}
+
+   ::element * clone() const override
+   {
+
+      return new end_figure_shape();
+
+   }
+
 
 };
 
@@ -155,7 +192,12 @@ public:
 
    virtual bool contains(const ::POINT_F64 & point) const;
 
+   ::element * clone() const override
+   {
 
+      return new _shape(m_shape);
+
+   }
 };
 
 
@@ -223,4 +265,11 @@ inline __pointer(___shape) __create_shape(const ::rectangle & rectangle)
 }
 
 
+template < >
+inline __pointer(___shape) __create_shape(const ::ellipse & ellipse)
+{
+
+   return __new(ellipse_shape(ellipse));
+
+}
 

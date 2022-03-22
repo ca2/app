@@ -11,10 +11,10 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{06aedfbf-5bb8-479a-ad0c-0cf2f5f4da26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\nanovg">
+    <Filter Include="Header Files\nano2d">
       <UniqueIdentifier>{34170fed-fe3c-4a6d-a4fb-e5534e6d4924}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nanovg">
+    <Filter Include="Source Files\nano2d">
       <UniqueIdentifier>{57ad15df-bbff-4ec9-826e-4af6ddc7fbba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -23,9 +23,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="_nanogui_main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
@@ -43,16 +40,70 @@
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nanovg\draw2d_NVGcontext.cpp">
-      <Filter>Source Files\nanovg</Filter>
-    </ClCompile>
-    <ClCompile Include="nanovg\NVGcontext.cpp">
-      <Filter>Source Files\nanovg</Filter>
-    </ClCompile>
-    <ClCompile Include="nanovg\nanovg.cpp">
-      <Filter>Source Files\nanovg</Filter>
-    </ClCompile>
     <ClCompile Include="Theme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nano2d\draw2d_context.cpp">
+      <Filter>Source Files\nano2d</Filter>
+    </ClCompile>
+    <ClCompile Include="nano2d\context.cpp">
+      <Filter>Source Files\nano2d</Filter>
+    </ClCompile>
+    <ClCompile Include="nano2d\nano2d.cpp">
+      <Filter>Source Files\nano2d</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Popup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VScrollPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImagePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TabWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorWheel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorPicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -64,9 +115,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_nanogui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_nanogui_main_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="common.h">
@@ -102,22 +150,73 @@
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nanovg\draw2d_NVGcontext.h">
-      <Filter>Header Files\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="nanovg\NVGcontext.h">
-      <Filter>Header Files\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="nanovg\stb_image.h">
-      <Filter>Header Files\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="nanovg\stb_truetype.h">
-      <Filter>Header Files\nanovg</Filter>
-    </ClInclude>
-    <ClInclude Include="nanovg\fontstash.h">
-      <Filter>Header Files\nanovg</Filter>
-    </ClInclude>
     <ClInclude Include="Icons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nano2d\_nano2d.h">
+      <Filter>Header Files\nano2d</Filter>
+    </ClInclude>
+    <ClInclude Include="nano2d\draw2d_context.h">
+      <Filter>Header Files\nano2d</Filter>
+    </ClInclude>
+    <ClInclude Include="nano2d\context.h">
+      <Filter>Header Files\nano2d</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Popup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PopupButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageDialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VScrollPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImagePanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TabWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorWheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorPicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
@@ -68,7 +68,7 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->move_to(rectangleClient.left, (rectangleClient.top + rectangleClient.bottom) / 2);
+         pgraphics->set_current_point(rectangleClient.left, (rectangleClient.top + rectangleClient.bottom) / 2);
 
          pgraphics->line_to(rectangleClient.right, (rectangleClient.top + rectangleClient.bottom) / 2);
 

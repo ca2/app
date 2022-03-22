@@ -1,6 +1,6 @@
 #include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
+//#include "aura/user/_user.h"
 //#endif
 //#include "acme/id.h"
 //#include "apex/platform/app_core.h"

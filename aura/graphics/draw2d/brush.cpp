@@ -11,7 +11,7 @@ namespace draw2d
    brush::brush()
    {
 
-      m_etype     = type_solid;
+      m_ebrush     = e_brush_solid;
 
    }
 
@@ -72,7 +72,7 @@ namespace draw2d
 
       m_color.set_argb(0);
 
-      m_etype     = e_type_null;
+      m_ebrush     = e_brush_null;
 
       set_modified();
 
@@ -84,12 +84,12 @@ namespace draw2d
    bool brush::create_solid(::color::color color)
    {
 
-      if(m_etype != type_solid || m_color != color)
+      if(m_ebrush != e_brush_solid || m_color != color)
       {
 
          m_color     = color;
 
-         m_etype     = type_solid;
+         m_ebrush     = e_brush_solid;
 
          set_modified();
 
@@ -114,6 +114,9 @@ namespace draw2d
    }
 
 
+
+
+
 //   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
 //   {
 //
@@ -126,15 +129,17 @@ namespace draw2d
 //   }
 
 
-   bool brush::CreatePatternBrush(::image * pimage)
+   bool brush::CreatePatternBrush(::image * pimage, const ::size_f64 & size)
    {
 
-      if (m_pimage != pimage || m_etype != type_pattern)
+      if (m_pimage != pimage || m_ebrush != e_brush_pattern)
       {
 
          m_pimage = pimage;
 
-         m_etype = type_pattern;
+         m_size = size;
+
+         m_ebrush = e_brush_pattern;
 
          set_modified();
 
@@ -202,14 +207,14 @@ namespace draw2d
    bool brush::CreateLinearGradientBrush(point_f64 point1, point_f64 point2, const ::color::color & color1, const ::color::color & color2)
    {
 
-      if (m_etype == type_linear_gradient_point_color
+      if (m_ebrush == e_brush_linear_gradient_point_color
             && m_point1 == point1
             && m_point2 == point2
             && m_color1 == color1
             && m_color2 == color2)
          return true;
 
-      m_etype           = type_linear_gradient_point_color;
+      m_ebrush           = e_brush_linear_gradient_point_color;
       m_point1          = point1;
       m_point2          = point2;
       m_color1          = color1;
@@ -224,12 +229,12 @@ namespace draw2d
    bool brush::CreateRadialGradientBrush(point_f64 point,size_f64 s,const ::color::color & color1,const ::color::color & color2)
    {
 
-      if(m_etype == type_radial_gradient_color
+      if(m_ebrush == e_brush_radial_gradient_color
             && m_point == point
             && m_size == s)
          return true;
 
-      m_etype           = type_radial_gradient_color;
+      m_ebrush           = e_brush_radial_gradient_color;
       m_point           = point;
       m_size            = s;
       m_color1          = color1;
@@ -241,18 +246,41 @@ namespace draw2d
    }
 
 
-   brush & brush::operator = (const brush & pbrushSrc)
+   bool brush::CreateBoxGradientBrush(point_f64 point, size_f64 s, double dRadius, const ::color::color & colorInner, const ::color::color & colorOuter)
    {
 
-      m_etype           = pbrushSrc.m_etype;
-      m_color           = pbrushSrc.m_color;
-      m_point1          = pbrushSrc.m_point1;
-      m_point2          = pbrushSrc.m_point2;
-      m_color1          = pbrushSrc.m_color1;
-      m_color2          = pbrushSrc.m_color2;
-      m_point           = pbrushSrc.m_point;
-      m_size            = pbrushSrc.m_size;
-      m_pimage          = pbrushSrc.m_pimage;
+      if (m_ebrush == e_brush_box_gradient
+         && m_point == point
+         && m_size == s
+         && m_dRadius == dRadius)
+         return true;
+
+      m_ebrush = e_brush_box_gradient;
+      m_point = point;
+      m_size = s;
+      m_dRadius = dRadius;
+      m_color1 = colorInner;
+      m_color2 = colorOuter;
+      set_modified();
+
+      return true;
+
+   }
+
+
+   brush & brush::operator = (const brush & brush)
+   {
+
+      m_ebrush           = brush.m_ebrush;
+      m_color           = brush.m_color;
+      m_point1          = brush.m_point1;
+      m_point2          = brush.m_point2;
+      m_color1          = brush.m_color1;
+      m_color2          = brush.m_color2;
+      m_point           = brush.m_point;
+      m_size            = brush.m_size;
+      m_pimage          = brush.m_pimage;
+      m_dRadius         = brush.m_dRadius;
       set_modified();
 
       return *this;

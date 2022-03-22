@@ -3,15 +3,55 @@
 
 
 #include "base/user/user/_user.h"
+#include "aura/user/appearance/_appearance.h"
 
 
-#include "vector.h"
+#include "_.h"
 
 
-#include "_nanogui_main_frame.h"
+//**
+//* \brief Determine whether an icon ID is a texture loaded via ``nvg_image_icon``.
+//*
+//* \rst
+//* The implementation defines all ``value < 1024`` as image icons, and
+//   * everything ``> = 1024`` as an Entypo icon(see :ref:`file_nanogui_entypo.h`).
+//      * The value ``1024`` exists to provide a generous buffer on how many images
+//      * may have been loaded by NanoVG.
+//      * \endrst
+//      *
+//      *\param value
+//      * The integral value of the icon.
+//      *
+//      *\return
+//      *Whether or not this is an image icon.
+//      * /
+      inline bool nvg_is_image_icon(int value) { return value < 1024; }
+
+/**
+ * \brief Determine whether an icon ID is a font-based icon (e.g. from ``entypo.ttf``).
+ *
+ * \rst
+ * See :func:`nanogui::nvg_is_image_icon` for details.
+ * \endrst
+ *
+ * \param value
+ *     The integral value of the icon.
+ *
+ * \return
+ *     Whether or not this is a font icon (from ``entypo.ttf``).
+ */
+inline bool nvg_is_font_icon(int value) { return value >= 1024; }
 
 
-#include "nanovg.h"
+
+//#include "nano2d/_nano2d.h"
+
+
+//#include "_nanogui_main_frame.h"
+
+
+#define __MOUSE_LEFT_BUTTON 0
+#define __MOUSE_RIGHT_BUTTON 1
 
 
 #include "Object.h"
@@ -22,10 +62,35 @@
 
 #include "Window.h"
 #include "Label.h"
+#include "Button.h"
+
+#include "Popup.h"
+#include "PopupButton.h"
+
+#include "CheckBox.h"
 
 
+#include "MessageDialog.h"
+
+#include "VScrollPanel.h"
+
+#include "Canvas.h"
+
+#include "ImagePanel.h"
+#include "ImageView.h"
+
+#include "ComboBox.h"
+
+#include "Slider.h"
 
 
+#include "TextBox.h"
 
+
+#include "ProgressBar.h"
+
+#include "TabWidget.h"
+
+#include "ColorWheel.h"
 
 

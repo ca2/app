@@ -89,16 +89,7 @@
     <ClInclude Include="user\user\edit_window.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_const.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\edit_text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\menu.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_command.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\place_holder_container.h">
@@ -124,9 +115,6 @@
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\form_callback.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\document.h">
       <Filter>Header Files\user\user</Filter>
@@ -159,15 +147,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\button.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\combo_box.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\list_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\composition_imm_client.h">
@@ -287,13 +266,7 @@
     <ClInclude Include="id.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="update.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="message.h">
@@ -365,38 +338,8 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="platform\_generic_object_constructor_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="astr.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user\user\print_task.h">
       <Filter>Header Files\user\user</Filter>
@@ -475,9 +418,6 @@
     </ClInclude>
     <ClInclude Include="user\simple\main_frame.h">
       <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\tool_window.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\toolbar.h">
       <Filter>Header Files\user\user</Filter>

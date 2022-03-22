@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+//#include "base/user/user/_user.h"
 
 
 namespace user
@@ -963,6 +963,13 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
 
       pmessage->previous();
+
+      //if (pmessage->m_bRet)
+      //{
+
+      //   return;
+
+      //}
 
       if (get_parent_frame() != nullptr)
       {

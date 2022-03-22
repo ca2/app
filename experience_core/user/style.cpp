@@ -1666,22 +1666,22 @@ namespace experience_core
       if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x - 5, pointCenter.y + 5);
-         pgraphics->move_to(pointCenter.x, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x, pointCenter.y + 5);
-         pgraphics->move_to(pointCenter.x + 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x + 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
 
       }
       else
       {
 
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y - 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y - 5);
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y);
-         pgraphics->move_to(pointCenter.x - 5, pointCenter.y + 5);
+         pgraphics->set_current_point(pointCenter.x - 5, pointCenter.y + 5);
          pgraphics->line_to(pointCenter.x + 5, pointCenter.y + 5);
 
       }

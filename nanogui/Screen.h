@@ -160,8 +160,8 @@ public:
 //    */
 //   virtual void draw_teardown();
 //
-//   /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
-//   float pixel_ratio() const { return m_pixel_ratio; }
+   /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
+   float pixel_ratio() const { return m_pixel_ratio; }
 //
 //   /// Handle a file drop event
 //   virtual bool drop_event(const std::vector<std::string> & /* filenames */) {
@@ -178,8 +178,8 @@ public:
 //   virtual bool resize_event(const Vector2i & size);
 //
 //   /// Set the resize callback
-//   std::function<void(Vector2i)> resize_callback() const { return m_resize_callback; }
-//   void set_resize_callback(const std::function<void(Vector2i)> & callback) {
+//   ::function<void(Vector2i)> resize_callback() const { return m_resize_callback; }
+//   void set_resize_callback(const ::function<void(Vector2i)> & callback) {
 //      m_resize_callback = callback;
 //   }
 //
@@ -256,8 +256,8 @@ public:
 //   void initialize(GLFWwindow * window, bool shutdown_glfw);
 //
 //   /* Event handlers */
-//   void cursor_pos_callback_event(double x, double y);
-//   void mouse_button_callback_event(int button, int action, int modifiers);
+   bool on_mouse_move(const ::point_i32 & point) override;
+   bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
 //   void drop_callback_event(int count, const char ** filenames);
@@ -265,25 +265,26 @@ public:
 //   void resize_callback_event(int width, int height);
 //
 //   /* Internal helper functions */
-//   void update_focus(Widget * widget);
-//   void dispose_window(Window * window);
-//   void center_window(Window * window);
-//   void move_window_to_front(Window * window);
-//   void draw_widgets();
+   void update_focus(Widget * widget);
+   void dispose_window(Window * window);
+   void center_window(Window * window, NVGcontext * pcontext);
+   void move_window_to_front(Window * window);
+   void draw(NVGcontext * ctx) override;
+   void draw_widgets(NVGcontext * ctx);
 //
 //protected:
 //   GLFWwindow * m_glfw_window = nullptr;
 //   NVGcontext * m_nvg_context = nullptr;
 //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
 //   Cursor m_cursor;
-//   std::vector<Widget *> m_focus_path;
+   std::vector<Widget *> m_focus_path;
 //   Vector2i m_fbsize;
-//   float m_pixel_ratio;
-//   int m_mouse_state, m_modifiers;
-//   Vector2i m_mouse_pos;
-//   bool m_drag_active;
-//   Widget * m_drag_widget = nullptr;
-//   double m_last_interaction;
+   float m_pixel_ratio;
+   int m_mouse_state, m_modifiers;
+   Vector2i m_mouse_pos;
+   bool m_drag_active;
+   Widget * m_drag_widget = nullptr;
+   ::duration m_last_interaction;
 //   bool m_process_events = true;
 //   Color m_background;
 //   std::string m_caption;
@@ -292,8 +293,8 @@ public:
 //   bool m_depth_buffer;
 //   bool m_stencil_buffer;
 //   bool m_float_buffer;
-//   bool m_redraw;
-//   std::function<void(Vector2i)> m_resize_callback;
+   bool m_redraw;
+//   ::function<void(Vector2i)> m_resize_callback;
 //#if defined(NANOGUI_USE_METAL)
 //   void * m_metal_texture = nullptr;
 //   void * m_metal_drawable = nullptr;

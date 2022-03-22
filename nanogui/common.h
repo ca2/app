@@ -257,7 +257,7 @@ class Window;
  * NanoGUI is not thread-safe, and async() provides a mechanism
  * for queuing up UI-related state changes from other threads.
  */
-//extern NANOGUI_EXPORT void async(const std::function<void()> & func);
+//extern NANOGUI_EXPORT void async(const ::function<void()> & func);
 
 /**
  * \brief Open a native file open/save dialog.
@@ -270,9 +270,13 @@ class Window;
  *     Set to ``true`` if you would like subsequent file dialogs to open
  *     at whatever folder they were in when they close this one.
  */
-//extern NANOGUI_EXPORT std::string
-//file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
-//   bool save);
+NANOGUI_EXPORT ::string
+file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
+   bool save);
+
+
+NANOGUI_EXPORT ::image_pointer ___load_image(::object * pobject, const char * path);
+NANOGUI_EXPORT void ___save_image(::object * pobject, const char * path, ::image * pimage);
 
 
 /**
@@ -305,9 +309,9 @@ class Window;
  *     Set to ``true`` if you would like to be able to select multiple
  *     files at once. May not be simultaneously true with \p save.
  */
-//extern NANOGUI_EXPORT std::vector<std::string>
-//file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
-//   bool save, bool multiple);
+extern NANOGUI_EXPORT std::vector<std::string>
+file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
+   bool save, bool multiple);
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)
 /**
@@ -330,8 +334,8 @@ extern NANOGUI_EXPORT void chdir_to_bundle_parent();
  * \param c
  *     The UTF32 character to be converted.
  */
-//extern NANOGUI_EXPORT std::string utf8(uint32_t c);
-//
+extern NANOGUI_EXPORT std::string get_utf8_character(uint32_t c);
+
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
 //extern NANOGUI_EXPORT std::vector<std::pair<int, std::string>>
 //load_image_directory(NVGcontext * ctx, const std::string & path);

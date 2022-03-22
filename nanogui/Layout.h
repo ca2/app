@@ -129,10 +129,10 @@ public:
    /* Implementation of the layout interface */
 
    /// See \ref Layout::preferred_size.
-   //virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
 
    /// See \ref Layout::perform_layout.
-   //virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
 
 protected:
    /// The Orientation of this BoxLayout.
@@ -317,15 +317,15 @@ public:
 
    /* Implementation of the layout interface */
    /// See \ref Layout::preferred_size.
-   //virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
 
    /// See \ref Layout::perform_layout.
-   //virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
 
 protected:
    // Compute the maximum row and column sizes
-   //void compute_layout(NVGcontext * ctx, const Widget * widget,
-      //std::vector<int> * grid) const;
+   void compute_layout(NVGcontext * ctx, const Widget * widget,
+      std::vector<int> * grid) const;
 
 protected:
    /// The Orientation of the GridLayout.
@@ -457,15 +457,15 @@ public:
    /* Implementation of the layout interface */
 
    /// See \ref Layout::preferred_size.
-   //virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, const Widget * widget) const override;
 
    /// See \ref Layout::perform_layout.
-   //virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget) const override;
 
 protected:
    // Compute the maximum row and column sizes
-   //void compute_layout(NVGcontext * ctx, const Widget * widget,
-     // std::vector<int> * grid) const;
+   void compute_layout(NVGcontext * ctx, const Widget * widget,
+      std::vector<int> * grid) const;
 
 protected:
    /// The columns of this AdvancedGridLayout.

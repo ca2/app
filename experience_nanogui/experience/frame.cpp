@@ -564,7 +564,7 @@ namespace experience_nanogui
       if(eborder & e_border_top)
       {
 
-         pgraphics->move_to(x,y);
+         pgraphics->set_current_point(x,y);
 
          pgraphics->line_to(x + cx,y);
 
@@ -573,7 +573,7 @@ namespace experience_nanogui
       if(eborder & e_border_left)
       {
 
-         pgraphics->move_to(x,y);
+         pgraphics->set_current_point(x,y);
 
          pgraphics->line_to(x,y+cy);
 
@@ -593,7 +593,7 @@ namespace experience_nanogui
       if(eborder & e_border_right)
       {
 
-         pgraphics->move_to(x + cx,y);
+         pgraphics->set_current_point(x + cx,y);
 
          pgraphics->line_to(x + cx,y + cy);
 
@@ -602,7 +602,7 @@ namespace experience_nanogui
       if(eborder & e_border_bottom)
       {
 
-         pgraphics->move_to(x,y + cy);
+         pgraphics->set_current_point(x,y + cy);
 
          pgraphics->line_to(x + cx,y + cy);
 

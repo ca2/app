@@ -532,10 +532,10 @@ namespace user
       //      auto ppen = __create < ::draw2d::pen > ();
       //      ppen->create_solid(1, m_echeck == check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(ppen);
-      //      pgraphics->move_to(2, 8);
+      //      pgraphics->set_current_point(2, 8);
       //      pgraphics->line_to(6, 12);
       //      pgraphics->line_to(13, 5);
-      //      pgraphics->move_to(2, 9);
+      //      pgraphics->set_current_point(2, 9);
       //      pgraphics->line_to(6, 13);
       //      pgraphics->line_to(13, 6);
       //   }

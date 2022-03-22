@@ -1,10 +1,11 @@
 #pragma once
 
 
-//#if !BROAD_PRECOMPILED_HEADER
+#ifndef BASE_USER_CUBE_H
 #include "base/user/user/_user.h"
+#endif
 #include "base/user/experience/_experience.h"
-//#endif
+
 
 #include "scroll_bar.h"
 

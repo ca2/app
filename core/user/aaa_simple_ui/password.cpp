@@ -260,7 +260,7 @@ namespace simple_ui
          {
             
             pgraphics->set(ppenCaret);
-            pgraphics->move_to(left + size1.cx,y);
+            pgraphics->set_current_point(left + size1.cx,y);
             pgraphics->line_to(left + size1.cx,y + dLineHeight);
 
          }
@@ -268,7 +268,7 @@ namespace simple_ui
          {
             
             pgraphics->set(ppenCaret);
-            pgraphics->move_to(left + size2.cx + size1.cx,y);
+            pgraphics->set_current_point(left + size2.cx + size1.cx,y);
             pgraphics->line_to(left + size2.cx + size1.cx,y + dLineHeight);
 
          }

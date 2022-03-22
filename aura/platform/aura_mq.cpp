@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/user/_user.h"
+//#include "aura/user/_user.h"
 
 
 CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)

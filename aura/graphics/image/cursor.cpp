@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "aura/user/_user.h"
+//#include "aura/user/_user.h"
 #include "cursor.h"
 #include "image.h"
 

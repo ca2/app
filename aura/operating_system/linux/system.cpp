@@ -3,12 +3,12 @@
 // (as caThworansfer (also fun :/ ... few times... so seriously F****) from aura/os/application_system_run.cpp)
 #include "framework.h"
 #include "aura/operating_system/linux/_user.h"
-#include "aura/user/_user.h"
+//#include "aura/user/_user.h"
 //#include <gtk/gtk.h>
 ////#include "third/sn/sn.h"
 #include "apex/platform/apex.h"
 //#include "apex/os/linux/gnome_apex_application.h"
-#include "aura/user/message_box.h"
+#include "aura/user/user/message_box.h"
 
 
 

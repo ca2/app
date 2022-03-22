@@ -928,7 +928,7 @@
     <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\filesystem\aaaa_.h" />
-    <ClInclude Include="filesystem\filesystem\acme_dir.h" />
+    <ClInclude Include="filesystem\filesystem\acme_directory.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
@@ -1602,7 +1602,7 @@
     <ClCompile Include="exception\standard.cpp" />
     <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="exception\translator.cpp" />
-    <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />

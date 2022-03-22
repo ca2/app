@@ -152,8 +152,8 @@ list(APPEND library_source
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp
    filesystem/file/transfer.h
-   filesystem/filesystem/acme_dir.cpp
-   filesystem/filesystem/acme_dir.h
+   filesystem/filesystem/acme_directory.cpp
+   filesystem/filesystem/acme_directory.h
    filesystem/filesystem/acme_file.cpp
    filesystem/filesystem/acme_file.h
    filesystem/filesystem/acme_path.cpp
@@ -904,7 +904,7 @@ list(APPEND library_source
    filesystem/file/___serialization_draft.h
    filesystem/file/___serialization_draft001.h
    filesystem/file/_c.h
-   filesystem/file/_const.h
+   filesystem/file/_constant.h
    filesystem/file/_defer.h
    filesystem/file/_defer_payload_stream.h
    filesystem/file/_file.h
@@ -951,9 +951,13 @@ list(APPEND library_source
    #filesystem/filesystem.h
    #filesystem/filesystem/_.h
    filesystem/filesystem/_impl.h
+   filesystem/filesystem/enumerator.cpp
+   filesystem/filesystem/enumerator.h
    filesystem/filesystem/listing.h
    filesystem/filesystem/path.h
    filesystem/filesystem/path_object.h
+   filesystem/filesystem/path_array.cpp
+   filesystem/filesystem/path_array.h
    framework.h
    framework_c.h
    graphics/draw2d/_.h

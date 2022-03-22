@@ -907,9 +907,15 @@ bool acme_directory::is(const char * path)
 bool acme_directory::enumerate(::file::listing & listing)
 {
 
-   throw ::interface_only();
+   return ::file::enumerator::enumerate(listing);
 
-   return false;
+}
+
+
+bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag eflag)
+{
+
+   return ::file::enumerator::list(stra, psz, eflag);
 
 }
 

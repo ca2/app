@@ -38,6 +38,7 @@ namespace file
       
       ::file::path            m_pathUser;
       ::file::path            m_pathFinal;
+      ::file::path            m_pathBasePath;
       ::file::e_flag          m_eflag;
       ::enum_depth            m_edepth;
       string_array            m_straPattern;

@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include <nanogui/vector.h>
-#include <nanogui/object.h>
+#include "vector.h"
+#include "Object.h"
 
 NAMESPACE_BEGIN(nanogui)
 

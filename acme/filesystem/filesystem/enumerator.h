@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-13 19:38 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-13 19:38 <3ThomasBorregaardSï¿½rensen!!
 // Mummy prepared - hinted that was sort of easy, lot of steps though :)
 // Fish with Lemon, Tofu with premium soy sauce, grind ginger and chive, 
 // japanese rice, fried egg-plant, some see weed leafs and cola extra coffee.
@@ -37,7 +37,9 @@ namespace file
       // returns false the enumerator is not a enumerator for the
       // source m_pathUser member in the listing.
       // throws exception if listing enumeration fails for some reason.
-      virtual bool enumerate(listing & listing) = 0;
+      virtual bool enumerate(listing & listing);
+
+      virtual bool list(string_array & stra, const char * psz, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
 
 
       //virtual bool enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);

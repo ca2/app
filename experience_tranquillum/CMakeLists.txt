@@ -6,33 +6,33 @@ list(APPEND library_source
         #_.cpp
         _.h
         #aaa_want_to_erase_experience_tranquillum_style.cpp
-        button.cpp
-        button.h
-        control_box.cpp
-        control_box.h
-        experience.cpp
-        experience.h
+        experience/control_box_button.cpp
+        experience/control_box_button.h
+        experience/control_box.cpp
+        experience/control_box.h
+        experience/experience.cpp
+        experience/experience.h
         _factory.cpp
-        frame.cpp
-        frame.h
-        frame_001.cpp
-        frame_001.h
-        frame_002.cpp
-        frame_002.h
-        frame_005.cpp
-        frame_005.h
-        frame_008.cpp
-        frame_008.h
-        frame_011.cpp
-        frame_011.h
-        frame_013.cpp
-        frame_013.h
-        frame_Minimal001.cpp
-        frame_Minimal001.h
+        experience/frame.cpp
+        experience/frame.h
+        experience/frame_001.cpp
+        experience/frame_001.h
+        experience/frame_002.cpp
+        experience/frame_002.h
+        experience/frame_005.cpp
+        experience/frame_005.h
+        experience/frame_008.cpp
+        experience/frame_008.h
+        experience/frame_011.cpp
+        experience/frame_011.h
+        experience/frame_013.cpp
+        experience/frame_013.h
+        experience/frame_Minimal001.cpp
+        experience/frame_Minimal001.h
         framework.cpp
         framework.h
-        style.cpp
-        style.h)
+        user/style.cpp
+        user/style.h)
 
 
 list(APPEND library_references

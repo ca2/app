@@ -744,7 +744,7 @@ point_f64 graphics::current_position()
 }
 
 
-void graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
+void graphics::arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
    _synchronous_lock ml(cairo_mutex());
@@ -781,7 +781,7 @@ void graphics::Arc(double x1, double y1, double x2, double y2, double x3, double
 }
 
 
-void graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
+void graphics::arc(double x, double y, double w, double h, angle start, angle extends)
 {
 
    _synchronous_lock ml(cairo_mutex());
@@ -818,10 +818,10 @@ void graphics::Arc(double x, double y, double w, double h, angle start, angle ex
 }
 
 
-void graphics::Arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+void graphics::arc(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
 {
 
-    return Arc(
+    return arc(
                rectangle.left,
                rectangle.top,
                rectangle.right,
@@ -2434,7 +2434,7 @@ i32 graphics::EndDoc()
 //}
 
 
-void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
+void graphics::angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
 {
 
    throw ::interface_only();
@@ -2444,7 +2444,7 @@ void graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, a
 }
 
 
-void graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
+void graphics::arc_to(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
 {
 
    throw ::interface_only();
@@ -2674,7 +2674,7 @@ void graphics::widen_path()
 }
 
 
-void graphics::draw_path(::draw2d::path * ppath)
+void graphics::draw(::draw2d::path * ppath)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -2692,7 +2692,7 @@ void graphics::draw_path(::draw2d::path * ppath)
 }
 
 
-void graphics::fill_path(::draw2d::path * ppath)
+void graphics::fill(::draw2d::path * ppath)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -2710,7 +2710,7 @@ void graphics::fill_path(::draw2d::path * ppath)
 }
 
 
-void graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -2728,7 +2728,7 @@ void graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
 }
 
 
-void graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
+void graphics::fill(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -3443,7 +3443,7 @@ i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
 //}
 
 
-void graphics::move_to(double x, double y)
+void graphics::set_current_point(double x, double y)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -4685,7 +4685,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 
    _synchronous_lock ml(cairo_mutex());
 
-   if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
+   if (pbrush->m_etype == ::draw2d::brush::e_type_radial_gradient_color)
    {
 
       cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point.x - x, pbrush->m_point.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
@@ -4699,7 +4699,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
       cairo_pattern_destroy(ppattern);
 
    }
-   else if (pbrush->m_etype == ::draw2d::brush::type_linear_gradient_point_color)
+   else if (pbrush->m_etype == ::draw2d::brush::e_type_linear_gradient_point_color)
    {
 
       double x0 = pbrush->m_point1.x - x;
@@ -4745,7 +4745,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
       // cairo_pattern_destroy(ppattern);
 
    }
-   else if (pbrush->m_etype == ::draw2d::brush::type_pattern)
+   else if (pbrush->m_etype == ::draw2d::brush::e_type_pattern)
    {
 
       if(!::is_ok(pbrush->m_pimage))

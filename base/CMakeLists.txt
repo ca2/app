@@ -32,7 +32,6 @@ list(APPEND library_source
         #inline/console_common.h
         #inline/library.h
         platform/_features.h
-        platform/_generic_object_constructor_impl.h
         platform/_impl.h
         platform/_platform.h
         platform/application.cpp
@@ -42,7 +41,7 @@ list(APPEND library_source
         platform/system.cpp
         platform/system.h
         user/experience/_.h
-        user/experience/_const.h
+        user/experience/_constant.h
         user/experience/_experience.h
         user/experience/button.cpp
         user/experience/button.h
@@ -91,7 +90,7 @@ list(APPEND library_source
         user/simple/scroll_bar.h
         user/user/_.cpp
         user/user/_.h
-        user/user/_const.h
+        #user/user/_constant.h
         user/user/_data.h
         user/user/_impl.h
         user/user/_tree.h
@@ -219,7 +218,7 @@ list(APPEND library_source
         _defer.h
         #$aaa_want_to_move_xml.h
         application.h
-        astr.h
+        #astr.h
         callback.h
         console.h
         #context_glx.cpp

@@ -1048,7 +1048,7 @@
     <ClCompile Include="primitive\promise\signalization.cpp">
       <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_dir.cpp">
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\acme_file.cpp">
@@ -3249,7 +3249,7 @@
     <ClInclude Include="filesystem\filesystem\acme_file.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\acme_dir.h">
+    <ClInclude Include="filesystem\filesystem\acme_directory.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\aaaa_.h">

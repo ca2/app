@@ -225,19 +225,19 @@ namespace draw2d_cairo
 
       // Line-Output Functions
       point_f64 current_position() override;
-      void move_to(double x, double y) override;
+      void set_current_point(double x, double y) override;
       //    point_f64 MoveTo(const ::point_f64 & point_f64) override;
       void line_to(double x, double y) override;
       //  bool LineTo(const ::point_f64 & point_f64) override;
       void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
-      void Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      void Arc(double x, double y, double w, double h, angle start, angle extends) override;
-      void Arc(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
+      void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
+      void arc(double x, double y, double w, double h, angle start, angle extends) override;
+      void arc(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
       void polyline(const ::point_f64 * lpPoints, count nCount) override;
 
-      void AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle) override;
+      void angle_arc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle) override;
       //bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
-      void ArcTo(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
+      void arc_to(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
       //i32 GetArcDirection() override;
       //i32 SetArcDirection(i32 nArcDirection) override;
 
@@ -462,11 +462,11 @@ namespace draw2d_cairo
       void stroke_path() override;
       void widen_path() override;
 
-      void draw_path(::draw2d::path * ppath) override;
-      void fill_path(::draw2d::path * ppath) override;
+      void draw(::draw2d::path * ppath) override;
+      void fill(::draw2d::path * ppath) override;
 
-      void draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen) override;
-      void fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush) override;
+      void draw(::draw2d::path * ppath, ::draw2d::pen * ppen) override;
+      void fill(::draw2d::path * ppath, ::draw2d::brush * pbrush) override;
 
       float GetMiterLimit() override;
       void SetMiterLimit(float fMiterLimit) override;

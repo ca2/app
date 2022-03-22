@@ -1219,12 +1219,12 @@
 		9A787CD0264C04CD003DF8A0 /* translator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CB7264C04CC003DF8A0 /* translator.h */; };
 		9A787CD1264C04CD003DF8A0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CB8264C04CC003DF8A0 /* _.h */; };
 		9A787CD2264C04CD003DF8A0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CB8264C04CC003DF8A0 /* _.h */; };
-		9A787CDD264C06CE003DF8A0 /* acme_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CD9264C06CD003DF8A0 /* acme_dir.h */; };
-		9A787CDE264C06CE003DF8A0 /* acme_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CD9264C06CD003DF8A0 /* acme_dir.h */; };
+		9A787CDD264C06CE003DF8A0 /* acme_directory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CD9264C06CD003DF8A0 /* acme_directory.h */; };
+		9A787CDE264C06CE003DF8A0 /* acme_directory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CD9264C06CD003DF8A0 /* acme_directory.h */; };
 		9A787CDF264C06CE003DF8A0 /* acme_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDA264C06CD003DF8A0 /* acme_path.cpp */; };
 		9A787CE0264C06CE003DF8A0 /* acme_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDA264C06CD003DF8A0 /* acme_path.cpp */; };
-		9A787CE1264C06CE003DF8A0 /* acme_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDB264C06CE003DF8A0 /* acme_dir.cpp */; };
-		9A787CE2264C06CE003DF8A0 /* acme_dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDB264C06CE003DF8A0 /* acme_dir.cpp */; };
+		9A787CE1264C06CE003DF8A0 /* acme_directory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDB264C06CE003DF8A0 /* acme_directory.cpp */; };
+		9A787CE2264C06CE003DF8A0 /* acme_directory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787CDB264C06CE003DF8A0 /* acme_directory.cpp */; };
 		9A787CE3264C06CE003DF8A0 /* acme_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CDC264C06CE003DF8A0 /* acme_path.h */; };
 		9A787CE4264C06CE003DF8A0 /* acme_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CDC264C06CE003DF8A0 /* acme_path.h */; };
 		9A787CE8264C0713003DF8A0 /* signalization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CE6264C0713003DF8A0 /* signalization.h */; };
@@ -3577,9 +3577,9 @@
 		9A787CB6264C04CC003DF8A0 /* international_locale_schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = international_locale_schema.h; sourceTree = "<group>"; };
 		9A787CB7264C04CC003DF8A0 /* translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = translator.h; sourceTree = "<group>"; };
 		9A787CB8264C04CC003DF8A0 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A787CD9264C06CD003DF8A0 /* acme_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acme_dir.h; sourceTree = "<group>"; };
+		9A787CD9264C06CD003DF8A0 /* acme_directory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acme_directory.h; sourceTree = "<group>"; };
 		9A787CDA264C06CD003DF8A0 /* acme_path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acme_path.cpp; sourceTree = "<group>"; };
-		9A787CDB264C06CE003DF8A0 /* acme_dir.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acme_dir.cpp; sourceTree = "<group>"; };
+		9A787CDB264C06CE003DF8A0 /* acme_directory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = acme_directory.cpp; sourceTree = "<group>"; };
 		9A787CDC264C06CE003DF8A0 /* acme_path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = acme_path.h; sourceTree = "<group>"; };
 		9A787CE6264C0713003DF8A0 /* signalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signalization.h; sourceTree = "<group>"; };
 		9A787CE7264C0713003DF8A0 /* signalization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = signalization.cpp; sourceTree = "<group>"; };
@@ -5249,8 +5249,8 @@
 			isa = PBXGroup;
 			children = (
 				9A68A7D825114430008DABD2 /* _impl.h */,
-				9A787CDB264C06CE003DF8A0 /* acme_dir.cpp */,
-				9A787CD9264C06CD003DF8A0 /* acme_dir.h */,
+				9A787CDB264C06CE003DF8A0 /* acme_directory.cpp */,
+				9A787CD9264C06CD003DF8A0 /* acme_directory.h */,
 				9A892E6F26CDD00D008D6412 /* acme_file.cpp */,
 				9A892E6D26CDD00C008D6412 /* acme_file.h */,
 				9A787CDA264C06CD003DF8A0 /* acme_path.cpp */,
@@ -6600,7 +6600,7 @@
 				9A15A6D6264B59EF0080670E /* manual_reset_event.h in Headers */,
 				9A5F8E0627193D4E002CB2B8 /* second.h in Headers */,
 				9A15A698264B59EE0080670E /* data.h in Headers */,
-				9A787CDD264C06CE003DF8A0 /* acme_dir.h in Headers */,
+				9A787CDD264C06CE003DF8A0 /* acme_directory.h in Headers */,
 				9AA8FE0727BA729C008FF9AA /* _pthread.h in Headers */,
 				9ADD653C26B5CFE600D11298 /* __unaligned_memory_allocate.h in Headers */,
 				9A1625F026EFCC34003D9CB9 /* element.h in Headers */,
@@ -7040,7 +7040,7 @@
 				9AD68ED9251A753A00C0EBD7 /* _factory_impl.h in Headers */,
 				9AD68EDA251A753A00C0EBD7 /* trap.h in Headers */,
 				9AD68EDC251A753A00C0EBD7 /* _c_inline.h in Headers */,
-				9A787CDE264C06CE003DF8A0 /* acme_dir.h in Headers */,
+				9A787CDE264C06CE003DF8A0 /* acme_directory.h in Headers */,
 				9AD68EDF251A753A00C0EBD7 /* _console_old.h in Headers */,
 				9ADD654726B5CFE700D11298 /* __plex.h in Headers */,
 				9AD68EE0251A753A00C0EBD7 /* sign.h in Headers */,
@@ -7986,7 +7986,7 @@
 				9A68AF2225114435008DABD2 /* manager.cpp in Sources */,
 				9A68AF1025114435008DABD2 /* _unicode32.cpp in Sources */,
 				9AA8037F27BAC7F7008FF9AA /* memory.cpp in Sources */,
-				9A787CE1264C06CE003DF8A0 /* acme_dir.cpp in Sources */,
+				9A787CE1264C06CE003DF8A0 /* acme_directory.cpp in Sources */,
 				9A68AF1225114435008DABD2 /* bstring.cpp in Sources */,
 				9AA8F8E527BA7268008FF9AA /* object.cpp in Sources */,
 				9AA8FD6727BA729A008FF9AA /* winpr_keycode.cpp in Sources */,
@@ -8682,7 +8682,7 @@
 				9A787BBD264BB154003DF8A0 /* predicate_function.cpp in Sources */,
 				9AA8FF3C27BA729E008FF9AA /* aaa_file_os_watcher.cpp in Sources */,
 				9A15A683264B59EE0080670E /* synchronization_object.cpp in Sources */,
-				9A787CE2264C06CE003DF8A0 /* acme_dir.cpp in Sources */,
+				9A787CE2264C06CE003DF8A0 /* acme_directory.cpp in Sources */,
 				9AA8FF8627BA729F008FF9AA /* aura.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

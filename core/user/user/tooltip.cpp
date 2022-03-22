@@ -119,7 +119,7 @@ namespace user
 
       pgraphics->set(b);
 
-      pgraphics->fill_path(ppath);
+      pgraphics->fill(ppath);
 
       auto ppen = __create < ::draw2d::pen > ();
 
@@ -127,7 +127,7 @@ namespace user
 
       ppen->create_solid(1.0, argb(190, 120, 120, 255));
 
-      pgraphics->draw_path(ppath);
+      pgraphics->draw(ppath);
 
       pgraphics->set_text_color(argb(255, 120, 120, 255));
 

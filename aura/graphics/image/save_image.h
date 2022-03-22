@@ -9,7 +9,7 @@ class CLASS_DECL_AURA save_image :
 public:
 
 
-   ::draw2d::e_format      m_eformat;
+   ::draw2d::enum_format      m_eformat;
    int                     m_iQuality;
    int                     m_iDpi;
 

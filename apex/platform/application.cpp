@@ -1872,7 +1872,7 @@ m_pinterprocessintercommunication->on_new_instance(
 INFORMATION("axis::application::init_instance success");
 
 //auto estatus = 
-create_impact_system();
+creatimpact_system();
 
 //if (failed(estatus))
 //{
@@ -9908,7 +9908,7 @@ void application::_001OnSwitchContextTheme(::message::message* pmessage)
 }
 
 
-void     application::create_impact_system()
+void     application::creatimpact_system()
 {
 
    //return ::success;

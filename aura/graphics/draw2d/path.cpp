@@ -325,7 +325,7 @@ namespace draw2d
    {
 
       //m_bFill        = false;
-      m_efillmode    = ::draw2d::fill_mode_winding;
+      m_efillmode    = ::draw2d::e_fill_mode_winding;
       m_bHasPoint    = false;
 
    }
@@ -1700,7 +1700,7 @@ namespace draw2d
    //   if (eborder & e_border_all)
    //   {
 
-   //      //begin_figure(true, ::draw2d::fill_mode_winding);
+   //      //begin_figure(true, ::draw2d::e_fill_mode_winding);
 
    //      //begin_figure();
 
@@ -1779,7 +1779,7 @@ namespace draw2d
       if (eborder & e_border_all)
       {
 
-         //begin_figure(true, ::draw2d::fill_mode_winding);
+         //begin_figure(true, ::draw2d::e_fill_mode_winding);
 
          begin_figure();
 
@@ -1970,7 +1970,7 @@ namespace draw2d
          if (pmatter->contains(point))
          {
 
-            if (m_efillmode == ::draw2d::fill_mode_winding)
+            if (m_efillmode == ::draw2d::e_fill_mode_winding)
             {
 
                return true;

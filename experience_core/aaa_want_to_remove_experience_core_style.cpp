@@ -102,11 +102,11 @@ namespace experience_lite
 
                   pgraphics->SelectObject(pane.m_pbrushFillSel);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorderSel);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab->get_data()->m_pfont);
 
@@ -133,11 +133,11 @@ namespace experience_lite
 
                      pgraphics->SelectObject(pane.m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      pgraphics->SelectObject(ptab->get_data()->m_ppenBorderHover);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab->get_data()->m_pfontUnderline);
 
@@ -151,11 +151,11 @@ namespace experience_lite
 
                      pgraphics->SelectObject(pane.m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab->get_data()->m_pfont);
 
@@ -202,13 +202,13 @@ namespace experience_lite
 
                   pgraphics->SelectObject(pane.m_pbrushFillSel);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ptab->get_data()->m_ppenBorderSel->create_solid(1.0,argb(255,0,0,0));
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorderSel);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab->get_data()->m_pfont);
 
@@ -218,7 +218,7 @@ namespace experience_lite
                else
                {
 
-                  //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppath->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                   ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
 
@@ -237,11 +237,11 @@ namespace experience_lite
 
                      pgraphics->SelectObject(pane.m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      pgraphics->SelectObject(ptab->get_data()->m_ppenBorderHover);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab->get_data()->m_pfontUnderline);
 
@@ -255,11 +255,11 @@ namespace experience_lite
 
                      pgraphics->SelectObject(pane.m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab->get_data()->m_pfont);
 

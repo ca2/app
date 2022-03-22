@@ -38,7 +38,7 @@ namespace windowing
    void menu_command::_001SetCheck(enum_check echeck, const ::action_context & context)   // 0, 1 or 2 (indeterminate)
    {
 
-      if (echeck == check_checked)
+      if (echeck == e_check_checked)
       {
 
          m_pitem->add_status(::windowing::e_status_checked);

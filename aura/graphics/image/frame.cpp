@@ -23,19 +23,19 @@ void image_frame::gif_set_disposal(int iDisposal)
    switch (iDisposal)
    {
    case 0:
-      m_edisposal = ::draw2d::disposal_undefined;
+      m_edisposal = ::draw2d::e_disposal_undefined;
       break;
    case 1:
-      m_edisposal = ::draw2d::disposal_none;
+      m_edisposal = ::draw2d::e_disposal_none;
       break;
    case 2:
-      m_edisposal = ::draw2d::disposal_background;
+      m_edisposal = ::draw2d::e_disposal_background;
       break;
    case 3:
-      m_edisposal = ::draw2d::disposal_previous;
+      m_edisposal = ::draw2d::e_disposal_previous;
       break;
    default:
-      m_edisposal = ::draw2d::disposal_undefined;
+      m_edisposal = ::draw2d::e_disposal_undefined;
       break;
    }
 
@@ -48,7 +48,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
    ::size_i32 size = m_rectangle.size();
 
-   if (m_edisposal == ::draw2d::disposal_none)
+   if (m_edisposal == ::draw2d::e_disposal_none)
    {
 
       if (m_iFrame <= 0)
@@ -75,7 +75,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
       }
 
    }
-   else if (m_edisposal == ::draw2d::disposal_background)
+   else if (m_edisposal == ::draw2d::e_disposal_background)
    {
 
       pimageCompose->copy_from(pimageFrame, ::e_flag_none);

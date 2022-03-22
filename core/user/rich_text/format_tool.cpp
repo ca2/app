@@ -167,7 +167,7 @@ namespace user
       //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
       //::rectangle_f64 r(2, 2, 2, 2);
-      //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
+      //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
 
 
       m_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
@@ -363,10 +363,10 @@ namespace user
 
                m_pbuttonSubscript->_001ToggleCheck(::e_source_user);
 
-               if (m_pbuttonSubscript->echeck() == ::check_checked)
+               if (m_pbuttonSubscript->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonSuperscript->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonSuperscript->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
@@ -382,10 +382,10 @@ namespace user
 
                m_pbuttonSuperscript->_001ToggleCheck(::e_source_user);
 
-               if (m_pbuttonSuperscript->echeck() == ::check_checked)
+               if (m_pbuttonSuperscript->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonSubscript->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonSubscript->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
@@ -400,19 +400,19 @@ namespace user
             else if (ptopic->user_interaction()->m_atom == "e_align_left")
             {
 
-               m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::e_source_user);
+               m_pbuttonAlignLeft->_001SetCheck(::e_check_checked, ::e_source_user);
 
-               if (m_pbuttonAlignCenter->echeck() == ::check_checked)
+               if (m_pbuttonAlignCenter->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignCenter->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignCenter->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
-               if (m_pbuttonAlignRight->echeck() == ::check_checked)
+               if (m_pbuttonAlignRight->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignRight->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignRight->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
@@ -426,19 +426,19 @@ namespace user
             else if (ptopic->user_interaction()->m_atom == "e_align_center")
             {
 
-               m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::e_source_user);
+               m_pbuttonAlignCenter->_001SetCheck(::e_check_checked, ::e_source_user);
 
-               if (m_pbuttonAlignLeft->echeck() == ::check_checked)
+               if (m_pbuttonAlignLeft->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignLeft->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignLeft->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
-               if (m_pbuttonAlignRight->echeck() == ::check_checked)
+               if (m_pbuttonAlignRight->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignRight->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignRight->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
@@ -452,19 +452,19 @@ namespace user
             else if (ptopic->user_interaction()->m_atom == "e_align_right")
             {
 
-               m_pbuttonAlignRight->_001SetCheck(::check_checked, ::e_source_user);
+               m_pbuttonAlignRight->_001SetCheck(::e_check_checked, ::e_source_user);
 
-               if (m_pbuttonAlignLeft->echeck() == ::check_checked)
+               if (m_pbuttonAlignLeft->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignLeft->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignLeft->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
-               if (m_pbuttonAlignCenter->echeck() == ::check_checked)
+               if (m_pbuttonAlignCenter->echeck() == ::e_check_checked)
                {
 
-                  m_pbuttonAlignCenter->_001SetCheck(::check_unchecked, ::e_source_sync);
+                  m_pbuttonAlignCenter->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
                }
 
@@ -645,16 +645,16 @@ namespace user
 
          set_font_size(strtod(str, nullptr));
 
-         m_pformata->first()->m_bUnderline = m_pbuttonUnderline->echeck() == ::check_checked;
-         m_pformata->first()->m_bItalic = m_pbuttonItalic->echeck() == ::check_checked;
-         m_pformata->first()->m_bBold = m_pbuttonBold->echeck() == ::check_checked;
-         if (m_pbuttonSuperscript->echeck() == ::check_checked)
+         m_pformata->first()->m_bUnderline = m_pbuttonUnderline->echeck() == ::e_check_checked;
+         m_pformata->first()->m_bItalic = m_pbuttonItalic->echeck() == ::e_check_checked;
+         m_pformata->first()->m_bBold = m_pbuttonBold->echeck() == ::e_check_checked;
+         if (m_pbuttonSuperscript->echeck() == ::e_check_checked)
          {
 
             m_pformata->first()->m_escript = ::user::rich_text::script_superscript;
 
          }
-         else if (m_pbuttonSubscript->echeck() == ::check_checked)
+         else if (m_pbuttonSubscript->echeck() == ::e_check_checked)
          {
 
             m_pformata->first()->m_escript = ::user::rich_text::script_subscript;
@@ -666,13 +666,13 @@ namespace user
             m_pformata->first()->m_escript = ::user::rich_text::script_normal;
 
          }
-         if (m_pbuttonAlignRight->echeck() == ::check_checked)
+         if (m_pbuttonAlignRight->echeck() == ::e_check_checked)
          {
 
             m_pformata->first()->m_ealign = e_align_right;
 
          }
-         else if (m_pbuttonAlignCenter->echeck() == ::check_checked)
+         else if (m_pbuttonAlignCenter->echeck() == ::e_check_checked)
          {
 
             m_pformata->first()->m_ealign = e_align_center;
@@ -711,9 +711,9 @@ namespace user
 
          //set_font_size(m_pformata->first()->m_dFontSize);
 
-         //m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         //m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         //m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         //m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+         //m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+         //m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
          //bool bLeft = m_pformata->first()->m_ealign == e_align_left;
          //bool bCenter = m_pformata->first()->m_ealign == e_align_center;

@@ -12,7 +12,7 @@
 //{
 //
 //
-//   enum e_impact
+//   enum enum_impact
 //   {
 //
 //      impact_none,

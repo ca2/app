@@ -126,7 +126,7 @@ namespace hotplugin
       rectangleClip1.right = rectangleClip1.left + cx - iBorder1 * 2;
       rectangleClip1.bottom = rectangleClip1.top + cy - iBorder1 * 2;
 
-      ppathClip1->begin_figure(true, ::draw2d::fill_mode_winding);
+      ppathClip1->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
       ppathClip1->add_round_rect(rectangleClip1, iBorder1 * 2);
 
@@ -171,7 +171,7 @@ namespace hotplugin
       rectangleClip.bottom = rectangleClip.top + iBarHeight + iBorder * 2;
 
 
-      ppathClip->begin_figure(true, ::draw2d::fill_mode_winding);
+      ppathClip->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
       ppathClip->add_round_rect(rectangleClip, iBorder);
 

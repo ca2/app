@@ -43,7 +43,7 @@ namespace simple_shader
       //               if (::is_ok(m_pimage2))
       //               {
 
-      //                  m_pimage2->transform(image_grayscale);
+      //                  m_pimage2->transform(e_image_grayscale);
 
       //                  m_pimpact->set_need_redraw();
 

@@ -17,7 +17,7 @@ namespace user
       check();
       virtual ~check();
 
-      inline ::enum_check get_echeck() const { return ::is_null(m_ppropertyCheck) ? enum_check::check_undefined : m_ppropertyCheck->m_echeck; }
+      inline ::enum_check get_echeck() const { return ::is_null(m_ppropertyCheck) ? enum_check::e_check_undefined : m_ppropertyCheck->m_echeck; }
       inline bool get_bcheck() const { return ::is_null(m_ppropertyCheck) ? false : m_ppropertyCheck->operator bool(); }
       inline ::enum_check echeck() const { return m_ppropertyCheck->m_echeck; }
       inline ::enum_check & echeck() { return m_ppropertyCheck->m_echeck; }

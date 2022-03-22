@@ -284,7 +284,7 @@ namespace user
             rectangleImage.top = rectangleImage.bottom - rectangleImageInfo.height();
             rectangleImage.right = rectangleImage.left + rectangleImageInfo.width();
 
-            if (echeck() == ::check_checked)
+            if (echeck() == ::e_check_checked)
             {
 
                pgraphics->fill_rectangle(rectangleImageBorder, rgb(127, 127, 127));

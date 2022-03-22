@@ -847,7 +847,7 @@ namespace user
       //::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
       ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32)m_iIndex);
 
-      if (echeck != ::check_unchecked)
+      if (echeck != ::e_check_unchecked)
       {
 
          //nNewStyle |= SBPS_POPOUT;

@@ -38,12 +38,12 @@ namespace user
    void check_box::_001SetCheck(::enum_check echeck, const ::action_context & context)
    {
 
-      if(echeck != ::check_unchecked && echeck != ::check_checked && echeck != ::check_tristate)
+      if(echeck != ::e_check_unchecked && echeck != ::e_check_checked && echeck != ::e_check_tristate)
       {
 
          // default value when setting a value that does not match the ones above
 
-         echeck = ::check_checked;
+         echeck = ::e_check_checked;
 
       }
 
@@ -159,7 +159,7 @@ namespace user
 
          rectangleText.left = rectangleCheckBox.right + 4;
 
-         if (echeck == ::check_tristate)
+         if (echeck == ::e_check_tristate)
          {
 
             pgraphics->fill_rectangle(rectangleCheckBox, argb(255, 220, 220, 220));
@@ -179,7 +179,7 @@ namespace user
 
          }
 
-         if (echeck == ::check_tristate || echeck == ::check_checked)
+         if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
          {
 
             if (pstyle)
@@ -349,7 +349,7 @@ namespace user
 
          bool bComplement;
 
-         if (echeck() == ::check_unchecked)
+         if (echeck() == ::e_check_unchecked)
          {
 
             bComplement = true;
@@ -413,7 +413,7 @@ namespace user
 
          pgraphics->set(point1);
 
-         pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
          pgraphics->draw_path(point);
 
@@ -422,7 +422,7 @@ namespace user
       else
       {
 
-         if (echeck() == ::check_unchecked)
+         if (echeck() == ::e_check_unchecked)
          {
 
             rectangleEllipse.Align({e_align_left, e_align_vertical_center}, rectangle);
@@ -441,7 +441,7 @@ namespace user
 
             pgraphics->set(point1);
 
-            pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
             pgraphics->draw_path(point);
 
@@ -493,13 +493,13 @@ namespace user
       color32_t crPen = argb(255, 0, 0, 0);
       color32_t crBrush;
 
-      if (echeck() == ::check_checked)
+      if (echeck() == ::e_check_checked)
       {
 
          crBrush = argb(255, 100, 220, 120);
 
       }
-      else if (echeck() == ::check_unchecked)
+      else if (echeck() == ::e_check_unchecked)
       {
 
          crBrush = argb(255, 220, 220, 100);
@@ -526,11 +526,11 @@ namespace user
 
       pgraphics->ellipse(rectangleCheckBox);
       //   pgraphics->draw_inset_3d_rectangle(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
-      //   if (m_echeck == check_tristate
-      //      || m_echeck == check_checked)
+      //   if (m_echeck == e_check_tristate
+      //      || m_echeck == e_check_checked)
       //   {
       //      auto ppen = __create < ::draw2d::pen > ();
-      //      ppen->create_solid(1, m_echeck == check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+      //      ppen->create_solid(1, m_echeck == e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(ppen);
       //      pgraphics->set_current_point(2, 8);
       //      pgraphics->line_to(6, 12);

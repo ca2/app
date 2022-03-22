@@ -326,7 +326,7 @@ namespace user
 
          string strName2 = ppane2->get_title();
 
-         auto pimpactdata = allocate_impact_data(id3);
+         auto pimpactdata = allocatimpact_data(id3);
 
          add_tab(strName1 + "->:<-" + strName2, id3, true, false, pimpactdata->m_pplaceholder);
 
@@ -729,7 +729,7 @@ namespace user
       if(pimpactdata->m_atom == MENU_IMPACT)
       {
          
-         create_impact_menu(pimpactdata);
+         creatimpact_menu(pimpactdata);
          
       }
       
@@ -743,7 +743,7 @@ namespace user
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
 
-       //  create_impact_menu(m_pimpactdata);
+       //  creatimpact_menu(m_pimpactdata);
 
          __pointer(::user::menu) pmenu = get_view_uie();
          
@@ -756,7 +756,7 @@ namespace user
             
             pmenu->m_puserinteractionpointeraChild.release();
 
-            prepare_impact_menu(pmenu);
+            preparimpact_menu(pmenu);
             
          }
 
@@ -791,7 +791,7 @@ namespace user
    }
 
 
-   void tab_view::prepare_impact_menu(::user::menu * pmenu)
+   void tab_view::preparimpact_menu(::user::menu * pmenu)
    {
 
       if (pmenu->load_xml_menu("matter://impact.menu"))
@@ -1060,7 +1060,7 @@ namespace user
    }
 
 
-   bool tab_view::on_prepare_impact_data(::user::impact_data* pimpactdata)
+   bool tab_view::on_preparimpact_data(::user::impact_data* pimpactdata)
    {
 
       //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))

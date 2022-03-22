@@ -11,7 +11,7 @@ public:
    ::image_pointer               m_pimage;
    ::duration                    m_duration;
    index                         m_iFrame;
-   ::draw2d::e_disposal          m_edisposal;
+   ::draw2d::enum_disposal          m_edisposal;
    ::color::color                m_colorTransparent;
    bool                          m_bTransparent;
    bool                          m_bLocalPalette;

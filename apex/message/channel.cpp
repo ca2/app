@@ -411,7 +411,7 @@ void channel::command_handler(::message::command * pcommand)
 
       if (!pcommand->m_bEnableChanged
          && !pcommand->m_bRadioChanged
-         && pcommand->m_echeck == check_undefined
+         && pcommand->m_echeck == e_check_undefined
          && !pcommand->m_bHasCommandHandler)
       {
 
@@ -518,7 +518,7 @@ void channel::on_command_probe(::message::command * pcommand)
    pcommand->m_bRet =
       pcommand->m_bEnableChanged
       || pcommand->m_bRadioChanged
-      || pcommand->m_echeck != check_undefined;
+      || pcommand->m_echeck != e_check_undefined;
 
 }
 
@@ -595,13 +595,13 @@ void channel::default_toggle_check_handling(const ::atom & atom)
          if (linkedproperty->get_bool())
          {
 
-            *linkedproperty = ::check_unchecked;
+            *linkedproperty = ::e_check_unchecked;
 
          }
          else
          {
 
-            *linkedproperty = ::check_checked;
+            *linkedproperty = ::e_check_checked;
 
          }
 

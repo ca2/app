@@ -483,7 +483,7 @@ namespace user
 #include "tooltip.h"
 
 
-#include "aura/user/shell.h"
+#include "aura/user/user/shell.h"
 
 
 #include "core/filesystem/filemanager/component.h"

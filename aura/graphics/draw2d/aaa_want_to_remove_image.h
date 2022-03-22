@@ -101,8 +101,8 @@ public:
    virtual ::count get_image_count() const override;
    virtual ::image_pointer get_image(iptr i) override;
 
-   virtual bool set_mipmap(::draw2d::e_mipmap emipmap) override;
-   virtual bool _set_mipmap(::draw2d::e_mipmap emipmap) override;
+   virtual bool set_mipmap(::draw2d::enum_mipmap emipmap) override;
+   virtual bool _set_mipmap(::draw2d::enum_mipmap emipmap) override;
 
    //virtual bool add_next(double dRate)
    virtual bool create_isotropic(::image * pimage) override;

@@ -7,7 +7,7 @@
 //{
 //
 //   m_bEnabled        = true;  // assume it is enabled
-//   m_echeck          = ::check_undefined;
+//   m_echeck          = ::e_check_undefined;
 //   m_bRadio          = false;
 //   m_bRadioChanged   = false;
 //

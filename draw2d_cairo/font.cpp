@@ -204,7 +204,7 @@ namespace draw2d_cairo
 
       pango_font_description_set_weight(m_pdesc, (PangoWeight)m_iFontWeight);
 
-      if (m_eunitFontSize == ::draw2d::unit_pixel)
+      if (m_eunitFontSize == ::draw2d::e_unit_pixel)
       {
 
          pango_font_description_set_absolute_size(m_pdesc, m_dFontSize * PANGO_SCALE);

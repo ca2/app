@@ -160,7 +160,7 @@ namespace account
 
          g.select(b);
 
-         g.fill_polygon(pb, 4, ::draw2d::fill_mode_winding);
+         g.fill_polygon(pb, 4, ::draw2d::e_fill_mode_winding);
 
          simple_pen p;
 
@@ -168,7 +168,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pb, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pb, 4, ::draw2d::e_fill_mode_winding);
 
 
       }
@@ -200,7 +200,7 @@ namespace account
 
          g.select(b);
 
-         g.fill_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.fill_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
          simple_pen p;
 
@@ -208,7 +208,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
 
       }
@@ -226,7 +226,7 @@ namespace account
 
          g.select(b);
 
-         g.fill_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.fill_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
          simple_pen p;
 
@@ -234,7 +234,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
 
       }
@@ -252,7 +252,7 @@ namespace account
 
          g.select(b);
 
-         g.fill_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.fill_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
          simple_pen p;
 
@@ -260,7 +260,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
 
       }
@@ -278,7 +278,7 @@ namespace account
 
          g.select(b);
 
-         g.fill_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.fill_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
          simple_pen p;
 
@@ -286,7 +286,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pc, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pc, 4, ::draw2d::e_fill_mode_winding);
 
 
       }
@@ -303,7 +303,7 @@ namespace account
 
          g.select(p);
 
-         g.draw_polygon(pa, 4, ::draw2d::fill_mode_winding);
+         g.draw_polygon(pa, 4, ::draw2d::e_fill_mode_winding);
 
       }
 

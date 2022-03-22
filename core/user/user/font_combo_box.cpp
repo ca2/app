@@ -53,7 +53,7 @@ namespace user
 
       //::rectangle_f64 r(2, 2, 2, 2);
 
-      //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
+      //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
 
       defer_create_list_box();
 

@@ -378,7 +378,7 @@ namespace graphics
       if (!defer_write(ch, m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy, m_sizeTile.cx, m_sizeTile.cy, edoscolor))
       {
 
-         m_pimage->g()->set_smooth_mode(::draw2d::smooth_mode_none);
+         m_pimage->g()->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
          if (ch == (char)209)// horizontal double / down simple
          {

@@ -135,7 +135,7 @@ namespace userex
 
       m_buttonMenu.create_control(this, m_atom);
 
-      m_buttonMenu.set_button_style(::user::button::style_image_and_text);
+      m_buttonMenu.set_button_style(::user::button::e_style_image_and_text);
 
       //m_buttonMenu.create_color(::user::color_button_text, argb(255, 80, 80, 80));
       //m_buttonMenu.create_color(::user::color_button_background, argb(255, 255, 255, 255));
@@ -444,13 +444,13 @@ namespace userex
          if (::is_item(pitemCurrent, i))
          {
 
-            pbutton->_001SetCheck(::check_checked, ::e_source_sync);
+            pbutton->_001SetCheck(::e_check_checked, ::e_source_sync);
 
          }
          else
          {
 
-            pbutton->_001SetCheck(::check_unchecked, ::e_source_sync);
+            pbutton->_001SetCheck(::e_check_unchecked, ::e_source_sync);
 
          }
 

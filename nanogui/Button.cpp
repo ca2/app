@@ -354,7 +354,7 @@ bool Button::call_click()
 bool Button::call_check(::enum_check echeck) 
 {
 
-   set_check(echeck == ::check_checked);
+   set_check(echeck == ::e_check_checked);
    
    if (m_change_callback)
    {

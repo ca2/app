@@ -150,7 +150,7 @@
 //
 //            ::copy_colorref(p->m_pimage->colorref(), w, h, p->m_pimage->scan_size(), pdata, iScan);
 //
-//            p->m_edisposal = ::draw2d::disposal_none;
+//            p->m_edisposal = ::draw2d::e_disposal_none;
 //
 //            p->m_rectangle.left = 0;
 //

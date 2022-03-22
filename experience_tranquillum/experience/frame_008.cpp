@@ -373,7 +373,7 @@ SizingNone:
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
             pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), eborder);
 

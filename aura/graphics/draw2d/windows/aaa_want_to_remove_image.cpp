@@ -126,15 +126,15 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
    if (SUCCEEDED(hr))
    {
 
-      switch (psaveimage == nullptr ? ::draw2d::format_png : psaveimage->m_eformat)
+      switch (psaveimage == nullptr ? ::draw2d::e_format_png : psaveimage->m_eformat)
       {
-      case ::draw2d::format_bmp:
+      case ::draw2d::e_format_bmp:
          hr = pimagingfactory->CreateEncoder(GUID_ContainerFormatBmp, nullptr, &pbitmapencoder);
          break;
-      case ::draw2d::format_gif:
+      case ::draw2d::e_format_gif:
          hr = pimagingfactory->CreateEncoder(GUID_ContainerFormatGif, nullptr, &pbitmapencoder);
          break;
-      case ::draw2d::format_jpeg:
+      case ::draw2d::e_format_jpeg:
          hr = pimagingfactory->CreateEncoder(GUID_ContainerFormatJpeg, nullptr, &pbitmapencoder);
          break;
       default:
@@ -211,7 +211,7 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
       //   }
       //}
 
-      if (psaveimage != nullptr && psaveimage->m_eformat == ::draw2d::format_jpeg)
+      if (psaveimage != nullptr && psaveimage->m_eformat == ::draw2d::e_format_jpeg)
       {
 
          PROPBAG2 option = { 0 };

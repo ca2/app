@@ -179,7 +179,7 @@ namespace app_shader
 
                     auto psaveimage = __new(save_image());
 
-                    psaveimage->m_eformat = ::draw2d::format_png;
+                    psaveimage->m_eformat = ::draw2d::e_format_png;
 
                     auto psystem = m_psystem->m_paurasystem;
 

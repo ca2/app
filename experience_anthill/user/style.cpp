@@ -712,13 +712,13 @@ namespace experience_anthill
 
                   pgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   if (::is_item(ptab->m_pitemHover, iTab)
                      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -760,7 +760,7 @@ namespace experience_anthill
 
                      pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
@@ -780,13 +780,13 @@ namespace experience_anthill
 
                      pgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill_path(ppath);
+                     pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(ppath);
+                     pgraphics->draw(ppath);
 
                      auto pstyle = ptab->get_style(pgraphics);
 
@@ -864,7 +864,7 @@ namespace experience_anthill
 
                //pgraphics->set(ppenBorder);
 
-               //pgraphics->draw_path(ppath);
+               //pgraphics->draw(ppath);
 
                //auto pstyle = ptab->get_style(pgraphics);
 
@@ -891,7 +891,7 @@ namespace experience_anthill
                //else
                //{
 
-               //   //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
+               //   //ppath->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                //   //if (iPane > 0)
                //   //{
@@ -919,13 +919,13 @@ namespace experience_anthill
 
                //      pgraphics->set(ppane->m_pbrushFillHover);
 
-               //      //pgraphics->fill_path(ppath);
+               //      //pgraphics->fill(ppath);
 
                //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                //      pgraphics->set(ppenBorder);
 
-               //      //pgraphics->draw_path(ppath);
+               //      //pgraphics->draw(ppath);
 
                //      auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
 
@@ -941,13 +941,13 @@ namespace experience_anthill
 
                //      pgraphics->set(ppane->m_pbrushFill);
 
-               //      //pgraphics->fill_path(ppath);
+               //      //pgraphics->fill(ppath);
 
                //      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                //      pgraphics->set(ppenBorder);
 
-               //      //pgraphics->draw_path(ppath);
+               //      //pgraphics->draw(ppath);
 
                //      auto pfont = ptab->get_font(pstyle);
 

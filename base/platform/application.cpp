@@ -98,7 +98,7 @@ namespace base
    }
 
 
-   void application::create_impact_system()
+   void application::creatimpact_system()
    {
 
       //return ::success;

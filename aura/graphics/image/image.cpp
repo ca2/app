@@ -6192,7 +6192,7 @@ void image::Rotate034(::image* pimage, double dAngle, double dScale)
 //}
 
 
-void image::rotate_90_flip_horizontally(::image* pimage)
+void image::e_rotate_90_flip_horizontally(::image* pimage)
 {
 
    create(pimage->size());
@@ -6224,7 +6224,7 @@ void image::rotate_90_flip_horizontally(::image* pimage)
 }
 
 
-void image::rotate_180_flip_horizontally(::image* pimage)
+void image::e_rotate_180_flip_horizontally(::image* pimage)
 {
 
    create(pimage->size());
@@ -6256,7 +6256,7 @@ void image::rotate_180_flip_horizontally(::image* pimage)
 }
 
 
-void image::rotate_270_flip_horizontally(::image* pimage)
+void image::e_rotate_270_flip_horizontally(::image* pimage)
 {
 
    create(pimage->size());
@@ -6288,32 +6288,32 @@ void image::rotate_270_flip_horizontally(::image* pimage)
 }
 
 
-void image::rotate_90_flip_horizontally()
+void image::e_rotate_90_flip_horizontally()
 {
 
    ::image_pointer pimage = clone();
 
-   return rotate_90_flip_horizontally(pimage);
+   return e_rotate_90_flip_horizontally(pimage);
 
 }
 
 
-void image::rotate_180_flip_horizontally()
+void image::e_rotate_180_flip_horizontally()
 {
 
    ::image_pointer pimage = clone();
 
-   return rotate_180_flip_horizontally(pimage);
+   return e_rotate_180_flip_horizontally(pimage);
 
 }
 
 
-void image::rotate_270_flip_horizontally()
+void image::e_rotate_270_flip_horizontally()
 {
 
    ::image_pointer pimage = clone();
 
-   return rotate_270_flip_horizontally(pimage);
+   return e_rotate_270_flip_horizontally(pimage);
 
 }
 
@@ -6952,7 +6952,7 @@ void image::DivideA(i32 iDivide)
 
 
 
-void image::set_mipmap(::draw2d::e_mipmap emipmap)
+void image::set_mipmap(::draw2d::enum_mipmap emipmap)
 {
 
    if (m_emipmap == emipmap)
@@ -6964,7 +6964,7 @@ void image::set_mipmap(::draw2d::e_mipmap emipmap)
 
    }
 
-   if (emipmap != ::draw2d::mipmap_none)
+   if (emipmap != ::draw2d::e_mipmap_none)
    {
 
       return _set_mipmap(emipmap);
@@ -6976,10 +6976,10 @@ void image::set_mipmap(::draw2d::e_mipmap emipmap)
 }
 
 
-void image::_set_mipmap(::draw2d::e_mipmap emipmap)
+void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 {
 
-   ASSERT(emipmap != ::draw2d::mipmap_none);
+   ASSERT(emipmap != ::draw2d::e_mipmap_none);
 
    ::image_pointer pimage(clone());
 
@@ -6993,7 +6993,7 @@ void image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
    double cy = cySource;
 
-   if (emipmap == ::draw2d::mipmap_isotropic)
+   if (emipmap == ::draw2d::e_mipmap_isotropic)
    {
 
       double newcx = cx + cx / 2.0 - 1.0;
@@ -7070,7 +7070,7 @@ void image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       }
 
-      m_emipmap = ::draw2d::mipmap_isotropic;
+      m_emipmap = ::draw2d::e_mipmap_isotropic;
 
    }
    else
@@ -7155,7 +7155,7 @@ void image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       }
 
-      m_emipmap = ::draw2d::mipmap_anisotropic;
+      m_emipmap = ::draw2d::e_mipmap_anisotropic;
 
    }
 
@@ -9331,48 +9331,48 @@ void image::on_load_image()
 void image::on_exif_orientation()
 {
 
-   e_rotate_flip erotateflip = ::exif_orientation_rotate_flip(m_iExifOrientation);
+   enum_rotate_flip erotateflip = ::exif_orientation_rotate_flip(m_iExifOrientation);
 
-   if (erotateflip == rotate_90_flip_none)
+   if (erotateflip == e_rotate_90_flip_none)
    {
 
       rotate(90_degree);
 
    }
-   else if (erotateflip == rotate_180_flip_none)
+   else if (erotateflip == e_rotate_180_flip_none)
    {
 
       rotate(180_degree);
 
    }
-   else if (erotateflip == rotate_270_flip_none)
+   else if (erotateflip == e_rotate_270_flip_none)
    {
 
       rotate(270_degree);
 
    }
-   else if (erotateflip == rotate_none_flip_x)
+   else if (erotateflip == e_rotate_none_flip_x)
    {
 
       flip_horizontally();
 
    }
-   else if (erotateflip == rotate_90_flip_x)
+   else if (erotateflip == e_rotate_90_flip_x)
    {
 
-      rotate_90_flip_horizontally();
+      e_rotate_90_flip_horizontally();
 
    }
-   else if (erotateflip == rotate_180_flip_x)
+   else if (erotateflip == e_rotate_180_flip_x)
    {
 
-      rotate_180_flip_horizontally();
+      e_rotate_180_flip_horizontally();
 
    }
-   else if (erotateflip == rotate_270_flip_x)
+   else if (erotateflip == e_rotate_270_flip_x)
    {
 
-      rotate_270_flip_horizontally();
+      e_rotate_270_flip_horizontally();
 
    }
 
@@ -9383,7 +9383,7 @@ void image::on_exif_orientation()
 save_image::save_image()
 {
 
-   m_eformat = ::draw2d::format_png;
+   m_eformat = ::draw2d::e_format_png;
 
    m_iQuality = 100;
 
@@ -9399,7 +9399,7 @@ save_image::save_image()
 //
 //   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
-//   if (eformat != ::draw2d::format_none)
+//   if (eformat != ::draw2d::e_format_none)
 //   {
 //
 //      __pointer(::aura::system) psystem = m_psystem;
@@ -9408,10 +9408,10 @@ save_image::save_image()
 //
 //   }
 //
-//   if (eformat == ::draw2d::format_none)
+//   if (eformat == ::draw2d::e_format_none)
 //   {
 //
-//      m_eformat = ::draw2d::format_png;
+//      m_eformat = ::draw2d::e_format_png;
 //
 //   }
 //
@@ -10064,7 +10064,7 @@ http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 void image::transform(enum_image eimage)
 {
 
-   if (eimage == image_grayscale)
+   if (eimage == e_image_grayscale)
    {
 
       return saturation(0.0);

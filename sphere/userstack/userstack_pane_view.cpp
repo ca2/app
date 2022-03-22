@@ -124,11 +124,11 @@ namespace userstack
       //      matter * pcheck = dynamic_cast < matter * > (puie);
       //      if(psession->savings().save().has(::ca2::save_display_bandwidth))
       //      {
-      //         pcheck->_001SetCheck(check_checked, false);
+      //         pcheck->_001SetCheck(e_check_checked, false);
       //      }
       //      else
       //      {
-      //         pcheck->_001SetCheck(check_unchecked, false);
+      //         pcheck->_001SetCheck(e_check_unchecked, false);
       //      }*/
       //   }
       //   else if(get_view_id() == ::bergedge::impact_winactionarea)

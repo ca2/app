@@ -219,20 +219,20 @@ namespace imaging_freeimage
 
       switch (psaveimage->m_eformat)
       {
-      case ::draw2d::format_png:
+      case ::draw2d::e_format_png:
          eformat = FreeImage_GetFIFFromFormat("PNG");
          strFile = "foo.png";
          break;
-      case ::draw2d::format_bmp:
+      case ::draw2d::e_format_bmp:
          eformat = FIF_BMP;
          strFile = "foo.bmp";
          break;
-      case ::draw2d::format_gif:
+      case ::draw2d::e_format_gif:
          b8 = true;
          eformat = FIF_GIF;
          strFile = "foo.gif";
          break;
-      case ::draw2d::format_jpeg:
+      case ::draw2d::e_format_jpeg:
          b24 = true;
          eformat = FreeImage_GetFIFFromFormat("JPEG");
          strFile = "foo.jpg";

@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool impact_host::on_prepare_impact_data(impact_data * pimpactdata)
+   bool impact_host::on_preparimpact_data(impact_data * pimpactdata)
    {
 
       __UNREFERENCED_PARAMETER(pimpactdata);
@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   bool impact_host::on_after_create_impact_data(impact_data * pimpactdata)
+   bool impact_host::on_after_creatimpact_data(impact_data * pimpactdata)
    {
 
       __UNREFERENCED_PARAMETER(pimpactdata);
@@ -260,10 +260,10 @@ namespace user
 
 
 
-   impact_data * impact_host::create_impact_by_id(const ::atom & atom)
+   impact_data * impact_host::creatimpact_by_id(const ::atom & atom)
    {
 
-      impact_data * pimpactdata = allocate_impact_data(atom);
+      impact_data * pimpactdata = allocatimpact_data(atom);
 
       try
       {
@@ -285,7 +285,7 @@ namespace user
 
             //::acme::del(pimpactdata);
             // todo
-            //erase_impact_data(pimpactdata);
+            //erasimpact_data(pimpactdata);
 
             return nullptr;
 
@@ -432,7 +432,7 @@ namespace user
    }
 
 
-   impact_data * impact_host::allocate_impact_data(const atom & atom)
+   impact_data * impact_host::allocatimpact_data(const atom & atom)
    {
 
       impact_data * pimpactdata = new_impact_data(atom);
@@ -440,7 +440,7 @@ namespace user
       try
       {
 
-         on_prepare_impact_data(pimpactdata);
+         on_preparimpact_data(pimpactdata);
 
       }
       catch (const ::exception & exception)
@@ -466,7 +466,7 @@ namespace user
       try
       {
 
-         on_after_create_impact_data(pimpactdata);
+         on_after_creatimpact_data(pimpactdata);
 
       }
       catch (const ::exception & exception)
@@ -577,13 +577,13 @@ namespace user
       if (!bCallOnCreateImpact)
       {
 
-         pimpactdata = allocate_impact_data(atom);
+         pimpactdata = allocatimpact_data(atom);
 
          return pimpactdata;
 
       }
 
-      pimpactdata = create_impact_by_id(atom);
+      pimpactdata = creatimpact_by_id(atom);
 
       if (pimpactdata == nullptr)
       {
@@ -731,7 +731,7 @@ namespace user
 
       }
 
-      pimpactdata = allocate_impact_data(atom);
+      pimpactdata = allocatimpact_data(atom);
 
       if (!pimpactdata)
       {

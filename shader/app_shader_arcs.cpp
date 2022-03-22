@@ -129,7 +129,7 @@ namespace simple_shader
 
       pgraphics->set(ppen);
 
-      pgraphics->Arc(r, dStart, dAngle);
+      pgraphics->arc(r, dStart, dAngle);
 
 
    }

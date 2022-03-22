@@ -42,7 +42,7 @@ namespace message
       m_iIndex = -1;
       m_iCount = -1;
       m_bEnable = false;
-      m_echeck = ::check_undefined;
+      m_echeck = ::e_check_undefined;
       m_bRadio = false;
       m_bRadioChanged = false;
       //m_pmenu = nullptr;
@@ -185,7 +185,7 @@ namespace message
    void command::_001SetCheck(bool bCheck, const ::action_context & context)
    {
 
-      _001SetCheck((::enum_check)(bCheck ? ::check_checked : ::check_unchecked), context);
+      _001SetCheck((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
 
    }
 
@@ -262,7 +262,7 @@ namespace message
 
       m_bRadioChanged = false;
 
-      m_echeck = ::check_undefined;
+      m_echeck = ::e_check_undefined;
 
       ptarget->_001SendCommandProbe(this);
 

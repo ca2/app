@@ -201,7 +201,7 @@ namespace helloworld
 
                m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + __string(i))));
 
-               m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::e_source_sync);
+               m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -401,7 +401,7 @@ namespace helloworld
                   if (m_pviewLastBilbo != nullptr)
                   {
 
-                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::check_checked;
+                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::e_check_checked;
 
                      m_pviewLastBilbo->m_prender->defer_update_bilbo();
 
@@ -415,22 +415,22 @@ namespace helloworld
 
          //if(ptopic->user_element_id() == "clockverse")
          //   {
-         //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "clockverse_auto")
          //   {
-         //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag")
          //   {
-         //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag_auto")
          //   {
-         //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::check_checked);
+         //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
          //      return true;
          //   }
          //}

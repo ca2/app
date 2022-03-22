@@ -516,7 +516,7 @@ namespace user
 
             __pointer(check) pcheck = ptopic->user_interaction();
 
-            if (pcheck->echeck() == ::check_checked)
+            if (pcheck->echeck() == ::e_check_checked)
             {
 
                ia.add_unique(pinteraction->m_iDataValue);
@@ -1447,7 +1447,7 @@ namespace user
 
    //         __pointer(check) pcheck = ptopic->user_interaction();
 
-   //         if(pcheck->echeck() == ::check_checked)
+   //         if(pcheck->echeck() == ::e_check_checked)
    //         {
 
    //            ia.add_unique(pinteraction->m_iDataValue);

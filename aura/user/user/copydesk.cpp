@@ -216,13 +216,13 @@ namespace user
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {
 
-               psaveimage->m_eformat = ::draw2d::format_gif;
+               psaveimage->m_eformat = ::draw2d::e_format_gif;
 
             }
             else
             {
 
-               psaveimage->m_eformat = ::draw2d::format_png;
+               psaveimage->m_eformat = ::draw2d::e_format_png;
 
             }
 
@@ -240,13 +240,13 @@ namespace user
 
             str = pbase64->encode(mem);
 
-            if (psaveimage->m_eformat == ::draw2d::format_png)
+            if (psaveimage->m_eformat == ::draw2d::e_format_png)
             {
 
                str = "data:image/png;base64;" + str;
 
             }
-            else if (psaveimage->m_eformat == ::draw2d::format_gif)
+            else if (psaveimage->m_eformat == ::draw2d::e_format_gif)
             {
 
                str = "data:image/gif;base64;" + str;

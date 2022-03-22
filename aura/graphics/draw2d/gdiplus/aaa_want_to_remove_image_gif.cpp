@@ -401,19 +401,19 @@ void imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) 
                switch (iDisposal)
                {
                case 0:
-                  pframe->m_edisposal = ::draw2d::disposal_undefined;
+                  pframe->m_edisposal = ::draw2d::e_disposal_undefined;
                   break;
                case 1:
-                  pframe->m_edisposal = ::draw2d::disposal_none;
+                  pframe->m_edisposal = ::draw2d::e_disposal_none;
                   break;
                case 2:
-                  pframe->m_edisposal = ::draw2d::disposal_background;
+                  pframe->m_edisposal = ::draw2d::e_disposal_background;
                   break;
                case 3:
-                  pframe->m_edisposal = ::draw2d::disposal_previous;
+                  pframe->m_edisposal = ::draw2d::e_disposal_previous;
                   break;
                default:
-                  pframe->m_edisposal = ::draw2d::disposal_undefined;
+                  pframe->m_edisposal = ::draw2d::e_disposal_undefined;
                   break;
                }
 
@@ -425,13 +425,13 @@ void imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) 
 
          }
 
-         ::draw2d::e_disposal edisposal = uFrameIndex <= 0  ? ::draw2d::disposal_none : pframea->element_at(uFrameIndex - 1)->m_edisposal;
+         ::draw2d::enum_disposal edisposal = uFrameIndex <= 0  ? ::draw2d::e_disposal_none : pframea->element_at(uFrameIndex - 1)->m_edisposal;
 
          ::point_i32 point = pframe->m_rect.top_left();
 
          ::size size = pframe->m_rect.size();
 
-         if (edisposal == ::draw2d::disposal_none)
+         if (edisposal == ::draw2d::e_disposal_none)
          {
 
             if (uFrameIndex <= 0)
@@ -458,7 +458,7 @@ void imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) 
             }
 
          }
-         else if (edisposal == ::draw2d::disposal_background)
+         else if (edisposal == ::draw2d::e_disposal_background)
          {
 
             pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -927,7 +927,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
          if (SUCCEEDED(hr))
          {
 
-            pframe->m_edisposal = (::draw2d::e_disposal) propValue.bVal;
+            pframe->m_edisposal = (::draw2d::enum_disposal) propValue.bVal;
 
          }
 
@@ -937,7 +937,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
 
          // Failed to get the disposal method, use default. Possibly a
          // non-animated gif.
-         pframe->m_edisposal = ::draw2d::disposal_undefined;
+         pframe->m_edisposal = ::draw2d::e_disposal_undefined;
 
       }
 

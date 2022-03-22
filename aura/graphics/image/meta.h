@@ -35,7 +35,7 @@ public:
    double                           m_dFontFactor;
    ::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
-   ::draw2d::e_mipmap               m_emipmap;
+   ::draw2d::enum_mipmap               m_emipmap;
    index                            m_iFrame;
    int                              m_iExifOrientation;
    bool                             m_bCreateHelperMaps;
@@ -54,7 +54,7 @@ public:
       m_dFontFactor = 1.0;
       m_ealphamode = ::draw2d::e_alpha_mode_blend;
       m_bOwn = true;
-      m_emipmap = ::draw2d::mipmap_none;
+      m_emipmap = ::draw2d::e_mipmap_none;
       m_iFrame = 0;
       m_bCreateHelperMaps = false;
       m_pbitmap = nullptr;

@@ -173,20 +173,20 @@ namespace ftp
    class CLASS_DECL_CORE format
    {
    public:
-      enum e_format { format_invalid, format_non_print, format_telnet, format_carriage_control };
+      enum enum_format { format_invalid, format_non_print, format_telnet, format_carriage_control };
 
       format() : m_eformat(format_invalid) {}
       format(const format& format) :
          m_eformat(format.AsEnum()) {}
 
-      bool operator==(const e_format& rhs) const { return m_eformat==rhs; }
-      bool operator!=(const e_format& rhs) const { return !operator==(rhs); }
+      bool operator==(const enum_format& rhs) const { return m_eformat==rhs; }
+      bool operator!=(const enum_format& rhs) const { return !operator==(rhs); }
       bool operator==(const format& rhs) const { return m_eformat==rhs.m_eformat; }
       bool operator!=(const format& rhs) const { return !operator==(rhs); }
 
       format& operator=(const format& rhs) { m_eformat = rhs.AsEnum(); return *this; }
 
-      e_format AsEnum() const { return m_eformat; }
+      enum_format AsEnum() const { return m_eformat; }
       string AsString() const;
       bool IsValid() const { return m_eformat != format_invalid; }
 
@@ -194,8 +194,8 @@ namespace ftp
       static const format TelnetFormat()    { return format_telnet;    }
       static const format CarriageControl() { return format_carriage_control; }
 
-      format(e_format enTypeFormat) : m_eformat(enTypeFormat) {}
-      e_format m_eformat;
+      format(enum_format enTypeFormat) : m_eformat(enTypeFormat) {}
+      enum_format m_eformat;
    };
 
    /// Representation Type (see also type and format)

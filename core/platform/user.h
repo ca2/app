@@ -1358,7 +1358,7 @@
 //
 //      //virtual void init_instance() override;
 //
-//      virtual void     create_impact_system();
+//      virtual void     creatimpact_system();
 //
 //      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;

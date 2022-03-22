@@ -481,7 +481,7 @@ namespace user
 
             __pointer(check) pcheck = ptopic->user_interaction();
 
-            if (pcheck->echeck() == ::check_checked)
+            if (pcheck->echeck() == ::e_check_checked)
             {
 
                ia.add_unique(pinteraction->m_iDataValue);
@@ -577,11 +577,11 @@ namespace user
                      index i = 0;
                      if(ia.BaseSortFind(pinteraction->m_ddx.m_pdbflags->m_value, i))
                      {
-                        pcheck->_001SetCheck(check_checked, false);
+                        pcheck->_001SetCheck(e_check_checked, false);
                      }
                      else
                      {
-                        pcheck->_001SetCheck(check_unchecked, false);
+                        pcheck->_001SetCheck(e_check_unchecked, false);
                      }
                   }*/
       }
@@ -1285,7 +1285,7 @@ namespace user
 
    //         __pointer(check) pcheck = ptopic->user_interaction();
 
-   //         if(pcheck->echeck() == ::check_checked)
+   //         if(pcheck->echeck() == ::e_check_checked)
    //         {
 
    //            ia.add_unique(pinteraction->m_iDataValue);

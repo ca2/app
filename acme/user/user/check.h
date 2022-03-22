@@ -17,7 +17,7 @@ namespace user
       check();
       ~check() override;
 
-      inline ::enum_check get_echeck() const { return !m_propertyCheck ? enum_check::check_undefined : m_propertyCheck->m_echeck; }
+      inline ::enum_check get_echeck() const { return !m_propertyCheck ? enum_check::e_check_undefined : m_propertyCheck->m_echeck; }
       inline bool get_bcheck() const { return !m_propertyCheck ? false : m_propertyCheck->get_bool(); }
       inline ::enum_check echeck() const { return m_propertyCheck->m_echeck; }
       inline ::enum_check & echeck() { return m_propertyCheck->m_echeck; }

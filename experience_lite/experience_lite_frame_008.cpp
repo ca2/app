@@ -404,7 +404,7 @@ SizingNone:
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                  pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+                  pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
                   for (index i = 0; i < 9; i++)
                   {
@@ -422,7 +422,7 @@ SizingNone:
 
                      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                     pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+                     pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
                      for (index i = 0; i < 9; i++)
                      {
@@ -441,7 +441,7 @@ SizingNone:
 
                      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-                     pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+                     pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
 
                      if (m_estyle == StyleRedOrange)

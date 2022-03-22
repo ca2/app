@@ -120,14 +120,14 @@ namespace draw2d_cairo
 
 
 //
-//   e_format draw2d::file_extension_to_format(const ::payload & payloadFile)
+//   enum_format draw2d::file_extension_to_format(const ::payload & payloadFile)
 //   {
 //
 //      return text_to_format(payloadFile.get_file_path().final_extension());
 //
 //   }
 //
-//   e_format draw2d::text_to_format(string strText)
+//   enum_format draw2d::text_to_format(string strText)
 //   {
 //
 //      strText.make_lower();
@@ -135,31 +135,31 @@ namespace draw2d_cairo
 //      if (strText == "png")
 //      {
 //
-//         return ::draw2d::format_png;
+//         return ::draw2d::e_format_png;
 //
 //      }
 //      else if (strText == "jpg" || strText == "jpeg")
 //      {
 //
-//         return ::draw2d::format_jpeg;
+//         return ::draw2d::e_format_jpeg;
 //
 //      }
 //      else if (strText == "gif")
 //      {
 //
-//         return ::draw2d::format_gif;
+//         return ::draw2d::e_format_gif;
 //
 //      }
 //      else if (strText == "bmp")
 //      {
 //
-//         return ::draw2d::format_bmp;
+//         return ::draw2d::e_format_bmp;
 //
 //      }
 //      else
 //      {
 //
-//         return ::draw2d::format_none;
+//         return ::draw2d::e_format_none;
 //
 //      }
 //
@@ -1393,30 +1393,30 @@ namespace draw2d_cairo
 } // namespace draw2d
 
 
-//e_rotate_flip exif_orientation_rotate_flip(int orientation)
+//enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 //{
 //
 //
 //   switch (orientation)
 //   {
 //   case 1:
-//      return rotate_none_flip_none;
+//      return e_rotate_none_flip_none;
 //   case 2:
-//      return rotate_none_flip_x;
+//      return e_rotate_none_flip_x;
 //   case 3:
-//      return rotate_180_flip_none;
+//      return e_rotate_180_flip_none;
 //   case 4:
-//      return rotate_180_flip_x;
+//      return e_rotate_180_flip_x;
 //   case 5:
-//      return rotate_90_flip_x;
+//      return e_rotate_90_flip_x;
 //   case 6:
-//      return rotate_90_flip_none;
+//      return e_rotate_90_flip_none;
 //   case 7:
-//      return rotate_270_flip_x;
+//      return e_rotate_270_flip_x;
 //   case 8:
-//      return rotate_270_flip_none;
+//      return e_rotate_270_flip_none;
 //   default:
-//      return rotate_none_flip_none;
+//      return e_rotate_none_flip_none;
 //   }
 //
 //

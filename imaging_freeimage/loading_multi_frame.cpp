@@ -168,7 +168,7 @@ namespace imaging_freeimage
 
                      }
 
-                     pframe->m_edisposal = draw2d::disposal_undefined;
+                     pframe->m_edisposal = draw2d::e_disposal_undefined;
 
                      if (FreeImage_GetMetadata(FIMD_ANIMATION, pfi, "DisposalMethod", &ptag))
                      {
@@ -286,7 +286,7 @@ namespace imaging_freeimage
 
       image_from_freeimage(pimageFrame, pfi);
 
-      ::draw2d::e_disposal edisposal = iFrame <= 0 ? ::draw2d::disposal_none : pframea->element_at(iFrame)->m_edisposal;
+      ::draw2d::enum_disposal edisposal = iFrame <= 0 ? ::draw2d::e_disposal_none : pframea->element_at(iFrame)->m_edisposal;
 
       pframe->m_edisposal = edisposal;
 

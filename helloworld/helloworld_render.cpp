@@ -1419,8 +1419,8 @@ namespace helloworld
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw_path(path, ppenW);
-      pgraphics->draw_path(ppath, ppen);
+      pgraphics->draw(path, ppenW);
+      pgraphics->draw(ppath, ppen);
       //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }

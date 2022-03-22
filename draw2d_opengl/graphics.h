@@ -510,7 +510,7 @@ namespace draw2d_opengl
 
       virtual bool set_alpha_mode(::draw2d::enum_alpha_mode ealphamode);
 
-      virtual bool set_smooth_mode(::draw2d::e_smooth_mode esmoothmode);
+      virtual bool set_smooth_mode(::draw2d::enum_smooth_mode esmoothmode);
 
       virtual bool set_text_rendering_hint(::write_text::enum_rendering etextrendering);
 

@@ -69,8 +69,8 @@ public:
    virtual ::image_pointer get_image(index i);
 
    
-   virtual void set_mipmap(::draw2d::e_mipmap emipmap);
-   virtual void _set_mipmap(::draw2d::e_mipmap emipmap);
+   virtual void set_mipmap(::draw2d::enum_mipmap emipmap);
+   virtual void _set_mipmap(::draw2d::enum_mipmap emipmap);
 
    
    virtual void create_isotropic(::image * pimage);
@@ -199,12 +199,12 @@ public:
    //virtual void _90_rotated();
    //virtual void _180_rotated();
    //virtual void _270_rotated();
-   virtual void rotate_90_flip_horizontally(::image * pimage);
-   virtual void rotate_180_flip_horizontally(::image * pimage);
-   virtual void rotate_270_flip_horizontally(::image * pimage);
-   virtual void rotate_90_flip_horizontally();
-   virtual void rotate_180_flip_horizontally();
-   virtual void rotate_270_flip_horizontally();
+   virtual void e_rotate_90_flip_horizontally(::image * pimage);
+   virtual void e_rotate_180_flip_horizontally(::image * pimage);
+   virtual void e_rotate_270_flip_horizontally(::image * pimage);
+   virtual void e_rotate_90_flip_horizontally();
+   virtual void e_rotate_180_flip_horizontally();
+   virtual void e_rotate_270_flip_horizontally();
 
 
    virtual void set_rgb(::color32_t color32);

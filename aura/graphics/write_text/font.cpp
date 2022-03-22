@@ -14,7 +14,7 @@ namespace write_text
 
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::unit_point;
+      m_eunitFontSize = ::draw2d::e_unit_point;
       m_iFontWeight = 400;
       m_bItalic = false;
       m_bUnderline = false;
@@ -56,7 +56,7 @@ namespace write_text
 
       m_dFontSize = dSize;
       m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::unit_pixel;
+      m_eunitFontSize = ::draw2d::e_unit_pixel;
       m_iFontWeight = iWeight;
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
@@ -92,7 +92,7 @@ namespace write_text
 #endif
       }
       m_dFontWidth = 1.0;
-      m_eunitFontSize = ::draw2d::unit_point;
+      m_eunitFontSize = ::draw2d::e_unit_point;
       m_iFontWeight = iWeight;
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
@@ -354,7 +354,7 @@ namespace write_text
    double font::get_pixel_font_height(::draw2d::graphics * pgraphics)
    {
 
-      if (m_eunitFontSize == ::draw2d::unit_point)
+      if (m_eunitFontSize == ::draw2d::e_unit_point)
       {
 
          return m_dFontSize * pgraphics->get_dpiy() / 72.0;

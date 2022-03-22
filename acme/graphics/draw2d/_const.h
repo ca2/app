@@ -39,33 +39,33 @@ enum enum_font
 enum enum_image
 {
 
-   image_none,
-   image_grayscale,
+   e_image_none,
+   e_image_grayscale,
 
 };
 
 
-enum e_rotate_flip
+enum enum_rotate_flip
 {
-   rotate_none_flip_none = 0,
-   rotate_90_flip_none = 1,
-   rotate_180_flip_none = 2,
-   rotate_270_flip_none = 3,
+   e_rotate_none_flip_none = 0,
+   e_rotate_90_flip_none = 1,
+   e_rotate_180_flip_none = 2,
+   e_rotate_270_flip_none = 3,
 
-   rotate_none_flip_x = 4,
-   rotate_90_flip_x = 5,
-   rotate_180_flip_x = 6,
-   rotate_270_flip_x = 7,
+   e_rotate_none_flip_x = 4,
+   e_rotate_90_flip_x = 5,
+   e_rotate_180_flip_x = 6,
+   e_rotate_270_flip_x = 7,
 
-   rotate_none_flip_y = rotate_180_flip_x,
-   rotate_90_flip_y = rotate_270_flip_x,
-   rotate_180_flip_y = rotate_none_flip_x,
-   rotate_270_flip_y = rotate_90_flip_x,
+   e_rotate_none_flip_y = e_rotate_180_flip_x,
+   e_rotate_90_flip_y = e_rotate_270_flip_x,
+   e_rotate_180_flip_y = e_rotate_none_flip_x,
+   e_rotate_270_flip_y = e_rotate_90_flip_x,
 
-   rotate_none_flip_xy = rotate_180_flip_none,
-   rotate_90_flip_xy = rotate_270_flip_none,
-   rotate_180_flip_xy = rotate_none_flip_none,
-   rotate_270_flip_xy = rotate_90_flip_none
+   e_rotate_none_flip_xy = e_rotate_180_flip_none,
+   e_rotate_90_flip_xy = e_rotate_270_flip_none,
+   e_rotate_180_flip_xy = e_rotate_none_flip_none,
+   e_rotate_270_flip_xy = e_rotate_90_flip_none
 };
 
 enum enum_stock_icon
@@ -134,12 +134,12 @@ namespace draw2d
    };
 
 
-   enum e_smooth_mode
+   enum enum_smooth_mode
    {
-      smooth_mode_none,
-      smooth_mode_high,
-      smooth_mode_anti_alias_8x4,
-      smooth_mode_anti_alias_8x8,
+      e_smooth_mode_none,
+      e_smooth_mode_high,
+      e_smooth_mode_anti_alias_8x4,
+      e_smooth_mode_anti_alias_8x8,
    };
 
 
@@ -154,39 +154,39 @@ namespace draw2d
    };
 
 
-   enum e_compositing_quality
+   enum enum_compositing_quality
    {
-      compositing_quality_none,
-      compositing_quality_high_speed,
-      compositing_quality_high_quality,
+      e_compositing_quality_none,
+      e_compositing_quality_high_speed,
+      e_compositing_quality_high_quality,
    };
 
-   enum e_disposal
+   enum enum_disposal
    {
-      disposal_undefined = 0,
-      disposal_none = 1,
-      disposal_background = 2,
-      disposal_previous = 3
-   };
-
-
-   enum e_mipmap
-   {
-
-      mipmap_none,
-      mipmap_isotropic, // 3x original size_i32 (a bit more or less if there are scan adjustments)
-      mipmap_anisotropic, // 4x original size_i32 (a bit more or less if there are scan adjustments)
-
+      e_disposal_undefined = 0,
+      e_disposal_none = 1,
+      e_disposal_background = 2,
+      e_disposal_previous = 3
    };
 
 
-   enum e_format
+   enum enum_mipmap
    {
-      format_none,
-      format_png,
-      format_bmp,
-      format_gif,
-      format_jpeg,
+
+      e_mipmap_none,
+      e_mipmap_isotropic, // 3x original size (a bit more or less if there are scan adjustments)
+      e_mipmap_anisotropic, // 4x original size (a bit more or less if there are scan adjustments)
+
+   };
+
+
+   enum enum_format
+   {
+      e_format_none,
+      e_format_png,
+      e_format_bmp,
+      e_format_gif,
+      e_format_jpeg,
    };
 
 
@@ -203,8 +203,8 @@ namespace draw2d
    enum enum_fill_mode
    {
 
-      fill_mode_winding,
-      fill_mode_alternate
+      e_fill_mode_winding,
+      e_fill_mode_alternate
 
    };
 
@@ -212,9 +212,9 @@ namespace draw2d
    enum enum_unit
    {
 
-      unit_pixel,
-      unit_point,
-      unit_em
+      e_unit_pixel,
+      e_unit_point,
+      e_unit_em
 
    };
 

@@ -73,16 +73,16 @@ namespace user
       bool create_impact(::user::impact_data * pimpactdata) override;
 
 
-      impact_data * create_impact_by_id(const ::atom & atom);
+      impact_data * creatimpact_by_id(const ::atom & atom);
 
 
-      virtual bool on_prepare_impact_data(::user::impact_data * pimpactdata);
-      virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata);
+      virtual bool on_preparimpact_data(::user::impact_data * pimpactdata);
+      virtual bool on_after_creatimpact_data(::user::impact_data * pimpactdata);
       virtual void on_change_cur_sel();
 
 
       virtual ::user::impact_data * new_impact_data(const atom & atom);
-      virtual ::user::impact_data * allocate_impact_data(const atom & atom);
+      virtual ::user::impact_data * allocatimpact_data(const atom & atom);
 
 
       virtual ::user::impact_data * host_impact(const atom& atom, ::user::interaction * pinteraction, ::user::document * pdocument);
@@ -104,7 +104,7 @@ namespace user
       __pointer(VIEW) host_view(const ::atom & atom)
       {
 
-         impact_data* pimpactdata = allocate_impact_data(atom);
+         impact_data* pimpactdata = allocatimpact_data(atom);
 
          pimpactdata->m_puserinteraction = create_view <VIEW>(pimpactdata);
 

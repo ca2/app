@@ -24,7 +24,7 @@ namespace user
    void check::_001SetCheck(bool bChecked, const ::action_context & context)
    {
 
-      _001SetCheck((::enum_check) (bChecked ? ::check_checked : ::check_unchecked),context);
+      _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
 
    }
 
@@ -59,13 +59,13 @@ namespace user
       if(bcheck())
       {
 
-         _001SetCheck(::check_unchecked, context);
+         _001SetCheck(::e_check_unchecked, context);
 
       }
       else
       {
 
-         _001SetCheck(::check_checked, context);
+         _001SetCheck(::e_check_checked, context);
 
       }
 

@@ -536,11 +536,11 @@ point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
 //    if(fillrule == CAIRO_FILL_RULE_WINDING)
 //    {
 //
-//        return ::draw2d::fill_mode_winding;
+//        return ::draw2d::e_fill_mode_winding;
 //
 //    }
 //
-//    return ::draw2d::fill_mode_alternate;
+//    return ::draw2d::e_fill_mode_alternate;
 //
 //}
 
@@ -4879,7 +4879,7 @@ bool graphics::_set(::write_text::font * pfontParam)
 
 #endif
 
-   if (pfontParam->m_eunitFontSize == ::draw2d::unit_pixel)
+   if (pfontParam->m_eunitFontSize == ::draw2d::e_unit_pixel)
    {
 
 #ifdef ANDROID
@@ -5122,7 +5122,7 @@ bool graphics::_set(::draw2d::path * ppathParam)
     //if (!m_bOutline)
     {
 
-        if (ppath->m_efillmode == ::draw2d::fill_mode_alternate)
+        if (ppath->m_efillmode == ::draw2d::e_fill_mode_alternate)
         {
 
             cairo_set_fill_rule(m_pdc, CAIRO_FILL_RULE_EVEN_ODD);
@@ -6320,7 +6320,7 @@ FT_Library __ftlibrary()
 //      if (pmatter->contains(point))
 //      {
 //
-//         if (m_efillmode == ::draw2d::fill_mode_winding)
+//         if (m_efillmode == ::draw2d::e_fill_mode_winding)
 //         {
 //
 //            return true;

@@ -235,7 +235,7 @@ namespace draw2d_opengl
    //      pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[i].x, (plusplus::REAL) m_lppoints[i].y));
    //   }
 
-   //   if(m_efillmode == ::draw2d::fill_mode_alternate)
+   //   if(m_efillmode == ::draw2d::e_fill_mode_alternate)
    //   {
    //      path.SetFillMode(plusplus::FillModeAlternate);
    //   }
@@ -256,7 +256,7 @@ namespace draw2d_opengl
 
    //   array < plusplus::PointF > pa;
 
-   //   if(m_efillmode == ::draw2d::fill_mode_alternate)
+   //   if(m_efillmode == ::draw2d::e_fill_mode_alternate)
    //   {
    //      path.SetFillMode(plusplus::FillModeAlternate);
    //   }

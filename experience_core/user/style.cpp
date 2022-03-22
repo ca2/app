@@ -184,13 +184,13 @@ namespace experience_core
 
                pgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill_path(ppath);
+               pgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
                pgraphics->set(ppenBorder);
 
-               pgraphics->draw_path(ppath);
+               pgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -232,13 +232,13 @@ namespace experience_core
 
                   pgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
@@ -252,13 +252,13 @@ namespace experience_core
 
                   pgraphics->set(ppane->m_pbrushFill);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none);
 
@@ -311,13 +311,13 @@ namespace experience_core
 
                pgraphics->set(ppane->m_pbrushFillSel);
 
-               pgraphics->fill_path(ppath);
+               pgraphics->fill(ppath);
 
                ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                pgraphics->set(ppenBorder);
 
-               pgraphics->draw_path(ppath);
+               pgraphics->draw(ppath);
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && ::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -359,13 +359,13 @@ namespace experience_core
 
                   pgraphics->set(ppane->m_pbrushFillHover);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
@@ -387,13 +387,13 @@ namespace experience_core
 
                   pgraphics->set(pbrushFill);
 
-                  pgraphics->fill_path(ppath);
+                  pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(ppath);
+                  pgraphics->draw(ppath);
 
                   pgraphics->set_font(ptab, ::e_element_none);
 

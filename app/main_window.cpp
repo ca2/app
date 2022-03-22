@@ -70,7 +70,7 @@ namespace app_app
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
 
@@ -112,7 +112,7 @@ namespace app_app
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       auto pitem = get_user_item(::e_element_close_button);
 

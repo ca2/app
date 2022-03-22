@@ -887,7 +887,7 @@ namespace user
             get_client_rect(rectangleClient);
 
             fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
-            fontxyz->m_eunitFontSize = ::draw2d::unit_pixel;
+            fontxyz->m_eunitFontSize = ::draw2d::e_unit_pixel;
             fontxyz->m_bUpdated = false;
 
             SetFont(fontxyz);*/

@@ -235,22 +235,22 @@ namespace user
 
                   ::enum_check echeck = _001GetSubItemCheck(pitem->item_index(), pitem->subitem_index());
 
-                  if (echeck == ::check_checked)
+                  if (echeck == ::e_check_checked)
                   {
 
-                     echeck = ::check_unchecked;
+                     echeck = ::e_check_unchecked;
 
                   }
                   else
                   {
 
-                     echeck = ::check_checked;
+                     echeck = ::e_check_checked;
 
                   }
 
                   _001SetSubItemCheck(pitem->item_index(), pitem->subitem_index(), echeck);
 
-                  if (echeck == ::check_checked)
+                  if (echeck == ::e_check_checked)
                   {
 
                      for (auto pinteraction : proper_children())
@@ -586,7 +586,7 @@ break_click:;
             for(index iItem = 0; iItem < iItemCount; iItem++)
             {
 
-               if (_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDuplicateCheckBox) == ::check_checked)
+               if (_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDuplicateCheckBox) == ::e_check_checked)
                {
 
                   for (auto iSubItemTarget : pinteraction->m_iaSubItemDuplicate)
@@ -769,10 +769,10 @@ break_click:;
 
          pitem->m_iSubItem = pinteraction->m_iSubItem;
 
-         if (echeck == ::check_checked)
+         if (echeck == ::e_check_checked)
          {
 
-            string str(pinteraction->m_setValue[::check_checked].get_string());
+            string str(pinteraction->m_setValue[::e_check_checked].get_string());
 
             if(str.has_char())
             {
@@ -788,10 +788,10 @@ break_click:;
             }
 
          }
-         else if (echeck == ::check_unchecked)
+         else if (echeck == ::e_check_unchecked)
          {
 
-            string str (pinteraction->m_setValue[::check_unchecked].get_string());
+            string str (pinteraction->m_setValue[::e_check_unchecked].get_string());
 
             if (str.has_char())
             {
@@ -810,7 +810,7 @@ break_click:;
          else
          {
 
-            string str(pinteraction->m_setValue[::check_tristate].get_string());
+            string str(pinteraction->m_setValue[::e_check_tristate].get_string());
 
             if (str.has_char())
             {
@@ -933,7 +933,7 @@ break_click:;
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
-            if (_001GetSubItemCheck(pitem->item_index(), pinteraction->m_iSubItemDuplicateCheckBox) == ::check_checked)
+            if (_001GetSubItemCheck(pitem->item_index(), pinteraction->m_iSubItemDuplicateCheckBox) == ::e_check_checked)
             {
 
                for (auto iSubItemTarget : pinteraction->m_iaSubItemDuplicate)
@@ -2263,16 +2263,16 @@ break_click:;
 
          //            ::enum_check echeck;
 
-         //            if (pdrawitem->m_strText == pdescriptor->m_setValue[::check_checked])
+         //            if (pdrawitem->m_strText == pdescriptor->m_setValue[::e_check_checked])
          //            {
 
-         //               echeck = ::check_checked;
+         //               echeck = ::e_check_checked;
 
          //            }
          //            else
          //            {
 
-         //               echeck = ::check_unchecked;
+         //               echeck = ::e_check_unchecked;
 
          //            }
 
@@ -2443,20 +2443,20 @@ ok_control:;
             if (!pitem->m_bOk)
             {
 
-               return ::check_undefined;
+               return ::e_check_undefined;
 
             }
 
-            if (pitem->m_strText == pinteraction->m_setValue[::check_checked])
+            if (pitem->m_strText == pinteraction->m_setValue[::e_check_checked])
             {
 
-               return ::check_checked;
+               return ::e_check_checked;
 
             }
             else
             {
 
-               return ::check_unchecked;
+               return ::e_check_unchecked;
 
             }
 
@@ -2464,7 +2464,7 @@ ok_control:;
 
       }
 
-      return ::check_undefined;
+      return ::e_check_undefined;
 
    }
 
@@ -2529,7 +2529,7 @@ ok_control:;
             if (pinteraction->has_function(::user::e_control_function_disable_on_check_box))
             {
 
-               if(_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDisableCheckBox) == ::check_checked)
+               if(_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDisableCheckBox) == ::e_check_checked)
                {
 
                   return false;

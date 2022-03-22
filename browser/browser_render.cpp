@@ -1375,9 +1375,9 @@ namespace browser
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw_path(path, ppenW);
+      pgraphics->draw(path, ppenW);
 
-      pgraphics->draw_path(ppath, ppen);
+      pgraphics->draw(ppath, ppen);
 
    }
 

@@ -239,7 +239,7 @@ namespace browser
 
                m_checkptraBilbo.add(pcheck);
 
-               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::check_checked : ::check_unchecked, ::e_source_sync);
+               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -449,7 +449,7 @@ namespace browser
 
                      auto pslide = m_pviewLastBilbo->m_prender->slideshow()[iCheck - 1];
 
-                     pslide->enable(pcheck->echeck() == ::check_checked);
+                     pslide->enable(pcheck->echeck() == ::e_check_checked);
 
                      m_pviewLastBilbo->data_set("slide." + pslide->m_strPath, pslide->m_bDatabase);
 

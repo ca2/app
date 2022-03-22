@@ -52,9 +52,9 @@ namespace userex
 
       void on_change_cur_sel() override;
 
-      bool on_prepare_impact_data(::user::impact_data * pimpactdata) override;
+      bool on_preparimpact_data(::user::impact_data * pimpactdata) override;
 
-      bool on_after_create_impact_data(::user::impact_data * pimpactdata) override;
+      bool on_after_creatimpact_data(::user::impact_data * pimpactdata) override;
 
       void GetTabClientRect(RECTANGLE_I32 * prectangle) override;
 

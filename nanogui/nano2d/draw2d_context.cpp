@@ -126,16 +126,16 @@ namespace nano2d
 
          m_pstate->m_ppath->set_fill_mode(
             dir == NVG_SOLID ?
-            ::draw2d::fill_mode_winding
-            : ::draw2d::fill_mode_alternate);
+            ::draw2d::e_fill_mode_winding
+            : ::draw2d::e_fill_mode_alternate);
 
       }
       else
       {
 
          m_pgraphics->set_fill_mode(dir == NVG_SOLID ?
-            ::draw2d::fill_mode_winding
-            : ::draw2d::fill_mode_alternate);
+            ::draw2d::e_fill_mode_winding
+            : ::draw2d::e_fill_mode_alternate);
 
       }
 
@@ -397,7 +397,7 @@ namespace nano2d
    {
 
       m_pstate->m_pfont->m_dFontSize = size * 0.8;
-      m_pstate->m_pfont->m_eunitFontSize = ::draw2d::unit_pixel;
+      m_pstate->m_pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
       m_pstate->m_pfont->m_bUpdated2 = true;
       m_pstate->m_pfont->set_modified();
 

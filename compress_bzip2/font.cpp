@@ -122,10 +122,10 @@ namespace draw2d_gdiplus
 
       switch(m_eunitFontSize)
       {
-      case ::draw2d::unit_pixel:
+      case ::draw2d::e_unit_pixel:
          unit = Gdiplus::UnitPixel;
          break;
-      case ::draw2d::unit_point:
+      case ::draw2d::e_unit_point:
          unit = Gdiplus::UnitPoint;
          break;
       default:

@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum e_impact : ::i64
+enum enum_impact : ::i64
 {
 
    impact_none,

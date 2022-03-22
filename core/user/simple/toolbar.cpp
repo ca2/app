@@ -1684,7 +1684,7 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 
    // 0=>off, 1=>on, 2=>indeterminate
 
-   ASSERT(echeck == check_checked || echeck == check_unchecked || echeck == check_tristate);
+   ASSERT(echeck == e_check_checked || echeck == e_check_unchecked || echeck == e_check_tristate);
 
    __pointer(simple_toolbar) pToolBar = m_puiOther;
 
@@ -1700,13 +1700,13 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 
    estateNew -= e_toolbar_item_state_indeterminate;
 
-   if (echeck == check_checked)
+   if (echeck == e_check_checked)
    {
 
       estateNew |= e_toolbar_item_state_checked;
 
    }
-   else if (echeck == check_tristate)
+   else if (echeck == e_check_tristate)
    {
 
       estateNew  |= e_toolbar_item_state_indeterminate;

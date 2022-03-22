@@ -1057,7 +1057,7 @@ namespace draw2d_opengl
    //bool graphics::DrawEllipse(i32 x1, i32 y1, i32 x2, i32 y2)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->DrawEllipse(gl2d_pen(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
 
@@ -1068,7 +1068,7 @@ namespace draw2d_opengl
    bool graphics::draw_ellipse(const ::rectangle_f64 &  rectangleParam)
    {
 
-      //set_smooth_mode(::draw2d::smooth_mode_high);
+      //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       //return (m_pgraphics->DrawEllipse(gl2d_pen(),rectangleParam.left,rectangleParam.top,rectangleParam.right - rectangleParam.left,rectangleParam.bottom - rectangleParam.top)) == plusplus::Status::Ok;
 
@@ -1080,7 +1080,7 @@ namespace draw2d_opengl
    //bool graphics::FillEllipse(i32 x1, i32 y1, i32 x2, i32 y2)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->FillEllipse(gl2d_brush(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
 
@@ -1092,7 +1092,7 @@ namespace draw2d_opengl
    bool graphics::fill_ellipse(const ::rectangle_f64 &  rectangleParam)
    {
 
-      //set_smooth_mode(::draw2d::smooth_mode_high);
+      //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
 //      return (m_pgraphics->FillEllipse(gl2d_brush(), rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left, rectangleParam.bottom - rectangleParam.top)) == plusplus::Status::Ok;
 
@@ -1104,7 +1104,7 @@ namespace draw2d_opengl
    //bool graphics::draw_ellipse(double x1,double y1,double x2,double y2)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
 
@@ -1116,7 +1116,7 @@ namespace draw2d_opengl
    //bool graphics::draw_ellipse(const ::rectangle_f64 & rectectParam)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)rectangleParam.left,(plusplus::REAL)rectangleParam.top,
    //   //                                 (plusplus::REAL)(rectangleParam.right - rectangleParam.left),
@@ -1130,7 +1130,7 @@ namespace draw2d_opengl
    //bool graphics::FillEllipse(double x1,double y1,double x2,double y2)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
 
@@ -1142,7 +1142,7 @@ namespace draw2d_opengl
    //bool graphics::FillEllipse(const ::rectangle_f64 & rectectParam)
    //{
 
-   //   //set_smooth_mode(::draw2d::smooth_mode_high);
+   //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)rectangleParam.left,(plusplus::REAL)rectangleParam.top,
    //   //                                 (plusplus::REAL)(rectangleParam.right - rectangleParam.left),
@@ -1197,7 +1197,7 @@ namespace draw2d_opengl
 
       //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-      //      set_smooth_mode(::draw2d::smooth_mode_high);
+      //      set_smooth_mode(::draw2d::e_smooth_mode_high);
 
 
       //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::i32) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
@@ -1288,7 +1288,7 @@ namespace draw2d_opengl
 
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-      //   set_smooth_mode(::draw2d::smooth_mode_high);
+      //   set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::i32) nCount) == plusplus::Status::Ok;
 
@@ -1378,7 +1378,7 @@ namespace draw2d_opengl
       //   }
 
 
-      //   set_smooth_mode(::draw2d::smooth_mode_high);
+      //   set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
@@ -1462,13 +1462,13 @@ namespace draw2d_opengl
       //   if(m_ealphamode == ::draw2d::e_alpha_mode_set)
       //   {
 
-      //      set_smooth_mode(::draw2d::smooth_mode_none);
+      //      set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       //   }
       //   else
       //   {
 
-      //      set_smooth_mode(::draw2d::smooth_mode_high);
+      //      set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       //   }
 
@@ -5050,7 +5050,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::set_smooth_mode(::draw2d::e_smooth_mode esmoothmode)
+   bool graphics::set_smooth_mode(::draw2d::enum_smooth_mode esmoothmode)
    {
 
       //if(m_esmoothmode == esmoothmode)
@@ -5064,19 +5064,19 @@ namespace draw2d_opengl
       //   if(m_pgraphics == nullptr)
       //      return;
 
-      //   if(m_esmoothmode == ::draw2d::smooth_mode_none)
+      //   if(m_esmoothmode == ::draw2d::e_smooth_mode_none)
       //   {
 
       //      m_pgraphics->SetSmoothingMode(plusplus::SmoothingModeNone);
 
       //   }
-      //   else if(m_esmoothmode == ::draw2d::smooth_mode_antialias)
+      //   else if(m_esmoothmode == ::draw2d::e_smooth_mode_antialias)
       //   {
 
       //      m_pgraphics->SetSmoothingMode(plusplus::SmoothingModeHighSpeed);
 
       //   }
-      //   else if(m_esmoothmode == ::draw2d::smooth_mode_high)
+      //   else if(m_esmoothmode == ::draw2d::e_smooth_mode_high)
       //   {
 
       //      m_pgraphics->SetSmoothingMode(plusplus::SmoothingModeHighQuality);

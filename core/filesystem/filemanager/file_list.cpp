@@ -6,7 +6,7 @@
 #endif
 
 #include "aura/update.h"
-#include "aura/user/menu_command.h"
+#include "aura/user/menu/menu_command.h"
 
 
 namespace filemanager
@@ -1660,7 +1660,7 @@ namespace filemanager
       if (pcallback != nullptr && pbutton != nullptr)
       {
 
-         pbutton->set_button_style(::user::button::style_list);
+         pbutton->set_button_style(::user::button::e_style_list);
 
          pcallback->InitializeActionButton(((i32)pinteraction->m_atom) - 1000, pbutton);
 

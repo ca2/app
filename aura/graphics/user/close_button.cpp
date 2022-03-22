@@ -43,7 +43,7 @@ namespace user
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangle, color);
 
@@ -68,7 +68,7 @@ namespace user
 
       pgraphics->set(ppen);
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       pgraphics->draw_stock_icon(rectangle, e_stock_icon_close);
 
@@ -105,7 +105,7 @@ namespace user
 
       }
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangle, color);
 

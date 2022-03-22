@@ -48,7 +48,7 @@ void menu_shared_command::_001SetCheck(enum_check echeck)
 void menu_shared_command::_001SetCheck(enum_check echeck, const ::action_context& context)   // 0, 1 or 2 (indeterminate)
 {
 
-   if (echeck == check_checked)
+   if (echeck == e_check_checked)
    {
 
       *m_pestatus |= menu_shared::status_checked;

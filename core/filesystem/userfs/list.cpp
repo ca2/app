@@ -3,7 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-#include "aura/user/shell.h"
+#include "aura/user/user/shell.h"
 
 
 

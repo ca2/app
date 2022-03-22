@@ -677,9 +677,9 @@ namespace experience_tranquillum
                   || hwndDraw == hwndActiveWindowParent
                   || puiInactiveTopLevel == puiActiveTopLevel)
                   && m_colorActiveCaptionTextBk != 0)*/
-            pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-            pgraphics->set_compositing_quality(::draw2d::compositing_quality_none);
+            pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_none);
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

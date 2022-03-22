@@ -52,7 +52,7 @@ namespace draw2d
       m_bStoreThumbnails         = true;
       m_pdrawcontext             = nullptr;
       m_dFontFactor              = 1.0;
-      m_efillmode                = fill_mode_winding;
+      m_efillmode                = e_fill_mode_winding;
 
    }
 
@@ -2338,10 +2338,10 @@ namespace draw2d
 
       auto smooth_mode = get_smooth_mode();
 
-      if (smooth_mode != smooth_mode_none)
+      if (smooth_mode != e_smooth_mode_none)
       {
 
-         set_smooth_mode(smooth_mode_none);
+         set_smooth_mode(e_smooth_mode_none);
 
       }
 
@@ -2353,7 +2353,7 @@ namespace draw2d
 
       //}
 
-      if (smooth_mode != smooth_mode_none)
+      if (smooth_mode != e_smooth_mode_none)
       {
 
          set_smooth_mode(smooth_mode);
@@ -2415,10 +2415,10 @@ namespace draw2d
 
       auto smooth_mode = get_smooth_mode();
 
-      if (smooth_mode != smooth_mode_none)
+      if (smooth_mode != e_smooth_mode_none)
       {
 
-         set_smooth_mode(smooth_mode_none);
+         set_smooth_mode(e_smooth_mode_none);
 
       }
 
@@ -2480,7 +2480,7 @@ namespace draw2d
 
       }
 
-      if (smooth_mode != smooth_mode_none)
+      if (smooth_mode != e_smooth_mode_none)
       {
 
          set_smooth_mode(smooth_mode);
@@ -3793,7 +3793,7 @@ namespace draw2d
    }
 
 
-   void graphics::set_smooth_mode(e_smooth_mode esmoothmode)
+   void graphics::set_smooth_mode(enum_smooth_mode esmoothmode)
    {
 
       m_esmoothmode = esmoothmode;
@@ -3813,7 +3813,7 @@ namespace draw2d
    }
 
 
-   void graphics::set_compositing_quality(e_compositing_quality ecompositingquality)
+   void graphics::set_compositing_quality(enum_compositing_quality ecompositingquality)
    {
 
       m_ecompositingquality = ecompositingquality;
@@ -3834,7 +3834,7 @@ namespace draw2d
    }
 
 
-   e_smooth_mode graphics::get_smooth_mode()
+   enum_smooth_mode graphics::get_smooth_mode()
    {
 
       return m_esmoothmode;
@@ -4033,7 +4033,7 @@ namespace draw2d
 
    //   auto ppath = __create < ::draw2d::path > ();
 
-   //   //ppath->begin_figure(false, ::draw2d::fill_mode_winding);
+   //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
    //   ppath->begin_figure();
 
@@ -4041,7 +4041,7 @@ namespace draw2d
 
    //   ppath->close_figure();
 
-   //   draw_path(ppath, ppen);
+   //   draw(ppath, ppen);
 
    //   return true;
 
@@ -4088,7 +4088,7 @@ namespace draw2d
 
    //   auto ppath = __create < ::draw2d::path > ();
 
-   //   //ppath->begin_figure(false, ::draw2d::fill_mode_winding);
+   //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
    //   ppath->begin_figure();
 
@@ -4098,7 +4098,7 @@ namespace draw2d
 
    //   ppath->close_figure();
 
-   //   draw_path(ppath, ppen);
+   //   draw(ppath, ppen);
 
    //   return true;
 
@@ -4186,7 +4186,7 @@ namespace draw2d
 
       auto ppath = __create < ::draw2d::path > ();
 
-      //ppath->begin_figure(true, ::draw2d::fill_mode_winding);
+      //ppath->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
       ppath->begin_figure();
 

@@ -106,7 +106,7 @@ namespace write_text
       font & operator = (const font & font);
 
       virtual void set_family_name(const ::string & pszFamilyName);
-      virtual void set_size(double dSize, ::draw2d::enum_unit = ::draw2d::unit_point);
+      virtual void set_size(double dSize, ::draw2d::enum_unit = ::draw2d::e_unit_point);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);
       virtual void set_underline(bool bUnderline = true);

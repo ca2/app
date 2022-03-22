@@ -9,7 +9,7 @@
 #include "acme/platform/system_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
-#include "aura/user/shell.h"
+#include "aura/user/user/shell.h"
 #include "core/user/user/_tree.h"
 
 

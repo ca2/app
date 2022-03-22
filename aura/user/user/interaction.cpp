@@ -4127,7 +4127,7 @@ return "";
 
             auto esmoothmode = pgraphics->get_smooth_mode();
 
-            pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+            pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
             pgraphics->fill_rectangle(rectangleClient, colorBackground);
 

@@ -44,7 +44,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
+CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
 
 
 //class CLASS_DECL_AURA image_base :
@@ -106,8 +106,8 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //   virtual ::color::color * get_data() const= 0;
 //
-//   virtual bool set_mipmap(::draw2d::e_mipmap emipmap)= 0;
-//   virtual bool _set_mipmap(::draw2d::e_mipmap emipmap)= 0;
+//   virtual bool set_mipmap(::draw2d::enum_mipmap emipmap)= 0;
+//   virtual bool _set_mipmap(::draw2d::enum_mipmap emipmap)= 0;
 //
 //   virtual bool create_isotropic(::image * pimage)= 0;
 //   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority)= 0;

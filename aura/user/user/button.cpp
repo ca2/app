@@ -341,7 +341,7 @@ namespace user
          crBk = argb(255, 127, 127, 127);
 
       }
-      else if (is_left_button_pressed() || echeck() == ::check_checked)
+      else if (is_left_button_pressed() || echeck() == ::e_check_checked)
       {
 
          // Pressed Background
@@ -387,7 +387,7 @@ namespace user
          crBorder = argb(255, 127, 127, 127);
 
       }
-      else if (is_left_button_pressed() || echeck() == ::check_checked)
+      else if (is_left_button_pressed() || echeck() == ::e_check_checked)
       {
 
          crBorder = argb(255, 255, 255, 255);
@@ -535,7 +535,7 @@ namespace user
    //      crText = argb(255, 0, 0, 0);
 
    //   }
-   //   else if (is_left_button_pressed() || get_echeck() == ::check_checked)
+   //   else if (is_left_button_pressed() || get_echeck() == ::e_check_checked)
    //   {
 
    //      crText = argb(255, 0, 0, 0);
@@ -570,7 +570,7 @@ namespace user
          crBackground = argb(255, 180, 180, 180);
 
       }
-      else if (is_left_button_pressed() || get_echeck() == ::check_checked)
+      else if (is_left_button_pressed() || get_echeck() == ::e_check_checked)
       {
 
          crBackground = argb(255, 240, 240, 240);
@@ -619,7 +619,7 @@ namespace user
 
       auto echeck = get_echeck();
 
-      if(echeck == ::check_checked)
+      if(echeck == ::e_check_checked)
       {
 
          ::rectangle_i32 rectanglePush(rectangleClient);
@@ -824,7 +824,7 @@ namespace user
 
       auto psession = get_session();
 
-      if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+      if(echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
       else if(::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
@@ -920,7 +920,7 @@ namespace user
 
          auto psession = get_session();
 
-         if (echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
+         if (echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
             pimage = m_pbitmap->m_pimageSel;
          else if (::is_set(m_pitemHover) && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
             pimage = m_pbitmap->m_pimageHover;
@@ -993,7 +993,7 @@ namespace user
 
       status < ::color::color > color32;
 
-      if(echeck() == ::check_checked)
+      if(echeck() == ::e_check_checked)
       {
 
          color.hls_rate(0.0,- 0.2,- 0.3);
@@ -1019,7 +1019,7 @@ namespace user
       colorExt1BR.set_rgb(color32);
       colorExt2BR.set_rgb(color32);
 
-      if(echeck() == ::check_checked)
+      if(echeck() == ::e_check_checked)
       {
 
          colorExt1TL.hls_rate(0.0,- 0.5,0.0);

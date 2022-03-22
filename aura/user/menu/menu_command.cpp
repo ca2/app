@@ -40,7 +40,7 @@ namespace user
    void menu_command::_001SetCheck(::enum_check echeck, const ::action_context & context)
    {
 
-      ASSERT(echeck == ::check_checked || echeck == ::check_unchecked || echeck == ::check_tristate); // 0=>off, 1=>on, 2=>indeterminate
+      ASSERT(echeck == ::e_check_checked || echeck == ::e_check_unchecked || echeck == ::e_check_tristate); // 0=>off, 1=>on, 2=>indeterminate
 
       ::message::command::_001SetCheck(echeck, context);
 

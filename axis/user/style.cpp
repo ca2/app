@@ -54,7 +54,7 @@ namespace axis
    bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (echeck == ::check_tristate || echeck == ::check_checked)
+      if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
       {
 
          int w = rectangle.width();
@@ -70,13 +70,13 @@ namespace axis
          //   if (bHover)
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
 
          //   }
          //   else
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
 
          //   }
          //}
@@ -85,13 +85,13 @@ namespace axis
          //   if (bHover)
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
 
          //   }
          //   else
          //   {
 
-         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //      ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          //   }
 
@@ -107,7 +107,7 @@ namespace axis
 
          }
 
-         if (echeck == ::check_checked)
+         if (echeck == ::e_check_checked)
          {
 
             estate |= ::user::e_state_checked;
@@ -116,14 +116,14 @@ namespace axis
 
          //if (bHover)
          //{
-         //   echeck == ::check_checked
+         //   echeck == ::e_check_checked
 
 
          //}
          //else
          //{
 
-         //   ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //   ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          //}pinteraction->get ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200)
 
@@ -326,7 +326,7 @@ namespace axis
 
                   //   pathRound.create();
 
-                  //   ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //   ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                   //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
@@ -360,7 +360,7 @@ namespace axis
 
                   //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                   //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
@@ -387,7 +387,7 @@ namespace axis
 
                   //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                   //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
@@ -415,7 +415,7 @@ namespace axis
 
                   //auto ppathRound = __create < ::draw2d::path >();
 
-                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
                   //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
@@ -721,7 +721,7 @@ namespace axis
    //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
    //{
 
-   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_pixel);
+   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
 
    //}
 
@@ -729,7 +729,7 @@ namespace axis
    //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
    //{
 
-   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_pixel);
+   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
 
    //}
 
@@ -737,7 +737,7 @@ namespace axis
    //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
    //{
 
-   //   return create_rect(erect, r, ::draw2d::unit_pixel);
+   //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
 
    //}
 
@@ -745,7 +745,7 @@ namespace axis
    //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
    //{
 
-   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_point);
+   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
 
    //}
 
@@ -753,7 +753,7 @@ namespace axis
    //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
    //{
 
-   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_point);
+   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
 
    //}
 
@@ -761,7 +761,7 @@ namespace axis
    //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
    //{
 
-   //   return create_rect(erect, r, ::draw2d::unit_point);
+   //   return create_rect(erect, r, ::draw2d::e_unit_point);
 
    //}
 
@@ -1325,7 +1325,7 @@ namespace axis
       //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
       //{
 
-      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_pixel);
+      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
 
       //}
 
@@ -1333,7 +1333,7 @@ namespace axis
       //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
       //{
 
-      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_pixel);
+      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
 
       //}
 
@@ -1341,7 +1341,7 @@ namespace axis
       //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
       //{
 
-      //   return create_rect(erect, r, ::draw2d::unit_pixel);
+      //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
 
       //}
 
@@ -1349,7 +1349,7 @@ namespace axis
       //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
       //{
 
-      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::unit_point);
+      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
 
       //}
 
@@ -1357,7 +1357,7 @@ namespace axis
       //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
       //{
 
-      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::unit_point);
+      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
 
       //}
 
@@ -1365,7 +1365,7 @@ namespace axis
       //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
       //{
 
-      //   return create_rect(erect, r, ::draw2d::unit_point);
+      //   return create_rect(erect, r, ::draw2d::e_unit_point);
 
       //}
 

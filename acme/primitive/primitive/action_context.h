@@ -52,7 +52,7 @@ public:
 };
 
 
-//CLASS_DECL_ACME e_source translation_source(e_source esource, e_context econtextDst, e_context econtextSrc);
+//CLASS_DECL_ACME e_source translation_source(e_source esource, enum_context econtextDst, enum_context econtextSrc);
 
 //namespace source
 //{

@@ -8821,7 +8821,7 @@ namespace aura
                         get_executable_appid(),
                         get_executable_path(),
                         ": auto_start=1",
-                        pcheck->echeck() == ::check_checked);
+                        pcheck->echeck() == ::e_check_checked);
 
                   }
 
@@ -8868,7 +8868,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = create_impact_system();
+   //   auto estatus = creatimpact_system();
 
    //   if (failed(estatus))
    //   {
@@ -8882,7 +8882,7 @@ namespace aura
    //}
 
 
-   void     application::create_impact_system()
+   void     application::creatimpact_system()
    {
 
       //return ::success;

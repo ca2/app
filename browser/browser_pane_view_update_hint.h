@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   enum e_impact
+   enum enum_impact
    {
 
       impact_none,
@@ -34,7 +34,7 @@ namespace browser
       };
 
 
-      e_impact    m_eview;
+      enum_impact    m_eview;
       enum_type         m_etype;
 
 

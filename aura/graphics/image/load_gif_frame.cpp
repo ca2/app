@@ -62,7 +62,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   gif_draw_frame(pimageCanvas, pframea, pframe, uFrameIndex, ba, iScan, cra, transparentIndex);
 //   //
-//   //   if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == image_frame::disposal_background)
+//   //   if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == image_frame::e_disposal_background)
 //   //   {
 //
 //   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -228,7 +228,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //      draw2d_gif_draw_frame(pimageCanvas, pframea, pframe, uFrameIndex, ba, iScan, cra, transparentIndex);
 //
 //
-//      if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == ::draw2d::disposal_background)
+//      if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == ::draw2d::e_disposal_background)
 //      {
 //
 //         pimageCanvas->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);

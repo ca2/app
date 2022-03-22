@@ -235,7 +235,7 @@ namespace turboc
 
             //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            //pgraphics->draw_path(path,pen);
+            //pgraphics->draw(path,pen);
 
             m_bNewLayout = false;
 
@@ -463,7 +463,7 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw_path(path,pen);
+      pgraphics->draw(path,pen);
       //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }

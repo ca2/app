@@ -1024,7 +1024,7 @@ namespace aura
       virtual bool on_close_frame_window(::user::frame* pframe);
 
 
-      void create_impact_system() override;
+      void creatimpact_system() override;
 
       virtual ::user::interaction* create_menu_interaction();
 

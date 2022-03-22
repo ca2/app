@@ -49,7 +49,7 @@ namespace experience_tranquillum
 
       color32_t crText;
 
-      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
       if (!is_window_enabled())
       {

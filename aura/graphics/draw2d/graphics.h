@@ -88,9 +88,9 @@ namespace draw2d
 
       enum_alpha_mode                        m_ealphamode;
       enum_fill_mode                         m_efillmode;
-      e_smooth_mode                          m_esmoothmode;
+      enum_smooth_mode                          m_esmoothmode;
       enum_interpolation_mode                m_einterpolationmode;
-      e_compositing_quality                  m_ecompositingquality;
+      enum_compositing_quality                  m_ecompositingquality;
       ::write_text::enum_rendering           m_ewritetextrendering;
       double                                 m_dFontFactor;
 
@@ -231,15 +231,15 @@ namespace draw2d
 
       virtual void set_alpha_mode(enum_alpha_mode ealphamode);
 
-      virtual void set_smooth_mode(e_smooth_mode esmoothmode);
+      virtual void set_smooth_mode(enum_smooth_mode esmoothmode);
 
       virtual void set_interpolation_mode(enum_interpolation_mode einterpolationmode);
 
-      virtual void set_compositing_quality(e_compositing_quality ecompositingquality);
+      virtual void set_compositing_quality(enum_compositing_quality ecompositingquality);
 
       virtual void set_text_rendering_hint(::write_text::enum_rendering erendering);
 
-      virtual e_smooth_mode get_smooth_mode();
+      virtual enum_smooth_mode get_smooth_mode();
 
       virtual void blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle);
 

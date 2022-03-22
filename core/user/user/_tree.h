@@ -12,7 +12,7 @@
 #include "apex/filesystem/file/_data.h"
 
 
-#include "aura/user/plain_text_data.h"
+#include "aura/user/user/plain_text_data.h"
 
 
 #include "tree_data.h"

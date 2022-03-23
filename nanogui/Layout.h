@@ -15,10 +15,10 @@
 
 #pragma once
 
-#include <nanogui/object.h>
-#include <nanogui/vector.h>
-#include <unordered_map>
-#include <vector>
+//#include Object.h
+//#include <nanogui/vector.h>
+//#include <unordered_map>
+//#include <vector>
 
 NAMESPACE_BEGIN(nanogui)
 

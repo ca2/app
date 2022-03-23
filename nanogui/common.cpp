@@ -464,6 +464,7 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
 
    return result;
 #else
+   static const int FILE_DIALOG_MAX_BUFFER = 16384;
    char buffer[FILE_DIALOG_MAX_BUFFER];
    buffer[0] = '\0';
 

@@ -13,9 +13,9 @@
 
 #pragma once
 
-#include <nanogui/widget.h>
-#include <functional>
-#include <unordered_map>
+//#include <nanogui/widget.h>
+//#include <functional>
+//#include <unordered_map>
 
 NAMESPACE_BEGIN(nanogui)
 

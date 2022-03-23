@@ -4190,7 +4190,7 @@ namespace draw2d
 
       ppath->begin_figure();
 
-      ppath->add_round_rect(rectangle, 2 * radius);
+      ppath->add_round_rect(rectangle, radius);
 
       //ppath->end_figure(true);
 

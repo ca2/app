@@ -495,12 +495,12 @@ void acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 void acme_file::append_wait(const char * strFile, const block & block, const ::duration & duration)
 {
 
-   auto pacmedir = m_pacmedirectory;
+   auto pacmedirectory = m_pacmedirectory;
 
-   pacmedir->create(::file_path_folder(strFile));
+   pacmedirectory->create(::file_path_folder(strFile));
 
 
-   if (!pacmedir->is(::file_path_folder(strFile)))
+   if (!pacmedirectory->is(::file_path_folder(strFile)))
    {
 
       throw ::exception(error_path_not_found);

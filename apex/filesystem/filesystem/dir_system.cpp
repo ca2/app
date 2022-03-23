@@ -67,11 +67,11 @@ void dir_system::init_system()
 
    //auto psystem = get_system()->m_papexsystem;
 
-   auto pacmedir = psystem->m_pacmedirectory;
+   auto pacmedirectory = psystem->m_pacmedirectory;
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
 
-   if ( pacmedir->is(psystem->side_get_matter_path("app/_matter/main")))
+   if ( pacmedirectory->is(psystem->side_get_matter_path("app/_matter/main")))
    {
 
       m_pathLocalAppMatterFolder = psystem->side_get_matter_path("");
@@ -91,7 +91,7 @@ void dir_system::init_system()
 
    m_pfilewatcher.create(this);
 
-   pacmedir->create(m_psystem->m_pacmedirectory->bookmark());
+   pacmedirectory->create(m_psystem->m_pacmedirectory->bookmark());
 
    //if (!update_module_path())
    //{

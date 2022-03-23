@@ -520,15 +520,15 @@ void app_core::system_init()
 
    ::file::path pathOutputDebugString =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / strAppId / "output_debug_string.txt" ;
+pacmedirectory->system() / strAppId / "output_debug_string.txt" ;
 
    ::file::path pathGlobalOutputDebugString =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->config() / "output_debug_string.txt" ;
+pacmedirectory->config() / "output_debug_string.txt" ;
 
    ::aura::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
@@ -552,9 +552,9 @@ void app_core::set_command_line(const ::string & psz)
 
    ::file::path pathFolder =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->ca2roaming() / "program";
+pacmedirectory->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 

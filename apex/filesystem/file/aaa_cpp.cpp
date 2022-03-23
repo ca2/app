@@ -16,9 +16,9 @@ namespace file
 
       ::file::path pathSystemShortName =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->localconfig() / "system_short_name.txt";
+pacmedirectory->localconfig() / "system_short_name.txt";
 
       return m_psystem->m_pacmefile->as_string(pathSystemShortName).trimmed();
 

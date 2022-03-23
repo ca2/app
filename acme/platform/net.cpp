@@ -437,15 +437,15 @@ void openURL(const string &url_str)
 //
 //   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "config\\user.txt");
+//pacmedirectory->system() / "config\\user.txt");
 ////
 ////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "config\\pass.txt");
+//pacmedirectory->system() / "config\\pass.txt");
 ////
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{
@@ -1005,15 +1005,15 @@ void openURL(const string& url_str)
 //
 //   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-   /*      auto pacmedir = psystem->m_pacmedirectory;
+   /*      auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "config\\user.txt")*/;
+pacmedirectory->system() / "config\\user.txt")*/;
 //
 //   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "config\\pass.txt");
+//pacmedirectory->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{

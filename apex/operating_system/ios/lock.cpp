@@ -109,9 +109,9 @@ string _ca_get_file_name(const char * pszName, bool bCreate, int * pfd)
 
             auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(::file_path_folder(str));
+pacmedirectory->create(::file_path_folder(str));
 
    if(bCreate)
    {

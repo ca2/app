@@ -74,9 +74,9 @@ namespace experience
       virtual void set_button_color_system_default_001();
 
 
-      virtual void install_message_routing(::channel *pframewindow);
+      void install_message_routing(::channel *pframewindow) override;
 
-      virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
+      void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
       void drag(const ::point_i32 & point);
 
@@ -85,12 +85,12 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-      void _001OnTimer(::timer * ptimer);
+      void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_size);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::size_i32 get_button_size(enum_button ebutton);
 

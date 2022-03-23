@@ -3,361 +3,432 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07B65520190F3001002DAADE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		9A00E5C62661320500517464 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5C52661320400517464 /* _.cpp */; };
-		9A2E62A925258F6D0001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E62A825258F6D0001CC7E /* libaqua.dylib */; };
-		9A415C29247393C100EF2BCD /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C6240C09F00097E249 /* application.cpp */; };
-		9A415C2A247393C100EF2BCD /* document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C9240C09F10097E249 /* document.cpp */; };
-		9A415C2C247393C100EF2BCD /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C3240C09F00097E249 /* main_frame.cpp */; };
-		9A415C2E247393C100EF2BCD /* impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C2240C09F00097E249 /* impact.cpp */; };
-		9A7D920F251AF32C00DE81AE /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7D920E251AF32C00DE81AE /* libacme.dylib */; };
-		9A7D9211251AF32C00DE81AE /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7D9210251AF32C00DE81AE /* libapex.dylib */; };
-		9A833BE124F544B200C079FB /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833BDF24F544B200C079FB /* _.h */; };
-		9A833BE224F544B200C079FB /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A833BE024F544B200C079FB /* _user.h */; };
-		9A833BE924F544EA00C079FB /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A258BD424DA5DD30013F50E /* libaura.dylib */; };
-		9A833BEB24F544EF00C079FB /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BEA24F544EF00C079FB /* libaxis.dylib */; };
-		9A833BEC24F544F500C079FB /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A833BE824F544D600C079FB /* libbase.dylib */; };
-		9A8F90CE240C09F10097E249 /* impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C2240C09F00097E249 /* impact.cpp */; };
-		9A8F90CF240C09F10097E249 /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C3240C09F00097E249 /* main_frame.cpp */; };
-		9A8F90D1240C09F10097E249 /* document.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F90C5240C09F00097E249 /* document.h */; };
-		9A8F90D2240C09F10097E249 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C6240C09F00097E249 /* application.cpp */; };
-		9A8F90D3240C09F10097E249 /* main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F90C7240C09F00097E249 /* main_frame.h */; };
-		9A8F90D4240C09F10097E249 /* impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F90C8240C09F10097E249 /* impact.h */; };
-		9A8F90D5240C09F10097E249 /* document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F90C9240C09F10097E249 /* document.cpp */; };
-		9A8F90D6240C09F10097E249 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F90CA240C09F10097E249 /* application.h */; };
-		9AEB75DD16F78E600085103B /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
-		9AEB75DE16F78E600085103B /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEB75BF16F78E600085103B /* framework.h */; };
+		9A3CA81727EAE970009ADCD2 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71A27EAE8F0009ADCD2 /* context.cpp */; };
+		9A3CA81827EAE970009ADCD2 /* nano2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */; };
+		9A3CA81927EAE970009ADCD2 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */; };
+		9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C327EAE8F2009ADCD2 /* _.cpp */; };
+		9A3CA81B27EAE970009ADCD2 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA72927EAE8F0009ADCD2 /* Button.cpp */; };
+		9A3CA81C27EAE970009ADCD2 /* Canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */; };
+		9A3CA81D27EAE970009ADCD2 /* CheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */; };
+		9A3CA81E27EAE970009ADCD2 /* ColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */; };
+		9A3CA81F27EAE970009ADCD2 /* ColorWheel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */; };
+		9A3CA82027EAE970009ADCD2 /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */; };
+		9A3CA82127EAE970009ADCD2 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70927EAE8EF009ADCD2 /* common.cpp */; };
+		9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73227EAE8F0009ADCD2 /* framework.cpp */; };
+		9A3CA82327EAE970009ADCD2 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */; };
+		9A3CA82427EAE970009ADCD2 /* ImagePanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */; };
+		9A3CA82527EAE970009ADCD2 /* ImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */; };
+		9A3CA82627EAE970009ADCD2 /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */; };
+		9A3CA82727EAE970009ADCD2 /* Layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */; };
+		9A3CA82827EAE970009ADCD2 /* MessageDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */; };
+		9A3CA82927EAE970009ADCD2 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */; };
+		9A3CA82A27EAE970009ADCD2 /* PopupButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */; };
+		9A3CA82B27EAE970009ADCD2 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */; };
+		9A3CA82C27EAE970009ADCD2 /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */; };
+		9A3CA82D27EAE970009ADCD2 /* Slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */; };
+		9A3CA82E27EAE970009ADCD2 /* TabWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */; };
+		9A3CA82F27EAE970009ADCD2 /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */; };
+		9A3CA83027EAE970009ADCD2 /* Theme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */; };
+		9A3CA83127EAE970009ADCD2 /* VScrollPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */; };
+		9A3CA83227EAE970009ADCD2 /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */; };
+		9A3CA83327EAE970009ADCD2 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA73527EAE8F1009ADCD2 /* Window.cpp */; };
+		9A3CA83627EAE981009ADCD2 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83527EAE981009ADCD2 /* libacme.dylib */; };
+		9A3CA83827EAE988009ADCD2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83727EAE988009ADCD2 /* libapex.dylib */; };
+		9A3CA83A27EAE990009ADCD2 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83927EAE990009ADCD2 /* libaqua.dylib */; };
+		9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83B27EAE999009ADCD2 /* libaura.dylib */; };
+		9A3CA83E27EAE9A3009ADCD2 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */; };
+		9A3CA83F27EAE9AB009ADCD2 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA6F127EAE8D4009ADCD2 /* libbase.dylib */; };
+		9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA84527EAEB68009ADCD2 /* platform.mm */; };
+		9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84727EAED75009ADCD2 /* AppKit.framework */; };
+		9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84927EAED95009ADCD2 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A00E0E026611ADF00517464 /* PBXContainerItemProxy */ = {
+		9A3CA6F027EAE8D4009ADCD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BE324F544D600C079FB /* base.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AD117F224F51BE400177261;
-			remoteInfo = base;
-		};
-		9A833BE724F544D600C079FB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A833BE324F544D600C079FB /* base.xcodeproj */;
+			containerPortal = 9A3CA6EC27EAE8D4009ADCD2 /* base.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AD117F324F51BE400177261;
 			remoteInfo = base;
 		};
+		9A3CA6F227EAE8DE009ADCD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3CA6EC27EAE8D4009ADCD2 /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD117F224F51BE400177261;
+			remoteInfo = base;
+		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9A00E0EE26611AF200517464 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AE24E881904CFFD001AEFFB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		9A00E5C52661320400517464 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9A258BD424DA5DD30013F50E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A2E62A825258F6D0001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A7D920E251AF32C00DE81AE /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A7D9210251AF32C00DE81AE /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A833BDF24F544B200C079FB /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A833BE024F544B200C079FB /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
-		9A833BE324F544D600C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../../app/base/base.xcodeproj; sourceTree = "<group>"; };
-		9A833BEA24F544EF00C079FB /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8F90C2240C09F00097E249 /* impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact.cpp; sourceTree = "<group>"; };
-		9A8F90C3240C09F00097E249 /* main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_frame.cpp; sourceTree = "<group>"; };
-		9A8F90C5240C09F00097E249 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
-		9A8F90C6240C09F00097E249 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
-		9A8F90C7240C09F00097E249 /* main_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
-		9A8F90C8240C09F10097E249 /* impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact.h; sourceTree = "<group>"; };
-		9A8F90C9240C09F10097E249 /* document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = document.cpp; sourceTree = "<group>"; };
-		9A8F90CA240C09F10097E249 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
-		9AE24E8A1904CFFD001AEFFB /* libios_app_simple_application.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_app_simple_application.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75A316F78DF10085103B /* libapp_simple_application.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_simple_application.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AEB75BE16F78E600085103B /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9AEB75BF16F78E600085103B /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9A3CA6E527EAE89B009ADCD2 /* libnanogui.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnanogui.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA6EC27EAE8D4009ADCD2 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
+		9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
+		9A3CA70727EAE8EF009ADCD2 /* ColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPicker.h; sourceTree = "<group>"; };
+		9A3CA70927EAE8EF009ADCD2 /* common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
+		9A3CA70A27EAE8F0009ADCD2 /* Theme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckBox.cpp; sourceTree = "<group>"; };
+		9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VScrollPanel.cpp; sourceTree = "<group>"; };
+		9A3CA70E27EAE8F0009ADCD2 /* ColorWheel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWheel.h; sourceTree = "<group>"; };
+		9A3CA71127EAE8F0009ADCD2 /* ProgressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBar.h; sourceTree = "<group>"; };
+		9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorPicker.cpp; sourceTree = "<group>"; };
+		9A3CA71727EAE8F0009ADCD2 /* TextBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextBox.h; sourceTree = "<group>"; };
+		9A3CA71927EAE8F0009ADCD2 /* _nano2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _nano2d.h; sourceTree = "<group>"; };
+		9A3CA71A27EAE8F0009ADCD2 /* context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
+		9A3CA71B27EAE8F0009ADCD2 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = draw2d_context.h; sourceTree = "<group>"; };
+		9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano2d.cpp; sourceTree = "<group>"; };
+		9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = draw2d_context.cpp; sourceTree = "<group>"; };
+		9A3CA72027EAE8F0009ADCD2 /* ImagePanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePanel.h; sourceTree = "<group>"; };
+		9A3CA72127EAE8F0009ADCD2 /* Label.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
+		9A3CA72227EAE8F0009ADCD2 /* traits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = traits.h; sourceTree = "<group>"; };
+		9A3CA72927EAE8F0009ADCD2 /* Button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Button.cpp; sourceTree = "<group>"; };
+		9A3CA72C27EAE8F0009ADCD2 /* Popup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
+		9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Canvas.cpp; sourceTree = "<group>"; };
+		9A3CA73127EAE8F0009ADCD2 /* Widget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		9A3CA73227EAE8F0009ADCD2 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A3CA73327EAE8F0009ADCD2 /* ComboBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComboBox.h; sourceTree = "<group>"; };
+		9A3CA73527EAE8F1009ADCD2 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Screen.cpp; sourceTree = "<group>"; };
+		9A3CA73727EAE8F1009ADCD2 /* PopupButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PopupButton.h; sourceTree = "<group>"; };
+		9A3CA73927EAE8F1009ADCD2 /* Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icons.h; sourceTree = "<group>"; };
+		9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graph.cpp; sourceTree = "<group>"; };
+		9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
+		9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToolButton.h; sourceTree = "<group>"; };
+		9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Layout.cpp; sourceTree = "<group>"; };
+		9A3CA7A727EAE8F1009ADCD2 /* Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		9A3CA7AD27EAE8F2009ADCD2 /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
+		9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabWidget.cpp; sourceTree = "<group>"; };
+		9A3CA7B027EAE8F2009ADCD2 /* Graph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
+		9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageView.cpp; sourceTree = "<group>"; };
+		9A3CA7B827EAE8F2009ADCD2 /* CheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBox.h; sourceTree = "<group>"; };
+		9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgressBar.cpp; sourceTree = "<group>"; };
+		9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComboBox.cpp; sourceTree = "<group>"; };
+		9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Theme.cpp; sourceTree = "<group>"; };
+		9A3CA7C027EAE8F2009ADCD2 /* Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Layout.h; sourceTree = "<group>"; };
+		9A3CA7C127EAE8F2009ADCD2 /* Slider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Slider.h; sourceTree = "<group>"; };
+		9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
+		9A3CA7C327EAE8F2009ADCD2 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A3CA7C427EAE8F2009ADCD2 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImagePanel.cpp; sourceTree = "<group>"; };
+		9A3CA7C727EAE8F2009ADCD2 /* Button.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
+		9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorWheel.cpp; sourceTree = "<group>"; };
+		9A3CA7D027EAE8F2009ADCD2 /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
+		9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MessageDialog.cpp; sourceTree = "<group>"; };
+		9A3CA7D227EAE8F3009ADCD2 /* _nanogui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _nanogui.h; sourceTree = "<group>"; };
+		9A3CA7D427EAE8F3009ADCD2 /* Screen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
+		9A3CA7D527EAE8F3009ADCD2 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
+		9A3CA7D827EAE8F3009ADCD2 /* Canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
+		9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Slider.cpp; sourceTree = "<group>"; };
+		9A3CA7E627EAE8F3009ADCD2 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		9A3CA7F527EAE8F3009ADCD2 /* MessageDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDialog.h; sourceTree = "<group>"; };
+		9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VScrollPanel.h; sourceTree = "<group>"; };
+		9A3CA7FC27EAE8F4009ADCD2 /* FormHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormHelper.h; sourceTree = "<group>"; };
+		9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PopupButton.cpp; sourceTree = "<group>"; };
+		9A3CA80027EAE8F4009ADCD2 /* TabWidget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabWidget.h; sourceTree = "<group>"; };
+		9A3CA80327EAE8F4009ADCD2 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A3CA83527EAE981009ADCD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA83727EAE988009ADCD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA83927EAE990009ADCD2 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA83B27EAE999009ADCD2 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3CA84527EAEB68009ADCD2 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
+		9A3CA84727EAED75009ADCD2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		9A3CA84927EAED95009ADCD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E871904CFFD001AEFFB /* Frameworks */ = {
+		9A3CA6E327EAE89B009ADCD2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AEB75A016F78DF10085103B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A2E62A925258F6D0001CC7E /* libaqua.dylib in Frameworks */,
-				9A7D920F251AF32C00DE81AE /* libacme.dylib in Frameworks */,
-				9A7D9211251AF32C00DE81AE /* libapex.dylib in Frameworks */,
-				9A833BEC24F544F500C079FB /* libbase.dylib in Frameworks */,
-				9A833BEB24F544EF00C079FB /* libaxis.dylib in Frameworks */,
-				9A833BE924F544EA00C079FB /* libaura.dylib in Frameworks */,
+				9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */,
+				9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */,
+				9A3CA83F27EAE9AB009ADCD2 /* libbase.dylib in Frameworks */,
+				9A3CA83E27EAE9A3009ADCD2 /* libaxis.dylib in Frameworks */,
+				9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */,
+				9A3CA83A27EAE990009ADCD2 /* libaqua.dylib in Frameworks */,
+				9A3CA83827EAE988009ADCD2 /* libapex.dylib in Frameworks */,
+				9A3CA83627EAE981009ADCD2 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A833BE424F544D600C079FB /* Products */ = {
+		9A3CA6DC27EAE89B009ADCD2 = {
 			isa = PBXGroup;
 			children = (
-				9A833BE824F544D600C079FB /* libbase.dylib */,
+				9A3CA6EC27EAE8D4009ADCD2 /* base.xcodeproj */,
+				9A3CA6F427EAE8EF009ADCD2 /* nanogui */,
+				9A3CA6E627EAE89B009ADCD2 /* Products */,
+				9A3CA83427EAE981009ADCD2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9A3CA6E627EAE89B009ADCD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A3CA6E527EAE89B009ADCD2 /* libnanogui.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A920FD61F3BF68400CD9D94 /* Frameworks */ = {
+		9A3CA6ED27EAE8D4009ADCD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A2E62A825258F6D0001CC7E /* libaqua.dylib */,
-				9A7D920E251AF32C00DE81AE /* libacme.dylib */,
-				9A7D9210251AF32C00DE81AE /* libapex.dylib */,
-				9A833BEA24F544EF00C079FB /* libaxis.dylib */,
-				9A258BD424DA5DD30013F50E /* libaura.dylib */,
+				9A3CA6F127EAE8D4009ADCD2 /* libbase.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A3CA6F427EAE8EF009ADCD2 /* nanogui */ = {
+			isa = PBXGroup;
+			children = (
+				9A3CA71827EAE8F0009ADCD2 /* nano2d */,
+				9A3CA7C327EAE8F2009ADCD2 /* _.cpp */,
+				9A3CA72927EAE8F0009ADCD2 /* Button.cpp */,
+				9A3CA72F27EAE8F0009ADCD2 /* Canvas.cpp */,
+				9A3CA70B27EAE8F0009ADCD2 /* CheckBox.cpp */,
+				9A3CA71627EAE8F0009ADCD2 /* ColorPicker.cpp */,
+				9A3CA7CF27EAE8F2009ADCD2 /* ColorWheel.cpp */,
+				9A3CA7BD27EAE8F2009ADCD2 /* ComboBox.cpp */,
+				9A3CA70927EAE8EF009ADCD2 /* common.cpp */,
+				9A3CA73227EAE8F0009ADCD2 /* framework.cpp */,
+				9A3CA73A27EAE8F1009ADCD2 /* Graph.cpp */,
+				9A3CA7C527EAE8F2009ADCD2 /* ImagePanel.cpp */,
+				9A3CA7B127EAE8F2009ADCD2 /* ImageView.cpp */,
+				9A3CA7C227EAE8F2009ADCD2 /* Label.cpp */,
+				9A3CA74327EAE8F1009ADCD2 /* Layout.cpp */,
+				9A3CA7D127EAE8F3009ADCD2 /* MessageDialog.cpp */,
+				9A3CA73B27EAE8F1009ADCD2 /* Popup.cpp */,
+				9A3CA7FD27EAE8F4009ADCD2 /* PopupButton.cpp */,
+				9A3CA7BA27EAE8F2009ADCD2 /* ProgressBar.cpp */,
+				9A3CA73627EAE8F1009ADCD2 /* Screen.cpp */,
+				9A3CA7DB27EAE8F3009ADCD2 /* Slider.cpp */,
+				9A3CA7AF27EAE8F2009ADCD2 /* TabWidget.cpp */,
+				9A3CA7D627EAE8F3009ADCD2 /* TextBox.cpp */,
+				9A3CA7BE27EAE8F2009ADCD2 /* Theme.cpp */,
+				9A3CA70C27EAE8F0009ADCD2 /* VScrollPanel.cpp */,
+				9A3CA6F627EAE8EF009ADCD2 /* Widget.cpp */,
+				9A3CA73527EAE8F1009ADCD2 /* Window.cpp */,
+				9A3CA80327EAE8F4009ADCD2 /* _.h */,
+				9A3CA7D227EAE8F3009ADCD2 /* _nanogui.h */,
+				9A3CA7C727EAE8F2009ADCD2 /* Button.h */,
+				9A3CA7D827EAE8F3009ADCD2 /* Canvas.h */,
+				9A3CA7B827EAE8F2009ADCD2 /* CheckBox.h */,
+				9A3CA70727EAE8EF009ADCD2 /* ColorPicker.h */,
+				9A3CA70E27EAE8F0009ADCD2 /* ColorWheel.h */,
+				9A3CA73327EAE8F0009ADCD2 /* ComboBox.h */,
+				9A3CA7C427EAE8F2009ADCD2 /* common.h */,
+				9A3CA7FC27EAE8F4009ADCD2 /* FormHelper.h */,
+				9A3CA7D527EAE8F3009ADCD2 /* framework.h */,
+				9A3CA7B027EAE8F2009ADCD2 /* Graph.h */,
+				9A3CA73927EAE8F1009ADCD2 /* Icons.h */,
+				9A3CA72027EAE8F0009ADCD2 /* ImagePanel.h */,
+				9A3CA7AD27EAE8F2009ADCD2 /* ImageView.h */,
+				9A3CA72127EAE8F0009ADCD2 /* Label.h */,
+				9A3CA7C027EAE8F2009ADCD2 /* Layout.h */,
+				9A3CA7F527EAE8F3009ADCD2 /* MessageDialog.h */,
+				9A3CA7D027EAE8F2009ADCD2 /* Object.h */,
+				9A3CA72C27EAE8F0009ADCD2 /* Popup.h */,
+				9A3CA73727EAE8F1009ADCD2 /* PopupButton.h */,
+				9A3CA71127EAE8F0009ADCD2 /* ProgressBar.h */,
+				9A3CA7D427EAE8F3009ADCD2 /* Screen.h */,
+				9A3CA7C127EAE8F2009ADCD2 /* Slider.h */,
+				9A3CA80027EAE8F4009ADCD2 /* TabWidget.h */,
+				9A3CA71727EAE8F0009ADCD2 /* TextBox.h */,
+				9A3CA70A27EAE8F0009ADCD2 /* Theme.h */,
+				9A3CA74227EAE8F1009ADCD2 /* ToolButton.h */,
+				9A3CA72227EAE8F0009ADCD2 /* traits.h */,
+				9A3CA7E627EAE8F3009ADCD2 /* vector.h */,
+				9A3CA7F627EAE8F3009ADCD2 /* VScrollPanel.h */,
+				9A3CA73127EAE8F0009ADCD2 /* Widget.h */,
+				9A3CA7A727EAE8F1009ADCD2 /* Window.h */,
+				9A3CA84527EAEB68009ADCD2 /* platform.mm */,
+			);
+			name = nanogui;
+			sourceTree = "<group>";
+		};
+		9A3CA71827EAE8F0009ADCD2 /* nano2d */ = {
+			isa = PBXGroup;
+			children = (
+				9A3CA71927EAE8F0009ADCD2 /* _nano2d.h */,
+				9A3CA71A27EAE8F0009ADCD2 /* context.cpp */,
+				9A3CA71B27EAE8F0009ADCD2 /* context.h */,
+				9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */,
+				9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */,
+				9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */,
+			);
+			path = nano2d;
+			sourceTree = "<group>";
+		};
+		9A3CA83427EAE981009ADCD2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A3CA84927EAED95009ADCD2 /* IOKit.framework */,
+				9A3CA84727EAED75009ADCD2 /* AppKit.framework */,
+				9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */,
+				9A3CA83B27EAE999009ADCD2 /* libaura.dylib */,
+				9A3CA83927EAE990009ADCD2 /* libaqua.dylib */,
+				9A3CA83727EAE988009ADCD2 /* libapex.dylib */,
+				9A3CA83527EAE981009ADCD2 /* libacme.dylib */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9AEB759A16F78DF10085103B = {
-			isa = PBXGroup;
-			children = (
-				9A833BE324F544D600C079FB /* base.xcodeproj */,
-				9AEB75AA16F78E600085103B /* simple_application */,
-				9AEB75A416F78DF10085103B /* Products */,
-				9A920FD61F3BF68400CD9D94 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		9AEB75A416F78DF10085103B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AEB75A316F78DF10085103B /* libapp_simple_application.dylib */,
-				9AE24E8A1904CFFD001AEFFB /* libios_app_simple_application.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9AEB75AA16F78E600085103B /* simple_application */ = {
-			isa = PBXGroup;
-			children = (
-				9A00E5C52661320400517464 /* _.cpp */,
-				9A833BDF24F544B200C079FB /* _.h */,
-				9A833BE024F544B200C079FB /* _user.h */,
-				9A8F90C6240C09F00097E249 /* application.cpp */,
-				9A8F90CA240C09F10097E249 /* application.h */,
-				9A8F90C9240C09F10097E249 /* document.cpp */,
-				9A8F90C5240C09F00097E249 /* document.h */,
-				9AEB75BE16F78E600085103B /* framework.cpp */,
-				9AEB75BF16F78E600085103B /* framework.h */,
-				9A8F90C3240C09F00097E249 /* main_frame.cpp */,
-				9A8F90C7240C09F00097E249 /* main_frame.h */,
-				9A8F90C2240C09F00097E249 /* impact.cpp */,
-				9A8F90C8240C09F10097E249 /* impact.h */,
-			);
-			name = simple_application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AEB75A116F78DF10085103B /* Headers */ = {
+		9A3CA6E127EAE89B009ADCD2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A833BE224F544B200C079FB /* _user.h in Headers */,
-				9A833BE124F544B200C079FB /* _.h in Headers */,
-				9A8F90D4240C09F10097E249 /* impact.h in Headers */,
-				9A8F90D6240C09F10097E249 /* application.h in Headers */,
-				9A8F90D3240C09F10097E249 /* main_frame.h in Headers */,
-				9AEB75DE16F78E600085103B /* framework.h in Headers */,
-				9A8F90D1240C09F10097E249 /* document.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AE24E891904CFFD001AEFFB /* ios_app_simple_application */ = {
+		9A3CA6E427EAE89B009ADCD2 /* nanogui */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_simple_application" */;
+			buildConfigurationList = 9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nanogui" */;
 			buildPhases = (
-				9AE24E861904CFFD001AEFFB /* Sources */,
-				9AE24E871904CFFD001AEFFB /* Frameworks */,
-				9AE24E881904CFFD001AEFFB /* CopyFiles */,
+				9A3CA6E127EAE89B009ADCD2 /* Headers */,
+				9A3CA6E227EAE89B009ADCD2 /* Sources */,
+				9A3CA6E327EAE89B009ADCD2 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9A3CA6F327EAE8DE009ADCD2 /* PBXTargetDependency */,
 			);
-			name = ios_app_simple_application;
-			productName = app_core_hellomultiverse_ios;
-			productReference = 9AE24E8A1904CFFD001AEFFB /* libios_app_simple_application.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		9AEB75A216F78DF10085103B /* app_simple_application */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_simple_application" */;
-			buildPhases = (
-				9A2293232472D7BA00B1A4EC /* ShellScript */,
-				9AEB759F16F78DF10085103B /* Sources */,
-				9AEB75A016F78DF10085103B /* Frameworks */,
-				9AEB75A116F78DF10085103B /* Headers */,
-				9A00E0EE26611AF200517464 /* Embed Libraries */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9A00E0E126611ADF00517464 /* PBXTargetDependency */,
-			);
-			name = app_simple_application;
-			productName = app_core_hellomultiverse;
-			productReference = 9AEB75A316F78DF10085103B /* libapp_simple_application.dylib */;
+			name = nanogui;
+			productName = nanogui;
+			productReference = 9A3CA6E527EAE89B009ADCD2 /* libnanogui.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9AEB759B16F78DF10085103B /* Project object */ = {
+		9A3CA6DD27EAE89B009ADCD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
-				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					9A3CA6E427EAE89B009ADCD2 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
 			};
-			buildConfigurationList = 9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_simple_application" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nanogui" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 9AEB759A16F78DF10085103B;
-			productRefGroup = 9AEB75A416F78DF10085103B /* Products */;
+			mainGroup = 9A3CA6DC27EAE89B009ADCD2;
+			productRefGroup = 9A3CA6E627EAE89B009ADCD2 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A833BE424F544D600C079FB /* Products */;
-					ProjectRef = 9A833BE324F544D600C079FB /* base.xcodeproj */;
+					ProductGroup = 9A3CA6ED27EAE8D4009ADCD2 /* Products */;
+					ProjectRef = 9A3CA6EC27EAE8D4009ADCD2 /* base.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				9AEB75A216F78DF10085103B /* app_simple_application */,
-				9AE24E891904CFFD001AEFFB /* ios_app_simple_application */,
+				9A3CA6E427EAE89B009ADCD2 /* nanogui */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A833BE824F544D600C079FB /* libbase.dylib */ = {
+		9A3CA6F127EAE8D4009ADCD2 /* libbase.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libbase.dylib;
-			remoteRef = 9A833BE724F544D600C079FB /* PBXContainerItemProxy */;
+			remoteRef = 9A3CA6F027EAE8D4009ADCD2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AE24E861904CFFD001AEFFB /* Sources */ = {
+		9A3CA6E227EAE89B009ADCD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A415C29247393C100EF2BCD /* application.cpp in Sources */,
-				9A415C2A247393C100EF2BCD /* document.cpp in Sources */,
-				9A415C2C247393C100EF2BCD /* main_frame.cpp in Sources */,
-				9A415C2E247393C100EF2BCD /* impact.cpp in Sources */,
-				07B65520190F3001002DAADE /* framework.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AEB759F16F78DF10085103B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A8F90CF240C09F10097E249 /* main_frame.cpp in Sources */,
-				9A8F90CE240C09F10097E249 /* impact.cpp in Sources */,
-				9A8F90D5240C09F10097E249 /* document.cpp in Sources */,
-				9A00E5C62661320500517464 /* _.cpp in Sources */,
-				9AEB75DD16F78E600085103B /* framework.cpp in Sources */,
-				9A8F90D2240C09F10097E249 /* application.cpp in Sources */,
+				9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */,
+				9A3CA81727EAE970009ADCD2 /* context.cpp in Sources */,
+				9A3CA81827EAE970009ADCD2 /* nano2d.cpp in Sources */,
+				9A3CA81927EAE970009ADCD2 /* draw2d_context.cpp in Sources */,
+				9A3CA81A27EAE970009ADCD2 /* _.cpp in Sources */,
+				9A3CA81B27EAE970009ADCD2 /* Button.cpp in Sources */,
+				9A3CA81C27EAE970009ADCD2 /* Canvas.cpp in Sources */,
+				9A3CA81D27EAE970009ADCD2 /* CheckBox.cpp in Sources */,
+				9A3CA81E27EAE970009ADCD2 /* ColorPicker.cpp in Sources */,
+				9A3CA81F27EAE970009ADCD2 /* ColorWheel.cpp in Sources */,
+				9A3CA82027EAE970009ADCD2 /* ComboBox.cpp in Sources */,
+				9A3CA82127EAE970009ADCD2 /* common.cpp in Sources */,
+				9A3CA82227EAE970009ADCD2 /* framework.cpp in Sources */,
+				9A3CA82327EAE970009ADCD2 /* Graph.cpp in Sources */,
+				9A3CA82427EAE970009ADCD2 /* ImagePanel.cpp in Sources */,
+				9A3CA82527EAE970009ADCD2 /* ImageView.cpp in Sources */,
+				9A3CA82627EAE970009ADCD2 /* Label.cpp in Sources */,
+				9A3CA82727EAE970009ADCD2 /* Layout.cpp in Sources */,
+				9A3CA82827EAE970009ADCD2 /* MessageDialog.cpp in Sources */,
+				9A3CA82927EAE970009ADCD2 /* Popup.cpp in Sources */,
+				9A3CA82A27EAE970009ADCD2 /* PopupButton.cpp in Sources */,
+				9A3CA82B27EAE970009ADCD2 /* ProgressBar.cpp in Sources */,
+				9A3CA82C27EAE970009ADCD2 /* Screen.cpp in Sources */,
+				9A3CA82D27EAE970009ADCD2 /* Slider.cpp in Sources */,
+				9A3CA82E27EAE970009ADCD2 /* TabWidget.cpp in Sources */,
+				9A3CA82F27EAE970009ADCD2 /* TextBox.cpp in Sources */,
+				9A3CA83027EAE970009ADCD2 /* Theme.cpp in Sources */,
+				9A3CA83127EAE970009ADCD2 /* VScrollPanel.cpp in Sources */,
+				9A3CA83227EAE970009ADCD2 /* Widget.cpp in Sources */,
+				9A3CA83327EAE970009ADCD2 /* Window.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A00E0E126611ADF00517464 /* PBXTargetDependency */ = {
+		9A3CA6F327EAE8DE009ADCD2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = base;
-			targetProxy = 9A00E0E026611ADF00517464 /* PBXContainerItemProxy */;
+			targetProxy = 9A3CA6F227EAE8DE009ADCD2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9AE24EAA1904CFFD001AEFFB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				EXECUTABLE_EXTENSION = a;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = ios;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		9AE24EAB1904CFFD001AEFFB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ENABLE_HARDENED_RUNTIME = YES;
-				EXECUTABLE_EXTENSION = a;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = ios;
-				SDKROOT = iphoneos;
-			};
-			name = Release;
-		};
-		9AEB75A516F78DF10085103B /* Debug */ = {
+		9A3CA6E727EAE89B009ADCD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -366,27 +437,33 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = _DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -396,42 +473,63 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-				
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-all_load";
-				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+				);
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
-		9AEB75A616F78DF10085103B /* Release */ = {
+		9A3CA6E827EAE89B009ADCD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_DEADCODE_DEADSTORES = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -440,22 +538,29 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -465,70 +570,98 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-				
-					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_LDFLAGS = "-all_load";
-				PLATFORM_MODIFIER = macos;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wno-unused-value",
+				);
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};
-		9AEB75A816F78DF10085103B /* Debug */ = {
+		9A3CA6EA27EAE89B009ADCD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
-		9AEB75A916F78DF10085103B /* Release */ = {
+		9A3CA6EB27EAE89B009ADCD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE24EBA1904CFFD001AEFFB /* Build configuration list for PBXNativeTarget "ios_app_simple_application" */ = {
+		9A3CA6E027EAE89B009ADCD2 /* Build configuration list for PBXProject "nanogui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AE24EAA1904CFFD001AEFFB /* Debug */,
-				9AE24EAB1904CFFD001AEFFB /* Release */,
+				9A3CA6E727EAE89B009ADCD2 /* Debug */,
+				9A3CA6E827EAE89B009ADCD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AEB759E16F78DF10085103B /* Build configuration list for PBXProject "app_simple_application" */ = {
+		9A3CA6E927EAE89B009ADCD2 /* Build configuration list for PBXNativeTarget "nanogui" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9AEB75A516F78DF10085103B /* Debug */,
-				9AEB75A616F78DF10085103B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9AEB75A716F78DF10085103B /* Build configuration list for PBXNativeTarget "app_simple_application" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9AEB75A816F78DF10085103B /* Debug */,
-				9AEB75A916F78DF10085103B /* Release */,
+				9A3CA6EA27EAE89B009ADCD2 /* Debug */,
+				9A3CA6EB27EAE89B009ADCD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9AEB759B16F78DF10085103B /* Project object */;
+	rootObject = 9A3CA6DD27EAE89B009ADCD2 /* Project object */;
 }

@@ -42,9 +42,9 @@ namespace hotplugin
 
 //         if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
+pacmedirectory->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         {
 
 //            debug_box("hotplugin boxmain NP_Initialize","ZZZzzz hotplugin box",e_message_box_ok);
@@ -52,9 +52,9 @@ pacmedir->system() / "config\\plugin\\npca2_beg_debug_box.txt"))
 //         }
 //         if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "config\\plugin\\npca2_beg_sleep.txt"))
+pacmedirectory->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 //         {
 
 //            sleep(10000_ms);

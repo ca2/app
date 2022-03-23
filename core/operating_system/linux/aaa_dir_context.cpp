@@ -370,9 +370,9 @@ namespace linux
 
       if(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(path))
+pacmedirectory->is(path))
       {
 
          return true;

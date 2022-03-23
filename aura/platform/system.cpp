@@ -888,9 +888,9 @@ namespace aura
 //
 //                           auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create("/ca2core");
+//pacmedirectory->create("/ca2core");
 //
 //                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
@@ -1739,13 +1739,13 @@ namespace aura
       //
       //         bool bFileSystemMatter =          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->is(pathSide) ||          auto psystem = m_psystem;
+//pacmedirectory->is(pathSide) ||          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->is(pathLocal);
+//pacmedirectory->is(pathLocal);
       //
       //         bMatterFromHttpCache = !bFileSystemMatter;
       //
@@ -4333,9 +4333,9 @@ namespace aura
 //
 //            strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
 //            call_async(path, strParam, pathDir, e_display_default, false);
 //
@@ -4351,9 +4351,9 @@ namespace aura
 //
 //         string strChrome = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string_array sa2 = get_c_args_for_c(strChrome);
 //
@@ -4380,9 +4380,9 @@ namespace aura
 //
 //         strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//pacmedirectory->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string strCmd = path + " " + strParam;
 //

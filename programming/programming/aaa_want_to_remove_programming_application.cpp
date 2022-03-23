@@ -52,9 +52,9 @@ namespace programming
 
          __pointer(::acme::library) lib = pcompiler->compile(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
+pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib->m_pca2library == nullptr)
          {
@@ -83,9 +83,9 @@ pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.c
 
       ::file::path path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->config() / "programming/vs_build.txt";
+pacmedirectory->config() / "programming/vs_build.txt";
 
       string strBuild = pcontext->m_papexcontext->file().as_string(path);
 

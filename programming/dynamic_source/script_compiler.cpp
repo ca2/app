@@ -85,9 +85,9 @@ namespace dynamic_source
 //   void script_compiler::prepare_compile_and_link_environment()
 //   {
 //
-//      auto pacmedir = m_psystem->m_pacmedirectory;
+//      auto pacmedirectory = m_psystem->m_pacmedirectory;
 //
-//      m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
+//      m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
 //
 //      ::file::path strVars;
 //
@@ -426,9 +426,9 @@ namespace dynamic_source
 
                   auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(pathDVP_Folder);
+pacmedirectory->create(pathDVP_Folder);
 
          m_pcontext->m_papexcontext->file().copy(pathDVP, pathSourceDVP);
 
@@ -918,9 +918,9 @@ pacmedir->create(pathDVP_Folder);
 
          strSymbolName += strRndTitle;
 
-         auto pacmedir = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = m_psystem->m_pacmedirectory;
 
-         strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strSymbolName;
+         strHmhLctvWildPdbPath = ::file::path(pacmedirectory->system() / "netnodelite\\symbols") / strSymbolName;
 
          str.find_replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 

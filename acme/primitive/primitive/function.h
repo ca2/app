@@ -71,10 +71,10 @@ public:
    }
 
    template < typename PREDICATE >
-   function(PREDICATE predicate)
+   function(PREDICATE predicateParam)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicate));
+      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
 
    }
 
@@ -97,10 +97,10 @@ public:
    void clear() { m_ppredicate.release(); }
 
    template < typename PREDICATE >
-   function & operator = (PREDICATE predicate)
+   function & operator = (PREDICATE predicateParam)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicate));
+      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
 
       return *this;
 

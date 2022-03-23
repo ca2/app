@@ -1001,15 +1001,15 @@ namespace android
 
       //nodeos_set_home(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "home");
+pacmedirectory->system() / "home");
 
       //nodeos_set_temp(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "temp");
+pacmedirectory->system() / "temp");
 
       m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
 
@@ -1107,9 +1107,9 @@ pacmedir->system() / "temp");
 
       str =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / ".ca2/app/appdata";
+pacmedirectory->system() / ".ca2/app/appdata";
       string strRelative;
       strRelative = install();
       //index iFind = strRelative.find(':');

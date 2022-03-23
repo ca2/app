@@ -18,12 +18,12 @@
 #include <mach-o/dyld.h>
 
 
-::file::path macos_app_path(::acme_directory * pacmedir, string strApp)
+::file::path macos_app_path(::acme_directory * pacmedirectory, string strApp)
 {
 
-   ::file::path path = pacmedir->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path = pacmedirectory->home() / "Library/papp Support/ca2/mypath" / (strApp + ".txt");
 
-   return pacmedir->m_pacmefile->as_string(path);
+   return pacmedirectory->m_pacmefile->as_string(path);
 
 }
 
@@ -106,7 +106,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 //}
 //
 
-CLASS_DECL_ACME ::file::path core_app_path(::acme_directory * pacmedir, string strApp)
+CLASS_DECL_ACME ::file::path core_app_path(::acme_directory * pacmedirectory, string strApp)
 {
 
    ::file::path path = getenv("HOME");
@@ -115,7 +115,7 @@ CLASS_DECL_ACME ::file::path core_app_path(::acme_directory * pacmedir, string s
 
    path += ".txt";
 
-   return pacmedir->m_pacmefile->as_string(path);
+   return pacmedirectory->m_pacmefile->as_string(path);
 
 }
 

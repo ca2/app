@@ -111,15 +111,15 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         pathLnk =          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //                  auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create(pathLnk.folder());
+//pacmedirectory->create(pathLnk.folder());
 //
 //         os_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 //

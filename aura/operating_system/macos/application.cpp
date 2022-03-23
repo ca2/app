@@ -316,16 +316,16 @@ namespace aura
 //      
 //      if(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->is(path))
+//pacmedirectory->is(path))
 //      {
 //
 //         ::file::path path2 =          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
+//pacmedirectory->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         
 //         if(::m_psystem->m_pacmefile->exists(path2))
 //         {
@@ -338,17 +338,17 @@ namespace aura
 //         
 //                  auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create(pathFolder2);
+//pacmedirectory->create(pathFolder2);
 //         
 //         bool bFilePathIsLink = file_path_is_link(path2);
 //         
 //         if(!bFilePathIsLink &&          auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->is(pathFolder2))
+//pacmedirectory->is(pathFolder2))
 //         {
 //
 //            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

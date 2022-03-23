@@ -22,9 +22,9 @@ int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::str
 
             auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(::file_path_folder(path));
+pacmedirectory->create(::file_path_folder(path));
 
    wstring wstr(path);
 
@@ -1727,9 +1727,9 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 //
 //            auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(::file_path_folder(path));
+pacmedirectory->create(::file_path_folder(path));
 //
 //   wstring wstr(path);
 //

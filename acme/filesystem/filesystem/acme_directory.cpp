@@ -277,9 +277,9 @@ string acme_directory::system_short_name()
 
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->roaming();
+pacmedirectory->roaming();
 
 #else
 
@@ -312,9 +312,9 @@ pacmedir->roaming();
 
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->roaming();
+pacmedirectory->roaming();
 
 #else
 
@@ -347,9 +347,9 @@ pacmedir->roaming();
 
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->roaming();
+pacmedirectory->roaming();
 
 #elif defined(__APPLE__)
 

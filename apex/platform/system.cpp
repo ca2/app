@@ -888,9 +888,9 @@ namespace apex
 
                            auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create("/ca2core");
+pacmedirectory->create("/ca2core");
 
                   m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
                   */

@@ -70,9 +70,9 @@ namespace aura
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(path.folder());
+pacmedirectory->create(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

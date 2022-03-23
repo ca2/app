@@ -644,9 +644,9 @@ namespace ios
 ////
 ////                     strIcon =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
+pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 ////
 ////                     for (auto iSize : m_iaSize)
 ////                     {
@@ -1323,9 +1323,9 @@ pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".
 //
 //      if (         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(strPath))
+pacmedirectory->is(strPath))
 //      {
 //         return folder_file_system;
 //      }
@@ -2009,9 +2009,9 @@ pacmedir->is(strPath))
 
       if (         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(strPath))
+pacmedirectory->is(strPath))
       {
          return folder_file_system;
       }

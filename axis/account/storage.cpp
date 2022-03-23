@@ -33,9 +33,9 @@ namespace account
 //      
 //      return          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "credential_storage" / strName;
+//pacmedirectory->system() / "credential_storage" / strName;
 //      
 //   }
 //   

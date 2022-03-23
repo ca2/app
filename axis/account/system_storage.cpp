@@ -109,9 +109,9 @@ namespace account
       
       auto psystem = m_psystem->m_papexsystem;
 
-      auto pacmedir = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pacmedirectory;
 
-      pacmedir->create(path);
+      pacmedirectory->create(path);
 
       path /= psystem->crypto()->md5(strToken + strKey);
       

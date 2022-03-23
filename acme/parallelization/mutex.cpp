@@ -194,9 +194,9 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(::file::path(strName).folder());
+pacmedirectory->create(::file::path(strName).folder());
 
       ::m_psystem->m_pacmefile->put_contents(strName, strName);
 
@@ -261,9 +261,9 @@ pacmedir->create(::file::path(strName).folder());
 
          path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
+pacmedirectory->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -279,9 +279,9 @@ pacmedir->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
          path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
 #elif defined __APPLE__
 
@@ -362,9 +362,9 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(path.folder());
+pacmedirectory->create(path.folder());
 
       ::m_psystem->m_pacmefile->put_contents(path, m_pszName);
 
@@ -1633,9 +1633,9 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
    path /= lpszName;
 
-   auto pacmedir = pmatter->m_psystem->m_pacmedirectory;
+   auto pacmedirectory = pmatter->m_psystem->m_pacmedirectory;
 
-   pacmedir->create(path.folder());
+   pacmedirectory->create(path.folder());
 
    int iFd = open(path, O_RDWR, S_IRWXU);
 

@@ -163,9 +163,9 @@ namespace linux
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pacmedirectory;
 
-      path = pacmedir->localconfig() / "desk/monitor-0/2desk";
+      path = pacmedirectory->localconfig() / "desk/monitor-0/2desk";
 
       auto papp = get_app();
 
@@ -255,13 +255,13 @@ namespace linux
 
       strName.replace(".", "_");
 
-      //pathLaunch = pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
+      //pathLaunch = pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pacmedirectory;
 
-      pathUserBin = pacmedir->home() / "bin" / strName;
+      pathUserBin = pacmedirectory->home() / "bin" / strName;
 
       ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 

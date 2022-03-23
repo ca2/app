@@ -17,7 +17,7 @@
 
 //#include Object.h
 //#include <nanogui/vector.h>
-//#include <unordered_map>
+#include <unordered_map>
 //#include <vector>
 
 NAMESPACE_BEGIN(nanogui)

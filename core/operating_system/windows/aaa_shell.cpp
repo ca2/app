@@ -424,9 +424,9 @@ namespace windows
 
             strIcon =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
+pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
             if (pcontext->m_papexcontext->file().exists(strIcon))
             {
@@ -817,9 +817,9 @@ pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExt
 
       if (         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(strPath))
+pacmedirectory->is(strPath))
       {
 
          return folder_file_system;

@@ -131,9 +131,9 @@ CLASS_DECL_AURA::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& st
 //
 //      if (         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(path))
+pacmedirectory->is(path))
 //      {
 //
 //         hfile = create_file(path,

@@ -95,12 +95,12 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedirectory;
+      auto pacmedirectory = psystem->m_pacmedirectory;
 
       if(str::begins_ci(pstrName, "Local\\") || str::begins_ci(pstrName, "Local\\"))
       {
 
-         strPath = pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = pacmedirectory->home() / ".ca2/ftok/semaphore/" + string(pstrName);
 
       }
       else
@@ -110,7 +110,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       }
 
-      pacmedir->create(::file::path(strPath).folder());
+      pacmedirectory->create(::file::path(strPath).folder());
 
       m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

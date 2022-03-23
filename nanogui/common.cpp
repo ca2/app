@@ -13,6 +13,10 @@
 #include "aura/operating_system.h"
 #include "aura/graphics/image/context_image.h"
 
+#if defined(__APPLE__)
+std::vector<std::string> file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> &filetypes, bool save, bool multiple);
+#endif
+
 ::object * get_nano2d_object(NVGcontext * ctx);
 
 
@@ -79,7 +83,7 @@ extern void disable_saved_application_state_osx();
 ////   glfwSetTime(0);
 //}
 
-static bool mainloop_active = false;
+//static bool mainloop_active = false;
 
 #if defined(EMSCRIPTEN)
 static double emscripten_last = 0;
@@ -362,14 +366,15 @@ void __wide_append_null(memory & memory)
 }
 
 ::string file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save) {
-   auto result = file_dialog(filetypes, save, false);
+   auto result = file_dialog_from_platform(filetypes, save, false);
    return result.empty() ? "" : result.front().c_str();
 }
 
-using wstring_pair = ::pair < wstring, wstring >;
+
 
 #if !defined(__APPLE__)
-std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple) {
+
+std::vector<std::string> file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple) {
    if (save && multiple) {
       throw std::invalid_argument("save and multiple must not both be true.");
    }

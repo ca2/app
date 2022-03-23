@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include <nanogui/common.h>
+#include "common.h"
 #include <atomic>
 
 NAMESPACE_BEGIN(nanogui)

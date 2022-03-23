@@ -728,9 +728,9 @@ void memdleak_dump()
 
    //m_psystem->m_pacmefile->put_contents(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "m.html", get_mem_info_report1());
+pacmedirectory->system() / "m.html", get_mem_info_report1());
 }
 
 #undef print

@@ -55,9 +55,9 @@ namespace ios
 
       bool          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(const ::file::path & lpcszPath, ::aura::application * papp)
+pacmedirectory->is(const ::file::path & lpcszPath, ::aura::application * papp)
       {
 
          if(::iospacmedir->is(lpcszPath,papp))
@@ -72,9 +72,9 @@ pacmedir->is(const ::file::path & lpcszPath, ::aura::application * papp)
 
       //   bool          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(const ::string & strPath, ::aura::application * papp)
+pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
       //   {
       //
       //      if(::linuxpacmedir->is(strPath,papp))
@@ -140,9 +140,9 @@ pacmedir->is(const ::string & strPath, ::aura::application * papp)
 
          bool bIsDir =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(str.Left(iLast));
+pacmedirectory->is(str.Left(iLast));
 
          return bIsDir;
 

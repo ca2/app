@@ -91,6 +91,8 @@
 		9A389A3124F538B900185630 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A389A3024F538B900185630 /* AppKit.framework */; };
 		9A4E5C9E2519315800CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9D2519315800CC6817 /* libacme.dylib */; };
 		9A4E5CA02519315800CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9F2519315800CC6817 /* libapex.dylib */; };
+		9A92318327EAE4B400B5A78D /* impact_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92318127EAE4B400B5A78D /* impact_kit.cpp */; };
+		9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92318227EAE4B400B5A78D /* impact_kit.h */; };
 		9AD1183124F51CE500177261 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1183024F51CE500177261 /* libaura.dylib */; };
 		9AD1183224F51CEC00177261 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD1182324F51C4100177261 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
@@ -116,7 +118,6 @@
 		9A1D5D492751A98B003D9B5F /* procedure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A1D5D4A2751A98B003D9B5F /* console.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A1D5D562751A98B003D9B5F /* library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
-		9A1D5D582751A98B003D9B5F /* astr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = astr.h; sourceTree = "<group>"; };
 		9A1D5D592751A98B003D9B5F /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A1D5D5B2751A98B003D9B5F /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A1D5D642751A98B003D9B5F /* _no_templates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _no_templates.h; sourceTree = "<group>"; };
@@ -184,7 +185,6 @@
 		9A1D5DAB2751A98B003D9B5F /* form_control.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_control.cpp; sourceTree = "<group>"; };
 		9A1D5DAC2751A98B003D9B5F /* split_bar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = split_bar.cpp; sourceTree = "<group>"; };
 		9A1D5DAD2751A98B003D9B5F /* form_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_data.cpp; sourceTree = "<group>"; };
-		9A1D5DAE2751A98B003D9B5F /* _const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _const.h; sourceTree = "<group>"; };
 		9A1D5DAF2751A98B003D9B5F /* split_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = split_bar.h; sourceTree = "<group>"; };
 		9A1D5DB02751A98B003D9B5F /* margin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = margin.h; sourceTree = "<group>"; };
 		9A1D5DB12751A98B003D9B5F /* form_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_view.cpp; sourceTree = "<group>"; };
@@ -335,6 +335,8 @@
 		9A389A3024F538B900185630 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A4E5C9D2519315800CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5C9F2519315800CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
+		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9AD117F324F51BE400177261 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181E24F51C4000177261 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9AD1183024F51CE500177261 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -369,7 +371,6 @@
 				9A1D5D592751A98B003D9B5F /* framework.cpp */,
 				9A1D5EB42751A98D003D9B5F /* _.h */,
 				9A1D5D5B2751A98B003D9B5F /* application.h */,
-				9A1D5D582751A98B003D9B5F /* astr.h */,
 				9A1D5EB02751A98D003D9B5F /* callback.h */,
 				9A1D5D4A2751A98B003D9B5F /* console.h */,
 				9A1D5E912751A98D003D9B5F /* framework.h */,
@@ -473,7 +474,6 @@
 			children = (
 				9A1D5DEA2751A98C003D9B5F /* _.cpp */,
 				9A1D5E1C2751A98C003D9B5F /* _.h */,
-				9A1D5DAE2751A98B003D9B5F /* _const.h */,
 				9A1D5DE82751A98C003D9B5F /* _data.h */,
 				9A1D5DAA2751A98B003D9B5F /* _impl.h */,
 				9A1D5DF52751A98C003D9B5F /* _tree.h */,
@@ -523,6 +523,8 @@
 				9A1D5DFD2751A98C003D9B5F /* impact_data.h */,
 				9A1D5E1A2751A98C003D9B5F /* impact_host.cpp */,
 				9A1D5E042751A98C003D9B5F /* impact_host.h */,
+				9A92318127EAE4B400B5A78D /* impact_kit.cpp */,
+				9A92318227EAE4B400B5A78D /* impact_kit.h */,
 				9A1D5DA32751A98B003D9B5F /* impact_system.cpp */,
 				9A1D5E0E2751A98C003D9B5F /* impact_system.h */,
 				9A1D5DE12751A98C003D9B5F /* impact_update_hint.h */,
@@ -707,6 +709,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +850,7 @@
 				9A1D5F4D2751B58A003D9B5F /* tab_pane.cpp in Sources */,
 				9A1D5F4E2751B58A003D9B5F /* tab_view.cpp in Sources */,
 				9A1D5F4F2751B58A003D9B5F /* tab.cpp in Sources */,
+				9A92318327EAE4B400B5A78D /* impact_kit.cpp in Sources */,
 				9A1D5F502751B58A003D9B5F /* toolbar.cpp in Sources */,
 				9A1D5F512751B58A003D9B5F /* user.cpp in Sources */,
 				9A1D5F522751B58A003D9B5F /* validate.cpp in Sources */,
@@ -944,7 +948,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1041,7 +1044,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

@@ -162,9 +162,9 @@ namespace linux
 
       path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->localconfig() / "monitor-0/desk/2desk";
+pacmedirectory->localconfig() / "monitor-0/desk/2desk";
 
       string strPrgName = papp->m_strAppId;
 
@@ -186,9 +186,9 @@ pacmedir->localconfig() / "monitor-0/desk/2desk";
 
       path =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->home();
+pacmedirectory->home();
 
       path /= ".local/share/applications";
 
@@ -273,15 +273,15 @@ pacmedir->home();
 
       //pathLaunch =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
+pacmedirectory->home() / ".config/ca2/bin" / (strName + ".sh");
 
       pathUserBin =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->home() / "bin" / strName;
+pacmedirectory->home() / "bin" / strName;
 
       ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 

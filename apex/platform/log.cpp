@@ -479,9 +479,9 @@ namespace apex
 ////
 ////                     auto psystem = m_psystem;
 //
-////         auto pacmedir = psystem->m_pacmedirectory;
+////         auto pacmedirectory = psystem->m_pacmedirectory;
 ////
-////pacmedir->create(::file_path_folder(m_strLogPath));
+////pacmedirectory->create(::file_path_folder(m_strLogPath));
 ////
 ////            if (!(m_pfile = fopen(m_strLogPath, "at")))
 ////            {

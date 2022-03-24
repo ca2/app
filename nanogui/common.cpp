@@ -13,6 +13,7 @@
 #include "aura/operating_system.h"
 #include "aura/graphics/image/context_image.h"
 
+
 ::object * get_nano2d_object(NVGcontext * ctx);
 
 
@@ -42,7 +43,11 @@
 #  include <emscripten/emscripten.h>
 #endif
 
+
 NAMESPACE_BEGIN(nanogui)
+
+
+std::vector<std::string> CLASS_DECL_NANOGUI file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple);
 
 extern std::map<GLFWwindow *, Screen *> __nanogui_screens;
 
@@ -79,7 +84,7 @@ extern void disable_saved_application_state_osx();
 ////   glfwSetTime(0);
 //}
 
-static bool mainloop_active = false;
+//static bool mainloop_active = false;
 
 #if defined(EMSCRIPTEN)
 static double emscripten_last = 0;
@@ -362,21 +367,33 @@ void __wide_append_null(memory & memory)
 }
 
 ::string file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save) {
-   auto result = file_dialog(filetypes, save, false);
+   auto result = file_dialog_from_platform(filetypes, save, false);
    return result.empty() ? "" : result.front().c_str();
 }
 
-using wstring_pair = ::pair < wstring, wstring >;
+
 
 #if !defined(__APPLE__)
-std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple) {
-   if (save && multiple) {
+
+
+std::vector<std::string> file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple)
+{
+
+   if (save && multiple) 
+   {
+
       throw std::invalid_argument("save and multiple must not both be true.");
+
    }
 
+   std::vector<std::string> result;
+
+
 #if defined(EMSCRIPTEN)
+   
    throw std::runtime_error("Opening files is not supported when NanoGUI is compiled via Emscripten");
-#elif defined(_WIN32)
+
+#elif defined(WINDOWS_DESKTOP)
 
    //array <  wstring_pair> wfiletypes;
 
@@ -446,7 +463,6 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
    }
 
    size_t i = 0;
-   std::vector<std::string> result;
    while (*tmp != L'\0') {
 
       wstring wstr(tmp);
@@ -462,9 +478,12 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
    //   result.erase(begin(result));
    //}
 
-   return result;
-#else
+#elif defined(LINUX)
+
+   static const int FILE_DIALOG_MAX_BUFFER = 16384;
+
    char buffer[FILE_DIALOG_MAX_BUFFER];
+
    buffer[0] = '\0';
 
    std::string cmd = "zenity --file-selection ";
@@ -488,7 +507,6 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
    std::string paths(buffer);
    paths.erase(std::remove(paths.begin(), paths.end(), '\n'), paths.end());
 
-   std::vector<std::string> result;
    while (!paths.empty()) {
       size_t end = paths.find("//");
       if (end == std::string::npos) {
@@ -501,10 +519,15 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
       }
    }
 
+#endif
+
    return result;
-#endif
+
+
 }
+
 #endif
+
 
 void Object::inc_ref() const {
    m_ref_count++;

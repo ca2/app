@@ -4685,7 +4685,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 
    _synchronous_lock ml(cairo_mutex());
 
-   if (pbrush->m_etype == ::draw2d::brush::e_type_radial_gradient_color)
+   if (pbrush->m_ebrush == ::draw2d::e_brush_radial_gradient_color)
    {
 
       cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point.x - x, pbrush->m_point.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
@@ -4699,7 +4699,7 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
       cairo_pattern_destroy(ppattern);
 
    }
-   else if (pbrush->m_etype == ::draw2d::brush::e_type_linear_gradient_point_color)
+   else if (pbrush->m_ebrush == ::draw2d::e_brush_linear_gradient_point_color)
    {
 
       double x0 = pbrush->m_point1.x - x;
@@ -4744,8 +4744,213 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 
       // cairo_pattern_destroy(ppattern);
 
+
    }
-   else if (pbrush->m_etype == ::draw2d::brush::e_type_pattern)
+   else if (pbrush->m_ebrush == ::draw2d::e_brush_box_gradient)
+   {
+
+      rectangle_f64 outer(pbrush->m_point, pbrush->m_size);
+      rectangle_f64 inner(outer);
+      inner.deflate(pbrush->m_dRadius);
+      double K = 0.5522847498; // For HalfPi arc (90 degrees)
+      double KR = K * pbrush->m_dRadius;
+
+
+      //https://stackoverflow.com/questions/734076/how-to-best-approximate-a-geometrical-arc-with-a-bezier-curve
+      //p0 = [0, radius]
+      //p1 = [radius * K, radius]
+      //p2 = [radius, radius * K]
+      //p3 = [radius, 0]
+      //where K is a so-called "magic number", which is an non-rational number. It can be approximated as follows:
+      //K = 0.5522847498
+      //https://stackoverflow.com/users/615243/nic
+
+      // clockwise top-right
+      //p0 = [innerright, outertop]
+      //p1 = [innerright + radius * K, outertop]
+      //p2 = [outerright, innertop - radius * K]
+      //p3 = [outerright, innertop]
+      //center = innerright, innertop
+
+
+      cairo_pattern_t *ppattern = cairo_pattern_create_mesh ();
+
+      /* Add a Coons patch */
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.right, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, outer.top);
+      cairo_mesh_pattern_curve_to (ppattern, inner.right + KR, outer.top,  outer.right,  inner.top - KR, outer.right, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.top);
+      //cairo_mesh_pattern_curve_to (pattern, 60,  30, 130,  60, 100, 100);
+      //cairo_mesh_pattern_curve_to (pattern, 60,  70,  30, 130,   0, 100);
+      //cairo_mesh_pattern_curve_to (pattern, 30,  70, -30,  30,   0, 0);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+      int iStatus = cairo_pattern_status(ppattern);
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.right, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, outer.right, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, outer.right, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+///* Add a Coons patch */
+//      cairo_mesh_pattern_begin_patch (pattern);
+//      cairo_mesh_pattern_move_to (pattern, 0, 0);
+//      cairo_mesh_pattern_curve_to (pattern, 30, -30,  60,  30, 100, 0);
+//      cairo_mesh_pattern_curve_to (pattern, 60,  30, 130,  60, 100, 100);
+//      cairo_mesh_pattern_curve_to (pattern, 60,  70,  30, 130,   0, 100);
+//      cairo_mesh_pattern_curve_to (pattern, 30,  70, -30,  30,   0, 0);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 0, 1, 0, 0);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 1, 0, 1, 0);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 2, 0, 0, 1);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 3, 1, 1, 0);
+//      cairo_mesh_pattern_end_patch (pattern);
+
+///* Add a Gouraud-shaded triangle */
+//      cairo_mesh_pattern_begin_patch (pattern)
+//      cairo_mesh_pattern_move_to (pattern, 100, 100);
+//      cairo_mesh_pattern_line_to (pattern, 130, 130);
+//      cairo_mesh_pattern_line_to (pattern, 130,  70);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 0, 1, 0, 0);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 1, 0, 1, 0);
+//      cairo_mesh_pattern_set_corner_color_rgb (pattern, 2, 0, 0, 1);
+//      cairo_mesh_pattern_end_patch (pattern)
+
+
+      // clockwise bottom-right
+      //p0 = [outerright, innerbottom]
+      //p1 = [outerright, innerbottom + radius * K]
+      //p2 = [innerright + radius * K, outerbottom]
+      //p3 = [innerbottom, outerbottom]
+      //center = innerright, innerbottom
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.right, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, outer.right, inner.bottom);
+      cairo_mesh_pattern_curve_to (ppattern, outer.right, inner.bottom + KR,  inner.right + KR,  outer.bottom, inner.right, outer.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.right, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, outer.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, outer.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.left, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+      // clockwise bottom-left
+      //p0 = [innerleft, outerbottom]
+      //p1 = [innerleft - radius * K, outerbottom]
+      //p2 = [outerleft, innerbottom + radius * K]
+      //p3 = [outerleft, innerbottom]
+      //center = innerleft, innerbottom
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.left, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, outer.bottom);
+      cairo_mesh_pattern_curve_to (ppattern, inner.left - KR, outer.bottom, outer.left, inner.bottom + KR, outer.left, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.left, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, outer.left, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, outer.left, inner.bottom);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, inner.bottom);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+      // clockwise top-left
+      //p0 = [outerleft, innertop]
+      //p1 = [outerleft, innertop - radius * K]
+      //p2 = [innerleft - radius * K, outertop]
+      //p3 = [innerleft, outertop]
+      //center = innerleft, innertop
+
+
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.left, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, outer.left, inner.top);
+      cairo_mesh_pattern_curve_to (ppattern, outer.left, inner.top - KR, inner.left - KR, outer.top, inner.left, outer.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, inner.top);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+
+
+
+
+      cairo_mesh_pattern_begin_patch (ppattern);
+      cairo_mesh_pattern_move_to (ppattern, inner.left, inner.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.left, outer.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, outer.top);
+      cairo_mesh_pattern_line_to (ppattern, inner.right, inner.top);
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 0, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 1, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 2, __expand_rgba(pbrush->m_color2));
+      cairo_mesh_pattern_set_corner_color_rgba(ppattern, 3, __expand_rgba(pbrush->m_color1));
+      cairo_mesh_pattern_end_patch (ppattern);
+
+
+
+
+
+
+      cairo_set_source(m_pdc, ppattern);
+
+
+   }
+   else if (pbrush->m_ebrush == ::draw2d::e_brush_pattern)
    {
 
       if(!::is_ok(pbrush->m_pimage))
@@ -4927,7 +5132,7 @@ bool graphics::fill_and_draw()
 
    cairo_keep keep(m_pdc);
 
-   if (m_pbrush->m_etype != ::draw2d::brush::e_type_null)
+   if (m_pbrush->m_ebrush != ::draw2d::e_brush_null)
    {
 
       _set(m_pbrush);
@@ -4972,7 +5177,7 @@ bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
 
    _synchronous_lock ml(cairo_mutex());
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
+   if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
    {
 
       return true;
@@ -4993,7 +5198,7 @@ bool graphics::fill(::draw2d::brush * pbrush, double xOrg, double yOrg)
 bool graphics::_fill1(::draw2d::brush* pbrush, double xOrg, double yOrg)
 {
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
+   if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
    {
 
       return true;
@@ -5025,7 +5230,7 @@ bool graphics::_fill1(::draw2d::brush* pbrush, double xOrg, double yOrg)
 bool graphics::_fill2(::draw2d::brush* pbrush, double xOrg, double yOrg)
 {
 
-   if (pbrush == nullptr || pbrush->m_etype == ::draw2d::brush::e_type_null)
+   if (pbrush == nullptr || pbrush->m_ebrush == ::draw2d::e_brush_null)
    {
 
       return true;
@@ -5180,6 +5385,8 @@ bool graphics::_set(___shape * pshape)
       return _set(pshape->shape < ::rectangle > ());
    //case ::e_shape_polygon:
    //   return _set(pshape->shape < ::polygon_i32 > ());
+   case ::e_shape_ellipse:
+      return _set(pshape->shape < ::ellipse > ());
    case ::e_shape_polygon:
       return _set(pshape->shape < ::polygon > ());
    case ::e_shape_text_out:

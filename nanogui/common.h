@@ -16,6 +16,7 @@
 #pragma once
 
 #include <stdint.h>
+#undef new
 #include <functional>
 #include <vector>
 #include <string>

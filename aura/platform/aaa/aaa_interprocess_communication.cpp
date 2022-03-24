@@ -491,9 +491,9 @@ started:
 
       strKey =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
+pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -517,9 +517,9 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       strKey =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
+pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPid);
 
 
 #endif
@@ -785,7 +785,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
       ::file::path pathModule;
 
-      pathModule = pacmedir->system() / "interprocess_communication";
+      pathModule = pacmedirectory->system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
@@ -875,7 +875,7 @@ repeat:
 
       m_straModule.erase_all();
 
-      pathModule = pacmedir->system() / "interprocess_communication";
+      pathModule = pacmedirectory->system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 

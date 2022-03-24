@@ -125,9 +125,9 @@ CLASS_DECL_AURA bool memory_counter_on()
 
       g_iMemoryCounters = m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -158,9 +158,9 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
       string strBasePath =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "memory_counters";
+pacmedirectory->system() / "memory_counters";
 
 #else
 
@@ -168,9 +168,9 @@ pacmedir->system() / "memory_counters";
 
       string strBasePath =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->system() / "memory_counters" / strModule.title() / __string(getpid());
+pacmedirectory->system() / "memory_counters" / strModule.title() / __string(getpid());
 
 #endif
 

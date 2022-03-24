@@ -3617,9 +3617,9 @@ retry_license:
 //
 //                  auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create(::file_path_folder(utf8(wstr.c_str())).c_str());
+//pacmedirectory->create(::file_path_folder(utf8(wstr.c_str())).c_str());
 //
 //         m_psystem->m_pacmefile->put_contents(utf8(wstr.c_str()).c_str(), "");
 //

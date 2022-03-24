@@ -241,18 +241,18 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
 
       path -= 3;
       
-      auto pacmedir = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = m_psystem->m_pacmedirectory;
 
-      if(pacmedir->is(path))
+      if(pacmedirectory->is(path))
       {
 
          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
          
          string strName =path.name();
 
-         ::file::path path2 = pacmedir->localconfig() / "desk/monitor-0/2desk" / strName;
+         ::file::path path2 = pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strName;
 
          if(m_psystem->m_pacmefile->exists(path2))
          {
@@ -263,7 +263,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
 
          auto pathFolder2 = path2.folder();
 
-         pacmedir->create(pathFolder2);
+         pacmedirectory->create(pathFolder2);
 
          bool bFilePathIsLink = m_psystem->m_pacmepath->is_symbolic_link(path2);
          
@@ -272,7 +272,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
          if(!bFilePathIsLink ||  strDestination!= path)
          {
             
-            auto pacmefile = pacmedir->m_pacmefile;
+            auto pacmefile = pacmedirectory->m_pacmefile;
             
             if(pacmefile->exists(path2))
             {
@@ -281,7 +281,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
                
             }
             
-            auto pacmepath = pacmedir->m_pacmepath;
+            auto pacmepath = pacmedirectory->m_pacmepath;
 
             pacmepath->create_symbolic_link(path2, path);
         //    ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

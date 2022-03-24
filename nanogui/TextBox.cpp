@@ -530,6 +530,7 @@ bool TextBox::check_format(const std::string & input, const std::string & format
 //      throw;
 //#endif
    }
+   return true;
 }
 
 bool TextBox::copy_selection() {

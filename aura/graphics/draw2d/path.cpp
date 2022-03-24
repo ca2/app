@@ -468,19 +468,19 @@ namespace draw2d
    }
 
 
-   bool path::add_rect(const ::rectangle_f64& rectangle, const ::angle& angleRotationCenter)
+   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::angle& angleRotationCenter)
    {
 
       if (angleRotationCenter == 0)
       {
 
-         return add_rect(rectangle);
+         return add_rectangle(rectangle);
 
       }
       else
       {
 
-         return add_rect(rectangle, rectangle.center(), angleRotationCenter);
+         return add_rectangle(rectangle, rectangle.center(), angleRotationCenter);
 
       }
 
@@ -501,7 +501,7 @@ namespace draw2d
    //}
 
 
-   bool path::add_rect(const ::rectangle_f64& rectangleParam)
+   bool path::add_rectangle(const ::rectangle_f64& rectangleParam)
    {
 
       m_shapea.add_shape(rectangleParam);
@@ -521,7 +521,7 @@ namespace draw2d
    }
 
 
-   bool path::add_rect(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotationCenter)
+   bool path::add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotationCenter)
    {
 
       ::polygon_f64 polygon_i32;
@@ -1186,7 +1186,7 @@ namespace draw2d
    //}
 
 
-   bool path::do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
+   bool path::do_round_rectangle_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
    {
 
       switch (iCorner % 4)
@@ -1468,22 +1468,30 @@ namespace draw2d
       case e_shape_end_figure:
          return _set(pgraphics, e_shape_end_figure);
       case e_shape_arc:
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::arc>());
       //case e_shape_line:
       //   return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_line:
+         m_estatus = success;
          return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_lines:
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::lines>());
       case e_shape_rectangle:
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::rectangle_f64>());
       case e_shape_ellipse:
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::ellipse_f64>());
       case e_shape_polygon:
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::polygon_f64>());
       case e_shape_draw_text:
+         //m_estatus = success;
          return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
       case e_shape_text_out:
+         //m_estatus = success;
          return _set(pgraphics, pshape->shape < ::write_text::text_out>());
       default:
          throw "unexpected simple os graphics matter type";
@@ -1753,14 +1761,20 @@ namespace draw2d
 
    //}
 
-   bool path::add_round_rect(const ::rectangle_f64& rectangle, double dRadius, const ::e_border & eborder)
+   void path::add_round_rectangle(const ::rectangle_f64& rectangle, double dRadius, const ::e_border & eborder)
    {
 
       double dDiameter = dRadius * 2.0;
 
       // diameter can't exceed width or height
-      if (dDiameter > rectangle.width())	dDiameter = (double)rectangle.width();
-      if (dDiameter > rectangle.height()) dDiameter = (double)rectangle.height();
+      //if (dDiameter > rectangle.width())	dDiameter = (double)rectangle.width();
+      //if (dDiameter > rectangle.height()) dDiameter = (double)rectangle.height();
+      if (dDiameter > rectangle.width() || dDiameter > rectangle.height())
+      {
+
+         throw exception(error_bad_argument, "diameter of round rect should be greater or equal than any of its dimensions.");
+
+      }
 
       ::rectangle_f64 rectangleRect(rectangle);
 
@@ -1815,18 +1829,17 @@ namespace draw2d
 
             int iCorner = iEmptyBorder + iShift + 1;
 
-            do_round_rect_corner(rectangleCorner, rectangleRect, dDiameter, eborder, iCorner, bOn);
+            do_round_rectangle_corner(rectangleCorner, rectangleRect, dDiameter, eborder, iCorner, bOn);
 
          }
 
          close_figure();
 
-         return true;
+         return;
 
       }
 
-
-      return false;
+      //return false;
 
    }
 

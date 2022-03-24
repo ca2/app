@@ -3,6 +3,12 @@ project(nanogui CXX)
 
 
 list(APPEND library_source
+   nano2d/_nano2d.h
+   nano2d/context.cpp
+   nano2d/context.h
+   nano2d/draw2d_context.cpp
+   nano2d/draw2d_context.h
+   nano2d/nano2d.cpp
         _.cpp
         _.h
         _nanogui.h
@@ -25,6 +31,7 @@ list(APPEND library_source
         framework.h
    Graph.cpp
    Graph.h
+   Icons.h
    ImagePanel.cpp
    ImagePanel.h
    ImageView.cpp
@@ -44,6 +51,8 @@ list(APPEND library_source
    ProgressBar.h
    Screen.cpp
    Screen.h
+   Slider.cpp
+   Slider.h
    TabWidget.cpp
    TabWidget.h
    TextBox.cpp

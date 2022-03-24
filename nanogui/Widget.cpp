@@ -37,13 +37,13 @@ Widget::Widget(Widget * parent)
 }
 
 Widget::~Widget() {
-   if (std::uncaught_exceptions() > 0) {
-      /* If a widget constructor throws an exception, it is immediately
-         dealloated but may still be referenced by a parent. Be conservative
-         and don't decrease the reference count of children while dispatching
-         exceptions. */
-      return;
-   }
+//   if (std::uncaught_exceptions() > 0) {
+//      /* If a widget constructor throws an exception, it is immediately
+//         dealloated but may still be referenced by a parent. Be conservative
+//         and don't decrease the reference count of children while dispatching
+//         exceptions. */
+//      return;
+//   }
    for (auto child : m_children) {
       if (child)
          child->dec_ref();
@@ -454,12 +454,12 @@ void Widget::_nanogui_to_user(::user::interaction * puserinteraction)
 
    return;
 
-   for (auto & pchild : m_children)
-   {
-
-      pchild->_nanogui_to_user(m_puserinteraction);
-
-   }
+//   for (auto & pchild : m_children)
+//   {
+//
+//      pchild->_nanogui_to_user(m_puserinteraction);
+//
+//   }
 
 }
 

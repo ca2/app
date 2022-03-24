@@ -109,9 +109,9 @@ namespace universal_windows
 
       m_pdirsystem->m_pathHome =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->roaming() / "home";
+pacmedirectory->roaming() / "home";
 
       //nodeos_set_home(m_pdirsystem->m_pathHome);
 

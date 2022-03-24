@@ -109,9 +109,9 @@ int dir_mk(const char * psz)
 {
    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(psz) != 0;
+pacmedirectory->create(psz) != 0;
 }
 
 int_bool is_absolute_path(const char * psz)

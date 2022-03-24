@@ -44,11 +44,11 @@ namespace programming
 
       {
 
-         auto pacmedir = m_psystem->m_pacmedirectory;
+         auto pacmedirectory = m_psystem->m_pacmedirectory;
 
          ::file::path path;
 
-         path = pacmedir->config() / "programming/vs.txt";
+         path = pacmedirectory->config() / "programming/vs.txt";
 
          auto pcontext = get_context();
 
@@ -130,9 +130,9 @@ namespace programming
    void compiler::prepare_compile_and_link_environment()
    {
 
-      auto pacmedir = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = m_psystem->m_pacmedirectory;
 
-      m_pcontext->m_papexcontext->dir().create(pacmedir->system() / "netnodelite/symbols");
+      m_pcontext->m_papexcontext->dir().create(pacmedirectory->system() / "netnodelite/symbols");
 
       ::file::path strVars;
 
@@ -359,21 +359,21 @@ namespace programming
 
       ::file::path pathEnvTxt;
 
-      auto pacmedir = m_psystem->m_pacmedirectory;
+      auto pacmedirectory = m_psystem->m_pacmedirectory;
 
-      pathEnvTxt = pacmedir->system() / "env.txt";
+      pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
 
-      pnode->run_silent(pacmedir->system() / "env1.bat", "");
+      pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
+      strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
 
       stra.add_lines(strLog);
 
@@ -453,16 +453,16 @@ namespace programming
       //   ::process::process_pointer process(e_create);
       //
       //
-      //   m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+      //   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
       //
       //   set_thread_priority(::e_priority_highest);
       //   process->prop("inherit") = false;
       //
       //   ::file::path pathCommand =          auto psystem = m_psystem;
 
-      //         auto pacmedir = psystem->m_pacmedirectory;
+      //         auto pacmedirectory = psystem->m_pacmedirectory;
       //
-      //pacmedir->system() / "env.bat";
+      //pacmedirectory->system() / "env.bat";
       //
       //   ::file::path pathFolder = ::file::path(m_strEnv).folder();
       //
@@ -579,9 +579,9 @@ namespace programming
 
       //string strEnv = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 
-   //         auto pacmedir = psystem->m_pacmedirectory;
+   //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
-   //pacmedir->system() / "env.txt");
+   //pacmedirectory->system() / "env.txt");
 
       ::file::path strFolder;
       strFolder = m_pcontext->m_papexcontext->dir().install();

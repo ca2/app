@@ -291,7 +291,7 @@ void system::process_init()
 
    }*/
 
-//      m_pacmedirectory = pacmedir;
+//      m_pacmedirectory = pacmedirectory;
 
 //    m_pacmedirectory->increment_reference_count();
 

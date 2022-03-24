@@ -83,9 +83,9 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       {
          strPath =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+pacmedirectory->home() / ".ca2/ftok/semaphore/" + string(pstrName);
       }
       else
       {
@@ -94,9 +94,9 @@ pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(::file::path(strPath).folder());
+pacmedirectory->create(::file::path(strPath).folder());
 
       m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

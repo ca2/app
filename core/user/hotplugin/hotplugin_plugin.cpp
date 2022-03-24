@@ -774,9 +774,9 @@ namespace hotplugin
 
                   auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(dir::appdata() / "time" / "aura");
+pacmedirectory->create(dir::appdata() / "time" / "aura");
 
          //i32 iOpen;
 

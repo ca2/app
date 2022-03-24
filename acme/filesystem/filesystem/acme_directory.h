@@ -136,7 +136,7 @@ public:
          
          bool enumerate(::file::listing & listing) override;
 
-         bool list(::string_array & stra, const char * path, ::file::e_flag eflag = ::file::e_flag_file_or_folder);
+         bool list(::string_array & stra, const char * path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
 
          //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);

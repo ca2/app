@@ -22,9 +22,9 @@
 //
 //            auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create(::file_path_folder(path));
+//pacmedirectory->create(::file_path_folder(path));
 //
 //   wstring wstr(path);
 //
@@ -1760,9 +1760,9 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 ////
 ////            auto psystem = m_psystem;
 //
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->create(::file_path_folder(path));
+//pacmedirectory->create(::file_path_folder(path));
 ////
 ////   wstring wstr(path);
 ////

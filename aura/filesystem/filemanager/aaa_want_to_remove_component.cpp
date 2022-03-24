@@ -391,9 +391,9 @@ namespace filemanager
 
             m_pathFilemanagerProject =          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->localconfig() / "user.component";
+pacmedirectory->localconfig() / "user.component";
 
          }
          else

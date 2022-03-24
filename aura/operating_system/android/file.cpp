@@ -75,9 +75,9 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 
 //    return          auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->localconfig() / "favorites";
+pacmedirectory->localconfig() / "favorites";
 
 // }
 

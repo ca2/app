@@ -93,29 +93,29 @@ namespace geo
 
          //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "weather-cit.bin");
+//pacmedirectory->system() / "weather-cit.bin");
          //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "weather-cil.bin");
+//pacmedirectory->system() / "weather-cil.bin");
          //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "weather-ids.bin");
+//pacmedirectory->system() / "weather-ids.bin");
          //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "weather-lon.bin");
+//pacmedirectory->system() / "weather-lon.bin");
          //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->system() / "weather-lat.bin");
+//pacmedirectory->system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()

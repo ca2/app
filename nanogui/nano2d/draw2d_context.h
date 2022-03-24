@@ -98,7 +98,7 @@ namespace nano2d
       NANO2D_PAINT box_gradient(float x, float y, float w, float h, float r, float f,
          NANO2D_COLOR icol, NANO2D_COLOR ocol) override;
       NANO2D_PAINT radial_gradient(float cx, float cy, float inr, float outr,
-         NANO2D_COLOR icol, NANO2D_COLOR ocol);
+         NANO2D_COLOR icol, NANO2D_COLOR ocol) override;
       NANO2D_PAINT image_pattern(float cx, float cy, float w, float h, float angle,
          int image, float alpha) override;
 
@@ -138,7 +138,7 @@ namespace nano2d
       void image_size(int image, int * w, int * h) override;
 
 
-      virtual void _draw_image(float x, float y, float w, float h, ::image * pimage);
+      virtual void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
 
 
    };

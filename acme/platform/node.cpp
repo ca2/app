@@ -1188,9 +1188,9 @@ namespace acme
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->acmedir();
+      auto pacmedirectory = psystem->acmedir();
 
-      auto pathFolder =  pacmedir->get_memory_map_base_folder_path();
+      auto pathFolder =  pacmedirectory->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 

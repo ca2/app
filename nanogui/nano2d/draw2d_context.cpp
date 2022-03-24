@@ -188,7 +188,16 @@ namespace nano2d
    void draw2d_context::rounded_rect(float x, float y, float w, float h, float r)
    {
 
-      m_pstate->m_ppath->add_round_rect({ x, y, x + w, y + h }, r);
+      auto r2 = r * 2.0;
+
+      if (r2 > w || r2 > h)
+      {
+
+         return;
+
+      }
+
+      m_pstate->m_ppath->add_round_rectangle({ x, y, x + w, y + h }, r);
 
    }
 
@@ -737,7 +746,7 @@ namespace nano2d
       if (m_pstate->m_ppath)
       {
 
-         m_pstate->m_ppath->add_rect(rectangle_f64_dimension(x, y, w, h));
+         m_pstate->m_ppath->add_rectangle(rectangle_f64_dimension(x, y, w, h));
 
       }
       else

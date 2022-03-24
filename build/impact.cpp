@@ -124,21 +124,21 @@ namespace app_core_build
 
    ::file::path pathEnvTxt;
 
-   auto pacmedir = m_psystem->m_pacmedirectory;
+   auto pacmedirectory = m_psystem->m_pacmedirectory;
 
-   pathEnvTxt = pacmedir->system() / "env.txt";
+   pathEnvTxt = pacmedirectory->system() / "env.txt";
 
-   m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env1.bat", pacmedirectory->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-   m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+   m_psystem->m_pacmefile->put_contents(pacmedirectory->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
    auto psystem = m_psystem;
 
    auto pnode = psystem->node();
 
-   pnode->run_silent(pacmedir->system() / "env1.bat", "");
+   pnode->run_silent(pacmedirectory->system() / "env1.bat", "");
 
-   string strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
+   string strLog = m_psystem->m_pacmefile->as_string(pacmedirectory->system() / "env.txt");
    string_array stra;
    stra.add_lines(strLog);
 

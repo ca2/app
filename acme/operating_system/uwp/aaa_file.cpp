@@ -94,9 +94,9 @@ namespace universal_windows
 
                   auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(lpszFileName.folder());
+pacmedirectory->create(lpszFileName.folder());
 
       }
 

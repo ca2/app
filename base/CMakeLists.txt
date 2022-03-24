@@ -142,6 +142,8 @@ list(APPEND library_source
         user/user/impact_data.h
         user/user/impact_host.cpp
         user/user/impact_host.h
+   user/user/impact_kit.cpp
+   user/user/impact_kit.h
         user/user/impact_system.cpp
         user/user/impact_system.h
         user/user/impact_update_hint.h

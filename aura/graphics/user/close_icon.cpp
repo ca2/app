@@ -41,9 +41,9 @@ namespace user
 
          ppath.create(puserinteraction);
 
-         ppath->add_rect(rectangle, 45_degrees);
+         ppath->add_rectangle(rectangle, 45_degrees);
 
-         ppath->add_rect(rectangle, -45_degrees);
+         ppath->add_rectangle(rectangle, -45_degrees);
 
          pitem->m_pDraw2dPath = ppath;
 

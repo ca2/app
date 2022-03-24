@@ -2398,9 +2398,9 @@ void object::install_message_routing(::channel* pchannel)
 //
 //   return __new(::handle::ini(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig()));
+//pacmedirectory->localconfig()));
 //
 //}
 

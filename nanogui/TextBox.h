@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include <nanogui/widget.h>
-#include <cstdio>
+//#include <nanogui/widget.h>
+//#include <cstdio>
 #include <sstream>
 
 NAMESPACE_BEGIN(nanogui)

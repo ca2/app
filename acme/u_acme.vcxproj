@@ -927,11 +927,12 @@
     <ClInclude Include="exception\_dump_context.h" />
     <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem.h" />
-    <ClInclude Include="filesystem\filesystem\aaaa_.h" />
     <ClInclude Include="filesystem\filesystem\acme_directory.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
+    <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\path_array.h" />
     <ClInclude Include="filesystem\file\folder.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\streamable_composite.h" />
@@ -1605,9 +1606,11 @@
     <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />

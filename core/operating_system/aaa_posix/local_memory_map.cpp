@@ -81,9 +81,9 @@ namespace file
 
                auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->create(path.folder());
+pacmedirectory->create(path.folder());
 
       m_iFile = ::open(path, iOpen, S_IRUSR | S_IWUSR);
 

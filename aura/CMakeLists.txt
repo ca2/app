@@ -308,6 +308,9 @@ list(APPEND library_source
    platform/title.h
    platform/user_parent.h
    template/list.h
+   user/appearance/appearance.cpp
+   user/appearance/appearance.h
+   user/appearance/_appearance.h
    user/menu/_menu.h
    user/menu/menu_command.cpp
    user/menu/menu_command.h

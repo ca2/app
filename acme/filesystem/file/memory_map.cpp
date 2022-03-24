@@ -45,9 +45,9 @@ namespace file
 //
 //         path /=          auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->home() / str;
+//pacmedirectory->home() / str;
 ////
 //      }
 //      else

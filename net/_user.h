@@ -2,9 +2,7 @@
 
 
 #include "_.h"
-#include "aura/user/_user.h"
-
-
+#include "aura/user/user/_user.h"
 
 
 #include "window.h"

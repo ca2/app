@@ -1992,9 +1992,9 @@ namespace handle
 
    //   auto preader = Ctx(pobject).file().get_reader(         auto psystem = m_psystem;
 
-//         auto pacmedir = psystem->m_pacmedirectory;
+//         auto pacmedirectory = psystem->m_pacmedirectory;
 //
-//pacmedir->localconfig() / "this.ini");
+//pacmedirectory->localconfig() / "this.ini");
 
    //   if (preader)
    //   {

@@ -173,9 +173,9 @@ namespace ios
 
       if(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(path))
+pacmedirectory->is(path))
       {
 
          return true;
@@ -263,9 +263,9 @@ pacmedir->is(path))
 
             if(!         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedirectory;
+         auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedir->is(stra[i]))
+pacmedirectory->is(stra[i]))
             {
 
                return false;

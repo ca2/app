@@ -791,18 +791,7 @@ namespace draw2d
    void graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      //auto bOk = fill_rectangle(rectangle, m_pbrush);
-
       fill_rectangle(rectangle, m_pbrush);
-
-      //if (!bOk)
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
 
    }
 
@@ -2288,15 +2277,7 @@ namespace draw2d
 
       pbrushSolidColor->create_solid(color);
 
-      //if (!fill_rectangle(rectangle, pbrushSolidColor))
       fill_rectangle(rectangle, pbrushSolidColor);
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
 
    }
 
@@ -2391,23 +2372,6 @@ namespace draw2d
 
    }
 
-
-//   void graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
-//   {
-//
-//      set_alpha_mode(e_alpha_mode_blend);
-//
-//      return fill_rectangle(rectangle, alpha(opacity, color));
-//
-//   }
-
-
-   //void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color)
-   //{
-
-   //   fill_rectangle(::rectangle_f64(rectangle), color);
-
-   //}
 
 
    void graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
@@ -3966,20 +3930,55 @@ namespace draw2d
    //
 
 
-   void graphics::draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder)
+   void graphics::draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double dRadius)
    {
 
-      if (eborder & e_border_all)
+      auto radius2 = dRadius * 2.0;
+
+      if (radius2 > rectangle.width() || radius2 > rectangle.height())
       {
+
+         return;
+
+      }
+
+      auto ppath = __create < ::draw2d::path >();
+
+      ppath->add_round_rectangle(rectangle, dRadius, e_border_all);
+
+      draw(ppath, ppen);
+
+   }
+
+
+   void graphics::draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double dRadius, const ::e_border & eborder)
+   {
+
+      if (eborder == e_border_all)
+      {
+
+         draw_round_rectangle(rectangle, ppen, dRadius);
+
+         return;
+
+      }
+      else if (eborder & e_border_all)
+      {
+
+         auto radius2 = dRadius * 2.0;
+
+         if (radius2 > rectangle.width() || radius2 > rectangle.height())
+         {
+
+            return;
+
+         }
 
          auto ppath = __create < ::draw2d::path > ();
 
-         if (ppath->add_round_rect(rectangle, radius, eborder))
-         {
+         ppath->add_round_rectangle(rectangle, dRadius, eborder);
 
-            draw(ppath, ppen);
-
-         }
+         draw(ppath, ppen);
 
       }
 
@@ -4153,14 +4152,14 @@ namespace draw2d
    //
    // Returns:     None
    //
-   void graphics::fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
+   void graphics::fill_round_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
    {
 
       auto pbrush = __create < ::draw2d::brush > ();
 
       pbrush->create_solid(color);
 
-      return fill_round_rect(rectangle, pbrush, radius);
+      return fill_round_rectangle(rectangle, pbrush, radius);
 
    }
 
@@ -4181,24 +4180,18 @@ namespace draw2d
    //
    // Returns:     None
    //
-   void graphics::fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius)
+   void graphics::fill_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius)
    {
 
       auto ppath = __create < ::draw2d::path > ();
 
-      //ppath->begin_figure(true, ::draw2d::e_fill_mode_winding);
-
       ppath->begin_figure();
 
-      ppath->add_round_rect(rectangle, 2 * radius);
-
-      //ppath->end_figure(true);
+      ppath->add_round_rectangle(rectangle, radius);
 
       ppath->close_figure();
 
       fill(ppath, pbrush);
-
-      //return true;
 
    }
 
@@ -4206,15 +4199,9 @@ namespace draw2d
    void graphics::round_rectangle(const ::rectangle_f64 & rectangle, double radius)
    {
 
-      //bool bOk1 = 
-      
-      fill_round_rect(rectangle, m_pbrush.m_p, radius);
+      fill_round_rectangle(rectangle, m_pbrush.m_p, radius);
 
-      //bool bOk2 = 
-      
-      draw_round_rect(rectangle, m_ppen, radius);
-
-      //return bOk1 && bOk2;
+      draw_round_rectangle(rectangle, m_ppen, radius);
 
    }
 
@@ -5209,12 +5196,6 @@ namespace draw2d
       rect2.top = rect2.bottom - w;
 
       fill_rectangle(rect2, b);
-
-
-
-
-
-
 
 
       // a

@@ -69,7 +69,6 @@
   <ItemGroup>
     <ClInclude Include="crypt.h" />
     <ClInclude Include="file.h" />
-    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="file_function_definitions.h" />
     <ClInclude Include="folder.h" />
     <ClInclude Include="framework.h" />

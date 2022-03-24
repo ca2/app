@@ -15,7 +15,6 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="_folder_zip.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "_nano2d_config.h"
+
+
 #include NANO2D_INCLUDE
 
 

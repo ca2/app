@@ -993,6 +993,7 @@
     <ClInclude Include="nano2d\context.h" />
     <ClInclude Include="nano2d\draw2d_context.h" />
     <ClInclude Include="nano2d\_nano2d.h" />
+    <ClInclude Include="nano2d\_nano2d_config.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Popup.h" />
     <ClInclude Include="PopupButton.h" />

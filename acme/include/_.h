@@ -2035,7 +2035,7 @@ class guard_pointer;
 #define gp(TYPE) ::guard_pointer < TYPE >
 
 
-#define clone_impl(name) inline name * clone() { return __new(name(*this)); }
+//#define clone_impl(name) inline name * clone() { return __new(name(*this)); }
 
 
 #define DOUBLE_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844

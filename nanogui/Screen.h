@@ -125,7 +125,7 @@ public:
 //    *
 //    * \sa redraw
 //    */
-//   virtual void draw_all();
+   virtual void draw_all();
 //
 //   /**
 //    * \brief Clear the screen with the background color (glClearColor, glClear, etc.)
@@ -147,7 +147,7 @@ public:
 //   virtual void draw_setup();
 //
 //   /// Calls clear() and draws the window contents --- put your rendering code here.
-//   virtual void draw_contents();
+   virtual void draw_contents();
 //
 //   /**
 //    * \brief Wrap up drawing of the current frame
@@ -175,16 +175,16 @@ public:
 //   virtual bool keyboard_character_event(unsigned int codepoint);
 //
 //   /// Window resize event handler
-//   virtual bool resize_event(const Vector2i & size);
-//
-//   /// Set the resize callback
-//   ::function<void(Vector2i)> resize_callback() const { return m_resize_callback; }
-//   void set_resize_callback(const ::function<void(Vector2i)> & callback) {
-//      m_resize_callback = callback;
-//   }
-//
-//   /// Return the last observed mouse position value
-//   Vector2i mouse_pos() const { return m_mouse_pos; }
+   virtual bool resize_event(const nanogui::Vector2i & size);
+
+   /// Set the resize callback
+   ::function<void(Vector2i)> resize_callback() const { return m_resize_callback; }
+   void set_resize_callback(const ::function<void(Vector2i)> & callback) {
+      m_resize_callback = callback;
+   }
+
+   /// Return the last observed mouse position value
+   Vector2i mouse_pos() const { return m_mouse_pos; }
 //
 //   /// Return a pointer to the underlying GLFW window data structure
 //   GLFWwindow * glfw_window() const { return m_glfw_window; }
@@ -294,7 +294,7 @@ public:
 //   bool m_stencil_buffer;
 //   bool m_float_buffer;
    bool m_redraw;
-//   ::function<void(Vector2i)> m_resize_callback;
+   ::function<void(Vector2i)> m_resize_callback;
 //#if defined(NANOGUI_USE_METAL)
 //   void * m_metal_texture = nullptr;
 //   void * m_metal_drawable = nullptr;

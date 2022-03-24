@@ -17,6 +17,9 @@
     <Filter Include="Source Files\nano2d">
       <UniqueIdentifier>{57ad15df-bbff-4ec9-826e-4af6ddc7fbba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\glad">
+      <UniqueIdentifier>{1231d44d-136f-47eb-90a7-64e66202e65f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -218,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="FormHelper.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nano2d\_nano2d_config.h">
+      <Filter>Header Files\nano2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

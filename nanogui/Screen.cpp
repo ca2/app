@@ -607,28 +607,28 @@ Screen::~Screen() {
 //#endif
 //}
 //
-//void Screen::draw_all() {
-//   if (m_redraw) {
-//      m_redraw = false;
-//
-//#if defined(NANOGUI_USE_METAL)
-//      void * pool = autorelease_init();
-//#endif
-//
-//      draw_setup();
-//      draw_contents();
-//      draw_widgets();
-//      draw_teardown();
-//
-//#if defined(NANOGUI_USE_METAL)
-//      autorelease_release(pool);
-//#endif
-//   }
-//}
-//
-//void Screen::draw_contents() {
-//   clear();
-//}
+void Screen::draw_all() {
+////   if (m_redraw) {
+////      m_redraw = false;
+////
+////#if defined(NANOGUI_USE_METAL)
+////      void * pool = autorelease_init();
+////#endif
+////
+////      draw_setup();
+////      draw_contents();
+////      draw_widgets();
+////      draw_teardown();
+////
+////#if defined(NANOGUI_USE_METAL)
+////      autorelease_release(pool);
+////#endif
+////  }
+}
+
+void Screen::draw_contents() {
+   //clear();
+}
 //
 //void Screen::nvg_flush() {
 //   NVGparams * params = nvgInternalParams(ctx);
@@ -728,15 +728,15 @@ void Screen::draw_widgets(NVGcontext * ctx) {
 //   }
 //   return false;
 //}
-//
-//bool Screen::resize_event(const Vector2i & size) {
-//   if (m_resize_callback)
-//      m_resize_callback(size);
-//   m_redraw = true;
-//   draw_all();
-//   return true;
-//}
-//
+
+bool Screen::resize_event(const Vector2i & size) {
+   if (m_resize_callback)
+      m_resize_callback(size);
+   m_redraw = true;
+   draw_all();
+   return true;
+}
+
 //void Screen::redraw() {
 //   if (!m_redraw) {
 //      m_redraw = true;

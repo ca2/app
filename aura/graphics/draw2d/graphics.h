@@ -1077,7 +1077,8 @@ namespace draw2d
       //
       // Returns:     None
       //
-      void draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder = e_border_all);
+      virtual void draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius, const ::e_border & eborder);
+      virtual void draw_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, double radius);
       //void draw_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, const ::point_f64 & point, const ::e_border & eborder = e_border_all);
       //void draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
       //void draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
@@ -1087,7 +1088,7 @@ namespace draw2d
       //void draw_round_bottom_right(const ::rectangle_f64 & rectangle, const ::color::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
 
 
-      void draw_stock_icon(const ::rectangle_f64 & rectangle_f64, enum_stock_icon estockicon);
+      virtual void draw_stock_icon(const ::rectangle_f64 & rectangle_f64, enum_stock_icon estockicon);
 
 
       //=============================================================================
@@ -1104,7 +1105,7 @@ namespace draw2d
       //
       // Returns:     None
       //
-      void fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius);
+      virtual void fill_round_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius);
 
       //=============================================================================
       //
@@ -1122,7 +1123,7 @@ namespace draw2d
       //
       // Returns:     None
       //
-      void fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius);
+      virtual void fill_round_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, double radius);
 
 
       //void fill_round_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush, const ::point_f64 & point);
@@ -1212,7 +1213,6 @@ namespace draw2d
       //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
-
 
       
    protected:

@@ -1465,6 +1465,12 @@
     <ClCompile Include="operating_system\universal_windows\_main.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\path_array.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3252,9 +3258,6 @@
     <ClInclude Include="filesystem\filesystem\acme_directory.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\aaaa_.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="constant\user_text.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
@@ -3581,6 +3584,12 @@
     </ClInclude>
     <ClInclude Include="include\_c_swap.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_array.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\enumerator.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

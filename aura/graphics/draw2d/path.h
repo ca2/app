@@ -55,11 +55,11 @@ namespace draw2d
       virtual bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point);
 
 
-      virtual bool add_rect(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotation);
+      virtual bool add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotation);
 
-      virtual bool add_rect(const ::rectangle_f64& rectangle, const ::angle& angleCenterRotation);
+      virtual bool add_rectangle(const ::rectangle_f64& rectangle, const ::angle& angleCenterRotation);
 
-      virtual bool add_rect(const ::rectangle_f64& rectangle);
+      virtual bool add_rectangle(const ::rectangle_f64& rectangle);
 
       virtual bool add_ellipse(const ::ellipse_f64 & ellipse);
 
@@ -112,7 +112,7 @@ namespace draw2d
       //
 
       //bool do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
-      bool do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn);
+      bool do_round_rectangle_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn);
 
       bool add_round_top_left(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
       bool add_round_bottom_right(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
@@ -122,7 +122,7 @@ namespace draw2d
       //bool counter_corner(const ::rectangle_f64 & rectangleCorner, double iRadius, const ::e_border & eborder);
       //bool clock_corner(const ::rectangle_f64 & rectangleCorner, double iRadius, const ::e_border & eborder);
 
-      bool add_round_rect(const ::rectangle_f64 & rectangle, double dRadius, const ::e_border & eborder = e_border_all);
+      void add_round_rectangle(const ::rectangle_f64 & rectangle, double dRadius, const ::e_border & eborder = e_border_all);
       bool counter_corner(const ::rectangle_f64 & rectangleCorner, double dRadius, const ::e_border & eborder);
       bool clock_corner(const ::rectangle_f64 & rectangleCorner, double dRadius, const ::e_border & eborder);
 

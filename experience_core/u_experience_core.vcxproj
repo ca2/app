@@ -67,31 +67,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="button.h" />
-    <ClInclude Include="control_box.h" />
-    <ClInclude Include="experience.h" />
-    <ClInclude Include="frame.h" />
+    <ClInclude Include="experience\control_box.h" />
+    <ClInclude Include="experience\control_box_button.h" />
+    <ClInclude Include="experience\experience.h" />
+    <ClInclude Include="experience\frame.h" />
+    <ClInclude Include="experience\frame_001.h" />
+    <ClInclude Include="experience\frame_002.h" />
+    <ClInclude Include="experience\frame_005.h" />
+    <ClInclude Include="experience\frame_008.h" />
+    <ClInclude Include="experience\frame_011.h" />
+    <ClInclude Include="experience\frame_013.h" />
+    <ClInclude Include="experience\frame_Minimal001.h" />
+    <ClInclude Include="experience\_experience.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="frame_001.h" />
-    <ClInclude Include="frame_002.h" />
-    <ClInclude Include="frame_005.h" />
-    <ClInclude Include="frame_008.h" />
-    <ClInclude Include="frame_011.h" />
-    <ClInclude Include="frame_013.h" />
-    <ClInclude Include="frame_Minimal001.h" />
-    <ClInclude Include="library.h" />
-    <ClInclude Include="style.h" />
-    <ClInclude Include="theme.h" />
-    <ClInclude Include="user_button.h" />
-    <ClInclude Include="user_control_box.h" />
-    <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="button.cpp" />
-    <ClCompile Include="control_box.cpp" />
-    <ClCompile Include="experience.cpp" />
+    <ClCompile Include="experience\control_box.cpp" />
+    <ClCompile Include="experience\control_box_button.cpp" />
+    <ClCompile Include="experience\experience.cpp" />
+    <ClCompile Include="experience\frame.cpp" />
+    <ClCompile Include="experience\frame_001.cpp" />
+    <ClCompile Include="experience\frame_002.cpp" />
+    <ClCompile Include="experience\frame_005.cpp" />
+    <ClCompile Include="experience\frame_008.cpp" />
+    <ClCompile Include="experience\frame_011.cpp" />
+    <ClCompile Include="experience\frame_013.cpp" />
+    <ClCompile Include="experience\frame_Minimal001.cpp" />
+    <ClCompile Include="user\style.cpp" />
     <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="frame.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -110,14 +113,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="frame_001.cpp" />
-    <ClCompile Include="frame_002.cpp" />
-    <ClCompile Include="frame_005.cpp" />
-    <ClCompile Include="frame_008.cpp" />
-    <ClCompile Include="frame_011.cpp" />
-    <ClCompile Include="frame_013.cpp" />
-    <ClCompile Include="frame_Minimal001.cpp" />
-    <ClCompile Include="style.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

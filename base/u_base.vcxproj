@@ -67,7 +67,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -104,7 +103,6 @@
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_defer.h" />
     <ClInclude Include="platform\_features.h" />
-    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="user.h" />
@@ -278,6 +276,7 @@
     <ClCompile Include="user\user\impact_creator.cpp" />
     <ClCompile Include="user\user\impact_data.cpp" />
     <ClCompile Include="user\user\impact_host.cpp" />
+    <ClCompile Include="user\user\impact_kit.cpp" />
     <ClCompile Include="user\user\impact_system.cpp" />
     <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\menu.cpp" />

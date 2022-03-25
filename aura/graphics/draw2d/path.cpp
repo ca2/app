@@ -1468,30 +1468,24 @@ namespace draw2d
       case e_shape_end_figure:
          return _set(pgraphics, e_shape_end_figure);
       case e_shape_arc:
-         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::arc>());
       //case e_shape_line:
       //   return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_line:
-         m_estatus = success;
          return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_lines:
-         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::lines>());
       case e_shape_rectangle:
-         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::rectangle_f64>());
       case e_shape_ellipse:
-         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::ellipse_f64>());
       case e_shape_polygon:
-         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::polygon_f64>());
       case e_shape_draw_text:
-         //m_estatus = success;
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
       case e_shape_text_out:
-         //m_estatus = success;
+         m_estatus = success;
          return _set(pgraphics, pshape->shape < ::write_text::text_out>());
       default:
          throw "unexpected simple os graphics matter type";

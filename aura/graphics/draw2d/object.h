@@ -69,7 +69,7 @@ namespace draw2d
       inline POINTER get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
       {
 
-         if (!m_bUpdated2 || !m_osdata[i])
+         if (!m_bUpdated2)
          {
 
             defer_update(pgraphics, i);

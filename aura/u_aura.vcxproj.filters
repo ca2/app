@@ -1248,9 +1248,6 @@
     <ClCompile Include="windowing\windowing.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\windowing___.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\xrender.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -1278,22 +1275,7 @@
     <ClCompile Include="operating_system\universal_windows\aura.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\direct2d_tls.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\dummy_ipc.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\graphics.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\main.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\user.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\windowing.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp">

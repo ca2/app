@@ -511,12 +511,7 @@
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="operating_system\universal_windows\aura.cpp" />
-    <ClCompile Include="operating_system\universal_windows\direct2d_tls.cpp" />
-    <ClCompile Include="operating_system\universal_windows\dummy_ipc.cpp" />
     <ClCompile Include="operating_system\universal_windows\graphics.cpp" />
-    <ClCompile Include="operating_system\universal_windows\main.cpp" />
-    <ClCompile Include="operating_system\universal_windows\user.cpp" />
-    <ClCompile Include="operating_system\universal_windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\context.cpp" />
@@ -592,7 +587,6 @@
     <ClCompile Include="windowing\monitor.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
-    <ClCompile Include="windowing\windowing___.cpp" />
     <ClCompile Include="windowing\xrender.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

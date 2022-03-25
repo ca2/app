@@ -1275,15 +1275,9 @@
     <ClCompile Include="operating_system\operating_system.cpp" />
     <ClCompile Include="operating_system\thread.cpp" />
     <ClCompile Include="operating_system\universal_windows\apex.cpp" />
-    <ClCompile Include="operating_system\universal_windows\direct2d_tls.cpp" />
-    <ClCompile Include="operating_system\universal_windows\dummy_ipc.cpp" />
     <ClCompile Include="operating_system\universal_windows\main.cpp" />
     <ClCompile Include="operating_system\universal_windows\menu.cpp" />
-    <ClCompile Include="operating_system\universal_windows\simple_app.cpp" />
-    <ClCompile Include="operating_system\universal_windows\sockets.cpp" />
     <ClCompile Include="operating_system\universal_windows\thread.cpp" />
-    <ClCompile Include="operating_system\universal_windows\time.cpp" />
-    <ClCompile Include="operating_system\universal_windows\user.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="parallelization\handler_manager.cpp" />
     <ClCompile Include="parallelization\service.cpp" />

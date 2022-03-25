@@ -12,6 +12,7 @@
 
 
 #define NANOGUI_EXPORT CLASS_DECL_NANOGUI
+#define NANO2D_EXPORT CLASS_DECL_NANOGUI
 
 
 namespace nanogui

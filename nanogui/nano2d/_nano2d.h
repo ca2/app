@@ -5,7 +5,7 @@
 #include "_nano2d_config.h"
 
 
-#include NANO2D_INCLUDE
+#include "nanovg.h"
 
 
 inline ::color::color __color(NANO2D_COLOR color)

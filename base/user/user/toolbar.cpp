@@ -1272,7 +1272,7 @@ return { 0,0 };
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 

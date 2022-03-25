@@ -721,31 +721,13 @@
     <ClCompile Include="operating_system\windows_common\file.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\user.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\time.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\thread.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\sockets.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\simple_app.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\menu.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\main.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\dummy_ipc.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\direct2d_tls.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\apex.cpp">

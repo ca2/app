@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "gdi_winrt.h"
+//#include "gdi_winrt.h"
 
 
 #define GW_HWNDFIRST        0

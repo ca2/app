@@ -1252,16 +1252,7 @@
     <ClCompile Include="operating_system\universal_windows\aura.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\debug.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\direct2d_tls.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\dpi.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\dummy_ipc.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\file.cpp">
@@ -1270,13 +1261,7 @@
     <ClCompile Include="operating_system\universal_windows\graphics.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\language.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\library.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\lock.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\main.cpp">
@@ -1286,12 +1271,6 @@
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\process.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\sockets.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\time.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\universal_windows.cpp">
@@ -3384,12 +3363,6 @@
     <ClInclude Include="operating_system\universal_windows\_windows_runtime.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\aaa_oswindow.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\aaa_want_to_remove_window_impl.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\universal_windows\base_file.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
@@ -3399,31 +3372,19 @@
     <ClInclude Include="operating_system\universal_windows\file_winrt1.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\gdi_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\universal_windows\host_interaction.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\metrowin_metrowin.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\multithreading_winrt.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\parallelization.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\parallelization_winrt.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\parallelization.h">
+      <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
     <ClInclude Include="operating_system\universal_windows\process.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_hold_handle.h">
-      <Filter>Header Files\operating_system\universal_windows</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\simple_ui.h">
+    <ClInclude Include="operating_system\universal_windows\aaa_simple_ui.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\sockets.h">

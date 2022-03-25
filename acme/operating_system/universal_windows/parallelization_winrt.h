@@ -1,6 +1,7 @@
 #pragma once
 
-
+//
+//#define U32_INFINITE_TIMEOUT 0xffffffffu
 //
 //
 //template < typename T >
@@ -18,52 +19,56 @@
 //template < >
 //inline void waiter_null_result(unsigned int & u)
 //{
-//   u = 0;
+//   u = NULL;
 //}
 //
 //
 //template < typename T >
-//class waiter_for_Windows_Foundation_IAsyncOperation
+//class waiter_for_Windows_Foundation_IAsyncOperation sealed
 //{
 //private:
 //
-//   manual_reset_event                                    m_event;
-//   ::winrt::Windows::Foundation::IAsyncOperation < T >   m_operation;
-//   ::winrt::Windows::Foundation::AsyncStatus             m_status;
-//   T                                                     m_result;
-//   HRESULT                                               m_hresult;
+//
+//   manual_reset_event                                       m_event;
+//   ::winrt::Windows::Foundation::IAsyncOperation < T >      m_operation;
+//   ::winrt::Windows::Foundation::AsyncStatus                m_status;
+//   T                                                        m_result;
+//   HRESULT                                                  m_hresult;
 //
 //
 //public:
 //
 //
+//   //waiter_for_Windows_Foundation_IAsyncOperation(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, CallbackContext callbackcontext = CallbackContext::Any)
 //   waiter_for_Windows_Foundation_IAsyncOperation(::winrt::Windows::Foundation::IAsyncOperation < T > operation)
 //   {
 //
 //      m_operation             = operation;
 //
-//      m_operation.Completed(::winrt::Windows::Foundation::AsyncOperationCompletedHandler < T > ([this](::winrt::Windows::Foundation::IAsyncOperation < T > operation, ::winrt::Windows::Foundation::AsyncStatus status)
+//      m_operation->Completed  = ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < T > ([this](::winrt::Windows::Foundation::IAsyncOperation < T > operation, ::winrt::Windows::Foundation::AsyncStatus status)
 //      {
 //
 //         m_status = status;
 //
 //         m_event.set_event();
 //
-//      }));
+//      });
 //
 //   }
 //
 //
-//   ~waiter_for_Windows_Foundation_IAsyncOperation()
+//   virtual ~waiter_for_Windows_Foundation_IAsyncOperation()
 //   {
 //
 //   }
 //
 //
-//   T wait(unsigned int dwMillis = INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
+//   T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //   {
 //
-//      m_event.wait(::duration(dwMillis));
+//      single_lock singlelock(&m_event);
+//
+//      singlelock.lock(::duration(dwMillis));
 //
 //      if (pstatus != nullptr)
 //      {
@@ -72,12 +77,12 @@
 //
 //      }
 //
-//      m_hresult = m_operation.ErrorCode();
+//      m_hresult = m_operation->ErrorCode.Value;
 //
 //      if(m_status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
 //      {
 //
-//         return m_operation.GetResults();
+//         return m_operation->GetResults();
 //
 //      }
 //      else
@@ -93,6 +98,7 @@
 //
 //   }
 //
+//
 //   template < typename PRED >
 //   void wait(PRED pred,unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //   {
@@ -106,25 +112,27 @@
 //
 //
 //template < typename T, typename T2 >
-//class waiter_for_Windows_Foundation_IAsyncOperationWithProgress
+//class waiter_for_Windows_Foundation_IAsyncOperationWithProgress sealed
 //{
 //private:
 //
-//   manual_reset_event                                                   m_event;
-//   ::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 >  m_operation;
-//   ::winrt::Windows::Foundation::AsyncStatus                            m_status;
-//   T                                                                    m_result;
+//
+//   manual_reset_event                                                      m_event;
+//   ::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 >     m_operation;
+//   ::winrt::Windows::Foundation::AsyncStatus                               m_status;
+//   T                                                                       m_result;
 //
 //
 //public:
 //
 //
+//   // waiter_for_Windows_Foundation_IAsyncOperationWithProgress(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, CallbackContext callbackcontext = CallbackContext::Any)
 //   waiter_for_Windows_Foundation_IAsyncOperationWithProgress(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation)
 //   {
 //
 //      m_operation = operation;
 //
-//      m_operation.Completed(::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler < T, T2 >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation, ::winrt::Windows::Foundation::AsyncStatus status)
+//      m_operation->Completed = ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler < T, T2 >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation, ::winrt::Windows::Foundation::AsyncStatus status)
 //      {
 //
 //         auto pholdThis = this;
@@ -133,12 +141,12 @@
 //
 //         m_event.set_event();
 //
-//      }));
+//      });
 //
 //   }
 //
 //
-//   ~waiter_for_Windows_Foundation_IAsyncOperationWithProgress()
+//   virtual ~waiter_for_Windows_Foundation_IAsyncOperationWithProgress()
 //   {
 //
 //   }
@@ -155,7 +163,7 @@
 //      if (m_status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
 //      {
 //
-//         return m_operation.GetResults();
+//         return m_operation->GetResults();
 //
 //      }
 //      else
@@ -182,6 +190,7 @@
 //   manual_reset_event                                 m_event;
 //   ::winrt::Windows::Foundation::IAsyncAction         m_action;
 //   ::winrt::Windows::Foundation::AsyncStatus          m_status;
+//
 //
 //public:
 //
@@ -213,6 +222,7 @@
 //
 //   }
 //
+//
 //   ~waiter_for_Windows_Foundation_IAsyncAction()
 //   {
 //
@@ -224,7 +234,7 @@
 //
 //      auto pholdThis = this;
 //
-//      m_event.wait(::duration(dwMillis));
+//      m_event.wait(::INTEGRAL_MILLISECOND(dwMillis));
 //
 //      if(pstatus != nullptr)
 //         *pstatus = m_status;
@@ -242,9 +252,9 @@
 //   pobject->fork([=]()
 //   {
 //
-//      waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation);
+//      auto pwaiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);
 //
-//      waiter.wait(pred, dwMillis);
+//      pwaiter.wait(pred, dwMillis);
 //
 //   });
 //
@@ -255,7 +265,7 @@
 //inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
-//   waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation);
+//   auto waiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);
 //
 //   waiter.wait(pred, dwMillis, pstatus);
 //
@@ -266,9 +276,9 @@
 //inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
-//   waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation);
+//   auto pwaiter = waiter_for_Windows_Foundation_IAsyncOperation < T >(operation);
 //
-//   return waiter.wait(dwMillis, pstatus);
+//   return pwaiter->wait(dwMillis, pstatus);
 //
 //}
 //
@@ -277,7 +287,7 @@
 //inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr)
 //{
 //
-//   waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > waiter(operation);
+//   auto waiter = waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation);
 //
 //   return waiter.wait(dwMillis, pstatus);
 //
@@ -289,7 +299,7 @@
 //
 //   ::winrt::Windows::Foundation::AsyncStatus status = ::winrt::Windows::Foundation::AsyncStatus::Canceled; // for time out
 //
-//   waiter_for_Windows_Foundation_IAsyncAction waiter(action);
+//   auto waiter = waiter_for_Windows_Foundation_IAsyncAction (action);
 //
 //   waiter.wait(dwMillis, &status);
 //

@@ -63,6 +63,43 @@ void matter::on_initialize_object()
 }
 
 
+void matter::operator()()
+{
+
+   ::e_status estatus;
+
+   //try
+   //{
+
+   /*estatus =*/ run();
+
+   //}
+   //catch (...)
+   //{
+
+   //   estatus = ::error_exception;
+
+   //}
+
+   //return estatus;
+
+}
+
+
+void matter::operator()(::message::message * pmessage)
+{
+
+
+}
+
+
+void matter::operator()(const ::payload & payload)
+{
+
+}
+
+
+
 
 //void matter::set_object(::object* pobject)
 //{

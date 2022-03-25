@@ -23,6 +23,107 @@ struct function {
 //};
 
 
+template < typename RETURN_TYPE >
+class function < RETURN_TYPE() >
+{
+public:
+
+
+   class predicate_base :
+      virtual public ::element
+   {
+   public:
+
+      virtual RETURN_TYPE operator()() = 0;
+
+   };
+
+
+   template < typename PREDICATE >
+   class predicate :
+      public predicate_base
+   {
+   public:
+
+      PREDICATE m_predicate;
+
+      predicate(PREDICATE predicate) :
+         m_predicate(predicate)
+      {
+
+      }
+
+
+      RETURN_TYPE operator()()
+      {
+
+         return m_predicate();
+
+      }
+
+   };
+
+   __pointer(predicate_base)     m_ppredicate;
+
+   function()
+   {
+
+   }
+
+   template < typename PREDICATE >
+   function(PREDICATE predicateParam)
+   {
+
+      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+
+   }
+
+   ~function()
+   {
+
+   }
+
+
+   RETURN_TYPE operator()() const
+   {
+
+      ASSERT(m_ppredicate);
+
+      return m_ppredicate->operator()();
+
+   }
+
+
+   void clear() { m_ppredicate.release(); }
+
+   template < typename PREDICATE >
+   function & operator = (PREDICATE predicateParam)
+   {
+
+      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+
+      return *this;
+
+   }
+
+
+   function & operator = (nullptr_t)
+   {
+
+      clear();
+
+      return *this;
+
+   }
+
+   operator bool() const { return ::is_set(m_ppredicate); }
+
+   bool operator !() const { return ::is_null(m_ppredicate); }
+
+
+};
+
+
 template < typename RETURN_TYPE, typename... TYPES >
 class function < RETURN_TYPE(TYPES...) >
 {
@@ -53,6 +154,7 @@ public:
 
       }
 
+
       RETURN_TYPE operator()(TYPES... args)
       {
 
@@ -61,7 +163,6 @@ public:
       }
 
    };
-
 
    __pointer(predicate_base)     m_ppredicate;
 

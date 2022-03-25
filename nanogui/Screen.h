@@ -289,7 +289,7 @@ public:
 //   Color m_background;
 //   std::string m_caption;
 //   bool m_shutdown_glfw_on_destruct;
-//   bool m_fullscreen;
+   bool m_fullscreen;
 //   bool m_depth_buffer;
 //   bool m_stencil_buffer;
 //   bool m_float_buffer;

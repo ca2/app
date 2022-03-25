@@ -101,41 +101,6 @@ DURATION element::timeout() const
 }
 
 
-void element::operator()()
-{
-
-   ::e_status estatus;
-
-   //try
-   //{
-
-      /*estatus =*/ run();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-void element::operator()(::message::message * pmessage)
-{
-
-
-}
-
-
-void element::operator()(const ::payload & payload)
-{
-
-}
-
 
 void element::init_task()
 {

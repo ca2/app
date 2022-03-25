@@ -84,6 +84,12 @@ public:
    virtual void on_initialize_object();
 
 
+   virtual void operator()();
+   virtual void operator()(::message::message * pmessage);
+   virtual void operator()(const ::payload & payload);
+
+
+
    //virtual ::topic_pointer _create_topic(const ::atom & atom);
 
 

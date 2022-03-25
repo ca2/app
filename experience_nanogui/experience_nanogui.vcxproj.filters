@@ -18,10 +18,10 @@
     <Filter Include="Source Files\experience">
       <UniqueIdentifier>{37dfdaa4-f530-4720-876b-aecc0ef6158c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\appearance">
+    <Filter Include="Source Files\user">
       <UniqueIdentifier>{3256de12-e394-4390-9d34-e20e1b81a90f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\appearance">
+    <Filter Include="Header Files\user">
       <UniqueIdentifier>{90834fce-3cc4-4c97-954b-439aab937670}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -68,8 +68,8 @@
     <ClCompile Include="experience\frame_Minimal001.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
-    <ClCompile Include="appearance\style.cpp">
-      <Filter>Source Files\appearance</Filter>
+    <ClCompile Include="user\style.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,11 +115,11 @@
     <ClInclude Include="experience\_experience.h">
       <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="appearance\style.h">
-      <Filter>Header Files\appearance</Filter>
+    <ClInclude Include="user\style.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="appearance\_appearance.h">
-      <Filter>Header Files\appearance</Filter>
+    <ClInclude Include="user\_user.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -38,6 +38,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
    ::boolean                     m_bUserEx;
    ::boolean                     m_bImaging;
    ::boolean                     m_bAudio;
+   ::boolean                     m_bMidi;
    ::boolean                     m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::boolean                     m_bGdiplus;

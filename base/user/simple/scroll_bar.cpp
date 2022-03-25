@@ -193,7 +193,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pdraw2d = psystem->draw2d();
 
-   auto pgraphics = pdraw2d->create_memory_graphics();
+   auto pgraphics = pdraw2d->create_memory_graphics(this);
 
    if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_eelement == ::e_element_scrollbar_rect)
    {
@@ -264,7 +264,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       SetTrackingPos(point, pgraphics);
 
@@ -792,7 +792,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       if(!scrollbar_action(m_pitemCurrent, pgraphics))
       {
@@ -1801,7 +1801,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto pdraw2d = psystem->draw2d();
 
-   auto pgraphics = pdraw2d->create_memory_graphics();
+   auto pgraphics = pdraw2d->create_memory_graphics(this);
 
    GetTrackRect(rectangleTrack, pgraphics);
 

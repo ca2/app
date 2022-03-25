@@ -443,7 +443,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       if (!is_window())
       {
@@ -626,7 +626,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       m_pointTrack = m_pointPositionHint;
 

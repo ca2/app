@@ -59,6 +59,7 @@ apex_main_struct& apex_main_struct::operator = (const apex_main_struct& mainstru
       m_bUserEx = mainstruct.m_bUserEx;
       m_bImaging = mainstruct.m_bImaging;
       m_bAudio = mainstruct.m_bAudio;
+      m_bMidi = mainstruct.m_bMidi;
 
 #ifdef WINDOWS_DESKTOP
       m_bGdiplus = mainstruct.m_bGdiplus;

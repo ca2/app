@@ -305,36 +305,24 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_graphics()
+   ::draw2d::graphics_pointer draw2d::create_graphics(::user::interaction * puserinteraction)
    {
 
       auto pgraphics = __create< ::draw2d::graphics>();
+
+      pgraphics->m_puserinteraction = puserinteraction;
 
       return ::move(pgraphics);
 
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_memory_graphics()
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::user::interaction * puserinteraction)
    {
 
-      auto pgraphics = create_graphics();
-
-      //if (!pgraphics)
-      //{
-
-      //   return nullptr;
-
-      //}
+      auto pgraphics = create_graphics(puserinteraction);
 
       pgraphics->create_memory_graphics();
-
-      //if (!pgraphics->create_memory_graphics())
-      //{
-
-      //   return nullptr;
-
-      //}
 
       return pgraphics;
 

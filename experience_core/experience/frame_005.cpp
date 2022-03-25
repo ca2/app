@@ -60,7 +60,7 @@ namespace experience_core
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(m_pframewindow);
 
       auto pstyle = pframewindow->get_style(pgraphics);
 

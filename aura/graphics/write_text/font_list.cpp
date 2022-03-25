@@ -960,9 +960,7 @@ namespace write_text
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics();
-
-         pgraphics->m_puserinteraction = m_puserinteraction;
+         auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
 
       restart:
 
@@ -1101,9 +1099,7 @@ namespace write_text
 
             auto pdraw2d = psystem->draw2d();
 
-            auto pgraphics = pdraw2d->create_memory_graphics();
-
-            pgraphics->m_puserinteraction = m_puserinteraction;
+            auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
 
             string strText = m_strTextLayout;
 

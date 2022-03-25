@@ -4128,7 +4128,7 @@ finished_update:
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       if(plain_edit_delete_sel(pgraphics, bFullUpdate, iLineUpdate))
       {
@@ -4236,7 +4236,7 @@ finished_update:
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics();
+         auto pgraphics = pdraw2d->create_memory_graphics(this);
 
          plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
@@ -5938,7 +5938,7 @@ finished_update:
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       plain_edit_create_line_index(pgraphics);
 
@@ -6991,7 +6991,7 @@ finished_update:
 
             auto pdraw2d = psystem->draw2d();
 
-            auto pgraphics = pdraw2d->create_memory_graphics();
+            auto pgraphics = pdraw2d->create_memory_graphics(this);
 
             plain_edit_on_file_update(pgraphics);
 

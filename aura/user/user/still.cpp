@@ -400,7 +400,7 @@ namespace user
 
          auto pdraw2d = psystem->draw2d();
 
-         pgraphics = pdraw2d->create_memory_graphics();
+         pgraphics = pdraw2d->create_memory_graphics(this);
 
       }
 

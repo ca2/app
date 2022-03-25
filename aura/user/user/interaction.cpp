@@ -2884,7 +2884,6 @@ namespace user
    void interaction::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-
       try
       {
 
@@ -2902,6 +2901,12 @@ namespace user
          {
 
             output_debug_string("control box on clip");
+
+         }
+         else if (strType.contains_ci("combo_box"))
+         {
+
+            output_debug_string("combo box on clip");
 
          }
 #if defined(MACOS) || defined(LINUX) || defined(_UWP)
@@ -2994,8 +2999,6 @@ namespace user
 
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
-
-      ::draw2d::savedc k(pgraphics);
 
       pgraphics->m_puserinteraction = this;
 
@@ -3972,6 +3975,8 @@ return "";
 
    void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ::draw2d::savedc k(pgraphics);
 
       try
       {
@@ -8433,7 +8438,7 @@ void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
       auto pdraw2d = psystem->draw2d();
 
-      pgraphics = pdraw2d->create_memory_graphics();
+      pgraphics = pdraw2d->create_memory_graphics(this);
 
       pgraphics->m_puserinteraction = this;
 

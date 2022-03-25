@@ -1021,7 +1021,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       on_change_view_size(pgraphics);
 
@@ -3790,7 +3790,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       _001LayoutTopText(pgraphics);
 
@@ -4309,7 +4309,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       on_change_view_size(pgraphics);
 
@@ -4362,7 +4362,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       on_change_view_size(pgraphics);
 
@@ -4510,7 +4510,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       on_change_view_size(pgraphics);
 
@@ -4581,7 +4581,7 @@ namespace user
 
       auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics();
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
 
       _001MaximizeColumnWidth(pgraphics, iHeaderItem);
 
@@ -5106,7 +5106,7 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               auto pgraphics = pdraw2d->create_memory_graphics();
+               auto pgraphics = pdraw2d->create_memory_graphics(this);
 
                on_change_view_size(pgraphics);
 
@@ -5148,7 +5148,7 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               auto pgraphics = pdraw2d->create_memory_graphics();
+               auto pgraphics = pdraw2d->create_memory_graphics(this);
 
                on_change_view_size(pgraphics);
 

@@ -341,6 +341,8 @@ namespace user
 
       pgraphics->fill_polygon(pointa);
 
+      pgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
+
    }
 
 
@@ -766,7 +768,7 @@ namespace user
 
          auto pdraw2d = psystem->draw2d();
 
-         auto pgraphics = pdraw2d->create_memory_graphics();
+         auto pgraphics = pdraw2d->create_memory_graphics(this);
 
          m_plistbox->query_full_size(pgraphics, m_sizeFull);
 

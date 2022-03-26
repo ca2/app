@@ -812,7 +812,7 @@ namespace write_text
    void font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
 
-      if (is_modified())
+      if (is_modified(::draw2d::e_default_object))
       {
 
          m_bTextMetric = false;

@@ -118,7 +118,7 @@ namespace draw2d
    void object::defer_update(::draw2d::graphics* pgraphics, ::i8 i) const
    {
 
-      if(is_modified() || !m_osdata[i])
+      if(!is_up_to_date(i))
       {
 
          ::draw2d::object* pthis = (::draw2d::object*) this;
@@ -137,11 +137,8 @@ namespace draw2d
          }
 
          pthis->create(pgraphics, i);
-         //{
 
-            pthis->set_updated();
-
-         //}
+         pthis->m_baCalculated[i] = true;
 
       }
 

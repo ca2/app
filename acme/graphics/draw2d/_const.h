@@ -107,6 +107,12 @@ enum enum_color
 namespace draw2d
 {
 
+   enum enum_default_object
+   {
+
+      e_default_object = 0,
+
+   };
 
    enum enum_region
    {

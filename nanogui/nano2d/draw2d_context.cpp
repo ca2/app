@@ -375,8 +375,6 @@ namespace nano2d
 
          m_pstate->m_pfont->m_iFontWeight = 800;
 
-         m_pstate->m_pfont->m_bUpdated2 = true;
-
          m_pstate->m_pfont->set_modified();
 
       }
@@ -386,8 +384,6 @@ namespace nano2d
          m_pstate->m_pfont->m_path = "matter://font/truetype/Roboto-Regular.ttf";
 
          m_pstate->m_pfont->m_iFontWeight = 400;
-
-         m_pstate->m_pfont->m_bUpdated2 = true;
 
          m_pstate->m_pfont->set_modified();
 
@@ -399,8 +395,6 @@ namespace nano2d
 
          m_pstate->m_pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->m_bUpdated2 = true;
-
          m_pstate->m_pfont->set_modified();
 
       }
@@ -410,8 +404,6 @@ namespace nano2d
          m_pstate->m_pfont->m_path = "matter://font/truetype/FontAwesome-Solid.ttf";
 
          m_pstate->m_pfont->m_iFontWeight = 400;
-
-         m_pstate->m_pfont->m_bUpdated2 = true;
 
          m_pstate->m_pfont->set_modified();
 

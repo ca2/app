@@ -92,7 +92,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    ::file::enum_type etype = ::file::e_type_none;
 
-   bool bExists = is_file_or_dir(path, nullptr, &etype);
+   bool bExists = is_file_or_dir(path, &etype);
 
    return bExists && (etype == ::file::e_type_file || etype == ::file::e_type_element);
 

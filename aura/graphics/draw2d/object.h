@@ -13,9 +13,9 @@ namespace draw2d
 
 
       void *         m_pthis;
-      bool           m_bUpdated2;
-      void *         m_powner; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
-      void *         m_osdata[8];
+      void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
+      void *         m_osdata[8] = {};
+      bool           m_baCalculated[8] = {};
       //::e_status     m_estatus;
       //::e_status     m_estatusLast;
 
@@ -33,10 +33,10 @@ namespace draw2d
       inline ::aura::system* get_system();
 
 
-      inline bool is_set() const { return m_osdata[0] != nullptr; }
-      inline bool nok() const { return !is_set(); }
-      inline bool is_up_to_date() const { return is_set() && m_bUpdated2; }
-      inline bool is_modified() const { return !is_up_to_date(); }
+      inline bool is_set(::index iIndex) const { return m_baCalculated[0]; }
+      inline bool nok(::index iIndex) const { return !is_set(iIndex); }
+      inline bool is_up_to_date(::index iIndex) const { return is_set(iIndex); }
+      inline bool is_modified(::index iIndex) const { return !is_up_to_date(iIndex); }
 
 
       virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
@@ -45,11 +45,19 @@ namespace draw2d
       virtual void create(::draw2d::graphics * pgraphics, i8 iCreate);
       void destroy() override;
 
-      inline void set_modified() { m_bUpdated2 = false; }
+      inline void set_modified() 
+      { 
+         m_baCalculated[0] = false;
+         m_baCalculated[1] = false;
+         m_baCalculated[2] = false;
+         m_baCalculated[3] = false;
+         m_baCalculated[4] = false;
+         m_baCalculated[5] = false;
+         m_baCalculated[6] = false;
+         m_baCalculated[7] = false;
+      }
 
-      inline void set_updated() { m_bUpdated2 = true; }
 
-      
       inline void clear_os_data()
       {
 
@@ -61,6 +69,14 @@ namespace draw2d
          m_osdata[5] = nullptr;
          m_osdata[6] = nullptr;
          m_osdata[7] = nullptr;
+         m_baCalculated[0] = false;
+         m_baCalculated[1] = false;
+         m_baCalculated[2] = false;
+         m_baCalculated[3] = false;
+         m_baCalculated[4] = false;
+         m_baCalculated[5] = false;
+         m_baCalculated[6] = false;
+         m_baCalculated[7] = false;
 
       }
 
@@ -69,7 +85,7 @@ namespace draw2d
       inline POINTER get_os_data(::draw2d::graphics* pgraphics, ::i8 i = 0) const
       {
 
-         if (!m_bUpdated2)
+         if (!m_baCalculated[i])
          {
 
             defer_update(pgraphics, i);

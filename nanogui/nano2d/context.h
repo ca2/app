@@ -9,7 +9,7 @@ namespace nano2d
 {
 
 
-	class context :
+	class NANOGUI_EXPORT context :
 		public NANO2D_CONTEXT
 	{
 	public:

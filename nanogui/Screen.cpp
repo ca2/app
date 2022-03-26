@@ -11,7 +11,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
+#include "aura/graphics/image/context_image.h"
 //#include <nanogui/screen.h>
 //#include <nanogui/theme.h>
 //#include <nanogui/opengl.h>
@@ -136,7 +136,7 @@ Screen::Screen(const Vector2i & size, const std::string & caption, bool resizabl
    bool fullscreen, bool depth_buffer, bool stencil_buffer,
    bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
    : Widget(nullptr)/*,  m_glfw_window(nullptr), ctx(nullptr),
-   m_cursor(Cursor::Arrow), m_background(0.3f, 0.3f, 0.32f, 1.f), m_caption(caption),
+   m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f)/*, m_caption(caption),
    m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
    m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false) {
    m_size = size;
@@ -551,26 +551,39 @@ Screen::~Screen() {
 //#endif
 //}
 //
-//void Screen::clear() {
-//#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-//   CHK(glClearColor(m_background[0], m_background[1], m_background[2], m_background[3]));
-//   CHK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
-//#elif defined(NANOGUI_USE_METAL)
-//   mnvgClearWithColor(ctx, m_background);
-//#endif
-//}
-//
-//void Screen::draw_setup() {
-//#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-//   glfwMakeContextCurrent(m_glfw_window);
-//#elif defined(NANOGUI_USE_METAL)
-//   void * nswin = glfwGetCocoaWindow(m_glfw_window);
-//   metal_window_set_size(nswin, m_fbsize);
-//   m_metal_drawable = metal_window_next_drawable(nswin);
-//   m_metal_texture = metal_drawable_texture(m_metal_drawable);
-//   mnvgSetColorTexture(ctx, m_metal_texture);
-//#endif
-//
+
+
+void Screen::clear(NVGcontext * ctx) 
+{
+
+#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
+   CHK(glClearColor(m_background[0], m_background[1], m_background[2], m_background[3]));
+   CHK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+#elif defined(NANOGUI_USE_METAL)
+   nvgClearWithColor(ctx, m_background);
+#endif
+
+
+   nvgBeginPath(ctx);
+   nvgRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y());
+   nvgFillColor(ctx, m_background);
+   nvgFill(ctx);
+
+}
+
+
+
+void Screen::draw_setup(NVGcontext * ctx) {
+#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
+   glfwMakeContextCurrent(m_glfw_window);
+#elif defined(NANOGUI_USE_METAL)
+   void * nswin = glfwGetCocoaWindow(m_glfw_window);
+   metal_window_set_size(nswin, m_fbsize);
+   m_metal_drawable = metal_window_next_drawable(nswin);
+   m_metal_texture = metal_drawable_texture(m_metal_drawable);
+   mnvgSetColorTexture(ctx, m_metal_texture);
+#endif
+
 //#if !defined(EMSCRIPTEN)
 //   glfwGetFramebufferSize(m_glfw_window, &m_fbsize[0], &m_fbsize[1]);
 //   glfwGetWindowSize(m_glfw_window, &m_size[0], &m_size[1]);
@@ -578,56 +591,74 @@ Screen::~Screen() {
 //   emscripten_get_canvas_element_size("#canvas", &m_size[0], &m_size[1]);
 //   m_fbsize = m_size;
 //#endif
-//
-//#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
-//   m_fbsize = m_size;
-//   m_size = Vector2i(Vector2f(m_size) / m_pixel_ratio);
-//#else
-//   /* Recompute pixel ratio on OSX */
-//   if (m_size[0])
-//      m_pixel_ratio = (float)m_fbsize[0] / (float)m_size[0];
-//#if defined(NANOGUI_USE_METAL)
-//   metal_window_set_content_scale(nswin, m_pixel_ratio);
-//#endif
-//#endif
-//
-//#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-//   CHK(glViewport(0, 0, m_fbsize[0], m_fbsize[1]));
-//#endif
-//}
-//
-//void Screen::draw_teardown() {
-//#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-//   glfwSwapBuffers(m_glfw_window);
-//#elif defined(NANOGUI_USE_METAL)
-//   mnvgSetColorTexture(ctx, nullptr);
-//   metal_present_and_release_drawable(m_metal_drawable);
-//   m_metal_texture = nullptr;
-//   m_metal_drawable = nullptr;
-//#endif
-//}
-//
-void Screen::draw_all() {
-////   if (m_redraw) {
-////      m_redraw = false;
-////
-////#if defined(NANOGUI_USE_METAL)
-////      void * pool = autorelease_init();
-////#endif
-////
-////      draw_setup();
-////      draw_contents();
-////      draw_widgets();
-////      draw_teardown();
-////
-////#if defined(NANOGUI_USE_METAL)
-////      autorelease_release(pool);
-////#endif
-////  }
+
+#if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
+   //m_fbsize = m_size;
+   m_size = Vector2i(Vector2f(m_size) / m_pixel_ratio);
+#else
+   /* Recompute pixel ratio on OSX */
+   if (m_size[0])
+      m_pixel_ratio = (float)m_fbsize[0] / (float)m_size[0];
+#if defined(NANOGUI_USE_METAL)
+   metal_window_set_content_scale(nswin, m_pixel_ratio);
+#endif
+#endif
+
+#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
+   CHK(glViewport(0, 0, m_fbsize[0], m_fbsize[1]));
+#endif
 }
 
-void Screen::draw_contents() {
-   //clear();
+
+void Screen::draw_teardown(NVGcontext * ctx) {
+#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
+   glfwSwapBuffers(m_glfw_window);
+#elif defined(NANOGUI_USE_METAL)
+   mnvgSetColorTexture(ctx, nullptr);
+   metal_present_and_release_drawable(m_metal_drawable);
+   m_metal_texture = nullptr;
+   m_metal_drawable = nullptr;
+#endif
+}
+
+::image_pointer Screen::create_image(const ::size_i32 & size)
+{
+
+   return m_puserinteraction->m_psystem->context_image()->create_image(size);
+
+}
+
+//
+void Screen::draw_all(NVGcontext * ctx) 
+{
+
+   //if (!m_redraw)
+   //{
+
+   //   return;
+
+   //}
+
+   //   m_redraw = false;
+
+#if defined(NANOGUI_USE_METAL)
+      void * pool = autorelease_init();
+#endif
+
+      draw_setup(ctx);
+      draw_contents(ctx);
+      draw_widgets(ctx);
+      draw_teardown(ctx);
+
+#if defined(NANOGUI_USE_METAL)
+      autorelease_release(pool);
+#endif
+  //}
+}
+
+void Screen::draw_contents(NVGcontext * ctx) 
+{
+   clear(ctx);
 }
 //
 //void Screen::nvg_flush() {
@@ -640,7 +671,9 @@ void Screen::draw_contents() {
 void Screen::draw(NVGcontext * ctx) {
    Widget::draw(ctx);
 
-   draw_widgets(ctx);
+   draw_all(ctx);
+
+   //draw_widgets(ctx);
 
 }
 void Screen::draw_widgets(NVGcontext * ctx) {
@@ -732,8 +765,12 @@ void Screen::draw_widgets(NVGcontext * ctx) {
 bool Screen::resize_event(const Vector2i & size) {
    if (m_resize_callback)
       m_resize_callback(size);
-   m_redraw = true;
-   draw_all();
+   //m_redraw = true;
+   //draw_all();
+
+   // m_puserinteraction->set_need_layout();
+
+
    return true;
 }
 

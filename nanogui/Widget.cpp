@@ -66,13 +66,15 @@ int Widget::font_size() const {
 ::size_i32 Widget::preferred_size(::draw2d::graphics_pointer & pgraphics)
 {
 
-   ::nano2d::draw2d_context context(pgraphics);
+   ::nano2d::draw2d_context context;
+
+   context.set_graphics(pgraphics);
 
    const Widget * pthisConst = this;
 
    auto v2 = pthisConst->preferred_size(&context);
 
-   return { v2.v[0], v2.v[1]};
+   return { v2.v[0], v2.v[1] };
 
 }
 
@@ -104,7 +106,9 @@ void Widget::set_size(const Vector2i & size)
 void Widget::perform_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   ::nano2d::draw2d_context context(pgraphics);
+   ::nano2d::draw2d_context context;
+
+   context.set_graphics(pgraphics);
 
    //auto size = preferred_size(&context);
 
@@ -126,7 +130,9 @@ void Widget::perform_layout(::draw2d::graphics_pointer & pgraphics)
 void Widget::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   ::nano2d::draw2d_context context(pgraphics);
+   ::nano2d::draw2d_context context;
+
+   context.set_graphics(pgraphics);
 
    pgraphics->OffsetViewportOrg(-m_pos.x(), -m_pos.y());
 

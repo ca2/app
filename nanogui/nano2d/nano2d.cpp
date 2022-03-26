@@ -40,7 +40,7 @@
 	if (pdraw2dcontext)
 	{
 
-		return pdraw2dcontext->m_pgraphics.m_p;
+		return pdraw2dcontext->get_graphics();
 
 	}
 

@@ -8,9 +8,13 @@ namespace nano2d
 {
 
 
-   class draw2d_context :
+   class NANOGUI_EXPORT draw2d_context :
       virtual public ::nano2d::context
    {
+   protected:
+
+      ::draw2d::graphics_pointer       m_pgraphics;
+
    public:
 
 
@@ -58,15 +62,18 @@ namespace nano2d
       };
 
 
-      ::draw2d::graphics_pointer &     m_pgraphics;
       __pointer_array(state)           m_statea;
       __pointer(state)                 m_pstate;
       ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 
 
-      draw2d_context(::draw2d::graphics_pointer & pgraphics);
+      draw2d_context();
       ~draw2d_context() override;
+
+
+      void set_graphics(::draw2d::graphics * pgraphics);
+      ::draw2d::graphics * get_graphics();
 
 
       virtual void _create_new_state();

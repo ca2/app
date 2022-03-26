@@ -8,11 +8,10 @@ namespace nano2d
 {
 
 
-   draw2d_context::draw2d_context(::draw2d::graphics_pointer & pgraphics) :
-      m_pgraphics(pgraphics)
+   draw2d_context::draw2d_context() 
    {
 
-      _create_new_state();
+      //_create_new_state();
 
       m_iPaintImageSeed = 0;
 
@@ -22,6 +21,31 @@ namespace nano2d
    draw2d_context::~draw2d_context()
    {
 
+
+   }
+
+
+   void draw2d_context::set_graphics(::draw2d::graphics * pgraphics)
+   {
+
+      if (m_pgraphics == pgraphics)
+      {
+
+         return;
+
+      }
+
+      m_pgraphics = pgraphics;
+
+      _create_new_state();
+
+   }
+
+
+   ::draw2d::graphics * draw2d_context::get_graphics()
+   {
+
+      return m_pgraphics;
 
    }
 
@@ -299,6 +323,13 @@ namespace nano2d
 
    {
 
+      if (image <= 0)
+      {
+
+         return {};
+
+      }
+
       auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
 
       auto & paintimage = _create_new_paint_image();
@@ -429,6 +460,13 @@ namespace nano2d
 
    void draw2d_context::fill_paint(NANO2D_PAINT paint)
    {
+
+      if (paint.image <= 0 || paint.image >= m_iPaintImageSeed)
+      {
+
+         return;
+
+      }
 
       ASSERT(paint.image >= 0 && paint.image < m_iPaintImageSeed);
 
@@ -807,6 +845,17 @@ namespace nano2d
 
    void draw2d_context::image_size(int image, int * w, int * h)
    {
+
+      if (image <= 0)
+      {
+
+         *w = 0;
+         *h = 0;
+
+         return;
+
+
+      }
       
       auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
 

@@ -1067,6 +1067,9 @@
     <ClInclude Include="user\menu\menu_command.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\host.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1286,9 +1289,6 @@
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\windowing.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\windowing___.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\xrender.cpp">
@@ -1641,6 +1641,9 @@
     </ClCompile>
     <ClCompile Include="user\menu\menu_command.cpp">
       <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\host.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

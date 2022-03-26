@@ -846,6 +846,7 @@
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\color_filter.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
+    <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
@@ -1086,7 +1087,6 @@
     <ClCompile Include="windowing\monitor.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
-    <ClCompile Include="windowing\windowing___.cpp" />
     <ClCompile Include="windowing\xrender.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
@@ -1111,6 +1111,7 @@
     <ClInclude Include="gpu\gpu\_.h" />
     <ClInclude Include="graphics\draw2d\color_filter.h" />
     <ClInclude Include="graphics\draw2d\device_lock.h" />
+    <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\user\close_button.h" />

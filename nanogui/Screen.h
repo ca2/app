@@ -98,12 +98,14 @@ public:
 //   /// Set the window title bar caption
 //   void set_caption(const std::string & caption);
 //
-//   /// Return the screen's background color
-//   const Color & background() const { return m_background; }
-//
-//   /// Set the screen's background color
-//   void set_background(const Color & background) { m_background = background; }
-//
+   /// Return the screen's background color
+   const Color & background() const { return m_background; }
+
+   /// Set the screen's background color
+   void set_background(const Color & background) { m_background = background; }
+
+   ::image_pointer create_image(const ::size_i32 & size);
+
 //   /// Set the top-level window visibility (no effect on full-screen windows)
 //   void set_visible(bool visible);
 //
@@ -125,41 +127,41 @@ public:
 //    *
 //    * \sa redraw
 //    */
-   virtual void draw_all();
-//
-//   /**
-//    * \brief Clear the screen with the background color (glClearColor, glClear, etc.)
-//    *
-//    * You typically won't need to call this function yourself, as it is called by
-//    * the default implementation of \ref draw_contents() (which is called by \ref draw_all())
-//    */
-//   virtual void clear();
-//
-//   /**
-//    * \brief Prepare the graphics pipeline for the next frame
-//    *
-//    * This involves steps such as obtaining a drawable, querying the drawable
-//    * resolution, setting the viewport used for drawing, etc..
-//    *
-//    * You typically won't need to call this function yourself, as it is called
-//    * by \ref draw_all(), which is executed by the run loop.
-//    */
-//   virtual void draw_setup();
-//
-//   /// Calls clear() and draws the window contents --- put your rendering code here.
-   virtual void draw_contents();
-//
-//   /**
-//    * \brief Wrap up drawing of the current frame
-//    *
-//    * This involves steps such as releasing the current drawable, swapping
-//    * the framebuffer, etc.
-//    *
-//    * You typically won't need to call this function yourself, as it is called
-//    * by \ref draw_all(), which is executed by the run loop.
-//    */
-//   virtual void draw_teardown();
-//
+   virtual void draw_all(NVGcontext * ctx);
+
+   /**
+    * \brief Clear the screen with the background color (glClearColor, glClear, etc.)
+    *
+    * You typically won't need to call this function yourself, as it is called by
+    * the default implementation of \ref draw_contents() (which is called by \ref draw_all())
+    */
+   virtual void clear(NVGcontext * ctx);
+
+   /**
+    * \brief Prepare the graphics pipeline for the next frame
+    *
+    * This involves steps such as obtaining a drawable, querying the drawable
+    * resolution, setting the viewport used for drawing, etc..
+    *
+    * You typically won't need to call this function yourself, as it is called
+    * by \ref draw_all(), which is executed by the run loop.
+    */
+   virtual void draw_setup(NVGcontext * ctx);
+
+   /// Calls clear() and draws the window contents --- put your rendering code here.
+   virtual void draw_contents(NVGcontext * ctx);
+
+   /**
+    * \brief Wrap up drawing of the current frame
+    *
+    * This involves steps such as releasing the current drawable, swapping
+    * the framebuffer, etc.
+    *
+    * You typically won't need to call this function yourself, as it is called
+    * by \ref draw_all(), which is executed by the run loop.
+    */
+   virtual void draw_teardown(NVGcontext * ctx);
+
    /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
    float pixel_ratio() const { return m_pixel_ratio; }
 //
@@ -286,7 +288,7 @@ public:
    Widget * m_drag_widget = nullptr;
    ::duration m_last_interaction;
 //   bool m_process_events = true;
-//   Color m_background;
+   Color m_background;
 //   std::string m_caption;
 //   bool m_shutdown_glfw_on_destruct;
    bool m_fullscreen;

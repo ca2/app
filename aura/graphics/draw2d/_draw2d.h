@@ -52,11 +52,8 @@ namespace draw2d
 
 
 #include "object.h"
-#include "keep.h"
 #include "pen.h"
 #include "bitmap.h"
-
-
 
 
 
@@ -95,6 +92,9 @@ namespace direct2d
 
 
 #include "aura/graphics/write_text/drawer.h"
+
+
+#include "host.h"
 
 
 #include "aura/platform/draw_context2.h"

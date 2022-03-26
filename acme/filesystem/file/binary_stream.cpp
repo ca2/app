@@ -1156,26 +1156,20 @@ filesize binary_stream::get_position() const
 }
 
 
-
-
-int binary_stream::get()
+::byte binary_stream::get_byte()
 {
 
-   return m_p->get();
+   return m_p->get_byte();
 
 }
 
 
-
-
-int binary_stream::peek()
+::byte binary_stream::peek_byte()
 {
 
-   return m_p->peek();
+   return m_p->peek_byte();
 
 }
-
-
 
 
 void binary_stream::getline(char * sz, strsize n)

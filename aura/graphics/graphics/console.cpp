@@ -185,7 +185,7 @@ namespace graphics
 
       m_pimage = m_pcontext->context_image()->create_image(sizeImage);
 
-      m_pimage->g()->m_puserinteraction = m_puserinteraction;
+      m_pimage->g()->m_phost = m_puserinteraction;
 
       __construct(m_pimage->g()->m_pfont);
 

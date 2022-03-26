@@ -180,6 +180,8 @@ inline __pointer(___shape) __create_shape(const enum_shape& eshape)
       return __new(begin_figure_shape);
    case e_shape_close_figure:
       return __new(close_figure_shape);
+   case e_shape_end_figure:
+      return __new(end_figure_shape);
    default:
       throw ::exception(error_not_implemented, "new geometry processor or not a geometry processor?");
       return nullptr;

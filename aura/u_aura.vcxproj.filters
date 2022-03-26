@@ -459,12 +459,6 @@
     <ClInclude Include="graphics\draw2d\graphics_extension.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\keep.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\matrix.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -1003,6 +997,9 @@
     <ClInclude Include="user\appearance\_.h">
       <Filter>Header Files\user\appearance</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\host.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1511,6 +1508,9 @@
     </ClCompile>
     <ClCompile Include="user\menu\menu_command.cpp">
       <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\host.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

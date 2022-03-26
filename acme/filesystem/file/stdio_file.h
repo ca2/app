@@ -56,9 +56,9 @@ public:
 
    memsize read(void *pdata,memsize nCount) override;
 
-   int get_character() override;
-   int peek_character() override;
-   int put_character_back(int iChar) override;
+   byte get_byte() override;
+   byte peek_byte() override;
+   void put_byte_back(::byte b) override;
 
    using ::file::file::write;
    void write(const void * pdata,memsize nCount) override;

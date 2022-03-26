@@ -781,7 +781,7 @@ namespace linux
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_CORE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_CORE windows_full_path(wstring & wstrFullPath, const wstring & wstrPath)
 // pszPathOut = buffer of _MAX_PATH
 
 // pszFileIn = file, relative path or absolute path

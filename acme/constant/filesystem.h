@@ -23,15 +23,14 @@ enum enum_path
 };
 
 
-
-
-
-
 namespace file
 {
 
+
    enum enum_open
    {
+
+
       e_open_read = (i32)0x000001,
       e_open_write = (i32)0x000002,
       e_open_read_write = (i32)0x000003,
@@ -53,17 +52,17 @@ namespace file
       e_open_no_cache = (i32)0x100000,
       e_open_no_share_violation_wait = (i32)0x200000,
       e_open_no_exception_on_open = (i32)0x10000000,
-      //binary = type_binary,
-      //out = mode_write,
-      //in = mode_read,
-      //trunc = mode_truncate
+
+
    };
 
 
    enum enum_state
    {
 
-      e_state_read_line_truncated = 1,
+      e_state_none = 0,
+      e_state_end_of_file = 1,
+      e_state_read_line_truncated = 2,
 
    };
 

@@ -191,7 +191,7 @@ namespace universal_windows
       wstring wstrnative_bufferName;
       wstrnative_bufferName = ::str::international::utf8_to_unicode(pszfileName);
 
-      if (!vfxFullPath(wstrFullName, wstrnative_bufferName))
+      if (!windows_full_path(wstrFullName, wstrnative_bufferName))
       {
          rStatus.m_strFullName.Empty();
          return false;

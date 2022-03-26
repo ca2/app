@@ -54,6 +54,9 @@ CLASS_DECL_ACME int_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
 #endif
 
 
+wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath);
+
+
 #include "api.h"
 
 

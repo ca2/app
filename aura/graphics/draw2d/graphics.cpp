@@ -47,7 +47,6 @@ namespace draw2d
 
       defer_create_mutex();
 
-      m_puserinteraction         = nullptr;
       m_bPat                     = false;
       m_bStoreThumbnails         = true;
       m_pdrawcontext             = nullptr;
@@ -218,28 +217,28 @@ namespace draw2d
 #endif
 
 
-   oswindow graphics::get_window_handle() const
-   {
+   //oswindow graphics::get_window_handle() const
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      oswindow oswindow = m_puserinteraction->get_safe_oswindow();
+   //   oswindow oswindow = m_puserinteraction->get_safe_oswindow();
 
-      if (!oswindow)
-      {
+   //   if (!oswindow)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return oswindow;
+   //   return oswindow;
 
-   }
+   //}
 
 
    //::size_f64 graphics::size_i32(const ::size_f64 & sizeHint) const

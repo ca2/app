@@ -245,53 +245,17 @@ namespace file
    }
 
 
-   int file::get()
-   {
-
-      unsigned char uch;
-
-      if (read(&uch, 1) == 1)
-      {
-
-         return uch;
-
-      }
-
-      return EOF;
-
-   }
-
-
-   int file::peek()
-   {
-
-      unsigned char uch;
-
-      if (read(&uch, 1) == 1)
-      {
-
-         --position();
-
-         return uch;
-
-      }
-
-      return EOF;
-
-   }
-
-
    ::file::file & file::getline(char* sz, strsize n)
    {
 
-      int c;
+      char c;
 
       while (n > 0)
       {
 
-         c = get();
+         c = (char) get_byte();
 
-         if (c == EOF)
+         if (is_end_of_file())
          {
 
             break;
@@ -300,9 +264,9 @@ namespace file
          else if (c == '\n')
          {
 
-            c = get();
+            c = (char) get_byte();
 
-            if (c != '\r' && c != EOF)
+            if (c != '\r' && !is_end_of_file())
             {
 
                --position();
@@ -315,9 +279,9 @@ namespace file
          else if (c == '\r')
          {
 
-            c = get();
+            c = get_byte();
 
-            if (c != '\n' && c != EOF)
+            if (c != '\n' && !is_end_of_file())
             {
 
                --position();
@@ -495,11 +459,21 @@ namespace file
    }
 
 
-   bool file::read(char * pch)
+   bool file::read(char * pchar)
    {
 
-      if(read(pch, 1) != 1)
+      return read((byte *)pchar);
+      
+   }
+
+
+   bool file::read(byte * pbyte)
+   {
+
+      if(!read(pbyte, 1))
       {
+
+         set_end_of_file();
 
          return false;
 
@@ -510,43 +484,21 @@ namespace file
    }
 
 
-   bool file::read(uchar * puch)
+   bool file::peek(char * pchar)
    {
 
-      if(read(puch, 1) != 1)
-      {
-
-         return false;
-
-      }
-
-      return true;
-      
-   }
-
-
-   bool file::peek(char * pch)
-   {
-
-      if(read(pch, 1) != 1)
-      {
-
-         return false;
-
-      }
-
-      --position();
-
-      return true;
+      return peek((::byte *)pchar);
 
    }
 
 
-   bool file::peek(uchar * puch)
+   bool file::peek(byte * pbyte)
    {
    
-      if(read(puch, 1) != 1)
+      if(!read(pbyte, 1))
       {
+
+         set_end_of_file();
 
          return false;
 
@@ -559,46 +511,34 @@ namespace file
    }
 
 
-   int file::peek_character()
+   ::byte file::peek_byte()
    {
 
-      char ch;
+      ::byte b = 0;
 
-      if (!peek(&ch))
-      {
+      peek(&b);
 
-         return -1;
-
-      }
-
-      return ch;
+      return b;
 
    }
 
 
-   int file::get_character()
+   ::byte file::get_byte()
    {
 
-      char ch;
+      byte byte = 0;
 
-      if (read(&ch, 1) <= 0)
-      {
+      read(&byte);
 
-         return -1;
-
-      }
-
-      return ch;
+      return byte;
 
    }
 
 
-   int file::put_character_back(int iCharacter)
+   void file::put_byte_back(::byte byte)
    {
 
-      throw ::interface_only();
-
-      return -1;
+      throw ::exception(::error_unsupported_function, "Please use buffered_file for buffered operations.");
 
    }
 
@@ -629,14 +569,14 @@ namespace file
 
       auto position = get_position();
 
-      int i;
+      byte b;
 
       while (true)
       {
 
-         i = get_character();
+         b = get_byte();
 
-         if (i == EOF)
+         if (is_end_of_file())
          {
 
             if (get_position() > position)
@@ -654,33 +594,31 @@ namespace file
 
          }
 
-         if ((char)i == '\r')
+         if (b == '\r')
          {
 
-            i = get_character();
+            b = get_byte();
 
-            if ((char)i != '\n')
+            if (b != '\n' && !is_end_of_file())
             {
 
-               put_character_back(i);
+               put_byte_back(b);
 
-               i = '\r';
+               b = '\r';
 
             }
 
             return true;
 
          }
-         else if ((char)i == '\n')
+         else if (b == '\n')
          {
 
             return true;
 
          }
 
-         char ch = i;
-
-         memory.append(&ch, 1);
+         memory.append(&b, 1);
 
       }
 

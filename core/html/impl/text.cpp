@@ -150,9 +150,13 @@ namespace html
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
          if (pgraphics == nullptr)
+         {
+
             return;
 
-         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
+         }
+
+         pgraphics->m_phost = pdata->m_pcoredata->m_puserinteraction;
 
          font * pfont = pdata->get_font(m_pelemental);
 

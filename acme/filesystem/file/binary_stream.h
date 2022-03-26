@@ -17,7 +17,12 @@ public:
    binary_stream(const ::file_pointer & p);
    binary_stream(const binary_stream & base);
    binary_stream(binary_stream & base);
-   virtual ~binary_stream();
+   ~binary_stream() override;
+
+
+
+   inline bool is_end_of_file() const { return m_p->is_end_of_file(); }
+
 
    inline ::payload & options();
 
@@ -302,8 +307,8 @@ public:
    virtual void save_var_type(::enum_type etype) override;
 
    virtual void getline(char * sz, strsize n) override;
-   int get();
-   int peek();
+   ::byte get_byte();
+   ::byte peek_byte();
 
    virtual filesize get_position();
    //virtual filesize seek_from_begin(filesize position);

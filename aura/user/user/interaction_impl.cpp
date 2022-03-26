@@ -4030,7 +4030,7 @@ namespace user
 
          pgraphics->on_begin_draw();
 
-         pgraphics->m_puserinteraction = m_puserinteraction;
+         pgraphics->m_phost = m_puserinteraction;
 
          pgraphics->m_puserstyle.release();
 

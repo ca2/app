@@ -382,6 +382,14 @@ namespace user
 
 
       //virtual interaction_draw2d * get_draw2d();
+      double point_dpi(double d) override;
+      double dpiy(double d) override;
+
+         //}
+         //else
+         //{
+
+         //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
       virtual ::windowing::window * window() const;

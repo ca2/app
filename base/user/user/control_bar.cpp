@@ -820,7 +820,7 @@ namespace user
 
          auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-         pgraphics->m_puserinteraction = this;
+         //pgraphics->m_puserinteraction = this;
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 

@@ -800,6 +800,18 @@ namespace draw2d
    }
 
 
+   bool path::end_figure()
+   {
+
+      m_shapea.add_shape(e_shape_end_figure);
+
+      set_modified();
+
+      return true;
+
+   }
+
+
    bool path::add_text_out(const ::point_f64 & point, const ::string & strText,::write_text::font_pointer pfont)
    {
 

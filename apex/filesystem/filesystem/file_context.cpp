@@ -184,18 +184,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   auto preader = get_reader(path, ::file::e_open_no_exception_on_open);
-
-   if (::is_ok(preader))
-   {
-
-      *petype = ::file::e_type_file;
-
-      return true;
-
-   }
-
-   return m_psystem->m_pacmepath->is_file_or_dir(path, petype) != false;
+   return false;
 
 }
 
@@ -3072,18 +3061,31 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 }
 
 
-file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
+file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopen)
 {
 
-   //try
-   //{
+   ::file_pointer pfile;
 
-      ::file_pointer pfile;
+   if (payloadFile.get_type() == ::e_type_element)
+   {
 
-      if (payloadFile.get_type() == ::e_type_element)
+      pfile = payloadFile.cast<::file::file>();
+
+      if (pfile.is_set())
       {
 
-         pfile = payloadFile.cast<::file::file>();
+         return pfile;
+
+      }
+
+   }
+   else if (payloadFile.get_type() == ::e_type_property_set)
+   {
+
+      if (payloadFile.has_property("file"))
+      {
+
+         pfile = payloadFile.propset()["file"].cast<::file::file>();
 
          if (pfile.is_set())
          {
@@ -3093,236 +3095,124 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
          }
 
       }
-      else if (payloadFile.get_type() == ::e_type_property_set)
+
+   }
+
+   ::file::path path = payloadFile.get_file_path();
+
+   if (path.begins_ci("data:"))
+   {
+
+      return data_get_file(path);
+
+   }
+
+   if (path.contains("yesno.xhtml"))
+   {
+
+      output_debug_string("test");
+
+   }
+
+   if (!(path & ::file::e_flag_required) &&
+         payloadFile.is_property_true("required"))
+   {
+
+      path |= ::file::e_flag_required;
+
+   }
+
+   if (!(path & ::file::e_flag_bypass_cache)
+         && ((eopen & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
+   {
+
+      path |= ::file::e_flag_bypass_cache;
+
+   }
+
+   path = m_pcontext->m_papexcontext->defer_process_path(path);
+
+   if (path.is_empty())
+   {
+
+      //INFORMATION("::file::file_context::get_file file with empty name!!");
+
+      if(eopen & ::file::e_open_no_exception_on_open)
       {
 
-         if (payloadFile.has_property("file"))
-         {
+         __construct_new(pfile);
 
-            pfile = payloadFile.propset()["file"].cast<::file::file>();
+         pfile->m_estatus = error_file_not_found;
 
-            if (pfile.is_set())
-            {
-
-               return pfile;
-
-            }
-
-         }
-
-      }
-
-      ::file::path path = payloadFile.get_file_path();
-
-      if (path.begins_ci("data:"))
-      {
-
-         return data_get_file(path);
-
-      }
-
-      if (path.contains("yesno.xhtml"))
-      {
-
-         output_debug_string("test");
-
-      }
-
-      if (!(path & ::file::e_flag_required) &&
-          payloadFile.is_property_true("required"))
-      {
-
-         path |= ::file::e_flag_required;
-
-      }
-
-      if (!(path & ::file::e_flag_bypass_cache)
-          && ((eopenFlags & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
-      {
-
-         path |= ::file::e_flag_bypass_cache;
-
-      }
-
-      path = m_pcontext->m_papexcontext->defer_process_path(path);
-
-      if (path.is_empty())
-      {
-
-         //INFORMATION("::file::file_context::get_file file with empty name!!");
-
-         if(eopenFlags & ::file::e_open_no_exception_on_open)
-         {
-
-            __construct_new(pfile);
-
-            pfile->m_estatus = error_file_not_found;
-
-            return pfile;
-
-         }
-         else
-         {
-
-            throw io_exception(::error_file_not_found);
-
-         }
-
-      }
-      else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
-      {
-
-         //auto pfile = get_reader(path);
-
-         //return zip_get_file(pfile.m_p, eopenFlags);
-
-         throw todo;
-
-         return nullptr;
-
-      }
-      else if (::str::begins_eat(path, "file:///") || ::str::begins_eat(path, "file:\\\\\\"))
-      {
-
-         return get_file(path, eopenFlags);
-
-      }
-      else if (::str::begins_eat(path, "resource://") || ::str::begins_eat(path, "resource:\\\\"))
-      {
-
-         return resource_get_file(path);
-
-      }
-      else if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
-      {
-
-         return http_get_file(payloadFile, eopenFlags);
-
-      }
-      else if (::str::begins_eat(path, "zipresource://"))
-      {
-
-         return create_resource_file(path);
+         return pfile;
 
       }
       else
       {
-         //else if (::str::begins_eat_ci(path, "matter://"))
-         //{
 
-         //   __pointer(::application) pappLookup;
-
-         //   string strApp = purl->get_server("matter://" + strPath);
-
-         //   if (strApp == papp->m_strAppName)
-         //   {
-
-         //      strPath = purl->get_object("matter://" + strPath).Mid(1);
-
-         //      pfile = App(papp).alloc(__type(::file::binary_file));
-
-         //      ::extended::status = pfile->open(App(papp).dir().matter(strPath), nOpenFlags);
-
-         //   }
-         //   else if (&get_session() != nullptr && psession->appptra().lookup(strApp, pappLookup))
-         //   {
-
-         //      pfile = App(pappLookup).file().get_file("matter://" + strPath, nOpenFlags, &::extended::status);
-
-         //   }
-         //   else
-         //   {
-
-         //      strPath = App(papp).dir().matter(strPath);
-
-         //      strPath = Sys(papp).get_matter_cache_path(strPath);
-
-         //      pfile = get_file(strPath, nOpenFlags, &::extended::status);
-
-         //   }
-
-         //}
-         //else
-         //{
-
-         //   //  return nullptr;
-
-
-
-
-         //   /*            if((nOpenFlags & ::file::e_open_create) == 0 && !exists(strPath))
-         //   {
-         //   TRACE("::application::file does not exist!! : \"%s\"",strPath);
-         //   return pfile;
-         //   }
-         //   */
-
-         //if (nOpenFlags & ::file::e_open_text)
-         //{
-
-         //   pfile = __new(::file::stdio_file(pobject));
-
-         //}
-         //else
-
-         if (eopenFlags & ::file::e_open_text)
-         {
-
-            //pfile = __create_new<::stdio_file>();
-
-         }
-
-         auto eopen = eopenFlags;
-
-         if (!pfile)
-         {
-
-            if (eopen & ::file::e_open_text)
-            {
-
-               eopen -= ::file::e_open_text;
-
-            }
-
-            if (!(eopen & ::file::e_open_binary))
-            {
-
-               eopen += ::file::e_open_binary;
-
-            }
-
-            __construct(pfile);
-
-         }
-
-         //auto result = pfile->open(path, eopen);
-
-         pfile->open(path, eopen);
-
-         //if (result)
-         //{
-
-         //   return pfile;
-
-         //}
-         //else
-         //{
-
-         //   return result;
-
-         //}
+         throw io_exception(::error_file_not_found);
 
       }
 
-      return pfile;
+   }
+   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   {
 
-   //}
-   //catch (...)
-   //{
+      //auto pfile = get_reader(path);
 
-   //}
+      //return zip_get_file(pfile.m_p, eopenFlags);
 
-   //return ::error_io;
+      throw todo;
+
+      return nullptr;
+
+   }
+   else if (::str::begins_eat(path, "file:///") || ::str::begins_eat(path, "file:\\\\\\"))
+   {
+
+      return get_file(path, eopen);
+
+   }
+   else if (::str::begins_eat(path, "resource://") || ::str::begins_eat(path, "resource:\\\\"))
+   {
+
+      return resource_get_file(path);
+
+   }
+   else if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
+   {
+
+      return http_get_file(payloadFile, eopen);
+
+   }
+   else if (::str::begins_eat(path, "zipresource://"))
+   {
+
+      return create_resource_file(path);
+
+   }
+   else
+   {
+
+      return create_native_file(path, eopen);
+
+   }
+
+   return pfile;
+
+}
+
+
+::file_pointer file_context::create_native_file(const ::file::path & path, const ::file::e_open & eopen)
+{
+
+   ::file_pointer pfile;
+
+   __construct(pfile);
+
+   pfile->open(path, eopen);
+
+   return pfile;
 
 }
 

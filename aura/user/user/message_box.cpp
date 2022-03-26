@@ -366,7 +366,7 @@ namespace user
 
       pgraphics->create_memory_graphics();
 
-      pgraphics->m_puserinteraction = this;
+      pgraphics->m_phost = this;
 
       m_pinteractionScaler = __new(::user::interaction_scaler);
 

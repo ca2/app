@@ -143,21 +143,19 @@ void memory_file::write(const void * pdata, memsize nCount)
 }
 
 
-int memory_file::put_character_back(int iCharacter)
+void memory_file::put_byte_back(::byte byte)
 {
 
-   if(m_position <= 0)
+   if(m_position <= 0 || m_position >= get_size())
    {
 
-      return -1;
+      throw ::exception(error_wrong_state);
 
    }
 
    m_position--;
 
-   m_pmemory.m_p->m_memory.m_pdata[m_position] = (byte) iCharacter;
-
-   return iCharacter;
+   m_pmemory.m_p->m_memory.m_pdata[m_position] = byte;
 
 }
 

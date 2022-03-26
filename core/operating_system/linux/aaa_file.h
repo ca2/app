@@ -127,7 +127,7 @@ namespace linux
 
 
 
-bool CLASS_DECL_CORE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+bool CLASS_DECL_CORE windows_full_path(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 

@@ -317,6 +317,30 @@ namespace user
    //}
 
 
+   double interaction::point_dpi(double d)
+   {
+
+      auto pwindow = get_window();
+
+      double dTransformed = pwindow->point_dpi((float)d);
+
+      return dTransformed;
+
+   }
+
+
+   double interaction::dpiy(double d)
+   {
+
+      auto pwindow = get_window();
+
+      double dTransformed = pwindow->dpiy((float)d);
+
+      return dTransformed;
+
+   }
+
+
    ::windowing::window *interaction::window() const
    {
 
@@ -3000,7 +3024,7 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->m_puserinteraction = this;
+      pgraphics->m_phost = this;
 
       if (pgraphics == nullptr)
       {
@@ -8439,8 +8463,6 @@ void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
       auto pdraw2d = psystem->draw2d();
 
       pgraphics = pdraw2d->create_memory_graphics(this);
-
-      pgraphics->m_puserinteraction = this;
 
    }
 

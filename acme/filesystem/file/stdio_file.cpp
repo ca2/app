@@ -279,35 +279,53 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 }
 
 
-int stdio_file::get_character()
+byte stdio_file::get_byte()
 {
 
    int iChar = fgetc(m_pfile);
 
-   return iChar;
+   if (iChar == EOF)
+   {
+
+      set_end_of_file();
+
+      return 0;
+
+   }
+
+   return (::byte) iChar;
 
 }
 
 
 
-int stdio_file::peek_character()
+::byte stdio_file::peek_byte()
 {
 
    int iChar = fgetc(m_pfile);
+
+   if (iChar == EOF)
+   {
+
+      set_end_of_file();
+
+      return 0;
+
+   }
 
    ::ungetc(iChar, m_pfile);
 
-   return iChar;
+   return (::byte) iChar;
 
 }
 
 
-int stdio_file::put_character_back(int iChar)
+void stdio_file::put_byte_back(::byte byte)
 {
 
-   int iCharRet = ::ungetc(iChar, m_pfile);
+   ::ungetc(byte, m_pfile);
 
-   return iCharRet;
+   //UNUSED_RETURN_VALUEreturn iCharRet;
 
 }
 

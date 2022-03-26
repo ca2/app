@@ -47,6 +47,7 @@ namespace draw2d
 
       virtual bool begin_figure();
       virtual bool close_figure();
+      virtual bool end_figure();
 
 
       virtual bool add_arc_label(const ::rectangle_f64 & rectangle);

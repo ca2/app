@@ -38,6 +38,7 @@ namespace draw2d
 
    class graphics;
    class palette;
+   class host;
 
    //template < typename GRAPHICS_SOURCE_POINTER >
    //concept graphics_source_pointer = requires(const ::image_drawing & imagedrawing, const ::size_f64 & sizeHint)
@@ -64,7 +65,8 @@ namespace draw2d
       bool                                   m_bBeginDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
-      ::user::interaction *                  m_puserinteraction;
+      //::user::interaction *                  m_puserinteraction;
+      __pointer(::draw2d::host)              m_phost;
 
       bool                                   m_bPat;
 
@@ -165,7 +167,7 @@ namespace draw2d
 
       virtual ::file::path get_font_path(const ::string & strName, int iWeight, bool bItalic);
 
-      virtual oswindow get_window_handle() const;
+      //virtual oswindow get_window_handle() const;
       
       
       

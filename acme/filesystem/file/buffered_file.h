@@ -39,7 +39,7 @@ namespace file
       using ::file::file::write;
       void write(const void * pdata, memsize nCount) override;
 
-      int put_character_back(int iCharacterPutBack) override;
+      void put_byte_back(::byte byte) override;
 
       void flush() override;
       bool buffer(memsize uiGrow = 0);

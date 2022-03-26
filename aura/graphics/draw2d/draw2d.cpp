@@ -2,7 +2,7 @@
 #include "lock.h"
 #include "aura/graphics/image/save_image.h"
 #include "graphics.h"
-//#include "image.h"
+#include "host.h"
 #include "brush.h"
 #include "draw2d.h"
 #include "task_tool.h"
@@ -305,22 +305,22 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_graphics(::user::interaction * puserinteraction)
+   ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
       auto pgraphics = __create< ::draw2d::graphics>();
 
-      pgraphics->m_puserinteraction = puserinteraction;
+      pgraphics->m_phost = pdraw2dhost;
 
       return ::move(pgraphics);
 
    }
 
 
-   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::user::interaction * puserinteraction)
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics(::draw2d::host * pdraw2dhost)
    {
 
-      auto pgraphics = create_graphics(puserinteraction);
+      auto pgraphics = create_graphics(pdraw2dhost);
 
       pgraphics->create_memory_graphics();
 

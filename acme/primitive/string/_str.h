@@ -376,6 +376,30 @@ namespace str
    }
 
 
+   inline void make_upper(wd16char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = upper_char(*psz);
+         psz++;
+      }
+
+   }
+
+   inline void make_upper(wd32char * psz)
+   {
+
+      while (*psz)
+      {
+         *psz = upper_char(*psz);
+         psz++;
+      }
+
+   }
+
+
+
    CLASS_DECL_ACME bool utf8_check_is_valid(const string& string);
 
    CLASS_DECL_ACME string q_valid(string str);

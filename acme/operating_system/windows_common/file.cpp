@@ -339,19 +339,246 @@ void erase_directory(const char* path)
 
 
 
-// int_handle::~int_handle()
-// {
+void CLASS_DECL_ACME windows_get_root(wstring & wstrRoot, const wstring & wstrPath)
+{
+   //   ASSERT(pszPath != nullptr);
 
-//    if (m_i >= 0)
-//    {
+   // determine the root name of the volume
+   wstrRoot = wstrPath;
 
-//       ::_close(m_i);
+   unichar * pszRoot = wstrRoot.get_string_buffer((wstrPath.get_length() + MAX_PATH) * 2);
 
-//       m_i = -1;
+   unichar * psz;
 
-//    }
+   for (psz = pszRoot; *psz != L'\0'; psz = _wcsinc(psz))
 
-// }
+   {
+      // find first double slash and stop
+      if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
+
+         break;
+   }
+   if (*psz != '\0')
+
+   {
+      // it is a UNC name, find second slash past '\\'
+      ASSERT(IsDirSep(psz[0]));
+
+      ASSERT(IsDirSep(psz[1]));
+
+      psz += 2;
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+
+         psz = _wcsinc(psz);
+
+      if (*psz != '\0')
+
+         psz = _wcsinc(psz);
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+
+         psz = _wcsinc(psz);
+
+      // terminate it just after the UNC root (ie. '\\server\share\')
+      if (*psz != '\0')
+
+         psz[1] = '\0';
+
+   }
+   else
+   {
+      // not a UNC, look for just the first slash
+      psz = pszRoot;
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+
+         psz = _wcsinc(psz);
+
+      // terminate it just after root (ie. 'x:\')
+      if (*psz != '\0')
+
+         psz[1] = '\0';
+
+   }
+   
+   wstrRoot.release_string_buffer();
+
+}
+
+
+wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath)
+{
+
+   wstring wstrRoot;
+
+   auto iLength = wstrPath.get_length();
+
+   unichar * pszRoot = wstrRoot.get_string_buffer(iLength);
+
+   wcsncpy(pszRoot, wstrPath.c_str(), iLength + 1);
+
+   unichar * psz = pszRoot;
+
+   for (; *psz != '\0'; psz = _wcsinc(psz))
+   {
+
+      // find first double slash and stop
+      if (IsDirSep(psz[0]) && IsDirSep(psz[1]))
+      {
+
+         break;
+
+      }
+
+   }
+
+   if (*psz != '\0')
+   {
+
+      // it is a UNC name, find second slash past '\\'
+      ASSERT(IsDirSep(psz[0]));
+
+      ASSERT(IsDirSep(psz[1]));
+
+      psz += 2;
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+      {
+
+         psz = _wcsinc(psz);
+
+      }
+
+      if (*psz != '\0')
+      {
+
+         psz = _wcsinc(psz);
+
+      }
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+      {
+
+         psz = _wcsinc(psz);
+
+      }
+
+      // terminate it just after the UNC root (ie. '\\server\share\')
+      if (*psz != '\0')
+      {
+
+         psz[1] = '\0';
+
+      }
+
+   }
+   else
+   {
+
+      // not a UNC, look for just the first slash
+      psz = pszRoot;
+
+      while (*psz != '\0' && (!IsDirSep(*psz)))
+      {
+
+         psz = _wcsinc(psz);
+
+      }
+
+      // terminate it just after root (ie. 'x:\')
+      if (*psz != '\0')
+      {
+
+         psz[1] = '\0';
+
+      }
+
+   }
+
+   return ::move(wstrRoot);
+
+}
+
+
+CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
+{
+
+   LARGE_INTEGER largeinteger{};
+
+   if (!::GetFileSizeEx(h, &largeinteger))
+   {
+
+      return false;
+
+   }
+
+   auto size = largeinteger.QuadPart;
+
+   if (size != iSize)
+   {
+
+      largeinteger.QuadPart = iSize;
+
+      if (!::SetFilePointerEx(h, largeinteger, nullptr, SEEK_SET))
+      {
+
+         return false;
+
+      }
+
+      if (!::SetEndOfFile(h))
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, u64 iSize)
+//{
+//
+//   DWORD dwHi;
+//
+//   DWORD dwLo = GetFileSize(h, &dwHi);
+//
+//   if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
+//   {
+//
+//      LONG l = (iSize >> 32) & 0xffffffff;
+//
+//      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (DWORD)(iSize & 0xffffffff))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (l != ((iSize >> 32) & 0xffffffff))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!SetEndOfFile(h))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   return 1;
+//
+//}
 
 
 

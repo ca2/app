@@ -98,8 +98,7 @@
     <ClInclude Include="graphics\draw2d\graphics.h" />
     <ClInclude Include="graphics\draw2d\graphics_call.h" />
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
-    <ClInclude Include="graphics\draw2d\igui.h" />
-    <ClInclude Include="graphics\draw2d\keep.h" />
+    <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\matrix.h" />
     <ClInclude Include="graphics\draw2d\object.h" />
@@ -412,6 +411,7 @@
     <ClCompile Include="graphics\draw2d\debug.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
+    <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>

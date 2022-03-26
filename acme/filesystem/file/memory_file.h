@@ -17,7 +17,7 @@ class CLASS_DECL_ACME memory_file :
 protected:
 
 
-   memsize      m_position;
+   memsize        m_position;
 
 
 public:
@@ -66,7 +66,7 @@ public:
    using ::file::file::write;
    virtual void write(const void * pdata, memsize nCount) override;
 
-   int put_character_back(int iCharacter) override;
+   void put_byte_back(::byte byte) override;
 
    virtual void write_from_hex(const void * pdata,memsize nCount) override;
 

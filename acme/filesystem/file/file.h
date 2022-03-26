@@ -43,6 +43,10 @@ namespace file
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
+
+      inline bool is_end_of_file() const { return m_estate & ::file::e_state_end_of_file; }
+      inline void set_end_of_file() { m_estate |= ::file::e_state_end_of_file; }
+
       virtual bool is_in_memory_file() const;
       virtual void* get_internal_data();
       virtual const void* get_internal_data() const;
@@ -100,18 +104,18 @@ namespace file
       virtual file & put(char ch);
 
       virtual file & getline(char* sz, strsize n);
-      virtual int get();
-      virtual int peek();
+      //virtual int get();
+      //virtual int peek();
       virtual bool read(char * pch);
-      virtual bool read(uchar * puch);
+      virtual bool read(byte * puch);
       virtual bool peek(char * pch);
-      virtual bool peek(uchar * puch);
+      virtual bool peek(byte * puch);
       //virtual int sgetc();
       //virtual int sbumpc();
 
-      virtual int peek_character();
-      virtual int get_character();
-      virtual int put_character_back(int iCharacter);
+      virtual ::byte peek_byte();
+      virtual ::byte get_byte();
+      virtual void put_byte_back(::byte b);
 
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);

@@ -11,7 +11,7 @@
 #include <sys/stat.h>
 
 
-bool CLASS_DECL_APEX vfxFullPath(wstring& wstrFullPath, const wstring& wstrPath);
+bool CLASS_DECL_APEX windows_full_path(wstring& wstrFullPath, const wstring& wstrPath);
 
 struct errentry
 {
@@ -46,7 +46,7 @@ namespace android
 
       wstrFileName = ::str::international::utf8_to_unicode(path);
 
-      if (!vfxFullPath(wstrFullName, wstrFileName))
+      if (!windows_full_path(wstrFullName, wstrFileName))
       {
 
          rStatus.m_strFullName.Empty();
@@ -782,7 +782,7 @@ namespace android
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_APEX vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_APEX windows_full_path(wstring & wstrFullPath, const wstring & wstrPath)
 {
 
    wstrFullPath = wstrPath;

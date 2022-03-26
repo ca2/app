@@ -62,7 +62,7 @@ public:
 
 
    virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
-   virtual bool is_file_or_dir(const ::file::path & pszPath, ::file::enum_type * petype = nullptr);
+   virtual bool is_file_or_dir(const ::file::path & path, ::file::enum_type * petype = nullptr);
 
 
    virtual ::payload length(const ::file::path & path);
@@ -72,8 +72,6 @@ public:
 
 
    virtual ::file::path module();
-
-   //virtual ::file::path ca2module();
 
    
    ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
@@ -233,6 +231,8 @@ public:
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
    virtual ::file_pointer get_file(const ::payload & payloadFile, const ::file::e_open & eopen) override;
+
+   virtual ::file_pointer create_native_file(const ::file::path & path, const ::file::e_open & eopen);
 
    virtual ::file_pointer get_reader(const ::payload & payloadFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 

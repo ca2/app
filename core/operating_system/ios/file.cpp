@@ -657,7 +657,7 @@ namespace ios
 //      wstring wstrFullName;
 //      wstring wstrFileName;
 //      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
-//      //      if (!vfxFullPath(wstrFullName, wstrFileName))
+//      //      if (!windows_full_path(wstrFullName, wstrFileName))
 //      //    {
 //      //     rStatus.m_strFullName.Empty();
 //      //   return false;
@@ -729,7 +729,7 @@ namespace ios
 
 
 // turn a file, relative path or other into an absolute path
-bool CLASS_DECL_CORE vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)
+bool CLASS_DECL_CORE windows_full_path(wstring & wstrFullPath, const wstring & wstrPath)
 // lpszPathOut = buffer of _MAX_PATH
 // lpszFileIn = file, relative path or absolute path
 // (both in ANSI character set)

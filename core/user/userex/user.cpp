@@ -1318,7 +1318,7 @@ namespace core
 
       __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
 
-      if (pform.is_set())
+      if (pform.is_set() && ::is_set(pcallback))
       {
 
          pform->set_form_callback(pcallback);

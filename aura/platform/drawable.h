@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/host.h"
+
+
 namespace aura
 {
 
 
    class CLASS_DECL_AURA drawable:
-      virtual public ::object
+      virtual public ::draw2d::host
    {
    public:
 

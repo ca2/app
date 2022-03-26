@@ -75,7 +75,7 @@ NAMESPACE_BEGIN(nanogui)
       bool m_drag;
 
 
-      void _nanogui_to_user(::user::interaction * puserinteraction) override;
+      //void _nanogui_to_user(::user::interaction * puserinteraction) override;
 
 
 };

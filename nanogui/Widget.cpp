@@ -63,182 +63,12 @@ int Widget::font_size() const {
 }
 
 
-::size_i32 Widget::preferred_size(::draw2d::graphics_pointer & pgraphics)
-{
-
-   ::nano2d::draw2d_context context;
-
-   context.set_graphics(pgraphics);
-
-   const Widget * pthisConst = this;
-
-   auto v2 = pthisConst->preferred_size(&context);
-
-   return { v2.v[0], v2.v[1] };
-
-}
-
-
 void Widget::set_size(const Vector2i & size)
 {
 
-
    m_size = size;
 
-   if (m_puserinteraction)
-   {
-
-      m_puserinteraction->move_to(::size_i32(m_pos.v[0], m_pos.v[1]));
-
-      m_puserinteraction->set_size(::size_i32(m_size.v[0], m_size.v[1]));
-
-      m_puserinteraction->set_need_layout();
-
-      m_puserinteraction->set_need_redraw();
-
-      m_puserinteraction->post_redraw();
-
-   }
-
 }
-
-
-void Widget::perform_layout(::draw2d::graphics_pointer & pgraphics)
-{
-
-   ::nano2d::draw2d_context context;
-
-   context.set_graphics(pgraphics);
-
-   //auto size = preferred_size(&context);
-
-   //set_size(size);
-
-   perform_layout(&context);
-
-   if (m_puserinteraction)
-   {
-
-      auto r = m_puserinteraction->get_client_rect();
-      m_size.x() = r.width();
-      m_size.y() = r.height();
-   }
-
-}
-
-
-void Widget::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
-{
-
-   ::nano2d::draw2d_context context;
-
-   context.set_graphics(pgraphics);
-
-   pgraphics->OffsetViewportOrg(-m_pos.x(), -m_pos.y());
-
-   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-   draw(&context);
-
-}
-
-
-void Widget::on_mouse_enter(const ::point_i32 & point)
-{
-
-   Vector2i p(point.x, point.y);
-
-   mouse_enter_event(p, 1);
-
-}
-
-
-void Widget::on_mouse_leave()
-{
-
-   Vector2i p(0, 0);
-
-   mouse_enter_event(p, 0);
-
-}
-
-
-bool Widget::on_button_down(const ::point_i32 & point)
-{
-
-   Vector2i p(point.x, point.y);
-
-   p += m_pos;
-
-   bool bRet = mouse_button_event(p, 0, 1, 0);
-
-   return bRet;
-
-}
-
-
-bool Widget::on_button_up(const ::point_i32 & point)
-{
-
-   Vector2i p(point.x, point.y);
-
-   p += m_pos;
-
-   bool bRet = mouse_button_event(p, 0, 0, 0);
-
-   return bRet;
-
-}
-
-
-bool Widget::on_mouse_move(const ::point_i32 & point)
-{
-
-   Vector2i p(point.x, point.y);
-
-   p += m_pos;
-
-   Vector2i rel(m_pointMouseLast.x, m_pointMouseLast.y);
-
-   rel += m_pos;
-
-   return mouse_motion_event(p, rel, 0, 0);
-
-}
-
-
-bool Widget::on_mouse_drag(const ::point_i32 & point)
-{
-
-   Vector2i p(point.x, point.y);
-
-   p += m_pos;
-
-   Vector2i rel(m_pointMouseLast.x, m_pointMouseLast.y);
-
-   rel += m_pos;
-
-   return mouse_drag_event(p, rel, 0, 0);
-
-}
-
-
-bool Widget::on_key_down(::user::enum_key ekey)
-{
-
-   return keyboard_event(ekey, e_message_key_down, 0, 0);
-
-}
-
-
-bool Widget::on_key_up(::user::enum_key ekey)
-{
-
-   return keyboard_event(ekey, e_message_key_up, 0, 0);
-
-}
-
-
 
 Vector2i Widget::preferred_size(NVGcontext * ctx) const {
    if (m_layout)
@@ -446,27 +276,27 @@ void Widget::draw(NVGcontext * ctx) {
 }
 
 
-void Widget::_nanogui_to_user(::user::interaction * puserinteraction)
-{
-
-   m_puserinteraction = puserinteraction;
-
-   if (::is_null(m_puserinteraction))
-   {
-
-      m_puserinteraction->m_pappearance = this;
-
-   }
-
-   return;
-
-//   for (auto & pchild : m_children)
+//void Widget::_nanogui_to_user(::user::interaction * puserinteraction)
+//{
+//
+//   m_puserinteraction = puserinteraction;
+//
+//   if (::is_null(m_puserinteraction))
 //   {
 //
-//      pchild->_nanogui_to_user(m_puserinteraction);
+//      m_puserinteraction->m_pappearance = this;
 //
 //   }
-
-}
+//
+//   return;
+//
+////   for (auto & pchild : m_children)
+////   {
+////
+////      pchild->_nanogui_to_user(m_puserinteraction);
+////
+////   }
+//
+//}
 
 NAMESPACE_END(nanogui)

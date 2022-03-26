@@ -138,6 +138,8 @@ namespace nano2d
    {
 
       m_pgraphics->__construct(m_pstate->m_ppath);
+
+      m_pstate->m_ppath->begin_figure();
    
    }
 
@@ -415,8 +417,6 @@ namespace nano2d
 
          m_pstate->m_pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->m_bUpdated2 = true;
-
          m_pstate->m_pfont->set_modified();
 
       }
@@ -430,7 +430,6 @@ namespace nano2d
 
       m_pstate->m_pfont->m_dFontSize = size * 0.8;
       m_pstate->m_pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
-      m_pstate->m_pfont->m_bUpdated2 = true;
       m_pstate->m_pfont->set_modified();
 
    }
@@ -442,8 +441,6 @@ namespace nano2d
       m_pstate->m_pbrush->m_ebrush = ::draw2d::e_brush_solid;
 
       m_pstate->m_pbrush->m_color = __color(color);
-
-      m_pstate->m_pbrush->m_bUpdated2 = false;
 
       m_pstate->m_pbrush->set_modified();
 
@@ -503,8 +500,6 @@ namespace nano2d
 
          m_pstate->m_ppen->m_pbrush = paintimage.m_pbrush;
 
-         m_pstate->m_ppen->m_bUpdated2 = true;
-
          m_pstate->m_ppen->set_modified();
 
          m_pgraphics->draw(m_pstate->m_ppath, m_pstate->m_ppen);
@@ -563,8 +558,6 @@ namespace nano2d
 
       m_pstate->m_ppen->m_color = __color(color);
 
-      m_pstate->m_ppen->m_bUpdated2 = true;
-
       m_pstate->m_ppen->set_modified();
 
    }
@@ -575,8 +568,6 @@ namespace nano2d
   
 
       m_pstate->m_ppen->m_dWidth = width;
-
-      m_pstate->m_ppen->m_bUpdated2 = true;
 
       m_pstate->m_ppen->set_modified();
 

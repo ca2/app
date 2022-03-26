@@ -31,8 +31,7 @@ enum class Cursor; // do not put a docstring, this is already documented
  * widgets using a layout generator (see \ref Layout).
  */
 class NANOGUI_EXPORT Widget : 
-   public Object,
-   virtual public ::appearance::appearance
+   public Object
 {
 public:
 
@@ -78,7 +77,7 @@ public:
    /// Return the size of the widget
    const Vector2i & size() const { return m_size; }
    /// set the size of the widget
-   void set_size(const Vector2i & size);
+   virtual void set_size(const Vector2i & size);
  
    /// Return the width of the widget
    int width() const { return m_size.x(); }
@@ -254,23 +253,6 @@ public:
    virtual bool keyboard_character_event(unsigned int codepoint);
 
 
-   ::size_i32 preferred_size(::draw2d::graphics_pointer & pointer) override;
-
-   void perform_layout(::draw2d::graphics_pointer & pointer) override;
-
-   void _001OnDraw(::draw2d::graphics_pointer & pointer) override;
-
-   void on_mouse_enter(const ::point_i32 & point) override;
-   void on_mouse_leave() override;
-
-   bool on_button_down(const ::point_i32 & point) override;
-   bool on_button_up(const ::point_i32 & point) override;
-
-   bool on_mouse_move(const ::point_i32 & point) override;
-   bool on_mouse_drag(const ::point_i32 & point) override;
-
-   bool on_key_down(::user::enum_key ekey) override;
-   bool on_key_up(::user::enum_key ekey) override;
 
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(NVGcontext * ctx) const;
@@ -360,7 +342,7 @@ public:
    //::::function < void(NVGcontext *) >    m_callbackSizing;
    ::function < void(NVGcontext *) >    m_callbackLayout;
 
-   virtual void _nanogui_to_user(::user::interaction * puserinteraction);
+   //virtual void _nanogui_to_user(::user::interaction * puserinteraction);
 
 };
 

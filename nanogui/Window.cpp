@@ -211,25 +211,25 @@ void Window::refresh_relative_placement() {
    /* Overridden in \ref Popup */
 }
 
-void Window::_nanogui_to_user(::user::interaction * puserinteraction)
-{
-
-   //puserinteraction->__construct(m_pbox);
-
-   //m_pbox->create_control(puserinteraction, (iptr)(void*) this);
-
-   //m_pbox->display();
-
-   //m_pbox->place({ 10, 10, 99, 99 });
-
-   //m_pbox->set_need_layout();
-
-   //m_pbox->set_need_redraw();
-
-   //m_pbox->post_redraw();
-
-   //Widget::_nanogui_to_user(m_pbox);
-
-}
+//void Window::_nanogui_to_user(::user::interaction * puserinteraction)
+//{
+//
+//   //puserinteraction->__construct(m_pbox);
+//
+//   //m_pbox->create_control(puserinteraction, (iptr)(void*) this);
+//
+//   //m_pbox->display();
+//
+//   //m_pbox->place({ 10, 10, 99, 99 });
+//
+//   //m_pbox->set_need_layout();
+//
+//   //m_pbox->set_need_redraw();
+//
+//   //m_pbox->post_redraw();
+//
+//   //Widget::_nanogui_to_user(m_pbox);
+//
+//}
 
 NAMESPACE_END(nanogui)

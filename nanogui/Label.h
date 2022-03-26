@@ -63,7 +63,7 @@ NAMESPACE_BEGIN(nanogui)
       /// Draw the label
       virtual void draw(NVGcontext * ctx) override;
 
-      void _nanogui_to_user(::user::interaction * puserinteraction) override;
+      //void _nanogui_to_user(::user::interaction * puserinteraction) override;
 
    protected:
       //std::string m_caption;

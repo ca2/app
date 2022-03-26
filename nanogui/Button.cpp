@@ -334,73 +334,73 @@ void Button::draw(NVGcontext * ctx) {
 }
 
 
-bool Button::call_click() 
-{
-   
-   if (!m_callback)
-   {
+//bool Button::call_click() 
+//{
+//   
+//   if (!m_callback)
+//   {
+//
+//      return false;
+//
+//   }
+//   
+//   callback()(); 
+//   
+//   return true; 
+//
+//}
+//
+//
+//bool Button::call_check(::enum_check echeck) 
+//{
+//
+//   set_check(echeck == ::e_check_checked);
+//   
+//   if (m_change_callback)
+//   {
+//
+//      change_callback()(checked());
+//
+//   }
+//   
+//   return true; 
+//
+//}
 
-      return false;
-
-   }
-   
-   callback()(); 
-   
-   return true; 
-
-}
-
-
-bool Button::call_check(::enum_check echeck) 
-{
-
-   set_check(echeck == ::e_check_checked);
-   
-   if (m_change_callback)
-   {
-
-      change_callback()(checked());
-
-   }
-   
-   return true; 
-
-}
-
-
-void Button::_nanogui_to_user(::user::interaction * puserinteraction)
-{
-
-   return;
-
-   //puserinteraction->__construct(m_pbutton);
-
-   //m_pbutton->m_pappearance = this;
-
-   //m_pbutton->create_control(puserinteraction, (iptr)(void *)this);
-
-   //if (flags() & ToggleButton)
-   //{
-
-   //   m_pbutton->set_button_style(::user::button::e_style_push);
-
-   //}
-
-   //m_pbutton->display();
-
-   //m_pbutton->place({ 10, 10, 99, 99 });
-
-   //m_pbutton->set_need_layout();
-
-   //m_pbutton->set_need_redraw();
-
-   //m_pbutton->post_redraw();
-
-   //m_pbutton->set_window_text(m_caption.c_str());
-
-   //Widget::_nanogui_to_user(m_pbutton);
-
-}
+//
+//void Button::_nanogui_to_user(::user::interaction * puserinteraction)
+//{
+//
+//   return;
+//
+//   //puserinteraction->__construct(m_pbutton);
+//
+//   //m_pbutton->m_pappearance = this;
+//
+//   //m_pbutton->create_control(puserinteraction, (iptr)(void *)this);
+//
+//   //if (flags() & ToggleButton)
+//   //{
+//
+//   //   m_pbutton->set_button_style(::user::button::e_style_push);
+//
+//   //}
+//
+//   //m_pbutton->display();
+//
+//   //m_pbutton->place({ 10, 10, 99, 99 });
+//
+//   //m_pbutton->set_need_layout();
+//
+//   //m_pbutton->set_need_redraw();
+//
+//   //m_pbutton->post_redraw();
+//
+//   //m_pbutton->set_window_text(m_caption.c_str());
+//
+//   //Widget::_nanogui_to_user(m_pbutton);
+//
+//}
 
 
 void Button::on_click()

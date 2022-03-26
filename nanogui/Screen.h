@@ -27,7 +27,9 @@ class Texture;
  * \brief Represents a display surface (i.e. a full-screen or windowed GLFW window)
  * and forms the root element of a hierarchy of nanogui widgets.
  */
-class NANOGUI_EXPORT Screen : public Widget
+class NANOGUI_EXPORT Screen : 
+   public Widget,
+   virtual public ::appearance::appearance
    //,
    //virtual public nanogui_main_frame
 {
@@ -258,7 +260,7 @@ public:
 //   void initialize(GLFWwindow * window, bool shutdown_glfw);
 //
 //   /* Event handlers */
-   bool on_mouse_move(const ::point_i32 & point) override;
+   //bool on_mouse_move(const ::point_i32 & point) override;
    bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
@@ -303,7 +305,31 @@ public:
 //   ref<Texture> m_depth_stencil_texture;
 //#endif
 
-   void _nanogui_to_user(::user::interaction * puserinteraction) override;
+   void set_size(const Vector2i & size) override;
+
+   using Widget::preferred_size;
+   using Widget::perform_layout;
+
+   // ::appearance::appearance
+   void _nanogui_to_user(::user::interaction * puserinteraction);
+   ::size_i32 preferred_size(::draw2d::graphics_pointer & pointer) override;
+
+   void perform_layout(::draw2d::graphics_pointer & pointer) override;
+
+   void _001OnDraw(::draw2d::graphics_pointer & pointer) override;
+
+   void on_mouse_enter(const ::point_i32 & point) override;
+   void on_mouse_leave() override;
+
+   bool on_button_down(const ::point_i32 & point) override;
+   bool on_button_up(const ::point_i32 & point) override;
+
+   bool on_mouse_move(const ::point_i32 & point) override;
+   bool on_mouse_drag(const ::point_i32 & point) override;
+
+   bool on_key_down(::user::enum_key ekey) override;
+   bool on_key_up(::user::enum_key ekey) override;
+
 
 };
 

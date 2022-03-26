@@ -119,11 +119,11 @@ NAMESPACE_BEGIN(nanogui)
       virtual void draw(NVGcontext * ctx) override;
 
       
-      bool call_click() override;
+      //bool call_click() override;
 
-      bool call_check(::enum_check echeck) override;
+      //bool call_check(::enum_check echeck) override;
 
-      void _nanogui_to_user(::user::interaction * puserinteraction) override;
+      //void _nanogui_to_user(::user::interaction * puserinteraction) override;
 
       void on_click();
 

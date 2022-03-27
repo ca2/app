@@ -260,8 +260,8 @@ std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i & p, bool tes
    return { -1, false };
 }
 
-bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down,
-   int modifiers) {
+bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
+   , const ::user::e_key & ekeyModifiers) {
    int index; bool close;
    std::tie(index, close) = tab_at_position(p);
    bool handled = false;
@@ -270,7 +270,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
    if (m_popup) {
       m_popup->mouse_button_event(
          p - m_pos + absolute_position() - m_popup->absolute_position() + m_popup->position(),
-         button, down, modifiers
+         button, down, ekeyModifiers
       );
       screen->update_focus(this);
       screen->remove_child(m_popup);
@@ -313,7 +313,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
             }
             else if (m_close_index == m_close_index_pushed) {
                remove_tab(tab_id(index));
-               mouse_motion_event(p, Vector2i(0), 0, 0);
+               mouse_motion_event(p, Vector2i(0), ::user::e_key_none);
             }
          }
          else {
@@ -332,7 +332,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
             }
             else if (m_tab_drag_index != -1) {
                m_tab_drag_index = -1;
-               mouse_motion_event(p, Vector2i(0), 0, 0);
+               mouse_motion_event(p, Vector2i(0), ::user::e_key_none);
             }
          }
          handled = true;
@@ -347,22 +347,28 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       handled = true;
    }
 
-   handled |= Widget::mouse_button_event(p, button, down, modifiers);
+   handled |= Widget::mouse_button_event(p, button, down, ekeyModifiers);
 
    return handled;
 }
 
-bool TabWidgetBase::mouse_enter_event(const Vector2i &/* p */, bool /* enter */) {
-   if (m_tabs_closeable && m_close_index >= 0) {
+bool TabWidgetBase::mouse_enter_event(const Vector2i &/* p */, bool /* enter */, const ::user::e_key & ) 
+{
+
+   if (m_tabs_closeable && m_close_index >= 0) 
+   {
       m_close_index = -1;
       m_close_index_pushed = -1;
       return true;
    }
    return false;
+
 }
 
-bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
-   int button, int modifiers) {
+
+bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) 
+{
+
    auto [index, close] = tab_at_position(p, false);
 
    if (m_tab_drag_index != -1) {
@@ -387,6 +393,7 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
          }
       }
       return true;
+
    }
 
    if (!close)
@@ -398,8 +405,10 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
       return true;
    }
 
-   return Widget::mouse_motion_event(p, rel, button, modifiers);
+   return Widget::mouse_motion_event(p, rel, ekeyModifiers);
+
 }
+
 
 TabWidget::TabWidget(Widget * parent, const std::string & font)
    : TabWidgetBase(parent, font) { }

@@ -1410,6 +1410,109 @@ namespace user
 
       ::u32 message = pmessage->m_atom.umessage();
 
+      if (message == e_message_left_button_down)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_left_button, true);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if (message == e_message_left_button_up)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_left_button, false);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if (message == e_message_right_button_down)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_right_button, true);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if (message == e_message_right_button_up)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_right_button, false);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if (message == e_message_middle_button_down)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_middle_button, true);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+      else if (message == e_message_middle_button_up)
+      {
+
+         auto psession = get_session();
+
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_middle_button, false);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       bKeyMessage = message == e_message_key_down ||
          message == e_message_key_up ||
          message == e_message_char ||
@@ -1457,7 +1560,9 @@ namespace user
             }
             catch (...)
             {
+
             }
+
          }
          else if (message == e_message_key_up || message == e_message_sys_key_up)
          {
@@ -5450,7 +5555,7 @@ return "";
       {
 
 
-         m_pappearance->on_character(pmessage->m_wparam);
+         m_pappearance->on_character((int) pmessage->m_wparam.m_number);
 
       }
       //if(psession->get_keyboard_focus() != this
@@ -16032,7 +16137,11 @@ order(zorderParam);
 
             _screen_to_client(pointClient, pmouse->m_point);
 
-            if (pappearance->on_button_down(pointClient))
+            auto psession = m_puserinteraction->get_session();
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            if (pappearance->on_button_down(pointClient, ekeyModifiers))
             {
 
                pmouse->m_bRet = true;
@@ -16174,7 +16283,11 @@ order(zorderParam);
 
          _screen_to_client(pointClient, pmouse->m_point);
 
-         if (pappearance->on_button_up(pointClient))
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (pappearance->on_button_up(pointClient, ekeyModifiers))
          {
 
             pmessage->m_bRet = true;
@@ -16509,7 +16622,11 @@ order(zorderParam);
          //else
          //{
 
-            bRet = pappearance->on_mouse_move(pointClient);
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+            bRet = pappearance->on_mouse_move(pointClient, ekeyModifiers);
 
 //         }
 
@@ -16610,7 +16727,11 @@ order(zorderParam);
 
                   _screen_to_client(pointClient, pmouse->m_point);
 
-                  pappearance->on_mouse_enter(pointClient);
+                  auto psession = m_puserinteraction->get_session();
+
+                  auto ekeyModifiers = psession->key_modifiers();
+
+                  pappearance->on_mouse_enter(pointClient, ekeyModifiers);
 
                }
 

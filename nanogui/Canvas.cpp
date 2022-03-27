@@ -134,7 +134,7 @@ const Color & Canvas::background_color() const {
 
 }
 
-void Canvas::draw_contents() { /* No-op. */ }
+void Canvas::draw_contents(NVGcontext * ctx) { /* No-op. */ }
 
 void Canvas::draw(NVGcontext * ctx) {
    if (!m_pimage)

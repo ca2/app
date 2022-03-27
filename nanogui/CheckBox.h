@@ -71,7 +71,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_callback(const ::function<void(bool)> & callback) { m_callback = callback; }
 
       /// Mouse button event processing for this check box
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.
       virtual Vector2i preferred_size(NVGcontext * ctx) const override;

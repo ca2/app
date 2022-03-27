@@ -74,10 +74,10 @@ NAMESPACE_BEGIN(nanogui)
 
       // Widget implementation
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
-      virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
-      virtual void draw(NVGcontext * ctx) override;
-      virtual void draw_contents() override;
+      bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
+      void draw(NVGcontext * ctx) override;
+      void draw_contents(NVGcontext * ctx) override;
 
    protected:
       // opengl

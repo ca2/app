@@ -67,7 +67,7 @@ namespace appearance
    }
 
 
-   void appearance::on_mouse_enter(const ::point_i32 & point)
+   void appearance::on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
 
@@ -81,7 +81,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_button_down(const ::point_i32 & point)
+   bool appearance::on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -89,7 +89,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_button_up(const ::point_i32 & point)
+   bool appearance::on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -97,7 +97,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_move(const ::point_i32 & point)
+   bool appearance::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -105,7 +105,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_mouse_drag(const ::point_i32 & point)
+   bool appearance::on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;

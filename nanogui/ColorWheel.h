@@ -51,16 +51,16 @@ NAMESPACE_BEGIN(nanogui)
       void set_color(const Color & color);
 
       /// The preferred size of this ColorWheel.
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+      Vector2i preferred_size(NVGcontext * ctx) const override;
 
       /// Draws the ColorWheel.
-      virtual void draw(NVGcontext * ctx) override;
+      void draw(NVGcontext * ctx) override;
 
       /// Handles mouse button click events for the ColorWheel.
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
+      bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 
       /// Handles mouse drag events for the ColorWheel.
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
+      bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
    private:
       // Used to describe where the mouse is interacting
       enum Region {

@@ -168,33 +168,65 @@ void Window::_center(NVGcontext * pcontext) {
    screen()->center_window(this, pcontext);
 }
 
-bool Window::mouse_enter_event(const Vector2i & p, bool enter) {
-   Widget::mouse_enter_event(p, enter);
+
+bool Window::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers)
+{
+
+   Widget::mouse_enter_event(p, enter, ekeyModifiers);
+
    return true;
+
 }
+
+
 #define __MOUSE_LEFT_BUTTON 0
 #define __MOUSE_RIGHT_BUTTON 1
-bool Window::mouse_drag_event(const Vector2i &, const Vector2i & rel,
-   int button, int /* modifiers */) {
-   if (m_drag && (button & (1 << __MOUSE_LEFT_BUTTON)) != 0) {
+
+
+bool Window::mouse_drag_event(const Vector2i &, const Vector2i & rel, const ::user::e_key & ekeyModifiers) 
+{
+
+   if (m_drag && (ekeyModifiers & ::user::e_key_left_button) != 0) 
+   {
+    
       m_pos += rel;
+      
       m_pos = max(m_pos, Vector2i(0));
+
       m_pos = min(m_pos, parent()->size() - m_size);
+
       return true;
+
    }
+
    return false;
+
 }
 
 
-bool Window::mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) {
-   if (Widget::mouse_button_event(p, button, down, modifiers))
+bool Window::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
+{
+
+   if (Widget::mouse_button_event(p, button, down, ekeyModifiers))
+   {
+
       return true;
-   if (button == __MOUSE_LEFT_BUTTON) {
+
+   }
+
+   if (button == __MOUSE_LEFT_BUTTON) 
+   {
+   
       m_drag = down && (p.y() - m_pos.y()) < m_theme->m_window_header_height;
+
       return true;
+
    }
+
    return false;
+
 }
+
 
 //bool Window::scroll_event(const Vector2i & p, const Vector2f & rel) {
 //   Widget::scroll_event(p, rel);

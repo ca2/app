@@ -102,14 +102,12 @@ NAMESPACE_BEGIN(nanogui)
       void set_popup_callback(const ::function<Popup * (int, Screen *)> & popup_callback) { m_popup_callback = popup_callback; }
 
       // Widget implementation
-      virtual void perform_layout(NVGcontext * ctx) override;
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
-      virtual void draw(NVGcontext * ctx) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down,
-         int modifiers) override;
-      virtual bool mouse_enter_event(const Vector2i & p, bool enter) override;
-      virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button,
-         int modifiers) override;
+     void perform_layout(NVGcontext * ctx) override;
+     Vector2i preferred_size(NVGcontext * ctx) const override;
+     void draw(NVGcontext * ctx) override;
+     bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+     bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
 
    protected:
       std::pair<int, bool> tab_at_position(const Vector2i & p,

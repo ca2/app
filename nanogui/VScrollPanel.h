@@ -41,10 +41,8 @@ NAMESPACE_BEGIN(nanogui)
 
       virtual void perform_layout(NVGcontext * ctx) override;
       virtual Vector2i preferred_size(NVGcontext * ctx) const override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down,
-         int modifiers) override;
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel,
-         int button, int modifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(NVGcontext * ctx) override;
 

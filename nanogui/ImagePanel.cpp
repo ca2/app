@@ -45,18 +45,32 @@ int ImagePanel::index_for_position(const Vector2i & p) const {
    return over_image ? (grid_pos.x() + grid_pos.y() * grid.x()) : -1;
 }
 
-bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */,
-   int /* button */, int /* modifiers */) {
+
+bool ImagePanel::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, const ::user::e_key & /* modifiers */) 
+{
+
    m_mouse_index = index_for_position(p);
+
    return true;
+
 }
 
+
 bool ImagePanel::mouse_button_event(const Vector2i & p, int /* button */, bool down,
-   int /* modifiers */) {
+   const ::user::e_key & /* modifiers */) 
+{
+
    int index = index_for_position(p);
+
    if (index >= 0 && index < (int)m_images.size() && m_callback && down)
+   {
+
       m_callback(index);
+
+   }
+
    return true;
+
 }
 
 

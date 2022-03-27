@@ -112,22 +112,36 @@ const Widget * Widget::find_widget(const Vector2i & p) const {
    return contains(p) ? this : nullptr;
 }
 
-bool Widget::mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) {
-   for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) {
+bool Widget::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+{
+
+   for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) 
+   {
       Widget * child = *it;
       if (child->visible() && child->contains(p - m_pos) &&
-         child->mouse_button_event(p - m_pos, button, down, modifiers))
+         child->mouse_button_event(p - m_pos, button, down, ekeyModifiers))
          return true;
    }
+   
    if (button == __MOUSE_LEFT_BUTTON && down && !m_focused)
+   {
+
       request_focus();
+
+   }
+
    return false;
+
 }
 
-bool Widget::mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) {
+
+bool Widget::mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) 
+{
+
    bool handled = false;
 
-   for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) {
+   for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) 
+   {
       Widget * child = *it;
       if (!child->visible())
          continue;
@@ -136,10 +150,10 @@ bool Widget::mouse_motion_event(const Vector2i & p, const Vector2i & rel, int bu
          prev_contained = child->contains(p - m_pos - rel);
 
       if (contained != prev_contained)
-         handled |= child->mouse_enter_event(p, contained);
+         handled |= child->mouse_enter_event(p, contained, ekeyModifiers);
 
       if (contained || prev_contained)
-         handled |= child->mouse_motion_event(p - m_pos, rel, button, modifiers);
+         handled |= child->mouse_motion_event(p - m_pos, rel, ekeyModifiers);
    }
 
    return handled;
@@ -156,29 +170,54 @@ bool Widget::scroll_event(const Vector2i & p, const Vector2f & rel) {
    return false;
 }
 
-bool Widget::mouse_drag_event(const Vector2i &, const Vector2i &, int, int) {
+
+bool Widget::mouse_drag_event(const Vector2i &, const Vector2i &, const ::user::e_key &) 
+{
+
    return false;
+
 }
 
-bool Widget::mouse_enter_event(const Vector2i &, bool enter) {
+
+bool Widget::mouse_enter_event(const Vector2i &, bool enter, const ::user::e_key & ekeyModifiers)
+{
+
    m_mouse_focus = enter;
+
    return false;
+
 }
 
-bool Widget::focus_event(bool focused) {
+
+bool Widget::focus_event(bool focused) 
+{
+
    m_focused = focused;
+
    return false;
+
 }
 
-bool Widget::keyboard_event(::user::enum_key , int, int, const ::user::e_key &) {
+
+bool Widget::keyboard_event(::user::enum_key , int, int, const ::user::e_key &) 
+{
+
    return false;
+
 }
 
-bool Widget::keyboard_character_event(unsigned int) {
+
+bool Widget::keyboard_character_event(unsigned int) 
+{
+
    return false;
+
 }
 
-void Widget::add_child(int index, Widget * widget) {
+
+void Widget::add_child(int index, Widget * widget) 
+{
+
    assert(index <= child_count());
    m_children.insert(m_children.begin() + index, widget);
    widget->inc_ref();

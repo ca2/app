@@ -50,25 +50,35 @@ Vector2i VScrollPanel::preferred_size(NVGcontext * ctx) const {
    return m_children[0]->preferred_size(ctx) + Vector2i(12, 0);
 }
 
-bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel,
-   int button, int modifiers) {
-   if (!m_children.empty() && m_child_preferred_height > m_size.y()) {
-      float scrollh = height() *
-         std::min(1.f, height() / (float)m_child_preferred_height);
 
-      m_scroll = std::max(0.f, std::min(1.f,
-         m_scroll + rel.y() / (m_size.y() - 8.f - scrollh)));
+bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) 
+{
+
+   if (!m_children.empty() && m_child_preferred_height > m_size.y()) 
+   {
+
+      float scrollh = height() * std::min(1.f, height() / (float)m_child_preferred_height);
+
+      m_scroll = std::max(0.f, std::min(1.f, m_scroll + rel.y() / (m_size.y() - 8.f - scrollh)));
+
       m_update_layout = true;
+
       return true;
+
    }
-   else {
-      return Widget::mouse_drag_event(p, rel, button, modifiers);
+   else 
+   {
+
+      return Widget::mouse_drag_event(p, rel, ekeyModifiers);
+
    }
+
 }
 
-bool VScrollPanel::mouse_button_event(const Vector2i & p, int button, bool down,
-   int modifiers) {
-   if (Widget::mouse_button_event(p, button, down, modifiers))
+
+bool VScrollPanel::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+{
+   if (Widget::mouse_button_event(p, button, down, ekeyModifiers))
       return true;
 
    if (down && button == __MOUSE_LEFT_BUTTON && !m_children.empty() &&
@@ -109,7 +119,7 @@ bool VScrollPanel::scroll_event(const Vector2i & p, const Vector2f & rel) {
       child->set_position(Vector2i(0, -m_scroll * (m_child_preferred_height - m_size.y())));
       Vector2i new_pos = child->position();
       m_update_layout = true;
-      child->mouse_motion_event(p - m_pos, old_pos - new_pos, 0, 0);
+      child->mouse_motion_event(p - m_pos, old_pos - new_pos, ::user::e_key_none);
 
       return true;
    }

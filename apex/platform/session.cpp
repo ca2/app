@@ -1191,6 +1191,27 @@ namespace apex
 
       }
 
+      if (is_key_pressed(::user::e_key_left_button))
+      {
+
+         ekeyModifiers |= ::user::e_key_left_button;
+
+      }
+
+      if (is_key_pressed(::user::e_key_middle_button))
+      {
+
+         ekeyModifiers |= ::user::e_key_middle_button;
+
+      }
+
+      if (is_key_pressed(::user::e_key_right_button))
+      {
+
+         ekeyModifiers |= ::user::e_key_right_button;
+
+      }
+
       return ekeyModifiers;
 
    }

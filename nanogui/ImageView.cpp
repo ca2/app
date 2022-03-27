@@ -107,19 +107,33 @@ bool ImageView::keyboard_event(::user::enum_key ekey, int /* scancode */, int ac
    return false;
 }
 
-bool ImageView::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel,
-   int /* button */, int /* modifiers */) {
+
+bool ImageView::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel, const ::user::e_key & /* modifiers */) 
+{
+
    if (!m_enabled || !m_pimage)
+   {
+
       return false;
+
+   }
 
    m_offset += rel * screen()->pixel_ratio();
 
    return true;
+
 }
 
-bool ImageView::scroll_event(const Vector2i & p, const Vector2f & rel) {
+
+bool ImageView::scroll_event(const Vector2i & p, const Vector2f & rel) 
+{
+
    if (!m_enabled || !m_pimage)
+   {
+
       return false;
+
+   }
 
    Vector2f p1 = pos_to_pixel(p - m_pos);
    m_scale += rel.y();
@@ -133,9 +147,13 @@ bool ImageView::scroll_event(const Vector2i & p, const Vector2f & rel) {
    Vector2f p2 = pos_to_pixel(p - m_pos);
    m_offset += (p2 - p1) * scale();
    return true;
+
 }
 
-void ImageView::draw(NVGcontext * ctx) {
+
+void ImageView::draw(NVGcontext * ctx) 
+{
+
    //if (!m_enabled || !m_pimage)
      // return;
 
@@ -202,11 +220,12 @@ void ImageView::draw(NVGcontext * ctx) {
    //nvgRestore(ctx);
 }
 
-void ImageView::draw_contents() {
+void ImageView::draw_contents(NVGcontext * ctx) 
+{
    //if (!m_pimage)
       //return;
 
-   Canvas::draw_contents();
+   Canvas::draw_contents(ctx);
 
    /* Ensure that 'offset' is a multiple of the pixel ratio */
    //float pixel_ratio = screen()->pixel_ratio();

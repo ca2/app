@@ -141,7 +141,7 @@ Screen::Screen(const Vector2i & size, const std::string & caption, bool resizabl
    m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false) {
    m_size = size;
    set_theme(new Theme(nullptr));
-
+   m_modifiers = ::user::e_key_none;
    // memset(m_cursors, 0, sizeof(GLFWcursor *) * (int)Cursor::CursorCount);
 //
 //#if defined(NANOGUI_USE_OPENGL)
@@ -486,7 +486,8 @@ Screen::Screen(const Vector2i & size, const std::string & caption, bool resizabl
 //   m_visible = glfwGetWindowAttrib(window, GLFW_VISIBLE) != 0;
 //   set_theme(new Theme(ctx));
 //   m_mouse_pos = Vector2i(0);
-//   m_mouse_state = m_modifiers = 0;
+   //m_mouse_state = 
+   //m_modifiers = ::user::e_key_none;
 //   m_drag_active = false;
 //   m_last_interaction = glfwGetTime();
 //   m_process_events = true;
@@ -786,7 +787,7 @@ bool Screen::resize_event(const Vector2i & size) {
 //}
 //
 
-bool Screen::on_mouse_move(const ::point_i32 & point) 
+bool Screen::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
    Vector2i p((int)point.x, (int)point.y);
 
@@ -807,14 +808,19 @@ bool Screen::on_mouse_move(const ::point_i32 & point)
             //glfwSetCursor(m_glfw_window, m_cursors[(int)m_cursor]);
          //}
       }
-      else {
-         ret = m_drag_widget->mouse_drag_event(
-            p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos,
-            m_mouse_state, m_modifiers);
+      else 
+      {
+
+         ret = m_drag_widget->mouse_drag_event(p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos, ekeyModifiers);
+
       }
 
       if (!ret)
-         ret = Widget::mouse_motion_event(p, p - m_mouse_pos, m_mouse_state, m_modifiers);
+      {
+
+         ret = Widget::mouse_motion_event(p, p - m_mouse_pos, ekeyModifiers);
+
+      }
 
       m_mouse_pos = p;
       m_redraw |= ret;
@@ -840,9 +846,9 @@ bool Screen::on_mouse_move(const ::point_i32 & point)
       return ret;
 }
 
-bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) 
+bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
 {
-   m_modifiers = modifiers;
+   m_modifiers = ekeyModifiers;
   // m_last_interaction = glfwGetTime();
    m_last_interaction.Now();
 
@@ -861,11 +867,14 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, int m
          }
       }
 
-      //if (action == GLFW_PRESS)
-      if(down)
-         m_mouse_state |= 1 << button;
-      else
-         m_mouse_state &= ~(1 << button);
+      ////if (action == GLFW_PRESS)
+      //if (down)
+      //{
+      //   m_mouse_state |= 1 << button;
+
+      //}
+      //else
+      //   m_mouse_state &= ~(1 << button);
 
       auto drop_widget = find_widget(m_mouse_pos);
       //if (m_drag_active && action == GLFW_RELEASE &&
@@ -873,7 +882,7 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, int m
          drop_widget != m_drag_widget) {
          m_redraw |= m_drag_widget->mouse_button_event(
             m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
-            false, m_modifiers);
+            false, ekeyModifiers);
       }
 
  /*     if (drop_widget != nullptr && drop_widget->cursor() != m_cursor) {
@@ -1186,12 +1195,12 @@ void Screen::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void Screen::on_mouse_enter(const ::point_i32 & point)
+void Screen::on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
 
-   mouse_enter_event(p, 1);
+   mouse_enter_event(p, 1, ekeyModifiers);
 
 }
 
@@ -1201,33 +1210,33 @@ void Screen::on_mouse_leave()
 
    Vector2i p(0, 0);
 
-   mouse_enter_event(p, 0);
+   mouse_enter_event(p, 0, ::user::e_key_none);
 
 }
 
 
-bool Screen::on_button_down(const ::point_i32 & point)
+bool Screen::on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
 
    p += m_pos;
 
-   bool bRet = mouse_button_event(p, 0, 1, 0);
+   bool bRet = mouse_button_event(p, 0, 1, ekeyModifiers);
 
    return bRet;
 
 }
 
 
-bool Screen::on_button_up(const ::point_i32 & point)
+bool Screen::on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
 
    p += m_pos;
 
-   bool bRet = mouse_button_event(p, 0, 0, 0);
+   bool bRet = mouse_button_event(p, 0, 0, ekeyModifiers);
 
    return bRet;
 
@@ -1250,7 +1259,7 @@ bool Screen::on_button_up(const ::point_i32 & point)
 //}
 //
 
-bool Screen::on_mouse_drag(const ::point_i32 & point)
+bool Screen::on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
@@ -1261,7 +1270,7 @@ bool Screen::on_mouse_drag(const ::point_i32 & point)
 
    rel += m_pos;
 
-   return mouse_drag_event(p, rel, 0, 0);
+   return mouse_drag_event(p, rel, ekeyModifiers);
 
 }
 

@@ -44,8 +44,8 @@ NAMESPACE_BEGIN(nanogui)
       void set_final_callback(const ::function<void(float)> & callback) { m_final_callback = callback; }
 
       virtual Vector2i preferred_size(NVGcontext * ctx) const override;
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
+      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
       virtual void draw(NVGcontext * ctx) override;
 
    protected:

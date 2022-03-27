@@ -49,23 +49,24 @@ NAMESPACE_BEGIN(nanogui)
       void set_spinnable(bool spinnable) { m_spinnable = spinnable; }
 
       const std::string & value() const { return m_value; }
-      void set_value(const std::string & value) { m_value = value; 
+      void set_value(const std::string & value) {
+         m_value = value;
 
-      auto pscreen = screen();
+         auto pscreen = screen();
 
-      if (pscreen)
-      {
-
-         auto puserinteraction = pscreen->m_puserinteraction;
-
-         if (puserinteraction)
+         if (pscreen)
          {
-            puserinteraction->set_need_redraw();
-            puserinteraction->post_redraw();
+
+            auto puserinteraction = pscreen->m_puserinteraction;
+
+            if (puserinteraction)
+            {
+               puserinteraction->set_need_redraw();
+               puserinteraction->post_redraw();
+
+            }
 
          }
-
-      }
 
       }
 
@@ -100,16 +101,16 @@ NAMESPACE_BEGIN(nanogui)
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const std::string & str)> & callback) { m_callback = callback; }
 
-      virtual bool mouse_enter_event(const Vector2i & p, bool enter) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
-      virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
-      virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
-      virtual bool focus_event(bool focused) override;
-       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
-      virtual bool keyboard_character_event(unsigned int codepoint) override;
+      bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
+      bool focus_event(bool focused) override;
+      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
+      bool keyboard_character_event(unsigned int codepoint) override;
 
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
-      virtual void draw(NVGcontext * ctx) override;
+      Vector2i preferred_size(NVGcontext * ctx) const override;
+      void draw(NVGcontext * ctx) override;
    protected:
       bool check_format(const std::string & input, const std::string & format);
       bool copy_selection();
@@ -146,7 +147,7 @@ NAMESPACE_BEGIN(nanogui)
       Vector2i m_mouse_pos;
       Vector2i m_mouse_down_pos;
       Vector2i m_mouse_drag_pos;
-      int m_mouse_down_modifier;
+      ::user::e_key m_mouse_down_modifier;
       float m_text_offset;
       ::duration m_last_click;
 };
@@ -212,10 +213,15 @@ public:
       set_max_value(max_value);
    }
 
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down,
-      int modifiers) override {
+   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override 
+   {
+
       if ((m_editable || m_spinnable) && down)
+      {
+
          m_mouse_down_value = value();
+
+      }
 
       SpinArea area = spin_area(p);
       if (m_spinnable && area != SpinArea::None && down && !focused()) {
@@ -233,38 +239,76 @@ public:
          return true;
       }
 
-      return TextBox::mouse_button_event(p, button, down, modifiers);
+      return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
    }
 
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button,
-      int modifiers) override {
-      if (TextBox::mouse_drag_event(p, rel, button, modifiers))
+   
+   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override
+   {
+
+      if (TextBox::mouse_drag_event(p, rel, ekeyModifiers))
+      {
+
          return true;
 
-      if (m_spinnable && !focused() && button == 2 /* 1 << GLFW_MOUSE_BUTTON_2 */ &&
-         m_mouse_down_pos.x() != -1) {
+      }
+
+      if (m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button /* 1 << GLFW_MOUSE_BUTTON_2 */ &&
+         m_mouse_down_pos.x() != -1)
+      {
+
          int value_delta = static_cast<int>((p.x() - m_mouse_down_pos.x()) / float(10));
+
          set_value(m_mouse_down_value + value_delta * m_value_increment);
+
          if (m_callback)
+         {
+
             m_callback(m_value);
+
+         }
+
          return true;
+
       }
+
       return false;
+
    }
 
-   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override {
+
+   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override
+   {
+
       if (Widget::scroll_event(p, rel))
+      {
+
          return true;
 
-      if (m_spinnable && !focused()) {
-         int value_delta = (rel.y() > 0) ? 1 : -1;
-         set_value(value() + value_delta * m_value_increment);
-         if (m_callback)
-            m_callback(m_value);
-         return true;
       }
+
+      if (m_spinnable && !focused()) 
+      {
+
+         int value_delta = (rel.y() > 0) ? 1 : -1;
+
+         set_value(value() + value_delta * m_value_increment);
+
+         if (m_callback)
+         {
+
+            m_callback(m_value);
+
+         }
+
+         return true;
+
+      }
+
       return false;
+
    }
+
 private:
    Scalar m_mouse_down_value;
    Scalar m_value_increment;

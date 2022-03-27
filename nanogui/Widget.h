@@ -229,16 +229,16 @@ public:
    const Widget * find_widget(const Vector2i & p) const;
 
    /// Handle a mouse button event (default implementation: propagate to children)
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers);
+   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse motion event (default implementation: propagate to children)
-   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
+   virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse drag event (default implementation: do nothing)
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers);
+   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse enter/leave event (default implementation: record this fact, but do nothing)
-   virtual bool mouse_enter_event(const Vector2i & p, bool enter);
+   virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers);
 
    /// Handle a mouse scroll event (default implementation: propagate to children)
    virtual bool scroll_event(const Vector2i & p, const Vector2f & rel);

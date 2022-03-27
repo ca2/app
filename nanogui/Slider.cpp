@@ -21,12 +21,14 @@ Slider::Slider(Widget * parent)
    m_highlight_color = Color(255, 80, 80, 70);
 }
 
-Vector2i Slider::preferred_size(NVGcontext *) const {
+
+Vector2i Slider::preferred_size(NVGcontext *) const 
+{
    return Vector2i(70, 16);
 }
 
-bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */,
-   int /* button */, int /* modifiers */) {
+
+bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */, const ::user::e_key & /* modifiers */) {
    if (!m_enabled)
       return false;
 
@@ -42,7 +44,7 @@ bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */,
    return true;
 }
 
-bool Slider::mouse_button_event(const Vector2i & p, int /* button */, bool down, int /* modifiers */) {
+bool Slider::mouse_button_event(const Vector2i & p, int /* button */, bool down, const ::user::e_key & /* modifiers */) {
    if (!m_enabled)
       return false;
 

@@ -121,9 +121,9 @@ namespace user
       e_key_system_left_command = 1 << 24,
       e_key_system_right_command = 1 << 25,
       e_key_system_command = e_key_system_left_command | e_key_system_right_command,
-      e_key_left_button = 1 <<32,
-      e_key_right_button = 1 << 33,
-      e_key_middle_button = 1 << 34,
+      e_key_left_button = 1LL <<32,
+      e_key_right_button = 1LL << 33,
+      e_key_middle_button = 1LL << 34,
 
    };
 

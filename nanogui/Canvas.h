@@ -93,7 +93,7 @@ NAMESPACE_BEGIN(nanogui)
       const Color & background_color() const;
 
       /// Draw the widget contents. Override this method.
-      virtual void draw_contents();
+      virtual void draw_contents(NVGcontext * ctx);
 
       /// Draw the widget
       virtual void draw(NVGcontext * ctx) override;

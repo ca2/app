@@ -261,7 +261,7 @@ public:
 //
 //   /* Event handlers */
    //bool on_mouse_move(const ::point_i32 & point) override;
-   bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
+   bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);
 //   void char_callback_event(unsigned int codepoint);
 //   void drop_callback_event(int count, const char ** filenames);
@@ -284,7 +284,8 @@ public:
    std::vector<Widget *> m_focus_path;
 //   Vector2i m_fbsize;
    float m_pixel_ratio;
-   int m_mouse_state, m_modifiers;
+   //::user::e_key m_mouse_state;
+   ::user::e_key m_modifiers;
    Vector2i m_mouse_pos;
    bool m_drag_active;
    Widget * m_drag_widget = nullptr;
@@ -318,14 +319,14 @@ public:
 
    void _001OnDraw(::draw2d::graphics_pointer & pointer) override;
 
-   void on_mouse_enter(const ::point_i32 & point) override;
+   void on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifierss) override;
    void on_mouse_leave() override;
 
-   bool on_button_down(const ::point_i32 & point) override;
-   bool on_button_up(const ::point_i32 & point) override;
+   bool on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
+   bool on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
-   bool on_mouse_move(const ::point_i32 & point) override;
-   bool on_mouse_drag(const ::point_i32 & point) override;
+   bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
+   bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
    bool on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;
    bool on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;

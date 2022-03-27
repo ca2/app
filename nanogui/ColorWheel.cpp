@@ -26,11 +26,18 @@ Vector2i ColorWheel::preferred_size(NVGcontext *) const {
    return { 100, 100 };
 }
 
-void ColorWheel::draw(NVGcontext * ctx) {
+
+void ColorWheel::draw(NVGcontext * ctx) 
+{
+
    Widget::draw(ctx);
 
    if (!m_visible)
+   {
+
       return;
+
+   }
 
    float x = m_pos.x(), y = m_pos.y(),
       w = m_size.x(), h = m_size.y();
@@ -133,9 +140,10 @@ void ColorWheel::draw(NVGcontext * ctx) {
    nvgRestore(vg);
 }
 
-bool ColorWheel::mouse_button_event(const Vector2i & p, int button, bool down,
-   int modifiers) {
-   Widget::mouse_button_event(p, button, down, modifiers);
+
+bool ColorWheel::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+{
+   Widget::mouse_button_event(p, button, down, ekeyModifiers);
    if (!m_enabled || button != __MOUSE_LEFT_BUTTON)
       return false;
 
@@ -149,12 +157,18 @@ bool ColorWheel::mouse_button_event(const Vector2i & p, int button, bool down,
    }
 }
 
-bool ColorWheel::mouse_drag_event(const Vector2i & p, const Vector2i &,
-   int, int) {
+
+bool ColorWheel::mouse_drag_event(const Vector2i & p, const Vector2i &, const ::user::e_key &) 
+{
+
    return adjust_position(p, m_drag_region) != None;
+
 }
 
-ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region considered_regions) {
+
+ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region considered_regions)
+{
+
    float x = p.x() - m_pos.x(),
       y = p.y() - m_pos.y(),
       w = m_size.x(),

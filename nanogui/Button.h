@@ -113,8 +113,8 @@ NAMESPACE_BEGIN(nanogui)
       /// The preferred size of this Button.
       virtual Vector2i preferred_size(NVGcontext * ctx) const override;
       /// The callback that is called when any type of mouse button event is issued to this Button.
-      virtual bool mouse_enter_event(const Vector2i & p, bool enter) override;
-      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, int modifiers) override;
+      virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
+      virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
       /// Responsible for drawing the Button.
       virtual void draw(NVGcontext * ctx) override;
 

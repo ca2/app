@@ -40,7 +40,7 @@ TextBox::TextBox(Widget * parent, const std::string & value)
    m_mouse_pos(Vector2i(-1, -1)),
    m_mouse_down_pos(Vector2i(-1, -1)),
    m_mouse_drag_pos(Vector2i(-1, -1)),
-   m_mouse_down_modifier(0),
+   m_mouse_down_modifier(::user::e_key_none),
    m_text_offset(0){
    if (m_theme) m_font_size = m_theme->m_text_box_font_size;
    m_icon_extra_scale = .8f;
@@ -282,15 +282,23 @@ void TextBox::draw(NVGcontext * ctx) {
    nvgRestore(ctx);
 }
 
-bool TextBox::mouse_enter_event(const Vector2i & p, bool enter) {
-   Widget::mouse_enter_event(p, enter);
+
+bool TextBox::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers)
+{
+
+   Widget::mouse_enter_event(p, enter, ekeyModifiers);
+
    return true;
+
 }
 
-bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
-   int modifiers) {
 
-   if (button == __MOUSE_LEFT_BUTTON && down && !m_focused) {
+bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+{
+
+
+   if (button == __MOUSE_LEFT_BUTTON && down && !m_focused) 
+   {
       if (!m_spinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
          request_focus();
    }
@@ -298,7 +306,7 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
    if (m_editable && focused()) {
       if (down) {
          m_mouse_down_pos = p;
-         m_mouse_down_modifier = modifiers;
+         m_mouse_down_modifier = ekeyModifiers;
 
          if ( m_last_click.elapsed() < 250_ms) {
             /* Double-click: select all text */
@@ -320,7 +328,7 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
       if (down) {
          if (spin_area(p) == SpinArea::None) {
             m_mouse_down_pos = p;
-            m_mouse_down_modifier = modifiers;
+            m_mouse_down_modifier = ekeyModifiers;
 
             if (m_last_click.elapsed() < 250_ms) {
                /* Double-click: reset to default value */
@@ -350,8 +358,9 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
    return false;
 }
 
-bool TextBox::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */,
-   int /* button */, int /* modifiers */) {
+bool TextBox::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */, const ::user::e_key & ekeyModifiers) 
+{
+
    m_mouse_pos = p;
 
    if (!m_editable)
@@ -364,15 +373,24 @@ bool TextBox::mouse_motion_event(const Vector2i & p, const Vector2i & /* rel */,
    return m_editable;
 }
 
-bool TextBox::mouse_drag_event(const Vector2i & p, const Vector2i &/* rel */,
-   int /* button */, int /* modifiers */) {
+
+bool TextBox::mouse_drag_event(const Vector2i & p, const Vector2i &/* rel */, const ::user::e_key & ekeyModifiers) 
+{
+
    m_mouse_pos = p;
    m_mouse_drag_pos = p;
 
    if (m_editable && focused())
+   {
+
       return true;
+
+   }
+
    return false;
+
 }
+
 
 bool TextBox::focus_event(bool focused) {
    Widget::focus_event(focused);

@@ -22,9 +22,9 @@ CheckBox::CheckBox(Widget * parent, const std::string & caption,
    m_icon_extra_scale = 1.2f; // widget override
 }
 
-bool CheckBox::mouse_button_event(const Vector2i & p, int button, bool down,
-   int modifiers) {
-   Widget::mouse_button_event(p, button, down, modifiers);
+bool CheckBox::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
+{
+   Widget::mouse_button_event(p, button, down, ekeyModifiers);
    if (!m_enabled)
       return false;
 

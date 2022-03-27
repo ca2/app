@@ -213,7 +213,7 @@ public:
       set_max_value(max_value);
    }
 
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override 
+   virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override
    {
 
       if ((m_editable || m_spinnable) && down)
@@ -242,7 +242,7 @@ public:
       return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
    }
 
-   
+
    virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override
    {
 
@@ -253,8 +253,7 @@ public:
 
       }
 
-      if (m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button /* 1 << GLFW_MOUSE_BUTTON_2 */ &&
-         m_mouse_down_pos.x() != -1)
+      if (m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_mouse_down_pos.x() != -1)
       {
 
          int value_delta = static_cast<int>((p.x() - m_mouse_down_pos.x()) / float(10));
@@ -287,7 +286,7 @@ public:
 
       }
 
-      if (m_spinnable && !focused()) 
+      if (m_spinnable && !focused())
       {
 
          int value_delta = (rel.y() > 0) ? 1 : -1;
@@ -368,73 +367,154 @@ public:
       m_min_value = min_value;
    }
 
-   void set_max_value(Scalar max_value) {
+   void set_max_value(Scalar max_value)
+   {
+
       m_max_value = max_value;
+
    }
 
-   void set_min_max_values(Scalar min_value, Scalar max_value) {
+
+   void set_min_max_values(Scalar min_value, Scalar max_value)
+   {
+
       set_min_value(min_value);
+
       set_max_value(max_value);
+
    }
 
-   virtual bool mouse_button_event(const Vector2i & p, int button, bool down,
-      int modifiers) override {
+
+   bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override
+   {
+
       if ((m_editable || m_spinnable) && down)
+      {
+
          m_mouse_down_value = value();
 
+      }
+
       SpinArea area = spin_area(p);
-      if (m_spinnable && area != SpinArea::None && down && !focused()) {
-         if (area == SpinArea::Top) {
+
+      if (m_spinnable && area != SpinArea::None && down && !focused())
+      {
+
+         if (area == SpinArea::Top)
+         {
+
             set_value(value() + m_value_increment);
+
             if (m_callback)
+            {
+
                m_callback(m_value);
+
+            }
+
          }
-         else if (area == SpinArea::Bottom) {
+         else if (area == SpinArea::Bottom) 
+         {
+
             set_value(value() - m_value_increment);
+
             if (m_callback)
+            {
+
                m_callback(m_value);
+
+            }
+
          }
+
          return true;
+
       }
 
-      return TextBox::mouse_button_event(p, button, down, modifiers);
+      return TextBox::mouse_button_event(p, button, down, ekeyModifiers);
+
    }
 
-   virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button,
-      int modifiers) override {
-      if (TextBox::mouse_drag_event(p, rel, button, modifiers))
+
+   bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override 
+   {
+
+      if (TextBox::mouse_drag_event(p, rel, ekeyModifiers))
+      {
+
          return true;
 
-      if (m_spinnable && !focused() && button == 2 /* 1 << GLFW_MOUSE_BUTTON_2 */ &&
-         m_mouse_down_pos.x() != -1) {
+      }
+
+      if (m_spinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && m_mouse_down_pos.x() != -1) 
+      {
+
          int value_delta = static_cast<int>((p.x() - m_mouse_down_pos.x()) / float(10));
+
          set_value(m_mouse_down_value + value_delta * m_value_increment);
+
          if (m_callback)
+         {
+
             m_callback(m_value);
+
+         }
+
          return true;
+
       }
+
       return false;
+
    }
 
-   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override {
+
+   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override 
+   {
+
       if (Widget::scroll_event(p, rel))
+      {
+
          return true;
 
-      if (m_spinnable && !focused()) {
-         int value_delta = (rel.y() > 0) ? 1 : -1;
-         set_value(value() + value_delta * m_value_increment);
-         if (m_callback)
-            m_callback(m_value);
-         return true;
       }
+
+      if (m_spinnable && !focused()) 
+      {
+
+         int value_delta = (rel.y() > 0) ? 1 : -1;
+
+         set_value(value() + value_delta * m_value_increment);
+
+         if (m_callback)
+         {
+
+            m_callback(m_value);
+
+         }
+
+         return true;
+
+      }
+
       return false;
+
    }
 
 private:
+
    std::string m_number_format;
+
    Scalar m_mouse_down_value;
+
    Scalar m_value_increment;
+
    Scalar m_min_value, m_max_value;
+
 };
 
+
 NAMESPACE_END(nanogui)
+
+
+

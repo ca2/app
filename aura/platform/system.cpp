@@ -283,6 +283,7 @@ namespace aura
    void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
+      ::aura::context::locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
    }
 

@@ -5027,6 +5027,21 @@ bool graphics::_set(::draw2d::pen * ppen)
 
    }
 
+   if(ppen->m_elinecapBeg == ::draw2d::e_line_cap_round
+   && ppen->m_elinecapEnd == ::draw2d::e_line_cap_round)
+   {
+
+      cairo_set_line_cap(m_pdc, CAIRO_LINE_CAP_ROUND);
+
+   }
+   else if(ppen->m_elinecapBeg == ::draw2d::e_line_cap_flat
+      && ppen->m_elinecapEnd == ::draw2d::e_line_cap_flat)
+   {
+
+      cairo_set_line_cap(m_pdc, CAIRO_LINE_CAP_BUTT);
+
+   }
+
    cairo_set_line_width(m_pdc, ppen->m_dWidth);
 
    return true;
@@ -5784,7 +5799,7 @@ bool graphics::_set(const ::polygon_f64 & polygon_i32)
 //}
 
 
-bool graphics::_set(const ::rectangle_f64 & rectangle)
+bool graphics::_set(const ::rectangle & rectangle)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -5797,6 +5812,34 @@ bool graphics::_set(const ::rectangle_f64 & rectangle)
       rectangle.height());
 
     return true;
+
+}
+
+
+bool graphics::_set(const ::ellipse & ellipse)
+{
+
+   _synchronous_lock ml(cairo_mutex());
+
+   double dx = ellipse.center_x();
+
+   double dy = ellipse.center_y();
+
+   cairo_translate(m_pdc, dx, dy);
+
+   double rx = ellipse.width() / 2.0;
+
+   double ry = ellipse.height() / 2.0;
+
+   cairo_scale(m_pdc, rx, ry);
+
+   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+
+   cairo_scale(m_pdc, 1.0 / rx, 1.0 / ry);
+
+   cairo_translate(m_pdc, -dx, -dy);
+
+   return true;
 
 }
 

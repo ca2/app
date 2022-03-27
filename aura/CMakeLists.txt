@@ -70,9 +70,11 @@ list(APPEND library_source
    graphics/draw2d/graphics.h
    graphics/draw2d/graphics_extension.cpp
    graphics/draw2d/graphics_extension.h
+   graphics/draw2d/host.cpp
+   graphics/draw2d/host.h
    graphics/draw2d/item.h
    graphics/draw2d/keep.cpp
-   graphics/draw2d/keep.h
+   #graphics/draw2d/keep.h
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
    graphics/draw2d/matrix.cpp

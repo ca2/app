@@ -18,7 +18,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      if (!pitem->m_pDraw2dPath)
+      if (!pitem->m_ppath)
       {
 
          ::rectangle_f64 rectangle(pitem->m_rectangle);
@@ -45,7 +45,7 @@ namespace user
 
          ppath->add_rectangle(rectangle, -45_degrees);
 
-         pitem->m_pDraw2dPath = ppath;
+         pitem->m_ppath = ppath;
 
       }
 
@@ -68,7 +68,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      pgraphics->fill(pitem->m_pDraw2dPath.cast < ::draw2d::path>());
+      pgraphics->fill(pitem->m_ppath);
 
    }
 

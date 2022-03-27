@@ -184,10 +184,10 @@ namespace draw2d_cairo
 
       double dFontScaler = 1.0;
 
-      if(::is_set(pgraphics->m_puserinteraction))
+      if(::is_set(pgraphics->m_phost))
       {
 
-         dFontScaler = pgraphics->m_puserinteraction->font_scaler();
+         dFontScaler = pgraphics->m_phost->font_scaler();
 
       }
       else

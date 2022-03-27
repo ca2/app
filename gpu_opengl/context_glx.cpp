@@ -149,6 +149,8 @@ namespace opengl
 
       }
 
+
+      m_itaskGpu = ::get_current_itask();
       //::e_status estatus =
       //
       make_current();

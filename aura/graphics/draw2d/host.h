@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-25 11:47 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-25 11:47 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -12,8 +12,16 @@ namespace draw2d
    public:
 
 
+      double                                    m_dScreenScaler;
+      double                                    m_dFontScaler;
+
+
       host();
       ~host() override;
+
+
+      inline double screen_scaler() const {return m_dScreenScaler;}
+      inline double font_scaler() const {return m_dFontScaler;}
 
 
       virtual double point_dpi(double d);

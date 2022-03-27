@@ -278,8 +278,8 @@ public:
 
    // a user item is a "pointer"/address to a user interface matter
 
-   matter_pointer                m_pDraw2dGraphics;
-   matter_pointer                m_pDraw2dPath;
+   __pointer(::draw2d::graphics)    m_pgraphics;
+   __pointer(::draw2d::path)        m_ppath;
    //::user::mouse *      m_pmouse;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
@@ -433,9 +433,9 @@ public:
 
       item_data::operator=(item);
 
-      m_pDraw2dGraphics = item.m_pDraw2dGraphics;
+      m_pgraphics = item.m_pgraphics;
 
-      m_pDraw2dPath = item.m_pDraw2dPath;
+      m_ppath = item.m_ppath;
 
       return *this;
 

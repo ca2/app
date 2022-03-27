@@ -4391,6 +4391,7 @@ namespace draw2d
 
 
    class graphics;
+   class path;
 
 
 } // namespace draw2d

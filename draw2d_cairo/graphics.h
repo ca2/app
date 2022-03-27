@@ -533,6 +533,7 @@ namespace draw2d_cairo
       bool _set(const ::line & line);
       bool _set(const ::lines & lines);
       bool _set(const ::rectangle & rectangle);
+      bool _set(const ::ellipse & ellipse);
       bool _set(const ::polygon & polygon);
       bool _set(const ::write_text::text_out & textout);
       bool _set(const ::write_text::draw_text & drawtext);

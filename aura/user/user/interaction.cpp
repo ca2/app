@@ -16911,12 +16911,19 @@ order(zorderParam);
       for (auto & pitem : m_useritema)
       {
 
-         if (pitem->m_pDraw2dPath)
+         if (pitem->m_ppath)
          {
 
-            auto ppath = pitem->m_pDraw2dPath.cast <::draw2d::path>();
+            auto ppath = pitem->m_ppath;
 
-            auto pgraphics = pitem->m_pDraw2dGraphics.cast <::draw2d::graphics>();
+            auto & pgraphics = pitem->m_pgraphics;
+
+            if(!pgraphics)
+            {
+
+               pgraphics = m_psystem->m_paurasystem->draw2d()->create_memory_graphics(this);
+
+            }
 
             if (ppath->contains(pgraphics, pointScroll))
             {

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-25 11:50 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
+// Created by camilo on 2022-03-25 11:50 <3ThomasBorregaardSï¿½rensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -9,7 +9,10 @@ namespace draw2d
 
    host::host()
    {
-   
+
+      m_dScreenScaler = 1.0;
+      m_dFontScaler = 1.0;
+
    }
 
 

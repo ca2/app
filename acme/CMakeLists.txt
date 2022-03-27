@@ -1112,12 +1112,12 @@ list(APPEND library_source
    #ode/operating_system/universal_windows/file_winrt.h
    #operating_system/universal_windows/gdi_winrt.h
    operating_system/universal_windows/host_interaction.h
-   operating_system/universal_windows/metrowin_metrowin.h
+   #operating_system/universal_windows/metrowin_metrowin.h
    operating_system/universal_windows/parallelization.h
    operating_system/universal_windows/parallelization_winrt.h
    operating_system/universal_windows/process.h
-   operating_system/universal_windows/simple_hold_handle.h
-   operating_system/universal_windows/simple_ui.h
+   #operating_system/universal_windows/simple_hold_handle.h
+   #operating_system/universal_windows/simple_ui.h
    operating_system/universal_windows/sockets.h
    operating_system/windows/_.h
    #operating_system/windows/_c.h

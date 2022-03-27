@@ -3324,20 +3324,7 @@ auto tickStartWithLock = ::duration::now();
 
             __copy(pgraphics->m_rectangleDraw, rectangleDraw);
 
-            auto pappearance = get_appearance();
-
-            if (::is_set(pappearance))
-            {
-
-               pappearance->_001OnDraw(pgraphics);
-
-            }
-            else
-            {
-
-               _001OnDraw(pgraphics);
-
-            }
+            _001OnDraw(pgraphics);
 
 #ifdef __DEBUG
 
@@ -8690,18 +8677,14 @@ void interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
    m_pprimitiveimpl->on_layout(pgraphics);
 
+   on_layout(pgraphics);
+
    auto pappearance = get_appearance();
 
    if (::is_set(pappearance))
    {
 
       pappearance->perform_layout(pgraphics);
-
-   }
-   else
-   {
-
-      on_layout(pgraphics);
 
    }
 
@@ -9347,7 +9330,7 @@ void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
       if (pitem)
       {
 
-         if (pitem->m_rectangle.is_null())
+         //if (pitem->m_rectangle.is_null())
          {
 
             get_client_rect(pitem->m_rectangle);
@@ -17061,6 +17044,15 @@ order(zorderParam);
    void interaction::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         pappearance->_001OnDraw(pgraphics);
+
+      }
+
       //::user::interaction::_001OnDraw(pgraphics);
       if (m_useritema.has_element())
       {
@@ -17068,6 +17060,7 @@ order(zorderParam);
          _001DrawItems(pgraphics);
 
       }
+
 
    }
 

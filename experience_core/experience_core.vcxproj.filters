@@ -35,9 +35,6 @@
     <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="experience\button.cpp">
-      <Filter>Source Files\experience</Filter>
-    </ClCompile>
     <ClCompile Include="experience\control_box.cpp">
       <Filter>Source Files\experience</Filter>
     </ClCompile>
@@ -70,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\control_box_button.cpp">
+      <Filter>Source Files\experience</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

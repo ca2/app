@@ -1071,7 +1071,7 @@ namespace experience_anthill
 
             }
 
-            pfont->m_bUpdated2 = true;
+            pfont->set_modified();
 
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;

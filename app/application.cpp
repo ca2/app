@@ -35,15 +35,6 @@ namespace app_app
 
       ::aura::application::init_instance();
 
-      //if (!::aura::application::init_instance())
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
-
    }
 
 

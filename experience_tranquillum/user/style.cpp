@@ -488,10 +488,9 @@ namespace experience_tranquillum
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
    {
 
-
       ::draw2d::savedc k(pgraphics);
 
-      pgraphics->m_puserinteraction = pframe;
+      pgraphics->m_phost = pframe;
 
       if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
       {

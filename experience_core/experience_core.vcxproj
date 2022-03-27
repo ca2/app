@@ -35,8 +35,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="experience\button.cpp" />
     <ClCompile Include="experience\control_box.cpp" />
+    <ClCompile Include="experience\control_box_button.cpp" />
     <ClCompile Include="experience\experience.cpp" />
     <ClCompile Include="experience\frame.cpp" />
     <ClCompile Include="experience\frame_001.cpp" />

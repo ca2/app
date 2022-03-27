@@ -362,6 +362,7 @@ namespace user
       bool is_ready_to_quit() const override;
 
 
+      virtual void set_appearance(::appearance::appearance * pappearance);
       virtual ::appearance::appearance * get_appearance();
 
       //class control_descriptor& descriptor();

@@ -2721,8 +2721,11 @@ void __NANO2D_API(TextBox)(NANO2D_CONTEXT * ctx, float x, float y, float breakRo
 
 int __NANO2D_API(TextGlyphPositions)(NANO2D_CONTEXT * ctx, float x, float y, const char * string, const char * end, NVGglyphPosition * positions, int maxPositions)
 {
-	throw_todo();
-	return -1;
+
+	return __NANO2D_CONTEXT(ctx)->text_glyph_positions(x, y, string, end, positions, maxPositions);
+
+	//throw_todo();
+	//return -1;
 	//NVGstate * state = __NANO2D_API(__getState)(ctx);
 	//float scale = __NANO2D_API(__getFontScale)(state) * __NANO2D_CONTEXT(ctx)->devicePxRatio;
 	//float invscale = 1.0f / scale;

@@ -172,13 +172,13 @@ public:
 //      return false; /* To be overridden */
 //   }
 //
-//   /// Default keyboard event handler
-//   virtual bool keyboard_event(int key, int scancode, int action, int modifiers);
-//
-//   /// Text input event handler: codepoint is native endian UTF-32 format
-//   virtual bool keyboard_character_event(unsigned int codepoint);
-//
-//   /// Window resize event handler
+   /// Default keyboard event handler
+   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
+
+   /// Text input event handler: codepoint is native endian UTF-32 format
+   virtual bool keyboard_character_event(unsigned int codepoint);
+
+   /// Window resize event handler
    virtual bool resize_event(const nanogui::Vector2i & size);
 
    /// Set the resize callback
@@ -311,7 +311,7 @@ public:
    using Widget::perform_layout;
 
    // ::appearance::appearance
-   void _nanogui_to_user(::user::interaction * puserinteraction);
+   void set_user_interaction(::user::interaction * puserinteraction) override;
    ::size_i32 preferred_size(::draw2d::graphics_pointer & pointer) override;
 
    void perform_layout(::draw2d::graphics_pointer & pointer) override;
@@ -327,8 +327,10 @@ public:
    bool on_mouse_move(const ::point_i32 & point) override;
    bool on_mouse_drag(const ::point_i32 & point) override;
 
-   bool on_key_down(::user::enum_key ekey) override;
-   bool on_key_up(::user::enum_key ekey) override;
+   bool on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;
+   bool on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;
+
+   void on_character(int iCharacter) override;
 
 
 };

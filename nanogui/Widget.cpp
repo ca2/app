@@ -170,7 +170,7 @@ bool Widget::focus_event(bool focused) {
    return false;
 }
 
-bool Widget::keyboard_event(::user::enum_key , int, int, int) {
+bool Widget::keyboard_event(::user::enum_key , int, int, const ::user::e_key &) {
    return false;
 }
 

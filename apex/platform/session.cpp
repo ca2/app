@@ -1106,6 +1106,96 @@ namespace apex
    }
 
 
+   ::user::e_key session::key_modifiers()
+   {
+
+      ::user::e_key ekeyModifiers = ::user::e_key_none;
+
+      if (is_key_pressed(::user::e_key_left_shift))
+      {
+
+         ekeyModifiers |= ::user::e_key_left_shift;
+
+      }
+
+      if (is_key_pressed(::user::e_key_right_shift))
+      {
+
+         ekeyModifiers |= ::user::e_key_right_shift;
+
+      }
+
+      if (is_key_pressed(::user::e_key_left_control))
+      {
+
+         ekeyModifiers |= ::user::e_key_left_control;
+
+#if !defined(__APPLE__)
+
+         ekeyModifiers |= ::user::e_key_system_left_command;
+
+#endif
+
+      }
+
+      if (is_key_pressed(::user::e_key_right_control))
+      {
+
+         ekeyModifiers |= ::user::e_key_right_control;
+
+#if !defined(__APPLE__)
+
+         ekeyModifiers |= ::user::e_key_system_right_command;
+
+#endif
+
+      }
+
+      if (is_key_pressed(::user::e_key_left_alt))
+      {
+
+         ekeyModifiers |= ::user::e_key_left_alt;
+
+      }
+
+      if (is_key_pressed(::user::e_key_right_alt))
+      {
+
+         ekeyModifiers |= ::user::e_key_right_alt;
+
+      }
+
+      if (is_key_pressed(::user::e_key_left_command))
+      {
+
+         ekeyModifiers |= ::user::e_key_left_command;
+
+#if defined(__APPLE__)
+
+         ekeyModifiers |= ::user::e_key_system_left_command;
+
+#endif
+
+      }
+
+      if (is_key_pressed(::user::e_key_right_command))
+      {
+
+         ekeyModifiers |= ::user::e_key_right_command;
+
+#if defined(__APPLE__)
+
+         ekeyModifiers |= ::user::e_key_system_right_command;
+
+#endif
+
+      }
+
+      return ekeyModifiers;
+
+   }
+
+
    bool session::is_key_pressed(::user::enum_key ekey)
    {
 

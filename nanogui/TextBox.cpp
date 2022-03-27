@@ -307,6 +307,8 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
             m_mouse_down_pos = Vector2i(-1, -1);
          }
          m_last_click.Now();
+         screen()->m_puserinteraction->set_need_redraw();
+         screen()->m_puserinteraction->post_redraw();
       }
       else {
          m_mouse_down_pos = Vector2i(-1, -1);
@@ -325,6 +327,9 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down,
                m_value = m_default_value;
                if (m_callback)
                   m_callback(m_value);
+
+               screen()->m_puserinteraction->set_need_redraw();
+               screen()->m_puserinteraction->post_redraw();
 
                m_mouse_down_pos = Vector2i(-1, -1);
             }
@@ -391,6 +396,10 @@ bool TextBox::focus_event(bool focused) {
          if (m_callback && !m_callback(m_value))
             m_value = backup;
 
+         screen()->m_puserinteraction->set_need_redraw();
+         screen()->m_puserinteraction->post_redraw();
+
+
          m_valid_format = true;
          m_committed = true;
          m_cursor_pos = -1;
@@ -404,12 +413,12 @@ bool TextBox::focus_event(bool focused) {
    return true;
 }
 
-bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, int modifiers) {
+bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers) {
    if (m_editable && focused()) {
       //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
       if (action == ::e_message_key_down) {
          if (ekey == ::user::e_key_left) {
-            if (modifiers == ::user::e_key_shift) {
+            if (ekeyModifiers & ::user::e_key_shift) {
                if (m_selection_pos == -1)
                   m_selection_pos = m_cursor_pos;
             }
@@ -421,7 +430,7 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
                m_cursor_pos--;
          }
          else if (ekey == ::user::e_key_right) {
-            if (modifiers == ::user::e_key_shift) {
+            if (ekeyModifiers & ::user::e_key_shift) {
                if (m_selection_pos == -1)
                   m_selection_pos = m_cursor_pos;
             }
@@ -433,7 +442,7 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
                m_cursor_pos++;
          }
          else if (ekey == ::user::e_key_home) {
-            if (modifiers == ::user::e_key_shift) {
+            if (ekeyModifiers & ::user::e_key_shift) {
                if (m_selection_pos == -1)
                   m_selection_pos = m_cursor_pos;
             }
@@ -444,7 +453,7 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
             m_cursor_pos = 0;
          }
          else if (ekey == ::user::e_key_end) {
-            if (modifiers == ::user::e_key_shift) {
+            if (ekeyModifiers & ::user::e_key_shift) {
                if (m_selection_pos == -1)
                   m_selection_pos = m_cursor_pos;
             }
@@ -472,24 +481,28 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
             if (!m_committed)
                focus_event(false);
          }
-         else if (ekey == ::user::e_key_a && modifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_a && ekeyModifiers == ::user::e_key_system_command) {
             m_cursor_pos = (int)m_value_temp.length();
             m_selection_pos = 0;
          }
-         else if (ekey == ::user::e_key_x && modifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_x && ekeyModifiers == ::user::e_key_system_command) {
             copy_selection();
             delete_selection();
          }
-         else if (ekey == ::user::e_key_c && modifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_c && ekeyModifiers == ::user::e_key_system_command) {
             copy_selection();
          }
-         else if (ekey == ::user::e_key_v && modifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_v && ekeyModifiers == ::user::e_key_system_command) {
             delete_selection();
             paste_from_clipboard();
          }
 
          m_valid_format =
             (m_value_temp == "") || check_format(m_value_temp, m_format);
+
+         screen()->m_puserinteraction->set_need_redraw();
+         screen()->m_puserinteraction->post_redraw();
+
       }
 
       return true;
@@ -509,7 +522,11 @@ bool TextBox::keyboard_character_event(unsigned int codepoint) {
 
       m_valid_format = (m_value_temp == "") || check_format(m_value_temp, m_format);
 
+      screen()->m_puserinteraction->set_need_redraw();
+      screen()->m_puserinteraction->post_redraw();
+
       return true;
+
    }
 
    return false;
@@ -637,19 +654,53 @@ float TextBox::cursor_index_to_position(int index, float lastx,
 
 int TextBox::position_to_cursor_index(float posx, float lastx,
    const NVGglyphPosition * glyphs, int size) {
-   int m_cursor_id = 0;
-   float caretx = glyphs[m_cursor_id].x;
-   for (int j = 1; j < size; j++) {
-      if (std::abs(caretx - posx) > std::abs(glyphs[j].x - posx)) {
-         m_cursor_id = j;
-         caretx = glyphs[m_cursor_id].x;
-      }
-   }
-   if (std::abs(caretx - posx) > std::abs(lastx - posx))
-      m_cursor_id = size;
 
-   return m_cursor_id;
+   float caretx = glyphs[0].x;
+
+   if (posx < caretx)
+   {
+
+      return 0;
+
+   }
+
+   double dLastX = caretx;
+
+   int cursor = 1;
+
+   for (; cursor <= size; cursor++) 
+   {
+
+      double dNextX;
+
+      if (cursor >= size)
+      {
+
+         dNextX = (dLastX + glyphs[cursor-1].x) / 2.0;
+
+      }
+      else
+      {
+
+         dNextX = (glyphs[cursor].x + glyphs[cursor-1].x) / 2.0;
+
+      }
+      
+      if (posx >= dLastX && posx < dNextX) 
+      {
+
+         return cursor - 1;
+
+      }
+
+      dLastX = dNextX;
+
+   }
+
+   return cursor - 1;
+
 }
+
 
 TextBox::SpinArea TextBox::spin_area(const Vector2i & pos) {
    if (0 <= pos.x() - m_pos.x() && pos.x() - m_pos.x() < 14.f) { /* on scrolling arrows */

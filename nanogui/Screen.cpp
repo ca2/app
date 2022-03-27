@@ -594,7 +594,7 @@ void Screen::draw_setup(NVGcontext * ctx) {
 
 #if defined(_WIN32) || defined(__linux__) || defined(EMSCRIPTEN)
    //m_fbsize = m_size;
-   m_size = Vector2i(Vector2f(m_size) / m_pixel_ratio);
+   //m_size = Vector2i(Vector2f(m_size) / m_pixel_ratio);
 #else
    /* Recompute pixel ratio on OSX */
    if (m_size[0])
@@ -669,7 +669,7 @@ void Screen::draw_contents(NVGcontext * ctx)
 //
 
 void Screen::draw(NVGcontext * ctx) {
-   Widget::draw(ctx);
+   //Widget::draw(ctx);
 
    draw_all(ctx);
 
@@ -680,6 +680,8 @@ void Screen::draw_widgets(NVGcontext * ctx) {
    //nvgBeginFrame(ctx, m_size[0], m_size[1], m_pixel_ratio);
 
    //draw(ctx);
+
+   Widget::draw(ctx);
 
    auto elapsed = m_last_interaction.elapsed();
 
@@ -742,25 +744,25 @@ void Screen::draw_widgets(NVGcontext * ctx) {
 
    //nvgEndFrame(ctx);
 }
-//
-//bool Screen::keyboard_event(int key, int scancode, int action, int modifiers) {
-//   if (m_focus_path.size() > 0) {
-//      for (auto it = m_focus_path.rbegin() + 1; it != m_focus_path.rend(); ++it)
-//         if ((*it)->focused() && (*it)->keyboard_event(key, scancode, action, modifiers))
-//            return true;
-//   }
-//
-//   return false;
-//}
-//
-//bool Screen::keyboard_character_event(unsigned int codepoint) {
-//   if (m_focus_path.size() > 0) {
-//      for (auto it = m_focus_path.rbegin() + 1; it != m_focus_path.rend(); ++it)
-//         if ((*it)->focused() && (*it)->keyboard_character_event(codepoint))
-//            return true;
-//   }
-//   return false;
-//}
+
+bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) {
+   if (m_focus_path.size() > 0) {
+      for (auto it = m_focus_path.rbegin() + 1; it != m_focus_path.rend(); ++it)
+         if ((*it)->focused() && (*it)->keyboard_event(ekey, scancode, action, ekeyModifiers))
+            return true;
+   }
+
+   return false;
+}
+
+bool Screen::keyboard_character_event(unsigned int codepoint) {
+   if (m_focus_path.size() > 0) {
+      for (auto it = m_focus_path.rbegin() + 1; it != m_focus_path.rend(); ++it)
+         if ((*it)->focused() && (*it)->keyboard_character_event(codepoint))
+            return true;
+   }
+   return false;
+}
 
 bool Screen::resize_event(const Vector2i & size) {
    if (m_resize_callback)
@@ -1087,34 +1089,35 @@ void Screen::set_size(const Vector2i & size)
    if (m_puserinteraction)
    {
 
-      m_puserinteraction->move_to(::size_i32(m_pos.v[0], m_pos.v[1]));
+      if (m_puserinteraction->width() != size.x()
+         || m_puserinteraction->height() != size.y())
+      {
 
-      m_puserinteraction->set_size(::size_i32(m_size.v[0], m_size.v[1]));
+         //m_puserinteraction->move_to(::size_i32(m_pos.v[0], m_pos.v[1]));
 
-      m_puserinteraction->set_need_layout();
+         m_puserinteraction->set_size(::size_i32(m_size.v[0], m_size.v[1]));
 
-      m_puserinteraction->set_need_redraw();
+         m_puserinteraction->set_need_layout();
 
-      m_puserinteraction->post_redraw();
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
+      }
 
    }
 
 }
 
 
-void Screen::_nanogui_to_user(::user::interaction * puserinteraction)
+void Screen::set_user_interaction(::user::interaction * puserinteraction)
 {
 
-   //for (auto pchild : m_children)
-   //{
+   ::appearance::appearance::set_user_interaction(puserinteraction);
 
-   //   pchild->_nanogui_to_user(puserinteraction);
+   m_size.x() = puserinteraction->width();
 
-   //}
-
-   m_puserinteraction = puserinteraction;
-
-   puserinteraction->m_pappearance = this;
+   m_size.y() = puserinteraction->height();
 
    puserinteraction->set_need_layout();
 
@@ -1150,9 +1153,9 @@ void Screen::perform_layout(::draw2d::graphics_pointer & pgraphics)
 
    context.set_graphics(pgraphics);
 
-   //auto size = preferred_size(&context);
+   auto size = m_puserinteraction->get_size();
 
-   //set_size(size);
+   set_size({ (int)size.cx, (int)size.cy });
 
    perform_layout(&context);
 
@@ -1263,21 +1266,28 @@ bool Screen::on_mouse_drag(const ::point_i32 & point)
 }
 
 
-bool Screen::on_key_down(::user::enum_key ekey)
+bool Screen::on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
 {
 
-   return keyboard_event(ekey, e_message_key_down, 0, 0);
+   return keyboard_event(ekey, 0, e_message_key_down, ekeyModifiers);
 
 }
 
 
-bool Screen::on_key_up(::user::enum_key ekey)
+bool Screen::on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
 {
 
-   return keyboard_event(ekey, e_message_key_up, 0, 0);
+   return keyboard_event(ekey, 0, e_message_key_up, ekeyModifiers);
 
 }
 
+
+void Screen::on_character(int iCharacter)
+{
+
+   keyboard_character_event(iCharacter);
+
+}
 
 
 NAMESPACE_END(nanogui)

@@ -14,6 +14,7 @@ namespace nano2d
    protected:
 
       ::draw2d::graphics_pointer       m_pgraphics;
+      int         m_iPaint = -1;
 
    public:
 
@@ -129,6 +130,7 @@ namespace nano2d
 
 
       float text(float x, float y, const char * string, const char * end) override;
+      int text_glyph_positions(float x, float y, const char * string, const char * end, NVGglyphPosition * positions, int maxPositions) override;
       float text_bounds(float x, float y, const char * string, const char * end, float * bounds) override;
 
 

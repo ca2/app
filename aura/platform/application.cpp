@@ -2085,25 +2085,28 @@ retry_license:
 
       auto psystem = get_system()->m_paurasystem;
 
-      if (psystem->m_bImaging)
-      {
+      //if (psystem->m_bImaging)
+      //{
 
-         //estatus = 
-         __compose(m_pcontextimage);
+      //   //estatus = 
+      //   __compose(m_pcontextimage);
 
-         //if (!estatus)
-         //{
+      //   //if (!estatus)
+      //   //{
 
-         //   INFORMATION("ERROR: context_image required but missing.");
+      //   //   INFORMATION("ERROR: context_image required but missing.");
 
-         //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //   //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
-         //   return estatus;
+      //   //   return estatus;
 
-         //}
+      //   //}
 
-      }
-      else
+      //}
+      //else
+      //{
+
+      if (!m_pcontextimage)
       {
 
          //estatus = 

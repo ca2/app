@@ -211,8 +211,14 @@ namespace nano2d
    }
    
    
-   void draw2d_context::rounded_rect(float x, float y, float w, float h, float r)
+   void draw2d_context::rounded_rect(float xParam, float yParam, float wParam, float hParam, float rParam)
    {
+
+      double x = xParam;
+      double y = yParam;
+      double w = wParam;
+      double h = hParam;
+      double r = rParam;
 
       auto r2 = r * 2.0;
 
@@ -231,9 +237,46 @@ namespace nano2d
    void draw2d_context::fill()
    {
 
-      m_pgraphics->set(m_pstate->m_pbrush);
+      if (m_iPaint >= 0)
+      {
 
-      m_pgraphics->fill(m_pstate->m_ppath);
+         auto & paintimage = m_mapPaintImage[m_iPaint];
+
+         if (paintimage.m_pbrush)
+         {
+
+            m_pgraphics->set(paintimage.m_pbrush);
+
+            m_pgraphics->fill(m_pstate->m_ppath);
+
+
+         }
+         else if (paintimage.m_pimage)
+         {
+
+            ::draw2d::savedc save(m_pgraphics);
+
+            m_pgraphics->intersect_clip(m_pstate->m_ppath);
+
+            image_source imagesource(paintimage.m_pimage);
+
+            image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
+
+            m_pgraphics->draw(imagedrawing);
+
+         }
+
+         m_iPaint = -1;
+
+      }
+      else
+      {
+
+         m_pgraphics->set(m_pstate->m_pbrush);
+
+         m_pgraphics->fill(m_pstate->m_ppath);
+
+      }
 
    }
 
@@ -459,31 +502,8 @@ namespace nano2d
 
       ASSERT(paint.image >= 0 && paint.image < m_iPaintImageSeed);
 
-      auto &paintimage = m_mapPaintImage[paint.image];
+      m_iPaint = paint.image;
 
-      if (paintimage.m_pbrush)
-      {
-
-         m_pgraphics->set(paintimage.m_pbrush);
-
-         m_pgraphics->fill(m_pstate->m_ppath);
-
-
-      }
-      else if (paintimage.m_pimage)
-      {
-
-         ::draw2d::savedc save(m_pgraphics);
-
-         m_pgraphics->intersect_clip(m_pstate->m_ppath);
-
-         image_source imagesource(paintimage.m_pimage);
-
-         image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
-
-         m_pgraphics->draw(imagedrawing);
-
-      }
 
    }
 
@@ -671,6 +691,81 @@ namespace nano2d
    }
 
 
+   int draw2d_context::text_glyph_positions(float x, float y, const char * stringParam, const char * end, NVGglyphPosition * positions, int maxPositions)
+   {
+
+      double_array daLeft;
+      double_array daRight;
+
+      ::string strText(stringParam, end ? end - stringParam : str::length(stringParam));
+
+      m_pgraphics->set(m_pstate->m_pfont);
+
+      auto size = m_pgraphics->get_text_extent(strText);
+      double offsetx = 0.0;
+
+      double offsety = 0.0;
+
+      if (m_pstate->m_ealignText & e_align_right)
+      {
+
+         offsetx = -size.cx;
+
+      }
+      else if (m_pstate->m_ealignText & e_align_horizontal_center)
+      {
+
+         offsetx = -size.cx / 2.0;
+
+      }
+
+      if (m_pstate->m_ealignText & e_align_bottom)
+      {
+
+         offsety = -size.cy;
+
+      }
+      else if (m_pstate->m_ealignText & e_align_vertical_center)
+      {
+
+         offsety = -size.cy / 2.0;
+
+      }
+
+
+      m_pgraphics->get_character_extent(daLeft, daRight, strText);
+
+      auto pszStart = strText.c_str();
+
+      auto psz = pszStart;
+
+      int iChar = 0;
+
+      while (*psz && iChar < maxPositions)
+      {
+
+         int iLen = ::str::get_utf8_char_length(psz);
+
+         positions[iChar].str = psz;
+
+         positions[iChar].x = x+ offsetx+daLeft[psz - pszStart];
+
+         positions[iChar].minx = x + offsetx + daLeft[psz - pszStart];
+
+         positions[iChar].maxx = x + offsetx + daRight[psz - pszStart];
+
+         psz += iLen;
+
+         iChar++;
+
+      }
+
+      return iChar;
+
+   }
+
+
+
    float draw2d_context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
    {
 
@@ -739,6 +834,7 @@ namespace nano2d
          m_pgraphics->set_current_point(::point_f64(x, y));
 
       }
+
    }
 
 

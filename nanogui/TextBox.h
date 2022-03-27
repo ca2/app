@@ -49,7 +49,25 @@ NAMESPACE_BEGIN(nanogui)
       void set_spinnable(bool spinnable) { m_spinnable = spinnable; }
 
       const std::string & value() const { return m_value; }
-      void set_value(const std::string & value) { m_value = value; }
+      void set_value(const std::string & value) { m_value = value; 
+
+      auto pscreen = screen();
+
+      if (pscreen)
+      {
+
+         auto puserinteraction = pscreen->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+            puserinteraction->set_need_redraw();
+            puserinteraction->post_redraw();
+
+         }
+
+      }
+
+      }
 
       const std::string & default_value() const { return m_default_value; }
       void set_default_value(const std::string & default_value) { m_default_value = default_value; }
@@ -87,7 +105,7 @@ NAMESPACE_BEGIN(nanogui)
       virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
       virtual bool focus_event(bool focused) override;
-       bool keyboard_event(::user::enum_key ekey, int scancode, int action, int modifiers) override;
+       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
       virtual bool keyboard_character_event(unsigned int codepoint) override;
 
       virtual Vector2i preferred_size(NVGcontext * ctx) const override;
@@ -205,6 +223,7 @@ public:
             set_value(value() + m_value_increment);
             if (m_callback)
                m_callback(m_value);
+
          }
          else if (area == SpinArea::Bottom) {
             set_value(value() - m_value_increment);

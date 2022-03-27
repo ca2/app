@@ -224,6 +224,14 @@ namespace nano2d
    }
 
 
+   int context::text_glyph_positions(float x, float y, const char * string, const char * end, NVGglyphPosition * positions, int maxPositions)
+   {
+
+      return 0;
+
+   }
+
+
    float context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
    {
 

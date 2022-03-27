@@ -21,6 +21,9 @@ namespace appearance
       ~appearance() override;
 
 
+      virtual void set_user_interaction(::user::interaction * puserinteraction);
+
+
       virtual bool call_click();
       virtual bool call_check(::enum_check echeck);
 
@@ -39,8 +42,10 @@ namespace appearance
       virtual bool on_mouse_move(const ::point_i32 & point);
       virtual bool on_mouse_drag(const ::point_i32 & point);
 
-      virtual bool on_key_down(::user::enum_key ekey);
-      virtual bool on_key_up(::user::enum_key ekey);
+      virtual bool on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers);
+      virtual bool on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers);
+
+      virtual void on_character(int iCharacter);
 
 
    };

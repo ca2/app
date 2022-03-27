@@ -1719,6 +1719,7 @@ namespace user
 
             MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
             MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+            MESSAGE_LINK(e_message_char, pchannel, this, &::user::interaction::on_message_character);
 
          }
 
@@ -5273,6 +5274,22 @@ return "";
    void interaction::on_message_key_down(::message::message * pmessage)
    {
 
+      if (m_pappearance)
+      {
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
+         {
+
+            return;
+
+         }
+
+      }
+
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
@@ -5323,6 +5340,21 @@ return "";
    void interaction::on_message_key_up(::message::message * pmessage)
    {
 
+      if (m_pappearance)
+      {
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
+         {
+
+            return;
+
+         }
+
+      }
 
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
@@ -5364,8 +5396,63 @@ return "";
       //}
    }
 
+
+   //void interaction::on_message_ime_char(::message::message * pmessage)
+   //{
+
+   //   
+
+   //   //if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+   //   //{
+
+   //   //   auto pkey = pmessage->m_union.m_pkey;
+
+   //   //   if (pkey)
+   //   //   {
+
+   //   //      if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+   //   //      {
+
+   //   //         pkey->m_bRet = true;
+
+   //   //      }
+   //   //      else if (m_bKeyboardMultipleSelectionDefaultHandling &&
+   //   //         (
+   //   //            pkey->m_ekey == ::user::e_key_shift
+   //   //            || pkey->m_ekey == ::user::e_key_left_shift
+   //   //            || pkey->m_ekey == ::user::e_key_right_shift
+   //   //            || pkey->m_ekey == ::user::e_key_control
+   //   //            || pkey->m_ekey == ::user::e_key_left_control
+   //   //            || pkey->m_ekey == ::user::e_key_right_control
+   //   //            ))
+   //   //      {
+
+   //   //         pkey->m_bRet = true;
+
+   //   //      }
+
+   //   //   }
+
+   //   //}
+
+   //   //if(psession->get_keyboard_focus() != this
+   //   ///&& psession->get_keyboard_focus() != nullptr)
+   //   //{
+   //   // psession->get_keyboard_focus()->keyboard_focus_OnKeyUp(pmessage);
+   //   //}
+   //}
+
+
    void interaction::on_message_character(::message::message * pmessage)
    {
+
+      if (m_pappearance)
+      {
+
+
+         m_pappearance->on_character(pmessage->m_wparam);
+
+      }
       //if(psession->get_keyboard_focus() != this
       // && psession->get_keyboard_focus() != nullptr)
       //{
@@ -6977,6 +7064,26 @@ void interaction::insert_text(string str, bool bForceNewStep, const ::action_con
 
    strText.replace(iBeg, iEnd, strText);
 
+   if (m_pappearance)
+   {
+
+      auto psz = strText.c_str();
+
+      while (*psz)
+      {
+
+         string strUtf8Character = ::str::get_utf8_char(psz);
+
+         auto iCharacter = ::str::ch::uni_index(strUtf8Character);
+
+         m_pappearance->on_character(iCharacter);
+
+         psz += strUtf8Character.length();
+
+      }
+
+   }
+
 }
 
 
@@ -7624,6 +7731,16 @@ bool interaction::is_ready_to_quit() const
    bool bShouldContinue = task_get_run();
 
    return !bShouldContinue && has(e_flag_task_ready);
+
+}
+
+
+void interaction::set_appearance(::appearance::appearance * pappearance)
+{
+
+   m_pappearance = pappearance;
+
+   pappearance->set_user_interaction(this);
 
 }
 
@@ -15862,26 +15979,6 @@ order(zorderParam);
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pappearance = get_appearance();
-
-      if (::is_set(pappearance))
-      {
-
-         ::point_i32 pointClient;
-
-         _screen_to_client(pointClient, pmouse->m_point);
-
-         if (pappearance->on_button_down(pointClient))
-         {
-
-            pmouse->m_bRet = true;
-
-            return;
-
-         }
-
-      }
-      
       string strType = __type_name(this);
 
       if (!is_window_enabled())
@@ -15921,6 +16018,30 @@ order(zorderParam);
       }
       catch (...)
       {
+
+      }
+
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            ::point_i32 pointClient;
+
+            _screen_to_client(pointClient, pmouse->m_point);
+
+            if (pappearance->on_button_down(pointClient))
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
+         }
 
       }
 

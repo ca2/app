@@ -63,7 +63,9 @@ namespace nano2d
 		virtual void reset_scissor();
 
 		virtual float text(float x, float y, const char * string, const char * end);
+		virtual int text_glyph_positions(float x, float y, const char * string, const char * end, NVGglyphPosition * positions, int maxPositions);
 		virtual float text_bounds(float x, float y, const char * string, const char * end, float * bounds);
+
 
 		virtual void move_to(float x, float y);
 		virtual void line_to(float x, float y);

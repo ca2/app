@@ -161,17 +161,11 @@ void Window::draw(NVGcontext * ctx)
 
 
 void Window::dispose() {
-   Widget * widget = this;
-   while (widget->parent())
-      widget = widget->parent();
-   ((Screen *)widget)->dispose_window(this);
+   screen()->dispose_window(this);
 }
 
 void Window::_center(NVGcontext * pcontext) {
-   Widget * widget = this;
-   while (widget->parent())
-      widget = widget->parent();
-   ((Screen *)widget)->center_window(this, pcontext);
+   screen()->center_window(this, pcontext);
 }
 
 bool Window::mouse_enter_event(const Vector2i & p, bool enter) {

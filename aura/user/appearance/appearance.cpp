@@ -21,6 +21,14 @@ namespace appearance
    }
 
 
+   void appearance::set_user_interaction(::user::interaction * puserinteraction)
+   {
+
+      m_puserinteraction = puserinteraction;
+
+   }
+
+
    bool appearance::call_click()
    {
 
@@ -105,7 +113,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_key_down(::user::enum_key ekey)
+   bool appearance::on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -113,10 +121,16 @@ namespace appearance
    }
 
 
-   bool appearance::on_key_up(::user::enum_key ekey)
+   bool appearance::on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
+
+   }
+
+
+   void appearance::on_character(int iCharacter)
+   {
 
    }
 

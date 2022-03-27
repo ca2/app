@@ -73,7 +73,7 @@ NAMESPACE_BEGIN(nanogui)
       Vector2f pixel_to_pos(const Vector2f & p) const;
 
       // Widget implementation
-      bool keyboard_event(::user::enum_key ekey, int scancode, int action, int modifiers) override;
+      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, int button, int modifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(NVGcontext * ctx) override;

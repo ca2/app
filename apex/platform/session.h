@@ -295,11 +295,13 @@ namespace apex
 
       //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
+      virtual ::user::e_key key_modifiers();
+      
       virtual bool is_key_pressed(::user::enum_key ekey);
 
       virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 
-
+      
       // apex commented
       //virtual void get_cursor_position(POINT_I32 * ppoint);
       //inline ::point_i32 get_cursor_position() {::point_i32 point; get_cursor_position(&point); return point;}

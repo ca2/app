@@ -78,6 +78,7 @@ namespace nano2d
 
 
 		virtual int create_image(const char * filename, int imageFlags);
+		virtual int create_image(int w, int h, int imageFlags, const unsigned char * data);
 		virtual void image_size(int image, int * w, int * h);
 
 

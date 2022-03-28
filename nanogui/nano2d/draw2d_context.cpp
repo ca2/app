@@ -922,6 +922,14 @@ namespace nano2d
    }
 
 
+   int draw2d_context::create_image(int w, int h, int imageFlags, const unsigned char * data)
+   {
+
+      return m_pgraphics->m_psystem->context_image()->create_image_integer(w, h, data);
+
+   }
+
+
    void draw2d_context::image_size(int image, int * w, int * h)
    {
 

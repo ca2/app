@@ -73,6 +73,57 @@ i32 context_image::image_integer(const char * path)
 }
 
 
+i32 context_image::create_image_integer(int w, int h, color32_t * pcolor, int iScan)
+{
+
+   if (w <= 0 || h <= 0)
+   {
+
+      throw ::exception(::error_bad_argument);
+
+   }
+
+   if (iScan < 0)
+   {
+
+      iScan = w * sizeof(color32_t);
+
+   }
+
+   auto pimage->create_image({ w, h }, data, iScan);
+
+   synchronous_lock  synchronouslock(mutex());
+
+   
+
+   auto strPath = m_mapIntPath[iImage];
+
+
+   auto & iImage = m_mapPathInt[path];
+
+   if (iImage <= 0)
+   {
+
+      iImage = m_iImageSeed;
+
+      m_mapIntPath[iImage] = path;
+
+      m_iImageSeed++;
+
+   }
+
+   return iImage;
+
+
+   ASSERT(strPath.has_char());
+
+   return path_image(strPath);
+
+
+
+}
+
+
 image_pointer context_image::integer_image(i32 iImage)
 {
 

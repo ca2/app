@@ -296,6 +296,14 @@ namespace nano2d
    }
 
 
+   int context::create_image(int w, int h, int imageFlags, const unsigned char * data)
+   {
+
+      return -1;
+
+   }
+
+
    void context::image_size(int image, int * w, int * h)
    {
 

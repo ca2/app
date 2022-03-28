@@ -222,7 +222,7 @@ namespace user
       void EnableDocking(u32 dwDockStyle);
 
       // Overridables
-      virtual void on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler) = 0;
+      virtual void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) = 0;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

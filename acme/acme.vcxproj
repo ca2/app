@@ -1868,6 +1868,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\result.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="timer.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user\nano\brush.h" />
     <ClInclude Include="user\nano\button.h" />

@@ -77,6 +77,13 @@ namespace user
       ~toolbar() override;
 
 
+      void install_message_routing(::channel * pchannel) override;
+
+
+
+      void _001OnTimer(::timer * ptimer) override;
+
+
       //using ::user::control_bar::create_interaction;
       //virtual bool create_interaction(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR);
       //using ::user::control_bar::create_window_ex;
@@ -172,6 +179,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
@@ -182,7 +190,7 @@ namespace user
 
       //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 
-      void install_message_routing(::channel * pchannel) override;
+      void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;
 
 
       //virtual index _001GetHoverItem();

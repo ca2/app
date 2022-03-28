@@ -7,18 +7,6 @@
 
 #define TIMER_HOVER 321654
 
-class simple_tool_command : public ::message::command        // class private to this file !
-{
-public: // re-implementations only
-
-   simple_tool_command(::object * pobject);
-   virtual void enable(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-//   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
-
-};
 
 #define EXTRA_TEXT_CX 3
 #define EXTRA_TEXT_CY 1
@@ -415,70 +403,70 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 }
 
 
-void simple_toolbar::on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler)
-{
-
-   simple_tool_command state(this);
-
-   state.m_puiOther = (this);
-
-   state.m_iCount = _001GetItemCount();
-
-   for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
-   {
-
-      if (m_useritema[state.m_iIndex]->m_atom != "separator")
-      {
-
-         state.m_atom = m_useritema[state.m_iIndex]->m_atom;
-
-         // allow reflections
-         //if (::user::interaction::on_command(0,
-         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
-         //   &state, nullptr))
-         //   continue;
-
-         state.m_bEnableChanged = false;
-
-         // allow the toolbar itself to have update handlers
-         _001SendCommandProbe(&state);
-
-         if (state.m_bRet)
-         {
-
-            continue;
-
-         }
-
-         //if (!state.m_bEnableChanged)
-         //{
-         //
-         //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
-         //   {
-
-         //      if (!state.m_bHasCommandHandler)
-         //      {
-
-         //         continue;
-
-
-         //      }
-
-         //   }
-
-         //}
-
-         // allow the owner to process the update
-         state.do_probe(ptarget);
-
-      }
-
-   }
-
-   // update the dialog controls added to the toolbar
-   update_dialog_controls(ptarget);
-
-}
+//void simple_toolbar::on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler)
+//{
+//
+//   simple_tool_command state(this);
+//
+//   state.m_puiOther = (this);
+//
+//   state.m_iCount = _001GetItemCount();
+//
+//   for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
+//   {
+//
+//      if (m_useritema[state.m_iIndex]->m_atom != "separator")
+//      {
+//
+//         state.m_atom = m_useritema[state.m_iIndex]->m_atom;
+//
+//         // allow reflections
+//         //if (::user::interaction::on_command(0,
+//         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+//         //   &state, nullptr))
+//         //   continue;
+//
+//         state.m_bEnableChanged = false;
+//
+//         // allow the toolbar itself to have update handlers
+//         _001SendCommandProbe(&state);
+//
+//         if (state.m_bRet)
+//         {
+//
+//            continue;
+//
+//         }
+//
+//         //if (!state.m_bEnableChanged)
+//         //{
+//         //
+//         //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
+//         //   {
+//
+//         //      if (!state.m_bHasCommandHandler)
+//         //      {
+//
+//         //         continue;
+//
+//
+//         //      }
+//
+//         //   }
+//
+//         //}
+//
+//         // allow the owner to process the update
+//         state.do_probe(puserinteraction);
+//
+//      }
+//
+//   }
+//
+//   // update the dialog controls added to the toolbar
+//   update_dialog_controls(puserinteraction);
+//
+//}
 
 #define CX_OVERLAP 0
 
@@ -1637,104 +1625,6 @@ void simple_toolbar::_001OnImageListAttrib()
 }
 
 
-/////////////////////////////////////////////////////////////////////////////
-// simple_toolbar idle update through simple_tool_command class
-
-simple_tool_command::simple_tool_command(::object * pobject)
-{
-
-   initialize(pobject);
-
-}
-
-
-void simple_tool_command::enable(bool bEnable, const ::action_context & context)
-{
-
-   m_bEnableChanged = true;
-
-   __pointer(simple_toolbar) pToolBar = m_puiOther;
-
-   auto estateNew = pToolBar->get_item_state(m_iIndex) - e_toolbar_item_state_enabled;
-
-   auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
-
-   if (bEnable)
-   {
-
-      estateNew |= e_toolbar_item_state_enabled;
-
-   }
-   else
-   {
-
-      estyleNew |= e_toolbar_item_style_disabled;
-
-   }
-
-   pToolBar->set_item_state((index)m_iIndex, estateNew);
-
-   pToolBar->set_item_style((index)m_iIndex, estyleNew);
-
-}
-
-
-void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context & context)
-{
-
-   // 0=>off, 1=>on, 2=>indeterminate
-
-   ASSERT(echeck == e_check_checked || echeck == e_check_unchecked || echeck == e_check_tristate);
-
-   __pointer(simple_toolbar) pToolBar = m_puiOther;
-
-   ASSERT(pToolBar != nullptr);
-
-   ASSERT_KINDOF(simple_toolbar, pToolBar);
-
-   ASSERT(m_iIndex < m_iCount);
-
-   auto estateNew = pToolBar->get_item_state(m_iIndex);
-
-   estateNew -= e_toolbar_item_state_checked;
-
-   estateNew -= e_toolbar_item_state_indeterminate;
-
-   if (echeck == e_check_checked)
-   {
-
-      estateNew |= e_toolbar_item_state_checked;
-
-   }
-   else if (echeck == e_check_tristate)
-   {
-
-      estateNew  |= e_toolbar_item_state_indeterminate;
-
-   }
-
-   auto estyle = pToolBar->get_item_style(m_iIndex);
-
-   if(estyle & e_toolbar_item_style_separator)
-   {
-
-      throw ::exception(::error_failed);
-
-   }
-
-   pToolBar->set_item_state((index)m_iIndex, estateNew);
-
-   pToolBar->set_item_style((index)m_iIndex, estyle | e_toolbar_item_style_checkbox);
-
-}
-
-
-void simple_tool_command::SetText(const ::string &, const ::action_context & context)
-{
-
-   // ignore it
-
-}
 
 
 //etoolbar_item_state simple_toolbar::get_item_state(index iItem)

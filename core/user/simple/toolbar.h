@@ -115,7 +115,6 @@ public:
 
    void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
 
-   void on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler) override;
 
 
    //void TransparentEraseNonClient(::draw2d::graphics_pointer & pgraphics);

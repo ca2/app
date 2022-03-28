@@ -887,21 +887,22 @@ namespace user
 
    }
 
-   void status_bar::on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler)
+
+   void status_bar::on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler)
    {
       
-      status_command state(this);
+      status_command command(this);
 
-      state.m_puiOther = this;
-      state.m_iCount = (::u32)m_panecompositea.get_count();
-      for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
+      command.m_puiOther = this;
+      command.m_iCount = (::u32)m_panecompositea.get_count();
+      for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
-         state.m_atom = _GetPanePtr((i32) state.m_iIndex)->m_atom;
+         command.m_atom = _GetPanePtr((i32) command.m_iIndex)->m_atom;
 
          // allow the statusbar itself to have update handlers
-         ::user::interaction::on_command_probe(&state);
+         ::user::interaction::on_command_probe(&command);
 
-         if (state.m_bRet)
+         if (command.m_bRet)
          {
 
             continue;
@@ -909,12 +910,12 @@ namespace user
          }
 
          // allow target (owner) to handle the remaining updates
-         state.do_probe(ptarget);
+         command.do_probe(puserinteraction);
 
       }
 
       // update the dialog controls added to the status bar
-      update_dialog_controls(ptarget);
+      update_dialog_controls(puserinteraction);
 
    }
 
@@ -967,7 +968,7 @@ namespace user
       //   on both sides there is a 3 pixel gap and
       //   a one pixel border, making a pane 6 pixels wider
       nStyle = pane.nStyle;     // style flags (SBPS_*)
-      nFlags = pane.nFlags;     // state flags (SBPF_*)
+      nFlags = pane.nFlags;     // command flags (SBPF_*)
       strText = pane.strText;    // text in the pane
 
       return *this;

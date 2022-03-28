@@ -7,6 +7,7 @@
 #include "aura/operating_system/_user.h"
 #include "toolbar.h"
 #include "aura/graphics/draw2d/_draw2d.h"
+#include "acme/timer.h"
 
 #define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
 
@@ -26,6 +27,19 @@ struct __COLORMAP
 //{ RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  COLOR_BTNHIGHLIGHT }   // white
 //};
 
+
+class user_toolbar_command : public ::message::command        // class private to this file !
+{
+public: // re-implementations only
+
+   user_toolbar_command(::object * pobject);
+   void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
+   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+//   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
+   //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+
+};
 
 
 namespace user
@@ -75,6 +89,7 @@ namespace user
 
       MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &toolbar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &toolbar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
@@ -84,6 +99,88 @@ namespace user
 //#endif
 
    }
+
+
+   void toolbar::_001OnTimer(::timer * ptimer)
+   {
+
+      if (ptimer->m_etimer == e_timer_hover)
+      {
+
+         auto pframewindow = get_parent_frame();
+
+         on_command_probe(pframewindow, true);
+
+      }
+
+   }
+
+
+   void toolbar::on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler)
+   {
+
+      user_toolbar_command command(this);
+
+      command.m_puiOther = (this);
+
+      command.m_iCount = _001GetItemCount();
+
+      for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
+      {
+
+         if (m_useritema[command.m_iIndex]->m_atom != "separator")
+         {
+
+            command.m_atom = m_useritema[command.m_iIndex]->m_atom;
+
+            // allow reflections
+            //if (::user::interaction::on_command(0,
+            //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+            //   &state, nullptr))
+            //   continue;
+
+            command.m_bEnableChanged = false;
+
+            // allow the toolbar itself to have update handlers
+            _001SendCommandProbe(&command);
+
+            if (command.m_bRet)
+            {
+
+               continue;
+
+            }
+
+            //if (!state.m_bEnableChanged)
+            //{
+            //
+            //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
+            //   {
+
+            //      if (!state.m_bHasCommandHandler)
+            //      {
+
+            //         continue;
+
+
+            //      }
+
+            //   }
+
+            //}
+
+            // allow the owner to process the update
+            command.do_probe(puserinteraction);
+
+         }
+
+      }
+
+      // update the dialog controls added to the toolbar
+      update_dialog_controls(puserinteraction);
+
+   }
+
 
 
    //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::atom atom)
@@ -1377,6 +1474,14 @@ return { 0,0 };
    }
 
 
+   void toolbar::on_message_create(::message::message * pmessage)
+   {
+
+      set_timer(e_timer_hover, 333_ms);
+
+   }
+
+
    void toolbar::_001OnSetButtonSize(::message::message * pmessage)
    {
 
@@ -1856,5 +1961,106 @@ return { 0,0 };
 //
 } // namespace user
 
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// simple_toolbar idle update through simple_tool_command class
+
+user_toolbar_command::user_toolbar_command(::object * pobject)
+{
+
+   initialize(pobject);
+
+}
+
+
+void user_toolbar_command::enable(bool bEnable, const ::action_context & context)
+{
+
+   m_bEnableChanged = true;
+
+   __pointer(::user::toolbar) pToolBar = m_puiOther;
+
+   auto estateNew = pToolBar->get_item_state(m_iIndex) - e_toolbar_item_state_enabled;
+
+   auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
+
+   if (bEnable)
+   {
+
+      estateNew |= e_toolbar_item_state_enabled;
+
+   }
+   else
+   {
+
+      estyleNew |= e_toolbar_item_style_disabled;
+
+   }
+
+   pToolBar->set_item_state((index)m_iIndex, estateNew);
+
+   pToolBar->set_item_style((index)m_iIndex, estyleNew);
+
+}
+
+
+void user_toolbar_command::_001SetCheck(enum_check echeck, const ::action_context & context)
+{
+
+   // 0=>off, 1=>on, 2=>indeterminate
+
+   ASSERT(echeck == e_check_checked || echeck == e_check_unchecked || echeck == e_check_tristate);
+
+   __pointer(::user::toolbar) pToolBar = m_puiOther;
+
+   ASSERT(pToolBar != nullptr);
+
+   ASSERT(m_iIndex < m_iCount);
+
+   auto estateNew = pToolBar->get_item_state(m_iIndex);
+
+   estateNew -= e_toolbar_item_state_checked;
+
+   estateNew -= e_toolbar_item_state_indeterminate;
+
+   if (echeck == e_check_checked)
+   {
+
+      estateNew |= e_toolbar_item_state_checked;
+
+   }
+   else if (echeck == e_check_tristate)
+   {
+
+      estateNew |= e_toolbar_item_state_indeterminate;
+
+   }
+
+   auto estyle = pToolBar->get_item_style(m_iIndex);
+
+   if (estyle & e_toolbar_item_style_separator)
+   {
+
+      throw ::exception(::error_failed);
+
+   }
+
+   pToolBar->set_item_state((index)m_iIndex, estateNew);
+
+   pToolBar->set_item_style((index)m_iIndex, estyle | e_toolbar_item_style_checkbox);
+
+}
+
+
+//void user_toolbar_command::SetText(const ::string &, const ::action_context & context)
+//{
+//
+//   // ignore it
+//
+//}
 
 

@@ -2954,6 +2954,9 @@
     <ClInclude Include="primitive\primitive\function.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

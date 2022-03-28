@@ -92,7 +92,7 @@ namespace user
       void EnableDocking(u32 dwDockStyle);
 
 
-      virtual void on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler) override;
+      void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;
 
 
       __STATUSPANE * _GetPanePtr(index nIndex);

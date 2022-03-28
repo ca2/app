@@ -61,8 +61,8 @@ public:
    virtual void replace_with(const ::file::path & pszContext, const string & pszNew, const string & pszOld);
 
 
-   virtual bool is_file_or_dir(const ::file::path & path, ::payload * pvarQuery, ::file::enum_type * petype);
-   virtual bool is_file_or_dir(const ::file::path & path, ::file::enum_type * petype = nullptr);
+   virtual ::file::enum_type get_type(const ::file::path & path, ::payload * pvarQuery);
+   virtual ::file::enum_type get_type(const ::file::path & path);
 
 
    virtual ::payload length(const ::file::path & path);

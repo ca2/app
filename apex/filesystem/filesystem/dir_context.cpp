@@ -2057,7 +2057,9 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
             }
 
-            if (m_psystem->m_pacmepath->is_file_or_dir(strFinal, nullptr))
+            auto etype = m_psystem->m_pacmepath->get_type(strFinal);
+
+            if(etype == ::file::e_type_file || etype == ::file::e_type_folder)
             {
 
                INFORMATION("!!Cache Hit: " << strFinal);
@@ -2247,7 +2249,9 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
          path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
 
-         if (m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
+         auto etype = m_psystem->m_pacmepath->get_type(path);
+
+         if(::is_file_or_folder(etype))
          {
 
             goto ret;

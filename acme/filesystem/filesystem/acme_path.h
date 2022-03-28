@@ -34,7 +34,7 @@ public:
 
    virtual bool final_is_same(const char * path1, const char * path2);
 
-   virtual bool is_file_or_dir(const char * path, ::file::enum_type * petype);
+   virtual ::file::enum_type get_type(const char * path);
 
 
 

@@ -169,7 +169,7 @@ namespace http
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, ::payload * pvarQuery, ::file::enum_type * petype, property_set & set)
+   ::file::enum_type context::get_type(const char * pszUrl, ::payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -197,53 +197,25 @@ namespace http
             if (strCache == "file")
             {
 
-               if (::is_set(petype))
-               {
-
-                  *petype = ::file::e_type_file;
-
-               }
-
-               return true;
+               return ::file::e_type_file;
 
             }
             else if (strCache == "folder")
             {
 
-               if (::is_set(petype))
-               {
-
-                  *petype = ::file::e_type_folder;
-
-               }
-
-               return true;
+               return ::file::e_type_folder;
 
             }
             else if (strCache == "matter")
             {
 
-               if (::is_set(petype))
-               {
-
-                  *petype = ::file::e_type_element;
-
-               }
-
-               return true;
+               return ::file::e_type_element;
 
             }
             else if (strCache == "itdoesntexist")
             {
 
-               if (::is_set(petype))
-               {
-
-                  *petype = ::file::e_type_none;
-
-               }
-
-               return false;
+               return ::file::e_type_doesnt_exist;
 
             }
 
@@ -262,37 +234,24 @@ namespace http
 
       }
 
-      ::file::enum_type etype = ::file::e_type_none;
+      auto etype = get_type(strUrl, process_set(set, pszUrl));
 
-      bool bExists = is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
-
-      if (bExists)
+      if (etype == ::file::e_type_folder)
       {
 
-         if (etype == ::file::e_type_folder)
-         {
+         strCache = "folder";
 
-            strCache = "folder";
+      }
+      else if (etype == ::file::e_type_file)
+      {
 
-         }
-         else if (etype == ::file::e_type_file)
-         {
+         strCache = "file";
 
-            strCache = "file";
+      }
+      else if (etype == ::file::e_type_element)
+      {
 
-         }
-         else if (etype == ::file::e_type_element)
-         {
-
-            strCache = "matter";
-
-         }
-         else
-         {
-
-            strCache = "itdoesntexist";
-
-         }
+         strCache = "matter";
 
       }
       else
@@ -304,14 +263,7 @@ namespace http
 
       m_pcontext->m_papexcontext->file().put_text(strFile, strCache);
 
-      if (::is_set(petype))
-      {
-
-         *petype = etype;
-
-      }
-
-      return bExists;
+      return etype;
 
    }
 
@@ -2764,16 +2716,14 @@ namespace http
    bool context::exists(const char * pszUrl, ::property_set & set)
    {
 
-      ::file::enum_type etype = ::file::e_type_none;
+      auto etype = get_type(pszUrl, set);
 
-      bool bExists = is_file_or_dir(pszUrl, set, &etype);
-
-      return bExists && etype != ::file::e_type_none;
+      return ::exists(etype);
 
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, ::property_set & set, ::file::enum_type * petype)
+   ::file::enum_type context::get_type(const char * pszUrl, ::property_set & set)
    {
 
       single_lock synchronouslock(m_pmutexDownload, true);
@@ -2826,14 +2776,7 @@ namespace http
 
             m_straExists.erase(pszUrl);
 
-            if (::is_set(petype))
-            {
-
-               *petype = ::file::e_type_none;
-
-            }
-
-            return false;
+            return ::file::e_type_doesnt_exist;
 
          }
 
@@ -2851,25 +2794,7 @@ namespace http
 
       bool bExists = iStatusCode == 200;
 
-      if (::is_set(petype))
-      {
-
-         if (bExists)
-         {
-
-            *petype = ::file::e_type_element;
-
-         }
-         else
-         {
-
-            *petype = ::file::e_type_none;
-
-         }
-
-      }
-
-      return bExists;
+      return ::file::e_type_element;
 
    }
 

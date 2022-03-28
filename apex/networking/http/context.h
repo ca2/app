@@ -92,11 +92,6 @@ namespace http
 
       virtual bool request(__pointer(::sockets::http_session) & spsession, const char * pszUrl, property_set & set);
 
-      virtual bool exists(const char * pszUrl, property_set & set);
-      virtual bool is_file_or_dir(const char * pszUrl, property_set & set, ::file::enum_type * petype = nullptr);
-
-      virtual ::payload length(const char * pszUrl, property_set & set);
-
       virtual ::payload get(const char * pszUrl, property_set & set);
 
       virtual bool request(const char * pszMethod, const char * pszUrl, property_set & set);
@@ -136,7 +131,11 @@ namespace http
       virtual string api_get(const char * pszUrl);
 
       //virtual bool exists(const char * pszUrl, property_set & set);
-      virtual bool is_file_or_dir(const char * pszUrl, ::payload * pvarQuery, ::file::enum_type * petype, property_set & set);
+      virtual bool exists(const char * pszUrl, property_set & set);
+      virtual ::file::enum_type get_type(const char * pszUrl, property_set & set);
+      virtual ::file::enum_type get_type(const char * pszUrl, ::payload * pvarQuery, property_set & set);
+
+      virtual ::payload length(const char * pszUrl, property_set & set);
 
       //virtual ::payload length(const char * pszUrl, property_set & set);
       virtual ::payload length(const char * pszUrl, ::payload * pvarQuery, property_set & set);

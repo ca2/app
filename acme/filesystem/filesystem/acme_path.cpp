@@ -179,12 +179,12 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 }
 
 
-bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
+::file::enum_type acme_path::get_type(const char * path)
 {
 
    throw ::interface_only();
 
-   return false;
+   return ::file::e_type_unknown;
 
 }
 

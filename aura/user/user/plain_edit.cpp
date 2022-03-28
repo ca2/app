@@ -223,7 +223,8 @@ namespace user
       m_bRMouseDown = false;
       m_durationCaretPeriod = 1_s;
 
-
+      m_iLastSelEndX = -1;
+      m_iColumnX = -1;
 
    }
 
@@ -476,7 +477,9 @@ namespace user
 
          auto iEnd = iSelEnd;
 
-         m_iLastSelEndLine = plain_edit_sel_to_line_x(pgraphics, iEnd, m_iLastSelEndX);
+         int x;
+
+         m_iLastSelEndLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
       }
 
@@ -3114,7 +3117,7 @@ namespace user
 
          i2 = i1 + m_iaLineLen[iLine];
 
-         if (iSel <= i2)
+         if (iSel < i2)
          {
 
             strsize iRel = iSel - i1;
@@ -3225,10 +3228,6 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::rectangle_i32 rectangleClient;
-
-      GetFocusRect(rectangleClient);
-
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       strsize iChar = plain_edit_line_char_hit_test(pgraphics, x, iLine);
@@ -3258,16 +3257,19 @@ namespace user
 
          i2 = i1 + m_iaLineLen[iLine];
 
-         if (iSel >= i1 && iSel < i2)
+         if (iSel >= i1 && (iSel < i2 
+            || (iLine == m_iaLineLen.get_upper_bound() && iSel <= i2)))
          {
 
             strsize iRel = iSel - i1;
 
-            int x;
+            int xCharacter;
 
-            x = (int) (plain_edit_get_line_extent(pgraphics, iLine, iRel));
+            xCharacter = (int) (plain_edit_get_line_extent(pgraphics, iLine, iRel));
 
-            x = rectangleClient.left + x;
+            xCharacter = rectangleClient.left + xCharacter;
+
+            x = xCharacter;
 
             return iRel;
 
@@ -4699,6 +4701,7 @@ finished_update:
                      on_reset_focus_start_tick();
 
                      i32 x;
+
                      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
                      iLine--;
@@ -4710,7 +4713,14 @@ finished_update:
 
                      }
 
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                     if (m_iColumnX >= 0)
+                     {
+
+                        x = m_iColumnX;
+
+                     }
+
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
 
                      if (!bShift)
                      {
@@ -4752,7 +4762,14 @@ finished_update:
 
                      }
 
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                     if (m_iColumnX >= 0)
+                     {
+
+                        x = m_iColumnX;
+
+                     }
+
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
 
                      if (!bShift)
                      {
@@ -5054,7 +5071,7 @@ finished_update:
 
             auto iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, iColumnX);
 
-            if ((pkey->m_ekey != ::user::e_key_up && pkey->m_ekey == ::user::e_key_down
+            if ((pkey->m_ekey != ::user::e_key_up && pkey->m_ekey != ::user::e_key_down
                   && pkey->m_ekey != ::user::e_key_prior && pkey->m_ekey != ::user::e_key_next) &&
                   iColumn != m_iColumn)
             {
@@ -6856,6 +6873,13 @@ finished_update:
          iLineUpdate = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
       }
+
+      int iColumnX = -1;
+
+      auto iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, iColumnX);
+
+      m_iColumn = iColumn;
+      m_iColumnX = iColumnX;
 
       if(m_bMultiLine)
       {

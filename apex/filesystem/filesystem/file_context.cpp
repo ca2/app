@@ -77,7 +77,7 @@ bool file_context::exists(const ::file::path &pathParam)
    if (::is_null(m_pcontext))
    {
 
-      return false;
+      throw ::exception(error_null_pointer);
 
    }
 
@@ -90,11 +90,9 @@ bool file_context::exists(const ::file::path &pathParam)
 
    }
 
-   ::file::enum_type etype = ::file::e_type_none;
+   auto etype = get_type(path);
 
-   bool bExists = is_file_or_dir(path, &etype);
-
-   return bExists && (etype == ::file::e_type_file || etype == ::file::e_type_element);
+   return etype == ::file::e_type_file || etype == ::file::e_type_element;
 
 }
 
@@ -116,7 +114,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //}
 
 
-bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery, ::file::enum_type *petype)
+::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
 {
 
    if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
@@ -138,7 +136,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
       }
 
-      return m_pcontext->m_papexcontext->http().is_file_or_dir(path, pvarQuery, petype, set);
+      return m_pcontext->m_papexcontext->http().get_type(path, pvarQuery, set);
 
    }
 
@@ -153,7 +151,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
          if (!exists(path.Mid(0, iFind + 4)))
          {
 
-            return false;
+            return ::file::e_type_doesnt_exist;
 
          }
 
@@ -178,13 +176,13 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
          //return zip.is_file_or_dir(pfile, straPath, petype);
 
-         return false;
+         return ::file::e_type_doesnt_exist;
 
       }
 
    }
 
-   return false;
+   return ::file::e_type_unknown;
 
 }
 
@@ -3422,10 +3420,19 @@ bool file_context::is_link(string strPath)
 //}
 
 
-bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type *petype)
+::file::enum_type file_context::get_type(const ::file::path &path)
 {
 
-   return is_file_or_dir(pszPath, nullptr, petype);
+   auto etype = get_type(path, nullptr);
+
+   if(etype != ::file::e_type_unknown)
+   {
+
+      return etype;
+
+   }
+
+   return m_psystem->m_pacmepath->get_type(path);
 
 }
 

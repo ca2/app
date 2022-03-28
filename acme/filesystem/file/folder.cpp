@@ -5,7 +5,7 @@
 folder::folder()
 {
 
-   m_etypeCurrent = ::file::e_type_none;
+   m_etypeCurrent = ::file::e_type_unknown;
 
    m_iFilePosition = -1;
 

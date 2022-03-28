@@ -1953,11 +1953,11 @@ namespace user
    void document::update_all_views(impact * pimpactSender, const ::atom & atom)
    {
 
-      auto pextendedtopic = create_topic(atom);
+      auto ptopic = create_topic(atom);
 
-      pextendedtopic->m_psender = pimpactSender;
+      ptopic->m_psender = pimpactSender;
 
-      update_all_views(pextendedtopic);
+      update_all_views(ptopic);
 
    }
 

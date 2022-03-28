@@ -1064,8 +1064,6 @@ namespace file
    void file::from(::file::file * pfileIn, memsize uiBufSize)
    {
 
-      set_size(0);
-
       write_file(pfileIn, uiBufSize);
 
    }

@@ -2422,14 +2422,34 @@ namespace file
    enum enum_type
    {
 
-      e_type_none,
-      e_type_folder,
-      e_type_file,
-      e_type_element,
+      e_type_unknown = 0,
+      e_type_exists = 1 << 0,
+      e_type_folder = e_type_exists | (1 << 1),
+      e_type_file = e_type_exists | (1 << 2),
+      e_type_file_or_folder = e_type_folder | e_type_file,
+      e_type_element = e_type_exists | (1 << 3),
+      e_type_doesnt_exist = 0x80000000,
 
    };
 
+
 } // namespace file
+
+
+inline bool is_file_or_folder(const ::file::enum_type & etype)
+{
+
+   return (etype & ::file::e_type_file_or_folder) > ::file::e_type_exists;
+
+}
+
+
+inline bool exists(const ::file::enum_type & etype)
+{
+
+   return etype & ::file::e_type_exists;
+
+}
 
 
 class machine_event_data;

@@ -90,36 +90,23 @@ i32 context_image::create_image_integer(int w, int h, color32_t * pcolor, int iS
 
    }
 
-   auto pimage->create_image({ w, h }, data, iScan);
+   auto pimage = create_image({ w, h }, pcolor, iScan);
+
+   string strPath;
+
+   strPath.format("image_pointer://%016" PRIxPTR, pimage.m_p);
 
    synchronous_lock  synchronouslock(mutex());
 
-   
+   auto iImage = m_iImageSeed;
 
-   auto strPath = m_mapIntPath[iImage];
+   m_mapPathInt[strPath] = iImage;
 
+   m_mapIntPath[iImage] = strPath;
 
-   auto & iImage = m_mapPathInt[path];
-
-   if (iImage <= 0)
-   {
-
-      iImage = m_iImageSeed;
-
-      m_mapIntPath[iImage] = path;
-
-      m_iImageSeed++;
-
-   }
+   m_iImageSeed++;
 
    return iImage;
-
-
-   ASSERT(strPath.has_char());
-
-   return path_image(strPath);
-
-
 
 }
 
@@ -1130,7 +1117,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-::image_pointer context_image::create_image(const ::size_i32 & size, ::enum_flag eflagCreate)
+::image_pointer context_image::create_image(const ::size_i32 & size, color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
 {
 
    auto pimage = __create < ::image >();
@@ -1144,6 +1131,15 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    //auto estatus =
    pimage->create(size, eflagCreate);
+
+   if (::is_set(pcolor))
+   {
+
+      pimage->map();
+
+      copy_colorref(pimage->get_data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
+
+   }
 
    //if (!estatus)
    //{

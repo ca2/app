@@ -608,7 +608,7 @@ namespace apex
 
          if ((path & ::file::e_flag_get_local_path)
             || (!(path & ::file::e_flag_bypass_cache) 
-               && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
+               && ::is_file_or_folder(m_psystem->m_pacmepath->get_type(pathCache))))
          {
 
             return pathCache;
@@ -651,9 +651,9 @@ namespace apex
 
          ::file::path pathSide = side_get_matter_path(path);
 
-         ::file::enum_type etype = ::file::e_type_none;
+         auto etype = m_psystem->m_pacmepath->get_type(pathSide);
 
-         if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
+         if (::is_file_or_folder(etype))
          {
 
             if (etype == ::file::e_type_file)

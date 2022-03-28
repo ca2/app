@@ -592,40 +592,26 @@ namespace user
    ::e_toolbar_item_state toolbar::get_item_state(::index iItem)
    {
 
-      auto estate = m_useritema[iItem].cast <toolbar_item>()->m_estate;
+      __pointer(::user::toolbar_item) pitem = m_useritema[iItem];
 
-      auto estyle = m_useritema[iItem].cast <toolbar_item>()->m_estyle;
+      auto & estate = pitem->m_estate;
+
+      auto & estyle = pitem->m_estyle;
 
       if (!(estyle & e_toolbar_item_style_separator))
       {
 
-         if (estyle & e_toolbar_item_style_disabled)
-         {
+         bool bEnabled = !(estyle & e_toolbar_item_style_disabled);
 
-            estate -= e_toolbar_item_state_enabled;
+         estate.set(e_toolbar_item_state_enabled, bEnabled);
 
-         }
-         else
-         {
+         bool bPressed = ::is_element(m_pitemPressed, ::e_element_item) && ::is_item(m_pitemPressed, iItem);
 
-            estate |= e_toolbar_item_state_enabled;
+         estate.set(e_toolbar_item_state_pressed, bPressed);
 
-         }
+         bool bHover = ::is_element(m_pitemHover, ::e_element_item) && ::is_item(m_pitemHover, iItem);
 
-         // item is enabled
-         if (::is_item(m_pitemPressed, iItem))
-         {
-
-            estate |= e_toolbar_item_state_pressed;
-
-         }
-
-         if (::is_item(m_pitemHover, iItem))
-         {
-
-            estate |= e_toolbar_item_state_hover;
-
-         }
+         estate.set(e_toolbar_item_state_hover, bHover);
 
       }
 
@@ -1858,25 +1844,27 @@ return { 0,0 };
 
       auto & children = pxmldocument->root()->children();
 
-      __pointer(::user::toolbar_item) item;
+      __pointer(::user::toolbar_item) pitem;
 
       //auto papp = get_app();
 
-      for(index i = 0; i < children.get_size(); i++)
+      for(index iItem = 0; iItem < children.get_size(); iItem++)
       {
 
-         auto pchild = children.element_at(i)->get_xml_node();
+         auto pchild = children.element_at(iItem)->get_xml_node();
 
          if(pchild->get_name() == "button")
          {
 
-            item = __new(::user::toolbar_item);
+            pitem = __new(::user::toolbar_item);
+
+            pitem->m_iItem = m_useritema.get_size();
 
             auto pattribute = pchild->find_attribute("id");
 
-            item->m_atom = pattribute->string();
+            pitem->m_atom = pattribute->string();
 
-            item->m_str = pchild->get_value();
+            pitem->m_str = pchild->get_value();
 
             if(pchild->attribute("image").has_char())
             {
@@ -1885,34 +1873,36 @@ return { 0,0 };
 
                auto pcontextimage = pcontext->context_image();
 
-               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
+               pitem->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
 
             }
 
             if(pchild->attribute("enable_if_has_command_handler").has_char())
             {
 
-               item->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
+               pitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
 
             }
 
-            item->m_estyle -= e_toolbar_item_style_separator;
+            pitem->m_estyle -= e_toolbar_item_style_separator;
 
-            m_useritema.add(item);
+            m_useritema.add(pitem);
 
          }
          else if(pchild->get_name() == "separator")
          {
 
-            item = __new(::user::toolbar_item);
+            pitem = __new(::user::toolbar_item);
 
-            item->m_atom = "separator";
+            pitem->m_iItem = m_useritema.get_size();
 
-            item->m_str = "";
+            pitem->m_atom = "separator";
 
-            item->m_estyle |= e_toolbar_item_style_separator;
+            pitem->m_str = "";
 
-            m_useritema.add(item);
+            pitem->m_estyle |= e_toolbar_item_style_separator;
+
+            m_useritema.add(pitem);
 
          }
 
@@ -1934,8 +1924,8 @@ return { 0,0 };
    toolbar_item::toolbar_item()
    {
 
-      m_data[0] = this;
-      //m_iIndex                      = -1;
+      m_data[0]                     = this;
+      m_eelement                    = e_element_item;
       m_iImage                      = -1;
       m_estate                      = e_toolbar_item_state_none;
       m_estyle                      = e_toolbar_item_style_none;

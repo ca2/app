@@ -32,9 +32,7 @@
 		9A4E9686278532DD00B74C76 /* libapex_posix.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E9672278532DC00B74C76 /* libapex_posix.dylib */; };
 		9A4E9687278532DD00B74C76 /* libapex_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E9672278532DC00B74C76 /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E9688278532DD00B74C76 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E9673278532DC00B74C76 /* libaqua.dylib */; };
-		9A4E9689278532DD00B74C76 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E9673278532DC00B74C76 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E968A278532DD00B74C76 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E9674278532DC00B74C76 /* libaura.dylib */; };
-		9A4E968B278532DD00B74C76 /* libaura.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E9674278532DC00B74C76 /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E968C278532DD00B74C76 /* libaura_apple.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E9675278532DC00B74C76 /* libaura_apple.dylib */; };
 		9A4E968D278532DD00B74C76 /* libaura_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E9675278532DC00B74C76 /* libaura_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E968E278532DD00B74C76 /* libaura_macos.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E9676278532DC00B74C76 /* libaura_macos.dylib */; };
@@ -168,9 +166,7 @@
 				9A4E967C278532DD00B74C76 /* libacme_apple.dylib in Embed Libraries */,
 				9A4E9695278532DD00B74C76 /* libidn.dylib in Embed Libraries */,
 				9A4E968D278532DD00B74C76 /* libaura_apple.dylib in Embed Libraries */,
-				9A4E9689278532DD00B74C76 /* libaqua.dylib in Embed Libraries */,
 				9A21A734276107DD001E14CC /* libcrypto.3.dylib in Embed Libraries */,
-				9A4E968B278532DD00B74C76 /* libaura.dylib in Embed Libraries */,
 				9A4E9691278532DD00B74C76 /* libaura_posix.dylib in Embed Libraries */,
 				9A4E9680278532DD00B74C76 /* libacme_posix.dylib in Embed Libraries */,
 				9A4E9685278532DD00B74C76 /* libapex_macos.dylib in Embed Libraries */,

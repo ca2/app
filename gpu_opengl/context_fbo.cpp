@@ -54,7 +54,7 @@ namespace opengl
       if (::is_null(popengl))
       {
 
-         return ::error_failed;
+         throw ::exception(::error_failed);
 
       }
       
@@ -87,7 +87,7 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
@@ -139,7 +139,7 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
 
@@ -148,7 +148,7 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
@@ -157,19 +157,21 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
-      ::e_status estatus = make_current();
+      //::e_status estatus =
+      
+      make_current();
 
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
-      
+//      if(!estatus)
+//      {
+//
+//         throw ::exc estatus;
+//
+//      }
+     
       ::gpu::context_lock lock(this);
 
       // Set the width and height appropriately for your image
@@ -189,13 +191,13 @@ namespace opengl
       if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
       glViewport(0, 0, size.cx, size.cy);
       
-      return ::success;
+      //return ::success;
 
    }
 
@@ -206,7 +208,7 @@ namespace opengl
       if(!m_context)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
    
@@ -215,11 +217,11 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
-      return ::success;
+      //return ::success;
    
    }
 
@@ -230,7 +232,7 @@ namespace opengl
       if(!m_context)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
    
@@ -239,11 +241,11 @@ namespace opengl
       if(error != kCGLNoError)
       {
          
-         return ::error_failed;
+         throw ::exception(::error_failed);
          
       }
       
-      return ::success;
+      //return ::success;
    
    }
 
@@ -260,11 +262,13 @@ namespace opengl
 
          printf("eglMakeCurrent failed!\n");
 
-         return ::error_failed;
+         //return ::error_failed;
+         
+         throw ::exception(error_failed);
 
       }
 
-      return ::success;
+      //return ::success;
 
    }
 
@@ -278,7 +282,7 @@ namespace opengl
       
       glDeleteRenderbuffersEXT(1, &m_renderbuffer);
       
-      return ::success;
+      //return ::success;
 
    }
 
@@ -326,7 +330,12 @@ namespace opengl
 
       }
 
-      stra.replace("gl_FragColor", "fragmentColor");
+      for(auto & str : stra)
+      {
+      
+         str.find_replace("gl_FragColor", "fragmentColor");
+         
+      }
 
    }
 
@@ -334,16 +343,18 @@ namespace opengl
    void context_fbo::render()
    {
       
-      ::e_status estatus = context::render();
+      //::e_status estatus =
       
-      if(!estatus)
-      {
-       
-         return estatus;
-         
-      }
+      context::render();
       
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
    
    }
 
@@ -351,9 +362,11 @@ namespace opengl
    void context_fbo::start()
    {
       
-      ::e_status estatus = context::start();
+      //::e_status estatus =
       
-      return estatus;
+      context::start();
+      
+      //return estatus;
    
    }
 
@@ -361,20 +374,22 @@ namespace opengl
    void context_fbo::resize_offscreen_buffer(const ::size_i32& size)
    {
       
-      auto estatus = context::resize_offscreen_buffer(size);
+      //auto estatus =
       
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
+      context::resize_offscreen_buffer(size);
+      
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
       
       glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx, size.cy);
 
       glViewport(0, 0, size.cx, size.cy);
       
-      return ::success;
+//      return ::success;
 
    }
 
@@ -382,7 +397,7 @@ namespace opengl
    void context_fbo::prepare_for_gpu_read()
    {
    
-      return ::success;
+//      return ::success;
       
    }
 

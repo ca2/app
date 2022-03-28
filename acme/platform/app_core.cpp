@@ -869,10 +869,10 @@ void app_core::system_end()
 }
 
 
-typedef int_bool DEFER_INIT();
+//typedef int_bool DEFER_INIT();
 
 
-typedef DEFER_INIT * PFN_DEFER_INIT;
+//typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
 
@@ -1712,246 +1712,246 @@ void app_core::initialize_application(::app *papp, ::object * pobject)
 
 }
 
-static apex_level * s_plevel = NULL;
-
-
-apex_level::apex_level(enum_level elevel, PFN_DEFER_INIT pfnDeferInit) :
-   m_elevel(elevel),
-   m_pfnDeferInit(pfnDeferInit),
-   m_plevelNext(s_plevel)
-{
-
-   s_plevel = this;
-
-}
-
-
-apex_level * apex_level::get_maximum_level()
-{
-
-#ifdef LINUX
-
-return nullptr;
-
-#endif
-
-try
-{
-   if(s_plevel == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   apex_level * plevel = s_plevel;
-
-   apex_level * plevelMax = plevel;
-
-   while(true)
-   {
-
-      plevel = plevel->m_plevelNext;
-
-      if(plevel == nullptr)
-      {
-
-         break;
-
-      }
-
-      if(plevel->m_elevel > plevelMax->m_elevel)
-      {
-
-         plevelMax = plevel;
-
-      }
-
-   }
-
-   return plevelMax;
-
-   }
-   catch(...)
-   {
-
-   }
-
-   return nullptr;
-}
-
-
-apex_level * apex_level::find_level(PFN_DEFER_INIT pfnDeferInit)
-{
-
-   if(s_plevel == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   apex_level * plevel = s_plevel;
-
-   while(plevel != nullptr)
-   {
-
-      if(plevel->m_pfnDeferInit > pfnDeferInit)
-      {
-
-         return plevel;
-
-      }
-
-      plevel = plevel->m_plevelNext;
-
-   }
-
-   return nullptr;
-
-}
-
-
-bool apex_level::defer_init()
-{
-
-   auto plevel = get_maximum_level();
-
-   if(plevel == nullptr)
-   {
-
-      return false;
-
-   }
-
-   return plevel->m_pfnDeferInit();
-
-}
-
-
-bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
-{
-
-   auto plevel = get_maximum_level();
-
-   if(plevel == nullptr)
-   {
-
-      if(pfnDeferInit != nullptr)
-      {
-
-         return pfnDeferInit();
-
-      }
-      else
-      {
-
-         return true;
-
-      }
-
-   }
-   else if(pfnDeferInit == nullptr)
-   {
-
-      if(plevel->m_pfnDeferInit != nullptr)
-      {
-
-         return plevel->m_pfnDeferInit();
-
-      }
-      else
-      {
-
-         return true;
-
-      }
-
-   }
-   else
-   {
-
-      auto plevelFind = find_level(pfnDeferInit);
-
-      if(plevelFind == nullptr)
-      {
-
-         bool bOk1 = false;
-
-         bOk1 = pfnDeferInit();
-
-         bool bOk2 = true;
-
-         if(plevel->m_pfnDeferInit != nullptr)
-         {
-
-            bOk2 = plevel->m_pfnDeferInit();
-
-         }
-
-         return bOk1 && bOk2;
-
-      }
-      else if(plevelFind->m_elevel > plevel->m_elevel)
-      {
-
-         return plevelFind->m_pfnDeferInit();
-
-      }
-      else
-      {
-
-         return plevel->m_pfnDeferInit();
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-
-
-static const char * g_pszCubeAppId = nullptr;
-
-
-const char * get_cube_app_id()
-{
-
-   return g_pszCubeAppId;
-
-}
-
-
-void cube_set_app_id(const char * pszAppId)
-{
-
-   g_pszCubeAppId = pszAppId;
-
-}
-
+//static apex_level * s_plevel = NULL;
 //
-//apex_apex::apex_apex()
+//
+//apex_level::apex_level(enum_level elevel, PFN_DEFER_INIT pfnDeferInit) :
+//   m_elevel(elevel),
+//   m_pfnDeferInit(pfnDeferInit),
+//   m_plevelNext(s_plevel)
 //{
 //
-//   if (!defer_apex_init())
+//   s_plevel = this;
+//
+//}
+//
+//
+//apex_level * apex_level::get_maximum_level()
+//{
+//
+//#ifdef LINUX
+//
+//return nullptr;
+//
+//#endif
+//
+//try
+//{
+//   if(s_plevel == nullptr)
 //   {
 //
-//      throw raw_fail();
+//      return nullptr;
 //
 //   }
 //
-//}
-
+//   apex_level * plevel = s_plevel;
 //
-//apex_apex::~apex_apex()
+//   apex_level * plevelMax = plevel;
+//
+//   while(true)
+//   {
+//
+//      plevel = plevel->m_plevelNext;
+//
+//      if(plevel == nullptr)
+//      {
+//
+//         break;
+//
+//      }
+//
+//      if(plevel->m_elevel > plevelMax->m_elevel)
+//      {
+//
+//         plevelMax = plevel;
+//
+//      }
+//
+//   }
+//
+//   return plevelMax;
+//
+//   }
+//   catch(...)
+//   {
+//
+//   }
+//
+//   return nullptr;
+//}
+//
+//
+//apex_level * apex_level::find_level(PFN_DEFER_INIT pfnDeferInit)
 //{
 //
-//   defer_apex_term();
+//   if(s_plevel == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   apex_level * plevel = s_plevel;
+//
+//   while(plevel != nullptr)
+//   {
+//
+//      if(plevel->m_pfnDeferInit > pfnDeferInit)
+//      {
+//
+//         return plevel;
+//
+//      }
+//
+//      plevel = plevel->m_plevelNext;
+//
+//   }
+//
+//   return nullptr;
 //
 //}
 //
+//
+//bool apex_level::defer_init()
+//{
+//
+//   auto plevel = get_maximum_level();
+//
+//   if(plevel == nullptr)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return plevel->m_pfnDeferInit();
+//
+//}
+//
+//
+//bool apex_level::defer_init(PFN_DEFER_INIT pfnDeferInit)
+//{
+//
+//   auto plevel = get_maximum_level();
+//
+//   if(plevel == nullptr)
+//   {
+//
+//      if(pfnDeferInit != nullptr)
+//      {
+//
+//         return pfnDeferInit();
+//
+//      }
+//      else
+//      {
+//
+//         return true;
+//
+//      }
+//
+//   }
+//   else if(pfnDeferInit == nullptr)
+//   {
+//
+//      if(plevel->m_pfnDeferInit != nullptr)
+//      {
+//
+//         return plevel->m_pfnDeferInit();
+//
+//      }
+//      else
+//      {
+//
+//         return true;
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      auto plevelFind = find_level(pfnDeferInit);
+//
+//      if(plevelFind == nullptr)
+//      {
+//
+//         bool bOk1 = false;
+//
+//         bOk1 = pfnDeferInit();
+//
+//         bool bOk2 = true;
+//
+//         if(plevel->m_pfnDeferInit != nullptr)
+//         {
+//
+//            bOk2 = plevel->m_pfnDeferInit();
+//
+//         }
+//
+//         return bOk1 && bOk2;
+//
+//      }
+//      else if(plevelFind->m_elevel > plevel->m_elevel)
+//      {
+//
+//         return plevelFind->m_pfnDeferInit();
+//
+//      }
+//      else
+//      {
+//
+//         return plevel->m_pfnDeferInit();
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
+//
+//
+//static const char * g_pszCubeAppId = nullptr;
+//
+//
+//const char * get_cube_app_id()
+//{
+//
+//   return g_pszCubeAppId;
+//
+//}
+//
+//
+//void cube_set_app_id(const char * pszAppId)
+//{
+//
+//   g_pszCubeAppId = pszAppId;
+//
+//}
+//
+////
+////apex_apex::apex_apex()
+////{
+////
+////   if (!defer_apex_init())
+////   {
+////
+////      throw raw_fail();
+////
+////   }
+////
+////}
+//
+////
+////apex_apex::~apex_apex()
+////{
+////
+////   defer_apex_term();
+////
+////}
+////
+//
+//

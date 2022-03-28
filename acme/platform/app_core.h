@@ -118,42 +118,42 @@ public:
 
 
 
-class CLASS_DECL_ACME apex_level
-{
-public:
-
-
-   enum enum_level
-   {
-      e_level_none = 0,
-      e_level_acme = 1,
-      e_level_apex = 2,
-      e_level_aqua = 3,
-      e_level_aura = 4,
-      e_level_axis = 5,
-      e_level_base = 6,
-      e_level_bred = 7,
-      e_level_core = 8,
-   };
-
-
-   enum_level                 m_elevel;
-   PFN_DEFER_INIT             m_pfnDeferInit;
-   apex_level *               m_plevelNext;
-
-
-   apex_level(enum_level elevel, PFN_DEFER_INIT pfnDeferInit);
-
-   static apex_level * get_maximum_level();
-
-   static apex_level * find_level(PFN_DEFER_INIT pfnDeferInit);
-
-   static bool defer_init();
-
-   static bool defer_init(PFN_DEFER_INIT pfnDeferInit);
-
-
-};
+//class CLASS_DECL_ACME apex_level
+//{
+//public:
+//
+//
+//   enum enum_level
+//   {
+//      e_level_none = 0,
+//      e_level_acme = 1,
+//      e_level_apex = 2,
+//      e_level_aqua = 3,
+//      e_level_aura = 4,
+//      e_level_axis = 5,
+//      e_level_base = 6,
+//      e_level_bred = 7,
+//      e_level_core = 8,
+//   };
+//
+//
+//   enum_level                 m_elevel;
+//   PFN_DEFER_INIT             m_pfnDeferInit;
+//   apex_level *               m_plevelNext;
+//
+//
+//   apex_level(enum_level elevel, PFN_DEFER_INIT pfnDeferInit);
+//
+//   static apex_level * get_maximum_level();
+//
+//   static apex_level * find_level(PFN_DEFER_INIT pfnDeferInit);
+//
+//   static bool defer_init();
+//
+//   static bool defer_init(PFN_DEFER_INIT pfnDeferInit);
+//
+//
+//};
 
 
 

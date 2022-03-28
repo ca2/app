@@ -2153,10 +2153,10 @@ inline bool is_ok(const __pointer(TYPE) &p)
 
 
 template<typename TYPE>
-inline bool nok(const TYPE *p)
+inline bool nok(TYPE & t)
 {
 
-   return !::is_ok(p);
+   return !::is_ok(t);
 
 }
 

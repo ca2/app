@@ -1376,7 +1376,7 @@ pacmedirectory->create(pathDVP_Folder);
       string strFolder;
       strFolder = m_pcontext->m_papexcontext->dir().install();
 
-      auto papp = get_app();
+      //auto papp = get_app();
 
       //l.m_straLibSourcePath.m_pprovider = papp->m_papplication;
 

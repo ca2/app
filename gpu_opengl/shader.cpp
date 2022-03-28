@@ -347,7 +347,7 @@ namespace opengl
    void shader::program_compile_errors(GLuint program, string & strSummary)
    {
 
-      ::e_status estatus = ::success;
+      //::e_status estatus = ::success;
 
       GLint success;
 

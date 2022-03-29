@@ -259,21 +259,21 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    for (index iItem = 0; iItem < m_useritema.get_size(); iItem++)
    {
 
-      if (!::is_item(m_pitemHover, iItem))
-      {
+      //if (!::is_item(m_pitemHover, iItem))
+      //{
 
          _001DrawItem(pgraphics, iItem);
 
-      }
+      //}
 
    }
 
-   if (::is_set(m_pitemHover))
-   {
+   //if (m_pitemHover->m_eelement == ::e_element_item)
+   //{
 
-      _001DrawItem(pgraphics, m_pitemHover);
+   //   _001DrawItem(pgraphics, m_pitemHover);
 
-   }
+   //}
 
 
 }
@@ -671,12 +671,15 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
 void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem)
 {
 
-   if (::is_null(m_useritema[iItem]))
+   __pointer(::user::toolbar_item) pitem = m_useritema[iItem];
+
+   if (::is_null(pitem))
    {
 
       return;
 
    }
+
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -687,8 +690,6 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    pgraphics->set_font(this, ::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
-
-   auto pitem = ::user::__toolbar_item(m_useritema[iItem]);
 
    auto estyle = get_item_style(iItem);
 
@@ -1384,53 +1385,55 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 ::item_pointer simple_toolbar::on_hit_test(const ::point_i32 &point)
 {
 
-   for (index iItem = 0; iItem < m_useritema.get_size(); iItem++)
-   {
+   return ::user::toolbar::on_hit_test(point);
 
-      if (m_useritema[iItem]->m_rectangle.contains(point))
-      {
+   //for (index iItem = 0; iItem < m_useritema.get_size(); iItem++)
+   //{
 
-         //item = ::item( ::e_element_item, iItem );
+   //   if (m_useritema[iItem]->m_rectangle.contains(point))
+   //   {
 
-         return m_useritema[iItem];
+   //      //item = ::item( ::e_element_item, iItem );
 
-      }
+   //      return m_useritema[iItem];
 
-   }
+   //   }
 
-   auto psession = get_session();
+   //}
 
-   if (has_mouse_capture())
-   {
+   //auto psession = get_session();
 
-      //item = ::e_element_none;
+   //if (has_mouse_capture())
+   //{
 
-      return nullptr;
+   //   //item = ::e_element_none;
 
-   }
+   //   return nullptr;
 
-   ::rectangle_i32 rectangleWindow;
+   //}
 
-   get_window_rect(rectangleWindow);
+   //::rectangle_i32 rectangleWindow;
 
-   screen_to_client(rectangleWindow);
+   //get_window_rect(rectangleWindow);
 
-   if (rectangleWindow.contains(point))
-   {
+   //screen_to_client(rectangleWindow);
 
-      //item = ::e_element_none;
+   //if (rectangleWindow.contains(point))
+   //{
 
-      return nullptr;
+   //   //item = ::e_element_none;
 
-   }
-   else
-   {
+   //   return nullptr;
 
-      //item = ::e_element_none;
+   //}
+   //else
+   //{
 
-      return nullptr;
+   //   //item = ::e_element_none;
 
-   }
+   //   return nullptr;
+
+   //}
 
 }
 

@@ -24,6 +24,21 @@ namespace colorertake5
 namespace user
 {
 
+   enum enum_line
+   {
+
+      e_line_end_eof = 0,
+      _e_line_end_length_1 = 1,
+      _e_line_end_length_2 = 2,
+      _e_line_end_r = 32,
+      _e_line_end_n = 64,
+      e_line_end_length = _e_line_end_length_1 | _e_line_end_length_2,
+      e_line_end_r = _e_line_end_length_1 | _e_line_end_r,
+      e_line_end_n = _e_line_end_length_1 | _e_line_end_n,
+      e_line_end_r_n = _e_line_end_length_2 | _e_line_end_r | _e_line_end_n,
+
+   };
+
 
    class CLASS_DECL_AURA plain_edit :
       virtual public ::user::scroll_base,
@@ -178,9 +193,11 @@ namespace user
       int                                 m_iLastSelEndX;
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
-      ::index                             m_iLineStart;
-      ::index                             m_iLineEnd;
-      count                               m_iLineCount;
+      ::index                             m_iCurrentPageLineStart;
+      ::index                             m_iCurrentPageLineEnd;
+      ::index                             m_iCurrentPageLineOffset;
+      // Potential - line count at client area as if it was fully filled
+      count                               m_iCurrentPagePotentialLineCount;
       bool                                m_bCustomFrameBefore;
       ::rectangle_i32                              m_FullScreenWindowRect;
 
@@ -192,7 +209,6 @@ namespace user
       bool                                m_bRMouseDown;
       point_i32                           m_pointSelStart;
       ::duration                          m_durationCaretPeriod;
-      ::index                             m_iLineOffset;
       string_array                        m_straLines;
       double                              m_dy;
       bool                                m_bGetTextNeedUpdate;
@@ -210,11 +226,11 @@ namespace user
 
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line size_i32
-      index_array                         m_iaLineLen;
+      index_array                         m_iaLineLength;
       // Used for whatever it can make faster for large files (scroll for example)
-      // keep each line end flag 3 = \r \n     1 = \n  \r = 2
-      index_array                         m_iaLineEnd;
-      index_array                         m_iaLineBeg;
+      // keep each line flags
+      index_array                         m_iaLineFlags;
+      index_array                         m_iaLineStart;
 
       bool                                m_bOwnData;
       __composite(plain_text_tree)        m_ptree;

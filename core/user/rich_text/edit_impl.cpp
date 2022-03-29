@@ -1534,10 +1534,10 @@ namespace user
 
                   //iLine += rectangleClient.height() / m_iLineHeight;
 
-                  //if (iLine >= m_iaLineBeg.get_size())
+                  //if (iLine >= m_iaLineStart.get_size())
                   //{
 
-                  //   iLine = m_iaLineBeg.get_upper_bound();
+                  //   iLine = m_iaLineStart.get_upper_bound();
 
                   //}
 

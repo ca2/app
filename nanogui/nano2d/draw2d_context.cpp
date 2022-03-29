@@ -922,10 +922,10 @@ namespace nano2d
    }
 
 
-   int draw2d_context::create_image(int w, int h, int imageFlags, const unsigned char * data)
+   int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const unsigned char * data)
    {
 
-      return m_pgraphics->m_psystem->context_image()->create_image_integer(w, h, data);
+      return m_pgraphics->m_psystem->context_image()->create_image_integer(w, h, (const ::color32_t *) data);
 
    }
 
@@ -959,6 +959,25 @@ namespace nano2d
       *w = pimage->width();
 
       *h = pimage->height();
+
+   }
+
+
+   void draw2d_context::update_image(int image, const unsigned char * data)
+   {
+
+      if (image <= 0)
+      {
+
+         return;
+
+      }
+
+      auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
+
+      pimage->map();
+
+      copy_colorref(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const color32_t *)data);
 
    }
 

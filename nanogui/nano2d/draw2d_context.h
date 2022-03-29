@@ -144,11 +144,12 @@ namespace nano2d
 
 
       int create_image(const char * filename, int imageFlags) override;
-      int create_image(int w, int h, int imageFlags, const unsigned char * data) override;
+      int create_image_rgba(int w, int h, int imageFlags, const unsigned char * data) override;
       void image_size(int image, int * w, int * h) override;
 
 
-      virtual void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
+      void update_image(int image, const unsigned char * data) override;
+      void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
 
 
    };

@@ -73,7 +73,7 @@ i32 context_image::image_integer(const char * path)
 }
 
 
-i32 context_image::create_image_integer(int w, int h, color32_t * pcolor, int iScan)
+i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, int iScan)
 {
 
    if (w <= 0 || h <= 0)
@@ -103,6 +103,8 @@ i32 context_image::create_image_integer(int w, int h, color32_t * pcolor, int iS
    m_mapPathInt[strPath] = iImage;
 
    m_mapIntPath[iImage] = strPath;
+
+   m_mapPathImage[strPath] = pimage;
 
    m_iImageSeed++;
 
@@ -1117,7 +1119,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-::image_pointer context_image::create_image(const ::size_i32 & size, color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+::image_pointer context_image::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
 {
 
    auto pimage = __create < ::image >();

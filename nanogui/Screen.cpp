@@ -1166,15 +1166,17 @@ void Screen::perform_layout(::draw2d::graphics_pointer & pgraphics)
 
    set_size({ (int)size.cx, (int)size.cy });
 
+   resize_event(m_size);
+
    perform_layout(&context);
 
-   if (m_puserinteraction)
+   /*if (m_puserinteraction)
    {
 
       auto r = m_puserinteraction->get_client_rect();
       m_size.x() = r.width();
       m_size.y() = r.height();
-   }
+   }*/
 
 }
 

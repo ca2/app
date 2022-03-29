@@ -78,10 +78,11 @@ namespace nano2d
 
 
 		virtual int create_image(const char * filename, int imageFlags);
-		virtual int create_image(int w, int h, int imageFlags, const unsigned char * data);
+		virtual int create_image_rgba(int w, int h, int imageFlags, const unsigned char * data);
 		virtual void image_size(int image, int * w, int * h);
 
 
+		virtual void update_image(int image, const unsigned char * data);
 		virtual void _draw_image(float x, float y, float w, float h, ::image * pimage);
 
 	};

@@ -621,8 +621,6 @@ namespace user
    void vertical_scroll_base::install_message_routing(::channel * pchannel)
    {
 
-      interaction::install_message_routing(pchannel);
-
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &vertical_scroll_base::_001OnVScroll);
       MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &vertical_scroll_base::_001OnMouseWheel);
 

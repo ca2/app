@@ -233,7 +233,7 @@ namespace user
    {
 
       interaction::install_message_routing(pchannel);
-
+      scroll_base::install_message_routing(pchannel);
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #ifdef WINDOWS
       ::tsf::edit_window::install_message_routing(pchannel);
@@ -377,9 +377,13 @@ namespace user
 
       ::rectangle_f64 rectangleClient = get_client_rect();
 
+      auto rectangleBackground = rectangleClient;
+
+      rectangleBackground.offset(m_pointScroll);
+
       auto crEditBackground = get_color(pstyle, e_element_background);
 
-      pgraphics->fill_rectangle(rectangleClient, crEditBackground);
+      pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
 
       bool bComposing = ::is_set(m_pitemComposing);
 
@@ -420,9 +424,6 @@ namespace user
 
       }
 
-
-      
-
       auto rectanglePadding = get_padding(pstyle);
 
       rectangleClient.deflate(rectanglePadding);
@@ -443,25 +444,25 @@ namespace user
 
       ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
-      auto pointOffset = get_viewport_offset();
+      //auto pointOffset = get_viewport_offset();
 
-      if (m_dLineHeight > 0.)
-      {
+      //if (m_dLineHeight > 0.)
+      //{
 
-         int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
+      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
 
-         if (iVerticalOffsetModule > 0)
-         {
+      //   if (iVerticalOffsetModule > 0)
+      //   {
 
-            pgraphics->OffsetViewportOrg(0, -iVerticalOffsetModule);
+      //      pgraphics->OffsetViewportOrg(0, -iVerticalOffsetModule);
 
-         }
+      //   }
 
-      }
+      //}
 
-      pgraphics->OffsetViewportOrg(-pointOffset.x, 0);
+      //pgraphics->OffsetViewportOrg(-pointOffset.x, 0);
 
-      double y = rectangleClient.top;
+      double y = rectangleClient.top + m_iCurrentPageLineStart * m_dLineHeight;
 
       _001GetImpactSel(iSelBegOriginal, iSelEndOriginal);
 
@@ -1840,22 +1841,24 @@ namespace user
 
          GetFocusRect(rectangleClient);
 
-         int iCurrentPageOffsetStart = (int) get_viewport_offset().y;
+         int iCurrentPageTop = get_viewport_offset().y;
 
-         int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectangleClient.height());
+         int iCurrentPageBottom = get_viewport_offset().y + rectangleClient.height();
 
-         index iCandidateCursorOffset = (::index) (minimum((double) maximum(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
+         index iLineTop = (::index) (iLine * m_dLineHeight);
 
-         if (iCandidateCursorOffset < iCurrentPageOffsetStart)
+         index iLineBottom = ((::index)((iLine + 1) * m_dLineHeight));
+
+         if (iLineTop < iCurrentPageTop)
          {
 
-            set_viewport_offset_y(pgraphics, (int)iCandidateCursorOffset);
+            set_viewport_offset_y(pgraphics, (int) iLineTop);
 
          }
-         else if (iCandidateCursorOffset > iCurrentPageOffsetEnd)
+         else if (iLineBottom >= iCurrentPageBottom)
          {
 
-            set_viewport_offset_y(pgraphics, (int)(iCandidateCursorOffset - iCurrentPageOffsetEnd + iCurrentPageOffsetStart));
+            set_viewport_offset_y(pgraphics, ((int)iLineBottom - rectangleClient.height()) + (int)(m_dLineHeight / 4.0));
 
          }
 
@@ -1877,7 +1880,7 @@ namespace user
    void plain_edit::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::on_change_viewport_offset(pgraphics);
+      scroll_base::on_change_viewport_offset(pgraphics);
 
       plain_edit_on_calc_offset(pgraphics);
 
@@ -2248,7 +2251,7 @@ namespace user
 
          iLen = m_iaLineLength[iLine];
 
-         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & 255));
+         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
 
          if (iPos + iStrLen > m_iImpactSize)
          {
@@ -2911,7 +2914,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (::i32) (m_iaLineLength.get_count() * m_dLineHeight);
+         m_sizeTotal.cy = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
 
          ::size_f64 sizePage;
 
@@ -3813,7 +3816,6 @@ end:
          {
 
             if (*psz == '\r')
-
             {
 
                if (iLastR)
@@ -3823,7 +3825,7 @@ end:
 
                   m_iaLineLength[iLine] = iLineSize;
 
-                  m_iaLineFlags[iLine] = 1 | 512;
+                  m_iaLineFlags[iLine] = e_line_end_r;
 
                   iLastR = 0;
 
@@ -3837,7 +3839,6 @@ end:
 
             }
             else if (*psz == '\n')
-
             {
 
                if (iLastR)
@@ -3847,7 +3848,7 @@ end:
 
                   m_iaLineLength[iLine] = iLineSize;
 
-                  m_iaLineFlags[iLine] = 2 | 1024;
+                  m_iaLineFlags[iLine] = e_line_end_r_n;
 
                   iLastR = 0;
 
@@ -3863,7 +3864,7 @@ end:
 
                   m_iaLineLength[iLine] = iLineSize;
 
-                  m_iaLineFlags[iLine] = 1 | 256;
+                  m_iaLineFlags[iLine] = e_line_end_n;
 
                   iLastR = 0;
 
@@ -3886,7 +3887,7 @@ end:
 
                   m_iaLineLength[iLine] = iLineSize;
 
-                  m_iaLineFlags[iLine] = 1 | 512;
+                  m_iaLineFlags[iLine] = e_line_end_r;
 
                   iLastR = 0;
 
@@ -3917,7 +3918,7 @@ end:
 
          m_iaLineLength[iLine] = iLineSize;
 
-         m_iaLineFlags[iLine] = 1 | 512;
+         m_iaLineFlags[iLine] = e_line_end_r;
 
          bSet = true;
 
@@ -3932,7 +3933,7 @@ finished_update:
 
          m_iaLineLength[iLine] = iLineSize;
 
-         m_iaLineFlags[iLine] = 0;
+         m_iaLineFlags[iLine] = e_line_end_eof;
 
 
       }
@@ -6698,7 +6699,7 @@ finished_update:
       && iLine < m_iaLineFlags.get_count())
       {
 
-         strsize iLineLen = m_iaLineLength[iLine] - (m_iaLineFlags[iLine] & 0xf);
+         strsize iLineLen = m_iaLineLength[iLine] - (m_iaLineFlags[iLine] & e_line_end_length);
 
          char *psz = strLine.get_string_buffer(iLineLen);
 

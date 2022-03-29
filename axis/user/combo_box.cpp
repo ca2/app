@@ -341,7 +341,7 @@ namespace user
 
       pgraphics->fill_polygon(pointa);
 
-      pgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
+      //pgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
 
    }
 

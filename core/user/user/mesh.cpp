@@ -120,6 +120,7 @@ namespace user
    void mesh::install_message_routing(::channel * pchannel)
    {
 
+      ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
       bool bList = dynamic_cast <list *> (this) != nullptr;

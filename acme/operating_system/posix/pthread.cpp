@@ -143,7 +143,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          if (pmq.is_set())
          {
 
-            if (pmq->m_eventNewMessage.lock(0_s))
+            if (pmq->m_eventNewMessage._wait(0_s))
             {
 
                return (enum_status)(((::i32) signaled_base) + dwSize);
@@ -155,10 +155,14 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          for (i = 0; comparison::lt(i, dwSize); i++)
          {
 
-            if (synca[i]->lock(0_ms))
+            auto psync = synca[i];
+
+            if (psync->_wait(0_ms))
             {
 
-               return (enum_status)(((::i32) signaled_base) + dwSize);
+               auto estatus = signaled_base + i;
+
+               return (enum_status)estatus;
 
             }
 

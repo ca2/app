@@ -15,8 +15,8 @@ concept indexed_array = requires(ARRAY array, ::index i)
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 __pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
 const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
-TYPE ** ITEM ## _data() { return (TYPE **) CONTAINER.get_data(); } \
-TYPE * const * ITEM ## _data() const { return (TYPE * const *) CONTAINER.get_data(); } \
+__pointer(TYPE) * ITEM ## _data() { return CONTAINER.get_data(); } \
+__pointer(TYPE) const * ITEM ## _data() const { return CONTAINER.get_data(); } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \

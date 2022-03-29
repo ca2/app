@@ -63,6 +63,7 @@ namespace user
    void list_box::install_message_routing(::channel * pchannel)
    {
 
+      ::user::interaction::install_message_routing(pchannel);
       ::user::scroll_base::install_message_routing(pchannel);
 
       //install_click_default_mouse_handling(pchannel);
@@ -1253,6 +1254,12 @@ namespace user
          order_top_most();
 
          display(e_display_normal);
+
+         auto & window_state = layout().sketch();
+
+         string str;
+
+         str.format("%d", window_state.m_edisplay);
 
          set_need_layout();
 

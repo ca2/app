@@ -286,8 +286,8 @@ error_file_open,
 
 #include "status_range_authentication.h"
 
-   e_status_process_result_positive_base = 0x100000000, 
-   signaled_base = 0x100000000,
+   e_status_process_result_positive_base = 0x10000000,
+   signaled_base = 0x10000000,
    signaled_end = signaled_base + MAXIMUM_SYNCHRONIZING_OBJECTS,
 
 };

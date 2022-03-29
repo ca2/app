@@ -4004,6 +4004,12 @@ return "";
 
       }
 
+      if (strType.contains_ci("list_box"))
+      {
+
+         output_debug_string("list_box");
+
+      }
 
       //      if(m_strInteractionTag.begins_ci("button_"))
       //      {

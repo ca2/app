@@ -81,17 +81,17 @@ namespace graphics
 //
 //
 
-         if(sizeWindow.cx == 1)
-         {
-
-            printf("cx=1");
-
-         }
-         else
-         {
-            printf("cx!=1");
-
-         }
+//         if(sizeWindow.cx == 1)
+//         {
+//
+//            printf("cx=1");
+//
+//         }
+//         else
+//         {
+//            printf("cx!=1");
+//
+//         }
 
           pimage->create(sizeWindow);
             //if (!pimage->create(sizeWindow))

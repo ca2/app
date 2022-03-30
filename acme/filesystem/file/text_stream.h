@@ -91,7 +91,7 @@ public:
 
       ::to_string(str, t);
 
-      m_p->println(str);
+      m_p->print(str);
 
    }
 

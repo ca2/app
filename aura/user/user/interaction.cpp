@@ -3027,26 +3027,27 @@ namespace user
 
          string strType = __type_name(this);
 
-         if(strType.contains_ci("control_box"))
-         {
+//         if(strType.contains_ci("control_box"))
+//         {
+//
+//            output_debug_string("control box on clip");
+//
+//         }
+//         else if (strType.contains_ci("combo_box"))
+//         {
+//
+//            output_debug_string("combo box on clip");
+//
+//         }
 
-            output_debug_string("control box on clip");
-
-         }
-         else if (strType.contains_ci("combo_box"))
-         {
-
-            output_debug_string("combo box on clip");
-
-         }
 #if defined(MACOS) || defined(LINUX) || defined(_UWP)
 
-         if (strType.contains_ci("pane"))
-         {
-
-            output_debug_string("a");
-
-         }
+//         if (strType.contains_ci("pane"))
+//         {
+//
+//            output_debug_string("a");
+//
+//         }
 
 #endif
 
@@ -10657,18 +10658,18 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
    //         output_debug_string("place_holder");
    //
    //      }
-   else if (strType.contains("combo_box"))
-   {
-
-      output_debug_string("combo_box");
-
-   }
-   else if (strType.contains("list_box"))
-   {
-
-      output_debug_string("list_box");
-
-   }
+//   else if (strType.contains("combo_box"))
+//   {
+//
+//      output_debug_string("combo_box");
+//
+//   }
+//   else if (strType.contains("list_box"))
+//   {
+//
+//      output_debug_string("list_box");
+//
+//   }
 
    __keep(m_bUpdatingVisual);
 

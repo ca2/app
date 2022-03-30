@@ -53,7 +53,9 @@ namespace user
 
       m_iBorder = 0;
 
-      m_iMinListItemCount = 8;
+      //m_iMinListItemCount = 8;
+
+      m_iMinListItemCount = 0;
 
       m_bMovingComboBox = false;
 
@@ -610,7 +612,7 @@ namespace user
       if (m_iMinListItemCount > 0)
       {
 
-         auto iAddUp2 = cListCount - m_iMinListItemCount;
+         auto iAddUp2 = m_iMinListItemCount - cListCount;
 
          if (iAddUp2 > 0)
          {

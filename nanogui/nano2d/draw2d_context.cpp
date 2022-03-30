@@ -13,7 +13,7 @@ namespace nano2d
 
       //_create_new_state();
 
-      m_iPaintImageSeed = 0;
+      m_iPaintImageSeed = 1;
 
    }
 

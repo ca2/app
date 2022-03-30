@@ -527,7 +527,7 @@ namespace user
    ::item_pointer font_list::on_hit_test(const ::point_i32 &point)
    {
 
-      return m_pfontlist->hit_test(point);
+      return m_pfontlist->hit_test(point + m_pointScroll);
 
    }
 

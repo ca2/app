@@ -18050,6 +18050,15 @@ order(zorderParam);
    void interaction::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
+      if(pcommand->is_handled(this))
+      {
+
+         return;
+
+      }
+
+      pcommand->handle(this);
+
       ::user::primitive::route_command(pcommand);
 
       if (pcommand->m_bRet)

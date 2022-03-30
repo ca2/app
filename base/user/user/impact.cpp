@@ -270,6 +270,15 @@ namespace user
    void impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
+      if(pcommand->is_handled(this))
+      {
+
+         return;
+
+      }
+
+      pcommand->handle(this);
+
       // ::user::layout intentional
       command_handler(pcommand);
 

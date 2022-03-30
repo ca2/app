@@ -19,9 +19,12 @@ void image_drawer::draw(const image_drawing & imagedrawing)
    if (has_blender())
    {
 
-      _draw_blend(imagedrawing);
+      if (_draw_blend(imagedrawing))
+      {
 
-      return;
+         return;
+
+      }
 
    }
 
@@ -108,8 +111,18 @@ void image_drawer::_draw_raw(const image_drawing & imagedrawing)
 }
 
 
-void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
 {
+
+   image_source imagesource(pimage, { pointSrc, rectangleTarget.size()});
+
+   image_drawing_options imagedrawingoptions(imagedrawingoptionsParam);
+
+   imagedrawingoptions.m_rectangleTarget = rectangleTarget;
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   _draw_raw(imagedrawing);
 
 }
 

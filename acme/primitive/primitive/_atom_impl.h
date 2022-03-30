@@ -164,103 +164,103 @@ inline atom::atom(const type& type) :
 }
 
 
-template < primitive_integer INTEGER >
-inline atom& atom::operator = (INTEGER i)
-{
-
-   m_etype = e_type_integer;
-
-   m_i = i;
-
-   return *this;
-
-}
-
-
-template < primitive_natural NATURAL >
-inline atom& atom::operator = (NATURAL n)
-{
-
-   m_etype = e_type_integer;
-
-   m_i = n;
-
-   return *this;
-
-}
-
-
-inline atom& atom::operator = (const ::enum_id& eid)
-{
-
-   m_etype = e_type_id;
-
-   m_eid = eid;
-
-   return *this;
-
-}
-
-
-inline atom& atom::operator = (const ::enum_property& eproperty)
-{
-
-   m_etype = e_type_property;
-
-   m_eproperty = eproperty;
-
-   return *this;
-
-}
-
-
-inline atom& atom::operator = (const ::enum_factory& efactory)
-{
-
-   m_etype = e_type_factory;
-
-   m_efactory = efactory;
-
-   return *this;
-
-}
-
-
-inline atom& atom::operator = (const ::enum_task_tool& etasktool)
-{
-
-   m_etype = e_type_task_tool;
-
-   m_etasktool = etasktool;
-
-   return *this;
-
-}
-
-
-inline atom& atom::operator = (const ::enum_timer& etimer)
-{
-
-   m_etype = e_type_timer;
-
-   m_etimer = etimer;
-
-   return *this;
-
-}
-
-
-
-inline atom& atom::operator = (const ::enum_message & emessage)
-{
-
-   m_etype = e_type_message;
-
-   m_emessage = emessage;
-
-   return *this;
-
-}
+//template < primitive_integer INTEGER >
+//inline atom& atom::operator = (INTEGER i)
+//{
+//
+//   m_etype = e_type_integer;
+//
+//   m_i = i;
+//
+//   return *this;
+//
+//}
+//
+//
+//template < primitive_natural NATURAL >
+//inline atom& atom::operator = (NATURAL n)
+//{
+//
+//   m_etype = e_type_integer;
+//
+//   m_i = n;
+//
+//   return *this;
+//
+//}
+//
+//
+//inline atom& atom::operator = (const ::enum_id& eid)
+//{
+//
+//   m_etype = e_type_id;
+//
+//   m_eid = eid;
+//
+//   return *this;
+//
+//}
+//
+//
+//inline atom& atom::operator = (const ::enum_property& eproperty)
+//{
+//
+//   m_etype = e_type_property;
+//
+//   m_eproperty = eproperty;
+//
+//   return *this;
+//
+//}
+//
+//
+//inline atom& atom::operator = (const ::enum_factory& efactory)
+//{
+//
+//   m_etype = e_type_factory;
+//
+//   m_efactory = efactory;
+//
+//   return *this;
+//
+//}
+//
+//
+//inline atom& atom::operator = (const ::enum_task_tool& etasktool)
+//{
+//
+//   m_etype = e_type_task_tool;
+//
+//   m_etasktool = etasktool;
+//
+//   return *this;
+//
+//}
+//
+//
+//inline atom& atom::operator = (const ::enum_timer& etimer)
+//{
+//
+//   m_etype = e_type_timer;
+//
+//   m_etimer = etimer;
+//
+//   return *this;
+//
+//}
+//
+//
+//
+//inline atom& atom::operator = (const ::enum_message & emessage)
+//{
+//
+//   m_etype = e_type_message;
+//
+//   m_emessage = emessage;
+//
+//   return *this;
+//
+//}
 
 
 //inline atom& atom::operator = (const ::atom & atom)
@@ -275,16 +275,16 @@ inline atom& atom::operator = (const ::enum_message & emessage)
 //}
 //
 
-inline atom & atom::operator = (const ::enum_dialog_result & edialogresult)
-{
-
-   m_etype = e_type_dialog_result;
-
-   m_edialogresult = edialogresult;
-
-   return *this;
-
-}
-
-
-
+//inline atom & atom::operator = (const ::enum_dialog_result & edialogresult)
+//{
+//
+//   m_etype = e_type_dialog_result;
+//
+//   m_edialogresult = edialogresult;
+//
+//   return *this;
+//
+//}
+//
+//
+//

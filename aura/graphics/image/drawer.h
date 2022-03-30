@@ -198,7 +198,7 @@ public:
 
    virtual bool has_blender() const;
 
-   virtual void _draw_blend(const image_drawing & imagedrawing) = 0;
+   virtual bool _draw_blend(const image_drawing & imagedrawing) = 0;
    virtual void _draw_raw(const image_drawing & imagedrawing);
 
    

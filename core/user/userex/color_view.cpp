@@ -371,6 +371,8 @@ namespace userex
 
       m_bLButtonPressed = false;
 
+      m_atom = impact_color_sel;
+
    }
 
 

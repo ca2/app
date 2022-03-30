@@ -570,13 +570,13 @@ namespace userex
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
+         //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = pdocument->get_type_impact < color_view >();
+         m_pcolorview = create_view < color_view >(pimpactdata);
 
-         pdocument->m_pviewTopic->set_notify_user_interaction(this);
+//         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
-         pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+  //       pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
          m_pcolorview->add_handler(this);
 

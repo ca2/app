@@ -505,31 +505,31 @@ public:
    inline bool operator >= (::enum_dialog_result edialogresult) const;
 
    atom & operator = (const atom & atom);
-   atom & operator = (const char * psz);
+   //atom & operator = (const char * psz);
 
-#ifndef NO_TEMPLATE
-
-   atom & operator = (const ::payload & payload);
-   atom & operator = (const property & prop);
-   atom & operator = (const ::string & str);
-
-
-   template < primitive_integer INTEGER >
-   atom & operator = (INTEGER i);
-   template < primitive_natural NATURAL >
-   atom & operator = (NATURAL u);
-
-#endif // !NO_TEMPLATE
-
-
-   atom & operator = (const enum_id & eid);
-   atom & operator = (const enum_property & eproperty);
-   atom & operator = (const enum_factory & efactory);
-   atom & operator = (const enum_task_tool & etasktool);
-   atom & operator = (const enum_timer & etimer);
-   atom & operator = (const enum_message & emessage);
-   //atom & operator = (const enum_topic & etopic);
-   atom & operator = (const enum_dialog_result & edialogresult);
+//#ifndef NO_TEMPLATE
+//
+//   atom & operator = (const ::payload & payload);
+//   atom & operator = (const property & prop);
+//   atom & operator = (const ::string & str);
+//
+//
+//   template < primitive_integer INTEGER >
+//   atom & operator = (INTEGER i);
+//   template < primitive_natural NATURAL >
+//   atom & operator = (NATURAL u);
+//
+//#endif // !NO_TEMPLATE
+//
+//
+//   atom & operator = (const enum_id & eid);
+//   atom & operator = (const enum_property & eproperty);
+//   atom & operator = (const enum_factory & efactory);
+//   atom & operator = (const enum_task_tool & etasktool);
+//   atom & operator = (const enum_timer & etimer);
+//   atom & operator = (const enum_message & emessage);
+//   //atom & operator = (const enum_topic & etopic);
+//   atom & operator = (const enum_dialog_result & edialogresult);
 
 
 #ifndef NO_TEMPLATE

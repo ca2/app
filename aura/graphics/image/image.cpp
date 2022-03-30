@@ -10150,7 +10150,7 @@ void image::_unmap()
 }
 
 
-void image::_draw_blend(const image_drawing& imagedrawing)
+bool image::_draw_blend(const image_drawing& imagedrawing)
 {
 
    auto pgraphics = get_graphics();
@@ -10162,7 +10162,7 @@ void image::_draw_blend(const image_drawing& imagedrawing)
 
    //}
 
-   pgraphics->_draw_blend(imagedrawing);
+   return pgraphics->_draw_blend(imagedrawing);
    //{
 
    //   return false;

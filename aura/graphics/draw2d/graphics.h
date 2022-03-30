@@ -70,7 +70,7 @@ namespace draw2d
 
       bool                                   m_bPat;
 
-      bool                                   m_bAlphaBlend;
+      //bool                                   m_bAlphaBlend;
 
       __reference(::text::context)           m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
@@ -704,7 +704,7 @@ namespace draw2d
 
       bool has_blender() const override;
 
-      void _draw_blend(const ::image_drawing & imagedrawing) override;
+      bool _draw_blend(const ::image_drawing & imagedrawing) override;
 
       
       //virtual void _draw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
@@ -830,7 +830,7 @@ namespace draw2d
 
       void TextOutRaw(double x, double y, const block & block) override;
 
-      virtual void TextOutAlphaBlend(double x, double y, const block & block);
+      virtual bool TextOutAlphaBlend(double x, double y, const block & block);
 
 
       virtual void _001DrawText(const ::string & str, rectangle_f64 & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);

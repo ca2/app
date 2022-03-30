@@ -153,45 +153,69 @@ inline bool operator == (const string& str, const ::payload & payload)
 
 
 
-inline atom& atom::operator = (const ::payload & payload)
-{
-
-   if (payload.is_null())
-   {
-      m_all = {};
-      return *this;
-   }
-   else if (payload.is_empty())
-   {
-      return operator =("");
-   }
-   else if (payload.is_integer())
-   {
-      return operator = (payload.iptr());
-   }
-   else
-   {
-      return operator = (payload.string());
-   }
-
-}
-
-inline atom& atom::operator = (const property& prop)
-{
-
-   return operator = ((const ::payload&)prop);
-
-}
-
+//inline atom& atom::operator = (const ::payload & payload)
+//{
+//
+//   if (payload.is_null())
+//   {
+//      m_all = {};
+//      return *this;
+//   }
+//   else if (payload.is_empty())
+//   {
+//      return operator =("");
+//   }
+//   else if (payload.is_integer())
+//   {
+//      return operator = (payload.iptr());
+//   }
+//   else
+//   {
+//      return operator = (payload.string());
+//   }
+//
+//}
+//
+//inline atom& atom::operator = (const property& prop)
+//{
+//
+//   return operator = ((const ::payload&)prop);
+//
+//}
+//
 
 
 inline atom::atom(const ::payload & payload)
 {
+
    m_all = {};
-   operator = (payload);
+
+   if (payload.is_null())
+   {
+      
+      operator = (e_type_null);
+
+   }
+   else if (payload.is_empty())
+   {
+      
+      operator = (e_type_empty);
+
+   }
+   else if (payload.is_integer())
+   {
+      
+      operator = (payload.iptr());
+
+   }
+   else
+   {
+      
+      operator = (payload.string());
+
+   }
 
 }
-
 
 
 template < payload_class PAYLOAD >

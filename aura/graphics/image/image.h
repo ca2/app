@@ -700,7 +700,7 @@ public:
    //inline void operator != (const ::image & image) const;
 
 
-   virtual void _draw_blend(const image_drawing & imagedrawing) override;
+   virtual bool _draw_blend(const image_drawing & imagedrawing) override;
    virtual void _draw_raw(const image_drawing & imagedrawing) override;
 
 

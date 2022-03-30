@@ -49,17 +49,17 @@
 //   operator = (::acme::atom(string(str)));
 //}
 
-atom & atom::operator = (const char * psz)
-{
-   operator = (::acme::atom(psz));
-   return *this;
-}
-
-atom & atom::operator = (const ::string & str)
-{
-   operator = (::acme::atom(str));
-   return *this;
-}
+//atom & atom::operator = (const char * psz)
+//{
+//   operator = (::acme::atom(psz));
+//   return *this;
+//}
+//
+//atom & atom::operator = (const ::string & str)
+//{
+//   operator = (::acme::atom(str));
+//   return *this;
+//}
 
 //atom & atom::operator = (const string_interface & str)
 //{

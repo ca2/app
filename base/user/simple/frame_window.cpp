@@ -174,8 +174,8 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
    add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
 
-   add_command_prober("impact_full_screen", this, &simple_frame_window::_001OnUpdateImpactFullScreen);
-   add_command_handler("impact_full_screen", this, &simple_frame_window::_001OnImpactFullScreen);
+   add_command_prober("view_full_screen", this, &simple_frame_window::_001OnUpdateImpactFullScreen);
+   add_command_handler("view_full_screen", this, &simple_frame_window::_001OnImpactFullScreen);
 
    add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
    add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);

@@ -1,6 +1,6 @@
 <commandimage>
-<command id="impact_full_screen" img="full_screen_16.png"></command>
-<command id="impact_gradual_filling" img="gradual_filling_16.png"></command>
+<command id="view_full_screen" img="full_screen_16.png"></command>
+<command id="view_gradual_filling" img="gradual_filling_16.png"></command>
 <command id="levelup" img="level_up_16.png"></command>
 <command id="edit_delete" img="edit_delete_16.png"></command>
 <command id="execute_play" img="execute_play_16.png"></command>

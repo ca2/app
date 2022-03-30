@@ -66,7 +66,7 @@ namespace user
 
          m_pchannelNotify->route_command(pcommand);
 
-         //if(pcommand->m_bRet)
+         if(pcommand->m_bRet)
          {
 
             return;

@@ -1,7 +1,7 @@
 <menubar>
 	<menubar id="view">
-		<item id="impact_encoding">impact_encoding</item>
-		<item id="impact_full_screen" img="full_screen_16.png">Tela Inteira</item>
+		<item id="view_encoding">view_encoding</item>
+		<item id="view_full_screen" img="full_screen_16.png">Tela Inteira</item>
 	</menubar>
 
 </menubar>

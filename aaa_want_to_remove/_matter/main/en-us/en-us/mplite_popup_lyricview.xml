@@ -1,9 +1,9 @@
 <menubar>
 	<menubar id="view">
 		<item id="show_bk_gcom">Transparent Background</item>
-		<item id="impact_encoding">View Encoding</item>
-		<item id="impact_full_screen" img="full_screen_16.png">Full Screen</item>
-		<item id="impact_gradual_filling" img="gradual_filling_16.png">Gradual Filling</item>
+		<item id="view_encoding">View Encoding</item>
+		<item id="view_full_screen" img="full_screen_16.png">Full Screen</item>
+		<item id="view_gradual_filling" img="gradual_filling_16.png">Gradual Filling</item>
 		<item id="karaoke_bouncing_ball">Bouncing Ball</item>
 	</menubar>
 	<menubar id="execute">

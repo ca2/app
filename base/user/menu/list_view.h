@@ -15,7 +15,11 @@ namespace user
 
 
       menu_list_view();
-      virtual ~menu_list_view();
+      ~menu_list_view() override;
+
+
+      void assert_ok() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -24,11 +28,10 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
-
 
       virtual void post_non_client_destroy() override;
+
+
 
 
    };

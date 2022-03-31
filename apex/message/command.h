@@ -5,23 +5,11 @@
 
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
+#include "acme/user/user/command_update_target.h"
 
 
 namespace message
 {
-
-
-   class command_update_target :
-      virtual public ::user::check,
-      virtual public ::user::text
-   {
-   public:
-
-
-      virtual bool enable_window(bool bEnable) = 0;
-
-
-   };
 
 
    class CLASS_DECL_APEX command :
@@ -49,7 +37,7 @@ namespace message
       // if a popup sub menu - ID is for first in popup
 
       // if from some other interaction_impl
-      __pointer(command_update_target)             m_puiOther;         // nullptr if a menu or not a interaction_impl
+      __pointer(::user::command_update_target)     m_puiOther;         // nullptr if a menu or not a interaction_impl
 
       bool                                         m_bEnableChanged;
       bool                                         m_bHasCommandHandler;

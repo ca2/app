@@ -104,7 +104,7 @@ namespace user
    void toolbar::_001OnTimer(::timer * ptimer)
    {
 
-      if (ptimer->m_etimer == e_timer_hover)
+      if (ptimer->m_etimer == e_timer_command_probe)
       {
 
          auto pframewindow = get_parent_frame();
@@ -1463,7 +1463,7 @@ return { 0,0 };
    void toolbar::on_message_create(::message::message * pmessage)
    {
 
-      set_timer(e_timer_hover, 333_ms);
+      set_timer(e_timer_command_probe, 333_ms);
 
    }
 

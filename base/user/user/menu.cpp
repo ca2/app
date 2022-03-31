@@ -12,6 +12,9 @@
 #define SWP_NOSIZE          0x0001
 #define SWP_NOMOVE          0x0002
 
+
+
+
 namespace user
 {
 
@@ -589,7 +592,7 @@ namespace user
 
       set_need_redraw();
 
-      SetTimer(::e_timer_command_probe, 300_ms, nullptr);
+      SetTimer(::e_timer_command_probe, 333_ms, nullptr);
 
       return true;
 
@@ -874,8 +877,6 @@ namespace user
       set_need_redraw();
 
       post_redraw();
-
-      SetTimer(::e_timer_command_probe, 100_ms, nullptr);
 
    }
 
@@ -1508,6 +1509,15 @@ namespace user
 
          __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
+         if (pitem->m_atom.is_empty())
+         {
+
+            continue;
+
+         }
+
+         pmenucommand->m_commandtargetptraHandle.clear();
+
          pmenucommand->m_atom = pitem->m_atom;
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
@@ -1653,6 +1663,8 @@ namespace user
 
 
 } // namespace user
+
+
 
 
 

@@ -29,7 +29,7 @@ namespace user
 
 
       menu_item();
-      virtual ~menu_item();
+      ~menu_item() override;
 
 
       void menu_item_destruct();
@@ -49,6 +49,7 @@ namespace user
 
       bool IsPopup();
       menu_item * find(atom atom);
+
 
 
    };

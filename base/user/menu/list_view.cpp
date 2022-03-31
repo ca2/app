@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/menu/_menu.h"
+#include "acme/timer.h"
 
 
 namespace user
@@ -13,13 +14,6 @@ namespace user
 
    }
 
-
-   void menu_list_view::install_message_routing(::channel * pchannel)
-   {
-
-      BASE::install_message_routing(pchannel);
-
-   }
 
 
    menu_list_view::~menu_list_view()
@@ -41,6 +35,15 @@ namespace user
       
       impact::dump(dumpcontext);
       
+   }
+
+
+
+   void menu_list_view::install_message_routing(::channel * pchannel)
+   {
+
+      BASE::install_message_routing(pchannel);
+
    }
 
 
@@ -94,6 +97,7 @@ namespace user
       ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);
 
    }
+
 
 
 } // namespace user

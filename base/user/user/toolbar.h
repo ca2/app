@@ -188,12 +188,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetBitmapSize);
       DECLARE_MESSAGE_HANDLER(_001OnPreserveZeroBorderHelper);
 
-      //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 
       void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;
-
-
-      //virtual index _001GetHoverItem();
 
 
    };

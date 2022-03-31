@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "command_update_target.h"
+
+
 namespace user
 {
 
@@ -16,8 +19,7 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
-      virtual public ::user::check,
-      virtual public ::user::text
+      virtual public ::user::command_update_target
    {
    public:
 

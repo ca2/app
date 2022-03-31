@@ -410,10 +410,10 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 
 	// Creates image from specified image data.
 	// Returns handle to the image.
-	NANO2D_EXPORT int __NANO2D_API(CreateImageRGBA)(NVGcontext * ctx, int w, int h, int imageFlags, const unsigned char * data);
+	NANO2D_EXPORT int __NANO2D_API(CreateImageRGBA)(NVGcontext * ctx, int w, int h, int imageFlags, const void * data, int iScan);
 
 	// Updates image data specified by image handle.
-	NANO2D_EXPORT void __NANO2D_API(UpdateImage)(NVGcontext * ctx, int image, const unsigned char * data);
+	NANO2D_EXPORT void __NANO2D_API(UpdateImage)(NVGcontext * ctx, int image, const void* data);
 
 	// Returns the dimensions of a created image.
 	NANO2D_EXPORT void __NANO2D_API(ImageSize)(NVGcontext * ctx, int image, int * w, int * h);

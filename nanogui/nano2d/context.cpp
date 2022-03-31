@@ -296,7 +296,7 @@ namespace nano2d
    }
 
 
-   int context::create_image_rgba(int w, int h, int imageFlags, const unsigned char * data)
+   int context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
       return -1;
@@ -311,7 +311,7 @@ namespace nano2d
    }
 
 
-   void context::update_image(int image, const unsigned char * data)
+   void context::update_image(int image, const void * data)
    {
 
 

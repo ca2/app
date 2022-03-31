@@ -972,6 +972,7 @@
     <ClCompile Include="Widget.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />

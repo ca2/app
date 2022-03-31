@@ -884,13 +884,13 @@ int __NANO2D_API(CreateImageMem)(NANO2D_CONTEXT * ctx, int imageFlags, unsigned 
 }
 #endif
 
-int __NANO2D_API(CreateImageRGBA)(NANO2D_CONTEXT * ctx, int w, int h, int imageFlags, const unsigned char * data)
+int __NANO2D_API(CreateImageRGBA)(NANO2D_CONTEXT * ctx, int w, int h, int imageFlags, const void * data, int iScan)
 {
 	//return __NANO2D_CONTEXT(ctx)->params.renderCreateTexture(__NANO2D_CONTEXT(ctx)->params.userPtr, NVG_TEXTURE_RGBA, w, h, imageFlags, data);
-	return __NANO2D_CONTEXT(ctx)->create_image_rgba(w, h, imageFlags, data);
+	return __NANO2D_CONTEXT(ctx)->create_image_rgba(w, h, imageFlags, data, iScan);
 }
 
-void __NANO2D_API(UpdateImage)(NANO2D_CONTEXT * ctx, int image, const unsigned char * data)
+void __NANO2D_API(UpdateImage)(NANO2D_CONTEXT * ctx, int image, const void * data)
 {
 	int w, h;
 	//__NANO2D_CONTEXT(ctx)->params.renderGetTextureSize(__NANO2D_CONTEXT(ctx)->params.userPtr, image, &w, &h);

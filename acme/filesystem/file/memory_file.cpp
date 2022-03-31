@@ -73,6 +73,14 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 }
 
 
+memory_file::memory_file(const ::block & block) :
+   memory_file(block.get_data(), block.get_size())
+{
+
+
+}
+
+
 memory_file::memory_file(::payload & payload, const ::file::e_open & eopen) :
    memory_container(payload)
 {

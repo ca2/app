@@ -29,6 +29,7 @@ public:
    memory_file(const memory_file & file);
    memory_file(memory_file && file);
    memory_file(void * pMemory, memsize dwSize);
+   memory_file(const ::block & block);
    memory_file(::payload & payload, const ::file::e_open & eopen = e_null);
    memory_file(memory_base & memory, const ::file::e_open & eopen = e_null);
    memory_file(memory_base * pmemory, const ::file::e_open & eopen = e_null);
@@ -218,3 +219,4 @@ public:
 
 inline memory_file_pointer create_memory_file() { return __new(::memory_file); }
 inline memory_file_pointer create_memory_file(::memory_base & memory) { return __new(::memory_file(memory)); }
+inline memory_file_pointer create_memory_file(const ::block & block) { return __new(::memory_file(block)); }

@@ -375,7 +375,7 @@ namespace nano2d
 
       }
 
-      auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
+      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(image);
 
       auto & paintimage = _create_new_paint_image();
 
@@ -917,15 +917,15 @@ namespace nano2d
    int draw2d_context::create_image(const char * filename, int imageFlags)
    {
 
-      return m_pgraphics->m_psystem->context_image()->image_integer(filename);
+      return m_pgraphics->m_pcontext->context_image()->image_integer(filename);
 
    }
 
 
-   int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const unsigned char * data)
+   int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_psystem->context_image()->create_image_integer(w, h, (const ::color32_t *) data);
+      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *) data, iScan);
 
    }
 
@@ -944,7 +944,7 @@ namespace nano2d
 
       }
       
-      auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
+      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(image);
 
       if (::is_null(pimage))
       {
@@ -963,7 +963,7 @@ namespace nano2d
    }
 
 
-   void draw2d_context::update_image(int image, const unsigned char * data)
+   void draw2d_context::update_image(int image, const void * data)
    {
 
       if (image <= 0)
@@ -973,7 +973,13 @@ namespace nano2d
 
       }
 
-      auto pimage = m_pgraphics->m_psystem->context_image()->integer_image(image);
+      auto pgraphics = m_pgraphics;
+
+      auto pcontext = pgraphics->m_pcontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      auto pimage = pcontextimage->integer_image(image);
 
       pimage->map();
 

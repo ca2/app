@@ -193,6 +193,7 @@ namespace draw2d
       e_format_bmp,
       e_format_gif,
       e_format_jpeg,
+      e_format_tga,
    };
 
 

@@ -1567,9 +1567,6 @@
     <ClCompile Include="user\user\message_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\mouse.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\notify_icon.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

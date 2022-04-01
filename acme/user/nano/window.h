@@ -8,7 +8,7 @@
 class CLASS_DECL_ACME nano_window :
    virtual public ::nano_window_interface,
    virtual public ::conversation,
-   virtual public ::user::drag_move_client
+   virtual public ::user::drag_client
 {
 public:
 
@@ -86,21 +86,30 @@ public:
    void create_drawing_objects() override;
    void update_drawing_objects() override;
 
-   ::nano_child * hit_test(int x, int y) override;
+   //::nano_child * hit_test(::user::mouse * pmouse) override;
+   ::nano_child * on_hit_test(const ::point_i32 & point) override;
    void add_child(nano_child * pchild) override;
    nano_child * get_child_by_id(const ::atom & atom);
 
    ::atom get_result() override;
 
-   void on_mouse_move(int x, int y) override;
-   void on_left_button_down(int x, int y) override;
-   void on_left_button_up(int x, int y) override;
-   void on_click(const ::atom & atom, int x, int y) override;
-   void on_right_button_down(int x, int y) override;
-   void on_right_button_up(int x, int y) override;
-   void on_right_click(const ::atom & atom, int x, int y) override;
+   void on_mouse_move(::user::mouse * pmouse) override;
+   void on_left_button_down(::user::mouse * pmouse) override;
+   void on_left_button_up(::user::mouse * pmouse) override;
+   void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_right_button_down(::user::mouse * pmouse) override;
+   void on_right_button_up(::user::mouse * pmouse) override;
+   void on_right_click(const ::atom & atom, ::user::mouse * pmouse) override;
 
-   void move_to(int x, int y) override;
+   void move_to(const ::point_i32 & point) override;
+
+   // drag_client
+   void drag_set_capture() override;
+   ::point_i32 on_drag_start(::user::drag * pdrag) override;
+   bool drag_shift(::user::drag * pdrag) override;
+   bool drag_hover(::user::drag * pdrag) override;
+   void drag_release_capture() override;
+   void drag_set_cursor(::user::drag * pdrag) override;
 
    virtual void on_create();
 

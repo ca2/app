@@ -9,7 +9,9 @@ namespace user
    main_window::main_window()
    {
 
-      m_bEnableDragMove = true;
+      m_bEnableDragClient = true;
+
+      m_bEnableDragResize = true;
 
       m_bClickDefaultMouseHandling = true;
 

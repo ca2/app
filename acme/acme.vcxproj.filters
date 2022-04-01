@@ -2774,7 +2774,7 @@
     <ClInclude Include="user\user\element.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\drag_move.h">
+    <ClInclude Include="user\user\drag.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\conversation.h">
@@ -2957,8 +2957,8 @@
     <ClInclude Include="timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\command_update_target.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="user\user\mouse.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4081,7 +4081,7 @@
     <ClCompile Include="user\user\element.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\drag_move.cpp">
+    <ClCompile Include="user\user\drag.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\check.cpp">
@@ -4170,6 +4170,9 @@
     </ClCompile>
     <ClCompile Include="email.cpp">
       <Filter>Source Files\primitive\text</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\mouse.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

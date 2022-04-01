@@ -54,14 +54,14 @@ void nano_still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pwindow->on_click(m_atom, INT_MIN, INT_MIN);
+      m_pwindow->on_click(m_atom, nullptr);
 
    }
 
 }
 
 
-void nano_still::on_mouse_move(int x, int y)
+void nano_still::on_mouse_move(::user::mouse * pmouse)
 {
 
    if (m_bHyperlink)
@@ -74,7 +74,7 @@ void nano_still::on_mouse_move(int x, int y)
 
          r += m_pwindow->m_rectangle.top_left();
 
-         if (!r.contains(::point_i32(x, y)))
+         if (!r.contains(pmouse->m_point))
          {
 
             m_pwindow->m_pchildHover = nullptr;

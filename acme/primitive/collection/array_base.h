@@ -52,7 +52,7 @@ DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
 #define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
-ARRAY(const ::std::initializer_list < TYPE * > & list) : CONTAINER(list) { } \
+ARRAY(const ::std::initializer_list < __pointer(TYPE) > & list) : CONTAINER(list) { } \
 DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \

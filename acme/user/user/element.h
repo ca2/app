@@ -137,6 +137,7 @@ namespace user
 
       virtual void add_prodevian(::matter * pmatter);
       virtual void erase_prodevian(::matter * pmatter);
+      virtual bool is_prodevian(const ::matter * pmatter) const;
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 

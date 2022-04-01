@@ -90,7 +90,7 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 
 #include "acme/constant/button_state.h"
 
-#include "mouse.h"
+//#include "mouse.h"
 
 #include "aura/user/user/message.h"
 

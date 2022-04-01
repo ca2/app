@@ -959,7 +959,6 @@
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\message_window.cpp" />
-    <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\plain_edit.cpp" />

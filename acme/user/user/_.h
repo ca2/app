@@ -14,6 +14,9 @@ DECLARE_ENUMERATION(e_toolbar_item_state, enum_toolbar_item_state);
 DECLARE_ENUMERATION(e_toolbar_item_style, enum_toolbar_item_style);
 
 
+class item;
+
+
 namespace user
 {
 
@@ -25,10 +28,26 @@ namespace user
 } // namespace user
 
 
+namespace windowing
+{
+
+
+   class cursor;
+
+
+} // namespace windowing
+
+
+#include "acme/constant/button_state.h"
+
+
+#include "mouse.h"
+
+
 #include "os_colors.h"
 #include "theme_colors.h"
 
-#include "drag_move.h"
+#include "drag.h"
 
 
 

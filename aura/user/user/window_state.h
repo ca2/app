@@ -70,6 +70,8 @@ namespace user
       ::size_i32                             m_size;
       ::e_display                            m_edisplay;
       ::e_appearance                         m_eappearance;
+      bool                                   m_bProdevian = false;
+
 
 
       visual_state() { }
@@ -117,6 +119,8 @@ namespace user
 
       auto parent_client_rect() const { return ::rectangle_i32(m_point, m_size); }
       void parent_client_rect(RECTANGLE_I32 * lprect) const { *lprect = parent_client_rect(); }
+
+      void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
 
 
    };

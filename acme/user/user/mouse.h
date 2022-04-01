@@ -13,8 +13,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA mouse :
-      virtual public material_object
+   class CLASS_DECL_ACME mouse :
+      virtual public element
    {
    public:
 

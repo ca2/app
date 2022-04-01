@@ -21,7 +21,7 @@ public:
    virtual void on_char(int iChar) = 0;
    virtual void set_focus();
    virtual bool is_focusable() const;
-   virtual void on_mouse_move(int x, int y);
+   virtual void on_mouse_move(::user::mouse * pmouse);
    virtual void set_capture();
    virtual bool has_capture() const;
    virtual void release_capture();

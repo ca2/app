@@ -1266,6 +1266,15 @@ namespace user
    }
 
 
+   bool interaction_impl::is_prodevian(const ::matter * pmatter) const
+   {
+
+      _synchronous_lock synchronouslock(mutex());
+
+      return m_matteraProdevian.contains(pmatter);
+
+   }
+
    void interaction_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 

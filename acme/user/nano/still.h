@@ -21,7 +21,7 @@ public:
    void on_char(int iChar) override;
 
 
-   void on_mouse_move(int x, int y) override;
+   void on_mouse_move(::user::mouse * pmouse) override;
 
    bool is_focusable() const override;
 

@@ -4420,6 +4420,9 @@ namespace draw2d
 class wcsdup_array;
 
 
+DECLARE_ENUMERATION(e_element, enum_element);
+
+
 #include "acme/graphics/draw2d/_.h"
 
 
@@ -4486,7 +4489,6 @@ namespace user
 } // namespace user
 
 
-DECLARE_ENUMERATION(e_element, enum_element);
 
 
 #include "acme/handler/item.h"

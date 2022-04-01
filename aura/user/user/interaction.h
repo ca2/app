@@ -14,7 +14,7 @@ namespace user
       virtual public ::timer_callback,
       //,
       virtual public ::conversation,
-      virtual public ::user::drag_move_client
+      virtual public ::user::drag_client
    {
    public:
 
@@ -144,7 +144,8 @@ namespace user
             bool                                         m_bParentScrollX : 1;
             bool                                         m_bParentScrollY : 1;
             bool                                         m_bUserInteractionHost : 1;
-            bool                                         m_bEnableDragMove : 1;
+            bool                                         m_bEnableDragClient : 1;
+            bool                                         m_bEnableDragResize : 1;
 
          };
 
@@ -709,9 +710,11 @@ namespace user
 
       inline void set_prodevian() { return add_prodevian(this); }
       inline void clear_prodevian() { return erase_prodevian(this); }
+      inline bool is_prodevian() const { return is_prodevian(this); }
 
       virtual void add_prodevian(::matter * pmatter) override;
       virtual void erase_prodevian(::matter * pmatter) override;
+      virtual bool is_prodevian(const ::matter * pmatter) const override;
       inline bool has_prodevian() const noexcept;
 
 
@@ -1279,6 +1282,15 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
 
 
+      // drag_client
+      void drag_set_capture() override;
+      ::point_i32 on_drag_start(::user::drag * pdrag) override;
+      bool drag_shift(::user::drag * pdrag) override;
+      bool drag_hover(::user::drag * pdrag) override;
+      void drag_release_capture() override;
+      void drag_set_cursor(::user::drag * pdrag) override;
+
+
       void _001OnTimer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
@@ -1782,7 +1794,7 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
-      ::item_pointer hit_test(::message::mouse * pmouse) override;
+      ::item_pointer hit_test(::user::mouse * pmouse) override;
 
       using ::aura::drawable::hit_test;
       ::item_pointer hit_test(const ::point_i32 & point) override;
@@ -1790,8 +1802,8 @@ namespace user
       using ::aura::drawable::on_hit_test;
       ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
-      virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);
+      //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
+      virtual bool update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
 
       //virtual bool get_rectangle(::item * pitem);
 

@@ -21,7 +21,7 @@ public:
 
    virtual void display_synchronously(const ::string & strText, int x, int y);
 
-   void on_click(const ::atom & atom, int x, int y) override;
+   void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
 
    void on_draw(nano_device * pnanodevice) override;
 

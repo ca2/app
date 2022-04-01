@@ -198,9 +198,11 @@ namespace app_app
 
          auto pointCursor = pwindow->get_mouse_cursor_position();
 
-         auto pointCursorClient = _001ScreenToClient(pointCursor);
+         auto pmouse = __create_new < ::user::mouse >();
 
-         update_hover(pointCursorClient);
+         pmouse->m_point = pointCursor;
+
+         update_hover(pmouse);
 
          if (::is_set(pitemZoom))
          {

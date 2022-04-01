@@ -30,6 +30,7 @@ enum enum_element : ::i64
    e_element_border,
    e_element_lite_border,
    e_element_client,
+ //e_element_resize,
    e_element_non_client, // but m_bMouseHoverOnCapture ?
    e_element_area,
    e_element_drop_down,
@@ -69,6 +70,7 @@ enum enum_element : ::i64
    e_element_maximize_icon,
    e_element_minimize_button,
    e_element_minimize_icon,
+   e_element_resize,
 
 
    e_element_split = 10000,

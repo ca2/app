@@ -36,6 +36,8 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
+   ::element_array                                 m_elementaHold;
+
    __pointer(manual_reset_event)                   m_peventInitialization;
 
    __pointer(::element)                            m_pelement;

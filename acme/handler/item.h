@@ -280,7 +280,7 @@ public:
 
    __pointer(::draw2d::graphics)    m_pgraphics;
    __pointer(::draw2d::path)        m_ppath;
-   //::user::mouse *      m_pmouse;
+   __pointer(::user::mouse)         m_pmouse;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
    //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}

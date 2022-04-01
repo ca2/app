@@ -63,6 +63,7 @@ namespace user
 
       void add_prodevian(::matter * pmatter) override;
       void erase_prodevian(::matter * pmatter) override;
+      bool is_prodevian(const ::matter * pmatter) const override;
 
       void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 

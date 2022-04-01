@@ -303,7 +303,7 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
 }
 
 
-void nano_message_box::on_click(const ::atom & atom, int x, int y)
+void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
    if (atom == "details")
@@ -328,12 +328,12 @@ void nano_message_box::on_click(const ::atom & atom, int x, int y)
 }
 
 
-void nano_message_box::on_right_click(const ::atom & atom, int x, int y)
+void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
    auto pbutton = __create_new < popup_button >();
 
-   pbutton->display_synchronously("Dump to File...", x, y);
+   pbutton->display_synchronously("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
 
    auto idResult = pbutton->get_result();
 

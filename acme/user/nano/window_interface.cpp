@@ -101,7 +101,43 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
-nano_child * nano_window_interface::hit_test(int x, int y)
+void nano_window_interface::screen_to_client(::point_i32 & point)
+{
+
+   ::rectangle_i32 r;
+
+   get_window_rectangle(r);
+
+   point -= r.top_left();
+
+}
+
+
+void nano_window_interface::client_to_screen(::point_i32 & point)
+{
+
+   ::rectangle_i32 r;
+
+   get_window_rectangle(r);
+
+   point += r.top_left();
+
+}
+
+
+nano_child * nano_window_interface::hit_test(::user::mouse * pmouse)
+{
+
+   auto point = pmouse->m_point;
+
+   screen_to_client(point);
+
+   return on_hit_test(point);
+
+}
+
+
+nano_child * nano_window_interface::on_hit_test(const ::point_i32 & point)
 {
 
    return nullptr;
@@ -124,54 +160,54 @@ void nano_window_interface::add_child(nano_child * pchild)
 }
 
 
-void nano_window_interface::on_mouse_move(int x, int y)
+void nano_window_interface::on_mouse_move(::user::mouse * pmouse)
 {
 
 
 }
 
 
-void nano_window_interface::on_left_button_down(int x, int y)
+void nano_window_interface::on_left_button_down(::user::mouse * pmouse)
 {
 
 }
 
 
-void nano_window_interface::on_left_button_up(int x, int y)
-{
-
-
-}
-
-
-void nano_window_interface::on_click(const ::atom & atom, int x, int y)
+void nano_window_interface::on_left_button_up(::user::mouse * pmouse)
 {
 
 
 }
 
 
-void nano_window_interface::on_right_button_down(int x, int y)
+void nano_window_interface::on_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
 
 }
 
 
-void nano_window_interface::on_right_button_up(int x, int y)
+void nano_window_interface::on_right_button_down(::user::mouse * pmouse)
 {
 
 
 }
 
 
-void nano_window_interface::on_right_click(const ::atom & atom, int x, int y)
+void nano_window_interface::on_right_button_up(::user::mouse * pmouse)
+{
+
+
+}
+
+
+void nano_window_interface::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
 }
 
 
-void nano_window_interface::move_to(int x, int y)
+void nano_window_interface::move_to(const ::point_i32 & point)
 {
 
 

@@ -587,6 +587,7 @@ public:
 
    template < typename PREDICATE >
    inline __pointer(task) fork(PREDICATE predicate,
+      const ::element_array & elementaHold = {},
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);

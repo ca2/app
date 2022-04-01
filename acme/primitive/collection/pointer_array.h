@@ -68,7 +68,7 @@ public:
    }
 
 
-   pointer_array(const std::initializer_list < T * > & list)
+   pointer_array(const std::initializer_list < __pointer(T) > & list)
    {
 
       for(auto & p : list)

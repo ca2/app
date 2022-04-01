@@ -125,7 +125,7 @@ namespace aura
    }
 
 
-   item_pointer drawable::hit_test(::message::mouse* pmouse)
+   item_pointer drawable::hit_test(::user::mouse* pmouse)
    {
 
       return nullptr;

@@ -3388,7 +3388,7 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 
 
 template < typename PREDICATE >
-inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto proutine = __routine(predicate);
@@ -3406,6 +3406,13 @@ inline __pointer(task) object::fork(PREDICATE predicate, ::enum_priority epriori
    {
 
       return ptask;
+
+   }
+
+   if (elementaHold.has_element())
+   {
+
+      ptask->m_elementaHold.add(elementaHold);
 
    }
 

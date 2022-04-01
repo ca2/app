@@ -1320,8 +1320,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="user\nano\window_interface.cpp" />
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
-    <ClCompile Include="user\user\drag_move.cpp" />
+    <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\element.cpp" />
+    <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
@@ -1888,9 +1889,10 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\conversation.h" />
-    <ClInclude Include="user\user\drag_move.h" />
+    <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\ewindowflag.h" />
+    <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />
     <ClInclude Include="user\user\os_theme_colors.h" />
     <ClInclude Include="user\user\text.h" />

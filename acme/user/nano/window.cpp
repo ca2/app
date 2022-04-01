@@ -15,7 +15,7 @@ nano_window::nano_window()
    
    m_efont = e_font_sans;
 
-   enable_drag_move();
+   enable_drag(::e_element_client);
 
    m_bNcActive = false;
 
@@ -262,17 +262,13 @@ void nano_window::update_drawing_objects()
 }
 
 
-nano_child * nano_window::hit_test(int x, int y)
+nano_child * nano_window::on_hit_test(const ::point_i32 & point)
 {
-
-   x -= m_rectangle.left;
-
-   y -= m_rectangle.top;
 
    for (auto & pchild: m_childa)
    {
 
-      if (pchild->m_rectangle.contains(point_i32(x, y)))
+      if (pchild->m_rectangle.contains(point))
       {
 
          return pchild;
@@ -339,13 +335,13 @@ nano_child * nano_window::get_child_by_id(const ::atom & atom)
 }
 
 
-void nano_window::on_mouse_move(int x, int y)
+void nano_window::on_mouse_move(::user::mouse * pmouse)
 {
 
    if(m_pchildHover)
    {
 
-      m_pchildHover->on_mouse_move(x, y);
+      m_pchildHover->on_mouse_move(pmouse);
 
       return;
 
@@ -354,52 +350,35 @@ void nano_window::on_mouse_move(int x, int y)
    if (m_pchildCapture)
    {
 
-      m_pchildCapture->on_mouse_move(x, y);
+      m_pchildCapture->on_mouse_move(pmouse);
 
       return;
 
    }
 
-   if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+   if (drag_on_mouse_move(pmouse))
    {
 
-      set_cursor(e_cursor_move);
-
-      if (!m_pdragmove->m_bDrag)
-      {
-
-         m_pdragmove->m_bDrag = true;
-
-         point_i32 pointCursor(x, y);
-
-         auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
-
-         move_to(point.x, point.y);
-
-         m_pdragmove->m_bDrag = false;
-
-      }
-
       return;
 
    }
 
-   auto pchild = hit_test(x, y);
+   auto pchild = hit_test(pmouse);
 
    if (pchild)
    {
 
-      pchild->on_mouse_move(x, y);
+      pchild->on_mouse_move(pmouse);
 
    }
 
 }
 
 
-void nano_window::on_left_button_down(int x, int y)
+void nano_window::on_left_button_down(::user::mouse * pmouse)
 {
 
-   auto pchild = hit_test(x, y);
+   auto pchild = hit_test(pmouse);
 
    if (pchild)
    {
@@ -414,20 +393,12 @@ void nano_window::on_left_button_down(int x, int y)
 
    }
 
-   if (m_pdragmove && !pchild)
+   auto pdragClient = drag(e_element_client);
+
+   if (pdragClient && !pchild)
    {
 
-      set_capture();
-
-      m_pdragmove->m_bLButtonDown = true;
-
-      m_pdragmove->m_bDrag = false;
-
-      point_i32 pointCursor(x, y);
-
-      m_pdragmove->m_pointLButtonDown = pointCursor;
-
-      m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
+      drag_on_button_down(pdragClient, pmouse);
 
       return;
 
@@ -443,23 +414,19 @@ void nano_window::on_left_button_down(int x, int y)
 }
 
 
-void nano_window::on_left_button_up(int x, int y)
+void nano_window::on_left_button_up(::user::mouse * pmouse)
 {
 
    release_capture();
 
-   if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+   if (drag_on_button_up(pmouse))
    {
-
-      m_pdragmove->m_bLButtonDown = false;
-
-      m_pdragmove->m_bDrag = false;
 
       return;
 
    }
 
-   auto pchild = hit_test(x, y);
+   auto pchild = hit_test(pmouse);
 
    if (pchild)
    {
@@ -479,17 +446,17 @@ void nano_window::on_left_button_up(int x, int y)
 
       m_atomResult = m_atomLeftButtonUp;
 
-      m_pimplementation->on_click(m_atomResult, x, y);
+      m_pimplementation->on_click(m_atomResult, pmouse);
 
    }
 
 }
 
 
-void nano_window::on_right_button_down(int x, int y)
+void nano_window::on_right_button_down(::user::mouse * pmouse)
 {
 
-   auto pchild = hit_test(x, y);
+   auto pchild = hit_test(pmouse);
 
    if (pchild)
    {
@@ -515,12 +482,12 @@ void nano_window::on_right_button_down(int x, int y)
 }
 
 
-void nano_window::on_right_button_up(int x, int y)
+void nano_window::on_right_button_up(::user::mouse * pmouse)
 {
 
    release_capture();
 
-   auto pchild = hit_test(x, y);
+   auto pchild = hit_test(pmouse);
 
    if (pchild)
    {
@@ -538,31 +505,112 @@ void nano_window::on_right_button_up(int x, int y)
    if (m_atomRightButtonUp == m_atomRightButtonDown)
    {
 
-      m_pimplementation->on_right_click(m_atomLeftButtonUp, x, y);
+      m_pimplementation->on_right_click(m_atomLeftButtonUp, pmouse);
 
    }
 
 }
 
 
-void nano_window::on_click(const ::atom & atom, int x, int y)
+void nano_window::on_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
    
 }
 
 
-void nano_window::on_right_click(const ::atom & atom, int x, int y)
+void nano_window::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
 {
 
 
 }
 
 
-void nano_window::move_to(int x, int y)
+void nano_window::move_to(const ::point_i32 & point)
 {
 
-   m_pimplementation->move_to(x, y);
+   m_pimplementation->move_to(point);
+
+}
+
+
+void nano_window::drag_set_capture()
+{
+
+   set_capture();
+
+}
+
+
+::point_i32 nano_window::on_drag_start(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      return m_rectangle.origin();
+
+   }
+
+   throw exception(::error_unexpected);
+
+}
+
+
+bool nano_window::drag_shift(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      move_to(pdrag->point());
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool nano_window::drag_hover(::user::drag * pdrag)
+{
+
+   if (pdrag->m_eelement == e_element_client)
+   {
+
+      set_cursor(e_cursor_hand);
+
+      return true;
+
+   }
+   else if (pdrag->m_eelement == e_element_resize)
+   {
+
+      set_cursor(e_cursor_size_bottom_right);
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+void nano_window::drag_release_capture()
+{
+
+   release_capture();
+
+}
+
+
+void nano_window::drag_set_cursor(::user::drag * pdrag)
+{
+
+   set_cursor(pdrag->m_ecursor);
 
 }
 

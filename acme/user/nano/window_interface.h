@@ -35,23 +35,27 @@ public:
    virtual void create_drawing_objects();
    virtual void update_drawing_objects();
 
-   virtual ::nano_child * hit_test(int x, int y);
+   virtual void screen_to_client(::point_i32 & point);
+   virtual void client_to_screen(::point_i32 & point);
+
+   virtual ::nano_child * hit_test(::user::mouse * pmouse);
+   virtual ::nano_child * on_hit_test(const ::point_i32 & point);
    virtual void add_child(nano_child * pchild);
 
    virtual ::atom get_result();
 
-   virtual void on_mouse_move(int x, int y);
-   virtual void on_left_button_down(int x, int y);
-   virtual void on_left_button_up(int x, int y);
-   virtual void on_click(const ::atom & atom, int x, int y);
-   virtual void on_right_button_down(int x, int y);
-   virtual void on_right_button_up(int x, int y);
-   virtual void on_right_click(const ::atom & atom, int x, int y);
+   virtual void on_mouse_move(::user::mouse * pmouse);
+   virtual void on_left_button_down(::user::mouse * pmouse);
+   virtual void on_left_button_up(::user::mouse * pmouse);
+   virtual void on_click(const ::atom & atom, ::user::mouse * pmouse);
+   virtual void on_right_button_down(::user::mouse * pmouse);
+   virtual void on_right_button_up(::user::mouse * pmouse);
+   virtual void on_right_click(const ::atom & atom, ::user::mouse * pmouse);
 
 
    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-   virtual void move_to(int x, int y);
+   virtual void move_to(const ::point_i32 & point);
 
    void destroy() override;
 

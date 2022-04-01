@@ -261,6 +261,7 @@ namespace user
 
       void add_prodevian(::matter * pmatter) override;
       void erase_prodevian(::matter * pmatter) override;
+      bool is_prodevian(const ::matter * pmatter) const override;
       inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;

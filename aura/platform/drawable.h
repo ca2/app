@@ -37,7 +37,7 @@ namespace aura
 
       virtual bool is_composite();
 
-      virtual ::item_pointer hit_test(::message::mouse * pmouse);
+      virtual ::item_pointer hit_test(::user::mouse * pmouse);
 
       virtual ::item_pointer hit_test(const ::point_i32 & point);
 

@@ -20,7 +20,9 @@ namespace user
 
       common_construct();
 
-      enable_drag_move();
+      enable_drag(::e_element_client);
+
+      enable_drag(::e_element_resize);
 
       m_bClickDefaultMouseHandling = true;
 

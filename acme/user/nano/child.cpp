@@ -22,7 +22,7 @@ bool nano_child::is_focusable() const
 }
 
 
-void nano_child::on_mouse_move(int x, int y)
+void nano_child::on_mouse_move(::user::mouse * pmouse)
 {
 
 

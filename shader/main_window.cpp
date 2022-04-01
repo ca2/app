@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 #include "acme/id.h"
-#include "aura/graphics/user/close_icon.h"
+#include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/image/save_image.h"
 
@@ -289,10 +289,10 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
    {
 
-      ::user::interaction::_001DrawItem(pgraphics, pitem);
+      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
 
    }
 

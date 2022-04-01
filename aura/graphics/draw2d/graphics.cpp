@@ -4687,8 +4687,8 @@ namespace draw2d
 
          rectangle.deflate(rectangle.width() / 7.0, rectangle.height() / 7.0);
 
-         m_ppen->m_dWidth *= 2.0;
-         m_ppen->set_modified();
+//         m_ppen->m_dWidth *= 2.0;
+//         m_ppen->set_modified();
 
          __pointer(::draw2d::path) ppath;
 
@@ -4696,10 +4696,10 @@ namespace draw2d
 
          ppath->begin_figure();
          ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
-         ppath->close_figure();
+         ppath->end_figure();
          ppath->begin_figure();
          ppath->add_line(rectangle.bottom_left(), rectangle.top_right());
-         ppath->close_figure();
+         ppath->end_figure();
 
          draw(ppath);
 
@@ -4773,17 +4773,18 @@ namespace draw2d
 
          rectangle.deflate(0, rectangle.height() / 7.0);
 
-
-         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
-         line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
-         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
-         line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
-         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
-         line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
-         set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
-         line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
          set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
+         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
+         //line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*2.0)));
+         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
+         //line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth*3.0 / 2.0)));
+         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
+         //line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth)));
+         //set_current_point(rectangle.bottom_left() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
+         //line_to(rectangle.bottom_right() - ::size_i32(0,(::i32)(m_ppen->m_dWidth / 2.0)));
+         //set_current_point(rectangle.bottom_left());
+         //line_to(rectangle.bottom_right());
 
       }
       else if(estockicon == e_stock_icon_transparent_frame)

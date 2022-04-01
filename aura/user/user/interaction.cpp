@@ -1947,6 +1947,8 @@ namespace user
       else if (edisplay == e_display_iconic)
       {
 
+         layout().m_statea[e_layout_normal] = layout().m_statea[e_layout_window];
+
 #ifdef INFO_LAYOUT_DISPLAY
 
          INFORMATION("interaction_layout::display e_display_iconic");
@@ -13456,6 +13458,77 @@ order(zorderParam);
    }
 
 
+   ::index interaction::get_preferred_restore(RECTANGLE_I32 * prectWorkspace)
+   {
+
+      return -1;
+
+   }
+
+
+   bool interaction::calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize)
+   {
+
+      ::rectangle_f64 rectangleRate(rectangleOptionalRateOrSize);
+
+      ::rectangle_i32 rectangleMainMonitor;
+
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      ::index iMainMonitor = pdisplay->get_main_monitor(rectangleMainMonitor);
+
+      if (iMainMonitor < 0)
+      {
+
+         return false;
+
+      }
+
+      ::rectangle_i32 rectangleWindow;
+
+   #if MOBILE_PLATFORM
+
+      // rectangleOptionalRateOrSize is disregarded on mobile platform
+
+      rectangleWindow = rectangleMainMonitor;
+
+   #else
+
+      if (rectangleRate.is_empty())
+      {
+
+         rectangleRate.set_dim(100, 100, 800, 400);
+
+      }
+      else if (fabs(rectangleRate.left) < 10.0
+         && fabs(rectangleRate.right) < 10.0
+         && fabs(rectangleRate.bottom) < 10.0
+         && fabs(rectangleRate.top) < 10.0)
+      {
+
+         rectangleRate *= rectangle_f64(rectangleMainMonitor.width(), rectangleMainMonitor.height(), rectangleMainMonitor.width(), rectangleMainMonitor.height());
+
+      }
+
+      __copy(rectangleWindow, rectangleRate);
+
+      rectangleWindow += rectangleMainMonitor.top_left();
+
+   #endif
+
+      * prectangle = rectangleWindow;
+
+      return true;
+
+   }
+
+
    index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace, SIZE_I32 * psizeMin, const ::rectangle_i32& rectangleHint)
    {
 
@@ -15396,20 +15469,32 @@ order(zorderParam);
          else if (pitem->m_eelement == ::e_element_maximize_button)
          {
 
-            post_message(e_message_close);
+            auto edisplay = layout().sketch().display();
+
+            if (edisplay == e_display_zoomed)
+            {
+
+               display(e_display_restore);
+
+            }
+            else
+            {
+
+               display(e_display_zoomed);
+
+            }
 
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_maximize_button)
+         else if (pitem->m_eelement == ::e_element_minimize_button)
          {
 
-            post_message(e_message_close);
+            display(e_display_iconic);
 
             return true;
 
          }
-
       }
 
       return false;
@@ -17443,62 +17528,7 @@ order(zorderParam);
    bool interaction::_001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
    {
 
-      ::rectangle_f64 rectangleRate(rectangleOptionalRateOrSize);
-
-      ::rectangle_i32 rectangleMainMonitor;
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pdisplay = pwindowing->display();
-
-      ::index iMainMonitor = pdisplay->get_main_monitor(rectangleMainMonitor);
-
-      if (iMainMonitor < 0)
-      {
-
-         return false;
-
-      }
-
-      ::rectangle_i32 rectangleWindow;
-
-#if MOBILE_PLATFORM
-
-      // rectangleOptionalRateOrSize is disregarded on mobile platform
-
-      rectangleWindow = rectangleMainMonitor;
-
-#else
-
-      if(rectangleRate.is_empty())
-      {
-
-         rectangleRate.set_dim(100, 100, 800, 400);
-
-      }
-      else if(fabs(rectangleRate.left) < 10.0
-      && fabs(rectangleRate.right) < 10.0
-      && fabs(rectangleRate.bottom) < 10.0
-      && fabs(rectangleRate.top) < 10.0)
-      {
-
-         rectangleRate *= rectangle_f64(rectangleMainMonitor.width(), rectangleMainMonitor.height(), rectangleMainMonitor.width(), rectangleMainMonitor.height());
-
-      }
-
-      __copy(rectangleWindow, rectangleRate);
-
-      rectangleWindow += rectangleMainMonitor.top_left();
-
-#endif
-
-      *lprect = rectangleWindow;
-
-      return true;
+      return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
 
    }
 

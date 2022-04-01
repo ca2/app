@@ -1552,6 +1552,12 @@ namespace user
 
       virtual edisplay initial_restore_display();
 
+      // returns less than zero if no preferred restore
+      // otherwise returns the preferred restore 
+      // rectangle and its monitor index
+      virtual ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore);
+
+      virtual bool calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
       virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
 

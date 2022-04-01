@@ -36,7 +36,7 @@ namespace user
 
 
       //class window_state *                      m_pstate;
-      class window_state                        m_statea[4];
+      class window_state                        m_statea[5];
       //struct window_state                     m_stateRequest2;
       //struct window_state                     m_stateProcess2;
       //struct window_state                     m_stateOffScreen;
@@ -109,7 +109,7 @@ namespace user
 
 
       interaction_layout();
-      virtual ~interaction_layout();
+      ~interaction_layout() override;
 
 
       bool is_top_level() const { return m_iStateCount == e_layout_count_owner; }

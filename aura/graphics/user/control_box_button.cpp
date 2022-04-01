@@ -24,21 +24,7 @@ namespace user
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      ::color::color colorPen;
-
-      if (estate & ::user::e_state_hover)
-      {
-
-         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
-
-      }
-      else
-      {
-
-         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
-      }
-
-      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
+      ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
       pbrush->create_solid(color);
 
@@ -47,36 +33,40 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
       {
 
-         color.alpha = 180;
+         color.alpha = 189;
+         colorPen.alpha = 189;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.alpha = 51;
+         colorPen.alpha = 51;
 
       }
+
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangle, color);
 
-      if (color.get_luminance() <= 0.5)
-      {
+      //if (color.get_luminance() <= 0.5)
+      //{
 
-         // If color is dark (dark mode?)
-         // blend lighter pixel at top-right edge
-         // so that the button looks more sharply square-edged
+      //   // If color is dark (dark mode?)
+      //   // blend lighter pixel at top-right edge
+      //   // so that the button looks more sharply square-edged
 
-         auto colorLighter = color;
+      //   auto colorLighter = color;
 
-         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+      //   colorLighter.hls_rate(0.0, 0.31256, 0.0);
 
-         colorLighter.alpha = 127;
+      //   colorLighter.alpha = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
 
-      }
+      //}
 
       rectangle.deflate(rectangle.minimum_dimension() / 5.0);
 
@@ -102,6 +92,8 @@ namespace user
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
+      //::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
+
       pbrush->create_solid(color);
 
       pgraphics->set(pbrush);
@@ -109,13 +101,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.alpha = 180;
+         color.alpha = 189;
+         //colorPen.alpha = 189;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.alpha = 51;
+         //colorPen.alpha = 51;
 
       }
 
@@ -141,21 +135,7 @@ namespace user
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      ::color::color colorPen;
-
-      if (estate & ::user::e_state_hover)
-      {
-
-         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
-
-      }
-      else
-      {
-
-         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
-      }
-
-      ppen->create_solid(rectangle.minimum_dimension() / 20.0, colorPen);
+      ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
       pbrush->create_solid(color);
 
@@ -164,13 +144,15 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.alpha = 180;
+         color.alpha = 189;
+         colorPen.alpha = 189;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.alpha = 51;
+         colorPen.alpha = 51;
 
       }
 
@@ -178,22 +160,25 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, color);
 
-      if (color.get_luminance() <= 0.5)
-      {
+      //if (color.get_luminance() <= 0.5)
+      //{
 
-         // If color is dark (dark mode?)
-         // blend lighter pixel at top-right edge
-         // so that the button looks more sharply square-edged
+      //   // If color is dark (dark mode?)
+      //   // blend lighter pixel at top-right edge
+      //   // so that the button looks more sharply square-edged
 
-         auto colorLighter = color;
+      //   auto colorLighter = color;
 
-         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+      //   colorLighter.hls_rate(0.0, 0.31256, 0.0);
 
-         colorLighter.alpha = 127;
+      //   colorLighter.alpha = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
 
-      }
+      //}
+
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
+
 
       rectangle.deflate(rectangle.minimum_dimension() / 5.0);
 
@@ -221,21 +206,7 @@ namespace user
 
       auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      ::color::color colorPen;
-
-      if (estate & ::user::e_state_hover)
-      {
-
-         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
-
-      }
-      else
-      {
-
-         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
-      }
-
-      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
+      ::color::color colorPen = puserinteraction->get_color(pstyle, ::e_element_text);
 
       pbrush->create_solid(color);
 
@@ -244,36 +215,40 @@ namespace user
       if (estate & ::user::e_state_hover)
       {
 
-         color.alpha = 180;
+         color.alpha = 189;
+         colorPen.alpha = 189;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.alpha = 51;
+         colorPen.alpha = 51;
 
       }
+
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangle, color);
 
-      if (color.get_luminance() <= 0.5)
-      {
+      //if (color.get_luminance() <= 0.5)
+      //{
 
-         // If color is dark (dark mode?)
-         // blend lighter pixel at top-right edge
-         // so that the button looks more sharply square-edged
+      //   // If color is dark (dark mode?)
+      //   // blend lighter pixel at top-right edge
+      //   // so that the button looks more sharply square-edged
 
-         auto colorLighter = color;
+      //   auto colorLighter = color;
 
-         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+      //   colorLighter.hls_rate(0.0, 0.31256, 0.0);
 
-         colorLighter.alpha = 127;
+      //   colorLighter.alpha = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+      //   pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
 
-      }
+      //}
 
       rectangle.deflate(rectangle.minimum_dimension() / 5.0);
 

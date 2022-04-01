@@ -37,6 +37,7 @@ namespace user
 //      layout_bitmap, // drawn/ready sketch
       e_layout_output, // screen output 
       e_layout_window, // event window
+      e_layout_normal, // window last restored state
 
       e_layout_count_child = e_layout_design + 1,
       e_layout_count_owner = e_layout_window + 1,

@@ -50,6 +50,14 @@ namespace user
    }
 
 
+   ::index main_window::get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore)
+   {
+
+      return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
+
+   }
+
+
    void main_window::create_main_window()
    {
 

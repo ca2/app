@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/user/close_button.h"
+#include "aura/graphics/user/control_box_button.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/primitive/mathematics/mathematics.h"
 
@@ -114,9 +114,11 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      auto pitem = get_user_item(::e_element_close_button);
+      auto pitemClose = get_user_item(::e_element_close_button);
+      auto pitemZoom = get_user_item(::e_element_maximize_button);
+      auto pitemIcon = get_user_item(::e_element_minimize_button);
 
-      if (::is_set(pitem))
+      if (::is_set(pitemClose))
       {
 
          bool bHover = ::is_element(m_pitemHover, ::e_element_close_button);
@@ -186,11 +188,11 @@ namespace app_app
 
          int iSize = (int) (::sin(angle) * 20.0 + 64.0);
 
-         get_client_rect(pitem->m_rectangle);
+         get_client_rect(pitemClose->m_rectangle);
 
-         pitem->m_rectangle.left = pitem->m_rectangle.right - iSize;
+         pitemClose->m_rectangle.left = pitemClose->m_rectangle.right - iSize;
 
-         pitem->m_rectangle.bottom = pitem->m_rectangle.top + iSize;
+         pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
 
          auto pwindow = window();
 
@@ -200,14 +202,45 @@ namespace app_app
 
          update_hover(pointCursorClient);
 
+         if (::is_set(pitemZoom))
+         {
+
+            get_client_rect(pitemZoom->m_rectangle);
+
+            pitemZoom->m_rectangle.right = pitemClose->m_rectangle.left;
+
+            pitemZoom->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+
+            pitemZoom->m_rectangle.left = pitemZoom->m_rectangle.right - iSize;
+
+
+            if (::is_set(pitemIcon))
+            {
+
+               get_client_rect(pitemIcon->m_rectangle);
+
+               pitemIcon->m_rectangle.right = pitemZoom->m_rectangle.left;
+
+               pitemIcon->m_rectangle.bottom = pitemClose->m_rectangle.bottom;
+
+               pitemIcon->m_rectangle.left = pitemIcon->m_rectangle.right - iSize;
+
+
+            }
+
+         }
+
+
+
       }
+
 
       ::user::interaction::_001OnDraw(pgraphics);
 
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -220,7 +253,7 @@ namespace app_app
       if (pitem->m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem);
+         ::user::draw_close_button(pgraphics, this, pitem, estate);
 
          m_iCloseButtonDraw++;
 
@@ -235,7 +268,7 @@ namespace app_app
 
       }
       
-      ::user::interaction::_001DrawItem(pgraphics, pitem);
+      ::user::interaction::_001DrawItem(pgraphics, pitem, estate);
 
    }
 

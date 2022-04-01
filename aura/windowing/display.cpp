@@ -1101,6 +1101,15 @@ namespace windowing
       if (pinteraction != nullptr)
       {
 
+         auto iMonitor = pinteraction->get_preferred_restore(prectangle);
+
+         if (iMonitor >= 0)
+         {
+
+            return iMonitor;
+
+         }
+
          sizeMin = pinteraction->get_window_minimum_size();
 
          iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleParam);
@@ -1127,7 +1136,7 @@ namespace windowing
 
       auto rectangleTolerance(rectangleWorkspace);
 
-      auto sizeMax = rectangleWorkspace.size();
+      auto sizeMax = rectangleWorkspace.size() * 0.8;
 
       bool b1 = !rectangleTolerance.contains(rectangleRestore);
       bool b2 = rectangleIntersect.width() < sizeMin.cx || rectangleIntersect.height() < sizeMin.cy;
@@ -1198,171 +1207,173 @@ namespace windowing
 
       }
 
-      ::rectangle_i32 rectangleWorkspace;
-
-      ::rectangle_i32 rectangleStart(prectangle);
-
-      ::point_i32 pointLineStart(::top_left(prectangle));
-
-      get_workspace_rectangle(iBestWorkspace, rectangleWorkspace);
-
-      if (rectangleStart > pinteraction->m_sizeRestoreCompact)
-      {
-
-         pointLineStart = rectangleWorkspace.origin();
-
-         pointLineStart.offset(49, 49);
-
-         rectangle.move_to(pointLineStart);
-
-      }
-
-      if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      {
-
-         do
-         {
-
-            if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-            {
-
-               return iBestWorkspace;
-
-            }
-
-            rectangle = *prectangle;
-
-            if (rectangle > pinteraction->m_sizeRestoreCompact)
-            {
-
-               rectangle.offset(49, 0);
-
-               if (!rectangleWorkspace.contains(rectangle))
-               {
-
-                  pointLineStart.offset(0, 49);
-
-                  rectangle.move_to(pointLineStart);
-
-                  if (!rectangleWorkspace.contains(rectangle))
-                  {
-
-                     break;
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               rectangle.offset(49, 49);
-
-            }
-
-            *prectangle = rectangle;
-
-         } while (rectangleWorkspace.contains(rectangle));
-
-      }
-
-      if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
-      {
-
-         pointLineStart = rectangleWorkspace.origin();
-
-         pointLineStart.offset(49, 49);
-
-         rectangle.move_to(pointLineStart);
-
-         *prectangle = rectangle;
-
-         return iBestWorkspace;
-
-      }
-
-      rectangle = rectangleStart;
-
-      rectangle.set_size(pinteraction->m_sizeRestoreCompact);
-
-      if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      {
-
-         do
-         {
-
-            if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-            {
-
-               return iBestWorkspace;
-
-            }
-
-            rectangle = *prectangle;
-
-            rectangle.offset(49, 49);
-
-            *prectangle = rectangle;
-
-         } while (rectangleWorkspace.contains(rectangle));
-
-      }
-
-      pointLineStart = rectangleWorkspace.origin();
-
-      pointLineStart.offset(49, 49);
-
-      rectangle.move_to(pointLineStart);
-
-      if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      {
-
-         do
-         {
-
-            if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-            {
-
-               return iBestWorkspace;
-
-            }
-
-            rectangle = *prectangle;
-
-            rectangle.offset(49, 0);
-
-            if (!rectangleWorkspace.contains(rectangle))
-            {
-
-               pointLineStart.offset(0, 49);
-
-               rectangle.move_to(pointLineStart);
-
-               if (!rectangleWorkspace.contains(rectangle))
-               {
-
-                  break;
-
-               }
-
-            }
-
-            *prectangle = rectangle;
-
-         } while (rectangleWorkspace.contains(rectangle));
-
-      }
-
-      pointLineStart = rectangleWorkspace.origin();
-
-      pointLineStart.offset(49, 49);
-
-      rectangle.move_to(pointLineStart);
-
-      *prectangle = rectangle;
-
       return iBestWorkspace;
+
+      //::rectangle_i32 rectangleWorkspace;
+
+      //::rectangle_i32 rectangleStart(prectangle);
+
+      //::point_i32 pointLineStart(::top_left(prectangle));
+
+      //get_workspace_rectangle(iBestWorkspace, rectangleWorkspace);
+
+      //if (rectangleStart > pinteraction->m_sizeRestoreCompact)
+      //{
+
+      //   pointLineStart = rectangleWorkspace.origin();
+
+      //   pointLineStart.offset(49, 49);
+
+      //   rectangle.move_to(pointLineStart);
+
+      //}
+
+      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
+      //{
+
+      //   do
+      //   {
+
+      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
+      //      {
+
+      //         return iBestWorkspace;
+
+      //      }
+
+      //      rectangle = *prectangle;
+
+      //      if (rectangle > pinteraction->m_sizeRestoreCompact)
+      //      {
+
+      //         rectangle.offset(49, 0);
+
+      //         if (!rectangleWorkspace.contains(rectangle))
+      //         {
+
+      //            pointLineStart.offset(0, 49);
+
+      //            rectangle.move_to(pointLineStart);
+
+      //            if (!rectangleWorkspace.contains(rectangle))
+      //            {
+
+      //               break;
+
+      //            }
+
+      //         }
+
+      //      }
+      //      else
+      //      {
+
+      //         rectangle.offset(49, 49);
+
+      //      }
+
+      //      *prectangle = rectangle;
+
+      //   } while (rectangleWorkspace.contains(rectangle));
+
+      //}
+
+      //if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
+      //{
+
+      //   pointLineStart = rectangleWorkspace.origin();
+
+      //   pointLineStart.offset(49, 49);
+
+      //   rectangle.move_to(pointLineStart);
+
+      //   *prectangle = rectangle;
+
+      //   return iBestWorkspace;
+
+      //}
+
+      //rectangle = rectangleStart;
+
+      //rectangle.set_size(pinteraction->m_sizeRestoreCompact);
+
+      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
+      //{
+
+      //   do
+      //   {
+
+      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
+      //      {
+
+      //         return iBestWorkspace;
+
+      //      }
+
+      //      rectangle = *prectangle;
+
+      //      rectangle.offset(49, 49);
+
+      //      *prectangle = rectangle;
+
+      //   } while (rectangleWorkspace.contains(rectangle));
+
+      //}
+
+      //pointLineStart = rectangleWorkspace.origin();
+
+      //pointLineStart.offset(49, 49);
+
+      //rectangle.move_to(pointLineStart);
+
+      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
+      //{
+
+      //   do
+      //   {
+
+      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
+      //      {
+
+      //         return iBestWorkspace;
+
+      //      }
+
+      //      rectangle = *prectangle;
+
+      //      rectangle.offset(49, 0);
+
+      //      if (!rectangleWorkspace.contains(rectangle))
+      //      {
+
+      //         pointLineStart.offset(0, 49);
+
+      //         rectangle.move_to(pointLineStart);
+
+      //         if (!rectangleWorkspace.contains(rectangle))
+      //         {
+
+      //            break;
+
+      //         }
+
+      //      }
+
+      //      *prectangle = rectangle;
+
+      //   } while (rectangleWorkspace.contains(rectangle));
+
+      //}
+
+      //pointLineStart = rectangleWorkspace.origin();
+
+      //pointLineStart.offset(49, 49);
+
+      //rectangle.move_to(pointLineStart);
+
+      //*prectangle = rectangle;
+
+      //return iBestWorkspace;
 
    }
 

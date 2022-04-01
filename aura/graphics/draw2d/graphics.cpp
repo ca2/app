@@ -4689,10 +4689,19 @@ namespace draw2d
 
          m_ppen->m_dWidth *= 2.0;
          m_ppen->set_modified();
-         set_current_point(rectangle.top_left());
-         line_to(rectangle.bottom_right());
-         set_current_point(rectangle.bottom_left());
-         line_to(rectangle.top_right());
+
+         __pointer(::draw2d::path) ppath;
+
+         __construct(ppath);
+
+         ppath->begin_figure();
+         ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
+         ppath->close_figure();
+         ppath->begin_figure();
+         ppath->add_line(rectangle.bottom_left(), rectangle.top_right());
+         ppath->close_figure();
+
+         draw(ppath);
 
       }
       else if(estockicon == e_stock_icon_zoom)

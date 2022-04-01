@@ -65,6 +65,10 @@ enum enum_element : ::i64
    e_element_switch_icon,
    e_element_top_left_icon,
    e_element_move_grip_minimal,
+   e_element_maximize_button,
+   e_element_maximize_icon,
+   e_element_minimize_button,
+   e_element_minimize_icon,
 
 
    e_element_split = 10000,

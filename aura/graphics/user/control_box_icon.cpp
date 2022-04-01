@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
+   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem, const ::user::e_state & estate)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -73,10 +73,10 @@ namespace user
    }
 
 
-   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem)
+   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem, const ::user::e_state & estate)
    {
 
-      draw_switch_button(pgraphics, puserinteraction, pitem);
+      draw_switch_button(pgraphics, puserinteraction, pitem, estate);
 
    }
 

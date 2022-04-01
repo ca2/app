@@ -1,0 +1,291 @@
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
+#include "aura/graphics/draw2d/_draw2d.h"
+
+
+namespace user
+{
+
+
+   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto ppen = puserinteraction->__create < ::draw2d::pen > ();
+
+      ::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      ::color::color colorPen;
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
+
+      }
+      else
+      {
+
+         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
+      }
+
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
+
+      pbrush->create_solid(color);
+
+      pgraphics->set(pbrush);
+
+      if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_button))
+      {
+
+         color.alpha = 180;
+
+      }
+      else
+      {
+
+         color.alpha = 127;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->fill_rectangle(rectangle, color);
+
+      if (color.get_luminance() <= 0.5)
+      {
+
+         // If color is dark (dark mode?)
+         // blend lighter pixel at top-right edge
+         // so that the button looks more sharply square-edged
+
+         auto colorLighter = color;
+
+         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+
+         colorLighter.alpha = 127;
+
+         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+
+      }
+
+      rectangle.deflate(rectangle.minimum_dimension() / 5.0);
+
+      pgraphics->set(ppen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_close);
+
+   }
+
+
+   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      ::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      pbrush->create_solid(color);
+
+      pgraphics->set(pbrush);
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         color.alpha = 180;
+
+      }
+      else
+      {
+
+         color.alpha = 127;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->fill_rectangle(rectangle, color);
+
+   }
+
+
+   void draw_maximize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+
+      ::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      ::color::color colorPen;
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
+
+      }
+      else
+      {
+
+         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
+      }
+
+      ppen->create_solid(rectangle.minimum_dimension() / 20.0, colorPen);
+
+      pbrush->create_solid(color);
+
+      pgraphics->set(pbrush);
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         color.alpha = 180;
+
+      }
+      else
+      {
+
+         color.alpha = 127;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->fill_rectangle(rectangle, color);
+
+      if (color.get_luminance() <= 0.5)
+      {
+
+         // If color is dark (dark mode?)
+         // blend lighter pixel at top-right edge
+         // so that the button looks more sharply square-edged
+
+         auto colorLighter = color;
+
+         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+
+         colorLighter.alpha = 127;
+
+         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+
+      }
+
+      rectangle.deflate(rectangle.minimum_dimension() / 5.0);
+
+      pgraphics->set(ppen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_zoom);
+
+   }
+
+
+   void draw_minimize_button(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+
+      ::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      ::color::color colorPen;
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         colorPen.hls_rate(color.get_hue(), 1.0, 0.0);
+
+      }
+      else
+      {
+
+         colorPen.hls_rate(color.get_hue(), 0.5, 0.0);
+      }
+
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, colorPen);
+
+      pbrush->create_solid(color);
+
+      pgraphics->set(pbrush);
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         color.alpha = 180;
+
+      }
+      else
+      {
+
+         color.alpha = 127;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->fill_rectangle(rectangle, color);
+
+      if (color.get_luminance() <= 0.5)
+      {
+
+         // If color is dark (dark mode?)
+         // blend lighter pixel at top-right edge
+         // so that the button looks more sharply square-edged
+
+         auto colorLighter = color;
+
+         colorLighter.hls_rate(0.0, 0.31256, 0.0);
+
+         colorLighter.alpha = 127;
+
+         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::size_i32(1, 0), colorLighter);
+
+      }
+
+      rectangle.deflate(rectangle.minimum_dimension() / 5.0);
+
+      pgraphics->set(ppen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_iconify);
+
+   }
+
+
+} // namespace user
+
+

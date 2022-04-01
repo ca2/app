@@ -36,8 +36,8 @@ namespace user
 #include "control_event_listener.h"
 
 
-#include "aura/graphics/user/close_button.h"
-#include "aura/graphics/user/close_icon.h"
+#include "aura/graphics/user/control_box_button.h"
+#include "aura/graphics/user/control_box_icon.h"
 
 
 #include "aura/platform/drawable.h"

@@ -15393,6 +15393,22 @@ order(zorderParam);
             return true;
 
          }
+         else if (pitem->m_eelement == ::e_element_maximize_button)
+         {
+
+            post_message(e_message_close);
+
+            return true;
+
+         }
+         else if (pitem->m_eelement == ::e_element_maximize_button)
+         {
+
+            post_message(e_message_close);
+
+            return true;
+
+         }
 
       }
 
@@ -16602,7 +16618,7 @@ order(zorderParam);
          _screen_to_client(pointClient, pmouse->m_point);
 
          bool bRet;
-         
+
          //if (pmouse->m_nFlags & MK_LBUTTON)
          //{
 
@@ -16616,9 +16632,9 @@ order(zorderParam);
 
          auto ekeyModifiers = psession->key_modifiers();
 
-            bRet = pappearance->on_mouse_move(pointClient, ekeyModifiers);
+         bRet = pappearance->on_mouse_move(pointClient, ekeyModifiers);
 
-//         }
+         //         }
 
          pappearance->m_pointMouseLast = pointClient;
 
@@ -17095,7 +17111,17 @@ order(zorderParam);
       for (auto& pitem : m_useritema)
       {
 
-         _001DrawItem(pgraphics, pitem);
+         ::user::e_state estate = ::user::e_state_none;
+
+         if (::is_same_item(pitem, m_pitemHover))
+         {
+
+            estate |= ::user::e_state_hover;
+
+         }
+
+         _001DrawItem(pgraphics, pitem, estate);
+
 
          iCount++;
 
@@ -17111,7 +17137,7 @@ order(zorderParam);
    }
 
 
-   void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem)
+   void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -17124,25 +17150,37 @@ order(zorderParam);
       if (pitem->m_eelement == ::e_element_close_icon)
       {
 
-         ::user::draw_close_icon(pgraphics, this, pitem);
+         ::user::draw_close_icon(pgraphics, this, pitem, estate);
 
       }
       else if (pitem->m_eelement == ::e_element_switch_icon)
       {
 
-         ::user::draw_switch_icon(pgraphics, this, pitem);
+         ::user::draw_switch_icon(pgraphics, this, pitem, estate);
 
       }
       else if (pitem->m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem);
+         ::user::draw_close_button(pgraphics, this, pitem, estate);
+
+      }
+      else if (pitem->m_eelement == ::e_element_maximize_button)
+      {
+
+         ::user::draw_maximize_button(pgraphics, this, pitem, estate);
+
+      }
+      else if (pitem->m_eelement == ::e_element_minimize_button)
+      {
+
+         ::user::draw_minimize_button(pgraphics, this, pitem, estate);
 
       }
       else if (pitem->m_eelement == ::e_element_switch_button)
       {
 
-         ::user::draw_switch_button(pgraphics, this, pitem);
+         ::user::draw_switch_button(pgraphics, this, pitem, estate);
 
       }
 

@@ -274,6 +274,8 @@ enum enum_id : u64
    id_save_form_data,
    id_close_app,
    id_switch,
+   id_maximize,
+   id_minimize,
 
 
    id_show_view,

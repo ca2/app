@@ -1796,7 +1796,7 @@ namespace user
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem);
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem, const ::user::e_state & estate);
 
 
 

@@ -674,10 +674,10 @@
     <ClInclude Include="graphics\write_text\drawer.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\user\close_button.h">
+    <ClInclude Include="graphics\user\control_box_button.h">
       <Filter>Header Files\graphics\user</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\user\close_icon.h">
+    <ClInclude Include="graphics\user\control_box_icon.h">
       <Filter>Header Files\graphics\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\progress.h">
@@ -1351,10 +1351,10 @@
     <ClCompile Include="graphics\write_text\text_out.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\user\close_button.cpp">
+    <ClCompile Include="graphics\user\control_box_button.cpp">
       <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\user\close_icon.cpp">
+    <ClCompile Include="graphics\user\control_box_icon.cpp">
       <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\lock.cpp">

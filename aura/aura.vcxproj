@@ -894,8 +894,8 @@
     <ClCompile Include="graphics\image\object.cpp" />
     <ClCompile Include="graphics\image\pointer_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
-    <ClCompile Include="graphics\user\close_button.cpp" />
-    <ClCompile Include="graphics\user\close_icon.cpp" />
+    <ClCompile Include="graphics\user\control_box_button.cpp" />
+    <ClCompile Include="graphics\user\control_box_icon.cpp" />
     <ClCompile Include="graphics\write_text\drawer.cpp" />
     <ClCompile Include="graphics\write_text\font.cpp" />
     <ClCompile Include="graphics\write_text\fonts.cpp" />
@@ -1114,8 +1114,8 @@
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
-    <ClInclude Include="graphics\user\close_button.h" />
-    <ClInclude Include="graphics\user\close_icon.h" />
+    <ClInclude Include="graphics\user\control_box_button.h" />
+    <ClInclude Include="graphics\user\control_box_icon.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />
     <ClInclude Include="graphics\write_text\contains.h" />
     <ClInclude Include="graphics\write_text\drawer.h" />

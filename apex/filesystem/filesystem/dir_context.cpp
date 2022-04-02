@@ -433,9 +433,36 @@ bool dir_context::enumerate(::file::listing & listing)
 
       ::str::begins_eat_ci(listing.m_pathFinal, "matter://");
 
-      matter_enumerate(listing.m_pathFinal, listing);
+      if (matter_enumerate(listing.m_pathFinal, listing))
+      {
 
-      return true;
+         return true;
+
+      }
+
+   }
+   else if (listing.m_pathFinal.begins_ci("zipresource://"))
+   {
+
+      ::str::begins_eat_ci(listing.m_pathFinal, "zipresource://");
+
+      auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
+
+      if (pfolder->enumerate(listing))
+      {
+
+         ::file::path pathBase("zipresource://");
+
+         for (auto & path : listing)
+         {
+
+            path = pathBase / path;
+
+         }
+
+         return true;
+
+      }
 
    }
 
@@ -2218,10 +2245,14 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
             strMatter.replace_with("/", "\\");
 
-            if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
+            auto etype = m_psystem->m_papexsystem->file().resource_get_type(strMatter);
+
+            if(::is_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
+
+               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
 
                goto ret;
 

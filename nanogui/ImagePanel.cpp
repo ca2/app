@@ -188,7 +188,7 @@ void ImagePanel::draw(NVGcontext * ctx) {
 ::image * ImagePanel::_get_image(int iImage)
 {
 
-   auto pimage = screen()->m_puserinteraction->m_psystem->context_image()->integer_image(m_images[iImage].first);
+   auto pimage = screen()->m_puserinteraction->m_pcontext->context_image()->integer_image(m_images[iImage].first);
 
    return pimage;
 

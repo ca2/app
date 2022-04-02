@@ -36,7 +36,7 @@ public:
    virtual ::folder* resource_folder();
    virtual ::memory_file_pointer create_resource_file(const char * path);
    virtual ::memory get_resource_memory(const char* path);
-   virtual bool resource_is_file_or_dir(const char* path);
+   virtual ::file::enum_type resource_get_type(const char* path);
 
 
    virtual void copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);

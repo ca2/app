@@ -1271,7 +1271,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-bool file_context::resource_is_file_or_dir(const char* path)
+::file::enum_type file_context::resource_get_type(const char* path)
 {
 
    ::folder* pfolder = nullptr;
@@ -1285,7 +1285,7 @@ bool file_context::resource_is_file_or_dir(const char* path)
       if (is_null(pfolder))
       {
 
-         return false;
+         return ::file::e_type_doesnt_exist;
 
       }
 
@@ -1299,21 +1299,23 @@ bool file_context::resource_is_file_or_dir(const char* path)
 
    strPath.trim_right("\\/");
 
-   if (!pfolder->locate(strPath))
+   if (pfolder->locate(strPath))
    {
 
-      strPath += "/";
-
-      if (!pfolder->locate(strPath))
-      {
-
-         return false;
-
-      }
+      return ::file::e_type_file;
 
    }
 
-   return true;
+   strPath += "/";
+
+   if (pfolder->locate(strPath))
+   {
+
+      return ::file::e_type_folder;
+
+   }
+
+   return ::file::e_type_doesnt_exist;
 
 }
 

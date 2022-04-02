@@ -308,7 +308,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
-      auto pgraphics = __create< ::draw2d::graphics>();
+      auto pgraphics = pdraw2dhost->__create< ::draw2d::graphics>();
 
       pgraphics->m_phost = pdraw2dhost;
 

@@ -6657,7 +6657,11 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      update_hover(pointCursor);
+      auto pmouse = __create_new < ::user::mouse >();
+
+      pmouse->m_point = pointCursor;
+
+      update_hover(pmouse);
 
       ::user::scroll_base::on_change_viewport_offset(pgraphics);
 
@@ -6697,16 +6701,14 @@ namespace user
    }
 
 
-   bool list::update_hover(const ::point_i32 & point, bool bAvoidRedraw)
+   bool list::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
    {
 
       index iItemHover;
 
       index iSubItemHover;
 
-      auto pointClient = point;
-
-      screen_to_client(pointClient);
+      auto pointClient = _001ScreenToClient(pmouse->m_point);
 
       bool bAnyHoverChange = false;
 

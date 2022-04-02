@@ -2237,7 +2237,7 @@ namespace user
 
       strsize iStrLen;
 
-      //m_plines->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
       m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
 
       i = 0;
@@ -2273,11 +2273,11 @@ namespace user
 
          string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
 
-         //if (strLine != m_plines->lines[i])
+         //if (strLine != m_plinea->lines[i])
          if (strLine != m_straLines[i])
          {
 
-            //m_plines->lines[i] = strLine;
+            //m_plinea->lines[i] = strLine;
             m_straLines[i] = strLine;
 
             m_daExtent[i + iLineStart].set_size(0);
@@ -2314,7 +2314,7 @@ namespace user
 
       //}
 
-      //string_array & straLines = m_plines->lines;
+      //string_array & straLines = m_plinea->lines;
 
       string_array & straLines = m_straLines;
 
@@ -2689,7 +2689,7 @@ namespace user
 
       strsize iStrLen;
 
-      //m_plines->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
 
       string_array & straLines = m_straLines;
 
@@ -2730,7 +2730,7 @@ namespace user
 
          string_array & straLines = m_straLines;
 
-         //if (strLine != m_plines->lines[i])
+         //if (strLine != m_plinea->lines[i])
          if (strLine != straLines[i])
          {
 
@@ -2773,7 +2773,7 @@ namespace user
 
       //}
 
-//      string_array & straLines = m_plines->lines;
+//      string_array & straLines = m_plinea->lines;
 //      string_array & straLines = m_straLines;
 
       if (iLineUpdate < 0)
@@ -3163,7 +3163,7 @@ namespace user
 
       }
 
-//      string_array & straLines = m_plines->lines;
+//      string_array & straLines = m_plinea->lines;
       string_array & straLines = m_straLines;
 
       if (iLine >= straLines.get_size())
@@ -3290,7 +3290,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      //string_array & straLines = m_plines->lines;
+      //string_array & straLines = m_plinea->lines;
 
       strsize i1;
 
@@ -5858,7 +5858,7 @@ finished_update:
 
          plain_edit_on_calc_layout(pgraphics, iLine);
 
-         //m_peditor->lineCountEvent(m_plines->lines.get_count());
+         //m_peditor->lineCountEvent(m_plinea->lines.get_count());
 
       }
 
@@ -6690,7 +6690,7 @@ finished_update:
       if (iLine >= m_iCurrentPageLineStart && iLine < m_iCurrentPageLineEnd)
       {
 
-//         strLine = m_plines->lines[iLine - m_iCurrentPageLineStart];
+//         strLine = m_plinea->lines[iLine - m_iCurrentPageLineStart];
          strLine = m_straLines[iLine - m_iCurrentPageLineStart];
 
       }

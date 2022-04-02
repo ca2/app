@@ -29,7 +29,7 @@ namespace base
 simple_frame_window::simple_frame_window()
 {
 
-   m_bEnableDragMove = false;
+   m_bEnableDragClient = false;
 
    m_bClickDefaultMouseHandling = false;
 

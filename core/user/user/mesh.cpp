@@ -2620,7 +2620,11 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         update_hover(pointCursor);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = pointCursor;
+
+         update_hover(pmouse);
 
          pmessage->m_bRet = true;
 
@@ -4846,7 +4850,11 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      update_hover(pointCursor);
+      auto pmouse = __create_new < ::user::mouse >();
+
+      pmouse->m_point = pointCursor;
+
+      update_hover(pmouse);
 
    }
 
@@ -4888,20 +4896,18 @@ namespace user
    }
 
 
-   bool mesh::update_hover(const ::point_i32 & point, bool bAvoidRedraw)
+   bool mesh::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
    {
 
       index iItemHover;
       
       index iSubItemHover;
       
-      auto pointClient = point;
-
-      screen_to_client(pointClient);
+      auto pointClient = _001ScreenToClient(pmouse->m_point);
 
       bool bAnyHoverChange = false;
 
-      if(_001DisplayHitTest(point, iItemHover, iSubItemHover))
+      if(_001DisplayHitTest(pointClient, iItemHover, iSubItemHover))
       {
 
          if(m_iSubItemHover != iSubItemHover || m_iDisplayItemHover != iItemHover)

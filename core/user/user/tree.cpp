@@ -1195,7 +1195,11 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      update_hover(pointCursor);
+      auto pmouse = __create_new < ::user::mouse >();
+
+      pmouse->m_point = pointCursor;
+
+      update_hover(pmouse);
 
       set_need_redraw();
 

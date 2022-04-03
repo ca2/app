@@ -13239,7 +13239,9 @@ namespace user
    void interaction::frame_experience_restore()
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
+      
+      display(e_display_restore);
 
    }
 

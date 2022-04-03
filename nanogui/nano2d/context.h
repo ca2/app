@@ -50,10 +50,13 @@ namespace nano2d
 
 		virtual void font_face(const char * font);
 		virtual void font_size(float size);
+      virtual void font_blur(float blur);
 		virtual void fill_color(NANO2D_COLOR color);
 		virtual void stroke_color(NANO2D_COLOR color);
+      virtual void global_alpha(float alpha);
 		virtual void stroke_width(float width);
 		virtual void text_align(int align);
+
 
 		virtual void fill_paint(NANO2D_PAINT paint);
 		virtual void stroke_paint(NANO2D_PAINT paint);
@@ -62,9 +65,12 @@ namespace nano2d
 		virtual void intersect_scissor(float x, float y, float w, float h);
 		virtual void reset_scissor();
 
+
+
 		virtual float text(float x, float y, const char * string, const char * end);
 		virtual int text_glyph_positions(float x, float y, const char * string, const char * end, NVGglyphPosition * positions, int maxPositions);
 		virtual float text_bounds(float x, float y, const char * string, const char * end, float * bounds);
+      virtual void text_line_height(float lineHeight);
 
 
 		virtual void move_to(float x, float y);

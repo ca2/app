@@ -348,10 +348,11 @@ namespace draw2d_cairo
 //      virtual size_f64 TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 //      virtual size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
-#if defined(USE_PANGO)
-      //virtual bool internal_draw_text_cairo(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
-      virtual void internal_draw_text_pango(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText = nullptr);
+      virtual void internal_draw_text_cairo(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
       virtual void internal_draw_text(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+
+#if defined(USE_PANGO)
+      virtual void internal_draw_text_pango(::draw2d_cairo::font * pfont, const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText = nullptr);
 #else
       virtual void internal_draw_text(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext = nullptr);
 #endif
@@ -519,9 +520,7 @@ namespace draw2d_cairo
       bool _set_os_color(color32_t color32);
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);
-#if !defined(USE_PANGO)
       bool _set(::write_text::font * pfont);
-#endif
       bool _set(::draw2d::path * ppath);
 
       bool _set(const ::point_i32_array & pointa);
@@ -568,6 +567,7 @@ namespace draw2d_cairo
 
 
       FT_Face ftface(const ::string & pszFontName, int iWeight, bool bItalic);
+      //FT_Face ftface(const ::block & block);
 
       //virtual void on_apply_clip_region() override;
 

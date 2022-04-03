@@ -101,8 +101,10 @@ list(APPEND library_source
    graphics/draw3d/_.h
    graphics/draw3d/ortho.cpp
    graphics/draw3d/ortho.h
-   graphics/graphics/asset/close_button.h
-   graphics/graphics/asset/close_icon.h
+   #graphics/graphics/asset/control_box_button.cpp
+   #graphics/graphics/asset/control_box_button.h
+   #graphics/graphics/asset/control_box_icon.cpp
+   #graphics/graphics/asset/control_box_icon.cpp
    graphics/graphics/graphics/_.h
    graphics/graphics/_.h
    graphics/graphics/_graphics.h
@@ -172,10 +174,10 @@ list(APPEND library_source
    graphics/image/imaging.cpp
    graphics/image/imaging.h
    graphics/image/pixmap.h
-   graphics/user/close_button.cpp
-   graphics/user/close_button.h
-   graphics/user/close_icon.cpp
-   graphics/user/close_icon.h
+   graphics/user/control_box_button.cpp
+   graphics/user/control_box_button.h
+   graphics/user/control_box_icon.cpp
+   graphics/user/control_box_icon.h
    graphics/write_text/_.h
    graphics/write_text/_shape.h
    graphics/write_text/_shape.cpp
@@ -374,8 +376,8 @@ list(APPEND library_source
    user/user/message_window.cpp
    user/user/message_window.h
    user/user/message_window_listener.h
-   user/user/mouse.cpp
-   user/user/mouse.h
+   #user/user/mouse.cpp
+   #user/user/mouse.h
    user/user/notify_icon.cpp
    user/user/notify_icon.h
    user/user/notify_icon_listener.cpp

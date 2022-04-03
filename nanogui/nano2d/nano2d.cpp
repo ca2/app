@@ -746,8 +746,10 @@ void __NANO2D_API(LineJoin)(NANO2D_CONTEXT * ctx, int join)
 
 void __NANO2D_API(GlobalAlpha)(NANO2D_CONTEXT * ctx, float alpha)
 {
-	NVGstate * state = __NANO2D_API(__getState)(ctx);
-	state->alpha = alpha;
+	//NVGstate * state = __NANO2D_API(__getState)(ctx);
+	//state->alpha = alpha;
+   __NANO2D_CONTEXT(ctx)->global_alpha(alpha);
+
 }
 
 void __NANO2D_API(Transform)(NANO2D_CONTEXT * ctx, float a, float b, float c, float d, float e, float f)
@@ -2130,7 +2132,7 @@ void __NANO2D_API(ArcTo)(NANO2D_CONTEXT * ctx, float x1, float y1, float x2, flo
 	a = __NANO2D_API(__acosf)(dx0 * dx1 + dy0 * dy1);
 	d = radius / __NANO2D_API(__tanf)(a / 2.0f);
 
-	//	printf("a=%f° d=%f\n", a/NVG_PI*180.0f, d);
+	//	printf("a=%fï¿½ d=%f\n", a/NVG_PI*180.0f, d);
 
 	if (d > 10000.0f) {
 		__NANO2D_API(LineTo)(ctx, x1, y1);
@@ -2143,7 +2145,7 @@ void __NANO2D_API(ArcTo)(NANO2D_CONTEXT * ctx, float x1, float y1, float x2, flo
 		a0 = __NANO2D_API(__atan2f)(dx0, -dy0);
 		a1 = __NANO2D_API(__atan2f)(-dx1, dy1);
 		dir = NVG_CW;
-		//		printf("CW c=(%f, %f) a0=%f° a1=%f°\n", cx, cy, a0/NVG_PI*180.0f, a1/NVG_PI*180.0f);
+		//		printf("CW c=(%f, %f) a0=%fï¿½ a1=%fï¿½\n", cx, cy, a0/NVG_PI*180.0f, a1/NVG_PI*180.0f);
 	}
 	else {
 		cx = x1 + dx0 * d + -dy0 * radius;
@@ -2151,7 +2153,7 @@ void __NANO2D_API(ArcTo)(NANO2D_CONTEXT * ctx, float x1, float y1, float x2, flo
 		a0 = __NANO2D_API(__atan2f)(-dx0, dy0);
 		a1 = __NANO2D_API(__atan2f)(dx1, -dy1);
 		dir = NVG_CCW;
-		//		printf("CCW c=(%f, %f) a0=%f° a1=%f°\n", cx, cy, a0/NVG_PI*180.0f, a1/NVG_PI*180.0f);
+		//		printf("CCW c=(%f, %f) a0=%fï¿½ a1=%fï¿½\n", cx, cy, a0/NVG_PI*180.0f, a1/NVG_PI*180.0f);
 	}
 
 	__NANO2D_API(Arc)(ctx, cx, cy, radius, a0, a1, dir);
@@ -2484,7 +2486,8 @@ void __NANO2D_API(FontBlur)(NANO2D_CONTEXT * ctx, float blur)
 {
 	//NVGstate * state = __NANO2D_API(__getState)(ctx);
 	//state->fontBlur = blur;
-	throw_todo();
+	//throw_todo();
+   __NANO2D_CONTEXT(ctx)->font_blur(blur);
 }
 
 void __NANO2D_API(TextLetterSpacing)(NANO2D_CONTEXT * ctx, float spacing)
@@ -2498,7 +2501,7 @@ void __NANO2D_API(TextLineHeight)(NANO2D_CONTEXT * ctx, float lineHeight)
 {
 	//NVGstate * state = __NANO2D_API(__getState)(ctx);
 	//state->lineHeight = lineHeight;
-	throw_todo();
+   __NANO2D_CONTEXT(ctx)->text_line_height(lineHeight);
 }
 
 void __NANO2D_API(TextAlign)(NANO2D_CONTEXT * ctx, int align)

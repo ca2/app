@@ -81,29 +81,29 @@ namespace x11
 
       void update_drawing_objects() override;
 
-      nano_child * hit_test(int x, int y) override;
+      nano_child * hit_test(::user::mouse * pmouse) override;
 
       //virtual void add_child(nano_child * pchild);
 
       ::atom get_result() override;
 
-      void on_mouse_move(int x, int y) override;
+      void on_mouse_move(::user::mouse * pmouse) override;
 
-      void on_left_button_down(int x, int y) override;
+      void on_left_button_down(::user::mouse * pmouse) override;
 
-      void on_left_button_up(int x, int y) override;
+      void on_left_button_up(::user::mouse * pmouse) override;
 
-      void on_right_button_down(int x, int y) override;
+      void on_right_button_down(::user::mouse * pmouse) override;
 
-      void on_right_button_up(int x, int y) override;
+      void on_right_button_up(::user::mouse * pmouse) override;
 
-      void on_click(const ::atom & atom, int x, int y) override;
+      void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
 
-      void on_right_click(const ::atom & atom, int x, int y) override;
+      void on_right_click(const ::atom & atom, ::user::mouse * pmouse) override;
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-      void move_to(int x, int y) override;
+      void move_to(const ::point_i32 & point) override;
 
       void redraw() override;
 

@@ -11,10 +11,20 @@ namespace draw2d_cairo
    public:
 
 
+      class private_font :
+         virtual public ::element
+      {
+      public:
 
+         FT_Face  m_ftface;
+         cairo_font_face_t  * m_pfontface;
+
+      };
+
+      string_map < __pointer(private_font) > m_mapPrivateFont;
 
       draw2d();
-      virtual ~draw2d();
+      ~draw2d() override;
 
 
       virtual void initialize(::object * pobject) override;
@@ -29,9 +39,13 @@ namespace draw2d_cairo
       virtual void destroy() override;
 
 
+      cairo_font_face_t * private_ftface_from_memory(const ::block & block, const ::string & strName);
+      cairo_font_face_t * private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile);
+
+
    };
 
 
-} // namespace draw2d
+} // namespace draw2d_cairo
 
 

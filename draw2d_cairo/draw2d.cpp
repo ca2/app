@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+FT_Library __ftlibrary();
+
+
 namespace aura
 {
 
@@ -1390,7 +1393,77 @@ namespace draw2d_cairo
 //   }
 
 
-} // namespace draw2d
+   cairo_font_face_t * draw2d::private_ftface_from_memory(const ::block & block, const ::string & strName)
+   {
+
+      auto & pprivatefont = m_mapPrivateFont[strName];
+
+      if(::is_set(pprivatefont))
+      {
+
+         return pprivatefont->m_pfontface;
+
+      }
+
+      pprivatefont = __new(private_font);
+
+      FT_Face ftface{};
+
+      FT_Error fterror = FT_New_Memory_Face(__ftlibrary(), (const FT_Byte *) block.get_data(), block.get_size(), 0, &ftface);
+
+      if(fterror != 0)
+      {
+
+         return nullptr;
+
+      }
+
+      cairo_font_face_t * pfontface = cairo_ft_font_face_create_for_ft_face(ftface, 0);
+
+      if(::is_null(pfontface))
+      {
+
+         FT_Done_Face(ftface);
+
+         return nullptr;
+
+      }
+
+      pprivatefont->m_ftface = ftface;
+
+      pprivatefont->m_pfontface = pfontface;
+
+      return pfontface;
+
+   }
+
+
+   cairo_font_face_t * draw2d::private_ftface_from_file(::acme::context * pcontext, const ::payload & payloadFile)
+   {
+
+      _synchronous_lock synchronouslock(cairo_mutex());
+
+      ::file::path pathFile = payloadFile.get_file_path();
+
+      auto & pprivatefont = m_mapPrivateFont[pathFile];
+
+      if(::is_set(pprivatefont))
+      {
+
+         return pprivatefont->m_pfontface;
+
+      }
+
+      ::file::path path = pcontext->defer_process_path(pathFile);
+
+      auto pmemory = m_psystem->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+
+      return private_ftface_from_memory(*pmemory, pathFile);
+
+   }
+
+
+} // namespace draw2d_cairo
 
 
 //enum_rotate_flip exif_orientation_rotate_flip(int orientation)

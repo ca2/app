@@ -775,8 +775,8 @@ list(APPEND library_source
    user/nano/window_interface.h
    user/user/check.cpp
    user/user/check.h
-   user/user/drag_move.cpp
-   user/user/drag_move.h
+   user/user/drag.cpp
+   user/user/drag.h
    user/user/element.cpp
    user/user/element.h
    user/user/ewindowflag.h
@@ -1384,6 +1384,8 @@ list(APPEND library_source
    user/user/_const.h
    user/user/_const_key.h
    user/user/os_colors.h
+   user/user/mouse.cpp
+   user/user/mouse.h
    version/version.config.h
    version/version.h
    )

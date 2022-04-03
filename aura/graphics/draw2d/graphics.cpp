@@ -1507,6 +1507,13 @@ namespace draw2d
    void graphics::text_out(double x, double y, const block & block)
    {
 
+      if(block.get_size() <= 0)
+      {
+
+         return;
+
+      }
+
       if (m_pimageAlphaBlend)
       {
 

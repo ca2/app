@@ -1,4 +1,4 @@
-// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSï¿½rensen!! (Thomas Like number 5)
 #include "framework.h"
 #include "context.h"
 
@@ -148,6 +148,14 @@ namespace nano2d
    }
 
 
+   void context::font_blur(float blur)
+   {
+
+
+
+   }
+
+
    void context::fill_color(NANO2D_COLOR color)
    {
 
@@ -201,6 +209,12 @@ namespace nano2d
    }
 
 
+   void context::global_alpha(float alpha)
+   {
+
+   }
+
+
    void context::stroke_width(float width)
    {
 
@@ -241,6 +255,13 @@ namespace nano2d
       bounds[3] = 0.f;
 
       return 0.f;
+
+   }
+
+
+   void context::text_line_height(float lineHeight)
+   {
+
 
    }
 

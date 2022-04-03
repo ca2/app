@@ -275,41 +275,41 @@ namespace x11
 //}
 //
 
-void nano_window::on_left_button_down(int x, int y)
+void nano_window::on_left_button_down(::user::mouse * pmouse)
 {
 
-   m_pinterface->on_left_button_down(x, y);
+   m_pinterface->on_left_button_down(pmouse);
 
 }
 
 
-void nano_window::on_left_button_up(int x, int y)
+void nano_window::on_left_button_up(::user::mouse * pmouse)
 {
 
-   m_pinterface->on_left_button_up(x, y);
+   m_pinterface->on_left_button_up(pmouse);
 }
 
 
 
-void nano_window::on_right_button_down(int x, int y)
+void nano_window::on_right_button_down(::user::mouse * pmouse)
 {
 
-   m_pinterface->on_right_button_down(x, y);
+   m_pinterface->on_right_button_down(pmouse);
 
 }
 
 
-void nano_window::on_right_button_up(int x, int y)
+void nano_window::on_right_button_up(::user::mouse * pmouse)
 {
 
-   m_pinterface->on_right_button_up(x, y);
+   m_pinterface->on_right_button_up(pmouse);
 }
 
 
-void nano_window::on_mouse_move(int x, int y)
+void nano_window::on_mouse_move(::user::mouse * pmouse)
 {
 
-   m_pinterface->on_mouse_move(x, y);
+   m_pinterface->on_mouse_move(pmouse);
 
 }
 
@@ -322,10 +322,10 @@ void nano_window::on_mouse_move(int x, int y)
 }
 
 
-nano_child * nano_window::hit_test(int x, int y)
+nano_child * nano_window::hit_test(::user::mouse * pmouse)
 {
 
-   return m_pinterface->hit_test(x, y);
+   return m_pinterface->hit_test(pmouse);
 
 }
 
@@ -632,13 +632,21 @@ bool nano_window::_on_event(XEvent *pevent)
       if (pevent->xbutton.button == Button1)
       {
 
-         on_left_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+         on_left_button_down(pmouse);
 
       }
       else if (pevent->xbutton.button == Button3)
       {
 
-         on_right_button_down(pevent->xbutton.x_root, pevent->xbutton.y_root);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+         on_right_button_down(pmouse);
 
       }
 
@@ -649,13 +657,21 @@ bool nano_window::_on_event(XEvent *pevent)
       if (pevent->xbutton.button == Button1)
       {
 
-         on_left_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+         on_left_button_up(pmouse);
 
       }
       else if (pevent->xbutton.button == Button3)
       {
 
-         on_right_button_up(pevent->xbutton.x_root, pevent->xbutton.y_root);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+         on_right_button_up(pmouse);
 
       }
 
@@ -663,7 +679,11 @@ bool nano_window::_on_event(XEvent *pevent)
    else if (pevent->type == MotionNotify)
    {
 
-      on_mouse_move(pevent->xmotion.x_root, pevent->xmotion.y_root);
+      auto pmouse = __create_new < ::user::mouse >();
+
+      pmouse->m_point = {pevent->xmotion.x_root, pevent->xmotion.y_root};
+
+      on_mouse_move(pmouse);
 
    }
    else if (pevent->type == LeaveNotify)
@@ -672,7 +692,11 @@ bool nano_window::_on_event(XEvent *pevent)
       if (m_pinterface->m_pchildHover)
       {
 
-         m_pinterface->m_pchildHover->on_mouse_move(-100000, -10000);
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {-100'000, -100'000};
+
+         m_pinterface->m_pchildHover->on_mouse_move(pmouse);
 
          m_pinterface->m_pchildHover = nullptr;
 
@@ -822,40 +846,40 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::on_click(const ::atom & atomParam, int x, int y)
+   void nano_window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
 
-      fork([this, atom, x, y]()
+      fork([this, atom, pmouse]()
            {
 
-              m_pinterface->on_click(atom, x, y);
+              m_pinterface->on_click(atom, pmouse);
 
-           });
+           }, {pmouse});
 
    }
 
 
-   void nano_window::on_right_click(const ::atom & atomParam, int x, int y)
+   void nano_window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
 
-      fork([this, atom, x, y]()
+      fork([this, atom, pmouse]()
            {
 
-              m_pinterface->on_right_click(atom, x, y);
+              m_pinterface->on_right_click(atom, pmouse);
 
-           });
+           }, {pmouse});
 
    }
 
 
-   void nano_window::move_to(int x, int y)
+   void nano_window::move_to(const ::point_i32 & point)
    {
 
-      ::XMoveWindow(m_pdisplay->m_pdisplay, m_window, x, y);
+      ::XMoveWindow(m_pdisplay->m_pdisplay, m_window, point.x, point.y);
 
    }
 

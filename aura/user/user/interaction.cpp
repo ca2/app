@@ -9801,7 +9801,7 @@ namespace user
    void * interaction::get_os_data() const
    {
 
-      return get_oswindow();
+      return window()->get_os_data();
 
    }
 

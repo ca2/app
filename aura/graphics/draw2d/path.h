@@ -14,20 +14,42 @@ namespace draw2d
 {
 
 
+
    class CLASS_DECL_AURA path :
       virtual public ::draw2d::object
    {
    public:
 
 
+      class simple_optimization :
+         virtual public ::element
+      {
+      public:
+         
+         int m_iTopic = 0;
+         int m_iTopicLines = 0;
+         int m_iClose = 0;
+         ::point_f64_array m_pointa;
+         __pointer(___shape) m_pshapeTopic;
 
+         simple_optimization(::draw2d::path * ppath);
+         
+         bool draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen);
+
+         bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush);
+
+         
+      };
+
+
+      bool                                m_bPersistent;
       shape_array                         m_shapea;
       bool                                m_bHasPoint;
       point_f64                           m_pointBegin;
       point_f64                           m_pointEnd;
       ::draw2d::enum_fill_mode            m_efillmode;
       point_f64                           m_pointOffset;
-      
+      __pointer(simple_optimization)      m_psimpleoptimization;
 
       path();
       ~path() override;
@@ -164,6 +186,8 @@ namespace draw2d
 
 
    using path_pointer = __pointer(path);
+
+
 
 
 } // namespace draw2d

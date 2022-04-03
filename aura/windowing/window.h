@@ -83,7 +83,7 @@ namespace windowing
 
       virtual ::user::copydesk * copydesk();
 
-      oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
+      oswindow get_oswindow() const;
       void set_oswindow(oswindow oswindow);
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }

@@ -467,10 +467,32 @@ namespace windowing
    }
 
 
+   oswindow window::get_oswindow() const
+   {
+
+      auto puserinteractionimpl = m_puserinteractionimpl;
+
+      if (puserinteractionimpl)
+      {
+
+         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            return puserinteraction->m_oswindow;
+
+         }
+
+      }
+      
+      return nullptr;
+
+   }
+
+
    void window::set_oswindow(oswindow oswindow)
    { 
-      
-      set_os_data(oswindow); 
 
       auto puserinteractionimpl = m_puserinteractionimpl;
    

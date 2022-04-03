@@ -18,6 +18,8 @@
 #endif
 
 
+void ns_main_async(dispatch_block_t block);
+
 @interface k4_callback:NSObject{
  
 }
@@ -80,12 +82,17 @@
 @end
 
 
-std::vector<std::string> file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> &filetypes, bool save, bool multiple) {
+ void file_dialog_from_platform(
+     void * poswindow, 
+     const std::vector<std::pair<std::string, std::string>> &filetypes,
+     std::function < void(const std::vector<std::string> &) > function, 
+     bool save,
+     bool multiple)
+{
     if (save && multiple) {
         throw std::invalid_argument("save and multiple must not both be true.");
     }
 
-    std::vector<std::string> result;
     if (save) {
         NSMutableArray *types = [NSMutableArray new];
         for (size_t idx = 0; idx < filetypes.size(); ++idx){
@@ -98,37 +105,62 @@ std::vector<std::string> file_dialog_from_platform(const std::vector<std::pair<s
         }
         k4_callback* k4k=[[k4_callback alloc]init];
         std::string res=[k4k launchDefaultSavePanelWithTypes:types buttonItems:buttonItems];
-        if(res.size()==0){return result;}
+       
+       std::vector<std::string> result;
+
+        if(res.size()>0)
+        {
         result.emplace_back(res);
+           
+        }
+       
+       function(result);
+       
     } else {
+
+       NSMutableArray *types = [NSMutableArray new];
+       for (size_t idx = 0; idx < filetypes.size(); ++idx)
+           [types addObject: [NSString stringWithUTF8String: filetypes[idx].first.c_str()]];
+
+       ns_main_async(^()
+                    {
+        NSWindow * pnswindow = (__bridge NSWindow *) poswindow;
+
         NSOpenPanel *openDlg = [NSOpenPanel openPanel];
 
         [openDlg setCanChooseFiles:YES];
         [openDlg setCanChooseDirectories:NO];
         [openDlg setAllowsMultipleSelection:multiple];
-        NSMutableArray *types = [NSMutableArray new];
-        for (size_t idx = 0; idx < filetypes.size(); ++idx)
-            [types addObject: [NSString stringWithUTF8String: filetypes[idx].first.c_str()]];
         [openDlg setAllowedFileTypes: types];
+       
+       [ openDlg beginSheetModalForWindow:
+                        
+                        pnswindow completionHandler:^(NSModalResponse returnCode) {
+          if(returnCode == NSModalResponseOK)
+          {
+             std::vector<std::string> result;
 
-        if ([openDlg runModal] == NSModalResponseOK) {
-            for (NSURL* url in [openDlg URLs]) {
-                result.emplace_back((char*) [[url path] UTF8String]);
-            }
-        }
+                     for (NSURL* url in [openDlg URLs]) {
+                             result.emplace_back((char*) [[url path] UTF8String]);
+                         }
+             function(result);
+          }
+       }];
+       
+          
+       });
+
+//        if ([openDlg runModal] == NSModalResponseOK) {
+//            for (NSURL* url in [openDlg URLs]) {
+//                result.emplace_back((char*) [[url path] UTF8String]);
+//            }
+//        }
     }
-    return result;
+    //return result;
 }
 
 
-std::string file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> &filetypes, bool save) {
-   std::vector<std::string> r=file_dialog_from_platform(filetypes,save,false);
-   if(r.size()){
-      return r[0];
-   }else{
-      return "";
-   }
-}
+
 
 void platform_init(){
    CFBundleRef mainBundle = CFBundleGetMainBundle();

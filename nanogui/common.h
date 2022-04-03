@@ -22,6 +22,9 @@
 #include <string>
 #include <stdexcept>
 
+struct NSWindow;
+
+
 #define NANOGUI_VERSION_MAJOR 0
 #define NANOGUI_VERSION_MINOR 1
 #define NANOGUI_VERSION_PATCH 4
@@ -259,7 +262,6 @@ class Window;
  * for queuing up UI-related state changes from other threads.
  */
 //extern NANOGUI_EXPORT void async(const ::function<void()> & func);
-
 /**
  * \brief Open a native file open/save dialog.
  *
@@ -271,9 +273,12 @@ class Window;
  *     Set to ``true`` if you would like subsequent file dialogs to open
  *     at whatever folder they were in when they close this one.
  */
-NANOGUI_EXPORT ::string
-file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
-   bool save);
+NANOGUI_EXPORT void pick_single_file(
+    void * poswindow,
+    const std::vector<std::pair<std::string, std::string>> & filetypes,
+    ::std::function < void(const::std::string &) > promisseFile, 
+    bool save);
+
 
 
 NANOGUI_EXPORT ::image_pointer ___load_image(::object * pobject, const char * path);
@@ -302,17 +307,19 @@ NANOGUI_EXPORT void ___save_image(::object * pobject, const char * path, ::image
  *     Pairs of permissible formats with descriptions like
  *     ``("png", "Portable Network Graphics")``.
  *
- * \param save
+ * -param save
  *     Set to ``true`` if you would like subsequent file dialogs to open
  *     at whatever folder they were in when they close this one.
  *
- * \param multiple
+ * -param multiple
  *     Set to ``true`` if you would like to be able to select multiple
  *     files at once. May not be simultaneously true with \p save.
  */
-extern NANOGUI_EXPORT std::vector<std::string>
-file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes,
-   bool save, bool multiple);
+extern NANOGUI_EXPORT void pick_multiple_file(
+    void * poswindow, 
+    const std::vector<std::pair<std::string, std::string>> & filetypes, 
+    ::std::function < void(const std::vector<std::string> &) > promisseFiles);
+
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)
 /**

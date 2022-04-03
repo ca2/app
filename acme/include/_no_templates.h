@@ -22,6 +22,7 @@
 #include "operating_system/system.h"
 #include "operating_system/types.h"
 #include "acme/platform/text.h"
+#include "acme/primitive/comparison/_c.h"
 #include "acme/primitive/geometry2d/_struct.h"
 #include "_aura_memory.h"
 

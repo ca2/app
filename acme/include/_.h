@@ -1033,13 +1033,6 @@ CLASS_DECL_ACME void set_platform_level(enum_platform_level eplatformlevel);
 CLASS_DECL_ACME enum_platform_level get_platform_level();
 
 
-#define INTABS(i) (((i) >= 0) ? (i) : (-i))
-#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
-#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
-
-//#ifndef
-//#define minimum(a, b) (((a) < (b)) ? (a) : (b))
-//#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus

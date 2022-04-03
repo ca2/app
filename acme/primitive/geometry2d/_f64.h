@@ -44,4 +44,17 @@ typedef const RECTANGLE_F64 * LPCRECTANGE_F64;
 #pragma pack(pop, geometry2d_f64)
 
 
+inline bool is_same(const POINT_F64 & p1, const POINT_F64 & p2, double dTolerance)
+{
+   
+   return is_same(p1.x, p2.x, dTolerance) && is_same(p1.y, p2.y, dTolerance);
+   
+}
 
+
+inline bool is_different(const POINT_F64 & p1, const POINT_F64 & p2, double dTolerance)
+{
+   
+   return !is_same(p1, p2, dTolerance);
+   
+}

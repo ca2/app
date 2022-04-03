@@ -13,7 +13,13 @@
 #include "aura/operating_system.h"
 #include "aura/graphics/image/context_image.h"
 
-std::vector<std::string> CLASS_DECL_NANOGUI file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple);
+
+void CLASS_DECL_NANOGUI file_dialog_from_platform(
+   void * poswindow,
+   const std::vector<std::pair<std::string, std::string>> & filetypes,
+   ::std::function < void(const std::vector<std::string> & ) > function, 
+   bool save, 
+   bool multiple);
 
 
 ::object * get_nano2d_object(NVGcontext * ctx);
@@ -366,9 +372,53 @@ void __wide_append_null(memory & memory)
 
 }
 
-::string file_dialog(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save) {
-   auto result = file_dialog_from_platform(filetypes, save, false);
-   return result.empty() ? "" : result.front().c_str();
+
+void pick_single_file(
+   void * poswindow, 
+   const std::vector<std::pair<std::string, std::string>> & filetypes, 
+   ::std::function < void(const ::std::string &) > function,
+   bool save)
+{
+   
+   file_dialog_from_platform(
+      poswindow, 
+      filetypes,
+      [function](const std::vector < std::string > & stra)
+      {
+         
+         if(stra.size() <= 0)
+         {
+            
+            function("");
+            
+         }
+         else
+         {
+            
+            function(stra.front());
+            
+         }
+         
+      },
+      save,
+      false);
+      
+}
+
+
+void pick_multiple_file(
+   void * poswindow,
+   const std::vector<std::pair<std::string, std::string>> & filetypes,
+   std::function < void(const ::std::vector<::std::string> &) > function)
+{
+
+   file_dialog_from_platform(
+      poswindow,
+      filetypes,
+      function,
+      false,
+      false);
+   
 }
 
 

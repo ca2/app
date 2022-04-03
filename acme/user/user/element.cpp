@@ -1231,14 +1231,6 @@ namespace user
    }
 
 
-   //oswindow element::get_oswindow() const
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
    ::windowing::window * element::get_window() const
    {
 

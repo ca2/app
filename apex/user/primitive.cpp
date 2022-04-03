@@ -1212,14 +1212,6 @@ namespace user
    }
 
 
-   //oswindow primitive::get_oswindow() const
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
    ::windowing::window * primitive::get_window() const
    {
 

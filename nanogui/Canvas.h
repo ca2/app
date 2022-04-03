@@ -90,7 +90,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_background_color(const Color & background_color);
 
       /// Return whether the widget border is drawn
-      const Color & background_color() const;
+      Color background_color() const;
 
       /// Draw the widget contents. Override this method.
       virtual void draw_contents(NVGcontext * ctx);

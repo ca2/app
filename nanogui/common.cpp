@@ -13,6 +13,8 @@
 #include "aura/operating_system.h"
 #include "aura/graphics/image/context_image.h"
 
+std::vector<std::string> CLASS_DECL_NANOGUI file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple);
+
 
 ::object * get_nano2d_object(NVGcontext * ctx);
 
@@ -46,8 +48,6 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-
-std::vector<std::string> CLASS_DECL_NANOGUI file_dialog_from_platform(const std::vector<std::pair<std::string, std::string>> & filetypes, bool save, bool multiple);
 
 extern std::map<GLFWwindow *, Screen *> __nanogui_screens;
 

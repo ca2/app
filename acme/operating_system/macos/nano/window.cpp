@@ -116,42 +116,42 @@ namespace macos
    }
 
 
-   void nano_window::on_left_button_down(int x, int y)
+   void nano_window::on_left_button_down(::user::mouse * pmouse)
    {
 
-      m_pinterface->on_left_button_down(x, y);
+      m_pinterface->on_left_button_down(pmouse);
 
    }
 
 
-   void nano_window::on_left_button_up(int x, int y)
+   void nano_window::on_left_button_up(::user::mouse * pmouse)
    {
 
-      m_pinterface->on_left_button_up(x, y);
+      m_pinterface->on_left_button_up(pmouse);
 
    }
 
 
-   void nano_window::on_right_button_down(int x, int y)
+   void nano_window::on_right_button_down(::user::mouse * pmouse)
    {
 
-      m_pinterface->on_right_button_down(x, y);
+      m_pinterface->on_right_button_down(pmouse);
 
    }
 
 
-   void nano_window::on_right_button_up(int x, int y)
+   void nano_window::on_right_button_up(::user::mouse * pmouse)
    {
 
-      m_pinterface->on_right_button_up(x, y);
+      m_pinterface->on_right_button_up(pmouse);
 
    }
 
 
-   void nano_window::on_mouse_move(int x, int y)
+   void nano_window::on_mouse_move(::user::mouse * pmouse)
    {
 
-      m_pinterface->on_mouse_move(x, y);
+      m_pinterface->on_mouse_move(pmouse);
 
    }
 
@@ -164,10 +164,10 @@ namespace macos
    }
 
 
-   ::nano_child * nano_window::hit_test(int x, int y)
+   ::nano_child * nano_window::hit_test(::user::mouse * pmouse)
    {
 
-      return m_pinterface->hit_test(x, y);
+      return m_pinterface->hit_test(pmouse);
 
    }
 
@@ -238,26 +238,26 @@ namespace macos
    }
 
 
-   void nano_window::on_click(const ::atom & atom, int x, int y)
+   void nano_window::on_click(const ::atom & atom, ::user::mouse * pmouse)
    {
 
-      m_pinterface->on_click(atom, x, y);
+      m_pinterface->on_click(atom, pmouse);
 
    }
 
 
-   void nano_window::on_right_click(const ::atom & atom, int x, int y)
+   void nano_window::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
    {
 
-      m_pinterface->on_right_click(atom, x, y);
+      m_pinterface->on_right_click(atom, pmouse);
 
    }
 
 
-   void nano_window::move_to(int x, int y)
+   void nano_window::move_to(const ::point_i32 & point)
    {
 
-      m_pwindowbridge->move_to(x, y);
+      m_pwindowbridge->move_to(point.x, point.y);
       
    }
 
@@ -292,7 +292,11 @@ namespace macos
 void nano_window_bridge::on_left_button_up(int x, int y)
 {
    
-   m_pwindow->on_left_button_up(x, y);
+   auto pmouse = m_pwindow->__create_new <::user::mouse>();
+   
+   pmouse->m_point = {x, y};
+   
+   m_pwindow->on_left_button_up(pmouse);
    
 }
 
@@ -300,7 +304,11 @@ void nano_window_bridge::on_left_button_up(int x, int y)
 void nano_window_bridge::on_left_button_down(int x, int y)
 {
    
-   m_pwindow->on_left_button_down(x, y);
+   auto pmouse = m_pwindow->__create_new <::user::mouse>();
+   
+   pmouse->m_point = {x, y};
+
+   m_pwindow->on_left_button_down(pmouse);
    
 }
 
@@ -308,7 +316,11 @@ void nano_window_bridge::on_left_button_down(int x, int y)
 void nano_window_bridge::on_right_button_up(int x, int y)
 {
    
-   m_pwindow->on_right_button_up(x, y);
+   auto pmouse = m_pwindow->__create_new <::user::mouse>();
+   
+   pmouse->m_point = {x, y};
+
+   m_pwindow->on_right_button_up(pmouse);
    
 }
 
@@ -316,7 +328,11 @@ void nano_window_bridge::on_right_button_up(int x, int y)
 void nano_window_bridge::on_right_button_down(int x, int y)
 {
    
-   m_pwindow->on_right_button_down(x, y);
+   auto pmouse = m_pwindow->__create_new <::user::mouse>();
+   
+   pmouse->m_point = {x, y};
+
+   m_pwindow->on_right_button_down(pmouse);
    
 }
 
@@ -324,7 +340,11 @@ void nano_window_bridge::on_right_button_down(int x, int y)
 void nano_window_bridge::on_mouse_move(int x, int y)
 {
    
-   m_pwindow->on_mouse_move(x, y);
+   auto pmouse = m_pwindow->__create_new <::user::mouse>();
+   
+   pmouse->m_point = {x, y};
+
+   m_pwindow->on_mouse_move(pmouse);
    
 }
 

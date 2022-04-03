@@ -1261,7 +1261,7 @@ namespace user
 
          string str;
 
-         str.format("%d", window_state.m_edisplay);
+         str.format("%d", window_state.m_edisplay.m_eenum);
 
          set_need_layout();
 

@@ -44,8 +44,8 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    //   || (has_depth_buffer && !scr->has_depth_buffer())
    //   || (has_stencil_buffer && !scr->has_stencil_buffer());
 
-   Object * color_texture = nullptr,
-      * depth_texture = nullptr;
+   //Object * color_texture = nullptr,
+     // * depth_texture = nullptr;
 
    if (has_stencil_buffer && !has_depth_buffer)
       throw std::runtime_error("Canvas::Canvas(): has_stencil implies has_depth!");
@@ -126,7 +126,7 @@ void Canvas::set_background_color(const Color & background_color) {
    //m_render_pass->set_clear_color(0, background_color);
 }
 
-const Color & Canvas::background_color() const {
+Color Canvas::background_color() const {
    //return m_render_pass->clear_color(0);
    return ::nanogui::Color(
       m_colorClear.fr(), 

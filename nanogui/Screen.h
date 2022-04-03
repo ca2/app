@@ -176,7 +176,7 @@ public:
    virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
 
    /// Text input event handler: codepoint is native endian UTF-32 format
-   virtual bool keyboard_character_event(unsigned int codepoint);
+   bool keyboard_character_event(unsigned int codepoint) override;
 
    /// Window resize event handler
    virtual bool resize_event(const nanogui::Vector2i & size);

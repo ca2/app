@@ -233,7 +233,8 @@ ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region consid
 }
 
 Color ColorWheel::hue2rgb(float h) const {
-   float s = 1., v = 1.;
+   float s = 1.f;
+   float v = 1.f;
 
    if (h < 0) h += 1;
 
@@ -245,12 +246,51 @@ Color ColorWheel::hue2rgb(float h) const {
 
    float r = 0, g = 0, b = 0;
    switch (i % 6) {
-   case 0: r = v, g = t, b = p; break;
-   case 1: r = q, g = v, b = p; break;
-   case 2: r = p, g = v, b = t; break;
-   case 3: r = p, g = q, b = v; break;
-   case 4: r = t, g = p, b = v; break;
-   case 5: r = v, g = p, b = q; break;
+   case 0:
+      {
+         r = v;
+         g = t;
+         b = p;
+      }
+         break;
+   case 1:
+      {
+         r = q;
+         g = v;
+         b = p;
+      }
+         break;
+   case 2:
+      {
+         r = p;
+         g = v;
+         b = t;
+         
+      }
+         break;
+   case 3:
+      {
+         r = p;
+         g = q;
+         b = v;
+         
+      }
+         break;
+   case 4:
+      {
+         r = t;
+         g = p;
+         b = v;
+      }
+         break;
+   case 5:
+      {
+         r = v;
+         g = p;
+         b = q;
+         
+      }
+         break;
    }
 
    return { r, g, b, 1.f };

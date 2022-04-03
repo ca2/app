@@ -598,8 +598,8 @@ void Screen::draw_setup(NVGcontext * ctx) {
    //m_size = Vector2i(Vector2f(m_size) / m_pixel_ratio);
 #else
    /* Recompute pixel ratio on OSX */
-   if (m_size[0])
-      m_pixel_ratio = (float)m_fbsize[0] / (float)m_size[0];
+//   if (m_size[0])
+//      m_pixel_ratio = (float)m_fbsize[0] / (float)m_size[0];
 #if defined(NANOGUI_USE_METAL)
    metal_window_set_content_scale(nswin, m_pixel_ratio);
 #endif

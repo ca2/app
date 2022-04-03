@@ -115,7 +115,7 @@ namespace user
 
       virtual ::user::element * get_parent_form_user_element();
 
-      virtual void enable_window(bool bEnable = true);
+      void enable_window(bool bEnable = true) override;
 
       virtual void PreSubClassWindow();
 

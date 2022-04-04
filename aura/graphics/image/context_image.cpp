@@ -11,6 +11,7 @@
 context_image::context_image()
 {
 
+   defer_create_mutex();
    m_iImageSeed = 1;
 
 }
@@ -1122,7 +1123,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 ::image_pointer context_image::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
 {
 
-   auto pimage = __create < ::image >();
+   auto pimage = m_pcontext->__create < ::image >();
 
    if (!pimage)
    {

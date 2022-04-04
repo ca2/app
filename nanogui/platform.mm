@@ -104,6 +104,9 @@ void ns_main_async(dispatch_block_t block);
             [buttonItems addObject: [NSString stringWithFormat: @"%s ( .%s )",filetypes[idx].second.c_str(),filetypes[idx].first.c_str() ]];
         }
         k4_callback* k4k=[[k4_callback alloc]init];
+       ns_main_async(^()
+       {
+
         std::string res=[k4k launchDefaultSavePanelWithTypes:types buttonItems:buttonItems];
        
        std::vector<std::string> result;
@@ -115,6 +118,8 @@ void ns_main_async(dispatch_block_t block);
         }
        
        function(result);
+          
+       });
        
     } else {
 
@@ -123,7 +128,7 @@ void ns_main_async(dispatch_block_t block);
            [types addObject: [NSString stringWithUTF8String: filetypes[idx].first.c_str()]];
 
        ns_main_async(^()
-                    {
+       {
         NSWindow * pnswindow = (__bridge NSWindow *) poswindow;
 
         NSOpenPanel *openDlg = [NSOpenPanel openPanel];

@@ -12,7 +12,7 @@ namespace user
 {
 
 
-   enum enum_key : ::i64
+   enum enum_key : ::i32
    {
 
       e_key_none,
@@ -106,24 +106,24 @@ namespace user
       e_key_f11,
       e_key_f12,
 
-      e_key_left_shift = 1 << 16,
-      e_key_right_shift = 1 << 17,
+      e_key_left_shift = 1 << 12,
+      e_key_right_shift = 1 << 13,
       e_key_shift = e_key_left_shift | e_key_right_shift,
-      e_key_left_control = 1 << 18,
-      e_key_right_control = 1 << 19,
+      e_key_left_control = 1 << 14,
+      e_key_right_control = 1 << 15,
       e_key_control = e_key_left_control | e_key_right_control,
-      e_key_left_alt = 1 << 20,
-      e_key_right_alt = 1 << 21,
+      e_key_left_alt = 1 << 16,
+      e_key_right_alt = 1 << 17,
       e_key_alt = e_key_left_alt | e_key_right_alt,
-      e_key_left_command = 1 << 22,
-      e_key_right_command = 1 << 23,
+      e_key_left_command = 1 << 18,
+      e_key_right_command = 1 << 19,
       e_key_command = e_key_left_command | e_key_right_command,
-      e_key_system_left_command = 1 << 24,
-      e_key_system_right_command = 1 << 25,
+      e_key_system_left_command = 1 << 20,
+      e_key_system_right_command = 1 << 21,
       e_key_system_command = e_key_system_left_command | e_key_system_right_command,
-      e_key_left_button = 1LL <<32,
-      e_key_right_button = 1LL << 33,
-      e_key_middle_button = 1LL << 34,
+      e_key_left_button = 1LL <<24,
+      e_key_right_button = 1LL << 25,
+      e_key_middle_button = 1LL << 26,
 
    };
 

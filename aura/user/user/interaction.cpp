@@ -17595,6 +17595,33 @@ namespace user
    void interaction::on_text_composition(string str)
    {
 
+      auto psz = str.c_str();
+      
+      while(*psz)
+      {
+         
+         string strCharacter = ::str::get_utf8_char(psz);
+         
+         int iCharacter = ::str::ch::uni_index(strCharacter);
+         
+         if(m_pappearance)
+         {
+            
+            m_pappearance->on_character(iCharacter);
+            
+         }
+         
+         psz += strCharacter.get_length();
+         
+         if(strCharacter.get_length() <= 0)
+         {
+            
+            break;
+            
+         }
+         
+         
+      }
 
    }
 

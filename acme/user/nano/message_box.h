@@ -22,7 +22,7 @@ public:
 
    virtual void calculate_size();
 
-   virtual void display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr);
+   virtual void display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr);
 
    void on_draw(nano_device * pnanodevice) override;
 

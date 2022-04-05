@@ -4,10 +4,11 @@
 
 #else
 
-#define AXIS_MEMORY_MANAGEMENT true
+#define AXIS_MEMORY_MANAGEMENT false
 
 #endif
 
+#include "align_byte_count.h"
 
 CLASS_DECL_ACME void simple_debug_print(const char* psz);
 
@@ -21,7 +22,7 @@ namespace HEAP_NAMESPACE
 #if !AXIS_MEMORY_MANAGEMENT
 
 
-#include "heap_bare.cpp"
+#include "inline/heap_bare.cpp"
 
 
 #else
@@ -36,13 +37,9 @@ namespace HEAP_NAMESPACE
 #endif
 
 
-#include "align_byte_count.h"
-
-
 //#include "acme/platform/static_start.h"
 
-
-#ifdef MCHECK
+#if defined(MCHECK)
 
 
 #include "heap_mcheck.cpp"
@@ -78,33 +75,32 @@ namespace HEAP_NAMESPACE
 #endif
 
 
-   #include "inline/plex.cpp"
-   #include "inline/plex_heap.cpp"
-
-
-   plex_heap_alloc_array* g_pheap = nullptr;
-
-
-   critical_section* g_pmutexSystemHeap = nullptr;
-
-
 #undef new
 
 
-   void initialize()
-   {
+#include "inline/plex.cpp"
+#include "inline/plex_heap.cpp"
 
-      g_pheap = new plex_heap_alloc_array;
-
-   }
+plex_heap_alloc_array* g_pheap = nullptr;
 
 
-   void finalize()
-   {
+critical_section* g_pmutexSystemHeap = nullptr;
 
-      ::acme::del(g_pheap);
+void initialize()
+{
 
-   }
+   g_pheap = new plex_heap_alloc_array;
+
+}
+
+
+void finalize()
+{
+
+   ::acme::del(g_pheap);
+
+}
+
 
 
 } // namespace HEAP_NAMESPACE

@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_CORE void os_message_box(oswindow oswindow, const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox, ::callback callback)
+CLASS_DECL_CORE void message_box_synchronous(oswindow oswindow, const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    while (psystem->oslocal().m_iMessageBoxResult > 0)

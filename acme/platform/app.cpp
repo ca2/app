@@ -145,3 +145,16 @@ int app::main_loop()
 
 
 
+
+
+
+
+void * application_system(void * pApplication)
+{
+   
+   auto papp = (::app *) pApplication;
+   
+   return papp->m_psystem;
+   
+}
+

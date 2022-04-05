@@ -19,7 +19,7 @@ void nano_window_interface::create()
 }
 
 
-void nano_window_interface::display_synchronously()
+void nano_window_interface::display()
 {
 
 

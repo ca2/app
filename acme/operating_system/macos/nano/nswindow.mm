@@ -12,7 +12,11 @@
 #include "nswindow.h"
 #include "window_bridge.h"
 #include "nsimpact.h"
+#include "app.h"
+
+
 void ns_main_sync(dispatch_block_t block);
+
  
 @implementation ns_nano_window : NSWindow
 
@@ -24,7 +28,7 @@ void ns_main_sync(dispatch_block_t block);
 // and grows bigger from bottom as farther from bottom of screen.
 
 
--(instancetype) init: (NSRect ) rectangle
+-(instancetype) init: (NSRect) rectangle
 {
    
    self = [ super
@@ -36,7 +40,7 @@ void ns_main_sync(dispatch_block_t block);
    if(!self)
    {
       
-      return nullptr;
+      return nil;
       
    }
    
@@ -52,11 +56,13 @@ void ns_main_sync(dispatch_block_t block);
    
    [ self setIgnoresMouseEvents : NO ];
    
-   m_pwindowcontroller = [ [ NSWindowController alloc ] initWithWindow : self ];
+   macos_app * papp = (macos_app *) [ [ NSApplication sharedApplication ] delegate ];
+   
+   m_pwindowcontroller = [ papp addWindow: self ];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidMove:) name: NSWindowDidMoveNotification object: self];
+   [ [ NSNotificationCenter defaultCenter ] addObserver: self selector: @selector(windowDidMove:) name: NSWindowDidMoveNotification object: self];
 
-   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: self];
+   [ [ NSNotificationCenter defaultCenter ] addObserver: self selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: self];
 
    [ self create_view ];
    
@@ -184,57 +190,58 @@ void nano_window_bridge::create_ns_nano_window(CGRect cgrect)
 {
    
    ns_main_sync(^()
-                {
+   {
    
-   m_pnsnanowindow = (__bridge_retained CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect ];
+      m_pnsnanowindow = (__bridge_retained CFTypeRef) [ [ ns_nano_window alloc ] init: cgrect ];
    
-   auto pnsnanowindow = (__bridge ns_nano_window *) m_pnsnanowindow;
+      auto pnsnanowindow = (__bridge ns_nano_window *) m_pnsnanowindow;
    
-   pnsnanowindow->m_pwindowbridge = this;
+      pnsnanowindow->m_pwindowbridge = this;
       
    });
    
 }
 
 
-void nano_window_bridge::do_modal()
+void nano_window_bridge::display()
 {
    
-   ns_main_sync(^()
+   ns_main_async(^()
    {
       
-   auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
-   
-   id appName = [ [ NSProcessInfo processInfo ] processName ];
+      auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+      
+      id appName = [ [ NSProcessInfo processInfo ] processName ];
 
-   if (![ NSApp mainMenu ])
-   {
-      
-      [ NSApplication sharedApplication ];
-      
-      [ NSApp setActivationPolicy:NSApplicationActivationPolicyRegular ];
+      if (![ NSApp mainMenu ])
+      {
+         
+         [ NSApplication sharedApplication ];
+         
+         [ NSApp setActivationPolicy:NSApplicationActivationPolicyRegular ];
 
-      id menubar = [ NSMenu new ];
-      id appMenuItem = [ NSMenuItem new ];
-      [ menubar addItem : appMenuItem ];
+         id menubar = [ NSMenu new ];
+         id appMenuItem = [ NSMenuItem new ];
+         [ menubar addItem : appMenuItem ];
+         
+         id appMenu = [ NSMenu new ] ;
+         id quitTitle = [ @"Quit " stringByAppendingString : appName];
+         id quitMenuItem = [ [ NSMenuItem alloc ] initWithTitle : quitTitle action: @selector(terminate:) keyEquivalent: @"q" ];
+         [ appMenu addItem : quitMenuItem ];
+         [ appMenuItem setSubmenu : appMenu ];
+         
+         [ NSApp setMainMenu : menubar ];
+         
+      }
       
-      id appMenu = [ NSMenu new ] ;
-      id quitTitle = [ @"Quit " stringByAppendingString : appName];
-      id quitMenuItem = [ [ NSMenuItem alloc ] initWithTitle : quitTitle action: @selector(terminate:) keyEquivalent: @"q" ];
-      [ appMenu addItem : quitMenuItem ];
-      [ appMenuItem setSubmenu : appMenu ];
+      [ pnanowindow setTitle : appName];
       
-      [ NSApp setMainMenu : menubar ];
-      
-   }
-   
-   [ pnanowindow setTitle : appName];
-   
-   [ pnanowindow display];
-   [ pnanowindow makeKeyAndOrderFront : nil ];
-   [ pnanowindow makeFirstResponder : nil ];
-   [ NSApp activateIgnoringOtherApps : YES ];
-   [ NSApp runModalForWindow : pnanowindow ];
+      //[ pnanowindow display];
+      //[ pnanowindow makeKeyAndOrderFront : nil ];
+      //[ pnanowindow makeFirstResponder : nil ];
+      //[ NSApp activateIgnoringOtherApps : YES ];
+      [ [ pnanowindow windowController ] showWindow:nil ];
+      //[ NSApp runModalForWindow : pnanowindow ];
    
    });
    

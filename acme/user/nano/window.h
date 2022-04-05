@@ -15,7 +15,7 @@ public:
 
    string                                 m_strMessage;
    //string                                 m_strTitle;
-
+   ::function < void(nano_window *) >     m_functionClose;
 
    __pointer(nano_window_implementation)  m_pimplementation;
    __pointer(nano_brush)                  m_pbrushWindow;
@@ -65,7 +65,7 @@ public:
 
    void create() override;
 
-   void display_synchronously() override;
+   void display() override;
 
    void message_loop() override;
 

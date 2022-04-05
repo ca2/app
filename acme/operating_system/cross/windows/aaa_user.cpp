@@ -832,6 +832,6 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //CLASS_DECL_ACME i32 os_message_box_w(::windowing::window * pwindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uFlags)
 //{
 //
-//   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uFlags);
+//   return ::message_box_synchronous(oswindow, string(pszText), string(pszCaption), uFlags);
 //
 //}

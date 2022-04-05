@@ -16,7 +16,7 @@ CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel
 //CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
-//   ::os_message_box(nullptr, pszMessage, pszTitle, iFlags, function);
+//   ::message_box_synchronous(nullptr, pszMessage, pszTitle, iFlags, function);
 //
 //}
 

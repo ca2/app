@@ -35,7 +35,7 @@ namespace acme
 {
 
 //
-//   class os_message_box :
+//   class message_box_synchronous :
 //      virtual public ::matter
 //   {
 //   public:
@@ -46,7 +46,7 @@ namespace acme
 //      const ::e_message_box &     m_emessagebox;
 //
 //
-//      os_message_box(const ::string & strText, const ::string & strTitle, const ::e_message_box & emessagebox) :
+//      message_box_synchronous(const ::string & strText, const ::string & strTitle, const ::e_message_box & emessagebox) :
 //         m_strText(strText),
 //         m_strTitle(strTitle),
 //         m_emessagebox(emessagebox)
@@ -55,7 +55,7 @@ namespace acme
 //      }
 //
 //
-//      virtual ~os_message_box()
+//      virtual ~message_box_synchronous()
 //      {
 //
 //      }
@@ -67,7 +67,7 @@ namespace acme
 //   };
 //
 //
-//   ::payload os_message_box::realize()
+//   ::payload message_box_synchronous::realize()
 //   {
 //
 //      int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);
@@ -85,7 +85,7 @@ namespace acme
 //#ifdef _UWP
 //
 //
-//void os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+//void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   return _os_message_box(pszText, pszTitle, emessagebox, process);
@@ -96,10 +96,10 @@ namespace acme
 //#else
 //
 //
-////void os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+////void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 ////{
 ////
-////   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
+////   auto posmessagebox = __new(::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -157,7 +157,7 @@ CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iL
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 
-   return os_message_box(::get_system(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
+   return message_box_synchronous(::get_system(), szMessage, "ASSERT", e_message_box_cancel_try_continue);
 
 }
 

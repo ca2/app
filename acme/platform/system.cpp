@@ -756,7 +756,7 @@ void system::call_init_system()
    catch (::exception & exception)
    {
 
-      os_message_box(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
 
       m_estatus = exception.m_estatus;
 
@@ -2159,7 +2159,7 @@ __pointer(::sequence < ::conversation >) system::message_box(const ::string & st
    fork([strMessage, strTitle, emessagebox, psequence, pmessagebox]()
    {
 
-      pmessagebox->display_synchronously(strMessage, strTitle, emessagebox);
+      pmessagebox->display(strMessage, strTitle, emessagebox);
 
       psequence->on_sequence();
 

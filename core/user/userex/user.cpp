@@ -2106,7 +2106,7 @@ namespace core
 
    //   }
 
-   //   return os_message_box(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+   //   return message_box_synchronous(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
    //}
 

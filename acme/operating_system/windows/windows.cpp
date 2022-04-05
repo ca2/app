@@ -365,7 +365,7 @@ void __node_acme_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   os_message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   message_box_synchronous(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
    //   return 0;
 

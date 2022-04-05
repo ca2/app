@@ -1842,7 +1842,7 @@ namespace linux
 //
 //      }
 //
-//      i32 nResult = ::os_message_box((oswindow)get_handle(), pszText, strCaption, nType);
+//      i32 nResult = ::message_box_synchronous((oswindow)get_handle(), pszText, strCaption, nType);
 //
 //      return nResult;
 //

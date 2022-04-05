@@ -340,12 +340,12 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      os_message_box(nullptr, "going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
+      message_box_synchronous(nullptr, "going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         os_message_box(nullptr, "uid=" + __string(uid), "seteuid success", e_message_box_ok);
+         message_box_synchronous(nullptr, "uid=" + __string(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -357,7 +357,7 @@ void app_core::system_init()
 
          strError.format("errno=%d uid=%d", iErr);
 
-         os_message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+         message_box_synchronous(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 

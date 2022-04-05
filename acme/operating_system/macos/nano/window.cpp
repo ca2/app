@@ -172,12 +172,12 @@ namespace macos
    }
 
 
-   void nano_window::display_synchronously()
+   void nano_window::display()
    {
 
       set_active();
       
-      m_pwindowbridge->do_modal();
+      m_pwindowbridge->display();
 
    }
 

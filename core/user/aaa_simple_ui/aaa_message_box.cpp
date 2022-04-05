@@ -464,7 +464,7 @@ namespace simple_ui
 
 } // namespace simple_ui
 
-// os_message_box / with async response wrapper
+// message_box_synchronous / with async response wrapper
 // TODO: clip functionality to common behavior from
 // all native message boxes at each platform.
 // MessageBox that doesn't need user::interaction
@@ -479,13 +479,13 @@ namespace simple_ui
 
 // ui_message_box with async response
 // PLAN: it should be same implementation relying on user::interaction
-// should be completely compatible to os_message_box (like Yes/No/Cancel/Try...)
+// should be completely compatible to message_box_synchronous (like Yes/No/Cancel/Try...)
 // except for the timeout feature (standard behavior/API to be defined).
 
 
 // message_box with async response
 // defaults to ui_message_box
-// It fallbacks to os_message_box (with no timeout) when
+// It fallbacks to message_box_synchronous (with no timeout) when
 // user interaction isn't available.
 
 
@@ -493,7 +493,7 @@ namespace simple_ui
 //CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption,u32 uFlags)
 //{
 //
-//   return os_message_box(oswindow, pszText, pszCaption, uFlags, function);
+//   return message_box_synchronous(oswindow, pszText, pszCaption, uFlags, function);
 //
 //}
 

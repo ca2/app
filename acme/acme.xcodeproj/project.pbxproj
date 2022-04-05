@@ -2580,6 +2580,8 @@
 		9AEA1BB226794D5B006F4A68 /* color32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAD26794D5A006F4A68 /* color32.h */; };
 		9AEA1BB326794D5B006F4A68 /* opacity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAE26794D5A006F4A68 /* opacity.h */; };
 		9AEA1BB426794D5B006F4A68 /* opacity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEA1BAE26794D5A006F4A68 /* opacity.h */; };
+		9AF2845227FBCA0E00D4C1A8 /* app.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF2844F27FBCA0D00D4C1A8 /* app.h */; };
+		9AF2845327FBCA0E00D4C1A8 /* app.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2845127FBCA0D00D4C1A8 /* app.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4062,6 +4064,8 @@
 		9AEA1BAB26794D59006F4A68 /* _system_color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _system_color.h; sourceTree = "<group>"; };
 		9AEA1BAD26794D5A006F4A68 /* color32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color32.h; sourceTree = "<group>"; };
 		9AEA1BAE26794D5A006F4A68 /* opacity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opacity.h; sourceTree = "<group>"; };
+		9AF2844F27FBCA0D00D4C1A8 /* app.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		9AF2845127FBCA0D00D4C1A8 /* app.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = app.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5783,6 +5787,8 @@
 			children = (
 				9AA8F9B127BA7295008FF9AA /* _nano.cpp */,
 				9AA8F9AC27BA7295008FF9AA /* _nano.h */,
+				9AF2844F27FBCA0D00D4C1A8 /* app.h */,
+				9AF2845127FBCA0D00D4C1A8 /* app.mm */,
 				9AA8F9B527BA7295008FF9AA /* device.cpp */,
 				9AA8F9AE27BA7295008FF9AA /* device.h */,
 				9AA8F9B327BA7295008FF9AA /* font.cpp */,
@@ -6407,6 +6413,7 @@
 				9A15A69E264B59EE0080670E /* multiple_lock.h in Headers */,
 				9A110F5827CDD2450081BCCD /* app.h in Headers */,
 				9A15A684264B59EE0080670E /* _impl.h in Headers */,
+				9AF2845227FBCA0E00D4C1A8 /* app.h in Headers */,
 				9A68AE8825114435008DABD2 /* block.h in Headers */,
 				9A68ACE525114434008DABD2 /* new.h in Headers */,
 				9A7861CF264B9096003DF8A0 /* payload.h in Headers */,
@@ -8191,6 +8198,7 @@
 				9A7861D5264B9096003DF8A0 /* linked_property.cpp in Sources */,
 				9A68B3AB25114438008DABD2 /* parsing.cpp in Sources */,
 				9A68B3FA25114438008DABD2 /* pipe.cpp in Sources */,
+				9AF2845327FBCA0E00D4C1A8 /* app.mm in Sources */,
 				9A68AE7925114435008DABD2 /* property_set_papaya.cpp in Sources */,
 				9A92314827EAE25E00B5A78D /* enumerator.cpp in Sources */,
 				9AA8FD9127BA729B008FF9AA /* _nano.cpp in Sources */,

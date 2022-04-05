@@ -783,6 +783,6 @@ extern "C"
 CLASS_DECL_AURA i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uFlags)
 {
 
-   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uFlags);
+   return ::message_box_synchronous(oswindow, string(pszText), string(pszCaption), uFlags);
 
 }

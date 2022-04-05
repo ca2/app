@@ -3634,7 +3634,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
+         //::message_box_synchronous(NULL, strUrl, strUrl, e_message_box_ok);
 
          m_pcontext->m_papexcontext->os().link_open(strUrl);
 

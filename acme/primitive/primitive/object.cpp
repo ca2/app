@@ -799,7 +799,7 @@ void object::do_request(::create* pcreate)
 //
 //   }
 //
-//   return ::os_message_box(payload);
+//   return ::message_box_synchronous(payload);
 //
 //}
 
@@ -1883,7 +1883,7 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      ::os_message_box(this, e.m_strMessage);
+      ::message_box_synchronous(this, e.m_strMessage);
 
    }
 
@@ -2596,7 +2596,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //   if (!estatus)
 //   {
 //
-////      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
+////      estatus = ::message_box_synchronous(pszMessage, pszTitle, emessagebox, process);
 //
 //   }
 //

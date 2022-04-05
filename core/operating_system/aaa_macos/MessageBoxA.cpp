@@ -168,7 +168,7 @@ int _os_message_box(oswindow window, const ::string & pszMessage, const ::string
 CLASS_DECL_CORE string message_box_result_to_string(int iResult);
 
 
-void os_message_box(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+void message_box_synchronous(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
    
    

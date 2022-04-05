@@ -14,7 +14,7 @@ public:
 
    virtual void create();
 
-   virtual void display_synchronously();
+   virtual void display();
 
    virtual void message_loop();
 

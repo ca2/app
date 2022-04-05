@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_APEX void os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
+CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    while (::apex::get_system()->oslocal().m_iMessageBoxResult > 0)

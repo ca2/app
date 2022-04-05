@@ -49,7 +49,7 @@ namespace macos
 
       void destroy() override;
 
-      void display_synchronously() override;
+      void display() override;
 
       //virtual void _on_event(XEvent *pevent);
 

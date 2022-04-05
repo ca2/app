@@ -671,7 +671,7 @@ void Screen::draw_contents(NVGcontext * ctx)
 
 void Screen::draw(NVGcontext * ctx) {
    //Widget::draw(ctx);
-
+   //return;
    draw_all(ctx);
 
    //draw_widgets(ctx);
@@ -801,7 +801,7 @@ bool Screen::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekey
       p -= Vector2i(1, 2);
 
       bool ret = false;
-      if (!m_drag_active) {
+      if (!m_drag_active || !m_drag_widget) {
          //Widget * widget = find_widget(p);
          //if (widget != nullptr && widget->cursor() != m_cursor) {
            // m_cursor = widget->cursor();
@@ -878,11 +878,13 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
 
       auto drop_widget = find_widget(m_mouse_pos);
       //if (m_drag_active && action == GLFW_RELEASE &&
-      if (m_drag_active && !down &&
-         drop_widget != m_drag_widget) {
+      if (m_drag_active && !down && m_drag_widget && drop_widget != m_drag_widget)
+      {
+      
          m_redraw |= m_drag_widget->mouse_button_event(
             m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
             false, ekeyModifiers);
+         
       }
 
  /*     if (drop_widget != nullptr && drop_widget->cursor() != m_cursor) {

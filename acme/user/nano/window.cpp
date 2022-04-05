@@ -108,16 +108,23 @@ void nano_window::on_create()
 
 void nano_window::destroy()
 {
+   
+   if(m_functionClose)
+   {
+   
+      m_functionClose(this);
+      
+   }
 
    m_pimplementation->destroy();
 
 }
 
 
-void nano_window::display_synchronously()
+void nano_window::display()
 {
 
-   m_pimplementation->display_synchronously();
+   m_pimplementation->display();
 
 }
 

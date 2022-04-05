@@ -645,7 +645,7 @@ namespace nano2d
 
    float draw2d_context::text(float x, float y, const char * string, const char * end)
    {
-
+      
       ::string strText(string, end ? end - string : str::length(string));
 
       m_pgraphics->set(m_pstate->m_pfont);

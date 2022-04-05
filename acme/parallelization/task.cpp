@@ -304,7 +304,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      os_message_box(this, exception.m_strMessage, m_psystem->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      message_box_synchronous(this, exception.m_strMessage, m_psystem->m_strAppId, e_message_box_ok, exception.m_strDetails);
 
    }
    catch(...)

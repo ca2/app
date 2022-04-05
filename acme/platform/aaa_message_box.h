@@ -63,7 +63,7 @@
 //}
 //
 //
-////CLASS_DECL_ACME void os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+////CLASS_DECL_ACME void message_box_synchronous(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 //
 //
 

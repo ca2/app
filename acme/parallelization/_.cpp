@@ -801,3 +801,41 @@ thread_local payload t_payloada[e_task_payload_count];
 
 
 
+CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < void() > function)
+{
+   
+   auto pevent = __new(manual_reset_event);
+   
+   main_asynchronous([ function, &pevent ]
+   {
+      
+      if(pevent)
+      {
+      
+         function();
+      
+         if(pevent)
+         {
+         
+            pevent->SetEvent();
+         
+         }
+         
+      }
+      
+   });
+   
+   if(!pevent->wait(duration))
+   {
+      
+      pevent.release();
+      
+      return false;
+      
+   }
+   
+   return true;
+   
+}
+
+

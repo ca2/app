@@ -199,7 +199,7 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA void os_message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA void message_box_synchronous(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
 //
 //
 //

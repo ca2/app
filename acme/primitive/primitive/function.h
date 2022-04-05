@@ -166,7 +166,7 @@ public:
 
    __pointer(predicate_base)     m_ppredicate;
 
-   function()
+   function(nullptr_t = nullptr)
    {
 
    }

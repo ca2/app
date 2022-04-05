@@ -879,10 +879,10 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 }
 
 
-//void application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
-//   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+//   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
 //}
 
@@ -929,7 +929,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //   }
 
-//   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
 //}
 
@@ -946,7 +946,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //   }
 
-//   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
 //}
 
@@ -2383,7 +2383,7 @@ catch (const ::exception & e)
 
    handle_exception(e);
 
-   os_message_box(this, "Application failed to initialize (1).\n\n" + e.m_strMessage , m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage , m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
    throw e;
 
@@ -2391,7 +2391,7 @@ catch (const ::exception & e)
 catch (...)
 {
 
-   os_message_box(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+   message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
 
    throw "Unknown exception";
 
@@ -2450,7 +2450,7 @@ catch (const ::exit_exception & exception)
 
    handle_exception(exception);
 
-   os_message_box(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
+   message_box_synchronous(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
 
    throw exception;
 
@@ -2458,7 +2458,7 @@ catch (const ::exit_exception & exception)
 catch (const ::exception & exception)
 {
 
-   os_message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
+   message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
       exception.m_strMessage + "\n\n" + exception.m_strDetails);
 
    throw exception;
@@ -2467,7 +2467,7 @@ catch (const ::exception & exception)
 catch (...)
 {
 
-   os_message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+   message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
 
    throw "Unknown exception";
 
@@ -10127,16 +10127,6 @@ void application_on_menu_action(void * pApplication, const char * pszCommand)
    auto papp = (::application *) pApplication;
    
    papp->on_application_menu_action(pszCommand);
-   
-}
-
-
-void * application_system(void * pApplication)
-{
-   
-   auto papp = (::app *) pApplication;
-   
-   return papp->m_psystem;
    
 }
 

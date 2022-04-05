@@ -94,7 +94,7 @@ void popup_button::display_synchronously(const ::string & strText, int x, int y)
 
    create();
 
-   nano_window::display_synchronously();
+   nano_window::display();
 
 }
 

@@ -2078,23 +2078,16 @@ namespace sort
 inline bool is_null(const void * p, size_t s)
 {
 
-   const auto maximum = (size_t) (-1);
-
-   return ((size_t) p) <= s || ((size_t) p) >= (maximum - s);
+   return ((size_t) p <= s);
 
 }
-
-
-
 
 
 template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
 
-   const auto maximum = ((size_t) (-1)) - 65536;
-
-   return ((size_t) p <= 65536) || ((size_t) p) >= (maximum);
+   return ((size_t) p <= 65536);
 
 }
 
@@ -3782,7 +3775,10 @@ class context_image;
 
 //class message_box;
 
-CLASS_DECL_ACME::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
+
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok, const char * pszDetails = nullptr);
+
 
 #include "acme/memory/counter.h"
 

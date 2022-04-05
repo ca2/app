@@ -169,7 +169,7 @@ enum enum_command_system
 
 CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
-CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
+CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
 
 #include "_c.h"
 

@@ -8843,7 +8843,7 @@ namespace user
 
       if (::is_set(pappearance))
       {
-
+         
          pappearance->perform_layout(pgraphics);
 
       }

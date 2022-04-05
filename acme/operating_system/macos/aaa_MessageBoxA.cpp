@@ -170,7 +170,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 void _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future);
 
-void os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
+void message_box_synchronous(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
 {
    
    

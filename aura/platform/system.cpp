@@ -3932,7 +3932,7 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
+//         //::message_box_synchronous(NULL, strUrl, strUrl, e_message_box_ok);
 //
 //         pcontext->m_papexcontext->os().link_open(strUrl);
 //

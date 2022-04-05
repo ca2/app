@@ -115,7 +115,7 @@ void nano_message_box::calculate_size()
 }
 
 
-void nano_message_box::display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+void nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
    calculate_size();
@@ -209,7 +209,7 @@ void nano_message_box::display_synchronously(const ::string & strMessage, const 
 
    create();
 
-   nano_window::display_synchronously();
+   nano_window::display();
 
 }
 
@@ -263,7 +263,7 @@ void nano_message_box::on_create()
 extern class ::system * g_psystem;
 
 
-CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const ::string & strDetails)
+CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
 {
 
    initialize_nano();
@@ -280,7 +280,7 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
    if(pobject->m_psystem->m_bConsole || !is_ui_possible())
    {
 
-      return message_box_for_console(pszMessage, pszTitle, emessagebox, strDetails);
+      return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
 
    }
    else
@@ -293,12 +293,117 @@ CLASS_DECL_ACME ::atom os_message_box(::object * pobject, const char * pszMessag
 #endif
 
    auto pmessagebox = pobject->__create_new < nano_message_box >();
+   
+   atom idResult;
+   
+   manual_reset_event event;
 
-   pmessagebox->display_synchronously(pszMessage, pszTitle, emessagebox, strDetails);
+   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 
-   auto idResult = pmessagebox->get_result();
+   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+   {
+      
+      idResult = pwindow->m_atomResult;
+      
+      event.SetEvent();
+      
+   };
+   
+   event.wait();
+   
+   //auto idResult = pmessagebox->get_result();
 
    return idResult;
+
+}
+
+
+struct message_box :
+   virtual public element
+{
+public:
+
+
+   ::function < void(const ::atom & atom) >     m_function;
+   __pointer(::object)                          m_pobject;
+   string                                       m_strMessage;
+   string                                       m_strTitle;
+   e_message_box                                m_emessagebox;
+   string                                       m_strDetails;
+
+
+};
+
+
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
+{
+
+   auto pmessagebox = __new(message_box);
+
+   pmessagebox->m_pobject = pobject;
+   pmessagebox->m_strMessage = pszMessage;
+   pmessagebox->m_strTitle = pszTitle;
+   pmessagebox->m_strDetails = pszDetails;
+
+   //pobject->fork([pmessagebox]()
+   //{
+
+   initialize_nano();
+
+   if (::is_null(pobject))
+   {
+
+      pobject = g_psystem;
+      
+   }
+
+#if defined(_UWP)
+
+   if(pobject->m_psystem->m_bConsole || !is_ui_possible())
+   {
+
+      return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+   
+#endif
+   
+   main_asynchronous([ pmessagebox, pobject ]()
+   {
+
+      auto pnanomessagebox = pobject->__create_new < nano_message_box >();
+   
+      atom idResult;
+   
+      manual_reset_event event;
+
+      pnanomessagebox->display(
+         pmessagebox->m_strMessage,
+         pmessagebox->m_strTitle,
+         pmessagebox->m_emessagebox,
+         pmessagebox->m_strDetails);
+
+      pnanomessagebox->m_functionClose = [ pmessagebox ](nano_window * pwindow)
+      {
+      
+         auto idResult = pwindow->m_atomResult;
+         
+         if(pmessagebox->m_function)
+         {
+      
+            pmessagebox->m_function(idResult);
+            
+         }
+      
+      };
+
+   });
 
 }
 
@@ -313,7 +418,7 @@ void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
 
       pdetailswindow->m_strMessage = m_strDetails;
 
-      pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+      pdetailswindow->display(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 
       m_atomResult.clear();
 

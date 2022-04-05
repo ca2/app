@@ -28,24 +28,16 @@ class nano_window_bridge :
 public:
 
    
-   ::macos::nano_window * m_pwindow;
+   ::macos::nano_window *     m_pwindow;
+   CFTypeRef                  m_pnsnanowindow;
    
-#ifdef __OBJC__
-   
-   CFTypeRef  m_pnsnanowindow;
-   
-#else
-   
-   void * m_pvoidNsNanoWindow;
-   
-#endif
    
    nano_window_bridge();
    ~nano_window_bridge() override;
    
    void create_ns_nano_window(CGRect cgrect);
    
-   void do_modal();
+   void display();
    
    virtual void on_left_button_up(int x, int y);
 

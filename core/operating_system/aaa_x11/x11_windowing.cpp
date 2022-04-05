@@ -455,7 +455,7 @@ int simple_ui_display::show()
 CLASS_DECL_CORE string message_box_result_to_string(int iResult);
 
 
-void os_message_box(oswindow oswindow, const ::string & psz, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+void message_box_synchronous(oswindow oswindow, const ::string & psz, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    wstring wstr(psz);

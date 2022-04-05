@@ -501,7 +501,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 
    }
 
-   os_message_box(pobject, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
+   message_box_synchronous(pobject, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
 }
 

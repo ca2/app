@@ -381,7 +381,7 @@ namespace axis
 //
 //#ifndef _UWP
 //
-//                        os_message_box(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+//                        message_box_synchronous(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 //
 //#endif
 //

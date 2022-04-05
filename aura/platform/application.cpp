@@ -619,10 +619,10 @@ namespace aura
    }
 
 
-   //void application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
    //}
 
@@ -669,7 +669,7 @@ namespace aura
 
    //   }
 
-   //   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
    //}
 
@@ -686,7 +686,7 @@ namespace aura
 
    //   }
 
-   //   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
    //}
 

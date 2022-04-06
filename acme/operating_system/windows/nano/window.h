@@ -40,7 +40,7 @@ namespace windows
 
       void create() override;
 
-      void display_synchronously() override;
+      void display() override;
 
       void message_loop() override;
 

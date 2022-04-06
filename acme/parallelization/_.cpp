@@ -800,7 +800,6 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-
 CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < void() > function)
 {
    
@@ -837,5 +836,6 @@ CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < 
    return true;
    
 }
+
 
 

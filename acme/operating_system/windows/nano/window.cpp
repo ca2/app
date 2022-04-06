@@ -823,7 +823,7 @@ namespace windows
 //}
 //
 
-   void nano_window::display_synchronously()
+   void nano_window::display()
    {
 
       ShowWindow(m_hwnd, SW_SHOW);
@@ -833,6 +833,7 @@ namespace windows
       message_loop();
 
    }
+
 
    void nano_window::message_loop()
    {

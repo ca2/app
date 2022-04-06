@@ -71,4 +71,20 @@ bool on_init_timer_thread()
 }
 
 
+extern class ::system * g_psystem;
+
+
+CLASS_DECL_ACME void main_asynchronous(::function < void() > function)
+{
+
+   g_psystem->fork([function]()
+      {
+
+         function();
+
+      });
+
+}
+
+
 

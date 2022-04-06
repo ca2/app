@@ -8,10 +8,11 @@
 popup_button::popup_button()
 {
 
+   m_bTopMost = true;
+
    m_bArbitraryPositioning = true;
 
 }
-
 
 
 popup_button::~popup_button()
@@ -59,7 +60,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::display_synchronously(const ::string & strText, int x, int y)
+void popup_button::display(const ::string & strText, int x, int y)
 {
 
    calculate_size_and_position(x, y);
@@ -92,9 +93,16 @@ void popup_button::display_synchronously(const ::string & strText, int x, int y)
 
    }
 
-   create();
+   main_asynchronous([this]()
+      {
 
-   nano_window::display();
+         create();
+
+         nano_window::display();
+
+         message_loop();
+
+      });
 
 }
 

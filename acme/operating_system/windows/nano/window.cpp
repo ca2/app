@@ -149,7 +149,7 @@ namespace windows
       auto hinstanceWndProc = nano_message_box_hinstance();
 
       HWND hwnd = CreateWindowEx(
-         0,
+         m_pinterface->m_bTopMost ? WS_EX_TOPMOST : 0,
          _T(NANO_WINDOW_CLASS),
          wstrTitle,
          WS_POPUP,
@@ -829,8 +829,6 @@ namespace windows
       ShowWindow(m_hwnd, SW_SHOW);
 
       UpdateWindow(m_hwnd);
-
-      message_loop();
 
    }
 

@@ -53,6 +53,8 @@ public:
    int                                    m_iFontSize;
    enum_font                              m_efont;
 
+   bool                                   m_bTopMost;
+
 
    __pointer_array(nano_button)           m_buttona;
 

@@ -10,6 +10,8 @@
 
 nano_window::nano_window()
 {
+
+   m_bTopMost = false;
    
    m_iFontSize = 14;
    

@@ -207,9 +207,16 @@ void nano_message_box::display(const ::string & strMessage, const ::string & str
 
    }
 
-   create();
+   main_asynchronous([this]()
+   {
 
-   nano_window::display();
+      create();
+
+      nano_window::display();
+
+      message_loop();
+
+   });
 
 }
 
@@ -438,16 +445,24 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    auto pbutton = __create_new < popup_button >();
 
-   pbutton->display_synchronously("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
 
-   auto idResult = pbutton->get_result();
-
-   if (idResult == e_dialog_result_yes)
+   pbutton->m_functionClose = [this](nano_window * pwindow)
    {
 
-      display_temporary_file_with_text(m_strMessage + "\n\n" + m_strDetails);
+      auto atomResult = pwindow->m_atomResult;
 
-   }
+      if (atomResult == e_dialog_result_yes)
+      {
+
+         display_temporary_file_with_text(m_strMessage + "\n\n" + m_strDetails);
+
+      }
+
+   };
+
+
+   pbutton->display("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
+
 
 }
 

@@ -381,6 +381,14 @@ memsize _memory_size(void * pmemory)
 memsize _memory_size_debug(void * pmemory, i32 iBlockType)
 {
 
+#ifdef WINDOWS
+
+   return _msize(pmemory);
+
+#else
+
    return malloc_size(pmemory);
+
+#endif
 
 }

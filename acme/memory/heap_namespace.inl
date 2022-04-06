@@ -4,7 +4,7 @@
 
 #else
 
-#define AXIS_MEMORY_MANAGEMENT false
+#define AXIS_MEMORY_MANAGEMENT true
 
 #endif
 

@@ -50,7 +50,7 @@ NAMESPACE_BEGIN(nanogui)
       std::vector<float> & values() { return m_values; }
       void set_values(const std::vector<float> & values) { m_values = values; }
 
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+      virtual Vector2i preferred_size(NVGcontext * ctx) override;
       virtual void draw(NVGcontext * ctx) override;
    protected:
       std::string m_caption, m_header, m_footer;

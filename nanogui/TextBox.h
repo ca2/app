@@ -39,6 +39,8 @@ NAMESPACE_BEGIN(nanogui)
          Center,
          Right
       };
+      
+      ::write_text::font_pointer       m_pfontSpin;
 
       TextBox(Widget * parent, const std::string & value = "Untitled");
 
@@ -109,7 +111,7 @@ NAMESPACE_BEGIN(nanogui)
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
       bool keyboard_character_event(unsigned int codepoint) override;
 
-      Vector2i preferred_size(NVGcontext * ctx) const override;
+      Vector2i preferred_size(NVGcontext * ctx) override;
       void draw(NVGcontext * ctx) override;
    protected:
       bool check_format(const std::string & input, const std::string & format);

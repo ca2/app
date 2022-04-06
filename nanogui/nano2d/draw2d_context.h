@@ -8,14 +8,21 @@ namespace nano2d
 {
 
 
+   void __font_face(::write_text::font * pfont, const char * font);
+   void __font_size(::write_text::font * pfont, float size);
+
+
    class NANOGUI_EXPORT draw2d_context :
       virtual public ::nano2d::context
    {
    protected:
 
+      
       ::draw2d::graphics_pointer       m_pgraphics;
-      int         m_iPaint = -1;
+      __pointer(::nano2d::font_sink)   m_pfontsink;
+      int                              m_iPaint = -1;
 
+      
    public:
 
 
@@ -31,7 +38,8 @@ namespace nano2d
 
          ::draw2d::path_pointer        m_ppath;
 
-         ::write_text::font_pointer    m_pfont;
+         string                        m_strFontFace;
+         float                         m_fFontSize;
 
          ::e_align                     m_ealignText;
 
@@ -45,6 +53,7 @@ namespace nano2d
             savedc(pgraphics)
          {
 
+            m_fFontSize = 0.f;
 
          }
 
@@ -75,6 +84,13 @@ namespace nano2d
 
       void set_graphics(::draw2d::graphics * pgraphics);
       ::draw2d::graphics * get_graphics();
+
+
+      void set_font_sink(::nano2d::font_sink * pfontsink);
+      ::nano2d::font_sink * get_font_sink();
+      
+      
+      virtual ::write_text::font_pointer _get_current_font();
 
 
       virtual void _create_new_state();

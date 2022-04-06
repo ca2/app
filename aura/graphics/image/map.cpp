@@ -42,7 +42,7 @@ void image_descriptor_map::erase_bigger()
    while (passociation != nullptr)
    {
 
-      if (!passociation->element2()->is_shared() && passociation->element2()->area() > uAreaMax)
+      if (passociation->element2()->reference_count() <= 1 && passociation->element2()->area() > uAreaMax)
       {
 
          uAreaMax = passociation->element2()->area();

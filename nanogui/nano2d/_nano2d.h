@@ -16,6 +16,9 @@ inline ::color::color __color(NANO2D_COLOR color)
 }
 
 
+#include "font_sink.h"
+
+
 #include "context.h"
 #include "draw2d_context.h"
 

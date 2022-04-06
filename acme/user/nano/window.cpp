@@ -226,21 +226,21 @@ void nano_window::create_drawing_objects()
    if (bDarkMode)
    {
 
-      m_colorWindow = rgb(0, 0, 0);
-      m_colorText = rgb(255, 255, 255);
-      m_colorHyperlink = rgb(40, 90, 245);
-      m_colorHyperlinkHover = rgb(70, 180, 255);
-      m_colorFocus = rgb(2, 128, 255);
+      m_colorWindow = argb(255, 0, 0, 0);
+      m_colorText = argb(255, 255, 255, 255);
+      m_colorHyperlink = argb(255, 40, 90, 245);
+      m_colorHyperlinkHover = argb(255, 70, 180, 255);
+      m_colorFocus = argb(255, 2, 128, 255);
 
    }
    else
    {
 
-      m_colorWindow = rgb(255, 255, 255);
-      m_colorText = rgb(0, 0, 0);
-      m_colorHyperlink = rgb(50, 100, 185);
-      m_colorHyperlinkHover = rgb(100, 180, 225);
-      m_colorFocus = rgb(2, 58, 235);
+      m_colorWindow = argb(255, 255, 255, 255);
+      m_colorText = argb(255, 0, 0, 0);
+      m_colorHyperlink = argb(255, 50, 100, 185);
+      m_colorHyperlinkHover = argb(255, 100, 180, 225);
+      m_colorFocus = argb(255, 2, 58, 235);
 
    }
 

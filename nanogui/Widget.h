@@ -36,7 +36,71 @@ class NANOGUI_EXPORT Widget :
 public:
 
 
-   
+      Widget * m_parent;
+      ref<Theme> m_theme;
+      ref<Layout> m_layout;
+      Vector2i m_pos, m_size, m_fixed_size;
+      std::vector<Widget *> m_children;
+      /**
+       * Whether or not this Widget is currently visible.  When a Widget is not
+       * currently visible, no time is wasted executing its drawing method.
+       */
+      bool m_visible;
+
+      /**
+       * Whether or not this Widget is currently enabled.  Various different kinds
+       * of derived types use this to determine whether or not user input will be
+       * accepted.  For example, when ``m_enabled == false``, the state of a
+       * CheckBox cannot be changed, or a TextBox will not allow new input.
+       */
+      bool m_enabled;
+      bool m_focused, m_mouse_focus;
+      std::string m_tooltip;
+      int m_font_size;
+      
+
+      /**
+       * \brief The amount of extra icon scaling used in addition the the theme's
+       *        default icon font scale.  Default value is ``1.0``, which implies
+       *        that \ref nanogui::Widget::icon_scale simply returns the value
+       *        of \ref nanogui::Theme::m_icon_scale.
+       *
+       * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
+       * need to adjust the Theme's default icon scaling
+       * (\ref nanogui::Theme::m_icon_scale) to properly display icons within their
+       * bounds (upscale, or downscale).
+       *
+       * \rst
+       * .. note::
+       *
+       *    When using ``nvgFontSize`` for icons in subclasses, make sure to call
+       *    the :func:`nanogui::Widget::icon_scale` function.  Expected usage when
+       *    *drawing* icon fonts is something like:
+       *
+       *    .. code-block:: cpp
+       *
+       *       virtual void draw(NVGcontext *ctx) {
+       *           // fontSize depends on the kind of Widget.  Search for `FontSize`
+       *           // in the Theme class (e.g., standard vs button)
+       *           float ih = font_size;
+       *           // assuming your Widget has a declared `mIcon`
+       *           if (nvgIsFontIcon(mIcon)) {
+       *               ih *= icon_scale();
+       *               nvgFontFace(ctx, "icons");
+       *               nvgFontSize(ctx, ih);
+       *               /// remaining drawing code (see button.cpp for more)
+       *           }
+       *       }
+       * \endrst
+       */
+      float m_icon_extra_scale;
+      Cursor m_cursor;
+
+      //::::function < void(NVGcontext *) >    m_callbackSizing;
+      ::function < void(NVGcontext *) >    m_callbackLayout;
+
+      //virtual void _nanogui_to_user(::user::interaction * puserinteraction);
+
 
 
    /// Construct a new widget with the given parent widget
@@ -194,11 +258,11 @@ public:
    void set_tooltip(const std::string & tooltip) { m_tooltip = tooltip; }
 //
 //   /// Return current font size. If not set the default of the current theme will be returned
-   int font_size() const;
+   float font_size() const;
    /// Set the font size of this widget
-   void set_font_size(int font_size) { m_font_size = font_size; }
+   void set_font_size(float font_size);
    /// Return whether the font size is explicitly specified for this widget
-   bool has_font_size() const { return m_font_size > 0; }
+   bool has_font_size() const { return m_font_size >= 1.f; }
 
    /**
     * The amount of extra scaling applied to *icon* fonts.
@@ -255,7 +319,7 @@ public:
 
 
    /// Compute the preferred size of the widget
-   virtual Vector2i preferred_size(NVGcontext * ctx) const;
+   virtual Vector2i preferred_size(NVGcontext * ctx);
 
    /// Invoke the associated layout generator to properly place child widgets, if any
    virtual void perform_layout(NVGcontext * ctx);
@@ -279,70 +343,6 @@ public:
     */
    float icon_scale() const { return m_theme->m_icon_scale * m_icon_extra_scale; }
 
-// protected:
-   Widget * m_parent;
-   ref<Theme> m_theme;
-   ref<Layout> m_layout;
-   Vector2i m_pos, m_size, m_fixed_size;
-   std::vector<Widget *> m_children;
-   /**
-    * Whether or not this Widget is currently visible.  When a Widget is not
-    * currently visible, no time is wasted executing its drawing method.
-    */
-   bool m_visible;
-
-   /**
-    * Whether or not this Widget is currently enabled.  Various different kinds
-    * of derived types use this to determine whether or not user input will be
-    * accepted.  For example, when ``m_enabled == false``, the state of a
-    * CheckBox cannot be changed, or a TextBox will not allow new input.
-    */
-   bool m_enabled;
-   bool m_focused, m_mouse_focus;
-   std::string m_tooltip;
-   int m_font_size;
-
-   /**
-    * \brief The amount of extra icon scaling used in addition the the theme's
-    *        default icon font scale.  Default value is ``1.0``, which implies
-    *        that \ref nanogui::Widget::icon_scale simply returns the value
-    *        of \ref nanogui::Theme::m_icon_scale.
-    *
-    * Most widgets do not need extra scaling, but some (e.g., CheckBox, TextBox)
-    * need to adjust the Theme's default icon scaling
-    * (\ref nanogui::Theme::m_icon_scale) to properly display icons within their
-    * bounds (upscale, or downscale).
-    *
-    * \rst
-    * .. note::
-    *
-    *    When using ``nvgFontSize`` for icons in subclasses, make sure to call
-    *    the :func:`nanogui::Widget::icon_scale` function.  Expected usage when
-    *    *drawing* icon fonts is something like:
-    *
-    *    .. code-block:: cpp
-    *
-    *       virtual void draw(NVGcontext *ctx) {
-    *           // fontSize depends on the kind of Widget.  Search for `FontSize`
-    *           // in the Theme class (e.g., standard vs button)
-    *           float ih = font_size;
-    *           // assuming your Widget has a declared `mIcon`
-    *           if (nvgIsFontIcon(mIcon)) {
-    *               ih *= icon_scale();
-    *               nvgFontFace(ctx, "icons");
-    *               nvgFontSize(ctx, ih);
-    *               /// remaining drawing code (see button.cpp for more)
-    *           }
-    *       }
-    * \endrst
-    */
-   float m_icon_extra_scale;
-   Cursor m_cursor;
-
-   //::::function < void(NVGcontext *) >    m_callbackSizing;
-   ::function < void(NVGcontext *) >    m_callbackLayout;
-
-   //virtual void _nanogui_to_user(::user::interaction * puserinteraction);
 
 };
 

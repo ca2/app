@@ -45,6 +45,10 @@ namespace write_text
       virtual memory_pointer get_file_memory(::acme::context * pcontext, const ::file::path & path);
 
       
+      virtual string calculate_font_descriptor(const char * face, float size);
+      virtual string get_font_descriptor_face(const ::string & strFontDescriptor);
+
+      
       virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);
 
 

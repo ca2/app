@@ -28,17 +28,16 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT Theme : public Object {
    public:
-      Theme(NVGcontext * ctx);
 
       /* Fonts */
       /// The standard font face (default: ``"sans"`` from ``resources/roboto_regular.ttf``).
-      int m_font_sans_regular;
+      //int m_font_sans_regular;
       /// The bold font face (default: ``"sans-bold"`` from ``resources/roboto_regular.ttf``).
-      int m_font_sans_bold;
+      //int m_font_sans_bold;
       /// The icon font face (default: ``"icons"`` from ``resources/entypo.ttf``).
-      int m_font_icons;
+      //int m_font_icons;
       /// The monospace font face (default: ``"mono"`` from ``resources/inconsolata_regular.ttf``).
-      int m_font_mono_regular;
+      //int m_font_mono_regular;
       /**
        * The amount of scaling that is applied to each icon to fit the size of
        * NanoGUI widgets.  The default value is ``0.77f``, setting to e.g. higher
@@ -220,7 +219,9 @@ NAMESPACE_BEGIN(nanogui)
       int m_text_box_up_icon;
       /// Icon to use when a text box has a down toggle (e.g. IntBox) (default: ``FA_CHEVRON_DOWN``).
       int m_text_box_down_icon;
-
+      
+      Theme();
+      
    protected:
       /// Default destructor does nothing; allows for inheritance.
       virtual ~Theme() { };

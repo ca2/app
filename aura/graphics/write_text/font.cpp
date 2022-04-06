@@ -1,12 +1,11 @@
 #include "framework.h"
 #include "font.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 namespace write_text
 {
-
-
 
 
    font::font()
@@ -121,7 +120,6 @@ namespace write_text
          m_bStrikeout = font.m_bStrikeout;
          m_echaracterseta = font.m_echaracterseta;
          m_echaracterset = font.m_echaracterset;
-         //m_memory = font.m_memory;
 
          set_modified();
 
@@ -333,6 +331,14 @@ namespace write_text
 
       return m_strFontFamilyName;
 
+   }
+
+
+   string font::get_font_descriptor_face()
+   {
+      
+      return m_psystem->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_strFontDescriptor);
+      
    }
 
 

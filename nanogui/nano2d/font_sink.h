@@ -2,12 +2,30 @@
 //  font_sink.hpp
 //  nanogui
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:05
+//  <3 Thomas likes number 5!!
 //
 
-#ifndef font_sink_hpp
-#define font_sink_hpp
 
-#include <stdio.h>
+namespace nano2d
+{
 
-#endif /* font_sink_hpp */
+   class NANOGUI_EXPORT font_sink :
+      virtual public ::object
+   {
+   public:
+      
+      
+      string_map < ::write_text::font_pointer > m_mapSharedFont;
+      
+
+      virtual ::write_text::font_pointer get_shared_font(const char * face, float size);
+      
+      
+   };
+
+
+} // namespace nano2d
+
+
+

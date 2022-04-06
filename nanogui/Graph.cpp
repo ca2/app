@@ -24,7 +24,7 @@ Graph::Graph(Widget * parent, const std::string & caption)
    m_text_color = Color(240, 192);
 }
 
-Vector2i Graph::preferred_size(NVGcontext *) const {
+Vector2i Graph::preferred_size(NVGcontext *) {
    return Vector2i(180, 45);
 }
 

@@ -101,7 +101,8 @@ void TabWidgetBase::perform_layout(NVGcontext * ctx) {
       nvgTextBounds(ctx, 0, 0, get_utf8_character(FA_TIMES_CIRCLE).data(), nullptr, unused);
 }
 
-Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx) const {
+Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx)
+{
    nvgFontFace(ctx, m_font.c_str());
    nvgFontSize(ctx, font_size());
    nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
@@ -435,7 +436,7 @@ void TabWidget::update_visibility() {
       it->second->set_visible(true);
 }
 
-Vector2i TabWidget::preferred_size(NVGcontext * ctx) const {
+Vector2i TabWidget::preferred_size(NVGcontext * ctx) {
    Vector2i base_size = TabWidgetBase::preferred_size(ctx),
       content_size = Vector2i(0);
    for (Widget * child : m_children)

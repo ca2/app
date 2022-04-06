@@ -62,7 +62,7 @@ NAMESPACE_BEGIN(nanogui)
    /// Accept scroll events and propagate them to the widget under the mouse cursor
    //virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
    /// Compute the preferred size of the widget
-   virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+   virtual Vector2i preferred_size(NVGcontext * ctx) override;
    /// Invoke the associated layout generator to properly place child widgets, if any
    virtual void perform_layout(NVGcontext * ctx) override;
    //protected:

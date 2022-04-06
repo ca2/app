@@ -30,9 +30,14 @@ PopupButton::PopupButton(Widget * parent, const std::string & caption, int butto
    m_icon_extra_scale = 0.8f; // widget override
 }
 
-Vector2i PopupButton::preferred_size(NVGcontext * ctx) const {
+
+Vector2i PopupButton::preferred_size(NVGcontext * ctx)
+{
+   
    return Button::preferred_size(ctx) + Vector2i(15, 0);
+   
 }
+
 
 void PopupButton::draw(NVGcontext * ctx) {
    if (!m_enabled && m_bChecked)

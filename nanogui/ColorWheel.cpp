@@ -22,7 +22,7 @@ ColorWheel::ColorWheel(Widget * parent, const Color & rgb)
    set_color(rgb);
 }
 
-Vector2i ColorWheel::preferred_size(NVGcontext *) const {
+Vector2i ColorWheel::preferred_size(NVGcontext *) {
    return { 100, 100 };
 }
 

@@ -1130,7 +1130,6 @@ void file_context::calculate_main_resource_memory()
 
    }
 
-
 #endif
 
    if (!m_bMainResourceMemoryCalculated)
@@ -1163,6 +1162,13 @@ void file_context::calculate_main_resource_memory()
 
    if (m_bFolderResourceCalculated)
    {
+      
+      if(!m_pfolderResource)
+      {
+         
+         output_debug_string("m_pfolderResource is null? Why?");
+         
+      }
 
       return m_pfolderResource;
 

@@ -29,7 +29,7 @@ NAMESPACE_BEGIN(nanogui)
 Widget::Widget(Widget * parent)
    : m_parent(nullptr), m_theme(nullptr), m_layout(nullptr),
    m_pos(0), m_size(0), m_fixed_size(0), m_visible(true), m_enabled(true),
-   m_focused(false), m_mouse_focus(false), m_tooltip(""), m_font_size(-1.f)
+   m_focused(false), m_mouse_focus(false), m_tooltip("") , m_font_size(-1) 
    ,m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/ 
 {
    if (parent)
@@ -58,8 +58,20 @@ void Widget::set_theme(Theme * theme) {
       child->set_theme(theme);
 }
 
-int Widget::font_size() const {
-   return (m_font_size < 0 && m_theme) ? m_theme->m_standard_font_size : m_font_size;
+
+float Widget::font_size() const
+{
+
+   return (m_font_size < 0.f && m_theme) ? m_theme->m_standard_font_size : m_font_size;
+   
+}
+
+
+void Widget::set_font_size(float font_size)
+{
+   
+   m_font_size = font_size;
+   
 }
 
 
@@ -70,7 +82,8 @@ void Widget::set_size(const Vector2i & size)
 
 }
 
-Vector2i Widget::preferred_size(NVGcontext * ctx) const {
+Vector2i Widget::preferred_size(NVGcontext * ctx)
+{
    if (m_layout)
       return m_layout->preferred_size(ctx, this);
    else

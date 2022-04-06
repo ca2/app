@@ -656,7 +656,7 @@ bool image_list::_grow(int iAddUpHint)
 void image_list::copy_from(const ::image_list * plist)
 {
 
-   __compose(m_pimage, plist->m_pimage->clone());
+   __compose(m_pimage, ::move_transfer(plist->m_pimage->clone()));
    m_size = plist->m_size;
    m_iSize = plist->m_iSize;
    m_iGrow = plist->m_iGrow;

@@ -60,6 +60,7 @@ namespace write_text
 
       string                        m_strFontFamilyName;
       ::file::path                  m_path;
+      string                        m_strFontDescriptor;
       double                        m_dFontSize;
       double                        m_dFontWidth;
       ::draw2d::enum_unit           m_eunitFontSize;
@@ -115,6 +116,10 @@ namespace write_text
       virtual enum_character_set calculate_character_set(::draw2d::graphics * pgraphics);
       virtual enum_character_set get_character_set(::draw2d::graphics * pgraphics);
       virtual string get_sample_text(::draw2d::graphics * pgraphics);
+      
+      
+      virtual string get_font_descriptor_face();
+
 
       static string get_sample_text(enum_character_set echarsset);
 

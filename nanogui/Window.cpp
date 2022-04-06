@@ -23,7 +23,7 @@ Window::Window(Widget * parent, const std::string & title)
    m_bPendingCentering = false;
  }
 
-Vector2i Window::preferred_size(NVGcontext * ctx) const {
+Vector2i Window::preferred_size(NVGcontext * ctx) {
    if (m_button_panel)
       m_button_panel->set_visible(false);
    Vector2i result = Widget::preferred_size(ctx);

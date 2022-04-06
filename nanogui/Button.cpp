@@ -22,7 +22,10 @@ Button::Button(Widget * parent, const std::string & caption, int icon)
    m_flags(NormalButton), m_background_color(Color(0, 0)),
    m_text_color(Color(0, 0)) { }
 
-Vector2i Button::preferred_size(NVGcontext * ctx) const {
+
+Vector2i Button::preferred_size(NVGcontext * ctx)
+{
+   
    int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
    nvgFontSize(ctx, font_size);
    nvgFontFace(ctx, "sans-bold");
@@ -202,7 +205,9 @@ bool Button::mouse_button_event(const Vector2i & p, int button, bool down, const
 
 }
 
-void Button::draw(NVGcontext * ctx) {
+void Button::draw(NVGcontext * ctx)
+{
+   
    Widget::draw(ctx);
 
    NVGcolor grad_top = m_theme->m_button_gradient_top_unfocused;

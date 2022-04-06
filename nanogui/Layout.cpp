@@ -26,7 +26,7 @@ BoxLayout::BoxLayout(Orientation orientation, Alignment alignment,
    m_spacing(spacing) {
 }
 
-Vector2i BoxLayout::preferred_size(NVGcontext * ctx, const Widget * widget) const {
+Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
    Vector2i size(2 * m_margin);
 
    int y_offset = 0;
@@ -61,7 +61,7 @@ Vector2i BoxLayout::preferred_size(NVGcontext * ctx, const Widget * widget) cons
    return size + Vector2i(0, y_offset);
 }
 
-void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
+void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
    Vector2i fs_w = widget->fixed_size();
    Vector2i container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
@@ -124,7 +124,7 @@ void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
    }
 }
 
-Vector2i GroupLayout::preferred_size(NVGcontext * ctx, const Widget * widget) const {
+Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
    int height = m_margin, width = 2 * m_margin;
 
    const Window * window = dynamic_cast<const Window *>(widget);
@@ -157,7 +157,7 @@ Vector2i GroupLayout::preferred_size(NVGcontext * ctx, const Widget * widget) co
    return Vector2i(width, height);
 }
 
-void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
+void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
    int height = m_margin, available_width =
       (widget->fixed_width() ? widget->fixed_width() : widget->width()) - 2 * m_margin;
 
@@ -196,7 +196,7 @@ void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
 }
 
 Vector2i GridLayout::preferred_size(NVGcontext * ctx,
-   const Widget * widget) const {
+   Widget * widget) {
    /* Compute minimum row / column sizes */
    std::vector<int> grid[2];
    compute_layout(ctx, widget, grid);
@@ -215,7 +215,7 @@ Vector2i GridLayout::preferred_size(NVGcontext * ctx,
    return size;
 }
 
-void GridLayout::compute_layout(NVGcontext * ctx, const Widget * widget, std::vector<int> * grid) const {
+void GridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<int> * grid) const {
    int axis1 = (int)m_orientation, axis2 = (axis1 + 1) % 2;
    size_t num_children = widget->children().size(), visible_children = 0;
    for (auto w : widget->children())
@@ -251,7 +251,8 @@ void GridLayout::compute_layout(NVGcontext * ctx, const Widget * widget, std::ve
    }
 }
 
-void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
+void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
+   
    Vector2i fs_w = widget->fixed_size();
    Vector2i container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
@@ -348,7 +349,7 @@ AdvancedGridLayout::AdvancedGridLayout(const std::vector<int> & cols, const std:
    m_row_stretch.resize(m_rows.size(), 0);
 }
 
-Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, const Widget * widget) const {
+Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, Widget * widget)  {
    /* Compute minimum row / column sizes */
    std::vector<int> grid[2];
    compute_layout(ctx, widget, grid);
@@ -365,7 +366,7 @@ Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, const Widget * wid
    return size + extra;
 }
 
-void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget) const {
+void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
    std::vector<int> grid[2];
    compute_layout(ctx, widget, grid);
 
@@ -414,8 +415,9 @@ void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget) const
    }
 }
 
-void AdvancedGridLayout::compute_layout(NVGcontext * ctx, const Widget * widget,
-   std::vector<int> * _grid) const {
+void AdvancedGridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<int> * _grid)
+{
+
    Vector2i fs_w = widget->fixed_size();
    Vector2i container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
@@ -423,7 +425,7 @@ void AdvancedGridLayout::compute_layout(NVGcontext * ctx, const Widget * widget,
    );
 
    Vector2i extra(2 * m_margin);
-   const Window * window = dynamic_cast<const Window *>(widget);
+   Window * window = dynamic_cast<Window *>(widget);
    if (window && !window->title().empty())
       extra[1] += widget->theme()->m_window_header_height - m_margin / 2;
 
@@ -431,16 +433,16 @@ void AdvancedGridLayout::compute_layout(NVGcontext * ctx, const Widget * widget,
 
    for (int axis = 0; axis < 2; ++axis) {
       std::vector<int> & grid = _grid[axis];
-      const std::vector<int> & sizes = axis == 0 ? m_cols : m_rows;
-      const std::vector<float> & stretch = axis == 0 ? m_col_stretch : m_row_stretch;
+      std::vector<int> & sizes = axis == 0 ? m_cols : m_rows;
+      std::vector<float> & stretch = axis == 0 ? m_col_stretch : m_row_stretch;
       grid = sizes;
 
       for (int phase = 0; phase < 2; ++phase) {
          for (auto pair : m_anchor) {
-            const Widget * w = pair.first;
+            Widget * w = pair.first;
             if (!w->visible() || dynamic_cast<const Window *>(w) != nullptr)
                continue;
-            const Anchor & anchor = pair.second;
+            Anchor & anchor = pair.second;
             if ((anchor.size[axis] == 1) != (phase == 0))
                continue;
             int ps = w->preferred_size(ctx)[axis], fs = w->fixed_size()[axis];

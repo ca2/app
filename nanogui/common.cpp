@@ -288,11 +288,11 @@ int __nanogui_get_image(NVGcontext * ctx, const std::string & name, uint8_t * da
 
 
 
-std::vector<std::pair<int, std::string>>
-NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, const std::string & path) 
+
+void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, std::string>> & images, const std::string & path)
 {
 
-   std::vector<std::pair<int, std::string> > result;
+//   std::vector<std::pair<int, std::string> > result;
 //#if !defined(_WIN32)
 //   DIR * dp = opendir(path.c_str());
 //   if (!dp)
@@ -319,8 +319,10 @@ NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, const std::string & path)
 
       if (iImage >= 0)
       {
+         
+         string strTitle = path.title();
 
-         result.push_back(std::make_pair(iImage, path.title().c_str()));
+         images.push_back(std::make_pair(iImage, strTitle.c_str()));
 
       }
 
@@ -351,8 +353,6 @@ NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, const std::string & path)
 //   FindClose(handle);
 //#endif
    
-   return result;
-
 }
 
 

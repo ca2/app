@@ -19,8 +19,22 @@ public:
 
    inline void* get_os_data(::i32 i = 0) const
    {
+      
+      if(i >= m_osdata.m_iCount)
+      {
+         
+         if(i >= 8)
+         {
+            
+            return nullptr;
+            
+         }
+       
+         ((osdata_array*)this)->m_osdata.element_at_grow(i) = 0;
+         
+      }
 
-      return ((osdata_array*)this)->m_osdata.element_at_grow(i);
+      return m_osdata.m_p[i];
 
    }
 

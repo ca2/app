@@ -43,6 +43,8 @@
 		9A3CA84627EAEBA3009ADCD2 /* platform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3CA84527EAEB68009ADCD2 /* platform.mm */; };
 		9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84727EAED75009ADCD2 /* AppKit.framework */; };
 		9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA84927EAED95009ADCD2 /* IOKit.framework */; };
+		9A97D56527FD814900A67537 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97D56327FD814900A67537 /* font_sink.cpp */; };
+		9A97D56627FD814900A67537 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97D56427FD814900A67537 /* font_sink.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +154,8 @@
 		9A3CA84527EAEB68009ADCD2 /* platform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = platform.mm; sourceTree = "<group>"; };
 		9A3CA84727EAED75009ADCD2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A3CA84927EAED95009ADCD2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		9A97D56327FD814900A67537 /* font_sink.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = font_sink.cpp; sourceTree = "<group>"; };
+		9A97D56427FD814900A67537 /* font_sink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = font_sink.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,9 +277,11 @@
 				9A3CA71927EAE8F0009ADCD2 /* _nano2d.h */,
 				9A3CA71A27EAE8F0009ADCD2 /* context.cpp */,
 				9A3CA71B27EAE8F0009ADCD2 /* context.h */,
-				9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */,
-				9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */,
 				9A3CA71E27EAE8F0009ADCD2 /* draw2d_context.cpp */,
+				9A3CA71C27EAE8F0009ADCD2 /* draw2d_context.h */,
+				9A97D56327FD814900A67537 /* font_sink.cpp */,
+				9A97D56427FD814900A67537 /* font_sink.h */,
+				9A3CA71D27EAE8F0009ADCD2 /* nano2d.cpp */,
 			);
 			path = nano2d;
 			sourceTree = "<group>";
@@ -301,6 +307,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A97D56627FD814900A67537 /* font_sink.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +426,7 @@
 				9A3CA82E27EAE970009ADCD2 /* TabWidget.cpp in Sources */,
 				9A3CA82F27EAE970009ADCD2 /* TextBox.cpp in Sources */,
 				9A3CA83027EAE970009ADCD2 /* Theme.cpp in Sources */,
+				9A97D56527FD814900A67537 /* font_sink.cpp in Sources */,
 				9A3CA83127EAE970009ADCD2 /* VScrollPanel.cpp in Sources */,
 				9A3CA83227EAE970009ADCD2 /* Widget.cpp in Sources */,
 				9A3CA83327EAE970009ADCD2 /* Window.cpp in Sources */,

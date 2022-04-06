@@ -44,7 +44,7 @@ NAMESPACE_BEGIN(nanogui)
 
       virtual bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+      virtual Vector2i preferred_size(NVGcontext * ctx) override;
       virtual void draw(NVGcontext * ctx) override;
 
       void _defer_load_image_directory(NVGcontext * ctx);

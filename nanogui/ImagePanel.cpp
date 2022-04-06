@@ -17,14 +17,19 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-std::vector<std::pair<int, std::string>>
-NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, const std::string & path);
+
+void NANOGUI_EXPORT load_image_directory(NVGcontext * ctx, std::vector<std::pair<int, std::string>> & images, const std::string & path);
+
 
 ImagePanel::ImagePanel(Widget * parent)
    : Widget(parent), m_thumb_size(64), m_spacing(10), m_margin(10),
-   m_mouse_index(-1) {}
+   m_mouse_index(-1), m_bPendingLoad(false)
+{
+   
+}
 
-Vector2i ImagePanel::grid_size() const {
+Vector2i ImagePanel::grid_size() const
+{
    int n_cols = 1 + std::max(0,
       (int)((m_size.x() - 2 * m_margin - m_thumb_size) /
          (float)(m_thumb_size + m_spacing)));
@@ -85,7 +90,7 @@ void ImagePanel::_defer_load_image_directory(NVGcontext * ctx)
       if (m_strLoadDirectory.size() > 0)
       {
 
-         set_images(::nanogui::load_image_directory(ctx, m_strLoadDirectory));
+         ::nanogui::load_image_directory(ctx, m_images, m_strLoadDirectory);
 
       }
 
@@ -94,7 +99,7 @@ void ImagePanel::_defer_load_image_directory(NVGcontext * ctx)
 }
 
 
-Vector2i ImagePanel::preferred_size(NVGcontext * ctx) const {
+Vector2i ImagePanel::preferred_size(NVGcontext * ctx) {
    Vector2i grid = grid_size();
    ((ImagePanel *)this)->_defer_load_image_directory(ctx);
    return Vector2i(

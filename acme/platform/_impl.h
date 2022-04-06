@@ -309,7 +309,7 @@ inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & sr
 
    }
 
-   return dst = src->clone();
+   return dst = ::move_transfer(src->clone());
 
 }
 

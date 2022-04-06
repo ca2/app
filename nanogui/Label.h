@@ -58,17 +58,13 @@ NAMESPACE_BEGIN(nanogui)
       virtual void set_theme(Theme * theme) override;
 
       /// Compute the size needed to fully display the label
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+      virtual Vector2i preferred_size(NVGcontext * ctx) override;
 
       /// Draw the label
       virtual void draw(NVGcontext * ctx) override;
 
       //void _nanogui_to_user(::user::interaction * puserinteraction) override;
 
-   protected:
-      //std::string m_caption;
-      //std::string m_font;
-      //Color m_color;
 };
 
 NAMESPACE_END(nanogui)

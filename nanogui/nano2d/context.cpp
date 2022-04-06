@@ -156,20 +156,22 @@ namespace nano2d
    }
 
 
+//   ::write_text::font_pointer context::create_font(const char * face, float size)
+//   {
+//      
+//      return nullptr;
+//      
+//   }
+
+
    void context::fill_color(NANO2D_COLOR color)
    {
-
-
 
    }
 
 
-
    void context::fill_paint(NANO2D_PAINT paint)
    {
-
-
-
 
    }
 

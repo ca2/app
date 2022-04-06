@@ -11,8 +11,6 @@ namespace nano2d
    draw2d_context::draw2d_context() 
    {
 
-      //_create_new_state();
-
       m_iPaintImageSeed = 1;
 
    }
@@ -50,6 +48,30 @@ namespace nano2d
    }
 
 
+   void draw2d_context::set_font_sink(::nano2d::font_sink * pfontsink)
+   {
+      
+      m_pfontsink = pfontsink;
+      
+   }
+
+
+   ::nano2d::font_sink * draw2d_context::get_font_sink()
+   {
+      
+      return m_pfontsink;
+      
+   }
+
+
+   ::write_text::font_pointer draw2d_context::_get_current_font()
+   {
+
+      return m_pfontsink->get_shared_font(m_pstate->m_strFontFace, m_pstate->m_fFontSize);
+                                          
+   }
+
+
    void draw2d_context::_create_new_state()
    {
 
@@ -59,7 +81,6 @@ namespace nano2d
 
       m_pgraphics->__construct(m_pstate->m_ppen);
       m_pgraphics->__construct(m_pstate->m_pbrush);
-      m_pgraphics->__construct(m_pstate->m_pfont);
 
       m_pstate->m_ppen->m_epen = ::draw2d::e_pen_solid;
       m_pstate->m_ppen->m_dWidth = 1.0;
@@ -101,7 +122,8 @@ namespace nano2d
 
       *stateNew.m_ppen = *stateOld.m_ppen;
       *stateNew.m_pbrush = *stateOld.m_pbrush;
-      *stateNew.m_pfont = *stateOld.m_pfont;
+      stateNew.m_strFontFace = stateOld.m_strFontFace;
+      stateNew.m_fFontSize = stateOld.m_fFontSize;
 
       stateNew.m_pointCurrent = stateOld.m_pointCurrent;
       stateNew.m_bHasCurrentPoint = stateOld.m_bHasCurrentPoint;
@@ -406,9 +428,23 @@ namespace nano2d
    }
 
 
+   void draw2d_context::font_face(const char * face)
+   {
+
+      m_pstate->m_strFontFace = face;
+      
+   }
 
 
-   void draw2d_context::font_face(const char * font)
+   void draw2d_context::font_size(float size)
+   {
+
+      m_pstate->m_fFontSize = size;
+
+   }
+
+
+   void __font_face(::write_text::font * pfont, const char * font)
    {
 
       string strFont(font);
@@ -416,64 +452,63 @@ namespace nano2d
       if (strFont.compare_ci("sans-bold") == 0)
       {
 
-         m_pstate->m_pfont->m_path = "matter://font/truetype/Roboto-Bold.ttf";
+         pfont->m_path = "matter://font/truetype/Roboto-Bold.ttf";
 
-         m_pstate->m_pfont->m_iFontWeight = 800;
+         pfont->m_iFontWeight = 800;
 
-         m_pstate->m_pfont->set_modified();
+         pfont->set_modified();
 
       }
       else if (strFont.compare_ci("sans") == 0)
       {
 
-         m_pstate->m_pfont->m_path = "matter://font/truetype/Roboto-Regular.ttf";
+         pfont->m_path = "matter://font/truetype/Roboto-Regular.ttf";
 
-         m_pstate->m_pfont->m_iFontWeight = 400;
+         pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->set_modified();
+         pfont->set_modified();
 
       }
       else if (strFont.compare_ci("mono") == 0)
       {
 
-         m_pstate->m_pfont->m_path = "matter://font/truetype/Inconsolata-Regular.ttf";
+         pfont->m_path = "matter://font/truetype/Inconsolata-Regular.ttf";
 
-         m_pstate->m_pfont->m_iFontWeight = 400;
+         pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->set_modified();
+         pfont->set_modified();
 
       }
       else if (strFont.compare_ci("icons") == 0)
       {
 
-         m_pstate->m_pfont->m_path = "matter://font/truetype/FontAwesome-Solid.ttf";
+         pfont->m_path = "matter://font/truetype/FontAwesome-Solid.ttf";
 
-         m_pstate->m_pfont->m_iFontWeight = 400;
+         pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->set_modified();
+         pfont->set_modified();
 
       }
       else
       {
 
-         m_pstate->m_pfont->m_strFontFamilyName = strFont;
+         pfont->m_strFontFamilyName = strFont;
 
-         m_pstate->m_pfont->m_iFontWeight = 400;
+         pfont->m_iFontWeight = 400;
 
-         m_pstate->m_pfont->set_modified();
+         pfont->set_modified();
 
       }
 
    }
 
 
-
-   void draw2d_context::font_size(float size)
+   void __font_size(::write_text::font * pfont, float size)
    {
 
-      m_pstate->m_pfont->m_dFontSize = size * 0.8;
-      m_pstate->m_pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
-      m_pstate->m_pfont->set_modified();
+      pfont->m_dFontSize = size * 0.8;
+      pfont->m_eunitFontSize = ::draw2d::e_unit_pixel;
+      pfont->set_modified();
 
    }
 
@@ -648,7 +683,7 @@ namespace nano2d
       
       ::string strText(string, end ? end - string : str::length(string));
 
-      m_pgraphics->set(m_pstate->m_pfont);
+      m_pgraphics->set(_get_current_font());
 
       m_pgraphics->set(m_pstate->m_pbrush);
 
@@ -699,7 +734,7 @@ namespace nano2d
 
       ::string strText(stringParam, end ? end - stringParam : str::length(stringParam));
 
-      m_pgraphics->set(m_pstate->m_pfont);
+      m_pgraphics->set(_get_current_font());
 
       auto size = m_pgraphics->get_text_extent(strText);
       double offsetx = 0.0;
@@ -770,8 +805,10 @@ namespace nano2d
    {
 
       ::string strText(string, end ? end - string : str::length(string));
+      
+      auto pfont = _get_current_font();
 
-      m_pgraphics->set(m_pstate->m_pfont);
+      m_pgraphics->set(pfont);
 
       auto size = m_pgraphics->get_text_extent(strText);
       double offsetx = 0.0;

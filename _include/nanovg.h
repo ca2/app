@@ -19,6 +19,7 @@
 #ifndef NANOVG_H
 #define NANOVG_H
 
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -577,7 +578,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 
 	// Creates font by loading it from the disk from specified file name.
 	// Returns handle to the font.
-	NANO2D_EXPORT int __NANO2D_API(CreateFont)(NVGcontext * ctx, const char * name, const char * filename);
+	//NANO2D_EXPORT int __NANO2D_API(CreateFont)(NVGcontext * ctx, const char * name, const char * filename);
 
 	// fontIndex specifies which font face to load from a .ttf/.ttc file.
 	NANO2D_EXPORT int __NANO2D_API(CreateFontAtIndex)(NVGcontext * ctx, const char * name, const char * filename, const int fontIndex);
@@ -802,4 +803,8 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 }
 #endif
 
-#endif // NANOVG_H
+
+#endif
+
+
+

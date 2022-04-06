@@ -2417,11 +2417,11 @@ void __NANO2D_API(Stroke)(NANO2D_CONTEXT * ctx)
 }
 
 // Add fonts
-int __NANO2D_API(CreateFont)(NANO2D_CONTEXT * ctx, const char * name, const char * filename)
-{
-	//return fonsAddFont(__NANO2D_CONTEXT(ctx)->fs, name, filename, 0);
-	return -1;
-}
+//int __NANO2D_API(CreateFont)(NANO2D_CONTEXT * ctx, const char * name, const char * filename)
+//{
+//	//return fonsAddFont(__NANO2D_CONTEXT(ctx)->fs, name, filename, 0);
+//	return -1;
+//}
 
 int __NANO2D_API(CreateFontAtIndex)(NANO2D_CONTEXT * ctx, const char * name, const char * filename, const int fontIndex)
 {
@@ -2489,6 +2489,15 @@ void __NANO2D_API(FontBlur)(NANO2D_CONTEXT * ctx, float blur)
 	//throw_todo();
    __NANO2D_CONTEXT(ctx)->font_blur(blur);
 }
+
+
+//::write_text::font_pointer __NANO2D_API(CreateFont)(NANO2D_CONTEXT * ctx, const char * face, float size)
+//{
+//   
+//   return __NANO2D_CONTEXT(ctx)->create_font(face, size);
+//   
+//}
+
 
 void __NANO2D_API(TextLetterSpacing)(NANO2D_CONTEXT * ctx, float spacing)
 {

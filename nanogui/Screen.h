@@ -17,6 +17,17 @@
 //#include <nanogui/widget.h>
 //#include <nanogui/texture.h>
 
+
+namespace nano2d
+{
+
+
+   class font_sink;
+
+
+} // namespace nano2d
+
+
 NAMESPACE_BEGIN(nanogui)
 
 class Texture;
@@ -36,6 +47,40 @@ class NANOGUI_EXPORT Screen :
    friend class Widget;
    friend class Window;
 public:
+   //
+   //protected:
+   //   GLFWwindow * m_glfw_window = nullptr;
+   //   NVGcontext * m_nvg_context = nullptr;
+   //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
+   //   Cursor m_cursor;
+      std::vector<Widget *> m_focus_path;
+   
+      __pointer(::nano2d::font_sink)       m_pfontsink;
+   //   Vector2i m_fbsize;
+      float m_pixel_ratio;
+      //::user::e_key m_mouse_state;
+      ::user::e_key m_modifiers;
+      Vector2i m_mouse_pos;
+      bool m_drag_active;
+      Widget * m_drag_widget = nullptr;
+      ::duration m_last_interaction;
+   //   bool m_process_events = true;
+      Color m_background;
+   //   std::string m_caption;
+   //   bool m_shutdown_glfw_on_destruct;
+      bool m_fullscreen;
+   //   bool m_depth_buffer;
+   //   bool m_stencil_buffer;
+   //   bool m_float_buffer;
+      bool m_redraw;
+      ::function<void(Vector2i)> m_resize_callback;
+   //#if defined(NANOGUI_USE_METAL)
+   //   void * m_metal_texture = nullptr;
+   //   void * m_metal_drawable = nullptr;
+   //   ref<Texture> m_depth_stencil_texture;
+   //#endif
+
+   
    /**
     * Create a new Screen instance
     *
@@ -80,6 +125,7 @@ public:
     *     targeting OpenGL ES 2 or Metal.
     */
    Screen(
+          ::user::interaction * puserinteraction,
       const Vector2i & size,
       const std::string & caption = "Unnamed",
       bool resizable = true,
@@ -93,6 +139,11 @@ public:
 
    /// Release all resources
    virtual ~Screen();
+   
+   
+   void common_construct();
+   
+  
 //
 //   /// Get the window title bar caption
 //   const std::string & caption() const { return m_caption; }
@@ -254,7 +305,7 @@ public:
 //    * You will also be responsible in this case to deliver GLFW callbacks
 //    * to the appropriate callback event handlers below
 //    */
-   Screen();
+   //Screen();
 //
 //   /// Initialize the \ref Screen
 //   void initialize(GLFWwindow * window, bool shutdown_glfw);
@@ -275,41 +326,13 @@ public:
    void move_window_to_front(Window * window);
    void draw(NVGcontext * ctx) override;
    void draw_widgets(NVGcontext * ctx);
-//
-//protected:
-//   GLFWwindow * m_glfw_window = nullptr;
-//   NVGcontext * m_nvg_context = nullptr;
-//   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
-//   Cursor m_cursor;
-   std::vector<Widget *> m_focus_path;
-//   Vector2i m_fbsize;
-   float m_pixel_ratio;
-   //::user::e_key m_mouse_state;
-   ::user::e_key m_modifiers;
-   Vector2i m_mouse_pos;
-   bool m_drag_active;
-   Widget * m_drag_widget = nullptr;
-   ::duration m_last_interaction;
-//   bool m_process_events = true;
-   Color m_background;
-//   std::string m_caption;
-//   bool m_shutdown_glfw_on_destruct;
-   bool m_fullscreen;
-//   bool m_depth_buffer;
-//   bool m_stencil_buffer;
-//   bool m_float_buffer;
-   bool m_redraw;
-   ::function<void(Vector2i)> m_resize_callback;
-//#if defined(NANOGUI_USE_METAL)
-//   void * m_metal_texture = nullptr;
-//   void * m_metal_drawable = nullptr;
-//   ref<Texture> m_depth_stencil_texture;
-//#endif
 
    void set_size(const Vector2i & size) override;
 
    using Widget::preferred_size;
    using Widget::perform_layout;
+   
+
 
    // ::appearance::appearance
    void set_user_interaction(::user::interaction * puserinteraction) override;

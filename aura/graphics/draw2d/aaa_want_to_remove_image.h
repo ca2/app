@@ -478,7 +478,7 @@ public:
       }
       else
       {
-         m_pimpl = pimpl->clone();
+         m_pimpl = ::move_transfer(pimpl->clone());
       }
       return *this;
    }

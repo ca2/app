@@ -22,7 +22,7 @@ Slider::Slider(Widget * parent)
 }
 
 
-Vector2i Slider::preferred_size(NVGcontext *) const 
+Vector2i Slider::preferred_size(NVGcontext *)
 {
    return Vector2i(70, 16);
 }

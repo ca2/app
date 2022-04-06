@@ -56,14 +56,16 @@ i32 context_image::image_integer(const char * path)
 
    synchronous_lock  synchronouslock(mutex());
 
-   auto & iImage = m_mapPathInt[path];
-
-   if (iImage <= 0)
+   ::i32 iImage = -1;
+   
+   if(!m_mapPathInt.lookup(path, iImage))
    {
 
       iImage = m_iImageSeed;
 
       m_mapIntPath[iImage] = path;
+      
+      m_mapPathInt[path] = iImage;
 
       m_iImageSeed++;
 

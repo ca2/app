@@ -109,39 +109,50 @@ NAMESPACE_BEGIN(nanogui)
 //}
 //#endif
 
-Screen::Screen()
-   : Widget(nullptr) /*, m_glfw_window(nullptr), ctx(nullptr),
-   m_cursor(Cursor::Arrow), m_background(0.3f, 0.3f, 0.32f, 1.f),
-   m_shutdown_glfw_on_destruct(false), m_fullscreen(false), m_depth_buffer(false),
-   m_stencil_buffer(false), m_float_buffer(false)*/, m_redraw(false) {
+//Screen::Screen()
+//   : Widget(nullptr) /*, m_glfw_window(nullptr), ctx(nullptr),
+//   m_cursor(Cursor::Arrow), m_background(0.3f, 0.3f, 0.32f, 1.f),
+//   m_shutdown_glfw_on_destruct(false), m_fullscreen(false), m_depth_buffer(false),
+//   m_stencil_buffer(false), m_float_buffer(false)*/, m_redraw(false)
+//{
+//
+//   m_pixel_ratio = 1.0f;
+//
+//   common_construct();
+//
+//  /* memset(m_cursors, 0, sizeof(GLFWcursor *) * (size_t)Cursor::CursorCount);
+//#if defined(NANOGUI_USE_OPENGL)
+//   GLint n_stencil_bits = 0, n_depth_bits = 0;
+//   GLboolean float_mode;
+//   CHK(glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER,
+//      GL_DEPTH, GL_FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE, &n_depth_bits));
+//   CHK(glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER,
+//      GL_STENCIL, GL_FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE, &n_stencil_bits));
+//   CHK(glGetBooleanv(GL_RGBA_FLOAT_MODE, &float_mode));
+//   m_depth_buffer = n_depth_bits > 0;
+//   m_stencil_buffer = n_stencil_bits > 0;
+//   m_float_buffer = (bool)float_mode;
+//#endif*/
+//}
 
-   m_pixel_ratio = 1.0f;
-
-  /* memset(m_cursors, 0, sizeof(GLFWcursor *) * (size_t)Cursor::CursorCount);
-#if defined(NANOGUI_USE_OPENGL)
-   GLint n_stencil_bits = 0, n_depth_bits = 0;
-   GLboolean float_mode;
-   CHK(glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER,
-      GL_DEPTH, GL_FRAMEBUFFER_ATTACHMENT_DEPTH_SIZE, &n_depth_bits));
-   CHK(glGetFramebufferAttachmentParameteriv(GL_DRAW_FRAMEBUFFER,
-      GL_STENCIL, GL_FRAMEBUFFER_ATTACHMENT_STENCIL_SIZE, &n_stencil_bits));
-   CHK(glGetBooleanv(GL_RGBA_FLOAT_MODE, &float_mode));
-   m_depth_buffer = n_depth_bits > 0;
-   m_stencil_buffer = n_stencil_bits > 0;
-   m_float_buffer = (bool)float_mode;
-#endif*/
-}
-
-Screen::Screen(const Vector2i & size, const std::string & caption, bool resizable,
+Screen::Screen(::user::interaction* puserinteraction,
+               const Vector2i & size, const std::string & caption, bool resizable,
    bool fullscreen, bool depth_buffer, bool stencil_buffer,
    bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
-   : Widget(nullptr)/*,  m_glfw_window(nullptr), ctx(nullptr),
-   m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f)/*, m_caption(caption),
+   : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
+   m_cursor(Cursor::Arrow)*/, m_background(0.3f, 0.3f, 0.32f, 1.f) /*, m_caption(caption),
    m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
-   m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false) {
+   m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
+{
+   
+   m_puserinteraction = puserinteraction;
+   
+   common_construct();
+      
    m_size = size;
-   set_theme(new Theme(nullptr));
    m_modifiers = ::user::e_key_none;
+      
+      
    // memset(m_cursors, 0, sizeof(GLFWcursor *) * (int)Cursor::CursorCount);
 //
 //#if defined(NANOGUI_USE_OPENGL)
@@ -554,7 +565,17 @@ Screen::~Screen() {
 //
 
 
-void Screen::clear(NVGcontext * ctx) 
+void Screen::common_construct()
+{
+   
+   m_pfontsink = m_puserinteraction->__create_new < ::nano2d::font_sink >();
+   
+   set_theme(new Theme());
+   
+}
+
+
+void Screen::clear(NVGcontext * ctx)
 {
 
 #if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
@@ -574,7 +595,10 @@ void Screen::clear(NVGcontext * ctx)
 
 
 
-void Screen::draw_setup(NVGcontext * ctx) {
+
+void Screen::draw_setup(NVGcontext * ctx)
+{
+   
 #if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
    glfwMakeContextCurrent(m_glfw_window);
 #elif defined(NANOGUI_USE_METAL)
@@ -1145,16 +1169,14 @@ void Screen::set_user_interaction(::user::interaction * puserinteraction)
    ::nano2d::draw2d_context context;
 
    context.set_graphics(pgraphics);
+   
+   context.set_font_sink(m_pfontsink);
+   
+   auto array = preferred_size(&context);
 
-   const Widget * pthisConst = this;
-
-   auto v2 = pthisConst->preferred_size(&context);
-
-   return { v2.v[0], v2.v[1] };
+   return { array.v[0], array.v[1] };
 
 }
-
-
 
 
 void Screen::perform_layout(::draw2d::graphics_pointer & pgraphics)
@@ -1163,7 +1185,9 @@ void Screen::perform_layout(::draw2d::graphics_pointer & pgraphics)
    ::nano2d::draw2d_context context;
 
    context.set_graphics(pgraphics);
-
+   
+   context.set_font_sink(m_pfontsink);
+   
    auto size = m_puserinteraction->get_size();
 
    set_size({ (int)size.cx, (int)size.cy });
@@ -1189,6 +1213,8 @@ void Screen::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    ::nano2d::draw2d_context context;
 
    context.set_graphics(pgraphics);
+   
+   context.set_font_sink(m_pfontsink);
 
    pgraphics->OffsetViewportOrg(-m_pos.x(), -m_pos.y());
 

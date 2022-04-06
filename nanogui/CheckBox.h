@@ -74,7 +74,7 @@ NAMESPACE_BEGIN(nanogui)
       virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.
-      virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+      virtual Vector2i preferred_size(NVGcontext * ctx) override;
 
       /// Draws this CheckBox.
       virtual void draw(NVGcontext * ctx) override;

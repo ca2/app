@@ -103,7 +103,7 @@ NAMESPACE_BEGIN(nanogui)
 
       // Widget implementation
      void perform_layout(NVGcontext * ctx) override;
-     Vector2i preferred_size(NVGcontext * ctx) const override;
+     Vector2i preferred_size(NVGcontext * ctx) override;
      void draw(NVGcontext * ctx) override;
      bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
      bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
@@ -198,7 +198,7 @@ public:
    void set_remove_children(bool value) { m_remove_children = value; }
 
    virtual void perform_layout(NVGcontext * ctx) override;
-   virtual Vector2i preferred_size(NVGcontext * ctx) const override;
+   virtual Vector2i preferred_size(NVGcontext * ctx) override;
 protected:
    virtual void update_visibility() override;
 protected:

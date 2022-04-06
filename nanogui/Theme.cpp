@@ -24,10 +24,13 @@ void read_resource(void *& p, size_t & s, const char * psz);
 
 NAMESPACE_BEGIN(nanogui)
 
-Theme::Theme(NVGcontext * ctx) {
+Theme::Theme()
+{
    m_standard_font_size = 16;
    m_button_font_size = 20;
    m_text_box_font_size = 20;
+
+   
    m_icon_scale = 0.60f;
 
    m_window_corner_radius = 2;
@@ -130,6 +133,7 @@ Theme::Theme(NVGcontext * ctx) {
    //   m_font_icons == -1 || m_font_mono_regular == -1)
    //   throw std::runtime_error("Could not load fonts!");
 }
+
 
 NAMESPACE_END(nanogui)
 

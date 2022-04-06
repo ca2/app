@@ -13,7 +13,6 @@ namespace draw2d
 
       //m_estatus = success;
       //m_estatusLast = success;
-
       set_modified();
 
    }

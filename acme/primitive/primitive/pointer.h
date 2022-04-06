@@ -604,7 +604,7 @@ inline __pointer(TYPE) __clone(const __pointer(TYPE) & p)
 
    }
 
-   return p->clone();
+   return ::move_transfer(p->clone());
 
 }
 
@@ -620,7 +620,7 @@ inline __pointer(TYPE) & __clone(__pointer(TYPE) & p)
 
    }
 
-   return p = p->clone();
+   return p = ::move_transfer(p->clone());
 
 }
 
@@ -629,14 +629,14 @@ template < typename TYPE >
 inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 {
 
-   if (!p || !p->is_shared())
+   if (!p || p->reference_count() <= 1)
    {
 
       return p;
 
    }
 
-   return p = p->clone();
+   return p = ::move_transfer(p->clone());
 
 }
 

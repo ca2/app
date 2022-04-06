@@ -98,7 +98,11 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   inline bool is_shared() const { return m_countReference > 1; }
+   inline ::count reference_count() const { return m_countReference; }
+   
+   
+   inline bool is_shared2() const { return m_eobject & e_object_shared; }
+   inline void set_shared(bool bSet = true) { m_eobject.set(e_object_shared, bSet); }
 
 
    virtual bool is_ready_to_quit() const;

@@ -314,6 +314,7 @@ enum enum_object : i64
    e_object_object_type_counter = 1 << 20,
 #endif
    e_object_synchronous = 1 << 21,
+   e_object_shared = 1 << 22,
 
 
 };

@@ -9489,6 +9489,8 @@ namespace user
          if (puseritem)
          {
 
+            puseritem->m_ppath.release();
+
             auto rectangle = this->rectangle(puseritem->m_eelement);
 
             puseritem->m_rectangle = rectangle;
@@ -15625,7 +15627,8 @@ namespace user
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_switch_button)
+         else if (pitem->m_eelement == ::e_element_switch_button
+            || pitem->m_eelement == ::e_element_switch_icon)
          {
 
             post_message(e_message_switch);
@@ -15633,7 +15636,8 @@ namespace user
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_maximize_button)
+         else if (pitem->m_eelement == ::e_element_maximize_button
+            || pitem->m_eelement == ::e_element_maximize_icon)
          {
 
             auto edisplay = layout().sketch().display();
@@ -15654,7 +15658,8 @@ namespace user
             return true;
 
          }
-         else if (pitem->m_eelement == ::e_element_minimize_button)
+         else if (pitem->m_eelement == ::e_element_minimize_button
+            || pitem->m_eelement == ::e_element_minimize_icon)
          {
 
             display(e_display_iconic);
@@ -17476,6 +17481,18 @@ namespace user
          ::user::draw_switch_icon(pgraphics, this, pitem, estate);
 
       }
+      else if (pitem->m_eelement == ::e_element_maximize_icon)
+      {
+
+         ::user::draw_maximize_icon(pgraphics, this, pitem, estate);
+
+      }
+      else if (pitem->m_eelement == ::e_element_minimize_icon)
+      {
+
+         ::user::draw_minimize_icon(pgraphics, this, pitem, estate);
+
+      }
       else if (pitem->m_eelement == ::e_element_close_button)
       {
 
@@ -18602,6 +18619,35 @@ namespace user
          return true;
 
       }
+      else if (eelement == e_element_maximize_icon)
+      {
+
+         get_client_rect(prectangle);
+
+         prectangle->left = prectangle->right - 96;
+
+         prectangle->right = prectangle->left + 48;
+
+         prectangle->bottom = prectangle->top + 48;
+
+         return true;
+
+      }
+      else if (eelement == e_element_minimize_icon)
+      {
+
+         get_client_rect(prectangle);
+
+         prectangle->left = prectangle->right - 144;
+
+         prectangle->right = prectangle->left + 48;
+
+         prectangle->bottom = prectangle->top + 48;
+
+         return true;
+
+      }
+
 
       return false;
 

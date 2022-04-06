@@ -33,7 +33,7 @@ namespace opengl
 
       m_pimage->map();
 
-      glReadBuffer(GL_BACK);
+      glReadBuffer(GL_FRONT);
       
       int cx = m_pimage->m_size.cx;
 

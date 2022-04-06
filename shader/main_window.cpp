@@ -86,6 +86,24 @@ namespace app_shader
 
       }
 
+      {
+
+         auto pitem = get_user_item(::e_element_maximize_button);
+
+         *pitem = ::e_element_maximize_icon;
+
+      }
+
+
+      {
+
+         auto pitem = get_user_item(::e_element_minimize_button);
+
+         *pitem = ::e_element_minimize_icon;
+
+      }
+
+
       get_top_level()->set_prodevian();
 
       update_shader("");

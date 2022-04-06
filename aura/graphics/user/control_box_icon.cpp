@@ -23,6 +23,8 @@ namespace user
 
          ::rectangle_f64 rectangle(pitem->m_rectangle);
 
+         rectangle.rate(0.89);
+
          double dMinimumDimension = rectangle.minimum_dimension();
 
          double dDeflate = dMinimumDimension / 3.0;
@@ -54,13 +56,13 @@ namespace user
       if (::is_element(puserinteraction->m_pitemHover, ::e_element_close_icon))
       {
 
-         color.alpha = 180;
+         color.alpha = 189;
 
       }
       else
       {
 
-         color.alpha = 127;
+         color.alpha = 121;
 
       }
 
@@ -79,6 +81,93 @@ namespace user
       draw_switch_button(pgraphics, puserinteraction, pitem, estate);
 
    }
+
+
+   void draw_maximize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         colorPen.alpha = 189;
+
+      }
+      else
+      {
+
+         colorPen.alpha = 121;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      rectangle.deflate(rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.15, rectangle.minimum_dimension() * 0.10);
+
+      ppen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
+
+      pgraphics->set(ppen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_zoom);
+
+
+   }
+
+
+   void draw_minimize_icon(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction, ::item * pitem, const ::user::e_state & estate)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      auto ppen = puserinteraction->__create < ::draw2d::pen >();
+
+      //::draw2d::brush_pointer pbrush(e_create, puserinteraction);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto colorPen = puserinteraction->get_color(pstyle, ::e_element_background);
+
+      if (estate & ::user::e_state_hover)
+      {
+
+         colorPen.alpha = 189;
+
+      }
+      else
+      {
+
+         colorPen.alpha = 121;
+
+      }
+
+      rectangle.deflate(rectangle.minimum_dimension() * 0.077, rectangle.minimum_dimension() * 0.11, rectangle.minimum_dimension() * 0.077, rectangle.minimum_dimension() * 0.13);
+
+      ppen->create_solid(rectangle.minimum_dimension() / 3.0, colorPen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->set(ppen);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
+
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_iconify);
+
+   }
+
+
 
 
 } // namespace user

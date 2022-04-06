@@ -98,6 +98,8 @@ namespace file
 
             m_pathUser = path;
 
+            m_pathFinal = path;
+
             m_edepth = (::enum_depth)(m_edepth - 1);
 
             m_penumerator->enumerate(*this);

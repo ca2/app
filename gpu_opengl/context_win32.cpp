@@ -327,6 +327,14 @@ namespace opengl
 
       ::opengl::context::render();
 
+      
+
+   }
+
+
+   void context_win32::swap_buffers()
+   {
+
       SwapBuffers(m_hdc);
 
    }

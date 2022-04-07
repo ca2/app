@@ -38,6 +38,8 @@ namespace opengl
 
       void _translate_shader(string_array & straFragment) override;
 
+      void swap_buffers() override;
+
 
    };
 

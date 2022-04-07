@@ -32,7 +32,7 @@ namespace draw2d
    {
 
 
-      m_bUseImageMipMapsOrResizedImages = true;
+      m_bUseImageMipMapsOrResizedImages = false;
 
       //m_estatus = success;
       //m_estatusLast = success;

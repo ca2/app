@@ -237,17 +237,39 @@ namespace opengl
 
          m_sizeBitmap1 = pimage->size();
 
+
+         m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
+
+         vertical_swap_copy_colorref_swap_red_blue(
+            (color32_t *) m_memorySwap.get_data(),
+            m_sizeBitmap1.cx,
+            m_sizeBitmap1.cy,
+            m_sizeBitmap1.cx * 4,
+            pimage->get_data(),
+            pimage->m_iScan);
+
          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
             m_sizeBitmap1.cx,
             m_sizeBitmap1.cy,
             0, GL_RGBA, GL_UNSIGNED_BYTE,
-            pimage->get_data()); // upload image data to the textur
+            m_memorySwap.get_data()); // upload image data to the textur
 
+
+         
 
 
       }
 
    }
+
+
+   void context::swap_buffers()
+   {
+
+
+   }
+
+
 
    //void context::create_offscreen_buffer(const ::size_i32& size)
    //{

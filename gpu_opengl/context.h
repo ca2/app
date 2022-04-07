@@ -21,7 +21,7 @@ namespace opengl
       int                              m_iLastBitmap1Scan;
       ::size_i32                       m_sizeBitmap1;
 
-      
+      memory                           m_memorySwap;
 
       /*enum enum_mode
       {
@@ -58,6 +58,8 @@ namespace opengl
 
 
       void set_bitmap_1(::image * pimage) override;
+
+      virtual void swap_buffers();
 
       //virtual void create_offscreen_buffer(const ::size_i32& size);
       //virtual void _create_offscreen_buffer(const ::size_i32& size);

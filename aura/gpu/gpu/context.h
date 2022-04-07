@@ -64,6 +64,8 @@ namespace gpu
 
       virtual void set_bitmap_1(::image * pimage);
 
+      virtual void swap_buffers();
+
 
       virtual void create_window_buffer(void * pHwnd);
       virtual void _create_window_buffer(void * pHwnd);

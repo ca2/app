@@ -145,6 +145,13 @@ namespace gpu
    }
 
 
+   void context::swap_buffers()
+   {
+
+
+   }
+
+
    void context::create_window_buffer(void * pHwnd)
    {
 

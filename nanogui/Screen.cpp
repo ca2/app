@@ -693,7 +693,12 @@ void Screen::draw_contents(NVGcontext * ctx)
 //}
 //
 
-void Screen::draw(NVGcontext * ctx) {
+void Screen::draw(NVGcontext * ctx) 
+{
+
+   
+   synchronous_lock lock(m_puserinteraction->mutex());
+
    //Widget::draw(ctx);
    //return;
    draw_all(ctx);

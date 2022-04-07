@@ -208,6 +208,13 @@ namespace user
 
             //set_cursor(e_cursor_move);
 
+            //auto integral_milliseconds = integral_millisecond(e_now);
+
+            //string str;
+            //str.format("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
+
+            //output_debug_string(str);
+
             if (!m_pdragCurrent->m_bDrag)
             {
 

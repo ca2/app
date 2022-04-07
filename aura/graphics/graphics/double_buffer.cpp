@@ -93,7 +93,12 @@ namespace graphics
 //
 //         }
 
-          pimage->create(sizeWindow);
+         auto sizeMonitor = ::size_i32(1920, 1080);
+
+
+          //pimage->create(sizeWindow);
+          // 
+           pimage->create(sizeMonitor);
             //if (!pimage->create(sizeWindow))
             //{
 

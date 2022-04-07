@@ -230,7 +230,7 @@ bool Widget::keyboard_character_event(unsigned int)
 
 void Widget::add_child(int index, Widget * widget) 
 {
-
+   synchronous_lock lock(screen()->m_puserinteraction->mutex());
    assert(index <= child_count());
    m_children.insert(m_children.begin() + index, widget);
    widget->inc_ref();
@@ -244,7 +244,9 @@ void Widget::add_child(Widget * widget) {
 
 
 
-void Widget::remove_child(const Widget * widget) {
+void Widget::remove_child(const Widget * widget) 
+{
+   synchronous_lock lock(screen()->m_puserinteraction->mutex());
    size_t child_count = m_children.size();
    m_children.erase(std::remove(m_children.begin(), m_children.end(), widget),
       m_children.end());

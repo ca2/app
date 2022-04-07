@@ -221,6 +221,7 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
+      <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
@@ -567,6 +568,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <MapFileName>
       </MapFileName>
       <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
+      <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)

@@ -27,10 +27,10 @@ Vector2i Button::preferred_size(NVGcontext * ctx)
 {
    
    int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
-   nvgFontSize(ctx, font_size);
+   nvgFontSize(ctx,(float) font_size);
    nvgFontFace(ctx, "sans-bold");
    float tw = nvgTextBounds(ctx, 0, 0, m_caption.c_str(), nullptr, nullptr);
-   float iw = 0.0f, ih = font_size;
+   float iw = 0.0f, ih = (float) font_size;
 
    if (m_icon) {
       if (nvg_is_font_icon(m_icon)) {
@@ -239,8 +239,8 @@ void Button::draw(NVGcontext * ctx)
 
    nvgBeginPath(ctx);
 
-   nvgRoundedRect(ctx, m_pos.x() + 1, m_pos.y() + 1.0f, m_size.x() - 2,
-      m_size.y() - 2, m_theme->m_button_corner_radius - 1);
+   nvgRoundedRect(ctx, m_pos.x() + 1.f, m_pos.y() + 1.f, m_size.x() - 2.f,
+      m_size.y() - 2.f, m_theme->m_button_corner_radius - 1.f);
 
    if (m_background_color.w() != 0) {
       nvgFillColor(ctx, Color(m_background_color[0], m_background_color[1],
@@ -251,26 +251,26 @@ void Button::draw(NVGcontext * ctx)
       }
       else {
          double v = 1 - m_background_color.w();
-         grad_top.a = grad_bot.a = m_enabled ? v : v * .5f + .5f;
+         grad_top.a = grad_bot.a = (float) (m_enabled ? v : v * .5 + .5);
       }
    }
 
-   NVGpaint bg = nvgLinearGradient(ctx, m_pos.x(), m_pos.y(), m_pos.x(),
-      m_pos.y() + m_size.y(), grad_top, grad_bot);
+   NVGpaint bg = nvgLinearGradient(ctx, (float) m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
+      (float) (m_pos.y() + m_size.y()), grad_top, grad_bot);
 
    nvgFillPaint(ctx, bg);
    nvgFill(ctx);
 
    nvgBeginPath(ctx);
    nvgStrokeWidth(ctx, 1.0f);
-   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 1,
-      m_size.y() - 1 - (bPressed ? 0.0f : 1.0f), m_theme->m_button_corner_radius);
+   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + (bPressed ? 0.5f : 1.5f), m_size.x() - 1.f,
+      m_size.y() - 1.f - (bPressed ? 0.0f : 1.0f), (float) m_theme->m_button_corner_radius);
    nvgStrokeColor(ctx, m_theme->m_border_light);
    nvgStroke(ctx);
 
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1,
-      m_size.y() - 2, m_theme->m_button_corner_radius);
+   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1.f,
+      m_size.y() - 2.f, m_theme->m_button_corner_radius);
    nvgStrokeColor(ctx, m_theme->m_border_dark);
    nvgStroke(ctx);
 

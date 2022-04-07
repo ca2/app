@@ -18,19 +18,19 @@
 // Team Leader Varonis
 // Israel Israel
 
-inline bool is_equal(double d1, double d2, double dTolerance)
-{
-
-   return fabs(d1 - d2) <= dTolerance;
-
-}
-
-inline bool is_different(double d1, double d2, double dTolerance)
-{
-
-   return !is_equal(d1, d2, dTolerance);
-
-}
+//inline bool is_equal(double d1, double d2, double dTolerance)
+//{
+//
+//   return fabs(d1 - d2) <= dTolerance;
+//
+//}
+//
+//inline bool is_different(double d1, double d2, double dTolerance)
+//{
+//
+//   return !is_equal(d1, d2, dTolerance);
+//
+//}
 
 
 double g_dPi = atan(1.0) * 4.0;
@@ -1916,6 +1916,8 @@ namespace draw2d_cairo
 
       }
 
+#if defined(USE_PANGO)
+
       PangoFontDescription * pdesc = (PangoFontDescription *) m_pfont->get_os_data(this);
 
       if (::is_set(pdesc))
@@ -1982,6 +1984,9 @@ namespace draw2d_cairo
 
       }
       else
+
+#endif // USE_PANGO
+
       {
 
          _set(m_pfont);
@@ -3643,12 +3648,15 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::internal_draw_text_cairo(const ::block & block, const ::rectangle_f64 & rectangle,
-                                           const ::e_align & ealign, const ::e_draw_text & edrawtext,
-                                           PFN_CAIRO_TEXT ftext)
+   //internal_draw_text_cairo - line3651.cpp
+
+
+      void graphics::internal_draw_text_cairo(const ::block & block, const ::rectangle_f64 & rectangle,
+         const ::e_align & ealign, const ::e_draw_text & edrawtext,
+         PFN_CAIRO_TEXT ftext)
    {
 
-      string str((const char *) block.get_data(), block.get_size());
+      string str((const char *)block.get_data(), block.get_size());
 
       str = ::str::q_valid(str);
 
@@ -3678,6 +3686,8 @@ namespace draw2d_cairo
       cairo_keep keep(m_pdc);
 
       size_f64 sz = get_text_extent(str);
+
+      _set(m_pfont);
 
       cairo_font_extents_t e;
 
@@ -3709,13 +3719,13 @@ namespace draw2d_cairo
       if (ealign & e_align_bottom)
       {
 
-         dy = rectangle.bottom - rectangle.top - sz.cy;
+         dy = rectangle.bottom - rectangle.top - e.ascent;
 
       }
       else if (ealign & e_align_vertical_center)
       {
 
-         dy = ((rectangle.bottom - rectangle.top) - (sz.cy)) / 2.0;
+         dy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
       }
       else
@@ -3775,12 +3785,12 @@ namespace draw2d_cairo
 
       _fill1();
 
-      for (auto & strLine: stra)
+      for (auto & strLine : stra)
       {
 
          //cairo_move_to(m_pdc, rectangle.left + dx, rectangle.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
 
-         cairo_move_to(m_pdc, rectangle.left + dx, rectangle.top + dy + e.ascent + sz.cy * i);
+         cairo_move_to(m_pdc, rectangle.left + dx, rectangle.top + dy + e.ascent + e.ascent * i);
 
          (*ftext)(m_pdc, strLine);
 
@@ -3990,175 +4000,175 @@ namespace draw2d_cairo
 #else
 
 
-   void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
-   {
+   //void graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //{
 
-       //return
+   //    //return
 
-      internal_draw_text(strParam, rectangle, ealign, edrawtext, &cairo_show_text);
+   //   internal_draw_text(strParam, rectangle, ealign, edrawtext, &cairo_show_text);
 
-   }
+   //}
 
 
-   void graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
-   {
+   //void graphics::internal_draw_text_cairo(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT pfnCairo)
+   //{
 
-       string str((const char *) block.get_data(), block.get_size());
+   //    string str((const char *) block.get_data(), block.get_size());
 
-       str = ::str::q_valid(str);
+   //    str = ::str::q_valid(str);
 
-       if (str.is_empty())
-       {
+   //    if (str.is_empty())
+   //    {
 
-          throw ::exception(error_invalid_empty_argument);
+   //       throw ::exception(error_invalid_empty_argument);
 
-       }
+   //    }
 
-       _synchronous_lock ml(cairo_mutex());
+   //    _synchronous_lock ml(cairo_mutex());
 
-       if (m_pfont.is_null())
-       {
+   //    if (m_pfont.is_null())
+   //    {
 
-          throw ::exception(error_null_pointer);
+   //       throw ::exception(error_null_pointer);
 
-       }
+   //    }
 
-       if (m_pfont->m_dFontWidth <= 0.0)
-       {
+   //    if (m_pfont->m_dFontWidth <= 0.0)
+   //    {
 
-          throw ::exception(error_wrong_state);
+   //       throw ::exception(error_wrong_state);
 
-       }
+   //    }
 
-       cairo_keep keep(m_pdc);
+   //    cairo_keep keep(m_pdc);
 
-       _fill1();
+   //    _fill1();
 
-       _set(m_pfont);
+   //    _set(m_pfont);
 
-       cairo_font_extents_t e;
+   //    cairo_font_extents_t e;
 
-       cairo_font_extents(m_pdc, &e);
+   //    cairo_font_extents(m_pdc, &e);
 
-       size_f64 sz = get_text_extent(str);
+   //    size_f64 sz = get_text_extent(str);
 
-       double dx;
+   //    double dx;
 
-       double dy;
+   //    double dy;
 
-       if (ealign & e_align_right)
-       {
+   //    if (ealign & e_align_right)
+   //    {
 
-           dx = rectangle.right - rectangle.left - sz.cx;
+   //        dx = rectangle.right - rectangle.left - sz.cx;
 
-       }
-       else if (ealign & e_align_horizontal_center)
-       {
+   //    }
+   //    else if (ealign & e_align_horizontal_center)
+   //    {
 
-           dx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
+   //        dx = ((rectangle.right - rectangle.left) - (sz.cx)) / 2.0;
 
-       }
-       else
-       {
+   //    }
+   //    else
+   //    {
 
-           dx = 0.;
+   //        dx = 0.;
 
-       }
+   //    }
 
-       if (ealign & e_align_bottom)
-       {
+   //    if (ealign & e_align_bottom)
+   //    {
 
-           dy = rectangle.bottom - rectangle.top - e.ascent;
+   //        dy = rectangle.bottom - rectangle.top - e.ascent;
 
-       }
-       else if (ealign & e_align_vertical_center)
-       {
+   //    }
+   //    else if (ealign & e_align_vertical_center)
+   //    {
 
-           dy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
+   //        dy = ((rectangle.bottom - rectangle.top) - (e.ascent)) / 2.0;
 
-       }
-       else
-       {
+   //    }
+   //    else
+   //    {
 
-           dy = 0.;
+   //        dy = 0.;
 
-       }
+   //    }
 
-       if (m_pfont->m_dFontWidth != 1.0)
-       {
+   //    if (m_pfont->m_dFontWidth != 1.0)
+   //    {
 
-           cairo_matrix_t m;
+   //        cairo_matrix_t m;
 
-           cairo_get_matrix(m_pdc, &m);
+   //        cairo_get_matrix(m_pdc, &m);
 
-           cairo_matrix_scale(&m, m_pfont->m_dFontWidth, 1.0);
+   //        cairo_matrix_scale(&m, m_pfont->m_dFontWidth, 1.0);
 
-           cairo_set_matrix(m_pdc, &m);
+   //        cairo_set_matrix(m_pdc, &m);
 
-       }
+   //    }
 
-       //if (m_pbrush.is_set())
-       //{
+   //    //if (m_pbrush.is_set())
+   //    //{
 
-       //    set_os_color(m_pbrush->m_color);
+   //    //    set_os_color(m_pbrush->m_color);
 
-       //}
+   //    //}
 
-       if (edrawtext & e_draw_text_expand_tabs)
-       {
+   //    if (edrawtext & e_draw_text_expand_tabs)
+   //    {
 
-           str.replace_with("        ", "\t");
+   //        str.replace_with("        ", "\t");
 
-       }
-       else
-       {
+   //    }
+   //    else
+   //    {
 
-           str.replace_with(" ", "\t");
+   //        str.replace_with(" ", "\t");
 
-       }
+   //    }
 
-       if (edrawtext & e_draw_text_single_line)
-       {
+   //    if (edrawtext & e_draw_text_single_line)
+   //    {
 
-           str.replace_with("", "\n");
+   //        str.replace_with("", "\n");
 
-           str.replace_with("", "\r");
+   //        str.replace_with("", "\r");
 
-       }
+   //    }
 
-       string_array stra;
+   //    string_array stra;
 
-       stra.add_lines(str);
+   //    stra.add_lines(str);
 
-       int i = 0;
+   //    int i = 0;
 
-       for (auto & strLine : stra)
-       {
+   //    for (auto & strLine : stra)
+   //    {
 
-           cairo_move_to(m_pdc, rectangle.left + dx, rectangle.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
+   //        cairo_move_to(m_pdc, rectangle.left + dx, rectangle.top + dy + e.ascent + sz.cy * (i) / stra.get_size());
 
-           (*ftext)(m_pdc, strLine);
+   //        (*ftext)(m_pdc, strLine);
 
-           cairo_status_t status = cairo_status(m_pdc);
+   //        cairo_status_t status = cairo_status(m_pdc);
 
-           if (status != CAIRO_STATUS_SUCCESS)
-           {
+   //        if (status != CAIRO_STATUS_SUCCESS)
+   //        {
 
-               const char * pszStatus = cairo_status_to_string(status);
+   //            const char * pszStatus = cairo_status_to_string(status);
 
-               FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
+   //            FORMATTED_TRACE("cairo error : graphics::draw_text %d %s", status, pszStatus);
 
-           }
+   //        }
 
-           i++;
+   //        i++;
 
-       }
+   //    }
 
-       _fill2();
+   //    _fill2();
 
-       //return 1;
+   //    //return 1;
 
-   }
+   //}
 
 
 #endif
@@ -4275,6 +4285,9 @@ namespace draw2d_cairo
       if (str.find('\n') < 0 && str.find('\r') < 0)
       {
 
+
+#if defined(USE_PANGO)
+
          PangoFontDescription * pdesc = (PangoFontDescription *) m_pfont->get_os_data(this);
 
          if (::is_set(pdesc))
@@ -4313,6 +4326,9 @@ namespace draw2d_cairo
 
          }
          else
+
+#endif // USE_PANGO
+
          {
 
             _set(m_pfont);
@@ -4403,6 +4419,8 @@ namespace draw2d_cairo
 
       cairo_keep keep(m_pdc);
 
+#if defined(USE_PANGO)
+
       PangoFontDescription * pdesc = (PangoFontDescription *) m_pfont->get_os_data(this);
 
       if (::is_set(pdesc))
@@ -4435,6 +4453,9 @@ namespace draw2d_cairo
 
       }
       else
+
+#endif // USE_PANGO
+
       {
 
          cairo_text_extents_t ex;
@@ -4580,7 +4601,7 @@ namespace draw2d_cairo
                         65535
                     );
 
-      internal_draw_text(block, rectangle, e_null, e_null, &cairo_show_text);
+      internal_draw_text(block, rectangle, e_null, e_null);
 
       //return true;
 

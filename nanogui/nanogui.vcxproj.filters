@@ -112,6 +112,12 @@
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nano2d\font_sink.cpp">
+      <Filter>Source Files\nano2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -226,6 +232,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="nano2d\_nano2d_config.h">
+      <Filter>Header Files\nano2d</Filter>
+    </ClInclude>
+    <ClInclude Include="nano2d\font_sink.h">
       <Filter>Header Files\nano2d</Filter>
     </ClInclude>
   </ItemGroup>

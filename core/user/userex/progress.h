@@ -55,7 +55,7 @@ namespace userex
 
 
       progress_view();
-      virtual ~progress_view();
+      ~progress_view() override;
 
 
       void assert_ok() const override;

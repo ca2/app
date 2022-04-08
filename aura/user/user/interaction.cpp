@@ -5921,11 +5921,12 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (puserinteractionChild->is_this_visible()
-               && (!puserinteractionChild->is_place_holder()
-                  || (puserinteractionChild->m_puserinteractionpointeraChild
-                     && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
-                     && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
+            //if (puserinteractionChild->is_this_visible()
+               //&& (!puserinteractionChild->is_place_holder()
+               //   || (puserinteractionChild->m_puserinteractionpointeraChild
+               //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
+               //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
+                     if (puserinteractionChild->is_this_visible())
             {
 
                if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))

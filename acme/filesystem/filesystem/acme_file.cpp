@@ -758,9 +758,27 @@ void replace_char(char * sz, char ch1, char ch2)
 void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 {
 
-   throw ::interface_only();
+   
+   FILE * in = _wfopen(wstring(pszSrc), L"r"); //create the input file for reading
 
-   //throw ::interface_only();
+   if (in == NULL)
+      throw io_exception(error_io);
+
+   FILE * out = _wfopen(wstring(pszDup), L"w"); // create the output file for writing
+
+   if (out == NULL)
+      throw io_exception(error_io);
+
+   memory memory;
+
+   memory.set_size(1024);
+
+   size_t read;
+
+   while((read = fread(memory.get_data(), 1, memory.get_size(), in)) >0)
+
+      fwrite(memory.get_data(), 1, read, out); // write the input file to the output file
+   
 
 }
 

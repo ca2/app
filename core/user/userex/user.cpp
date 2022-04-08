@@ -11,6 +11,8 @@
 #include "aqua/xml.h"
 #include "aura/user/user/shell.h"
 #include "core/user/user/_tree.h"
+#include "dialog_frame.h"
+#include "progress.h"
 
 
 //void __html_initialize(::user::user * puserex);
@@ -140,6 +142,10 @@ namespace core
       
       
       ::factory::add_factory_item < ::simple_toolbar >();
+
+      ::factory::add_factory_item <::userex::dialog_frame >();
+      ::factory::add_factory_item <::user::progress >();
+
 
 
       //::factory::add_factory_item < ::simple_pane_document >();
@@ -293,6 +299,16 @@ namespace core
       m_ptemplatePlaceHolder = ptemplate;
 
       add_document_template(ptemplate);
+
+      auto pmultitemplate = new ::user::multiple_document_template(
+         "main",
+         __type(::user::document),
+         __type(::userex::dialog_frame),
+         __type(::userex::progress_view));
+
+      m_ptemplateProgress2 = pmultitemplate;
+
+      add_document_template(pmultitemplate);
 
       //auto estatus = 
       

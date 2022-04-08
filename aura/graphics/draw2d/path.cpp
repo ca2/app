@@ -2040,6 +2040,15 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       }
 
+      if (dDiameter <= 0.)
+      {
+
+         add_rectangle(rectangle);
+
+         return;
+
+      }
+
       ::rectangle_f64 rectangleRect(rectangle);
 
       rectangleRect.deflate(0, 0, 1.0, 1.0);

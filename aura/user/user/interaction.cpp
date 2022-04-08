@@ -5410,6 +5410,8 @@ namespace user
          if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
          {
 
+            pmessage->m_bRet = true;
+
             return;
 
          }
@@ -5475,6 +5477,8 @@ namespace user
 
          if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
          {
+
+            pmessage->m_bRet = true;
 
             return;
 
@@ -5706,6 +5710,8 @@ namespace user
 
 
          m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+
+         pmessage->m_bRet = true;
 
       }
       //if(psession->get_keyboard_focus() != this

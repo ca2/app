@@ -534,6 +534,11 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
 
 bool TextBox::keyboard_character_event(unsigned int codepoint) {
    if (m_editable && focused()) {
+      if (codepoint <= 16)
+      {
+
+         return false;
+      }
       std::ostringstream convert;
       convert << (char)codepoint;
 

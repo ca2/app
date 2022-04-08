@@ -475,7 +475,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedirectory->config(), this, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedirectory->config(), { e_as, this }, false);
       
       on_change_theme();
 
@@ -484,7 +484,7 @@ namespace aura
    }
 
 
-   void theme::handle_file_action(::file::action* ptopic)
+   void theme::operator()(::file::action* ptopic)
    {
 
       //if (ptopic->m_pathFile.ends_ci("weather_state.txt"))

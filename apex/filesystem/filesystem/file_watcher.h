@@ -27,38 +27,39 @@ namespace file
    class watcher;
    class listener;
 
+   
 
 
 
-   template < typename PRED >
-   class predicate_listener :
-      virtual public listener
-   {
-   public:
+   //template < typename PRED >
+   //class predicate_listener :
+   //   virtual public listener
+   //{
+   //public:
 
 
-      PRED m_predicate;
-      
+   //   PRED m_predicate;
+   //   
 
-      predicate_listener(PRED pred) :
-         m_predicate(pred)
-      {
-      }
+   //   predicate_listener(PRED pred) :
+   //      m_predicate(pred)
+   //   {
+   //   }
 
-      /// Handles the action file action
-      /// @lparam watchwatch_id The watch watch_id for the directory
-      /// @lparam dir The directory
-      /// @lparam filename The filename that was accessed (not full path)
-      /// @lparam action Action that was performed
-      virtual void handle_file_action(::file::action * paction) override
-      {
+   //   /// Handles the action file action
+   //   /// @lparam watchwatch_id The watch watch_id for the directory
+   //   /// @lparam dir The directory
+   //   /// @lparam filename The filename that was accessed (not full path)
+   //   /// @lparam action Action that was performed
+   //   virtual void handle_file_action(::file::action * paction) override
+   //   {
 
-         m_predicate(paction);
+   //      m_predicate(paction);
 
-      }
+   //   }
 
 
-   };
+   //};
 
 
    class os_watch;
@@ -70,15 +71,16 @@ namespace file
    public:
 
 
-      watch_id                            m_atom;
+      watch_id                            m_watchid;
       ::file::path                        m_pathFolder;
-      __pointer_array(listener)           m_listenera;
+      comparable_eq_array < listener >    m_listenera;
       __pointer(thread)                   m_pthread;
       bool                                m_bRecursive;
       watcher *                           m_pwatcher;
       __pointer(watch)                    m_pwatchRelease;
       bool                                m_bStop;
       void *                              m_pthis;
+      ::function < void() >               m_functionDestroy;
       
 
       watch();
@@ -88,8 +90,8 @@ namespace file
       virtual bool open(const ::file::path & pathFolder, bool bRecursive);
 
 
-      virtual void add_listener(listener * plistener);
-      virtual void erase_listener(listener * plistener);
+      virtual void add_listener(const listener & listener);
+      virtual void erase_listener(const listener & listener);
 
       virtual void handle_action(action * paction);
 
@@ -129,19 +131,11 @@ namespace file
       ~watcher() override;
 
 
-      template < typename PRED >
-      watch_id predicate_add_watch(const ::file::path & pathFolder, PRED pred, bool bRecursive)
-      {
-
-         return add_watch(pathFolder, __new(predicate_listener < PRED >(pred)), bRecursive);
-
-      }
-
-      virtual watch_id add_watch(const ::file::path & pathFolder, listener * plistener, bool bRecursive);
+      virtual watch_id add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive);
 
       virtual void erase_watch(const ::file::path & pathFolder);
 
-      virtual void erase_watch(watch_id watch_id);
+      virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased);
 
       virtual void run() override;
 

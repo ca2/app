@@ -17,7 +17,7 @@ namespace aura
 
    class CLASS_DECL_AURA theme :
       virtual public ::object,
-      virtual public ::file::listener
+      virtual public ::file::listener::base
    {
    public:
 
@@ -106,7 +106,7 @@ namespace aura
       inline ::color::color get_theme_icon_glow_color() { return m_pcolors->m_colorIconGlow; }
 
 
-      virtual void handle_file_action(::file::action* ptopic) override;
+      virtual void operator()(::file::action* ptopic) override;
 
    };
 

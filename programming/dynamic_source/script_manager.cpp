@@ -230,7 +230,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         pcontext->m_papexcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, { e_as, pwatcher }, true);
 
       }
 
@@ -252,7 +252,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            pcontext->m_papexcontext->dir().watcher().add_watch(item, pwatcher, true);
+            pcontext->m_papexcontext->dir().watcher().add_watch(item, { e_as, pwatcher }, true);
 
          }
 
@@ -1042,7 +1042,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::clear_include_matches_file_watcher::handle_file_action(::file::action * paction)
+   void script_manager::clear_include_matches_file_watcher::operator()(::file::action * paction)
    {
 
       ::file::path path;

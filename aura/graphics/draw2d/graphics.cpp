@@ -1150,21 +1150,21 @@ namespace draw2d
 
             pimage1->draw(imagedrawing);
 
-            int x = rectangleTarget.left;
+            auto x = rectangleTarget.left;
 
-            int y = rectangleTarget.top;
+            auto y = rectangleTarget.top;
 
             point_i32 pointDst;
 
-            pointDst.y = maximum(0, rectangleIntersect.top - y);
+            pointDst.y = (::i32) maximum(0., rectangleIntersect.top - y);
 
-            pointDst.x = maximum(0, rectangleIntersect.left - x);
+            pointDst.x = (::i32) maximum(0., rectangleIntersect.left - x);
 
             point_i32 pointSrc;
 
-            pointSrc.y = maximum(0, y - rectangleAlphaBlend.top);
+            pointSrc.y = (::i32) maximum(0, y - rectangleAlphaBlend.top);
 
-            pointSrc.x = maximum(0, x - rectangleAlphaBlend.left);
+            pointSrc.x = (::i32) maximum(0, x - rectangleAlphaBlend.left);
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 

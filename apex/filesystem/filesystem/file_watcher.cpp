@@ -39,13 +39,13 @@ namespace file
       try
       {
 
-         for (auto & plistener : m_listenera.ptra())
+         for (auto & listener : m_listenera)
          {
 
             try
             {
 
-               plistener->m_watchptra.erase(this);
+               listener.m_watcha.erase(this);
 
             }
             catch (...)
@@ -58,6 +58,13 @@ namespace file
       }
       catch (...)
       {
+
+      }
+
+      if (m_functionDestroy)
+      {
+
+         m_functionDestroy();
 
       }
 
@@ -76,40 +83,38 @@ namespace file
    }
 
 
-   void watch::add_listener(listener * plistener)
+   void watch::add_listener(const listener & listenerParam)
    {
 
-      m_listenera.add_unique(plistener);
+      auto & listener = m_listenera.insert_unique(listenerParam);
 
-      plistener->m_watchptra.add_unique(this);
+      listener.m_watcha.add_unique(this);
 
    }
 
 
-   void watch::erase_listener(listener * plistener)
+   void watch::erase_listener(const listener & listener)
    {
 
-      m_listenera.erase(plistener);
-
-      plistener->m_watchptra.erase(this);
+      m_listenera.erase(listener);
 
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->erase_watch(m_atom);
+         m_pwatcher->erase_watch(m_watchid);
 
       }
 
    }
 
 
-   void watch::handle_action(action * ptopic)
+   void watch::handle_action(action * paction)
    {
 
-      for (auto & plistener : m_listenera.ptra())
+      for (auto & listener : m_listenera)
       {
 
-         plistener->handle_file_action(ptopic);
+         listener(paction);
 
       }
 
@@ -126,50 +131,31 @@ namespace file
    }
 
 
-   listener::listener()
-   {
+   //listener::listener(const listener_function function) :
+   //   m_function(function)
+   //{
 
-   }
+   //}
 
 
    listener::~listener()
    {
 
-      try
-      {
-
-         for (auto & pwatch : m_watchptra)
-         {
-
-            try
-            {
-
-               pwatch->erase_listener(this);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
 
    }
 
 
-   void listener::handle_file_action(::file::action * paction)
-   {
+   //void listener::handle_file_action(::file::action * paction)
+   //{
 
-      __UNREFERENCED_PARAMETER(paction);
+   //   if (m_function)
+   //   {
 
-   }
+   //      m_function(paction);
+
+   //   }
+
+   //}
 
 
    watcher::watcher()
@@ -188,7 +174,15 @@ namespace file
    }
 
 
-   watch_id watcher::add_watch(const ::file::path & pathFolder, listener * plistenerParam, bool bRecursive)
+   //watch_id watcher::watch_folder_with_listener_function(const ::file::path & pathFolder, listener_function function, bool bRecursive)
+   //{
+
+   //   return watch_folder_with_listener(pathFolder, __new(listener(function)), bRecursive);
+
+   //}
+
+
+   watch_id watcher::add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
       if (pathFolder.is_empty())
@@ -197,8 +191,6 @@ namespace file
          return -1;
 
       }
-
-      __pointer(listener) plistener(plistenerParam);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -240,7 +232,7 @@ namespace file
 
       }
 
-      pwatch->add_listener(plistener);
+      pwatch->add_listener(listener);
 
       pwatch->m_pathFolder = pathFolder;
 
@@ -249,7 +241,7 @@ namespace file
    }
 
 
-   void watcher::erase_watch(watch_id watch_id)
+   void watcher::erase_watch(watch_id watch_id, ::function < void() > functionErased)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -261,7 +253,12 @@ namespace file
 
       watch * pwatch = ppair->element2();
 
+      manual_reset_event event;
+
+      pwatch->m_functionDestroy = functionErased;
+
       pwatch->m_pwatchRelease = pwatch;
+
 
    }
 
@@ -325,6 +322,8 @@ restart:
             pair.element2()->m_bStop = true;
 
             pair.element2()->m_pwatchRelease.release();
+
+            pair.element2()->m_listenera.clear();
 
             m_watchmap.erase_key(pair.element1());
 

@@ -124,13 +124,23 @@ public:
 };
 
 
+enum enum_as
+{
+
+   e_as,
+
+}; // enum enum_base
+
+
+#define __as(p) { e_as, p }
+
 template < typename RETURN_TYPE, typename... TYPES >
 class function < RETURN_TYPE(TYPES...) >
 {
 public:
 
 
-   class predicate_base :
+   class base :
       virtual public ::element
    {
    public:
@@ -141,14 +151,14 @@ public:
 
 
    template < typename PREDICATE >
-   class predicate :
-      public predicate_base
+   class implementation :
+      public base
    {
    public:
 
       PREDICATE m_predicate;
 
-      predicate(PREDICATE predicate) :
+      implementation(PREDICATE predicate) :
          m_predicate(predicate)
       {
 
@@ -164,18 +174,25 @@ public:
 
    };
 
-   __pointer(predicate_base)     m_ppredicate;
+   __pointer(base)     m_pbase;
 
    function(nullptr_t = nullptr)
    {
 
    }
 
-   template < typename PREDICATE >
-   function(PREDICATE predicateParam)
+   function(enum_as, base * pbase)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+      m_pbase = pbase;
+
+   }
+
+   template < typename FUNCTION >
+   function(FUNCTION functionParam)
+   {
+
+      m_pbase = __new(class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -188,20 +205,20 @@ public:
    RETURN_TYPE operator()(TYPES... args) const
    {
 
-      ASSERT(m_ppredicate);
+      ASSERT(m_pbase);
 
-      return m_ppredicate->operator()(args...);
+      return m_pbase->operator()(args...);
 
    }
 
 
-   void clear() { m_ppredicate.release(); }
+   void clear() { m_pbase.release(); }
 
-   template < typename PREDICATE >
-   function & operator = (PREDICATE predicateParam)
+   template < typename FUNCTION >
+   function & operator = (FUNCTION functionParam)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+      m_pbase = __new(class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -217,9 +234,12 @@ public:
 
    }
 
-   operator bool() const { return ::is_set(m_ppredicate); }
+   operator bool() const { return ::is_set(m_pbase); }
 
-   bool operator !() const { return ::is_null(m_ppredicate); }
+   bool operator !() const { return ::is_null(m_pbase); }
 
+   function & operator = (const function & function) { m_pbase = function.m_pbase; return *this; }
+   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   bool operator != (const function & function) const { return !operator==(function); }
 
 };

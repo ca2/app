@@ -957,6 +957,7 @@
     <ClInclude Include="application.h" />
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="crypto\initializer.h" />
+    <ClInclude Include="filesystem\filesystem\file_listener.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\predicate.h" />

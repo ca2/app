@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE document :
-      virtual public ::file::listener,
+      virtual public ::file::listener::base,
       virtual public ::userfs::document,
       virtual public ::filemanager::callback,
       virtual public ::filemanager::file_list_callback
@@ -117,7 +117,7 @@ namespace filemanager
 
 
 
-      virtual void handle_file_action(::file::action * paction) override;
+      void operator()(::file::action * paction) override;
 
 
       virtual void on_create(::create * pcreate) override;

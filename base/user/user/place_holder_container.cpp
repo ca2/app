@@ -101,18 +101,22 @@ namespace user
    bool place_holder_container::on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder)
    {
 
-      if(pholder->can_merge(pinteraction))
-      {
+      pinteraction->set_parent(pholder);
 
-         return pholder->merge(pinteraction);
+      return true;
 
-      }
-      else
-      {
+      //if(pholder->can_merge(pinteraction))
+      //{
 
-         return pholder->place_hold(pinteraction);
+      //   return pholder->merge(pinteraction);
 
-      }
+      //}
+      //else
+      //{
+
+      //   return pholder->place_hold(pinteraction);
+
+      //}
 
    }
 

@@ -7,7 +7,7 @@ namespace dynamic_source
 
    class CLASS_DECL_APP_PROGRAMMING script_compiler :
       virtual public ::programming::compiler,
-      virtual public ::file::listener
+      virtual public ::file::listener::base
    {
    protected:
 
@@ -97,7 +97,7 @@ namespace dynamic_source
       //    bool library_DoesMatchVersion();
 
 
-      virtual void handle_file_action(::file::action * paction) override;
+      void operator()(::file::action * paction) override;
 
 
       //void prepare1(const ::string & pszSource, const ::string & pszDest);

@@ -53,7 +53,7 @@ public:
 
    bool add_unique(ARG_TYPE t);
    ::count add_unique(const ARRAY_TYPE & a);
-
+   TYPE & insert_unique(ARG_TYPE t);
 
    ::count add_erase(bool bAdd, ARG_TYPE t);
 
@@ -278,6 +278,25 @@ bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_unique(ARG_TYPE t)
    this->add(t);
    return true;
 }
+
+
+template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+TYPE & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique(ARG_TYPE t)
+{
+
+   auto iIndex = this->find_first(t);
+
+   if (iIndex < 0)
+   {
+
+      iIndex = this->add(t);
+
+   }
+   
+   return this->element_at(iIndex);
+
+}
+
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 ::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_erase(bool bAdd, ARG_TYPE t)

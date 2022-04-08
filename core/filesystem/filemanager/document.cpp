@@ -163,7 +163,7 @@ namespace filemanager
 
          auto& watcher = dir.watcher();
 
-         m_filewatchid = watcher.add_watch(m_pitem->m_filepathFinal, this, false);
+         m_filewatchid = watcher.add_watch(m_pitem->m_filepathFinal, { e_as, this } , false);
 
       }
       catch (...)
@@ -1540,7 +1540,7 @@ namespace filemanager
    }
 
 
-   void document::handle_file_action(::file::action * paction)
+   void document::operator()(::file::action * paction)
    {
 
       auto eaction = paction->m_eaction;

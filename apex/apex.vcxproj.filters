@@ -207,6 +207,9 @@
     <Filter Include="Header Files\handler">
       <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\filesystem\filesystem\NewFilter1">
+      <UniqueIdentifier>{8479be1c-b262-429f-8325-423583bea44f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1189,6 +1192,9 @@
     </ClInclude>
     <ClInclude Include="handler\_.h">
       <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_listener.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

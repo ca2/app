@@ -731,21 +731,21 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //}
 
-   __pointer(::user::place_holder) pplaceholder = get_parent();
+   //__pointer(::user::place_holder) pplaceholder = get_parent();
 
-   if (pplaceholder != nullptr)
-   {
+   //if (pplaceholder != nullptr)
+   //{
 
-      __pointer(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
+   //   __pointer(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
 
-      if (pcontainer != nullptr)
-      {
+   //   if (pcontainer != nullptr)
+   //   {
 
-         pcontainer->on_place_hold(this, pplaceholder);
+   //      pcontainer->on_place_hold(this, pplaceholder);
 
-      }
+   //   }
 
-   }
+   //}
 
    auto papp = get_app();
 

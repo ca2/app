@@ -1275,7 +1275,7 @@ pacmedirectory->create(pathDVP_Folder);
 
    }
 
-   void script_compiler::handle_file_action(::file::action * paction)
+   void script_compiler::operator()(::file::action * paction)
    {
 
       synchronous_lock synchronouslock(&m_mutex);
@@ -1331,7 +1331,7 @@ pacmedirectory->create(pathDVP_Folder);
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid  = m_pcontext->m_papexcontext->dir().watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
+      m_filewatcherid = m_pcontext->m_papexcontext->dir().watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, { e_as, this }, true);
 
    }
 

@@ -267,7 +267,7 @@ namespace sqlite
    ___pointer<class payload_array> database::query_row(const ::string & psz)
    {
 
-      return nullptr;
+      return ::database::database_impl::query_row(psz);
 
    }
 
@@ -275,7 +275,7 @@ namespace sqlite
    ::payload database::query_item(const ::string & psz)
    {
 
-      return ::payload();
+      return ::database::database_impl::query_item(psz);
 
    }
 
@@ -283,7 +283,7 @@ namespace sqlite
    __pointer(payload_array) database::query_items(const ::string & psz)
    {
 
-      return nullptr;
+      return ::database::database_impl::query_items(psz);
 
    }
 
@@ -324,7 +324,7 @@ namespace sqlite
    __pointer(__pointer_array(payload_array)) database::query_rows(const ::string & psz)
    {
 
-      return nullptr;
+      return ::database::database_impl::query_rows(psz);
 
    }
 

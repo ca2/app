@@ -41,76 +41,76 @@ namespace user
    bool place_holder::on_add_child(::user::interaction * puserinteractionChild)
    {
 
-      if (m_puserinteractionpointeraChild)
-      {
+      //if (m_puserinteractionpointeraChild)
+      //{
 
-         if(m_puserinteractionpointeraChild->interaction_count() == 1
-         && m_puserinteractionpointeraChild->first_interaction() == puserinteractionChild)
-         {
+      //   if(m_puserinteractionpointeraChild->interaction_count() == 1
+      //   && m_puserinteractionpointeraChild->first_interaction() == puserinteractionChild)
+      //   {
 
-            return true;
+      //      return true;
 
-         }
-         else if (m_puserinteractionpointeraChild->interaction_count() == 1)
-         {
+      //   }
+      //   else if (m_puserinteractionpointeraChild->interaction_count() == 1)
+      //   {
 
-            __pointer(::user::interaction) puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
+      //      __pointer(::user::interaction) puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
 
-            puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+      //      puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
-            m_puserinteractionpointeraChild->m_interactiona.set_at(0, puserinteractionChild);
+      //      m_puserinteractionpointeraChild->m_interactiona.set_at(0, puserinteractionChild);
 
-            if (puserinteractionOld)
-            {
+      //      if (puserinteractionOld)
+      //      {
 
-               puserinteractionOld->m_puserinteraction->m_puserinteractionParent.release();
+      //         puserinteractionOld->m_puserinteraction->m_puserinteractionParent.release();
 
-               __pointer(::user::interaction) puserinteractionParent = this;
+      //         __pointer(::user::interaction) puserinteractionParent = this;
 
-               auto pimpact = puserinteractionChild->cast < ::user::impact>();
+      //         auto pimpact = puserinteractionChild->cast < ::user::impact>();
 
-               if (pimpact)
-               {
+      //         if (pimpact)
+      //         {
 
-                  while (puserinteractionParent)
-                  {
+      //            while (puserinteractionParent)
+      //            {
 
-                     __pointer(::user::frame) pframe = puserinteractionParent;
+      //               __pointer(::user::frame) pframe = puserinteractionParent;
 
-                     if (pframe)
-                     {
+      //               if (pframe)
+      //               {
 
-                        if (pframe->get_active_view() == puserinteractionOld)
-                        {
+      //                  if (pframe->get_active_view() == puserinteractionOld)
+      //                  {
 
-                           pframe->set_active_view(pimpact);
+      //                     pframe->set_active_view(pimpact);
 
-                        }
+      //                  }
 
-                     }
+      //               }
 
-                     puserinteractionParent = puserinteractionParent->get_parent();
+      //               puserinteractionParent = puserinteractionParent->get_parent();
 
-                  }
+      //            }
 
-               }
+      //         }
 
 
-               puserinteractionOld->set_finish();
+      //         puserinteractionOld->set_finish();
 
-            }
+      //      }
 
-            return true;
+      //      return true;
 
-         }
-         else if(m_puserinteractionpointeraChild->interaction_count() > 1)
-         {
+      //   }
+      //   else if(m_puserinteractionpointeraChild->interaction_count() > 1)
+      //   {
 
-            throw ::exception(error_wrong_state);
+      //      throw ::exception(error_wrong_state);
 
-         }
+      //   }
 
-      }
+      //}
 
       auto bOk = ::user::interaction::on_add_child(puserinteractionChild);
 
@@ -261,7 +261,7 @@ namespace user
 
       }
 
-      __pointer(::base::application) papp = get_app();
+      /*__pointer(::base::application) papp = get_app();
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -285,7 +285,7 @@ namespace user
          m_puserinteractionpointeraChild.release();
 
 
-      }
+      }*/
 
       puiChild->set_parent(this);
 
@@ -296,10 +296,20 @@ namespace user
 
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
+      
 
-      __pointer(::base::application) papp = get_app();
+      if (m_puserinteractionpointeraChild)
+      {
 
-      return papp->place_hold(pinteraction) != nullptr;
+         m_puserinteractionpointeraChild->erase_interaction(pinteraction);
+
+      }
+
+      return true;
+
+      //__pointer(::base::application) papp = get_app();
+
+      //return papp->place_hold(pinteraction) != nullptr;
 
    }
 
@@ -325,17 +335,19 @@ namespace user
 
       }
 
+
+      for(auto  & puiChild : puserinteractionpointeraChild->interactiona())
       {
 
-         auto puiChild = puserinteractionpointeraChild->first_interaction();
+         //auto puiChild = puserinteractionpointeraChild->first_interaction();
 
          lock_sketch_to_design lockSketchToDesign(puiChild);
 
          puiChild->place(rectangleClient);
 
-         puiChild->display();
+         //puiChild->display();
 
-         puiChild->set_reposition();
+         //puiChild->set_reposition();
 
          puiChild->set_need_layout();
 
@@ -392,6 +404,18 @@ namespace user
 
       }
 
+      for (auto & puiChild : puserinteractionpointeraChild->interactiona())
+      {
+
+         if (puiChild->is_this_visible())
+         {
+
+            return puiChild;
+
+         }
+
+      }
+
       return puserinteractionpointeraChild->first_interaction();
 
    }
@@ -406,21 +430,23 @@ namespace user
    void place_holder::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if(puserinteractionpointeraChild->interaction_count() >= 2)
-      {
+      ::user::interaction::_001DrawChildren(pgraphics);
+      //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-         output_debug_string("place_holder with more than one child : what?!?!");
+      ////if(puserinteractionpointeraChild->interaction_count() >= 2)
+      ////{
 
-      }
+      ////   output_debug_string("place_holder with more than one child : what?!?!");
 
-      if(puserinteractionpointeraChild->has_interaction())
-      {
+      ////}
 
-         puserinteractionpointeraChild->first_interaction()->_000CallOnDraw(pgraphics);
+      //if(puserinteractionpointeraChild->has_interaction())
+      //{
 
-      }
+      //   puserinteractionpointeraChild->first_interaction()->_000CallOnDraw(pgraphics);
+
+      //}
 
    }
 
@@ -523,7 +549,7 @@ namespace user
    {
 
       // then pump through frame
-      ::user::interaction::route_command(pcommand);
+      ::user::interaction::route_command(pcommand, true);
 
       if(pcommand->m_bRet)
          return;

@@ -240,6 +240,8 @@ namespace userex
       
       pmessage->previous();
 
+      __construct(m_pprogress);
+
       m_pprogress->create_control(this, "progress_control");
 
       //if (!m_pprogress->create_control(this, "progress_control"))
@@ -321,6 +323,8 @@ namespace userex
       }
 
       pgraphics->set_text_color(argb(255, 80, 80, 80));
+
+      pgraphics->set_font(this);
 
       pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectangleStatus, e_align_center);
 

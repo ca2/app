@@ -971,6 +971,7 @@
     <ClCompile Include="user\userex\calculator_edit_view.cpp" />
     <ClCompile Include="user\userex\color_view.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
+    <ClCompile Include="user\userex\dialog_frame.cpp" />
     <ClCompile Include="user\userex\font_view.cpp" />
     <ClCompile Include="user\userex\form_child_frame.cpp" />
     <ClCompile Include="user\userex\form_frame.cpp" />
@@ -1154,6 +1155,7 @@
     <ClInclude Include="user\rich_text\_const.h" />
     <ClInclude Include="user\rich_text\_rich_text.h" />
     <ClInclude Include="user\userex\calculator_edit_view.h" />
+    <ClInclude Include="user\userex\dialog_frame.h" />
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />

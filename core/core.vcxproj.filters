@@ -1196,6 +1196,9 @@
     <ClInclude Include="networking\_impl.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="user\userex\dialog_frame.h">
+      <Filter>Header Files\user\userex</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\message_box.cpp">
@@ -1824,6 +1827,9 @@
     </ClCompile>
     <ClCompile Include="user\user\main_frame.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\dialog_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

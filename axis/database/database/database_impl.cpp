@@ -198,7 +198,7 @@ namespace database
       for (index i = 0; i < pset->m_prowa->get_count(); i++)
       {
 
-         pvara->add((const ::payload&)pset->m_prowa->element_at(i));
+         pvara->add((const ::payload&)pset->m_prowa->element_at(i)->element_at(0));
 
       }
 

@@ -55,7 +55,7 @@ string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat
 
       auto pmessage = *ppMessages;
       
-      printf("%s", pmessage);
+      //printf("%s", pmessage);
 
       string strSymbolName;
       

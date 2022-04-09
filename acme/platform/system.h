@@ -459,6 +459,9 @@ public:
    __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
+   virtual void windowing_post(const ::routine & routine);
+
+
 };
 
 

@@ -345,9 +345,14 @@ namespace user
 
          puiChild->place(rectangleClient);
 
-         //puiChild->display();
+         if(puserinteractionpointeraChild->interaction_count() == 1)
+         {
 
-         //puiChild->set_reposition();
+            puiChild->display();
+
+         }
+
+         puiChild->set_reposition();
 
          puiChild->set_need_layout();
 

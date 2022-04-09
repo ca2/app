@@ -1881,7 +1881,7 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
    if (!::is_ok(preader))
    {
 
-      throw ::exception(error_io);
+      throw ::io_exception(error_io);
 
    }
 

@@ -481,21 +481,21 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
 //}
 //
 
-void nano_window::display_synchronously()
+void nano_window::display()
 {
 
-   if(is_main_thread())
-   {
-
-      // Cannot display synchronously in user/main thread.
-
-      // Cannot show user interface on break of user/main thread.
-
-      debug_break();
-
-      return;
-
-   }
+//   if(is_main_thread())
+//   {
+//
+//      // Cannot display synchronously in user/main thread.
+//
+//      // Cannot show user interface on break of user/main thread.
+//
+//      debug_break();
+//
+//      return;
+//
+//   }
 
    _wm_nodecorations(false);
 
@@ -505,7 +505,7 @@ void nano_window::display_synchronously()
 
    set_active();
 
-   m_eventEnd.wait();
+//   m_eventEnd.wait();
 
 }
 
@@ -705,6 +705,8 @@ bool nano_window::_on_event(XEvent *pevent)
       }
 
    }
+
+   return true;
 
 }
 
@@ -1077,6 +1079,31 @@ Window _x11_get_active_window(Display * pdisplay)
    Window window = x11_get_long_property(pdisplay, windowRoot, (char*) "_NET_ACTIVE_WINDOW");
 
    return window;
+
+}
+
+
+extern class ::system * g_psystem;
+
+
+void x11_asynchronous(::function < void() > function)
+{
+
+   auto pdisplay = ::x11::display::get(g_psystem);
+
+   if (!pdisplay)
+   {
+
+      throw ::exception(error_null_pointer);
+
+   }
+
+   pdisplay->display_post(__routine([function]()
+                                    {
+
+                                       function();
+
+                                    }));
 
 }
 

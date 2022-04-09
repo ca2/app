@@ -19,7 +19,7 @@ namespace x11
    public:
 
 
-      __pointer(display)              m_pdisplay;
+      __pointer(class display)        m_pdisplay;
       Window                          m_window;
       cairo_surface_t *               m_psurface;
       __pointer(nano_device)          m_pnanodevice;
@@ -51,7 +51,7 @@ namespace x11
 
       void destroy() override;
 
-      void display_synchronously() override;
+      void display() override;
 
       virtual bool _on_event(XEvent *pevent);
 

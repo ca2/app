@@ -14,8 +14,6 @@ public:
 
    static app *                                    g_p;
 
-   int                                             m_iExitCode;
-
    string                                          m_strAppName;
    string                                          m_strRoot;
    string                                          m_strDomain;

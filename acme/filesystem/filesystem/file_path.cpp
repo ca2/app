@@ -7,6 +7,22 @@
 #include <stdio.h>
 
 
+void copy_character_per_character(char * pszTarget, const char * pszSource)
+{
+
+   while(*pszSource)
+   {
+
+      *pszTarget = *pszSource;
+
+      pszTarget++;
+
+      pszSource++;
+
+   }
+
+}
+
 const char * file_path_name(const char * path)
 {
 
@@ -373,7 +389,11 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                }
 
-               strcpy(&psz[iNewPosition], &psz[iPos]);
+               auto pszNewPosition = psz + iNewPosition;
+
+               auto pszPos = psz + iPos;
+
+               copy_character_per_character(pszNewPosition, pszPos);
 
                iLen -= iPos - iNewPosition;
 

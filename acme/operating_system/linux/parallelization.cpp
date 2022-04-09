@@ -2,6 +2,9 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
+void x11_asynchronous(::function < void() > function);
+
+
 void task_set_name(htask_t htask, const char * psz)
 {
 
@@ -65,3 +68,35 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 }
 
 
+extern class ::system * g_psystem;
+
+
+void main_asynchronous( ::function < void () > function)
+{
+
+   auto routine = __routine([function]()
+                            {
+
+                               function();
+
+                            });
+
+   g_psystem->windowing_post(routine);
+
+
+}
+
+
+
+void system::windowing_post(const ::routine & routine)
+{
+
+   x11_asynchronous([routine]()
+                    {
+
+                       routine();
+
+                    });
+
+
+}

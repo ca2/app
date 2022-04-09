@@ -240,6 +240,13 @@ void __main(main& main)
 
    pnode->implement(pnode, psystem);
 
+   if(main.m_iExitCode == 0 && psystem->m_iExitCode != 0)
+   {
+
+      main.m_iExitCode = psystem->m_iExitCode;
+
+   }
+
    //}
 
    //auto psystem = platform_create_system(strAppId);

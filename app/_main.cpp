@@ -8,3 +8,9 @@
 
 
 ::app_app::application g_app;
+
+
+__embed_resource(g_app);
+
+
+

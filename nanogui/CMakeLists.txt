@@ -8,6 +8,8 @@ list(APPEND library_source
    nano2d/context.h
    nano2d/draw2d_context.cpp
    nano2d/draw2d_context.h
+   nano2d/font_sink.cpp
+   nano2d/font_sink.h
    nano2d/nano2d.cpp
         _.cpp
         _.h
@@ -43,6 +45,7 @@ list(APPEND library_source
    MessageDialog.cpp
    MessageDialog.h
    Object.h
+   platform.cpp
    Popup.cpp
    Popup.h
    PopupButton.cpp

@@ -508,6 +508,8 @@ list(APPEND library_source
    user/userex/const.h
    user/userex/dialog.cpp
    user/userex/dialog.h
+   user/userex/dialog_frame.cpp
+   user/userex/dialog_frame.h
    user/userex/error_dialog.h
    user/userex/font_view.cpp
    user/userex/font_view.h

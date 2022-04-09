@@ -758,13 +758,28 @@ void replace_char(char * sz, char ch1, char ch2)
 void acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 {
 
-   
+#ifdef WINDOWS
+
    FILE * in = _wfopen(wstring(pszSrc), L"r"); //create the input file for reading
+
+#else
+
+   FILE * in = fopen(pszSrc, "r"); //create the input file for reading
+
+#endif
 
    if (in == NULL)
       throw io_exception(error_io);
 
+#ifdef WINDOWS
+
    FILE * out = _wfopen(wstring(pszDup), L"w"); // create the output file for writing
+
+#else
+
+   FILE * out = fopen(pszDup, "w"); // create the output file for writing
+
+#endif
 
    if (out == NULL)
       throw io_exception(error_io);
@@ -1483,7 +1498,14 @@ void acme_file::_erase(const char * path)
 
       auto estatus = errno_to_status(iErrNo);
 
-      throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"", m_psystem->m_pappMain->m_strAppId, e_message_box_ok, "Failed to erase file:\n\"" + string(path) + "\"");
+      if(estatus != error_file_not_found)
+      {
+
+         throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"",
+                           m_psystem->m_pappMain->m_strAppId, e_message_box_ok,
+                           "Failed to erase file:\n\"" + string(path) + "\"");
+
+      }
 
    }
 

@@ -6903,6 +6903,17 @@ namespace aura
 
    }
 
+
+   void system::windowing_post(const ::routine & routine)
+   {
+
+      auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing();
+
+      pwindowing->windowing_post(routine);
+
+   }
+
+
    //void system::on_initial_frame_position(::user::frame* pframe)
    //{
 

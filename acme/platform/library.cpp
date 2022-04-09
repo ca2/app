@@ -478,10 +478,15 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  if(m_psystem->m_etracelevel <= e_trace_level_information)
+                  if(is_verbose_log())
                   {
 
-                     output_debug_string("Closing library : " + m_strName + "\n");
+                     if (m_psystem->m_etracelevel <= e_trace_level_information)
+                     {
+
+                        output_debug_string("Closing library : " + m_strName + "\n");
+
+                     }
 
                   }
 

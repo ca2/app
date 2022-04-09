@@ -1942,15 +1942,22 @@ void thread::main()
       catch (const ::exception & exception)
       {
 
-         ERROR("thread::main : " << exception.m_strMessage);
+         if(is_verbose_log())
+         {
+
+            ERROR("thread::main : " << exception.m_strMessage);
+
+         }
+
+         m_estatus = exception.m_estatus;
 
       }
 
-         destroy_tasks();
+      destroy_tasks();
 
-         __task_term();
+      __task_term();
 
-         task_osterm();
+      task_osterm();
 
 
    }

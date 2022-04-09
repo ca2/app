@@ -374,7 +374,21 @@ namespace x11
    bool display::is_branch_current() const
    {
 
-      return !m_bUnhook && ::object::is_branch_current();
+      if(!m_bUnhook && ::object::is_branch_current())
+      {
+
+         return true;
+
+      }
+
+      if(m_bUnhook && ::is_main_thread())
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 

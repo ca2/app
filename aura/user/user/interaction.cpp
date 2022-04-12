@@ -324,7 +324,7 @@ namespace user
 
       auto pwindow = get_window();
 
-      double dTransformed = pwindow->point_dpi((float)d);
+      double dTransformed = pwindow->point_dpi((float) d);
 
       return dTransformed;
 
@@ -336,7 +336,7 @@ namespace user
 
       auto pwindow = get_window();
 
-      double dTransformed = pwindow->dpiy((float)d);
+      double dTransformed = pwindow->dpiy((float) d);
 
       return dTransformed;
 
@@ -346,7 +346,8 @@ namespace user
    ::windowing::window * interaction::window() const
    {
 
-      auto puserinteractionHost = ((interaction *)this)->get_host_window();
+      auto puserinteractionHost = ((interaction * )
+      this)->get_host_window();
 
       if (::is_null(puserinteractionHost))
       {
@@ -404,6 +405,32 @@ namespace user
    }
 
 
+   ::windowing::display * interaction::get_display() const
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pdisplay = pwindowing->display();
+
+      if (::is_null(pdisplay))
+      {
+
+         return nullptr;
+
+      }
+
+      return pdisplay;
+
+   }
+
+
    ::user::interaction * interaction::get_host_window() const
    {
 
@@ -443,7 +470,7 @@ namespace user
 
 
    ::write_text::font_pointer
-      interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -548,7 +575,8 @@ namespace user
    }
 
 
-   status < ::rectangle_f64 > interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64>
+   interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -556,7 +584,8 @@ namespace user
    }
 
 
-   status < ::rectangle_f64 > interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64>
+   interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (get_control_type() == ::user::e_control_type_button)
@@ -579,7 +608,8 @@ namespace user
    }
 
 
-   status < ::rectangle_f64 > interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::rectangle_f64>
+   interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
@@ -587,7 +617,8 @@ namespace user
 
          double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
 
-         ::rectangle_f64 rectangleDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
+         ::rectangle_f64 rectangleDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth,
+                                                dFocusHeightWidth);
 
          return rectangleDefaultMargin;
 
@@ -600,7 +631,7 @@ namespace user
    }
 
 
-   status < ::color::color > interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   status<::color::color> interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -687,7 +718,6 @@ namespace user
    }
 
 
-
    void interaction::on_tsf_activate(bool bActivate)
    {
 
@@ -731,7 +761,7 @@ namespace user
 
          bDuplicate = false;
 
-         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
          {
 
             if (pinteraction->m_atom == strCandidateId)
@@ -915,9 +945,9 @@ namespace user
       auto edisplayState = pinteraction->layout().window().display();
 
       if (pinteraction->m_pprimitiveimpl.is_set() &&
-         (
-            layout().sketch().is_screen_visible() || edisplayState != edisplayRequest
-            ))
+          (
+             layout().sketch().is_screen_visible() || edisplayState != edisplayRequest
+          ))
       {
 
          pinteraction->m_pprimitiveimpl->set_need_redraw();
@@ -966,9 +996,9 @@ namespace user
       auto psession = get_session();
 
       if (pinteraction->m_pprimitiveimpl.is_set() &&
-         (layout().sketch().is_screen_visible()
-            || edisplaySketch != edisplayWindow
-            || pinteraction == psession->get_user_interaction_host()))
+          (layout().sketch().is_screen_visible()
+           || edisplaySketch != edisplayWindow
+           || pinteraction == psession->get_user_interaction_host()))
       {
 
          pinteraction->m_pprimitiveimpl->post_redraw();
@@ -1055,8 +1085,6 @@ namespace user
       //}
 
    }
-
-
 
 
    ::user::interaction * interaction::get_user_interaction()
@@ -1516,9 +1544,9 @@ namespace user
       }
 
       bKeyMessage = message == e_message_key_down ||
-         message == e_message_key_up ||
-         message == e_message_char ||
-         message == e_message_text_composition
+                    message == e_message_key_up ||
+                    message == e_message_char ||
+                    message == e_message_text_composition
 #ifdef WINDOWS_DESKTOP
          || message == e_message_sys_key_down
          || message == e_message_sys_key_up
@@ -1776,7 +1804,8 @@ namespace user
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
-         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &interaction::on_message_non_client_calculate_size);
+         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,
+                      &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_subject, pchannel, this, &interaction::on_message_subject);
@@ -2353,21 +2382,22 @@ namespace user
          {
 
             post_routine(__routine([this]()
-               {
+                                   {
 
-                  if (get_app() != nullptr && get_app()->get_session() != nullptr && has_keyboard_focus())
-                  {
+                                      if (get_app() != nullptr && get_app()->get_session() != nullptr &&
+                                          has_keyboard_focus())
+                                      {
 
-                     if (get_parent() != nullptr && is_window_visible(e_layout_sketch))
-                     {
+                                         if (get_parent() != nullptr && is_window_visible(e_layout_sketch))
+                                         {
 
-                        keyboard_set_focus_next();
+                                            keyboard_set_focus_next();
 
-                     }
+                                         }
 
-                  }
+                                      }
 
-               }));
+                                   }));
 
          }
 
@@ -2490,8 +2520,8 @@ namespace user
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cx;
-      info.nPage = (::i32)sizePage.cx;
+      info.nMax = (::i32) sizeTotal.cx;
+      info.nPage = (::i32) sizePage.cx;
       info.nPos = pointOffset.x;
       info.nTrackPos = pointOffset.x;
 
@@ -2508,8 +2538,8 @@ namespace user
       auto pointOffset = get_viewport_offset();
 
       info.nMin = 0;
-      info.nMax = (::i32)sizeTotal.cy;
-      info.nPage = (::i32)sizePage.cy;
+      info.nMax = (::i32) sizeTotal.cy;
+      info.nPage = (::i32) sizePage.cy;
       info.nPos = pointOffset.y;
       info.nTrackPos = pointOffset.y;
 
@@ -2638,7 +2668,8 @@ namespace user
 
             //synchronous_lock slChildren(::user::mutex_children());
 
-            auto puserinteractionpointeraChild = __new(::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
+            auto puserinteractionpointeraChild = __new(
+               ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
 
             if (puserinteractionParent->m_bUserElementOk)
             {
@@ -2678,7 +2709,8 @@ namespace user
 
                __pointer(::aura::application) papp = get_app();
 
-               papp->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+               papp->erase_user_interaction(
+                  this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
             }
             catch (...)
@@ -2694,7 +2726,8 @@ namespace user
 
                   __pointer(::aura::application) papp = get_app();
 
-                  papp->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+                  papp->erase_user_interaction(
+                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
                }
                catch (...)
@@ -2725,7 +2758,9 @@ namespace user
       //task_erase_all();
 
       single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
-         || get_wnd()->m_pprimitiveimpl.cast < ::user::interaction_impl >() == nullptr ? nullptr : get_wnd()->m_pprimitiveimpl.cast < ::user::interaction_impl >()->draw_mutex(), true);
+                         || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
+                                                                                                    : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
+                         true);
 
 
       try
@@ -2823,10 +2858,10 @@ namespace user
          if (puserinteractionpointeraChild)
          {
 
-            for (auto & puserinteraction : puserinteractionpointeraChild->interactiona())
+            for (auto & puserinteraction: puserinteractionpointeraChild->interactiona())
             {
 
-               puserinteraction->post_message((enum_message)e_message_display_change);
+               puserinteraction->post_message((enum_message) e_message_display_change);
 
             }
 
@@ -2962,7 +2997,6 @@ namespace user
    }
 
 
-
    void interaction::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -3019,7 +3053,7 @@ namespace user
 
          ::rectangle_i32 rectangleClip;
 
-         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
 
          ::rectangle_i32 rectangleClient;
 
@@ -3076,7 +3110,7 @@ namespace user
 
             synchronouslock.unlock();
 
-            auto pshapeaClip = __create_new < shape_array >();
+            auto pshapeaClip = __create_new<shape_array>();
 
             ::rectangle_i32 rectangleIntersect;
 
@@ -3124,8 +3158,6 @@ namespace user
       }
 
    }
-
-
 
 
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
@@ -3186,7 +3218,6 @@ namespace user
             }
 
 
-
          }
 
          {
@@ -3224,7 +3255,8 @@ namespace user
 
                }
 
-               CATEGORY_INFORMATION(prodevian, type << " drawing took more than 50ms to complete (" << durationElapsed.integral_millisecond() << ")!!\n");
+               CATEGORY_INFORMATION(prodevian, type << " drawing took more than 50ms to complete ("
+                                                    << durationElapsed.integral_millisecond() << ")!!\n");
 
                // let's trye to see what happened?
                //_001CallOnDraw(pgraphics);
@@ -3267,7 +3299,8 @@ namespace user
             if (durationElapsed > 100_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
+               CATEGORY_INFORMATION(prodevian,
+                                    "\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
@@ -3429,7 +3462,7 @@ namespace user
 
       auto offset = pointOffset - pointViewportOffset;
 
-      pgraphics->OffsetViewportOrg((::i32)offset.cx, (::i32)offset.cy);
+      pgraphics->OffsetViewportOrg((::i32) offset.cx, (::i32) offset.cy);
 
    }
 
@@ -3487,7 +3520,8 @@ namespace user
 
       bool bParentScrollY = false;
 
-      try {
+      try
+      {
 
          //::draw2d::savedc k(pgraphics);
 
@@ -3501,7 +3535,7 @@ namespace user
          if (puserinteractionpointeraChild)
          {
 
-            for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+            for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
             {
 
                try
@@ -3919,12 +3953,12 @@ namespace user
          //output_debug_string("plain_edit");
 
       }
-      //      else if (strType.contains_ci("font_list"))
-      //      {
-      //
-      //         output_debug_string("font_list");
-      //
-      //      }
+         //      else if (strType.contains_ci("font_list"))
+         //      {
+         //
+         //         output_debug_string("font_list");
+         //
+         //      }
       else if (strType.contains_ci("combo_box"))
       {
 
@@ -4195,7 +4229,8 @@ namespace user
 
                   string strType = __type_name(this);
 
-                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " + strType + "::_008CallOnDraw took " +
+                                                  d1.integral_millisecond() + "::duration.\n");
 
                }
 
@@ -4221,7 +4256,7 @@ namespace user
    void interaction::draw_control_background(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain<::aura::draw_context>::get_last();
 
       ::rectangle_i32 rectangleClient;
 
@@ -4348,138 +4383,138 @@ namespace user
 
       __pointer(::message::message) pmessage;
 
-      auto eprototype = ::message::get_message_prototype((enum_message)atom.i64(), 0);
+      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 
       switch (eprototype)
       {
-      case ::message::PrototypeNone:
-      {
+         case ::message::PrototypeNone:
+         {
 
-         pmessage = __new(::user::message);
+            pmessage = __new(::user::message);
 
-      }
-      break;
-      case ::message::PrototypeCreate:
-      {
-         pmessage = __new(::message::create);
-      }
-      break;
-      case ::message::PrototypeEnable:
-      {
-         pmessage = __new(::message::enable);
-      }
-      break;
-      case ::message::PrototypeNcActivate:
-      {
-         pmessage = __new(::message::nc_activate);
-      }
-      break;
-      case ::message::PrototypeKey:
-      {
-         pmessage = __new(::message::key);
-      }
-      break;
-      case ::message::PrototypeTimer:
-      {
+         }
+            break;
+         case ::message::PrototypeCreate:
+         {
+            pmessage = __new(::message::create);
+         }
+            break;
+         case ::message::PrototypeEnable:
+         {
+            pmessage = __new(::message::enable);
+         }
+            break;
+         case ::message::PrototypeNcActivate:
+         {
+            pmessage = __new(::message::nc_activate);
+         }
+            break;
+         case ::message::PrototypeKey:
+         {
+            pmessage = __new(::message::key);
+         }
+            break;
+         case ::message::PrototypeTimer:
+         {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+            //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
 
-         pmessage = __new(::message::timer);
+            pmessage = __new(::message::timer);
 
-      }
-      break;
-      case ::message::PrototypeShowWindow:
-      {
-         pmessage = __new(::message::show_window);
-      }
-      break;
-      case ::message::PrototypeSetCursor:
-      {
-         pmessage = __new(::message::set_cursor);
-      }
-      break;
-      case ::message::PrototypeNcHitTest:
-      {
-         pmessage = __new(::message::nc_hit_test);
-      }
-      break;
-      case ::message::PrototypeMove:
-      {
-         pmessage = __new(::message::move);
-      }
-      break;
-      case ::message::PrototypeEraseBkgnd:
-      {
-         pmessage = __new(::message::erase_bkgnd);
-      }
-      break;
-      case ::message::PrototypeScroll:
-      {
-         pmessage = __new(::message::scroll);
-      }
-      break;
-      case ::message::PrototypeSetFocus:
-      {
-         pmessage = __new(::message::set_keyboard_focus);
-      }
-      break;
-      case ::message::PrototypeKillFocus:
-      {
-         pmessage = __new(::message::kill_keyboard_focus);
-      }
-      break;
+         }
+            break;
+         case ::message::PrototypeShowWindow:
+         {
+            pmessage = __new(::message::show_window);
+         }
+            break;
+         case ::message::PrototypeSetCursor:
+         {
+            pmessage = __new(::message::set_cursor);
+         }
+            break;
+         case ::message::PrototypeNcHitTest:
+         {
+            pmessage = __new(::message::nc_hit_test);
+         }
+            break;
+         case ::message::PrototypeMove:
+         {
+            pmessage = __new(::message::move);
+         }
+            break;
+         case ::message::PrototypeEraseBkgnd:
+         {
+            pmessage = __new(::message::erase_bkgnd);
+         }
+            break;
+         case ::message::PrototypeScroll:
+         {
+            pmessage = __new(::message::scroll);
+         }
+            break;
+         case ::message::PrototypeSetFocus:
+         {
+            pmessage = __new(::message::set_keyboard_focus);
+         }
+            break;
+         case ::message::PrototypeKillFocus:
+         {
+            pmessage = __new(::message::kill_keyboard_focus);
+         }
+            break;
 #if !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
-      case ::message::PrototypeWindowPos:
-      {
-         pmessage = __new(::message::window_pos);
-      }
-      break;
-      case ::message::PrototypeNcCalcSize:
-      {
-         pmessage = __new(::message::nc_calc_size);
-      }
-      break;
+            case ::message::PrototypeWindowPos:
+            {
+               pmessage = __new(::message::window_pos);
+            }
+            break;
+            case ::message::PrototypeNcCalcSize:
+            {
+               pmessage = __new(::message::nc_calc_size);
+            }
+            break;
 #endif
-      case ::message::PrototypeMouse:
-      {
-         pmessage = __new(::message::mouse);
-      }
-      break;
-      case ::message::PrototypeMouseWheel:
-      {
-         pmessage = __new(::message::mouse_wheel);
-      }
-      break;
-      case ::message::PrototypeSize:
-      {
-         pmessage = __new(::message::size);
-      }
-      break;
-      case ::message::PrototypeActivate:
-      {
-         pmessage = __new(::message::activate);
-      }
-      break;
-      case ::message::PrototypeMouseActivate:
-      {
-         pmessage = __new(::message::mouse_activate);
-      }
-      break;
-      case ::message::PrototypeSimpleCommand:
-      {
-         pmessage = __new(::message::simple_command);
-      }
-      break;
-      case ::message::PrototypeObject:
-      {
-         pmessage = __new(::message::object);
-      }
-      break;
-      default:
-      {
-         pmessage = __new(::message::message);
-      }
-      break;
+         case ::message::PrototypeMouse:
+         {
+            pmessage = __new(::message::mouse);
+         }
+            break;
+         case ::message::PrototypeMouseWheel:
+         {
+            pmessage = __new(::message::mouse_wheel);
+         }
+            break;
+         case ::message::PrototypeSize:
+         {
+            pmessage = __new(::message::size);
+         }
+            break;
+         case ::message::PrototypeActivate:
+         {
+            pmessage = __new(::message::activate);
+         }
+            break;
+         case ::message::PrototypeMouseActivate:
+         {
+            pmessage = __new(::message::mouse_activate);
+         }
+            break;
+         case ::message::PrototypeSimpleCommand:
+         {
+            pmessage = __new(::message::simple_command);
+         }
+            break;
+         case ::message::PrototypeObject:
+         {
+            pmessage = __new(::message::object);
+         }
+            break;
+         default:
+         {
+            pmessage = __new(::message::message);
+         }
+            break;
       }
 
       if (pmessage.is_null())
@@ -4655,9 +4690,7 @@ namespace user
    {
 
 
-
    }
-
 
 
    bool interaction::is_branch_current() const
@@ -4683,10 +4716,10 @@ namespace user
    ::item_pointer interaction::get_user_item(const ::item & item)
    {
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem: m_useritema)
       {
 
-         if (*pitem == (ITEM_BASE_ADDITIONS &)item)
+         if (*pitem == (ITEM_BASE_ADDITIONS &) item)
          {
 
             return pitem;
@@ -5309,7 +5342,8 @@ namespace user
       if (bTestedIfParentVisible)
       {
 
-         if (!is_this_visible(e_layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
+         if (!is_this_visible(e_layout_sketch) ||
+             !_001IsPointInside(point)) // inline version - do not need pointer to the function
          {
 
             return nullptr;
@@ -5320,7 +5354,8 @@ namespace user
       else
       {
 
-         if (!is_window_visible(e_layout_sketch) || !_001IsPointInside(point)) // inline version - do not need pointer to the function
+         if (!is_window_visible(e_layout_sketch) ||
+             !_001IsPointInside(point)) // inline version - do not need pointer to the function
          {
 
             return nullptr;
@@ -5434,14 +5469,14 @@ namespace user
 
             }
             else if (m_bKeyboardMultipleSelectionDefaultHandling &&
-               (
-                  pkey->m_ekey == ::user::e_key_shift
-                  || pkey->m_ekey == ::user::e_key_left_shift
-                  || pkey->m_ekey == ::user::e_key_right_shift
-                  || pkey->m_ekey == ::user::e_key_control
-                  || pkey->m_ekey == ::user::e_key_left_control
-                  || pkey->m_ekey == ::user::e_key_right_control
-                  ))
+                     (
+                        pkey->m_ekey == ::user::e_key_shift
+                        || pkey->m_ekey == ::user::e_key_left_shift
+                        || pkey->m_ekey == ::user::e_key_right_shift
+                        || pkey->m_ekey == ::user::e_key_control
+                        || pkey->m_ekey == ::user::e_key_left_control
+                        || pkey->m_ekey == ::user::e_key_right_control
+                     ))
             {
 
                pkey->m_bRet = true;
@@ -5496,14 +5531,14 @@ namespace user
 
             }
             else if (m_bKeyboardMultipleSelectionDefaultHandling &&
-               (
-                  pkey->m_ekey == ::user::e_key_shift
-                  || pkey->m_ekey == ::user::e_key_left_shift
-                  || pkey->m_ekey == ::user::e_key_right_shift
-                  || pkey->m_ekey == ::user::e_key_control
-                  || pkey->m_ekey == ::user::e_key_left_control
-                  || pkey->m_ekey == ::user::e_key_right_control
-                  ))
+                     (
+                        pkey->m_ekey == ::user::e_key_shift
+                        || pkey->m_ekey == ::user::e_key_left_shift
+                        || pkey->m_ekey == ::user::e_key_right_shift
+                        || pkey->m_ekey == ::user::e_key_control
+                        || pkey->m_ekey == ::user::e_key_left_control
+                        || pkey->m_ekey == ::user::e_key_right_control
+                     ))
             {
 
                pkey->m_bRet = true;
@@ -5704,7 +5739,7 @@ namespace user
       {
 
 
-         m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+         m_pappearance->on_character((int) pmessage->m_wparam.m_number);
 
          pmessage->m_bRet = true;
 
@@ -5911,17 +5946,17 @@ namespace user
          puserinteractionSearchChildren = nullptr;
 
          for (::index iChild = puserinteractionpointeraChild->interaction_last_index();
-            iChild >= 0; iChild--)
+              iChild >= 0; iChild--)
          {
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
             //if (puserinteractionChild->is_this_visible()
-               //&& (!puserinteractionChild->is_place_holder()
-               //   || (puserinteractionChild->m_puserinteractionpointeraChild
-               //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
-               //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
-                     if (puserinteractionChild->is_this_visible())
+            //&& (!puserinteractionChild->is_place_holder()
+            //   || (puserinteractionChild->m_puserinteractionpointeraChild
+            //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
+            //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
+            if (puserinteractionChild->is_this_visible())
             {
 
                if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
@@ -6138,8 +6173,8 @@ namespace user
    //}
 
 
-   void interaction::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
-
+   void interaction::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep,
+                                                 bool bOnlyPerm)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -6158,7 +6193,7 @@ namespace user
 
          //synchronouslock.unlock();
 
-         for (auto & puserinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & puserinteraction: puserinteractionpointeraChild->interactiona())
          {
 
             try
@@ -6181,7 +6216,7 @@ namespace user
 
          }
 
-         for (auto & puserinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & puserinteraction: puserinteractionpointeraChild->interactiona())
          {
 
             try
@@ -6223,7 +6258,7 @@ namespace user
 
       }
 
-      for (auto & puiChild : puserinteractionpointeraChild->interactiona())
+      for (auto & puiChild: puserinteractionpointeraChild->interactiona())
       {
 
          try
@@ -6508,7 +6543,7 @@ namespace user
        if (puserinteractionParent == nullptr || puserinteractionParent->get_safe_handle() == (oswindow)MESSAGE_WINDOW_PARENT)
        {*/
 
-       //auto estatus =
+      //auto estatus =
 
       __construct(pprimitiveimplNew);
 
@@ -6519,21 +6554,21 @@ namespace user
 
               }*/
 
-              //#ifdef WINDOWS_DESKTOP
-              //
-              //            wstring wstrClassName(pszClassName);
-              //
-              //            wstring wstrWindowName(pszWindowName);
-              //
-              //            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle, pcreate);
-              //
-              //#else
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //            wstring wstrClassName(pszClassName);
+      //
+      //            wstring wstrWindowName(pszWindowName);
+      //
+      //            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle, pcreate);
+      //
+      //#else
 
-              //auto pusersystem = __new(::user::system(uExStyle, uStyle, rectangle, pcreate));
+      //auto pusersystem = __new(::user::system(uExStyle, uStyle, rectangle, pcreate));
 
-              //#endif
+      //#endif
 
-              //pusersystem->m_createstruct.hwndParent = ::is_set(puserinteractionParent) ? puserinteractionParent->get_safe_handle() : nullptr;
+      //pusersystem->m_createstruct.hwndParent = ::is_set(puserinteractionParent) ? puserinteractionParent->get_safe_handle() : nullptr;
 
 
       pprimitiveimplNew->create_host(this);
@@ -6581,31 +6616,31 @@ namespace user
 
       //        }
 
-   //}
-   //catch (...)
-   //{
+      //}
+      //catch (...)
+      //{
 
-   //   m_bUserElementOk = false;
+      //   m_bUserElementOk = false;
 
-   //   if (m_pthreadUserInteraction)
-   //   {
+      //   if (m_pthreadUserInteraction)
+      //   {
 
-   //      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
-   //      {
+      //      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+      //      {
 
-   //         m_pthreadUserInteraction->m_puiptraThread->erase(this);
+      //         m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
-   //      }
+      //      }
 
-   //      __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      //      __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-   //   }
+      //   }
 
-   //   //return false;
+      //   //return false;
 
-   //}
+      //}
 
-   //return true;
+      //return true;
 
    }
 
@@ -6763,7 +6798,7 @@ namespace user
 
       //synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->mutex());
 
-      m_pprimitiveimpl = __create_new < ::user::interaction_child >();
+      m_pprimitiveimpl = __create_new<::user::interaction_child>();
 
       //m_pprimitiveimpl->m_puserinteraction = this;
 
@@ -6800,29 +6835,29 @@ namespace user
 
       //}
 
-   //}
-   //catch (...)
-   //{
+      //}
+      //catch (...)
+      //{
 
-   //   m_bUserElementOk = false;
+      //   m_bUserElementOk = false;
 
-   //   if (m_pthreadUserInteraction)
-   //   {
+      //   if (m_pthreadUserInteraction)
+      //   {
 
-   //      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
-   //      {
+      //      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+      //      {
 
-   //         m_pthreadUserInteraction->m_puiptraThread->erase(this);
+      //         m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
-   //      }
+      //      }
 
-   //      __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+      //      __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-   //   }
+      //   }
 
-   //}
+      //}
 
-   //return estatus;
+      //return estatus;
 
    }
 
@@ -7037,7 +7072,8 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_next_window(bool bIgnoreChildren, const ::user::interaction * puserinteractionStop) const
+   ::user::interaction *
+   interaction::get_next_window(bool bIgnoreChildren, const ::user::interaction * puserinteractionStop) const
    {
 
       if (!bIgnoreChildren)
@@ -7303,7 +7339,6 @@ namespace user
    }
 
 
-
    void interaction::insert_text(string str, bool bForceNewStep, const ::action_context & context)
    {
 
@@ -7414,12 +7449,10 @@ namespace user
    }
 
 
-
-
    ::user::interaction * interaction::get_top_level() const
    {
 
-      ::user::interaction * puserinteractionParent = (::user::interaction *)this;
+      ::user::interaction * puserinteractionParent = (::user::interaction *) this;
 
       ::user::interaction * puiTopLevelParent;
 
@@ -7459,7 +7492,7 @@ namespace user
    ::user::frame * interaction::frame() const
    {
 
-      ::user::interaction * pinteraction = (::user::interaction *)this;
+      ::user::interaction * pinteraction = (::user::interaction *) this;
 
       if (pinteraction == nullptr)
       {
@@ -7474,7 +7507,7 @@ namespace user
          if (pinteraction->is_frame_window())
          {
 
-            return pinteraction->cast <::user::frame>();
+            return pinteraction->cast<::user::frame>();
 
          }
 
@@ -7843,17 +7876,17 @@ namespace user
       if (m_pusersystem) m_pusersystem->destroy();
       if (m_playout) m_playout->destroy();
       if (m_pgraphicscalla) m_pgraphicscalla->destroy();
-      if (m_puserinteractionCustomWindowProc)  m_puserinteractionCustomWindowProc->destroy();
-      if (m_puiLabel)  m_puiLabel->destroy();
+      if (m_puserinteractionCustomWindowProc) m_puserinteractionCustomWindowProc->destroy();
+      if (m_puiLabel) m_puiLabel->destroy();
       m_useritema.destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
-      if (m_palphasource)  m_palphasource->destroy();
-      if (m_pdrawableBackground)  m_pdrawableBackground->destroy();
-      if (m_pprimitiveimpl)  m_pprimitiveimpl->destroy();
-      if (m_pinteractionimpl)  m_pinteractionimpl->destroy();
-      if (m_puserinteractionpointeraOwned)  m_puserinteractionpointeraOwned->destroy();
-      if (m_puserinteractionpointeraChild)  m_puserinteractionpointeraChild->destroy();
+      if (m_palphasource) m_palphasource->destroy();
+      if (m_pdrawableBackground) m_pdrawableBackground->destroy();
+      if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
+      if (m_pinteractionimpl) m_pinteractionimpl->destroy();
+      if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
+      if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
       // tasks should not be destroyed in destroy
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
@@ -7934,7 +7967,7 @@ namespace user
       if (::is_set(m_pthreadUserInteraction))
       {
 
-         auto pthread = m_pthreadUserInteraction.cast < thread >();
+         auto pthread = m_pthreadUserInteraction.cast<thread>();
 
          if (pthread->m_pimpl == m_pinteractionimpl)
          {
@@ -8043,7 +8076,8 @@ namespace user
    }
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag,
+                                    RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -8053,7 +8087,8 @@ namespace user
 
       }
 
-      return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient, bStretch);
+      return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient,
+                                              bStretch);
 
    }
 
@@ -8102,7 +8137,8 @@ namespace user
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         __refer(m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         __refer(m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction
+                 OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
@@ -8292,9 +8328,9 @@ namespace user
    void interaction::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_client_to_screen((POINT_I32 *)&prectangle->left);
+      viewport_client_to_screen((POINT_I32 *) &prectangle->left);
 
-      viewport_client_to_screen((POINT_I32 *)&prectangle->right);
+      viewport_client_to_screen((POINT_I32 *) &prectangle->right);
 
    }
 
@@ -8302,9 +8338,9 @@ namespace user
    void interaction::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_screen_to_client((POINT_I32 *)&prectangle->left);
+      viewport_screen_to_client((POINT_I32 *) &prectangle->left);
 
-      viewport_screen_to_client((POINT_I32 *)&prectangle->right);
+      viewport_screen_to_client((POINT_I32 *) &prectangle->right);
 
    }
 
@@ -8514,8 +8550,8 @@ namespace user
 
       }
       else if (edisplaySketch == ::e_display_restore
-         || edisplaySketch == ::e_display_compact
-         || edisplaySketch == ::e_display_broad)
+               || edisplaySketch == ::e_display_compact
+               || edisplaySketch == ::e_display_broad)
       {
 
          if (get_parent() != nullptr)
@@ -8628,8 +8664,6 @@ namespace user
    }
 
 
-
-
    CLASS_DECL_AURA void zorder_sort(::user::interaction_array & uia)
    {
 
@@ -8673,7 +8707,7 @@ namespace user
 
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
          {
 
             pinteraction->layout().sketch()._patch_order(iZOrder);
@@ -8770,7 +8804,7 @@ namespace user
          if (puserinteractionpointeraChild)
          {
 
-            for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+            for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
             {
 
                pinteraction->set_reposition(true);
@@ -8845,7 +8879,7 @@ namespace user
 
       if (::is_set(pappearance))
       {
-         
+
          pappearance->perform_layout(pgraphics);
 
       }
@@ -8861,7 +8895,7 @@ namespace user
 
          auto children = puserinteractionpointeraChild->m_interactiona;
 
-         for (auto & pinteraction : children)
+         for (auto & pinteraction: children)
          {
 
             try
@@ -8870,8 +8904,8 @@ namespace user
                __pointer(::aura::application) papp = get_app();
 
                if (pinteraction->m_bExtendOnParent ||
-                  (pinteraction->m_bExtendOnParentIfClientOnly
-                     && papp->m_bExperienceMainFrame))
+                   (pinteraction->m_bExtendOnParentIfClientOnly
+                    && papp->m_bExperienceMainFrame))
                {
 
                   bool bThisVisible = pinteraction->is_this_visible();
@@ -9485,7 +9519,7 @@ namespace user
 
       }
 
-      for (auto & puseritem : m_useritema)
+      for (auto & puseritem: m_useritema)
       {
 
          if (puseritem)
@@ -10238,7 +10272,8 @@ namespace user
    }
 
 
-   void interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+   void interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+                               void * pdata)
    {
 
       if (is_destroying())
@@ -10253,7 +10288,8 @@ namespace user
    }
 
 
-   void interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+   void interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+                              void * pdata)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -10528,7 +10564,6 @@ namespace user
    }
 
 
-
    bool interaction::is_active_window() const
    {
 
@@ -10750,7 +10785,7 @@ namespace user
       bool bWindowCrossesWorkspaceBoundaries = !rectangleWorkspace.contains(rectangleRequest);
 
       bool bWindowLargerThanBroadRestore = rectangleRequest.width() > m_sizeRestoreBroad.cx
-         || rectangleRequest.height() > m_sizeRestoreBroad.cy;
+                                           || rectangleRequest.height() > m_sizeRestoreBroad.cy;
 
       if (bWindowCrossesWorkspaceBoundaries || bWindowLargerThanBroadRestore)
       {
@@ -10800,7 +10835,8 @@ namespace user
    static i64 g_i_prodevian_update_visual = 0;
 
 
-   void interaction::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void
+   interaction::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -10829,18 +10865,18 @@ namespace user
       //         output_debug_string("place_holder");
       //
       //      }
-   //   else if (strType.contains("combo_box"))
-   //   {
-   //
-   //      output_debug_string("combo_box");
-   //
-   //   }
-   //   else if (strType.contains("list_box"))
-   //   {
-   //
-   //      output_debug_string("list_box");
-   //
-   //   }
+      //   else if (strType.contains("combo_box"))
+      //   {
+      //
+      //      output_debug_string("combo_box");
+      //
+      //   }
+      //   else if (strType.contains("list_box"))
+      //   {
+      //
+      //      output_debug_string("list_box");
+      //
+      //   }
 
       __keep(m_bUpdatingVisual);
 
@@ -10874,7 +10910,7 @@ namespace user
 
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-         for (auto pchild : puserinteractionpointeraChild->interactiona())
+         for (auto pchild: puserinteractionpointeraChild->interactiona())
          {
 
             if (pchild->layout().sketch().zorder().is_change_request())
@@ -11004,7 +11040,8 @@ namespace user
          if (m_ewindowflag & e_window_flag_loading_window_rect)
          {
 
-            INFORMATION("window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
+            INFORMATION(
+               "window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
 
          }
          else
@@ -11116,7 +11153,7 @@ namespace user
       {
 
          if (m_ewindowflag & e_window_flag_on_show_window_visible
-            || m_ewindowflag & e_window_flag_on_show_window_screen_visible)
+             || m_ewindowflag & e_window_flag_on_show_window_screen_visible)
          {
 
             m_ewindowflag -= e_window_flag_on_show_window_visible;
@@ -11236,15 +11273,10 @@ namespace user
    }
 
 
-
-
-
-
-
    void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
    {
 
-      auto phyperlink = __create_new < ::hyperlink >();
+      auto phyperlink = __create_new<::hyperlink>();
 
       phyperlink->m_strLink = psz;
 
@@ -11260,7 +11292,7 @@ namespace user
    bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
    {
 
-      auto puserinteractionParent = puserprimitiveParent->cast < ::user::interaction >();
+      auto puserinteractionParent = puserprimitiveParent->cast<::user::interaction>();
 
       if (m_puserinteractionParent == puserinteractionParent)
       {
@@ -11297,7 +11329,7 @@ namespace user
       {
 
          if (m_puserinteractionParent != nullptr
-            && m_puserinteractionParent != puserinteractionParent)
+             && m_puserinteractionParent != puserinteractionParent)
          {
 
             INFORMATION("-------------------------------------------------------------------");
@@ -11307,7 +11339,8 @@ namespace user
             INFORMATION("");
             INFORMATION("");
 
-            auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
+            auto puiptraChildNew = __new(
+               ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
             puiptraChildNew->erase_interaction(this);
             m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
 
@@ -11343,7 +11376,8 @@ namespace user
 
                }
 
-               __refer(m_pthreadUserInteraction, puserinteractionParent->get_wnd()->m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+               __refer(m_pthreadUserInteraction, puserinteractionParent->get_wnd()->m_pthreadUserInteraction
+                       OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
             }
 
@@ -11444,7 +11478,7 @@ namespace user
 
       m_bUserElementOk = true;
 
-      m_pprimitiveimpl = __create < interaction_impl >();
+      m_pprimitiveimpl = __create<interaction_impl>();
 
       if (m_pprimitiveimpl == nullptr)
       {
@@ -11476,20 +11510,19 @@ namespace user
 
       //}
 
-   //}
-   //catch (...)
-   //{
+      //}
+      //catch (...)
+      //{
 
-   //   m_bUserElementOk = false;
+      //   m_bUserElementOk = false;
 
-   //   return false;
+      //   return false;
 
-   //}
+      //}
 
-   //return true;
+      //return true;
 
    }
-
 
 
    void interaction::walk_pre_translate_tree(::message::message * pmessage, ::user::interaction * puiStop)
@@ -11539,7 +11572,6 @@ namespace user
       }
 
 
-
    }
 
 
@@ -11569,7 +11601,7 @@ namespace user
 
       }
 
-      for (auto & puiChild : puserinteractionpointeraChild->interactiona())
+      for (auto & puiChild: puserinteractionpointeraChild->interactiona())
       {
 
          if (puiChild->contains_user_interaction(pinteraction))
@@ -11808,7 +11840,6 @@ namespace user
    }
 
 
-
    ::user::interaction * interaction::first_child()
    {
 
@@ -11853,7 +11884,6 @@ namespace user
       }
       return nullptr;
    }
-
 
 
    ::user::interaction * interaction::first_sibling()
@@ -11928,7 +11958,7 @@ namespace user
          if (i < 0)
             return nullptr;
          i++;
-      restart:
+         restart:
          if (i >= puserinteractionpointeraChild->interaction_count())
             return nullptr;
          else
@@ -12110,7 +12140,7 @@ namespace user
       index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
       if (i < 0)
          return nullptr;
-   restart:
+      restart:
       i--;
       if (i < 0)
          return nullptr;
@@ -12251,7 +12281,7 @@ namespace user
       if (m_puserinteractionParent == this)
       {
 
-         ((::user::interaction *)this)->m_puserinteractionParent.release();
+         ((::user::interaction *) this)->m_puserinteractionParent.release();
 
          return nullptr;
 
@@ -12260,7 +12290,7 @@ namespace user
       if (m_puserinteractionParent == nullptr)
       {
 
-         return (::user::interaction *)this;
+         return (::user::interaction *) this;
 
       }
 
@@ -12270,7 +12300,7 @@ namespace user
       if (m_bUserInteractionHost)
       {
 
-         return (::user::interaction *)this;
+         return (::user::interaction *) this;
 
       }
 
@@ -12344,7 +12374,7 @@ namespace user
          else if (pinteraction->keyboard_focus_is_focusable())
          {
 
-            return (::user::interaction *)pinteraction;
+            return (::user::interaction *) pinteraction;
 
          }
 
@@ -12379,7 +12409,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem: m_useritema)
       {
 
          if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
@@ -12545,8 +12575,6 @@ namespace user
    }
 
 
-
-
    void interaction::on_simple_command(::message::simple_command * psimplecommand)
    {
 
@@ -12554,94 +12582,94 @@ namespace user
 
       switch (esimplecommand)
       {
-      case e_simple_command_layout:
-      {
+         case e_simple_command_layout:
+         {
 
-         psimplecommand->m_bRet = true;
+            psimplecommand->m_bRet = true;
 
-      }
-      case e_simple_command_check_transparent_mouse_events:
-      {
+         }
+         case e_simple_command_check_transparent_mouse_events:
+         {
 
 #ifdef WINDOWS_DESKTOP
 
-         ::user::interaction * puiTop = get_wnd();
+            ::user::interaction * puiTop = get_wnd();
 
-         if (puiTop != this)
-         {
-
-            ASSERT(false);
-
-            return;
-
-         }
-
-         __pointer(::user::interaction_impl) pprimitiveimpl = m_pprimitiveimpl;
-
-         bool bStart = pprimitiveimpl->m_bTransparentMouseEvents
-            && puiTop->is_this_visible();
-         // || (puiTop->GetExStyle() & WS_EX_LAYERED
-         //    && puiTop->layout().is_full_screen());
-
-         if (bStart && layout().is_changing())
-         {
-
-            bStart = false;
-
-         }
-
-         if (bStart)
-         {
-
-            defer_branch("transparent_mouse_event_thread",
-               __routine([this]()
-                  {
-
-                     _task_transparent_mouse_event();
-                  }
-            ));
-            //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
-
-            //SetTimer(e_timer_transparent_mouse_event, 100);
-
-         }
-         else
-         {
-
-            synchronous_lock synchronouslock(mutex());
-
-            auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
-
-            if (pthread)
+            if (puiTop != this)
             {
 
-               pthread->post_quit();
+               ASSERT(false);
 
-               payload("transparent_mouse_event_thread").unset();
+               return;
 
             }
 
-            //::KillTimer(get_handle(), e_timer_transparent_mouse_event);
+            __pointer(::user::interaction_impl) pprimitiveimpl = m_pprimitiveimpl;
 
-            //KillTimer(e_timer_transparent_mouse_event);
+            bool bStart = pprimitiveimpl->m_bTransparentMouseEvents
+               && puiTop->is_this_visible();
+            // || (puiTop->GetExStyle() & WS_EX_LAYERED
+            //    && puiTop->layout().is_full_screen());
 
-         }
+            if (bStart && layout().is_changing())
+            {
+
+               bStart = false;
+
+            }
+
+            if (bStart)
+            {
+
+               defer_branch("transparent_mouse_event_thread",
+                  __routine([this]()
+                     {
+
+                        _task_transparent_mouse_event();
+                     }
+               ));
+               //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
+
+               //SetTimer(e_timer_transparent_mouse_event, 100);
+
+            }
+            else
+            {
+
+               synchronous_lock synchronouslock(mutex());
+
+               auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
+
+               if (pthread)
+               {
+
+                  pthread->post_quit();
+
+                  payload("transparent_mouse_event_thread").unset();
+
+               }
+
+               //::KillTimer(get_handle(), e_timer_transparent_mouse_event);
+
+               //KillTimer(e_timer_transparent_mouse_event);
+
+            }
 
 #endif
 
-      }
-      break;
-      //case e_simple_command_defer_start_prodevian:
-      //{
+         }
+            break;
+            //case e_simple_command_defer_start_prodevian:
+            //{
 
-      //   m_pprimitiveimpl->_defer_start_prodevian();
+            //   m_pprimitiveimpl->_defer_start_prodevian();
 
 
-      //}
-      break;
-      default:
+            //}
+            break;
+         default:
 
-         break;
+            break;
 
       }
 
@@ -12716,10 +12744,10 @@ namespace user
 
       }
 
-      if(layout().normal().m_bProdevian)
+      if (layout().normal().m_bProdevian)
       {
 
-         if(!is_prodevian())
+         if (!is_prodevian())
          {
 
             set_prodevian();
@@ -12748,6 +12776,20 @@ namespace user
    }
 
 
+   void interaction::_001OnExitNormal()
+   {
+
+      auto rect = layout().window().parent_client_rect();
+
+      layout().normal() = layout().window();
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
+
+   }
+
+
    bool interaction::_001OnBeforeAppearance()
    {
 
@@ -12772,8 +12814,18 @@ namespace user
             _001OnExitIconic();
 
          }
+         else if(
+            !(edisplaySketch == e_display_restore ||
+              edisplaySketch == e_display_normal)
+              &&
+               (edisplayDesign == e_display_restore
+               || edisplayDesign == e_display_normal))
+         {
 
-         if (layout().sketch().display() != e_display_full_screen && layout().design().display() == e_display_full_screen)
+            _001OnExitNormal();
+
+         }
+         else if (layout().sketch().display() != e_display_full_screen && layout().design().display() == e_display_full_screen)
          {
 
             _001OnExitFullScreen();
@@ -12954,12 +13006,6 @@ namespace user
 
       auto rectangleRequest = this->screen_rect();
 
-      layout().normal() = layout().window();
-
-      bool bProdevian = is_prodevian();
-
-      layout().normal().m_bProdevian = bProdevian;
-
       good_iconify(nullptr, rectangleRequest, true, eactivation, layout().sketch().zorder());
 
    }
@@ -13001,9 +13047,11 @@ namespace user
    void interaction::design_window_restore(edisplay edisplay)
    {
 
-      auto rectangleRequest = this->screen_rect();
+      auto activation = layout().sketch().activation();
 
-      good_restore(nullptr, rectangleRequest, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+      auto zorder = layout().sketch().zorder();
+
+      good_restore(nullptr, nullptr, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
    }
 
@@ -13485,47 +13533,35 @@ namespace user
    }
 
 
-   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32 * prectWorkspace, SIZE_I32 * psizeMin, const ::rectangle_i32 & rectangleHint)
+   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32 * prectWorkspace, const ::size_i32 & sizeMinParam, const ::rectangle_i32 & rectangleHintParam)
    {
 
-      ::rectangle_i32 rectangleRestore(rectangleHint);
+      ::rectangle_i32 rectangleHint(rectangleHintParam);
 
-      if (rectangleRestore.is_null())
+      if (rectangleHint.is_empty())
       {
 
-         rectangleRestore = this->screen_rect();
+         rectangleHint = this->screen_rect();
+
+      }
+
+      ::size_i32 sizeMin(sizeMinParam);
+
+      if (sizeMin.is_empty())
+      {
+
+         sizeMin = this->get_window_minimum_size();
 
       }
 
       ::rectangle_i32 rectangleWorkspace;
 
-      auto psession = get_session();
+      auto pdisplay = get_display();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pdisplay = pwindowing->display();
-
-      index iMatchingWorkspace = pdisplay->get_best_workspace(&rectangleWorkspace, rectangleRestore);
+      index iMatchingWorkspace = pdisplay->get_best_workspace(&rectangleWorkspace, rectangleHint);
 
       if (iMatchingWorkspace >= 0)
       {
-
-         ::size_i32 sizeMin;
-
-         if (::is_set(psizeMin) && !is_empty(psizeMin))
-         {
-
-            sizeMin = *psizeMin;
-
-         }
-         else
-         {
-
-            sizeMin = get_window_minimum_size();
-
-         }
 
          m_sizeRestoreBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
 
@@ -13535,13 +13571,6 @@ namespace user
          {
 
             *prectWorkspace = rectangleWorkspace;
-
-         }
-
-         if (::is_set(psizeMin))
-         {
-
-            *psizeMin = sizeMin;
 
          }
 
@@ -13732,6 +13761,9 @@ namespace user
    }
 
 
+   /// the rectangle parameter indicates to the function
+   /// which monitor or monitors the window restore should
+   /// be positioned at.
    index interaction::good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, edisplay edisplay)
    {
 
@@ -13760,7 +13792,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_window_restore_2(rectangleNew, rectangleWindow, this, edisplay);
+      index iMatchingMonitor = pdisplay->get_good_restore(rectangleNew, rectangleWindow, this, edisplay);
 
       if (bSet)
       {

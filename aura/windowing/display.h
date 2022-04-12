@@ -29,7 +29,7 @@ namespace windowing
 
 
       display();
-      virtual ~display();
+      ~display() override;
 
 
       virtual void initialize_display(::windowing::windowing * pwindowing);
@@ -78,9 +78,7 @@ namespace windowing
 
       virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle) ;
 
-      virtual index get_window_restore_1(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
-
-      virtual index get_window_restore_2(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      virtual index get_good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
       virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 

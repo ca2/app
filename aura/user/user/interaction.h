@@ -398,6 +398,8 @@ namespace user
 
       virtual ::windowing::windowing * windowing() const;
 
+      virtual ::windowing::display * get_display() const;
+
       ::user::interaction * get_host_window() const override;
 
       ::item_pointer get_user_item(const ::item & item);
@@ -1519,6 +1521,8 @@ namespace user
 
       virtual void _001OnExitIconic() override;
       virtual void _001OnExitFullScreen() override;
+      virtual void _001OnExitNormal() override;
+
 
 
       virtual bool _001OnBeforeAppearance();
@@ -1574,16 +1578,16 @@ namespace user
 
       virtual bool calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
-      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, const ::size_i32 & sizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index best_workspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, edisplay edisplay = e_display_restore);
-      virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_workspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangleHint = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);

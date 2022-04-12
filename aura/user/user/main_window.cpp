@@ -55,7 +55,9 @@ namespace user
    ::index main_window::get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore)
    {
 
-      return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
+      //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
+
+      return -1;
 
    }
 

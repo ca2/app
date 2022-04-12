@@ -519,18 +519,7 @@ namespace user
    void box::design_window_restore(edisplay edisplay)
    {
 
-      get_wnd()->post_routine(__routine([this, edisplay]()
-      {
-
-         auto screen_rect = this->screen_rect();
-
-         auto activation = layout().sketch().activation();
-
-         auto zorder = layout().sketch().zorder();
-
-         good_restore(NULL, screen_rect, true, activation, zorder, edisplay);
-
-      }));
+      ::user::interaction::design_window_restore(edisplay);
 
    }
 

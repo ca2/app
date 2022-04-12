@@ -3300,6 +3300,13 @@ namespace user
    }
 
 
+   void element::_001OnExitNormal()
+   {
+
+
+   }
+
+
    void element::on_add_owned(::user::element * pprimitive)
    {
 

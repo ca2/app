@@ -1083,20 +1083,22 @@ namespace windowing
    }
 
 
-   index display::get_window_restore_1(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   index display::get_good_restore(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, edisplay edisplay)
    {
 
-      ::rectangle_i32 rectangleRestore(rectangleParam);
+      ::rectangle_i32 rectangleHint(rectangleHintParam);
 
       ::rectangle_i32 rectangleWorkspace;
 
       ::size_i32 sizeMin;
 
-      index iMatchingWorkspace;
-
       ::size_i32 sizeBroad;
 
       ::size_i32 sizeCompact;
+
+      ::size_i32 sizeNormal;
+
+      index iMatchingWorkspace;
 
       if (pinteraction != nullptr)
       {
@@ -1112,11 +1114,13 @@ namespace windowing
 
          sizeMin = pinteraction->get_window_minimum_size();
 
-         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleParam);
+         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleHint);
 
          sizeBroad = pinteraction->m_sizeRestoreBroad;
 
          sizeCompact = pinteraction->m_sizeRestoreCompact;
+
+         sizeNormal = pinteraction->layout().normal().m_size;
 
       }
       else
@@ -1124,256 +1128,57 @@ namespace windowing
 
          sizeMin = m_pwindowing->get_window_minimum_size();
 
-         iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleParam);
+         iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleHint);
 
          sizeBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
 
          sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
 
+         sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+
       }
 
-      auto rectangleIntersect = rectangleWorkspace & rectangleParam;
+      ::size_i32 sizeRestore;
 
-      auto rectangleTolerance(rectangleWorkspace);
-
-      auto sizeMax = rectangleWorkspace.size() * 0.8;
-
-      bool b1 = !rectangleTolerance.contains(rectangleRestore);
-      bool b2 = rectangleIntersect.width() < sizeMin.cx || rectangleIntersect.height() < sizeMin.cy;
-      bool b3 = rectangleIntersect.width() > sizeMax.cx || rectangleIntersect.height() > sizeMax.cy;
-      bool b4 = (edisplayRestore == e_display_compact && rectangleRestore.size() != sizeCompact);
-      bool b5 = (edisplayRestore == e_display_broad && rectangleRestore.size() != sizeBroad);
-      bool b6 = (rectangleRestore.size() == sizeCompact || rectangleRestore.size() == sizeBroad);
-      bool b66 = !(edisplayRestore == e_display_compact || edisplayRestore == e_display_broad);
-
-      bool bNotHappyWithTheSizeAndOrPosition = b1 || b2 || b3 || b4 || b5 || (b6 && b66);
-
-      if (bNotHappyWithTheSizeAndOrPosition)
+      if(edisplay == e_display_broad)
       {
 
-         if (edisplayRestore == e_display_broad || sizeCompact == rectangleRestore.size())
-         {
+         sizeRestore = sizeBroad;
 
-            rectangleRestore.set_size(sizeBroad);
+      }
+      else if(edisplay == e_display_compact)
+      {
 
-         }
-         else
-         {
-
-            rectangleRestore.set_size(sizeCompact);
-
-         }
-
-         ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
-
-         rectangleWorkspaceBitSmaller.deflate(5);
-
-         if (!rectangleWorkspaceBitSmaller.contains(rectangleRestore))
-         {
-
-            rectangleRestore.move_to(rectangleWorkspace.origin() + rectangleWorkspace.size() / 10);
-
-         }
-
-         *prectangle = rectangleRestore;
-
-         return iMatchingWorkspace;
+         sizeRestore = sizeCompact;
 
       }
       else
       {
 
-         return -1;
+         sizeRestore = sizeNormal;
 
       }
 
-   }
+      ::rectangle_i32 rectangleRestore;
 
+      rectangleRestore.move_to(rectangleHint.top_left());
 
+      rectangleRestore.set_size(sizeRestore);
 
-   index display::get_window_restore_2(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
-   {
+      ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
 
-      ::rectangle_i32 rectangle(rectangleParam);
+      rectangleWorkspaceBitSmaller.deflate(5);
 
-      index iBestWorkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
-
-      bool bChangedSize = ::size_i32(*prectangle) != rectangleParam.size();
-
-      if (iBestWorkspace < 0 && !bChangedSize)
+      if (!rectangleWorkspaceBitSmaller.contains(rectangleRestore))
       {
 
-         return -1;
+         rectangleRestore.move_to(rectangleWorkspace.origin() + rectangleWorkspace.size() / 10);
 
       }
 
-      return iBestWorkspace;
+      *prectangle = rectangleRestore;
 
-      //::rectangle_i32 rectangleWorkspace;
-
-      //::rectangle_i32 rectangleStart(prectangle);
-
-      //::point_i32 pointLineStart(::top_left(prectangle));
-
-      //get_workspace_rectangle(iBestWorkspace, rectangleWorkspace);
-
-      //if (rectangleStart > pinteraction->m_sizeRestoreCompact)
-      //{
-
-      //   pointLineStart = rectangleWorkspace.origin();
-
-      //   pointLineStart.offset(49, 49);
-
-      //   rectangle.move_to(pointLineStart);
-
-      //}
-
-      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      //{
-
-      //   do
-      //   {
-
-      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-      //      {
-
-      //         return iBestWorkspace;
-
-      //      }
-
-      //      rectangle = *prectangle;
-
-      //      if (rectangle > pinteraction->m_sizeRestoreCompact)
-      //      {
-
-      //         rectangle.offset(49, 0);
-
-      //         if (!rectangleWorkspace.contains(rectangle))
-      //         {
-
-      //            pointLineStart.offset(0, 49);
-
-      //            rectangle.move_to(pointLineStart);
-
-      //            if (!rectangleWorkspace.contains(rectangle))
-      //            {
-
-      //               break;
-
-      //            }
-
-      //         }
-
-      //      }
-      //      else
-      //      {
-
-      //         rectangle.offset(49, 49);
-
-      //      }
-
-      //      *prectangle = rectangle;
-
-      //   } while (rectangleWorkspace.contains(rectangle));
-
-      //}
-
-      //if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
-      //{
-
-      //   pointLineStart = rectangleWorkspace.origin();
-
-      //   pointLineStart.offset(49, 49);
-
-      //   rectangle.move_to(pointLineStart);
-
-      //   *prectangle = rectangle;
-
-      //   return iBestWorkspace;
-
-      //}
-
-      //rectangle = rectangleStart;
-
-      //rectangle.set_size(pinteraction->m_sizeRestoreCompact);
-
-      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      //{
-
-      //   do
-      //   {
-
-      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-      //      {
-
-      //         return iBestWorkspace;
-
-      //      }
-
-      //      rectangle = *prectangle;
-
-      //      rectangle.offset(49, 49);
-
-      //      *prectangle = rectangle;
-
-      //   } while (rectangleWorkspace.contains(rectangle));
-
-      //}
-
-      //pointLineStart = rectangleWorkspace.origin();
-
-      //pointLineStart.offset(49, 49);
-
-      //rectangle.move_to(pointLineStart);
-
-      //if (m_pwindowing->is_window(pinteraction->get_oswindow()))
-      //{
-
-      //   do
-      //   {
-
-      //      if (!m_pwindowing->point_is_window_origin(::top_left(prectangle), pinteraction->get_oswindow(), 49))
-      //      {
-
-      //         return iBestWorkspace;
-
-      //      }
-
-      //      rectangle = *prectangle;
-
-      //      rectangle.offset(49, 0);
-
-      //      if (!rectangleWorkspace.contains(rectangle))
-      //      {
-
-      //         pointLineStart.offset(0, 49);
-
-      //         rectangle.move_to(pointLineStart);
-
-      //         if (!rectangleWorkspace.contains(rectangle))
-      //         {
-
-      //            break;
-
-      //         }
-
-      //      }
-
-      //      *prectangle = rectangle;
-
-      //   } while (rectangleWorkspace.contains(rectangle));
-
-      //}
-
-      //pointLineStart = rectangleWorkspace.origin();
-
-      //pointLineStart.offset(49, 49);
-
-      //rectangle.move_to(pointLineStart);
-
-      //*prectangle = rectangle;
-
-      //return iBestWorkspace;
+      return iMatchingWorkspace;
 
    }
 

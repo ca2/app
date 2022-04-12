@@ -1586,7 +1586,7 @@ namespace acme
    }
 
 
-   void node::shell_execute_async(const char * pszFile, const char * pszParams)
+   void node::file_open(const ::file::path & path, const ::string & strParam, const ::file::path & pathFolder)
    {
 
       //throw ::interface_only();
@@ -1598,7 +1598,19 @@ namespace acme
    }
 
 
-   void node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   void node::aaa_shell_execute_async(const char * pszFile, const char * pszParams)
+   {
+
+      //throw ::interface_only();
+
+      //throw ::interface_only();
+
+      throw ::interface_only();
+
+   }
+
+
+   void node::aaa_shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       //throw ::interface_only();

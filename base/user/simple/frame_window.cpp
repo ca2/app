@@ -199,10 +199,10 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
    ::output_debug_string("_task_save_window_rect start\n");
 
-   while (true)
-   {
+   auto ptask = ::get_task();
 
-      preempt();
+   while (ptask->task_get_run())
+   {
 
       bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);
 
@@ -232,7 +232,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
       if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
       {
 
-         sleep(150_ms);
+         preempt(150_ms);
 
       }
       else if (m_bPendingSaveWindowRect)
@@ -252,7 +252,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
       else
       {
 
-         sleep(1_s);
+         preempt(1_s);
 
       }
 
@@ -1324,7 +1324,7 @@ void simple_frame_window::WfiOnFullScreen()
 
    show_control_bars(e_display_none, true);
 
-   sketch_prepare_window_full_screen();
+   design_window_full_screen();
 
 }
 

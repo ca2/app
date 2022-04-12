@@ -83,22 +83,18 @@ synchronization_object::~synchronization_object()
 }
 
 
-void synchronization_object::lock()
+::e_status synchronization_object::lock()
 {
 
-   /*return*/ wait();
+   return wait();
    
-   //.succeeded();
-
 }
 
 
-bool synchronization_object::lock(const class ::wait & wait)
+::e_status synchronization_object::lock(const class ::wait & wait)
 {
 
    return this->wait(wait);
-   
-   //.succeeded();
 
 }
 
@@ -106,7 +102,7 @@ bool synchronization_object::lock(const class ::wait & wait)
 void synchronization_object::_lock()
 {
 
-   /* return */ _wait(); // .succeeded();
+   _wait();
 
 }
 
@@ -114,7 +110,7 @@ void synchronization_object::_lock()
 bool synchronization_object::_lock(const class ::wait & wait)
 {
 
-   return this->_wait(wait); /*.succeeded();*/
+   return this->_wait(wait);
 
 }
 
@@ -122,12 +118,12 @@ bool synchronization_object::_lock(const class ::wait & wait)
 void synchronization_object::_wait()
 {
 
-   /* return */ _wait(::duration::infinite());
+   _wait(::duration::infinite());
 
 }
 
 
-void synchronization_object::wait()
+::e_status synchronization_object::wait()
 {
 
    auto ptask = ::get_task();
@@ -142,34 +138,59 @@ void synchronization_object::wait()
    if (::is_null(ptask))
    {
 
-      return _wait();
+      _wait();
+
+      return ::success;
 
    }
 
    while (true)
    {
 
-      if (_wait(100_ms))
+      auto bOk =  _wait(100_ms);
+
+      if(!ptask->task_get_run())
       {
 
-         return;
+         return error_failed;
 
       }
 
-      preempt();
+      if(bOk)
+      {
+
+         return ::success;
+
+      }
 
    }
 
 }
 
 
-bool synchronization_object::wait(const class ::wait & wait)
+::e_status synchronization_object::wait(const class ::wait & wait)
 {
    
    if (wait < 200_ms)
    {
 
-      return this->_wait(wait);
+      auto bOk = this->_wait(wait);
+
+      if(!bOk)
+      {
+
+         return error_wait_timeout;
+
+      }
+
+      return ::success;
+
+   }
+
+   if(wait.is_infinite())
+   {
+
+      return this->wait();
 
    }
 
@@ -185,79 +206,54 @@ bool synchronization_object::wait(const class ::wait & wait)
    if (::is_null(ptask))
    {
 
-      return _wait(wait);
+      auto bOk = this->_wait(wait);
+
+      if(!bOk)
+      {
+
+         return error_wait_timeout;
+
+      }
+
+      return ::success;
 
    }
 
-   if (wait.is_infinite())
+   auto waitStart = ::wait::now();
+
+   while(true)
    {
 
-      while(true)
+      auto waitElapsed = waitStart.elapsed();
+
+      if (waitElapsed > wait)
       {
 
-         bool bOk = _wait(100_ms);
+         return error_wait_timeout;
 
-         if (bOk)
-         {
+      }
 
-            return true;
+      auto waitNow = ::minimum(waitElapsed, 100_ms);
 
-         }
+      bool bOk = _wait(waitNow);
 
-         preempt();
+      if(!ptask->task_get_run())
+      {
+
+         return error_failed;
+
+      }
+
+      if(bOk)
+      {
+
+         return ::success;
 
       }
 
    }
-   else
-   {
-
-      auto waitStart = ::wait::now();
-
-      while(true)
-      {
-
-         auto waitNow = minimum(wait - waitStart.elapsed(), 100_ms);
-
-         if (waitNow <= 0_ms)
-         {
-
-            return false;
-
-         }
-
-         bool bOk = _wait(waitNow);
-
-         if (bOk)
-         {
-
-            return true;
-
-         }
-
-         preempt();
-
-      } 
-
-   }
 
 }
-
-
-//synchronization_result synchronization_object::wait(const duration & durationTimeout)
-//{
-//
-//   return wait();
-//
-//}
-
-
-//bool synchronization_object::is_locked() const
-//{
-//
-//   return false;
-//
-//}
 
 
 void synchronization_object::unlock()

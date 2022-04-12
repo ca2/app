@@ -20,6 +20,20 @@ nano_device::~nano_device()
 }
 
 
+void nano_device::on_begin_draw()
+{
+
+
+}
+
+
+void nano_device::on_end_draw()
+{
+
+
+}
+
+
 void nano_device::draw_text123(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont)
 {
 

@@ -6,6 +6,13 @@
 #include "_nano.h"
 
 
+#define MAXSTR 1000
+
+
+void x11_init_threads();
+void * x11_get_display();
+
+
 void set_main_user_thread();
 
 
@@ -18,6 +25,8 @@ namespace x11
 
    display::display()
    {
+
+      m_pdisplay = nullptr;
 
       m_bUnhook = false;
 
@@ -37,6 +46,107 @@ namespace x11
    display::~display()
    {
 
+
+   }
+
+
+   Atom display::intern_atom(const char *pszAtomName, bool bCreate)
+   {
+
+      if (m_pdisplay == nullptr)
+      {
+
+         return 0;
+
+      }
+
+      auto atom = XInternAtom(m_pdisplay, pszAtomName, bCreate ? True : False);
+
+      if (atom == None)
+      {
+
+         windowing_output_debug_string("ERROR: cannot find atom for " + string(pszAtomName) + "\n");
+
+         return None;
+
+      }
+
+      return atom;
+
+   }
+
+
+   Atom display::intern_atom(enum_atom eatom, bool bCreate)
+   {
+
+      if (eatom < 0 || eatom >= e_atom_count)
+      {
+
+         return None;
+
+      }
+
+      Atom atom = m_atoma[eatom];
+
+      if (atom == None)
+      {
+
+         atom = intern_atom(atom_name(eatom), bCreate);
+
+         m_atoma[eatom] = atom;
+
+      }
+
+      return atom;
+
+   }
+
+
+
+   unsigned char* display::_get_string_property(Display * display, Window window, char* property_name)
+   {
+
+      unsigned char * prop;
+      Atom actual_type, filter_atom;
+      int actual_format, status;
+      unsigned long nitems, bytes_after;
+
+      filter_atom = XInternAtom(display, property_name, True);
+
+      status = XGetWindowProperty(display, window, filter_atom, 0, MAXSTR, False, AnyPropertyType,
+                                  &actual_type, &actual_format, &nitems, &bytes_after, &prop);
+
+      x11_check_status(status, window);
+
+      return prop;
+
+   }
+
+
+   unsigned long display::_get_long_property(Display *d, Window w, char *property_name)
+   {
+
+      unsigned char *prop = _get_string_property(d, w, property_name);
+
+      unsigned long long_property = prop[0] + (prop[1] << 8) + (prop[2] << 16) + (prop[3] << 24);
+
+      XFree(prop);
+
+      return long_property;
+
+   }
+
+
+   Window display::_get_active_window()
+   {
+
+      int screen = XDefaultScreen(m_pdisplay);
+
+      Window windowRoot = RootWindow(m_pdisplay, screen);
+
+      Window window = _get_long_property(m_pdisplay, windowRoot, (char *) "_NET_ACTIVE_WINDOW");
+
+      return window;
 
    }
 
@@ -168,7 +278,7 @@ namespace x11
 //}
 //
 
-   display * display::get(::object * pobject, bool bBranch)
+   display * display::get(::object * pobject, bool bBranch, Display * pdisplay)
    {
 
       synchronous_lock lock(::acme::get_global_mutex());
@@ -181,6 +291,8 @@ namespace x11
          p->initialize(pobject);
 
          p->add_listener(p);
+
+         p->m_pdisplay = pdisplay;
 
          if(bBranch)
          {
@@ -252,7 +364,7 @@ namespace x11
 
       }
 
-      XEvent event;
+      XEvent event{};
 
       XNextEvent(m_pdisplay, &event);
 
@@ -279,6 +391,13 @@ namespace x11
       ::index i = 0;
 
       synchronous_lock synchronouslock(mutex());
+
+      if(pevent->type == ButtonPress)
+      {
+
+         output_debug_string("ButtonPress");
+
+      }
 
       for (; i < m_eventlistenera.get_count(); i++)
       {
@@ -357,14 +476,19 @@ namespace x11
    void display::init_task()
    {
 
-      XInitThreads();
+      x11_init_threads();
 
-      m_pdisplay = XOpenDisplay(NULL);
-
-      if (!m_pdisplay)
+      if(!m_pdisplay)
       {
 
-         throw ::exception(error_null_pointer);
+         m_pdisplay = (Display *) x11_get_display();
+
+         if (!m_pdisplay)
+         {
+
+            throw ::exception(error_null_pointer);
+
+         }
 
       }
 

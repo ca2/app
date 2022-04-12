@@ -26,7 +26,7 @@ interprocess_call::~interprocess_call()
 void interprocess_call::add_arg(const ::payload & payload)
 {
 
-   m_varaArgs.add(payload);
+   m_payloadaArgs.add(payload);
 
 }
 
@@ -34,7 +34,7 @@ void interprocess_call::add_arg(const ::payload & payload)
 void interprocess_call::add_args(const payload_array& payloada)
 {
 
-   ::papaya::array::add(m_varaArgs, payloada);
+   ::papaya::array::add(m_payloadaArgs, payloada);
 
 }
 
@@ -88,7 +88,7 @@ void interprocess_call::post(const ::atom& idPid)
 
          }
 
-         pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_varaArgs);
+         pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_payloadaArgs);
 
       });
 
@@ -111,9 +111,18 @@ __pointer(synchronization_array) interprocess_call::synca()
 
 }
 
-void interprocess_call::wait()
+
+::e_status interprocess_call::wait()
 {
-   _wait(::duration::infinite());
+
+   if(!_wait(::duration::infinite()))
+   {
+
+      return error_wait_timeout;
+
+   }
+
+   return ::success;
 
 }
 

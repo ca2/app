@@ -153,7 +153,9 @@ public:
       if (::is_null(proutinea))
       {
 
-         throw ::exception(error_not_found);
+         //throw ::exception(error_not_found);
+
+         return;
 
       }
 

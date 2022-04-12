@@ -2570,7 +2570,7 @@ namespace user
    // }
 
 
-   void primitive::sketch_prepare_window_minimize(::e_activation eactivation)
+   void primitive::design_window_minimize(::e_activation eactivation)
    {
 
       throw ::interface_only();
@@ -2578,7 +2578,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_maximize()
+   void primitive::design_window_maximize()
    {
 
       throw ::interface_only();
@@ -2586,7 +2586,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint)
+   void primitive::design_window_full_screen(const ::rectangle_i32 & rectangleHint)
    {
 
       throw ::interface_only();
@@ -2594,7 +2594,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_restore(edisplay edisplay)
+   void primitive::design_window_restore(edisplay edisplay)
    {
 
       throw ::interface_only();
@@ -2602,7 +2602,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_dock(::e_display edisplayDock)
+   void primitive::design_window_dock(::e_display edisplayDock)
    {
 
       throw ::interface_only();

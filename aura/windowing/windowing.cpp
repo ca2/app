@@ -122,13 +122,13 @@ namespace windowing
    //}
 
 
-   void windowing::start()
-   {
-
-      //return ::success;
-
-   }
-
+//   void windowing::start()
+//   {
+//
+//      //return ::success;
+//
+//   }
+//
 
    void windowing::windowing_main()
    {

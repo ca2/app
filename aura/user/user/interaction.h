@@ -633,12 +633,20 @@ namespace user
 
       virtual void on_defer_display();
 
-      virtual bool defer_design_display();
+      virtual bool display_sketch_to_design();
       virtual void design_display();
       virtual void design_appearance();
       virtual void design_zorder();
       virtual void design_reposition();
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
+
+
+      virtual void design_window_minimize(::e_activation eactivation) override;
+      virtual void design_window_maximize() override;
+      virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
+      virtual void design_window_restore(edisplay edisplay) override;
+      virtual void design_window_dock(edisplay edisplay) override;
+
 
       virtual ::size_i32 preferred_size(::draw2d::graphics_pointer & pgraphics);
 
@@ -684,11 +692,6 @@ namespace user
       //virtual void window_apply_visual(const class window_state& windowstate) override;
 
 
-      virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
-      virtual void sketch_prepare_window_maximize() override;
-      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
-      virtual void sketch_prepare_window_restore(edisplay edisplay) override;
-      virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
       virtual void frame_experience_restore();
       

@@ -8,6 +8,7 @@ typedef map < task *, itask_t > task_id_map;
 
 class CLASS_DECL_ACME task :
    virtual public object,
+   virtual public synchronization_object,
    virtual public acme::implementable
 {
 public:

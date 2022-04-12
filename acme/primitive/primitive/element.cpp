@@ -173,22 +173,20 @@ void element::set_library_name(const char* pszLibraryName)
 }
 
 
-void element::wait()
-{
-
-   //return error_failed;
-
-}
-
-
-bool element::wait(const ::duration & duration)
-{
-
-   //return error_failed;
-
-   return true;
-
-}
+//::e_status element::wait()
+//{
+//
+//   return ::success;
+//
+//}
+//
+//
+//::e_status element::wait(const class ::wait & wait)
+//{
+//
+//   return ::success;
+//
+//}
 
 
 void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)

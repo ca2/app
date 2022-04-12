@@ -357,6 +357,7 @@ namespace linux
       }
 
 
+      straLine._007SetLine("[Desktop Entry]", "StartupNotify", "true");
       straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");

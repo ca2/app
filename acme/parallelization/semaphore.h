@@ -26,7 +26,7 @@ public:
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD)
 //   using matter::lock;
-   bool wait(const class ::wait & wait) override;
+   ::e_status wait(const class ::wait & wait) override;
 #endif
 
    void unlock() override;

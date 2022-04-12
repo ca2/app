@@ -9,7 +9,7 @@ inline __pointer(sync_future) __sync_future();
 
 
 class CLASS_DECL_ACME sync_future : 
-   virtual public matter
+   virtual public ::synchronization_object
 {
 protected:
 
@@ -41,10 +41,10 @@ public:
    }
 
    
-   bool wait(const ::duration& duration = duration::infinite()) override
+   ::e_status wait(const class ::wait& wait = duration::infinite()) override
    {
 
-      return m_peventCompletion->wait(duration);
+      return m_peventCompletion->wait(wait);
 
    }
 

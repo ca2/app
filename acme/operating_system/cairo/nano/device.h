@@ -4,13 +4,18 @@
 #pragma once
 
 
+#include "acme/user/nano/_nano.h"
+
+
 #include <cairo/cairo-features.h>
 #include <cairo/cairo.h>
-#include <cairo/cairo-ft.h>
-#include <cairo/cairo-xlib.h>
+//#include <cairo/cairo-ft.h>
+//#include <cairo/cairo-xlib.h>
 
-namespace x11
+
+namespace cairo
 {
+
 
    class CLASS_DECL_ACME nano_device :
       virtual public ::nano_device
@@ -25,6 +30,10 @@ namespace x11
       nano_device();
       nano_device(cairo_t * pdc);
       ~nano_device() override;
+
+
+      void on_begin_draw() override;
+      void on_end_draw() override;
 
 
       void _draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
@@ -45,7 +54,10 @@ namespace x11
    };
 
 
-} // namespace x11
+} // namespace cairo
+
+
+void operating_system_initialize_cairo_nano(::factory::factory * pfactory);
 
 
 

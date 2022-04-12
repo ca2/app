@@ -92,6 +92,7 @@ list(APPEND library_source
    compress/uncompress.h
    constant/_.h
    constant/code_page.h
+   constant/earth.h
    constant/idpool.cpp
    context_glx.cpp
    exception/callstack.cpp
@@ -1599,24 +1600,35 @@ if (WIN32 OR UWP)
 
 endif ()
 
-
-if(WITH_X11)
+if(LINUX)
 
    list(APPEND library_source
+      operating_system/cairo/nano/device.cpp
+      operating_system/cairo/nano/device.h
       operating_system/x11/nano/_nano.cpp
       operating_system/x11/nano/_nano.h
-      operating_system/x11/nano/device.cpp
-      operating_system/x11/nano/device.h
       operating_system/x11/nano/display.cpp
       operating_system/x11/nano/display.h
       operating_system/x11/nano/event_listener.h
-      operating_system/x11/nano/font.cpp
-      operating_system/x11/nano/font.h
+      #operating_system/x11/nano/font.cpp
+      #operating_system/x11/nano/font.h
       operating_system/x11/nano/window.h
       operating_system/x11/nano/window.cpp
+      operating_system/x11/_atom.cpp
+      operating_system/xcb/nano/_nano.cpp
+      operating_system/xcb/nano/_nano.h
+      operating_system/xcb/nano/display.cpp
+      operating_system/xcb/nano/display.h
+      operating_system/xcb/nano/event_listener.h
+      #operating_system/xcb/nano/font.cpp
+      #operating_system/xcb/nano/font.h
+      operating_system/xcb/nano/window.h
+      operating_system/xcb/nano/window.cpp
+      operating_system/xcb/_.h
       )
 
-   list(APPEND extra_pkg_modules x11 cairo xkbcommon)
+   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
+
 
 endif()
 
@@ -2086,7 +2098,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} constant/earth.h)
+add_library(acme SHARED ${library_source} operating_system/x11/_atom.h operating_system/x11/_.cpp operating_system/xcb/_.cpp operating_system/cairo/nano/_nano.cpp operating_system/posix/desktop.cpp)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

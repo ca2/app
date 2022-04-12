@@ -13,6 +13,10 @@ public:
    ~nano_device() override;
 
 
+   virtual void on_begin_draw();
+   virtual void on_end_draw();
+
+
    virtual void draw_text123(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font  * pnanofont);
    virtual void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font  * pnanofont);
    virtual ::size_i32 get_text_extents(const ::string & str, ::nano_font * pnanofont);

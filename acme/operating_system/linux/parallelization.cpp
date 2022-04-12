@@ -74,6 +74,15 @@ extern class ::system * g_psystem;
 void main_asynchronous( ::function < void () > function)
 {
 
+   if(is_main_thread())
+   {
+
+      function();
+
+      return;
+
+   }
+
    auto routine = __routine([function]()
                             {
 

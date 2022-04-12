@@ -6,16 +6,16 @@
 #include <X11/Xatom.h>
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
+#include <cairo-xlib.h>
 
 
+::user::enum_desktop _get_edesktop();
 
 
+//unsigned long x11_get_long_property(Display *d, Window w, char *property_name);
 
 
-unsigned long x11_get_long_property(Display *d, Window w, char *property_name);
-
-
-Window _x11_get_active_window(Display * pdisplay);
+//Window _x11_get_active_window(Display * pdisplay);
 
 
 struct MWMHints
@@ -203,6 +203,11 @@ namespace x11
 
          m_pdisplay->add_window(this);
 
+#if 0
+
+         // _NET_WM_WINDOW_TYPE_SPLASH
+         // KDE seems to close this type of window when it is clicked
+
          if(m_pinterface->m_bStartCentered)
          {
 
@@ -220,6 +225,8 @@ namespace x11
             }
 
          }
+
+#endif
 
          if(m_pinterface->m_bArbitraryPositioning)
          {
@@ -244,7 +251,7 @@ namespace x11
 
          }
 
-         XSelectInput(m_pdisplay->m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
+         XSelectInput(m_pdisplay->m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | PointerMotionMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
 
          XSelectInput(m_pdisplay->m_pdisplay, windowRoot, PropertyChangeMask);
 
@@ -555,7 +562,9 @@ bool nano_window::_on_event(XEvent *pevent)
 
    }
 
-   if (pevent->type == ConfigureNotify)
+   auto event_type = pevent->type;
+
+   if (event_type == ConfigureNotify)
    {
 
       m_pinterface->m_rectangle.left = pevent->xconfigure.x;
@@ -573,6 +582,12 @@ bool nano_window::_on_event(XEvent *pevent)
                                      m_pinterface->m_rectangle.height());
 
       }
+
+   }
+   else if (pevent->type == UnmapNotify)
+   {
+
+      output_debug_string("UnmapNotify");
 
    }
    else if (pevent->type == MapNotify)
@@ -594,7 +609,7 @@ bool nano_window::_on_event(XEvent *pevent)
 
          auto pdc = cairo_create(m_psurface);
 
-         m_pnanodevice = __new(::x11::nano_device(pdc));
+         m_pnanodevice = __new(::cairo::nano_device(pdc));
 
       }
 
@@ -610,6 +625,7 @@ bool nano_window::_on_event(XEvent *pevent)
    else if (pevent->type == PropertyNotify)
    {
 
+      output_debug_string("PropertyNotify");
 
    }
    else if (pevent->type == KeyPress)
@@ -717,15 +733,11 @@ void nano_window::_update_window()
    if(m_pnanodevice && m_psurface)
    {
 
-      cairo_push_group(m_pnanodevice->m_pdc);
-
-      cairo_set_operator(m_pnanodevice->m_pdc, CAIRO_OPERATOR_SOURCE);
+      m_pnanodevice->on_begin_draw();
 
       draw(m_pnanodevice);
 
-      cairo_pop_group_to_source(m_pnanodevice->m_pdc);
-
-      cairo_paint(m_pnanodevice->m_pdc);
+      m_pnanodevice->on_end_draw();
 
       cairo_surface_flush(m_psurface);
 
@@ -1010,77 +1022,36 @@ void nano_window::redraw()
 } // namespace x11
 
 
-void x11_check_status(int status, unsigned long window)
-{
-
-   if (status == BadWindow)
-   {
-
-      printf("window atom # 0x%lx does not exists!", window);
-
-      throw ::exception(error_exception);
-
-   }
-
-   if (status != Success)
-   {
-
-      printf("XGetWindowProperty failed!");
-
-      throw ::exception(error_exception);
-
-   }
-
-}
+//void x11_check_status(int status, unsigned long window)
+//{
+//
+//   if (status == BadWindow)
+//   {
+//
+//      printf("window atom # 0x%lx does not exists!", window);
+//
+//      throw ::exception(error_exception);
+//
+//   }
+//
+//   if (status != Success)
+//   {
+//
+//      printf("XGetWindowProperty failed!");
+//
+//      throw ::exception(error_exception);
+//
+//   }
+//
+//}
 
 
 #define MAXSTR 1000
 
 
-unsigned char* x11_get_string_property(Display * display, Window window, char* property_name)
-{
-
-   unsigned char * prop;
-   Atom actual_type, filter_atom;
-   int actual_format, status;
-   unsigned long nitems, bytes_after;
-
-   filter_atom = XInternAtom(display, property_name, True);
-
-   status = XGetWindowProperty(display, window, filter_atom, 0, MAXSTR, False, AnyPropertyType,
-                               &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-
-   x11_check_status(status, window);
-
-   return prop;
-
-}
 
 
-unsigned long x11_get_long_property(Display *d, Window w, char *property_name)
-{
 
-   unsigned char *prop = x11_get_string_property(d, w, property_name);
-
-   unsigned long long_property = prop[0] + (prop[1] << 8) + (prop[2] << 16) + (prop[3] << 24);
-
-   return long_property;
-
-}
-
-
-Window _x11_get_active_window(Display * pdisplay)
-{
-
-   int screen = XDefaultScreen(pdisplay);
-
-   Window windowRoot = RootWindow(pdisplay, screen);
-
-   Window window = x11_get_long_property(pdisplay, windowRoot, (char*) "_NET_ACTIVE_WINDOW");
-
-   return window;
-
-}
 
 
 extern class ::system * g_psystem;

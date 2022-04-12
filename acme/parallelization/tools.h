@@ -93,7 +93,7 @@ public:
 
 
 class CLASS_DECL_ACME task_group :
-   virtual public ::matter
+   virtual public ::synchronization_object
 {
 public:
 
@@ -110,7 +110,7 @@ public:
 
 
    task_group(::matter * pmatter, ::enum_priority epriority);
-   virtual ~task_group();
+   ~task_group() override;
 
 
 
@@ -124,7 +124,7 @@ public:
 
    void prepare(::enum_task_op eop, ::count cIteration = 0);
    virtual void set_ready_to_start();
-   void wait() override;
+   ::e_status wait() override;
    virtual void process();
 
    bool add_predicate(::predicate_holder_base * ppred);

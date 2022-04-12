@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "event_listener.h"
+
+
 namespace x11
 {
 
@@ -24,6 +27,7 @@ namespace x11
       __pointer_array(nano_window)           m_windowa;
       Window                                 m_windowActive;
       ::routine_array                        m_routineaPost;
+      Atom                                   m_atoma[e_atom_count];
 
 
       static display *                       g_p;
@@ -33,9 +37,19 @@ namespace x11
       ~display() override;
 
 
-      //void wait_timer_or_event();
+      virtual Atom intern_atom(const char *pszAtomName, bool bCreate);
+      virtual Atom intern_atom(enum_atom eatom, bool bCreate);
 
-      static display * get(::object * pobject, bool bBranch = true);
+      unsigned char * _get_string_property(Display *display, Window window, char *property_name);
+      unsigned long _get_long_property(Display *d, Window w, char *property_name);
+
+
+      virtual Window _get_active_window();
+
+
+
+
+      static display * get(::object * pobject, bool bBranch = true, Display * pdisplay = nullptr);
 
       bool message_loop_step();
       void message_loop();

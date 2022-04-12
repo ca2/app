@@ -7,22 +7,22 @@ class CLASS_DECL_APEX interprocess_call :
 public:
 
 
-   __pointer(interprocess_intercommunication)                m_pinterprocessintercommunication;
-   string                        m_strApp;
-   id_array                      m_iaExclude;
-   bool                          m_bAutoLaunch;
+   __pointer(interprocess_intercommunication)   m_pinterprocessintercommunication;
+   string                                       m_strApp;
+   id_array                                     m_iaExclude;
+   bool                                         m_bAutoLaunch;
 
    // idPid - Task
-   interprocess_task_map         m_mapTask;
+   interprocess_task_map                        m_mapTask;
 
 
-   string                        m_strObject;
-   string                        m_strMember;
-   payload_array                     m_varaArgs;
+   string                                       m_strObject;
+   string                                       m_strMember;
+   payload_array                                m_payloadaArgs;
 
 
    interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
-   virtual ~interprocess_call();
+   ~interprocess_call() override;
 
    //inline auto tasks() const { return m_mapTask.values(); }
 
@@ -39,7 +39,7 @@ public:
 
    __pointer(synchronization_array) synca();
 
-   void wait();
+   ::e_status wait();
    bool _wait(const class ::wait & wait);
 
    void announce();

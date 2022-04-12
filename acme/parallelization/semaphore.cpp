@@ -167,7 +167,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-bool semaphore::wait(const class ::wait & wait)
+::e_status semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -208,7 +208,7 @@ bool semaphore::wait(const class ::wait & wait)
    if(iRet == 0)
    {
 
-      return signaled_base;
+      return ::success;
 
    }
    else

@@ -204,7 +204,7 @@ void task_group::set_ready_to_start()
 }
 
 
-void task_group::wait()
+::e_status task_group::wait()
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -220,7 +220,7 @@ void task_group::wait()
 
    //synchronouslock.unlock();
 
-   /*return*/ m_synchronizationa.wait(5_s); //.succeeded();
+   return m_synchronizationa.wait(5_s); //.succeeded();
 
 }
 

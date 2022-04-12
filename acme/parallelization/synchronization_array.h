@@ -7,7 +7,7 @@ using hsync_array = ::address_array < hsync >;
 
 
 class CLASS_DECL_ACME synchronization_array :
-   public matter
+   virtual public ::synchronization_object
 {
 public:
 
@@ -46,7 +46,7 @@ public:
 
    void erase(index index);
 
-   void wait() override;
+   ::e_status wait() override;
 
    virtual ::index wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 

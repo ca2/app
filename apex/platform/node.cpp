@@ -240,6 +240,14 @@ namespace apex
    }
 
 
+   void node::file_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   {
+
+      m_pcontext->m_papexcontext->os_context()->file_open(path, strParams, pathFolder);
+
+   }
+
+
    void node::show_wait_cursor(bool bShow)
    {
 

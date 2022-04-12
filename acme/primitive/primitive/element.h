@@ -72,8 +72,14 @@ public:
    // if this is an application/or nano application
    virtual void set_application_id(const char* pszApplicationId);
 
-   virtual void wait();
-   virtual bool wait(const ::duration & duration);
+
+//   // currently expected returned statuses:
+//   // ::error_failed
+//   // ::error_wait_timeout
+//   // ::success
+//   // also see synchronization_object
+//   virtual ::e_status wait();
+//   virtual ::e_status wait(const class ::wait & wait);
 
 
    [[nodiscard]] virtual DURATION timeout() const;

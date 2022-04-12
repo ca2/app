@@ -89,7 +89,7 @@ public:
 
    virtual void set_dark_mode(bool bDarkMode);
 
-   virtual void file_open(::file::path path, string strParams = "", string strFolder = "");
+   virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "");
 
    virtual string get_default_browser();
 

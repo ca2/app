@@ -62,7 +62,7 @@ namespace ios
       virtual void post_to_all_threads(const ::atom & atom, WPARAM wParam, LPARAM lParam);
 
 
-      virtual bool file_open(::file::path path, string strParams, string strFolder) override;
+      virtual bool file_open(const ::file::path & path, string strParams, string strFolder) override;
 
 
       virtual bool initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch) override;

@@ -196,10 +196,10 @@ void synchronization_array::erase(index index)
 }
 
 
-void synchronization_array::wait()
+::e_status synchronization_array::wait()
 {
 
-   wait(duration::infinite());
+   return wait(duration::infinite());
 
 }
 

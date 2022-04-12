@@ -52,12 +52,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   void wait () override;
+   ::e_status wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   bool wait (const class ::wait & wait) override;
+   ::e_status wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

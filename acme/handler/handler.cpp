@@ -10,7 +10,7 @@
 extern class ::system * g_psystem;
 
 
-CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, ::matter * pmatter)
+CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
 {
 
    if (::is_null(pmatter))
@@ -18,10 +18,11 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
 
       auto ptopic = g_psystem->create_topic(atom);
 
-      if(iData != 0)
+      if(wParam != 0 || lParam != 0)
       {
 
-         ptopic->payload("iptr_data") = iData;
+         ptopic->payload("wparam") = wParam;
+         ptopic->payload("lparam") = lParam;
 
       }
 
@@ -33,10 +34,11 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
 
       auto pextendedtopic = pmatter->m_psystem->create_extended_topic(atom);
 
-      if (iData != 0)
+      if(wParam != 0 || lParam != 0)
       {
 
-         pextendedtopic->payload("iptr_data") = iData;
+         pextendedtopic->payload("wparam") = wParam;
+         pextendedtopic->payload("lparam") = lParam;
 
       }
 
@@ -69,10 +71,10 @@ CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 iData, 
 //
 
 
-void handler::call(const ::atom & atom, i64 iData, ::matter * pmatter)
+void handler::call(const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
 {
 
-   return __call(this, atom, iData, pmatter);
+   return __call(this, atom, wParam, lParam, pmatter);
 
 }
 

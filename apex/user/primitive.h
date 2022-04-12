@@ -174,11 +174,11 @@ namespace user
 
       void prodevian_stop() override;
 
-      virtual void sketch_prepare_window_minimize(::e_activation eactivation);
-      virtual void sketch_prepare_window_maximize();
-      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
-      virtual void sketch_prepare_window_restore(edisplay edisplay);
-      virtual void sketch_prepare_window_dock(edisplay edisplayDock);
+      virtual void design_window_minimize(::e_activation eactivation);
+      virtual void design_window_maximize();
+      virtual void design_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
+      virtual void design_window_restore(edisplay edisplay);
+      virtual void design_window_dock(edisplay edisplayDock);
 
 
       void prodevian_redraw(bool bUpdateBuffer) override;

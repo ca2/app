@@ -872,7 +872,7 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
 
 template < typename TYPE >
-bool sequence < TYPE > ::wait(const ::duration& duration)
+::e_status sequence < TYPE > ::wait(const class ::wait& wait)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -884,7 +884,7 @@ bool sequence < TYPE > ::wait(const ::duration& duration)
 
       lock.unlock();
 
-      if (!m_pevent->wait(duration))
+      if (!m_pevent->wait(wait))
       {
 
          lock.lock();
@@ -892,7 +892,7 @@ bool sequence < TYPE > ::wait(const ::duration& duration)
          if (m_p.m_estatus == error_not_initialized)
          {
 
-            m_p.m_estatus = error_timeout;
+            m_p.m_estatus = error_wait_timeout;
 
          }
 

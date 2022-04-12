@@ -396,8 +396,11 @@ namespace acme
 
 
 
-      virtual void shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual void shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+      virtual void file_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = "");
+
+
+      virtual void aaa_shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual void aaa_shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       virtual void root_execute_async(const char * pszFile, const char * pszParams);
       virtual void root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());

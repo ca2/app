@@ -685,10 +685,10 @@
    }
 
 
-   void os_context::file_open(::file::path strSrc, string strParams, string strFolder)
+   void os_context::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      //return false;
+      throw ::interface_only();
 
    }
 

@@ -185,6 +185,9 @@ namespace user
       inline class window_state& design() { return state(e_layout_design); }
 
 
+      inline const class window_state& normal() const { return state(e_layout_normal); }
+      inline class window_state& normal() { return state(e_layout_normal); }
+
       //inline const class window_state& bitmap() const { return state(e_layout_bitmap); }
       //inline class window_state& bitmap() { return state(e_layout_bitmap); }
 

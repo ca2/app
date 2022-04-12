@@ -2,11 +2,11 @@
 // Created by camilo on 31/01/2022 20:15 <3ThomasBorregaardSørensen!! Thomas Likes number 5!!
 //
 #include "framework.h"
-#include "_nano.h"
-#include <X11/Xlocale.h>
+#include "acme/user/nano/_nano.h"
+#include "device.h"
 
 
-namespace x11
+namespace cairo
 {
 
 
@@ -46,6 +46,26 @@ namespace x11
          cairo_surface_destroy(m_psurfaceMemory);
 
       }
+
+   }
+
+
+   void nano_device::on_begin_draw()
+   {
+
+      cairo_push_group(m_pdc);
+
+      cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+
+   }
+
+
+   void nano_device::on_end_draw()
+   {
+
+      cairo_pop_group_to_source(m_pdc);
+
+      cairo_paint(m_pdc);
 
    }
 
@@ -226,7 +246,7 @@ namespace x11
    }
 
 
-} // namespace x11
+} // namespace cairo
 
 
 

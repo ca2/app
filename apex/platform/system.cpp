@@ -4972,7 +4972,7 @@ namespace apex
       if(ptopic->m_atom == id_set_dark_mode)
       {
          
-         if(ptopic->payload("iptr_data").is_true())
+         if(ptopic->payload("wparam").is_true())
          {
 
             m_pnode->background_color(::color::black);

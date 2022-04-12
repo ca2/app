@@ -2156,12 +2156,17 @@ __pointer(::sequence < ::conversation >) system::message_box(const ::string & st
 
    psequence->m_p = pmessagebox;
 
-   fork([strMessage, strTitle, emessagebox, psequence, pmessagebox]()
+   pmessagebox->m_functionClose = [ psequence ](nano_window * pwindow)
+   {
+
+      psequence->on_sequence();
+
+   };
+
+   main_asynchronous([strMessage, strTitle, emessagebox, pmessagebox]()
    {
 
       pmessagebox->display(strMessage, strTitle, emessagebox);
-
-      psequence->on_sequence();
 
    });
 

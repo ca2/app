@@ -1,9 +1,12 @@
 #pragma once
 
 
+#include "acme/parallelization/synchronization_object.h"
+
+
 template < typename TYPE >
 class sequence :
-   virtual public ::matter
+   virtual public ::synchronization_object
 {
 public:
 
@@ -70,7 +73,7 @@ public:
    TYPE & topic(const ::duration & duration = ::duration::infinite());
 
 
-   bool wait(const ::duration& duration = ::duration::infinite()) override;
+   ::e_status wait(const ::wait & wait = ::wait::infinite()) override;
 
 
    template < typename OPERATION >

@@ -26,19 +26,21 @@ public:
    ~synchronization_object() override;
 
 
-   virtual void lock();
-   virtual bool lock(const class ::wait & wait);
+   // currently expected returned statuses:
+   // ::error_failed
+   // ::error_wait_timeout
+   // ::success
+   virtual ::e_status lock();
+   virtual ::e_status lock(const class ::wait & wait);
+
+   virtual ::e_status wait();
+   virtual ::e_status wait(const class ::wait & wait);
 
    virtual void _lock();
    virtual bool _lock(const class ::wait & wait);
 
    virtual void _wait();
    virtual bool _wait(const class ::wait & wait);
-
-   
-   void wait() override;
-   virtual bool wait(const class ::wait & wait);
-
 
    virtual bool is_locked() const;
 

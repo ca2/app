@@ -559,6 +559,12 @@ namespace imaging_freeimage
 
       pimage->m_estatus = ::success;
 
+      if(loadoptions.functionLoaded)
+      {
+
+         loadoptions.functionLoaded(pimage);
+
+      }
 //      return pimage->m_estatus;
 
    }

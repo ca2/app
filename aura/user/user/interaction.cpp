@@ -1949,9 +1949,6 @@ namespace user
       else if (edisplay == e_display_iconic)
       {
 
-         layout().m_statea[e_layout_window].m_bProdevian = is_prodevian();
-         layout().m_statea[e_layout_normal] = layout().m_statea[e_layout_window];
-
 #ifdef INFO_LAYOUT_DISPLAY
 
          INFORMATION("interaction_layout::display e_display_iconic");
@@ -2069,8 +2066,6 @@ namespace user
       }
 
       set_need_redraw();
-
-      //return true;
 
    }
 
@@ -8414,7 +8409,7 @@ namespace user
    }
 
 
-   bool interaction::defer_design_display()
+   bool interaction::display_sketch_to_design()
    {
 
       if (__type_name(this).contains_ci("page_home"))
@@ -8475,7 +8470,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_full_screen(this->screen_rect());
+            design_window_full_screen(this->screen_rect());
 
          }
 
@@ -8494,7 +8489,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_minimize(layout().sketch().activation());
+            design_window_minimize(layout().sketch().activation());
 
          }
 
@@ -8513,7 +8508,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_maximize();
+            design_window_maximize();
 
          }
 
@@ -8534,7 +8529,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_restore(edisplaySketch);
+            design_window_restore(edisplaySketch);
 
          }
 
@@ -8565,7 +8560,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_dock(edisplaySketch);
+            design_window_dock(edisplaySketch);
 
          }
 
@@ -9761,30 +9756,30 @@ namespace user
 
       }
 
-      if (edisplayOutput == e_display_iconic)
-      {
+//      if (edisplayOutput == e_display_iconic)
+//      {
+//
+//         //#ifdef WINDOWS_DESKTOP
+//         //
+//         //         if (GetExStyle() & WS_EX_LAYERED)
+//         //         {
+//         //
+//         //            layout().window() = edisplayOutput;
+//         //
+//         //         }
+//         //
+//         //#endif
+//         //
+//         output_debug_string("blocking setting window state to iconic (1)");
+//
+//      }
+//      else
+//      {
 
-         //#ifdef WINDOWS_DESKTOP
-         //
-         //         if (GetExStyle() & WS_EX_LAYERED)
-         //         {
-         //
-         //            layout().window() = edisplayOutput;
-         //
-         //         }
-         //
-         //#endif
-         //
-         output_debug_string("blocking setting window state to iconic (1)");
+      layout().window() = edisplayOutput;
 
-      }
-      else
-      {
-
-         layout().window() = edisplayOutput;
-
-      }
-
+//      }
+//
    }
 
 
@@ -10760,7 +10755,7 @@ namespace user
       if (bWindowCrossesWorkspaceBoundaries || bWindowLargerThanBroadRestore)
       {
 
-         sketch_prepare_window_restore(e_display_restore);
+         design_window_restore(e_display_restore);
 
       }
       else
@@ -10849,7 +10844,7 @@ namespace user
 
       __keep(m_bUpdatingVisual);
 
-      bool bDisplay = defer_design_display();
+      bool bDisplay = display_sketch_to_design();
 
       if (m_pinteractionimpl && m_pinteractionimpl->m_bOfflineRender)
       {
@@ -10961,6 +10956,8 @@ namespace user
 
       if (bDisplay)
       {
+
+         _001OnExitAppearance();
 
          layout().design().copy_display(layout().sketch());
 
@@ -12709,219 +12706,6 @@ namespace user
    }
 
 
-   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags)
-   //{
-
-   //   ::point_i32 point;
-
-   //   psession->get_cursor_position(point);
-
-   //   return track_popup_menu(pitem, iFlags, point);
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags)
-   //{
-
-   //   auto point = psession->get_cursor_position();
-
-   //   return track_popup_xml_menu_text(strXml, iFlags, point);
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags)
-   //{
-
-   //   auto point = psession->get_cursor_position();
-
-   //   return track_popup_xml_matter_menu(pszMatter, iFlags, point);
-
-   //}
-
-
-
-   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
-   //{
-
-   //   auto pmouse = pmessage->m_union.m_pmouse;
-
-   //   ::point_i32 point = pmouse->m_point;
-
-   //   screen_to_client(point);
-
-   //   return track_popup_menu(pitem, iFlags, point);
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage)
-   //{
-
-   //   auto pmouse = pmessage->m_union.m_pmouse;
-
-   //   auto point = pmouse->m_point;
-
-   //   screen_to_client(point);
-
-   //   return track_popup_xml_menu_text(strXml, iFlags, point);
-
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, ::message::message * pmessage)
-   //{
-
-   //   auto pmouse = pmessage->m_union.m_pmouse;
-
-   //   ::point_i32 point = pmouse->m_point;
-
-   //   return track_popup_xml_matter_menu(pszMatter, iFlags, point);
-
-   //}
-
-
-   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
-
-   //   pmenu->m_pmenuitemThis = pitem;
-
-   //   if (!pmenu->track_popup_menu(this, this))
-   //   {
-
-   //      pmenu.release();
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
-   //{
-
-   //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
-
-   //   pmenu->m_sizeMinimum = sizeMinimum;
-
-   //   if (!pmenu->load_xml_menu(varXml))
-   //   {
-
-   //      pmenu.release();
-
-   //      return pmenu;
-
-   //   }
-
-   //   pmenu->hints(iFlags, point);
-
-   //   if (!pmenu->track_popup_menu(this, this))
-   //   {
-
-   //      pmenu.release();
-
-   //      return pmenu;
-
-   //   }
-
-   //   return pmenu;
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam)
-   //{
-
-   //   string strMatterSource(pszMatter);
-
-   //   ::point_i32 point(pointParam);
-
-   //   fork([=]()
-   //   {
-
-   //      __pointer(::user::menu) pmenu = alloc <  ::user::menu  >();
-
-   //      string strMatter(strMatterSource);
-
-   //      if (!strMatter.begins_ci("matter://"))
-   //      {
-
-   //         strMatter = "matter://" + strMatter;
-
-   //      }
-
-   //      if (!pmenu->load_xml_menu_file(strMatter))
-   //      {
-
-   //         pmenu.release();
-
-   //         return false;
-
-   //      }
-
-   //      pmenu->hints(iFlags, point);
-
-   //      if (!pmenu->track_popup_menu(this))
-   //      {
-
-   //         pmenu.release();
-
-   //         return false;
-
-   //      }
-
-   //      return true;
-
-   //   });
-
-   //   return true;
-
-   //}
-
-
-   //__pointer(::user::menu) interaction::track_popup_xml_menu_file(::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
-   //{
-
-   //   string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
-
-   //   return track_popup_xml_menu_text(strXml, iFlags, point, sizeMinimum)
-
-   //   //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
-
-   //   //pmenu->m_sizeMinimum = sizeMinimum;
-
-   //   //if (!pmenu->load_xml_menu_file(varXmlFile))
-   //   //{
-
-   //   //   pmenu.release();
-
-   //   //   return pmenu;
-
-   //   //}
-
-   //   //pmenu->hints(iFlags, point);
-
-   //   //if (!pmenu->track_popup_menu(this))
-   //   //{
-
-   //   //   pmenu.release();
-
-   //   //   return pmenu;
-
-   //   //}
-
-   //   //return pmenu;
-
-   //}
-
-
    void interaction::_001OnExitIconic()
    {
 
@@ -12929,6 +12713,18 @@ namespace user
       {
 
          return;
+
+      }
+
+      if(layout().normal().m_bProdevian)
+      {
+
+         if(!is_prodevian())
+         {
+
+            set_prodevian();
+
+         }
 
       }
 
@@ -12952,32 +12748,6 @@ namespace user
    }
 
 
-   //void interaction::defer_exit_iconify()
-   //{
-
-   //   if(get_display() == e_display_iconic)
-   //   {
-
-   //      exit_iconify();
-
-   //   }
-
-   //}
-
-
-   //void interaction::defer_exit_full_screen()
-   //{
-
-   //   if(get_display() == e_display_full_screen)
-   //   {
-
-   //      exit_full_screen();
-
-   //   }
-
-   //}
-
-
    bool interaction::_001OnBeforeAppearance()
    {
 
@@ -12992,7 +12762,11 @@ namespace user
       if (layout().sketch().display() != e_display_none && layout().sketch().display() != e_display_current)
       {
 
-         if (layout().sketch().display() != e_display_iconic && layout().design().display() == e_display_iconic)
+         auto edisplaySketch = layout().sketch().display();
+
+         auto edisplayDesign = layout().design().display();
+
+         if (edisplaySketch != e_display_iconic && edisplayDesign == e_display_iconic)
          {
 
             _001OnExitIconic();
@@ -13175,17 +12949,23 @@ namespace user
    }
 
 
-   void interaction::sketch_prepare_window_minimize(::e_activation eactivation)
+   void interaction::design_window_minimize(::e_activation eactivation)
    {
 
       auto rectangleRequest = this->screen_rect();
+
+      layout().normal() = layout().window();
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
 
       good_iconify(nullptr, rectangleRequest, true, eactivation, layout().sketch().zorder());
 
    }
 
 
-   void interaction::sketch_prepare_window_maximize()
+   void interaction::design_window_maximize()
    {
 
       ::rectangle_i32 rectangleRequest = this->screen_rect();
@@ -13195,7 +12975,7 @@ namespace user
    }
 
 
-   void interaction::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint)
+   void interaction::design_window_full_screen(const ::rectangle_i32 & rectangleHint)
    {
 
       ::rectangle_i32 rectangleRequest;
@@ -13218,7 +12998,7 @@ namespace user
    }
 
 
-   void interaction::sketch_prepare_window_restore(edisplay edisplay)
+   void interaction::design_window_restore(edisplay edisplay)
    {
 
       auto rectangleRequest = this->screen_rect();
@@ -13228,7 +13008,7 @@ namespace user
    }
 
 
-   void interaction::sketch_prepare_window_dock(edisplay edisplay)
+   void interaction::design_window_dock(edisplay edisplay)
    {
 
       ASSERT(is_docking_appearance(edisplay));

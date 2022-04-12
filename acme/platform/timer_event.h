@@ -17,10 +17,10 @@ public:
    ~timer_event() override;
 
 
-   virtual bool wait(const class ::wait & wait);
+   ::e_status wait(const class ::wait & wait) override;
 
 
-   virtual void on_timer() override;
+   void on_timer() override;
 
 
 };

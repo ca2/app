@@ -4217,12 +4217,6 @@ namespace user
    }
 
 
-   //void interaction_impl::prodevian_update_visual(bool & bUpdateBuffer, bool & bUpdateWindow)
-   //{
-
-   //}
-
-
    void interaction_impl::start_window_visual()
    {
 
@@ -4311,14 +4305,6 @@ namespace user
       }
 
    }
-
-
-   //void interaction_impl::create_host(::user::interaction * pinteraction)
-   //{
-
-   //   return ;
-
-   //}
 
 
    void interaction_impl::process_message()

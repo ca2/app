@@ -1,4 +1,42 @@
 //
-// Created by camilo on 09/04/2022.
+// Created by camilo on 11/04/2022. 11:30 <3ThomasBorregaardSørensen!!
 //
+#include "framework.h"
+#include <X11/Xlib.h>
+
+
+void * x11_init_threads()
+{
+
+   XInitThreads();
+
+}
+
+
+void * x11_get_display()
+{
+
+   auto pdisplay = XOpenDisplay(NULL);
+
+   return pdisplay;
+
+}
+
+
+void x11_check_status(int status, unsigned long window)
+{
+   if (status == BadWindow)
+   {
+      printf("window atom # 0x%lx does not exists!", window);
+      //   exit(1);
+   }
+
+   if (status != Success)
+   {
+      printf("XGetWindowProperty failed!");
+      // exit(2);
+   }
+}
+
+
 

@@ -1690,8 +1690,6 @@ namespace experience
 
       }
 
-      _001OnExitAppearance();
-
       return true;
 
    }

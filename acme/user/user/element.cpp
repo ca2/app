@@ -2550,7 +2550,7 @@ namespace user
    // }
 
 
-   //void element::sketch_prepare_window_minimize(::e_activation eactivation)
+   //void element::design_window_minimize(::e_activation eactivation)
    //{
 
    //   throw ::interface_only();
@@ -2558,7 +2558,7 @@ namespace user
    //}
 
 
-   //void element::sketch_prepare_window_maximize()
+   //void element::design_window_maximize()
    //{
 
    //   throw ::interface_only();
@@ -2566,7 +2566,7 @@ namespace user
    //}
 
 
-   //void element::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint)
+   //void element::design_window_full_screen(const ::rectangle_i32 & rectangleHint)
    //{
 
    //   throw ::interface_only();
@@ -2574,7 +2574,7 @@ namespace user
    //}
 
 
-   //void element::sketch_prepare_window_restore(edisplay edisplay)
+   //void element::design_window_restore(edisplay edisplay)
    //{
 
    //   throw ::interface_only();
@@ -2582,7 +2582,7 @@ namespace user
    //}
 
 
-   //void element::sketch_prepare_window_dock(::e_display edisplayDock)
+   //void element::design_window_dock(::e_display edisplayDock)
    //{
 
    //   throw ::interface_only();

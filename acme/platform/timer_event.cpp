@@ -15,14 +15,12 @@ timer_event::~timer_event()
 }
 
 
-bool timer_event::wait(const class ::wait & wait)
+::e_status timer_event::wait(const class ::wait & wait)
 {
 
    start(wait,false);
 
-   m_manualresetevent.wait();
-
-   return true;
+   return m_manualresetevent.wait();
 
 }
 

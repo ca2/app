@@ -61,9 +61,9 @@ public:
 
 #ifndef WINDOWS
 
-   virtual void lock() override;
+   //virtual ::e_status lock() override;
 
-   virtual bool lock(const class ::wait & wait) override;
+   //virtual ::e_status lock(const class ::wait & wait) override;
 
    virtual void _wait() override;
 

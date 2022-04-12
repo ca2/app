@@ -206,7 +206,7 @@ namespace linux
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
-      straLine.add("Type=application");
+      straLine.add("Type=Application");
       straLine.add("Name=");
       straLine.add("GenericName=");
       straLine.add("Comment=");
@@ -364,6 +364,7 @@ namespace linux
       }
 
 
+      straLine._007SetLine("[Desktop Entry]", "StartupNotify", "true");
       straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");

@@ -159,7 +159,7 @@ bool condition::pulse()
 }
 
 
-void condition::wait()
+::e_status condition::wait()
 {
 
 
@@ -197,11 +197,18 @@ void condition::wait()
    sb.sem_num = 0;
    sb.sem_flg = 0;
 
-   semop((i32)m_hsync, &sb, 1);
+   int iError = semop((i32)m_hsync, &sb, 1);
+
+   if(iError != 0)
+   {
+
+      return error_failed;
+
+   }
 
 #endif
 
-   //return signaled_base;
+   return ::success;
 
 }
 
@@ -209,7 +216,7 @@ void condition::wait()
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-bool condition::wait(const class ::wait & wait)
+::e_status condition::wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
@@ -225,19 +232,17 @@ bool condition::wait(const class ::wait & wait)
       if (dwLastError == ERROR_TIMEOUT)
       {
 
-         return false;
+         return error_wait_timeout;
 
       }
 
       auto estatus = last_error_to_status(dwLastError);
 
-      throw ::exception(estatus);
-
-      return false;
+      return error_failed;
 
    }
 
-   return true;
+   return ::success;
 
 #elif defined(ANDROID)
 
@@ -261,7 +266,7 @@ bool condition::wait(const class ::wait & wait)
 
          m_iHold--;
 
-         return ::synchronization_result(e_synchronization_result_timed_out);
+         return error_wait_timeout;
 
       }
 
@@ -314,7 +319,7 @@ bool condition::wait(const class ::wait & wait)
       else
       {
 
-         return signaled_base;
+         return ::success;
 
       }
 

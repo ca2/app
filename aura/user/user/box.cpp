@@ -516,7 +516,7 @@ namespace user
    }
 
 
-   void box::sketch_prepare_window_restore(edisplay edisplay)
+   void box::design_window_restore(edisplay edisplay)
    {
 
       get_wnd()->post_routine(__routine([this, edisplay]()

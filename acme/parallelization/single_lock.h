@@ -17,8 +17,8 @@ public:
 
    void _wait() override;
    bool _wait(const class ::wait& wait) override;
-   void wait() override;
-   bool wait(const class ::wait& wait) override;
+   ::e_status wait() override;
+   ::e_status wait(const class ::wait& wait) override;
    void unlock() override;
    void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr) override;
    bool is_locked() const override;

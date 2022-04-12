@@ -154,8 +154,6 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
             m_messagea.erase_at(i);
 
-            //m_bKickIdle = false;
-
             return;
 
          }
@@ -164,30 +162,24 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 
       }
 
-      //if (m_bKickIdle)
-      //{
-
-      //   m_bKickIdle = false;
-
-      //   return status_kick_idle;
-
-      //}
-
       {
 
          synchronouslock.unlock();
 
-         m_eventNewMessage.wait(duration);
-         //{
+         auto estatus = m_eventNewMessage.wait(duration);
 
-         //   return error_wait_timeout;
+         if(estatus == error_failed)
+         {
 
-         //}
+            pmessage->m_atom = e_message_quit;
+
+            return;
+
+         }
 
          synchronouslock.lock();
 
          m_eventNewMessage.ResetEvent();
-
 
       }
 

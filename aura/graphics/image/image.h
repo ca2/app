@@ -29,7 +29,7 @@ public:
       bool cache = true;
       bool helper_maps = false;
       synchronization_object * psync;
-
+      ::function < void(image *) > functionLoaded;
 
    };
 

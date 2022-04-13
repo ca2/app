@@ -20,45 +20,54 @@ Button::Button(Widget * parent, const std::string & caption, int icon)
    : Widget(parent), m_caption(caption), m_icon(icon),
    m_icon_position(IconPosition::LeftCentered), m_bMouseDown(false), m_bChecked(false),
    m_flags(NormalButton), m_background_color(Color(0, 0)),
-   m_text_color(Color(0, 0)) { }
-
-
-Vector2i Button::preferred_size(NVGcontext * ctx)
+   m_text_color(Color(0, 0)),
+   m_tw(-1.f),m_iw(-1.f),m_ih(-1.f)
 {
-   
-   int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
-   nvgFontSize(ctx,(float) font_size);
-   nvgFontFace(ctx, "sans-bold");
-   float tw = nvgTextBounds(ctx, 0, 0, m_caption.c_str(), nullptr, nullptr);
-   float iw = 0.0f, ih = (float) font_size;
 
-   if (m_icon) {
-      if (nvg_is_font_icon(m_icon)) {
-         ih *= icon_scale();
-         nvgFontFace(ctx, "icons");
-         nvgFontSize(ctx, ih);
-         iw = nvgTextBounds(ctx, 0, 0, get_utf8_character(m_icon).data(), nullptr, nullptr)
-            + m_size.y() * 0.15f;
+
+}
+
+
+Vector2i Button::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
+{
+
+   if (bRecalcTextSize || m_tw < 0.f || m_iw < 0.f || m_ih < 0.f)
+   {
+
+      int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
+      nvgFontSize(ctx, (float)font_size);
+      nvgFontFace(ctx, "sans-bold");
+      m_tw = nvgTextBounds(ctx, 0, 0, m_caption.c_str(), nullptr, nullptr);
+      m_iw = 0.0f;
+      m_ih = (float) font_size;
+
+      if (m_icon) {
+         if (nvg_is_font_icon(m_icon)) {
+            nvgFontFace(ctx, "icons");
+            nvgFontSize(ctx, m_ih * icon_scale());
+            m_iw = nvgTextBounds(ctx, 0, 0, get_utf8_character(m_icon).data(), nullptr, nullptr)
+               + m_size.y() * 0.15f;
+         }
+         else {
+            int w, h;
+            nvgImageSize(ctx, m_icon, &w, &h);
+            m_iw = w * m_ih * 0.9f;
+         }
       }
-      else {
-         int w, h;
-         ih *= 0.9f;
-         nvgImageSize(ctx, m_icon, &w, &h);
-         iw = w * ih / h;
-      }
+
    }
-   return Vector2i((int)(tw + iw) + 20, font_size + 10);
+   return Vector2i((int)(m_tw + m_iw) + 20, (int) (m_ih + 10));
 }
 
-
-bool Button::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers)
-{
-   
-   Widget::mouse_enter_event(p, enter, ekeyModifiers);
-
-   return true;
-
-}
+//
+//bool Button::mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers)
+//{
+//   
+//   Widget::mouse_enter_event(p, enter, ekeyModifiers);
+//
+//   return true;
+//
+//}
 
 
 bool Button::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
@@ -205,6 +214,20 @@ bool Button::mouse_button_event(const Vector2i & p, int button, bool down, const
 
 }
 
+
+bool Button::mouse_enter_event(const Vector2i &p, bool enter, const ::user::e_key & ekeyModifiers)
+{
+
+   Widget::mouse_enter_event(p, enter, ekeyModifiers);
+
+   screen()->m_puserinteraction->set_need_redraw();
+   screen()->m_puserinteraction->post_redraw();
+
+   return true;
+
+}
+
+
 void Button::draw(NVGcontext * ctx)
 {
    
@@ -269,13 +292,13 @@ void Button::draw(NVGcontext * ctx)
    nvgStroke(ctx);
 
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1.f,
-      m_size.y() - 2.f, m_theme->m_button_corner_radius);
+   nvgRoundedRect(ctx, (float)m_pos.x() + 0.5f, (float)m_pos.y() + 0.5f, (float)m_size.x() - 1.f,
+      (float)m_size.y() - 2.f, (float)m_theme->m_button_corner_radius);
    nvgStrokeColor(ctx, m_theme->m_border_dark);
    nvgStroke(ctx);
 
    int font_size = m_font_size == -1 ? m_theme->m_button_font_size : m_font_size;
-   nvgFontSize(ctx, font_size);
+   nvgFontSize(ctx, (float)font_size);
    nvgFontFace(ctx, "sans-bold");
    float tw = nvgTextBounds(ctx, 0, 0, m_caption.c_str(), nullptr, nullptr);
 
@@ -289,7 +312,7 @@ void Button::draw(NVGcontext * ctx)
    if (m_icon) {
       auto icon = get_utf8_character(m_icon);
 
-      float iw, ih = font_size;
+      float iw, ih = (float)font_size;
       if (nvg_is_font_icon(m_icon)) {
          ih *= icon_scale();
          nvgFontSize(ctx, ih);
@@ -318,10 +341,10 @@ void Button::draw(NVGcontext * ctx)
          icon_pos.x() += tw * 0.5f;
       }
       else if (m_icon_position == IconPosition::Left) {
-         icon_pos.x() = m_pos.x() + 8;
+         icon_pos.x() = m_pos.x() + 8.f;
       }
       else if (m_icon_position == IconPosition::Right) {
-         icon_pos.x() = m_pos.x() + m_size.x() - iw - 8;
+         icon_pos.x() = m_pos.x() + m_size.x() - iw - 8.f;
       }
 
       if (nvg_is_font_icon(m_icon)) {
@@ -336,7 +359,7 @@ void Button::draw(NVGcontext * ctx)
       }
    }
 
-   nvgFontSize(ctx, font_size);
+   nvgFontSize(ctx, (float)font_size);
    nvgFontFace(ctx, "sans-bold");
    nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
    nvgFillColor(ctx, m_theme->m_text_color_shadow);

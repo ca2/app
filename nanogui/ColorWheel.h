@@ -51,7 +51,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_color(const Color & color);
 
       /// The preferred size of this ColorWheel.
-      Vector2i preferred_size(NVGcontext * ctx) override;
+      Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       void draw(NVGcontext * ctx) override;

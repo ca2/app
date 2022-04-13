@@ -24,7 +24,7 @@ Graph::Graph(Widget * parent, const std::string & caption)
    m_text_color = Color(240, 192);
 }
 
-Vector2i Graph::preferred_size(NVGcontext *) {
+Vector2i Graph::preferred_size(NVGcontext *, bool bRecalcTextSize) {
    return Vector2i(180, 45);
 }
 
@@ -32,7 +32,7 @@ void Graph::draw(NVGcontext * ctx) {
    Widget::draw(ctx);
 
    nvgBeginPath(ctx);
-   nvgRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y());
+   nvgRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y());
    nvgFillColor(ctx, m_background_color);
    nvgFill(ctx);
 
@@ -40,7 +40,7 @@ void Graph::draw(NVGcontext * ctx) {
       return;
 
    nvgBeginPath(ctx);
-   nvgMoveTo(ctx, m_pos.x(), m_pos.y() + m_size.y());
+   nvgMoveTo(ctx, (float)m_pos.x(), (float)m_pos.y() + m_size.y());
    for (size_t i = 0; i < (size_t)m_values.size(); i++) {
       float value = m_values[i];
       float vx = m_pos.x() + i * m_size.x() / (float)(m_values.size() - 1);
@@ -48,7 +48,7 @@ void Graph::draw(NVGcontext * ctx) {
       nvgLineTo(ctx, vx, vy);
    }
 
-   nvgLineTo(ctx, m_pos.x() + m_size.x(), m_pos.y() + m_size.y());
+   nvgLineTo(ctx, (float)m_pos.x() + m_size.x(), (float)m_pos.y() + m_size.y());
    nvgStrokeColor(ctx, m_stroke_color);
    nvgStroke(ctx);
    if (m_fill_color.w() > 0) {
@@ -62,25 +62,25 @@ void Graph::draw(NVGcontext * ctx) {
       nvgFontSize(ctx, 14.0f);
       nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
       nvgFillColor(ctx, m_text_color);
-      nvgText(ctx, m_pos.x() + 3, m_pos.y() + 1, m_caption.c_str(), NULL);
+      nvgText(ctx, m_pos.x() + 3.f, m_pos.y() + 1.f, m_caption.c_str(), NULL);
    }
 
    if (!m_header.empty()) {
       nvgFontSize(ctx, 18.0f);
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_TOP);
       nvgFillColor(ctx, m_text_color);
-      nvgText(ctx, m_pos.x() + m_size.x() - 3, m_pos.y() + 1, m_header.c_str(), NULL);
+      nvgText(ctx, m_pos.x() + m_size.x() - 3.f, m_pos.y() + 1.f, m_header.c_str(), NULL);
    }
 
    if (!m_footer.empty()) {
       nvgFontSize(ctx, 15.0f);
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_BOTTOM);
       nvgFillColor(ctx, m_text_color);
-      nvgText(ctx, m_pos.x() + m_size.x() - 3, m_pos.y() + m_size.y() - 1, m_footer.c_str(), NULL);
+      nvgText(ctx, m_pos.x() + m_size.x() - 3.f, m_pos.y() + m_size.y() - 1.f, m_footer.c_str(), NULL);
    }
 
    nvgBeginPath(ctx);
-   nvgRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y());
+   nvgRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y());
    nvgStrokeColor(ctx, Color(100, 255));
    nvgStroke(ctx);
 }

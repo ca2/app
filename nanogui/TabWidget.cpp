@@ -78,7 +78,7 @@ int TabWidgetBase::tab_index(int id) const {
 
 void TabWidgetBase::update_visibility() { /* No-op */ }
 
-void TabWidgetBase::perform_layout(NVGcontext * ctx) {
+void TabWidgetBase::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    m_tab_offsets.clear();
    nvgFontFace(ctx, m_font.c_str());
    nvgFontSize(ctx, font_size());
@@ -88,7 +88,7 @@ void TabWidgetBase::perform_layout(NVGcontext * ctx) {
    int width = 0;
    float unused[4];
    for (const std::string & label : m_tab_captions) {
-      int label_width = nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
+      int label_width = (int) nvgTextBounds(ctx, 0.f, 0.f, label.c_str(), nullptr, unused);
       m_tab_offsets.push_back(width);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
       if (m_tabs_closeable)
@@ -97,11 +97,11 @@ void TabWidgetBase::perform_layout(NVGcontext * ctx) {
    m_tab_offsets.push_back(width);
 
    nvgFontFace(ctx, "icons");
-   m_close_width =
-      nvgTextBounds(ctx, 0, 0, get_utf8_character(FA_TIMES_CIRCLE).data(), nullptr, unused);
+   m_close_width = (int)
+      nvgTextBounds(ctx, 0.f, 0.f, get_utf8_character(FA_TIMES_CIRCLE).data(), nullptr, unused);
 }
 
-Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx)
+Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
    nvgFontFace(ctx, m_font.c_str());
    nvgFontSize(ctx, font_size());
@@ -110,14 +110,14 @@ Vector2i TabWidgetBase::preferred_size(NVGcontext * ctx)
    int width = 0;
    for (const std::string & label : m_tab_captions) {
       float unused[4];
-      int label_width = nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
+      int label_width = (int) nvgTextBounds(ctx, 0, 0, label.c_str(), nullptr, unused);
       width += label_width + 2 * m_theme->m_tab_button_horizontal_padding;
       if (m_tabs_closeable)
          width += m_close_width;
    }
 
    return Vector2i(width + 1,
-      font_size() + 2 * m_theme->m_tab_button_vertical_padding + 2 * m_padding);
+      (int) (font_size() + 2.f * m_theme->m_tab_button_vertical_padding + 2.f * m_padding));
 }
 
 void TabWidgetBase::draw(NVGcontext * ctx) {
@@ -134,24 +134,24 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
    if (m_tab_offsets.size() != m_tab_captions.size() + 1)
       throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
 
-   int tab_height = font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int) (font_size() + 2.f * m_theme->m_tab_button_vertical_padding);
 
    if (m_background_color.w() != 0.f) {
       nvgFillColor(ctx, m_background_color);
       nvgBeginPath(ctx);
-      nvgRoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f + tab_height, m_size.x(),
-         m_size.y() - tab_height - 2, m_theme->m_button_corner_radius);
+      nvgRoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + .5f + tab_height, (float)m_size.x(),
+         m_size.y() - tab_height - 2.f, (float)m_theme->m_button_corner_radius);
       nvgFill(ctx);
    }
 
    Widget::draw(ctx);
 
    NVGpaint tab_background_color = nvgLinearGradient(
-      ctx, m_pos.x(), m_pos.y() + 1, m_pos.x(), m_pos.y() + tab_height,
+      ctx, (float)m_pos.x(), m_pos.y() + 1.f, (float)m_pos.x(), (float)m_pos.y() + tab_height,
       m_theme->m_button_gradient_top_pushed, m_theme->m_button_gradient_bot_pushed);
 
    nvgSave(ctx);
-   nvgIntersectScissor(ctx, m_pos.x(), m_pos.y(), m_size.x(), tab_height);
+   nvgIntersectScissor(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)tab_height);
    nvgFontSize(ctx, font_size());
    nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
    for (size_t i = 0; i < m_tab_captions.size(); ++i) {
@@ -161,21 +161,21 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
 
       if (i == (size_t)m_active_tab) {
          nvgBeginPath(ctx);
-         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 1.5f, width,
-            tab_height + 4, m_theme->m_button_corner_radius);
+         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 1.5f, (float)width,
+            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
          nvgStrokeColor(ctx, m_theme->m_border_light);
          nvgStroke(ctx);
 
          nvgBeginPath(ctx);
-         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 0.5f, width,
-            tab_height + 4, m_theme->m_button_corner_radius);
+         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 0.5f, (float)width,
+            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
          nvgStrokeColor(ctx, m_theme->m_border_dark);
          nvgStroke(ctx);
       }
       else {
          nvgBeginPath(ctx);
-         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 1.5f, width,
-            tab_height + 4, m_theme->m_button_corner_radius);
+         nvgRoundedRect(ctx, x_pos + 0.5f, y_pos + 1.5f, (float)width,
+            tab_height + 4.f, (float)m_theme->m_button_corner_radius);
 
          nvgFillPaint(ctx, tab_background_color);
          nvgFill(ctx);
@@ -188,7 +188,7 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
       nvgFillColor(ctx, m_theme->m_text_color);
       nvgFontFace(ctx, m_font.c_str());
 
-      nvgText(ctx, x_pos, y_pos, m_tab_captions[i].c_str(), nullptr);
+      nvgText(ctx, (float)x_pos, (float)y_pos, m_tab_captions[i].c_str(), nullptr);
 
       if (m_tabs_closeable) {
          x_pos = m_pos.x() + m_tab_offsets[i + 1] -
@@ -209,8 +209,8 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
    if (m_tab_drag_index != -1 && m_tab_drag_start != m_tab_drag_end) {
       int x_pos = m_pos.x() + m_tab_drag_min + m_tab_drag_end - m_tab_drag_start;
       nvgBeginPath(ctx);
-      nvgRoundedRect(ctx, x_pos + 0.5f, m_pos.y() + 1.5f, m_tab_drag_max - m_tab_drag_min,
-         tab_height + 4, m_theme->m_button_corner_radius);
+      nvgRoundedRect(ctx, x_pos + 0.5f, m_pos.y() + 1.5f, (float)(m_tab_drag_max - m_tab_drag_min),
+         tab_height + 4.f, (float)m_theme->m_button_corner_radius);
       nvgFillColor(ctx, Color(255, 255, 255, 30));
       nvgFill(ctx);
    }
@@ -223,7 +223,7 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
       nvgBeginPath(ctx);
       nvgMoveTo(ctx, m_pos.x() + .5f, m_pos.y() + tab_height + i + .5f);
       nvgLineTo(ctx, m_pos.x() + x0 + 1.0f, m_pos.y() + tab_height + i + .5f);
-      nvgMoveTo(ctx, m_pos.x() + x1, m_pos.y() + tab_height + i + .5f);
+      nvgMoveTo(ctx, (float)(m_pos.x() + x1), m_pos.y() + tab_height + i + .5f);
       nvgLineTo(ctx, m_pos.x() + m_size.x() + .5f, m_pos.y() + tab_height + i + .5f);
       nvgStrokeWidth(ctx, 1.0f);
       nvgStrokeColor(ctx, (i == 0) ? m_theme->m_border_dark : m_theme->m_border_light);
@@ -231,17 +231,17 @@ void TabWidgetBase::draw(NVGcontext * ctx) {
 
       /* Bottom + side borders */
       nvgSave(ctx);
-      nvgIntersectScissor(ctx, m_pos.x(), m_pos.y() + tab_height, m_size.x(), m_size.y());
+      nvgIntersectScissor(ctx, (float)m_pos.x(), (float)(m_pos.y() + tab_height), (float)m_size.x(), (float)m_size.y());
       nvgBeginPath(ctx);
-      nvgRoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1,
-         m_size.y() - 2, m_theme->m_button_corner_radius);
+      nvgRoundedRect(ctx, m_pos.x() + .5f, m_pos.y() + i + .5f, m_size.x() - 1.f,
+         m_size.y() - 2.f, (float)m_theme->m_button_corner_radius);
       nvgStroke(ctx);
       nvgRestore(ctx);
    }
 }
 
 std::pair<int, bool> TabWidgetBase::tab_at_position(const Vector2i & p, bool test_vertical) const {
-   int tab_height = font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int) font_size() + 2 * m_theme->m_tab_button_vertical_padding;
    if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
       return { -1, false };
 
@@ -414,15 +414,15 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
 TabWidget::TabWidget(Widget * parent, const std::string & font)
    : TabWidgetBase(parent, font) { }
 
-void TabWidget::perform_layout(NVGcontext * ctx) {
-   TabWidgetBase::perform_layout(ctx);
+void TabWidget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
+   TabWidgetBase::perform_layout(ctx, bRecalcTextSize);
 
-   int tab_height = font_size() + 2 * m_theme->m_tab_button_vertical_padding;
+   int tab_height = (int) font_size() + 2 * m_theme->m_tab_button_vertical_padding;
 
    for (Widget * child : m_children) {
       child->set_position(Vector2i(m_padding, m_padding + tab_height + 1));
       child->set_size(m_size - Vector2i(2 * m_padding, 2 * m_padding + tab_height + 1));
-      child->perform_layout(ctx);
+      child->perform_layout(ctx, bRecalcTextSize);
    }
 }
 
@@ -436,11 +436,11 @@ void TabWidget::update_visibility() {
       it->second->set_visible(true);
 }
 
-Vector2i TabWidget::preferred_size(NVGcontext * ctx) {
-   Vector2i base_size = TabWidgetBase::preferred_size(ctx),
+Vector2i TabWidget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
+   Vector2i base_size = TabWidgetBase::preferred_size(ctx, bRecalcTextSize),
       content_size = Vector2i(0);
    for (Widget * child : m_children)
-      content_size = max(content_size, child->preferred_size(ctx));
+      content_size = max(content_size, child->preferred_size(ctx, bRecalcTextSize));
 
    return Vector2i(
       std::max(base_size.x(), content_size.x() + 2 * m_padding),

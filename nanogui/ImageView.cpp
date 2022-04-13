@@ -70,7 +70,7 @@ void ImageView::set_scale(float scale) {
 void ImageView::center() {
    if (!m_pimage)
       return;
-   m_offset = Vector2i(.5f * (Vector2f(m_size) * screen()->pixel_ratio() - Vector2f(m_pimage->width(), m_pimage->height())) * scale());
+   m_offset = Vector2i(.5f * (Vector2f(m_size) * screen()->pixel_ratio() - Vector2f((float)m_pimage->width(), (float)m_pimage->height())) * scale());
 }
 
 void ImageView::reset() {
@@ -88,7 +88,7 @@ Vector2f ImageView::pos_to_pixel(const Vector2f & p) const {
 Vector2f ImageView::pixel_to_pos(const Vector2f & p) const {
    Vector2i pos = (p * scale() + m_offset) / screen()->pixel_ratio();
    if (m_draw_border)
-      pos += 1.f;
+      pos += 1;
    return pos;
 }
 
@@ -118,7 +118,8 @@ bool ImageView::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel,
 
    }
 
-   m_offset += rel * screen()->pixel_ratio();
+   m_offset.x() += (float)rel.x() * screen()->pixel_ratio();
+   m_offset.y() += (float)rel.y() * screen()->pixel_ratio();
 
    return true;
 
@@ -158,7 +159,7 @@ void ImageView::draw(NVGcontext * ctx)
      // return;
 
 
-   __NANO2D_CONTEXT(ctx)->_draw_image(m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), m_pimage);
+   __NANO2D_CONTEXT(ctx)->_draw_image((float) m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), m_pimage);
 
    //Canvas::draw(ctx);
 

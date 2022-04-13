@@ -60,7 +60,7 @@ namespace write_text
 
       string                        m_strFontFamilyName;
       ::file::path                  m_path;
-      string                        m_strFontDescriptor;
+      font_descriptor               m_fontdescriptor;
       double                        m_dFontSize;
       double                        m_dFontWidth;
       ::draw2d::enum_unit           m_eunitFontSize;

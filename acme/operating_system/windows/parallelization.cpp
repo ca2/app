@@ -88,3 +88,13 @@ CLASS_DECL_ACME void main_asynchronous(::function < void() > function)
 
 
 
+
+
+
+void system::windowing_post(const ::function < void() > & function)
+{
+
+
+   main_asynchronous(function);
+
+}

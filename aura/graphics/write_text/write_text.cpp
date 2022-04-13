@@ -147,31 +147,24 @@ namespace write_text
    }
 
 
-   string write_text::calculate_font_descriptor(const char * face, float size)
+   font_descriptor write_text::calculate_font_descriptor(const char * face, float size)
    {
       
-      string strFontDescriptor;
+      font_descriptor fontdescriptor;
       
-      strFontDescriptor.format("%s:%0.2f", face, size);
+      fontdescriptor.m_strFace = face;
+
+      fontdescriptor.m_fSize = floorf(size * 10.f) / 10.f;
       
-      return strFontDescriptor;
+      return fontdescriptor;
       
    }
 
 
-   string write_text::get_font_descriptor_face(const ::string & strFontDescriptor)
+   string write_text::get_font_descriptor_face(const font_descriptor & font_descriptor)
    {
       
-      auto iFind = strFontDescriptor.find(':');
-      
-      if(iFind < 0)
-      {
-         
-         return strFontDescriptor;
-         
-      }
-      
-      return strFontDescriptor.Left(iFind);
+      return font_descriptor.m_strFace;
       
    }
 

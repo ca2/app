@@ -24,9 +24,9 @@ NAMESPACE_BEGIN(nanogui)
    class NANOGUI_EXPORT Window : public Widget {
    public:
 
-      __pointer(::user::box)         m_pbox;
-      bool                           m_bPendingCentering;
-
+      __pointer(::user::box)           m_pbox;
+      bool                             m_bPendingCentering;
+      float                            m_boundsHeader[4];
 
       Window(Widget * parent, const std::string & title = "Untitled");
 
@@ -62,9 +62,9 @@ NAMESPACE_BEGIN(nanogui)
    /// Accept scroll events and propagate them to the widget under the mouse cursor
    //virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
    /// Compute the preferred size of the widget
-   virtual Vector2i preferred_size(NVGcontext * ctx) override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place child widgets, if any
-   virtual void perform_layout(NVGcontext * ctx) override;
+   virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
    //protected:
    /// Internal helper function to maintain nested window position values; overridden in \ref Popup
    virtual void refresh_relative_placement();

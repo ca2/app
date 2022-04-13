@@ -30,6 +30,24 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT CheckBox : public Widget {
    public:
+
+      /// The caption text of this CheckBox.
+      std::string m_caption;
+      /**
+       * Internal tracking variable to distinguish between mouse click and release.
+       * \ref nanogui::CheckBox::m_callback is only called upon release.  See
+       * \ref nanogui::CheckBox::mouse_button_event for specific conditions.
+       */
+      bool m_bMouseDown;
+
+      /// Whether or not this CheckBox is currently checked or unchecked.
+      bool m_checked;
+
+      /// The function to execute when \ref nanogui::CheckBox::m_checked is changed.
+      ::function<void(bool)> m_callback;
+
+      Vector2i m_sizePreferred;
+
       /**
        * Adds a CheckBox to the specified ``parent``.
        *
@@ -74,25 +92,10 @@ NAMESPACE_BEGIN(nanogui)
       virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.
-      virtual Vector2i preferred_size(NVGcontext * ctx) override;
+      virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
 
       /// Draws this CheckBox.
       virtual void draw(NVGcontext * ctx) override;
-   protected:
-      /// The caption text of this CheckBox.
-      std::string m_caption;
-      /**
-       * Internal tracking variable to distinguish between mouse click and release.
-       * \ref nanogui::CheckBox::m_callback is only called upon release.  See
-       * \ref nanogui::CheckBox::mouse_button_event for specific conditions.
-       */
-      bool m_bMouseDown;
-
-      /// Whether or not this CheckBox is currently checked or unchecked.
-      bool m_checked;
-
-      /// The function to execute when \ref nanogui::CheckBox::m_checked is changed.
-      ::function<void(bool)> m_callback;
 };
 
 NAMESPACE_END(nanogui)

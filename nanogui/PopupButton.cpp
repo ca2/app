@@ -31,7 +31,7 @@ PopupButton::PopupButton(Widget * parent, const std::string & caption, int butto
 }
 
 
-Vector2i PopupButton::preferred_size(NVGcontext * ctx)
+Vector2i PopupButton::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
    
    return Button::preferred_size(ctx) + Vector2i(15, 0);
@@ -60,15 +60,15 @@ void PopupButton::draw(NVGcontext * ctx) {
       Vector2f icon_pos(0, m_pos.y() + m_size.y() * 0.5f - 1);
 
       if (m_popup->side() == Popup::Right)
-         icon_pos[0] = m_pos.x() + m_size.x() - iw - 8;
+         icon_pos[0] = m_pos.x() + m_size.x() - iw - 8.f;
       else
-         icon_pos[0] = m_pos.x() + 8;
+         icon_pos[0] = m_pos.x() + 8.f;
 
       nvgText(ctx, icon_pos.x(), icon_pos.y(), icon.data(), nullptr);
    }
 }
 
-void PopupButton::perform_layout(NVGcontext * ctx) {
+void PopupButton::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    Widget::perform_layout(ctx);
 
    const Window * parent_window = window();

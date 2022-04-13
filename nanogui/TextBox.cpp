@@ -58,10 +58,10 @@ void TextBox::set_theme(Theme * theme) {
 }
 
 
-Vector2i TextBox::preferred_size(NVGcontext * ctx)
+Vector2i TextBox::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
    
-   Vector2i size(0, font_size() * 1.4f);
+   Vector2i size(0, (int) (font_size() * 1.4f));
 
    float uw = 0;
    if (m_units_image > 0) {
@@ -79,7 +79,7 @@ Vector2i TextBox::preferred_size(NVGcontext * ctx)
    }
 
    float ts = nvgTextBounds(ctx, 0, 0, m_value.c_str(), nullptr, nullptr);
-   size[0] = size[1] + ts + uw + sw;
+   size[0] = (int)(size[1] + ts + uw + sw);
    return size;
 }
 
@@ -87,18 +87,18 @@ void TextBox::draw(NVGcontext * ctx) {
    Widget::draw(ctx);
 
    NVGpaint bg = nvgBoxGradient(ctx,
-      m_pos.x() + 1, m_pos.y() + 1 + 1.0f, m_size.x() - 2, m_size.y() - 2,
-      3, 4, Color(255, 32), Color(32, 32));
+      m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+      3.f, 4.f, Color(255, 32), Color(32, 32));
    NVGpaint fg1 = nvgBoxGradient(ctx,
-      m_pos.x() + 1, m_pos.y() + 1 + 1.0f, m_size.x() - 2, m_size.y() - 2,
-      3, 4, Color(150, 32), Color(32, 32));
+      m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+      3.f, 4.f, Color(150, 32), Color(32, 32));
    NVGpaint fg2 = nvgBoxGradient(ctx,
-      m_pos.x() + 1, m_pos.y() + 1 + 1.0f, m_size.x() - 2, m_size.y() - 2,
-      3, 4, nvgRGBA(255, 0, 0, 100), nvgRGBA(255, 0, 0, 50));
+      m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
+      3.f, 4.f, nvgRGBA(255, 0, 0, 100), nvgRGBA(255, 0, 0, 50));
 
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x() + 1, m_pos.y() + 1 + 1.0f, m_size.x() - 2,
-      m_size.y() - 2, 3);
+   nvgRoundedRect(ctx, m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f,
+      m_size.y() - 2.f, 3);
 
    if (m_editable && focused())
       m_valid_format ? nvgFillPaint(ctx, fg1) : nvgFillPaint(ctx, fg2);
@@ -110,14 +110,14 @@ void TextBox::draw(NVGcontext * ctx) {
    nvgFill(ctx);
 
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1,
-      m_size.y() - 1, 2.5f);
+   nvgRoundedRect(ctx, m_pos.x() + 0.5f, m_pos.y() + 0.5f, m_size.x() - 1.f,
+      m_size.y() - 1.f, 2.5f);
    nvgStrokeColor(ctx, Color(0, 48));
    nvgStroke(ctx);
 
    nvgFontSize(ctx, font_size());
    nvgFontFace(ctx, "sans");
-   Vector2i draw_pos(m_pos.x(), m_pos.y() + m_size.y() * 0.5f + 1);
+   Vector2i draw_pos(m_pos.x(), (int) (m_pos.y() + m_size.y() * 0.5f + 1.f));
 
    float x_spacing = m_size.y() * 0.3f;
 
@@ -143,7 +143,7 @@ void TextBox::draw(NVGcontext * ctx) {
       unit_width = nvgTextBounds(ctx, 0, 0, m_units.c_str(), nullptr, nullptr);
       nvgFillColor(ctx, Color(255, m_enabled ? 64 : 32));
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_MIDDLE);
-      nvgText(ctx, m_pos.x() + m_size.x() - x_spacing, draw_pos.y(),
+      nvgText(ctx, m_pos.x() + m_size.x() - x_spacing, (float) draw_pos.y(),
          m_units.c_str(), nullptr);
       unit_width += 2;
    }
@@ -185,15 +185,15 @@ void TextBox::draw(NVGcontext * ctx) {
    switch (m_alignment) {
    case Alignment::Left:
       nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
-      draw_pos.x() += x_spacing + spin_arrows_width;
+      draw_pos.x() += (int) ( x_spacing + spin_arrows_width);
       break;
    case Alignment::Right:
       nvgTextAlign(ctx, NVG_ALIGN_RIGHT | NVG_ALIGN_MIDDLE);
-      draw_pos.x() += m_size.x() - unit_width - x_spacing;
+      draw_pos.x() += (int) ( m_size.x() - unit_width - x_spacing);
       break;
    case Alignment::Center:
       nvgTextAlign(ctx, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
-      draw_pos.x() += m_size.x() * 0.5f;
+      draw_pos.x() += (int) (m_size.x() * 0.5f);
       break;
    }
 
@@ -212,22 +212,22 @@ void TextBox::draw(NVGcontext * ctx) {
    nvgIntersectScissor(ctx, clip_x, clip_y, clip_width, clip_height);
 
    Vector2i old_draw_pos(draw_pos);
-   draw_pos.x() += m_text_offset;
+   draw_pos.x() += (int) (m_text_offset);
 
    if (m_committed) {
-      nvgText(ctx, draw_pos.x(), draw_pos.y(), m_value.empty() ? m_placeholder.c_str() : m_value.c_str(), nullptr);
+      nvgText(ctx, (float) draw_pos.x(), (float)draw_pos.y(), m_value.empty() ? m_placeholder.c_str() : m_value.c_str(), nullptr);
    }
    else {
       const int max_glyphs = 1024;
       NVGglyphPosition glyphs[max_glyphs];
       float text_bound[4];
-      nvgTextBounds(ctx, draw_pos.x(), draw_pos.y(), m_value_temp.c_str(),
+      nvgTextBounds(ctx, (float)draw_pos.x(), (float)draw_pos.y(), m_value_temp.c_str(),
          nullptr, text_bound);
       float lineh = text_bound[3] - text_bound[1];
 
       // find cursor positions
       int nglyphs =
-         nvgTextGlyphPositions(ctx, draw_pos.x(), draw_pos.y(),
+         nvgTextGlyphPositions(ctx, (float)draw_pos.x(), (float)draw_pos.y(),
             m_value_temp.c_str(), nullptr, glyphs, max_glyphs);
       update_cursor(ctx, text_bound[2], glyphs, nglyphs);
 
@@ -242,15 +242,15 @@ void TextBox::draw(NVGcontext * ctx) {
       if (prev_cx < clip_x)
          m_text_offset += clip_x - prev_cx + 1;
 
-      draw_pos.x() = old_draw_pos.x() + m_text_offset;
+      draw_pos.x() = (int) (old_draw_pos.x() + m_text_offset);
 
       // draw text with offset
-      nvgText(ctx, draw_pos.x(), draw_pos.y(), m_value_temp.c_str(), nullptr);
-      nvgTextBounds(ctx, draw_pos.x(), draw_pos.y(), m_value_temp.c_str(),
+      nvgText(ctx, (float)draw_pos.x(), (float)draw_pos.y(), m_value_temp.c_str(), nullptr);
+      nvgTextBounds(ctx, (float)draw_pos.x(), (float)draw_pos.y(), m_value_temp.c_str(),
          nullptr, text_bound);
 
       // recompute cursor positions
-      nglyphs = nvgTextGlyphPositions(ctx, draw_pos.x(), draw_pos.y(),
+      nglyphs = nvgTextGlyphPositions(ctx, (float)draw_pos.x(), (float)draw_pos.y(),
          m_value_temp.c_str(), nullptr, glyphs, max_glyphs);
 
       if (m_cursor_pos > -1) {
@@ -646,7 +646,7 @@ void TextBox::update_cursor(NVGcontext *, float lastx,
          m_selection_pos = -1;
 
       m_cursor_pos =
-         position_to_cursor_index(m_mouse_down_pos.x(), lastx, glyphs, size);
+         position_to_cursor_index((float)m_mouse_down_pos.x(), lastx, glyphs, size);
 
       m_mouse_down_pos = Vector2i(-1, -1);
    }
@@ -655,7 +655,7 @@ void TextBox::update_cursor(NVGcontext *, float lastx,
          m_selection_pos = m_cursor_pos;
 
       m_cursor_pos =
-         position_to_cursor_index(m_mouse_drag_pos.x(), lastx, glyphs, size);
+         position_to_cursor_index((float)m_mouse_drag_pos.x(), lastx, glyphs, size);
    }
    else {
       // set cursor to last character

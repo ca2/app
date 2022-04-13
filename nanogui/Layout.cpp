@@ -26,7 +26,7 @@ BoxLayout::BoxLayout(Orientation orientation, Alignment alignment,
    m_spacing(spacing) {
 }
 
-Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
+Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    Vector2i size(2 * m_margin);
 
    int y_offset = 0;
@@ -48,7 +48,7 @@ Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
       else
          size[axis1] += m_spacing;
 
-      Vector2i ps = w->preferred_size(ctx), fs = w->fixed_size();
+      Vector2i ps = w->preferred_size(ctx, bRecalcTextSize), fs = w->fixed_size();
       Vector2i target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
@@ -61,7 +61,7 @@ Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
    return size + Vector2i(0, y_offset);
 }
 
-void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
+void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    Vector2i fs_w = widget->fixed_size();
    Vector2i container_size(
       fs_w[0] ? fs_w[0] : widget->width(),
@@ -124,7 +124,7 @@ void BoxLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
    }
 }
 
-Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
+Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    int height = m_margin, width = 2 * m_margin;
 
    const Window * window = dynamic_cast<const Window *>(widget);
@@ -140,7 +140,7 @@ Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
          height += (label == nullptr) ? m_spacing : m_group_spacing;
       first = false;
 
-      Vector2i ps = c->preferred_size(ctx), fs = c->fixed_size();
+      Vector2i ps = c->preferred_size(ctx, bRecalcTextSize), fs = c->fixed_size();
       Vector2i target_size(
          fs[0] ? fs[0] : ps[0],
          fs[1] ? fs[1] : ps[1]
@@ -157,7 +157,7 @@ Vector2i GroupLayout::preferred_size(NVGcontext * ctx, Widget * widget) {
    return Vector2i(width, height);
 }
 
-void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
+void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    int height = m_margin, available_width =
       (widget->fixed_width() ? widget->fixed_width() : widget->width()) - 2 * m_margin;
 
@@ -176,7 +176,7 @@ void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
 
       bool indent_cur = indent && label == nullptr;
       Vector2i ps = Vector2i(available_width - (indent_cur ? m_group_indent : 0),
-         c->preferred_size(ctx).y());
+         c->preferred_size(ctx, bRecalcTextSize).y());
       Vector2i fs = c->fixed_size();
 
       Vector2i target_size(
@@ -196,10 +196,10 @@ void GroupLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
 }
 
 Vector2i GridLayout::preferred_size(NVGcontext * ctx,
-   Widget * widget) {
+   Widget * widget, bool bRecalcTextSize) {
    /* Compute minimum row / column sizes */
    std::vector<int> grid[2];
-   compute_layout(ctx, widget, grid);
+   compute_layout(ctx, widget, grid, bRecalcTextSize);
 
    Vector2i size(
       2 * m_margin + std::accumulate(grid[0].begin(), grid[0].end(), 0)
@@ -215,7 +215,7 @@ Vector2i GridLayout::preferred_size(NVGcontext * ctx,
    return size;
 }
 
-void GridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<int> * grid) const {
+void GridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<int> * grid, bool bRecalcTextSize) const {
    int axis1 = (int)m_orientation, axis2 = (axis1 + 1) % 2;
    size_t num_children = widget->children().size(), visible_children = 0;
    for (auto w : widget->children())
@@ -238,7 +238,7 @@ void GridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<i
             w = widget->children()[child++];
          } while (!w->visible());
 
-         Vector2i ps = w->preferred_size(ctx);
+         Vector2i ps = w->preferred_size(ctx, bRecalcTextSize);
          Vector2i fs = w->fixed_size();
          Vector2i target_size(
             fs[0] ? fs[0] : ps[0],
@@ -251,7 +251,7 @@ void GridLayout::compute_layout(NVGcontext * ctx, Widget * widget, std::vector<i
    }
 }
 
-void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
+void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    
    Vector2i fs_w = widget->fixed_size();
    Vector2i container_size(
@@ -261,7 +261,7 @@ void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
 
    /* Compute minimum row / column sizes */
    std::vector<int> grid[2];
-   compute_layout(ctx, widget, grid);
+   compute_layout(ctx, widget, grid, bRecalcTextSize);
    int dim[2] = { (int)grid[0].size(), (int)grid[1].size() };
 
    Vector2i extra(0);
@@ -307,7 +307,7 @@ void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
             w = widget->children()[child++];
          } while (!w->visible());
 
-         Vector2i ps = w->preferred_size(ctx);
+         Vector2i ps = w->preferred_size(ctx, bRecalcTextSize);
          Vector2i fs = w->fixed_size();
          Vector2i target_size(
             fs[0] ? fs[0] : ps[0],
@@ -336,7 +336,7 @@ void GridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
          }
          w->set_position(item_pos);
          w->set_size(target_size);
-         w->perform_layout(ctx);
+         w->perform_layout(ctx, bRecalcTextSize);
          pos[axis1] += grid[axis1][i1] + m_spacing[axis1];
       }
       pos[axis2] += grid[axis2][i2] + m_spacing[axis2];
@@ -349,7 +349,7 @@ AdvancedGridLayout::AdvancedGridLayout(const std::vector<int> & cols, const std:
    m_row_stretch.resize(m_rows.size(), 0);
 }
 
-Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, Widget * widget)  {
+Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize)  {
    /* Compute minimum row / column sizes */
    std::vector<int> grid[2];
    compute_layout(ctx, widget, grid);
@@ -366,7 +366,7 @@ Vector2i AdvancedGridLayout::preferred_size(NVGcontext * ctx, Widget * widget)  
    return size + extra;
 }
 
-void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget) {
+void AdvancedGridLayout::perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize) {
    std::vector<int> grid[2];
    compute_layout(ctx, widget, grid);
 

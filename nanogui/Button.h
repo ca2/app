@@ -51,6 +51,10 @@ NAMESPACE_BEGIN(nanogui)
       /// The caption of this Button.
       std::string m_caption;
 
+      float m_tw;
+      float m_iw;
+      float m_ih;
+
       /**
        * \brief The icon of this Button (``0`` means no icon).
        *
@@ -160,7 +164,7 @@ NAMESPACE_BEGIN(nanogui)
       void set_button_group(const std::vector<Button *> & button_group) { m_button_group = button_group; }
 
       /// The preferred size of this Button.
-      virtual Vector2i preferred_size(NVGcontext * ctx) override;
+      virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       /// The callback that is called when any type of mouse button event is issued to this Button.
       virtual bool mouse_enter_event(const Vector2i & p, bool enter, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;

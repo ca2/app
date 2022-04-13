@@ -337,7 +337,7 @@ namespace write_text
    string font::get_font_descriptor_face()
    {
       
-      return m_psystem->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_strFontDescriptor);
+      return m_psystem->m_paurasystem->draw2d()->write_text()->get_font_descriptor_face(m_fontdescriptor);
       
    }
 

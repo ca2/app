@@ -45,8 +45,8 @@ NAMESPACE_BEGIN(nanogui)
       const Popup * popup() const { return m_popup; }
 
       virtual void draw(NVGcontext * ctx) override;
-      virtual Vector2i preferred_size(NVGcontext * ctx) override;
-      virtual void perform_layout(NVGcontext * ctx) override;
+      virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
    protected:
       Popup * m_popup;
       int m_chevron_icon;

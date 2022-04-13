@@ -73,7 +73,7 @@ public:
    TYPE & topic(const ::duration & duration = ::duration::infinite());
 
 
-   ::e_status wait(const ::wait & wait = ::wait::infinite()) override;
+   ::e_status wait(const class ::wait & wait = ::wait::infinite()) override;
 
 
    template < typename OPERATION >

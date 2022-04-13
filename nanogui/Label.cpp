@@ -32,26 +32,35 @@ void Label::set_theme(Theme * theme) {
    }
 }
 
-Vector2i Label::preferred_size(NVGcontext * ctx)
+Vector2i Label::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
-   
-   if (m_caption == "")
-      return Vector2i(0);
-   nvgFontFace(ctx, m_font.c_str());
-   nvgFontSize(ctx, font_size());
-   if (m_fixed_size.x() > 0) {
-      float bounds[4];
-      nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
-      nvgTextBoxBounds(ctx, m_pos.x(), m_pos.y(), m_fixed_size.x(), m_caption.c_str(), nullptr, bounds);
-      return Vector2i(m_fixed_size.x(), bounds[3] - bounds[1]);
+   if (bRecalcTextSize)
+   {
+      if (m_caption == "")
+      {
+         m_sizePreferred = Vector2i(0);
+
+      }
+      else
+      {
+         nvgFontFace(ctx, m_font.c_str());
+         nvgFontSize(ctx, font_size());
+         if (m_fixed_size.x() > 0) {
+            float bounds[4];
+            nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
+            nvgTextBoxBounds(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption.c_str(), nullptr, bounds);
+            m_sizePreferred = Vector2i(m_fixed_size.x(), (int)(bounds[3] - bounds[1]));
+         }
+         else {
+            nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
+            m_sizePreferred = Vector2i(
+               (int)nvgTextBounds(ctx, 0.f, 0.f, m_caption.c_str(), nullptr, nullptr) + 2,
+               (int)font_size()
+            );
+         }
+      }
    }
-   else {
-      nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
-      return Vector2i(
-         nvgTextBounds(ctx, 0, 0, m_caption.c_str(), nullptr, nullptr) + 2,
-         font_size()
-      );
-   }
+   return m_sizePreferred;
 }
 
 void Label::draw(NVGcontext * ctx) {
@@ -61,11 +70,11 @@ void Label::draw(NVGcontext * ctx) {
    nvgFillColor(ctx, m_color);
    if (m_fixed_size.x() > 0) {
       nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
-      nvgTextBox(ctx, m_pos.x(), m_pos.y(), m_fixed_size.x(), m_caption.c_str(), nullptr);
+      nvgTextBox(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption.c_str(), nullptr);
    }
    else {
       nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
-      nvgText(ctx, m_pos.x(), m_pos.y() + m_size.y() * 0.5f, m_caption.c_str(), nullptr);
+      nvgText(ctx, (float)m_pos.x(), (float)m_pos.y() + m_size.y() * 0.5f, m_caption.c_str(), nullptr);
    }
 }
 

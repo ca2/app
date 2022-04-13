@@ -22,7 +22,7 @@ Slider::Slider(Widget * parent)
 }
 
 
-Vector2i Slider::preferred_size(NVGcontext *)
+Vector2i Slider::preferred_size(NVGcontext *, bool bRecalcTextSize)
 {
    return Vector2i(70, 16);
 }
@@ -32,9 +32,9 @@ bool Slider::mouse_drag_event(const Vector2i & p, const Vector2i & /* rel */, co
    if (!m_enabled)
       return false;
 
-   const float kr = (int)(m_size.y() * 0.4f), kshadow = 3;
-   const float start_x = kr + kshadow + m_pos.x() - 1;
-   const float width_x = m_size.x() - 2 * (kr + kshadow);
+   const float kr =(m_size.y() * 0.4f), kshadow = 3.f;
+   const float start_x = kr + kshadow + m_pos.x() - 1.f;
+   const float width_x = m_size.x() - 2.f * (kr + kshadow);
 
    float value = (p.x() - start_x) / width_x, old_value = m_value;
    value = value * (m_range.second - m_range.first) + m_range.first;
@@ -48,7 +48,7 @@ bool Slider::mouse_button_event(const Vector2i & p, int /* button */, bool down,
    if (!m_enabled)
       return false;
 
-   const float kr = (int)(m_size.y() * 0.4f), kshadow = 3;
+   const float kr = (m_size.y() * 0.4f), kshadow = 3.f;
    const float start_x = kr + kshadow + m_pos.x() - 1;
    const float width_x = m_size.x() - 2 * (kr + kshadow);
 
@@ -64,7 +64,7 @@ bool Slider::mouse_button_event(const Vector2i & p, int /* button */, bool down,
 
 void Slider::draw(NVGcontext * ctx) {
    Vector2f center = Vector2f(m_pos) + Vector2f(m_size) * 0.5f;
-   float kr = (int)(m_size.y() * 0.4f), kshadow = 3;
+   float kr = (m_size.y() * 0.4f), kshadow = 3.f;
 
    float start_x = kr + kshadow + m_pos.x();
    float width_x = m_size.x() - 2 * (kr + kshadow);
@@ -106,10 +106,10 @@ void Slider::draw(NVGcontext * ctx) {
    nvgFill(ctx);
 
    NVGpaint knob = nvgLinearGradient(ctx,
-      m_pos.x(), center.y() - kr, m_pos.x(), center.y() + kr,
+      (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
       m_theme->m_border_light, m_theme->m_border_medium);
    NVGpaint knob_reverse = nvgLinearGradient(ctx,
-      m_pos.x(), center.y() - kr, m_pos.x(), center.y() + kr,
+      (float)m_pos.x(), center.y() - kr, (float)m_pos.x(), center.y() + kr,
       m_theme->m_border_medium,
       m_theme->m_border_light);
 

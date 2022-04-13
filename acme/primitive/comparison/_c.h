@@ -3,9 +3,9 @@
 
 
 
-#define INTABS(i) (((i) >= 0) ? (i) : (-i))
-#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
-#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
+#define INTABS(i) (((i) >= 0) ? (i) : (-(i)))
+#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-(f)))
+#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-(d)))
 
 //#ifndef
 //#define minimum(a, b) (((a) < (b)) ? (a) : (b))

@@ -726,7 +726,7 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
    auto pathDetails = m_psystem->m_pacmefile->time_put_contents(pathFolder, "details", "txt", str);
 
-   m_psystem->node()->file_open(pathDetails, "");
+   m_psystem->node()->shell_open(pathDetails, "");
 
 }
 

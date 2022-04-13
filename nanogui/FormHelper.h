@@ -165,7 +165,7 @@ NAMESPACE_END(detail)
          refresh();
          widget->set_callback(setter);
          widget->set_editable(editable);
-         widget->set_font_size(m_widget_font_size);
+         widget->set_font_size((float)m_widget_font_size);
          Vector2i fs = widget->fixed_size();
          widget->set_fixed_size(Vector2i(fs.x() != 0 ? fs.x() : m_fixed_size.x(),
             fs.y() != 0 ? fs.y() : m_fixed_size.y()));

@@ -721,7 +721,7 @@ namespace nano2d
 
       m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, strText);
 
-      return x + offsetx + size.cx;
+      return (float) (x + offsetx + size.cx);
 
    }
 
@@ -783,11 +783,11 @@ namespace nano2d
 
          positions[iChar].str = psz;
 
-         positions[iChar].x = x+ offsetx+daLeft[psz - pszStart];
+         positions[iChar].x = (float) (x+ offsetx+daLeft[psz - pszStart]);
 
-         positions[iChar].minx = x + offsetx + daLeft[psz - pszStart];
+         positions[iChar].minx = (float) (x + offsetx + daLeft[psz - pszStart]);
 
-         positions[iChar].maxx = x + offsetx + daRight[psz - pszStart];
+         positions[iChar].maxx = (float) (x + offsetx + daRight[psz - pszStart]);
 
          psz += iLen;
 
@@ -844,14 +844,14 @@ namespace nano2d
       if (bounds)
       {
 
-         bounds[0] = x + offsetx;
-         bounds[1] = y + offsety;
-         bounds[2] = x + offsetx + size.cx;
-         bounds[3] = y + offsety + size.cy;
+         bounds[0] = (float) (x + offsetx);
+         bounds[1] = (float) (y + offsety);
+         bounds[2] = (float) (x + offsetx + size.cx);
+         bounds[3] = (float) (y + offsety + size.cy);
 
       }
 
-      return x + offsetx + size.cx;
+      return (float) (x + offsetx + size.cx);
 
    }
 

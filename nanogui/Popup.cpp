@@ -20,14 +20,14 @@ Popup::Popup(Widget * parent, Window * parent_window)
    : Window(parent, ""), m_parent_window(parent_window), m_anchor_pos(Vector2i(0)),
    m_anchor_offset(30), m_anchor_size(15), m_side(Side::Right) { }
 
-void Popup::perform_layout(NVGcontext * ctx) {
+void Popup::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    if (m_layout || m_children.size() != 1) {
-      Widget::perform_layout(ctx);
+      Widget::perform_layout(ctx, bRecalcTextSize);
    }
    else {
       m_children[0]->set_position(Vector2i(0));
       m_children[0]->set_size(m_size);
-      m_children[0]->perform_layout(ctx);
+      m_children[0]->perform_layout(ctx, bRecalcTextSize);
    }
    if (m_side == Side::Left)
       m_anchor_pos[0] -= size()[0];
@@ -55,19 +55,19 @@ void Popup::draw(NVGcontext * ctx) {
 
    /* Draw a drop shadow */
    NVGpaint shadow_paint = nvgBoxGradient(
-      ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr * 2, ds * 2,
+      ctx, (float) m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), cr * 2.f, ds * 2.f,
       m_theme->m_drop_shadow, m_theme->m_transparent);
 
    nvgBeginPath(ctx);
-   nvgRect(ctx, m_pos.x() - ds, m_pos.y() - ds, m_size.x() + 2 * ds, m_size.y() + 2 * ds);
-   nvgRoundedRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr);
+   nvgRect(ctx, (float)m_pos.x() - ds, (float)m_pos.y() - ds, (float)m_size.x() + 2.f * ds, (float)m_size.y() + 2.f *ds);
+   nvgRoundedRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
    nvgPathWinding(ctx, NVG_HOLE);
    nvgFillPaint(ctx, shadow_paint);
    nvgFill(ctx);
 
    /* Draw window */
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr);
+   nvgRoundedRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
    Vector2i base = m_pos + Vector2i(0, m_anchor_offset);
    int sign = -1;
@@ -76,9 +76,9 @@ void Popup::draw(NVGcontext * ctx) {
       sign = 1;
    }
 
-   nvgMoveTo(ctx, base.x() + m_anchor_size * sign, base.y());
-   nvgLineTo(ctx, base.x() - 1 * sign, base.y() - m_anchor_size);
-   nvgLineTo(ctx, base.x() - 1 * sign, base.y() + m_anchor_size);
+   nvgMoveTo(ctx, (float)base.x() + m_anchor_size * sign, (float)base.y());
+   nvgLineTo(ctx, (float)base.x() - 1.f * sign, (float)base.y() - m_anchor_size);
+   nvgLineTo(ctx, (float)base.x() - 1.f * sign, (float)base.y() + m_anchor_size);
 
    nvgFillColor(ctx, m_theme->m_window_popup);
    nvgFill(ctx);

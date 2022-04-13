@@ -169,10 +169,10 @@ extern CLASS_DECL_APEX int g_bApex;
 #undef maximum
 
 
-#define INTABS(i) (((i) >= 0) ? (i) : (-i))
-#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
-#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
-
+//#define INTABS(i) (((i) >= 0) ? (i) : (-(i)))
+//#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-(f)))
+//#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-(d)))
+//
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS application
 

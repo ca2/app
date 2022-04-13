@@ -111,7 +111,7 @@ NAMESPACE_BEGIN(nanogui)
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
       bool keyboard_character_event(unsigned int codepoint) override;
 
-      Vector2i preferred_size(NVGcontext * ctx) override;
+      Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       void draw(NVGcontext * ctx) override;
    protected:
       bool check_format(const std::string & input, const std::string & format);

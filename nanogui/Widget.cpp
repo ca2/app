@@ -32,6 +32,8 @@ Widget::Widget(Widget * parent)
    m_focused(false), m_mouse_focus(false), m_tooltip("") , m_font_size(-1) 
    ,m_icon_extra_scale(1.f)/*, m_cursor(Cursor::Arrow)*/ 
 {
+   m_iHoverCandidateChildStart = -1;
+   m_iHoverCandidateChildEnd = -1;
    if (parent)
       parent->add_child(this);
 }
@@ -62,7 +64,7 @@ void Widget::set_theme(Theme * theme) {
 float Widget::font_size() const
 {
 
-   return (m_font_size < 0.f && m_theme) ? m_theme->m_standard_font_size : m_font_size;
+   return (m_font_size < 0.f && m_theme) ? (float)m_theme->m_standard_font_size : (float)m_font_size;
    
 }
 
@@ -70,7 +72,7 @@ float Widget::font_size() const
 void Widget::set_font_size(float font_size)
 {
    
-   m_font_size = font_size;
+   m_font_size = (int) font_size;
    
 }
 
@@ -82,22 +84,22 @@ void Widget::set_size(const Vector2i & size)
 
 }
 
-Vector2i Widget::preferred_size(NVGcontext * ctx)
+Vector2i Widget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
    if (m_layout)
-      return m_layout->preferred_size(ctx, this);
+      return m_layout->preferred_size(ctx, this, bRecalcTextSize);
    else
       return m_size;
 }
 
 
-void Widget::perform_layout(NVGcontext * ctx) {
+void Widget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    if (m_layout) {
-      m_layout->perform_layout(ctx, this);
+      m_layout->perform_layout(ctx, this, bRecalcTextSize);
    }
    else {
       for (auto c : m_children) {
-         Vector2i pref = c->preferred_size(ctx), fix = c->fixed_size();
+         Vector2i pref = c->preferred_size(ctx, bRecalcTextSize), fix = c->fixed_size();
          c->set_size(Vector2i(
             fix[0] ? fix[0] : pref[0],
             fix[1] ? fix[1] : pref[1]
@@ -153,9 +155,22 @@ bool Widget::mouse_motion_event(const Vector2i & p, const Vector2i & rel, const 
 
    bool handled = false;
 
-   for (auto it = m_children.rbegin(); it != m_children.rend(); ++it) 
+   index iCount = 0;
+
+   ::index iStart = 0;
+   ::index iEnd = (::index) m_children.size() - 1;
+
+   if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
    {
-      Widget * child = *it;
+
+      iStart = m_iHoverCandidateChildStart;
+      iEnd = m_iHoverCandidateChildEnd;
+
+   }
+
+   for (auto i = iStart; i <= iEnd; i++)
+   {
+      Widget * child = m_children[i];
       if (!child->visible())
          continue;
 
@@ -167,6 +182,8 @@ bool Widget::mouse_motion_event(const Vector2i & p, const Vector2i & rel, const 
 
       if (contained || prev_contained)
          handled |= child->mouse_motion_event(p - m_pos, rel, ekeyModifiers);
+
+      iCount++;
    }
 
    return handled;
@@ -309,24 +326,99 @@ void Widget::draw(NVGcontext * ctx) {
 
    if (m_children.empty())
       return;
+   ::rectangle_i32 rectangleThis;
+   
+   auto pscrollPanel = dynamic_cast <VScrollPanel *>(parent());
 
-   nvgTranslate(ctx, m_pos.x(), m_pos.y());
-   for (auto child : m_children) {
+   
+   if (pscrollPanel)
+   {
+
+      auto pparent = m_parent;
+
+      auto yOffset = pscrollPanel->get_y_offset();
+
+      rectangleThis = ::rectangle_i32_dimension(0, -yOffset, pparent->m_size.x(), pparent->m_size.y());
+
+   }
+   else
+   {
+
+      rectangleThis = ::rectangle_i32_dimension(0, 0, m_size.x(), m_size.y());
+
+   }
+
+   ::index iStart = 0;
+   ::index iEnd = (::index)m_children.size() - 1;
+
+   if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
+   {
+
+      iStart = m_iHoverCandidateChildStart;
+      iEnd = m_iHoverCandidateChildEnd;
+
+   }
+
+
+   nvgTranslate(ctx, (float)m_pos.x(), (float)m_pos.y());
+   for (index i = iStart; i <= iEnd; i++) 
+   {
+
+      auto child = m_children[i];
+
       if (!child->visible())
          continue;
+
+      auto rectangleChild = ::rectangle_i32_dimension(child -> m_pos.x(), child -> m_pos.y(), child ->m_size.x(), child ->m_size.y());
+
+      if (rectangleChild.intersects(rectangleThis))
+      {
+
+         if (pscrollPanel)
+         {
+
+            if (i < m_iHoverCandidateChildStart || m_iHoverCandidateChildStart < 0)
+            {
+
+               m_iHoverCandidateChildStart = i;
+
+            }
+
+            if (i > m_iHoverCandidateChildEnd)
+            {
+
+
+               m_iHoverCandidateChildEnd = i;
+            }
+
+         }
+
 #if !defined(NANOGUI_SHOW_WIDGET_BOUNDS)
-      nvgSave(ctx);
-      nvgIntersectScissor(ctx, child->m_pos.x(), child->m_pos.y(),
-         child->m_size.x(), child->m_size.y());
+         nvgSave(ctx);
+         nvgIntersectScissor(ctx, (float)child->m_pos.x(), (float)child->m_pos.y(),
+            (float)child->m_size.x(), (float)child->m_size.y());
 #endif
 
-      child->draw(ctx);
+         child->draw(ctx);
 
 #if !defined(NANOGUI_SHOW_WIDGET_BOUNDS)
-      nvgRestore(ctx);
+         nvgRestore(ctx);
+
 #endif
+      }
+
+      else
+      {
+
+
+
+//         output_debug_string("optimized");
+
+      }
+
+
    }
-   nvgTranslate(ctx, -m_pos.x(), -m_pos.y());
+   nvgTranslate(ctx, (float)-m_pos.x(), (float)-m_pos.y());
 }
 
 

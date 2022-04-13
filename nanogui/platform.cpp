@@ -63,7 +63,7 @@ void file_dialog_from_platform(
          wchar_t * tmp = (wchar_t *)tmp1.get_data();
          ofn.lpstrFile = tmp;
          //;; ZeroMemory(tmp, FILE_DIALOG_MAX_BUFFER);
-         ofn.nMaxFile = tmp1.get_size();
+         ofn.nMaxFile = (DWORD) tmp1.get_size();
          ofn.nFilterIndex = 1;
 
          memory filter;

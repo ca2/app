@@ -22,7 +22,7 @@ ColorWheel::ColorWheel(Widget * parent, const Color & rgb)
    set_color(rgb);
 }
 
-Vector2i ColorWheel::preferred_size(NVGcontext *) {
+Vector2i ColorWheel::preferred_size(NVGcontext *, bool bRecalcTextSize) {
    return { 100, 100 };
 }
 
@@ -39,8 +39,8 @@ void ColorWheel::draw(NVGcontext * ctx)
 
    }
 
-   float x = m_pos.x(), y = m_pos.y(),
-      w = m_size.x(), h = m_size.y();
+   float x = (float)m_pos.x(), y = (float)m_pos.y(),
+      w = (float)m_size.x(), h = (float)m_size.y();
 
    NVGcontext * vg = ctx;
 
@@ -63,10 +63,10 @@ void ColorWheel::draw(NVGcontext * ctx)
       nvgArc(vg, cx, cy, r0, a0, a1, NVG_CW);
       nvgArc(vg, cx, cy, r1, a1, a0, NVG_CCW);
       nvgClosePath(vg);
-      float ax = cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3 + r1 * 0.7);
-      float ay = cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3 + r1 * 0.7);
-      float bx = cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3 + r1 * 0.7);
-      float by = cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3 + r1 * 0.7);
+      float ax = (float)cx + cosf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      float ay = (float)cy + sinf(a0 - 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      float bx = (float)cx + cosf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
+      float by = (float)cy + sinf(a1 + 3.0f * aeps) * (r0 * 0.3f + r1 * 0.7f);
       paint = nvgLinearGradient(vg, ax, ay, bx, by,
          nvgHSLA(a0 / (NVG_PI * 2), 1.0f, 0.55f, 255),
          nvgHSLA(a1 / (NVG_PI * 2), 1.0f, 0.55f, 255));
@@ -169,10 +169,10 @@ bool ColorWheel::mouse_drag_event(const Vector2i & p, const Vector2i &, const ::
 ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region considered_regions)
 {
 
-   float x = p.x() - m_pos.x(),
-      y = p.y() - m_pos.y(),
-      w = m_size.x(),
-      h = m_size.y();
+   float x = (float)p.x() - m_pos.x(),
+      y = (float)p.y() - m_pos.y(),
+      w = (float)m_size.x(),
+      h = (float)m_size.y();
 
    float cx = w * 0.5f;
    float cy = h * 0.5f;
@@ -206,8 +206,8 @@ ColorWheel::Region ColorWheel::adjust_position(const Vector2i & p, Region consid
       sin_a * x + cos_a * y);
 
    float r = r0 - 6;
-   float l0 = (r - xy.x() + std::sqrt(3) * xy.y()) / (3 * r);
-   float l1 = (r - xy.x() - std::sqrt(3) * xy.y()) / (3 * r);
+   float l0 = (float)(r - xy.x() + std::sqrt(3.f) * xy.y()) / (3.f * r);
+   float l1 = (float)(r - xy.x() - std::sqrt(3.f) * xy.y()) / (3.f * r);
    float l2 = 1 - l0 - l1;
    bool triangle_test = l0 >= 0 && l0 <= 1.f && l1 >= 0.f && l1 <= 1.f &&
       l2 >= 0.f && l2 <= 1.f;

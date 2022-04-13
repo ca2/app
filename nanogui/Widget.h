@@ -41,6 +41,8 @@ public:
       ref<Layout> m_layout;
       Vector2i m_pos, m_size, m_fixed_size;
       std::vector<Widget *> m_children;
+      ::index m_iHoverCandidateChildStart;
+      ::index m_iHoverCandidateChildEnd;
       /**
        * Whether or not this Widget is currently visible.  When a Widget is not
        * currently visible, no time is wasted executing its drawing method.
@@ -319,10 +321,10 @@ public:
 
 
    /// Compute the preferred size of the widget
-   virtual Vector2i preferred_size(NVGcontext * ctx);
+   virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true);
 
    /// Invoke the associated layout generator to properly place child widgets, if any
-   virtual void perform_layout(NVGcontext * ctx);
+   virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true);
 
    /// Draw the widget (and all child widgets)
    virtual void draw(NVGcontext * ctx);

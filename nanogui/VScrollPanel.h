@@ -25,6 +25,11 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT VScrollPanel : public Widget {
    public:
+
+      
+      bool m_bDrag;
+
+
       VScrollPanel(Widget * parent);
 
       /**
@@ -39,14 +44,14 @@ NAMESPACE_BEGIN(nanogui)
        */
       void set_scroll(float scroll) { m_scroll = scroll; }
 
-      virtual void perform_layout(NVGcontext * ctx) override;
-      virtual Vector2i preferred_size(NVGcontext * ctx) override;
+      virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
+      virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
       virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
       virtual bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
       virtual void draw(NVGcontext * ctx) override;
-
-   protected:
+      virtual float get_y_offset() const;
+      virtual float get_track_bar_height() const;
       int m_child_preferred_height;
       float m_scroll;
       bool m_update_layout;

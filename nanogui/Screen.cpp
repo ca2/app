@@ -587,7 +587,7 @@ void Screen::clear(NVGcontext * ctx)
 
 
    nvgBeginPath(ctx);
-   nvgRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y());
+   nvgRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y());
    nvgFillColor(ctx, m_background);
    nvgFill(ctx);
 
@@ -729,16 +729,16 @@ void Screen::draw_widgets(NVGcontext * ctx) {
          Vector2i pos = widget->absolute_position() +
             Vector2i(widget->width() / 2, widget->height() + 10);
 
-         nvgTextBounds(ctx, pos.x(), pos.y(),
+         nvgTextBounds(ctx, (float)pos.x(), (float)pos.y(),
             widget->tooltip().c_str(), nullptr, bounds);
 
-         int h = (bounds[2] - bounds[0]) / 2;
+         int h = (int) ((bounds[2] - bounds[0]) / 2.f);
          if (h > tooltip_width / 2) {
             nvgTextAlign(ctx, NVG_ALIGN_CENTER | NVG_ALIGN_TOP);
-            nvgTextBoxBounds(ctx, pos.x(), pos.y(), tooltip_width,
+            nvgTextBoxBounds(ctx, (float)pos.x(), (float)pos.y(), (float)tooltip_width,
                widget->tooltip().c_str(), nullptr, bounds);
 
-            h = (bounds[2] - bounds[0]) / 2;
+            h = (int) ((bounds[2] - bounds[0]) / 2.f);
          }
          int shift = 0;
 
@@ -751,23 +751,23 @@ void Screen::draw_widgets(NVGcontext * ctx) {
          }
 
          nvgGlobalAlpha(ctx,
-            minimum(1.0, 2 * (elapsed - 0.5f)) * 0.8);
+            minimum(1.f, 2.f * (elapsed - 0.5f)) * 0.8f);
 
          nvgBeginPath(ctx);
          nvgFillColor(ctx, Color(0, 255));
-         nvgRoundedRect(ctx, bounds[0] - 4 - h, bounds[1] - 4,
-            (int)(bounds[2] - bounds[0]) + 8,
-            (int)(bounds[3] - bounds[1]) + 8, 3);
+         nvgRoundedRect(ctx, bounds[0] - 4.f - h, bounds[1] - 4.f,
+            (bounds[2] - bounds[0]) + 8.f,
+            (bounds[3] - bounds[1]) + 8.f, 3.f);
 
-         int px = (int)((bounds[2] + bounds[0]) / 2) - h + shift;
-         nvgMoveTo(ctx, px, bounds[1] - 10);
-         nvgLineTo(ctx, px + 7, bounds[1] + 1);
-         nvgLineTo(ctx, px - 7, bounds[1] + 1);
+         int px = (int)(((bounds[2] + bounds[0]) / 2.f) - h + shift);
+         nvgMoveTo(ctx, (float)px, bounds[1] - 10.f);
+         nvgLineTo(ctx, px + 7.f, bounds[1] + 1.f);
+         nvgLineTo(ctx, px - 7.f, bounds[1] + 1.f);
          nvgFill(ctx);
 
          nvgFillColor(ctx, Color(255, 255));
          nvgFontBlur(ctx, 0.0f);
-         nvgTextBox(ctx, pos.x() - h, pos.y(), tooltip_width,
+         nvgTextBox(ctx, (float)(pos.x() - h), (float)pos.y(), (float)tooltip_width,
             widget->tooltip().c_str(), nullptr);
       }
    }

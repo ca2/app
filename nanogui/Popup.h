@@ -58,7 +58,7 @@ NAMESPACE_BEGIN(nanogui)
       const Window * parent_window() const { return m_parent_window; }
 
       /// Invoke the associated layout generator to properly place child widgets, if any
-      virtual void perform_layout(NVGcontext * ctx) override;
+      virtual void perform_layout(NVGcontext * ctx, bool bRecalcTextSize = true) override;
 
       /// Draw the popup window
       virtual void draw(NVGcontext * ctx) override;

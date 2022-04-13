@@ -147,7 +147,7 @@ void Canvas::draw(NVGcontext * ctx) {
 
    }
 
-   __NANO2D_CONTEXT(ctx)->_draw_image(m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), m_pimage);
+   __NANO2D_CONTEXT(ctx)->_draw_image((float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), m_pimage);
 //   Screen * scr = screen();
 //   if (scr == nullptr)
 //      throw std::runtime_error("Canvas::draw(): could not find parent screen!");

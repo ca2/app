@@ -52,7 +52,7 @@ public:
     * \param widget
     *     The Widget whose child widgets will be positioned by the layout class..
     */
-   virtual void perform_layout(NVGcontext * ctx, Widget * widget) = 0;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) = 0;
 
    /**
     * Compute the preferred size for a given layout and widget
@@ -67,7 +67,7 @@ public:
     *     The preferred size, accounting for things such as spacing, padding
     *     for icons, etc.
     */
-   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget) = 0;
+   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) = 0;
 protected:
    /// Default destructor (exists for inheritance).
    virtual ~Layout() { }
@@ -129,10 +129,10 @@ public:
    /* Implementation of the layout interface */
 
    /// See \ref Layout::preferred_size.
-   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget) override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
    /// See \ref Layout::perform_layout.
-   virtual void perform_layout(NVGcontext * ctx, Widget * widget) override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
 protected:
    /// The Orientation of this BoxLayout.
@@ -209,10 +209,10 @@ public:
    /* Implementation of the layout interface */
 
    /// See \ref Layout::preferred_size.
-   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget) override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
    /// See \ref Layout::perform_layout.
-   virtual void perform_layout(NVGcontext * ctx, Widget * widget) override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
 protected:
    /// The margin of this GroupLayout.
@@ -317,15 +317,15 @@ public:
 
    /* Implementation of the layout interface */
    /// See \ref Layout::preferred_size.
-   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget) override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
    /// See \ref Layout::perform_layout.
-   virtual void perform_layout(NVGcontext * ctx, Widget * widget) override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
 protected:
    // Compute the maximum row and column sizes
    void compute_layout(NVGcontext * ctx, Widget * widget,
-      std::vector<int> * grid) const;
+      std::vector<int> * grid, bool bRecalcTextSize) const;
 
 protected:
    /// The Orientation of the GridLayout.
@@ -457,10 +457,10 @@ public:
    /* Implementation of the layout interface */
 
    /// See \ref Layout::preferred_size.
-   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget) override;
+   virtual Vector2i preferred_size(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
    /// See \ref Layout::perform_layout.
-   virtual void perform_layout(NVGcontext * ctx, Widget * widget) override;
+   virtual void perform_layout(NVGcontext * ctx, Widget * widget, bool bRecalcTextSize = true) override;
 
 protected:
    // Compute the maximum row and column sizes

@@ -14,16 +14,16 @@ namespace nano2d
    ::write_text::font_pointer font_sink::get_shared_font(const char * face, float size)
    {
                                                  
-       auto strFontDescriptor = m_psystem->m_paurasystem->draw2d()->write_text()->calculate_font_descriptor(face, size);
+       auto fontdescriptor = m_psystem->m_paurasystem->draw2d()->write_text()->calculate_font_descriptor(face, size);
        
-       auto & pfontShared = m_mapSharedFont[strFontDescriptor];
+       auto & pfontShared = m_mapSharedFont[fontdescriptor.m_strFace][fontdescriptor.m_fSize];
        
        if(pfontShared)
        {
           
-          ASSERT(::is_same(pfontShared->m_dFontSize, size, 0.1));
+          ASSERT(::is_same(pfontShared->m_fontdescriptor.m_fSize, size, 0.1));
           
-          ASSERT(pfontShared->m_strFontDescriptor.compare_ci(strFontDescriptor) == 0);
+          ASSERT(pfontShared->m_fontdescriptor.m_strFace.compare(face) == 0);
           
        }
        else
@@ -31,7 +31,7 @@ namespace nano2d
        
           pfontShared = __create < ::write_text::font >();
           
-          pfontShared->m_strFontDescriptor = strFontDescriptor;
+          pfontShared->m_fontdescriptor = fontdescriptor;
           
           __font_face(pfontShared, face);
           

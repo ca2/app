@@ -23,21 +23,25 @@ Window::Window(Widget * parent, const std::string & title)
    m_bPendingCentering = false;
  }
 
-Vector2i Window::preferred_size(NVGcontext * ctx) {
+Vector2i Window::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
    if (m_button_panel)
       m_button_panel->set_visible(false);
-   Vector2i result = Widget::preferred_size(ctx);
+   Vector2i result = Widget::preferred_size(ctx, bRecalcTextSize);
    if (m_button_panel)
       m_button_panel->set_visible(true);
 
-   nvgFontSize(ctx, 18.0f);
-   nvgFontFace(ctx, "sans-bold");
-   float bounds[4];
-   nvgTextBounds(ctx, 0, 0, m_title.c_str(), nullptr, bounds);
+   if (bRecalcTextSize)
+   {
+
+      nvgFontSize(ctx, 18.0f);
+      nvgFontFace(ctx, "sans-bold");
+      nvgTextBounds(ctx, 0, 0, m_title.c_str(), nullptr, m_boundsHeader);
+
+   }
 
    return Vector2i(
-      std::max(result.x(), (int)(bounds[2] - bounds[0] + 20)),
-      std::max(result.y(), (int)(bounds[3] - bounds[1]))
+      std::max(result.x(), (int)(m_boundsHeader[2] - m_boundsHeader[0] + 20)),
+      std::max(result.y(), (int)(m_boundsHeader[3] - m_boundsHeader[1]))
    );
 }
 
@@ -49,13 +53,13 @@ Widget * Window::button_panel() {
    return m_button_panel;
 }
 
-void Window::perform_layout(NVGcontext * ctx) {
+void Window::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
    if (!m_button_panel) {
-      Widget::perform_layout(ctx);
+      Widget::perform_layout(ctx, bRecalcTextSize);
    }
    else {
       m_button_panel->set_visible(false);
-      Widget::perform_layout(ctx);
+      Widget::perform_layout(ctx, bRecalcTextSize);
       for (auto w : m_button_panel->children()) {
          w->set_fixed_size(Vector2i(22, 22));
          w->set_font_size(15);
@@ -63,8 +67,8 @@ void Window::perform_layout(NVGcontext * ctx) {
       m_button_panel->set_visible(true);
       m_button_panel->set_size(Vector2i(width(), 22));
       m_button_panel->set_position(Vector2i(
-         width() - (m_button_panel->preferred_size(ctx).x() + 5), 3));
-      m_button_panel->perform_layout(ctx);
+         width() - (m_button_panel->preferred_size(ctx, bRecalcTextSize).x() + 5), 3));
+      m_button_panel->perform_layout(ctx, bRecalcTextSize);
    }
 }
 
@@ -87,7 +91,7 @@ void Window::draw(NVGcontext * ctx)
    /* Draw window */
    nvgSave(ctx);
    nvgBeginPath(ctx);
-   nvgRoundedRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), m_size.y(), cr);
+   nvgRoundedRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)m_size.y(), (float)cr);
 
    nvgFillColor(ctx, m_mouse_focus ? m_theme->m_window_fill_focused
       : m_theme->m_window_fill_unfocused);
@@ -112,19 +116,19 @@ void Window::draw(NVGcontext * ctx)
    if (!m_title.empty()) {
       /* Draw header */
       NVGpaint header_paint = nvgLinearGradient(
-         ctx, m_pos.x(), m_pos.y(), m_pos.x(),
-         m_pos.y() + hh,
+         ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
+         (float)m_pos.y() + (float)hh,
          m_theme->m_window_header_gradient_top,
          m_theme->m_window_header_gradient_bot);
 
       nvgBeginPath(ctx);
-      nvgRoundedRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), hh, cr);
+      nvgRoundedRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
 
       nvgFillPaint(ctx, header_paint);
       nvgFill(ctx);
 
       nvgBeginPath(ctx);
-      nvgRoundedRect(ctx, m_pos.x(), m_pos.y(), m_size.x(), hh, cr);
+      nvgRoundedRect(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_size.x(), (float)hh, (float)cr);
       nvgStrokeColor(ctx, m_theme->m_window_header_sep_top);
 
       //nvgSave(ctx);
@@ -134,7 +138,7 @@ void Window::draw(NVGcontext * ctx)
 
       nvgBeginPath(ctx);
       nvgMoveTo(ctx, m_pos.x() + 0.5f, m_pos.y() + hh - 1.5f);
-      nvgLineTo(ctx, m_pos.x() + m_size.x() - 0.5f, m_pos.y() + hh - 1.5);
+      nvgLineTo(ctx, m_pos.x() + m_size.x() - 0.5f, m_pos.y() + hh - 1.5f);
       nvgStrokeColor(ctx, m_theme->m_window_header_sep_bot);
       nvgStroke(ctx);
 
@@ -150,7 +154,7 @@ void Window::draw(NVGcontext * ctx)
       //nvgFontBlur(ctx, 0);
       nvgFillColor(ctx, m_focused ? m_theme->m_window_title_focused
          : m_theme->m_window_title_unfocused);
-      nvgText(ctx, m_pos.x() + m_size.x() / 2, m_pos.y() + hh / 2 - 1,
+      nvgText(ctx, m_pos.x() + m_size.x() / 2.f, m_pos.y() + hh / 2.f - 1.f,
          m_title.c_str(), nullptr);
    }
 

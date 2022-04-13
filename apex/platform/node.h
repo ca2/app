@@ -93,7 +93,7 @@ namespace apex
       virtual void _001InitializeShellOpen();
 
 
-      void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+      //void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
 
       virtual void show_wait_cursor(bool bShow = true);

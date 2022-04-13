@@ -15,13 +15,12 @@ namespace write_text
    public:
 
 
+      __pointer(class fonts)                          m_pfonts;
 
-      __pointer(class fonts)                       m_pfonts;
 
-
-      critical_section                             m_csFont;
-      string_to_string                             m_mapFontFaceName;
-      string_map < ::memory_pointer >              m_mapFileMemory;
+      critical_section                                m_csFont;
+      string_to_string                                m_mapFontFaceName;
+      string_map < ::memory_pointer >                 m_mapFileMemory;
 
 
       write_text();
@@ -45,8 +44,8 @@ namespace write_text
       virtual memory_pointer get_file_memory(::acme::context * pcontext, const ::file::path & path);
 
       
-      virtual string calculate_font_descriptor(const char * face, float size);
-      virtual string get_font_descriptor_face(const ::string & strFontDescriptor);
+      virtual font_descriptor calculate_font_descriptor(const char * face, float size);
+      virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       
       virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);

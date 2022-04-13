@@ -2,7 +2,13 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
-void x11_asynchronous(::function < void() > function);
+#include "acme/user/nano/display.h"
+
+//::user::enum_desktop _get_edesktop();
+
+
+//void x11_asynchronous(::function < void() > function);
+//void xcb_asynchronous(::function < void() > function);
 
 
 void task_set_name(htask_t htask, const char * psz)
@@ -92,20 +98,41 @@ void main_asynchronous( ::function < void () > function)
 
    g_psystem->windowing_post(routine);
 
-
 }
 
 
 
-void system::windowing_post(const ::routine & routine)
+void system::windowing_post(const ::function < void() > & function)
 {
 
-   x11_asynchronous([routine]()
-                    {
+   ::nano::display::g_p->display_post(function);
 
-                       routine();
-
-                    });
-
+//   if(m_ewindowing == e_windowing_xcb)
+//   {
+//
+//      xcb_asynchronous([routine]()
+//                       {
+//
+//                          routine();
+//
+//                       });
+//   }
+//   else if(m_ewindowing == e_windowing_x11)
+//   {
+//
+//      x11_asynchronous([routine]()
+//                       {
+//
+//                          routine();
+//
+//                       });
+//
+//   }
+//   else
+//   {
+//
+//      throw exception(error_wrong_state);
+//
+//   }
 
 }

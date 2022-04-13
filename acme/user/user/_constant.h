@@ -3,6 +3,17 @@
 
 //#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
+enum enum_windowing
+{
+
+   e_windowing_none,
+   e_windowing_win32,
+   e_windowing_x11,
+   e_windowing_xcb,
+   e_windowing_macos
+
+};
+
 
 enum enum_position
 {

@@ -122,6 +122,9 @@ namespace xcb
 
       virtual void _wm_nodecorations(int iMap);
 
+      virtual void _get_geometry(xcb_get_geometry_reply_t * pgeometry);
+
+
    };
 
 

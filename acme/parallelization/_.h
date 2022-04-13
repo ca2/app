@@ -36,6 +36,9 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 CLASS_DECL_ACME bool is_main_thread();
 
 
+CLASS_DECL_ACME itask_t get_main_user_itask();
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
 

@@ -37,6 +37,8 @@ m_bJoinable = true;
 
    m_psystem = this;
 
+   m_ewindowing = e_windowing_none;
+
    m_etracelevel = e_trace_level_error;
 
    trace_category_static_init(this);

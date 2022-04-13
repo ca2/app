@@ -151,68 +151,15 @@ namespace x11
    }
 
 
-   void display::display_post(const ::routine & routine)
-   {
-
-      defer_create_mutex();
-
-      synchronous_lock synchronouslock(mutex());
-
-      m_routineaPost.add(routine);
-
-   }
-
-
-   bool display::display_posted_routine_step()
-   {
-
-      synchronous_lock synchronouslock(mutex());
-
-      if (m_routineaPost.has_element())
-      {
-
-         auto proutine = m_routineaPost.pick_first();
-
-         if (proutine)
-         {
-
-            synchronouslock.unlock();
-
-            proutine->run();
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   void display::display_send(const ::routine & routine)
-   {
-
-      if(m_bUnhook)
-      {
-
-
-
-      }
-
-      /*auto estatus = */ __send_routine(this, &display::display_post, routine);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+//   void display::display_post(const ::function < void() > & function)
+//   {
+//
+//
+//   }
+//
+//
+//
+//
 
 //int g_fdX11[2] = {};
 //
@@ -476,12 +423,21 @@ namespace x11
    void display::init_task()
    {
 
-      x11_init_threads();
+      if(m_psystem->m_ewindowing == e_windowing_none)
+      {
+
+         set_main_user_thread();
+
+         m_psystem->m_ewindowing = e_windowing_x11;
+
+      }
+
+      XInitThreads();
 
       if(!m_pdisplay)
       {
 
-         m_pdisplay = (Display *) x11_get_display();
+         m_pdisplay = (Display *) XOpenDisplay(nullptr);
 
          if (!m_pdisplay)
          {
@@ -519,6 +475,8 @@ namespace x11
 
    void display::run()
    {
+
+      ::task_set_name("x11:display:run");
 
       set_main_user_thread();
 
@@ -581,8 +539,17 @@ namespace x11
    }
 
 
-
 } // namespace x11
+
+
+void * x11_get_display(::object * pobject)
+{
+
+   auto pdisplay = ::x11::display::get(pobject, false);
+
+   return pdisplay->m_pdisplay;
+
+}
 
 
 

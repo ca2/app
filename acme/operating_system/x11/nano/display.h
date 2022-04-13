@@ -4,6 +4,7 @@
 #pragma once
 
 
+#include "acme/user/nano/display.h"
 #include "event_listener.h"
 
 
@@ -15,7 +16,7 @@ namespace x11
 
 
    class display :
-      virtual public ::object,
+      virtual public ::nano::display,
       virtual public event_listener
    {
    public:
@@ -26,7 +27,6 @@ namespace x11
       __pointer_array(event_listener)        m_eventlistenera;
       __pointer_array(nano_window)           m_windowa;
       Window                                 m_windowActive;
-      ::routine_array                        m_routineaPost;
       Atom                                   m_atoma[e_atom_count];
 
 
@@ -74,9 +74,9 @@ namespace x11
 
       virtual bool x11_posted();
 
-      void display_post(const ::routine & routine);
-      void display_send(const ::routine & routine);
-      bool display_posted_routine_step();
+      //void display_post(const ::function < void() > & function) override;
+      //void display_send(const ::function < void() > & function);
+      //bool display_posted_routine_step();
 
 
    };

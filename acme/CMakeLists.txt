@@ -1382,8 +1382,8 @@ list(APPEND library_source
    template/list.h
    update.h
    user/user/_.h
-   user/user/_const.h
-   user/user/_const_key.h
+   user/user/_constant.h
+   user/user/_constant_key.h
    user/user/os_colors.h
    user/user/mouse.cpp
    user/user/mouse.h
@@ -2098,7 +2098,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} operating_system/x11/_atom.h operating_system/x11/_.cpp operating_system/xcb/_.cpp operating_system/cairo/nano/_nano.cpp operating_system/posix/desktop.cpp)
+add_library(acme SHARED ${library_source} operating_system/x11/_atom.h operating_system/x11/_.cpp operating_system/xcb/_.cpp operating_system/cairo/nano/_nano.cpp operating_system/posix/desktop.cpp user/nano/display.h user/nano/display.cpp)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

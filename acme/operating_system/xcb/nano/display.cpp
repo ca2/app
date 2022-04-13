@@ -32,7 +32,7 @@ struct MWMHints
 #define MWM_DECOR_MAXIMIZE      (1L << 6)
 
 
-void * x11_get_display();
+void * x11_get_display(::object * pobject);
 
 void set_main_user_thread();
 
@@ -68,6 +68,14 @@ namespace xcb
    display::~display()
    {
 
+
+   }
+
+
+   display * display::get()
+   {
+
+      return g_p;
 
    }
 
@@ -230,67 +238,69 @@ namespace xcb
    }
 
 
-   void display::display_post(const ::routine & routine)
-   {
-
-      defer_create_mutex();
-
-      synchronous_lock synchronouslock(mutex());
-
-      m_routineaPost.add(routine);
-
-   }
-
-
-   bool display::display_posted_routine_step()
-   {
-
-      synchronous_lock synchronouslock(mutex());
-
-      if (m_routineaPost.has_element())
-      {
-
-         auto proutine = m_routineaPost.pick_first();
-
-         if (proutine)
-         {
-
-            synchronouslock.unlock();
-
-            proutine->run();
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
+//   void display::display_post(const ::routine & routine)
+//   {
+//
+//      defer_create_mutex();
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      m_routineaPost.add(routine);
+//
+//      kick_idle();
+//
+//   }
 
 
-   void display::display_send(const ::routine & routine)
-   {
-
-      if (m_bUnhook)
-      {
-
-
-      }
-
-      /*auto estatus = */ __send_routine(this, &display::display_post, routine);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+//   bool display::display_posted_routine_step()
+//   {
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      if (m_routineaPost.has_element())
+//      {
+//
+//         auto proutine = m_routineaPost.pick_first();
+//
+//         if (proutine)
+//         {
+//
+//            synchronouslock.unlock();
+//
+//            proutine->run();
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//
+//   void display::display_send(const ::routine & routine)
+//   {
+//
+//      if (m_bUnhook)
+//      {
+//
+//
+//      }
+//
+//      /*auto estatus = */ __send_routine(this, &display::display_post, routine);
+//
+//      //if(!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return estatus;
+//
+//   }
 
 //int g_fdX11[2] = {};
 //
@@ -375,6 +385,8 @@ namespace xcb
          if (bBranch)
          {
 
+            lock.unlock();
+
             p->branch_synchronously();
 
          }
@@ -435,7 +447,7 @@ namespace xcb
    bool display::message_loop_step()
    {
 
-      xcb_generic_event_t * pevent = xcb_poll_for_event(m_pconnection);
+      ::acme::malloc pevent(xcb_poll_for_event(m_pconnection));
 
       if (!pevent)
       {
@@ -466,9 +478,13 @@ namespace xcb
 
       ::index i = 0;
 
-      synchronous_lock synchronouslock(mutex());
+      if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
+      {
 
-      if (pevent->response_type == XCB_BUTTON_PRESS)
+         output_debug_string("ConfigureNotify");
+
+      }
+      else if (pevent->response_type == XCB_BUTTON_PRESS)
       {
 
          output_debug_string("ButtonPress");
@@ -480,8 +496,6 @@ namespace xcb
 
          auto plistener = m_eventlistenera[i];
 
-         synchronouslock.unlock();
-
          if (plistener->_on_event(pevent))
          {
 
@@ -490,8 +504,6 @@ namespace xcb
             break;
 
          }
-
-         synchronouslock.lock();
 
       }
 
@@ -535,6 +547,8 @@ namespace xcb
 
          }
 
+         xcb_flush(m_pconnection);
+
          if (!bHandled1 && !bHandled2)
          {
 
@@ -552,7 +566,16 @@ namespace xcb
    void display::init_task()
    {
 
-      m_pX11Display = x11_get_display();
+      if(m_psystem->m_ewindowing == e_windowing_none)
+      {
+
+         set_main_user_thread();
+
+         m_psystem->m_ewindowing = e_windowing_xcb;
+
+      }
+
+      m_pX11Display = x11_get_display(this);
 
       m_pconnection = x11_display_xcb_connection(m_pX11Display);
 
@@ -560,8 +583,6 @@ namespace xcb
       {
 
          fprintf(stderr, "ERROR: failed to connection to X server\n");
-
-         //return error_failed;
 
          throw ::exception(error_failed);
 
@@ -702,8 +723,6 @@ namespace xcb
 
          xcb_disconnect(m_pconnection);
 
-         ///return error_failed;
-
          throw ::exception(error_failed);
 
       }
@@ -728,8 +747,6 @@ namespace xcb
 
             xcb_disconnect(m_pconnection);
 
-            //return estatus;
-
             throw ::exception(estatus);
 
          }
@@ -737,6 +754,38 @@ namespace xcb
       }
 
       _select_input(m_windowRoot, XCB_EVENT_MASK_PROPERTY_CHANGE);
+
+      {
+
+         xcb_window_t window = xcb_generate_id(m_pconnection);
+
+         u32 uEventMask = XCB_EVENT_MASK_NO_EVENT;
+
+         auto cookie = xcb_create_window(
+            m_pconnection,
+            m_pdepth->depth,
+            window,
+            m_windowRoot,
+            0, 0,
+            1, 1,
+            0,
+            XCB_WINDOW_CLASS_INPUT_OUTPUT,
+            m_pvisualtype->visual_id,
+            XCB_CW_EVENT_MASK,
+            &uEventMask);
+
+         auto estatus = _request_check(cookie);
+
+         if (!estatus)
+         {
+
+            throw exception(error_failed);
+
+         }
+
+         m_windowHelper = window;
+
+      }
 
    }
 
@@ -766,6 +815,8 @@ namespace xcb
    void display::run()
    {
 
+      ::task_set_name("xcb:display:run");
+
       set_main_user_thread();
 
       message_loop();
@@ -782,10 +833,57 @@ namespace xcb
    }
 
 
+   void display::kick_idle()
+   {
+
+      xcb_client_message_event_t event;
+
+      memset(&event, 0, sizeof(event));
+
+      event.response_type = XCB_CLIENT_MESSAGE;
+      event.format = 32;
+      event.sequence = 0;
+      event.window = m_windowHelper;
+      event.type = intern_atom("kick_idle", true);
+      event.data.data32[0] = 0;
+
+      xcb_send_event(m_pconnection,
+                     false,
+                     m_windowHelper,
+                     XCB_EVENT_MASK_NO_EVENT,
+                     reinterpret_cast<const char *>(&event));
+
+      xcb_flush(m_pconnection);
+
+   }
+
+
    bool display::_on_event(xcb_generic_event_t * pevent)
    {
 
-      if (pevent->response_type == XCB_PROPERTY_NOTIFY)
+      if (pevent->response_type == XCB_CLIENT_MESSAGE)
+      {
+
+         auto pmessage = (xcb_client_message_event_t *) pevent;
+
+         if (pmessage->window == m_windowHelper)
+         {
+
+            if(pmessage->type == intern_atom("kick_idle", true))
+            {
+
+
+               output_debug_string("kick_idle\n");
+
+            }
+
+
+            return true;
+
+         }
+
+      }
+      else if (pevent->response_type == XCB_PROPERTY_NOTIFY)
       {
 
          auto pproperty = (xcb_property_notify_event_t *) pevent;
@@ -934,8 +1032,6 @@ namespace xcb
    ::e_status display::_set_active_window(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       windowing_output_debug_string("\n::set_active_window 1");
 
       //display_lock displaylock(xcb_display());
@@ -967,8 +1063,6 @@ namespace xcb
    {
 
       int i = 0;
-
-      synchronous_lock synchronouslock(mutex());
 
       windowing_output_debug_string("\nwindow::map_window");
 
@@ -1009,8 +1103,6 @@ namespace xcb
 
    ::e_status display::_unmap_window(xcb_window_t window)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
 //      auto estatus = xcb_display()->m_pxcbdisplay->_unmap_window(xcb_window());
 //
@@ -1093,8 +1185,6 @@ namespace xcb
    bool display::_list_has_atom(xcb_window_t window, xcb_atom_t propertyList, xcb_atom_t propertyItem)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       array < xcb_atom_t > atoma;
 
       auto cookie = xcb_get_property(
@@ -1145,8 +1235,6 @@ namespace xcb
    comparable_array < xcb_atom_t > display::_list_atom(xcb_window_t window, xcb_atom_t property)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       comparable_array < xcb_atom_t > atoma;
 
       auto cookie = xcb_get_property(
@@ -1187,8 +1275,6 @@ namespace xcb
    ::e_status display::_list_add_atom(xcb_window_t window, xcb_atom_t atomList, xcb_atom_t atomFlag)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       if (atomFlag == 0)
       {
 
@@ -1217,8 +1303,6 @@ namespace xcb
 
    ::e_status display::_list_erase_atom(xcb_window_t window, xcb_atom_t atomList, xcb_atom_t atomFlag)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       if (atomFlag == 0)
       {
@@ -1261,8 +1345,6 @@ namespace xcb
    ::e_status display::_clear_net_wm_state(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto estatus1 = _erase_net_wm_state(window, ::x11::e_atom_net_wm_state_above);
 
       auto estatus2 = _erase_net_wm_state(window, ::x11::e_atom_net_wm_state_below);
@@ -1284,8 +1366,6 @@ namespace xcb
    /// must be run in x11 thread (user thread)
    ::e_status display::_add_net_wm_state_below(xcb_window_t window)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       auto estatus1 = _erase_net_wm_state_hidden(window);
 
@@ -1309,8 +1389,6 @@ namespace xcb
    ::e_status display::_add_net_wm_state_above(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto estatus1 = _erase_net_wm_state_hidden(window);
       auto estatus2 = _add_net_wm_state(window,::x11::e_atom_net_wm_state_above);
       auto estatus3 = _erase_net_wm_state_hidden(window);
@@ -1331,8 +1409,6 @@ namespace xcb
    ::e_status display::_add_net_wm_state_hidden(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto estatus1 = _add_net_wm_state(window, ::x11::e_atom_net_wm_state_hidden);
       auto estatus2 = _erase_net_wm_state_above(window);
       auto estatus3 = _erase_net_wm_state_below(window);
@@ -1352,8 +1428,6 @@ namespace xcb
    /// must be run in x11 thread (user thread)
    ::e_status display::_add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       //display_lock displaylock(xcb_display());
 
@@ -1389,8 +1463,6 @@ namespace xcb
    ::e_status display::_mapped_add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto atomFlag = intern_atom(eatomNetWmState, false);
 
       auto atomWmNetState = intern_atom(::x11::e_atom_net_wm_state, false);
@@ -1418,8 +1490,6 @@ namespace xcb
 
    ::e_status display::_mapped_erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       auto atomFlag = intern_atom(eatomNetWmState, false);
 
@@ -1450,8 +1520,6 @@ namespace xcb
    ::e_status display::_unmapped_add_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto atomNetWmState = intern_atom(::x11::e_atom_net_wm_state, false);
 
       auto atomWmNetState = intern_atom(eatomNetWmState, false);
@@ -1472,8 +1540,6 @@ namespace xcb
 
    ::e_status display::_unmapped_erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       auto atomNetWmState = intern_atom(::x11::e_atom_net_wm_state, false);
 
@@ -1497,8 +1563,6 @@ namespace xcb
    ::e_status display::_erase_net_wm_state_below(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto estatus = _erase_net_wm_state(window, ::x11::e_atom_net_wm_state_below);
 
       if (!estatus)
@@ -1516,8 +1580,6 @@ namespace xcb
    /// must be run in x11 thread (user thread)
    ::e_status display::_erase_net_wm_state_above(xcb_window_t window)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       auto estatus = _erase_net_wm_state(window, ::x11::e_atom_net_wm_state_above);
 
@@ -1537,8 +1599,6 @@ namespace xcb
    ::e_status display::_erase_net_wm_state_hidden(xcb_window_t window)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       auto estatus = _erase_net_wm_state(window, ::x11::e_atom_net_wm_state_hidden);
 
       if (!estatus)
@@ -1555,8 +1615,6 @@ namespace xcb
 
    ::e_status display::_erase_net_wm_state(xcb_window_t window, ::x11::enum_atom eatomNetWmState)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       xcb_get_window_attributes_reply_t attributes;
 
@@ -1639,9 +1697,6 @@ namespace xcb
    ::e_status display::_set_mouse_capture(xcb_window_t window)
    {
 
-
-      synchronous_lock synchronouslock(mutex());
-
       if (m_pconnection == nullptr)
       {
 
@@ -1695,8 +1750,6 @@ namespace xcb
 
    ::e_status display::_release_mouse_capture()
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       //_on_capture_changed_to(nullptr);
 
@@ -1753,12 +1806,9 @@ namespace xcb
 
       }
 
-      *
-         pgeometry = *preply;
+      *pgeometry = *preply;
 
-      return
-         success;
-
+      return success;
 
    }
 

@@ -20,6 +20,8 @@ void operating_system_initialize_xcb_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::xcb::nano_window, ::nano_window_implementation>();
 
+   ::xcb::display::get(pfactory->m_psystem);
+
 }
 
 

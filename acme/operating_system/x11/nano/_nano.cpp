@@ -31,10 +31,26 @@ void operating_system_initialize_xcb_nano(::factory::factory * pfactory);
 void operating_system_initialize_nano(::factory::factory * pfactory)
 {
 
-
    auto edesktop = _get_edesktop();
 
+   auto psystem = pfactory->m_psystem;
+
    if(edesktop & ::user::e_desktop_kde)
+   {
+
+      psystem->m_ewindowing = e_windowing_xcb;
+
+   }
+   else
+   {
+
+      psystem->m_ewindowing = e_windowing_x11;
+
+      operating_system_initialize_x11_nano(pfactory);
+
+   }
+
+   if(psystem->m_ewindowing == e_windowing_xcb)
    {
 
       operating_system_initialize_xcb_nano(pfactory);
@@ -43,9 +59,8 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
    else
    {
 
-      operating_system_initialize_xcb_nano(pfactory);
+      operating_system_initialize_x11_nano(pfactory);
 
    }
-
 
 }

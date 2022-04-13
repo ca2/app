@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "_nano.h"
-#include <xcb/xcb_aux.h>
+//#include <xcb/xcb_aux.h>
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
 #include <cairo-xcb.h>
@@ -173,96 +173,92 @@ namespace xcb
 
       }
 
+      ::u32 uEventMask =       XCB_EVENT_MASK_PROPERTY_CHANGE
+                             | XCB_EVENT_MASK_EXPOSURE
+                             | XCB_EVENT_MASK_BUTTON_PRESS
+                             | XCB_EVENT_MASK_BUTTON_RELEASE
+                             | XCB_EVENT_MASK_KEY_PRESS
+                             | XCB_EVENT_MASK_KEY_RELEASE
+                             | XCB_EVENT_MASK_POINTER_MOTION
+                             | XCB_EVENT_MASK_STRUCTURE_NOTIFY
+                             | XCB_EVENT_MASK_FOCUS_CHANGE
+                             | XCB_EVENT_MASK_LEAVE_WINDOW
+                             | XCB_EVENT_MASK_ENTER_WINDOW
+      ;
 
-      m_pdisplay->display_send(__routine([this]()
+      auto colormap = m_pdisplay->m_colormap;
+
+      auto windowRoot = m_pdisplay->m_windowRoot;
+
+      xcb_window_t window = xcb_generate_id(m_pdisplay->m_pconnection);
+
+      int x = m_pinterface->m_rectangle.left;
+      int y = m_pinterface->m_rectangle.top;
+      int cx = m_pinterface->m_rectangle.width();
+      int cy = m_pinterface->m_rectangle.height();
+
+      ::u32 uaValueList[5];
+
+      uaValueList[0] = 0; // XCB_CW_BACK_PIXMAP
+      uaValueList[1] = 0; // XCB_CW_BORDER_PIXEL
+      uaValueList[2] = 1; // XCB_CW_OVERRIDE_REDIRECT
+      uaValueList[3] = uEventMask; // XCB_CW_EVENT_MASK
+      uaValueList[4] = colormap; // XCB_CW_COLORMAP
+
+      auto cookie = xcb_create_window(
+         m_pdisplay->m_pconnection,
+         m_pdisplay->m_pdepth->depth,
+         window,
+         m_pdisplay->m_windowRoot,
+         x, y,
+         cx, cy,
+         0,
+         XCB_WINDOW_CLASS_INPUT_OUTPUT,
+         m_pdisplay->m_pvisualtype->visual_id,
+         XCB_CW_BACK_PIXMAP
+         | XCB_CW_BORDER_PIXEL
+         | XCB_CW_OVERRIDE_REDIRECT
+         | XCB_CW_EVENT_MASK
+         | XCB_CW_COLORMAP,
+         uaValueList);
+
+      auto estatus = m_pdisplay->_request_check(cookie);
+
+      if(!estatus)
       {
 
+         throw exception(estatus);
 
-         xcb_params_cw_t  paramscw;
+      }
 
-         __zero(paramscw);
+      m_window = window;
 
-         auto & back_pixmap = paramscw.back_pixmap = 0;
+      m_pdisplay->add_listener(this);
 
-         auto & border_pixel = paramscw.border_pixel = 0;
-
-         auto override_redirect = 0;
-
-         auto & event_mask = paramscw.event_mask =
-                                XCB_EVENT_MASK_PROPERTY_CHANGE
-                                | XCB_EVENT_MASK_EXPOSURE
-                                | XCB_EVENT_MASK_BUTTON_PRESS
-                                | XCB_EVENT_MASK_BUTTON_RELEASE
-                                | XCB_EVENT_MASK_KEY_PRESS
-                                | XCB_EVENT_MASK_KEY_RELEASE
-                                | XCB_EVENT_MASK_POINTER_MOTION
-                                | XCB_EVENT_MASK_STRUCTURE_NOTIFY
-                                | XCB_EVENT_MASK_FOCUS_CHANGE
-                                | XCB_EVENT_MASK_LEAVE_WINDOW
-                                | XCB_EVENT_MASK_ENTER_WINDOW
-         ;
-
-         auto & colormap = paramscw.colormap = m_pdisplay->m_colormap;
-
-         auto windowRoot = m_pdisplay->m_windowRoot;
-
-         xcb_window_t window = xcb_generate_id(m_pdisplay->m_pconnection);
-
-         int x = m_pinterface->m_rectangle.left;
-         int y = m_pinterface->m_rectangle.top;
-         int cx = m_pinterface->m_rectangle.width();
-         int cy = m_pinterface->m_rectangle.height();
-
-         auto cookie = xcb_aux_create_window(
-            m_pdisplay->m_pconnection,
-            m_pdisplay->m_pdepth->depth,
-            window,
-            m_pdisplay->m_windowRoot,
-            x, y,
-            cx, cy,
-            0,
-            XCB_WINDOW_CLASS_INPUT_OUTPUT,
-            m_pdisplay->m_pvisualtype->visual_id,
-            XCB_CW_BACK_PIXMAP
-            | XCB_CW_BORDER_PIXEL
-            | XCB_CW_OVERRIDE_REDIRECT
-            | XCB_CW_EVENT_MASK
-            | XCB_CW_COLORMAP,
-            &paramscw);
-
-         if(!m_window)
-         {
-
-            throw exception(error_failed);
-
-         }
-
-         m_pdisplay->add_listener(this);
-
-         m_pdisplay->add_window(this);
+      m_pdisplay->add_window(this);
 
 #if 0
 
-         // _NET_WM_WINDOW_TYPE_SPLASH
-         // KDE seems to close this type of window when it is clicked
+      // _NET_WM_WINDOW_TYPE_SPLASH
+      // KDE seems to close this type of window when it is clicked
 
-         if(m_pinterface->m_bStartCentered)
+      if(m_pinterface->m_bStartCentered)
+      {
+
+         auto atomWindowType = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE", true);
+
+         auto atomWindowTypeSplash = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE_SPLASH", true);
+
+         if (atomWindowType != None && atomWindowTypeSplash != None)
          {
 
-            auto atomWindowType = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE", true);
-
-            auto atomWindowTypeSplash = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE_SPLASH", true);
-
-            if (atomWindowType != None && atomWindowTypeSplash != None)
-            {
-
-               XChangeProperty(m_pdisplay->m_pdisplay, m_window,
-                               atomWindowType, XA_ATOM, 32, PropModeReplace,
-                               (unsigned char *) &atomWindowTypeSplash, 1);
-
-            }
+            XChangeProperty(m_pdisplay->m_pdisplay, m_window,
+                            atomWindowType, XA_ATOM, 32, PropModeReplace,
+                            (unsigned char *) &atomWindowTypeSplash, 1);
 
          }
+
+      }
 
 #endif
 
@@ -289,11 +285,9 @@ namespace xcb
 //
 //         }
 
-         //m_pdisplay->XSelectInput(m_pdisplay->m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | PointerMotionMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
+      //m_pdisplay->XSelectInput(m_pdisplay->m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | PointerMotionMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
 
-         nano_window_on_create();
-
-      }));
+      nano_window_on_create();
 
       //XMapWindow(m_pdisplay->m_pdisplay, m_window);
 
@@ -552,6 +546,8 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
 
       set_active();
 
+      xcb_flush(m_pdisplay->m_pconnection);
+
    //   m_eventEnd.wait();
 
    }
@@ -604,7 +600,6 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
          return false;
 
       }
-
 
       auto event_type = pevent->response_type;
 
@@ -665,27 +660,6 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
 
          }
 
-         if (!m_psurface)
-         {
-
-            rectangle_i32 r;
-
-            get_client_rectangle(r);
-
-            m_psurface = cairo_xcb_surface_create(
-               m_pdisplay->m_pconnection,
-               m_window,
-               m_pdisplay->m_pvisualtype,
-               m_pinterface->m_rectangle.width(),
-               m_pinterface->m_rectangle.height());
-
-            auto pdc = cairo_create(m_psurface);
-
-            m_pnanodevice = __new(::cairo::nano_device(pdc));
-
-         }
-
-         _update_window();
 
       }
       else if (event_type == XCB_EXPOSE)
@@ -697,6 +671,26 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
          {
 
             return false;
+
+         }
+
+         if (!m_psurface)
+         {
+
+            rectangle_i32 rectangleClient;
+
+            get_client_rectangle(rectangleClient);
+
+            m_psurface = cairo_xcb_surface_create(
+               m_pdisplay->m_pconnection,
+               m_window,
+               m_pdisplay->m_pvisualtype,
+               rectangleClient.width(),
+               rectangleClient.height());
+
+            auto pdc = cairo_create(m_psurface);
+
+            m_pnanodevice = __new(::cairo::nano_device(pdc));
 
          }
 
@@ -715,7 +709,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
 
          }
 
-         output_debug_string("PropertyNotify");
+         //output_debug_string("PropertyNotify");
 
       }
       else if (event_type == XCB_KEY_PRESS)
@@ -768,7 +762,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse)
 
             auto pmouse = __create_new < ::user::mouse >();
 
-            pmouse->m_point = {pbutton->root_y, pbutton->root_y};
+            pmouse->m_point = {pbutton->root_x, pbutton->root_y};
 
             on_left_button_down(pmouse);
 
@@ -1041,6 +1035,8 @@ void nano_window::redraw()
 
       m_pdisplay->_move_window(m_window, point.x, point.y);
 
+      m_pinterface->m_rectangle.move_to(point);
+
    }
 
 
@@ -1086,48 +1082,14 @@ void nano_window::redraw()
    void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
    {
 
-
       xcb_get_geometry_reply_t geometry;
 
-      auto estatus = m_pdisplay->_get_window_geometry(&geometry, m_window);
-
-      if(!estatus)
-      {
-
-         throw ::exception(estatus);
-
-      }
+      _get_geometry(&geometry);
 
       rectangle.left = 0;
       rectangle.top = 0;
       rectangle.right = geometry.width;
       rectangle.bottom = geometry.height;
-
-
-//      rectangle.left = 0;
-//      rectangle.top = 0;
-//
-//      Window windowRoot = 0;
-//      int x = 0;
-//      int y = 0;
-//      unsigned int w = 0;
-//      unsigned int h = 0;
-//      unsigned int border = 0;
-//      unsigned int depth = 0;
-//
-//      auto status = XGetGeometry(m_pdisplay->m_pdisplay, m_window, &windowRoot, &x, &y, &w,
-//                          &h, &border, &depth);
-//
-//      if(status == BadDrawable)
-//      {
-//
-//         throw ::exception(error_exception);
-//
-//      }
-//
-//      rectangle.right = w;
-//      rectangle.bottom = h;
-
 
    }
 
@@ -1135,48 +1097,14 @@ void nano_window::redraw()
    void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
    {
 
-
       xcb_get_geometry_reply_t geometry;
 
-      auto estatus = m_pdisplay->_get_window_geometry(&geometry, m_window);
-
-      if(!estatus)
-      {
-
-         throw ::exception(estatus);
-
-      }
+      _get_geometry(&geometry);
 
       rectangle.left = geometry.x;
       rectangle.top = geometry.y;
       rectangle.right = geometry.x + geometry.width;
       rectangle.bottom = geometry.y + geometry.height;
-
-
-
-//      Window windowRoot = 0;
-//      int x = 0;
-//      int y = 0;
-//      unsigned int w = 0;
-//      unsigned int h = 0;
-//      unsigned int border = 0;
-//      unsigned int depth = 0;
-//
-//      auto status = XGetGeometry(m_pdisplay->m_pdisplay, m_window, &windowRoot, &x, &y, &w,
-//                                 &h, &border, &depth);
-//
-//      if(status == BadDrawable)
-//      {
-//
-//         throw ::exception(error_exception);
-//
-//      }
-//
-//      rectangle.left = x;
-//      rectangle.top = y;
-//      rectangle.right = x + w;
-//      rectangle.bottom = y + h;
-
 
    }
 
@@ -1189,107 +1117,17 @@ void nano_window::redraw()
    }
 
 
+   void nano_window::_get_geometry(xcb_get_geometry_reply_t * pgeometry)
+   {
+
+      m_pdisplay->_get_window_geometry(pgeometry, m_window);
+
+
+   }
 
 
 } // namespace xcb
 
-
-//void x11_check_status(int status, unsigned long window)
-//{
-//
-//   if (status == BadWindow)
-//   {
-//
-//      printf("window atom # 0x%lx does not exists!", window);
-//
-//      throw ::exception(error_exception);
-//
-//   }
-//
-//   if (status != Success)
-//   {
-//
-//      printf("XGetWindowProperty failed!");
-//
-//      throw ::exception(error_exception);
-//
-//   }
-//
-//}
-
-
-#define MAXSTR 1000
-
-
-//unsigned char* x11_get_string_property(Display * display, Window window, char* property_name)
-//{
-//
-//   unsigned char * prop;
-//   Atom actual_type, filter_atom;
-//   int actual_format, status;
-//   unsigned long nitems, bytes_after;
-//
-//   filter_atom = XInternAtom(display, property_name, True);
-//
-//   status = XGetWindowProperty(display, window, filter_atom, 0, MAXSTR, False, AnyPropertyType,
-//                               &actual_type, &actual_format, &nitems, &bytes_after, &prop);
-//
-//   x11_check_status(status, window);
-//
-//   return prop;
-//
-//}
-//
-//
-//unsigned long x11_get_long_property(Display *d, Window w, char *property_name)
-//{
-//
-//   unsigned char *prop = x11_get_string_property(d, w, property_name);
-//
-//   unsigned long long_property = prop[0] + (prop[1] << 8) + (prop[2] << 16) + (prop[3] << 24);
-//
-//   return long_property;
-//
-//}
-//
-//
-//Window _x11_get_active_window(Display * pdisplay)
-//{
-//
-//   int screen = XDefaultScreen(pdisplay);
-//
-//   Window windowRoot = RootWindow(pdisplay, screen);
-//
-//   Window window = x11_get_long_property(pdisplay, windowRoot, (char*) "_NET_ACTIVE_WINDOW");
-//
-//   return window;
-//
-//}
-
-
-extern class ::system * g_psystem;
-
-
-void xcb_asynchronous(::function < void() > function)
-{
-
-   auto pdisplay = ::xcb::display::get(g_psystem);
-
-   if (!pdisplay)
-   {
-
-      throw ::exception(error_null_pointer);
-
-   }
-
-   pdisplay->display_post(__routine([function]()
-                                    {
-
-                                       function();
-
-                                    }));
-
-}
 
 
 

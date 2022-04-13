@@ -4,6 +4,7 @@
 #pragma once
 
 
+#include "acme/user/nano/display.h"
 #include "event_listener.h"
 
 
@@ -15,7 +16,7 @@ namespace xcb
 
 
    class display :
-      virtual public ::object,
+      virtual public ::nano::display,
       virtual public event_listener
    {
    public:
@@ -27,12 +28,13 @@ namespace xcb
       __pointer_array(event_listener)        m_eventlistenera;
       __pointer_array(nano_window)           m_windowa;
       xcb_window_t                           m_windowActive;
-      ::routine_array                        m_routineaPost;
+      //::routine_array                        m_routineaPost;
       xcb_depth_t *                          m_pdepth;
       xcb_visualtype_t *                     m_pvisualtype;
       xcb_screen_t *                         m_pscreen;
       xcb_colormap_t                         m_colormap;
       xcb_window_t                           m_windowRoot;
+      xcb_window_t                           m_windowHelper;
       atom                                   m_atoma[::x11::e_atom_count];
 
       acme::malloc < xcb_render_query_pict_formats_reply_t * > m_prender_query_pict_formats_reply2;
@@ -46,6 +48,9 @@ namespace xcb
 
       display();
       ~display() override;
+
+
+      static display * get();
 
 
       virtual xcb_atom_t intern_atom(const char *pszAtomName, bool bCreate);
@@ -91,9 +96,9 @@ namespace xcb
 
       virtual bool xcb_posted();
 
-      void display_post(const ::routine & routine);
-      void display_send(const ::routine & routine);
-      bool display_posted_routine_step();
+      //void display_post(const ::function < void() > & function) override;
+      //void display_send(const ::function < void() > & function);
+      //bool display_posted_routine_step();
 
 
       virtual ::e_status _request_check(xcb_void_cookie_t cookie);
@@ -152,6 +157,9 @@ namespace xcb
 
 
       virtual ::e_status _set_nodecorations(xcb_window_t window, int bMap);
+
+
+      void kick_idle() override;
 
 
    };

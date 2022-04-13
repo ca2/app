@@ -11,6 +11,7 @@ public:
 
 
 
+   enum_windowing                                                    m_ewindowing;
    //__pointer(system_impl) *                                        m_psystemimpl;
 
    __pointer(::factory::factory)                                     m_pfactoryFolder;
@@ -459,7 +460,7 @@ public:
    __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
-   virtual void windowing_post(const ::routine & routine);
+   virtual void windowing_post(const ::function < void() > & function);
 
 
 };

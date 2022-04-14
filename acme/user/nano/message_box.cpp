@@ -477,4 +477,11 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 }
 
 
+bool nano_message_box::is_popup_window() const
+{
+   
+   return true;
+   
+}
+
 

@@ -33,5 +33,7 @@ public:
    void defer_create_details_still();
 
    void on_create() override;
+   
+   bool is_popup_window() const override;
 
 };

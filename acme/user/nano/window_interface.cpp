@@ -285,4 +285,9 @@ void nano_window_interface::_run_modal_loop()
 }
 
 
-
+bool nano_window_interface::is_popup_window() const
+{
+   
+   return false;
+   
+}

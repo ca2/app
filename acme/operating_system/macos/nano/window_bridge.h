@@ -64,6 +64,10 @@ public:
    
    virtual void _run_modal_loop();
    
+   virtual bool _is_top_most() const;
+   
+   virtual bool _is_popup_window() const;
+   
 };
 
 

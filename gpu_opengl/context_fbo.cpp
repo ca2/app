@@ -62,23 +62,31 @@ namespace opengl
       {
 
          kCGLPFADisplayMask,(CGLPixelFormatAttribute) 0,
-         kCGLPFANoRecovery,
+//         kCGLPFANoRecovery,
+//         kCGLPFADoubleBuffer,
+//         kCGLPFAAccelerated,(CGLPixelFormatAttribute)1,
+//         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_Core,
+//         kCGLPFAColorSize, (CGLPixelFormatAttribute)24,
+//         kCGLPFADepthSize, (CGLPixelFormatAttribute)24,
+//         kCGLPFAAlphaSize,(CGLPixelFormatAttribute)8,
+//         kCGLPFAStencilSize,(CGLPixelFormatAttribute)8,
+//         (CGLPixelFormatAttribute)0
+//
+         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
+         kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
+         //kCGLPFAAlphaSize, (CGLPixelFormatAttribute)8,
+         //kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
+         //kCGLPFAStencilSize, (CGLPixelFormatAttribute)8,
+         //kCGLPFAAccelerated,
          kCGLPFADoubleBuffer,
-         kCGLPFAAccelerated,(CGLPixelFormatAttribute)1,
-         kCGLPFAOpenGLProfile, (CGLPixelFormatAttribute)kCGLOGLPVersion_GL3_Core,
-         kCGLPFAColorSize, (CGLPixelFormatAttribute)24,
-         kCGLPFADepthSize, (CGLPixelFormatAttribute)24,
-         kCGLPFAAlphaSize,(CGLPixelFormatAttribute)8,
-         kCGLPFAStencilSize,(CGLPixelFormatAttribute)8,
          (CGLPixelFormatAttribute)0
-         
       };
 
       CGDirectDisplayID display = CGMainDisplayID();
 
       AttribList[1] = (CGLPixelFormatAttribute)CGDisplayIDToOpenGLDisplayMask (display);
       
-      CGLPixelFormatObj PixelFormat;
+      CGLPixelFormatObj PixelFormat = nullptr;
       
       GLint NumFormats = 0;
       
@@ -162,7 +170,7 @@ namespace opengl
       }
       
       //::e_status estatus =
-      
+      m_itaskGpu = ::get_current_itask();
       make_current();
 
 //      if(!estatus)

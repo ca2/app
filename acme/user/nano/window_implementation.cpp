@@ -50,7 +50,7 @@ void nano_window_implementation::nano_window_on_create()
    m_psystem->node()->fetch_user_color();
 
    m_psystem->add_signal_handler(this, id_operating_system_user_color_change);
-
+   
    create_drawing_objects();
 
    on_create();

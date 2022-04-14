@@ -109,9 +109,11 @@ namespace macos
       
       m_pwindowbridge->create_ns_nano_window(cgrect);
       
-      create_drawing_objects();
+      nano_window_on_create();
+      
+      //create_drawing_objects();
 
-      on_create();
+      ///on_create();
 
    }
 
@@ -388,5 +390,23 @@ void nano_window_bridge::on_layout(int x, int y, int w, int h)
    m_pwindow->m_pinterface->m_rectangle.bottom = y + h;
    
 }
+
+
+bool nano_window_bridge::_is_top_most() const
+{
+   
+   return m_pwindow->m_pinterface->m_bTopMost;
+   
+}
+
+
+bool nano_window_bridge::_is_popup_window() const
+{
+   
+   return m_pwindow->m_pinterface->is_popup_window();
+   
+}
+
+
 
 

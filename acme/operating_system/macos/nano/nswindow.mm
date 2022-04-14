@@ -237,6 +237,19 @@ void nano_window_bridge::display()
       
       [ pnanowindow setTitle : appName];
       
+      if(_is_top_most())
+      {
+         
+         [ pnanowindow setLevel: NSPopUpMenuWindowLevel ];
+         
+      }
+      else if(_is_popup_window())
+      {
+         
+         [ pnanowindow setLevel: NSModalPanelWindowLevel ];
+         
+      }
+
       [ pnanowindow display];
       [ pnanowindow makeKeyAndOrderFront : nil ];
       [ pnanowindow makeFirstResponder : nil ];

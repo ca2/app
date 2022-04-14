@@ -73,8 +73,10 @@ namespace app_app
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
+      
+      auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
 
-      double dBase = (double) rectangleClient.minimum_signed_absolute_dimension() / 17.0;
+      double dBase = dMinimumDimension / 17.0;
 
       double x = dBase * 3;
 
@@ -85,7 +87,7 @@ namespace app_app
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
       pgraphics->fill_rectangle(::rectangle_f64_dimension(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
-
+      
       rectangleClient.deflate((::i32) dBase);
 
       ::color::color colorInset;

@@ -227,6 +227,9 @@
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
       <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
@@ -578,6 +581,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <EnableCOMDATFolding>
       </EnableCOMDATFolding>
       <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)

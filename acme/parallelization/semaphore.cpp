@@ -254,7 +254,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-bool semaphore::wait(const class ::wait & wait)
+bool semaphore::_wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;

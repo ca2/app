@@ -74,6 +74,8 @@ public:
 
    virtual void synchronize_composited_nano_window();
 
+   virtual void _run_modal_loop();
+   
 
 };
 

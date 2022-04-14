@@ -278,5 +278,11 @@ void nano_window_interface::synchronize_composited_nano_window()
 }
 
 
+void nano_window_interface::_run_modal_loop()
+{
+   
+   
+}
+
 
 

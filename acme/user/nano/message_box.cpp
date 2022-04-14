@@ -7,7 +7,7 @@
 
 
 bool is_ui_possible();
-
+void ns_do_main_loop(double dSeconds);
 
 nano_message_box::nano_message_box()
 {
@@ -316,7 +316,17 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
       
    };
    
-   event.wait();
+   if(is_main_thread())
+   {
+   
+      pmessagebox->_run_modal_loop();
+      
+   }
+   else
+   {
+      event.wait();
+      
+   }
    
    //auto idResult = pmessagebox->get_result();
 

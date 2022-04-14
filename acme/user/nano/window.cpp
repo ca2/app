@@ -119,7 +119,7 @@ void nano_window::destroy()
    }
 
    m_pimplementation->destroy();
-
+   
 }
 
 
@@ -730,3 +730,11 @@ void nano_window::display_temporary_file_with_text(const ::string & str)
 
 }
 
+
+
+void nano_window::_run_modal_loop()
+{
+   
+   m_pimplementation->_run_modal_loop();
+   
+}

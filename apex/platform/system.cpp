@@ -3163,24 +3163,37 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      auto psession = get_session();
-
-      auto appptra = psession->get_applicationa();
-
       ::application * papp = nullptr;
 
-      appptra.predicate_erase([](auto & papp)
+      auto psession = get_session();
+      
+      if(psession == nullptr)
       {
-
-         return papp->is_system() || papp->is_session();
-
-      });
-
-      if(appptra.has_elements())
+         
+         auto psystem = m_psystem;
+         
+         papp = psystem->m_pappMain ? psystem->m_pappMain->m_papplication : psystem->m_pappStartup->m_papplication;
+         
+      }
+      else
       {
+      
+         auto appptra = psession->get_applicationa();
 
-         papp = appptra[0];
+         appptra.predicate_erase([](auto & papp)
+         {
 
+            return papp->is_system() || papp->is_session();
+
+         });
+
+         if(appptra.has_elements())
+         {
+
+            papp = appptra[0];
+
+         }
+         
       }
 
       if(papp != nullptr)

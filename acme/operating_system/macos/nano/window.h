@@ -17,6 +17,7 @@ namespace macos
    public:
 
 
+      //bool                             m_bAppRunMainLoop;
       //Display *                        m_pdisplay;
       //Window                           m_window;
       //cairo_surface_t *                m_psurface;
@@ -114,6 +115,8 @@ namespace macos
       void release_capture() override;
 
       //virtual void _wm_nodecorations(int iMap);
+      
+      void _run_modal_loop() override;
 
    };
 

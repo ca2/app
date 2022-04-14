@@ -220,7 +220,7 @@ void task_group::set_ready_to_start()
 
    //synchronouslock.unlock();
 
-   return m_synchronizationa.wait(5_s); //.succeeded();
+   return m_synchronizationa.wait(5_s) >= 0; //.succeeded();
 
 }
 

@@ -199,7 +199,7 @@ void synchronization_array::erase(index index)
 ::e_status synchronization_array::wait()
 {
 
-   return wait(duration::infinite());
+   return wait(duration::infinite()) >= 0;
 
 }
 

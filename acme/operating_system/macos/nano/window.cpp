@@ -286,6 +286,14 @@ namespace macos
    }
 
 
+   void nano_window::_run_modal_loop()
+   {
+      
+      m_pwindowbridge->_run_modal_loop();
+      
+   }
+
+
 } // namespace macos
 
 
@@ -380,3 +388,5 @@ void nano_window_bridge::on_layout(int x, int y, int w, int h)
    m_pwindow->m_pinterface->m_rectangle.bottom = y + h;
    
 }
+
+

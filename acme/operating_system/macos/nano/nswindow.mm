@@ -174,6 +174,7 @@ void ns_main_sync(dispatch_block_t block);
 nano_window_bridge::nano_window_bridge()
 {
    
+   m_bRunningAppMainLoop = false;
    m_pnsnanowindow = nullptr;
    
 }
@@ -236,11 +237,11 @@ void nano_window_bridge::display()
       
       [ pnanowindow setTitle : appName];
       
-      //[ pnanowindow display];
-      //[ pnanowindow makeKeyAndOrderFront : nil ];
-      //[ pnanowindow makeFirstResponder : nil ];
-      //[ NSApp activateIgnoringOtherApps : YES ];
-      [ [ pnanowindow windowController ] showWindow:nil ];
+      [ pnanowindow display];
+      [ pnanowindow makeKeyAndOrderFront : nil ];
+      [ pnanowindow makeFirstResponder : nil ];
+      [ NSApp activateIgnoringOtherApps : YES ];
+      //[ [ pnanowindow windowController ] showWindow:nil ];
       //[ NSApp runModalForWindow : pnanowindow ];
    
    });
@@ -262,9 +263,20 @@ void nano_window_bridge::redraw()
 void nano_window_bridge::stop()
 {
    
-   [NSApp stopModal];
-   
    auto pnanowindow =  (__bridge ns_nano_window *) m_pnsnanowindow;
+
+   
+   if(m_bRunningAppMainLoop)
+   {
+      
+      [ NSApp stop : nil ];
+      
+      m_bRunningAppMainLoop = false;
+      
+   }
+//)
+   
+   //[NSApp stopModal];
    
    [ pnanowindow close ];
    
@@ -388,3 +400,9 @@ void ns_screen_copy(RECTANGLE_I32 & rectangle, CGRect & rect)
 
 
 
+void nano_window_bridge::_run_modal_loop()
+{
+   m_bRunningAppMainLoop = true;
+   [ NSApp run ];
+   
+}

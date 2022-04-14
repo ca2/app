@@ -27,4 +27,18 @@
 //
 
 
+bool is_main_thread();
 
+
+//void ns_do_main_loop(double dSeconds)
+//{
+//
+//   if(is_main_thread())
+//   {
+//
+//   [ [ NSRunLoop mainRunLoop ] runUntilDate : [ [ NSDate date ] dateByAddingTimeInterval : dSeconds ] ];
+//
+//
+//   }
+//
+//}

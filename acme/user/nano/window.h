@@ -140,6 +140,9 @@ public:
    
    __pointer(nano_device) create_device();
 
+   
+   void _run_modal_loop() override;
+   
 
 };
 

@@ -27,7 +27,7 @@ class nano_window_bridge :
 {
 public:
 
-   
+   bool m_bRunningAppMainLoop;
    ::macos::nano_window *     m_pwindow;
    CFTypeRef                  m_pnsnanowindow;
    
@@ -61,6 +61,8 @@ public:
 
    virtual void on_layout(int x, int y, int w, int h);
    
+   
+   virtual void _run_modal_loop();
    
 };
 

@@ -412,9 +412,20 @@ namespace user
 
       if (::is_null(pwindowing))
       {
+         
+         auto psession = get_session();
+         
+         auto puser = psession->user();
+         
+         pwindowing = puser->windowing();
 
-         return nullptr;
+         if (::is_null(pwindowing))
+         {
+         
+            return nullptr;
 
+         }
+         
       }
 
       auto pdisplay = pwindowing->display();

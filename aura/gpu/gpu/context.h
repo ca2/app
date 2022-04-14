@@ -43,6 +43,7 @@ namespace gpu
       point_i32                            m_pointTranslate;
       __pointer(::gpu::buffer)         m_pbuffer;
       __pointer(::gpu::program)        m_pprogram;
+      bool                             m_bCreated;
 
 
       context();

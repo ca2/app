@@ -12,6 +12,7 @@ namespace gpu
    context::context()
    {
 
+      m_bCreated = false;
       m_emode = e_mode_none;
 
    }
@@ -234,6 +235,8 @@ namespace gpu
       //}
 
       //return ::success_none;
+      
+      m_bCreated = true;
 
    }
 

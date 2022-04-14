@@ -249,6 +249,20 @@ namespace app_shader
 
    void render::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      if(!m_pcontext)
+      {
+         
+         return;
+         
+      }
+      
+      if(!m_pcontext->m_bCreated)
+      {
+       
+         return;
+         
+      }
 
 
       ::gpu::context_lock lock(m_pcontext);

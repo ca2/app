@@ -1,5 +1,5 @@
 /*
-    src/checkbox.cpp -- Two-state check box widget
+    src/m_pcheckbox.cpp -- Two-state check box widget
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
@@ -9,7 +9,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-//#include <nanogui/checkbox.h>
+//#include <nanogui/m_pcheckbox.h>
 //#include <nanogui/opengl.h>
 //#include <nanogui/theme.h>
 

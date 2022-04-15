@@ -315,7 +315,7 @@ namespace user
 
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
-      /// this window is a checkbox [a menu checkbox],
+      /// this window is a m_pcheckbox [a menu m_pcheckbox],
       /// this window is a player/impact [a menu picture/video/chat?!])
       bool                                         m_bWfiUpDownTarget;
 

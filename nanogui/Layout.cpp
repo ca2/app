@@ -58,6 +58,7 @@ Vector2i BoxLayout::preferred_size(NVGcontext * ctx, Widget * widget, bool bReca
       size[axis2] = std::max(size[axis2], target_size[axis2] + 2 * m_margin);
       first = false;
    }
+   size[axis1] += m_spacing;
    return size + Vector2i(0, y_offset);
 }
 

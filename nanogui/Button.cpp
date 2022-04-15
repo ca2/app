@@ -51,7 +51,7 @@ Vector2i Button::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
          else {
             int w, h;
             nvgImageSize(ctx, m_icon, &w, &h);
-            m_iw = w * m_ih * 0.9f;
+            m_iw = w * m_ih / h;
          }
       }
 

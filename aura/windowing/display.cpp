@@ -183,6 +183,40 @@ namespace windowing
    }
 
 
+   ::size_i32 display::get_monitor_union_size()
+   {
+
+      ::size_i32 size;
+
+      size.cx = 0;
+
+      size.cy = 0;
+
+      for(auto & pmonitor : m_monitora)
+      {
+
+         if (size.cx < pmonitor->m_rectangle.width())
+         {
+
+            size.cx = pmonitor->m_rectangle.width();
+
+         }
+
+
+         if (size.cy < pmonitor->m_rectangle.height())
+         {
+
+            size.cy = pmonitor->m_rectangle.height();
+
+         }
+
+      }
+
+      return size;
+
+   }
+
+
    ::count display::get_monitor_count()
    {
 

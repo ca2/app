@@ -7,7 +7,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 /**
- * \file nanogui/checkbox.h
+ * \file nanogui/m_pcheckbox.h
  *
  * \brief Two-state check box Widget.
  */
@@ -19,7 +19,7 @@
 NAMESPACE_BEGIN(nanogui)
 
 /**
- * \class CheckBox checkbox.h nanogui/checkbox.h
+ * \class CheckBox m_pcheckbox.h nanogui/m_pcheckbox.h
  *
  * \brief Two-state check box widget.
  *

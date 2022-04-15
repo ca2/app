@@ -111,7 +111,7 @@ namespace graphics
    }
 
 
-   bool graphics::update_window()
+   bool graphics::update_screen()
    {
 
       return true;
@@ -151,7 +151,7 @@ namespace graphics
    }
 
 
-   bool graphics::update_window(::image * pimage)
+   bool graphics::update_screen(::image * pimage)
    {
 
 

@@ -304,7 +304,7 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
    }
 
    //auto estatus =
-   __construct(pimage);
+   __defer_construct(pimage);
 
    //if (!estatus)
    //{

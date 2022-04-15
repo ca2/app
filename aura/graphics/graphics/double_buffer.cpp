@@ -268,7 +268,7 @@ namespace graphics
 
 
 
-   bool double_buffer::update_window()
+   bool double_buffer::update_screen()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -286,7 +286,7 @@ namespace graphics
 
       }
 
-      return update_window(pimage);
+      return update_screen(pimage);
 
    }
 

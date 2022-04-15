@@ -51,8 +51,8 @@ namespace graphics
 
       index find_best_buffer(const ::size_i32 & size);
 
-      using graphics::update_window;
-      virtual bool update_window() override;
+      using graphics::update_screen;
+      virtual bool update_screen() override;
 
       virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;

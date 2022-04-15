@@ -39,9 +39,9 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers();
 
-      virtual bool update_window();
+      virtual bool update_screen();
 
-      virtual bool update_window(::image * pimage);
+      virtual bool update_screen(::image * pimage);
 
       virtual ::size_i32 window_size();
 

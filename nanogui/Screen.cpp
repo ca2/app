@@ -664,7 +664,7 @@ void Screen::draw_all(NVGcontext * ctx)
 
    //}
 
-   //   m_redraw = false;
+   m_redraw = false;
 
 #if defined(NANOGUI_USE_METAL)
       void * pool = autorelease_init();

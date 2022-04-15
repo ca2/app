@@ -16866,22 +16866,22 @@ namespace user
 
                track_mouse_leave();
 
-               auto pappearance = get_appearance();
+               //auto pappearance = get_appearance();
 
-               if (::is_set(pappearance))
-               {
+               //if (::is_set(pappearance))
+               //{
 
-                  ::point_i32 pointClient;
+               //   ::point_i32 pointClient;
 
-                  _screen_to_client(pointClient, pmouse->m_point);
+               //   _screen_to_client(pointClient, pmouse->m_point);
 
-                  auto psession = m_puserinteraction->get_session();
+               //   auto psession = m_puserinteraction->get_session();
 
-                  auto ekeyModifiers = psession->key_modifiers();
+               //   auto ekeyModifiers = psession->key_modifiers();
 
-                  pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+               //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
 
-               }
+               //}
 
             }
 

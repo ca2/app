@@ -350,7 +350,7 @@ namespace graphics
 
 
 
-   bool multiple_buffer::update_window()
+   bool multiple_buffer::update_screen()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -368,7 +368,7 @@ namespace graphics
 
       synchronous_lock slBuffer(get_screen_sync());
 
-      auto bOk = update_window(get_screen_image());
+      auto bOk = update_screen(get_screen_image());
 
       ipc_copy(get_screen_image());
 

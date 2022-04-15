@@ -310,9 +310,7 @@ namespace user
    bool shell::defer_set_thumbnail(_get_file_image_ & getfileimage)
    {
 
-      auto psystem = m_psystem->m_paurasystem;
-
-      auto pcontextimage = psystem->context_image();
+      auto pcontextimage = m_pcontext->context_image();
 
       auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
 

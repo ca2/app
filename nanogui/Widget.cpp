@@ -88,6 +88,16 @@ void Widget::set_size(const Vector2i & size)
 void Widget::on_begin_draw(NVGcontext * ctx)
 {
    
+   if (m_callbackLayout)
+   {
+
+      auto callbackLayout = m_callbackLayout;
+
+      m_callbackLayout.clear();
+
+      callbackLayout(ctx);
+
+   }
    
 }
 
@@ -101,7 +111,21 @@ Vector2i Widget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 }
 
 
-void Widget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
+void Widget::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) 
+{
+
+   if (m_callbackLayout)
+   {
+
+      auto callbackLayout = m_callbackLayout;
+
+      m_callbackLayout.clear();
+
+      callbackLayout(ctx);
+
+   }
+
+
    if (m_layout) {
       m_layout->perform_layout(ctx, this, bRecalcTextSize);
    }
@@ -256,6 +280,8 @@ bool Widget::keyboard_character_event(unsigned int)
 void Widget::add_child(int index, Widget * widget) 
 {
    synchronous_lock lock(screen()->m_puserinteraction->mutex());
+   m_iHoverCandidateChildStart = -1;
+   m_iHoverCandidateChildEnd = -1;
    assert(index <= child_count());
    m_children.insert(m_children.begin() + index, widget);
    widget->inc_ref();
@@ -272,6 +298,8 @@ void Widget::add_child(Widget * widget) {
 void Widget::remove_child(const Widget * widget) 
 {
    synchronous_lock lock(screen()->m_puserinteraction->mutex());
+   m_iHoverCandidateChildStart = -1;
+   m_iHoverCandidateChildEnd = -1;
    size_t child_count = m_children.size();
    m_children.erase(std::remove(m_children.begin(), m_children.end(), widget),
       m_children.end());
@@ -378,7 +406,6 @@ void Widget::draw(NVGcontext * ctx) {
          continue;
       
       child->on_begin_draw(ctx);
-         
 
       auto rectangleChild = ::rectangle_i32_dimension(child -> m_pos.x(), child -> m_pos.y(), child ->m_size.x(), child ->m_size.y());
 

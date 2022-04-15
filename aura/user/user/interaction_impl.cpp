@@ -4296,7 +4296,7 @@ namespace user
 
             monitor_pointer(&iStateCount);
 
-            m_pgraphics->update_window();
+            m_pgraphics->update_screen();
 
             m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
 

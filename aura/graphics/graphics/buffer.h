@@ -26,7 +26,7 @@ namespace graphics
 
       virtual synchronization_object * get_draw_lock() override;
       ::draw2d::graphics * on_begin_draw() override;
-      virtual bool update_window() override;
+      virtual bool update_screen() override;
       virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
@@ -35,7 +35,7 @@ namespace graphics
       virtual ::size_i32 buffer_size();
 
 
-      virtual bool update_window(::image * pimage) override;
+      virtual bool update_screen(::image * pimage) override;
       virtual bool is_buffer_ok();
       ::image_pointer & get_buffer();
 

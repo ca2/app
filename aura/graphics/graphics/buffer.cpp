@@ -24,12 +24,12 @@ namespace graphics
    }
 
 
-   bool buffer::update_window()
+   bool buffer::update_screen()
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      auto bOk = update_window(m_pimageBuffer);
+      auto bOk = update_screen(m_pimageBuffer);
 
       ipc_copy(m_pimageBuffer);
 
@@ -38,7 +38,7 @@ namespace graphics
    }
 
 
-   bool buffer::update_window(::image * pimage)
+   bool buffer::update_screen(::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

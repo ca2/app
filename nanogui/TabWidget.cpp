@@ -43,6 +43,13 @@ void TabWidgetBase::remove_tab(int id) {
       m_callback(selected_id());
       update_visibility();
    }
+
+   screen()->m_puserinteraction->set_need_layout();
+
+   screen()->m_puserinteraction->set_need_redraw();
+
+   screen()->m_puserinteraction->post_redraw();
+
 }
 
 int TabWidgetBase::insert_tab(int index, const std::string & caption) {
@@ -61,6 +68,13 @@ int TabWidgetBase::insert_tab(int index, const std::string & caption) {
       m_callback(id);
       update_visibility();
    }
+
+   screen()->m_puserinteraction->set_need_layout();
+
+   screen()->m_puserinteraction->set_need_redraw();
+
+   screen()->m_puserinteraction->post_redraw();
+
    return id;
 }
 
@@ -301,6 +315,12 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
          m_popup->perform_layout(ctx);
       };
 
+      screen->m_puserinteraction->set_need_layout();
+
+      screen->m_puserinteraction->set_need_redraw();
+
+      screen->m_puserinteraction->post_redraw();
+
       //m_bPendingSizing = true;
       //m_bPendingLayout = true;
       handled = true;
@@ -391,6 +411,13 @@ bool TabWidgetBase::mouse_motion_event(const Vector2i & p, const Vector2i & rel,
             };
             m_tab_drag_index = index;
             m_active_tab = index;
+
+            screen()->m_puserinteraction->set_need_layout();
+
+            screen()->m_puserinteraction->set_need_redraw();
+
+            screen()->m_puserinteraction->post_redraw();
+
          }
       }
       return true;

@@ -17,7 +17,7 @@
 
 //#include <nanogui/screen.h>
 //#include <nanogui/label.h>
-//#include <nanogui/checkbox.h>
+//#include <nanogui/m_pcheckbox.h>
 //#include <nanogui/textbox.h>
 //#include <nanogui/combobox.h>
 #include "ColorPicker.h"

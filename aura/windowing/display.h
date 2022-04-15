@@ -91,6 +91,8 @@ namespace windowing
       virtual ::index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) ;
       virtual ::size_i32 get_main_monitor_size();
 
+      virtual ::size_i32 get_monitor_union_size();
+
       virtual ::count get_monitor_count() ;
       virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) ;
 

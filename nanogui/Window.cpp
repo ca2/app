@@ -93,8 +93,6 @@ void Window::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
 void Window::draw(NVGcontext * ctx) 
 {
 
-
-
    //int ds = m_theme->m_window_drop_shadow_size;
    int cr = m_theme->m_window_corner_radius;
    int hh = m_theme->m_window_header_height;

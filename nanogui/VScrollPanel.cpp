@@ -81,13 +81,13 @@ bool VScrollPanel::mouse_drag_event(const Vector2i & p, const Vector2i & rel, co
 
          auto child = m_children[0];
 
-         Vector2i old_pos = child->position();
+         //Vector2i old_pos = child->position();
 
          auto yOffset = get_y_offset();
 
          child->set_position(Vector2i(0, (int)yOffset));
 
-         Vector2i new_pos = child->position();
+         //Vector2i new_pos = child->position();
 
          m_update_layout = true;
 
@@ -144,13 +144,13 @@ bool VScrollPanel::mouse_button_event(const Vector2i & p, int button, bool down,
 
          auto child = m_children[0];
 
-         Vector2i old_pos = child->position();
+         //Vector2i old_pos = child->position();
 
          auto yOffset = get_y_offset();
 
          child->set_position(Vector2i(0, (int)yOffset));
 
-         Vector2i new_pos = child->position();
+         //Vector2i new_pos = child->position();
 
          m_update_layout = true;
 
@@ -180,7 +180,7 @@ bool VScrollPanel::scroll_event(const Vector2i & p, const Vector2f & rel)
    if (!m_children.empty() && m_child_preferred_height > m_size.y()) 
    {
 
-      auto child = m_children[0];
+      //auto child = m_children[0];
 
       float fTrackBarHeight = get_track_bar_height();
 

@@ -84,6 +84,14 @@ void Widget::set_size(const Vector2i & size)
 
 }
 
+
+void Widget::on_begin_draw(NVGcontext * ctx)
+{
+   
+   
+}
+
+
 Vector2i Widget::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 {
    if (m_layout)
@@ -368,6 +376,9 @@ void Widget::draw(NVGcontext * ctx) {
 
       if (!child->visible())
          continue;
+      
+      child->on_begin_draw(ctx);
+         
 
       auto rectangleChild = ::rectangle_i32_dimension(child -> m_pos.x(), child -> m_pos.y(), child ->m_size.x(), child ->m_size.y());
 

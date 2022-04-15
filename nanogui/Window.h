@@ -60,6 +60,9 @@ NAMESPACE_BEGIN(nanogui)
    /// Handle mouse events recursively and bring the current window to the top
    virtual bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
    /// Accept scroll events and propagate them to the widget under the mouse cursor
+      
+      void on_begin_draw(NVGcontext * ctx) override;
+            
    //virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
@@ -68,6 +71,8 @@ NAMESPACE_BEGIN(nanogui)
    //protected:
    /// Internal helper function to maintain nested window position values; overridden in \ref Popup
    virtual void refresh_relative_placement();
+      
+      
    //protected:
       std::string m_title;
      Widget * m_button_panel;

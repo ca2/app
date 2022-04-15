@@ -23,6 +23,22 @@ Window::Window(Widget * parent, const std::string & title)
    m_bPendingCentering = false;
  }
 
+
+void Window::on_begin_draw(NVGcontext * ctx)
+{
+   
+   if (m_bPendingCentering)
+   {
+
+      m_bPendingCentering = false;
+      _center(ctx);
+
+   }
+   
+}
+
+
+
 Vector2i Window::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
    if (m_button_panel)
       m_button_panel->set_visible(false);
@@ -77,12 +93,7 @@ void Window::perform_layout(NVGcontext * ctx, bool bRecalcTextSize) {
 void Window::draw(NVGcontext * ctx) 
 {
 
-   if (m_bPendingCentering)
-   {
 
-      _center(ctx);
-
-   }
 
    //int ds = m_theme->m_window_drop_shadow_size;
    int cr = m_theme->m_window_corner_radius;

@@ -318,7 +318,7 @@ public:
    /// Handle text input (UTF-32 format) (default implementation: do nothing)
    virtual bool keyboard_character_event(unsigned int codepoint);
 
-
+   virtual void on_begin_draw(NVGcontext * ctx);
 
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true);

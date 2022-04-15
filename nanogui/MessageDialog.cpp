@@ -46,7 +46,7 @@ MessageDialog::MessageDialog(Widget * parent, Type type, const std::string & tit
       button->set_callback([&] { if (m_callback) m_callback(1); dispose(); });
    }
    Button * button = new Button(panel2, button_text, m_theme->m_message_primary_button_icon);
-   button->set_callback([&] { if (m_callback) m_callback(0); dispose(); });
+   button->set_callback([this] { if (m_callback) m_callback(0); dispose(); });
    center();
    request_focus();
 }

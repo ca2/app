@@ -119,7 +119,7 @@ namespace opengl
       pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
       pixformat.iPixelType = PFD_TYPE_RGBA;
       pixformat.cColorBits = 32;
-      pixformat.cRedShift = 24;
+      pixformat.cRedShift = 16;
       pixformat.cGreenShift = 8;
       pixformat.cBlueShift = 0;
       pixformat.cAlphaShift = 24;

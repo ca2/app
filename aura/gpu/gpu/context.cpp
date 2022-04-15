@@ -93,6 +93,7 @@ namespace gpu
    {
 
       //return ::success;
+      swap_buffers();
 
    }
 

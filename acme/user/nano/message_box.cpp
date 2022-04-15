@@ -316,7 +316,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
       
    };
    
-   if(is_main_thread())
+   if(is_single_main_user_thread() && is_main_thread())
    {
    
       pmessagebox->_run_modal_loop();

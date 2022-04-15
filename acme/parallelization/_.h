@@ -5,7 +5,7 @@
 
 
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
-
+CLASS_DECL_ACME bool is_single_main_user_thread();
 
 //inline void task_set(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] |= (1 << (etaskflag & 7)); }
 //inline void task_clear(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] &= ~(1 << (etaskflag & 7)); }

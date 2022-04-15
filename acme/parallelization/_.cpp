@@ -838,4 +838,20 @@ CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < 
 }
 
 
+CLASS_DECL_ACME bool is_single_main_user_thread()
+{
+
+#if defined(WINDOWS_DESKTOP)
+
+   return false;
+
+#else
+
+   return true;
+
+#endif
+
+}
+
+
 

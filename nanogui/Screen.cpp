@@ -840,7 +840,12 @@ bool Screen::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekey
       else 
       {
 
-         ret = m_drag_widget->mouse_drag_event(p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos, ekeyModifiers);
+         if (!screen()->m_pwidgetLeftButtonDown)
+         {
+
+            ret = m_drag_widget->mouse_drag_event(p - m_drag_widget->parent()->absolute_position(), p - m_mouse_pos, ekeyModifiers);
+
+         }
 
       }
 
@@ -907,9 +912,10 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
 
       auto drop_widget = find_widget(m_mouse_pos);
       //if (m_drag_active && action == GLFW_RELEASE &&
-      if (m_drag_active && !down && m_drag_widget && drop_widget != m_drag_widget)
+      if (m_drag_active && !down && m_drag_widget && drop_widget != m_drag_widget
+         && m_pwidgetLeftButtonDown== nullptr)
       {
-      
+
          m_redraw |= m_drag_widget->mouse_button_event(
             m_mouse_pos - m_drag_widget->parent()->absolute_position(), button,
             false, ekeyModifiers);
@@ -947,6 +953,10 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
    //catch (const std::exception & e) {
    //   std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
    //}
+      if (!down)
+      {
+         m_pwidgetLeftButtonDown = nullptr;
+      }
       return bRet;
 }
 

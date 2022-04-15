@@ -26,11 +26,14 @@ Window::Window(Widget * parent, const std::string & title)
 
 void Window::on_begin_draw(NVGcontext * ctx)
 {
+
+   Widget::on_begin_draw(ctx);
    
    if (m_bPendingCentering)
    {
 
       m_bPendingCentering = false;
+
       _center(ctx);
 
    }

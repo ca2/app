@@ -6418,9 +6418,23 @@ void image::fill(color32_t cr)
    else if (get_graphics() != nullptr)
    {
 
-      get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      auto ealphamode = get_graphics()->m_ealphamode;
+
+      if (ealphamode != ::draw2d::e_alpha_mode_set)
+      {
+
+         get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+      }
 
       get_graphics()->fill_rectangle(rectangle(), cr);
+
+      if (ealphamode != ::draw2d::e_alpha_mode_set)
+      {
+
+         get_graphics()->set_alpha_mode(ealphamode);
+
+      }
 
    }
 

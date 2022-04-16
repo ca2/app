@@ -50,7 +50,9 @@ static int g_iMutex = 0;
 mutex::mutex(enum_create_new, bool bInitiallyOwn)
 {
 
+#ifdef _DEBUG
    m_itask = -1;
+#endif
 
    m_bOwner = true;
 
@@ -113,7 +115,9 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn)
 mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
 {
 
+#ifdef _DEBUG
    m_itask = -1;
+#endif
 
    initialize(pobject);
 
@@ -475,7 +479,9 @@ get_existing:
 mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 {
 
+#ifdef _DEBUG
    m_itask = -1;
+#endif
 
    m_bOwner = bOwner;
    m_hsync = h;

@@ -767,6 +767,8 @@ namespace experience_core
 
          pgraphics->set_font(pframewindow, ::e_element_window_title);
 
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
          pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 
       }

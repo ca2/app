@@ -44,19 +44,19 @@ void single_lock::_wait()
 {
 
    //::e_status estatus(signaled_base);
-
-   if (m_bAcquired)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
    if (m_psync == nullptr)
    {
 
       return;
       //return estatus;
+
+   }
+
+
+   if (m_bAcquired)
+   {
+
+      throw ::exception(error_wrong_state);
 
    }
 

@@ -1080,7 +1080,7 @@ namespace experience_anthill
                rectangleText.right = rectangleText.left + sSep.cx;
                rectangleEmp = rectangleText;
                rectangleEmp.deflate(1, 1);
-               ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
+               ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                if (::is_element(ptab->m_pitemHover, (::enum_element)(::e_element_split + i)))
                {

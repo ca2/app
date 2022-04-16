@@ -88,7 +88,9 @@ namespace draw2d
 
       ::point_f64                            m_point;
 
+   protected:
       enum_alpha_mode                        m_ealphamode;
+   public:
       enum_fill_mode                         m_efillmode;
       enum_smooth_mode                          m_esmoothmode;
       enum_interpolation_mode                m_einterpolationmode;
@@ -232,6 +234,7 @@ namespace draw2d
       virtual ::aura::draw_context * draw_context();
 
       virtual void set_alpha_mode(enum_alpha_mode ealphamode);
+      inline enum_alpha_mode alpha_mode() const { return m_ealphamode; }
 
       virtual void set_smooth_mode(enum_smooth_mode esmoothmode);
 

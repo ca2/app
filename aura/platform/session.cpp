@@ -2466,30 +2466,32 @@ namespace aura
    }
 
 
-   string_array session::get_user_wallpaper()
-   {
+   //string_array session::get_user_wallpaper()
+   //{
 
-      string_array stra;
+   //   string_array stra;
 
-      //string_array straSource = psession->userex()->get_wallpaper();
+   //   auto psession 
 
-      //for (string str : straSource)
-      //{
+   //   string_array straSource = psession->userex()->get_wallpaper();
 
-      //   if (::str::begins_eat_ci(str, "file://"))
-      //   {
+   //   for (string str : straSource)
+   //   {
 
-      //      str = purl->url_decode(str);
+   //      if (::str::begins_eat_ci(str, "file://"))
+   //      {
 
-      //   }
+   //         str = purl->url_decode(str);
 
-      //   stra.add(str.c_str());
+   //      }
 
-      //}
+   //      stra.add(str.c_str());
 
-      return stra;
+   //   }
 
-   }
+   //   return stra;
+
+   //}
 
 
    void session::on_instantiate_application(::application* papp)

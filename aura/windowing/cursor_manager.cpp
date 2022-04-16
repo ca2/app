@@ -252,12 +252,12 @@ namespace windowing
    }
    
    
-   void cursor_manager::set_cursor_set_from_matter(const ::file::path & pathMatter)
+   void cursor_manager::set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathMatter)
    {
 
       // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 
-      auto pcontext = get_context();
+      auto pcontext = pobjectContext->m_pcontext;
 
       ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
       
@@ -270,12 +270,12 @@ namespace windowing
 
       ::file::path pathFolder = pathArrow.folder();
 
-      set_cursor_set_from_dir(pathFolder);
+      set_cursor_set_from_dir(pobjectContext, pathFolder);
 
    }
 
 
-   void cursor_manager::set_cursor_set_from_dir(const ::file::path & pathDir, bool bFromCache)
+   void cursor_manager::set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pathDir, bool bFromCache)
    {
 
       ::count countSuccess = 0;

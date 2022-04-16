@@ -52,6 +52,14 @@ task::task()
 task::~task()
 {
 
+#ifdef _DEBUG
+
+   auto strThreadName = ::task_get_name();
+   auto itask = ::get_current_itask();
+
+   ::output_debug_string("Task destructor : " + strThreadName + " : (" + __string(itask) + ")\n");
+
+#endif
 
 }
 

@@ -50,6 +50,8 @@ static int g_iMutex = 0;
 mutex::mutex(enum_create_new, bool bInitiallyOwn)
 {
 
+   m_itask = -1;
+
    m_bOwner = true;
 
    m_bAlreadyExists = false;
@@ -110,6 +112,8 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn)
 
 mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
 {
+
+   m_itask = -1;
 
    initialize(pobject);
 
@@ -471,6 +475,8 @@ get_existing:
 mutex::mutex(enum_create_new, const char * pstrName, void * h, bool bOwner)
 {
 
+   m_itask = -1;
+
    m_bOwner = bOwner;
    m_hsync = h;
 
@@ -492,6 +498,8 @@ mutexmutex(const char * pstrName, sem_t * psem, bool bOwner) :
    ::matter(pobject),
    synchronization_object(pstrName)
 {
+
+   m_itask = -1;
 
    m_bOwner       = bOwner;
    m_pszName      = strdup(pstrName);
@@ -526,6 +534,8 @@ mutexmutex(const mutex & m):
 
 mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 {
+
+   m_itask = -1;
 
    m_strName = lpszName;
    m_bOwner = bOwner;
@@ -1343,6 +1353,15 @@ void mutex::unlock()
 {
 
 #ifdef WINDOWS
+
+#ifdef _DEBUG
+
+   m_strThread.Empty();
+   m_itask = -1;
+   ::output_debug_string("");
+
+#endif
+
 
    if (!::ReleaseMutex(m_hsync))
    {

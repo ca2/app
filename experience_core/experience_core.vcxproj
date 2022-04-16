@@ -303,6 +303,7 @@
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <Profile>false</Profile>
     </Link>
     <CustomBuildStep>
       <Command>
@@ -608,6 +609,7 @@
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <Profile>false</Profile>
     </Link>
     <CustomBuildStep>
       <Command>

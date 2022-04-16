@@ -52,6 +52,9 @@ namespace draw2d
       m_pdrawcontext             = nullptr;
       m_dFontFactor              = 1.0;
       m_efillmode                = e_fill_mode_winding;
+      m_ealphamode               = e_alpha_mode_none;
+      m_ewritetextrendering      = ::write_text::e_rendering_undefined;
+      m_einterpolationmode       = e_interpolation_mode_none;
 
    }
 
@@ -128,7 +131,7 @@ namespace draw2d
 
       set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+      set_text_rendering_hint(::write_text::e_rendering_system_default);
 
       ::color::color color(0, 0, 0, 0);
 
@@ -912,15 +915,15 @@ namespace draw2d
    void graphics::ellipse(const ::rectangle_f64 & rectangle)
    {
 
-      auto ealphamode = m_ealphamode;
+      //auto ealphamode = m_ealphamode;
 
-      set_alpha_mode(e_alpha_mode_blend);
+      //set_alpha_mode(e_alpha_mode_blend);
 
       fill_ellipse(rectangle);
 
       draw_ellipse(rectangle);
 
-      set_alpha_mode(ealphamode);
+      //set_alpha_mode(ealphamode);
 
       //return bFill && bDraw;
 

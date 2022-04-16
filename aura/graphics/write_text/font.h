@@ -70,7 +70,7 @@ namespace write_text
       bool                          m_bStrikeout;
       enum_character_set_array      m_echaracterseta;
       enum_character_set            m_echaracterset;
-      enum_rendering                m_erendering;
+      ///enum_rendering                m_erendering;
       text_metric                   m_textmetric;
       bool                          m_bTextMetric;
       string_map < text >           m_mapText;

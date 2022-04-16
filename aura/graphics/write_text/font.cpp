@@ -18,7 +18,7 @@ namespace write_text
       m_bItalic = false;
       m_bUnderline = false;
       m_bStrikeout = false;
-      m_erendering = e_rendering_undefined;
+      //m_erendering = e_rendering_undefined;
       m_echaracterset = e_character_set_none;
 
    }

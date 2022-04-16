@@ -33,7 +33,7 @@ public:
    ::size_i32                       m_sizeAlloc;
    point_i32                        m_point;
    double                           m_dFontFactor;
-   ::draw2d::enum_alpha_mode        m_ealphamode;
+   //::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
    ::draw2d::enum_mipmap               m_emipmap;
    index                            m_iFrame;
@@ -52,7 +52,7 @@ public:
       m_dSpeed = 1.0;
       m_dIsotropicRate = 1.0;
       m_dFontFactor = 1.0;
-      m_ealphamode = ::draw2d::e_alpha_mode_blend;
+      //m_ealphamode = ::draw2d::e_alpha_mode_blend;
       m_bOwn = true;
       m_emipmap = ::draw2d::e_mipmap_none;
       m_iFrame = 0;

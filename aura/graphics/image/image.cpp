@@ -557,7 +557,7 @@ void image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image* pimageS
    if (!pimageDst->m_bMapped || !pimageSrc->m_bMapped)
    {
 
-      get_graphics()->set_alpha_mode(m_ealphamode);
+      //get_graphics()->set_alpha_mode(m_ealphamode);
 
       image_source imagesource(pimageSrc, { pointSrcParam, rectangleDstParam.size() } );
 
@@ -4338,9 +4338,9 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, color32_t cr)
    else
    {
 
-      ::draw2d::enum_alpha_mode emodeOld = get_graphics()->m_ealphamode;
+      ::draw2d::enum_alpha_mode emodeOld = get_graphics()->alpha_mode();
 
-      if (get_graphics()->m_ealphamode != ::draw2d::e_alpha_mode_set)
+      if (get_graphics()->alpha_mode() != ::draw2d::e_alpha_mode_set)
       {
 
          get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
@@ -4349,8 +4349,7 @@ void image::fill_rectangle(const ::rectangle_i32& rectangle, color32_t cr)
 
       get_graphics()->fill_rectangle(rectangle, cr);
 
-
-      if (get_graphics()->m_ealphamode != emodeOld)
+      if (get_graphics()->alpha_mode() != emodeOld)
       {
 
          get_graphics()->set_alpha_mode(emodeOld);
@@ -6350,7 +6349,7 @@ void image::fill_byte(uchar uch)
 
       auto color = __acolor(uch, uch, uch, uch);
 
-      auto ealphamode = g()->m_ealphamode;
+      auto ealphamode = g()->alpha_mode();
 
       if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
@@ -6418,7 +6417,7 @@ void image::fill(color32_t cr)
    else if (get_graphics() != nullptr)
    {
 
-      auto ealphamode = get_graphics()->m_ealphamode;
+      auto ealphamode = get_graphics()->alpha_mode();
 
       if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
@@ -7389,22 +7388,22 @@ void image::set_font_factor(double dFactor)
 }
 
 
-void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
-{
-
-   m_ealphamode = emode;
-
-   if (!m_bMapped)
-   {
-
-      get_graphics()->set_alpha_mode(emode);
-
-   }
-
-   //return true;
-
-}
-
+//void image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
+//{
+//
+//   m_ealphamode = emode;
+//
+//   if (!m_bMapped)
+//   {
+//
+//      get_graphics()->set_alpha_mode(emode);
+//
+//   }
+//
+//   //return true;
+//
+//}
+//
 
 //i32 image::cos(i32 i, i32 iAngle)
 //{

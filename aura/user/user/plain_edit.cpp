@@ -368,8 +368,6 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
       status < ::color::color > crBk;
       status < ::color::color > crBkSel;
       status < ::color::color > crSel;
@@ -486,8 +484,6 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
       double dLineHeight = m_dLineHeight;
 
       string_array & straLines = m_straLines;
@@ -502,8 +498,6 @@ namespace user
       index i = 0;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strLineGraphics;
 
@@ -2125,8 +2119,6 @@ namespace user
 
       size_f64 sizeUniText;
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
       ::write_text::text_metric metric;
 
       pgraphics->get_text_metrics(&metric);
@@ -2574,8 +2566,6 @@ namespace user
          return;
 
       }
-
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       ::write_text::text_metric metric;
 

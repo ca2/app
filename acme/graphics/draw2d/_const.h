@@ -295,6 +295,7 @@ namespace write_text
 
       e_rendering_undefined,
       e_rendering_none,
+      e_rendering_system_default,
       e_rendering_anti_alias,
       e_rendering_anti_alias_grid_fit,
       e_rendering_single_bit_per_pixel,

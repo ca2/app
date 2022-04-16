@@ -3714,6 +3714,8 @@ namespace user
       if (pgraphics->m_pimage->is_ok())
       {
 
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
          if (m_pinteractionimpl->is_composite())
          {
 

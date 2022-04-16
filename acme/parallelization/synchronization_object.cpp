@@ -149,17 +149,17 @@ void synchronization_object::_wait()
 
       auto bOk =  _wait(100_ms);
 
-      if(!ptask->task_get_run())
-      {
-
-         return error_failed;
-
-      }
-
       if(bOk)
       {
 
          return ::success;
+
+      }
+
+      if (!ptask->task_get_run())
+      {
+
+         return error_failed;
 
       }
 
@@ -237,17 +237,17 @@ void synchronization_object::_wait()
 
       bool bOk = _wait(waitNow);
 
+      if (bOk)
+      {
+
+         return ::success;
+
+      }
+
       if(!ptask->task_get_run())
       {
 
          return error_failed;
-
-      }
-
-      if(bOk)
-      {
-
-         return ::success;
 
       }
 
@@ -296,6 +296,21 @@ bool synchronization_object::_wait(const class ::wait & wait)
    }
    else if (estatus == signaled_base)
    {
+
+#ifdef _DEBUG
+
+      auto pmutex = dynamic_cast < ::mutex *> (this);
+
+      if (::is_set(pmutex))
+      {
+
+         pmutex->m_strThread = ::task_get_name();
+         pmutex->m_itask = ::get_current_itask();
+         ::output_debug_string("");
+
+      }
+
+#endif
 
       return true;
 

@@ -540,8 +540,9 @@ mutexmutex(const mutex & m):
 
 mutex::mutex(enum_create_new, const char * lpszName, int iFd, bool bOwner)
 {
-
+#ifdef _DEBUG
    m_itask = -1;
+#endif
 
    m_strName = lpszName;
    m_bOwner = bOwner;

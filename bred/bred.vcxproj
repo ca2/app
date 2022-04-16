@@ -200,6 +200,7 @@
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <Profile>false</Profile>
     </Link>
     <PreBuildEvent>
       <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
@@ -336,6 +337,7 @@
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <Profile>false</Profile>
     </Link>
     <PreBuildEvent>
       <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>

@@ -393,7 +393,7 @@ namespace aura
       virtual bool is_remote_session() override;
 
 
-      virtual string_array get_user_wallpaper() override;
+      //virtual string_array get_user_wallpaper() override;
 
 
       inline ::user::user* user() { return m_puser; }

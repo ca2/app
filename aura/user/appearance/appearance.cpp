@@ -112,6 +112,14 @@ namespace appearance
 
    }
 
+
+   bool appearance::on_scroll_event(const ::point_i32 & point, double x, double y)
+   {
+
+      return false;
+
+   }
+
    
    bool appearance::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
    {

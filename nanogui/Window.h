@@ -63,7 +63,7 @@ NAMESPACE_BEGIN(nanogui)
       
       void on_begin_draw(NVGcontext * ctx) override;
             
-   //virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
+   virtual bool scroll_event(const Vector2i & p, const Vector2f & rel) override;
    /// Compute the preferred size of the widget
    virtual Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place child widgets, if any

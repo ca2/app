@@ -260,10 +260,15 @@ bool Window::mouse_button_event(const Vector2i & p, int button, bool down, const
 }
 
 
-//bool Window::scroll_event(const Vector2i & p, const Vector2f & rel) {
-//   Widget::scroll_event(p, rel);
-//   return true;
-//}
+bool Window::scroll_event(const Vector2i & p, const Vector2f & rel) 
+{
+
+   Widget::scroll_event(p, rel);
+
+   return true;
+
+}
+
 
 void Window::refresh_relative_placement() {
    /* Overridden in \ref Popup */

@@ -1850,6 +1850,7 @@ namespace user
 
          }
 
+         MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &interaction::on_message_mouse_wheel);
 
          if (m_bHoverDefaultMouseHandling)
          {
@@ -16894,11 +16895,51 @@ namespace user
    }
 
 
-   //bool interaction::update_hover(const ::point_i32& point, bool bAvoidRedraw)
-   //{
+   void interaction::on_message_mouse_wheel(::message::message * pmessage)
+   {
 
-   //   synchronous_lock synchronouslock(mutex());
+      if (!is_window_enabled())
+      {
 
+         return;
+
+      }
+
+      __pointer(::message::mouse_wheel) pwheel = pmessage;
+
+      double y = pwheel->GetDelta() / 120.0;
+
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         ::point_i32 pointClient;
+
+         _screen_to_client(pointClient, pwheel->m_point);
+
+         bool bRet;
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         bRet = pappearance->on_scroll_event(pointClient, 0., y);
+
+         pappearance->m_pointMouseLast = pointClient;
+
+         if (bRet)
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+   }
 
 
    bool interaction::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)

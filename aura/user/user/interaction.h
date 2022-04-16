@@ -1281,6 +1281,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_wheel);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);

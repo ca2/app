@@ -1336,6 +1336,14 @@ bool Screen::on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_ke
 }
 
 
+bool Screen::on_scroll_event(const ::point_i32 & point, double x, double y)
+{
+
+   return scroll_event({ point.x, point.y }, { (float)x, (float)y });
+
+}
+
+
 void Screen::on_character(int iCharacter)
 {
 

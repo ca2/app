@@ -42,12 +42,28 @@ void Window::on_begin_draw(NVGcontext * ctx)
 
 
 
-Vector2i Window::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) {
+Vector2i Window::preferred_size(NVGcontext * ctx, bool bRecalcTextSize) 
+{
+
+   bool bButtonPanelWasVisible = true;
+
    if (m_button_panel)
+   {
+
+      bButtonPanelWasVisible = m_button_panel->m_visible;
+
       m_button_panel->set_visible(false);
+
+   }
+   
    Vector2i result = Widget::preferred_size(ctx, bRecalcTextSize);
+
    if (m_button_panel)
-      m_button_panel->set_visible(true);
+   {
+
+      m_button_panel->set_visible(bButtonPanelWasVisible);
+
+   }
 
    if (bRecalcTextSize)
    {

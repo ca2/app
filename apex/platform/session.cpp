@@ -1130,11 +1130,11 @@ namespace apex
 
          ekeyModifiers |= ::user::e_key_left_control;
 
-#if !defined(__APPLE__)
-
-         ekeyModifiers |= ::user::e_key_system_left_command;
-
-#endif
+//#if !defined(__APPLE__)
+//
+//         ekeyModifiers |= ::user::e_key_system_left_command;
+//
+//#endif
 
       }
 
@@ -1143,11 +1143,11 @@ namespace apex
 
          ekeyModifiers |= ::user::e_key_right_control;
 
-#if !defined(__APPLE__)
-
-         ekeyModifiers |= ::user::e_key_system_right_command;
-
-#endif
+//#if !defined(__APPLE__)
+//
+//         ekeyModifiers |= ::user::e_key_system_right_command;
+//
+//#endif
 
       }
 

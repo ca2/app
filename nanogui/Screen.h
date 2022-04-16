@@ -351,8 +351,8 @@ public:
    bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
    bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
-   bool on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;
-   bool on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers) override;
+   bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers) override;
+   bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers) override;
 
    void on_character(int iCharacter) override;
 

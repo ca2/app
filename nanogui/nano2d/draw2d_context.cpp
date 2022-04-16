@@ -35,6 +35,8 @@ namespace nano2d
 
       m_pgraphics = pgraphics;
 
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
+
       _create_new_state();
 
    }

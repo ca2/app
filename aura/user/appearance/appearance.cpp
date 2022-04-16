@@ -113,7 +113,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_key_down(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -121,7 +121,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_key_up(::user::enum_key ekey, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
    {
 
       return false;

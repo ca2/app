@@ -1866,6 +1866,8 @@ namespace user
 
             MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
             MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+            MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+            MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &::user::interaction::on_message_key_up);
             MESSAGE_LINK(e_message_char, pchannel, this, &::user::interaction::on_message_character);
 
          }
@@ -5448,7 +5450,7 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
          {
 
             pmessage->m_bRet = true;
@@ -5516,7 +5518,7 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, ekeyModifiers))
+         if (m_pappearance->on_key_up(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
          {
 
             pmessage->m_bRet = true;

@@ -167,7 +167,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD)
 
-::e_status semaphore::wait(const class ::wait & wait)
+bool semaphore::_wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -181,6 +181,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    {
 
       iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
+
    }
    else
    {
@@ -199,7 +200,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(iRet == EINTR || iRet == EAGAIN)
       {
 
-         return error_wait_timeout;
+         return false;
 
       }
 
@@ -208,13 +209,13 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    if(iRet == 0)
    {
 
-      return ::success;
+      return true;
 
    }
    else
    {
 
-      return error_failed;
+      throw ::exception(error_failed);
 
    }
 

@@ -37,7 +37,7 @@ namespace experience_nanogui
 
             auto pwindowing = puser->windowing();
 
-            pwindowing->set_cursor_set_from_matter("cursor/antialiased-classic");
+            pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
 
          });
 #endif

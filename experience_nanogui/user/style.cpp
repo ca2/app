@@ -518,7 +518,7 @@ namespace experience_nanogui
 
                rectangleEmp.deflate(1, 1);
 
-               ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
+               ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

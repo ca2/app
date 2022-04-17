@@ -3558,7 +3558,6 @@ bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 //}
 
 
-
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
 void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine)
 {
@@ -3608,7 +3607,16 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
    (pposting->*posting_method)(proutine);
 
    //if (psignalization->m_evReady.wait(proutine->timeout()).failed())
-   psignalization->m_evReady.wait(proutine->timeout());
+   auto estatus = psignalization->m_evReady.wait(proutine->timeout());
+
+   if(estatus == error_wait_timeout)
+   {
+
+      proutine->set_timed_out();
+
+   }
+
+
    //{
 
    //   throw ::exception(error_timeout);

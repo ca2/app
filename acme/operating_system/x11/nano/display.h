@@ -37,6 +37,9 @@ namespace x11
       ~display() override;
 
 
+      bool is_branch_current() const override;
+
+
       virtual Atom intern_atom(const char *pszAtomName, bool bCreate);
       virtual Atom intern_atom(enum_atom eatom, bool bCreate);
 
@@ -57,9 +60,6 @@ namespace x11
       void init_task() override;
 
       void run() override;
-
-
-      bool is_branch_current() const override;
 
 
       void add_listener(event_listener * plistener);

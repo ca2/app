@@ -16,6 +16,9 @@ namespace windowing
 
       void *                        m_pDisplay;
       void *                        m_pDisplay2;
+#ifdef LINUX
+      void *                        _m_pX11Display;
+#endif
 
       __pointer_array(monitor)      m_monitora;
 

@@ -58,18 +58,18 @@
 
 template < typename PREDICATE >
 class predicate_routine :
-   virtual public ::matter
+   virtual public ::element
 {
 public:
 
 
    PREDICATE      m_predicate;
-   ::duration     m_durationTimeout = DURATION{64,0};
+   ::duration     m_durationTimeout = 1_min;
 
 
 
    predicate_routine(PREDICATE predicate) : m_predicate(predicate) { }
-   predicate_routine(const ::duration & duration, PREDICATE predicate) : m_durationTimeout(duration), m_predicate(predicate) { }
+   predicate_routine(const ::duration & durationTimeout, PREDICATE predicate) : m_durationTimeout(durationTimeout), m_predicate(predicate) { }
    ~predicate_routine() override {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
@@ -77,7 +77,8 @@ public:
 
    //inline void operator()() const;
 
-   DURATION timeout() const override { return m_durationTimeout; }
+   ::duration timeout() const override { return m_durationTimeout; }
+   void set_timeout(const ::duration & durationTimeout) override { m_durationTimeout = durationTimeout; }
 
 
    virtual void run() override

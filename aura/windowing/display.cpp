@@ -17,7 +17,9 @@ namespace windowing
 
       m_pDisplay = nullptr;
 
-      m_pDisplay = nullptr;
+      m_pDisplay2 = nullptr;
+
+      _m_pX11Display = nullptr;
 
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;

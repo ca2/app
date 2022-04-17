@@ -40,7 +40,7 @@
 //};
 
 //
-using function_pointer = ::matter_pointer;
+using function_pointer = ::element_pointer;
 //
 //
 

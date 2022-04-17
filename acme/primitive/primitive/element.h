@@ -67,6 +67,10 @@ public:
    virtual bool step();
    virtual ::payload realize();
 
+
+   virtual void operator()();
+
+
    virtual void set_generic_object_name(const char* pszName);
    virtual void set_library_name(const char* pszLibraryName);
    // if this is an application/or nano application
@@ -82,7 +86,10 @@ public:
 //   virtual ::e_status wait(const class ::wait & wait);
 
 
-   [[nodiscard]] virtual DURATION timeout() const;
+   [[nodiscard]] virtual ::duration timeout() const;
+
+
+   virtual void set_timeout(const ::duration & duration);
 
 
    virtual ::element * get_taskpool_container();
@@ -109,12 +116,13 @@ public:
 
 
    inline void set_fail() { set(e_flag_failure); clear(e_flag_success); }
-   inline void set_timeout() { set(e_flag_timeout); }
+   inline void set_timed_out() { set(e_flag_timeout); }
    inline void set_persistent(bool bSet = true) { set(e_flag_persist, bSet); }
 
 
    [[nodiscard]] inline bool is_ok() const { return has(e_flag_success); }
    [[nodiscard]] inline bool nok() const { return has(e_flag_failure) || has(e_flag_timeout); }
+   [[nodiscard]] inline bool has_timed_out() { return has(e_flag_timeout); }
    [[nodiscard]] inline bool is_modified() const { return has(e_flag_changed); }
    [[nodiscard]] inline bool is_persistent() const { return has(e_flag_persist); }
 

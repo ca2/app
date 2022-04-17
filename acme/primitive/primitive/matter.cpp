@@ -63,27 +63,6 @@ void matter::on_initialize_object()
 }
 
 
-void matter::operator()()
-{
-
-   ::e_status estatus;
-
-   //try
-   //{
-
-   /*estatus =*/ run();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
-
-}
 
 
 void matter::operator()(::message::message * pmessage)

@@ -71,7 +71,6 @@ public:
    void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
 
 
-
    ::routine_array * routine_array(const ::atom & atom, bool bCreate = false);
 
 

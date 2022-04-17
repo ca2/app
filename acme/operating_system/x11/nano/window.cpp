@@ -6,6 +6,7 @@
 #include <X11/Xatom.h>
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
+#include <X11/Xutil.h>
 #include <cairo-xlib.h>
 
 
@@ -178,7 +179,7 @@ namespace x11
       }
 
 
-      m_pdisplay->display_send(__routine([this]()
+      m_pdisplay->display_send([this]()
       {
 
          auto screen = DefaultScreen(m_pdisplay->m_pdisplay);
@@ -203,7 +204,7 @@ namespace x11
 
          m_pdisplay->add_window(this);
 
-#if 0
+//#if 0
 
          // _NET_WM_WINDOW_TYPE_SPLASH
          // KDE seems to close this type of window when it is clicked
@@ -213,7 +214,7 @@ namespace x11
 
             auto atomWindowType = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE", true);
 
-            auto atomWindowTypeSplash = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE_SPLASH", true);
+            auto atomWindowTypeSplash = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE_DIALOG", true);
 
             if (atomWindowType != None && atomWindowTypeSplash != None)
             {
@@ -224,9 +225,24 @@ namespace x11
 
             }
 
-         }
+  //       }
 
-#endif
+//#endif
+
+    //     if(m_pinterface->m_bStartCentered)
+      //   {
+
+            auto atomNormalHints = m_pdisplay->intern_atom("WM_NORMAL_HINTS", false);
+
+            XSizeHints hints{};
+
+            hints.flags = PWinGravity;
+
+            hints.win_gravity = CenterGravity;
+
+            XSetWMSizeHints(m_pdisplay->m_pdisplay, m_window, &hints, atomNormalHints);
+
+         }
 
          if(m_pinterface->m_bArbitraryPositioning)
          {
@@ -257,7 +273,7 @@ namespace x11
 
          nano_window_on_create();
 
-      }));
+      });
 
       //XMapWindow(m_pdisplay->m_pdisplay, m_window);
 

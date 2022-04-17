@@ -93,13 +93,20 @@ void element::handle(::message::message * pmessage)
 }
 
 
-DURATION element::timeout() const
+::duration element::timeout() const
 {
 
-   return { .m_iSecond = 64 }; // : // 64s ~ 1 minute
+   return 1_min;
 
 }
 
+
+void element::set_timeout(const ::duration & durationTimeout)
+{
+
+   throw interface_only();
+
+}
 
 
 void element::init_task()
@@ -145,6 +152,29 @@ bool element::step()
 
    //return ::success;
    return ::success;
+
+}
+
+
+void element::operator()()
+{
+
+   //::e_status estatus;
+
+   //try
+   //{
+
+   /*estatus =*/ run();
+
+   //}
+   //catch (...)
+   //{
+
+   //   estatus = ::error_exception;
+
+   //}
+
+   //return estatus;
 
 }
 

@@ -84,14 +84,14 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::point_i32 point;
+   ::point_i32 pointClient;
 
-   _screen_to_client(point, pmouse->m_point);
+   _screen_to_client(pointClient, pmouse->m_point);
 
    if(m_bTracking)
    {
 
-      point -= m_sizeTrackOffset;
+      auto point = pointClient - m_sizeTrackOffset;
 
       queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
          {
@@ -195,12 +195,10 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-   if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_eelement == ::e_element_scrollbar_rect)
+   if(::is_set(m_pitemCurrent) && m_pitemCurrent->m_eelement == ::e_element_scrollbar_trackbar)
    {
 
       m_bTracking = true;
-
-      SetTimer(43212345, 10_ms, nullptr);
 
       m_pointTrack = m_pitemCurrent->m_pointClient;
 
@@ -246,8 +244,6 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    KillTimer(((uptr)this));
 
    KillTimer(((uptr)this)+1);
-
-   KillTimer(43212345);
 
    bool bWasTracking = m_bTracking;
 
@@ -802,12 +798,6 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
       }
 
    }
-   //else if (ptimer->m_uEvent == 43212345)
-   //{
-
-   //   set_need_redraw();
-
-   //}
 
 }
 
@@ -1221,6 +1211,10 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    try
    {
 
+      //pgraphics->reset_clip();
+
+      //return;
+
       //::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
       //bool bFirst = true;
@@ -1354,33 +1348,13 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    auto pstyle = get_style(pgraphics);
 
-   auto crBackground = get_color(pstyle, ::e_element_background);
+   auto colorBackground = get_color(pstyle, ::e_element_background);
 
    ::rectangle_i32 rectangleClient;
 
    get_client_rect(rectangleClient);
 
-   if (crBackground.is_translucent())
-   {
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      auto psession = get_session();
-
-      if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
-      {
-
-         pgraphics->fill_rectangle(rectangleClient, rgb(255, 255, 255));
-
-      }
-      else
-      {
-
-         pgraphics->fill_rectangle(rectangleClient, argb(255, 240, 240, 240));
-
-      }
-
-   }
+   pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
    ::rectangle_i32 rectangleTrack;
 
@@ -1390,7 +1364,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_window_rect(rectangleWindow);
 
-   auto colorRectStrong = scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect);
+   auto colorRectStrong = scrollbar_color_strong(pstyle, ::e_element_scrollbar_trackbar);
 
    m_pbrushDraw->create_solid(colorRectStrong);
 
@@ -1808,7 +1782,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
    if(rectangleTrack.contains(point))
    {
 
-      return __new(::item(::e_element_scrollbar_rect));
+      return __new(::item(::e_element_scrollbar_trackbar));
 
    }
    else

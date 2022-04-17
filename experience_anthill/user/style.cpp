@@ -310,6 +310,29 @@ namespace experience_anthill
             }
 
          }
+         else if (econtroltype == ::user::e_control_type_scroll_bar)
+         {
+
+            if(eelement == e_element_background)
+            {
+
+               if(is_dark_mode())
+               {
+
+                  return ::argb(100, 255, 255, 255);
+
+               }
+               else
+               {
+
+                  return ::argb(100, 0, 0, 0);
+
+               }
+
+
+            }
+
+         }
 
       }
 
@@ -539,6 +562,25 @@ namespace experience_anthill
             }
 
          }
+
+      }
+      else if(eelement == e_element_scrollbar_trackbar
+      || eelement == e_element_scrollbar_strong)
+      {
+
+         if(is_dark_mode())
+         {
+
+            return ::argb(100, 255, 255, 255);
+
+         }
+         else
+         {
+
+            return ::argb(100, 0, 0, 0);
+
+         }
+
 
       }
 

@@ -16,7 +16,6 @@ namespace user
       m_scrolldataHorizontal.m_iPage = 0;
       m_scrolldataHorizontal.m_iLine = 0;
       m_scrolldataHorizontal.m_bScrollEnable = true;
-      //m_scrolldataHorizontal.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
 
    }
 
@@ -333,9 +332,9 @@ namespace user
       m_scrolldataVertical.m_iPage = 0;
       m_scrolldataVertical.m_iLine = 0;
       m_scrolldataVertical.m_bScrollEnable = true;
-//      m_scrolldataVertical.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
 
    }
+
 
    vertical_scroll_base::~vertical_scroll_base()
    {

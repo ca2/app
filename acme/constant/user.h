@@ -41,7 +41,7 @@ enum enum_element : ::i64
    e_element_scrollbar,
    e_element_scrollbar_draw,
    e_element_scrollbar_strong,
-   e_element_scrollbar_rect,
+   e_element_scrollbar_trackbar,
    e_element_scrollbar_rectA,
    e_element_scrollbar_rectB,
    e_element_scrollbar_pageA,

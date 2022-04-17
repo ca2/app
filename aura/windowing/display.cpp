@@ -1158,6 +1158,13 @@ namespace windowing
 
          sizeNormal = pinteraction->layout().normal().m_size;
 
+         if(sizeNormal.is_empty())
+         {
+
+            sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+
+         }
+
       }
       else
       {

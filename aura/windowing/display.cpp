@@ -19,7 +19,9 @@ namespace windowing
 
       m_pDisplay2 = nullptr;
 
+#ifdef LINUX
       _m_pX11Display = nullptr;
+#endif
 
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;

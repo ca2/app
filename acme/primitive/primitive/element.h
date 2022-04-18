@@ -68,7 +68,7 @@ public:
    virtual ::payload realize();
 
 
-   virtual void operator()();
+   virtual void call_run();
 
 
    virtual void set_generic_object_name(const char* pszName);

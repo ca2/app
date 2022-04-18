@@ -16200,6 +16200,7 @@ namespace user
          {
 
             set_keyboard_focus();
+
             {
 
                psession->user()->set_mouse_focus_LButtonDown(this);
@@ -16223,6 +16224,8 @@ namespace user
       {
 
       }
+
+
 
       {
 

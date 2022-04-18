@@ -189,6 +189,30 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    set_mouse_capture();
 
+   if(!keyboard_focus_is_focusable())
+   {
+
+      auto pparent = get_parent();
+
+      if(::is_set(pparent))
+      {
+
+         if (pparent->keyboard_focus_is_focusable())
+         {
+
+            pparent->set_keyboard_focus();
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
+
+      }
+
+   }
+
+
    auto psystem = m_psystem->m_paurasystem;
 
    auto pdraw2d = psystem->draw2d();

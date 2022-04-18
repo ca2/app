@@ -123,7 +123,16 @@ namespace xcb
       if (atom == XCB_ATOM_NONE)
       {
 
-         atom = intern_atom(atom_name(eatom), bCreate);
+         auto pszName = atom_name(eatom);
+
+         if(eatom == ::x11::e_atom_net_active_window)
+         {
+
+            ::output_debug_string("e_atom_net_active_window");
+
+         }
+
+         atom = intern_atom(pszName, bCreate);
 
          m_atoma[eatom] = atom;
 
@@ -1020,7 +1029,7 @@ namespace xcb
    xcb_window_t display::_get_active_window()
    {
 
-      auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, atom(::x11::e_atom_net_active_window), XCB_ATOM_WINDOW);
+      auto window = (xcb_window_t) _window_get_long_property(m_windowRoot, intern_atom(::x11::e_atom_net_active_window, false), XCB_ATOM_WINDOW);
 
       windowing_output_debug_string("\n::_get_active_window 2");
 

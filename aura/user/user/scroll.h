@@ -34,7 +34,7 @@ namespace user
 
 
       horizontal_scroll_base();
-      virtual ~horizontal_scroll_base();
+      ~horizontal_scroll_base() override;
 
 
       virtual scroll_bar* get_horizontal_scroll_bar() override;
@@ -82,7 +82,7 @@ namespace user
 
 
       vertical_scroll_base();
-      virtual ~vertical_scroll_base();
+      ~vertical_scroll_base() override;
 
 
       virtual scroll_bar* get_vertical_scroll_bar() override;
@@ -104,7 +104,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnMouseWheel);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_wheel);
 
 
       virtual int get_final_y_scroll_bar_width() override;

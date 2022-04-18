@@ -528,7 +528,7 @@ namespace user
    }
 
 
-   void vertical_scroll_base::_001OnMouseWheel(::message::message * pmessage)
+   void vertical_scroll_base::on_message_mouse_wheel(::message::message * pmessage)
    {
 
       if (!m_scrolldataVertical.m_bScroll || !m_scrolldataVertical.m_bScrollEnable)
@@ -540,43 +540,79 @@ namespace user
 
       __pointer(::message::mouse_wheel) pmousewheel(pmessage);
 
-      if (pmousewheel->GetDelta() > 0)
+//      if (pmousewheel->GetDelta() > 0)
+//      {
+//
+//         if (m_iWheelDelta > 0)
+//         {
+//
+//            m_iWheelDelta += pmousewheel->GetDelta();
+//
+//         }
+//         else
+//         {
+//
+//            m_iWheelDelta = pmousewheel->GetDelta();
+//
+//         }
+//
+//      }
+//      else if (pmousewheel->GetDelta() < 0)
+//      {
+//
+//         if (m_iWheelDelta < 0)
+//         {
+//
+//            m_iWheelDelta += pmousewheel->GetDelta();
+//
+//         }
+//         else
+//         {
+//
+//            m_iWheelDelta = pmousewheel->GetDelta();
+//
+//         }
+//
+//      }
+
+//      index iDelta = m_iWheelDelta / WHEEL_DELTA;
+//
+//      m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
+//
+//      index nPos = m_pscrollbarVertical->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
+//
+//      if (nPos < m_pscrollbarVertical->m_scrollinfo.nMin)
+//         nPos = m_pscrollbarVertical->m_scrollinfo.nMin;
+//      else if (nPos > m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage)
+//         nPos = m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage;
+//
+//      m_pscrollbarVertical->m_scrollinfo.nPos =  (i32) nPos;
+
+
+      int iDelta = pmousewheel->GetDelta();
+
+      if(iDelta > 0)
       {
-         if (m_iWheelDelta > 0)
+
+         for(; iDelta > 0; iDelta -= 120)
          {
-            m_iWheelDelta += pmousewheel->GetDelta();
+
+            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);
+
          }
-         else
-         {
-            m_iWheelDelta = pmousewheel->GetDelta();
-         }
+
       }
-      else if (pmousewheel->GetDelta() < 0)
+      else
       {
-         if (m_iWheelDelta < 0)
+
+         for(; iDelta < 0; iDelta += 120)
          {
-            m_iWheelDelta += pmousewheel->GetDelta();
+
+            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
+
          }
-         else
-         {
-            m_iWheelDelta = pmousewheel->GetDelta();
-         }
+
       }
-
-      index iDelta = m_iWheelDelta / WHEEL_DELTA;
-
-      m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
-
-      index nPos = m_pscrollbarVertical->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
-
-      if (nPos < m_pscrollbarVertical->m_scrollinfo.nMin)
-         nPos = m_pscrollbarVertical->m_scrollinfo.nMin;
-      else if (nPos > m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage)
-         nPos = m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage;
-
-      m_pscrollbarVertical->m_scrollinfo.nPos =  (i32) nPos;
-
-      m_pscrollbarVertical->post_scroll_message(e_scroll_command_thumb_position);
 
       pmousewheel->m_lresult = 0;
 
@@ -621,7 +657,7 @@ namespace user
    {
 
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &vertical_scroll_base::_001OnVScroll);
-      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &vertical_scroll_base::_001OnMouseWheel);
+      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &vertical_scroll_base::on_message_mouse_wheel);
 
    }
 
@@ -691,23 +727,12 @@ namespace user
    }
 
 
-
    int vertical_scroll_base::get_final_y_scroll_bar_width()
    {
 
       return m_scrolldataVertical.m_bScroll && m_scrolldataVertical.m_bScrollEnable ? m_scrolldataVertical.m_iWidth : 0;
 
    }
-
-   //
-   //void vertical_scroll_base::on_layout(::draw2d::graphics_pointer & pgraphics)
-   //{
-
-   //   BASE::on_layout(pgraphics);
-
-   //   on_change_view_size();
-
-   //}
 
 
    scroll_base::scroll_base()
@@ -724,8 +749,10 @@ namespace user
 
    void scroll_base::install_message_routing(::channel * pchannel)
    {
+
       horizontal_scroll_base::install_message_routing(pchannel);
       vertical_scroll_base::install_message_routing(pchannel);
+
    }
 
 

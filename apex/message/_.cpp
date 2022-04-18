@@ -148,10 +148,8 @@ namespace message
       case e_message_non_client_left_button_down:
       case e_message_non_client_left_button_up:
          return PrototypeMouse;
-#ifdef WINDOWS
       case e_message_mouse_wheel:
          return PrototypeMouseWheel;
-#endif
       case e_message_non_client_activate:
          return PrototypeNcActivate;
       case e_message_timer:

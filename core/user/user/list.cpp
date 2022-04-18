@@ -1217,6 +1217,8 @@ namespace user
 
             rectangle = itemFirst.m_rectangleItem;
 
+            m_scrolldataVertical.m_iLine = m_dItemHeight;
+
             rectangle.top = 0;
 
             rectangle.bottom = (::i32) ((_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight);

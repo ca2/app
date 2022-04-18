@@ -103,8 +103,9 @@ namespace user
       virtual bool validate_viewport_offset(point_i32 & point) override;
 
 
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(on_message_vertical_scroll);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_wheel);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
 
       virtual int get_final_y_scroll_bar_width() override;

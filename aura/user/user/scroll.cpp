@@ -454,7 +454,7 @@ namespace user
    }
 
 
-   void vertical_scroll_base::_001OnVScroll(::message::message * pmessage)
+   void vertical_scroll_base::on_message_vertical_scroll(::message::message * pmessage)
    {
 
       __pointer(::message::scroll) pscroll(pmessage);
@@ -621,6 +621,93 @@ namespace user
    }
 
 
+   void vertical_scroll_base::on_message_key_down(::message::message * pmessage)
+   {
+
+      if (!m_scrolldataVertical.m_bScroll || !m_scrolldataVertical.m_bScrollEnable)
+      {
+
+         return;
+
+      }
+
+      __pointer(::message::key) pkey(pmessage);
+
+//      if (pmousewheel->GetDelta() > 0)
+//      {
+//
+//         if (m_iWheelDelta > 0)
+//         {
+//
+//            m_iWheelDelta += pmousewheel->GetDelta();
+//
+//         }
+//         else
+//         {
+//
+//            m_iWheelDelta = pmousewheel->GetDelta();
+//
+//         }
+//
+//      }
+//      else if (pmousewheel->GetDelta() < 0)
+//      {
+//
+//         if (m_iWheelDelta < 0)
+//         {
+//
+//            m_iWheelDelta += pmousewheel->GetDelta();
+//
+//         }
+//         else
+//         {
+//
+//            m_iWheelDelta = pmousewheel->GetDelta();
+//
+//         }
+//
+//      }
+
+//      index iDelta = m_iWheelDelta / WHEEL_DELTA;
+//
+//      m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
+//
+//      index nPos = m_pscrollbarVertical->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
+//
+//      if (nPos < m_pscrollbarVertical->m_scrollinfo.nMin)
+//         nPos = m_pscrollbarVertical->m_scrollinfo.nMin;
+//      else if (nPos > m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage)
+//         nPos = m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage;
+//
+//      m_pscrollbarVertical->m_scrollinfo.nPos =  (i32) nPos;
+
+
+      auto ekey = pkey->m_ekey;
+
+      if(ekey == ::user::e_key_prior)
+      {
+
+         m_pscrollbarVertical->post_scroll_message(e_scroll_command_page_up);
+
+         pkey->m_lresult = 0;
+
+         pkey->m_bRet = true;
+
+      }
+      else if(ekey == ::user::e_key_next)
+      {
+
+         m_pscrollbarVertical->post_scroll_message(e_scroll_command_page_down);
+
+         pkey->m_lresult = 0;
+
+         pkey->m_bRet = true;
+
+      }
+
+   }
+
+
    bool vertical_scroll_base::validate_viewport_offset(point_i32 & point)
    {
 
@@ -656,8 +743,9 @@ namespace user
    void vertical_scroll_base::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &vertical_scroll_base::_001OnVScroll);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &vertical_scroll_base::on_message_vertical_scroll);
       MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &vertical_scroll_base::on_message_mouse_wheel);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &vertical_scroll_base::on_message_key_down);
 
    }
 

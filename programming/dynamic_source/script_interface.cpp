@@ -262,7 +262,8 @@ namespace dynamic_source
 
    }
 
-   ::payload script_interface::call_run()
+
+   ::payload script_interface::run_script()
    {
 
       bool bRerun = rerun();

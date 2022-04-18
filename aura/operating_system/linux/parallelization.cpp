@@ -187,7 +187,7 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
       try
       {
 
-         prunnable->operator()();
+         (*prunnable)();
 
       }
       catch(...)
@@ -216,7 +216,7 @@ CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
    pnode->node_fork([prunnable]()
    {
 
-      prunnable->operator()();
+      (*prunnable)();
 
    });
 

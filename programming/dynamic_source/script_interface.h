@@ -76,7 +76,7 @@ namespace dynamic_source
       virtual void set_auth_email(const string & strEmail);
       virtual void auth(const string& strAuth);
       
-      ::payload call_run();
+      ::payload run_script();
 
 
       virtual bool rerun();

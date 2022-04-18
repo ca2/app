@@ -683,7 +683,7 @@ namespace dynamic_source
 
          pinstance->dinit();
 
-         payload = pinstance->call_run();
+         payload = pinstance->run_script();
 
          try
          {

@@ -188,7 +188,7 @@ public:
 
       }
 
-      this->operator()();
+      (*this)();
 //      {
 //
 //         return -1;

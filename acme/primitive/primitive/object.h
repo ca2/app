@@ -313,7 +313,7 @@ public:
 
       //inline void defer_set_object(::object * pobject);
 
-   void call_run() override;
+   void operator()() override;
 
 
    inline i64 get_ref_count()

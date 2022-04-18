@@ -1741,7 +1741,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 
    }
 
-   pgroup->call_run();
+   (*pgroup)();
 
    //return true;
 

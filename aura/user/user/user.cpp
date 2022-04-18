@@ -1528,7 +1528,7 @@ namespace user
 
          synchronouslock.unlock();
 
-         prunnable->call_run();
+         (*prunnable)();
 
          synchronouslock.lock();
 

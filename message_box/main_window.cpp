@@ -23,6 +23,51 @@ namespace app_message_box
    }
 
 
+
+
+   void main_window::install_message_routing(::channel * pchannel)
+   {
+
+      ::user::main_window::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_close, pchannel, this, &main_window::on_message_close);
+
+   }
+
+
+   void main_window::on_message_close(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+      auto psequence = m_psystem->message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+
+      psequence->then([this](auto psequence)
+         {
+
+            if (psequence->m_atomResult == e_dialog_result_yes)
+            {
+
+               auto papp = get_app();
+
+               papp->_001TryCloseApplication();
+
+            }
+            else if (psequence->m_atomResult == e_dialog_result_cancel)
+            {
+
+               show_message_box();
+
+            }
+
+         });
+
+   }
+
+
+
+
+
    void main_window::on_create_user_interaction()
    {
 
@@ -111,9 +156,7 @@ namespace app_message_box
             if (psequence->m_atomResult == e_dialog_result_yes)
             {
 
-               auto papp = get_app();
-
-               papp->_001TryCloseApplication();
+               post_message(e_message_close);
 
             }
             else if (psequence->m_atomResult == e_dialog_result_cancel)

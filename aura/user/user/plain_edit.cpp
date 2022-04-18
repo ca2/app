@@ -2919,6 +2919,8 @@ namespace user
 
       }
 
+      m_scrolldataVertical.m_iLine = m_dLineHeight;
+
       on_change_view_size(pgraphics);
 
       m_bCalcLayoutHintNoTextChange = false;

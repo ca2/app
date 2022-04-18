@@ -1057,6 +1057,9 @@ namespace filemanager
 
       }
 
+
+      m_pointScroll = {0,0};
+
       string_array straStrictOrder;
 
 //      papp->data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);

@@ -113,7 +113,7 @@ namespace user
 
   
       frame();
-      virtual ~frame();
+      ~frame() override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;
@@ -187,7 +187,7 @@ namespace user
 
       ::size_i32 get_window_minimum_size() override;
 
-      DECLARE_MESSAGE_HANDLER(on_message_app_exit);
+      DECLARE_MESSAGE_HANDLER(on_message_application_exit);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 #ifdef WINDOWS_DESKTOP

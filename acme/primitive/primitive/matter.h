@@ -84,7 +84,7 @@ public:
    virtual void on_initialize_object();
 
 
-   using element::operator();
+   //using element::operator();
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
 

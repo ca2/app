@@ -656,7 +656,7 @@ void run_runnable(::matter * pmatter)
 
          //estatus = pmatter->operator()();
 
-   (*pmatter)();
+   pmatter->call_run();
 
    //   }
    //   catch (...)

@@ -25,7 +25,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 //{
 
 
-   inline void routine::operator()() const { (*m_p)(); }
+   inline void routine::operator()() const { m_p->call_run(); }
 
 
    inline bool routine::should_run_async() const { return m_p->should_run_async(); }

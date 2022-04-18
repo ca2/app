@@ -31,7 +31,7 @@ namespace user
    void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::user::interaction::install_message_routing(pchannel);
+      ::user::frame::install_message_routing(pchannel);
 
       //install_click_default_mouse_handling(pchannel);
       

@@ -311,6 +311,10 @@ public:
 //   void initialize(GLFWwindow * window, bool shutdown_glfw);
 //
 //   /* Event handlers */
+// 
+// 
+
+   virtual void on_close();
    //bool on_mouse_move(const ::point_i32 & point) override;
    bool mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) override;
 //   void key_callback_event(int key, int scancode, int action, int mods);

@@ -771,7 +771,7 @@ void matter::__task_main()
 
    //::e_status estatus = operator()();
 
-   (*this)();
+   call_run();
 
    //return estatus;
 

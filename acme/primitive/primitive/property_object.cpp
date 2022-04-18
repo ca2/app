@@ -222,7 +222,7 @@ bool property_object::is_alive()
 }
 
 
-void property_object::operator()()
+void property_object::call_run()
 {
 
    //::e_status estatus;

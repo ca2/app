@@ -3030,7 +3030,7 @@ void object::initialize(::object* pobject)
 
    //inline void defer_set_object(::object * pobject);
 
-void object::operator()()
+void object::call_run()
 {
 
    run();

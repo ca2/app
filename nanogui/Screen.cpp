@@ -880,6 +880,14 @@ bool Screen::on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekey
       return ret;
 }
 
+
+void Screen::on_close()
+{
+
+
+}
+
+
 bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers)
 {
    m_modifiers = ekeyModifiers;

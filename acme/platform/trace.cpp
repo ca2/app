@@ -480,25 +480,12 @@ tracer & tracer::operator << (const integral_byte & memsize)
 void tracer::flush()
 {
 
-   if (::is_null(m_plogger))
+   if (::is_set(m_plogger))
    {
 
-      if (::is_null(::t_plogger))
-      {
-
-         ::logger::t_construct(m_psystem);
-
-      }
-
-      m_plogger = ::t_plogger.m_p;
+      m_plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
 
    }
-
-   //string str = m_str;
-
-   //m_str.Empty();
-
-   m_plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
 
 }
 

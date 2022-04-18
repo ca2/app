@@ -188,7 +188,7 @@ public:
 
       }
 
-      (*this)();
+      call_run();
 //      {
 //
 //         return -1;

@@ -188,6 +188,7 @@ namespace user
       ::size_i32 get_window_minimum_size() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_application_exit);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 #ifdef WINDOWS_DESKTOP

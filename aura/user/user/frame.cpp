@@ -36,9 +36,11 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       add_command_handler("app_exit", this, &frame::on_message_application_exit);
+      
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -80,6 +82,41 @@ namespace user
          pmessage->m_bRet = true;
 
       }
+
+   }
+
+
+   void frame::on_message_key_down(::message::message* pmessage)
+   {
+
+      __pointer(::user::key) pkey(pmessage);
+      
+      if (get_parent() == nullptr)
+      {
+
+         
+         if(pkey->m_ekey == e_key_q && get_session()->is_key_pressed(::user::e_key_command))
+         {
+            
+            post_message(e_message_close);
+            pmessage->m_bRet = true;
+            
+         }
+
+         return;
+
+      }
+
+//      __pointer(::aura::application) papp = get_app();
+//
+//      papp->_001TryCloseApplication();
+//
+//      if (pmessage != nullptr)
+//      {
+//
+//         pmessage->m_bRet = true;
+//
+//      }
 
    }
 

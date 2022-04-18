@@ -885,6 +885,8 @@ namespace user
 
       sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
+      m_scrolldataVertical.m_iLine = m_dItemHeight;
+
       set_total_size(sizeTotal);
 
       ::user::scroll_base::on_change_view_size(pgraphics);
@@ -1187,23 +1189,25 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      auto psession = get_session();
+      ::user::scroll_base::on_change_viewport_offset(pgraphics);
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
-
-      auto pmouse = __create_new < ::user::mouse >();
-
-      pmouse->m_point = pointCursor;
-
-      update_hover(pmouse);
-
-      set_need_redraw();
-
-      post_redraw();
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      auto pointCursor = pwindowing->get_cursor_position();
+//
+//      auto pmouse = __create_new < ::user::mouse >();
+//
+//      pmouse->m_point = pointCursor;
+//
+//      update_hover(pmouse);
+//
+//      set_need_redraw();
+//
+//      post_redraw();
 
    }
 

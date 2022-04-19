@@ -89,7 +89,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
       else if (psignal->should_poll(psignal->poll_time()))
       {
 
-         m_pcontext->branch_element(psignal);
+         m_pcontext->branch_procedure(__as(psignal));
 
       }
 

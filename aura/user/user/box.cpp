@@ -388,12 +388,12 @@ namespace user
          else
          {
             
-            send_routine(__routine([this, windowrectangle]()
+            send_routine([this, windowrectangle]()
             {
 
                good_restore(nullptr, windowrectangle.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
                
-            }));
+            });
 
          }
 

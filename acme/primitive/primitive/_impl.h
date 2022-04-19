@@ -3092,24 +3092,12 @@ inline void object::defer_branch(::task_pointer& ptask, const ::procedure & proc
 }
 
 
-template < typename PRED >
-inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
+inline __pointer(task) object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   return ::predicate_run(this, bSync, pred);
+   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
-}
-
-
-template < typename PREDICATE >
-inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
-{
-
-   auto procedure = ::procedure(predicate);
-
-   auto ptask = this->branch_element(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-   if(!ptask)
+   if (!ptask)
    {
 
       return ptask;
@@ -3126,6 +3114,11 @@ inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array &
    return ptask;
 
 }
+
+
+
+
+
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
@@ -3195,7 +3188,7 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
 
    auto psignalization = __new(::promise::signalization);
 
-   auto function = ::procedure([procedure, psignalization]()
+   auto function = [procedure, psignalization]()
                              {
 
                                 try
@@ -3223,18 +3216,20 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
 
                                 psignalization->m_pelementHold.release();
 
-                             });
+                             };
 
-   psignalization->m_pelementHold = (::element *)function;
+   auto procedurePost = ::procedure(function);
 
-   (pposting->*posting_method)(function);
+   psignalization->m_pelementHold = procedurePost;
 
-   auto estatus = psignalization->m_evReady.wait(function->timeout());
+   (pposting->*posting_method)(procedurePost);
+
+   auto estatus = psignalization->m_evReady.wait(procedurePost->timeout());
 
    if(estatus == error_wait_timeout)
    {
 
-      function->set_timed_out();
+      procedurePost->set_timed_out();
 
    }
 

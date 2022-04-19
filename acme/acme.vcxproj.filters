@@ -4174,6 +4174,9 @@
     <ClCompile Include="platform\procedure_array.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="parallelization\fork.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

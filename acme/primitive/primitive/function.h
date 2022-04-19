@@ -35,7 +35,8 @@ struct function {
 
 
 template < >
-class function < void() >
+class function < void() > :
+   public ___pointer < ::element >
 {
 public:
 
@@ -76,9 +77,6 @@ public:
    };
 
    
-   __pointer(::element)    m_pelement;
-
-
    function(nullptr_t = nullptr)
    {
 
@@ -88,7 +86,9 @@ public:
    function(enum_as, ::element * pelement)
    {
 
-      m_pelement = pelement;
+      m_p = pelement;
+
+      m_pelement = m_p;
 
    }
 
@@ -96,7 +96,9 @@ public:
    function(enum_as, ::lparam & lparam)
    {
 
-      m_pelement = ::move(lparam.detach_element());
+      m_p = (::element *) lparam.m_lparam;
+
+      m_pelement = m_p;
 
    }
 
@@ -105,20 +107,22 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_pelement = __new(class predicate <PREDICATE >(predicateParam));
+      m_p = new class predicate <PREDICATE >(predicateParam);
+
+      m_pelement = m_p;
 
    }
 
 
    function(const function & function) :
-      m_pelement(function.m_pelement)
+      ___pointer < ::element > (function)
    {
 
    }
 
 
    function(function && function) :
-      m_pelement(::move(function.m_pelement))
+      ___pointer < ::element >(::move(function))
    {
 
    }
@@ -133,25 +137,17 @@ public:
    void operator()() const
    {
 
-      ASSERT(m_pelement);
+      ASSERT(m_p);
 
-      m_pelement->call_run();
+      m_p->call_run();
 
    }
-
-
-   void clear() { m_pelement.release(); }
 
 
    function & operator = (const function & function)
    {
 
-      if (&function != this)
-      {
-
-         m_pelement = function.m_pelement;
-
-      }
+      ___pointer < ::element >::operator=(function.m_p);
 
       return *this;
 
@@ -161,35 +157,21 @@ public:
    function & operator = (function && function)
    {
 
-      if (&function != this)
-      {
-
-         m_pelement = ::move(function.m_pelement);
-
-      }
+      ___pointer < ::element >::operator=(::move(function));
 
       return *this;
 
    }
 
-   function & operator = (nullptr_t)
-   {
+   operator bool() const { return ::is_set(m_p); }
 
-      clear();
+   bool operator !() const { return ::is_null(m_p); }
 
-      return *this;
+   operator ::element *() const { return m_p; }
 
-   }
+   const ::element * operator -> () const { return m_p; }
 
-   operator bool() const { return ::is_set(m_pelement); }
-
-   bool operator !() const { return ::is_null(m_pelement); }
-
-   operator ::element *() const { return m_pelement.m_p; }
-
-   const ::element * operator -> () const { return m_pelement.m_p; }
-
-   ::element * operator -> () { return m_pelement.m_p; }
+   ::element * operator -> () { return m_p; }
    
 
 };

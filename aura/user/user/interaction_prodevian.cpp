@@ -145,7 +145,7 @@ namespace user
 
       //}
 
-      m_routineUpdateScreen = __routine([this]()
+      m_routineUpdateScreen = [this]()
          {
 
             if (!has(e_flag_destroying) && !is_finishing())
@@ -157,9 +157,9 @@ namespace user
 
             m_bUpdatingScreen = false;
 
-         });
+         };
 
-      m_routineWindowShow = __routine([this]()
+      m_routineWindowShow = [this]()
          {
 
             if (m_pimpl)
@@ -169,7 +169,7 @@ namespace user
 
             }
 
-         });
+         };
 
       m_puserinteraction = pimpl->m_puserinteraction;
 

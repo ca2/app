@@ -5957,14 +5957,14 @@ namespace aura
          if(pinteraction)
          {
 
-            pinteraction->post_routine(__routine([pinteraction, idCommand]()
+            pinteraction->post_routine([pinteraction, idCommand]()
             {
 
                ::message::command command(idCommand);
 
                pinteraction->route_command(&command);
 
-            }));
+            });
 
             return true;
 

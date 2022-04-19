@@ -100,7 +100,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure);
 CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::procedure function);
 
 
-CLASS_DECL_ACME void main_asynchronous(::procedure function);
+CLASS_DECL_ACME void main_asynchronous(const ::procedure & function);
 
 
 //namespace parallelization

@@ -578,8 +578,7 @@ public:
    //}
 
 
-   template < typename PREDICATE >
-   inline __pointer(task) fork(PREDICATE predicate,
+   __pointer(task) fork(const ::procedure & procedure,
       const ::element_array & elementaHold = {},
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
@@ -600,42 +599,42 @@ public:
 //   template < typename PRED >
    //inline auto new_predicateicate_thread(PRED pred);
 
-   template < typename TYPE >
-   inline __pointer(task) branch_procedure(void (TYPE::* pfnMemberProcedure)(),
-      ::enum_priority epriority = e_priority_normal,
-      ::u32 nStackSize = 0,
-      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
-   {
+   //template < typename TYPE >
+   //inline __pointer(task) branch_procedure(void (TYPE::* pfnMemberProcedure)(),
+   //   ::enum_priority epriority = e_priority_normal,
+   //   ::u32 nStackSize = 0,
+   //   ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
+   //{
 
-      return fork([this, pfnMemberProcedure]()
-      {
+   //   return fork([this, pfnMemberProcedure]()
+   //   {
 
-         TYPE* ptype = dynamic_cast <TYPE*> (this);
+   //      TYPE* ptype = dynamic_cast <TYPE*> (this);
 
-         (ptype->*pfnMemberProcedure)();
+   //      (ptype->*pfnMemberProcedure)();
 
-      },
-         epriority,
-         nStackSize,
-         dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-
-   }
+   //   },
+   //      epriority,
+   //      nStackSize,
+   //      dwCreateFlags ADD_PASS_SEC_ATTRS);
 
 
-   virtual __pointer(::task) branch_element(element* pelement,
+   //}
+
+
+   virtual __pointer(::task) branch_procedure(const ::procedure & procedure,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
-   virtual __pointer(::task) branch_element_synchronously(element* pelement,
+   virtual __pointer(::task) branch_procedure_synchronously(const ::procedure & procedure,
                                     ::enum_priority epriority = e_priority_normal,
                                     ::u32 nStackSize = 0,
                                     ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-   template < typename PREDICATE >
-   inline ::task_pointer predicate_run(bool bSync, PREDICATE pred);
+   //template < typename PREDICATE >
+   //inline ::task_pointer run_procedure(bool bSync, const ::procedure & procedure);
 
    //using property_object::branch;
 

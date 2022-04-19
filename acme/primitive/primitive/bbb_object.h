@@ -480,8 +480,9 @@ public:
    //}
 
 
-   template < typename PRED >
-   inline ::thread_pointer fork(PRED pred);
+   //template < typename PRED >
+   //inline ::thread_pointer fork(PRED pred);
+   ::thread_pointer fork(const ::add_procedure & procedure);
 
 
    //inline ::thread_pointer launch(const ::procedure & procedure);
@@ -513,8 +514,9 @@ public:
    //inline ::thread_pointer fork(METHOD method);
 
 
-   template < typename PRED >
-   inline auto new_predicate_task(PRED pred);
+   template < typename PREDICATE >
+   inline auto new_predicate_task(PREDICATE pred);
+   //inline auto new_predicate_task(PRED pred);
 
    template < typename TYPE >
    inline auto async(void (TYPE::* pfnMemberProcedure)())
@@ -531,8 +533,8 @@ public:
 
    }
 
-   template < typename PRED >
-   inline ::thread_pointer predicate_run(bool bSync, PRED pred);
+   //template < typename PRED >
+   inline ::thread_pointer predicate_run(bool bSync, const ::add_procedure & procedure);
 
    ::thread_pointer begin(
       ::enum_priority epriority = ::e_priority_normal,

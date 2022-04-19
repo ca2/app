@@ -1770,10 +1770,10 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-__pointer(task) object::branch_element(element * pelement, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__pointer(task) object::branch_procedure(const ::procedure & procedure, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (::is_null(pelement))
+   if (::is_null(procedure))
    {
 
       throw ::exception(error_failed);
@@ -1789,9 +1789,9 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 
    }
 
-   ptask->m_procedure = __as(pelement);
+   ptask->m_procedure = procedure;
 
-   ptask->m_atom = typeid(*pelement).name();
+   ptask->m_atom = typeid(*procedure.m_p).name();
 
    ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
@@ -1800,14 +1800,14 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 }
 
 
-__pointer(::task) object::branch_element_synchronously(
-   element * pelement, 
+__pointer(::task) object::branch_procedure_synchronously(
+   const ::procedure & procedure, 
    ::enum_priority epriority, 
    ::u32 nStackSize,
    ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (::is_null(pelement))
+   if (::is_null(procedure))
    {
 
       throw ::exception(error_failed);
@@ -1823,9 +1823,9 @@ __pointer(::task) object::branch_element_synchronously(
 
    }
 
-   ptask->m_procedure = __as(pelement);
+   ptask->m_procedure = procedure;
 
-   ptask->m_atom = typeid(*pelement).name();
+   ptask->m_atom = typeid(*procedure.m_p).name();
 
    ptask->branch_synchronously(epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
@@ -1837,7 +1837,7 @@ __pointer(::task) object::branch_element_synchronously(
 __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_element(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure(__as(this), epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -1847,7 +1847,7 @@ __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u3
 __pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_element_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure_synchronously(__as(this), epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -3749,3 +3749,25 @@ bool object::IsSerializable() const
 //
 //}
 
+
+
+//::task_pointer object::run_procedure(bool bSync, const ::procedure & procedure)
+//{
+//
+//   if (bSync)
+//   {
+//
+//
+//
+//
+//   }
+//
+//
+//    //ptask = __new(predicate_task < PRED >(pobject, pred));
+////
+////   ptask->branch();
+////
+////   return ptask;
+//   return ::predicate_run(this, bSync, procedure);
+//
+//}

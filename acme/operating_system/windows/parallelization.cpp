@@ -74,13 +74,13 @@ bool on_init_timer_thread()
 extern class ::system * g_psystem;
 
 
-CLASS_DECL_ACME void main_asynchronous(::procedure function)
+CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
 {
 
-   g_psystem->fork([function]()
+   g_psystem->fork([procedure]()
       {
 
-         function();
+         procedure();
 
       });
 

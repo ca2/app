@@ -136,17 +136,8 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //};
 
 
-template < typename PRED >
-__pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, PRED pred)
-{
-
-   ptask = __new(predicate_task < PRED >(pobject, pred));
-
-   ptask->branch();
-
-   return ptask;
-
-}
+//template < typename PRED >
+//CLASS_DECL_ACME __pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, const ::procedure & procedure);
 
 
 
@@ -193,8 +184,8 @@ __pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, PRED p
 
 
 
-template < typename PRED >
-::task * predicate_run(::object * pobjectParent, bool bSync, PRED pred);
+// template < typename PRED >
+CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, const ::procedure & procedure);
 
 
 //CLASS_DECL_ACME int get_current_process_affinity_order();

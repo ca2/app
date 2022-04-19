@@ -1178,7 +1178,7 @@ namespace experience_nanogui
          return __acolor(100, 192, 192, 192);
 
       }
-      else if (eelement == ::e_element_scrollbar_rect)
+      else if (eelement == ::e_element_scrollbar_trackbar)
       {
 
          return __acolor(160, 140, 140, 140);
@@ -1480,7 +1480,7 @@ namespace experience_nanogui
 
       pscrollbar->get_window_rect(rectangleWindow);
 
-      ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_rect);
+      ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_trackbar);
 
       auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
 
@@ -1488,7 +1488,7 @@ namespace experience_nanogui
 
       ppenDraw->create_solid(1, colorBorder);
 
-      ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_rect);
+      ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_trackbar);
 
       auto pbrushDraw = __create < ::draw2d::brush > ();
 
@@ -1656,7 +1656,7 @@ namespace experience_nanogui
 
       auto ppenGrip = __create < ::draw2d::pen > ();
 
-      ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rect));
+      ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
       pgraphics->set(ppenGrip);
 

@@ -1789,7 +1789,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 
    }
 
-   ptask->m_procedure.m_ppredicate = pelement;
+   ptask->m_procedure = __as(pelement);
 
    ptask->m_atom = typeid(*pelement).name();
 
@@ -1823,7 +1823,7 @@ __pointer(::task) object::branch_element_synchronously(
 
    }
 
-   ptask->m_procedure = pelement;
+   ptask->m_procedure = __as(pelement);
 
    ptask->m_atom = typeid(*pelement).name();
 

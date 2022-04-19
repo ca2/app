@@ -2,6 +2,17 @@
 #pragma once
 
 
+enum enum_as
+{
+
+   e_as,
+
+}; // enum enum_base
+
+
+#define __as(p) { e_as, p }
+
+
 template < typename FUNCTION >
 struct function {
 
@@ -21,6 +32,167 @@ struct function {
 //{
 //   using type = function_implementation<RETURN_TYPE, TYPES...>;
 //};
+
+
+template < >
+class function < void() >
+{
+public:
+
+
+   template < typename ELEMENT >
+   class predicate :
+      virtual public element
+   {
+   public:
+
+
+      ELEMENT m_element;
+
+
+      predicate(ELEMENT element) :
+         m_element(element)
+      {
+
+      }
+
+
+      void operator()()
+      {
+
+         m_element();
+
+      }
+
+
+      virtual void run()
+      {
+
+         this->operator()();
+
+      }
+
+
+   };
+
+   
+   __pointer(::element)    m_pelement;
+
+
+   function(nullptr_t = nullptr)
+   {
+
+   }
+
+
+   function(enum_as, ::element * pelement)
+   {
+
+      m_pelement = pelement;
+
+   }
+
+
+   function(enum_as, ::lparam & lparam)
+   {
+
+      m_pelement = ::move(lparam.detach_element());
+
+   }
+
+
+   template < typename PREDICATE >
+   function(PREDICATE predicateParam)
+   {
+
+      m_pelement = __new(class predicate <PREDICATE >(predicateParam));
+
+   }
+
+
+   function(const function & function) :
+      m_pelement(function.m_pelement)
+   {
+
+   }
+
+
+   function(function && function) :
+      m_pelement(::move(function.m_pelement))
+   {
+
+   }
+
+
+   ~function()
+   {
+
+   }
+
+
+   void operator()() const
+   {
+
+      ASSERT(m_pelement);
+
+      m_pelement->call_run();
+
+   }
+
+
+   void clear() { m_pelement.release(); }
+
+
+   function & operator = (const function & function)
+   {
+
+      if (&function != this)
+      {
+
+         m_pelement = function.m_pelement;
+
+      }
+
+      return *this;
+
+   }
+
+
+   function & operator = (function && function)
+   {
+
+      if (&function != this)
+      {
+
+         m_pelement = ::move(function.m_pelement);
+
+      }
+
+      return *this;
+
+   }
+
+   function & operator = (nullptr_t)
+   {
+
+      clear();
+
+      return *this;
+
+   }
+
+   operator bool() const { return ::is_set(m_pelement); }
+
+   bool operator !() const { return ::is_null(m_pelement); }
+
+   operator ::element *() const { return m_pelement.m_p; }
+
+   const ::element * operator -> () const { return m_pelement.m_p; }
+
+   ::element * operator -> () { return m_pelement.m_p; }
+   
+
+};
 
 
 template < typename RETURN_TYPE >
@@ -65,7 +237,8 @@ public:
 
    __pointer(predicate_base)     m_ppredicate;
 
-   function()
+
+   function(nullptr_t = nullptr)
    {
 
    }
@@ -77,6 +250,21 @@ public:
       m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
 
    }
+
+
+   function(const function & function) :
+      m_ppredicate(function.m_ppredicate)
+   {
+
+   }
+
+
+   function(function && function) :
+      m_ppredicate(::move(function.m_ppredicate))
+   {
+
+   }
+
 
    ~function()
    {
@@ -124,15 +312,6 @@ public:
 };
 
 
-enum enum_as
-{
-
-   e_as,
-
-}; // enum enum_base
-
-
-#define __as(p) { e_as, p }
 
 template < typename RETURN_TYPE, typename... TYPES >
 class function < RETURN_TYPE(TYPES...) >
@@ -174,12 +353,15 @@ public:
 
    };
 
+   
    __pointer(base)     m_pbase;
+
 
    function(nullptr_t = nullptr)
    {
 
    }
+
 
    function(enum_as, base * pbase)
    {
@@ -188,6 +370,7 @@ public:
 
    }
 
+
    template < typename FUNCTION >
    function(FUNCTION functionParam)
    {
@@ -195,6 +378,21 @@ public:
       m_pbase = __new(class implementation < FUNCTION >(functionParam));
 
    }
+
+
+   function(const function & function) :
+      m_pbase(function.m_pbase)
+   {
+
+   }
+
+
+   function(function && function) :
+      m_pbase(::move(function.m_pbase))
+   {
+
+   }
+
 
    ~function()
    {
@@ -213,6 +411,7 @@ public:
 
 
    void clear() { m_pbase.release(); }
+
 
    template < typename FUNCTION >
    function & operator = (FUNCTION functionParam)
@@ -242,4 +441,8 @@ public:
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
    bool operator != (const function & function) const { return !operator==(function); }
 
+
 };
+
+
+

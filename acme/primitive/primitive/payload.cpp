@@ -28,7 +28,7 @@ payload::payload(::element * pelement)
 
    m_etype = e_type_new;
 
-   operator = (pelement);
+   operator = ((::element *) pelement);
 
 }
 
@@ -297,18 +297,18 @@ payload::payload(const ::property & property)
 }
 
 
-payload::payload(const ::procedure & procedure)
-{
-
-    m_etype = e_type_new;
-
-    set_type(e_type_routine, false);
-
-    m_pelementProcedure = procedure.m_ppredicate;
-    
-    ::increment_reference_count(m_pelementProcedure);
-
-}
+//payload::payload(const ::procedure & procedure)
+//{
+//
+//    m_etype = e_type_new;
+//
+//    set_type(e_type_routine, false);
+//
+//    m_pelementProcedure = procedure;
+//    
+//    ::increment_reference_count(m_pelementProcedure);
+//
+//}
 
 
 //payload::payload(const ::future & process)
@@ -2819,17 +2819,17 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 //
 
 
-::procedure payload::get_routine() const
+::procedure payload::get_procedure() const
 {
 
-   if (get_type() != ::e_type_routine)
+   if (get_type() != ::e_type_element)
    {
 
       return ::procedure();
 
    }
 
-   return m_pelementProcedure;
+   return __as(m_p);
 
 }
 
@@ -6477,8 +6477,8 @@ bool payload::is_numeric() const
 
    case e_type_i64_array:
       return false;
-   case e_type_routine:
-      return false;
+   //case e_type_routine:
+   //   return false;
 //   case e_type_process:
 //      return false;
       case e_type_hls:
@@ -6857,8 +6857,8 @@ bool payload::is_false() const
       return m_ppayload || !*m_ppayload;
    case e_type_property:
       return m_pproperty || !*m_pproperty;
-   case e_type_routine:
-         return ::is_null(m_pelementProcedure);
+   //case e_type_routine:
+   //      return ::is_null(m_pelementProcedure);
    //case e_type_process:
      //    return !m_process;
 
@@ -7043,8 +7043,8 @@ bool payload::is_set_false() const
       return m_ppayload || !*m_ppayload;
    case e_type_property:
       return m_pproperty || !*m_pproperty;
-   case e_type_routine:
-      return ::is_null(m_pelementProcedure);
+   //case e_type_routine:
+   //   return ::is_null(m_pelementProcedure);
    //case type_process:
    //   return !m_process;
 
@@ -7445,12 +7445,12 @@ void payload::run()
       return m_pproperty->run();
 
    }
-   else if (get_type() == e_type_routine)
-   {
+   //else if (get_type() == e_type_routine)
+   //{
 
-      return this->get_routine()();
+   //   return this->get_routine()();
 
-   }
+   //}
    else if (get_type() == e_type_payload_array)
    {
 
@@ -7517,18 +7517,18 @@ void payload::receive_response(const ::payload & payload)
 }
 
 
-::payload& payload::operator = (const ::procedure & procedure)
-{
-
-   set_type(e_type_routine, false);
-
-   m_pelementProcedure = procedure.m_ppredicate;
-
-   ::increment_reference_count(m_pelementProcedure);
-
-   return *this;
-
-}
+//::payload& payload::operator = (const ::procedure & procedure)
+//{
+//
+//   set_type(e_type_routine, false);
+//
+//   m_pelementProcedure = procedure;
+//
+//   ::increment_reference_count(m_pelementProcedure);
+//
+//   return *this;
+//
+//}
 
 
 //::payload& payload::operator = (const ::future & process)

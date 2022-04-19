@@ -241,7 +241,7 @@ namespace file
    }
 
 
-   void watcher::erase_watch(watch_id watch_id, ::procedure functionErased)
+   void watcher::erase_watch(watch_id watch_id, ::function < void () > functionErased)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -249,7 +249,11 @@ namespace file
       watch_map::pair * ppair = m_watchmap.plookup(watch_id);
 
       if (ppair == nullptr)
+      {
+
          return;
+
+      }
 
       watch * pwatch = ppair->element2();
 

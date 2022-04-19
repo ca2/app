@@ -1240,9 +1240,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\predicate_function.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
+    <ClCompile Include="platform\procedure.cpp" />
+    <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
-    <ClCompile Include="platform\routine.cpp" />
-    <ClCompile Include="platform\routine_array.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />

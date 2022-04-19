@@ -1908,8 +1908,6 @@ inline bool type::operator == (const ::atom& atom) const
          return m_pmemory;
       case e_type_path:
          return m_ppath;
-      case e_type_routine:
-         return m_pelementProcedure;
       default:
          break;
       }
@@ -2117,7 +2115,7 @@ inline ::payload operator + (::payload payload, const ::procedure & procedure)
 
    }
 
-   payload["routine"] = procedure.m_ppredicate;
+   payload["routine"] = procedure.m_pelement;
 
    return payload;
 
@@ -3107,16 +3105,9 @@ template < typename PREDICATE >
 inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto proutine = ::procedure(predicate);
+   auto procedure = ::procedure(predicate);
 
-   if(!proutine)
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-   auto ptask = this->branch_element(proutine.m_ppredicate, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_element(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {
@@ -3234,16 +3225,16 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
 
                              });
 
-   psignalization->m_pelementHold = function.m_ppredicate;
+   psignalization->m_pelementHold = (::element *)function;
 
    (pposting->*posting_method)(function);
 
-   auto estatus = psignalization->m_evReady.wait(function.m_ppredicate->timeout());
+   auto estatus = psignalization->m_evReady.wait(function->timeout());
 
    if(estatus == error_wait_timeout)
    {
 
-      function.m_ppredicate->set_timed_out();
+      function->set_timed_out();
 
    }
 

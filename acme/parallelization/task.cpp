@@ -277,7 +277,7 @@ void task::main()
 
    }
 
-   if (m_procedure && m_procedure.m_ppredicate != this)
+   if (m_procedure && m_procedure != this)
    {
 
       run_posted_routines();
@@ -696,10 +696,10 @@ void task::init_task()
    if(m_procedure)
    {
 
-      if(m_procedure.m_ppredicate != this)
+      if(m_procedure != this)
       {
 
-         m_procedure.m_ppredicate->init_task();
+         m_procedure->init_task();
 
       }
 

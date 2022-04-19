@@ -3664,9 +3664,6 @@
     <ClCompile Include="platform\printf.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\routine_array.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\serial.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3867,9 +3864,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\streamable_composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\routine.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\sequence.cpp">
       <Filter>Source Files\platform</Filter>
@@ -4173,6 +4167,12 @@
     </ClCompile>
     <ClCompile Include="user\user\mouse.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\procedure.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\procedure_array.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

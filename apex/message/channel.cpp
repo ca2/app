@@ -312,16 +312,16 @@ void channel::destroy()
 
 ///   m_dispatchermapNew.erase_all();
 
-   for (auto& procedurea : m_routinemap.values())
-   {
+   //for (auto& procedurea : m_proceduremap.values())
+   //{
 
-      procedurea.destroy();
+   //   procedurea.destroy();
 
-      procedurea.erase_all();
+   //   procedurea.erase_all();
 
-   }
+   //}
 
-   m_routinemap.erase_all();
+   //m_proceduremap.erase_all();
 
    ::object::destroy();
 
@@ -560,16 +560,14 @@ void channel::on_command(::message::command * pcommand)
 //}
 
 
-void channel::id_notify(const ::atom & atom, ::matter * pmatter)
-{
-
-    auto & routinea = m_routinemap[atom];
-
-    routinea.add(pmatter); // pmatter is notified with atom
-
-    //return ::success;
-
-}
+//void channel::id_notify(const ::atom & atom, const ::matter * pmatter)
+//{
+//
+//   auto & procedurea = m_proceduremap[atom];
+//
+//   procedurea.add(procedure); // pmatter is notified with atom
+//
+//}
 
 
 
@@ -603,13 +601,6 @@ void channel::default_toggle_check_handling(const ::atom & atom)
       });
 
 }
-
-
-
-
-
-
-
 
 
 

@@ -82,6 +82,27 @@ public:
    }
 
 
+   __pointer(::element) detach_element()
+   {
+
+      auto p = ::move_transfer((element *)m_lparam);
+
+      m_lparam = 0;
+
+      return ::move(p);
+
+   }
+
+  
+   template < typename T >
+   __pointer(T) detach()
+   {
+
+      return detach_element();
+
+   }
+
+
    lparam& operator = (const lparam & lparam)
    {
 

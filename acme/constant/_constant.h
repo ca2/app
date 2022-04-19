@@ -216,7 +216,6 @@ enum enum_type
    e_type_i64_array,
    e_type_memory,
    e_type_path,
-   e_type_routine,
    e_type_last_element,
 
    // enum

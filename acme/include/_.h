@@ -3591,9 +3591,29 @@ class list;
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
 using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
-using procedure = ::function < void () >;
-using procedure_array = ::array < ::function < void () > >;
-using procedure_list = ::list < ::function < void () > >;
+
+//using procedure_function = ::function < void() >;
+
+
+//class CLASS_DECL_ACME procedure :
+//   public procedure_function
+//{
+//public:
+//
+//
+//   using procedure_function::procedure_function;
+//   procedure(const ::procedure & procedure) : procedure_function(procedure) { }
+//   procedure(::procedure && procedure) : procedure_function(::move(procedure)) { }
+//   procedure(::element * pelement) { m_ppredicate = pelement; }
+//
+//
+//};
+
+
+using procedure = ::function < void() >;
+
+using procedure_array = ::array < ::procedure >;
+using procedure_list = ::list < ::procedure >;
 using procedure_map = ::id_map < ::procedure_array >;
 
 

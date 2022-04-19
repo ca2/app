@@ -666,43 +666,14 @@ void thread::run()
 
    ASSERT_VALID(this);
 
-   //INFORMATION("thread::run");
-
-//   string strType = __type_name(this);
-//
-//   if (strType.contains("session"))
-//   {
-//
-//      output_debug_string("session");
-//
-//   }
-//   else if(strType.contains("wave_player"))
-//   {
-//
-//      output_debug_string("xxthread::run from wave_player");
-//
-//   }
-//   else if(strType.ends_ci("out"))
-//   {
-//
-//      output_debug_string("xxthread::run from out");
-//
-//   }
-//   else if(strType.contains("output_thread"))
-//   {
-//
-//      output_debug_string("xxthread::run from output_thread");
-//
-//   }
-
-   if (m_pelement && m_pelement != this)
+   if (m_procedure && m_procedure != this)
    {
 
-      m_atom = __type_name(m_pelement);
+      m_atom = __type_name(*m_procedure.m_pelement);
 
       task_set_name(m_atom);
 
-      return m_pelement->run();
+      return m_procedure();
 
    }
 
@@ -711,59 +682,9 @@ void thread::run()
 
       INFORMATION("running thread with simple message loop");
 
-//      if(strType.contains("wave_player"))
-//      {
-//
-//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from wave_player");
-//
-//      }
-//      else if(strType.ends_ci("out"))
-//      {
-//
-//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from out");
-//
-//      }
-//      else if(strType.contains("output_thread"))
-//      {
-//
-//         output_debug_string("xxm_bSimpleMessageLoop xxthread::run from output_thread");
-//
-//      }
-
    }
 
-   //auto estatus = thread_loop();
-
    thread_loop();
-
-//   if(strType.contains("wave_player"))
-//   {
-//
-//      output_debug_string("ending xxthread::run from wave_player");
-//
-//   }
-//   else if(strType.ends_ci("out"))
-//   {
-//
-//      output_debug_string("ending xxthread::run from out");
-//
-//   }
-//   else if(strType.contains("output_thread"))
-//   {
-//
-//      output_debug_string("ending xxthread::run from output_thread");
-//
-//   }
-
-
-
-   //   thisend << m_iErrorCode;
-
-   //   return m_iErrorCode;
-
-
-
-   //return m_estatus;
 
 }
 
@@ -839,7 +760,7 @@ bool thread::pump_runnable()
 void thread::on_message_branch(::message::message* pmessage)
 {
 
-   ::procedure routine(pmessage->m_lparam);
+   ::procedure routine(__as(pmessage->m_lparam));
 
    if (pmessage->m_wparam == 0)
    {
@@ -4207,7 +4128,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_method)
          {
 
-            ::procedure routine(message.lParam);
+            ::procedure routine(__as(message.lParam));
 
             routine();
 

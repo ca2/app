@@ -11,9 +11,7 @@ public:
    __pointer(::channel)                            m_pchannel;
    id_array                                        m_idaHandledCommands;
    ::message::dispatcher_map                       m_dispatchermap;
-   //::message::dispatcher_map                       m_dispatchermapNew;
-   //bool                                            m_bNewChannel;
-   ::::procedure_map                                   m_routinemap;
+   //::procedure_map                                 m_proceduremap;
 
 
    channel();
@@ -58,7 +56,7 @@ public:
    virtual __pointer(::message::message) get_message(const ::atom& atom, wparam wparam, lparam lparam);
 
 
-   void id_notify(const ::atom & atom, ::matter * pmatter);
+   //void id_notify(const ::atom & atom, const ::matter * pmatter);
 
 
    //template < class T >

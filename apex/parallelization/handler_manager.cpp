@@ -63,13 +63,13 @@ void handler_manager::handle(const ::procedure & procedure, bool bSync)
    if (bSync)
    {
 
-      return handler_sync(routine);
+      return handler_sync(procedure);
 
    }
    else
    {
 
-      return handler_branch(routine);
+      return handler_branch(procedure);
 
    }
 
@@ -84,7 +84,7 @@ void handler_manager::handler_sync(const ::procedure & procedure)
 
       //auto estatus = __send_routine(this, &handler_manager::handler_branch, routine);
 
-      __send_routine(this, &handler_manager::handler_branch, routine);
+      __send_routine(this, &handler_manager::handler_branch, procedure);
 
       //if(!estatus)
       //{
@@ -99,7 +99,7 @@ void handler_manager::handler_sync(const ::procedure & procedure)
    else
    {
 
-      return routine();
+      return procedure();
 
    }
 
@@ -147,7 +147,7 @@ void handler_manager::handler_branch(const ::procedure & procedure)
 
       synchronous_lock synchronouslock(mutex());
 
-      m_procedurea.add(routine);
+      m_procedurea.add(procedure);
 
       m_pevTaskOnQueue->SetEvent();
 

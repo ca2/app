@@ -32,7 +32,7 @@ void application_exit::request_exit_application()
 
    m_bProcessingApplicationExitRequest = true;
 
-   post_routine(__routine([this]()
+   post_routine([this]()
       {
 
          try
@@ -48,7 +48,7 @@ void application_exit::request_exit_application()
 
          m_bProcessingApplicationExitRequest = false;
 
-      }));
+      });
 
    //return ::success;
 

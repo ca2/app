@@ -673,12 +673,12 @@ namespace filemanager
 
       }
 
-      fork(__routine([this, pitem, context]()
+      fork([this, pitem, context]()
       {
 
          full_browse(pitem, context);
 
-      }));
+      });
 
    }
 
@@ -689,6 +689,7 @@ namespace filemanager
       __task_guard(m_bFullBrowse);
 
 #define DBG_BROWSE_LOOP 1
+
       for (index i = 0; i < DBG_BROWSE_LOOP; i++)
       {
 

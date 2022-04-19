@@ -154,7 +154,7 @@ namespace universal_windows
 
       };
 
-      pcs->m_routineSuccess = __routine(routine);
+      pcs->m_procedureSuccess = __routine(routine);
 
       m_pimpl = __create < ::user::interaction_impl >();
 

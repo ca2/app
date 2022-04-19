@@ -26,8 +26,8 @@ namespace user
 //      //set_class_name(system.m_createstruct.lpszClass);
 //      //set_window_name(system.m_createstruct.lpszName);
 //#endif
-      m_routineFailure = system.m_routineFailure;
-      m_routineSuccess = system.m_routineSuccess;
+      m_procedureFailure = system.m_procedureFailure;
+      m_procedureSuccess = system.m_procedureSuccess;
       //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
    }
 

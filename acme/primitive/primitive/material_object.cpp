@@ -50,7 +50,7 @@ void material_object::destroy()
 
    ::property_object::destroy();
 
-   m_pmapPropertyRoutine.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_pmapPropertyProcedure.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    m_pia.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -65,22 +65,18 @@ bool material_object::is_branch_current() const
 }
 
 
-void material_object::post_routine(const ::procedure & procedure)
+void material_object::post_procedure(const ::procedure & procedure)
 {
-
-//   th__row ::interface_only_exception();
-
-   //throw ::interface_only();
 
    throw ::interface_only();
 
 }
 
 
-void material_object::send_routine(const ::procedure & procedure)
+void material_object::send_procedure(const ::procedure & procedure)
 {
 
-   return __send_routine(this, &material_object::post_routine, procedure);
+   return __send_procedure(this, &material_object::post_procedure, procedure);
 
 }
 
@@ -91,7 +87,7 @@ void material_object::send_routine(const ::procedure & procedure)
    if (!bCreate)
    {
 
-      auto passociation = m_pmapPropertyRoutine->plookup(atom);
+      auto passociation = m_pmapPropertyProcedure->plookup(atom);
 
       if (::is_null(passociation))
       {
@@ -104,9 +100,9 @@ void material_object::send_routine(const ::procedure & procedure)
 
    }
 
-   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
+   m_psystem->__defer_construct_new(m_pmapPropertyProcedure);
 
-   return &m_pmapPropertyRoutine->operator[](atom);
+   return &m_pmapPropertyProcedure->operator[](atom);
 
 }
 

@@ -1352,7 +1352,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    if (puserinteraction)
    {
 
-      puserinteraction->post_routine(__routine([=]()
+      puserinteraction->post_procedure(__routine([=]()
          {
 
             _android_size(xScreen, yScreen, pikachu, yBitmap);
@@ -1465,7 +1465,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    if (puserinteraction)
    {
 
-      puserinteraction->post_routine(__routine([=]()
+      puserinteraction->post_procedure(__routine([=]()
          {
 
             ::aura::get_system()->on_os_text(etext, strText);

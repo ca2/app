@@ -307,111 +307,94 @@ namespace user
 
       }
 
-      //try
-      //{
+      window_rectangle windowrectangle;
 
-         window_rectangle windowrectangle;
+      __pointer(::aura::application) papp = get_app();
 
-         __pointer(::aura::application) papp = get_app();
+      if (!papp->data_get(key, windowrectangle))
+      {
 
-         if (!papp->data_get(key, windowrectangle))
+         return false;
+
+      }
+
+      m_ewindowflag |= e_window_flag_loading_window_rect;
+
+      m_windowrectangleStore = windowrectangle;
+
+      m_windowrectangle = m_windowrectangleStore;
+
+      enum_display edisplay = windowrectangle.m_edisplay;
+
+      layout().sketch().appearance() = windowrectangle.m_eappearance;
+
+      if (edisplay == e_display_iconic && bInitialFramePosition)
+      {
+
+         edisplay = windowrectangle.m_edisplayPrevious;
+
+      }
+
+      order(e_zorder_top);
+
+      if (m_ewindowflag & e_window_flag_disable_window_placement_snapping)
+      {
+
+         if (is_docking_appearance(edisplay))
          {
 
-            return false;
+            edisplay = e_display_normal;
 
          }
 
-         m_ewindowflag |= e_window_flag_loading_window_rect;
+      }
 
-         m_windowrectangleStore = windowrectangle;
+      if(!bForceRestore
+         && (edisplay == e_display_zoomed
+         || edisplay == e_display_full_screen
+         || (edisplay == e_display_iconic && !bInitialFramePosition)))
+      {
 
-         m_windowrectangle = m_windowrectangleStore;
-
-         enum_display edisplay = windowrectangle.m_edisplay;
-
-         layout().sketch().appearance() = windowrectangle.m_eappearance;
-
-         if (edisplay == e_display_iconic && bInitialFramePosition)
+         if(bInitialFramePosition)
          {
 
-            edisplay = windowrectangle.m_edisplayPrevious;
+            layout().sketch().display() = edisplay;
 
          }
 
-         order(e_zorder_top);
+         layout().sketch() = windowrectangle.m_rectangleWindow;
 
-         if (m_ewindowflag & e_window_flag_disable_window_placement_snapping)
+         layout().sketch() = edisplay;
+
+      }
+      else if (!bForceRestore && is_docking_appearance(edisplay))
+      {
+
+         if(bInitialFramePosition)
          {
-
-            if (is_docking_appearance(edisplay))
-            {
-
-               edisplay = e_display_normal;
-
-            }
-
-         }
-
-         if(!bForceRestore
-            && (edisplay == e_display_zoomed
-            || edisplay == e_display_full_screen
-            || (edisplay == e_display_iconic && !bInitialFramePosition)))
-         {
-
-            if(bInitialFramePosition)
-            {
-
-               layout().sketch().display() = edisplay;
-
-            }
-
-            layout().sketch() = windowrectangle.m_rectangleWindow;
 
             layout().sketch() = edisplay;
 
          }
-         else if (!bForceRestore && is_docking_appearance(edisplay))
-         {
 
-            if(bInitialFramePosition)
-            {
+         layout().sketch() = windowrectangle.m_rectangleSnapped;
 
-               layout().sketch() = edisplay;
+         layout().sketch() = edisplay;
 
-            }
-
-            layout().sketch() = windowrectangle.m_rectangleSnapped;
-
-            layout().sketch() = edisplay;
-
-         }
-         else
-         {
+      }
+      else
+      {
             
-            send_routine([this, windowrectangle]()
-            {
+         send_procedure([this, windowrectangle]()
+         {
 
-               good_restore(nullptr, windowrectangle.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
+            good_restore(nullptr, windowrectangle.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
                
-            });
+         });
 
-         }
+      }
 
-         return true;
-
-      //}
-      //catch (const ::exception & pe)
-      //{
-
-      //   handle_exception(pe);
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //return false;
+      return true;
 
    }
 

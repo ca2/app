@@ -32,25 +32,23 @@ void application_exit::request_exit_application()
 
    m_bProcessingApplicationExitRequest = true;
 
-   post_routine([this]()
+   post_procedure([this]()
+   {
+
+      try
       {
 
-         try
-         {
+         exit_application();
 
-            exit_application();
+      }
+      catch (...)
+      {
 
-         }
-         catch (...)
-         {
+      }
 
-         }
+      m_bProcessingApplicationExitRequest = false;
 
-         m_bProcessingApplicationExitRequest = false;
-
-      });
-
-   //return ::success;
+   });
 
 }
 

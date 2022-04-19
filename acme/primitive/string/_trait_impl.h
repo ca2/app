@@ -514,7 +514,7 @@ namespace str
 
          auto pszDst = strDst.get_string_buffer(dstlen);
 
-         ::str::utf_to_utf(pszDst, pszSrc, dstlen);
+         ::str::utf_to_utf(pszDst, pszSrc, srclen);
 
          strDst.release_string_buffer(dstlen);
 

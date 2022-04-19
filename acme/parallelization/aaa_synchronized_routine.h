@@ -20,7 +20,7 @@
 //
 //
 //      sync_routine(const ::procedure & procedure) :
-//         m_routine(routine)
+//         m_procedure(routine)
 //      {
 //
 //         __defer_construct(m_peventCompletion);
@@ -31,7 +31,7 @@
 //   public:
 //
 //
-//      routine                          m_routine;
+//      routine                          m_procedure;
 //      __pointer(manual_reset_event)    m_peventCompletion;
 //      ::duration                       m_duration;
 //      void                       m_estatus;
@@ -43,7 +43,7 @@
 //      inline virtual void operator()() override
 //      {
 //
-//         m_estatus = m_routine();
+//         m_estatus = m_procedure();
 //
 //         m_peventCompletion->SetEvent();
 //

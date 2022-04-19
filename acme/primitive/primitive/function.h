@@ -83,17 +83,17 @@ public:
    }
 
 
-   function(enum_as, ::element * pelement)
-   {
+   //function(enum_as, ::element * pelement)
+   //{
 
-      m_p = pelement;
+   //   m_p = pelement;
 
-      m_pelement = m_p;
+   //   m_pelement = m_p;
 
-   }
+   //}
 
 
-   function(enum_as, ::lparam & lparam)
+   function(::lparam & lparam)
    {
 
       m_p = (::element *) lparam.m_lparam;
@@ -101,6 +101,33 @@ public:
       m_pelement = m_p;
 
    }
+
+
+   template < typename TYPE >
+   function(TYPE * p)
+   {
+
+      m_p = p;
+
+      m_pelement = m_p;
+
+      p->increment_reference_count();
+
+   }
+
+
+   template < typename TYPE >
+   function(const __pointer(TYPE) & p)
+   {
+
+      m_p = p;
+
+      m_pelement = m_p;
+
+      p->increment_reference_count();
+
+   }
+
 
 
    template < typename PREDICATE >

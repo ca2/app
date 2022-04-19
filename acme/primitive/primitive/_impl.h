@@ -3176,7 +3176,7 @@ bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
+void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
 {
 
    if(pposting->is_branch_current())

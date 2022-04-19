@@ -280,11 +280,11 @@ void task::main()
    if (m_procedure && m_procedure != this)
    {
 
-      run_posted_routines();
+      run_posted_procedures();
 
       m_procedure();
 
-      run_posted_routines();
+      run_posted_procedures();
 
    }
 
@@ -318,22 +318,12 @@ void task::run()
    try
    {
 
-      /*auto estatus =*/ run_posted_routines();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
+      run_posted_procedures();
 
       if (defer_implement(m_psystem))
       {
 
-         //return m_psystem->m_estatus;
-
          return;
-
 
       }
 
@@ -348,8 +338,6 @@ void task::run()
       exception_message_box(this, exception, strMoreDetails);
 
    }
-
-   //return estatus;
 
 }
 
@@ -560,7 +548,7 @@ void task::unregister_task()
 }
 
 
-void task::post_routine(const ::procedure & procedure)
+void task::post_procedure(const ::procedure & procedure)
 {
 
    if (!procedure)
@@ -579,7 +567,7 @@ void task::post_routine(const ::procedure & procedure)
 }
 
 
-void task::run_posted_routines()
+void task::run_posted_procedures()
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -590,11 +578,11 @@ void task::run_posted_routines()
       do
       {
 
-         auto routine = m_procedurea.pick_first();
+         auto procedure = m_procedurea.pick_first();
 
          synchronouslock.unlock();
 
-         /*auto estatus =*/ routine();
+         /*auto estatus =*/ procedure();
 
          synchronouslock.lock();
 

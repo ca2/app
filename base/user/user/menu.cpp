@@ -299,12 +299,12 @@ namespace user
          if (m_puserinteractionParent)
          {
 
-            post_routine(__routine([this]()
+            post_procedure([this]()
             {
 
                get_window()->set_foreground_window();
 
-               post_routine(__routine([this]()
+               post_procedure([this]()
                   {
 
                      get_window()->set_active_window();
@@ -313,9 +313,9 @@ namespace user
 
                      get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
-                  }));
+                  });
 
-            }));
+            });
 
          }
 

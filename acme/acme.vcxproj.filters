@@ -1475,9 +1475,6 @@
     <ClInclude Include="parallelization\synchronized_task.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\synchronized_routine.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\synchronized_process.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -1634,7 +1631,7 @@
     <ClInclude Include="platform\predicate_process.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\predicate_routine.h">
+    <ClInclude Include="platform\predicate_procedure.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\printf.h">
@@ -3599,9 +3596,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\synchronization_result.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\synchronized_routine.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\synchronized_process.cpp">

@@ -274,7 +274,7 @@ namespace user
       ///*if(!estatus)
       //{*/
 
-      //   m_pimpl->m_puserinteraction->m_pusersystem->m_routineFailure();
+      //   m_pimpl->m_puserinteraction->m_pusersystem->m_procedureFailure();
 
       //   if (is_debugger_attached())
       //   {
@@ -297,10 +297,10 @@ namespace user
 
       auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
 
-      if(pusersystem && pusersystem->m_routineSuccess)
+      if(pusersystem && pusersystem->m_procedureSuccess)
       {
 
-         pusersystem->m_routineSuccess();
+         pusersystem->m_procedureSuccess();
 
       }
 

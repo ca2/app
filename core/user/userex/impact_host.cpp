@@ -225,9 +225,7 @@ namespace userex
       INFORMATION("");
       INFORMATION("");
 
-
-
-      post_routine(__routine([pupdown, this]
+      post_procedure([pupdown, this]
       {
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
@@ -331,7 +329,7 @@ namespace userex
 
          }
 
-      }));
+      });
 
       return true;
 
@@ -761,7 +759,7 @@ namespace userex
    void impact_host::toggle_view(::atom idImpact)
    {
 
-      //post_routine(__routine([this, idImpact]()
+      //post_procedure(__routine([this, idImpact]()
          //{
 
             bool bShow = false;

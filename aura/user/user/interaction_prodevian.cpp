@@ -145,7 +145,7 @@ namespace user
 
       //}
 
-      m_routineUpdateScreen = [this]()
+      m_procedureUpdateScreen = [this]()
          {
 
             if (!has(e_flag_destroying) && !is_finishing())
@@ -159,7 +159,7 @@ namespace user
 
          };
 
-      m_routineWindowShow = [this]()
+      m_procedureWindowShow = [this]()
          {
 
             if (m_pimpl)
@@ -322,23 +322,23 @@ namespace user
 
       m_puserinteraction.release();
 
-      if (m_routineUpdateScreen)
+      if (m_procedureUpdateScreen)
       {
 
-         m_routineUpdateScreen->destroy();
+         m_procedureUpdateScreen->destroy();
 
       }
 
-      m_routineUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_procedureUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-      if (m_routineWindowShow)
+      if (m_procedureWindowShow)
       {
 
-         m_routineWindowShow->destroy();
+         m_procedureWindowShow->destroy();
 
       }
 
-      m_routineWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_procedureWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
@@ -858,7 +858,7 @@ namespace user
          {
 
             m_pimpl->m_pwindow->window_show();
-            //m_puserinteraction->post_routine(m_routineWindowShow);
+            //m_puserinteraction->post_procedure(m_procedureWindowShow);
 
          }
          // ENDIF WINDOWS
@@ -946,7 +946,7 @@ namespace user
 //            if (m_puserinteraction)
 //            {
 //
-//               m_puserinteraction->post_routine(m_routineUpdateScreen);
+//               m_puserinteraction->post_procedure(m_procedureUpdateScreen);
 //
 //            }
 //
@@ -1376,7 +1376,7 @@ namespace user
    }
 
 
-   void interaction::prodevian_post_routine(const ::procedure & procedure)
+   void interaction::prodevian_post_procedure(const ::procedure & procedure)
    {
 
       if (!is_graphical())
@@ -1386,18 +1386,7 @@ namespace user
 
       }
 
-      //auto estatus = 
-      
-      m_pinteractionimpl->m_pprodevian->post_routine(routine);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      m_pinteractionimpl->m_pprodevian->post_procedure(procedure);
 
    }
 

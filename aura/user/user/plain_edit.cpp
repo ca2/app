@@ -359,6 +359,28 @@ namespace user
    }
 
 
+   bool plain_edit::validate_viewport_offset(::point_i32 & point)
+   {
+
+      if (!::user::scroll_base::validate_viewport_offset(point))
+      {
+
+         return false;
+
+      }
+
+      if (!m_bMultiLine)
+      {
+
+         point.y = 0;
+
+      }
+
+      return true;
+
+   }
+
+
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -733,7 +755,8 @@ namespace user
             {
 
                // Draw Normal Text - not selected - before selection
-               pgraphics->text_out(left, y, strLineGraphics.Left(iCurLineSelBeg));
+               auto strLeft = strLineGraphics.Left(iCurLineSelBeg);
+               pgraphics->text_out(left, y, strLeft);
 
             }
 
@@ -741,7 +764,8 @@ namespace user
             {
 
                // Draw Normal Text - not selected - after selection
-               pgraphics->text_out(left + x2, y, strLineGraphics.Mid(iCurLineSelEnd));
+               string strRight = strLineGraphics.Mid(iCurLineSelEnd);
+               pgraphics->text_out(left + x2, y, strRight);
 
             }
 
@@ -760,7 +784,8 @@ namespace user
             {
 
                // Draw Selected Text
-               pgraphics->text_out(left + x1, y, strLineGraphics.Mid(iCurLineSelBeg, iCurLineSelEnd - iCurLineSelBeg));
+               string strSelected = strLineGraphics.Mid(iCurLineSelBeg, iCurLineSelEnd - iCurLineSelBeg);
+               pgraphics->text_out(left + x1, y, strSelected);
 
             }
 
@@ -1684,7 +1709,13 @@ namespace user
 
       auto xViewport = get_viewport_offset().x;
 
-      if (x > 0 && x < get_viewport_offset().x)
+      if (x < xViewport && xViewport > 0)
+      {
+
+         xViewport = x;
+
+      }
+      else if (x > 0 && x < get_viewport_offset().x)
       {
 
          xViewport = maximum(0, x - rectangleClient.width() / 2);
@@ -1696,6 +1727,7 @@ namespace user
          xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
+
 
       if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xViewport == get_viewport_offset().x)
       {
@@ -1806,7 +1838,32 @@ namespace user
    void plain_edit::plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pgraphics, strsize iChar)
    {
 
-      plain_edit_ensure_visible_line(pgraphics, plain_edit_char_to_line(pgraphics, iChar));
+      int x = 0;
+
+      plain_edit_ensure_visible_line(pgraphics, plain_edit_sel_to_line_x(pgraphics, iChar, x));
+
+      int iBorder = 4;
+
+      ::rectangle_i32 rectangleClient;
+
+      get_client_rect(rectangleClient);
+
+      int xVisibleStart = m_pointScroll.x;
+
+      int xVisibleEnd = xVisibleStart + rectangleClient.width() - iBorder * 2;
+      
+      if (x < xVisibleStart)
+      {
+
+         m_pointScroll.x = x;
+
+      }
+      else if (x > xVisibleEnd)
+      {
+
+         m_pointScroll.x = x - rectangleClient.width() + iBorder * 2;
+
+      }
 
    }
 
@@ -2919,7 +2976,7 @@ namespace user
 
       }
 
-      m_scrolldataVertical.m_iLine = m_dLineHeight;
+      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
 
       on_change_view_size(pgraphics);
 
@@ -3112,7 +3169,7 @@ namespace user
 
          i2 = i1 + m_iaLineLength[iLine];
 
-         if (iSel < i2)
+         if (iSel <= i2)
          {
 
             strsize iRel = iSel - i1;
@@ -4897,6 +4954,8 @@ finished_update:
 
                      }
 
+                     _001SetSelEnd(m_ptree->m_iSelEnd);
+
                      if (!bShift)
                      {
 
@@ -4922,6 +4981,8 @@ finished_update:
 
                      on_reset_focus_start_tick();
 
+                     ::index iSelEnd = -1;
+
                      if (bControl)
                      {
 
@@ -4940,6 +5001,8 @@ finished_update:
                         m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
 
                      }
+
+                     _001SetSelEnd(m_ptree->m_iSelEnd);
 
                      if (!bShift)
                      {

@@ -278,6 +278,7 @@ namespace user
       virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
       virtual void InputConnectionFinishComposingText() override;
 
+      bool validate_viewport_offset(::point_i32 & point) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

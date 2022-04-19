@@ -1837,7 +1837,7 @@ __pointer(::task) object::branch_procedure_synchronously(
 __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_procedure(__as(this), epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -1847,9 +1847,30 @@ __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u3
 __pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch_procedure_synchronously(__as(this), epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_procedure_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
+
+}
+
+
+::task_pointer object::run_procedure(bool bSyncronously, const ::procedure & procedure)
+{
+
+   if (bSyncronously)
+   {
+
+      procedure();
+
+      return nullptr;
+
+   }
+   else
+   {
+
+      return branch_procedure(procedure);
+
+   }
 
 }
 

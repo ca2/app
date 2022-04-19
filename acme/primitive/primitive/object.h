@@ -141,7 +141,7 @@ public:
    void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
    {
 
-      if (::is_null(m_pmapPropertyRoutine))
+      if (::is_null(m_pmapPropertyProcedure))
       {
 
          return;
@@ -183,7 +183,7 @@ public:
    inline void post_routines_with_id(const ::atom & atom)
    {
 
-      return for_routines_with_id(atom, this, &object::post_routine);
+      return for_routines_with_id(atom, this, &object::post_procedure);
 
    }
 
@@ -191,7 +191,7 @@ public:
    inline void send_routines_with_id(const ::atom & atom)
    {
 
-      return for_routines_with_id(atom, this, &object::send_routine);
+      return for_routines_with_id(atom, this, &object::send_procedure);
 
    }
 
@@ -234,7 +234,7 @@ public:
    //virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
 
-   ///virtual void post_routine(const ::procedure & procedure);
+   ///virtual void post_procedure(const ::procedure & procedure);
 
 
    //void destroy() override;
@@ -633,8 +633,7 @@ public:
                                     ::u32 nStackSize = 0,
                                     ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-   //template < typename PREDICATE >
-   //inline ::task_pointer run_procedure(bool bSync, const ::procedure & procedure);
+   virtual ::task_pointer run_procedure(bool bSyncronously, const ::procedure & procedure);
 
    //using property_object::branch;
 
@@ -1321,11 +1320,12 @@ inline void release(INTERMEDIATE*, RELEASEE* & p)
 
 }
 
+
 #define __make_identifier(PART1, PART2) PART1 ## PART2
 
 
-#define __defer_branch(ID) defer_branch(m_ptask ## ID, __routine([this](){ID ## TaskProcedure();}))
-                                                                     \
+#define __defer_branch(ID) defer_branch(m_ptask ## ID, [this](){ID ## TaskProcedure();})
+
 
 CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
 

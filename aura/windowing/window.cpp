@@ -1250,52 +1250,44 @@ namespace windowing
 
    void window::window_show()
    {
+
+      auto window_show = [this]()
+      {
+
+         auto puserinteractionimpl = m_puserinteractionimpl;
+
+         if (::is_set(puserinteractionimpl))
+         {
+
+            auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+            if (::is_set(puserinteraction))
+            {
+
+               auto puserinteractionimpl2 = puserinteraction->m_pinteractionimpl;
+
+               if (::is_set(puserinteractionimpl2))
+               {
+
+                  puserinteractionimpl2->window_show();
+
+               }
+
+            }
+
+         }
+
+      };
    
-      m_pwindowing->windowing_post(__routine([this]()
-                                             {
-
-                                                 auto puserinteractionimpl = m_puserinteractionimpl;
-
-                                                 if (::is_set(puserinteractionimpl))
-                                                 {
-
-                                                     auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-
-                                                     if (::is_set(puserinteraction))
-                                                     {
-
-                                                         auto puserinteractionimpl2 = puserinteraction->m_pinteractionimpl;
-
-                                                         if (::is_set(puserinteractionimpl2))
-                                                         {
-
-                                                             puserinteractionimpl2->window_show();
-
-                                                         }
-
-                                                     }
-
-                                                 }
-
-                                             }));
+      m_pwindowing->windowing_post(window_show);
       
    }
+
 
    void window::frame_toggle_restore()
    {
     
-      //auto estatus= 
-      
       m_puserinteractionimpl->m_puserinteraction->frame_toggle_restore();
-    
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-    
-      //}
-
-      //return estatus;
     
    }
 
@@ -1303,18 +1295,7 @@ namespace windowing
    void window::window_send(const ::procedure & procedure)
    {
 
-      //auto estatus = 
-      
-      __send_routine(this, &window::window_post, routine);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_procedure(this, &window::window_post, procedure);
 
    }
 
@@ -1337,7 +1318,7 @@ namespace windowing
             if (pthread)
             {
 
-               pthread->post_routine(routine);
+               pthread->post_procedure(procedure);
 
                return;
 

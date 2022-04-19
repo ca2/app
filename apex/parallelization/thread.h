@@ -236,51 +236,8 @@ public:
    virtual void send_element(const ::atom & atom, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
 
 
-   template < typename PREDICATE >
-   void post_predicate(PREDICATE predicate)
-   {
-
-
-      post_routine(__routine(predicate));
-
-
-   }
-
-   //template < typename PRED >
-   //bool schedule_predicate(PRED pred)
-   //{
-
-   //   return post_predicate(pred);
-
-   //}
-
-
-   //bool sync_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
-   //{
-
-   //   if (this == ::get_task())
-   //   {
-
-   //      routine();
-
-   //      return true;
-
-   //   }
-
-   //   return send_routine(routine, durationTimeout);
-
-   //}
-
-
-   //virtual void post_routine(const ::procedure & procedure) override;
-   //virtual void send_routine(const ::procedure & procedure, const ::duration & durationTimeout = ::duration::infinite());
-
-
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 
-
-   //virtual bool final_handle_exceptionconst ::exception & e;
-   //__pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
    virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);

@@ -1195,7 +1195,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="parallelization\synchronization_array.cpp" />
     <ClCompile Include="parallelization\synchronized_process.cpp" />
     <ClCompile Include="parallelization\synchronization_result.cpp" />
-    <ClCompile Include="parallelization\synchronized_routine.cpp" />
     <ClCompile Include="parallelization\synchronized_task.cpp" />
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
@@ -1532,7 +1531,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="parallelization\synchronization_object.h" />
     <ClInclude Include="parallelization\synchronized_process.h" />
     <ClInclude Include="parallelization\synchronization_result.h" />
-    <ClInclude Include="parallelization\synchronized_routine.h" />
     <ClInclude Include="parallelization\synchronized_task.h" />
     <ClInclude Include="parallelization\task.h" />
     <ClInclude Include="parallelization\thread_impl.h" />
@@ -1612,7 +1610,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\predicate_function_pointer.h" />
     <ClInclude Include="platform\predicate_holder.h" />
     <ClInclude Include="platform\predicate_process.h" />
-    <ClInclude Include="platform\predicate_routine.h" />
+    <ClInclude Include="platform\predicate_procedure.h" />
     <ClInclude Include="platform\printf.h" />
     <ClInclude Include="platform\profiler.h" />
     <ClInclude Include="platform\restore.h" />

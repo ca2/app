@@ -7,7 +7,7 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   __pointer(::id_map < ::procedure_array >)       m_pmapPropertyRoutine;
+   __pointer(::id_map < ::procedure_array >)       m_pmapPropertyProcedure;
    __pointer(::i64_array)                          m_pia;
 
 
@@ -20,7 +20,7 @@ public:
       ::element(::move(materialobject)),
       ::matter(::move(materialobject)),
       ::property_object(::move(materialobject)),
-      m_pmapPropertyRoutine(::move(materialobject.m_pmapPropertyRoutine)),
+      m_pmapPropertyProcedure(::move(materialobject.m_pmapPropertyProcedure)),
       m_pia(::move(materialobject.m_pia))
    {  }
    ~material_object() override;
@@ -58,17 +58,17 @@ public:
    virtual bool is_branch_current() const;
 
 
-   virtual void post_routine(const ::procedure & procedure);
+   virtual void post_procedure(const ::procedure & procedure);
 
 
-   virtual void send_routine(const ::procedure & procedure);
+   virtual void send_procedure(const ::procedure & procedure);
 
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
    bool __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
-   void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
+   void __send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
 
 
    ::procedure_array * procedure_array(const ::atom & atom, bool bCreate = false);
@@ -77,11 +77,7 @@ public:
    void add_procedure(const ::atom & atom, const ::procedure & procedure);
 
 
-
    inline ::i64_array & idarray() const;
-
-
-
 
 
 };

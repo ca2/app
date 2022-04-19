@@ -981,7 +981,6 @@ class backing;
 class manager;
 class topic;
 class context;
-//class routine;
 class handler;
 template < typename RESULT > class process;
 class extended_topic;
@@ -3703,7 +3702,7 @@ namespace file
 
 #include "acme/filesystem/filesystem/enumerator.h"
 
-#include "acme/platform/predicate_routine.h"
+#include "acme/platform/predicate_procedure.h"
 
 #include "acme/platform/predicate_process.h"
 

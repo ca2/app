@@ -810,7 +810,7 @@ namespace user
 //
 //            });
 
-         //if (pusersystem->m_routineSuccess)
+         //if (pusersystem->m_procedureSuccess)
          //{
 
          //   fork([psynca, proutine, pusersystem]()
@@ -820,7 +820,7 @@ namespace user
 
          //      (*proutine)();
 
-         //      pusersystem->m_routineSuccess();
+         //      pusersystem->m_procedureSuccess();
 
          //   });
 
@@ -4446,103 +4446,11 @@ namespace user
 
       }
 
-      puserthread->post_routine(routine);
+      puserthread->post_procedure(procedure);
 
    }
 
    
-//   void interaction_impl::pre_message_handler(bool & bKeyMessage, ::message::message * pmessage)
-//   {
-//
-//      ::u32 message = pmessage->m_atom.umessage();
-//
-//      ::message::key* pkey = nullptr;
-//
-//      bKeyMessage = message == e_message_key_down ||
-//         message == e_message_key_up ||
-//         message == e_message_char ||
-//         message == e_message_sys_key_down ||
-//         message == e_message_sys_key_up ||
-//         message == e_message_sys_char ||
-//         message == e_message_ime_key_down ||
-//         message == e_message_ime_key_up ||
-//         message == e_message_ime_char ||
-//         message == e_message_ime_select ||
-//         message == e_message_ime_set_context ||
-//         message == e_message_ime_start_composition ||
-//         message == e_message_ime_composition ||
-//         message == e_message_ime_composition_full ||
-//         message == e_message_ime_notify ||
-//         message == e_message_ime_end_composition ||
-//         message == e_message_input_language;
-//
-//      if (bKeyMessage)
-//      {
-//
-//         pkey = dynamic_cast <::message::key*> (pmessage);
-//
-//         if (pkey)
-//         {
-//
-//            m_pwindowing->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_atom, pkey->m_wparam, pkey->m_lparam);
-//
-//         }
-//
-//         if (message == e_message_key_down || message == e_message_sys_key_down)
-//         {
-//
-//            auto psession = get_session();
-//
-//            try
-//            {
-//
-//               psession->set_key_pressed(pkey->m_ekey, true);
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//         else if (message == e_message_key_up || message == e_message_sys_key_up)
-//         {
-//
-//            auto psession = get_session();
-//
-//            try
-//            {
-//
-//               psession->set_key_pressed(pkey->m_ekey, false);
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//      if (::is_set(m_puserinteraction))
-//      {
-//
-//         m_puserinteraction->pre_translate_message(pmessage);
-//
-//      }
-//
-//      if (pmessage->m_bRet)
-//      {
-//
-//         return true;
-//
-//      }
-//
-//      return false;
-//
-//   }
-
    guie_message_wnd::guie_message_wnd(::property_object * pobject)
    {
 
@@ -5172,7 +5080,7 @@ namespace user
 
       //}
 
-      //m_puserinteraction->post_routine(__routine([this, pmessage]()
+      //m_puserinteraction->post_procedure(__routine([this, pmessage]()
       //{
 
         // return m_puserinteraction->message_handler(pmessage);
@@ -5713,50 +5621,50 @@ namespace user
    void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
-      m_puserinteraction->m_pthreadUserInteraction->post_predicate([this, edisplay, eactivation]()
+      m_puserinteraction->m_pthreadUserInteraction->post_procedure([this, edisplay, eactivation]()
+      {
+
+         if (!m_puserinteraction)
          {
 
-            if (!m_puserinteraction)
+            return;
+
+         }
+
+         __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
+
+         if (edisplay == e_display_iconic)
+         {
+
+            if (eactivation == e_activation_no_activate)
             {
 
-               return;
+               m_pwindow->show_window(edisplay, eactivation);
 
             }
-
-            __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-            if (edisplay == e_display_iconic)
-            {
-
-               if (eactivation == e_activation_no_activate)
-               {
-
-                  m_pwindow->show_window(edisplay, eactivation);
-
-               }
-               else
-               {
-
-                  m_pwindow->show_window(edisplay, eactivation);
-
-               }
-
-            }
-            else 
+            else
             {
 
                m_pwindow->show_window(edisplay, eactivation);
 
             }
 
-            if (m_puserinteraction)
-            {
+         }
+         else 
+         {
 
-               m_puserinteraction->layout().design() = e_activation_default;
+            m_pwindow->show_window(edisplay, eactivation);
 
-            }
+         }
 
-         });
+         if (m_puserinteraction)
+         {
+
+            m_puserinteraction->layout().design() = e_activation_default;
+
+         }
+
+      });
 
    }
 

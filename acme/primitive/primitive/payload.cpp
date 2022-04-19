@@ -2829,24 +2829,10 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return __as(m_p);
+   return m_p;
 
 }
 
-
-//::future payload::get_process() const
-//{
-//
-//   if (get_type() != ::type_process)
-//   {
-//
-//      return ::future();
-//
-//   }
-//
-//   return m_process;
-//
-//}
 
 bool payload::get_bool(bool bDefault) const
 {

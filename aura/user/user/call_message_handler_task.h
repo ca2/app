@@ -13,16 +13,16 @@ namespace user
 
 
       __pointer(interaction)        m_pinteraction;
-      ::atom                          m_atom;
+      ::atom                        m_atom;
       wparam                        m_wparam;
       lparam                        m_lparam;
 
 
       call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam);
-      virtual ~call_message_handler_task();
+      ~call_message_handler_task() override;
 
 
-      virtual void run();
+      void run() override;
 
 
    };

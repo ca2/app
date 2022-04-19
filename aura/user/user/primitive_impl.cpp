@@ -330,7 +330,7 @@ namespace user
 
    //   }
 
-   //   return puserinteraction->post_routine(routine, epriority);
+   //   return puserinteraction->post_procedure(routine, epriority);
 
    //}
 
@@ -1445,9 +1445,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
-
-      //return true;
+      m_puserinteraction->post_procedure(__new(call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
    }
 

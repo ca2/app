@@ -832,40 +832,12 @@ namespace acme
    }
 
 
-//   bool node::run_posted_routine_step()
-//   {
-//
-//
-//      return false;
-//
-//   }
-
-
    void node::node_send(const ::procedure & procedure)
    {
 
-      __send_routine(this, &node::node_post, procedure);
+      __send_procedure(this, &node::node_post, procedure);
 
    }
-
-
-//   void node::user_fork(const ::procedure & procedure)
-//   {
-//
-//
-//   }
-
-
-//   void node::user_sync(const ::duration & durationTimeout, const ::procedure & procedure)
-//   {
-//
-//      auto proutine = __sync_routine(routine);
-//
-//      user_fork(proutine);
-//
-//      proutine->sync_wait(durationTimeout);
-//
-//   }
 
 
    void node::node_post_quit()

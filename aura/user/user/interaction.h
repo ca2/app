@@ -1920,11 +1920,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::procedure & procedure) override;
-      virtual void prodevian_post_routine(const ::procedure & procedure);
+      virtual void post_procedure(const ::procedure & procedure) override;
+      virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      virtual void send_routine(const ::procedure & procedure) override;
+      virtual void send_procedure(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >

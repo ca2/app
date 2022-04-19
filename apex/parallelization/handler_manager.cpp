@@ -57,43 +57,32 @@ void handler_manager::initialize_handler_manager(::object * pobject, const strin
 }
 
 
-void handler_manager::handle(const ::procedure & procedure, bool bSync)
+void handler_manager::handle(const ::procedure & procedure, bool bSynchronously)
 {
 
-   if (bSync)
+   if (bSynchronously)
    {
 
-      return handler_sync(procedure);
+      return handle_synchronously(procedure);
 
    }
    else
    {
 
-      return handler_branch(procedure);
+      return handle_asynchronously(procedure);
 
    }
 
 }
 
 
-void handler_manager::handler_sync(const ::procedure & procedure)
+void handler_manager::handle_synchronously(const ::procedure & procedure)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      //auto estatus = __send_routine(this, &handler_manager::handler_branch, routine);
-
-      __send_routine(this, &handler_manager::handler_branch, procedure);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_procedure(this, &handler_manager::handle_asynchronously, procedure);
 
    }
    else
@@ -109,18 +98,7 @@ void handler_manager::handler_sync(const ::procedure & procedure)
 void handler_manager::destroy_composites()
 {
 
-   //auto estatus = ::object::destroy_composites();
-
    ::object::destroy_composites();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
 
 }
 
@@ -140,7 +118,7 @@ bool handler_manager::is_branch_current() const
 }
 
 
-void handler_manager::handler_branch(const ::procedure & procedure)
+void handler_manager::handle_asynchronously(const ::procedure & procedure)
 {
 
    {

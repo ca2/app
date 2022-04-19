@@ -514,7 +514,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
          auto pnode = psystem->node();
 
-         pnode->node_send(__routine(15_s, [this]()
+         pnode->node_send([this]()
          {
 
             if (m_pnotifyicon)
@@ -526,7 +526,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
             }
 
-         }));
+         });
          
       }
       catch (...)
@@ -2764,7 +2764,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing()->windowing_post(__routine([this]
+   windowing()->windowing_post([this]
    {
 
 //      if (m_pnotifyicon)
@@ -2809,7 +2809,7 @@ void simple_frame_window::defer_create_notification_icon()
 
       m_bitMinimizeToTray.defer(e_boolean_true);
 
-   }));
+   });
 
 }
 
@@ -4115,18 +4115,17 @@ void simple_frame_window::on_select_user_style()
 }
 
 
-
 void simple_frame_window::call_notification_area_action(const ::string & pszId)
 {
 
    ::atom atom(pszId);
 
-   post_routine(__routine([this, atom]()
+   post_procedure([this, atom]()
    {
 
       handle_command(atom);
 
-   }));
+   });
 
 }
 

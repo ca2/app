@@ -35,11 +35,11 @@ public:
    bool is_branch_current() const override;
 
 
-   void handler_sync(const ::procedure & procedure);
-   void handler_branch(const ::procedure & procedure);
+   void handle_synchronously(const ::procedure & procedure);
+   void handle_asynchronously(const ::procedure & procedure);
    
 
-   void handle(const ::procedure & procedure, bool bSync);
+   void handle(const ::procedure & procedure, bool bSynchronously);
 
 
    ::procedure pick_new_task();

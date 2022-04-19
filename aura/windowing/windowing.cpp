@@ -676,18 +676,7 @@ namespace windowing
    void windowing::windowing_send(const ::procedure & procedure)
    {
 
-      //auto estatus = 
-      
-      __send_routine(this, &windowing::windowing_post, routine);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_procedure(this, &windowing::windowing_post, procedure);
 
    }
 
@@ -697,18 +686,7 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
-
-
-   //void windowing::top_windows_by_z_order(oswindow_array & a)
-   //{
-
-
-   //}
-
-
 
 
    ::windowing::keyboard * windowing::keyboard()
@@ -717,31 +695,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         //auto estatus = 
-         
          __compose(m_pkeyboard);
-
-         //if (!m_pkeyboard)
-         //{
-
-         //   throw ::exception(error_exception, "Could not create keyboard");
-
-         //}
-
-
-         //
-         //#if !defined(WINDOWS) && !defined(__APPLE__)
-         //
-         //         if (!m_pkeyboard->initialize())
-         //         {
-         //
-         //            throw ::exception(::exception("Could not initialize keyboard"));
-         //
-         //         }
-         //
-         //#endif
-
-                  //papp->on_create_keyboard();
 
          initialize_keyboard(m_pkeyboard);
 

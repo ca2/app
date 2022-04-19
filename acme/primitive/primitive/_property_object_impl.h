@@ -289,7 +289,7 @@ inline material_object::material_object(const material_object & materialobject) 
    ::element(materialobject),
    ::matter(materialobject),
    ::property_object(materialobject),
-   m_pmapPropertyRoutine(materialobject.m_pmapPropertyRoutine),
+   m_pmapPropertyProcedure(materialobject.m_pmapPropertyProcedure),
    m_pia(materialobject.m_pia)
 {
 

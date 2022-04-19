@@ -1217,7 +1217,7 @@ namespace user
 
             rectangle = itemFirst.m_rectangleItem;
 
-            m_scrolldataVertical.m_iLine = m_dItemHeight;
+            m_scrolldataVertical.m_iLine = (::i32) m_dItemHeight;
 
             rectangle.top = 0;
 

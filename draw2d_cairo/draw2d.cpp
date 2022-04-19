@@ -1409,7 +1409,7 @@ namespace draw2d_cairo
 
       FT_Face ftface{};
 
-      FT_Error fterror = FT_New_Memory_Face(__ftlibrary(), (const FT_Byte *) block.get_data(), block.get_size(), 0, &ftface);
+      FT_Error fterror = FT_New_Memory_Face(__ftlibrary(), (const FT_Byte *) block.get_data(), (FT_Long) block.get_size(), 0, &ftface);
 
       if(fterror != 0)
       {

@@ -53,8 +53,8 @@ public:
 #endif
    __pointer(counter)                              m_pcounter;
    ::task_pointer                                  m_ptask;
-   ::procedure                                       m_routineNext;
-   ::procedure_array                                 m_procedurea;
+   ::procedure                                     m_procedureNext;
+   ::procedure_array                               m_procedurea;
 
 
    task();
@@ -99,10 +99,10 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_routine(const ::procedure & procedure) override;
+   void post_procedure(const ::procedure & procedure) override;
    
 
-   virtual void run_posted_routines();
+   virtual void run_posted_procedures();
 
    virtual void task_caller_on_init();
 

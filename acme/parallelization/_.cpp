@@ -656,12 +656,12 @@ void run_runnable(::matter * pmatter)
 }
 
 
-void run_routine(const ::procedure & procedure)
-{
-
-   procedure();
-
-}
+//void run_routine(const ::procedure & procedure)
+//{
+//
+//   procedure();
+//
+//}
 
 
 thread_local __pointer(task) t_ptask;

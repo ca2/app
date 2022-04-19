@@ -2395,7 +2395,7 @@ namespace user
          else
          {
 
-            post_routine(__routine([this]()
+            post_procedure([this]()
                                    {
 
                                       if (get_app() != nullptr && get_app()->get_session() != nullptr &&
@@ -2411,7 +2411,7 @@ namespace user
 
                                       }
 
-                                   }));
+                                   });
 
          }
 
@@ -4757,11 +4757,11 @@ namespace user
       if (!puserinteractionHost || puserinteractionHost == this)
       {
 
-         return m_pprimitiveimpl->interaction_post(routine);
+         return m_pprimitiveimpl->interaction_post(procedure);
 
       }
 
-      return puserinteractionHost->interaction_post(routine);
+      return puserinteractionHost->interaction_post(procedure);
 
    }
 
@@ -4803,18 +4803,7 @@ namespace user
    void interaction::interaction_send(const ::procedure & procedure)
    {
 
-      // auto estatus =
-
-      __send_routine(this, &interaction::interaction_post, routine);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_procedure(this, &interaction::interaction_post, procedure);
 
    }
 
@@ -12638,12 +12627,13 @@ namespace user
             {
 
                defer_branch("transparent_mouse_event_thread",
-                  __routine([this]()
+                  [this]()
                      {
 
                         _task_transparent_mouse_event();
                      }
-               ));
+               );
+
                //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
 
                //SetTimer(e_timer_transparent_mouse_event, 100);
@@ -15838,30 +15828,17 @@ namespace user
    }
 
 
-   void interaction::post_routine(const ::procedure & procedure)
+   void interaction::post_procedure(const ::procedure & procedure)
    {
 
       if (!::is_set(m_pthreadUserInteraction))
       {
 
-         //return error_failed;
-
          throw ::exception(error_null_pointer);
 
       }
 
-      //auto estatus =  
-
-      m_pthreadUserInteraction->post_routine(routine);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      m_pthreadUserInteraction->post_procedure(procedure);
 
    }
 
@@ -15920,7 +15897,7 @@ namespace user
 #endif
 
 
-   void interaction::send_routine(const ::procedure & procedure)
+   void interaction::send_procedure(const ::procedure & procedure)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -15930,27 +15907,17 @@ namespace user
       if (pthread == nullptr || pthread == ptaskCurrent)
       {
 
-         return routine();
+         return procedure();
 
       }
 
-      //auto estatus = 
-
-      pthread->send_routine(routine);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-      //
-      //return estatus;
+      pthread->send_procedure(procedure);
 
    }
 
 
    ::mutex * g_pmutexChildren;
+
 
    CLASS_DECL_AURA::mutex * mutex_children()
    {

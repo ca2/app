@@ -692,75 +692,17 @@ void thread::run()
 bool thread::pump_runnable()
 {
 
-   run_posted_routines();
+   run_posted_procedures();
 
    return false;
-
-   //_synchronous_lock synchronouslock(mutex());
-
-   //while(task_get_run())
-   //{
-
-   //   if (m_procedurea.is_empty())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   auto method = m_procedurea.first();
-
-   //   m_procedurea.erase_at(0);
-
-   //   if (method)
-   //   {
-
-   //      synchronouslock.unlock();
-
-   //      method();
-
-   //      return true;
-
-   //   }
-
-   //}
-
-   //return false;
 
 }
 
 
-//void thread::post(const ::procedure & procedure)
-//{
-//
-//   if (!m_bBranchHandling)
-//   {
-//
-//      m_bBranchHandling = true;
-//
-//      MESSAGE_LINK(e_message_branch, this, this, &::thread::on_message_branch);
-//
-//   }
-//
-//   post_message(e_message_branch, 0, routine.m_p);
-//
-//   return ::success;
-//
-//}
-
-
-//void thread::send(const ::procedure & procedure, const ::duration & durationTimeout)
-//{
-//
-//   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
-//
-//}
-
- 
 void thread::on_message_branch(::message::message* pmessage)
 {
 
-   ::procedure routine(__as(pmessage->m_lparam));
+   ::procedure routine(pmessage->m_lparam);
 
    if (pmessage->m_wparam == 0)
    {
@@ -1925,7 +1867,7 @@ void thread::main()
 //
 //   CommonConstruct();
 //
-//   m_routine = routine;
+//   m_procedure = routine;
 //
 //   m_parameter = parameter;
 //
@@ -4128,7 +4070,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_method)
          {
 
-            ::procedure routine(__as(message.lParam));
+            ::procedure routine(message.lParam);
 
             routine();
 

@@ -71,7 +71,7 @@ public:
    inline bool on_off(const integral_duration & period) const
    {
 
-      return (elapsed().m_i % period.m_i) < half().m_i;
+      return (elapsed().m_i % period.m_i) < period.half().m_i;
 
    }
 

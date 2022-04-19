@@ -4744,13 +4744,19 @@ namespace user
 
          m_puserinteractionFocusRequest = nullptr;
 
-         auto puserinteraction = m_puserinteractionFocus1;
+      }
+
+      auto puserinteraction = m_puserinteractionFocus1;
+
+      if (puserinteraction)
+      {
 
          synchronouslock.unlock();
 
          puserinteraction->on_set_keyboard_focus();
 
       }
+
 
    }
 

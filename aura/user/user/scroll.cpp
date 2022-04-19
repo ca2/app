@@ -949,20 +949,20 @@ namespace user
 
       m_scrolldataVertical.m_bScroll = m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll;
 
-      if (!m_scrolldataHorizontal.m_bScroll)
-      {
+      //if (!m_scrolldataHorizontal.m_bScroll)
+      //{
 
-         m_pointScroll.x = 0;
+      //   m_pointScroll.x = 0;
 
-      }
+      //}
 
 
-      if (!m_scrolldataVertical.m_bScroll)
-      {
+      //if (!m_scrolldataVertical.m_bScroll)
+      //{
 
-         m_pointScroll.y = 0;
+      //   m_pointScroll.y = 0;
 
-      }
+      //}
 
 
       ::rectangle_i32 rectangleScroll;

@@ -1681,11 +1681,11 @@ namespace user
    {
 
       queue_graphics_call([this, iSelEnd](::draw2d::graphics_pointer & pgraphics)
-         {
+      {
 
-            _set_sel_end(pgraphics, iSelEnd);
+         _set_sel_end(pgraphics, iSelEnd);
 
-         });
+      });
 
    }
 
@@ -1709,7 +1709,21 @@ namespace user
 
       auto xViewport = get_viewport_offset().x;
 
-      if (x < xViewport && xViewport > 0)
+      int iBorder = 4;
+
+      if (xEnd < rectangleClient.width() - iBorder * 2)
+      {
+
+         xViewport = 0;
+
+      }
+      else if (xEnd - get_viewport_offset().x < rectangleClient.width() - iBorder * 2)
+      {
+
+         xViewport = maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
+
+      }
+      else if (x < xViewport && xViewport > 0)
       {
 
          xViewport = x;
@@ -1721,10 +1735,10 @@ namespace user
          xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
-      else if (x > rectangleClient.width())
+      else if (x > get_viewport_offset().x + rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = maximum(0, x - rectangleClient.width() / 2);
+         xViewport = maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
 
       }
 
@@ -4161,6 +4175,8 @@ finished_update:
 
       plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
+      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+
    }
 
 
@@ -4694,6 +4710,8 @@ finished_update:
                         MacroRecord(__new(plain_text_file_command()));
                         MacroEnd();
 
+                        _001SetSelEnd(m_ptree->m_iSelEnd);
+
                      }
 
                   }
@@ -4776,6 +4794,8 @@ finished_update:
 
                      _001EnsureVisibleLine(pgraphics, iLine);
 
+                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+
                   });
 
             }
@@ -4825,6 +4845,8 @@ finished_update:
                      }
 
                      _001EnsureVisibleLine(pgraphics, iLine);
+
+                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
 
                   });
 
@@ -4954,7 +4976,7 @@ finished_update:
 
                      }
 
-                     _001SetSelEnd(m_ptree->m_iSelEnd);
+                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
 
                      if (!bShift)
                      {
@@ -5002,7 +5024,7 @@ finished_update:
 
                      }
 
-                     _001SetSelEnd(m_ptree->m_iSelEnd);
+                     _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
 
                      if (!bShift)
                      {
@@ -6976,6 +6998,8 @@ finished_update:
          _001EnsureVisibleLine(pgraphics, 0);
 
       }
+
+      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
 
    }
 

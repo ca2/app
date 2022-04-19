@@ -23,7 +23,7 @@ namespace write_text
    }
 
 
-   ::write_text::font* drawer::get_current_font()
+   ::write_text::font * drawer::get_current_font()
    {
 
       return m_pfont;
@@ -31,7 +31,7 @@ namespace write_text
    }
 
 
-   void drawer::set(::write_text::font* pfont)
+   void drawer::set(::write_text::font * pfont)
    {
 
       if (::is_null(pfont))
@@ -54,7 +54,7 @@ namespace write_text
    }
 
 
-   void drawer::draw(const ::write_text::text_out* ptextout)
+   void drawer::draw(const ::write_text::text_out * ptextout)
    {
 
       if (ptextout->m_pfont && m_pfont != ptextout->m_pfont)
@@ -78,10 +78,10 @@ namespace write_text
 
    }
 
-   void drawer::draw(const ::write_text::text_out_array& textouta)
+   void drawer::draw(const ::write_text::text_out_array & textouta)
    {
 
-      for (auto& ptextout : textouta.text_outa())
+      for (auto & ptextout : textouta.text_outa())
       {
 
          draw(ptextout);
@@ -93,7 +93,7 @@ namespace write_text
    }
 
 
-   ::size_f64 drawer::get_text_extent(const ::block& block)
+   ::size_f64 drawer::get_text_extent(const ::block & block)
    {
 
       return ::size_f64();
@@ -113,7 +113,7 @@ namespace write_text
    }
 
 
-   void drawer::get_text_metrics(::write_text::text_metric* pmetrics)
+   void drawer::get_text_metrics(::write_text::text_metric * pmetrics)
    {
 
       throw ::interface_only();
@@ -123,7 +123,7 @@ namespace write_text
    }
 
 
-   void drawer::TextOutRaw(double x, double y, const block& block)
+   void drawer::TextOutRaw(double x, double y, const block & block)
    {
 
       throw ::interface_only();
@@ -132,7 +132,7 @@ namespace write_text
 
    }
 
-   
+
    void drawer::split_text(string_array & stra, double w, enum_text_wrap etextwrap)
    {
 
@@ -183,12 +183,125 @@ namespace write_text
       return _split_text_character(stra, i, w);
 
    }
-   
-   
+
+
    ::count drawer::_split_text_word_then_character(string_array & stra, ::index i, double w)
    {
-      
-      return _split_text_character(stra, i, w);
+
+      ::count c = 0;
+
+      string str = stra[i];
+
+      const char * pszStart = str;
+
+      auto pszEnd = pszStart;
+
+      string strNow;
+
+      // currently only whitespace characters indicate word boundaries
+      auto pszLastWordboundaryStart = pszStart;
+      auto pszLastWordboundaryEnd = pszStart;
+
+      bool bWhitespace = true;
+
+      while (pszEnd)
+      {
+
+         auto pszLast = pszEnd;
+
+         bool bWhitespaceNow = ::str::ch::is_whitespace(pszEnd);
+
+         if (bWhitespaceNow && !bWhitespace)
+         {
+
+            pszLastWordboundaryStart = pszEnd;
+
+         }
+         else if (!bWhitespaceNow && bWhitespace)
+         {
+
+            pszLastWordboundaryEnd = pszEnd;
+
+         }
+
+         bWhitespace = bWhitespaceNow;
+
+         pszEnd = ::str::utf8_inc(pszEnd);
+
+         string strNow = string(pszStart, pszEnd - pszStart);
+
+         auto extent = get_text_extent(strNow).cx;
+
+         if (extent > w || *pszEnd == '\0')
+         {
+
+            if (extent <= w)
+            {
+
+               strNow = string(pszStart, pszEnd - pszStart);
+
+               pszStart = pszEnd;
+
+            }
+            else if (pszLastWordboundaryStart > pszStart)
+            {
+
+               strNow = string(pszStart, pszLastWordboundaryStart - pszStart);
+
+               pszStart = pszLastWordboundaryEnd;
+
+            }
+            else if (pszLast > pszStart)
+            {
+
+               strNow = string(pszStart, pszLast - pszStart);
+
+               pszStart = pszLast;
+
+            }
+            else
+            {
+
+               pszStart = pszEnd;
+
+            }
+
+            if (c == 0)
+            {
+
+               stra.set_at(i, strNow);
+
+            }
+            else
+            {
+
+               stra.insert_at(i + c, strNow);
+
+            }
+
+            c++;
+
+         }
+
+         if (*pszEnd == '\0')
+         {
+
+            strNow = string(pszStart, pszEnd - pszStart);
+
+            if (strNow.has_char())
+            {
+
+               stra.insert_at(i + c, strNow);
+
+            }
+
+            break;
+
+         }
+
+      }
+
+      return c;
 
    }
 
@@ -215,7 +328,7 @@ namespace write_text
 
          string strNow = string(pszStart, pszEnd - pszStart);
 
-         if (get_text_extent(strNow).cx > w)
+         if (get_text_extent(strNow).cx > w || *pszEnd == '\0')
          {
 
             if (pszLast > pszStart)
@@ -265,7 +378,7 @@ namespace write_text
 
 
 
-   void drawer::create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::rectangle_i32& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap)
+   void drawer::create_simple_multiline_layout(::write_text::text_out_array & textouta, const string & str, const ::rectangle_i32 & rectangle, ::write_text::font * pfont, const ::e_align & ealign, enum_text_wrap etextwrap)
    {
 
       string_array stra;
@@ -286,7 +399,7 @@ namespace write_text
 
       split_text(stra, w, etextwrap);
 
-      for (auto& strLine : stra)
+      for (auto & strLine : stra)
       {
 
          if (strLine.has_char())
@@ -334,7 +447,7 @@ namespace write_text
 
          }
 
-         for (auto& ptextout : textouta.text_outa())
+         for (auto & ptextout : textouta.text_outa())
          {
 
             ptextout->m_point.x = (w - ptextout->m_size.cx) * dRate;
@@ -355,7 +468,7 @@ namespace write_text
 
          }
 
-         for (auto& ptextout : textouta.text_outa())
+         for (auto & ptextout : textouta.text_outa())
          {
 
             ptextout->m_point.y += dy;

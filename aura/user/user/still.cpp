@@ -15,6 +15,8 @@ namespace user
    still::still()
    {
 
+      m_etextwrap = e_text_wrap_word_then_character;
+
       m_ptextouta = nullptr;
       m_estockicon = e_stock_icon_none;
       m_estyle = style_none;
@@ -548,7 +550,7 @@ namespace user
 
       ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, m_ealignText);
 
-      ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
+      ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_none);
 
       ::enum_text_wrap etextwrap = m_etextwrap;
 

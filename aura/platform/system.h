@@ -159,7 +159,7 @@ namespace aura
 
       //virtual bool verb();
 
-      //virtual void main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal) override;
+      //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -767,7 +767,7 @@ namespace aura
       //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
-      void windowing_post(const ::function < void() > & function) override;
+      void windowing_post(const ::procedure & function) override;
 
 
    };

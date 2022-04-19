@@ -57,7 +57,7 @@ void handler_manager::initialize_handler_manager(::object * pobject, const strin
 }
 
 
-void handler_manager::handle(const ::routine & routine, bool bSync)
+void handler_manager::handle(const ::procedure & procedure, bool bSync)
 {
 
    if (bSync)
@@ -76,7 +76,7 @@ void handler_manager::handle(const ::routine & routine, bool bSync)
 }
 
 
-void handler_manager::handler_sync(const ::routine & routine)
+void handler_manager::handler_sync(const ::procedure & procedure)
 {
 
    if (m_bUseDedicatedThread)
@@ -140,14 +140,14 @@ bool handler_manager::is_branch_current() const
 }
 
 
-void handler_manager::handler_branch(const ::routine & routine)
+void handler_manager::handler_branch(const ::procedure & procedure)
 {
 
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      m_routinea.add(routine);
+      m_procedurea.add(routine);
 
       m_pevTaskOnQueue->SetEvent();
 
@@ -174,12 +174,12 @@ void handler_manager::handler_branch(const ::routine & routine)
 }
 
 
-::routine handler_manager::pick_new_task()
+::procedure handler_manager::pick_new_task()
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   if (m_routinea.is_empty())
+   if (m_procedurea.is_empty())
    {
 
       synchronouslock.unlock();
@@ -190,18 +190,18 @@ void handler_manager::handler_branch(const ::routine & routine)
 
    }
 
-   if (m_routinea.is_empty())
+   if (m_procedurea.is_empty())
    {
 
       return nullptr;
 
    }
 
-   auto method = m_routinea.first();
+   auto method = m_procedurea.first();
 
-   m_routinea.erase_at(0);
+   m_procedurea.erase_at(0);
 
-   if (m_routinea.is_empty())
+   if (m_procedurea.is_empty())
    {
 
       m_pevTaskOnQueue->ResetEvent();

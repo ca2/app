@@ -276,9 +276,9 @@ public:
    //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
-   //virtual void main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);
+   //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
 
-   //virtual void main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
+   //virtual void main_user_sync(const ::procedure & procedure, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
 
 
    ::task* get_task(itask_t itask);
@@ -460,7 +460,7 @@ public:
    __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
-   virtual void windowing_post(const ::function < void() > & function);
+   virtual void windowing_post(const ::procedure & function);
 
 
 };

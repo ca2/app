@@ -887,7 +887,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::main_async(const ::routine & routine, enum_priority epriority)
+   void interaction_impl::main_async(const ::procedure & procedure, enum_priority epriority)
    {
 
       ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher;

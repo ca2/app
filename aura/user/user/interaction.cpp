@@ -4749,7 +4749,7 @@ namespace user
    }
 
 
-   void interaction::interaction_post(const ::routine & routine)
+   void interaction::interaction_post(const ::procedure & procedure)
    {
 
       auto puserinteractionHost = get_host_window();
@@ -4800,7 +4800,7 @@ namespace user
    }
 
 
-   void interaction::interaction_send(const ::routine & routine)
+   void interaction::interaction_send(const ::procedure & procedure)
    {
 
       // auto estatus =
@@ -15838,7 +15838,7 @@ namespace user
    }
 
 
-   void interaction::post_routine(const ::routine & routine)
+   void interaction::post_routine(const ::procedure & procedure)
    {
 
       if (!::is_set(m_pthreadUserInteraction))
@@ -15920,7 +15920,7 @@ namespace user
 #endif
 
 
-   void interaction::send_routine(const ::routine & routine)
+   void interaction::send_routine(const ::procedure & procedure)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;

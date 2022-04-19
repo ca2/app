@@ -143,7 +143,7 @@ bool application::os_on_start_application()
 //}
 
 
-//CLASS_DECL_APEX void main_async_runnable(const ::routine & routine)
+//CLASS_DECL_APEX void main_async_runnable(const ::procedure & procedure)
 //{
 //
 //   //__pointer(::object) pobjectTask = pobjectTaskParam;
@@ -160,7 +160,7 @@ bool application::os_on_start_application()
 //}
 //
 //
-//CLASS_DECL_APEX void main_sync_runnable(const ::routine & routine, ::duration durationTimeout)
+//CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::duration durationTimeout)
 //{
 //   
 //   psystem->send_routine(routine, durationTimeout);

@@ -309,7 +309,7 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-      virtual void interaction_post(const ::routine & routine);
+      virtual void interaction_post(const ::procedure & procedure);
 
 
       //virtual lresult send(::message::message * pmessage);

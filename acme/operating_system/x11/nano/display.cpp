@@ -151,7 +151,7 @@ namespace x11
    }
 
 
-//   void display::display_post(const ::function < void() > & function)
+//   void display::display_post(const ::procedure & function)
 //   {
 //
 //

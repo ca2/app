@@ -74,8 +74,8 @@ namespace x11
 
       virtual bool x11_posted();
 
-      //void display_post(const ::function < void() > & function) override;
-      //void display_send(const ::function < void() > & function);
+      //void display_post(const ::procedure & function) override;
+      //void display_send(const ::procedure & function);
       //bool display_posted_routine_step();
 
 

@@ -20,7 +20,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual __composite(::task) defer_branch(const ::atom& atom, const ::routine & routine);
+   virtual __composite(::task) defer_branch(const ::atom& atom, const ::procedure & procedure);
 
 
    virtual void set_timer(enum_timer etimer, const duration & duration);

@@ -820,7 +820,7 @@ namespace acme
    }
 
 
-   void node::node_post(const ::routine & routine)
+   void node::node_post(const ::procedure & procedure)
    {
 
 //      defer_create_mutex();
@@ -841,31 +841,22 @@ namespace acme
 //   }
 
 
-   void node::node_send(const ::routine & routine)
+   void node::node_send(const ::procedure & procedure)
    {
 
-      /*auto estatus = */ __send_routine(this, &node::node_post, routine);
-      
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_routine(this, &node::node_post, procedure);
 
    }
 
 
-//   void node::user_fork(const ::routine & routine)
+//   void node::user_fork(const ::procedure & procedure)
 //   {
 //
 //
 //   }
 
 
-//   void node::user_sync(const ::duration & durationTimeout, const ::routine & routine)
+//   void node::user_sync(const ::duration & durationTimeout, const ::procedure & procedure)
 //   {
 //
 //      auto proutine = __sync_routine(routine);

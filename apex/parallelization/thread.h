@@ -83,7 +83,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   //::routine_array                                    m_routinea;
+   //::procedure_array                                    m_procedurea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -255,7 +255,7 @@ public:
    //}
 
 
-   //bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   //bool sync_procedure(const ::procedure & procedure, ::duration durationTimeout = ::duration::infinite())
    //{
 
    //   if (this == ::get_task())
@@ -272,8 +272,8 @@ public:
    //}
 
 
-   //virtual void post_routine(const ::routine& routine) override;
-   //virtual void send_routine(const ::routine & routine, const ::duration & durationTimeout = ::duration::infinite());
+   //virtual void post_routine(const ::procedure & procedure) override;
+   //virtual void send_routine(const ::procedure & procedure, const ::duration & durationTimeout = ::duration::infinite());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);

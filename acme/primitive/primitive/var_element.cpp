@@ -151,7 +151,7 @@ void payload::_set_element(::element * pelement)
          case e_type_path:
             return ::release(m_ppath);
          case e_type_routine:
-            return ::release(m_pelementRoutine);
+            return ::release(m_pelementProcedure);
          default:
             return -1;
          };

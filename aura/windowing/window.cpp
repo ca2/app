@@ -1300,7 +1300,7 @@ namespace windowing
    }
 
 
-   void window::window_send(const ::routine & routine)
+   void window::window_send(const ::procedure & procedure)
    {
 
       //auto estatus = 
@@ -1319,7 +1319,7 @@ namespace windowing
    }
 
 
-   void window::window_post(const ::routine & routine)
+   void window::window_post(const ::procedure & procedure)
    {
 
       auto puserinteractionimpl = m_puserinteractionimpl;

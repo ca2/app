@@ -82,7 +82,7 @@ namespace promise
 
 //
 //template < typename PRED >
-//::routine __sync_payload_routine(::matter * pmatter, PRED pred)
+//::procedure __sync_payload_routine(::matter * pmatter, PRED pred)
 //{
 //
 //   auto proutine = __new(::promise::predicate_sync_routine<PRED>(pred));

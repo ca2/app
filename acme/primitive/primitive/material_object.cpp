@@ -65,7 +65,7 @@ bool material_object::is_branch_current() const
 }
 
 
-void material_object::post_routine(const ::routine & routine)
+void material_object::post_routine(const ::procedure & procedure)
 {
 
 //   th__row ::interface_only_exception();
@@ -77,17 +77,15 @@ void material_object::post_routine(const ::routine & routine)
 }
 
 
-void material_object::send_routine(const ::routine & routine)
+void material_object::send_routine(const ::procedure & procedure)
 {
 
-   return __send_routine(this, &material_object::post_routine, routine);
-
-   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+   return __send_routine(this, &material_object::post_routine, procedure);
 
 }
 
 
-routine_array * material_object::routine_array(const ::atom & atom, bool bCreate)
+::procedure_array * material_object::procedure_array(const ::atom & atom, bool bCreate)
 {
 
    if (!bCreate)
@@ -113,28 +111,26 @@ routine_array * material_object::routine_array(const ::atom & atom, bool bCreate
 }
 
 
-void material_object::add_routine(const ::atom & atom, const ::routine & routine)
+void material_object::add_procedure(const ::atom & atom, const ::procedure & procedure)
 {
 
-   if (!routine)
+   if (!procedure)
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-   auto proutinea = routine_array(atom, true);
+   auto pprocedurea = procedure_array(atom, true);
 
-   if (!proutinea)
+   if (!pprocedurea)
    {
 
       throw ::exception(error_resource);
 
    }
 
-   proutinea->add(routine);
-
-   //return ::success;
+   pprocedurea->add(procedure);
 
 }
 

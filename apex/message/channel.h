@@ -13,7 +13,7 @@ public:
    ::message::dispatcher_map                       m_dispatchermap;
    //::message::dispatcher_map                       m_dispatchermapNew;
    //bool                                            m_bNewChannel;
-   ::routine_map                                   m_routinemap;
+   ::::procedure_map                                   m_routinemap;
 
 
    channel();

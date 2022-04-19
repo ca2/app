@@ -365,7 +365,7 @@ void matter::on_sequence(const ::payload & payload)
 }
 
 
-//::task* matter::defer_branch(const ::atom& atom, const ::routine & routine)
+//::task* matter::defer_branch(const ::atom& atom, const ::procedure & procedure)
 //{
 //
 //   auto ptasktool = taskpool();
@@ -926,12 +926,10 @@ void matter::task_osterm()
 
 
 
-CLASS_DECL_ACME void __call(const ::routine & routine)
+CLASS_DECL_ACME void __call(const ::procedure & procedure)
 {
 
-   //return routine();
-
-   routine();
+   procedure();
 
 }
 

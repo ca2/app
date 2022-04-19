@@ -20,21 +20,12 @@ task_pool::~task_pool()
 }
 
 
-__composite(::task) task_pool::defer_branch(const ::atom& atom, const ::routine & routine)
+__composite(::task) task_pool::defer_branch(const ::atom& atom, const ::procedure & procedure)
 {
 
    auto & ptask = task(atom);
 
-   //auto estatus = __defer_compose_new(ptask);
-
    __defer_compose_new(ptask);
-
-   //if (!estatus)
-   //{
-
-   //   return ptask;
-
-   //}
 
    if (ptask->m_bIsRunning)
    {
@@ -43,7 +34,7 @@ __composite(::task) task_pool::defer_branch(const ::atom& atom, const ::routine 
 
    }
 
-   ptask->m_pelement = routine;
+   ptask->m_procedure = procedure;
 
    ptask->branch();
 
@@ -55,12 +46,12 @@ __composite(::task) task_pool::defer_branch(const ::atom& atom, const ::routine 
 void task_pool::set_timer(enum_timer etimer, const duration & duration)
 {
 
-   defer_branch(etimer, __routine([&, etimer, duration]()
+   defer_branch(etimer, [&, etimer, duration]()
       {
 
          _timer_task(etimer, duration);
 
-      }));
+      });
 
 }
 

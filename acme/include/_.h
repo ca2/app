@@ -981,7 +981,7 @@ class backing;
 class manager;
 class topic;
 class context;
-class routine;
+//class routine;
 class handler;
 template < typename RESULT > class process;
 class extended_topic;
@@ -3052,9 +3052,6 @@ namespace message
 #include "acme/platform/predicate_function_pointer.h"
 
 
-#include "acme/platform/routine.h"
-
-
 template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
@@ -3402,6 +3399,7 @@ template < typename TYPE > class sequence;
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
+#include "acme/platform/procedure.h"
 #include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
@@ -3593,15 +3591,16 @@ class list;
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
 using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
-using routine_array = ::array < routine >;
-using routine_list = ::list < routine >;
-using routine_map = ::id_map < ::routine_array >;
+using procedure = ::function < void () >;
+using procedure_array = ::array < ::function < void () > >;
+using procedure_list = ::list < ::function < void () > >;
+using procedure_map = ::id_map < ::procedure_array >;
 
 
 //using process_array = ::array < process >;
 
 template<typename PRED>
-void add_routine(routine_array& array, PRED pred);
+void add_procedure(::procedure_array& array, PRED pred);
 
 
 //template<typename PRED>
@@ -4111,7 +4110,7 @@ namespace acme
 //#include "acme/platform/timer_event.h"
 
 #include "acme/parallelization/thread_impl.h"
-#include "acme/platform/routine_array.h"
+#include "acme/platform/procedure_array.h"
 
 
 ///#include "acme/primitive/primitive/job.h"

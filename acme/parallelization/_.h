@@ -94,13 +94,13 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME void __call(const ::routine & routine);
+CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
 
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < void() > function);
+CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::procedure function);
 
 
-CLASS_DECL_ACME void main_asynchronous(::function < void() > function);
+CLASS_DECL_ACME void main_asynchronous(::procedure function);
 
 
 //namespace parallelization

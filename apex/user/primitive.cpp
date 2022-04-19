@@ -1055,7 +1055,7 @@ namespace user
    }
 
 
-   void primitive::interaction_post(const ::routine & routine)
+   void primitive::interaction_post(const ::procedure & procedure)
    {
 
       throw ::interface_only();

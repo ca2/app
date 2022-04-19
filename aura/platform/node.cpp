@@ -123,7 +123,7 @@ namespace aura
 //   }
 
 
-//   void node::user_fork(const ::routine & routine)
+//   void node::user_fork(const ::procedure & procedure)
 //   {
 //
 //#ifdef LINUX

@@ -305,7 +305,7 @@ void object::dev_log(string strMessage)
 }
 
 
-//array < ::routine >* object::routinea(const ::atom& atom)
+//array < ::procedure >* object::routinea(const ::atom& atom)
 //{
 //
 //   //if (m_pmeta)
@@ -405,27 +405,10 @@ void object::dev_log(string strMessage)
 //
 
 
-void object::call_routine2(const ::routine & routine)
+void object::call_routine2(const ::procedure & procedure)
 {
 
-   //::e_status estatus = ::success;
-
-   /*try
-   {*/
-
-      /*estatus =*/ 
-   routine();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = error_exception;
-
-   //}
-
-   //return estatus;
-
+   procedure();
 
 }
 
@@ -454,7 +437,7 @@ void object::call_routine2(const ::routine & routine)
 //}
 //
 
-//void object::add_routine(const ::atom& atom, const ::routine& routine)
+//void object::add_procedure(const ::atom& atom, const ::procedure & procedure)
 //{
 //
 //   get_meta()->m_mapRoutine[atom].add(routine);
@@ -476,12 +459,12 @@ void object::call_routine2(const ::routine & routine)
 //   if (pobjectSource)
 //   {
 //
-//      auto proutinea = pobjectSource->routinea(atom);
+//      auto pprocedurea = pobjectSource->routinea(atom);
 //
-//      if (proutinea)
+//      if (pprocedurea)
 //      {
 //
-//         get_meta()->m_mapRoutine[atom].add(*proutinea);
+//         get_meta()->m_mapRoutine[atom].add(*pprocedurea);
 //
 //      }
 //
@@ -1717,7 +1700,7 @@ bool object::__is_child_task(::object * pobjectTask) const
 //#endif
 
 
-void object::branch(const ::routine_array& routinea)
+void object::branch(const ::procedure_array& routinea)
 {
 
    fork([routinea]()
@@ -1744,7 +1727,7 @@ void object::branch(const ::routine_array& routinea)
 }
 
 
-void object::branch_each(const ::routine_array& routinea)
+void object::branch_each(const ::procedure_array& routinea)
 {
 
    for (auto& routine : routinea)
@@ -1762,7 +1745,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-::task_pointer object::defer_branch(const ::atom& atom, const ::routine & routine, enum_priority epriority)
+::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
 {
 
    auto ptask = get_property_set()[__id(thread)][atom].cast < ::task>();
@@ -1776,7 +1759,7 @@ void object::branch_each(const ::routine_array& routinea)
 
    ptask = __create_new < task >();
 
-   ptask->m_pelement = routine;
+   ptask->m_procedure = procedure;
 
    get_property_set()[__id(thread)][atom] = ptask;
 
@@ -1806,7 +1789,7 @@ __pointer(task) object::branch_element(element * pelement, ::enum_priority eprio
 
    }
 
-   ptask->m_pelement = pelement;
+   ptask->m_procedure.m_ppredicate = pelement;
 
    ptask->m_atom = typeid(*pelement).name();
 
@@ -1840,7 +1823,7 @@ __pointer(::task) object::branch_element_synchronously(
 
    }
 
-   ptask->m_pelement = pelement;
+   ptask->m_procedure = pelement;
 
    ptask->m_atom = typeid(*pelement).name();
 
@@ -2476,7 +2459,7 @@ bool __no_continue(::e_status estatus)
 }
 
 
-void call_sync(const ::routine_array& methoda)
+void call_sync(const ::procedure_array& methoda)
 {
 
    try
@@ -2760,7 +2743,7 @@ element* object::get_taskpool_container()
 //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 //
-//void object::add_routine(const ::atom& idRoutine, const ::routine& routine)
+//void object::add_procedure(const ::atom& idRoutine, const ::procedure & procedure)
 //{
 //
 //
@@ -2774,7 +2757,7 @@ element* object::get_taskpool_container()
 //}
 
 //
-//array < ::routine >* object::routinea(const ::atom& idRoutine)
+//array < ::procedure >* object::routinea(const ::atom& idRoutine)
 //{
 //
 //   return nullptr;
@@ -2937,7 +2920,7 @@ void object::initialize(::object* pobject)
 //}
 
 
-//::thread_pointer object::launch(const ::routine& routine)
+//::thread_pointer object::launch(const ::procedure & procedure)
 //{
 //
 //   auto pthread = __create_new < ::thread >();
@@ -3547,14 +3530,14 @@ bool object::IsSerializable() const
 //}
 //
 //
-//void object::single_fork(const ::routine_array& routinea)
+//void object::single_fork(const ::procedure_array& routinea)
 //{
 //
 //
 //}
 //
 
-//void object::multiple_fork(const ::routine_array& routinea)
+//void object::multiple_fork(const ::procedure_array& routinea)
 //{
 //
 //
@@ -3563,7 +3546,7 @@ bool object::IsSerializable() const
 //   using property_object::defer_fork;
 
   /* template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -3598,7 +3581,7 @@ bool object::IsSerializable() const
    }*/
 
 
-   //inline void object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   //inline void object::defer_fork(::thread_pointer& pthread, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -3616,11 +3599,11 @@ bool object::IsSerializable() const
    //inline ::thread_pointer fork(PRED pred);
 
 
-   //inline ::thread_pointer lcontext_object::aunch(const ::routine& routine);
+   //inline ::thread_pointer lcontext_object::aunch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   //inline ::task_pointer object::opt_fork(const ::routine& routine)
+   //inline ::task_pointer object::opt_fork(const ::procedure & procedure)
    //{
 
    //   auto ptask = ::get_task();

@@ -25,10 +25,10 @@ inline bool __enum_is_failed(const ::e_status & e)
 //{
 
 
-   inline void routine::operator()() const { m_p->call_run(); }
-
-
-   inline bool routine::should_run_async() const { return m_p->should_run_async(); }
+//   inline void routine::operator()() const { m_ppredicate->operator()(); }
+//
+//
+//   inline bool routine::should_run_async() const { return m_ppredicate->should_run_async(); }
 
 
 
@@ -1909,7 +1909,7 @@ inline bool type::operator == (const ::atom& atom) const
       case e_type_path:
          return m_ppath;
       case e_type_routine:
-         return m_pelementRoutine;
+         return m_pelementProcedure;
       default:
          break;
       }
@@ -2107,7 +2107,7 @@ inline bool property_set::get_string(string& strResult, const atom& idKey) const
 //}
 
 
-inline ::payload operator + (::payload payload, const ::routine & routine)
+inline ::payload operator + (::payload payload, const ::procedure & procedure)
 {
 
    if (payload.get_type() != e_type_property_set)
@@ -2117,7 +2117,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 
    }
 
-   payload["routine"] = routine;
+   payload["routine"] = procedure.m_ppredicate;
 
    return payload;
 
@@ -2875,15 +2875,6 @@ inline void object::__release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_
 CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage);
 
 
-//template < typename BASE_TYPE >
-//inline void object::add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   return add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
 template < typename BASE_TYPE, typename SOURCE >
 inline void object::__refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
@@ -2988,186 +2979,6 @@ inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_C
 }
 
 
-//template < typename T >
-//inline __pointer(T) move_transfer(T * p) { return ::pointer < T >(e_move_transfer, p); }
-
-
-//inline const char* object::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
-
-
-//inline ::payload object::context_value(const ::payload& payload)
-//{
-//
-//   ::payload varContextValue;
-//
-//   varContextValue["context"] = get_context();
-//
-//   varContextValue["value"] = payload;
-//
-//   return varContextValue;
-//
-//}
-
-
-//inline void object::defer_set_object(::object * pobject)
-//{
-//
-//  if (::is_null(this) && ::is_set(pobject))
-//  {
-//
-//     set_object(pobject);
-//
-//  }
-//
-//}
-
-
-//#include "_property_set_composite_impl.h"
-
-
-//template < typename TYPE >
-//TYPE & operator |=(TYPE & o, enum_object eobject)
-//{
-//
-//  o.set(eobject);
-//
-//  return o;
-//
-//}
-//
-//
-//template < typename TYPE >
-//TYPE & operator +=(TYPE & o, enum_object eobject)
-//{
-//
-//  o.set(eobject);
-//
-//  return o;
-//
-//}
-//
-//
-//template < typename TYPE >
-//TYPE & operator -=(TYPE & o, enum_object eobject)
-//{
-//
-//  o.clear(eobject);
-//
-//  return o;
-//
-//}
-
-
-//template < typename T >
-//template < typename TEMPLATER >
-//inline __pointer(T) & pointer<T> ::defer_create(TEMPLATER)
-//{
-//
-//  if (is_null())
-//  {
-//
-//     operator=(__create < TYPE >());
-//
-//  }
-//
-//  return *this;
-//
-//}
-//
-//
-//template < typename T >
-//template < typename TYPE, typename OBJECT  >
-//inline __pointer(T) & pointer<T> ::defer_create(OBJECT * pobject)
-//{
-//
-//  if (is_null())
-//  {
-//
-//     operator=(__create < TYPE >(pobject));
-//
-//  }
-//
-//  return *this;
-//
-//}
-//
-//
-//template < class T >
-//inline stream & operator << (stream & os, const pointer < T > & sp)
-//{
-//
-//  os << *sp.m_p;
-//
-//  return os;
-//
-//}
-//
-//
-//template < class T >
-//inline stream & operator >> (stream & is, pointer < T > & sp)
-//{
-//
-//  is >> *sp.m_p;
-//
-//  return is;
-//
-//}
-//
-
-//inline void context::load_from_file(::element* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
-//{
-//
-//   if (pvarOptions)
-//   {
-//
-//      return _load_from_file(pobject, payloadFile, *pvarOptions);
-//
-//   }
-//   else
-//   {
-//
-//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
-//
-//   }
-//
-//}
-//
-//
-//inline void context::load_from_file(::element* pobject, const ::payload& payloadFile)
-//{
-//
-//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
-//
-//}
-//
-//
-//inline void context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::element* pobject)
-//{
-//
-//   if (pvarOptions)
-//   {
-//
-//      return _save_to_file(payloadFile, *pvarOptions, pobject);
-//
-//   }
-//   else
-//   {
-//
-//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
-//
-//   }
-//
-//}
-//
-
-//inline void context::save_to_file(const ::payload& payloadFile, const ::element* pobject)
-//{
-//
-//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
-//
-//}
-
-
 inline ::file_pointer object::get_reader(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
@@ -3183,68 +2994,6 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
 
 }
 
-
-//template < typename TYPE >
-//inline void object::set(const ::atom& atom, const TYPE& t)
-//{
-//
-//   ::assign(payload(atom), t);
-//
-//   set(e_object_property_set_modified);
-//
-//}
-
-
-//template < typename TYPE >
-//inline void object::get(const ::atom& atom, TYPE& t)
-//{
-//
-//   ::assign(t, payload(atom));
-//
-//}
-
-
-//inline payload::operator string & ()
-//{
-//
-//  if (m_etype == ::type_pvar)
-//  {
-//
-//     return m_ppayload->operator string & ();
-//
-//  }
-//  else if (m_etype == ::type_prop)
-//  {
-//
-//     return m_pproperty->operator string & ();
-//
-//  }
-//  else if (m_etype == ::e_type_pstring)
-//  {
-//
-//     return *m_pstr;
-//
-//  }
-//  else if (m_etype != ::e_type_string)
-//  {
-//
-//     m_str = get_string();
-//
-//     set_type(e_type_string, false);
-//
-//  }
-//
-//  return m_str;
-//
-//}
-//
-
-//inline payload::operator string() const
-//{
-//
-//    return get_string();
-//
-//}
 
 #define IMPL_VAR_REF(TYPE, VAR, ENUM)        \
   inline payload::operator TYPE &()                  \
@@ -3286,32 +3035,6 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
   }
 
 
-//#define IMPL_VAR_REF1(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-//IMPL_VAR_REF1(bool, b);
-//#undef IMPL_VAR_REF1
-//
-//
-//#define IMPL_VAR_REF2(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, VAR)
-//IMPL_VAR_REF2(::i8, i8);
-//IMPL_VAR_REF2(::u8, u8);
-//IMPL_VAR_REF2(::i16, i16);
-//IMPL_VAR_REF2(::u16, u16);
-//IMPL_VAR_REF2(::i32, i32);
-//IMPL_VAR_REF2(::u32, u32);
-//IMPL_VAR_REF2(::i64, i64);
-//IMPL_VAR_REF2(::u64, u64);
-//#undef IMPL_VAR_REF2
-//
-//
-//#define IMPL_VAR_REF3(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-//IMPL_VAR_REF3(float, f);
-//IMPL_VAR_REF3(double, d);
-//#undef IMPL_VAR_REF3
-//
-//
-//#undef IMPL_VAR_REF
-
-
 template < typename TYPE >
 inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
 {
@@ -3324,8 +3047,6 @@ inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_pr
       throw ::exception(error_failed);
 
    }
-
-   //return p->m_estatus;
 
 }
 
@@ -3353,7 +3074,7 @@ inline ::task_pointer object::defer_branch(const ::atom& atom, void(TYPE::* pfn)
 
 
 template < typename PRED >
-inline void add_routine(::routine_array& routinea, PRED pred)
+inline void add_procedure(::procedure_array& routinea, PRED pred)
 {
 
    routinea.add(__routine(pred));
@@ -3361,19 +3082,16 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 }
 
 
-
-inline void object::defer_branch(::task_pointer& ptask, const ::routine& routine)
+inline void object::defer_branch(::task_pointer& ptask, const ::procedure & procedure)
 {
 
    __defer_construct(ptask);
 
-   ptask->m_pelement = routine;
+   ptask->m_procedure = procedure;
 
    ptask->branch();
 
 }
-
-
 
 
 template < typename PRED >
@@ -3385,13 +3103,11 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 }
 
 
-
-
 template < typename PREDICATE >
 inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto proutine = __routine(predicate);
+   auto proutine = ::procedure(predicate);
 
    if(!proutine)
    {
@@ -3400,7 +3116,7 @@ inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array &
 
    }
 
-   auto ptask = this->branch_element(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_element(proutine.m_ppredicate, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {
@@ -3419,24 +3135,6 @@ inline __pointer(task) object::fork(PREDICATE predicate, const ::element_array &
    return ptask;
 
 }
-
-
-//inline routine_array * property_object::_routine_array(const ::atom& atom)
-//{
-//
-//   auto passociation = m_pmapPropertyRoutine->plookup(atom);
-//
-//   if (::is_null(passociation))
-//   {
-//
-//      return nullptr;
-//
-//   }
-//   
-//   return &passociation->m_element2;
-//
-//}
-//
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
@@ -3488,97 +3186,33 @@ bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD pos
 
    psynchronization->m_evReady.wait();
 
-//   if(!psynchronization->m_estatus)
-//   {
-//
-//      return psynchronization->m_estatus;
-//
-//   }
-//
-//   return psynchronization->m_estatus;
    return true;
 
 }
 
 
-//template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename MEMBER_POINTER >
-//void material_object::__sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method, MEMBER_POINTER ppayload)
-//{
-//
-//   auto proutine = __routine([pobject, method, &ppayload]()
-//                             {
-//
-//                                auto statuspayload = (pobject->*method)();
-//
-//                                if(statuspayload)
-//                                {
-//
-//                                   *ppayload = statuspayload;
-//
-//                                }
-//
-//                             });
-//
-//   auto estatus = __sync_routine(duration, pbranching, branching_method, proutine);
-//
-//   if(!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return estatus;
-//
-//}
-//
-//
-//template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-//void material_object::__sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method)
-//{
-//
-//   auto proutine = __routine([pobject, method]()
-//                             {
-//
-//                                (pobject->*method)();
-//
-//                             });
-//
-//   auto estatus = __sync_routine(duration, pbranching, branching_method, proutine);
-//
-//   if(!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return estatus;
-//
-//}
-
-
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine)
+void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
 {
 
    if(pposting->is_branch_current())
    {
 
-      return routine();
+      return procedure();
 
    }
 
    auto psignalization = __new(::promise::signalization);
 
-   auto proutine = __routine([routine, psignalization]()
+   auto function = ::procedure([procedure, psignalization]()
                              {
 
                                 try
                                 {
 
-                                    routine();
-                                    psignalization->m_estatus = ::success;
+                                   procedure();
+
+                                   psignalization->m_estatus = ::success;
 
                                 }
                                 catch (const ::exception& exception)
@@ -3598,32 +3232,20 @@ void material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD pos
 
                                 psignalization->m_pelementHold.release();
 
-                                //::release((::element * &)psignalization.m_p);
-
                              });
 
-   psignalization->m_pelementHold = proutine;
+   psignalization->m_pelementHold = function.m_ppredicate;
 
-   (pposting->*posting_method)(proutine);
+   (pposting->*posting_method)(function);
 
-   //if (psignalization->m_evReady.wait(proutine->timeout()).failed())
-   auto estatus = psignalization->m_evReady.wait(proutine->timeout());
+   auto estatus = psignalization->m_evReady.wait(function.m_ppredicate->timeout());
 
    if(estatus == error_wait_timeout)
    {
 
-      proutine->set_timed_out();
+      function.m_ppredicate->set_timed_out();
 
    }
-
-
-   //{
-
-   //   throw ::exception(error_timeout);
-
-   //}
-
-   //return psignalization->m_estatus;
 
 }
 

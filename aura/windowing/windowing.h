@@ -179,8 +179,8 @@ namespace windowing
       virtual void lock_set_foreground_window(bool bLock = true);
 
 
-      virtual void windowing_send(const ::routine & routine);
-      virtual void windowing_post(const ::routine & routine);
+      virtual void windowing_send(const ::procedure & procedure);
+      virtual void windowing_post(const ::procedure & procedure);
 
 
       virtual void _main_loop();

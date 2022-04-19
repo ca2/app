@@ -7,8 +7,8 @@
 //::user::enum_desktop _get_edesktop();
 
 
-//void x11_asynchronous(::function < void() > function);
-//void xcb_asynchronous(::function < void() > function);
+//void x11_asynchronous(::procedure function);
+//void xcb_asynchronous(::procedure function);
 
 
 void task_set_name(htask_t htask, const char * psz)
@@ -102,7 +102,7 @@ void main_asynchronous( ::function < void () > function)
 
 
 
-void system::windowing_post(const ::function < void() > & function)
+void system::windowing_post(const ::procedure & function)
 {
 
    ::nano::display::g_p->display_post(function);

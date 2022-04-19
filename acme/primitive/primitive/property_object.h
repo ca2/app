@@ -94,11 +94,11 @@ public:
 //
 //   inline GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & _routine_array(const ::atom& atom);
 //
-//   inline GGCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & routine_array(const ::atom & atom);
+//   inline GGCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array & ::procedure_array(const ::atom & atom);
 //
 //#else
 
-   //inline ::routine_array * _routine_array(const ::atom& atom);
+   //inline ::procedure_array * _routine_array(const ::atom& atom);
 
 //#endif
 

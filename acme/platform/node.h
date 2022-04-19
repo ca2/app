@@ -29,7 +29,7 @@ namespace acme
 
 #endif
 
-   //::routine_array            m_routineaPost;
+   //::procedure_array            m_routineaPost;
 
 
    public:
@@ -243,13 +243,13 @@ namespace acme
 
       }
 
-      virtual void node_post(const ::routine & routine);
+      virtual void node_post(const ::procedure & procedure);
 
 
       /// returns true if processed something
       //virtual bool run_posted_routine_step();
 
-      virtual void node_send(const ::routine & routine);
+      virtual void node_send(const ::procedure & procedure);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -259,7 +259,7 @@ namespace acme
 //
 //      }
 
-      //virtual void user_fork(const ::routine & routine);
+      //virtual void user_fork(const ::procedure & procedure);
 
 //      template < typename PRED >
 //      void user_sync(const ::duration & durationTimeout, PRED pred)
@@ -269,7 +269,7 @@ namespace acme
 //
 //      }
 
-      //virtual void user_sync(const ::duration & durationTimeout, const ::routine & routine);
+      //virtual void user_sync(const ::duration & durationTimeout, const ::procedure & procedure);
 
 
       virtual void node_post_quit();

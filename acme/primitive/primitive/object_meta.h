@@ -7,7 +7,7 @@ public:
 
 
    string                              m_strTopicText;
-   id_map < ::routine_array >   m_mapRoutine;
+   id_map < ::procedure_array >   m_mapRoutine;
    //id_map < future_array >   m_mapProcess;
    //__pointer_array(::task)           m_taska;
 

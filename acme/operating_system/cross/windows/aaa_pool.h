@@ -20,7 +20,7 @@ public:
    virtual ~task_pool();
 
 
-   virtual ::task_pointer & defer_start(const ::atom& atom, const ::routine & routine);
+   virtual ::task_pointer & defer_start(const ::atom& atom, const ::procedure & procedure);
 
 
    virtual void start_clock(enum_timer etimer, const duration & duration);

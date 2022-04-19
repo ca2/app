@@ -86,7 +86,7 @@ namespace mathematics
 } // namespace mathematics
 
 
-::array < ::routine > * g_proutineaOsTerm;
+::array < ::procedure > * g_proutineaOsTerm;
 
 extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
 

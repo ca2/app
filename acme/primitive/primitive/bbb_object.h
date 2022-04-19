@@ -88,13 +88,13 @@ public:
    __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
-   virtual void add_routine(const ::atom& idRoutine, const ::routine& routine);
+   virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
 
 
    virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   virtual array < ::routine >* routinea(const ::atom& idRoutine);
+   virtual array < ::procedure >* routinea(const ::atom& idRoutine);
 
 
    virtual void call_routine(const ::atom& idRoutine);
@@ -425,13 +425,13 @@ public:
    void start();
 
 
-   void single_fork(const ::routine_array& routinea);
-   void multiple_fork(const ::routine_array& routinea);
+   void single_fork(const ::procedure_array& routinea);
+   void multiple_fork(const ::procedure_array& routinea);
 
    using topic::manager::defer_fork;
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -466,7 +466,7 @@ public:
    }
 
 
-   inline void defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   inline void defer_fork(::thread_pointer& pthread, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -484,11 +484,11 @@ public:
    inline ::thread_pointer fork(PRED pred);
 
 
-   //inline ::thread_pointer launch(const ::routine& routine);
+   //inline ::thread_pointer launch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   inline ::task_pointer opt_fork(const ::routine& routine)
+   inline ::task_pointer opt_fork(const ::procedure & procedure)
    {
 
       auto ptask = ::get_task();
@@ -657,7 +657,7 @@ do                                                                   \
 
 
 
-CLASS_DECL_APEXvoid call_sync(const ::routine_array& routinea);
+CLASS_DECL_APEXvoid call_sync(const ::procedure_array& routinea);
 
 
 

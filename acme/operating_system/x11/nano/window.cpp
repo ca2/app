@@ -1073,7 +1073,7 @@ void nano_window::redraw()
 extern class ::system * g_psystem;
 
 
-void x11_asynchronous(::function < void() > function)
+void x11_asynchronous(::procedure function)
 {
 
    auto pdisplay = ::x11::display::get(g_psystem);

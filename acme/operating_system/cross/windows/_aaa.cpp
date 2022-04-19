@@ -441,7 +441,7 @@ namespace parallelization
 
 
 
-CLASS_DECL_ACME void call(const ::routine & routine)
+CLASS_DECL_ACME void call(const ::procedure & procedure)
 {
 
    ::e_status estatus;
@@ -715,7 +715,7 @@ void run_runnable(::matter * pmatter)
 }
 
 
-void run_routine(const ::routine & routine)
+void run_routine(const ::procedure & procedure)
 {
 
    ::e_status estatus = error_exception;

@@ -780,16 +780,16 @@ bool thread::pump_runnable()
    //while(task_get_run())
    //{
 
-   //   if (m_routinea.is_empty())
+   //   if (m_procedurea.is_empty())
    //   {
 
    //      return false;
 
    //   }
 
-   //   auto method = m_routinea.first();
+   //   auto method = m_procedurea.first();
 
-   //   m_routinea.erase_at(0);
+   //   m_procedurea.erase_at(0);
 
    //   if (method)
    //   {
@@ -809,7 +809,7 @@ bool thread::pump_runnable()
 }
 
 
-//void thread::post(const ::routine& routine)
+//void thread::post(const ::procedure & procedure)
 //{
 //
 //   if (!m_bBranchHandling)
@@ -828,7 +828,7 @@ bool thread::pump_runnable()
 //}
 
 
-//void thread::send(const ::routine & routine, const ::duration & durationTimeout)
+//void thread::send(const ::procedure & procedure, const ::duration & durationTimeout)
 //{
 //
 //   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
@@ -839,7 +839,7 @@ bool thread::pump_runnable()
 void thread::on_message_branch(::message::message* pmessage)
 {
 
-   ::routine routine(pmessage->m_lparam);
+   ::procedure routine(pmessage->m_lparam);
 
    if (pmessage->m_wparam == 0)
    {
@@ -3000,7 +3000,7 @@ namespace apex
 } // namespace apex
 
 
-//void thread::post(const ::routine & routine)
+//void thread::post(const ::procedure & procedure)
 //{
 //
 //   if (!routine)
@@ -3012,7 +3012,7 @@ namespace apex
 //
 //   synchronous_lock synchronouslock(mutex());
 //
-//   m_routinea.add(routine);
+//   m_procedurea.add(routine);
 //
 //   kick_idle();
 //
@@ -3021,7 +3021,7 @@ namespace apex
 //}
 
 
-//void thread::send_routine(const ::routine & routine, const ::duration & durationTimeout)
+//void thread::send_routine(const ::procedure & procedure, const ::duration & durationTimeout)
 //{
 //
 //   return __sync_routine(durationTimeout, this, &thread::post, routine);
@@ -4207,7 +4207,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_method)
          {
 
-            ::routine routine(message.lParam);
+            ::procedure routine(message.lParam);
 
             routine();
 

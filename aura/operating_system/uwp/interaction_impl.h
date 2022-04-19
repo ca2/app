@@ -91,7 +91,7 @@ namespace universal_windows
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
+      virtual void main_async(const ::procedure & procedure, enum_priority epriority = e_priority_normal);
 
       void _002OnDraw(::image * pimage);
 

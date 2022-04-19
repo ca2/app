@@ -249,7 +249,7 @@ namespace user
       bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
 
-      void interaction_post(const ::routine & routine) override;
+      void interaction_post(const ::procedure & procedure) override;
 
 
       virtual lresult send(::message::message * pmessage);

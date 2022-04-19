@@ -241,7 +241,7 @@ namespace file
    }
 
 
-   void watcher::erase_watch(watch_id watch_id, ::function < void() > functionErased)
+   void watcher::erase_watch(watch_id watch_id, ::procedure functionErased)
    {
 
       synchronous_lock synchronouslock(mutex());

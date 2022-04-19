@@ -54,70 +54,70 @@
 //};
 //
 
+//
+//
+//template < typename PREDICATE >
+//class predicate_routine :
+//   virtual public ::element
+//{
+//public:
+//
+//
+//   PREDICATE      m_predicate;
+//   ::duration     m_durationTimeout = 1_min;
+//
+//
+//
+//   predicate_routine(PREDICATE predicate) : m_predicate(predicate) { }
+//   predicate_routine(const ::duration & durationTimeout, PREDICATE predicate) : m_durationTimeout(durationTimeout), m_predicate(predicate) { }
+//   ~predicate_routine() override {}
+//   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
+//   //method(const ::method & method) : matter_pointer(method) { }
+//
+//
+//   //inline void operator()() const;
+//
+//   ::duration timeout() const override { return m_durationTimeout; }
+//   void set_timeout(const ::duration & durationTimeout) override { m_durationTimeout = durationTimeout; }
+//
+//
+//   virtual void run() override
+//   {
+//
+//      m_predicate();
+//
+//      //return ::success;
+//
+//   }
+//
+//   //template < typename PRED >
+//   //void pred(PRED pred);
+//
+//   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
+//   //method & operator = (const ::payload & payload);
+//
+//
+//};
 
 
-template < typename PREDICATE >
-class predicate_routine :
-   virtual public ::element
-{
-public:
 
 
-   PREDICATE      m_predicate;
-   ::duration     m_durationTimeout = 1_min;
-
-
-
-   predicate_routine(PREDICATE predicate) : m_predicate(predicate) { }
-   predicate_routine(const ::duration & durationTimeout, PREDICATE predicate) : m_durationTimeout(durationTimeout), m_predicate(predicate) { }
-   ~predicate_routine() override {}
-   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
-   //method(const ::method & method) : matter_pointer(method) { }
-
-
-   //inline void operator()() const;
-
-   ::duration timeout() const override { return m_durationTimeout; }
-   void set_timeout(const ::duration & durationTimeout) override { m_durationTimeout = durationTimeout; }
-
-
-   virtual void run() override
-   {
-
-      m_predicate();
-
-      //return ::success;
-
-   }
-
-   //template < typename PRED >
-   //void pred(PRED pred);
-
-   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
-   //method & operator = (const ::payload & payload);
-
-
-};
-
-
-
-
-template < typename PRED >
-::routine __routine(PRED pred)
-{
-
-   return __new(predicate_routine<PRED>(pred));
-
-}
-
-
-template < typename PRED >
-::routine __routine(const ::duration & duration, PRED pred)
-{
-
-   return __new(predicate_routine<PRED>(duration, pred));
-
-}
+//template < typename PRED >
+//::procedure __routine(PRED pred)
+//{
+//
+//   return __new(predicate_routine<PRED>(pred));
+//
+//}
+//
+//
+//template < typename PRED >
+//::procedure __routine(const ::duration & duration, PRED pred)
+//{
+//
+//   return __new(predicate_routine<PRED>(duration, pred));
+//
+//}
 
 
 void run_task(::matter * pobjectTask);
@@ -164,34 +164,34 @@ inline auto schedule(processor * pprocessor, PRED pred, enum_priority epriority 
 
 
 
+//
+//
+//template < typename TYPE >
+//inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
+//{
+//
+//   return __runnable([p, pmethod]
+//   {
+//
+//      (p->*pmethod)();
+//
+//   });
+//
+//}
+//
 
-
-template < typename TYPE >
-inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
-{
-
-   return __runnable([p, pmethod]
-   {
-
-      (p->*pmethod)();
-
-   });
-
-}
-
-
-
-template < typename PREDICATE, typename PAYLOAD >
-auto __payload_routine(PREDICATE predicate, PAYLOAD & payload)
-{
-
-   return __routine([predicate, &payload]()
-                    {
-
-                       predicate(payload);
-
-                    });
-
-}
-
+//
+//template < typename PREDICATE, typename PAYLOAD >
+//auto __payload_routine(PREDICATE predicate, PAYLOAD & payload)
+//{
+//
+//   return __routine([predicate, &payload]()
+//                    {
+//
+//                       predicate(payload);
+//
+//                    });
+//
+//}
+//
 

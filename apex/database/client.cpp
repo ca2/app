@@ -47,7 +47,7 @@ namespace database
 
          }));
 
-      //::add_routine(get_app()->m_routinemap[idProcedure], [this, atom]()
+      //::add_procedure(get_app()->m_routinemap[idProcedure], [this, atom]()
       //   {
 
       //      auto pproperty = fetch_property(atom);

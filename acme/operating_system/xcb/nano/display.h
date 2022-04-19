@@ -28,7 +28,7 @@ namespace xcb
       __pointer_array(event_listener)        m_eventlistenera;
       __pointer_array(nano_window)           m_windowa;
       xcb_window_t                           m_windowActive;
-      //::routine_array                        m_routineaPost;
+      //::procedure_array                        m_routineaPost;
       xcb_depth_t *                          m_pdepth;
       xcb_visualtype_t *                     m_pvisualtype;
       xcb_screen_t *                         m_pscreen;
@@ -96,8 +96,8 @@ namespace xcb
 
       virtual bool xcb_posted();
 
-      //void display_post(const ::function < void() > & function) override;
-      //void display_send(const ::function < void() > & function);
+      //void display_post(const ::procedure & function) override;
+      //void display_send(const ::procedure & function);
       //bool display_posted_routine_step();
 
 

@@ -1376,7 +1376,7 @@ namespace user
    }
 
 
-   void interaction::prodevian_post_routine(const ::routine & routine)
+   void interaction::prodevian_post_routine(const ::procedure & procedure)
    {
 
       if (!is_graphical())

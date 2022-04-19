@@ -49,8 +49,8 @@ namespace user
       ::duration                                m_durationOutOfDrawing;
 
       ::duration                                m_durationLastScreenUpdate;
-      ::routine                                 m_routineUpdateScreen;
-      ::routine                                 m_routineWindowShow;
+      ::procedure                                 m_routineUpdateScreen;
+      ::procedure                                 m_routineWindowShow;
       
 
       bool                                      m_bRedraw;

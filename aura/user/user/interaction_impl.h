@@ -202,7 +202,7 @@ namespace user
       void create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
-      virtual void interaction_post(const ::routine & routine) override;
+      virtual void interaction_post(const ::procedure & procedure) override;
 
       // call these from window
       //virtual void set_keyboard_focus();

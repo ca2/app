@@ -169,7 +169,7 @@ public:
 
 
 
-   //virtual ::task * defer_branch(const ::atom & atom, const ::routine & routine);
+   //virtual ::task * defer_branch(const ::atom & atom, const ::procedure & procedure);
 
 
    void delete_this() override;

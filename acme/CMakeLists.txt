@@ -303,8 +303,8 @@ list(APPEND library_source
    platform/predicate_holder.h
    platform/printf.cpp
    platform/profiler.cpp
-   platform/routine.cpp
-   platform/routine.h
+   platform/procedure.cpp
+   platform/procedure.h
    platform/serial.cpp
    platform/system.cpp
    platform/system_setup.cpp

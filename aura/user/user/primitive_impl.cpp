@@ -311,7 +311,7 @@ namespace user
    }
 
 
-   //void primitive_impl::main_async(const promise::routine & routine, enum_priority epriority)
+   //void primitive_impl::main_async(const promise::procedure & routine, enum_priority epriority)
    //{
 
    //   if (!m_puserinteraction)

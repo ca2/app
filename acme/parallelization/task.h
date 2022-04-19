@@ -41,7 +41,7 @@ public:
 
    __pointer(manual_reset_event)                   m_peventInitialization;
 
-   __pointer(::element)                            m_pelement;
+   ::procedure                                     m_procedure;
    __pointer(manual_reset_event)                   m_pevSleep;
 
 #ifdef WINDOWS
@@ -53,8 +53,8 @@ public:
 #endif
    __pointer(counter)                              m_pcounter;
    ::task_pointer                                  m_ptask;
-   ::routine                                       m_routineNext;
-   ::routine_array                                 m_routinea;
+   ::procedure                                       m_routineNext;
+   ::procedure_array                                 m_procedurea;
 
 
    task();
@@ -99,7 +99,7 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_routine(const ::routine& routine) override;
+   void post_routine(const ::procedure & procedure) override;
    
 
    virtual void run_posted_routines();

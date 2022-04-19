@@ -395,29 +395,10 @@ namespace parallelization
 }
 
 
-
-
-CLASS_DECL_ACME void call(const ::routine & routine)
+CLASS_DECL_ACME void call(const ::procedure & procedure)
 {
 
-   //::e_status estatus;
-
-   //try
-   //{
-
-      /*estatus =*/
-
-         routine();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
+   procedure();
 
 }
 
@@ -675,25 +656,10 @@ void run_runnable(::matter * pmatter)
 }
 
 
-void run_routine(const ::routine & routine)
+void run_routine(const ::procedure & procedure)
 {
 
-   //::e_status estatus = error_exception;
-
-   //try
-   //{
-
-      //estatus = routine();
-
-   routine();
-
-   //}
-   //catch (...)
-   //{
-
-   //}
-
-   //return estatus;
+   procedure();
 
 }
 
@@ -800,7 +766,7 @@ thread_local payload t_payloada[e_task_payload_count];
 }
 
 
-CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::function < void() > function)
+CLASS_DECL_ACME bool main_synchronous(const ::duration & duration, ::procedure function)
 {
    
    auto pevent = __new(manual_reset_event);

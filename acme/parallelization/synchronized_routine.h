@@ -8,7 +8,7 @@
 //   class sync_routine;
 //
 //
-//   inline __pointer(sync_routine) ___sync_routine(const ::routine & routine);
+//   inline __pointer(sync_routine) ___sync_routine(const ::procedure & procedure);
 //
 //
 //   class CLASS_DECL_ACME sync_routine :
@@ -16,10 +16,10 @@
 //   {
 //   protected:
 //
-//      friend __pointer(sync_routine) ___sync_routine(const ::routine &routine);
+//      friend __pointer(sync_routine) ___sync_routine(const ::procedure &routine);
 //
 //
-//      sync_routine(const ::routine & routine) :
+//      sync_routine(const ::procedure & procedure) :
 //         m_routine(routine)
 //      {
 //
@@ -63,7 +63,7 @@
 //   };
 //
 //
-//   inline __pointer(sync_routine) ___sync_routine(const ::routine & routine)
+//   inline __pointer(sync_routine) ___sync_routine(const ::procedure & procedure)
 //   {
 //
 //      return __new(sync_routine(routine));

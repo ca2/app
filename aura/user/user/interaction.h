@@ -460,16 +460,16 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
+      //virtual void main_async(const ::procedure & procedure, enum_priority epriority = e_priority_normal);
 
 
       //virtual void enumerate_composite(matter_array& a) override;
 
       virtual bool is_user_thread() const;
 
-      virtual void interaction_send(const ::routine & routine);
+      virtual void interaction_send(const ::procedure & procedure);
 
-      virtual void interaction_post(const ::routine & routine) override;
+      virtual void interaction_post(const ::procedure & procedure) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -1920,11 +1920,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::routine & routine) override;
-      virtual void prodevian_post_routine(const ::routine & routine);
+      virtual void post_routine(const ::procedure & procedure) override;
+      virtual void prodevian_post_routine(const ::procedure & procedure);
 
 
-      virtual void send_routine(const ::routine & routine) override;
+      virtual void send_routine(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >

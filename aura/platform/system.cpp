@@ -6793,7 +6793,7 @@ namespace aura
    //}
 
 
-//   void system::main_user_async(const ::routine & routine, ::enum_priority epriority)
+//   void system::main_user_async(const ::procedure & procedure, ::enum_priority epriority)
 //   {
 //
 //#ifdef _UWP

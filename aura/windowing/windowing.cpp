@@ -673,7 +673,7 @@ namespace windowing
    }
 
 
-   void windowing::windowing_send(const ::routine & routine)
+   void windowing::windowing_send(const ::procedure & procedure)
    {
 
       //auto estatus = 
@@ -692,7 +692,7 @@ namespace windowing
    }
 
 
-   void windowing::windowing_post(const ::routine & routine)
+   void windowing::windowing_post(const ::procedure & procedure)
    {
 
       throw ::interface_only();

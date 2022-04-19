@@ -314,7 +314,7 @@ string get_task_name(htask_t htask);
 //
 //
 //
-//inline void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal)
+//inline void main_async(const ::procedure & procedure, enum_priority epriority = e_priority_normal)
 //{
 //
 //   main_branch(routine, epriority);

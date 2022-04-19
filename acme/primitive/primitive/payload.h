@@ -115,7 +115,7 @@ public:
       ::i64_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
-      ::element * m_pelementRoutine;
+      ::element * m_pelementProcedure;
       ::i64                      m_all[3];
       ::string                     m_str;
 
@@ -161,7 +161,7 @@ public:
    payload(const ::payload_array & payload);
    payload(const ::property_set & set);
    payload(const ::payload & payload);
-   payload(const ::routine & routine);
+   payload(const ::procedure & procedure);
    payload(const ::property & prop);
    payload(const ::duration & duration);
 
@@ -356,7 +356,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::color::hls hls(const ::color::hls & hlsDefault = ::color::hls())  const;
 
 
-   ::routine               get_routine() const;
+   ::procedure               get_routine() const;
 
 
    ::string string(const char * pszOnNull = nullptr) const;
@@ -537,7 +537,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-   payload& operator = (const ::routine & routine);
+   payload& operator = (const ::procedure & procedure);
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 

@@ -74,7 +74,7 @@ bool on_init_timer_thread()
 extern class ::system * g_psystem;
 
 
-CLASS_DECL_ACME void main_asynchronous(::function < void() > function)
+CLASS_DECL_ACME void main_asynchronous(::procedure function)
 {
 
    g_psystem->fork([function]()
@@ -91,7 +91,7 @@ CLASS_DECL_ACME void main_asynchronous(::function < void() > function)
 
 
 
-void system::windowing_post(const ::function < void() > & function)
+void system::windowing_post(const ::procedure & function)
 {
 
 

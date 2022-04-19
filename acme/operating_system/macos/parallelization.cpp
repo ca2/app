@@ -20,7 +20,7 @@ int get_current_process_affinity_order()
 }
 
 
-void main_asynchronous(::function < void() > function)
+void main_asynchronous(::procedure function)
 {
   
    ns_main_async(^{
@@ -32,7 +32,7 @@ void main_asynchronous(::function < void() > function)
 }
 
 
-void system::windowing_post(const ::function < void() > & function)
+void system::windowing_post(const ::procedure & function)
 {
    
    main_asynchronous(function);

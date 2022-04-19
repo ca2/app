@@ -18,7 +18,7 @@ task_pool::~task_pool()
 }
 
 
-task_pointer & task_pool::defer_start(const ::atom& atom, const ::routine & routine)
+task_pointer & task_pool::defer_start(const ::atom& atom, const ::procedure & procedure)
 {
 
    auto& pthread = task(atom);

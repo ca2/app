@@ -7,7 +7,7 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
+   __pointer(::id_map < ::procedure_array >)       m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
 
 
@@ -58,23 +58,23 @@ public:
    virtual bool is_branch_current() const;
 
 
-   virtual void post_routine(const ::routine & routine);
+   virtual void post_routine(const ::procedure & procedure);
 
 
-   virtual void send_routine(const ::routine & routine);
+   virtual void send_routine(const ::procedure & procedure);
 
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
    bool __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
-   void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
+   void __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
 
 
-   ::routine_array * routine_array(const ::atom & atom, bool bCreate = false);
+   ::procedure_array * procedure_array(const ::atom & atom, bool bCreate = false);
 
 
-   void add_routine(const ::atom & atom, const ::routine & routine);
+   void add_procedure(const ::atom & atom, const ::procedure & procedure);
 
 
 

@@ -11,7 +11,7 @@ public:
    //bool                             m_bSingleThread;
    bool                             m_bUseDedicatedThread;
    ::task_pointer                   m_pthread;
-   ::routine_array                  m_routinea;
+   ::procedure_array                  m_procedurea;
    __pointer(manual_reset_event)    m_pevTaskOnQueue;
    int                              m_iAliveCount;
    int                              m_iAlive;
@@ -35,14 +35,14 @@ public:
    bool is_branch_current() const override;
 
 
-   void handler_sync(const ::routine & routine);
-   void handler_branch(const ::routine & routine);
+   void handler_sync(const ::procedure & procedure);
+   void handler_branch(const ::procedure & procedure);
    
 
-   void handle(const ::routine & routine, bool bSync);
+   void handle(const ::procedure & procedure, bool bSync);
 
 
-   ::routine pick_new_task();
+   ::procedure pick_new_task();
 
    
    void loop();

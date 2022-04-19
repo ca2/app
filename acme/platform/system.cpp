@@ -509,7 +509,7 @@ void system::open_url(string strUrl, string strProfile, string strTarget)
 //}
 
 
-//   void system::main_user_async(const ::routine & routine, ::enum_priority epriority)
+//   void system::main_user_async(const ::procedure & procedure, ::enum_priority epriority)
 //   {
 //
 //      throw ::interface_only();
@@ -517,7 +517,7 @@ void system::open_url(string strUrl, string strProfile, string strTarget)
 //   }
 //
 //
-//   void system::main_user_sync(const ::routine & routine, const ::duration & duration, enum_priority epriority)
+//   void system::main_user_sync(const ::procedure & procedure, const ::duration & duration, enum_priority epriority)
 //   {
 //
 //      auto proutine = ___sync_routine(routine);

@@ -94,7 +94,7 @@ void object::process_exit_status(const ::e_status & estatus)
    //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
-   void object::add_routine(const ::atom& idRoutine, const ::routine& routine)
+   void object::add_procedure(const ::atom& idRoutine, const ::procedure & procedure)
    {
 
 
@@ -108,7 +108,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-    array < ::routine >* object::routinea(const ::atom& idRoutine)
+    array < ::procedure >* object::routinea(const ::atom& idRoutine)
     {
 
        return nullptr;
@@ -246,7 +246,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-    ::thread_pointer object::launch(const ::routine& routine)
+    ::thread_pointer object::launch(const ::procedure & procedure)
     {
 
        auto pthread = __create_new < ::thread >();
@@ -856,14 +856,14 @@ void object::delete_this()
    }
 
 
-   void object::single_fork(const ::routine_array& routinea)
+   void object::single_fork(const ::procedure_array& routinea)
    {
 
 
    }
 
 
-   void object::multiple_fork(const ::routine_array& routinea)
+   void object::multiple_fork(const ::procedure_array& routinea)
    {
 
 
@@ -872,7 +872,7 @@ void object::delete_this()
 //   using property_object::defer_fork;
 
   /* template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
+   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -907,7 +907,7 @@ void object::delete_this()
    }*/
 
 
-   //inline void object::defer_fork(::thread_pointer& pthread, const ::routine& routine);
+   //inline void object::defer_fork(::thread_pointer& pthread, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -925,11 +925,11 @@ void object::delete_this()
    //inline ::thread_pointer fork(PRED pred);
 
 
-   //inline ::thread_pointer lcontext_object::aunch(const ::routine& routine);
+   //inline ::thread_pointer lcontext_object::aunch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   //inline ::task_pointer object::opt_fork(const ::routine& routine)
+   //inline ::task_pointer object::opt_fork(const ::procedure & procedure)
    //{
 
    //   auto ptask = ::get_task();

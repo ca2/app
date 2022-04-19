@@ -1072,7 +1072,7 @@ namespace user
    }
 
 
-   void element::interaction_post(const ::routine & routine)
+   void element::interaction_post(const ::procedure & procedure)
    {
 
       //throw ::interface_only();

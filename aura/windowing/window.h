@@ -290,8 +290,8 @@ namespace windowing
       
       virtual void frame_toggle_restore();
 
-      virtual void window_send(const ::routine & routine);
-      virtual void window_post(const ::routine & routine);
+      virtual void window_send(const ::procedure & procedure);
+      virtual void window_post(const ::procedure & procedure);
 
       bool is_branch_current() const override;
 

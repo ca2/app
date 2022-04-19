@@ -80,7 +80,7 @@ namespace file
       __pointer(watch)                    m_pwatchRelease;
       bool                                m_bStop;
       void *                              m_pthis;
-      ::function < void() >               m_functionDestroy;
+      ::procedure               m_functionDestroy;
       
 
       watch();

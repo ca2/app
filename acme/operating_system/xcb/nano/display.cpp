@@ -247,7 +247,7 @@ namespace xcb
    }
 
 
-//   void display::display_post(const ::routine & routine)
+//   void display::display_post(const ::procedure & procedure)
 //   {
 //
 //      defer_create_mutex();
@@ -289,7 +289,7 @@ namespace xcb
 //   }
 //
 //
-//   void display::display_send(const ::routine & routine)
+//   void display::display_send(const ::procedure & procedure)
 //   {
 //
 //      if (m_bUnhook)

@@ -72,7 +72,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME void __call(const ::routine & routine);
+CLASS_DECL_ACME void __call(const ::procedure & procedure);
 
 
 //namespace parallelization

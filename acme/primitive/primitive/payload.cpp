@@ -297,16 +297,16 @@ payload::payload(const ::property & property)
 }
 
 
-payload::payload(const ::routine & routine)
+payload::payload(const ::procedure & procedure)
 {
 
     m_etype = e_type_new;
 
     set_type(e_type_routine, false);
 
-    m_pelementRoutine = routine.m_p;
+    m_pelementProcedure = procedure.m_ppredicate;
     
-    ::increment_reference_count(m_pelementRoutine);
+    ::increment_reference_count(m_pelementProcedure);
 
 }
 
@@ -2819,17 +2819,17 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 //
 
 
-::routine payload::get_routine() const
+::procedure payload::get_routine() const
 {
 
    if (get_type() != ::e_type_routine)
    {
 
-      return ::routine();
+      return ::procedure();
 
    }
 
-   return m_pelementRoutine;
+   return m_pelementProcedure;
 
 }
 
@@ -6858,7 +6858,7 @@ bool payload::is_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-         return ::is_null(m_pelementRoutine);
+         return ::is_null(m_pelementProcedure);
    //case e_type_process:
      //    return !m_process;
 
@@ -7044,7 +7044,7 @@ bool payload::is_set_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-      return ::is_null(m_pelementRoutine);
+      return ::is_null(m_pelementProcedure);
    //case type_process:
    //   return !m_process;
 
@@ -7517,14 +7517,14 @@ void payload::receive_response(const ::payload & payload)
 }
 
 
-::payload& payload::operator = (const ::routine & routine)
+::payload& payload::operator = (const ::procedure & procedure)
 {
 
    set_type(e_type_routine, false);
 
-   m_pelementRoutine = routine.m_p;
+   m_pelementProcedure = procedure.m_ppredicate;
 
-   ::increment_reference_count(m_pelementRoutine);
+   ::increment_reference_count(m_pelementProcedure);
 
    return *this;
 

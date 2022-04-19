@@ -273,35 +273,22 @@ void task::main()
    if(defer_implement(m_psystem))
    {
 
-      //return m_psystem->m_estatus;
-
       return;
 
    }
 
-   if (::is_set(m_pelement) && m_pelement != this)
+   if (m_procedure && m_procedure.m_ppredicate != this)
    {
 
       run_posted_routines();
 
-      /* auto estatus = */ m_pelement->run();
+      m_procedure();
 
       run_posted_routines();
 
-      //return estatus;
-
    }
 
-   /*auto estatus =*/ on_pre_run_task();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //estatus = run();
+   on_pre_run_task();
 
    try
    {
@@ -318,17 +305,7 @@ void task::main()
    catch(...)
    {
 
-
    }
-
-  /* if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;*/
 
   __task_term();
 
@@ -583,10 +560,10 @@ void task::unregister_task()
 }
 
 
-void task::post_routine(const ::routine& routine)
+void task::post_routine(const ::procedure & procedure)
 {
 
-   if (!routine)
+   if (!procedure)
    {
 
       return;
@@ -595,14 +572,11 @@ void task::post_routine(const ::routine& routine)
 
    synchronous_lock synchronouslock(mutex());
 
-   m_routinea.add(routine);
+   m_procedurea.add(procedure);
 
    kick_idle();
 
-   //return ::success;
-
 }
-
 
 
 void task::run_posted_routines()
@@ -610,13 +584,13 @@ void task::run_posted_routines()
 
    synchronous_lock synchronouslock(mutex());
 
-   if (m_routinea.has_element())
+   if (m_procedurea.has_element())
    {
 
       do
       {
 
-         auto routine = m_routinea.pick_first();
+         auto routine = m_procedurea.pick_first();
 
          synchronouslock.unlock();
 
@@ -624,7 +598,7 @@ void task::run_posted_routines()
 
          synchronouslock.lock();
 
-      } while (m_routinea.has_element());
+      } while (m_procedurea.has_element());
 
 
       //return ::success;
@@ -719,13 +693,13 @@ void task::init_task()
 
    }
 
-   if(m_pelement)
+   if(m_procedure)
    {
 
-      if(m_pelement != this)
+      if(m_procedure.m_ppredicate != this)
       {
 
-         m_pelement->init_task();
+         m_procedure.m_ppredicate->init_task();
 
       }
 
@@ -892,10 +866,10 @@ __pointer(::task) task::branch(::enum_priority epriority, u32 nStackSize, u32 uC
    if (m_atom.is_empty())
    {
 
-      if (m_pelement)
+      if (m_procedure)
       {
 
-         m_atom = __type_name(m_pelement);
+         m_atom = __type_name(m_procedure);
 
       }
       else

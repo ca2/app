@@ -34,8 +34,8 @@ namespace user
 
 
       __pointer(::user::primitive)           m_puserprimitiveOwner;
-      ::routine                              m_routineSuccess;
-      ::routine                              m_routineFailure;
+      ::procedure                              m_routineSuccess;
+      ::procedure                              m_routineFailure;
       __pointer(::user::interaction_impl)    m_puserinteractionimpl;
       __pointer(::create)                    m_pcreate;
       __pointer(::windowing::window)         m_pwindow;

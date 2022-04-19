@@ -4423,7 +4423,7 @@ namespace user
    }
 
 
-   void interaction_impl::interaction_post(const ::routine & routine)
+   void interaction_impl::interaction_post(const ::procedure & procedure)
    {
 
       auto puserinteraction = m_puserinteraction;

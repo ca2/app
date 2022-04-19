@@ -129,13 +129,13 @@ public:
    __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
-   //virtual void add_routine(const ::atom& idRoutine, const ::routine& routine);
+   //virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
 
 
    //virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   //virtual array < ::routine >* routinea(const ::atom& idRoutine);
+   //virtual array < ::procedure >* routinea(const ::atom& idRoutine);
 
    template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
    void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
@@ -148,9 +148,9 @@ public:
 
       }
 
-      auto proutinea = this->routine_array(atom);
+      auto pprocedurea = this->procedure_array(atom);
 
-      if (::is_null(proutinea))
+      if (::is_null(pprocedurea))
       {
 
          //throw ::exception(error_not_found);
@@ -159,7 +159,7 @@ public:
 
       }
 
-      for (auto routine : *proutinea)
+      for (auto routine : *pprocedurea)
       {
 
          (proutinerunner->*routine_runner_method)(routine);
@@ -169,7 +169,7 @@ public:
    }
 
    
-   virtual void call_routine2(const ::routine & routine);
+   virtual void call_routine2(const ::procedure & procedure);
 
 
    inline void call_routines_with_id(const ::atom & atom)
@@ -234,7 +234,7 @@ public:
    //virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
 
-   ///virtual void post_routine(const ::routine& routine);
+   ///virtual void post_routine(const ::procedure & procedure);
 
 
    //void destroy() override;
@@ -519,13 +519,13 @@ public:
 
    //using property_object::branch;
 
-   void branch(const ::routine_array& routinea);
-   void branch_each(const ::routine_array& routinea);
+   void branch(const ::procedure_array& routinea);
+   void branch_each(const ::procedure_array& routinea);
 
    //using property_object::defer_branch;
 
    template < typename TASK >
-   inline __composite(TASK) & defer_branch(__composite(TASK) & ptask, const ::routine& routine)
+   inline __composite(TASK) & defer_branch(__composite(TASK) & ptask, const ::procedure & procedure)
    {
 
       if (ptask && ptask->is_running())
@@ -535,18 +535,9 @@ public:
 
       }
 
-      //auto estatus = 
-      
       __defer_compose_new(ptask);
 
-      //if(!estatus)
-      //{
-
-      //   return ptask;
-
-      //}
-
-      ptask->m_pelement = routine;
+      ptask->m_procedure = procedure;
 
       ptask->branch();
 
@@ -573,7 +564,7 @@ public:
    }
 
 
-   inline void defer_branch(::task_pointer& ptask, const ::routine& routine);
+   inline void defer_branch(::task_pointer& ptask, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -595,11 +586,11 @@ public:
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
-   //inline ::task_pointer launch(const ::routine& routine);
+   //inline ::task_pointer launch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   //inline ::task_pointer opt_fork(const ::routine& routine);
+   //inline ::task_pointer opt_fork(const ::procedure & procedure);
 
 
    //template < typename METHOD >
@@ -738,7 +729,7 @@ public:
    template < typename TYPE >
    ::task_pointer defer_branch(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
-   ::task_pointer defer_branch(const ::atom& atom, const ::routine & routine, enum_priority epriority = e_priority_normal);
+   ::task_pointer defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority = e_priority_normal);
 
    virtual element* get_taskpool_container() override;
 
@@ -800,13 +791,13 @@ public:
    //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
-   //virtual void add_routine(const ::atom& idRoutine, const ::routine& routine);
+   //virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
 
 
    //virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   //virtual array < ::routine >* routinea(const ::atom& idRoutine);
+   //virtual array < ::procedure >* routinea(const ::atom& idRoutine);
 
 
    //virtual void call_routine(const ::atom& idRoutine);
@@ -1121,13 +1112,13 @@ public:
    //void start();
 
 
-   //void single_fork(const ::routine_array& routinea);
-   //void multiple_fork(const ::routine_array& routinea);
+   //void single_fork(const ::procedure_array& routinea);
+   //void multiple_fork(const ::procedure_array& routinea);
 
    //using topic::manager::defer_fork;
 
    //template < typename THREAD >
-   //inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::routine& routine)
+   //inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
    //{
 
    //   if (pthread && pthread->is_running())
@@ -1162,7 +1153,7 @@ public:
    //}
 
 
-//   inline void defer_fork(::task_pointer& pthread, const ::routine& routine);
+//   inline void defer_fork(::task_pointer& pthread, const ::procedure & procedure);
 
 
    //template < typename THREAD >
@@ -1180,11 +1171,11 @@ public:
    //inline ::task_pointer fork(PRED pred);
 
 
-   //inline ::task_pointer launch(const ::routine& routine);
+   //inline ::task_pointer launch(const ::procedure & procedure);
 
 
    //template < typename METHOD >
-   //inline ::task_pointer opt_fork(const ::routine& routine)
+   //inline ::task_pointer opt_fork(const ::procedure & procedure)
    //{
 
    //   auto ptask = ::get_task();
@@ -1337,7 +1328,7 @@ inline void release(INTERMEDIATE*, RELEASEE* & p)
 #define __defer_branch(ID) defer_branch(m_ptask ## ID, __routine([this](){ID ## TaskProcedure();}))
                                                                      \
 
-CLASS_DECL_ACME void call_sync(const ::routine_array& routinea);
+CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);
 
 
 

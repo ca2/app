@@ -108,6 +108,10 @@ namespace write_text
 
       m_pimage->g()->set_text_color(uForegroundColor);
 
+      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText);
 
 #if 1

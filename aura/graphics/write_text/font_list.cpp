@@ -186,6 +186,8 @@ namespace write_text
 
          }
 
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
          image_source imagesource(pbox->m_pimage);
 
          auto rectangle = pbox->m_rectangle;
@@ -224,6 +226,8 @@ namespace write_text
 
             }
 
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
             image_source imagesource(pbox->m_pimage);
 
             auto rectangle = pbox->m_rectangle;
@@ -261,6 +265,8 @@ namespace write_text
                pbox->update(this, BOX_HOVER, pitem->m_strSample);
 
             }
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             image_source imagesource(pbox->m_pimage);
 
@@ -393,6 +399,8 @@ namespace write_text
          }
 
          {
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             image_source imagesource(pbox->m_pimage);
 

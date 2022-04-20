@@ -4824,7 +4824,7 @@ void application::handle(::topic * ptopic, ::context * pcontext)
 ::file::path application::get_executable_path()
 {
 
-return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
+   return m_psystem->m_pacmedirectory->module() / (get_executable_title() + get_executable_extension());
 
 
 }
@@ -4849,7 +4849,7 @@ return "";
 string application::get_executable_title()
 {
 
-return executable_title_from_appid(get_executable_appid());
+   return executable_title_from_appid(get_executable_appid());
 
 }
 

@@ -6669,6 +6669,8 @@ namespace user
 
       set_need_redraw();
 
+      post_redraw();
+
    }
 
 

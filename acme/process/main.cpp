@@ -501,6 +501,20 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 CLASS_DECL_ACME string executable_title_from_appid(string str)
 {
 
+#ifdef WINDOWS
+
+#ifdef CUBE
+
+   str = "static_" + str;
+
+#else
+
+   str = "shared_" + str;
+
+#endif
+
+#endif
+
    str.replace_with("_", "-");
 
    str.replace_with("_", "/");

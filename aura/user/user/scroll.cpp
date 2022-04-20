@@ -483,7 +483,9 @@ namespace user
             else if (pscroll->m_ecommand == e_scroll_command_line_down)
             {
 
-               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVertical.m_iLine));
+               auto iLine = m_scrolldataVertical.m_iLine;
+
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
@@ -544,55 +546,6 @@ namespace user
 
       __pointer(::message::mouse_wheel) pmousewheel(pmessage);
 
-//      if (pmousewheel->GetDelta() > 0)
-//      {
-//
-//         if (m_iWheelDelta > 0)
-//         {
-//
-//            m_iWheelDelta += pmousewheel->GetDelta();
-//
-//         }
-//         else
-//         {
-//
-//            m_iWheelDelta = pmousewheel->GetDelta();
-//
-//         }
-//
-//      }
-//      else if (pmousewheel->GetDelta() < 0)
-//      {
-//
-//         if (m_iWheelDelta < 0)
-//         {
-//
-//            m_iWheelDelta += pmousewheel->GetDelta();
-//
-//         }
-//         else
-//         {
-//
-//            m_iWheelDelta = pmousewheel->GetDelta();
-//
-//         }
-//
-//      }
-
-//      index iDelta = m_iWheelDelta / WHEEL_DELTA;
-//
-//      m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
-//
-//      index nPos = m_pscrollbarVertical->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
-//
-//      if (nPos < m_pscrollbarVertical->m_scrollinfo.nMin)
-//         nPos = m_pscrollbarVertical->m_scrollinfo.nMin;
-//      else if (nPos > m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage)
-//         nPos = m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage;
-//
-//      m_pscrollbarVertical->m_scrollinfo.nPos =  (i32) nPos;
-
-
       int iDelta = pmousewheel->GetDelta();
 
       if(iDelta > 0)
@@ -601,7 +554,7 @@ namespace user
          for(; iDelta > 0; iDelta -= 120)
          {
 
-            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);
+            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
 
          }
 
@@ -612,7 +565,7 @@ namespace user
          for(; iDelta < 0; iDelta += 120)
          {
 
-            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_up);
+            m_pscrollbarVertical->post_scroll_message(e_scroll_command_line_down);
 
          }
 

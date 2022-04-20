@@ -1621,78 +1621,60 @@ endif()
 
 if (LINUX)
    list(APPEND library_source
-      #operating_system/linux/console.cpp
+      operating_system/linux/
+      operating_system/linux/_.cpp
+      operating_system/linux/_.h
+      operating_system/linux/_.h
+      operating_system/linux/_c.h
+      operating_system/linux/_factory.cpp
+      operating_system/linux/_linux.h
+      operating_system/linux/_linux.h
+      operating_system/linux/_user.h
+      operating_system/linux/application.h
+      operating_system/linux/callstack.cpp
+      operating_system/linux/cross_win_file.cpp
+      operating_system/linux/cross_win_file.h
+      operating_system/linux/cross_win_gdi.cpp
+      operating_system/linux/cross_win_gdi.h
+      operating_system/linux/cross_win_gdi_internal.h
+      operating_system/linux/debug.cpp
+      operating_system/linux/debug.h
       operating_system/linux/dumpinit.cpp
       operating_system/linux/error.cpp
       operating_system/linux/exception.cpp
-      operating_system/linux/_factory.cpp
-      #operating_system/linux/file.cpp
-      operating_system/linux/linux.cpp
-      operating_system/linux/linux2.cpp
-      #operating_system/linux/node.cpp
-      #operating_system/linux/node.h
-      operating_system/linux/root_tools.cpp
-      #operating_system/linux/shell.cpp
-      #operating_system/linux/shell_linux.cpp
-      operating_system/linux/system.cpp
-      #operating_system/linux/stdio_file.cpp
-      operating_system/linux/thread.cpp
-      operating_system/linux/trace.cpp
-      operating_system/linux/util.cpp
-      #operating_system/linux/application_system_run.cpp
-      operating_system/linux/_.cpp
-      operating_system/linux/callstack.cpp
-      operating_system/linux/cross_win_file.cpp
-      operating_system/linux/cross_win_gdi.cpp
-      operating_system/linux/debug.cpp
-      #operating_system/linux/exception_engine.cpp
       operating_system/linux/file.cpp
+      operating_system/linux/file.h
       operating_system/linux/file_lock.cpp
-      #operating_system/linux/gdk.cpp
       operating_system/linux/graphics.cpp
+      operating_system/linux/internal.h
       operating_system/linux/library.cpp
       operating_system/linux/linux.cpp
+      operating_system/linux/linux.cpp
       operating_system/linux/linux.inl
-      #operating_system/linux/list_serial_ports.cpp
-      operating_system/linux/parallelization.cpp
+      operating_system/linux/linux2.cpp
+      operating_system/linux/linux_linux.h
       operating_system/linux/node.cpp
       operating_system/linux/os.cpp
+      operating_system/linux/parallelization.cpp
       operating_system/linux/process.cpp
+      operating_system/linux/process.h
       operating_system/linux/process_pid.cpp
+      operating_system/linux/root_tools.cpp
+      operating_system/linux/root_tools.h
       operating_system/linux/simple_app.cpp
+      operating_system/linux/system.cpp
+      operating_system/linux/thread.cpp
+      operating_system/linux/thread.h
       operating_system/linux/time.cpp
+      operating_system/linux/trace.cpp
       operating_system/linux/user.cpp
+      operating_system/linux/user.h
+      operating_system/linux/user_private.h
+      operating_system/linux/util.cpp
       operating_system/linux/win_base.cpp
       )
 
 
-   list(APPEND library_source
-      operating_system/linux/application.h
-      #operating_system/linux/console.h
-      operating_system/linux/
-      #operating_system/linux/file.h
-      operating_system/linux/internal.h
-      operating_system/linux/root_tools.h
-      #operating_system/linux/stdio_file.h
-      operating_system/linux/thread.h
-      operating_system/linux/_.h
-      operating_system/linux/_linux.h
-      operating_system/linux/cross_win_file.h
-      operating_system/linux/cross_win_gdi.h
-      operating_system/linux/cross_win_gdi_internal.h
-      operating_system/linux/debug.h
-      #operating_system/linux/exception_engine.h
-      operating_system/linux/file.h
-      #operating_system/linux/gdk.h
-      operating_system/linux/linux_linux.h
-      operating_system/linux/process.h
-      operating_system/linux/user.h
-      operating_system/linux/user_private.h
-      operating_system/linux/_.h
-      operating_system/linux/_c.h
-      operating_system/linux/_linux.h
-      operating_system/linux/_user.h
-      )
 endif ()
 
 

@@ -2,6 +2,7 @@
 #include "_linux.h"
 #include "aura/operating_system/linux/_linux.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/operating_system/linux/desktop_file.h"
 
 
 //#include <X11/cursorfont.h>
@@ -518,6 +519,8 @@ namespace aura
          {
 
             auto pfile = __create_new<::linux::desktop_file>();
+
+            pfile->set_app_id(papp->m_strAppId);
 
             pfile->set_file_path(path);
 

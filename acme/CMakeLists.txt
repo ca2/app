@@ -756,6 +756,8 @@ list(APPEND library_source
    user/nano/device.cpp
    user/nano/device.h
    user/nano/device.h
+   user/nano/display.cpp
+   user/nano/display.h
    user/nano/font.cpp
    user/nano/font.h
    user/nano/message_box.cpp
@@ -791,20 +793,6 @@ list(APPEND library_source
 
 
 list(APPEND library_source
-   #"operating_system/ios/window_boot 2.h"
-   #exception/debug.h
-   #operating_system/android/buffer.h
-   #operating_system/ansios/parallelization.h
-   #operating_system/x11/_.h
-   #operating_system/x11/x11_button.h
-   #operating_system/x11/x11_exception.h
-   #operating_system/x11/x11_hook.h
-   #operating_system/x11/x11_keyboard.h
-   #operating_system/x11/x11_message_box.h
-   #operating_system/x11/x11_simple_ui_display.h
-   #operating_system/xcb/_xcb.h
-   #operating_system/xcb/xcb_hook.h
-   #parallelization/file_change_event.h
    _.h
    _defer.h
    _start.h
@@ -1191,8 +1179,6 @@ list(APPEND library_source
    parallelization/synchronization_result.h
    parallelization/synchronized_process.cpp
    parallelization/synchronized_process.h
-   parallelization/synchronized_routine.cpp
-   parallelization/synchronized_routine.h
    parallelization/synchronized_task.cpp
    parallelization/synchronized_task.h
    parallelization/task.h
@@ -1603,6 +1589,7 @@ endif ()
 if(LINUX)
 
    list(APPEND library_source
+      operating_system/cairo/nano/_nano.cpp
       operating_system/cairo/nano/device.cpp
       operating_system/cairo/nano/device.h
       operating_system/x11/nano/_nano.cpp
@@ -1610,21 +1597,20 @@ if(LINUX)
       operating_system/x11/nano/display.cpp
       operating_system/x11/nano/display.h
       operating_system/x11/nano/event_listener.h
-      #operating_system/x11/nano/font.cpp
-      #operating_system/x11/nano/font.h
       operating_system/x11/nano/window.h
       operating_system/x11/nano/window.cpp
+      operating_system/x11/_.cpp
       operating_system/x11/_atom.cpp
+      operating_system/x11/_atom.h
       operating_system/xcb/nano/_nano.cpp
       operating_system/xcb/nano/_nano.h
       operating_system/xcb/nano/display.cpp
       operating_system/xcb/nano/display.h
       operating_system/xcb/nano/event_listener.h
-      #operating_system/xcb/nano/font.cpp
-      #operating_system/xcb/nano/font.h
       operating_system/xcb/nano/window.h
       operating_system/xcb/nano/window.cpp
       operating_system/xcb/_.h
+      operating_system/xcb/_.cpp
       )
 
    list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
@@ -2070,6 +2056,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/_.h
       operating_system/posix/_posix.h
       operating_system/posix/base_file.cpp
+      operating_system/posix/desktop.cpp
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h
       operating_system/posix/local_memory_map.cpp
@@ -2080,7 +2067,6 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/timer.cpp
       operating_system/winpr_keycode.cpp
       operating_system/winpr_scancode.cpp
-      operating_system/posix/_posix.h
       )
 
    #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
@@ -2098,7 +2084,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} operating_system/x11/_atom.h operating_system/x11/_.cpp operating_system/xcb/_.cpp operating_system/cairo/nano/_nano.cpp operating_system/posix/desktop.cpp user/nano/display.h user/nano/display.cpp)
+add_library(acme SHARED ${library_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

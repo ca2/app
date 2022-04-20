@@ -77,62 +77,36 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 extern class ::system * g_psystem;
 
 
-void main_asynchronous( ::function < void () > function)
+void main_asynchronous(const ::procedure & procedure)
 {
 
    if(is_main_thread())
    {
 
-      function();
+      procedure();
 
       return;
 
    }
 
-   auto routine = __routine([function]()
+   auto predicate = [procedure]()
                             {
 
-                               function();
+                               procedure();
 
-                            });
+                            };
 
-   g_psystem->windowing_post(routine);
+   g_psystem->windowing_post(predicate);
 
 }
 
 
-
-void system::windowing_post(const ::procedure & function)
+void system::windowing_post(const ::procedure & procedure)
 {
 
-   ::nano::display::g_p->display_post(function);
-
-//   if(m_ewindowing == e_windowing_xcb)
-//   {
-//
-//      xcb_asynchronous([routine]()
-//                       {
-//
-//                          routine();
-//
-//                       });
-//   }
-//   else if(m_ewindowing == e_windowing_x11)
-//   {
-//
-//      x11_asynchronous([routine]()
-//                       {
-//
-//                          routine();
-//
-//                       });
-//
-//   }
-//   else
-//   {
-//
-//      throw exception(error_wrong_state);
-//
-//   }
+   ::nano::display::g_p->display_post(procedure);
 
 }
+
+
+

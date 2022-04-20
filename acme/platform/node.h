@@ -235,13 +235,13 @@ namespace acme
 
       virtual void enable_wallpaper_change_notification();
 
-      template < typename PREDICATE >
-      void node_fork(PREDICATE predicate)
-      {
-
-         node_post(__routine(predicate));
-
-      }
+//      template < typename PREDICATE >
+//      void node_fork(PREDICATE predicate)
+//      {
+//
+//         node_post(predicate);
+//
+//      }
 
       virtual void node_post(const ::procedure & procedure);
 

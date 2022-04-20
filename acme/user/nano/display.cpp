@@ -42,41 +42,24 @@ namespace nano
    }
 
 
-   void display::display_post(const ::procedure & function)
+   void display::display_post(const ::procedure & procedure)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      m_functionaPost.add(function);
+      m_procedureaPost.add(procedure);
 
       kick_idle();
 
    }
 
 
-   void display::display_send(const ::procedure & function)
+   void display::display_send(const ::procedure & procedure)
    {
 
-//      if(m_bUnhook)
-//      {
-//
-//
-//
-//      }
-
-      /*auto estatus = */ __send_routine(this, &display::display_post, function.m_ppredicate);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      __send_procedure(this, &display::display_post, procedure);
 
    }
-
 
 
    bool display::display_posted_routine_step()
@@ -84,10 +67,10 @@ namespace nano
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_functionaPost.has_element())
+      if (m_procedureaPost.has_element())
       {
 
-         auto function = m_functionaPost.pick_first();
+         auto function = m_procedureaPost.pick_first();
 
          if (function)
          {

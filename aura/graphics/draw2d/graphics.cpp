@@ -1573,7 +1573,7 @@ namespace draw2d
       {
 
          // xxx-alpha_blend
-         return true;
+         //return true;
 
          ::image_pointer pimage1;
 //#ifdef _UWP

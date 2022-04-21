@@ -1547,158 +1547,77 @@ namespace draw2d
    }
 
 
-//   bool graphics::TextOutAlphaBlend(double x, double y, const block & block)
-//   {
-//
-//      if (block.get_size() <= 0)
-//      {
-//
-//         throw ::exception(error_failed);
-//
-//      }
-//
-//      ASSERT(m_pimageAlphaBlend->is_ok());
-//
-//      single_lock synchronouslock(mutex());
-//
-//      // "Reference" implementation for TextOutAlphaBlend
-//
-//      ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
-//
-//      const ::size_i32 & size = ::size_i32(get_text_extent((const char *) block.get_data(), block.get_size()));
-//
-//      ::rectangle_f64 rectangleText(point_i32((::i32)x, (::i32)y), size);
-//
-//      if (rectangleIntersect.intersect(rectangleIntersect, rectangleText))
-//      {
-//
-//         ::image_pointer pimage1;
-////#ifdef _UWP
-////            g_pimagea.add(pimage1);
-////#endif
-//
-//         pimage1 = m_pcontext->context_image()->create_image(rectangleText.size());
-//
-//         pimage1->get_graphics()->set(get_current_font());
-//
-//         pimage1->get_graphics()->set(get_current_brush());
-//
-//         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//
-//         pimage1->get_graphics()->text_out(0, 0, block);
-//
-//         {
-//
-//            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectangleText.size()));
-//
-//            rectangle_f64 rectangle(pimage1->rectangle());
-//
-//            image_drawing_options imagedrawingoptions(rectangle);
-//
-//            image_drawing imagedrawing(imagedrawingoptions, imagesource);
-//
-//            pimage1->g()->draw(imagedrawing);
-//
-//         }
-//
-//         {
-//
-//            set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//
-//            image_source imagesource(pimage1);
-//
-//            rectangle_f64 rectangle(::rectangle_f64(::point_f64(x, y), rectangleText.size()));
-//
-//            image_drawing_options imagedrawingoptions(rectangle);
-//
-//            image_drawing imagedrawing(imagedrawingoptions, imagesource);
-//
-//            draw(imagedrawing);
-//
-//         }
-//
-//         return true;
-//
-//      }
-//
-//      return false;
-//
-//   }
-
    bool graphics::TextOutAlphaBlend(double x, double y, const block & block)
    {
 
-      if (m_pimageAlphaBlend->is_set())
+      if (block.get_size() <= 0)
       {
 
-         single_lock synchronouslock(mutex());
+         throw ::exception(error_failed);
 
-         if (block.is_empty())
+      }
+
+      ASSERT(m_pimageAlphaBlend->is_ok());
+
+      single_lock synchronouslock(mutex());
+
+      // "Reference" implementation for TextOutAlphaBlend
+
+      ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
+
+      const ::size_i32 & size = ::size_i32(get_text_extent((const char *) block.get_data(), block.get_size()));
+
+      ::rectangle_f64 rectangleText(point_i32((::i32)x, (::i32)y), size);
+
+      if (rectangleIntersect.intersect(rectangleIntersect, rectangleText))
+      {
+
+         ::image_pointer pimage1;
+//#ifdef _UWP
+//            g_pimagea.add(pimage1);
+//#endif
+
+         pimage1 = m_pcontext->context_image()->create_image(rectangleText.size());
+
+         pimage1->get_graphics()->set(get_current_font());
+
+         pimage1->get_graphics()->set(get_current_brush());
+
+         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+         pimage1->get_graphics()->text_out(0, 0, block);
+
          {
 
-            //return false;
+            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectangleText.size()));
 
-            throw ::exception(error_null_pointer);
+            rectangle_f64 rectangle(pimage1->rectangle());
 
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pimage1->g()->draw(imagedrawing);
 
          }
 
-         // "Reference" implementation for TextOutAlphaBlend
-
-         ::rectangle_i32 rectangleAlphaBlend(m_pointAlphaBlend, m_pimageAlphaBlend->size());
-
-         ::rectangle_i32 rectangleIntersect;
-
-         const ::size_f64 & size = ::size_f64(get_text_extent(block));
-
-         //size.cx = size.cx * 110 / 100;
-
-         //size.cy = size.cy * 110 / 100;
-
-         ::rectangle_i32 rectangleText(point_i32((LONG)x, (LONG)y), size);
-
-         if (rectangleIntersect.intersect(rectangleAlphaBlend, rectangleText))
          {
-
-            ::image_pointer pimage1;
-
-            pimage1 = m_pcontext->context_image()->create_image(rectangleText.size());
-
-            pimage1->fill(0);
-
-            pimage1->get_graphics()->set(get_current_font());
-
-            pimage1->get_graphics()->set(get_current_brush());
-
-            pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-            pimage1->get_graphics()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
-            pimage1->get_graphics()->text_out(0, 0, block);
-
-            point_i32 pointDst;
-
-            pointDst.y = (::i32)maximum(0, rectangleIntersect.top - y);
-
-            pointDst.x = (::i32)maximum(0, rectangleIntersect.left - x);
-
-            point_i32 pointSrc;
-
-            pointSrc.y = (::i32)maximum(0, y - rectangleAlphaBlend.top);
-
-            pointSrc.x = (::i32)maximum(0, x - rectangleAlphaBlend.left);
-
-            pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
-
-            image_drawing_options imagedrawingoptions;
 
             set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            _draw_raw(rectangleText, pimage1, imagedrawingoptions, ::point_f64());
+            image_source imagesource(pimage1);
 
-            return true;
+            rectangle_f64 rectangle(::rectangle_f64(::point_f64(x, y), rectangleText.size()));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            draw(imagedrawing);
 
          }
+
+         return true;
 
       }
 

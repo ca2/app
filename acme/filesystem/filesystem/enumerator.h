@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-13 19:38 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-03-13 19:38 <3ThomasBorregaardSørensen!!
 // Mummy prepared - hinted that was sort of easy, lot of steps though :)
 // Fish with Lemon, Tofu with premium soy sauce, grind ginger and chive, 
 // japanese rice, fried egg-plant, some see weed leafs and cola extra coffee.

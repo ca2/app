@@ -1608,7 +1608,7 @@ namespace user
    }
 
 
-   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front .20211031)
+   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front .20211031)
    void menu::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
@@ -1632,7 +1632,7 @@ namespace user
 
 
 
-   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
+   // <3ThomasBorregaardSørensen__!! (I need to suck you, back, middle, front)
    void menu::handle_command(const ::atom& atom)
    {
 

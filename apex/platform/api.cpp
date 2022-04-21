@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
 #include "acme/primitive/string/base64.h"

@@ -1,5 +1,5 @@
 //
-// Created by camilo on 2022-02-16 22:42 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-16 22:42 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "_nano.h"

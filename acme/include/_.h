@@ -1934,7 +1934,7 @@ namespace write_text
 //#define __pointer(T) ::extended::transport < T >
 
 
-// From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardS�rensen!!
+// From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
 CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char * pszAppId);
 
 

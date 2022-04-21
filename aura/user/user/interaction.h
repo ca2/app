@@ -163,7 +163,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
-      // <3ThomasBorreggardS�rensen_!!
+      // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
 
       ::user::interaction::e_updown                m_eupdown;
@@ -1509,7 +1509,7 @@ namespace user
       }
 #endif
 
-      //// <3ThomasBorregaardS�rensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
+      //// <3ThomasBorregaardSørensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
       void handle_command(const ::atom& atom) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;

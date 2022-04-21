@@ -135,7 +135,7 @@ namespace user
 
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
-      //// <3ThomasBorregaardS�rensen__!!
+      //// <3ThomasBorregaardSørensen__!!
       void handle_command(const ::atom& atom) override;
 
 

@@ -898,13 +898,13 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+   byte * pdst = ((byte *)pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
 
-   u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
+   byte * psrc = ((byte *)pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
 
-   u8* pdst2;
+   byte * pdst2;
 
-   u8* psrc2;
+   byte * psrc2;
 
    if (bA == 0)
    {
@@ -916,9 +916,9 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
       for (int y = 0; y < yEnd; y++)
       {
 
-         pdst2 = &pdst[scanDst * y];
+         pdst2 = pdst + (scanDst * y);
 
-         psrc2 = &psrc[scanSrc * y];
+         psrc2 = psrc + (scanSrc * y);
 
          for (int x = 0; x < xEnd; x++)
          {
@@ -940,16 +940,20 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
             else
             {
 
-               int r = (pdst2[0] * 255) / aDst;
-               int g = (pdst2[1] * 255) / aDst;
-               int b = (pdst2[2] * 255) / aDst;
+               //int r = (pdst2[0] * 255) / aDst;
+               //int g = (pdst2[1] * 255) / aDst;
+               //int b = (pdst2[2] * 255) / aDst;
 
-               int a = aSrc * aDst;
+               //int a = aSrc * aDst;
 
-               pdst2[0] = (r * a) >> 16;
-               pdst2[1] = (g * a) >> 16;
-               pdst2[2] = (b * a) >> 16;
-               pdst2[3] = a >> 8;
+               //pdst2[0] = (r * a) >> 16;
+               //pdst2[1] = (g * a) >> 16;
+               //pdst2[2] = (b * a) >> 16;
+               //pdst2[3] = a >> 8;
+               pdst2[0] = ((int) pdst2[0] * aSrc) / 255;
+               pdst2[1] = ((int) pdst2[1] * aSrc) / 255;
+               pdst2[2] = ((int) pdst2[2] * aSrc) / 255;
+               pdst2[3] = (aDst * aSrc) / 255;
 
             }
 

@@ -94,9 +94,9 @@ namespace android
 
          {
 
-            __scoped_restore(listing.m_pathFinal);
+            ___scoped_restore(listing.m_pathFinal);
 
-            __scoped_restore(listing.m_eextract);
+            ___scoped_restore(listing.m_eextract);
 
             ::file::listing straDir(get_context());
 
@@ -135,7 +135,7 @@ namespace android
          if (listing.m_bFile)
          {
 
-            __scoped_restore(listing.m_bRecursive);
+            ___scoped_restore(listing.m_bRecursive);
 
             listing.m_bRecursive = false;
 

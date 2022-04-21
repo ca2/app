@@ -1572,6 +1572,9 @@ namespace draw2d
       if (rectangleIntersect.intersect(rectangleIntersect, rectangleText))
       {
 
+         // xxx-alpha_blend
+         return true;
+
          ::image_pointer pimage1;
 //#ifdef _UWP
 //            g_pimagea.add(pimage1);

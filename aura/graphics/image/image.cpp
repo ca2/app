@@ -923,9 +923,9 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
          for (int x = 0; x < xEnd; x++)
          {
 
-            int  aDst = pdst2[3];
+            int aDst = pdst2[3];
 
-            int  aSrc = psrc2[3];
+            int aSrc = psrc2[3];
 
             if (aDst == 0)
             {

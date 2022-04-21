@@ -464,6 +464,9 @@ namespace draw2d_cairo
       void stroke_path() override;
       void widen_path() override;
 
+
+      using ::draw2d::graphics::draw;
+
       void draw(::draw2d::path * ppath) override;
       void fill(::draw2d::path * ppath) override;
 

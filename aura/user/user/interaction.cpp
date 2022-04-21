@@ -12709,7 +12709,7 @@ namespace user
    }
 
 
-   //// <3ThomasBorregaardS�rensen__!!
+   //// <3ThomasBorregaardSørensen__!!
    void interaction::handle_command(const ::atom & atom)
    {
 

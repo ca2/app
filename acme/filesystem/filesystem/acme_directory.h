@@ -101,7 +101,7 @@ public:
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_directory.h
 // on 2021-08-09 03:20 BRT
-// <3ThomasBorregaardS�rensen!!
+// <3ThomasBorregaardSørensen!!
 
 
    //namespace posix

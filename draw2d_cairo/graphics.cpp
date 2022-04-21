@@ -1907,10 +1907,10 @@ namespace draw2d_cairo
 
       }
 
-      if (pfont->m_bTextMetric)
+      if (pfont->has_text_metric())
       {
 
-         *lpMetrics = pfont->m_textmetric;
+         *lpMetrics = *pfont->get_text_metric_struct();
 
          return;
 
@@ -1968,9 +1968,13 @@ namespace draw2d_cairo
 
          PangoFontMetrics * pfontmetrics = pango_font_get_metrics(ppangofont, nullptr);
 
-         lpMetrics->m_dAscent = pango_font_metrics_get_ascent(pfontmetrics) / PANGO_SCALE;
+         int iAscent = pango_font_metrics_get_ascent(pfontmetrics);
 
-         lpMetrics->m_dDescent = pango_font_metrics_get_descent(pfontmetrics) / PANGO_SCALE;
+         lpMetrics->m_dAscent = iAscent / PANGO_SCALE;
+
+         int iDescent = pango_font_metrics_get_descent(pfontmetrics);
+
+         lpMetrics->m_dDescent = iDescent / PANGO_SCALE;
 
          lpMetrics->m_dHeight = (::i32) iHeight;
 
@@ -2011,9 +2015,9 @@ namespace draw2d_cairo
 
       }
 
-      pfont->m_bTextMetric = true;
+      pfont->set_has_text_metric();
 
-      pfont->m_textmetric = *lpMetrics;
+      pfont->m_textmetric2 = *lpMetrics;
 
       //return true;
 

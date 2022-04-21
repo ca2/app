@@ -810,42 +810,22 @@ namespace write_text
 
       }
 
-      //return ::success;
-
    }
 
 
    void font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
 
-      if (is_modified(::draw2d::e_default_object))
+      if (!has_text_metric())
       {
 
-         m_bTextMetric = false;
+         _get_text_metric(pgraphics, m_textmetric2);
 
-         defer_update(pgraphics, 0);
+         set_has_text_metric();
 
       }
 
-      if (!m_bTextMetric)
-      {
-
-         _get_text_metric(pgraphics, m_textmetric);
-
-         m_bTextMetric = true;
-
-      }
-
-      //if (!m_bTextMetric)
-      //{
-
-      //   return false;
-
-      //}
-
-      tm = m_textmetric;
-
-      //return true;
+      tm = *get_text_metric_struct();
 
    }
 
@@ -856,13 +836,6 @@ namespace write_text
       text_metric tm;
 
       get_text_metric(pgraphics, tm);
-
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
 
       return tm.m_dAscent;
 
@@ -876,13 +849,6 @@ namespace write_text
 
       get_text_metric(pgraphics, tm);
 
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
-
       return tm.m_dHeight;
 
    }
@@ -895,13 +861,6 @@ namespace write_text
 
       get_text_metric(pgraphics, tm);
 
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
-
       return tm.m_dInternalLeading + tm.m_dExternalLeading;
 
    }
@@ -913,13 +872,6 @@ namespace write_text
       text_metric tm;
 
       get_text_metric(pgraphics, tm);
-
-      ////if (!)
-      //{
-
-      //   return false;
-
-      //}
 
       return tm.m_dDescent;
 
@@ -938,7 +890,6 @@ namespace write_text
 
       pgraphics->set(this);
 
-      //return
       pgraphics->get_text_metrics(&tm);
 
    }

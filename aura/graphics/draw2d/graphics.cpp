@@ -1151,6 +1151,8 @@ namespace draw2d
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
+            pimage1->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
             pimage1->draw(imagedrawing);
 
             auto x = rectangleTarget.left;
@@ -1172,6 +1174,8 @@ namespace draw2d
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
             image_drawing_options imagedrawingoptionsDrawRaw;
+
+            set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             _draw_raw(rectangleTarget, pimage1, imagedrawingoptionsDrawRaw, ::point_f64());
 
@@ -1598,6 +1602,8 @@ namespace draw2d
          }
 
          {
+
+            set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             image_source imagesource(pimage1);
 

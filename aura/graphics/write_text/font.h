@@ -32,6 +32,7 @@ typedef comparable_array < enum_character_set > enum_character_set_array;
 namespace write_text
 {
 
+#define WRITE_TEXT_TEXT_METRIC_INDEX 7
 
    class CLASS_DECL_AURA font :
       virtual public ::draw2d::object
@@ -71,8 +72,9 @@ namespace write_text
       enum_character_set_array      m_echaracterseta;
       enum_character_set            m_echaracterset;
       ///enum_rendering                m_erendering;
-      text_metric                   m_textmetric;
-      bool                          m_bTextMetric;
+      text_metric                   m_textmetric2;
+
+      //bool                          m_bTextMetric;
       string_map < text >           m_mapText;
 
 
@@ -136,6 +138,11 @@ namespace write_text
       virtual double get_leading(::draw2d::graphics * pgraphics);
 
       virtual double get_height(::draw2d::graphics * pgraphics);
+
+      inline text_metric * get_text_metric_struct()  { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
+      inline const text_metric * get_text_metric_struct() const { return (text_metric*) m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX]; }
+      inline bool has_text_metric() const { return m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX];}
+      inline void set_has_text_metric() { m_osdata[WRITE_TEXT_TEXT_METRIC_INDEX] = &m_textmetric2; m_baCalculated[WRITE_TEXT_TEXT_METRIC_INDEX] = true; }
 
 
    };

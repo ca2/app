@@ -940,13 +940,9 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
             else
             {
 
-               int r = pdst2[0];
-               int g = pdst2[1];
-               int b = pdst2[2];
-
-               r = (r << 8) / aDst;
-               g = (g << 8) / aDst;
-               b = (b << 8) / aDst;
+               int r = (pdst2[0] * 255) / aDst;
+               int g = (pdst2[1] * 255) / aDst;
+               int b = (pdst2[2] * 255) / aDst;
 
                int a = aSrc * aDst;
 
@@ -4734,15 +4730,15 @@ void image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
       x2 += width();
    if (x1 < 0)
       x1 += width();
-   color32_t color = rgb(B, G, R) | (A << 24);
+   color32_t color = IMAGE_ARGB(A, R, G, B);
 
 #ifdef __APPLE__
 
-   color32_t* pdata = get_data() + (height() - y - 1) * (m_iScan / sizeof(color32_t));
+   color32_t* pdata = (color32_t*)((byte *) get_data() + (height() - y - 1) * (m_iScan));
 
 #else
 
-   color32_t* pdata = get_data() + y * (m_iScan / sizeof(color32_t));
+   color32_t* pdata = (color32_t*)((byte *) get_data() + y * (m_iScan));
 
 #endif
 

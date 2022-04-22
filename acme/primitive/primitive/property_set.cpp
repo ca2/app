@@ -674,40 +674,75 @@ void property_set::_008ParseArguments(bool bApp, const ::string_array & straArgu
 
    }
 
+   bool bColon = false;
+
    for (; i < straArguments.get_size(); i++)
    {
 
       string strArgument = straArguments[i];
 
-      index iFindEqual = strArgument.find('=');
+     
 
-      index iFindQuote = strArgument.find('\"');
-
-      if (iFindEqual >= 0)
+      if (strArgument == ":")
       {
 
-         string strValue;
+         bColon = true;
 
-         strValue = strArgument.Mid(iFindEqual + 1);
+         continue;
 
-         if (iFindEqual + 1 == iFindQuote)
+      }
+
+      if (!bColon)
+      {
+
+         if (payloadFile.is_empty())
          {
 
-            const char * pszValue = strValue;
-
-            strValue = ::str::consume_quoted_value(pszValue);
+            payloadFile = strArgument;
 
          }
+         else
+         {
 
-         string strKey = strArgument.Left(iFindEqual);
+            payloadFile.stra().add(strArgument);
 
-         _008Add(strKey, strValue);
+         }
 
       }
       else
       {
 
-         _008Add(strArgument, nullptr);
+         index iFindEqual = strArgument.find('=');
+
+         index iFindQuote = strArgument.find('\"');
+
+         if (iFindEqual >= 0)
+         {
+
+            string strValue;
+
+            strValue = strArgument.Mid(iFindEqual + 1);
+
+            if (iFindEqual + 1 == iFindQuote)
+            {
+
+               const char * pszValue = strValue;
+
+               strValue = ::str::consume_quoted_value(pszValue);
+
+            }
+
+            string strKey = strArgument.Left(iFindEqual);
+
+            _008Add(strKey, strValue);
+
+         }
+         else
+         {
+
+            _008Add(strArgument, nullptr);
+
+         }
 
       }
 

@@ -1,4 +1,4 @@
-// Create by camilo on 2021-08-10 14:06 BRT <3ThomasBorregaardS�rensen!!
+// Create by camilo on 2021-08-10 14:06 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"

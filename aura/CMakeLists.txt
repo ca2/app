@@ -727,8 +727,8 @@ if (LINUX)
       operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.cpp
       operating_system/linux/debug.h
-      operating_system/linux/desktop_file.cpp
-      operating_system/linux/desktop_file.h
+      #operating_system/linux/desktop_file.cpp
+      #operating_system/linux/desktop_file.h
       #operating_system/linux/exception_engine.cpp
       #operating_system/linux/exception_engine.h
       operating_system/linux/file.cpp
@@ -778,6 +778,7 @@ if (LINUX)
       #operating_system/x11/x11_keyboard.h
       #operating_system/x11/x11_windowing.cpp
       #operating_system/x11/x11_xrender.cpp
+      graphics/write_text/font_utf8.cpp
       ${windowing_source}
       )
 endif ()

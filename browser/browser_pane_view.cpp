@@ -14,10 +14,10 @@ namespace browser
       place_holder_container(pobject)
    {
 
-      m_pviewLast = nullptr;
-      m_pviewLastBilbo = nullptr;
+      m_pimpactLast = nullptr;
+      m_pimpactLastBilbo = nullptr;
       m_prollfps = nullptr;
-      m_pviewdataTopic = nullptr;
+      m_pimpactdataTopic = nullptr;
 
       papp->m_ppaneimpact = this;
 
@@ -148,28 +148,28 @@ namespace browser
             
             auto ptabpaneMenu = get_tab_by_id(MENU_IMPACT);
             
-            m_pviewLast = dynamic_cast < impact_base * > (ptabpaneMenu->m_pholder->get_child_by_id("browser_gcom"));
-            m_pviewdataTopic = m_pimpactdata;
+            m_pimpactLast = dynamic_cast < impact_base * > (ptabpaneMenu->m_pholder->get_child_by_id("browser_gcom"));
+            m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = ptabpaneMenu->m_straTitle.implode(" ");
 
          }
          else if(get_view_id() == MAIN_IMPACT)
          {
 
-            m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
-            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
-            m_pviewLast->set_need_layout();
-            m_pviewdataTopic = m_pimpactdata;
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+            m_pimpactLast->set_need_layout();
+            m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
 
          }
          else if (get_view_id() == MAIN_SWITCHER_IMPACT)
          {
 
-            m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
-            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
-            m_pviewLast->set_need_layout();
-            m_pviewdataTopic = m_pimpactdata;
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+            m_pimpactLast->set_need_layout();
+            m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
 
          }
@@ -180,17 +180,17 @@ namespace browser
             {
 
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_view"));
-               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
                pviewLast->set_need_layout();
-               //m_pviewdataTopic = m_pimpactdata;
+               //m_pimpactdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
 
             }
             {
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_switcher_view"));
-               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
                pviewLast->set_need_layout();
-               //m_pviewdataTopic = m_pimpactdata;
+               //m_pimpactdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
             }
 
@@ -218,7 +218,7 @@ namespace browser
 
          m_prollfps = dynamic_cast <::user::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
 
-         m_pviewLast->data_get("cur_fps_text", str);
+         m_pimpactLast->data_get("cur_fps_text", str);
 
          if (m_prollfps != nullptr)
          {
@@ -227,12 +227,12 @@ namespace browser
 
          }
 
-         if (m_pviewLastBilbo == m_pviewLast)
+         if (m_pimpactLastBilbo == m_pimpactLast)
          {
 
             int i = 1;
 
-            for (auto & pslide : m_pviewLastBilbo->m_prender->slideshow())
+            for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
             {
 
                __pointer(::user::check_box) pcheck = pimpact->get_child_by_id("slide" + __string(i));
@@ -253,10 +253,10 @@ namespace browser
 
          __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
-         if (m_pviewLastBilbo != nullptr && pfontview.is_set())
+         if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
 
-            pfontview->set_sel_by_name(m_pviewLastBilbo->m_prender->m_strFont);
+            pfontview->set_sel_by_name(m_pimpactLastBilbo->m_prender->m_strFont);
 
          }
 
@@ -264,10 +264,10 @@ namespace browser
       else if (get_view_id() == COLORSEL_IMPACT)
       {
 
-         if (m_pviewLastBilbo != nullptr && m_pcolorview != nullptr)
+         if (m_pimpactLastBilbo != nullptr && m_pcolorview != nullptr)
          {
 
-            m_pcolorview->set_color(m_pviewLastBilbo->m_prender->m_hlsForeground);
+            m_pcolorview->set_color(m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
          }
 
@@ -278,12 +278,12 @@ namespace browser
 
          __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
-         if (m_pviewLastBilbo != nullptr && pfontview.is_set())
+         if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
 
-            m_pviewLastBilbo->m_prender->m_strFontHover.Empty();
+            m_pimpactLastBilbo->m_prender->m_strFontHover.Empty();
 
-            m_pviewLastBilbo->set_need_layout();
+            m_pimpactLastBilbo->set_need_layout();
 
          }
 
@@ -356,7 +356,7 @@ namespace browser
                {
                   string str;
                   double d = m_prollfps->get_ex_value()["real"];
-                  if(m_pviewLast != nullptr)
+                  if(m_pimpactLast != nullptr)
                   {
 
 
@@ -366,7 +366,7 @@ namespace browser
 
                         m_prollfps->_001GetText(str);
 
-                        m_pviewLast->data_set("cur_fps_text",str);
+                        m_pimpactLast->data_set("cur_fps_text",str);
 
                      }
 
@@ -376,11 +376,11 @@ namespace browser
 
                         v = d;
 
-                        m_pviewLast->data_set("cur_fps",v);
+                        m_pimpactLast->data_set("cur_fps",v);
 
                      }
-                     m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_durationRoll.Now();
+                     m_pimpactLast->m_dFps = d;
+                     m_pimpactLast->m_durationRoll.Now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -444,16 +444,16 @@ namespace browser
 
                   __pointer(::user::check) pcheck = ptopic->user_interaction();
 
-                  if (m_pviewLastBilbo != nullptr && pcheck.is_set())
+                  if (m_pimpactLastBilbo != nullptr && pcheck.is_set())
                   {
 
-                     auto pslide = m_pviewLastBilbo->m_prender->slideshow()[iCheck - 1];
+                     auto pslide = m_pimpactLastBilbo->m_prender->slideshow()[iCheck - 1];
 
                      pslide->enable(pcheck->echeck() == ::e_check_checked);
 
-                     m_pviewLastBilbo->data_set("slide." + pslide->m_strPath, pslide->m_bDatabase);
+                     m_pimpactLastBilbo->data_set("slide." + pslide->m_strPath, pslide->m_bDatabase);
 
-                     //m_pviewLastBilbo->m_prender->defer_update_slide_show();
+                     //m_pimpactLastBilbo->m_prender->defer_update_slide_show();
 
                   }
 
@@ -481,13 +481,13 @@ namespace browser
                if (strFont.has_char())
                {
 
-                  m_pviewLastBilbo->m_prender->m_strFontHover.Empty();
+                  m_pimpactLastBilbo->m_prender->m_strFontHover.Empty();
 
-                  m_pviewLastBilbo->m_prender->m_strFontSel = strFont;
+                  m_pimpactLastBilbo->m_prender->m_strFontSel = strFont;
 
-                  m_pviewLastBilbo->data_set("cur_font", strFont);
+                  m_pimpactLastBilbo->data_set("cur_font", strFont);
 
-                  m_pviewLastBilbo->set_need_layout();
+                  m_pimpactLastBilbo->set_need_layout();
 
                }
 
@@ -500,9 +500,9 @@ namespace browser
                if (strFont.has_char())
                {
 
-                  m_pviewLastBilbo->m_prender->m_strFontHover = strFont;
+                  m_pimpactLastBilbo->m_prender->m_strFontHover = strFont;
 
-                  m_pviewLastBilbo->set_need_layout();
+                  m_pimpactLastBilbo->set_need_layout();
 
                }
 
@@ -517,16 +517,16 @@ namespace browser
                   || ptopic->m_atom == ::id_after_change_cur_hover)
             {
 
-               m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
+               m_pcolorview->get_color().get_hls(m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
                if (ptopic->m_atom == ::id_after_change_cur_sel)
                {
 
-                  m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);
+                  m_pimpactLastBilbo->data_set("cur_color", m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
                }
 
-               m_pviewLastBilbo->set_need_redraw();
+               m_pimpactLastBilbo->set_need_redraw();
 
             }
 
@@ -548,7 +548,7 @@ namespace browser
 
       string strBilbo;
 
-      if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
+      if (m_pimpactLast == nullptr && m_pimpactLastBilbo == nullptr)
       {
 
          str = pcontext->m_papexcontext->file().as_string("matter://home.html");
@@ -561,12 +561,12 @@ namespace browser
 
       }
 
-      if (m_pviewLastBilbo == m_pviewLast)
+      if (m_pimpactLastBilbo == m_pimpactLast)
       {
 
          int i = 1;
 
-         for (auto & pslide : m_pviewLastBilbo->m_prender->slideshow())
+         for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
          {
 
             ::file::path path = pslide->m_strPath;

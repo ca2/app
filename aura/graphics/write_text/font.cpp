@@ -228,93 +228,6 @@ namespace write_text
    }
 
 
-   string font::get_sample_text(enum_character_set echarset)
-   {
-
-      if (echarset == e_character_set_chinesebig5)
-      {
-
-         return unitext("示例文本");
-
-      }
-      else if (echarset == e_character_set_gb2312)
-      {
-
-         return unitext("示例文本");
-
-      }
-      else if (echarset == e_character_set_shiftjis)
-      {
-
-         return unitext("サンプルテキスト");
-
-      }
-      else if (echarset == e_character_set_hebrew)
-      {
-
-         return unitext("טקסט לדוגמה");
-
-      }
-      else if (echarset == e_character_set_arabic)
-      {
-
-         return unitext("نص بسيط");
-
-      }
-      else if (echarset == e_character_set_greek)
-      {
-
-         return unitext("Δείγμα κειμένου");
-
-      }
-      else if (echarset == e_character_set_turkish)
-      {
-
-         return unitext("Örnek yazı");
-
-      }
-      else if (echarset == e_character_set_vietnamese)
-      {
-
-         return unitext("văn bản mẫu");
-
-      }
-      else if (echarset == e_character_set_thai)
-      {
-
-         return unitext("ตัวอย่างข้อความ");
-
-      }
-      else if (echarset == e_character_set_easteurope)
-      {
-
-         return unitext("Sample Text");
-
-      }
-      else if (echarset == e_character_set_russian)
-      {
-
-         return unitext("Образец текста");
-
-      }
-      else if (echarset == e_character_set_johab)
-      {
-
-         return unitext("샘플 텍스트");
-
-      }
-      else if (echarset == e_character_set_hangul)
-      {
-
-         return unitext("샘플 텍스트");
-
-      }
-
-      return "";
-
-   }
-
-
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {
 
@@ -810,42 +723,22 @@ namespace write_text
 
       }
 
-      //return ::success;
-
    }
 
 
    void font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
 
-      if (is_modified(::draw2d::e_default_object))
+      if (!has_text_metric())
       {
 
-         m_bTextMetric = false;
+         _get_text_metric(pgraphics, m_textmetric2);
 
-         defer_update(pgraphics, 0);
+         set_has_text_metric();
 
       }
 
-      if (!m_bTextMetric)
-      {
-
-         _get_text_metric(pgraphics, m_textmetric);
-
-         m_bTextMetric = true;
-
-      }
-
-      //if (!m_bTextMetric)
-      //{
-
-      //   return false;
-
-      //}
-
-      tm = m_textmetric;
-
-      //return true;
+      tm = *get_text_metric_struct();
 
    }
 
@@ -856,13 +749,6 @@ namespace write_text
       text_metric tm;
 
       get_text_metric(pgraphics, tm);
-
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
 
       return tm.m_dAscent;
 
@@ -876,13 +762,6 @@ namespace write_text
 
       get_text_metric(pgraphics, tm);
 
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
-
       return tm.m_dHeight;
 
    }
@@ -895,13 +774,6 @@ namespace write_text
 
       get_text_metric(pgraphics, tm);
 
-      //if (!get_text_metric(pgraphics, tm))
-      //{
-
-      //   return false;
-
-      //}
-
       return tm.m_dInternalLeading + tm.m_dExternalLeading;
 
    }
@@ -913,13 +785,6 @@ namespace write_text
       text_metric tm;
 
       get_text_metric(pgraphics, tm);
-
-      ////if (!)
-      //{
-
-      //   return false;
-
-      //}
 
       return tm.m_dDescent;
 
@@ -938,7 +803,6 @@ namespace write_text
 
       pgraphics->set(this);
 
-      //return
       pgraphics->get_text_metrics(&tm);
 
    }

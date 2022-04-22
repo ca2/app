@@ -12,7 +12,7 @@ namespace app_core_build
 
 
       ::user::split_view *                            m_ptopviewLast;
-      ::user::impact_data *                           m_pviewdataTopic;
+      ::user::impact_data *                           m_pimpactdataTopic;
       string                                          m_strTopicTitle;
 
 

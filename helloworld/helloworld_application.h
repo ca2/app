@@ -38,7 +38,7 @@ namespace helloworld
 
 
       //::user::split_view *                             m_ptopviewLast;
-      //impact *                                 m_pviewLast;
+      //impact *                                 m_pimpactLast;
 
       //::user::split_view *                             m_ptopviewMain;
       //impact *                                 m_pviewMain;

@@ -153,11 +153,11 @@ pacmedirectory->ca2roaming() / "home";
 
          {
 
-            __scoped_restore(listing.m_pathUser);
+            ___scoped_restore(listing.m_pathUser);
 
-            __scoped_restore(listing.m_pathFinal);
+            ___scoped_restore(listing.m_pathFinal);
 
-            __scoped_restore(listing.m_eextract);
+            ___scoped_restore(listing.m_eextract);
 
             if(::dir_context::ls(listing))
             {

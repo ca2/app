@@ -898,13 +898,13 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+   byte * pdst = ((byte *)pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
 
-   u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
+   byte * psrc = ((byte *)pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
 
-   u8* pdst2;
+   byte * pdst2;
 
-   u8* psrc2;
+   byte * psrc2;
 
    if (bA == 0)
    {
@@ -916,16 +916,16 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
       for (int y = 0; y < yEnd; y++)
       {
 
-         pdst2 = &pdst[scanDst * y];
+         pdst2 = pdst + (scanDst * y);
 
-         psrc2 = &psrc[scanSrc * y];
+         psrc2 = psrc + (scanSrc * y);
 
          for (int x = 0; x < xEnd; x++)
          {
 
-            int  aDst = pdst2[3];
+            int aDst = pdst2[3];
 
-            int  aSrc = psrc2[3];
+            int aSrc = psrc2[3];
 
             if (aDst == 0)
             {
@@ -940,20 +940,20 @@ void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const :
             else
             {
 
-               int r = pdst2[0];
-               int g = pdst2[1];
-               int b = pdst2[2];
+               //int r = (pdst2[0] * 255) / aDst;
+               //int g = (pdst2[1] * 255) / aDst;
+               //int b = (pdst2[2] * 255) / aDst;
 
-               r = (r << 8) / aDst;
-               g = (g << 8) / aDst;
-               b = (b << 8) / aDst;
+               //int a = aSrc * aDst;
 
-               int a = aSrc * aDst;
-
-               pdst2[0] = (r * a) >> 16;
-               pdst2[1] = (g * a) >> 16;
-               pdst2[2] = (b * a) >> 16;
-               pdst2[3] = a >> 8;
+               //pdst2[0] = (r * a) >> 16;
+               //pdst2[1] = (g * a) >> 16;
+               //pdst2[2] = (b * a) >> 16;
+               //pdst2[3] = a >> 8;
+               pdst2[0] = ((int) pdst2[0] * aSrc) / 255;
+               pdst2[1] = ((int) pdst2[1] * aSrc) / 255;
+               pdst2[2] = ((int) pdst2[2] * aSrc) / 255;
+               pdst2[3] = (aDst * aSrc) / 255;
 
             }
 
@@ -4734,15 +4734,15 @@ void image::horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A, i32 x1, i32 x2)
       x2 += width();
    if (x1 < 0)
       x1 += width();
-   color32_t color = rgb(B, G, R) | (A << 24);
+   color32_t color = IMAGE_ARGB(A, R, G, B);
 
 #ifdef __APPLE__
 
-   color32_t* pdata = get_data() + (height() - y - 1) * (m_iScan / sizeof(color32_t));
+   color32_t* pdata = (color32_t*)((byte *) get_data() + (height() - y - 1) * (m_iScan));
 
 #else
 
-   color32_t* pdata = get_data() + y * (m_iScan / sizeof(color32_t));
+   color32_t* pdata = (color32_t*)((byte *) get_data() + y * (m_iScan));
 
 #endif
 

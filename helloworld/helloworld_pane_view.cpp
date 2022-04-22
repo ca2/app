@@ -13,10 +13,10 @@ namespace helloworld
       ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
-      m_pviewLast = nullptr;
-      m_pviewLastBilbo = nullptr;
+      m_pimpactLast = nullptr;
+      m_pimpactLastBilbo = nullptr;
       m_prollfps = nullptr;
-      m_pviewdataTopic = nullptr;
+      m_pimpactdataTopic = nullptr;
    }
 
 
@@ -132,28 +132,28 @@ namespace helloworld
 
          }
 
-         m_pviewLast = nullptr;
-         m_pviewLastBilbo = nullptr;
+         m_pimpactLast = nullptr;
+         m_pimpactLastBilbo = nullptr;
 
 
 
          if(get_view_id() == ::helloworld::PaneViewHelloWorld)
          {
 
-            m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLast->set_need_layout();
-            m_pviewdataTopic = m_pimpactdata;
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLast->set_need_layout();
+            m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_straTitle.implode(" ");
 
          }
          else if (get_view_id() == ::helloworld::PaneViewHelloWorldSwitcher)
          {
 
-            m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLast->set_need_layout();
-            m_pviewdataTopic = m_pimpactdata;
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLast->set_need_layout();
+            m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_straTitle.implode(" ");
 
          }
@@ -182,7 +182,7 @@ namespace helloworld
 
          m_prollfps = dynamic_cast <::calculator::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
 
-         m_pviewLast->data_get("cur_fps_text", str);
+         m_pimpactLast->data_get("cur_fps_text", str);
 
          if (m_prollfps != nullptr)
          {
@@ -191,12 +191,12 @@ namespace helloworld
 
          }
 
-         if (m_pviewLastBilbo != nullptr)
+         if (m_pimpactLastBilbo != nullptr)
          {
 
             int i = 1;
 
-            for (auto & bilbo : m_pviewLastBilbo->m_prender->m_bilboa)
+            for (auto & bilbo : m_pimpactLastBilbo->m_prender->m_bilboa)
             {
 
                m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + __string(i))));
@@ -215,10 +215,10 @@ namespace helloworld
 
          __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
-         if (m_pviewLast != nullptr && pfontview.is_set())
+         if (m_pimpactLast != nullptr && pfontview.is_set())
          {
 
-            pfontview->set_sel_by_name(m_pviewLast->m_strFont);
+            pfontview->set_sel_by_name(m_pimpactLast->m_strFont);
 
          }
 
@@ -316,7 +316,7 @@ namespace helloworld
                {
                   string str;
                   double d = m_prollfps->get_ex_value()["real"];
-                  if(m_pviewLast != nullptr)
+                  if(m_pimpactLast != nullptr)
                   {
 
 
@@ -326,7 +326,7 @@ namespace helloworld
 
                         m_prollfps->_001GetText(str);
 
-                        m_pviewLast->data_set("cur_fps_text",str);
+                        m_pimpactLast->data_set("cur_fps_text",str);
 
                      }
 
@@ -336,11 +336,11 @@ namespace helloworld
 
                         v = d;
 
-                        m_pviewLast->data_set("cur_fps",v);
+                        m_pimpactLast->data_set("cur_fps",v);
 
                      }
-                     m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_dwRoll= ::duration::now();
+                     m_pimpactLast->m_dFps = d;
+                     m_pimpactLast->m_dwRoll= ::duration::now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -398,12 +398,12 @@ namespace helloworld
 
                   int iCheck = atoi(strCheck);
 
-                  if (m_pviewLastBilbo != nullptr)
+                  if (m_pimpactLastBilbo != nullptr)
                   {
 
-                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::e_check_checked;
+                     m_pimpactLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::e_check_checked;
 
-                     m_pviewLastBilbo->m_prender->defer_update_bilbo();
+                     m_pimpactLastBilbo->m_prender->defer_update_bilbo();
 
                   }
 
@@ -447,7 +447,7 @@ namespace helloworld
 
       string strBilbo;
 
-      if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
+      if (m_pimpactLast == nullptr && m_pimpactLastBilbo == nullptr)
       {
 
          str = pcontext->m_papexcontext->file().as_string("matter://home.html");
@@ -460,12 +460,12 @@ namespace helloworld
 
       }
 
-      if (m_pviewLastBilbo != nullptr)
+      if (m_pimpactLastBilbo != nullptr)
       {
 
          int i = 1;
 
-         for (auto & bilbo : m_pviewLastBilbo->m_prender->m_bilboa)
+         for (auto & bilbo : m_pimpactLastBilbo->m_prender->m_bilboa)
          {
 
             ::file::path path = bilbo.m_strPath;
@@ -516,7 +516,7 @@ namespace helloworld
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
                && ptopic->user_interaction() == m_pfontview
-               && m_pviewLast != nullptr)
+               && m_pimpactLast != nullptr)
          {
 
             if(pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_sel)
@@ -527,11 +527,11 @@ namespace helloworld
                if (strFont.has_char())
                {
 
-                  m_pviewLast->m_strHoverFont = strFont;
+                  m_pimpactLast->m_strHoverFont = strFont;
 
-                  m_pviewLast->m_strNewFont = strFont;
+                  m_pimpactLast->m_strNewFont = strFont;
 
-                  m_pviewLast->on_layout(pgraphics);
+                  m_pimpactLast->on_layout(pgraphics);
 
                }
 
@@ -544,9 +544,9 @@ namespace helloworld
                if (strFont.has_char())
                {
 
-                  m_pviewLast->m_strHoverFont = strFont;
+                  m_pimpactLast->m_strHoverFont = strFont;
 
-                  m_pviewLast->on_layout(pgraphics);
+                  m_pimpactLast->on_layout(pgraphics);
 
                }
 

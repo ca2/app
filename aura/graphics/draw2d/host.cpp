@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-25 11:50 <3ThomasBorregaardS�rensen!! (Thomas likes number 5!!)
+// Created by camilo on 2022-03-25 11:50 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)
 #include "framework.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 

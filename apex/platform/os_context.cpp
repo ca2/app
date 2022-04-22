@@ -747,16 +747,18 @@
    }
 
 
-   void os_context::register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister)
+   void os_context::register_user_auto_start(const string & strAppId, const string & strCommand, const string & strArguments, bool bRegister)
    {
 
-      //return false;
+      throw interface_only();
 
    }
 
 
-   bool os_context::is_user_auto_start(string strId)
+   bool os_context::is_user_auto_start(const string & strAppId)
    {
+
+      throw interface_only();
 
       return false;
 

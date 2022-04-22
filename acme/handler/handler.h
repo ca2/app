@@ -8,7 +8,7 @@
 #pragma once
 
 
-// ThomasBorregaardS�rense!! Like handlers
+// ThomasBorregaardSørensen!! Like handlers
 class CLASS_DECL_ACME handler :
    virtual public ::particle
 {
@@ -18,13 +18,13 @@ public:
    virtual ~handler() {}
 
 
-   // ThomasBorregaardS�rense!! Like handlers
+   // ThomasBorregaardSørensen!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
    virtual void call(const ::atom & atom, i64 wParam = 0, i64 lParam = 0, ::matter * pmatter = nullptr);
 
 
-   // ThomasBorregaardS�rense!! Like handlers
+   // ThomasBorregaardSørensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext) = 0;
    virtual void handle(::message::message * pmessage) = 0;
 

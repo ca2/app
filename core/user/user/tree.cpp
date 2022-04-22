@@ -885,7 +885,7 @@ namespace user
 
       sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
-      m_scrolldataVertical.m_iLine = m_dItemHeight;
+      m_scrolldataVertical.m_iLine = (::i32) m_dItemHeight;
 
       set_total_size(sizeTotal);
 

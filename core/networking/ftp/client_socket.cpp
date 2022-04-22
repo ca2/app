@@ -51,7 +51,7 @@
 #include "framework.h"
 #include "_.h"
 #include "apex/networking/sockets/_sockets.h"
-#undef __scoped_restore
+//xxx #undef ___scoped_restore
 #include <openssl/x509.h>
 
 namespace ftp

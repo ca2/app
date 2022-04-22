@@ -14,7 +14,7 @@ namespace nano
    public:
 
 
-      ::array < ::procedure >      m_functionaPost;
+      ::array < ::procedure >      m_procedureaPost;
 
 
       static display *                       g_p;
@@ -25,8 +25,8 @@ namespace nano
 
 
       virtual void kick_idle();
-      virtual void display_post(const ::procedure & function);
-      virtual void display_send(const ::procedure & function);
+      virtual void display_post(const ::procedure & procedure);
+      virtual void display_send(const ::procedure & procedure);
       virtual bool display_posted_routine_step();
 
 

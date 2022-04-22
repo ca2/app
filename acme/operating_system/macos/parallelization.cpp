@@ -32,7 +32,7 @@ void main_asynchronous(::procedure function)
 }
 
 
-void system::windowing_post(const ::procedure & function)
+void system::windowing_post(const ::procedure & procedure)
 {
    
    main_asynchronous(function);

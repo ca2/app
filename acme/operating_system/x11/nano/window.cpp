@@ -1085,12 +1085,12 @@ void x11_asynchronous(::procedure function)
 
    }
 
-   pdisplay->display_post(__routine([function]()
+   pdisplay->display_post([function]()
                                     {
 
                                        function();
 
-                                    }));
+                                    });
 
 }
 

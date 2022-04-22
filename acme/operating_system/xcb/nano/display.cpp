@@ -298,7 +298,7 @@ namespace xcb
 //
 //      }
 //
-//      /*auto estatus = */ __send_routine(this, &display::display_post, routine);
+//      /*auto estatus = */ __send_procedure(this, &display::display_post, routine);
 //
 //      //if(!estatus)
 //      //{

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"

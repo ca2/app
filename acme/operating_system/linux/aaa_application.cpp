@@ -512,7 +512,9 @@ namespace acme
 
             auto pfile = __create_new<::linux::desktop_file>();
 
-            pfile->set_path(path);
+            pfile->set_app_id(m_strAppId);
+
+            pfile->set_file_path(path);
 
             pfile->create();
 

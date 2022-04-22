@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
 

@@ -80,7 +80,7 @@ auto m_durationRoll = ::duration::now();
       if(papp->m_ppaneimpact != nullptr)
       {
 
-         papp->m_ppaneimpact->m_pviewLast = this;
+         papp->m_ppaneimpact->m_pimpactLast = this;
 
       }
 

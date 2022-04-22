@@ -6904,45 +6904,14 @@ namespace aura
    }
 
 
-   void system::windowing_post(const ::procedure & function)
+   void system::windowing_post(const ::procedure & procedure)
    {
 
       auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing();
 
-      pwindowing->windowing_post(function);
+      pwindowing->windowing_post(procedure);
 
    }
-
-
-   //void system::on_initial_frame_position(::user::frame* pframe)
-   //{
-
-   //}
-
-   //void system::on_graphics_ready()
-   //{
-
-   //   //::apex::system::on_graphics_ready();
-
-   //   //if (psession->userex()->shell()->m_bPendingUpdate)
-   //   //{
-
-   //   //   psession->userex()->shell()->on_update_sizes_interest();
-
-   //   //}
-
-   //}
-
-
-   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   //{
-
-   //   return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
-
-   //}
-
-
-//   __namespace_system_factory(system);
 
 
 } // namespace aura

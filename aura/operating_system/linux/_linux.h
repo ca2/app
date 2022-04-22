@@ -79,7 +79,7 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 #include "_user.h"
 
-#include "desktop_file.h"
+//#include "desktop_file.h"
 #include "x11.h"
 
 

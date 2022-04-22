@@ -1,4 +1,4 @@
-// apex_main_struct constructor by camilo on 2021-11-16 14:53 BRT <3ThomasBorregaardS�rensen!!
+// apex_main_struct constructor by camilo on 2021-11-16 14:53 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
 

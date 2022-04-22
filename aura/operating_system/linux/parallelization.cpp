@@ -181,7 +181,7 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
    auto pnode = psystem->node();
 
-   pnode->node_fork([prunnable, pevent]()
+   pnode->node_post([prunnable, pevent]()
    {
 
       try
@@ -204,21 +204,14 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 }
 
 
-CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
+CLASS_DECL_AURA void main_async_runnable(::object * prunnable)
 {
 
-   __pointer(object) prunnable = prunnableParam;
-
-   auto psystem = prunnableParam->m_psystem;
+   auto psystem = prunnable->m_psystem;
 
    auto pnode = psystem->node();
 
-   pnode->node_fork([prunnable]()
-   {
-
-      prunnable->call_run();
-
-   });
+   pnode->node_post(prunnable);
 
 }
 

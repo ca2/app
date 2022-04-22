@@ -140,6 +140,7 @@ namespace draw2d_cairo
       i32 iScan = iGoodStride;
 
       pbitmap->create_bitmap(nullptr, size, (void**)&pcolorrefRaw, &iScan);
+      //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
 
       //if(!pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
       //{
@@ -181,7 +182,8 @@ namespace draw2d_cairo
       m_sizeAlloc = size;
       m_pcolorref1 = nullptr;
 
-      init(size, pcolorrefRaw, iScan);
+      //init(size, pcolorrefRaw, iScan);
+      init(size, nullptr, iScan);
 
       m_bMapped = false;
 
@@ -484,13 +486,13 @@ namespace draw2d_cairo
 
       }
 
-      if (m_pcolorrefRaw == nullptr)
-      {
-
-         return;
-
-      }
-
+//      if (m_pcolorrefRaw == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
       if (m_pbitmap.is_null())
       {
 
@@ -511,47 +513,49 @@ namespace draw2d_cairo
 
       byte  * pdata = (byte *) cairo_image_surface_get_data(surface);
 
-      if(pdata != (byte *) m_pcolorrefRaw && pdata != nullptr)
-      {
+      m_pcolorrefRaw = (color32_t * ) pdata;
 
-         ::memcpy_dup(m_pcolorrefRaw, pdata, m_sizeRaw.cy * m_iScan);
+//      if(pdata != (byte *) m_pcolorrefRaw && pdata != nullptr)
+//      {
+//
+//         ::memcpy_dup(m_pcolorrefRaw, pdata, m_sizeRaw.cy * m_iScan);
+//
+//      }
 
-      }
+      //pdata = (byte *) m_pcolorrefRaw;
 
-      pdata = (byte *) m_pcolorrefRaw;
-
-      if(!bApplyAlphaTransform)
-      {
-
-         int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
-
-         while(size > 0)
-         {
-
-            if(pdata[3] != 0)
-            {
-
-               pdata[0] = pdata[0] * 255 / pdata[3];
-               pdata[1] = pdata[1] * 255 / pdata[3];
-               pdata[2] = pdata[2] * 255 / pdata[3];
-
-            }
-
-            pdata += 4;
-
-            size--;
-
-         }
-
-         ((image *) this)->m_bTrans = true;
-
-      }
-      else
-      {
-
-         ((image *) this)->m_bTrans = false;
-
-      }
+//      if(!bApplyAlphaTransform)
+//      {
+//
+//         int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
+//
+//         while(size > 0)
+//         {
+//
+//            if(pdata[3] != 0)
+//            {
+//
+//               pdata[0] = pdata[0] * 255 / pdata[3];
+//               pdata[1] = pdata[1] * 255 / pdata[3];
+//               pdata[2] = pdata[2] * 255 / pdata[3];
+//
+//            }
+//
+//            pdata += 4;
+//
+//            size--;
+//
+//         }
+//
+//         ((image *) this)->m_bTrans = true;
+//
+//      }
+//      else
+//      {
+//
+//         ((image *) this)->m_bTrans = false;
+//
+//      }
 
       ((image *) this)->m_bMapped = true;
 
@@ -595,27 +599,27 @@ namespace draw2d_cairo
 
       }
 
-      byte * pdata =  (byte *) m_pcolorrefRaw;
-
-      int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
-
-      pdata =  (byte *) cairo_image_surface_get_data(surface);
-
-      if(pdata != (byte *)m_pcolorrefRaw && pdata != nullptr)
-      {
-
-         ::memcpy_dup(pdata, m_pcolorrefRaw, m_sizeRaw.cy * m_iScan);
-
-      }
+//      byte * pdata =  (byte *) m_pcolorrefRaw;
+//
+//      int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
+//
+//      pdata =  (byte *) cairo_image_surface_get_data(surface);
+//
+//      if(pdata != (byte *)m_pcolorrefRaw && pdata != nullptr)
+//      {
+//
+//         ::memcpy_dup(pdata, m_pcolorrefRaw, m_sizeRaw.cy * m_iScan);
+//
+//      }
 
       cairo_surface_mark_dirty (surface);
 
-      if(m_pgraphics.is_set())
-      {
-
-         m_pgraphics->set(m_pbitmap);
-
-      }
+//      if(m_pgraphics.is_set())
+//      {
+//
+//         m_pgraphics->set(m_pbitmap);
+//
+//      }
 
       ((image *) this)->m_bMapped = false;
 
@@ -1268,6 +1272,523 @@ namespace draw2d_cairo
       //return true;
 
    }
+
+
+//   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, byte bA)
+//   {
+//
+//      ::image* pimageDst = this;
+//
+//      pimageDst->map();
+//
+//      pimageSrc->map();
+//
+//      ::point_i32 pointDst(pointDstParam);
+//
+//      ::point_i32 pointSrc(pointSrcParam);
+//
+//      ::size_i32 size(sizeParam);
+//
+//      pointDst += m_point;
+//
+//      if (pointSrc.x < 0)
+//      {
+//         pointDst.x -= pointSrc.x;
+//         pointSrc.x = 0;
+//      }
+//
+//      if (pointSrc.y < 0)
+//      {
+//         pointDst.y -= pointSrc.y;
+//         pointSrc.y = 0;
+//      }
+//
+//      if (pointDst.x < 0)
+//      {
+//         size.cx += pointDst.x;
+//         pointDst.x = 0;
+//      }
+//
+//      if (size.cx < 0)
+//      {
+//
+//         return;
+//
+//      }
+//      //return true;
+//
+//      if (pointDst.y < 0)
+//      {
+//         size.cy += pointDst.y;
+//         pointDst.y = 0;
+//      }
+//
+//      if (size.cy < 0)
+//      {
+//         //   return true;
+//
+//         return;
+//      }
+//
+//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+//
+//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+//
+//      if (xEnd < 0)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      if (yEnd < 0)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      i32 scanDst = pimageDst->m_iScan;
+//
+//      i32 scanSrc = pimageSrc->m_iScan;
+//
+//      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
+//
+//      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
+//
+//      byte * pdst2;
+//
+//      byte * psrc2;
+//
+//      if (bA == 0)
+//      {
+//
+//      }
+//      else if (bA == 255)
+//      {
+//
+//         for (int y = 0; y < yEnd; y++)
+//         {
+//
+//            pdst2 = pdst + scanDst * y;
+//
+//            psrc2 = psrc + scanSrc * y;
+//
+//            for (int x = 0; x < xEnd; x++)
+//            {
+//
+//               int aDst = pdst2[3];
+//
+//               int aSrc = psrc2[3];
+//
+//               if (aDst == 0)
+//               {
+//
+//               }
+//               else if (aSrc == 0)
+//               {
+//
+//                  *((color32_t*)pdst2) = 0;
+//
+//               }
+//               else
+//               {
+//
+////                  int r = (pdst2[0] * 255) / aDst;
+////                  int g = (pdst2[1] * 255) / aDst;
+////                  int b = (pdst2[2] * 255) / aDst;
+//
+//                  //int a = (aSrc * aDst) / 255;
+//
+//                  pdst2[0] = pdst2[0] * aSrc / 255;
+//                  pdst2[1] = pdst2[1] * aSrc / 255;
+//                  pdst2[2] = pdst2[2] * aSrc / 255;
+//                  pdst2[3] = pdst2[3] * aSrc / 255;
+//
+//
+//               }
+//
+//               pdst2 += 4;
+//
+//               psrc2 += 4;
+//
+//            }
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         for (int y = 0; y < yEnd; y++)
+//         {
+//
+//            pdst2 = &pdst[scanDst * y];
+//
+//            psrc2 = &psrc[scanSrc * y];
+//
+//            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//            for (int x = 0; x < xEnd; x++)
+//            {
+//
+//               //*pdst2 = *psrc2;
+//
+//               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//               //byte acomplement = (~psrc2[3] * bA) >> 8;
+//               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//               byte acomplement = (~psrc2[3] * bA) >> 8;
+//               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//
+//               pdst2 += 4;
+//
+//               psrc2 += 4;
+//
+//            }
+//            //pdst2 += xEnd;
+//            //psrc2 += xEnd;
+//
+//         }
+//
+//      }
+//
+//      //return true;
+//
+//   }
+
+
+//   void image::blend2(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
+//   {
+//
+//      auto size = sizeParam;
+//
+//      auto pointDst = pointDstParam;
+//
+//      auto pointSrc = pointSrcParam;
+//
+//      ::image * pimplDst = this;
+//
+//      pimplDst->map();
+//
+//      pimplSrc->map();
+//
+//      pointDst += m_point;
+//
+//      if (pointDst.x < 0)
+//      {
+//         pointDst.x -= pointSrc.x;
+//         pointSrc.x = 0;
+//      }
+//
+//      if (pointSrc.y < 0)
+//      {
+//         pointDst.y -= pointSrc.y;
+//         pointSrc.y = 0;
+//      }
+//
+//      if (pointDst.x < 0)
+//      {
+//         size.cx += pointDst.x;
+//         pointDst.x = 0;
+//      }
+//
+//      if (size.cx < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (pointDst.y < 0)
+//      {
+//         size.cy += pointDst.y;
+//         pointDst.y = 0;
+//      }
+//
+//      if (size.cy < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+//
+//      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
+//
+//      if (xEnd < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (yEnd < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      i32 scanDst = pimplDst->scan_size();
+//
+//      i32 scanSrc = pimplSrc->scan_size();
+//
+//      byte * pdst2;
+//
+//      byte * psrc2;
+//
+//#ifdef APPLEOS
+//      byte * pdst = &((byte *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
+//
+//      byte * psrc = &((byte *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
+//
+//#else
+//
+//      byte * pdst = &((byte *)pimplDst->m_pcolorref1)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
+//
+//      byte * psrc = &((byte *)pimplSrc->m_pcolorref1)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
+//
+//#endif
+//
+////      bool bFontListBlend = true;
+////
+////      if (bFontListBlend)
+////      {
+////
+////         if (bA == 0)
+////         {
+////
+////         }
+////         else if (bA == 255)
+////         {
+////
+////            for (int y = 0; y < yEnd; y++)
+////            {
+////
+////               pdst2 = &pdst[scanDst * y];
+////
+////               psrc2 = &psrc[scanSrc * y];
+////
+////               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+////               for (int x = 0; x < xEnd; x++)
+////               {
+////
+////                  //*pdst2 = *psrc2;
+////
+////                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+////                  byte acomplement = ~psrc2[3];
+////                  pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+////                  pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+////                  pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+////                  pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+////
+////
+////
+////                  pdst2 += 4;
+////
+////                  psrc2 += 4;
+////
+////               }
+////               //pdst2 += xEnd;
+////               //psrc2 += xEnd;
+////
+////            }
+////         }
+////         else
+////         {
+////            for (int y = 0; y < yEnd; y++)
+////            {
+////
+////               pdst2 = &pdst[scanDst * y];
+////
+////               psrc2 = &psrc[scanSrc * y];
+////
+////               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+////               for (int x = 0; x < xEnd; x++)
+////               {
+////
+////                  //*pdst2 = *psrc2;
+////
+////                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+////                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+////                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+////                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+////                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+////                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+////                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+////                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+////                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+////                  byte acomplement = (~psrc2[3] * bA) >> 8;
+////                  pdst2[0] = clip_byte(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+////                  pdst2[1] = clip_byte(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+////                  pdst2[2] = clip_byte(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+////                  pdst2[3] = clip_byte(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+////
+////
+////
+////                  pdst2 += 4;
+////
+////                  psrc2 += 4;
+////
+////               }
+////               //pdst2 += xEnd;
+////               //psrc2 += xEnd;
+////
+////            }
+////
+////         }
+////
+////         // bFontListData
+////
+////      }
+////      else
+//      {
+//
+//         // !bFontListData
+//         // bBouncingBall...
+//
+//         if (bA == 0)
+//         {
+//
+//         }
+//         else if (bA == 255)
+//         {
+//
+//            for (int y = 0; y < yEnd; y++)
+//            {
+//
+//               pdst2 = &pdst[scanDst * y];
+//
+//               psrc2 = &psrc[scanSrc * y];
+//
+//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               for (int x = 0; x < xEnd; x++)
+//               {
+//
+//                  //*pdst2 = *psrc2;
+//
+//                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//                  byte a = pdst2[3];
+//                  byte alpha = psrc2[3];
+//                  if (a == 0)
+//                  {
+//
+//                  }
+//                  else if(alpha == 0)
+//                  {
+//
+//                     *((color32_t *)pdst2) = 0;
+//
+//                  }
+//                  else
+//                  {
+//
+//                     //int d0 = pdst2[0] * 255 / a;
+//                     //int d1 = pdst2[1] * 255 / a;
+//                     //int d2 = pdst2[2] * 255 / a;
+//
+//                     //int s0 = psrc2[0] * 255 / alpha;
+//                     //int s1 = psrc2[1] * 255 / alpha;
+//                     //int s2 = psrc2[2] * 255 / alpha;
+//
+//                     //d0 = ((s0 * a) + (d0 * alpha)) >> 8;
+//                     //d1 = ((s1 * a) + (d1 * alpha)) >> 8;
+//                     //d2 = ((s2 * a) + (d2 * alpha)) >> 8;
+//                     //pdst2[3] = ((psrc2[3] * a) + (pdst2[3] * alpha)) >> 8;
+//
+//                     //pdst[0] = (d0 * pdst2[3]) >> 8;
+//                     //pdst[1] = (d1 * pdst2[3]) >> 8;
+//                     //pdst[2] = (d2 * pdst2[3]) >> 8;
+//
+//                     //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//                     //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//                     //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//                     //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//
+//                     int alpha2 = alpha * a;
+//
+//                     pdst2[0] = (pdst2[0] * alpha2) >> 8;
+//                     pdst2[1] = (pdst2[1] * alpha2) >> 8;
+//                     pdst2[2] = (pdst2[2] * alpha2) >> 8;
+//                     pdst2[3] = (alpha2) >> 8;
+//                  }
+//
+//
+//
+//                  pdst2 += 4;
+//
+//                  psrc2 += 4;
+//
+//               }
+//               //pdst2 += xEnd;
+//               //psrc2 += xEnd;
+//
+//            }
+//         }
+//         else
+//         {
+//            for (int y = 0; y < yEnd; y++)
+//            {
+//
+//               pdst2 = &pdst[scanDst * y];
+//
+//               psrc2 = &psrc[scanSrc * y];
+//
+//               //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//               for (int x = 0; x < xEnd; x++)
+//               {
+//
+//                  //*pdst2 = *psrc2;
+//
+//                  //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//                  //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//                  //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//                  //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//                  //byte acomplement = (~psrc2[3] * bA) >> 8;
+//                  //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//                  //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//                  //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//                  //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//
+//                  byte acomplement = (~psrc2[3] * bA) >> 8;
+//
+//                  pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//                  pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//                  pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//                  pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//
+//                  pdst2 += 4;
+//
+//                  psrc2 += 4;
+//
+//               }
+//               //pdst2 += xEnd;
+//               //psrc2 += xEnd;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
    bool image::on_host_read_pixels(const ::pixmap * ppixmap)

@@ -5435,6 +5435,29 @@ namespace user
    void interaction::on_message_key_down(::message::message * pmessage)
    {
 
+      if (get_parent() == nullptr)
+      {
+
+         if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_f4)
+         {
+
+            auto psession = m_puserinteraction->get_session();
+
+            if (psession->is_key_pressed(::user::e_key_alt))
+            {
+
+               post_message(e_message_close);
+
+               pmessage->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
       if (m_pappearance)
       {
 

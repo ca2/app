@@ -27,6 +27,7 @@ public:
    virtual void get_all_processes(u32_array & dwa);
    virtual ::file::path get_process_path(u32 dwPid);
 
+
    virtual int get_pid();
 
    virtual ::payload connection_settings_get_auto_detect();
@@ -99,9 +100,9 @@ public:
 
    virtual void add_default_program(string_array & straExtension, string_array & straMimeType);
 
-   virtual void register_user_auto_start(const string & strId, const string & strCommand, const string & strArguments, bool bRegister);
+   virtual void register_user_auto_start(const string & strAppId, const string & strCommand, const string & strArguments, bool bRegister);
 
-   virtual bool is_user_auto_start(string strId);
+   virtual bool is_user_auto_start(const string & strAppId);
 
    virtual ::file::path get_app_path(const ::string & strApp);
 

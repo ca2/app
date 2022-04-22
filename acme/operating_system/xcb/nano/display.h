@@ -96,8 +96,8 @@ namespace xcb
 
       virtual bool xcb_posted();
 
-      //void display_post(const ::procedure & function) override;
-      //void display_send(const ::procedure & function);
+      //void display_post(const ::procedure & procedure) override;
+      //void display_send(const ::procedure & procedure);
       //bool display_posted_routine_step();
 
 

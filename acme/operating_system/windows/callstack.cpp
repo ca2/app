@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 //#include "acme/exception/engine.h"
 #include <dbghelp.h>

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #ifdef WINDOWS_DESKTOP

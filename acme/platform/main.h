@@ -1,4 +1,4 @@
-// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardS�rensen!!
+// ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSørensen!!
 // Created by camilo 2021-03-12 12:08 BRT <3_ThomasBS, Mummi and bilbo!!
 #pragma once
 

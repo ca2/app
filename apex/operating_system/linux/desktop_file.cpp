@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "_user.h"
+#include "desktop_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
@@ -157,6 +158,20 @@ namespace linux
    }
 
 
+   string desktop_file::get_wm_class()
+   {
+
+      string strWmClass;
+
+      strWmClass = m_strAppId;
+
+      strWmClass.find_replace("/", ".");
+
+      return strWmClass;
+
+   }
+
+
    ::file::path desktop_file::get_board_path()
    {
 
@@ -170,7 +185,7 @@ namespace linux
 
       auto papp = get_app();
 
-      string strPrgName = papp->m_papplication->get_wm_class();
+      string strPrgName = get_wm_class();
 
       path /= (strPrgName + ".desktop");
 
@@ -195,14 +210,28 @@ namespace linux
    }
 
 
+   void desktop_file::set_app_id(const ::string & strAppId)
+   {
+
+      m_strAppId = strAppId;
+
+   }
+
+
+   string desktop_file::get_app_id()
+   {
+
+      return m_strAppId;
+
+   }
+
+
    void desktop_file::create_default()
    {
 
       string_array & straLine = m_straLine;
 
-      auto papp = get_app();
-
-      string strWMClass = papp->m_papplication->get_wm_class();
+      string strWMClass = get_wm_class();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");

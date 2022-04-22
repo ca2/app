@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-05 12:16 BRT <3ThomasBorregaardS�rensen!![ THE ONE GOD ]
+// Created by camilo on 2021-10-05 12:16 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 #pragma once
 
 

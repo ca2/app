@@ -353,7 +353,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      __scoped_restore(pcommand->m_atom.m_etype);
+      ___scoped_restore(pcommand->m_atom.m_etype);
 
       pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
@@ -371,7 +371,7 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
    {
 
-      __scoped_restore(pcommand->m_atom.m_etype);
+      ___scoped_restore(pcommand->m_atom.m_etype);
 
       pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
 
@@ -442,7 +442,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    synchronous_lock synchronouslock(channel_mutex());
 
-   __scoped_restore(pcommand->m_atom.m_etype);
+   ___scoped_restore(pcommand->m_atom.m_etype);
 
    string strText = pcommand->m_atom.to_string();
 
@@ -498,7 +498,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 void channel::on_command_probe(::message::command * pcommand)
 {
 
-   __scoped_restore(pcommand->m_atom.m_etype);
+   ___scoped_restore(pcommand->m_atom.m_etype);
 
    pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
 
@@ -517,7 +517,7 @@ void channel::on_command_probe(::message::command * pcommand)
 void channel::on_command(::message::command * pcommand)
 {
 
-   __scoped_restore(pcommand->m_atom.m_etype);
+   ___scoped_restore(pcommand->m_atom.m_etype);
 
    pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 

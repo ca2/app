@@ -1,4 +1,4 @@
-// From draw2d/_image.h by camilo on 2022-03-11 19:53 <3ThomasBorregaardS�rensen!!
+// From draw2d/_image.h by camilo on 2022-03-11 19:53 <3ThomasBorregaardSørensen!!
 #pragma once
 
 

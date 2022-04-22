@@ -810,45 +810,17 @@ endif ()
 if (LINUX)
 
    list(APPEND apex_source
-      operating_system/linux/_.h
-      operating_system/linux/_linux.h
-      operating_system/linux/application.cpp
-      operating_system/linux/application.h
-      #operating_system/linux/dir_context.cpp
-      #operating_system/linux/dir_context.h
-      #operating_system/linux/dir_system.cpp
-      #operating_system/linux/dir_system.h
-      operating_system/linux/dumpinit.cpp
-      operating_system/linux/error.cpp
-      operating_system/linux/exception.cpp
-      operating_system/linux/_factory.cpp
       operating_system/linux/
-      #operating_system/linux/file_context.cpp
-      #operating_system/linux/file_context.h
-      #operating_system/linux/file_system.cpp
-      #operating_system/linux/file_system.h
-      #operating_system/linux/frame_window.cpp
-      operating_system/linux/internal.h
-      operating_system/linux/linux.cpp
-      #operating_system/linux/os_context.cpp
-      #operating_system/linux/os_context.h
-      #operating_system/linux/process.cpp
-      #operating_system/linux/process.h
-      operating_system/linux/root_tools.cpp
-      operating_system/linux/root_tools.h
-      operating_system/linux/thread.cpp
-      operating_system/linux/parallelization.h
-      operating_system/linux/trace.cpp
-      operating_system/linux/util.cpp
-      #operating_system/posix/file_os_watcher.cpp
-      #operating_system/posix/file_os_watcher.cpp
-      operating_system/posix/_posix.h
-      operating_system/posix/_.h
+      operating_system/linux/_.h
       operating_system/linux/_.h
       operating_system/linux/_c.h
+      operating_system/linux/_factory.cpp
+      operating_system/linux/_linux.h
       operating_system/linux/_linux.h
       operating_system/linux/_user.h
       operating_system/linux/apex.cpp
+      operating_system/linux/application.cpp
+      operating_system/linux/application.h
       operating_system/linux/application_system_run.cpp
       operating_system/linux/callstack.cpp
       operating_system/linux/cross_win_file.cpp
@@ -858,34 +830,42 @@ if (LINUX)
       operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.cpp
       operating_system/linux/debug.h
-      # operating_system/linux/exception_engine.cpp
-      # operating_system/linux/exception_engine.h
+      operating_system/linux/desktop_file.cpp
+      operating_system/linux/desktop_file.h
+      operating_system/linux/dumpinit.cpp
+      operating_system/linux/error.cpp
+      operating_system/linux/exception.cpp
       operating_system/linux/file.cpp
       operating_system/linux/file.h
       operating_system/linux/graphics.cpp
       operating_system/linux/graphics.h
       operating_system/linux/graphics2.h
+      operating_system/linux/internal.h
       operating_system/linux/language.cpp
-      #operating_system/linux/library.cpp
+      operating_system/linux/linux.cpp
       operating_system/linux/linux_linux.h
-      #operating_system/linux/lock.cpp
       operating_system/linux/menu.cpp
       operating_system/linux/message_loop.cpp
-      operating_system/linux/parallelization.cpp
       operating_system/linux/os.cpp
-      #operating_system/linux/process.cpp
-      #operating_system/linux/process.h
-      #operating_system/linux/process_pid.cpp
-      operating_system/linux/simple_app.cpp
+      operating_system/linux/parallelization.cpp
+      operating_system/linux/parallelization.h
+      operating_system/linux/root_tools.cpp
+      operating_system/linux/root_tools.h
       operating_system/linux/shell_launcher.cpp
       operating_system/linux/shell_launcher.h
+      operating_system/linux/simple_app.cpp
       operating_system/linux/standard_exception.cpp
-      #operating_system/linux/interprocess_communication.cpp
+      operating_system/linux/thread.cpp
       operating_system/linux/time.cpp
+      operating_system/linux/trace.cpp
       operating_system/linux/user.cpp
       operating_system/linux/user.h
       operating_system/linux/user_private.h
-      operating_system/linux/win_base.cpp)
+      operating_system/linux/util.cpp
+      operating_system/linux/win_base.cpp
+      operating_system/posix/_.h
+      operating_system/posix/_posix.h
+      )
 endif ()
 
 

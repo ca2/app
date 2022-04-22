@@ -303,6 +303,15 @@ public:
 
    }
 
+   function & operator = (const function & function)
+   {
+
+      m_ppredicate = function.m_ppredicate;
+
+      return *this;
+
+   }
+
 
    function & operator = (nullptr_t)
    {

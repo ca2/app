@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardS�rensen
+// Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSørensen
 #include "framework.h"
 #include "_nano.h"
 

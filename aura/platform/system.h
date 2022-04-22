@@ -767,7 +767,7 @@ namespace aura
       //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
-      void windowing_post(const ::procedure & function) override;
+      void windowing_post(const ::procedure & procedure) override;
 
 
    };

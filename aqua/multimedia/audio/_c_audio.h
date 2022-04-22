@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-09 21:11 <3ThomasBorregaardS�rensen!!
+// Created by camilo on 2022-03-09 21:11 <3ThomasBorregaardSørensen!!
 
 
 #ifdef WINDOWS

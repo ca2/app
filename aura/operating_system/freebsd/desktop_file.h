@@ -18,10 +18,11 @@ namespace linux
 
       ::file::path      m_path;
       string_array      m_straLine;
+      string            m_strAppId;
 
 
       desktop_file();
-      virtual ~desktop_file();
+      ~desktop_file() override;
 
 
       void create_default();
@@ -37,6 +38,9 @@ namespace linux
       ::file::path get_board_path();
 
       void write();
+
+
+      string get_wm_class();
 
       //bool bamf_set_icon(oswindow oswindow);
 

@@ -1642,6 +1642,9 @@
     <ClCompile Include="graphics\draw2d\host.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">

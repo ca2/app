@@ -309,6 +309,7 @@ namespace draw2d_cairo
 
       //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
       void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
+      bool _draw_blend(const ::image_drawing & imagedrawing) override;
       void _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
       //bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource) override;
 
@@ -462,6 +463,9 @@ namespace draw2d_cairo
       void stroke_and_fill_path() override;
       void stroke_path() override;
       void widen_path() override;
+
+
+      using ::draw2d::graphics::draw;
 
       void draw(::draw2d::path * ppath) override;
       void fill(::draw2d::path * ppath) override;

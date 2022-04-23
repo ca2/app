@@ -170,7 +170,15 @@ int get_proc_cpuinfo_core_count()
 void debug_break()
 {
 
-   asm("int $3");
+#ifdef __arm__
+
+   __asm__("BKPT")
+
+#else
+
+   asm("int $3")
+
+#endif
 
 }
 

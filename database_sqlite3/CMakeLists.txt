@@ -39,7 +39,9 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-   pkg_check_modules(PKGCONFIG sqlite3)
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG sqlite3)
+   endif()
    target_compile_options(database_sqlite3 PRIVATE -fpermissive)
    target_compile_options(database_sqlite3 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(database_sqlite3 PRIVATE ${PKGCONFIG_LDFLAGS})

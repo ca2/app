@@ -87,8 +87,9 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-    pkg_check_modules(PKGCONFIG glew egl)
-
+    if(NOT DONT_USE_PKG_CONFIG)
+        pkg_check_modules(PKGCONFIG glew egl)
+    endif()
     target_compile_options(gpu_opengl PRIVATE -fpermissive)
     target_compile_options(gpu_opengl PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(gpu_opengl PRIVATE ${PKGCONFIG_LDFLAGS})

@@ -50,7 +50,9 @@ elseif(FREEBSD)
 elseif(LINUX)
 
 
-    pkg_check_modules(PKGCONFIG librsvg-2.0)
+    if(NOT DONT_USE_PKG_CONFIG)
+        pkg_check_modules(PKGCONFIG librsvg-2.0)
+    endif()
     target_compile_options(imaging_freeimage PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     target_link_options(imaging_freeimage PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(imaging_freeimage PRIVATE freeimage acme apex aqua aura)

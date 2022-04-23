@@ -77,7 +77,7 @@ public:
 };
 
 
-#if defined(WINDOWS) && OSBIT == 32
+#if OSBIT == 32
 
 using interlocked_count = ::interlocked_i32;
 

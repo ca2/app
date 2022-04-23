@@ -2089,7 +2089,9 @@ elseif(LINUX OR FREEBSD)
 
 #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
-   pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   endif()
    target_compile_options(acme PRIVATE -fpermissive)
       target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})

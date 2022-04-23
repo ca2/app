@@ -33,11 +33,11 @@
 
 //#define astr (*::apex::g_papexstrpool)
 
-#ifdef RASPBIAN
+//#ifdef RASPBIAN
 //#include <openssl/md5.h>
 //#include <openssl/whrlpool.h>
-#include "apex/crypto/crypto_openssl.h"
-#endif
+//#include "apex/crypto/crypto_openssl.h"
+//#endif
 
 
 file_context::file_context()

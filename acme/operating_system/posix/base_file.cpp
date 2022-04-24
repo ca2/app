@@ -734,7 +734,9 @@ bool is_directory(const char * path)
    if (::stat(path, &stat))
    {
 
-      auto estatus = errno_to_status(errno);
+      int iErrNo = errno;
+
+      auto estatus = errno_to_status(iErrNo);
 
       if(estatus == error_file_not_found)
       {
@@ -742,6 +744,8 @@ bool is_directory(const char * path)
          return false;
 
       }
+
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path, iErrNo);
 
       throw ::exception(estatus);
 

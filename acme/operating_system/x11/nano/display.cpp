@@ -339,12 +339,12 @@ namespace x11
 
       synchronous_lock synchronouslock(mutex());
 
-      if(pevent->type == ButtonPress)
-      {
+      // if(pevent->type == ButtonPress)
+      // {
 
-         output_debug_string("ButtonPress");
+      //    output_debug_string("ButtonPress");
 
-      }
+      // }
 
       for (; i < m_eventlistenera.get_count(); i++)
       {

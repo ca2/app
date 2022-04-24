@@ -5,25 +5,6 @@
 #include "_nano.h"
 
 
-::rectangle_i32 g_rectangleMainScreen;
-
-
-::size_i32 operating_system_get_main_screen_size()
-{
-
-   return g_rectangleMainScreen.size();
-
-}
-
-
-void operating_system_set_main_screen_rectangle(const ::rectangle_i32 & rectangle)
-{
-
-   g_rectangleMainScreen = rectangle;
-
-}
-
-
 void operating_system_initialize_nano(::factory::factory * pfactory)
 {
 

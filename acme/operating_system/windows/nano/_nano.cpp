@@ -15,14 +15,12 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
    pfactory->add_factory_item < ::windows::nano_pen, ::nano_pen >();
    pfactory->add_factory_item < ::windows::nano_device, ::nano_device >();
 
+   ::rectangle_i32 rectangleMainScreen;
 
-}
-
-
-::size_i32 operating_system_get_main_screen_size()
-{
-
-   return { GetSystemMetrics(SM_CXSCREEN),  GetSystemMetrics(SM_CYSCREEN) };
+   rectangleMainScreen.left = 0;
+   rectangleMainScreen.top = 0; 
+   rectangleMainScreen.right = GetSystemMetrics(SM_CXSCREEN);
+   rectangleMainScreen.bottom = GetSystemMetrics(SM_CYSCREEN); 
 
 }
 

@@ -446,6 +446,15 @@ namespace x11
 
          }
 
+         ::rectangle_i32 rectangleMainScreen;
+
+         rectangleMainScreen.left = 0;
+         rectangleMainScreen.top = 0;
+         rectangleMainScreen.right = WidthOfScreen(DefaultScreen(m_px11display->m_pdisplay));
+         rectangleMainScreen.top = HeightOfScreen(DefaultScreen(m_px11display->m_pdisplay));
+
+         operating_system_set_main_screen_rectangle(rectangleMainScreen);
+
       }
 
    }

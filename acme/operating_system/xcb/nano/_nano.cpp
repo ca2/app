@@ -5,14 +5,6 @@
 #include "_nano.h"
 
 
-//::size_i32 operating_system_get_main_screen_size()
-//{
-//
-//   return {1920, 1080};
-//
-//}
-
-
 void operating_system_initialize_xcb_nano(::factory::factory * pfactory)
 {
 

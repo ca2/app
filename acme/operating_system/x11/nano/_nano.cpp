@@ -7,13 +7,6 @@
 
 ::user::enum_desktop _get_edesktop();
 
-::size_i32 operating_system_get_main_screen_size()
-{
-
-   return {1920, 1080};
-
-}
-
 
 void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 {

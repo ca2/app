@@ -12,6 +12,7 @@
 #include "acme/user/nano/_nano.h"
 
 
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 

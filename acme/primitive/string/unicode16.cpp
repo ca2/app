@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-
-
-
 strsize wd16_to_ansi_len(const wd16char * pwsz, strsize inputsize)
 {
 

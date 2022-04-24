@@ -1271,38 +1271,38 @@ inline void to_string(string& str, const long int& i)
 
 
 
-#ifdef WINDOWS
-
-
-inline void to_string(string & str, const long & l)
-{
-
-   str = i64toa_dup(l);
-
-}
-
-
-
-inline void to_string(string & str, const unsigned long &ul)
-{
-
-   str = ui64toa_dup(ul);
-
-}
-
-
-#elif defined(__APPLE__)
-
-
-inline void to_string(string& str, const long& l)
-{
-
-   str = i64toa_dup(l);
-
-}
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//inline void to_string(string & str, const long & l)
+//{
+//
+//   str = i64toa_dup(l);
+//
+//}
+//
+//
+//
+////inline void to_string(string & str, const unsigned long &ul)
+////{
+////
+////   str = ui64toa_dup(ul);
+////
+////}
+//
+//
+//#elif defined(__APPLE__)
+//
+//
+//inline void to_string(string& str, const long& l)
+//{
+//
+//   str = i64toa_dup(l);
+//
+//}
+//
+//
+//#endif
 
 
 //} // namespace str

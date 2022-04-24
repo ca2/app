@@ -652,6 +652,8 @@ list(APPEND library_source
    primitive/string/_str.h
    primitive/string/_str_impl.h
    primitive/string/_string_wide.h
+   primitive/string/to_string.cpp
+   primitive/string/to_string.h
    primitive/string/_trait.h
    primitive/string/_trait_ansi.h
    primitive/string/_trait_ansi_impl.h

@@ -1,20 +1,21 @@
 #include "framework.h"
 
 
-
-
 CLASS_DECL_ACME int is_surrogated(u32 character)
 {
+
    return 0x10000 <= character && character <= 0x10FFFF;
+
 }
-
-
 
 
 wd32char surrogate_to_utf32(wd16char high, wd16char low)
 {
+
    return (high << 10) + low - 0x35fdc00;
+
 }
+
 
 strsize wd16_to_wd32(wd32char* output, const wd16char* input, strsize input_size)
 {

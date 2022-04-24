@@ -172,11 +172,11 @@ void debug_break()
 
 #ifdef __arm__
 
-   __asm__("BKPT")
+   __asm__("BKPT");
 
 #else
 
-   asm("int $3")
+   asm("int $3");
 
 #endif
 

@@ -188,15 +188,15 @@ void nano_message_box::display(const ::string & strMessage, const ::string & str
 
    }
 
-   int wButton = 150;
+   int wButton = m_rectangle.width() * 0.2;
 
-   int hButton = 50;
+   int hButton = m_rectangle.height() * 0.2;
 
-   int iRight = m_rectangle.width() - 25;
+   int iRight = m_rectangle.width() - m_rectangle.width() * 0.025;
 
-   int iBottom = m_rectangle.height() - 25;
+   int iBottom = m_rectangle.height() - m_rectangle.width() * 0.025;
 
-   int wSpacing = 25;
+   int wSpacing = m_rectangle.width() * 0.025;
 
    for (index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
    {

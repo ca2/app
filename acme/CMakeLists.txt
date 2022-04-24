@@ -641,7 +641,7 @@ list(APPEND library_source
    primitive/string/_compare.h
    primitive/string/_compare_impl.h
    primitive/string/_conv.h
-   primitive/string/_conv_ansi.cpp
+   #primitive/string/_conv_ansi.cpp
    primitive/string/_conv_ansi.h
    primitive/string/_conv_ansi_impl.h
    primitive/string/_defer.h

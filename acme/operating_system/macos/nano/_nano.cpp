@@ -11,7 +11,7 @@
 ::size_i32 operating_system_get_main_screen_size()
 {
 
-   return g_rectangleMainScreen;
+   return g_rectangleMainScreen.size();
 
 }
 

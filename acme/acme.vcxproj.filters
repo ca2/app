@@ -4171,6 +4171,9 @@
     <ClCompile Include="parallelization\fork.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
+    <ClCompile Include="user\nano\display.cpp">
+      <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

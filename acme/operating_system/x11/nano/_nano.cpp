@@ -15,6 +15,8 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::x11::nano_window, ::nano_window_implementation>();
 
+   ::x11::display::get(pfactory->m_psystem);
+
 }
 
 

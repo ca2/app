@@ -448,10 +448,18 @@ namespace x11
 
          ::rectangle_i32 rectangleMainScreen;
 
+         auto pscreen = DefaultScreenOfDisplay(m_pdisplay);
+
+         int wScreen = WidthOfScreen(pscreen);
+         int hScreen = HeightOfScreen(pscreen);
+
+         printf("::x11::display::init_task pscreen=%" PRIxPTR "\n", pscreen);
+         printf("::x11::display::init_task (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+
          rectangleMainScreen.left = 0;
          rectangleMainScreen.top = 0;
-         rectangleMainScreen.right = WidthOfScreen(DefaultScreenOfDisplay(m_pdisplay));
-         rectangleMainScreen.bottom = HeightOfScreen(DefaultScreenOfDisplay(m_pdisplay));
+         rectangleMainScreen.right = wScreen;
+         rectangleMainScreen.bottom = hScreen;
 
          operating_system_set_main_screen_rectangle(rectangleMainScreen);
 

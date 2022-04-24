@@ -922,7 +922,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
    if (!plibrary->is_opened())
    {
 
-      throw ::exception(error_failed);
+      throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")");
 
    }
 

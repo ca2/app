@@ -101,9 +101,9 @@ CLASS_DECL_ACME void to_string(string& str, const float& f);
 CLASS_DECL_ACME void to_string(string& str, const double& d);
 
 
-#if defined(ANDROID) || defined(RASPBIAN)
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
 
-CLASS_DECL_ACME void to_string(string& str, long int i);
+CLASS_DECL_ACME void to_string(string& str, const long int &i);
 
 #endif
 
@@ -116,11 +116,6 @@ inline void to_string(string& str, const ::u32& i);
 
 #endif
 
-#ifdef __APPLE__
-
-inline void to_string(string& str, const long& l);
-
-#endif
 
 inline void to_string(string& str, const string& strSrc);
 

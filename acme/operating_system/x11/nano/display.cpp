@@ -463,8 +463,8 @@ namespace x11
       int wScreen = WidthOfScreen(pscreen);
       int hScreen = HeightOfScreen(pscreen);
 
-      printf("::x11::display::init_task pscreen=%" PRIxPTR "\n", pscreen);
-      printf("::x11::display::init_task (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+      //printf("::x11::display::init_task pscreen=%" PRIxPTR "\n", pscreen);
+      //printf("::x11::display::init_task (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
       rectangleMainScreen.left = 0;
       rectangleMainScreen.top = 0;

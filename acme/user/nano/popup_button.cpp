@@ -33,7 +33,7 @@ void popup_button::calculate_size_and_position(int x, int y)
    int wScreen = sizeScreen.cx;
    int hScreen = sizeScreen.cy;
 
-   printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+   //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
    int w = 150;
    int h = 50 * 2;

@@ -1274,195 +1274,195 @@ namespace draw2d_cairo
    }
 
 
-   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, byte bA)
-   {
-
-      ::image* pimageDst = this;
-
-      pimageDst->map();
-
-      pimageSrc->map();
-
-      ::point_i32 pointDst(pointDstParam);
-
-      ::point_i32 pointSrc(pointSrcParam);
-
-      ::size_i32 size(sizeParam);
-
-      pointDst += m_point;
-
-      if (pointSrc.x < 0)
-      {
-         pointDst.x -= pointSrc.x;
-         pointSrc.x = 0;
-      }
-
-      if (pointSrc.y < 0)
-      {
-         pointDst.y -= pointSrc.y;
-         pointSrc.y = 0;
-      }
-
-      if (pointDst.x < 0)
-      {
-         size.cx += pointDst.x;
-         pointDst.x = 0;
-      }
-
-      if (size.cx < 0)
-      {
-
-         return;
-
-      }
-      //return true;
-
-      if (pointDst.y < 0)
-      {
-         size.cy += pointDst.y;
-         pointDst.y = 0;
-      }
-
-      if (size.cy < 0)
-      {
-         //   return true;
-
-         return;
-      }
-
-      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
-
-      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
-
-      if (xEnd < 0)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      if (yEnd < 0)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      i32 scanDst = pimageDst->m_iScan;
-
-      i32 scanSrc = pimageSrc->m_iScan;
-
-      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
-
-      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
-
-      byte * pdst2;
-
-      byte * psrc2;
-
-      if (bA == 0)
-      {
-
-      }
-      else if (bA == 255)
-      {
-
-         for (int y = 0; y < yEnd; y++)
-         {
-
-            pdst2 = pdst + scanDst * y;
-
-            psrc2 = psrc + scanSrc * y;
-
-            for (int x = 0; x < xEnd; x++)
-            {
-
-               int aDst = pdst2[3];
-
-               int aSrc = psrc2[3];
-
-               if (aDst == 0)
-               {
-
-               }
-               else if (aSrc == 0)
-               {
-
-                  *((color32_t*)pdst2) = 0;
-
-               }
-               else
-               {
-
-//                  int r = (pdst2[0] * 255) / aDst;
-//                  int g = (pdst2[1] * 255) / aDst;
-//                  int b = (pdst2[2] * 255) / aDst;
-
-                  //int a = (aSrc * aDst) / 255;
-
-                  pdst2[0] = pdst2[0] * aSrc / 255;
-                  pdst2[1] = pdst2[1] * aSrc / 255;
-                  pdst2[2] = pdst2[2] * aSrc / 255;
-                  pdst2[3] = pdst2[3] * aSrc / 255;
-
-
-               }
-
-               pdst2 += 4;
-
-               psrc2 += 4;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         for (int y = 0; y < yEnd; y++)
-         {
-
-            pdst2 = &pdst[scanDst * y];
-
-            psrc2 = &psrc[scanSrc * y];
-
-            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
-            for (int x = 0; x < xEnd; x++)
-            {
-
-               //*pdst2 = *psrc2;
-
-               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
-               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
-               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
-               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
-               //byte acomplement = (~psrc2[3] * bA) >> 8;
-               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
-               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
-               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
-               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
-               byte acomplement = (~psrc2[3] * bA) >> 8;
-               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
-               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
-               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
-               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
-
-               pdst2 += 4;
-
-               psrc2 += 4;
-
-            }
-            //pdst2 += xEnd;
-            //psrc2 += xEnd;
-
-         }
-
-      }
-
-      //return true;
-
-   }
+//   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, byte bA)
+//   {
+//
+//      ::image* pimageDst = this;
+//
+//      pimageDst->map();
+//
+//      pimageSrc->map();
+//
+//      ::point_i32 pointDst(pointDstParam);
+//
+//      ::point_i32 pointSrc(pointSrcParam);
+//
+//      ::size_i32 size(sizeParam);
+//
+//      pointDst += m_point;
+//
+//      if (pointSrc.x < 0)
+//      {
+//         pointDst.x -= pointSrc.x;
+//         pointSrc.x = 0;
+//      }
+//
+//      if (pointSrc.y < 0)
+//      {
+//         pointDst.y -= pointSrc.y;
+//         pointSrc.y = 0;
+//      }
+//
+//      if (pointDst.x < 0)
+//      {
+//         size.cx += pointDst.x;
+//         pointDst.x = 0;
+//      }
+//
+//      if (size.cx < 0)
+//      {
+//
+//         return;
+//
+//      }
+//      //return true;
+//
+//      if (pointDst.y < 0)
+//      {
+//         size.cy += pointDst.y;
+//         pointDst.y = 0;
+//      }
+//
+//      if (size.cy < 0)
+//      {
+//         //   return true;
+//
+//         return;
+//      }
+//
+//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
+//
+//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
+//
+//      if (xEnd < 0)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      if (yEnd < 0)
+//      {
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      i32 scanDst = pimageDst->m_iScan;
+//
+//      i32 scanSrc = pimageSrc->m_iScan;
+//
+//      byte * pdst = ((byte *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
+//
+//      byte * psrc = ((byte *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
+//
+//      byte * pdst2;
+//
+//      byte * psrc2;
+//
+//      if (bA == 0)
+//      {
+//
+//      }
+//      else if (bA == 255)
+//      {
+//
+//         for (int y = 0; y < yEnd; y++)
+//         {
+//
+//            pdst2 = pdst + scanDst * y;
+//
+//            psrc2 = psrc + scanSrc * y;
+//
+//            for (int x = 0; x < xEnd; x++)
+//            {
+//
+//               int aDst = pdst2[3];
+//
+//               int aSrc = psrc2[3];
+//
+//               if (aDst == 0)
+//               {
+//
+//               }
+//               else if (aSrc == 0)
+//               {
+//
+//                  *((color32_t*)pdst2) = 0;
+//
+//               }
+//               else
+//               {
+//
+////                  int r = (pdst2[0] * 255) / aDst;
+////                  int g = (pdst2[1] * 255) / aDst;
+////                  int b = (pdst2[2] * 255) / aDst;
+//
+//                  //int a = (aSrc * aDst) / 255;
+//
+//                  pdst2[0] = pdst2[0] * aSrc / 255;
+//                  pdst2[1] = pdst2[1] * aSrc / 255;
+//                  pdst2[2] = pdst2[2] * aSrc / 255;
+//                  pdst2[3] = pdst2[3] * aSrc / 255;
+//
+//
+//               }
+//
+//               pdst2 += 4;
+//
+//               psrc2 += 4;
+//
+//            }
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         for (int y = 0; y < yEnd; y++)
+//         {
+//
+//            pdst2 = &pdst[scanDst * y];
+//
+//            psrc2 = &psrc[scanSrc * y];
+//
+//            //::memcpy_dup(pdst2, psrc2, xEnd * 4);
+//            for (int x = 0; x < xEnd; x++)
+//            {
+//
+//               //*pdst2 = *psrc2;
+//
+//               //pdst2[0] = (psrc2[0] + (pdst2[0] * (255 - psrc2[3])) / 255);
+//               //pdst2[1] = (psrc2[1] + (pdst2[1] * (255 - psrc2[3])) / 255);
+//               //pdst2[2] = (psrc2[2] + (pdst2[2] * (255 - psrc2[3])) / 255);
+//               //pdst2[3] = (psrc2[3] + (pdst2[3] * (255 - psrc2[3])) / 255);
+//               //byte acomplement = (~psrc2[3] * bA) >> 8;
+//               //pdst2[0] = psrc2[0] + ((pdst2[0] * (acomplement)) >> 8);
+//               //pdst2[1] = psrc2[1] + ((pdst2[1] * (acomplement)) >> 8);
+//               //pdst2[2] = psrc2[2] + ((pdst2[2] * (acomplement)) >> 8);
+//               //pdst2[3] = psrc2[3] + ((pdst2[3] * (acomplement)) >> 8);
+//               byte acomplement = (~psrc2[3] * bA) >> 8;
+//               pdst2[0] = byte_clip(((psrc2[0] * bA) + (pdst2[0] * acomplement)) >> 8);
+//               pdst2[1] = byte_clip(((psrc2[1] * bA) + (pdst2[1] * acomplement)) >> 8);
+//               pdst2[2] = byte_clip(((psrc2[2] * bA) + (pdst2[2] * acomplement)) >> 8);
+//               pdst2[3] = byte_clip(((psrc2[3] * bA) + (pdst2[3] * acomplement)) >> 8);
+//
+//               pdst2 += 4;
+//
+//               psrc2 += 4;
+//
+//            }
+//            //pdst2 += xEnd;
+//            //psrc2 += xEnd;
+//
+//         }
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
 //   void image::blend2(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)

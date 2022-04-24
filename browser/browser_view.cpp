@@ -317,7 +317,7 @@ namespace browser
 
       pmessage->previous();
 
-      papp->m_ppaneimpact->m_pviewLastBilbo = this;
+      papp->m_ppaneimpact->m_pimpactLastBilbo = this;
 
       CefMouseEvent event;
 
@@ -331,7 +331,7 @@ namespace browser
       if (pmouse->m_atom == e_message_left_button_down)
       {
 
-         papp->m_ppaneimpact->m_pviewLastBilbo = this;
+         papp->m_ppaneimpact->m_pimpactLastBilbo = this;
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
@@ -433,7 +433,7 @@ namespace browser
       }
 
       bool bHover = GetTypedParent < pane_impact >() != nullptr
-                    && GetTypedParent < pane_impact >()->m_pviewLast == this
+                    && GetTypedParent < pane_impact >()->m_pimpactLast == this
                     && GetTypedParent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
 
       //if(m_prender->m_cx == rectangleClient.width()

@@ -45,7 +45,7 @@ if (MSVC)
 elseif(LINUX)
 
 
-if(DEFINED UBUNTU OR DEFINED DEBIAN)
+if(DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
 
 
    list(APPEND library_references
@@ -57,7 +57,9 @@ if(DEFINED UBUNTU OR DEFINED DEBIAN)
 else()
 
 
-   pkg_check_modules(PKGCONFIG bzip2)
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG bzip2)
+   endif()
    target_compile_options(compress_bzip2 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(compress_bzip2 PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(compress_bzip2 PRIVATE ${PKGCONFIG_LIBRARIES})

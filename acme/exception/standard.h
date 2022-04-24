@@ -266,7 +266,14 @@ typedef struct _sig_ucontext
          standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
          //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
 #else
-         ::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#ifdef __arm__
+		 standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.arm_ip)
+         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#else
+		 standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
+         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+
+#endif
 #endif
 #else
 #ifdef _LP64

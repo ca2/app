@@ -1655,7 +1655,7 @@ namespace draw2d
 
          //size.cy = size.cy * 110 / 100;
 
-         ::rectangle_i32 rectangleText(point_i32((LONG)x, (LONG)y), size);
+         ::rectangle_i32 rectangleText(point_i32((::i32)x, (::i32)y), size);
 
          if (rectangleIntersect.intersect(rectangleAlphaBlend, rectangleText))
          {

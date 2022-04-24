@@ -12,6 +12,7 @@
 #include "acme/user/nano/_nano.h"
 
 
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
@@ -758,7 +759,13 @@ void system::call_init_system()
    catch (::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+      //message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+
+      string strMoreDetails;
+
+      strMoreDetails = "caught at system::call_init_system";
+
+      exception_message_box(this, exception, strMoreDetails);
 
       m_estatus = exception.m_estatus;
 
@@ -915,7 +922,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
    if (!plibrary->is_opened())
    {
 
-      throw ::exception(error_failed);
+      throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")");
 
    }
 

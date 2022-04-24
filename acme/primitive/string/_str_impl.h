@@ -1239,6 +1239,7 @@ inline void to_string(string& str, const u64& u)
 }
 
 
+<<<<<<< HEAD
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
 
 
@@ -1376,6 +1377,8 @@ inline void to_string(string& str, const long int& i)
 // namespace str
 // {
 
+=======
+>>>>>>> origin/basis
 inline CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
 {
 

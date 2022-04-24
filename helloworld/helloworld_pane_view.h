@@ -13,9 +13,9 @@ namespace helloworld
 
 
       ::user::split_view *                            m_ptopviewLast;
-      impact_base *                                     m_pviewLast;
-      impact *                                          m_pviewLastBilbo;
-      ::user::impact_data *                     m_pviewdataTopic;
+      impact_base *                                     m_pimpactLast;
+      impact *                                          m_pimpactLastBilbo;
+      ::user::impact_data *                     m_pimpactdataTopic;
       string                                          m_strTopicTitle;
 
 

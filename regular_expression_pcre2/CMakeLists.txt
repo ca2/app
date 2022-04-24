@@ -36,13 +36,15 @@ if (MSVC)
 elseif(LINUX OR FREEBSD)
 
 
-   pkg_check_modules(PKGCONFIG libpcre2-8)
-    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
-    target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
-    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
-    target_link_libraries(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG libpcre2-8)
+   endif()
+   target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
+   target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
+   target_link_libraries(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LIBRARIES})
+   target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
 
 
 endif()

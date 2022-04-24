@@ -37,6 +37,9 @@ namespace x11
       ~display() override;
 
 
+      virtual void set_X11_Display(Display * pdisplay);
+
+
       bool is_branch_current() const override;
 
 

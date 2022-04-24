@@ -487,18 +487,18 @@ namespace xcb
 
       ::index i = 0;
 
-      if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
-      {
+      // if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
+      // {
 
-         output_debug_string("ConfigureNotify");
+      //    output_debug_string("ConfigureNotify");
 
-      }
-      else if (pevent->response_type == XCB_BUTTON_PRESS)
-      {
+      // }
+      // else if (pevent->response_type == XCB_BUTTON_PRESS)
+      // {
 
-         output_debug_string("ButtonPress");
+      //    output_debug_string("ButtonPress");
 
-      }
+      // }
 
       for (; i < m_eventlistenera.get_count(); i++)
       {

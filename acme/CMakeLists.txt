@@ -678,6 +678,7 @@ list(APPEND library_source
    primitive/string/ch.h
    primitive/string/ch_class.cpp
    primitive/string/ch_class.h
+   primitive/string/command_line.cpp
    primitive/string/composite.h
    primitive/string/dup.cpp
    primitive/string/from_integer.cpp
@@ -708,8 +709,10 @@ list(APPEND library_source
    primitive/string/sz.h
    primitive/string/to_integer.cpp
    primitive/string/to_integer.h
+   primitive/string/to_string.cpp
    primitive/string/tokenizer.cpp
    primitive/string/tokenizer.h
+   primitive/string/wildcard.cpp
    primitive/string/x.cpp
    primitive/string/x.h
    primitive/string/x/x_charcategory.h
@@ -2071,7 +2074,11 @@ endif ()
 add_library(acme SHARED ${library_source})
 
 
+if(NOT DEFINED NO_PRECOMPILED_HEADER)
+
 target_precompile_headers(acme PRIVATE framework.h)
+
+endif()
 
 
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
@@ -2091,7 +2098,9 @@ elseif(LINUX OR FREEBSD)
 
 #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
-   pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   endif()
    target_compile_options(acme PRIVATE -fpermissive)
       target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})

@@ -676,6 +676,7 @@ list(APPEND library_source
    primitive/string/ch.h
    primitive/string/ch_class.cpp
    primitive/string/ch_class.h
+   primitive/string/command_line.cpp
    primitive/string/composite.h
    primitive/string/dup.cpp
    primitive/string/from_integer.cpp
@@ -706,8 +707,10 @@ list(APPEND library_source
    primitive/string/sz.h
    primitive/string/to_integer.cpp
    primitive/string/to_integer.h
+   primitive/string/to_string.cpp
    primitive/string/tokenizer.cpp
    primitive/string/tokenizer.h
+   primitive/string/wildcard.cpp
    primitive/string/x.cpp
    primitive/string/x.h
    primitive/string/x/x_charcategory.h

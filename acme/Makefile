@@ -9879,33 +9879,6 @@ primitive/string/_.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_.cpp.s
 .PHONY : primitive/string/_.cpp.s
 
-primitive/string/_c.o: primitive/string/_c.cpp.o
-
-.PHONY : primitive/string/_c.o
-
-# target to build an object file
-primitive/string/_c.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o
-.PHONY : primitive/string/_c.cpp.o
-
-primitive/string/_c.i: primitive/string/_c.cpp.i
-
-.PHONY : primitive/string/_c.i
-
-# target to preprocess a source file
-primitive/string/_c.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.i
-.PHONY : primitive/string/_c.cpp.i
-
-primitive/string/_c.s: primitive/string/_c.cpp.s
-
-.PHONY : primitive/string/_c.s
-
-# target to generate assembly for a file
-primitive/string/_c.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.s
-.PHONY : primitive/string/_c.cpp.s
-
 primitive/string/_c_trait_ansi.o: primitive/string/_c_trait_ansi.cpp.o
 
 .PHONY : primitive/string/_c_trait_ansi.o
@@ -9959,141 +9932,6 @@ primitive/string/_c_trait_wide.s: primitive/string/_c_trait_wide.cpp.s
 primitive/string/_c_trait_wide.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.s
 .PHONY : primitive/string/_c_trait_wide.cpp.s
-
-primitive/string/_conv_ansi.o: primitive/string/_conv_ansi.cpp.o
-
-.PHONY : primitive/string/_conv_ansi.o
-
-# target to build an object file
-primitive/string/_conv_ansi.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o
-.PHONY : primitive/string/_conv_ansi.cpp.o
-
-primitive/string/_conv_ansi.i: primitive/string/_conv_ansi.cpp.i
-
-.PHONY : primitive/string/_conv_ansi.i
-
-# target to preprocess a source file
-primitive/string/_conv_ansi.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.i
-.PHONY : primitive/string/_conv_ansi.cpp.i
-
-primitive/string/_conv_ansi.s: primitive/string/_conv_ansi.cpp.s
-
-.PHONY : primitive/string/_conv_ansi.s
-
-# target to generate assembly for a file
-primitive/string/_conv_ansi.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.s
-.PHONY : primitive/string/_conv_ansi.cpp.s
-
-primitive/string/_unicode.o: primitive/string/_unicode.cpp.o
-
-.PHONY : primitive/string/_unicode.o
-
-# target to build an object file
-primitive/string/_unicode.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o
-.PHONY : primitive/string/_unicode.cpp.o
-
-primitive/string/_unicode.i: primitive/string/_unicode.cpp.i
-
-.PHONY : primitive/string/_unicode.i
-
-# target to preprocess a source file
-primitive/string/_unicode.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.i
-.PHONY : primitive/string/_unicode.cpp.i
-
-primitive/string/_unicode.s: primitive/string/_unicode.cpp.s
-
-.PHONY : primitive/string/_unicode.s
-
-# target to generate assembly for a file
-primitive/string/_unicode.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.s
-.PHONY : primitive/string/_unicode.cpp.s
-
-primitive/string/_unicode16.o: primitive/string/_unicode16.cpp.o
-
-.PHONY : primitive/string/_unicode16.o
-
-# target to build an object file
-primitive/string/_unicode16.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o
-.PHONY : primitive/string/_unicode16.cpp.o
-
-primitive/string/_unicode16.i: primitive/string/_unicode16.cpp.i
-
-.PHONY : primitive/string/_unicode16.i
-
-# target to preprocess a source file
-primitive/string/_unicode16.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.i
-.PHONY : primitive/string/_unicode16.cpp.i
-
-primitive/string/_unicode16.s: primitive/string/_unicode16.cpp.s
-
-.PHONY : primitive/string/_unicode16.s
-
-# target to generate assembly for a file
-primitive/string/_unicode16.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.s
-.PHONY : primitive/string/_unicode16.cpp.s
-
-primitive/string/_unicode16_32.o: primitive/string/_unicode16_32.cpp.o
-
-.PHONY : primitive/string/_unicode16_32.o
-
-# target to build an object file
-primitive/string/_unicode16_32.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o
-.PHONY : primitive/string/_unicode16_32.cpp.o
-
-primitive/string/_unicode16_32.i: primitive/string/_unicode16_32.cpp.i
-
-.PHONY : primitive/string/_unicode16_32.i
-
-# target to preprocess a source file
-primitive/string/_unicode16_32.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.i
-.PHONY : primitive/string/_unicode16_32.cpp.i
-
-primitive/string/_unicode16_32.s: primitive/string/_unicode16_32.cpp.s
-
-.PHONY : primitive/string/_unicode16_32.s
-
-# target to generate assembly for a file
-primitive/string/_unicode16_32.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.s
-.PHONY : primitive/string/_unicode16_32.cpp.s
-
-primitive/string/_unicode32.o: primitive/string/_unicode32.cpp.o
-
-.PHONY : primitive/string/_unicode32.o
-
-# target to build an object file
-primitive/string/_unicode32.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o
-.PHONY : primitive/string/_unicode32.cpp.o
-
-primitive/string/_unicode32.i: primitive/string/_unicode32.cpp.i
-
-.PHONY : primitive/string/_unicode32.i
-
-# target to preprocess a source file
-primitive/string/_unicode32.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.i
-.PHONY : primitive/string/_unicode32.cpp.i
-
-primitive/string/_unicode32.s: primitive/string/_unicode32.cpp.s
-
-.PHONY : primitive/string/_unicode32.s
-
-# target to generate assembly for a file
-primitive/string/_unicode32.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.s
-.PHONY : primitive/string/_unicode32.cpp.s
 
 primitive/string/base64.o: primitive/string/base64.cpp.o
 
@@ -10202,6 +10040,33 @@ primitive/string/ch_class.s: primitive/string/ch_class.cpp.s
 primitive/string/ch_class.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.s
 .PHONY : primitive/string/ch_class.cpp.s
+
+primitive/string/command_line.o: primitive/string/command_line.cpp.o
+
+.PHONY : primitive/string/command_line.o
+
+# target to build an object file
+primitive/string/command_line.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o
+.PHONY : primitive/string/command_line.cpp.o
+
+primitive/string/command_line.i: primitive/string/command_line.cpp.i
+
+.PHONY : primitive/string/command_line.i
+
+# target to preprocess a source file
+primitive/string/command_line.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.i
+.PHONY : primitive/string/command_line.cpp.i
+
+primitive/string/command_line.s: primitive/string/command_line.cpp.s
+
+.PHONY : primitive/string/command_line.s
+
+# target to generate assembly for a file
+primitive/string/command_line.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.s
+.PHONY : primitive/string/command_line.cpp.s
 
 primitive/string/dup.o: primitive/string/dup.cpp.o
 
@@ -10635,6 +10500,33 @@ primitive/string/to_integer.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.s
 .PHONY : primitive/string/to_integer.cpp.s
 
+primitive/string/to_string.o: primitive/string/to_string.cpp.o
+
+.PHONY : primitive/string/to_string.o
+
+# target to build an object file
+primitive/string/to_string.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o
+.PHONY : primitive/string/to_string.cpp.o
+
+primitive/string/to_string.i: primitive/string/to_string.cpp.i
+
+.PHONY : primitive/string/to_string.i
+
+# target to preprocess a source file
+primitive/string/to_string.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.i
+.PHONY : primitive/string/to_string.cpp.i
+
+primitive/string/to_string.s: primitive/string/to_string.cpp.s
+
+.PHONY : primitive/string/to_string.s
+
+# target to generate assembly for a file
+primitive/string/to_string.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.s
+.PHONY : primitive/string/to_string.cpp.s
+
 primitive/string/tokenizer.o: primitive/string/tokenizer.cpp.o
 
 .PHONY : primitive/string/tokenizer.o
@@ -10661,6 +10553,141 @@ primitive/string/tokenizer.s: primitive/string/tokenizer.cpp.s
 primitive/string/tokenizer.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.s
 .PHONY : primitive/string/tokenizer.cpp.s
+
+primitive/string/unicode.o: primitive/string/unicode.cpp.o
+
+.PHONY : primitive/string/unicode.o
+
+# target to build an object file
+primitive/string/unicode.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o
+.PHONY : primitive/string/unicode.cpp.o
+
+primitive/string/unicode.i: primitive/string/unicode.cpp.i
+
+.PHONY : primitive/string/unicode.i
+
+# target to preprocess a source file
+primitive/string/unicode.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.i
+.PHONY : primitive/string/unicode.cpp.i
+
+primitive/string/unicode.s: primitive/string/unicode.cpp.s
+
+.PHONY : primitive/string/unicode.s
+
+# target to generate assembly for a file
+primitive/string/unicode.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.s
+.PHONY : primitive/string/unicode.cpp.s
+
+primitive/string/unicode16.o: primitive/string/unicode16.cpp.o
+
+.PHONY : primitive/string/unicode16.o
+
+# target to build an object file
+primitive/string/unicode16.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o
+.PHONY : primitive/string/unicode16.cpp.o
+
+primitive/string/unicode16.i: primitive/string/unicode16.cpp.i
+
+.PHONY : primitive/string/unicode16.i
+
+# target to preprocess a source file
+primitive/string/unicode16.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.i
+.PHONY : primitive/string/unicode16.cpp.i
+
+primitive/string/unicode16.s: primitive/string/unicode16.cpp.s
+
+.PHONY : primitive/string/unicode16.s
+
+# target to generate assembly for a file
+primitive/string/unicode16.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.s
+.PHONY : primitive/string/unicode16.cpp.s
+
+primitive/string/unicode16_32.o: primitive/string/unicode16_32.cpp.o
+
+.PHONY : primitive/string/unicode16_32.o
+
+# target to build an object file
+primitive/string/unicode16_32.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o
+.PHONY : primitive/string/unicode16_32.cpp.o
+
+primitive/string/unicode16_32.i: primitive/string/unicode16_32.cpp.i
+
+.PHONY : primitive/string/unicode16_32.i
+
+# target to preprocess a source file
+primitive/string/unicode16_32.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.i
+.PHONY : primitive/string/unicode16_32.cpp.i
+
+primitive/string/unicode16_32.s: primitive/string/unicode16_32.cpp.s
+
+.PHONY : primitive/string/unicode16_32.s
+
+# target to generate assembly for a file
+primitive/string/unicode16_32.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.s
+.PHONY : primitive/string/unicode16_32.cpp.s
+
+primitive/string/unicode32.o: primitive/string/unicode32.cpp.o
+
+.PHONY : primitive/string/unicode32.o
+
+# target to build an object file
+primitive/string/unicode32.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o
+.PHONY : primitive/string/unicode32.cpp.o
+
+primitive/string/unicode32.i: primitive/string/unicode32.cpp.i
+
+.PHONY : primitive/string/unicode32.i
+
+# target to preprocess a source file
+primitive/string/unicode32.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.i
+.PHONY : primitive/string/unicode32.cpp.i
+
+primitive/string/unicode32.s: primitive/string/unicode32.cpp.s
+
+.PHONY : primitive/string/unicode32.s
+
+# target to generate assembly for a file
+primitive/string/unicode32.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.s
+.PHONY : primitive/string/unicode32.cpp.s
+
+primitive/string/wildcard.o: primitive/string/wildcard.cpp.o
+
+.PHONY : primitive/string/wildcard.o
+
+# target to build an object file
+primitive/string/wildcard.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o
+.PHONY : primitive/string/wildcard.cpp.o
+
+primitive/string/wildcard.i: primitive/string/wildcard.cpp.i
+
+.PHONY : primitive/string/wildcard.i
+
+# target to preprocess a source file
+primitive/string/wildcard.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.i
+.PHONY : primitive/string/wildcard.cpp.i
+
+primitive/string/wildcard.s: primitive/string/wildcard.cpp.s
+
+.PHONY : primitive/string/wildcard.s
+
+# target to generate assembly for a file
+primitive/string/wildcard.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.s
+.PHONY : primitive/string/wildcard.cpp.s
 
 primitive/string/x.o: primitive/string/x.cpp.o
 
@@ -12780,30 +12807,12 @@ help:
 	@echo "... primitive/string/_.o"
 	@echo "... primitive/string/_.i"
 	@echo "... primitive/string/_.s"
-	@echo "... primitive/string/_c.o"
-	@echo "... primitive/string/_c.i"
-	@echo "... primitive/string/_c.s"
 	@echo "... primitive/string/_c_trait_ansi.o"
 	@echo "... primitive/string/_c_trait_ansi.i"
 	@echo "... primitive/string/_c_trait_ansi.s"
 	@echo "... primitive/string/_c_trait_wide.o"
 	@echo "... primitive/string/_c_trait_wide.i"
 	@echo "... primitive/string/_c_trait_wide.s"
-	@echo "... primitive/string/_conv_ansi.o"
-	@echo "... primitive/string/_conv_ansi.i"
-	@echo "... primitive/string/_conv_ansi.s"
-	@echo "... primitive/string/_unicode.o"
-	@echo "... primitive/string/_unicode.i"
-	@echo "... primitive/string/_unicode.s"
-	@echo "... primitive/string/_unicode16.o"
-	@echo "... primitive/string/_unicode16.i"
-	@echo "... primitive/string/_unicode16.s"
-	@echo "... primitive/string/_unicode16_32.o"
-	@echo "... primitive/string/_unicode16_32.i"
-	@echo "... primitive/string/_unicode16_32.s"
-	@echo "... primitive/string/_unicode32.o"
-	@echo "... primitive/string/_unicode32.i"
-	@echo "... primitive/string/_unicode32.s"
 	@echo "... primitive/string/base64.o"
 	@echo "... primitive/string/base64.i"
 	@echo "... primitive/string/base64.s"
@@ -12816,6 +12825,9 @@ help:
 	@echo "... primitive/string/ch_class.o"
 	@echo "... primitive/string/ch_class.i"
 	@echo "... primitive/string/ch_class.s"
+	@echo "... primitive/string/command_line.o"
+	@echo "... primitive/string/command_line.i"
+	@echo "... primitive/string/command_line.s"
 	@echo "... primitive/string/dup.o"
 	@echo "... primitive/string/dup.i"
 	@echo "... primitive/string/dup.s"
@@ -12864,9 +12876,27 @@ help:
 	@echo "... primitive/string/to_integer.o"
 	@echo "... primitive/string/to_integer.i"
 	@echo "... primitive/string/to_integer.s"
+	@echo "... primitive/string/to_string.o"
+	@echo "... primitive/string/to_string.i"
+	@echo "... primitive/string/to_string.s"
 	@echo "... primitive/string/tokenizer.o"
 	@echo "... primitive/string/tokenizer.i"
 	@echo "... primitive/string/tokenizer.s"
+	@echo "... primitive/string/unicode.o"
+	@echo "... primitive/string/unicode.i"
+	@echo "... primitive/string/unicode.s"
+	@echo "... primitive/string/unicode16.o"
+	@echo "... primitive/string/unicode16.i"
+	@echo "... primitive/string/unicode16.s"
+	@echo "... primitive/string/unicode16_32.o"
+	@echo "... primitive/string/unicode16_32.i"
+	@echo "... primitive/string/unicode16_32.s"
+	@echo "... primitive/string/unicode32.o"
+	@echo "... primitive/string/unicode32.i"
+	@echo "... primitive/string/unicode32.s"
+	@echo "... primitive/string/wildcard.o"
+	@echo "... primitive/string/wildcard.i"
+	@echo "... primitive/string/wildcard.s"
 	@echo "... primitive/string/x.o"
 	@echo "... primitive/string/x.i"
 	@echo "... primitive/string/x.s"

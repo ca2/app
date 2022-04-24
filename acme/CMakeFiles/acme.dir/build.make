@@ -4350,26 +4350,11 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/_.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_.cpp.s"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_.cpp -o CMakeFiles/acme.dir/primitive/string/_.cpp.s
 
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o: source/app/acme/primitive/string/_c.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_286) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_c.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_c.cpp
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_c.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_c.cpp > CMakeFiles/acme.dir/primitive/string/_c.cpp.i
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_c.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_c.cpp -o CMakeFiles/acme.dir/primitive/string/_c.cpp.s
-
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o: source/app/acme/primitive/string/_c_trait_ansi.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_287) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_286) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_c_trait_ansi.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.i: cmake_force
@@ -4384,7 +4369,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o: source/app/acme/primitive/string/_c_trait_wide.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_288) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_287) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_c_trait_wide.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.i: cmake_force
@@ -4395,86 +4380,26 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.s: cmake_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.s"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_c_trait_wide.cpp -o CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.s
 
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o: source/app/acme/primitive/string/_conv_ansi.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_289) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_conv_ansi.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o: source/app/acme/primitive/string/to_string.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_288) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/to_string.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/to_string.cpp
 
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_conv_ansi.cpp > CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.i
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/to_string.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/to_string.cpp > CMakeFiles/acme.dir/primitive/string/to_string.cpp.i
 
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_conv_ansi.cpp -o CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.s
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o: source/app/acme/primitive/string/_unicode.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_290) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_unicode.cpp
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_unicode.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_unicode.cpp > CMakeFiles/acme.dir/primitive/string/_unicode.cpp.i
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_unicode.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_unicode.cpp -o CMakeFiles/acme.dir/primitive/string/_unicode.cpp.s
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o: source/app/acme/primitive/string/_unicode16.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_291) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16.cpp
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16.cpp > CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.i
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16.cpp -o CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.s
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o: source/app/acme/primitive/string/_unicode16_32.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_292) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16_32.cpp
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16_32.cpp > CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.i
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_unicode16_32.cpp -o CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.s
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o: source/app/acme/primitive/string/_unicode32.cpp
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_293) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/_unicode32.cpp
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.i"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/_unicode32.cpp > CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.i
-
-source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.s"
-	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/_unicode32.cpp -o CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.s
+source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/to_string.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/to_string.cpp -o CMakeFiles/acme.dir/primitive/string/to_string.cpp.s
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
 source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o: source/app/acme/primitive/string/base64.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_294) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_289) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/base64.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/base64.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.i: cmake_force
@@ -4489,7 +4414,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o: source/app/a
 source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o: source/app/acme/primitive/string/bstring.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_295) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_290) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/bstring.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/bstring.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.i: cmake_force
@@ -4504,7 +4429,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o: source/app/acme/primitive/string/ch.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_296) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_291) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/ch.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/ch.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.i: cmake_force
@@ -4519,7 +4444,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o: source/app/acme/primitive/string/ch_class.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_297) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_292) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/ch_class.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.i: cmake_force
@@ -4530,11 +4455,26 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/ch_class.cpp.s"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/ch_class.cpp -o CMakeFiles/acme.dir/primitive/string/ch_class.cpp.s
 
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o: source/app/acme/primitive/string/command_line.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_293) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/command_line.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/command_line.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/command_line.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/command_line.cpp > CMakeFiles/acme.dir/primitive/string/command_line.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/command_line.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/command_line.cpp -o CMakeFiles/acme.dir/primitive/string/command_line.cpp.s
+
 source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
 source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o: source/app/acme/primitive/string/dup.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_298) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_294) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/dup.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/dup.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.i: cmake_force
@@ -4549,7 +4489,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o: source/app/acme/primitive/string/from_integer.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_299) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_295) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/from_integer.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.i: cmake_force
@@ -4564,7 +4504,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o: source/app/acme/
 source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o: source/app/acme/primitive/string/hex.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_300) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_296) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/hex.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/hex.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.i: cmake_force
@@ -4579,7 +4519,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o: source/app/acme/primitive/string/international.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_301) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_297) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/international.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/international.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.i: cmake_force
@@ -4594,7 +4534,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o: source/app/a
 source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o: source/app/acme/primitive/string/manager.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_302) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_298) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/manager.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/manager.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.i: cmake_force
@@ -4609,7 +4549,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o: source/app/acm
 source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o: source/app/acme/primitive/string/parse.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_303) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_299) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/parse.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/parse.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.i: cmake_force
@@ -4624,7 +4564,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o: source/app/ac
 source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o: source/app/acme/primitive/string/simple.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_304) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_300) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/simple.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/simple.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.i: cmake_force
@@ -4639,7 +4579,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o: source/app/acme/
 source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o: source/app/acme/primitive/string/str.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_305) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_301) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/str.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/str.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/str.cpp.i: cmake_force
@@ -4654,7 +4594,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o: source/app/acme/primitive/string/string_ansi.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_306) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_302) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/string_ansi.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_ansi.cpp.i: cmake_force
@@ -4669,7 +4609,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o: source/app/acme/primitive/string/string_wide.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_307) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_303) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/string_wide.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/string_wide.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide.cpp.i: cmake_force
@@ -4684,7 +4624,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o: source/app/acme/primitive/string/string_wide_conversion.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_308) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_304) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/string_wide_conversion.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/string_wide_conversion.cpp.i: cmake_force
@@ -4699,7 +4639,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o: source/app/acme/primitive/string/stringtow.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_309) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_305) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/stringtow.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/stringtow.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/stringtow.cpp.i: cmake_force
@@ -4714,7 +4654,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o: source/app/acme
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o: source/app/acme/primitive/string/strw.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_310) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_306) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/strw.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/strw.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strw.cpp.i: cmake_force
@@ -4729,7 +4669,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o: source/app/acme
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o: source/app/acme/primitive/string/strx.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_311) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_307) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/strx.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/strx.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp.i: cmake_force
@@ -4744,7 +4684,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o: source/app/acme/primitive/string/sz.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_312) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_308) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/sz.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/sz.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.i: cmake_force
@@ -4759,7 +4699,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o: source/app/acme/primitive/string/to_integer.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_313) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_309) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/to_integer.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.i: cmake_force
@@ -4774,7 +4714,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o: source/app/acme/primitive/string/tokenizer.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_314) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_310) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/tokenizer.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.i: cmake_force
@@ -4785,11 +4725,86 @@ source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.s"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/tokenizer.cpp -o CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.s
 
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o: source/app/acme/primitive/string/unicode.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_311) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/unicode.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/unicode.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/unicode.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/unicode.cpp > CMakeFiles/acme.dir/primitive/string/unicode.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/unicode.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/unicode.cpp -o CMakeFiles/acme.dir/primitive/string/unicode.cpp.s
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o: source/app/acme/primitive/string/unicode16.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_312) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/unicode16.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/unicode16.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/unicode16.cpp > CMakeFiles/acme.dir/primitive/string/unicode16.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/unicode16.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/unicode16.cpp -o CMakeFiles/acme.dir/primitive/string/unicode16.cpp.s
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o: source/app/acme/primitive/string/unicode16_32.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_313) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/unicode16_32.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/unicode16_32.cpp > CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/unicode16_32.cpp -o CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.s
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o: source/app/acme/primitive/string/unicode32.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_314) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/unicode32.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/unicode32.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/unicode32.cpp > CMakeFiles/acme.dir/primitive/string/unicode32.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/unicode32.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/unicode32.cpp -o CMakeFiles/acme.dir/primitive/string/unicode32.cpp.s
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o: source/app/acme/primitive/string/wildcard.cpp
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_315) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/wildcard.cpp
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/acme.dir/primitive/string/wildcard.cpp.i"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -E /home/pi/solution/basis/source/app/acme/primitive/string/wildcard.cpp > CMakeFiles/acme.dir/primitive/string/wildcard.cpp.i
+
+source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/acme.dir/primitive/string/wildcard.cpp.s"
+	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -S /home/pi/solution/basis/source/app/acme/primitive/string/wildcard.cpp -o CMakeFiles/acme.dir/primitive/string/wildcard.cpp.s
+
 source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o: source/app/acme/CMakeFiles/acme.dir/flags.make
 source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o: source/app/acme/primitive/string/x.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_315) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_316) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/string/x.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/string/x.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.i: cmake_force
@@ -4804,7 +4819,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o: source/app/acm
 source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o: source/app/acme/primitive/text/context.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_316) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_317) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/context.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/context.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.i: cmake_force
@@ -4819,7 +4834,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o: source/app/acme/primitive/text/data.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_317) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_318) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/data.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/data.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.i: cmake_force
@@ -4834,7 +4849,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o: source/app/acme/primitive/text/international.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_318) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_319) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/international.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/international.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international.cpp.i: cmake_force
@@ -4849,7 +4864,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.c
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o: source/app/acme/primitive/text/international_locale_schema.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_319) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_320) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/international_locale_schema.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/international_locale_schema.cpp.i: cmake_force
@@ -4864,7 +4879,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o: source/app/acme/primitive/text/text.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_320) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_321) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/text.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/text.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/text.cpp.i: cmake_force
@@ -4879,7 +4894,7 @@ source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o: source/app/acme/primitive/text/translator.cpp
 source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_321) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_322) "Building CXX object source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/primitive/text/translator.cpp.o -c /home/pi/solution/basis/source/app/acme/primitive/text/translator.cpp
 
 source/app/acme/CMakeFiles/acme.dir/primitive/text/translator.cpp.i: cmake_force
@@ -4894,7 +4909,7 @@ source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o: source/app/acme/process/bidirectional_pipe.cpp
 source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_322) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_323) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.o -c /home/pi/solution/basis/source/app/acme/process/bidirectional_pipe.cpp
 
 source/app/acme/CMakeFiles/acme.dir/process/bidirectional_pipe.cpp.i: cmake_force
@@ -4909,7 +4924,7 @@ source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o: source/app/acme/process/exit_status.cpp
 source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_323) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_324) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/process/exit_status.cpp.o -c /home/pi/solution/basis/source/app/acme/process/exit_status.cpp
 
 source/app/acme/CMakeFiles/acme.dir/process/exit_status.cpp.i: cmake_force
@@ -4924,7 +4939,7 @@ source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o: source/app/acme/CMakeFil
 source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o: source/app/acme/process/pipe.cpp
 source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_324) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_325) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/process/pipe.cpp.o -c /home/pi/solution/basis/source/app/acme/process/pipe.cpp
 
 source/app/acme/CMakeFiles/acme.dir/process/pipe.cpp.i: cmake_force
@@ -4939,7 +4954,7 @@ source/app/acme/CMakeFiles/acme.dir/promise.cpp.o: source/app/acme/CMakeFiles/ac
 source/app/acme/CMakeFiles/acme.dir/promise.cpp.o: source/app/acme/promise.cpp
 source/app/acme/CMakeFiles/acme.dir/promise.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/promise.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_325) "Building CXX object source/app/acme/CMakeFiles/acme.dir/promise.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_326) "Building CXX object source/app/acme/CMakeFiles/acme.dir/promise.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/promise.cpp.o -c /home/pi/solution/basis/source/app/acme/promise.cpp
 
 source/app/acme/CMakeFiles/acme.dir/promise.cpp.i: cmake_force
@@ -4954,7 +4969,7 @@ source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o: source/app/acme/regular_expression/context.cpp
 source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_326) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_327) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/regular_expression/context.cpp.o -c /home/pi/solution/basis/source/app/acme/regular_expression/context.cpp
 
 source/app/acme/CMakeFiles/acme.dir/regular_expression/context.cpp.i: cmake_force
@@ -4969,7 +4984,7 @@ source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o: source/app/acme/regular_expression/regular_expression.cpp
 source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_327) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_328) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.o -c /home/pi/solution/basis/source/app/acme/regular_expression/regular_expression.cpp
 
 source/app/acme/CMakeFiles/acme.dir/regular_expression/regular_expression.cpp.i: cmake_force
@@ -4984,7 +4999,7 @@ source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o: source/app/acme/regular_expression/result.cpp
 source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_328) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_329) "Building CXX object source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/regular_expression/result.cpp.o -c /home/pi/solution/basis/source/app/acme/regular_expression/result.cpp
 
 source/app/acme/CMakeFiles/acme.dir/regular_expression/result.cpp.i: cmake_force
@@ -4999,7 +5014,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o: source/app/acme/user/nano/_nano.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_329) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_330) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/_nano.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/_nano.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/_nano.cpp.i: cmake_force
@@ -5014,7 +5029,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o: source/app/acme/user/nano/brush.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_330) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_331) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/brush.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/brush.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/brush.cpp.i: cmake_force
@@ -5029,7 +5044,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o: source/app/acme/CMak
 source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o: source/app/acme/user/nano/button.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_331) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_332) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/button.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/button.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/button.cpp.i: cmake_force
@@ -5044,7 +5059,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o: source/app/acme/user/nano/child.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_332) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_333) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/child.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/child.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/child.cpp.i: cmake_force
@@ -5059,7 +5074,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o: source/app/a
 source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o: source/app/acme/user/nano/details_window.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_333) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_334) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/details_window.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/details_window.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/details_window.cpp.i: cmake_force
@@ -5074,7 +5089,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o: source/app/acme/CMak
 source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o: source/app/acme/user/nano/device.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_334) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_335) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/device.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/device.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/device.cpp.i: cmake_force
@@ -5089,7 +5104,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o: source/app/acme/CMa
 source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o: source/app/acme/user/nano/display.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_335) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_336) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/display.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/display.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/display.cpp.i: cmake_force
@@ -5104,7 +5119,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o: source/app/acme/CMakeF
 source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o: source/app/acme/user/nano/font.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_336) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_337) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/font.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/font.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/font.cpp.i: cmake_force
@@ -5119,7 +5134,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o: source/app/acme
 source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o: source/app/acme/user/nano/message_box.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_337) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_338) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/message_box.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/message_box.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/message_box.cpp.i: cmake_force
@@ -5134,7 +5149,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o: source/app/acme/CMak
 source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o: source/app/acme/user/nano/object.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_338) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_339) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/object.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/object.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/object.cpp.i: cmake_force
@@ -5149,7 +5164,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o: source/app/acme/CMakeFi
 source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o: source/app/acme/user/nano/pen.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_339) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_340) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/pen.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/pen.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/pen.cpp.i: cmake_force
@@ -5164,7 +5179,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o: source/app/acm
 source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o: source/app/acme/user/nano/popup_button.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_340) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_341) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/popup_button.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/popup_button.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/popup_button.cpp.i: cmake_force
@@ -5179,7 +5194,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o: source/app/acme/user/nano/still.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_341) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_342) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/still.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/still.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/still.cpp.i: cmake_force
@@ -5194,7 +5209,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o: source/app/acme/CMak
 source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o: source/app/acme/user/nano/window.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_342) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_343) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/window.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/window.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/window.cpp.i: cmake_force
@@ -5209,7 +5224,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o: source/app/acme/user/nano/window_implementation.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_343) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_344) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/window_implementation.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/window_implementation.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_implementation.cpp.i: cmake_force
@@ -5224,7 +5239,7 @@ source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o: source/app/acme/user/nano/window_interface.cpp
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_344) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_345) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/nano/window_interface.cpp.o -c /home/pi/solution/basis/source/app/acme/user/nano/window_interface.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/nano/window_interface.cpp.i: cmake_force
@@ -5239,7 +5254,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o: source/app/acme/user/user/check.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_345) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_346) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/check.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/check.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.i: cmake_force
@@ -5254,7 +5269,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o: source/app/acme/CMakeF
 source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o: source/app/acme/user/user/drag.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_346) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_347) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/drag.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/drag.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/drag.cpp.i: cmake_force
@@ -5269,7 +5284,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o: source/app/acme/CMa
 source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o: source/app/acme/user/user/element.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_347) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_348) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/element.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/element.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.i: cmake_force
@@ -5284,7 +5299,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o: source/app/acme/user/user/os_colors.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_348) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_349) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/os_colors.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/os_colors.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/os_colors.cpp.i: cmake_force
@@ -5299,7 +5314,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o: source/app/acme/user/user/os_theme_colors.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_349) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_350) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/os_theme_colors.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/os_theme_colors.cpp.i: cmake_force
@@ -5314,7 +5329,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o: source/app/acme/CMakeF
 source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o: source/app/acme/user/user/text.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_350) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_351) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/text.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/text.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/text.cpp.i: cmake_force
@@ -5329,7 +5344,7 @@ source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o: source/app/acme/CMakeF
 source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o: source/app/acme/exception/exit.cpp
 source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_351) "Building CXX object source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_352) "Building CXX object source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/exception/exit.cpp.o -c /home/pi/solution/basis/source/app/acme/exception/exit.cpp
 
 source/app/acme/CMakeFiles/acme.dir/exception/exit.cpp.i: cmake_force
@@ -5344,7 +5359,7 @@ source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o: source/app/acme/CM
 source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o: source/app/acme/exception/standard.cpp
 source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_352) "Building CXX object source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_353) "Building CXX object source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/exception/standard.cpp.o -c /home/pi/solution/basis/source/app/acme/exception/standard.cpp
 
 source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.i: cmake_force
@@ -5359,7 +5374,7 @@ source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o: source/app/acme/filesystem/file/stdio_file.cpp
 source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_353) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_354) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.o -c /home/pi/solution/basis/source/app/acme/filesystem/file/stdio_file.cpp
 
 source/app/acme/CMakeFiles/acme.dir/filesystem/file/stdio_file.cpp.i: cmake_force
@@ -5374,7 +5389,7 @@ source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o: source/app/acme/filesystem/filesystem/enumerator.cpp
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_354) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_355) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.o -c /home/pi/solution/basis/source/app/acme/filesystem/filesystem/enumerator.cpp
 
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/enumerator.cpp.i: cmake_force
@@ -5389,7 +5404,7 @@ source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o: source/app/acme/filesystem/filesystem/path_array.cpp
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_355) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_356) "Building CXX object source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.o -c /home/pi/solution/basis/source/app/acme/filesystem/filesystem/path_array.cpp
 
 source/app/acme/CMakeFiles/acme.dir/filesystem/filesystem/path_array.cpp.i: cmake_force
@@ -5404,7 +5419,7 @@ source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o: source/app/acme/CMakeFi
 source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o: source/app/acme/memory/memory.cpp
 source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_356) "Building CXX object source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_357) "Building CXX object source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/memory/memory.cpp.o -c /home/pi/solution/basis/source/app/acme/memory/memory.cpp
 
 source/app/acme/CMakeFiles/acme.dir/memory/memory.cpp.i: cmake_force
@@ -5419,7 +5434,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o: source/app/acme/operating_system/ansi/pthread.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_357) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_358) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/pthread.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.i: cmake_force
@@ -5434,7 +5449,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o: source/app/acme/parallelization/message_queue.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_358) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_359) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/message_queue.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/message_queue.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue.cpp.i: cmake_force
@@ -5449,7 +5464,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o: 
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o: source/app/acme/parallelization/message_queue_global.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_359) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_360) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/message_queue_global.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/message_queue_global.cpp.i: cmake_force
@@ -5464,7 +5479,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o: source/app/acme/parallelization/synchronization_array.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_360) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_361) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/synchronization_array.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_array.cpp.i: cmake_force
@@ -5479,7 +5494,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o: source/app/acme/parallelization/synchronization_object.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_361) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_362) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/synchronization_object.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.i: cmake_force
@@ -5494,7 +5509,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o: source/app/acme/parallelization/synchronization_result.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_362) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_363) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/synchronization_result.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.i: cmake_force
@@ -5509,7 +5524,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o: 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o: source/app/acme/parallelization/synchronized_process.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_363) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_364) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/synchronized_process.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.i: cmake_force
@@ -5524,7 +5539,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o: source/app/acme/parallelization/synchronized_task.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_364) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_365) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/synchronized_task.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.i: cmake_force
@@ -5539,7 +5554,7 @@ source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o: source/app/acme
 source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o: source/app/acme/parallelization/tools.cpp
 source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_365) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_366) "Building CXX object source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/parallelization/tools.cpp.o -c /home/pi/solution/basis/source/app/acme/parallelization/tools.cpp
 
 source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.i: cmake_force
@@ -5554,7 +5569,7 @@ source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o: source/app/acme/platform/object_reference_count_debug.cpp
 source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_366) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_367) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.o -c /home/pi/solution/basis/source/app/acme/platform/object_reference_count_debug.cpp
 
 source/app/acme/CMakeFiles/acme.dir/platform/object_reference_count_debug.cpp.i: cmake_force
@@ -5569,7 +5584,7 @@ source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o: source/app/acme/platform/object_type_counter.cpp
 source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_367) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_368) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/platform/object_type_counter.cpp.o -c /home/pi/solution/basis/source/app/acme/platform/object_type_counter.cpp
 
 source/app/acme/CMakeFiles/acme.dir/platform/object_type_counter.cpp.i: cmake_force
@@ -5584,7 +5599,7 @@ source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o: source/app/acme/CMa
 source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o: source/app/acme/platform/sequence.cpp
 source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_368) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_369) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/platform/sequence.cpp.o -c /home/pi/solution/basis/source/app/acme/platform/sequence.cpp
 
 source/app/acme/CMakeFiles/acme.dir/platform/sequence.cpp.i: cmake_force
@@ -5599,7 +5614,7 @@ source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o: source/app/acme/C
 source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o: source/app/acme/platform/simple_log.cpp
 source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_369) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_370) "Building CXX object source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/platform/simple_log.cpp.o -c /home/pi/solution/basis/source/app/acme/platform/simple_log.cpp
 
 source/app/acme/CMakeFiles/acme.dir/platform/simple_log.cpp.i: cmake_force
@@ -5614,7 +5629,7 @@ source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o: source/app/acme/CMakeFil
 source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o: source/app/acme/process/main.cpp
 source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_370) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_371) "Building CXX object source/app/acme/CMakeFiles/acme.dir/process/main.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/process/main.cpp.o -c /home/pi/solution/basis/source/app/acme/process/main.cpp
 
 source/app/acme/CMakeFiles/acme.dir/process/main.cpp.i: cmake_force
@@ -5629,7 +5644,7 @@ source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o: source/app/acme/CMake
 source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o: source/app/acme/user/user/mouse.cpp
 source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_371) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_372) "Building CXX object source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/user/user/mouse.cpp.o -c /home/pi/solution/basis/source/app/acme/user/user/mouse.cpp
 
 source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.i: cmake_force
@@ -5644,7 +5659,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o: source/app/acme/operating_system/ansi/time.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_372) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_373) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/time.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/time.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.i: cmake_force
@@ -5659,7 +5674,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o: source/app/acme/operating_system/ansi/dir.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_373) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_374) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/dir.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/dir.cpp.i: cmake_force
@@ -5674,7 +5689,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o: source/app/acme/operating_system/ansi/parallelization.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_374) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_375) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/parallelization.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.i: cmake_force
@@ -5689,7 +5704,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o: so
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o: source/app/acme/operating_system/ansi/windows_time.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_375) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_376) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/windows_time.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_time.cpp.i: cmake_force
@@ -5704,7 +5719,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o: source/app/acme/operating_system/ansi/windows_unicode.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_376) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_377) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/windows_unicode.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/windows_unicode.cpp.i: cmake_force
@@ -5719,7 +5734,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o: source/app/acme/operating_system/cairo/nano/_nano.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_377) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_378) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/cairo/nano/_nano.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/_nano.cpp.i: cmake_force
@@ -5734,7 +5749,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o: so
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o: source/app/acme/operating_system/cairo/nano/device.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_378) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_379) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/cairo/nano/device.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/cairo/nano/device.cpp.i: cmake_force
@@ -5749,7 +5764,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o: source/app/acme/operating_system/x11/nano/_nano.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_379) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_380) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/x11/nano/_nano.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/_nano.cpp.i: cmake_force
@@ -5764,7 +5779,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o: source/app/acme/operating_system/x11/nano/display.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_380) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_381) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/x11/nano/display.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/display.cpp.i: cmake_force
@@ -5779,7 +5794,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o: source/app/acme/operating_system/x11/nano/window.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_381) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_382) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/x11/nano/window.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/nano/window.cpp.i: cmake_force
@@ -5794,7 +5809,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o: source/app/acm
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o: source/app/acme/operating_system/x11/_.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_382) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_383) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/x11/_.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/x11/_.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_.cpp.i: cmake_force
@@ -5809,7 +5824,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o: source/app
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o: source/app/acme/operating_system/x11/_atom.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_383) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_384) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/x11/_atom.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/x11/_atom.cpp.i: cmake_force
@@ -5824,7 +5839,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o: source/app/acme/operating_system/xcb/nano/_nano.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_384) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_385) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/xcb/nano/_nano.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/_nano.cpp.i: cmake_force
@@ -5839,7 +5854,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o: source/app/acme/operating_system/xcb/nano/display.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_385) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_386) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/xcb/nano/display.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/display.cpp.i: cmake_force
@@ -5854,7 +5869,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o: source/app/acme/operating_system/xcb/nano/window.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_386) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_387) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/xcb/nano/window.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/nano/window.cpp.i: cmake_force
@@ -5869,7 +5884,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o: source/app/acm
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o: source/app/acme/operating_system/xcb/_.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_387) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_388) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/xcb/_.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/xcb/_.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/xcb/_.cpp.i: cmake_force
@@ -5884,7 +5899,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o: source/app/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o: source/app/acme/operating_system/linux/_.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_388) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_389) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/_.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/_.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_.cpp.i: cmake_force
@@ -5899,7 +5914,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o: source/app/acme/operating_system/linux/_factory.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_389) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_390) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/_factory.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/_factory.cpp.i: cmake_force
@@ -5914,7 +5929,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o: source/app/acme/operating_system/linux/callstack.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_390) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_391) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/callstack.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/callstack.cpp.i: cmake_force
@@ -5929,7 +5944,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o:
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o: source/app/acme/operating_system/linux/cross_win_file.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_391) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_392) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/cross_win_file.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_file.cpp.i: cmake_force
@@ -5944,7 +5959,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o: 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o: source/app/acme/operating_system/linux/cross_win_gdi.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_392) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_393) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/cross_win_gdi.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/cross_win_gdi.cpp.i: cmake_force
@@ -5959,7 +5974,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o: source/app/acme/operating_system/linux/debug.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_393) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_394) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/debug.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/debug.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/debug.cpp.i: cmake_force
@@ -5974,7 +5989,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o: source/app/acme/operating_system/linux/dumpinit.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_394) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_395) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/dumpinit.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/dumpinit.cpp.i: cmake_force
@@ -5989,7 +6004,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o: source/app/acme/operating_system/linux/error.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_395) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_396) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/error.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/error.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/error.cpp.i: cmake_force
@@ -6004,7 +6019,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o: source/app/acme/operating_system/linux/exception.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_396) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_397) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/exception.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/exception.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/exception.cpp.i: cmake_force
@@ -6019,7 +6034,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o: source/app/acme/operating_system/linux/file.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_397) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_398) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/file.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/file.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file.cpp.i: cmake_force
@@ -6034,7 +6049,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o: source/app/acme/operating_system/linux/file_lock.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_398) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_399) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/file_lock.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/file_lock.cpp.i: cmake_force
@@ -6049,7 +6064,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o: source/app/acme/operating_system/linux/graphics.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_399) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_400) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/graphics.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/graphics.cpp.i: cmake_force
@@ -6064,7 +6079,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o: source/app/acme/operating_system/linux/library.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_400) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_401) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/library.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/library.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/library.cpp.i: cmake_force
@@ -6079,7 +6094,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o: source/app/acme/operating_system/linux/linux.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_401) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_402) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/linux.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/linux.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux.cpp.i: cmake_force
@@ -6094,7 +6109,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o: source/app/acme/operating_system/linux/linux2.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_402) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_403) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/linux2.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/linux2.cpp.i: cmake_force
@@ -6109,7 +6124,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o: source/app/acme/operating_system/linux/node.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_403) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_404) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/node.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/node.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/node.cpp.i: cmake_force
@@ -6124,7 +6139,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o: source/app/
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o: source/app/acme/operating_system/linux/os.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_404) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_405) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/os.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/os.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/os.cpp.i: cmake_force
@@ -6139,7 +6154,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o: source/app/acme/operating_system/linux/parallelization.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_405) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_406) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/parallelization.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/parallelization.cpp.i: cmake_force
@@ -6154,7 +6169,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o: source/app/acme/operating_system/linux/process.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_406) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_407) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/process.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/process.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process.cpp.i: cmake_force
@@ -6169,7 +6184,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o: so
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o: source/app/acme/operating_system/linux/process_pid.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_407) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_408) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/process_pid.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/process_pid.cpp.i: cmake_force
@@ -6184,7 +6199,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o: source/app/acme/operating_system/linux/root_tools.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_408) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_409) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/root_tools.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/root_tools.cpp.i: cmake_force
@@ -6199,7 +6214,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o: sou
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o: source/app/acme/operating_system/linux/simple_app.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_409) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_410) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/simple_app.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/simple_app.cpp.i: cmake_force
@@ -6214,7 +6229,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o: source/app/acme/operating_system/linux/system.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_410) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_411) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/system.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/system.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/system.cpp.i: cmake_force
@@ -6229,7 +6244,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o: source/
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o: source/app/acme/operating_system/linux/thread.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_411) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_412) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/thread.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/thread.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/thread.cpp.i: cmake_force
@@ -6244,7 +6259,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o: source/app/acme/operating_system/linux/time.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_412) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_413) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/time.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/time.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/time.cpp.i: cmake_force
@@ -6259,7 +6274,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o: source/app/acme/operating_system/linux/trace.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_413) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_414) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/trace.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/trace.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/trace.cpp.i: cmake_force
@@ -6274,7 +6289,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o: source/app/acme/operating_system/linux/user.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_414) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_415) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/user.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/user.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/user.cpp.i: cmake_force
@@ -6289,7 +6304,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o: source/app/acme/operating_system/linux/util.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_415) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_416) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/util.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/util.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/util.cpp.i: cmake_force
@@ -6304,7 +6319,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o: source/app/acme/operating_system/linux/win_base.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_416) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_417) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/linux/win_base.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/linux/win_base.cpp.i: cmake_force
@@ -6319,7 +6334,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o: source/app/acme/operating_system/posix/base_file.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_417) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_418) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/base_file.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.i: cmake_force
@@ -6334,7 +6349,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o: source/app/acme/operating_system/posix/desktop.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_418) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_419) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/desktop.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/desktop.cpp.i: cmake_force
@@ -6349,7 +6364,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o: sour
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o: source/app/acme/operating_system/posix/file_lock.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_419) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_420) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/file_lock.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.i: cmake_force
@@ -6364,7 +6379,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o: source/app/acme/operating_system/posix/local_memory_map.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_420) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_421) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/local_memory_map.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.i: cmake_force
@@ -6379,7 +6394,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o: source/app/acme/operating_system/posix/process.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_421) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_422) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/process.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/process.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/process.cpp.i: cmake_force
@@ -6394,7 +6409,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o: source/app/acme/operating_system/posix/pthread.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_422) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_423) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/pthread.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/pthread.cpp.i: cmake_force
@@ -6409,7 +6424,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o: source/app/acme/operating_system/posix/parallelization.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_423) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_424) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/parallelization.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/parallelization.cpp.i: cmake_force
@@ -6424,7 +6439,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o: source/ap
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o: source/app/acme/operating_system/posix/time.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_424) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_425) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/time.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/time.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.i: cmake_force
@@ -6439,7 +6454,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o: source/a
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o: source/app/acme/operating_system/posix/timer.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_425) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_426) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/posix/timer.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.i: cmake_force
@@ -6454,7 +6469,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o: source/app/acme/operating_system/winpr_keycode.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_426) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_427) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/winpr_keycode.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_keycode.cpp.i: cmake_force
@@ -6469,7 +6484,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o: sourc
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o: source/app/acme/operating_system/winpr_scancode.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_427) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_428) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/winpr_scancode.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_scancode.cpp.i: cmake_force
@@ -6484,7 +6499,7 @@ source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o: source
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o: source/app/acme/operating_system/ansi/binreloc.cpp
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o: source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_428) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_429) "Building CXX object source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o"
 	cd /home/pi/solution/basis/source/app/acme && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include /home/pi/solution/basis/source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx -o CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o -c /home/pi/solution/basis/source/app/acme/operating_system/ansi/binreloc.cpp
 
 source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.i: cmake_force
@@ -6781,18 +6796,14 @@ acme_OBJECTS = \
 "CMakeFiles/acme.dir/primitive/primitive/work.cpp.o" \
 "CMakeFiles/acme.dir/primitive/promise/signalization.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/_.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_c.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o" \
-"CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/to_string.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/base64.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/bstring.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/ch.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/command_line.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/dup.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/hex.cpp.o" \
@@ -6810,6 +6821,11 @@ acme_OBJECTS = \
 "CMakeFiles/acme.dir/primitive/string/sz.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/unicode.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o" \
+"CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o" \
 "CMakeFiles/acme.dir/primitive/string/x.cpp.o" \
 "CMakeFiles/acme.dir/primitive/text/context.cpp.o" \
 "CMakeFiles/acme.dir/primitive/text/data.cpp.o" \
@@ -7213,18 +7229,14 @@ output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/primitive/virtu
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/primitive/work.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/promise/signalization.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_c.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_ansi.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_conv_ansi.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode16_32.cpp.o
-output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/_unicode32.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/to_string.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/ch.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/ch_class.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/from_integer.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/hex.cpp.o
@@ -7242,6 +7254,11 @@ output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/strx.cpp
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/sz.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/to_integer.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/tokenizer.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode16_32.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.o
+output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/text/context.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/primitive/text/data.cpp.o
@@ -7358,7 +7375,7 @@ output/libacme.so: source/app/acme/CMakeFiles/acme.dir/operating_system/winpr_sc
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/binreloc.cpp.o
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/build.make
 output/libacme.so: source/app/acme/CMakeFiles/acme.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_429) "Linking CXX shared library ../../../output/libacme.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/solution/basis/CMakeFiles --progress-num=$(CMAKE_PROGRESS_430) "Linking CXX shared library ../../../output/libacme.so"
 	cd /home/pi/solution/basis/source/app/acme && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/acme.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

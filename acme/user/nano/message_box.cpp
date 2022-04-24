@@ -103,12 +103,17 @@ void nano_message_box::calculate_size()
    int wScreen = sizeScreen.cx;
    int hScreen = sizeScreen.cy;
 
+   printf("nano_message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+
    int w = wScreen / 2;
    int h = (w / 16) * 5;
    int x = (wScreen - w) / 2;
    int y = (hScreen - h) / 2;
 
    m_rectangle.set_dim(x, y, w, h);
+
+   printf("nano_message_box::calculate_size (w,h)=%d,%d\n", w, h);
+
 
 #endif
 

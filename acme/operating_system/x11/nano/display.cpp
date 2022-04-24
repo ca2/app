@@ -437,7 +437,7 @@ namespace x11
       if(!m_pdisplay)
       {
 
-         m_pdisplay = (Display *) XOpenDisplay(nullptr);
+         m_pdisplay = XOpenDisplay(nullptr);
 
          if (!m_pdisplay)
          {
@@ -450,8 +450,8 @@ namespace x11
 
          rectangleMainScreen.left = 0;
          rectangleMainScreen.top = 0;
-         rectangleMainScreen.right = WidthOfScreen(DefaultScreen(m_pdisplay));
-         rectangleMainScreen.bottom = HeightOfScreen(DefaultScreen(m_pdisplay));
+         rectangleMainScreen.right = WidthOfScreen(DefaultScreenOfDisplay(m_pdisplay));
+         rectangleMainScreen.bottom = HeightOfScreen(DefaultScreenOfDisplay(m_pdisplay));
 
          operating_system_set_main_screen_rectangle(rectangleMainScreen);
 

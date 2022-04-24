@@ -663,11 +663,7 @@ list(APPEND library_source
    primitive/string/_trait_wd32.h
    primitive/string/_trait_wd32_impl.h
    primitive/string/_uhash.h
-   primitive/string/_unicode.cpp
    primitive/string/_unicode.h
-   primitive/string/_unicode16.cpp
-   primitive/string/_unicode16_32.cpp
-   primitive/string/_unicode32.cpp
    primitive/string/_unicode_impl.h
    primitive/string/base64.cpp
    primitive/string/base64.h
@@ -712,6 +708,10 @@ list(APPEND library_source
    primitive/string/to_string.cpp
    primitive/string/tokenizer.cpp
    primitive/string/tokenizer.h
+   primitive/string/unicode.cpp
+   primitive/string/unicode16.cpp
+   primitive/string/unicode16_32.cpp
+   primitive/string/unicode32.cpp
    primitive/string/wildcard.cpp
    primitive/string/x.cpp
    primitive/string/x.h

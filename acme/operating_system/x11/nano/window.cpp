@@ -61,8 +61,6 @@ namespace x11
 
       m_psurface = nullptr;
 
-
-
    }
 
 
@@ -81,16 +79,6 @@ namespace x11
          m_psurface = nullptr;
 
       }
-
-
-//   if (m_hfont)
-//   {
-//
-//      ::DeleteObject(m_hfont);
-//
-//      m_hfont = nullptr;
-//
-//   }
 
    }
 

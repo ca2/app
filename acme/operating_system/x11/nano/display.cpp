@@ -450,8 +450,8 @@ namespace x11
 
          rectangleMainScreen.left = 0;
          rectangleMainScreen.top = 0;
-         rectangleMainScreen.right = WidthOfScreen(DefaultScreen(m_px11display->m_pdisplay));
-         rectangleMainScreen.top = HeightOfScreen(DefaultScreen(m_px11display->m_pdisplay));
+         rectangleMainScreen.right = WidthOfScreen(DefaultScreen(m_pdisplay));
+         rectangleMainScreen.bottom = HeightOfScreen(DefaultScreen(m_pdisplay));
 
          operating_system_set_main_screen_rectangle(rectangleMainScreen);
 

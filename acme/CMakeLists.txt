@@ -619,7 +619,7 @@ list(APPEND library_source
    primitive/string/_base.h
    primitive/string/_base_impl.h
    primitive/string/_base_impl.h
-   primitive/string/_c.cpp
+   #primitive/string/_c.cpp
    primitive/string/_c.h
    primitive/string/_c_impl.h
    primitive/string/_c_inline.h

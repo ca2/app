@@ -96,25 +96,14 @@ inline void to_string(string& str, const i32& i);
 inline void to_string(string& str, const u32& u);
 inline void to_string(string& str, const i64& i);
 inline void to_string(string& str, const u64& u);
-inline void to_string(string& str, const unsigned long& ul);
+
+
 CLASS_DECL_ACME void to_string(string& str, const float& f);
 CLASS_DECL_ACME void to_string(string& str, const double& d);
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
-
-CLASS_DECL_ACME void to_string(string& str, const long int &i);
-
-#endif
-
-
-#ifdef WINDOWS
-
-inline void to_string(string& str, const long& i);
-inline void to_string(string& str, const ::i32& i);
-inline void to_string(string& str, const ::u32& i);
-
-#endif
+CLASS_DECL_ACME void to_string(string& str, const unsigned long & ul);
+CLASS_DECL_ACME void to_string(string& str, const long int & i);
 
 
 inline void to_string(string& str, const string& strSrc);
@@ -124,9 +113,6 @@ inline void to_string(string & str, const ::atom & atom);
 inline void to_string(string & str, const ::wd16string & wd16str);
 
 inline void to_string(string & str, const ::wd32string & wd16str);
-
-
-// } // namespace str
 
 
 

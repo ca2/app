@@ -96,7 +96,7 @@ namespace user
 
    public:
 
-
+      auto_pointer < _get_file_image_ > m_pgetfileimage;
       //class CLASS_DECL_AURA thread :
       //   virtual public ::thread
       //{
@@ -111,7 +111,7 @@ namespace user
          //thread(shell * pshell);
          //~thread() override;
 
-//         void init_tashread() override;
+         void init_task() override;
 
          void run() override;
 

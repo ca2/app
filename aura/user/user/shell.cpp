@@ -169,15 +169,9 @@ namespace user
 
       //}
 
+      branch_synchronously();
+
       synchronous_lock synchronouslock(mutex());
-
-      branch();
-
-      do_initialize();
-
-      m_bPendingUpdate = true;
-
-      m_bInitialized = true;
 
       //return success;
 
@@ -421,7 +415,6 @@ namespace user
    void shell::get_scheduled_image_key(image_key & imagekey)
    {
 
-
       while (task_get_run())
       {
 
@@ -451,7 +444,6 @@ namespace user
          }
 
       }
-
 
    }
 
@@ -1624,17 +1616,38 @@ namespace user
       return true;
          
    }
+
+
+   void shell::init_task()
+   {
+
+      m_pgetfileimage = new_get_file_image();
+
+      do_initialize();
+
+      m_bPendingUpdate = true;
+
+      m_bInitialized = true;
+
+   }
       
 
    void shell::run()
    {
 
-      auto_pointer < _get_file_image_ > pgetfileimage(new_get_file_image());
-
       while (task_get_run())
       {
-         
-         get_scheduled_image_key(pgetfileimage->m_imagekey);
+
+         if (m_bAddDefaultIcons)
+         {
+
+            m_bAddDefaultIcons = false;
+
+            on_add_default_file_image(*m_pgetfileimage);
+
+         }
+
+         get_scheduled_image_key(m_pgetfileimage->m_imagekey);
 
          if (!task_get_run())
          {
@@ -1643,50 +1656,48 @@ namespace user
 
          }
 
-         if (m_bAddDefaultIcons)
-         {
-
-            m_bAddDefaultIcons = false;
-
-            on_add_default_file_image(*pgetfileimage);
-
-         }
-
          try
          {
 
-            pgetfileimage->m_pathProcessed.Empty();
+            m_pgetfileimage->m_pathProcessed.Empty();
             
-            pgetfileimage->m_pathFinal.Empty();
+            m_pgetfileimage->m_pathFinal.Empty();
 
-            auto strPath = pgetfileimage->m_imagekey.m_strPath;
+            auto strPath = m_pgetfileimage->m_imagekey.m_strPath;
 
-            auto eicon = pgetfileimage->m_imagekey.m_eicon;
+            auto eicon = m_pgetfileimage->m_imagekey.m_eicon;
 
-            _get_file_image(*pgetfileimage);
+            _get_file_image(*m_pgetfileimage);
 
-            pgetfileimage->m_imagekey.m_strPath = strPath;
+            m_pgetfileimage->m_imagekey.m_strPath = strPath;
 
-            pgetfileimage->m_imagekey.m_strExtension.Empty();
+            m_pgetfileimage->m_imagekey.m_strExtension.Empty();
 
-            pgetfileimage->m_imagekey.m_iIcon = 0;
+            m_pgetfileimage->m_imagekey.m_iIcon = 0;
 
-            pgetfileimage->m_imagekey.m_eicon = eicon;
+            m_pgetfileimage->m_imagekey.m_eicon = eicon;
 
             synchronous_lock synchronouslock(mutex());
 
-            if (pgetfileimage->m_iImage & 0x80000000)
+            if (m_pgetfileimage->m_iImage & 0x80000000)
             {
 
-               m_imagemap.erase_key(pgetfileimage->m_imagekey);
+               m_imagemap.erase_key(m_pgetfileimage->m_imagekey);
 
             }
             else
             {
 
-               m_imagemap.set_at(pgetfileimage->m_imagekey, pgetfileimage->m_iImage);
+               auto & iImage = m_imagemap[m_pgetfileimage->m_imagekey];
 
-               warn_ok(pgetfileimage->m_imagekey.m_strPath);
+               if (iImage <= 0)
+               {
+
+                  iImage = m_pgetfileimage->m_iImage;
+
+               }
+
+               warn_ok(m_pgetfileimage->m_imagekey.m_strPath);
 
             }
 
@@ -1815,14 +1826,22 @@ namespace user
    i32 shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
    {
 
-      getfileimage.m_imagekey.m_strPath = strPath;
+      getfileimage.m_imagekey.set_path(strIconParam, false);
       getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
       getfileimage.m_imagekey.m_eattribute = eattribute;
       getfileimage.m_imagekey.m_eicon = eicon;
 
-      if (!reserve_image(getfileimage))
-      {
+      bool bReserved = reserve_image(getfileimage);
 
+      getfileimage.m_imagekey.set_path(strPath, false);
+
+      auto & iImage = m_imagemap[getfileimage.m_imagekey];
+
+      iImage = getfileimage.m_iImage;
+
+      if(!bReserved)
+      {
+      
          return getfileimage.m_iImage;
 
       }
@@ -1831,7 +1850,7 @@ namespace user
 
       ::file::path pathIcon;
 
-      m_imagemap[getfileimage.m_imagekey] = getfileimage.m_iImage;
+      //m_imagemap[getfileimage.m_imagekey] = getfileimage.m_iImage;
 
       if (strIcon.begins_eat_ci("icon://"))
       {
@@ -1841,6 +1860,18 @@ namespace user
          auto pcontextimage = pcontext->context_image();
 
          ::file::path pathFolder = m_psystem->m_pacmedirectory->ca2roaming() / "matter/icon";
+
+         //::file::path pathIco = pathFolder / "ico" / (strIcon + ".ico");
+
+         //if (m_psystem->m_pacmefile->exists(pathIco))
+         //{
+
+         //   set_image_ico()
+
+         //   return getfileimage.m_iImage;
+
+         //}
+
 
          __pointer(::image) pimage;
 

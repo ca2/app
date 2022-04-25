@@ -472,6 +472,22 @@ namespace heap
 } // namespace memory
 
 
+template < typename TYPE >
+inline void copy_construct_count(TYPE * p, ::count c, const TYPE & t)
+{
+
+   while (c > 0)
+   {
+
+      new(p)TYPE(t);
+
+      p++;
+
+   }
+
+}
+
+
 namespace allocator
 {
 

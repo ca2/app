@@ -498,10 +498,11 @@ public:
 
 
    ::count set_size(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
-   ::count allocate(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count allocate(::count nNewSize, ::count nGrowBy = -1, const TYPE * ptype = nullptr); // does not call default constructors on new items/elements
    ::count allocate_in_bytes(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
    ::count set_raw_size(::count nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
-   ::count resize(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
+   ::count resize(::count nNewSize) { return set_size(nNewSize); } // does not call default constructors on new items/elements
+   ::count resize(::count nNewSize, ARG_TYPE t, ::count nGrowBy = -1); // does not call default constructors on new items/elements
 
    void free_extra();
    void destroy() override;

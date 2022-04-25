@@ -30,10 +30,10 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~array_base ()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::resize(::count nNewSize, ::count nGrowBy)
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::resize(::count nNewSize, ARG_TYPE t, ::count nGrowBy)
 {
 
-   return allocate(nNewSize,nGrowBy);
+   return allocate(nNewSize, nGrowBy, &t);
 
 }
 
@@ -697,7 +697,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate(::count nNewSize,::count nGrowBy)
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate(::count nNewSize,::count nGrowBy, const TYPE * ptype)
 {
 
    ::count countOld = get_count();
@@ -808,7 +808,18 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
 #endif
 
-      ALLOCATOR::construct_count(m_pData,nNewSize);
+      if (::is_null(ptype))
+      {
+
+         ALLOCATOR::construct_count(m_pData, nNewSize);
+
+      }
+      else
+      {
+
+         copy_construct_count(m_pData, nNewSize, *ptype);
+
+      }
 
       m_nSize = nNewSize;
 
@@ -821,7 +832,18 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       if(nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct_count(m_pData + m_nSize,nNewSize - m_nSize);
+         if (::is_null(ptype))
+         {
+
+            ALLOCATOR::construct_count(m_pData + m_nSize, nNewSize - m_nSize);
+
+         }
+         else
+         {
+
+            copy_construct_count(m_pData + m_nSize, nNewSize - m_nSize, *ptype);
+
+         }
 
       }
       else if(m_nSize > nNewSize)
@@ -943,7 +965,18 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       if (nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - m_nSize);
+         if (::is_null(ptype))
+         {
+
+            ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - m_nSize);
+
+         }
+         else
+         {
+
+            copy_construct_count(pNewData + m_nSize, nNewSize - m_nSize, *ptype);
+
+         }
 
       }
 

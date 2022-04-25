@@ -559,6 +559,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primiti
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_c.h
@@ -579,7 +580,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primiti
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -612,6 +612,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primiti
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -1159,6 +1160,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_c.h
@@ -1179,7 +1181,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -1212,6 +1213,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -1759,6 +1761,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/ac
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_c.h
@@ -1779,7 +1782,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/ac
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/_impl.h
@@ -1812,6 +1814,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/ac
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch: source/app/acme/primitive/string/x/x_charcategory.h
@@ -2359,6 +2362,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/prim
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_c.h
@@ -2379,7 +2383,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/prim
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -2412,6 +2415,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/prim
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -2959,6 +2963,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o:
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_c.h
@@ -2979,7 +2984,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o:
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -3012,6 +3016,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o:
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -3560,6 +3565,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/pr
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_c.h
@@ -3580,7 +3586,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/pr
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -3613,6 +3618,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/pr
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -4160,6 +4166,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_c.h
@@ -4180,7 +4187,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -4213,6 +4219,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -4761,6 +4768,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_c.h
@@ -4781,7 +4789,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -4814,6 +4821,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/pri
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h
@@ -5362,6 +5370,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primi
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/__c_wd32_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/__c_wide.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/__c_wide_impl.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/__string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_base.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_base_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_c.h
@@ -5382,7 +5391,6 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primi
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_compare.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_compare_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_conv.h
-source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_conv_ansi.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_conv_ansi_impl.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_defer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/_impl.h
@@ -5415,6 +5423,7 @@ source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primi
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/stringtow.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/sz.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/to_integer.h
+source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/to_string.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/tokenizer.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/x.h
 source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o: source/app/acme/primitive/string/x/x_charcategory.h

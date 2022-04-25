@@ -285,6 +285,7 @@ output/libgpu_opengl.so: source/app/gpu_opengl/CMakeFiles/gpu_opengl.dir/shader.
 output/libgpu_opengl.so: source/app/gpu_opengl/CMakeFiles/gpu_opengl.dir/context_egl.cpp.o
 output/libgpu_opengl.so: source/app/gpu_opengl/CMakeFiles/gpu_opengl.dir/context_glx.cpp.o
 output/libgpu_opengl.so: source/app/gpu_opengl/CMakeFiles/gpu_opengl.dir/build.make
+output/libgpu_opengl.so: output/libwindowing_x11.so
 output/libgpu_opengl.so: output/libaura_posix.so
 output/libgpu_opengl.so: output/libaura.so
 output/libgpu_opengl.so: output/libaqua.so

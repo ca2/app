@@ -33,6 +33,7 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "DESKTOP_ENVIRONMENT_GNOME"
   "RASPBIAN"
   "UNICODE"
   "WITH_X11"
@@ -64,6 +65,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/pi/solution/basis/operating-system/operating-system-posix/windowing_x11/CMakeFiles/windowing_x11.dir/DependInfo.cmake"
   "/home/pi/solution/basis/operating-system/operating-system-posix/aura_posix/CMakeFiles/aura_posix.dir/DependInfo.cmake"
   "/home/pi/solution/basis/source/app/aura/CMakeFiles/aura.dir/DependInfo.cmake"
   "/home/pi/solution/basis/source/app/aqua/CMakeFiles/aqua.dir/DependInfo.cmake"

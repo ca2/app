@@ -22,7 +22,7 @@ public:
 
 #define TOKEN_CONCAT_PHASE1(x, y) x ## y
 
-#define TOKEN_CONCAT(x, y) TOKEN_CONCAT_PHASE1(x, y)
+#define TOKEN_CONCATENATE(x, y) TOKEN_CONCAT_PHASE1(x, y)
 
 #define AUTO_INTERNAL1(lambda_function_name, at_scope_exit_var_name, ...)                                                                                                     \
                                                                                                                                                                               \
@@ -31,7 +31,7 @@ auto lambda_function_name = [&]() { __VA_ARGS__; };                             
 at_scope_exit < decltype(lambda_function_name) > at_scope_exit_var_name(lambda_function_name);
 
 
-#define AUTO_INTERNAL2(counter, ...) AUTO_INTERNAL1(TOKEN_CONCAT(auto_lambda_function_, counter), TOKEN_CONCAT(auto_lambda_instance_, counter), __VA_ARGS__)
+#define AUTO_INTERNAL2(counter, ...) AUTO_INTERNAL1(TOKEN_CONCATENATE(auto_lambda_function_, counter), TOKEN_CONCATENATE(auto_lambda_instance_, counter), __VA_ARGS__)
 
 
 // put a function/member call even with args... this will be called on exit, regardless premature returns/exceptions

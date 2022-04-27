@@ -210,13 +210,13 @@ namespace app_shader
 
       m_pcontext->translate_shader(strFragment);
 
-      if (::succeeded(estatus))
-      {
+      //if (::succeeded(estatus))
+      //{
 
          //estatus = 
          m_pprogram->create_program(this, strProjection, strFragment);
 
-      }
+      //}
 
       ::color::color color(crText);
 

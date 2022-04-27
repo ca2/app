@@ -15,16 +15,15 @@ namespace app_shader
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;
-      __pointer(::gpu::context)      m_pcontext;
-      __pointer(::gpu::program)      m_pprogram;
-      rectangle_i32                                m_rectangle;
-      ::user::interaction *               m_pinteraction;
+      __pointer(::gpu::context)           m_pcontext;
+      __pointer(::gpu::program)           m_pprogram;
+      rectangle_i32                       m_rectangle;
       string                              m_strFont1;
       string_map < ::image_pointer >      m_pimagemap;
       ::image_pointer                     m_pimage1;
       ::image_pointer                     m_pimage2;
-      ::color::hls                               m_hlsText;
-      ::duration                              m_durationStart;
+      ::color::hls                        m_hlsText;
+      ::duration                          m_durationStart;
       ::gpu::enum_shader_source           m_eshadersource;
       ::image_pointer                     m_pimageLabel;
       string                              m_strLastLabel;
@@ -34,7 +33,7 @@ namespace app_shader
 
 
       render();
-      virtual ~render();
+      ~render() override;
 
 
       virtual void initialize(::object * pobject) override;

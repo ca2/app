@@ -1318,9 +1318,11 @@ namespace acme
 
 
 
-CLASS_DECL_ACME ::color::color dk_red() // <3 tbs
+CLASS_DECL_ACME ::color::color dk_red() // <3ThomasBS!!
 {
+   
    return argb(255, 200, 16, 46);
+
 }
 
 

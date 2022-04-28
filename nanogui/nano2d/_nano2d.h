@@ -16,6 +16,14 @@ inline ::color::color __color(NANO2D_COLOR color)
 }
 
 
+inline NANO2D_COLOR __nano2d_color(const ::color::color & color)
+{
+
+   return { color.fr(), color.fg(), color.fb(), color.fa()};
+
+}
+
+
 #include "font_sink.h"
 
 

@@ -412,5 +412,5 @@ auto inline argb(A a, R r, G g, B b) { return ::color::color(r, g, b, a); }
 inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
 auto inline opaque(const ::color::color& color) { return alpha(255, color); }
 
-
+CLASS_DECL_ACME::color::color _020GetColor(::index i);
 

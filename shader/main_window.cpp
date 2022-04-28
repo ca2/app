@@ -282,7 +282,7 @@ namespace app_shader
 
          }
 
-         prender->m_pinteraction = this;
+//         prender->m_pinteraction = this;
 
          string strText;
 

@@ -36,8 +36,8 @@ namespace appearance
       virtual void on_mouse_enter(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
       virtual void on_mouse_leave();
 
-      virtual bool on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
-      virtual bool on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
+      virtual bool on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
+      virtual bool on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
 
       virtual bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);
       virtual bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers);

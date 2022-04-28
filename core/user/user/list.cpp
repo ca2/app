@@ -1015,7 +1015,7 @@ namespace user
 
    bool list::_001OnUpdateItemCount(u32 dwFlags)
    {
-
+      
       __UNREFERENCED_PARAMETER(dwFlags);
 
       auto pointOffset = get_viewport_offset();
@@ -1096,15 +1096,6 @@ namespace user
       cache_hint();
 
       set_need_layout();
-
-      //FORMATTED_TRACE("list::_001OnUpdateItemCount ItemCount %d\n", m_nItemCount);
-
-      //if (m_bGroup)
-      //{
-
-        // FORMATTED_TRACE("list::_001OnUpdateItemCount GroupCount %d\n", m_nGroupCount);
-
-      //}
 
       queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
          {
@@ -3519,7 +3510,7 @@ namespace user
 
                m_iTimerHoverSelect = 0;
 
-               //SetTimer(e_timer_hover_select, 800, nullptr);
+               SetTimer(e_timer_hover_select, 0.2_s, nullptr);
 
             }
 
@@ -5265,13 +5256,6 @@ namespace user
    }
 
 
-
-
-
-
-
-
-
    void list::_001UpdateColumns()
    {
 
@@ -5379,8 +5363,6 @@ namespace user
 
       pcreate->m_lresult = 0;
 
-      //on_ui_event(event_create, object_list, this);
-
       pmessage->m_bRet = false;
 
       _001UpdateColumns();
@@ -5468,34 +5450,34 @@ namespace user
    }
 
 
-   void list::_001ClearSelection()
-   {
+   //void list::_001ClearSelection()
+   //{
 
-      m_rangeSelection.clear();
+   //   m_rangeSelection.clear();
 
-      _001OnSelectionChange();
+   //   _001OnSelectionChange();
 
-   }
+   //}
 
 
-   void list::_001SetSelection(const range &range)
-   {
-      m_rangeSelection = range;
-      on_select();
-      _001OnSelectionChange();
-   }
+   //void list::_001SetSelection(const range &range)
+   //{
+   //   m_rangeSelection = range;
+   //   on_select();
+   //   _001OnSelectionChange();
+   //}
 
    
-   void list::_001AddSelection(const item_range & itemrange)
-   {
-   
-      m_rangeSelection.add_item(itemrange);
-
-//      on_select();
-
-      _001OnSelectionChange();
-
-   }
+//   void list::_001AddSelection(const item_range & itemrange)
+//   {
+//   
+//      m_rangeSelection.add_item(itemrange);
+//
+////      on_select();
+//
+//      _001OnSelectionChange();
+//
+//   }
 
 
    void list::_001SetHighlightRange(range & range)
@@ -7197,18 +7179,20 @@ namespace user
    }
 
 
-   void list::_001OnSelectionChange()
-   {
+   //void list::_001OnSelectionChange()
+   //{
 
-      auto ptopic = create_topic(::id_after_change_cur_sel);
+   //   auto ptopic = create_topic(::id_after_change_cur_sel);
 
-      ptopic->m_puserelement = this;
+   //   ptopic->m_puserelement = this;
 
-      route(ptopic);
+   //   route(ptopic);
 
-      set_need_redraw();
+   //   set_need_redraw();
 
-   }
+   //   post_redraw();
+
+   //}
 
 
    void list::set_current_item(::item * pitem, const ::action_context & context)

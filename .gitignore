@@ -3,6 +3,7 @@ workspace.xml
 cmake-build-*/
 cmake-time-*/
 **/.visualgdb
+**/CMakeFiles
 **/.vs
 **/.DS_Store
 **/.git

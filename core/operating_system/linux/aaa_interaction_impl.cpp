@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         FORMATTED_INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __c_str(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 

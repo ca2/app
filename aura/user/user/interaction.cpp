@@ -3335,6 +3335,10 @@ namespace user
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
+
       point_i32 pointScroll = m_pointScroll;
 
       if (!pointScroll.is_null())

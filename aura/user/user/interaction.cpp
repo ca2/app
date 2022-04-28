@@ -16236,7 +16236,7 @@ namespace user
 
             auto ekeyModifiers = psession->key_modifiers();
 
-            if (pappearance->on_button_down(pointClient, ekeyModifiers))
+            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers))
             {
 
                pmouse->m_bRet = true;
@@ -16409,7 +16409,7 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (pappearance->on_button_up(pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
          {
 
             pmessage->m_bRet = true;
@@ -16656,6 +16656,36 @@ namespace user
 
       }
 
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            ::point_i32 pointClient;
+
+            _screen_to_client(pointClient, pmouse->m_point);
+
+            auto psession = m_puserinteraction->get_session();
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers))
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
+
+
       auto pcontextmenu = __new(::message::context_menu);
 
       pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam)(iptr)get_oswindow(), pmouse->m_point.lparam());
@@ -16676,6 +16706,32 @@ namespace user
          return;
 
       }
+
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         ::point_i32 pointClient;
+
+         _screen_to_client(pointClient, pmouse->m_point);
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeyModifiers))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+
 
    }
 

@@ -81,7 +81,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;
@@ -89,7 +89,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
    {
 
       return false;

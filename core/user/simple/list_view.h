@@ -11,18 +11,14 @@ public:
 
 
    simple_list_view();
-   virtual ~simple_list_view();
+   ~simple_list_view() override;
 
-   void install_message_routing(::channel * pchannel) override;
-
-   oswindow GetHandle();
-   __pointer(::user::interaction) OnDrawInterfaceGetWnd();
-
-   virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
-   virtual bool pre_create_window(::user::system * pusersystem) override;
 
    void assert_ok() const override;
    void dump(dump_context & dumpcontext) const override;
+
+
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

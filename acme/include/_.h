@@ -1702,9 +1702,7 @@ using string = string_base < ansichar >;
 using wstring = string_base < widechar >;
 
 
-inline const ansichar *__c_str(const string &str);
-
-
+#define __c_str(x) __string((x)).c_str()
 
 
 template < typename T >

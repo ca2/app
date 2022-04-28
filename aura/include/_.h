@@ -809,8 +809,6 @@ CLASS_DECL_AURA void aura_ref();
 //using wstring = string_base < widechar >;
 //
 //
-//inline const ansichar* __c_str(const string& str);
-//
 //class machine_event_central;
 //
 //

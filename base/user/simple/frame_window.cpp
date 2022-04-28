@@ -1992,7 +1992,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          rectangleFrame = screen_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str((::i32)layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2043,9 +2043,9 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
 <<<<<<< HEAD
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str((::i32) layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
 =======
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str((::i32)layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
 >>>>>>> ce1ac5f495f1f7aa495721230e21e5a297f2712d
 
       if (pusersystem->m_pcreate->m_bMakeVisible)

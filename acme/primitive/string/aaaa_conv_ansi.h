@@ -52,22 +52,11 @@ template < >
 inline string __string(const natural_widestring & naturalwidestr);
 
 
-#define __cstr(t) (__string(t).c_str())
-
-
-// namespace str
-// {
-
-
 template < typename TYPE >
 inline void to_string(string & str, const TYPE & t);
 
 template < typename TYPE >
 inline void to_string(string & str, const ::matter & t);
-
-//#ifdef _UWP
-//inline void to_string(string& str, Platform::String^ strSource);
-//#endif
 
 inline void to_string(string& str, const bool & b);
 

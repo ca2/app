@@ -596,7 +596,12 @@ namespace earth
 
    #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
       char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+   #if OSBIT == 32
+      const time_t timet = (const time_t) time.m_i;
+      struct tm * ptmTemp = localtime(&timet);
+      #else
       struct tm * ptmTemp = localtime(&time.m_i);
+      #endif
       if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
       {
          szBuffer[0] = '\0';

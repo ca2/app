@@ -61,6 +61,13 @@ void nano_device::draw_text123(const ::string & str, const ::rectangle_i32 & rec
 
          r.top += size.cy;
 
+         if (r.top > rectangleText.bottom)
+         {
+
+            break;
+
+         }
+
       }
 
    }

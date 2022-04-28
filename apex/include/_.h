@@ -362,7 +362,7 @@ using string = string_base < ansichar >;
 using wstring = string_base < widechar >;
 
 
-inline const ansichar* __c_str(const string& str);
+inline const ansichar * __c_str(const string& str);
 
 class machine_event_central;
 

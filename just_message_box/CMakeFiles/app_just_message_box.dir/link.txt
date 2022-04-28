@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../library/libapp_just_message_box.a CMakeFiles/app_just_message_box.dir/_.cpp.o CMakeFiles/app_just_message_box.dir/application.cpp.o CMakeFiles/app_just_message_box.dir/framework.cpp.o
+/usr/bin/ranlib ../../../library/libapp_just_message_box.a

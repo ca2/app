@@ -476,3 +476,6 @@ namespace str
 } // namespace str
 
 
+inline CLASS_DECL_ACME string string_from_strdup(const ansichar * psz);
+
+

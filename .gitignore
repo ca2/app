@@ -2,11 +2,13 @@ time-*/
 workspace.xml
 cmake-build-*/
 cmake-time-*/
+**/.visualgdb
 **/.vs
 **/.DS_Store
 **/.git
 **/.svn
 **/.link_object
+**/VisualGDB
 
 **/CVS
 .DS_Store

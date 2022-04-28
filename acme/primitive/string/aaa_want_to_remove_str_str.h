@@ -256,48 +256,6 @@ namespace str
    inline CLASS_DECL_ACME i32 to_with_fallback(const char * psz, i32 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
    inline CLASS_DECL_ACME i64 to_with_fallback(const char * psz, i64 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
 
-   // template < typename T >
-   // inline string from(const T & t);
-
-   // template < typename T >
-   // inline string  from_int(const T & t);
-
-   // template < typename T >
-   // inline string  from_u(const T & t);
-
-   // inline CLASS_DECL_ACME string from_strdup(const char * psz);
-
-
-
-
-
-   /*inline CLASS_DECL_ACME string  to_string(i32 i);
-   inline CLASS_DECL_ACME string  to_string(u32 u);
-   inline CLASS_DECL_ACME string  to_string(i64 i);
-   inline CLASS_DECL_ACME string  to_string(u64 u);
-   inline CLASS_DECL_ACME string  to_string(const ::payload & payload);
-   inline CLASS_DECL_ACME string  to_string(const atom & atom);
-   inline CLASS_DECL_ACME string  to_string(double d);
-   inline CLASS_DECL_ACME string  to_string(float f);*/
-
-   /*
-      CLASS_DECL_ACME  string &       to_string(string & str, i32 i);
-      CLASS_DECL_ACME  string &       to_string(string & str, u32 u);
-      CLASS_DECL_ACME  string &       to_string(string & str, i64 i);
-      CLASS_DECL_ACME  string &       to_string(string & str, u64 u);
-      CLASS_DECL_ACME  string &       to_string(string & str, float f);
-      CLASS_DECL_ACME  string &       to_string(string & str, double d);
-      inline CLASS_DECL_ACME string & to_string(string & str, const atom & atom);
-      inline CLASS_DECL_ACME string & to_string(string & str, const ::payload & payload);
-
-
-   #ifdef ANDROID
-
-      CLASS_DECL_ACME  string &       to_string(string & str, long int i);
-
-   #endif
-   */
-
 
    //inline CLASS_DECL_ACME string   i64toa(i64 i);
 

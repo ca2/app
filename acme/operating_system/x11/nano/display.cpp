@@ -339,12 +339,12 @@ namespace x11
 
       synchronous_lock synchronouslock(mutex());
 
-      if(pevent->type == ButtonPress)
-      {
+      // if(pevent->type == ButtonPress)
+      // {
 
-         output_debug_string("ButtonPress");
+      //    output_debug_string("ButtonPress");
 
-      }
+      // }
 
       for (; i < m_eventlistenera.get_count(); i++)
       {
@@ -437,16 +437,41 @@ namespace x11
       if(!m_pdisplay)
       {
 
-         m_pdisplay = (Display *) XOpenDisplay(nullptr);
-
-         if (!m_pdisplay)
-         {
-
-            throw ::exception(error_null_pointer);
-
-         }
+         set_X11_Display(XOpenDisplay(nullptr));
 
       }
+
+   }
+
+
+   void display::set_X11_Display(Display * pdisplay)
+   {
+
+      m_pdisplay = pdisplay;
+
+      if (!m_pdisplay)
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
+
+               ::rectangle_i32 rectangleMainScreen;
+
+      auto pscreen = DefaultScreenOfDisplay(m_pdisplay);
+
+      int wScreen = WidthOfScreen(pscreen);
+      int hScreen = HeightOfScreen(pscreen);
+
+      //printf("::x11::display::init_task pscreen=%" PRIxPTR "\n", pscreen);
+      //printf("::x11::display::init_task (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
+
+      rectangleMainScreen.left = 0;
+      rectangleMainScreen.top = 0;
+      rectangleMainScreen.right = wScreen;
+      rectangleMainScreen.bottom = hScreen;
+
+      operating_system_set_main_screen_rectangle(rectangleMainScreen);
 
    }
 

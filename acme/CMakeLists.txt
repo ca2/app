@@ -619,7 +619,7 @@ list(APPEND library_source
    primitive/string/_base.h
    primitive/string/_base_impl.h
    primitive/string/_base_impl.h
-   primitive/string/_c.cpp
+   #primitive/string/_c.cpp
    primitive/string/_c.h
    primitive/string/_c_impl.h
    primitive/string/_c_inline.h
@@ -641,7 +641,7 @@ list(APPEND library_source
    primitive/string/_compare.h
    primitive/string/_compare_impl.h
    primitive/string/_conv.h
-   primitive/string/_conv_ansi.cpp
+   #primitive/string/_conv_ansi.cpp
    primitive/string/_conv_ansi.h
    primitive/string/_conv_ansi_impl.h
    primitive/string/_defer.h
@@ -652,6 +652,8 @@ list(APPEND library_source
    primitive/string/_str.h
    primitive/string/_str_impl.h
    primitive/string/_string_wide.h
+   primitive/string/to_string.cpp
+   primitive/string/to_string.h
    primitive/string/_trait.h
    primitive/string/_trait_ansi.h
    primitive/string/_trait_ansi_impl.h
@@ -661,11 +663,7 @@ list(APPEND library_source
    primitive/string/_trait_wd32.h
    primitive/string/_trait_wd32_impl.h
    primitive/string/_uhash.h
-   primitive/string/_unicode.cpp
    primitive/string/_unicode.h
-   primitive/string/_unicode16.cpp
-   primitive/string/_unicode16_32.cpp
-   primitive/string/_unicode32.cpp
    primitive/string/_unicode_impl.h
    primitive/string/base64.cpp
    primitive/string/base64.h
@@ -676,6 +674,7 @@ list(APPEND library_source
    primitive/string/ch.h
    primitive/string/ch_class.cpp
    primitive/string/ch_class.h
+   primitive/string/command_line.cpp
    primitive/string/composite.h
    primitive/string/dup.cpp
    primitive/string/from_integer.cpp
@@ -706,8 +705,14 @@ list(APPEND library_source
    primitive/string/sz.h
    primitive/string/to_integer.cpp
    primitive/string/to_integer.h
+   primitive/string/to_string.cpp
    primitive/string/tokenizer.cpp
    primitive/string/tokenizer.h
+   primitive/string/unicode.cpp
+   primitive/string/unicode16.cpp
+   primitive/string/unicode16_32.cpp
+   primitive/string/unicode32.cpp
+   primitive/string/wildcard.cpp
    primitive/string/x.cpp
    primitive/string/x.h
    primitive/string/x/x_charcategory.h
@@ -2069,7 +2074,11 @@ endif ()
 add_library(acme SHARED ${library_source})
 
 
+if(NOT DEFINED NO_PRECOMPILED_HEADER)
+
 target_precompile_headers(acme PRIVATE framework.h)
+
+endif()
 
 
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
@@ -2089,7 +2098,9 @@ elseif(LINUX OR FREEBSD)
 
 #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
-   pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   if(NOT DONT_USE_PKG_CONFIG)
+      pkg_check_modules(PKGCONFIG freetype2 libidn ${extra_pkg_modules})
+   endif()
    target_compile_options(acme PRIVATE -fpermissive)
       target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})

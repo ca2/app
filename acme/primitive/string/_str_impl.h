@@ -1239,17 +1239,18 @@ inline void to_string(string& str, const u64& u)
 }
 
 
-#if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
-
-
-inline void to_string(string& str, const unsigned long & ul)
-{
-
-   str = ui64toa_dup(ul, 10);
-
-}
-
-#endif
+//<<<<<<< HEAD
+//#if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
+//
+//
+//inline void to_string(string& str, const unsigned long & ul)
+//{
+//
+//   str = ui64toa_dup(ul, 10);
+//
+//}
+//
+//#endif
 
 
 CLASS_DECL_ACME void to_string(string& str, const float & f);
@@ -1257,52 +1258,52 @@ CLASS_DECL_ACME void to_string(string& str, const float & f);
 
 CLASS_DECL_ACME void to_string(string& str, const double & d);
 
-
-#if defined(ANDROID) || defined(RASPBIAN)
-
-inline void to_string(string& str, const long int& i)
-{
-
-   str = i64toa_dup(i);
-
-}
-
-#endif
-
-
-
-#ifdef WINDOWS
-
-
-inline void to_string(string & str, const long & l)
-{
-
-   str = i64toa_dup(l);
-
-}
+//
+//#if defined(ANDROID) || defined(RASPBIAN)
+//
+//inline void to_string(string& str, const long int& i)
+//{
+//
+//   str = i64toa_dup(i);
+//
+//}
+//
+//#endif
 
 
 
-inline void to_string(string & str, const unsigned long &ul)
-{
-
-   str = ui64toa_dup(ul);
-
-}
-
-
-#elif defined(__APPLE__)
-
-
-inline void to_string(string& str, const long& l)
-{
-
-   str = i64toa_dup(l);
-
-}
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//inline void to_string(string & str, const long & l)
+//{
+//
+//   str = i64toa_dup(l);
+//
+//}
+//
+//
+//
+////inline void to_string(string & str, const unsigned long &ul)
+////{
+////
+////   str = ui64toa_dup(ul);
+////
+////}
+//
+//
+//#elif defined(__APPLE__)
+//
+//
+//inline void to_string(string& str, const long& l)
+//{
+//
+//   str = i64toa_dup(l);
+//
+//}
+//
+//
+//#endif
 
 
 //} // namespace str
@@ -1376,6 +1377,8 @@ inline void to_string(string& str, const long& l)
 // namespace str
 // {
 
+//=======
+//>>>>>>> origin/basis
 inline CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
 {
 

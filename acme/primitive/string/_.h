@@ -111,7 +111,10 @@ public:
 #include "string_inst.h"
 
 
-#include "_conv_ansi.h"
+#include "__string.h"
+
+
+#include "to_string.h"
 
 
 #include "_trait.h"

@@ -21,11 +21,16 @@
       return ::user::e_desktop_kde;
 
    }
-
-   if(strDesktop.compare_ci("gnome") == 0)
+   else if(strDesktop.compare_ci("gnome") == 0)
    {
 
       return ::user::e_desktop_gnome;
+
+   }
+   else if(strDesktop.compare_ci("lxde") == 0)
+   {
+
+      return ::user::e_desktop_lxde;
 
    }
 

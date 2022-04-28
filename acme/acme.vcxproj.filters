@@ -479,7 +479,7 @@
     <ClInclude Include="primitive\string\_compare.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_conv_ansi.h">
+    <ClInclude Include="primitive\string\__string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_string_wide.h">
@@ -2957,6 +2957,12 @@
     <ClInclude Include="user\user\mouse.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\to_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\from_numeric_type.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3244,19 +3250,16 @@
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_unicode32.cpp">
+    <ClCompile Include="primitive\string\unicode32.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_unicode16_32.cpp">
+    <ClCompile Include="primitive\string\unicode16_32.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_unicode16.cpp">
+    <ClCompile Include="primitive\string\unicode16.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_unicode.cpp">
-      <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\string\_conv_ansi.cpp">
+    <ClCompile Include="primitive\string\unicode.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\_c_trait_wide.cpp">
@@ -3265,7 +3268,7 @@
     <ClCompile Include="primitive\string\_c_trait_ansi.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_c.cpp">
+    <ClCompile Include="primitive\string\wildcard.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\_.cpp">
@@ -4170,6 +4173,15 @@
     </ClCompile>
     <ClCompile Include="parallelization\fork.cpp">
       <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\to_string.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\command_line.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="user\nano\display.cpp">
+      <Filter>Source Files\user\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

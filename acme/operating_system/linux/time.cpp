@@ -5,6 +5,7 @@
 
 CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 {
+   
 #ifdef RASPBIAN
 
    struct timeval tv;
@@ -12,11 +13,11 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
    if(gettimeofday(&tv, nullptr) != 0)
    {
 
-      return 0;
+      return INTEGRAL_NANOSECOND(0);
 
    }
 
-   return tv.tv_sec * 1000 * 1000 * 1000 + tv.tv_usec * 1000;
+   return INTEGRAL_NANOSECOND(tv.tv_sec * 1000'000'000 + tv.tv_usec * 1'000);
 
 #else
 
@@ -25,7 +26,6 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
    if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
    {
 
-      //error
       return INTEGRAL_NANOSECOND(0);
 
    }
@@ -35,3 +35,6 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 #endif
 
 }
+
+
+

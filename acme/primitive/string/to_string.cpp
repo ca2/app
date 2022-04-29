@@ -2,6 +2,8 @@
 #include "framework.h"
 
 
+#if defined(__GNUC__) && __GNUC__ < 11
+
 CLASS_DECL_ACME void to_string(string & str, const unsigned long & ul)
 {
 
@@ -16,6 +18,9 @@ CLASS_DECL_ACME void to_string(string & str, const long int & i)
    str = i64toa_dup(i);
 
 }
+
+
+#endif
 
 
 

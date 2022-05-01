@@ -286,6 +286,10 @@ namespace nano2d
 
             image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
 
+            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+            m_pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
+
             m_pgraphics->draw(imagedrawing);
 
          }
@@ -720,7 +724,7 @@ namespace nano2d
          offsety = -size.cy / 2.0;
 
       }
-
+      
       m_pgraphics->text_out({ (double)x + offsetx, (double)y + offsety }, strText);
 
       return (float) (x + offsetx + size.cx);
@@ -1037,6 +1041,8 @@ namespace nano2d
       image_drawing_options imagedrawingoptions(rectangleTarget);
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      m_pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
 
       m_pgraphics->draw(imagedrawing);
 

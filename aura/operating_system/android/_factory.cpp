@@ -42,7 +42,7 @@ void __node_aura_factory(::factory::factory * pfactory)
 {
 
 
-   add_factory_item < ::android::buffer              , ::graphics::graphics        > ();
+   pfactory->add_factory_item < ::android::buffer, ::graphics::graphics > ();
 
 
    //add_factory_item < ::android::file_system         , ::file_system               > ();
@@ -55,9 +55,9 @@ void __node_aura_factory(::factory::factory * pfactory)
 
    //add_factory_item < ::android::shell               , ::user::shell               > ();
 
-   add_factory_item < ::android::interaction_impl    , ::user::interaction_impl    > ();
+   //pfactory->add_factory_item < ::android::interaction_impl    , ::user::interaction_impl    > ();
 
-   add_factory_item < ::file::os_watcher             , ::file::watcher             > ();
+   //pfactory->add_factory_item < ::file::os_watcher             , ::file::watcher             > ();
 
 }
 

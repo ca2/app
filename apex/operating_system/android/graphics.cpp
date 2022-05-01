@@ -43,12 +43,12 @@ namespace draw2d
 
 
 
-
-
-
-int_bool delete_hcursor(HCURSOR hcursor)
-{
-
-   return true;
-
-}
+//
+//
+//
+//int_bool delete_hcursor(HCURSOR hcursor)
+//{
+//
+//   return true;
+//
+//}

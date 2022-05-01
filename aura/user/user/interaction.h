@@ -1521,8 +1521,9 @@ namespace user
 
 
       virtual void _001OnExitIconic() override;
-      virtual void _001OnExitFullScreen() override;
       virtual void _001OnExitNormal() override;
+      virtual void _001OnExitZoomed() override;
+      virtual void _001OnExitFullScreen() override;
 
 
 

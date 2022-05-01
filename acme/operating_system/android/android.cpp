@@ -58,3 +58,23 @@ void CLASS_DECL_ACME __abort()
 
 
 
+#include <time.h>
+
+int timespec_get(timespec * ptimespec, int i)
+{
+
+   if (i == TIME_UTC)
+   {
+
+      clock_gettime(CLOCK_MONOTONIC, ptimespec);
+
+      return i;
+
+   }
+
+   return 0;
+
+}
+
+
+

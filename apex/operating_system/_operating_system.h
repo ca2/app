@@ -51,8 +51,8 @@
 
 #elif defined(ANDROID)
 
-#include "apex/os/ansios/_ansios.h"
-#include "apex/os/android/_android.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/android/_android.h"
 
 #elif defined(SOLARIS)
 

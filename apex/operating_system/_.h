@@ -51,8 +51,8 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 
 #elif defined(ANDROID)
 
-#include "apex/os/ansios/_.h"
-#include "apex/os/android/_.h"
+#include "apex/operating_system/ansi/_.h"
+#include "apex/operating_system/android/_.h"
 
 #elif defined(SOLARIS)
 

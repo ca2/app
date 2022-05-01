@@ -99,7 +99,9 @@ namespace windowing
 
       virtual ::windowing::window * window(oswindow oswindow);
 
-
+      
+      
+      virtual ::windowing::window * get_application_host_window();
 
       virtual ::windowing::window * get_desktop_window();
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/static_start.h"
+#include "acme/platform/acme.h"
 
 
 #include <sys/wait.h>
@@ -22,7 +22,7 @@ struct chldstatus
 };
 
 
-typedef int_ptr_map < chldstatus > chldstatus_map;
+typedef iptr_map < chldstatus > chldstatus_map;
 
 
 critical_section * g_pcsPid2 = nullptr;
@@ -432,3 +432,12 @@ CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //
 //
 //
+
+
+
+::u32 get_current_process_id()
+{
+
+   return getpid();
+
+}

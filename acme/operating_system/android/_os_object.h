@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME os_object :
-   virtual public ::matter
+   virtual public ::element
 {
 public:
 
@@ -12,7 +12,7 @@ public:
 
 
    os_object(jobject jobject);
-   virtual ~os_object();
+   ~os_object() override;
 
 
    jfieldID field_str(const char *psz);

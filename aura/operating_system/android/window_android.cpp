@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "window_android.h"
+#include "_android.h"
 
 
 window_android::window_android()
@@ -17,7 +17,7 @@ window_android::~window_android()
 }
 
 
-bool window_android::create_buffer(const ::size_i32 & size,int iStrideParam)
+bool window_android::update_buffer(const ::size_i32 & size,int iStrideParam)
 {
 
    destroy_buffer();
@@ -48,7 +48,7 @@ bool window_android::create_buffer(const ::size_i32 & size,int iStrideParam)
 
    //m_cairoSource = cairo_create(m_cairosurfaceSource);
 
-   if (!::graphics::buffer::create_buffer(size, iStride))
+   if (!::graphics::buffer::update_buffer(size, iStride))
    {
 
       return false;
@@ -69,7 +69,7 @@ void window_android::destroy_buffer()
 }
 
 
-bool window_android::update_window(::image * pimage)
+bool window_android::update_screen(::image * pimage)
 {
 
    ::copy_colorref((color32_t *)m_mem.get_data(), pimage->get_size(), m_size.cx, pimage->get_data(), pimage->scan_size());

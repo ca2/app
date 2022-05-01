@@ -6,32 +6,10 @@
 //
 
 
-#include "operating_system/config.h"
-
-
-#include "__/__bit.h"
-#include "__/__stdint.h"
-#include "__/__inttypes.h"
-#include "_aura_type.h"
-
-#include "operating_system/system.h"
-#include "operating_system/types.h"
-#include "acme/primitive/comparison/_c.h"
-#include "acme/primitive/geometry2d/_struct.h"
-#include "_aura_memory.h"
-
-
-class trait;
-class object;
-//class stream;
-class string;
-typedef iptr strsize;
+#include "apex/include/_no_templates.h"
 
 
 #define CLASS_DECL_AURA
-
-
-#include "apex/include/_no_templates.h"
 
 
 //#include "acme/operating_system/thread.h"
@@ -44,17 +22,14 @@ typedef iptr strsize;
 #include "aura/operating_system/apple/_c_mm.h"
 
 
-//#include "aura/platform/object_reference_count_debug.h"
-//#include "aura/platform/object_type_counter.h"
-//#include "aura/const/_const.h"
-//#include "aura/platform/object_reference_count_debug.h"
-//#include "acme/primitive/primitive/uid.h"
-//#include "acme/primitive/primitive/estatus.h"
-//#include "acme/primitive/primitive/eobject.h"
-//#include "acme/primitive/primitive/matter.h"
-
-
-
+// #include "aura/platform/object_reference_count_debug.h"
+// #include "aura/platform/object_type_counter.h"
+// #include "aura/const/_const.h"
+// #include "aura/platform/object_reference_count_debug.h"
+// #include "acme/primitive/primitive/uid.h"
+// #include "acme/primitive/primitive/estatus.h"
+// #include "acme/primitive/primitive/eobject.h"
+// #include "acme/primitive/primitive/matter.h"
 
 
 

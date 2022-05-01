@@ -16,301 +16,13 @@
     <ClCompile Include="filesystem\filesystem\file_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="net\_.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\address.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\email.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\email_address.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ip_enum.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\port_forward.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_domain.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http_batch_buffer.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\link_in_socket.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\link_out_socket.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\sockets_base.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\trace_interface.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\transfer_socket.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\websocket_client.cpp">
-      <Filter>Source Files\net\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\client_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\debug_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\get_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\listener.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\post_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\put_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\session.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\http\tunnel.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\_strconv.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\include.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\sockets.cpp">
-      <Filter>Source Files\net\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\client_context.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\client_context_map.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\context.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\ssl\initializer.cpp">
-      <Filter>Source Files\net\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\dns\resolv_server.cpp">
-      <Filter>Source Files\net\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\dns\resolv_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\stream_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\sync_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\tcp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\tls_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\udp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\base\base_socket.cpp">
-      <Filter>Source Files\net\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\base\base_socket_handler.cpp">
-      <Filter>Source Files\net\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\_.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\context.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\cookie.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\form.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\get_socket.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\ostream.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\request.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\response.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\signal.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\status.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="net\http\transaction.cpp">
-      <Filter>Source Files\net\http</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\base.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\datetime.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\exception_engine.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\win.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\c.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\debug.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\dir.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\exception_engine.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\file.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\graphics.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\language.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\launcher.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\library.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\locale.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\lock.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\message_loop.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\simple_shell_launcher.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\small_ipca_channel.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\win_base.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\android.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\android1.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\application.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\dir_context.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\dir_system.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\error.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\exception.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\_factory.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\file_context.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\file_system.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\main.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\os_context.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\process.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\thread.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\util.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\main_android.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip\context.cpp">
-      <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
     <ClCompile Include="message\base.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\channel.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\id.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\message.cpp">
@@ -328,56 +40,8 @@
     <ClCompile Include="message\_.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="os\posix\pthread.cpp">
-      <Filter>Source Files\os\posix</Filter>
-    </ClCompile>
-    <ClCompile Include="os\posix\thread.cpp">
-      <Filter>Source Files\os\posix</Filter>
-    </ClCompile>
-    <ClCompile Include="os\posix\time.cpp">
-      <Filter>Source Files\os\posix</Filter>
-    </ClCompile>
-    <ClCompile Include="os\posix\timer.cpp">
-      <Filter>Source Files\os\posix</Filter>
-    </ClCompile>
-    <ClCompile Include="os\_application.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\argcargv.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\chronometer.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\debug.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\http.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\openssl_crypt.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\os_os.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\winpr_keycode.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\winpr_scancode.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\android\application_system_run.cpp">
-      <Filter>Source Files\os\android</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="node\posix\file_os_watcher.cpp">
-      <Filter>Source Files\node\posix</Filter>
     </ClCompile>
     <ClCompile Include="database\client.cpp">
       <Filter>Source Files\database</Filter>
@@ -415,27 +79,6 @@
     <ClCompile Include="crypto\rsa.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\openssl\_.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\crypto.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\hasher_algorithm.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\openssl\rsa.cpp">
-      <Filter>Source Files\crypto\openssl</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\context.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\zip_is_dir.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -444,39 +87,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\_.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\handler.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\retry_multi_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\retry_single_lock.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\service_base.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\thread.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\thread_os.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\thread_pool.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\tools.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\service\plain_service.cpp">
-      <Filter>Source Files\parallelization\service</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\data.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
@@ -505,12 +115,6 @@
     <ClCompile Include="filesystem\fs\set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\webserver\httpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\command.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -526,25 +130,226 @@
     <ClCompile Include="user\menu_shared_commnand.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\text.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
     <ClCompile Include="process\process.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
+    <ClCompile Include="message\application.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\context.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\is_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="compress\not_dir.cpp">
+      <Filter>Source Files\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\_.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\address.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\address_department.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\email.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\email_address.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ip_enum.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\port_forward.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\_system_sockets.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http_batch_buffer.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\link_in_socket.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\link_out_socket.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\sockets_base.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\transfer_socket.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\websocket_client.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\base_socket.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\socket_thread.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\basic_net.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\listen_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\sctp_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\stream_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\sync_socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\tcp_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\tls_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\basic\udp_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\dns\resolv_server.cpp">
+      <Filter>Source Files\networking\sockets\bsd\dns</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\dns\resolv_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\dns</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\ssl\client_context.cpp">
+      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\ssl\client_context_map.cpp">
+      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\ssl\context.cpp">
+      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\ssl\initializer.cpp">
+      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\_strconv.cpp">
+      <Filter>Source Files\networking\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\include.cpp">
+      <Filter>Source Files\networking\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\sockets.cpp">
+      <Filter>Source Files\networking\sockets\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\client_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\debug_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\get_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\http_base_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\listener.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\post_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\put_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\session.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\tunnel.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\_application.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\debug.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\http.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\openssl_crypt.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\thread.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\_.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\handler_manager.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service_handler.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\thread.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\thread_os.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\threading.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\apex_main_data.cpp">
+    <ClCompile Include="platform\_application_service.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\apex_main_struct.cpp">
+    <ClCompile Include="platform\apex.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\app_core.cpp">
+    <ClCompile Include="platform\api.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\api_client.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\app_container.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_launcher.cpp">
@@ -556,7 +361,7 @@
     <ClCompile Include="platform\application_array.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\application_container.cpp">
+    <ClCompile Include="platform\application_exit.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\application_menu.cpp">
@@ -568,6 +373,9 @@
     <ClCompile Include="platform\build_debug.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\command_line.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
     <ClCompile Include="platform\console_application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -577,16 +385,10 @@
     <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\department.cpp">
+    <ClCompile Include="platform\create.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\history.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\international_locale_schema.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\interprocess_call.cpp">
@@ -601,7 +403,7 @@
     <ClCompile Include="platform\interprocess_task.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\library.cpp">
+    <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\log.cpp">
@@ -619,13 +421,13 @@
     <ClCompile Include="platform\net.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
     <ClCompile Include="platform\os_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\os_history.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\progress.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\savings.cpp">
@@ -637,107 +439,203 @@
     <ClCompile Include="platform\shell_launcher.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\simple_log.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\simple_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\static_setup.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\static_start.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\static_start_apex.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\str_context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\system.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\system_trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\trace.cpp">
-      <Filter>Source Files\platform</Filter>
+    <ClCompile Include="crypto\initializer.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\parallelization.cpp">
-      <Filter>Source Files\os\android</Filter>
+    <ClCompile Include="handler\context.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\_.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="handler\handler.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\command_line.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="handler\manager.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\create.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="handler\process.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="handler\promise.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object_meta.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="handler\routine.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\math\department.cpp">
-      <Filter>Source Files\primitive\math</Filter>
+    <ClCompile Include="handler\signal.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="handler\source.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="progress\integer.cpp">
+      <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="progress\listener.cpp">
+      <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="progress\progress.cpp">
+      <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\node.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="progress\real.cpp">
+      <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="networking\http\_.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="networking\http\context.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="networking\http\cookie.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="networking\http\form.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\department.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="networking\http\get_socket.cpp">
+      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="message\application.cpp">
+    <ClCompile Include="networking\http\ostream.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\request.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\response.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\signal.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\status.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\transaction.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\pthread.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\thread.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\time.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\timer.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\parallelization.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\http\http_base_socket.cpp">
-      <Filter>Source Files\net\sockets\http</Filter>
+    <ClCompile Include="message\command_target.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\_.cpp">
-      <Filter>Source Files\os\android</Filter>
+    <ClCompile Include="message\command_ui_probe.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\_system_sockets.cpp">
-      <Filter>Source Files\net\sockets</Filter>
+    <ClCompile Include="message\debug.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\main.cpp">
-      <Filter>Source Files\os\android</Filter>
+    <ClCompile Include="message\dispatcher.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="os\android\menu.cpp">
-      <Filter>Source Files\os\android</Filter>
+    <ClCompile Include="message\handler.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp">
-      <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    <ClCompile Include="operating_system\android\win_base.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\util.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\thread.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\process.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\message_loop.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\menu.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\main2.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\main_android.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\main.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\lock.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\locale.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\library.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\launcher.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\jni_launcher.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\graphics.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\file.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\exception.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\error.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\dir.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\debug.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\c.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\application_system_run.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\application.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\android1.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\android.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\_factory.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\android\_.cpp">
+      <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\ansi\file.cpp">
+      <Filter>Source Files\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="user\primitive.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -838,109 +736,109 @@
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_data.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_signal_thread.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_condition.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event_base.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_mutex.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_service_base.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_service_status.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_thread.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_thread_os.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_waitable.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\service\service_plain_service.h">
-      <Filter>Header Files\multithreading\service</Filter>
+      <Filter>Header Files\parallelization\service</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\service\service_thread_pool.h">
-      <Filter>Header Files\multithreading\service</Filter>
+      <Filter>Header Files\parallelization\service</Filter>
     </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
@@ -1283,330 +1181,6 @@
     </ClInclude>
     <ClInclude Include="apex\charguess\UTF8Prober.h">
       <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_byte_order.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_ip_enum.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_net.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_open_weather_city.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_port_forward.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_sockets.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_domain.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_client_socket.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_data_types.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file_list_parser.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file_status.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_interface.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_output.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_output_stream.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_transfer_notification.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_application.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_get_socket.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_http.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_listener.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_ostream.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_signal.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_status.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_system.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_cookie.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_form.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_request.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_response.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\pop3_socket.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\simple_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket_handler.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket_thread.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_buffer.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_logger.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_trace_logger.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_transfer_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_websocket_client.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
-      <Filter>Header Files\net\sockets\base</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
-      <Filter>Header Files\net\sockets\base</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_config.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
-      <Filter>Header Files\net\sockets\bsd\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\Event.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_session.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
-      <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
     <ClInclude Include="primitive\api\api.h">
       <Filter>Header Files\primitive\api</Filter>
@@ -3177,51 +2751,6 @@
     <ClInclude Include="inline\application\android.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\_.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\_android.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\aaa_want_to_move_from_here_file_watcher.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\android1.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\application.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\dir_context.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\dir_system.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\factory_exchange.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\file.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\file_context.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\file_system.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\implementation.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\internal.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\os_context.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\thread.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="html\html\core_data.h">
       <Filter>Header Files\html\html</Filter>
     </ClInclude>
@@ -3894,9 +3423,6 @@
     <ClInclude Include="html\graphics\value.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_want_to_remove_shell.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\data\_tree.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
@@ -3930,117 +3456,6 @@
     <ClInclude Include="primitive\data\tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\apex.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\threading.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\vsnord_native_app_glue.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\view_bitmap.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\process.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\internal.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\graphics.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\file.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\exception_engine.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_gdi_internal.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_gdi.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_file.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cairo_keep.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\aaa_want_to_remove_android_window_impl.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_c.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_android.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\posix\pipe.h">
-      <Filter>Header Files\node\posix</Filter>
-    </ClInclude>
-    <ClInclude Include="node\posix\serial.h">
-      <Filter>Header Files\node\posix</Filter>
-    </ClInclude>
-    <ClInclude Include="node\posix\_posix.h">
-      <Filter>Header Files\node\posix</Filter>
-    </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -4070,9 +3485,6 @@
     </ClInclude>
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_impl.h">
-      <Filter>Header Files\os\android</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -4333,103 +3745,10 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\threading.h">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="platform\apex_main_data.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\cross.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\e.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_base.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_crt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_defs.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_errno.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_error.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_file.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_internals.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_nls.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_nt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_thread.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_time.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_types.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_user.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_wincon.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\message_box.h">
-      <Filter>Header Files\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
@@ -4704,14 +4023,8 @@
     <ClInclude Include="primitive\collection\var_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="net\_impl.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="node\posix\file_os_watcher.h">
-      <Filter>Header Files\node\posix</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\_.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -4890,12 +4203,6 @@
     <ClInclude Include="graphics\draw2d\ttf_util.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\aaa_windowing.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\aaa_window_android.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\rsa.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
@@ -4926,11 +4233,161 @@
     <ClInclude Include="crypto\openssl\_openssl.h">
       <Filter>Header Files\crypto\openssl</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\aaa_os_remote.h">
-      <Filter>Header Files\os\android</Filter>
+    <ClInclude Include="operating_system\android\vsnord_native_app_glue.h">
+      <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\aaa_os_object.h">
-      <Filter>Header Files\os\android</Filter>
+    <ClInclude Include="operating_system\android\view_bitmap.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\thread.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\os_context.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\internal2.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\internal.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\implementation.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\graphics.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\file2.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\file_system.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\file_context.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\file.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\factory_exchange.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\exception_engine.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\dir_system.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\dir_context.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\cross_win_gdi_internal.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\cross_win_gdi.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\cross_win_file.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\cairo_keep.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\application.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\android1.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_os_impl.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_c.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_android2.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_android.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_2.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\_.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_aaa.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_aaa_node.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_common.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_impl.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_c2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_operating_system_windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_process.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\apex.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\binreloc.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\cross.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\file.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\graphics.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\text.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\thread.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\winpr_input.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\posix\_posix.h">
+      <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\posix\_c.h">
+      <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\posix\_.h">
+      <Filter>Header Files\operating_system\posix</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4939,12 +4396,6 @@
     </Filter>
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{41080c7b-9620-48c4-9067-179ac83cbc63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading">
-      <UniqueIdentifier>{013d16d5-d38d-4c05-94de-ab13a612ad00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading\service">
-      <UniqueIdentifier>{e31e2e07-1fab-420b-9858-a35d2a474bb1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{41a5bddc-53a7-471b-9ee9-dec2b3eba49d}</UniqueIdentifier>
@@ -5018,9 +4469,6 @@
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{4c299533-e47a-4b86-8444-68e456ab3c54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
     </Filter>
@@ -5090,27 +4538,6 @@
     <Filter Include="Header Files\net\sockets\http">
       <UniqueIdentifier>{d96b41e3-e5e2-41f3-8bb3-87efc8d1bcbd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\http">
-      <UniqueIdentifier>{b407641f-3eab-4676-b1e5-8a12cd5e439e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets">
-      <UniqueIdentifier>{aaf08d22-97f9-477e-a0b1-322faa704a4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\base">
-      <UniqueIdentifier>{2f8820b4-4212-4906-882e-36864a4eb81e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd">
-      <UniqueIdentifier>{045d995b-b048-4996-bcb5-38358c13de2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{fba84e9d-3e77-4bcf-a53a-95901c0d7eb6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{ee58979c-c56b-404a-b364-16e47fba9e10}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\http">
-      <UniqueIdentifier>{dcadb9f8-b44e-4e2f-b28b-358a8b28f462}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{afea8c9c-ab84-4327-8481-dcf74df87464}</UniqueIdentifier>
     </Filter>
@@ -5147,12 +4574,6 @@
     <Filter Include="Header Files\user\experience\frame">
       <UniqueIdentifier>{367005ba-6258-437f-98ca-72defa185d31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\ssl">
-      <UniqueIdentifier>{e732a654-3a46-475b-b76b-f5772f413fc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\dns">
-      <UniqueIdentifier>{251defb2-890a-4d2f-8e04-8293b35820a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\string">
       <UniqueIdentifier>{3a6fa529-1d54-41a6-8a8e-aa2198fa529e}</UniqueIdentifier>
     </Filter>
@@ -5168,9 +4589,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\pcre">
       <UniqueIdentifier>{c1e9cf98-3242-4f06-b382-38fae7181e6b}</UniqueIdentifier>
     </Filter>
@@ -5183,41 +4601,14 @@
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{a65b5ccd-e75a-4ee6-9a4f-808a4e7f9ba8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{4abc745b-026b-4c46-8bb0-d414aa1d50de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\ansios">
-      <UniqueIdentifier>{ab03c540-aedb-4e23-905e-3c70815986b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\android">
-      <UniqueIdentifier>{244d28ad-178e-4134-a8ea-753d04b15b0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{7e171fc6-d4b9-437e-865d-a3f23b103629}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\android">
-      <UniqueIdentifier>{3de59e61-f798-4178-8319-cc4e11a58b89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{4405361e-a438-46bb-bddd-7ada62a9af80}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline\application">
       <UniqueIdentifier>{888e24b3-7902-4b63-84fd-2913fa2c8fe7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{d5cbfcce-c088-43ef-940d-10ea63b387ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\android">
-      <UniqueIdentifier>{f3043ec3-c7e2-4633-b1cc-57abad302ac2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{cfb9a164-fe11-4408-a558-00024ad61959}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress\zip">
-      <UniqueIdentifier>{12db7231-cdce-43c4-9eda-0a97069534d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{8aaf19d4-a571-437f-a889-50510fa2a216}</UniqueIdentifier>
@@ -5255,23 +4646,11 @@
     <Filter Include="Header Files\html\graphics">
       <UniqueIdentifier>{5d7ebb9f-01a2-4dad-9a53-384797c38330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\android">
-      <UniqueIdentifier>{7cde14bd-c04f-4a6c-aeca-a7b8d8d1a9dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{cd4f1040-a2e4-41f8-9c63-0de5fbf31c0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\posix">
-      <UniqueIdentifier>{159ecdaa-3ab3-403f-beb5-647f3f890282}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{d40c255d-db30-461c-a788-007816939ef2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\posix">
-      <UniqueIdentifier>{60799328-0aba-4805-bbe5-94f50c54f6e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\posix">
-      <UniqueIdentifier>{fc239057-5fe6-43cc-bf2e-a3fdac615211}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{f521b2ca-b3aa-4fcd-a2d4-2306a8d92f0b}</UniqueIdentifier>
@@ -5279,35 +4658,11 @@
     <Filter Include="Header Files\primitive\primitive">
       <UniqueIdentifier>{188768d1-6867-4673-aa21-f909cb02ff1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{b8c078fb-117d-40d1-9650-a68c4992cf26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{c9238d4c-6180-41fa-a354-a392621a73c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\crypto\openssl">
-      <UniqueIdentifier>{bb3f7f30-62a0-4760-bc20-25542e1752f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{6e087c37-ec7d-4b7b-b56b-ab709e9e8c28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\parallelization\service">
-      <UniqueIdentifier>{df9cf7bb-7532-4794-b95d-7452567328bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{f54982b4-2bc3-4942-a7d9-a93eb53f0a7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\primitive">
-      <UniqueIdentifier>{f5fdbf3a-bf02-43d2-812b-89aa439f6b38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\math">
-      <UniqueIdentifier>{d0778439-1bb7-43e2-8909-aae276612c7c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{a91b75c7-765e-491f-a71c-bda344d165e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{d6da8a3f-7ede-4fae-903a-addeffeec727}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{bddaf073-ad94-4dd9-83ef-7480dbcdbafe}</UniqueIdentifier>
@@ -5315,19 +4670,85 @@
     <Filter Include="Header Files\crypto\openssl">
       <UniqueIdentifier>{315ef8d3-a3fe-42dc-abed-53fdc21ec1fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking">
+      <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\http">
+      <UniqueIdentifier>{b407641f-3eab-4676-b1e5-8a12cd5e439e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets">
+      <UniqueIdentifier>{aaf08d22-97f9-477e-a0b1-322faa704a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\base">
+      <UniqueIdentifier>{2f8820b4-4212-4906-882e-36864a4eb81e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd">
+      <UniqueIdentifier>{045d995b-b048-4996-bcb5-38358c13de2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\basic">
+      <UniqueIdentifier>{fba84e9d-3e77-4bcf-a53a-95901c0d7eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\webserver">
+      <UniqueIdentifier>{ee58979c-c56b-404a-b364-16e47fba9e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\ssl">
+      <UniqueIdentifier>{e732a654-3a46-475b-b76b-f5772f413fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\dns">
+      <UniqueIdentifier>{251defb2-890a-4d2f-8e04-8293b35820a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\http">
+      <UniqueIdentifier>{dcadb9f8-b44e-4e2f-b28b-358a8b28f462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{7e171fc6-d4b9-437e-865d-a3f23b103629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\android">
+      <UniqueIdentifier>{cde4687d-f249-420a-b0da-9b6f3ab8ffe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parallelization">
+      <UniqueIdentifier>{013d16d5-d38d-4c05-94de-ab13a612ad00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parallelization\service">
+      <UniqueIdentifier>{e31e2e07-1fab-420b-9858-a35d2a474bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\android">
+      <UniqueIdentifier>{7cde14bd-c04f-4a6c-aeca-a7b8d8d1a9dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\posix">
+      <UniqueIdentifier>{bfc1853b-19fb-4f0d-84e4-43241af04a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\crypto\openssl">
+      <UniqueIdentifier>{8d4c560b-f865-476d-87e3-8ff92bed9400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\handler">
+      <UniqueIdentifier>{4a3113e8-e67e-4f2c-96d9-b6f5f6709c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\progress">
+      <UniqueIdentifier>{8f18bf08-3d4b-43a6-9820-1157bca53aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\posix">
+      <UniqueIdentifier>{8f4442ff-67cc-4ae9-bd50-f692b6445220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\ansi">
+      <UniqueIdentifier>{0d1679fa-3ffc-4ec7-9025-2608fd619715}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
     </None>
     <None Include="multithreading\multithreading.inl">
-      <Filter>Header Files\multithreading</Filter>
+      <Filter>Header Files\parallelization</Filter>
     </None>
     <None Include="apex\message\message.inl">
       <Filter>Header Files\apex\message</Filter>
-    </None>
-    <None Include="apex.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="primitive\primitive.inl">
       <Filter>Header Files\primitive</Filter>

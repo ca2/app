@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "buffer.h"
-#include "aura/os/android/window_android.h"
+//#include "aura/os/android/window_android.h"
 //#include <native_window.h>
 
 namespace android
@@ -61,7 +61,7 @@ namespace android
    }
 
 
-   bool buffer::update_window(::image * pimage)
+   bool buffer::update_screen(::image * pimage)
    {
 
       //ANativeWindow_Buffer buffer;

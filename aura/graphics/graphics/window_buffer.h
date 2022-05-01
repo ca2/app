@@ -28,8 +28,8 @@ namespace graphics
       virtual bool round_swap_key_buffers() override;
 
 
-      virtual bool create_buffer(const ::size_i32 & size, int iStride = -1);
-      virtual void destroy_buffer();
+      bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
+      void destroy_buffer();
       inline ::size_i32 buffer_size() { return m_pimageBuffer->size(); }
 
 

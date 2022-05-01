@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_APEXvoid os_shell_initialize();
+CLASS_DECL_APEX void os_shell_initialize();
 
 
 //#include "apex/operating_system/ansios/ansios.h"
@@ -16,13 +16,13 @@ string get_error_message(::u32 dwError);
 #include "implementation.h"
 #include "factory_exchange.h"
 #include "thread.h"
-#include "os_context.h"
+//#include "os_context.h"
 
-#include "dir_system.h"
-#include "file_system.h"
-
-#include "dir_context.h"
-#include "file_context.h"
+//#include "dir_system.h"
+//#include "file_system.h"
+//
+//#include "dir_context.h"
+//#include "file_context.h"
 
 //#define ANDROID_THREAD(pthread) (dynamic_cast < ::android::thread * > (dynamic_cast < ::thread * >(pthread)))
 

@@ -390,7 +390,7 @@ namespace user
       // Window Text Functions
       virtual void set_window_text(const ::string & pszString) override;
 
-      virtual strsize get_window_text(char * pszStringBuf,i32 nMaxCount);
+      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
 
       void get_window_text(string & rString) override;
       strsize get_window_text_length() override;

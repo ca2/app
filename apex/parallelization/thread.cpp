@@ -4221,9 +4221,7 @@ bool thread::raw_process_message()
 bool thread::set_thread_priority(::enum_priority epriority)
 {
 
-   i32 nPriority = get_os_thread_priority(epriority);
-
-   bool bOk = ::SetThreadPriority(m_htask, nPriority) != false;
+   bool bOk = ::parallelization::set_priority(m_htask, epriority) != false;
 
    if (!bOk)
    {
@@ -4246,9 +4244,9 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
    ASSERT(m_htask != null_htask);
 
-   i32 nPriority = ::GetThreadPriority(m_htask);
+   auto epriority = ::parallelization::get_priority(m_htask);
 
-   ::enum_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
+   ///::enum_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
 
    return epriority;
 

@@ -344,27 +344,6 @@ i32 get_os_thread_priority(::enum_priority epriority)
 }
 
 
-
-
-
-//i32 WINAPI GetThreadPriority(htask_t  htask)
-//{
-//
-//   int iOsPolicy = SCHED_OTHER;
-//
-//   sched_param schedparam;
-//
-//   schedparam.sched_priority = 0;
-//
-//   pthread_getschedparam((itask_t)htask, &iOsPolicy, &schedparam);
-//
-//   return thread_get_scheduling_priority(iOsPolicy, &schedparam);
-//
-//}
-
-
-
-
 static htask_t g_hMainThread = (htask_t) nullptr;
 
 static itask_t g_uiMainThread = (itask_t)-1;
@@ -503,6 +482,17 @@ int g_iDebug_post_thread_msg_time;
 //   return bOk1;
 //
 //}
+
+
+::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam);
+
+
+::enum_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+{
+
+   return get_scheduling_priority(iOsPolicy, pparam);
+
+}
 
 
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
@@ -741,4 +731,63 @@ CLASS_DECL_ACME int htask_equals(itask_t a, itask_t b)
    return pthread_equal((pthread_t) a, (pthread_t) b);
    
 }
+
+
+namespace parallelization
+{
+
+
+
+   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
+   {
+
+      return set_priority(get_current_htask(), epriority);
+
+   }
+
+
+   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority)
+   {
+
+      i32 iPolicy;
+
+      sched_param schedparam;
+
+      thread_get_os_priority(&iPolicy, &schedparam, epriority);
+
+      pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
+
+      return true;
+
+   }
+
+
+
+   CLASS_DECL_ACME ::enum_priority get_priority()
+   {
+
+      return get_priority(get_current_htask());
+
+   }
+
+
+   ::enum_priority get_priority(htask_t htask)
+   {
+
+      int iOsPolicy = SCHED_OTHER;
+
+      sched_param schedparam;
+
+      schedparam.sched_priority = 0;
+
+      pthread_getschedparam((pthread_t)htask, &iOsPolicy, &schedparam);
+
+      return thread_get_scheduling_priority(iOsPolicy, &schedparam);
+
+   }
+
+
+} // namespace parallelization
+
+
 

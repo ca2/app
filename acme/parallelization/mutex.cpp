@@ -267,11 +267,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
 #ifdef ANDROID
 
-         path =          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
+         path = m_psystem->m_pacmedirectory->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -285,11 +281,7 @@ pacmedirectory->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #ifdef ANDROID
 
-         path =          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+         path =  m_psystem->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
 #elif defined __APPLE__
 
@@ -986,7 +978,7 @@ bool mutex::_wait(const class ::wait & wait)
 
 #ifdef ANDROID
 
-         rc = pthread_cond_timedwait_monotonic_np(&m_cond, &m_mutex, &abs_time);
+         int iErrorCondTimedWait = pthread_cond_timedwait_monotonic_np(&m_cond, &m_mutex, &abs_time);
 
 #else
 

@@ -4,10 +4,10 @@
 
 
 
-CLASS_DECL_AURA void simple_debug_print(const ::string & psz)
+CLASS_DECL_AURA void simple_debug_print(const ::string & str)
 {
 
-   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
+   __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", str.c_str());
 
 }
 
@@ -31,12 +31,12 @@ CLASS_DECL_AURA int os_trace_level(enum_trace_level elevel)
 }
 
 
-CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszMessage)
+CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::string & strTag, const ::string & strMessage)
 {
 
    int iLevel = os_trace_level(elevel);
 
-   __android_log_print(iLevel, pszTag, "%s", pszMessage);
+   __android_log_print(iLevel, strTag, "%s", strMessage.c_str());
 
 }
 

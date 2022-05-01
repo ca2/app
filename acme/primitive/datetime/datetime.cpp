@@ -32,7 +32,7 @@ extern "C" CLASS_DECL_ACME time_t timegm(struct tm *tmp)
 
 #ifdef ANDROID
 
-time_t timegm(tm * point_i32)
+time_t timegm(tm * ptm)
 {
 
    time_t t1 = 60 * 60 * 24 * 2; // (sec * minimum * hours) * (safety 2 days); // 1970-01-03 00:00:00 +0000 (UTC).
@@ -43,7 +43,7 @@ time_t timegm(tm * point_i32)
 
    time_t t2 = mktime(&tm1); // in reverse in Brazil (UTC -3) 1970-01-03 03:00:00 +0000
 
-   time_t t3 = mktime(point); // now (in Brazil) direct (UTC -3)
+   time_t t3 = mktime(ptm); // now (in Brazil) direct (UTC -3)
 
    return t3 - t2 + t1;
 

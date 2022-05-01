@@ -22,7 +22,6 @@ CLASS_DECL_ACME string __string(const ::enum_status & estatus);
 
 
 
-
 template < typename T >
 inline string __string(const T * & p)
 {

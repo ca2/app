@@ -3142,43 +3142,43 @@ namespace aura
 
    //}
 
-#ifdef ANDROID
-
-   bool system::android_set_user_wallpaper(string strUrl)
-   {
-
-      oslocal()->m_strSetUserWallpaper = strUrl;
-
-      return true;
-
-   }
-
-   bool system::android_get_user_wallpaper(string & strUrl)
-   {
-
-      ::oslocal()->m_bGetUserWallpaper = true;
-
-      for(int i = 0; i < 10; i++)
-      {
-
-         if (!::oslocal()->m_bGetUserWallpaper)
-         {
-
-
-         }
-
-         sleep(50_ms);
-
-      }
-
-      strUrl = ::oslocal()->m_strGetUserWallpaper;
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef ANDROID
+//
+//   bool system::android_set_user_wallpaper(string strUrl)
+//   {
+//
+//      oslocal()->m_strSetUserWallpaper = strUrl;
+//
+//      return true;
+//
+//   }
+//
+//   bool system::android_get_user_wallpaper(string & strUrl)
+//   {
+//
+//      ::oslocal()->m_bGetUserWallpaper = true;
+//
+//      for(int i = 0; i < 10; i++)
+//      {
+//
+//         if (!::oslocal()->m_bGetUserWallpaper)
+//         {
+//
+//
+//         }
+//
+//         sleep(50_ms);
+//
+//      }
+//
+//      strUrl = ::oslocal()->m_strGetUserWallpaper;
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
    // class ::crypto::crypto & system::crypto()
    // {

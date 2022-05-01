@@ -250,15 +250,31 @@ namespace parallelization
    bool set_priority(::enum_priority epriority)
    {
 
-      return (::SetThreadPriority(::GetCurrentThread(), get_os_thread_priority(epriority)) != 0);
+      return set_priority(get_current_htask(), epriority);
 
    }
 
 
-   i32 priority()
+   bool set_priority(htask_t htask, ::enum_priority epriority)
    {
 
-      return get_os_thread_scheduling_priority(::GetThreadPriority(::GetCurrentThread()));
+      return (::SetThreadPriority(htask, get_os_thread_priority(epriority)) != 0);
+
+   }
+
+
+   ::enum_priority get_priority()
+   {
+
+      return get_priority(get_current_htask());
+
+   }
+
+
+   ::enum_priority get_priority(htask_t htask)
+   {
+
+      return get_os_thread_scheduling_priority(::GetThreadPriority(htask));
 
    }
 

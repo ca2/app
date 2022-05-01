@@ -499,6 +499,9 @@ bool __os_term_thread()
 }
 
 
+int get_processor_count();
+
+
 int get_current_process_affinity_order()
 {
 
@@ -519,16 +522,10 @@ bool task_set_name(const ::string & psz)
 
    bool bOk = !pthread_setname_np(pthread_self(), strName);
 
-   thread_property("name") = psz;
+   //thread_property("name") = psz;
 
    return bOk;
 
 }
 
-string task_get_name()
-{
-
-   return thread_property("name").to_string();
-
-}
 

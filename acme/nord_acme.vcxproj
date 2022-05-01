@@ -31,7 +31,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <AndroidAPILevel>android-27</AndroidAPILevel>
+    <AndroidAPILevel>android-28</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -39,14 +39,13 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
-    <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-27</AndroidAPILevel>
+    <AndroidAPILevel>android-28</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <AndroidAPILevel>android-21</AndroidAPILevel>
+    <AndroidAPILevel>android-28</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
@@ -54,8 +53,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
-    <ThumbMode>Disabled</ThumbMode>
-    <AndroidAPILevel>android-27</AndroidAPILevel>
+    <AndroidAPILevel>android-28</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -73,37 +71,38 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../operating-system-android/_include;$(SolutionDir)../../operating-system-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ACME_LIBRARY;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CppLanguageStandard>-std=c++20</CppLanguageStandard>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
@@ -112,9 +111,9 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <LibraryDependencies>aurasqlite;auraidn;aurabzip2;aurazlib;auraiconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -125,41 +124,43 @@
     <ClCompile>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(__operating_system)third-android\include;$(__operating_system)third-android\third\include\include;$(__operating_system)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ACME_LIBRARY;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <AdditionalIncludeDirectories>$(__operating_system)third-android\include;$(__operating_system)third-android\third\include\include;$(__operating_system)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(SolutionDir)../../operating-system-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ACME_LIBRARY;</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>-std=c++1z</CppLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
-      <Optimization>Disabled</Optimization>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -170,37 +171,25 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>-std=c++2a</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../operating-system-android/_include;$(SolutionDir)../../operating-system-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_ACME_LIBRARY;</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(__operating_system)storage-android\third\library\$(Platform)\$(Configuration)\;$(__operating_system)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>idn;zlib;iconv;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\gz.cpp" />
-    <ClCompile Include="compress\zip\api.cpp" />
-    <ClCompile Include="compress\zip\file.cpp" />
-    <ClCompile Include="compress\zip\in_file.cpp" />
-    <ClCompile Include="compress\zip\ioapi.cpp" />
-    <ClCompile Include="compress\zip\memory_buffer.cpp" />
-    <ClCompile Include="compress\zip\unzip.cpp" />
-    <ClCompile Include="compress\zip\zip.cpp" />
-    <ClCompile Include="const\idpool.cpp" />
-    <ClCompile Include="exception\-ehrror.cpp" />
-    <ClCompile Include="exception\-last_ehrror.cpp" />
-    <ClCompile Include="exception\-overflow_ehrror.cpp" />
-    <ClCompile Include="exception\-range_ehrror.cpp" />
-    <ClCompile Include="exception\-runtime_ehrror.cpp" />
-    <ClCompile Include="exception\archive.cpp" />
-    <ClCompile Include="exception\archive_exception.cpp" />
-    <ClCompile Include="exception\base.cpp" />
+    <ClCompile Include="compress\compress.cpp" />
+    <ClCompile Include="compress\uncompress.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
     <ClCompile Include="exception\const.cpp" />
@@ -210,36 +199,29 @@
     <ClCompile Include="exception\dump_floating_point.cpp" />
     <ClCompile Include="exception\dump_output.cpp" />
     <ClCompile Include="exception\exception.cpp" />
-    <ClCompile Include="exception\exception_engine.cpp" />
     <ClCompile Include="exception\exit.cpp" />
-    <ClCompile Include="exception\hresult.cpp" />
-    <ClCompile Include="exception\installing.cpp" />
+    <ClCompile Include="exception\extended_status.cpp" />
+    <ClCompile Include="exception\file.cpp" />
+    <ClCompile Include="exception\file_open.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
-    <ClCompile Include="exception\invalid_argument.cpp" />
-    <ClCompile Include="exception\invalid_character.cpp" />
-    <ClCompile Include="exception\invalid_handle.cpp" />
-    <ClCompile Include="exception\invalid_index.cpp" />
     <ClCompile Include="exception\io.cpp" />
-    <ClCompile Include="exception\memory.cpp" />
+    <ClCompile Include="exception\library_not_loaded.cpp" />
     <ClCompile Include="exception\not_implemented.cpp" />
-    <ClCompile Include="exception\not_installed.cpp" />
-    <ClCompile Include="exception\not_licensed.cpp" />
-    <ClCompile Include="exception\not_supported.cpp" />
-    <ClCompile Include="exception\operation_canceled.cpp" />
-    <ClCompile Include="exception\os.cpp" />
+    <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\resource.cpp" />
-    <ClCompile Include="exception\result.cpp" />
-    <ClCompile Include="exception\simple.cpp" />
-    <ClCompile Include="exception\standard_translator.cpp" />
-    <ClCompile Include="exception\temporary.cpp" />
+    <ClCompile Include="exception\serialization.cpp" />
+    <ClCompile Include="exception\standard.cpp" />
     <ClCompile Include="exception\throw.cpp" />
-    <ClCompile Include="exception\todo.cpp" />
-    <ClCompile Include="exception\user.cpp" />
-    <ClCompile Include="exception\void_implementation.cpp" />
-    <ClCompile Include="exception\wtf.cpp" />
+    <ClCompile Include="exception\translator.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\listing.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
@@ -247,36 +229,43 @@
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
-    <ClCompile Include="filesystem\file\dir.cpp" />
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />
+    <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\item.cpp" />
     <ClCompile Include="filesystem\file\item_array.cpp" />
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\path.cpp" />
+    <ClCompile Include="filesystem\file\payload_stream.cpp" />
     <ClCompile Include="filesystem\file\seekable.cpp" />
     <ClCompile Include="filesystem\file\serializable.cpp" />
     <ClCompile Include="filesystem\file\serialize.cpp" />
     <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
+    <ClCompile Include="filesystem\file\streamable.cpp" />
+    <ClCompile Include="filesystem\file\streamable_composite.cpp" />
     <ClCompile Include="filesystem\file\string_file.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
-    <ClCompile Include="filesystem\file\var_stream.cpp" />
-    <ClCompile Include="filesystem\file\_.cpp" />
+    <ClCompile Include="filesystem\file\transfer.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="handler\extended_topic.cpp" />
+    <ClCompile Include="handler\handler.cpp" />
+    <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="memory\alloc.cpp" />
     <ClCompile Include="memory\allocate_mid_big.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
     <ClCompile Include="memory\allocate_system_heap.cpp" />
     <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
     <ClCompile Include="memory\allocation.cpp" />
-    <ClCompile Include="memory\heap.cpp" />
+    <ClCompile Include="memory\array_memory_allocate.cpp" />
+    <ClCompile Include="memory\counter.cpp" />
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
@@ -313,6 +302,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\memory.cpp" />
+    <ClCompile Include="memory\memory_allocate.cpp" />
+    <ClCompile Include="memory\memory_management.cpp" />
+    <ClCompile Include="memory\new.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
@@ -337,127 +330,159 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="memory\plex.cpp" />
-    <ClCompile Include="memory\plex_heap.cpp" />
-    <ClCompile Include="node\android\android.cpp" />
-    <ClCompile Include="node\android\android1.cpp" />
-    <ClCompile Include="node\android\error.cpp" />
-    <ClCompile Include="node\android\exception.cpp" />
-    <ClCompile Include="node\android\_factory.cpp" />
-    <ClCompile Include="node\android\file.cpp" />
-    <ClCompile Include="node\android\main.cpp" />
-    <ClCompile Include="node\android\process.cpp" />
-    <ClCompile Include="node\android\thread.cpp" />
-    <ClCompile Include="node\android\util.cpp" />
-    <ClCompile Include="node\posix\pipe.cpp" />
-    <ClCompile Include="os\android\c.cpp" />
-    <ClCompile Include="os\android\debug.cpp" />
-    <ClCompile Include="os\android\dir.cpp" />
-    <ClCompile Include="os\android\exception_engine.cpp" />
-    <ClCompile Include="os\android\file.cpp" />
-    <ClCompile Include="os\android\graphics.cpp" />
-    <ClCompile Include="os\android\language.cpp" />
-    <ClCompile Include="os\android\launcher.cpp" />
-    <ClCompile Include="os\android\library.cpp" />
-    <ClCompile Include="os\android\locale.cpp" />
-    <ClCompile Include="os\android\lock.cpp" />
-    <ClCompile Include="os\android\application_system_run.cpp" />
-    <ClCompile Include="os\android\parallelization.cpp" />
-    <ClCompile Include="os\android\process.cpp" />
-    <ClCompile Include="os\android\process_pid.cpp" />
-    <ClCompile Include="os\android\user.cpp" />
-    <ClCompile Include="os\android\win_base.cpp" />
-    <ClCompile Include="os\android\_.cpp" />
-    <ClCompile Include="os\ansios\base.cpp" />
-    <ClCompile Include="os\ansios\binreloc.cpp" />
-    <ClCompile Include="os\ansios\datetime.cpp" />
-    <ClCompile Include="os\ansios\debug.cpp" />
-    <ClCompile Include="os\ansios\exception_engine.cpp" />
-    <ClCompile Include="os\ansios\file.cpp" />
-    <ClCompile Include="os\ansios\file_raw.cpp" />
-    <ClCompile Include="os\ansios\file_std.cpp" />
-    <ClCompile Include="os\ansios\language.cpp" />
-    <ClCompile Include="os\ansios\memory.cpp" />
-    <ClCompile Include="os\ansios\process.cpp" />
-    <ClCompile Include="os\ansios\user.cpp" />
-    <ClCompile Include="os\ansios\win.cpp" />
-    <ClCompile Include="os\argcargv.cpp" />
-    <ClCompile Include="os\chronometer.cpp" />
-    <ClCompile Include="os\console.cpp" />
-    <ClCompile Include="os\cross\windows\crt.cpp" />
-    <ClCompile Include="os\cross\windows\crt_debug.cpp" />
-    <ClCompile Include="os\cross\windows\datetime.cpp" />
-    <ClCompile Include="os\cross\windows\error.cpp" />
-    <ClCompile Include="os\cross\windows\locale.cpp" />
-    <ClCompile Include="os\cross\windows\shared_memory.cpp" />
-    <ClCompile Include="os\cross\windows\thread_local_storage.cpp" />
-    <ClCompile Include="os\cross\windows\user.cpp" />
-    <ClCompile Include="os\cross\windows\windows.cpp" />
-    <ClCompile Include="os\debug.cpp" />
-    <ClCompile Include="os\file.cpp" />
-    <ClCompile Include="os\http.cpp" />
-    <ClCompile Include="os\parallelization.cpp" />
-    <ClCompile Include="os\posix\base_file.cpp" />
-    <ClCompile Include="os\posix\local_memory_map.cpp" />
-    <ClCompile Include="os\posix\parallelization.cpp" />
-    <ClCompile Include="os\posix\pthread.cpp" />
-    <ClCompile Include="os\posix\time.cpp" />
-    <ClCompile Include="os\posix\timer.cpp" />
-    <ClCompile Include="os\time.cpp" />
-    <ClCompile Include="os\windowing.cpp" />
-    <ClCompile Include="os\winpr_keycode.cpp" />
-    <ClCompile Include="os\winpr_scancode.cpp" />
+    <ClCompile Include="memory\property_memory_allocate.cpp" />
+    <ClCompile Include="memory\secondary_memory_allocate.cpp" />
+    <ClCompile Include="memory\string_memory_allocate.cpp" />
+    <ClCompile Include="networking\sockets\trace_interface.cpp" />
+    <ClCompile Include="networking\top_level_domain_list.cpp" />
+    <ClCompile Include="networking\url.cpp" />
+    <ClCompile Include="networking\url_department.cpp" />
+    <ClCompile Include="networking\url_domain.cpp" />
+    <ClCompile Include="operating_system\android\android.cpp" />
+    <ClCompile Include="operating_system\android\android1.cpp" />
+    <ClCompile Include="operating_system\android\application_system_run.cpp" />
+    <ClCompile Include="operating_system\android\aura.cpp" />
+    <ClCompile Include="operating_system\android\c.cpp" />
+    <ClCompile Include="operating_system\android\callstack.cpp" />
+    <ClCompile Include="operating_system\android\debug.cpp" />
+    <ClCompile Include="operating_system\android\dir.cpp" />
+    <ClCompile Include="operating_system\android\error.cpp" />
+    <ClCompile Include="operating_system\android\exception.cpp" />
+    <ClCompile Include="operating_system\android\file2.cpp" />
+    <ClCompile Include="operating_system\android\graphics.cpp" />
+    <ClCompile Include="operating_system\android\jni_launcher.cpp" />
+    <ClCompile Include="operating_system\android\language.cpp" />
+    <ClCompile Include="operating_system\android\launcher.cpp" />
+    <ClCompile Include="operating_system\android\library.cpp" />
+    <ClCompile Include="operating_system\android\locale.cpp" />
+    <ClCompile Include="operating_system\android\lock.cpp" />
+    <ClCompile Include="operating_system\android\main.cpp" />
+    <ClCompile Include="operating_system\android\nano\_nano.cpp" />
+    <ClCompile Include="operating_system\android\parallelization.cpp" />
+    <ClCompile Include="operating_system\android\process.cpp" />
+    <ClCompile Include="operating_system\android\process2.cpp" />
+    <ClCompile Include="operating_system\android\process_pid.cpp" />
+    <ClCompile Include="operating_system\android\thread.cpp" />
+    <ClCompile Include="operating_system\android\time.cpp" />
+    <ClCompile Include="operating_system\android\user.cpp" />
+    <ClCompile Include="operating_system\android\util.cpp" />
+    <ClCompile Include="operating_system\android\win_base.cpp" />
+    <ClCompile Include="operating_system\android\_.cpp" />
+    <ClCompile Include="operating_system\android\_factory.cpp" />
+    <ClCompile Include="operating_system\android\_jni_object.cpp" />
+    <ClCompile Include="operating_system\ansi\base.cpp" />
+    <ClCompile Include="operating_system\ansi\binreloc.cpp" />
+    <ClCompile Include="operating_system\ansi\datetime.cpp" />
+    <ClCompile Include="operating_system\ansi\debug.cpp" />
+    <ClCompile Include="operating_system\ansi\dir.cpp" />
+    <ClCompile Include="operating_system\ansi\file.cpp" />
+    <ClCompile Include="operating_system\ansi\file_raw.cpp" />
+    <ClCompile Include="operating_system\ansi\file_std.cpp" />
+    <ClCompile Include="operating_system\ansi\language.cpp" />
+    <ClCompile Include="operating_system\ansi\memory.cpp" />
+    <ClCompile Include="operating_system\ansi\parallelization.cpp" />
+    <ClCompile Include="operating_system\ansi\process.cpp" />
+    <ClCompile Include="operating_system\ansi\pthread.cpp" />
+    <ClCompile Include="operating_system\ansi\time.cpp" />
+    <ClCompile Include="operating_system\ansi\windows.cpp" />
+    <ClCompile Include="operating_system\ansi\windows_time.cpp" />
+    <ClCompile Include="operating_system\ansi\windows_unicode.cpp" />
+    <ClCompile Include="operating_system\argcargv.cpp" />
+    <ClCompile Include="operating_system\chronometer.cpp" />
+    <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\file.cpp" />
+    <ClCompile Include="operating_system\http.cpp" />
+    <ClCompile Include="operating_system\node_serial.cpp" />
+    <ClCompile Include="operating_system\parallelization.cpp" />
+    <ClCompile Include="operating_system\posix\base_file.cpp" />
+    <ClCompile Include="operating_system\posix\desktop.cpp" />
+    <ClCompile Include="operating_system\posix\file_lock.cpp" />
+    <ClCompile Include="operating_system\posix\local_memory_map.cpp" />
+    <ClCompile Include="operating_system\posix\parallelization.cpp" />
+    <ClCompile Include="operating_system\posix\pthread.cpp" />
+    <ClCompile Include="operating_system\posix\source.cpp" />
+    <ClCompile Include="operating_system\posix\time.cpp" />
+    <ClCompile Include="operating_system\posix\timer.cpp" />
+    <ClCompile Include="operating_system\time.cpp" />
+    <ClCompile Include="operating_system\windowing.cpp" />
+    <ClCompile Include="operating_system\winpr_keycode.cpp" />
+    <ClCompile Include="operating_system\winpr_scancode.cpp" />
+    <ClCompile Include="operating_system\_.cpp" />
+    <ClCompile Include="parallelization\cleanup_task.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
+    <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\critical_section.cpp" />
     <ClCompile Include="parallelization\event.cpp" />
-    <ClCompile Include="parallelization\file_change_event.cpp" />
+    <ClCompile Include="parallelization\fork.cpp" />
+    <ClCompile Include="parallelization\install_mutex.cpp" />
     <ClCompile Include="parallelization\manual_reset_event.cpp" />
-    <ClCompile Include="parallelization\mq.cpp" />
-    <ClCompile Include="parallelization\multi_lock.cpp" />
+    <ClCompile Include="parallelization\message_queue.cpp" />
+    <ClCompile Include="parallelization\message_queue_global.cpp" />
+    <ClCompile Include="parallelization\multiple_lock.cpp" />
     <ClCompile Include="parallelization\mutex.cpp" />
     <ClCompile Include="parallelization\pool.cpp" />
     <ClCompile Include="parallelization\semaphore.cpp" />
     <ClCompile Include="parallelization\single_lock.cpp" />
     <ClCompile Include="parallelization\socket_event.cpp" />
-    <ClCompile Include="parallelization\sync.cpp" />
-    <ClCompile Include="parallelization\sync_array.cpp" />
-    <ClCompile Include="parallelization\sync_process.cpp" />
-    <ClCompile Include="parallelization\sync_result.cpp" />
-    <ClCompile Include="parallelization\sync_routine.cpp" />
-    <ClCompile Include="parallelization\sync_task.cpp" />
+    <ClCompile Include="parallelization\synchronization_array.cpp" />
+    <ClCompile Include="parallelization\synchronization_object.cpp" />
+    <ClCompile Include="parallelization\synchronization_result.cpp" />
+    <ClCompile Include="parallelization\synchronized_process.cpp" />
+    <ClCompile Include="parallelization\synchronized_task.cpp" />
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
     <ClCompile Include="parallelization\thread_os.cpp" />
+    <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\waitable.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
+    <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\acme_main_struct.cpp" />
+    <ClCompile Include="platform\apex_main_data.cpp" />
+    <ClCompile Include="platform\apex_main_struct.cpp" />
+    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
+    <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\debug.cpp" />
+    <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\display.cpp" />
     <ClCompile Include="platform\exclusive.cpp" />
     <ClCompile Include="platform\factory.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
-    <ClCompile Include="platform\international.cpp" />
+    <ClCompile Include="platform\implementable.cpp" />
+    <ClCompile Include="platform\library.cpp" />
+    <ClCompile Include="platform\log.cpp" />
     <ClCompile Include="platform\logic.cpp" />
     <ClCompile Include="platform\lparam.cpp" />
+    <ClCompile Include="platform\main.cpp" />
     <ClCompile Include="platform\math.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\muldiv64.cpp" />
-    <ClCompile Include="platform\nano_timer.cpp" />
+    <ClCompile Include="platform\nanosecond_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
-    <ClCompile Include="platform\obj_ref_dbg.cpp" />
-    <ClCompile Include="platform\obj_typ_ctr.cpp" />
+    <ClCompile Include="platform\node.cpp" />
+    <ClCompile Include="platform\object_reference_count_debug.cpp" />
+    <ClCompile Include="platform\object_type_counter.cpp" />
+    <ClCompile Include="platform\options.cpp" />
+    <ClCompile Include="platform\predicate_function.cpp" />
+    <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
+    <ClCompile Include="platform\procedure.cpp" />
+    <ClCompile Include="platform\procedure_array.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
-    <ClCompile Include="platform\regex.cpp" />
-    <ClCompile Include="platform\sprintf.cpp" />
-    <ClCompile Include="platform\static_start.cpp" />
-    <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\sequence.cpp" />
+    <ClCompile Include="platform\serial.cpp" />
+    <ClCompile Include="platform\simple_log.cpp" />
+    <ClCompile Include="platform\string.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />
     <ClCompile Include="platform\timer_array.cpp" />
@@ -465,6 +490,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_item.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
+    <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -479,97 +505,114 @@
     <ClCompile Include="primitive\collection\map_misc.cpp" />
     <ClCompile Include="primitive\collection\map_test_51778915.cpp" />
     <ClCompile Include="primitive\collection\numeric_array.cpp" />
+    <ClCompile Include="primitive\collection\payload_array.cpp" />
     <ClCompile Include="primitive\collection\point_array.cpp" />
-    <ClCompile Include="primitive\collection\rectangle_i32_array.cpp" />
+    <ClCompile Include="primitive\collection\rectangle_array.cpp" />
     <ClCompile Include="primitive\collection\sort.cpp" />
+    <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\stringl.cpp" />
+    <ClCompile Include="primitive\collection\string_array.cpp" />
     <ClCompile Include="primitive\collection\string_array_base.cpp" />
     <ClCompile Include="primitive\collection\string_list.cpp" />
     <ClCompile Include="primitive\collection\string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\var_array.cpp" />
     <ClCompile Include="primitive\comparison\var_strict.cpp" />
+    <ClCompile Include="primitive\data\container.cpp" />
+    <ClCompile Include="primitive\data\data.cpp" />
+    <ClCompile Include="primitive\data\item.cpp" />
+    <ClCompile Include="primitive\data\listener.cpp" />
+    <ClCompile Include="primitive\data\node.cpp" />
+    <ClCompile Include="primitive\data\simple_item.cpp" />
+    <ClCompile Include="primitive\data\tree.cpp" />
+    <ClCompile Include="primitive\data\tree_item.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
-    <ClCompile Include="primitive\datetime\duration.cpp" />
-    <ClCompile Include="primitive\datetime\filetime.cpp" />
-    <ClCompile Include="primitive\datetime\filetime_span.cpp" />
+    <ClCompile Include="primitive\datetime\department.cpp" />
+    <ClCompile Include="primitive\datetime\file_time.cpp" />
+    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
+    <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\mktime.cpp" />
+    <ClCompile Include="primitive\datetime\result.cpp" />
+    <ClCompile Include="primitive\datetime\system_time.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
     <ClCompile Include="primitive\datetime\time_span.cpp" />
-    <ClCompile Include="primitive\datetime\value.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\datetime\_.cpp" />
     <ClCompile Include="primitive\datetime\_c.cpp" />
+    <ClCompile Include="primitive\duration\duration\duration.cpp" />
+    <ClCompile Include="primitive\duration\duration\microsecond.cpp" />
+    <ClCompile Include="primitive\duration\duration\second.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
-    <ClCompile Include="primitive\geometry2d\rect.cpp" />
+    <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\geometry2d\size.cpp" />
     <ClCompile Include="primitive\geometry2d\types.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />
+    <ClCompile Include="primitive\geometry2d\_shape.cpp" />
     <ClCompile Include="primitive\geometry3d\box.cpp" />
     <ClCompile Include="primitive\geometry3d\location.cpp" />
-    <ClCompile Include="primitive\math\binary_operation.cpp" />
-    <ClCompile Include="primitive\math\cvt.cpp" />
-    <ClCompile Include="primitive\math\cvt_g.cpp" />
-    <ClCompile Include="primitive\math\int_biunique.cpp" />
-    <ClCompile Include="primitive\math\math.cpp" />
-    <ClCompile Include="primitive\math\mkint_c.cpp" />
-    <ClCompile Include="primitive\math\natural.cpp" />
-    <ClCompile Include="primitive\math\number.cpp" />
-    <ClCompile Include="primitive\math\number_double.cpp" />
-    <ClCompile Include="primitive\math\number_float.cpp" />
-    <ClCompile Include="primitive\math\number_integer.cpp" />
-    <ClCompile Include="primitive\math\random_number_generator.cpp" />
-    <ClCompile Include="primitive\math\scalar.cpp" />
-    <ClCompile Include="primitive\math\value.cpp" />
+    <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
+    <ClCompile Include="primitive\mathematics\cvt.cpp" />
+    <ClCompile Include="primitive\mathematics\cvt_g.cpp" />
+    <ClCompile Include="primitive\mathematics\int_biunique.cpp" />
+    <ClCompile Include="primitive\mathematics\mathematics.cpp" />
+    <ClCompile Include="primitive\mathematics\mkint_c.cpp" />
+    <ClCompile Include="primitive\mathematics\natural.cpp" />
+    <ClCompile Include="primitive\mathematics\number.cpp" />
+    <ClCompile Include="primitive\mathematics\number_double.cpp" />
+    <ClCompile Include="primitive\mathematics\number_float.cpp" />
+    <ClCompile Include="primitive\mathematics\number_integer.cpp" />
+    <ClCompile Include="primitive\mathematics\random_number_generator.cpp" />
+    <ClCompile Include="primitive\mathematics\scalar.cpp" />
+    <ClCompile Include="primitive\mathematics\value.cpp" />
+    <ClCompile Include="primitive\mathematics\_.cpp" />
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
+    <ClCompile Include="primitive\primitive\atom.cpp" />
+    <ClCompile Include="primitive\primitive\atom_space.cpp" />
     <ClCompile Include="primitive\primitive\bit.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\command.cpp" />
-    <ClCompile Include="primitive\primitive\context_object.cpp" />
     <ClCompile Include="primitive\primitive\context_object_traits.cpp" />
+    <ClCompile Include="primitive\primitive\edit.cpp" />
+    <ClCompile Include="primitive\primitive\element.cpp" />
     <ClCompile Include="primitive\primitive\element_array.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
-    <ClCompile Include="primitive\primitive\id_array.cpp" />
-    <ClCompile Include="primitive\primitive\matter.cpp" />
-    <ClCompile Include="primitive\primitive\edit.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
     <ClCompile Include="primitive\primitive\handler.cpp" />
-    <ClCompile Include="primitive\primitive\id.cpp" />
-    <ClCompile Include="primitive\primitive\id_space.cpp" />
+    <ClCompile Include="primitive\primitive\id_array.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long_pulse.cpp" />
-    <ClCompile Include="primitive\primitive\layered.cpp" />
+    <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
+    <ClCompile Include="primitive\primitive\material_object.cpp" />
+    <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\memory.cpp" />
     <ClCompile Include="primitive\primitive\memory_base.cpp" />
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
+    <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
+    <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
     <ClCompile Include="primitive\primitive\runnable.cpp" />
     <ClCompile Include="primitive\primitive\shared_memory.cpp" />
+    <ClCompile Include="primitive\primitive\tracer.cpp" />
     <ClCompile Include="primitive\primitive\traits.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
     <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\primitive\_.cpp" />
-    <ClCompile Include="primitive\promise\context.cpp" />
-    <ClCompile Include="primitive\promise\handler.cpp" />
-    <ClCompile Include="primitive\promise\process.cpp" />
-    <ClCompile Include="primitive\promise\promise.cpp" />
-    <ClCompile Include="primitive\promise\routine.cpp" />
-    <ClCompile Include="primitive\promise\routine_array.cpp" />
-    <ClCompile Include="primitive\promise\subject.cpp" />
+    <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\base64.cpp" />
     <ClCompile Include="primitive\string\bstring.cpp" />
     <ClCompile Include="primitive\string\ch.cpp" />
     <ClCompile Include="primitive\string\ch_class.cpp" />
+    <ClCompile Include="primitive\string\command_line.cpp" />
     <ClCompile Include="primitive\string\dup.cpp" />
     <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
@@ -587,408 +630,125 @@
     <ClCompile Include="primitive\string\sz.cpp" />
     <ClCompile Include="primitive\string\tokenizer.cpp" />
     <ClCompile Include="primitive\string\to_integer.cpp" />
+    <ClCompile Include="primitive\string\to_string.cpp" />
+    <ClCompile Include="primitive\string\unicode.cpp" />
+    <ClCompile Include="primitive\string\unicode16.cpp" />
+    <ClCompile Include="primitive\string\unicode16_32.cpp" />
+    <ClCompile Include="primitive\string\unicode32.cpp" />
+    <ClCompile Include="primitive\string\wildcard.cpp" />
     <ClCompile Include="primitive\string\x.cpp" />
     <ClCompile Include="primitive\string\_.cpp" />
-    <ClCompile Include="primitive\string\_c.cpp" />
-    <ClCompile Include="primitive\string\_conv_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
-    <ClCompile Include="primitive\string\_unicode.cpp" />
-    <ClCompile Include="primitive\string\_unicode16.cpp" />
-    <ClCompile Include="primitive\string\_unicode16_32.cpp" />
-    <ClCompile Include="primitive\string\_unicode32.cpp" />
+    <ClCompile Include="primitive\text\context.cpp" />
+    <ClCompile Include="primitive\text\data.cpp" />
+    <ClCompile Include="primitive\text\international.cpp" />
+    <ClCompile Include="primitive\text\international_locale_schema.cpp" />
+    <ClCompile Include="primitive\text\text.cpp" />
+    <ClCompile Include="primitive\text\translator.cpp" />
     <ClCompile Include="process\bidirectional_pipe.cpp" />
     <ClCompile Include="process\exit_status.cpp" />
+    <ClCompile Include="process\main.cpp" />
     <ClCompile Include="process\pipe.cpp" />
     <ClCompile Include="process\_.cpp" />
-    <ClCompile Include="user\os_colors.cpp" />
-    <ClCompile Include="user\os_theme_colors.cpp" />
+    <ClCompile Include="regular_expression\context.cpp" />
+    <ClCompile Include="regular_expression\regular_expression.cpp" />
+    <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="user\nano\brush.cpp" />
+    <ClCompile Include="user\nano\button.cpp" />
+    <ClCompile Include="user\nano\child.cpp" />
+    <ClCompile Include="user\nano\details_window.cpp" />
+    <ClCompile Include="user\nano\device.cpp" />
+    <ClCompile Include="user\nano\display.cpp" />
+    <ClCompile Include="user\nano\font.cpp" />
+    <ClCompile Include="user\nano\message_box.cpp" />
+    <ClCompile Include="user\nano\object.cpp" />
+    <ClCompile Include="user\nano\pen.cpp" />
+    <ClCompile Include="user\nano\popup_button.cpp" />
+    <ClCompile Include="user\nano\still.cpp" />
+    <ClCompile Include="user\nano\window.cpp" />
+    <ClCompile Include="user\nano\window_implementation.cpp" />
+    <ClCompile Include="user\nano\window_interface.cpp" />
+    <ClCompile Include="user\nano\_nano.cpp" />
+    <ClCompile Include="user\user\check.cpp" />
+    <ClCompile Include="user\user\drag.cpp" />
+    <ClCompile Include="user\user\element.cpp" />
+    <ClCompile Include="user\user\mouse.cpp" />
+    <ClCompile Include="user\user\os_colors.cpp" />
+    <ClCompile Include="user\user\os_theme_colors.cpp" />
+    <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_jni_impl.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="acme\account\account.h" />
-    <ClInclude Include="acme\account\account_authenticator.h" />
-    <ClInclude Include="acme\account\account_const.h" />
-    <ClInclude Include="acme\account\account_contact_list.h" />
-    <ClInclude Include="acme\account\account_credentials.h" />
-    <ClInclude Include="acme\account\account_department.h" />
-    <ClInclude Include="acme\account\account_e_status.h" />
-    <ClInclude Include="acme\account\account_interactive.h" />
-    <ClInclude Include="acme\account\account_network_authenticator.h" />
-    <ClInclude Include="acme\account\account_product.h" />
-    <ClInclude Include="acme\account\account_product_array.h" />
-    <ClInclude Include="acme\account\account_storage.h" />
-    <ClInclude Include="acme\account\account_storage_client.h" />
-    <ClInclude Include="acme\account\account_system_storage.h" />
-    <ClInclude Include="acme\account\account_user.h" />
-    <ClInclude Include="acme\account\account_usera.h" />
-    <ClInclude Include="acme\account\account_user_array.h" />
-    <ClInclude Include="acme\account\account_user_set.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_application_common.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_common.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_console_window2.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_runnable.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_system_common.h" />
-    <ClInclude Include="acme\acme\aaa_want_to_remove_template.h" />
-    <ClInclude Include="acme\acme\align_byte_count.h" />
-    <ClInclude Include="acme\acme\allocate.h" />
-    <ClInclude Include="acme\acme\allocate_processor_cache_oriented.h" />
-    <ClInclude Include="acme\acme\allocation.h" />
-    <ClInclude Include="acme\acme\app.h" />
-    <ClInclude Include="acme\acme\application.h" />
-    <ClInclude Include="acme\acme\application_array.h" />
-    <ClInclude Include="acme\acme\application_container.h" />
-    <ClInclude Include="acme\acme\application_heap.h" />
-    <ClInclude Include="acme\acme\application_menu.h" />
-    <ClInclude Include="acme\acme\application_message.h" />
-    <ClInclude Include="acme\acme\application_signal_details.h" />
-    <ClInclude Include="acme\acme\app_core.h" />
-    <ClInclude Include="acme\acme\app_launcher.h" />
-    <ClInclude Include="acme\acme\assert_running_task.h" />
-    <ClInclude Include="acme\acme\async.h" />
-    <ClInclude Include="acme\acme\atomic2.h" />
-    <ClInclude Include="acme\acme\aura_aura.h" />
-    <ClInclude Include="acme\acme\aura_regex.h" />
-    <ClInclude Include="acme\acme\aura_status.h" />
-    <ClInclude Include="acme\acme\auto.h" />
-    <ClInclude Include="acme\acme\auto_pointer.h" />
-    <ClInclude Include="acme\acme\block.h" />
-    <ClInclude Include="acme\acme\chronometer.h" />
-    <ClInclude Include="acme\acme\class.h" />
-    <ClInclude Include="acme\acme\cmp.h" />
-    <ClInclude Include="acme\acme\cmp2.h" />
-    <ClInclude Include="acme\acme\command_ui_probe.h" />
-    <ClInclude Include="acme\acme\common.h" />
-    <ClInclude Include="acme\acme\console.h" />
-    <ClInclude Include="acme\acme\context.h" />
-    <ClInclude Include="acme\acme\conv.h" />
-    <ClInclude Include="acme\acme\acme.h" />
-    <ClInclude Include="acme\acme\cpu_architecture.h" />
-    <ClInclude Include="acme\acme\cregexp.h" />
-    <ClInclude Include="acme\acme\cregexp_util.h" />
-    <ClInclude Include="acme\acme\debug.h" />
-    <ClInclude Include="acme\acme\definition.h" />
-    <ClInclude Include="acme\acme\department.h" />
-    <ClInclude Include="acme\acme\department_container.h" />
-    <ClInclude Include="acme\acme\display.h" />
-    <ClInclude Include="acme\acme\drawable.h" />
-    <ClInclude Include="acme\acme\draw_context2.h" />
-    <ClInclude Include="acme\acme\enum.h" />
-    <ClInclude Include="acme\acme\error.h" />
-    <ClInclude Include="acme\acme\exclusive.h" />
-    <ClInclude Include="acme\acme\e_status.h" />
-    <ClInclude Include="acme\acme\fixed_alloc.h" />
-    <ClInclude Include="acme\acme\fixed_alloc_impl.h" />
-    <ClInclude Include="acme\acme\flags.h" />
-    <ClInclude Include="acme\acme\gudo2.h" />
-    <ClInclude Include="acme\acme\heap_.h" />
-    <ClInclude Include="acme\acme\heap_c.h" />
-    <ClInclude Include="acme\acme\heap_item.h" />
-    <ClInclude Include="acme\acme\heap_item_array.h" />
-    <ClInclude Include="acme\acme\heap_memory.h" />
-    <ClInclude Include="acme\acme\hyperlink.h" />
-    <ClInclude Include="acme\acme\international.h" />
-    <ClInclude Include="acme\acme\ipc.h" />
-    <ClInclude Include="acme\acme\ipi.h" />
-    <ClInclude Include="acme\acme\keep.h" />
-    <ClInclude Include="acme\acme\keep_true.h" />
-    <ClInclude Include="acme\acme\launcher.h" />
-    <ClInclude Include="acme\acme\library.h" />
-    <ClInclude Include="acme\acme\library_object_allocator.h" />
-    <ClInclude Include="acme\acme\live_signal.h" />
-    <ClInclude Include="acme\acme\log.h" />
-    <ClInclude Include="acme\acme\lparam.h" />
-    <ClInclude Include="acme\acme\machine_event2.h" />
-    <ClInclude Include="acme\acme\machine_event_central2.h" />
-    <ClInclude Include="acme\acme\machine_event_data2.h" />
-    <ClInclude Include="acme\acme\malloc.h" />
-    <ClInclude Include="acme\acme\math.h" />
-    <ClInclude Include="acme\acme\memory.h" />
-    <ClInclude Include="acme\acme\memory_allocator.h" />
-    <ClInclude Include="acme\acme\message_loop.h" />
-    <ClInclude Include="acme\acme\muldiv64.h" />
-    <ClInclude Include="acme\acme\net.h" />
-    <ClInclude Include="acme\acme\new.h" />
-    <ClInclude Include="acme\acme\number.h" />
-    <ClInclude Include="acme\acme\os_alloc.h" />
-    <ClInclude Include="acme\acme\os_context.h" />
-    <ClInclude Include="acme\acme\plex.h" />
-    <ClInclude Include="acme\acme\plex_heap1.h" />
-    <ClInclude Include="acme\acme\plex_heap_impl1.h" />
-    <ClInclude Include="acme\acme\printer.h" />
-    <ClInclude Include="acme\acme\printf.h" />
-    <ClInclude Include="acme\acme\profiler2.h" />
-    <ClInclude Include="acme\acme\progress.h" />
-    <ClInclude Include="acme\acme\regex.h" />
-    <ClInclude Include="acme\acme\restore.h" />
-    <ClInclude Include="acme\acme\runnable2.h" />
-    <ClInclude Include="acme\acme\runnable_pred.h" />
-    <ClInclude Include="acme\acme\savings.h" />
-    <ClInclude Include="acme\acme\serial.h" />
-    <ClInclude Include="acme\acme\serializable.h" />
-    <ClInclude Include="acme\acme\serial_impl.h" />
-    <ClInclude Include="acme\acme\session.h" />
-    <ClInclude Include="acme\acme\session_common.h" />
-    <ClInclude Include="acme\acme\session_heap.h" />
-    <ClInclude Include="acme\acme\shell_launcher.h" />
-    <ClInclude Include="acme\acme\simple_app.h" />
-    <ClInclude Include="acme\acme\simple_log.h" />
-    <ClInclude Include="acme\acme\speaker.h" />
-    <ClInclude Include="acme\acme\sprintf.h" />
-    <ClInclude Include="acme\acme\static_start.h" />
-    <ClInclude Include="acme\acme\status.h" />
-    <ClInclude Include="acme\acme\struct.h" />
-    <ClInclude Include="acme\acme\str_context.h" />
-    <ClInclude Include="acme\acme\system.h" />
-    <ClInclude Include="acme\acme\system_heap.h" />
-    <ClInclude Include="acme\acme\system_str.h" />
-    <ClInclude Include="acme\acme\millis.h" />
-    <ClInclude Include="acme\acme\timer.h" />
-    <ClInclude Include="acme\acme\timer_array.h" />
-    <ClInclude Include="acme\acme\timer_callback.h" />
-    <ClInclude Include="acme\acme\timer_event.h" />
-    <ClInclude Include="acme\acme\timer_item.h" />
-    <ClInclude Include="acme\acme\trace.h" />
-    <ClInclude Include="acme\acme\trace_category.h" />
-    <ClInclude Include="acme\acme\user.h" />
-    <ClInclude Include="acme\acme\v8stdint.h" />
-    <ClInclude Include="acme\acme\_.h" />
-    <ClInclude Include="acme\acme\_heap.h" />
-    <ClInclude Include="acme\acme\_impl.h" />
-    <ClInclude Include="acme\acme\_system_id_impl.h" />
-    <ClInclude Include="acme\acme\_system_object_impl.h" />
-    <ClInclude Include="acme\acme\_system_smart_pointer_impl.h" />
-    <ClInclude Include="acme\acme\_system_var_impl.h" />
-    <ClInclude Include="acme\acme\_system_xml_impl.h" />
-    <ClInclude Include="acme\aura_policy\aura_c.h" />
-    <ClInclude Include="acme\aura_policy\aura_cpp.h" />
-    <ClInclude Include="acme\aura_policy\aura_policy.h" />
-    <ClInclude Include="acme\aura_policy\aura_policy_objc.h" />
-    <ClInclude Include="acme\aura_policy\aura_policy_objcpp.h" />
-    <ClInclude Include="acme\aura_policy\aura_policy_winrt.h" />
-    <ClInclude Include="acme\charguess\big5Prober.h" />
-    <ClInclude Include="acme\charguess\charDistribution.h" />
-    <ClInclude Include="acme\charguess\charguess.h" />
-    <ClInclude Include="acme\charguess\charguess_c.h" />
-    <ClInclude Include="acme\charguess\charguess_private.h" />
-    <ClInclude Include="acme\charguess\charsetProber.h" />
-    <ClInclude Include="acme\charguess\codingStateMachine.h" />
-    <ClInclude Include="acme\charguess\config.h" />
-    <ClInclude Include="acme\charguess\EscCharsetProber.h" />
-    <ClInclude Include="acme\charguess\EUCJPProber.h" />
-    <ClInclude Include="acme\charguess\EUCKRProber.h" />
-    <ClInclude Include="acme\charguess\EUCTWProber.h" />
-    <ClInclude Include="acme\charguess\GB2312Prober.h" />
-    <ClInclude Include="acme\charguess\jpCntx.h" />
-    <ClInclude Include="acme\charguess\Latin1Prober.h" />
-    <ClInclude Include="acme\charguess\MBCSGroupProber.h" />
-    <ClInclude Include="acme\charguess\pkgInt.h" />
-    <ClInclude Include="acme\charguess\SBCharsetProber.h" />
-    <ClInclude Include="acme\charguess\SBCSGroupProber.h" />
-    <ClInclude Include="acme\charguess\SJISProber.h" />
-    <ClInclude Include="acme\charguess\types.h" />
-    <ClInclude Include="acme\charguess\universal.h" />
-    <ClInclude Include="acme\charguess\UTF8Prober.h" />
-    <ClInclude Include="acme\compress\compress.h" />
-    <ClInclude Include="acme\compress\compress_bz.h" />
-    <ClInclude Include="acme\compress\aaa_want_to_remove_compress_bzip.h" />
-    <ClInclude Include="acme\compress\compress_department.h" />
-    <ClInclude Include="acme\compress\compress_gz.h" />
-    <ClInclude Include="acme\compress\aaa_want_to_remove_compress_gzip.h" />
-    <ClInclude Include="acme\compress\zip\zip.h" />
-    <ClInclude Include="acme\compress\zip\zip_api.h" />
-    <ClInclude Include="acme\compress\zip\zip_crypt.h" />
-    <ClInclude Include="acme\compress\zip\zip_file.h" />
-    <ClInclude Include="acme\compress\zip\zip_impl.h" />
-    <ClInclude Include="acme\compress\zip\zip_internal.h" />
-    <ClInclude Include="acme\compress\zip\zip_in_file.h" />
-    <ClInclude Include="acme\compress\zip\zip_ioapi.h" />
-    <ClInclude Include="acme\compress\zip\zip_iowin32.h" />
-    <ClInclude Include="acme\compress\zip\zip_memory_buffer.h" />
-    <ClInclude Include="acme\compress\zip\zip_unzip.h" />
-    <ClInclude Include="acme\compress\zip\zip_util.h" />
-    <ClInclude Include="acme\message\message.h" />
-    <ClInclude Include="acme\message\message_base.h" />
-    <ClInclude Include="acme\message\message_cross_windows.h" />
-    <ClInclude Include="acme\message\message_definition.h" />
-    <ClInclude Include="acme\node\android\android1.h" />
-    <ClInclude Include="acme\node\android\application.h" />
-    <ClInclude Include="acme\node\android\dir_context.h" />
-    <ClInclude Include="acme\node\android\dir_system.h" />
-    <ClInclude Include="acme\node\android\factory_exchange.h" />
-    <ClInclude Include="acme\node\android\file.h" />
-    <ClInclude Include="acme\node\android\file_context.h" />
-    <ClInclude Include="acme\node\android\file_system.h" />
-    <ClInclude Include="acme\node\android\implementation.h" />
-    <ClInclude Include="acme\node\android\interaction_impl.h" />
-    <ClInclude Include="acme\node\android\internal.h" />
-    <ClInclude Include="acme\node\android\os_context.h" />
-    <ClInclude Include="acme\node\android\shell.h" />
-    <ClInclude Include="acme\node\android\stdio_file.h" />
-    <ClInclude Include="acme\node\android\thread.h" />
-    <ClInclude Include="acme\node\android\_.h" />
-    <ClInclude Include="acme\node\android\_android.h" />
-    <ClInclude Include="acme\node\unix\file_watcher.h" />
-    <ClInclude Include="acme\node\_.h" />
-    <ClInclude Include="acme\node\_node.h" />
-    <ClInclude Include="acme\os\android\exception_engine.h" />
-    <ClInclude Include="acme\os\android\_.h" />
-    <ClInclude Include="acme\os\android\_android.h" />
-    <ClInclude Include="acme\os\android\cairo_keep.h" />
-    <ClInclude Include="acme\os\android\cross_win_file.h" />
-    <ClInclude Include="acme\os\android\cross_win_gdi.h" />
-    <ClInclude Include="acme\os\android\cross_win_gdi_internal.h" />
-    <ClInclude Include="acme\os\android\node_data_exchange.h" />
-    <ClInclude Include="acme\os\android\file.h" />
-    <ClInclude Include="acme\os\android\graphics.h" />
-    <ClInclude Include="acme\os\android\internal.h" />
-    <ClInclude Include="acme\os\android\process.h" />
-    <ClInclude Include="acme\os\android\view_bitmap.h" />
-    <ClInclude Include="acme\os\android\vsnord_native_app_glue.h" />
-    <ClInclude Include="acme\os\android\windowing.h" />
-    <ClInclude Include="acme\os\android\window_android.h" />
-    <ClInclude Include="acme\os\android\window_buffer.h" />
-    <ClInclude Include="acme\os\android\_c.h" />
-    <ClInclude Include="acme\os\ansios\callstack.h" />
-    <ClInclude Include="acme\os\ansios\file.h" />
-    <ClInclude Include="acme\os\ansios\file_c.h" />
-    <ClInclude Include="acme\os\ansios\multithreading.h" />
-    <ClInclude Include="acme\os\ansios\thread.h" />
-    <ClInclude Include="acme\os\ansios\_.h" />
-    <ClInclude Include="acme\os\ansios\_ansios.h" />
-    <ClInclude Include="acme\os\ansios\_c.h" />
-    <ClInclude Include="acme\os\cross\ansios\ansios.h" />
-    <ClInclude Include="acme\os\cross\ansios\ansios_file.h" />
-    <ClInclude Include="acme\os\cross\cross.h" />
-    <ClInclude Include="acme\os\cross\windows\e.h" />
-    <ClInclude Include="acme\os\cross\windows\windows.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_base.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_base_tsd.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_common_controls.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_crt.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_crtdefs.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_defs.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_errno.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_error.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_file.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_gdi.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_guid_def.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_internals.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_mmeapi.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_mmsystem.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_nls.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_nt.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_ntstatus.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_ole_automation.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_poppack.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_pshpack2.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_pshpack4.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_pshpack8.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_shared_memory.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_thread.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_thread_impl.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_time.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_types.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_user.h" />
-    <ClInclude Include="acme\os\cross\windows\windows_winnt.h" />
-    <ClInclude Include="acme\os\_os.h" />
-    <ClInclude Include="acme\process\process.h" />
-    <ClInclude Include="acme\process\process_bidi_pipe.h" />
-    <ClInclude Include="acme\process\process_department.h" />
-    <ClInclude Include="acme\process\process_pipe.h" />
-    <ClInclude Include="acme\process\process_process.h" />
-    <ClInclude Include="acme\xml\xml.h" />
-    <ClInclude Include="acme\xml\xml_attr.h" />
-    <ClInclude Include="acme\xml\xml_base_array.h" />
-    <ClInclude Include="acme\xml\xml_data.h" />
-    <ClInclude Include="acme\xml\xml_department.h" />
-    <ClInclude Include="acme\xml\xml_disp_option.h" />
-    <ClInclude Include="acme\xml\xml_document.h" />
-    <ClInclude Include="acme\xml\xml_edit.h" />
-    <ClInclude Include="acme\xml\xml_entity.h" />
-    <ClInclude Include="acme\xml\xml_enum.h" />
-    <ClInclude Include="acme\xml\xml_exportable.h" />
-    <ClInclude Include="acme\xml\xml_importable.h" />
-    <ClInclude Include="acme\xml\xml_input_tree.h" />
-    <ClInclude Include="acme\xml\xml_node.h" />
-    <ClInclude Include="acme\xml\xml_output_tree.h" />
-    <ClInclude Include="acme\xml\xml_parse_info.h" />
-    <ClInclude Include="acme\xml\xml_property_exchange.h" />
-    <ClInclude Include="acme\xml\xml_tree_base.h" />
-    <ClInclude Include="acme\xml\xml_tree_schema.h" />
-    <ClInclude Include="acme\xml\xml_var_exchange.h" />
-    <ClInclude Include="acme\xml\xml_xmlite.h" />
-    <ClInclude Include="compress\gz.h" />
+    <ClInclude Include="compress\compress.h" />
+    <ClInclude Include="compress\uncompress.h" />
     <ClInclude Include="compress\_.h" />
-    <ClInclude Include="const\charset.h" />
-    <ClInclude Include="const\check.h" />
-    <ClInclude Include="const\context.h" />
-    <ClInclude Include="const\id.h" />
-    <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="const\impact.h" />
-    <ClInclude Include="const\message.h" />
-    <ClInclude Include="const\simple_command.h" />
-    <ClInclude Include="const\source.h" />
-    <ClInclude Include="const\status.h" />
-    <ClInclude Include="const\status_range_authentication.h" />
-    <ClInclude Include="const\thread_flag.h" />
-    <ClInclude Include="const\timer.h" />
-    <ClInclude Include="const\_const.h" />
-    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h" />
-    <ClInclude Include="exception\assert.h" />
-    <ClInclude Include="exception\base.h" />
+    <ClInclude Include="constant\aaa_topic.h" />
+    <ClInclude Include="constant\activate.h" />
+    <ClInclude Include="constant\button_state.h" />
+    <ClInclude Include="constant\character_set.h" />
+    <ClInclude Include="constant\check.h" />
+    <ClInclude Include="constant\code_page.h" />
+    <ClInclude Include="constant\context.h" />
+    <ClInclude Include="constant\cursor.h" />
+    <ClInclude Include="constant\earth.h" />
+    <ClInclude Include="constant\exception.h" />
+    <ClInclude Include="constant\filesystem.h" />
+    <ClInclude Include="constant\flag.h" />
+    <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\GLOBAL_ID.h" />
+    <ClInclude Include="constant\id.h" />
+    <ClInclude Include="constant\idpool.h" />
+    <ClInclude Include="constant\impact.h" />
+    <ClInclude Include="constant\memory_heap.h" />
+    <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\parallelization.h" />
+    <ClInclude Include="constant\routine.h" />
+    <ClInclude Include="constant\simple_command.h" />
+    <ClInclude Include="constant\source.h" />
+    <ClInclude Include="constant\status.h" />
+    <ClInclude Include="constant\status_range_authentication.h" />
+    <ClInclude Include="constant\thread.h" />
+    <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user.h" />
+    <ClInclude Include="constant\user_text.h" />
+    <ClInclude Include="constant\_.h" />
+    <ClInclude Include="constant\_constant.h" />
+    <ClInclude Include="constant\_enumeration.h" />
+    <ClInclude Include="constant\_mathematics.h" />
+    <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\callstack.h" />
     <ClInclude Include="exception\call_stack.h" />
     <ClInclude Include="exception\cancel.h" />
-    <ClInclude Include="exception\debug.h" />
-    <ClInclude Include="exception\debug_stream.h" />
     <ClInclude Include="exception\dump_context.h" />
-    <ClInclude Include="exception\engine.h" />
-    <ClInclude Include="exception\error.h" />
     <ClInclude Include="exception\exception.h" />
     <ClInclude Include="exception\exception2.h" />
     <ClInclude Include="exception\exit.h" />
-    <ClInclude Include="exception\hresult.h" />
-    <ClInclude Include="exception\installing.h" />
+    <ClInclude Include="exception\extended_status.h" />
+    <ClInclude Include="exception\extended_transport.h" />
+    <ClInclude Include="exception\file.h" />
+    <ClInclude Include="exception\file_open.h" />
     <ClInclude Include="exception\interface_only.h" />
-    <ClInclude Include="exception\invalid_argument.h" />
-    <ClInclude Include="exception\invalid_character.h" />
-    <ClInclude Include="exception\invalid_handle.h" />
-    <ClInclude Include="exception\invalid_index.h" />
-    <ClInclude Include="exception\invalid_type.h" />
     <ClInclude Include="exception\io.h" />
-    <ClInclude Include="exception\last_error.h" />
-    <ClInclude Include="exception\memory.h" />
-    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
-    <ClInclude Include="exception\misc.h" />
+    <ClInclude Include="exception\library_not_loaded.h" />
     <ClInclude Include="exception\not_implemented.h" />
-    <ClInclude Include="exception\not_installed.h" />
-    <ClInclude Include="exception\not_licensed.h" />
-    <ClInclude Include="exception\not_supported.h" />
-    <ClInclude Include="exception\operation_canceled.h" />
-    <ClInclude Include="exception\os.h" />
-    <ClInclude Include="exception\overflow_error.h" />
+    <ClInclude Include="exception\no_memory.h" />
     <ClInclude Include="exception\parsing.h" />
-    <ClInclude Include="exception\range_error.h" />
     <ClInclude Include="exception\resource.h" />
-    <ClInclude Include="exception\result.h" />
-    <ClInclude Include="exception\runtime_error.h" />
-    <ClInclude Include="exception\simple.h" />
+    <ClInclude Include="exception\serialization.h" />
     <ClInclude Include="exception\standard.h" />
-    <ClInclude Include="exception\standard_translator.h" />
-    <ClInclude Include="exception\system.h" />
-    <ClInclude Include="exception\temporary.h" />
+    <ClInclude Include="exception\status.h" />
     <ClInclude Include="exception\throw.h" />
-    <ClInclude Include="exception\todo.h" />
+    <ClInclude Include="exception\translator.h" />
     <ClInclude Include="exception\trap.h" />
     <ClInclude Include="exception\unhandled_report.h" />
-    <ClInclude Include="exception\user.h" />
     <ClInclude Include="exception\void_implementation.h" />
     <ClInclude Include="exception\_.h" />
     <ClInclude Include="exception\_c.h" />
-    <ClInclude Include="exception\_const.h" />
     <ClInclude Include="exception\_dump_context.h" />
+    <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem.h" />
     <ClInclude Include="filesystem\filesystem\dir_context.h" />
     <ClInclude Include="filesystem\filesystem\dir_system.h" />
@@ -1060,9 +820,16 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
     <ClInclude Include="graphics\draw2d\color.h" />
+    <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\colorref_array.h" />
+    <ClInclude Include="graphics\draw2d\opacity.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
+    <ClInclude Include="graphics\draw2d\_system_color.h" />
+    <ClInclude Include="handler\extended_topic.h" />
+    <ClInclude Include="handler\handler.h" />
+    <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -1099,102 +866,34 @@
     <ClInclude Include="memory\plex.h" />
     <ClInclude Include="memory\plex_heap1.h" />
     <ClInclude Include="memory\plex_heap_impl1.h" />
-    <ClInclude Include="multithreading\common.h" />
-    <ClInclude Include="multithreading\condition.h" />
-    <ClInclude Include="multithreading\create_thread.h" />
-    <ClInclude Include="multithreading\critical_section.h" />
-    <ClInclude Include="multithreading\data.h" />
-    <ClInclude Include="multithreading\event.h" />
-    <ClInclude Include="multithreading\file_change_event.h" />
-    <ClInclude Include="multithreading\initial_single_lock.h" />
-    <ClInclude Include="multithreading\manual_reset_event.h" />
-    <ClInclude Include="multithreading\procedure_array.h" />
-    <ClInclude Include="multithreading\mq.h" />
-    <ClInclude Include="multithreading\multi_lock.h" />
-    <ClInclude Include="multithreading\mutex.h" />
-    <ClInclude Include="multithreading\pred_holder.h" />
-    <ClInclude Include="multithreading\semaphore.h" />
-    <ClInclude Include="multithreading\set_event_on_exit.h" />
-    <ClInclude Include="multithreading\single_lock.h" />
-    <ClInclude Include="multithreading\socket_event.h" />
-    <ClInclude Include="multithreading\sync.h" />
-    <ClInclude Include="multithreading\sync_array.h" />
-    <ClInclude Include="multithreading\sync_lock.h" />
-    <ClInclude Include="multithreading\sync_result.h" />
-    <ClInclude Include="multithreading\sync_task.h" />
-    <ClInclude Include="multithreading\thread_impl.h" />
-    <ClInclude Include="multithreading\thread_os.h" />
-    <ClInclude Include="multithreading\thread_parameter.h" />
-    <ClInclude Include="multithreading\wait_future.h" />
-    <ClInclude Include="multithreading\_.h" />
-    <ClInclude Include="multithreading\_impl.h" />
-    <ClInclude Include="multithreading\_thread_os_create_impl.h" />
-    <ClInclude Include="node\android\android1.h" />
-    <ClInclude Include="node\android\application.h" />
-    <ClInclude Include="node\android\buffer.h" />
-    <ClInclude Include="node\android\factory_exchange.h" />
-    <ClInclude Include="node\android\file.h" />
-    <ClInclude Include="node\android\implementation.h" />
-    <ClInclude Include="node\android\internal.h" />
-    <ClInclude Include="node\android\thread.h" />
-    <ClInclude Include="node\android\_.h" />
-    <ClInclude Include="node\android\_android.h" />
-    <ClInclude Include="node\posix\pipe.h" />
-    <ClInclude Include="node\posix\serial.h" />
-    <ClInclude Include="node\posix\_posix.h" />
-    <ClInclude Include="os\android\aaa_want_to_remove_android_window_impl.h" />
-    <ClInclude Include="os\android\cross_win_file.h" />
-    <ClInclude Include="os\android\cross_win_gdi.h" />
-    <ClInclude Include="os\android\cross_win_gdi_internal.h" />
-    <ClInclude Include="os\android\exception_engine.h" />
-    <ClInclude Include="os\android\file.h" />
-    <ClInclude Include="os\android\graphics.h" />
-    <ClInclude Include="os\android\internal.h" />
-    <ClInclude Include="os\android\_os_impl.h" />
-    <ClInclude Include="os\android\process.h" />
-    <ClInclude Include="os\android\_.h" />
-    <ClInclude Include="os\android\_android.h" />
-    <ClInclude Include="os\android\_c.h" />
-    <ClInclude Include="os\android\_os_object.h" />
-    <ClInclude Include="os\android\_os_local.h" />
-    <ClInclude Include="os\android\_os_remote.h" />
-    <ClInclude Include="os\android\_user.h" />
+    <ClInclude Include="operating_system\android\android1.h" />
+    <ClInclude Include="operating_system\android\application.h" />
+    <ClInclude Include="operating_system\android\cross_win_file.h" />
+    <ClInclude Include="operating_system\android\cross_win_gdi.h" />
+    <ClInclude Include="operating_system\android\cross_win_gdi_internal.h" />
+    <ClInclude Include="operating_system\android\exception_engine.h" />
+    <ClInclude Include="operating_system\android\factory_exchange.h" />
+    <ClInclude Include="operating_system\android\file.h" />
+    <ClInclude Include="operating_system\android\file2.h" />
+    <ClInclude Include="operating_system\android\graphics.h" />
+    <ClInclude Include="operating_system\android\implementation.h" />
+    <ClInclude Include="operating_system\android\internal.h" />
+    <ClInclude Include="operating_system\android\internal2.h" />
+    <ClInclude Include="operating_system\android\process.h" />
+    <ClInclude Include="operating_system\android\thread.h" />
+    <ClInclude Include="operating_system\android\_.h" />
+    <ClInclude Include="operating_system\android\_2.h" />
+    <ClInclude Include="operating_system\android\_android.h" />
+    <ClInclude Include="operating_system\android\_android2.h" />
+    <ClInclude Include="operating_system\android\_c.h" />
+    <ClInclude Include="operating_system\android\_os_impl.h" />
+    <ClInclude Include="operating_system\android\_os_local.h" />
+    <ClInclude Include="operating_system\android\_os_object.h" />
+    <ClInclude Include="operating_system\android\_os_remote.h" />
+    <ClInclude Include="operating_system\android\_user.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
-    <ClInclude Include="os\cross\windows\aaa_windows.h" />
-    <ClInclude Include="os\cross\windows\e.h" />
-    <ClInclude Include="os\cross\windows\message_box.h" />
-    <ClInclude Include="os\cross\windows\parallelization.h" />
-    <ClInclude Include="os\cross\windows\windows_base.h" />
-    <ClInclude Include="os\cross\windows\windows_base_tsd.h" />
-    <ClInclude Include="os\cross\windows\windows_common_controls.h" />
-    <ClInclude Include="os\cross\windows\windows_crt.h" />
-    <ClInclude Include="os\cross\windows\windows_crtdefs.h" />
-    <ClInclude Include="os\cross\windows\windows_defs.h" />
-    <ClInclude Include="os\cross\windows\windows_errno.h" />
-    <ClInclude Include="os\cross\windows\windows_error.h" />
-    <ClInclude Include="os\cross\windows\windows_file.h" />
-    <ClInclude Include="os\cross\windows\windows_gdi.h" />
-    <ClInclude Include="os\cross\windows\windows_guid_def.h" />
-    <ClInclude Include="os\cross\windows\windows_internals.h" />
-    <ClInclude Include="os\cross\windows\windows_mmeapi.h" />
-    <ClInclude Include="os\cross\windows\windows_mmsystem.h" />
-    <ClInclude Include="os\cross\windows\windows_nls.h" />
-    <ClInclude Include="os\cross\windows\windows_nt.h" />
-    <ClInclude Include="os\cross\windows\windows_ntstatus.h" />
-    <ClInclude Include="os\cross\windows\windows_ole_automation.h" />
-    <ClInclude Include="os\cross\windows\windows_shared_memory.h" />
-    <ClInclude Include="os\cross\windows\windows_thread_impl.h" />
-    <ClInclude Include="os\cross\windows\windows_time.h" />
-    <ClInclude Include="os\cross\windows\windows_types.h" />
-    <ClInclude Include="os\cross\windows\windows_user.h" />
-    <ClInclude Include="os\cross\windows\windows_wincon.h" />
-    <ClInclude Include="os\cross\windows\windows_winnt.h" />
-    <ClInclude Include="os\cross\windows\_.h" />
-    <ClInclude Include="os\cross\windows\_windows.h" />
-    <ClInclude Include="os\cross\_.h" />
-    <ClInclude Include="os\cross\_cross.h" />
     <ClInclude Include="os\file.h" />
     <ClInclude Include="os\graphics.h" />
     <ClInclude Include="os\os_windowing2.h" />
@@ -1208,149 +907,138 @@
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_template.h" />
-    <ClInclude Include="platform\all.h" />
-    <ClInclude Include="platform\app.h" />
-    <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\application_array.h" />
-    <ClInclude Include="platform\application_consumer.h" />
-    <ClInclude Include="platform\application_container.h" />
-    <ClInclude Include="platform\application_heap.h" />
-    <ClInclude Include="platform\application_impl.h" />
-    <ClInclude Include="platform\application_menu.h" />
-    <ClInclude Include="platform\application_message.h" />
-    <ClInclude Include="platform\application_signal_details.h" />
-    <ClInclude Include="platform\app_core.h" />
-    <ClInclude Include="platform\app_launcher.h" />
-    <ClInclude Include="platform\assert_running_task.h" />
-    <ClInclude Include="platform\async.h" />
-    <ClInclude Include="platform\atomic2.h" />
+    <ClInclude Include="parallelization\aaa_data.h" />
+    <ClInclude Include="parallelization\aaa_synchronized_routine.h" />
+    <ClInclude Include="parallelization\cleanup_task.h" />
+    <ClInclude Include="parallelization\common.h" />
+    <ClInclude Include="parallelization\condition.h" />
+    <ClInclude Include="parallelization\condition_variable.h" />
+    <ClInclude Include="parallelization\counter.h" />
+    <ClInclude Include="parallelization\create_thread.h" />
+    <ClInclude Include="parallelization\critical_section.h" />
+    <ClInclude Include="parallelization\event.h" />
+    <ClInclude Include="parallelization\fork.h" />
+    <ClInclude Include="parallelization\initial_single_lock.h" />
+    <ClInclude Include="parallelization\install_mutex.h" />
+    <ClInclude Include="parallelization\keep_task_flag.h" />
+    <ClInclude Include="parallelization\keep_task_payload.h" />
+    <ClInclude Include="parallelization\manual_reset_event.h" />
+    <ClInclude Include="parallelization\message_queue.h" />
+    <ClInclude Include="parallelization\multiple_lock.h" />
+    <ClInclude Include="parallelization\mutex.h" />
+    <ClInclude Include="parallelization\pool.h" />
+    <ClInclude Include="parallelization\semaphore.h" />
+    <ClInclude Include="parallelization\set_event_on_exit.h" />
+    <ClInclude Include="parallelization\single_lock.h" />
+    <ClInclude Include="parallelization\socket_event.h" />
+    <ClInclude Include="parallelization\synchronization_array.h" />
+    <ClInclude Include="parallelization\synchronization_object.h" />
+    <ClInclude Include="parallelization\synchronization_result.h" />
+    <ClInclude Include="parallelization\synchronized_process.h" />
+    <ClInclude Include="parallelization\synchronized_task.h" />
+    <ClInclude Include="parallelization\synchronously_keep_bit.h" />
+    <ClInclude Include="parallelization\synchronously_set_bit.h" />
+    <ClInclude Include="parallelization\synchronous_lock.h" />
+    <ClInclude Include="parallelization\task.h" />
+    <ClInclude Include="parallelization\thread_impl.h" />
+    <ClInclude Include="parallelization\thread_os.h" />
+    <ClInclude Include="parallelization\thread_parameter.h" />
+    <ClInclude Include="parallelization\tools.h" />
+    <ClInclude Include="parallelization\wait.h" />
+    <ClInclude Include="parallelization\_.h" />
+    <ClInclude Include="parallelization\_impl.h" />
+    <ClInclude Include="parallelization\_impl_synchronization_result.h" />
+    <ClInclude Include="parallelization\_preamble.h" />
+    <ClInclude Include="parallelization\_thread_os_create_impl.h" />
+    <ClInclude Include="parallelization\_types.h" />
     <ClInclude Include="platform\acme.h" />
-    <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
-    <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_status.h" />
+    <ClInclude Include="platform\acme_main_struct.h" />
+    <ClInclude Include="platform\acme_str_pool.h" />
+    <ClInclude Include="platform\apex_main_data.h" />
+    <ClInclude Include="platform\apex_main_struct.h" />
+    <ClInclude Include="platform\app.h" />
+    <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
-    <ClInclude Include="platform\back_insert_iterator.h" />
     <ClInclude Include="platform\class.h" />
     <ClInclude Include="platform\cmp.h" />
     <ClInclude Include="platform\cmp2.h" />
     <ClInclude Include="platform\common.h" />
-    <ClInclude Include="platform\console_application.h" />
     <ClInclude Include="platform\const.h" />
     <ClInclude Include="platform\constraint.h" />
     <ClInclude Include="platform\context.h" />
-    <ClInclude Include="platform\conv.h" />
-    <ClInclude Include="platform\core.h" />
-    <ClInclude Include="platform\core1.h" />
-    <ClInclude Include="platform\cpu_architecture.h" />
-    <ClInclude Include="platform\cregexp.h" />
-    <ClInclude Include="platform\cregexp_util.h" />
+    <ClInclude Include="platform\c_class.h" />
     <ClInclude Include="platform\debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
-    <ClInclude Include="platform\department_container.h" />
     <ClInclude Include="platform\display.h" />
-    <ClInclude Include="platform\document_manager_container.h" />
-    <ClInclude Include="platform\drawable.h" />
-    <ClInclude Include="platform\draw_context2.h" />
     <ClInclude Include="platform\enum.h" />
     <ClInclude Include="platform\error.h" />
     <ClInclude Include="platform\exclusive.h" />
-    <ClInclude Include="platform\e_status.h" />
     <ClInclude Include="platform\factory.h" />
     <ClInclude Include="platform\filestream.h" />
     <ClInclude Include="platform\fixed_alloc.h" />
     <ClInclude Include="platform\fixed_alloc_impl.h" />
     <ClInclude Include="platform\flags.h" />
-    <ClInclude Include="platform\gudo2.h" />
-    <ClInclude Include="platform\Header.h" />
-    <ClInclude Include="platform\history.h" />
     <ClInclude Include="platform\hyperlink.h" />
-    <ClInclude Include="platform\international.h" />
-    <ClInclude Include="platform\ipc.h" />
-    <ClInclude Include="platform\ipi.h" />
+    <ClInclude Include="platform\implementable.h" />
     <ClInclude Include="platform\keep.h" />
     <ClInclude Include="platform\keep_true.h" />
-    <ClInclude Include="platform\launcher.h" />
     <ClInclude Include="platform\less.h" />
     <ClInclude Include="platform\library.h" />
-    <ClInclude Include="platform\library_object_allocator.h" />
-    <ClInclude Include="platform\live_signal.h" />
     <ClInclude Include="platform\log.h" />
     <ClInclude Include="platform\logic.h" />
     <ClInclude Include="platform\lparam.h" />
-    <ClInclude Include="platform\machine_event2.h" />
-    <ClInclude Include="platform\machine_event_central2.h" />
-    <ClInclude Include="platform\machine_event_data2.h" />
     <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\match.h" />
-    <ClInclude Include="platform\message_loop.h" />
+    <ClInclude Include="platform\main1.h" />
+    <ClInclude Include="platform\message.h" />
     <ClInclude Include="platform\muldiv32.h" />
     <ClInclude Include="platform\muldiv64.h" />
+    <ClInclude Include="platform\nanosecond_timer.h" />
     <ClInclude Include="platform\net.h" />
+    <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\number.h" />
-    <ClInclude Include="platform\os_context.h" />
-    <ClInclude Include="platform\os_history.h" />
-    <ClInclude Include="platform\patch.h" />
-    <ClInclude Include="platform\plane.h" />
-    <ClInclude Include="platform\printer.h" />
+    <ClInclude Include="platform\object_reference_count_debug.h" />
+    <ClInclude Include="platform\object_reference_count_debug_impl.h" />
+    <ClInclude Include="platform\object_type_counter.h" />
+    <ClInclude Include="platform\options.h" />
+    <ClInclude Include="platform\predicate_function_pointer.h" />
+    <ClInclude Include="platform\predicate_holder.h" />
+    <ClInclude Include="platform\predicate_procedure.h" />
+    <ClInclude Include="platform\predicate_process.h" />
     <ClInclude Include="platform\printf.h" />
-    <ClInclude Include="platform\process_data.h" />
-    <ClInclude Include="platform\profiler2.h" />
-    <ClInclude Include="platform\progress.h" />
-    <ClInclude Include="platform\progress_interface.h" />
-    <ClInclude Include="platform\regex.h" />
+    <ClInclude Include="platform\procedure.h" />
+    <ClInclude Include="platform\procedure_array.h" />
+    <ClInclude Include="platform\profiler.h" />
     <ClInclude Include="platform\restore.h" />
-    <ClInclude Include="platform\runnable2.h" />
-    <ClInclude Include="platform\runnable_pred.h" />
-    <ClInclude Include="platform\run_start_installer.h" />
-    <ClInclude Include="platform\savings.h" />
+    <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="platform\serial.h" />
-    <ClInclude Include="platform\serializable.h" />
-    <ClInclude Include="platform\serial_impl.h" />
-    <ClInclude Include="platform\session.h" />
-    <ClInclude Include="platform\session_common.h" />
-    <ClInclude Include="platform\session_heap.h" />
-    <ClInclude Include="platform\shell_launcher.h" />
-    <ClInclude Include="platform\simple_app.h" />
+    <ClInclude Include="platform\serial_shared.h" />
+    <ClInclude Include="platform\set_app_id.h" />
     <ClInclude Include="platform\simple_log.h" />
-    <ClInclude Include="platform\smart_pointer_query.h" />
-    <ClInclude Include="platform\sprintf.h" />
-    <ClInclude Include="platform\static_setup.h" />
-    <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
+    <ClInclude Include="platform\string_exchange.h" />
+    <ClInclude Include="platform\synchronized_predicate_routine.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\millis.h" />
+    <ClInclude Include="platform\system_setup.h" />
+    <ClInclude Include="platform\text.h" />
+    <ClInclude Include="platform\timeout.h" />
     <ClInclude Include="platform\timer.h" />
     <ClInclude Include="platform\timer_array.h" />
     <ClInclude Include="platform\timer_callback.h" />
     <ClInclude Include="platform\timer_event.h" />
     <ClInclude Include="platform\timer_item.h" />
+    <ClInclude Include="platform\timer_task.h" />
+    <ClInclude Include="platform\title.h" />
+    <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
-    <ClInclude Include="platform\types.h" />
-    <ClInclude Include="platform\update (2).h" />
-    <ClInclude Include="platform\user_edit_window.h" />
-    <ClInclude Include="platform\util1.h" />
-    <ClInclude Include="platform\v8stdint.h" />
+    <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\version.h" />
-    <ClInclude Include="platform\_defer.h" />
     <ClInclude Include="platform\_features.h" />
+    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
+    <ClInclude Include="platform\_global.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="platform\_system_id_impl.h" />
-    <ClInclude Include="platform\_system_object_impl.h" />
-    <ClInclude Include="platform\_system_smart_pointer_impl.h" />
-    <ClInclude Include="platform\_system_var_impl.h" />
-    <ClInclude Include="platform\_system_xml_impl.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h" />
@@ -1724,25 +1412,46 @@
     <ClInclude Include="primitive\str\x\x_defines.h" />
     <ClInclude Include="primitive\str\x\x_encodings.h" />
     <ClInclude Include="primitive\str\x\x_tables.h" />
-    <ClInclude Include="user\_.h" />
-    <ClInclude Include="user\_const.h" />
-    <ClInclude Include="user\_const_key.h" />
+    <ClInclude Include="user\nano\brush.h" />
+    <ClInclude Include="user\nano\button.h" />
+    <ClInclude Include="user\nano\child.h" />
+    <ClInclude Include="user\nano\details_window.h" />
+    <ClInclude Include="user\nano\device.h" />
+    <ClInclude Include="user\nano\display.h" />
+    <ClInclude Include="user\nano\font.h" />
+    <ClInclude Include="user\nano\message_box.h" />
+    <ClInclude Include="user\nano\object.h" />
+    <ClInclude Include="user\nano\pen.h" />
+    <ClInclude Include="user\nano\popup_button.h" />
+    <ClInclude Include="user\nano\still.h" />
+    <ClInclude Include="user\nano\window.h" />
+    <ClInclude Include="user\nano\window_implementation.h" />
+    <ClInclude Include="user\nano\window_interface.h" />
+    <ClInclude Include="user\nano\_nano.h" />
+    <ClInclude Include="user\user\aaa_action_item_exchange.h" />
+    <ClInclude Include="user\user\aaa_drag_size.h" />
+    <ClInclude Include="user\user\check.h" />
+    <ClInclude Include="user\user\command_update_target.h" />
+    <ClInclude Include="user\user\conversation.h" />
+    <ClInclude Include="user\user\drag.h" />
+    <ClInclude Include="user\user\element.h" />
+    <ClInclude Include="user\user\ewindowflag.h" />
+    <ClInclude Include="user\user\mouse.h" />
+    <ClInclude Include="user\user\os_colors.h" />
+    <ClInclude Include="user\user\os_theme_colors.h" />
+    <ClInclude Include="user\user\text.h" />
+    <ClInclude Include="user\user\theme_colors.h" />
+    <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\user\_constant.h" />
+    <ClInclude Include="user\user\_constant_key.h" />
+    <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Users\camilo\Desktop\app.lnk" />
-    <None Include="acme\message\message.inl" />
-    <None Include="exception\_.inl" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
-    <None Include="platform\aura1.inl" />
-    <None Include="platform\aura2.inl" />
-    <None Include="platform\gudo_application2.inl" />
     <None Include="primitive\primitive.inl" />
     <None Include="primitive\factory_impl.inl" />
     <None Include="primitive\primitive\block.inl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="acme\compress\zip\zip_algorithm.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

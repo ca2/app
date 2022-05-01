@@ -5225,15 +5225,18 @@ namespace apex
 //
 //   }
 //
-//
-//   void system::system_construct(os_local* poslocal, const ::e_display& edisplay)
-//   {
-//
+
+#ifdef ANDROID
+   void system::system_construct(os_local* poslocal, const ::e_display& edisplay)
+   {
+
 //      return ::success;
-//
-//   }
-//
-//
+
+   }
+
+   #endif
+
+
 //#endif
 
 

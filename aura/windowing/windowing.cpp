@@ -268,6 +268,14 @@ namespace windowing
    //}
 
 
+   ::windowing::window * windowing::get_application_host_window()
+   {
+
+      return nullptr;
+
+   }
+
+
    ::windowing::window * windowing::get_desktop_window()
    {
 

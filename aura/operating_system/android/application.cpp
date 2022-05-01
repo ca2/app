@@ -162,20 +162,20 @@ namespace aura
    //}
 
 
-   HCURSOR application::load_default_cursor(e_cursor ecursor)
-   {
+   //HCURSOR application::load_default_cursor(e_cursor ecursor)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-   {
+   //int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 } // namespace android

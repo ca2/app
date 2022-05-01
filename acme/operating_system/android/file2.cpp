@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/node/android/_android.h"
+#include "acme/operating_system/android/_android.h"
 #include "_android.h"
 
 #include <sys/file.h>
@@ -52,34 +52,34 @@ CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 
-::file::path dir::sys_temp()
-{
-
-   return ::file::path(getenv("HOME")) /  ".acme" / "time";
-
-}
-
-
-
-::file::path dir::home()
-{
-
-   //return getenv("HOME");
-   return "/data/home";
-
-}
-
-
-// ::file::path dir::bookmark()
-// {
-
-//    return          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->localconfig() / "favorites";
-
-// }
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::file::path(getenv("HOME")) /  ".acme" / "time";
+//
+//}
+//
+//
+//
+//::file::path dir::home()
+//{
+//
+//   //return getenv("HOME");
+//   return "/data/home";
+//
+//}
+//
+//
+//// ::file::path dir::bookmark()
+//// {
+//
+////    return          auto psystem = m_psystem;
+//
+//         auto pacmedirectory = psystem->m_pacmedirectory;
+//
+//pacmedirectory->localconfig() / "favorites";
+//
+//// }
 
 
 bool __node_further_file_is_equal(const ::file::path &, const ::file::path &)

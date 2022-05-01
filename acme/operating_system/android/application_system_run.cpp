@@ -58,43 +58,43 @@ string ca2_command_line()
 //
 
 
-namespace acme
-{
-
-
-   void system::os_application_system_run()
-   {
-
-
-      //string strPrgName = psystem->m_XstrAppId;
-
-      //strPrgName.replace("/", ".");
-
-      //strPrgName.replace("_", "-");
-
-      //psystem->m_strProgName = "com." + strPrgName;
-
-      //::set_main_user_htask(psystem->m_htask);
-
-      //::set_main_user_itask(psystem->m_uThread);
-
-      //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
-
-      //if (!psystem->begin_synch())
-      //{
-
-      //   output_debug_string("Failed to begin_synch the system (class ::system or class ::system derived)");
-
-      //   return ::error_failed;
-
-      //}
-
-      return ::success;
-
-   }
-
-
-} // namespace acme
+//namespace acme
+//{
+//
+//
+//   void system::os_application_system_run()
+//   {
+//
+//
+//      //string strPrgName = psystem->m_XstrAppId;
+//
+//      //strPrgName.replace("/", ".");
+//
+//      //strPrgName.replace("_", "-");
+//
+//      //psystem->m_strProgName = "com." + strPrgName;
+//
+//      //::set_main_user_htask(psystem->m_htask);
+//
+//      //::set_main_user_itask(psystem->m_uThread);
+//
+//      //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
+//
+//      //if (!psystem->begin_synch())
+//      //{
+//
+//      //   output_debug_string("Failed to begin_synch the system (class ::system or class ::system derived)");
+//
+//      //   return ::error_failed;
+//
+//      //}
+//
+//      return ::success;
+//
+//   }
+//
+//
+//} // namespace acme
 
 
 //

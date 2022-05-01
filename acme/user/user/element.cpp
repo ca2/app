@@ -3288,8 +3288,9 @@ namespace user
    }
 
 
-   void element::_001OnExitFullScreen()
+   void element::_001OnExitNormal()
    {
+
 
    }
 
@@ -3300,9 +3301,8 @@ namespace user
    }
 
 
-   void element::_001OnExitNormal()
+   void element::_001OnExitFullScreen()
    {
-
 
    }
 

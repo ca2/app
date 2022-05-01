@@ -334,46 +334,55 @@ void set_defer_process_x_message(bool (*pfn)(htask_t htask, MESSAGE * pMsg, oswi
 extern "C"
 void * os_thread_thread_proc(void * pparameter);
 
+//
+//namespace parallelization
+//{
+//
+//
+//   bool set_priority(htask_t htask, ::enum_priority epriority)
+//   {
+//
+//      i32 iPolicy;
+//
+//      sched_param schedparam;
+//
+//      thread_get_os_priority(&iPolicy, &schedparam, (::enum_priority)nCa2Priority);
+//
+//      pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
+//
+//      return true;
+//
+//   }
+//
+//
+//   enum_priority get_priority(htask_t  htask)
+//   {
+//
+//      int iOsPolicy = SCHED_OTHER;
+//
+//      sched_param schedparam;
+//
+//      schedparam.sched_priority = 0;
+//
+//      pthread_getschedparam((pthread_t)htask, &iOsPolicy, &schedparam);
+//
+//      return thread_get_scheduling_priority(iOsPolicy, &schedparam);
+//
+//   }
+//
+//
+//} // namespace parallelization
 
+//
+//i32 get_os_thread_priority(::enum_priority epriority)
+//{
+//
+//   return (i32)epriority;
+//
+//}
+//
+//
 
-int_bool SetThreadPriority(htask_t htask, i32 nCa2Priority)
-{
-
-   i32 iPolicy;
-
-   sched_param schedparam;
-
-   thread_get_os_priority(&iPolicy, &schedparam, (::enum_priority)nCa2Priority);
-
-   pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
-
-   return true;
-
-}
-
-
-i32 get_os_thread_priority(::enum_priority epriority)
-{
-
-   return (i32)epriority;
-
-}
-
-
-i32 GetThreadPriority(htask_t  htask)
-{
-
-   int iOsPolicy = SCHED_OTHER;
-
-   sched_param schedparam;
-
-   schedparam.sched_priority = 0;
-
-   pthread_getschedparam((pthread_t)htask, &iOsPolicy, &schedparam);
-
-   return thread_get_scheduling_priority(iOsPolicy, &schedparam);
-
-}
 
 
 static htask_t g_hMainThread = (htask_t) nullptr;
@@ -474,42 +483,6 @@ int g_iDebug_post_thread_msg_time;
 //   return true;
 //
 //}
-
-
-// CLASS_DECL_APEX htask_t GetCurrentThread()
-// {
-
-//    return pthread_self();
-
-// }
-
-// CLASS_DECL_APEX itask_t GetCurrentThreadId()
-// {
-
-//    return pthread_self();
-
-// }
-
-
-namespace parallelization
-{
-
-   CLASS_DECL_APEX bool set_priority(::enum_priority epriority)
-   {
-
-      return (::SetThreadPriority(::get_current_htask(), epriority) != 0);
-   }
-
-
-   CLASS_DECL_APEX i32 priority()
-   {
-
-      return ::GetThreadPriority(::get_current_htask());
-
-   }
-
-
-} // namespace apex
 
 
 bool on_init_thread()

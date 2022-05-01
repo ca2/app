@@ -2123,12 +2123,12 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-::file::path file_context::replace_with_extension(const char * pszExtension, const ::file::path & path)
+::file::path file_context::replace_with_extension(const ::string & strExtension, const ::file::path & path)
 {
 
    ::file::path pathNew(path);
 
-   set_extension(pathNew, pszExtension);
+   set_extension(pathNew, strExtension);
 
    return pathNew;
 

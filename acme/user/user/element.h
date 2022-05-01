@@ -579,9 +579,10 @@ namespace user
 
 
       virtual void _001OnExitIconic();
-      virtual void _001OnExitFullScreen();
-      virtual void _001OnExitZoomed();
       virtual void _001OnExitNormal();
+      virtual void _001OnExitZoomed();
+      virtual void _001OnExitFullScreen();
+
 
       //virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
       //virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);

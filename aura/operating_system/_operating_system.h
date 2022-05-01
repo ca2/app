@@ -47,8 +47,8 @@
 
 #elif defined(ANDROID)
 
-#include "aura/os/ansios/_ansios.h"
-#include "aura/os/android/_android.h"
+#include "aura/operating_system/ansi/_ansi.h"
+#include "aura/operating_system/android/_android.h"
 
 #elif defined(SOLARIS)
 

@@ -20,7 +20,7 @@ point_i32 g_pointLastBottomRight;
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
-#include <mutex>
+//#include <mutex>
 
 
 #ifdef WINDOWS_DESKTOP
@@ -6335,7 +6335,7 @@ namespace user
    }
 
 
-   strsize interaction_impl::get_window_text(char * sz, int s)
+   strsize interaction_impl::get_window_text(char * sz, strsize s)
    {
 
       if (!m_pwindow)

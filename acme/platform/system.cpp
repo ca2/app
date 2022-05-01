@@ -2394,4 +2394,17 @@ __pointer(::app) system::new_app(const char* pszAppId)
 }
 
 
+#ifdef ANDROID
+void system::system_construct(os_local * poslocal, const ::e_display & edisplay)
+{
+
+   //      return ::success;
+
+}
+
+#endif
+
+
+
+
 

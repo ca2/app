@@ -611,19 +611,19 @@ bool event::_wait (const class ::wait & wait)
 
    pthread_mutex_lock((pthread_mutex_t *) m_mutex);
 
-   timespec end;
-   clock_gettime(CLOCK_REALTIME, &end);
-
-   ((duration & ) durationTimeout).normalize();
-
-   end.tv_sec +=durationTimeout.m_secs.m_i;
-   end.tv_nsec +=durationTimeout.m_nanos.m_i;
-
-   end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
-   end.tv_nsec %= 1000 * 1000 * 1000;
+   ::duration duration(wait);
 
    if(m_bManualEvent)
    {
+
+      timespec end;
+      clock_gettime(CLOCK_REALTIME, &end);
+
+      end.tv_sec += duration.m_iSecond;
+      end.tv_nsec += duration.m_iNanosecond;
+
+      end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
+      end.tv_nsec %= 1000 * 1000 * 1000;
 
       i32 iSignal = m_iSignalId;
 
@@ -640,15 +640,15 @@ bool event::_wait (const class ::wait & wait)
    {
 
       timespec delay;
-      delay.tv_sec = durationTimeout.m_secs.m_i;
-      delay.tv_nsec = durationTimeout.m_nanos.m_i;
+      delay.tv_sec = duration.m_iSecond;
+      delay.tv_nsec = duration.m_iNanosecond;
       pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay);
 
    }
 
    pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-   result =  m_bSignaled ? synchronization_result(e_synchronization_result_signaled_base) : synchronization_result(e_synchronization_result_timed_out);
+   return m_bSignaled;
 
 #else
 
@@ -879,7 +879,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(::duration(0)).signaled();
+      return ((event *)this)->wait({ e_zero });
 
    }
 

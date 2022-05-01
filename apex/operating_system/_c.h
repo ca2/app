@@ -46,8 +46,8 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 
 #elif defined(ANDROID)
 
-#include "apex/os/ansios/_c.h"
-#include "apex/os/android/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/android/_c.h"
 
 #elif defined(SOLARIS)
 

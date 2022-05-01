@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_start.h"
+//#include "apex/platform/static_start.h"
 
 
 #include <sys/wait.h>
@@ -22,120 +22,120 @@ struct chldstatus
 };
 
 
-typedef int_ptr_map < chldstatus > chldstatus_map;
-
-
-critical_section * g_pcsPid2 = nullptr;
-
-
-chldstatus_map * g_ppid = nullptr;
-
-
-critical_section * get_pid_cs()
-{
-
-   critical_section_lock cs(::acme::g_pcsGlobal);
-
-   if(g_pcsPid2 == nullptr)
-   {
-
-      g_pcsPid2 = new critical_section();
-
-      g_ppid = new chldstatus_map();
-
-
-   }
-
-   return g_pcsPid2;
-
-}
-
-
-chldstatus get_chldstatus(int iPid)
-{
-
-   critical_section_lock synchronouslock(get_pid_cs());
-
-   return g_ppid->operator[](iPid);
-
-}
-
-// must be called under get_pid_cs lock
-void init_chldstatus(int iPid)
-{
-
-   auto & s = g_ppid->operator[](iPid);
-
-   s.m_bRet = false;
-
-   s.m_iExitCode = 0;
-
-}
-
-
-void ansios_sigchld_handler(int sig)
-{
-
-   int saved_errno = errno;
-
-   int iExitCode;
-
-   int iPid;
-
-   while((iPid = waitpid(-1, &iExitCode,
-                         WUNTRACED
-#ifdef WNOHANG
-                         | WNOHANG
-#endif
-#ifdef WCONTINUED
-                         | WCONTINUED
-#endif
-                        )) > 0)
-   {
-
-      {
-
-         critical_section_lock synchronouslock(get_pid_cs());
-
-         auto ppair = g_ppid->plookup(iPid);
-
-         if(ppair != nullptr)
-         {
-
-            ppair->element2().m_bRet = true;
-
-            ppair->element2().m_iExitCode = iExitCode;
-
-         }
-
-      }
-
-   }
-
-   errno = saved_errno;
-
-}
-
-
-void install_sigchld_handler()
-{
-
-   struct sigaction sa;
-
-   __zero(sa);
-
-   sa.sa_handler = &ansios_sigchld_handler;
-
-   sigemptyset(&sa.sa_mask);
-
-   sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
-
-   sigaction(SIGCHLD, &sa, nullptr);
-
-}
-
-
-CLASS_DECL_APEX void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
+//typedef int_ptr_map < chldstatus > chldstatus_map;
+//
+//
+//critical_section * g_pcsPid2 = nullptr;
+//
+//
+//chldstatus_map * g_ppid = nullptr;
+//
+//
+//critical_section * get_pid_cs()
+//{
+//
+//   critical_section_lock cs(::acme::g_pcsGlobal);
+//
+//   if(g_pcsPid2 == nullptr)
+//   {
+//
+//      g_pcsPid2 = new critical_section();
+//
+//      g_ppid = new chldstatus_map();
+//
+//
+//   }
+//
+//   return g_pcsPid2;
+//
+//}
+//
+//
+//chldstatus get_chldstatus(int iPid)
+//{
+//
+//   critical_section_lock synchronouslock(get_pid_cs());
+//
+//   return g_ppid->operator[](iPid);
+//
+//}
+//
+//// must be called under get_pid_cs lock
+//void init_chldstatus(int iPid)
+//{
+//
+//   auto & s = g_ppid->operator[](iPid);
+//
+//   s.m_bRet = false;
+//
+//   s.m_iExitCode = 0;
+//
+//}
+//
+//
+//void ansios_sigchld_handler(int sig)
+//{
+//
+//   int saved_errno = errno;
+//
+//   int iExitCode;
+//
+//   int iPid;
+//
+//   while((iPid = waitpid(-1, &iExitCode,
+//                         WUNTRACED
+//#ifdef WNOHANG
+//                         | WNOHANG
+//#endif
+//#ifdef WCONTINUED
+//                         | WCONTINUED
+//#endif
+//                        )) > 0)
+//   {
+//
+//      {
+//
+//         critical_section_lock synchronouslock(get_pid_cs());
+//
+//         auto ppair = g_ppid->plookup(iPid);
+//
+//         if(ppair != nullptr)
+//         {
+//
+//            ppair->element2().m_bRet = true;
+//
+//            ppair->element2().m_iExitCode = iExitCode;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   errno = saved_errno;
+//
+//}
+//
+//
+//void install_sigchld_handler()
+//{
+//
+//   struct sigaction sa;
+//
+//   __zero(sa);
+//
+//   sa.sa_handler = &ansios_sigchld_handler;
+//
+//   sigemptyset(&sa.sa_mask);
+//
+//   sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
+//
+//   sigaction(SIGCHLD, &sa, nullptr);
+//
+//}
+//
+//
+//CLASS_DECL_APEX void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, i32 iCa2Priority);
 
 
 //namespace ansios

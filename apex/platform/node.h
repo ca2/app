@@ -108,7 +108,7 @@ namespace apex
       virtual void os_menu_item_check(void * pitem, bool bCheck);
 
 
-      DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);
+      //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);
 
 
    };

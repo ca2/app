@@ -26,33 +26,33 @@ namespace graphics
 
 
       double_buffer();
-      virtual ~double_buffer();
+      ~double_buffer() override;
 
 
-      virtual void initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
+      void initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
 
 
-      virtual bool buffer_lock_round_swap_key_buffers() override;
+      bool buffer_lock_round_swap_key_buffers() override;
 
       // synchronous_lock buffer synchronization_object first...
-      virtual synchronization_object * get_buffer_sync() override;
-      virtual ::image_pointer & get_buffer_image() override;
+      synchronization_object * get_buffer_sync() override;
+      ::image_pointer & get_buffer_image() override;
 
       // synchronous_lock screen synchronization_object first...
       virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
-      virtual ::index get_buffer_index() const;
-      virtual ::index get_screen_index() const;
+      ::index get_buffer_index() const;
+      ::index get_screen_index() const;
 
       using graphics::update_screen;
-      virtual bool update_screen() override;
+      bool update_screen() override;
 
-      virtual synchronization_object * get_draw_lock() override;
-      virtual ::draw2d::graphics * on_begin_draw() override;
+      synchronization_object * get_draw_lock() override;
+      ::draw2d::graphics * on_begin_draw() override;
 
 
-      virtual void destroy_buffer() override;
+      void destroy_buffer() override;
 
 
    };

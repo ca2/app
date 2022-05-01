@@ -249,17 +249,3 @@ bool __os_term_thread()
 
 
 
-
-namespace parallelization
-{
-
-//
-//   i32 priority()
-//   {
-//
-//      return ::GetThreadPriority(::GetCurrentThread());
-//
-//   }
-
-
-} // namespace parallelization

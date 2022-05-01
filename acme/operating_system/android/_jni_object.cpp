@@ -27,7 +27,7 @@ os_object::~os_object()
 }
 
 
-jfieldID os_object::field_str(const ::string & psz)
+jfieldID os_object::field_str(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "Ljava/lang/String;");
@@ -35,7 +35,7 @@ jfieldID os_object::field_str(const ::string & psz)
 }
 
 
-jfieldID os_object::field_b(const ::string & psz)
+jfieldID os_object::field_b(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "Z");
@@ -43,7 +43,7 @@ jfieldID os_object::field_b(const ::string & psz)
 }
 
 
-jfieldID os_object::field_uch(const ::string & psz)
+jfieldID os_object::field_uch(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "B");
@@ -51,7 +51,7 @@ jfieldID os_object::field_uch(const ::string & psz)
 }
 
 
-jfieldID os_object::field_ch(const ::string & psz)
+jfieldID os_object::field_ch(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "C");
@@ -59,7 +59,7 @@ jfieldID os_object::field_ch(const ::string & psz)
 }
 
 
-jfieldID os_object::field_sh(const ::string & psz)
+jfieldID os_object::field_sh(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "S");
@@ -67,7 +67,7 @@ jfieldID os_object::field_sh(const ::string & psz)
 }
 
 
-jfieldID os_object::field_i(const ::string & psz)
+jfieldID os_object::field_i(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "I");
@@ -75,7 +75,7 @@ jfieldID os_object::field_i(const ::string & psz)
 }
 
 
-jfieldID os_object::field_l(const ::string & psz)
+jfieldID os_object::field_l(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "J");
@@ -84,7 +84,7 @@ jfieldID os_object::field_l(const ::string & psz)
 
 
 
-jfieldID os_object::field_f(const ::string & psz)
+jfieldID os_object::field_f(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "F");
@@ -92,7 +92,7 @@ jfieldID os_object::field_f(const ::string & psz)
 }
 
 
-jfieldID os_object::field_d(const ::string & psz)
+jfieldID os_object::field_d(const char * psz)
 {
 
    return t_pjnienv->GetFieldID(m_jclass, psz, "D");
@@ -100,7 +100,7 @@ jfieldID os_object::field_d(const ::string & psz)
 }
 
 
-void os_object::set_str(const ::string & pszField, const ::string & psz)
+void os_object::set_str(const char * pszField, const char * psz)
 {
 
    set_str(field_str(pszField), psz);
@@ -108,7 +108,7 @@ void os_object::set_str(const ::string & pszField, const ::string & psz)
 }
 
 
-string os_object::get_str(const ::string & pszField)
+string os_object::get_str(const char * pszField)
 {
 
    return get_str(field_str(pszField));
@@ -116,7 +116,7 @@ string os_object::get_str(const ::string & pszField)
 }
 
 
-void os_object::set_b(const ::string & pszField, bool b)
+void os_object::set_b(const char * pszField, bool b)
 {
 
    set_b(field_b(pszField), b);
@@ -124,7 +124,7 @@ void os_object::set_b(const ::string & pszField, bool b)
 }
 
 
-bool os_object::get_b(const ::string & pszField)
+bool os_object::get_b(const char * pszField)
 {
 
    return get_b(field_b(pszField));
@@ -133,7 +133,7 @@ bool os_object::get_b(const ::string & pszField)
 
 
 
-void os_object::set_uch(const ::string & pszField, byte b)
+void os_object::set_uch(const char * pszField, byte b)
 {
 
    set_uch(field_uch(pszField), b);
@@ -141,7 +141,7 @@ void os_object::set_uch(const ::string & pszField, byte b)
 }
 
 
-byte os_object::get_uch(const ::string & pszField)
+byte os_object::get_uch(const char * pszField)
 {
 
    return get_uch(field_uch(pszField));
@@ -150,7 +150,7 @@ byte os_object::get_uch(const ::string & pszField)
 
 
 
-void os_object::set_ch(const ::string & pszField, char ch)
+void os_object::set_ch(const char * pszField, char ch)
 {
 
    set_ch(field_ch(pszField), ch);
@@ -158,7 +158,7 @@ void os_object::set_ch(const ::string & pszField, char ch)
 }
 
 
-char os_object::get_ch(const ::string & pszField)
+char os_object::get_ch(const char * pszField)
 {
 
    return get_ch(field_ch(pszField));
@@ -167,7 +167,7 @@ char os_object::get_ch(const ::string & pszField)
 
 
 
-void os_object::set_sh(const ::string & pszField, short sh)
+void os_object::set_sh(const char * pszField, short sh)
 {
 
    set_sh(field_sh(pszField), sh);
@@ -175,7 +175,7 @@ void os_object::set_sh(const ::string & pszField, short sh)
 }
 
 
-short os_object::get_sh(const ::string & pszField)
+short os_object::get_sh(const char * pszField)
 {
 
    return get_sh(field_sh(pszField));
@@ -184,7 +184,7 @@ short os_object::get_sh(const ::string & pszField)
 
 
 
-void os_object::set_i(const ::string & pszField, int i)
+void os_object::set_i(const char * pszField, int i)
 {
 
    set_i(field_i(pszField), i);
@@ -193,7 +193,7 @@ void os_object::set_i(const ::string & pszField, int i)
 
 
 
-int os_object::get_i(const ::string & pszField)
+int os_object::get_i(const char * pszField)
 {
 
    return get_i(field_i(pszField));
@@ -202,7 +202,7 @@ int os_object::get_i(const ::string & pszField)
 
 
 
-void os_object::set_l(const ::string & pszField, long long ll)
+void os_object::set_l(const char * pszField, long long ll)
 {
 
    set_l(field_l(pszField), ll);
@@ -211,7 +211,7 @@ void os_object::set_l(const ::string & pszField, long long ll)
 
 
 
-long long os_object::get_l(const ::string & pszField)
+long long os_object::get_l(const char * pszField)
 {
 
    return get_l(field_l(pszField));
@@ -219,7 +219,7 @@ long long os_object::get_l(const ::string & pszField)
 }
 
 
-void os_object::set_f(const ::string & pszField, float f)
+void os_object::set_f(const char * pszField, float f)
 {
 
    set_f(field_f(pszField), f);
@@ -227,7 +227,7 @@ void os_object::set_f(const ::string & pszField, float f)
 }
 
 
-float os_object::get_f(const ::string & pszField)
+float os_object::get_f(const char * pszField)
 {
 
    return get_f(field_f(pszField));
@@ -235,7 +235,7 @@ float os_object::get_f(const ::string & pszField)
 }
 
 
-void os_object::set_d(const ::string & pszField, double d)
+void os_object::set_d(const char * pszField, double d)
 {
 
    set_d(field_d(pszField), d);
@@ -243,7 +243,7 @@ void os_object::set_d(const ::string & pszField, double d)
 }
 
 
-double os_object::get_d(const ::string & pszField)
+double os_object::get_d(const char * pszField)
 {
 
    return get_d(field_d(pszField));
@@ -251,7 +251,7 @@ double os_object::get_d(const ::string & pszField)
 }
 
 
-void os_object::set_str(jfieldID jfieldid, const ::string & psz)
+void os_object::set_str(jfieldID jfieldid, const char * psz)
 {
 
    jstring jstring = t_pjnienv->NewStringUTF(psz);

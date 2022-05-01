@@ -1248,7 +1248,7 @@ namespace acme
 
       throw ::interface_only();
 
-      //return false;
+      return false;
 
    }
 

@@ -52,22 +52,22 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 
-::file::path dir::sys_temp()
-{
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::file::path(getenv("HOME")) /  ".apex" / "time";
+//
+//}
 
-   return ::file::path(getenv("HOME")) /  ".apex" / "time";
 
-}
-
-
-
-::file::path dir::home()
-{
-
-   //return getenv("HOME");
-   return "/data/home";
-
-}
+//
+//::file::path dir::home()
+//{
+//
+//   //return getenv("HOME");
+//   return "/data/home";
+//
+//}
 
 
 // ::file::path dir::bookmark()
@@ -75,9 +75,9 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 
 //    return          auto psystem = m_psystem;
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+ /*        auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->localconfig() / "favorites";
+pacmedirectory->localconfig() / "favorites";*/
 
 // }
 

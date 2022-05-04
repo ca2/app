@@ -5436,9 +5436,9 @@ namespace draw2d_cairo
 
 #ifdef ANDROID
 
-      float fDpi = maximum(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
+      float fDpi = maximum(::operating_system_driver::get()->m_fDpiX, ::operating_system_driver::get()->m_fDpiY);
 
-      float fDensity = ::oslocal()->m_fDensity;
+      float fDensity = ::operating_system_driver::get()->m_fDensity;
 
 #endif
 

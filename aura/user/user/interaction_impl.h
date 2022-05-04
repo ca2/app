@@ -792,6 +792,7 @@ namespace user
 
       virtual ::windowing::window * get_window() const override;
 
+      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 
    };
 

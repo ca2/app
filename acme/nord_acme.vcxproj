@@ -42,17 +42,17 @@
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-24</AndroidAPILevel>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>c++_static</UseOfStl>
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -386,7 +386,6 @@
     <ClCompile Include="operating_system\android\win_base.cpp" />
     <ClCompile Include="operating_system\android\_.cpp" />
     <ClCompile Include="operating_system\android\_factory.cpp" />
-    <ClCompile Include="operating_system\android\_jni_object.cpp" />
     <ClCompile Include="operating_system\ansi\base.cpp" />
     <ClCompile Include="operating_system\ansi\binreloc.cpp" />
     <ClCompile Include="operating_system\ansi\datetime.cpp" />
@@ -696,7 +695,6 @@
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_jni_impl.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -768,15 +766,16 @@
     <ClInclude Include="exception\_dump_context.h" />
     <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem.h" />
-    <ClInclude Include="filesystem\filesystem\dir_context.h" />
-    <ClInclude Include="filesystem\filesystem\dir_system.h" />
-    <ClInclude Include="filesystem\filesystem\filesystem.h" />
-    <ClInclude Include="filesystem\filesystem\filesystem_dir_system_heap.h" />
-    <ClInclude Include="filesystem\filesystem\file_context.h" />
-    <ClInclude Include="filesystem\filesystem\file_system.h" />
-    <ClInclude Include="filesystem\filesystem\file_watcher.h" />
+    <ClInclude Include="filesystem\filesystem\acme_directory.h" />
+    <ClInclude Include="filesystem\filesystem\acme_file.h" />
+    <ClInclude Include="filesystem\filesystem\acme_path.h" />
+    <ClInclude Include="filesystem\filesystem\enumerator.h" />
+    <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
+    <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\path_object.h" />
+    <ClInclude Include="filesystem\filesystem\_impl.h" />
     <ClInclude Include="filesystem\file\aaa_want_to_remove_common.h" />
     <ClInclude Include="filesystem\file\aaa_want_to_remove_file_binary_file.h" />
     <ClInclude Include="filesystem\file\aaa_want_to_remove_file_reader.h" />
@@ -897,6 +896,7 @@
     <ClInclude Include="operating_system\android\implementation.h" />
     <ClInclude Include="operating_system\android\internal.h" />
     <ClInclude Include="operating_system\android\internal2.h" />
+    <ClInclude Include="operating_system\android\jni_object.h" />
     <ClInclude Include="operating_system\android\process.h" />
     <ClInclude Include="operating_system\android\thread.h" />
     <ClInclude Include="operating_system\android\_.h" />
@@ -905,9 +905,6 @@
     <ClInclude Include="operating_system\android\_android2.h" />
     <ClInclude Include="operating_system\android\_c.h" />
     <ClInclude Include="operating_system\android\_os_impl.h" />
-    <ClInclude Include="operating_system\android\_os_local.h" />
-    <ClInclude Include="operating_system\android\_os_object.h" />
-    <ClInclude Include="operating_system\android\_os_remote.h" />
     <ClInclude Include="operating_system\android\_user.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />

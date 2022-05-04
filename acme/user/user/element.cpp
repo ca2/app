@@ -4393,6 +4393,31 @@ namespace user
 
    //}
 
+   
+   float element::preferred_dpi_x()
+   {
+
+      return 96.0f;
+
+   }
+
+   
+   float element::preferred_dpi_y()
+   {
+
+      return 96.0f;
+
+   }
+
+   
+   float element::preferred_density()
+   {
+
+      return 1.0f;
+
+   }
+
+
 
    void element::set_need_redraw(bool bAscendants)
    {

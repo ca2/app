@@ -1,12 +1,15 @@
 #include "framework.h"
 #include <math.h>
 #include "acme/platform/restore.h"
+#include "aura/user/user/_user.h"
+
 
 #ifdef _DEBUG
 
 #include <freetype/freetype.h>
 
 #endif
+
 
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
 
@@ -5328,40 +5331,37 @@ namespace draw2d_cairo
 
       }
 
-#ifdef ANDROID
+      float fPreferredDpiX = 96.0f;
 
-      float fDpi = maximum(::oslocal()->m_fDpiX, ::oslocal()->m_fDpiY);
+      float fPreferredDpiY = 96.0f;
 
-      float fDensity = ::oslocal()->m_fDensity;
+      float fPreferredDensity = 1.0f;
 
-#endif
+      if (::is_set(m_puserinteraction))
+      {
+
+         fPreferredDpiX = m_puserinteraction->preferred_dpi_x();
+
+         fPreferredDpiY = m_puserinteraction->preferred_dpi_y();
+
+         fPreferredDensity = m_puserinteraction->preferred_density();
+
+      }
+         
+      float fDpi = maximum(fPreferredDpiX, fPreferredDpiY);
+
+      float fDensity = fPreferredDensity;
 
       if (pfontParam->m_eunitFontSize == ::draw2d::e_unit_pixel)
       {
 
-#ifdef ANDROID
-
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5);
-
-#else
-
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize);
-
-#endif
+         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity);
 
       }
       else
       {
 
-#ifdef ANDROID
-
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5 * 96.0 / 72.0);
-
-#else
-
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * 96.0 / 72.0);
-
-#endif
+         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 96.0 / 72.0);
 
       }
 

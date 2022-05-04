@@ -765,7 +765,7 @@ void system::call_init_system()
 
       strMoreDetails = "caught at system::call_init_system";
 
-      exception_message_box(this, exception, strMoreDetails);
+      g_psystem->m_pnode->report_exception_to_user(this, exception, strMoreDetails);
 
       m_estatus = exception.m_estatus;
 
@@ -2394,15 +2394,6 @@ __pointer(::app) system::new_app(const char* pszAppId)
 }
 
 
-#ifdef ANDROID
-void system::system_construct(os_local * poslocal, const ::e_display & edisplay)
-{
-
-   //      return ::success;
-
-}
-
-#endif
 
 
 

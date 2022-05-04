@@ -5,7 +5,7 @@
 
 
 
-extern os_local * g_poslocal;
+extern android_proxy * g_pandroidproxy;
 
 
 thread_local JNIEnv * t_pjnienv;
@@ -30,7 +30,7 @@ extern thread_local JNIEnv * t_pjnienv;
 int get_mem_free_available_kb()
 {
 
-   return g_poslocal->m_lMemFreeAvailableKb;
+   return g_pandroidproxy->m_lMemFreeAvailableKb;
 
 }
 

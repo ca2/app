@@ -10,6 +10,11 @@
 #include "acme/parallelization/install_mutex.h"
 
 
+
+CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+
+
+
 namespace acme
 {
 
@@ -1656,6 +1661,14 @@ namespace acme
    void node::create_app_shortcut(::app * papp)
    {
 
+
+   }
+
+
+   void node::report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails)
+   {
+
+      exception_message_box(this, exception, strMoreDetails);
 
    }
 

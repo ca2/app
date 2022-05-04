@@ -191,7 +191,21 @@ namespace acme
 //};
 //
 
-namespace apex
+
+namespace acme_posix { class node; }
+namespace apex_posix { class node; }
+namespace aura_posix { class node; }
+
+
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_) { class node; }
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_) { class node; }
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_) { class node; }
+
+
+//class IDENTIFIER_SUFFIX_OPERATING_SYSTEM(node_) { class node; }
+
+
+namespace acme
 {
 
 
@@ -201,22 +215,17 @@ namespace apex
    class node;
 
 
-   namespace posix
-   {
-
-      class node;
-
-   };
+} // namespace acme
 
 
-   namespace OPERATING_SYSTEM_NAMESPACE
-   {
+namespace apex
+{
 
 
-      class node;
+   class system;
 
 
-   } // namespace OPERATING_SYSTEM_NAMESPACE
+   class node;
 
 
 } // namespace apex
@@ -230,24 +239,6 @@ namespace aura
 
 
    class node;
-
-
-   namespace posix
-   {
-
-      class node;
-
-   };
-
-
-   namespace OPERATING_SYSTEM_NAMESPACE
-   {
-
-
-      class node;
-
-
-   } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 } // namespace aura
@@ -273,14 +264,6 @@ namespace windowing_universal_windows
 } // namespace windowing_universal_windows
 
 
-namespace OPERATING_SYSTEM_NAMESPACE
-{
-
-
-   class node;
-
-
-} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
 #define APPLICATION_CLASS app
@@ -378,7 +361,7 @@ namespace desktop_environment_xfce
 
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
-#define __IDENTIFIER(identifier) identifier
+//#define __IDENTIFIER(identifier) identifier
 #define PLATFORM_INCLUDE(include) __STR(__IDENTIFIER(OPERATING_SYSTEM_NAMESPACE)/include)
 
 #ifndef  __STRING
@@ -4255,20 +4238,20 @@ struct lib_main_int
 #include "acme/operating_system/text.h"
 
 
-#ifdef ANDROID
+//#ifdef ANDROID
 
-#include "acme/operating_system/android/_os_local.h"
+//#include "acme/operating_system/android/_os_local.h"
 
-class os_local;
-class os_remote;
+//class android_driver;
+//class android_direct;
 
-os_local * oslocal();
-os_remote * osremote();
+//android_driver * __android_proxy();
+//android_direct * __android_direct();
 
-void set_oslocal(os_local * poslocal);
-void set_osremote(os_remote * posremote);
+//void set_oslocal(android_driver * poslocal);
+//void set_osremote(android_direct * posremote);
 
-#endif
+//#endif
 
 //#include "acme/platform/regex.h"
 

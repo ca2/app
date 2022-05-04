@@ -2004,7 +2004,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = oslocal()->m_fDensity;
+               fDensity = operating_system_driver::get()->m_fDensity;
 
 #endif
 
@@ -2022,7 +2022,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = oslocal()->m_fDensity;
+               fDensity = operating_system_driver::get()->m_fDensity;
 
 #endif
 
@@ -2047,7 +2047,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = oslocal()->m_fDensity;
+               fDensity = operating_system_driver::get()->m_fDensity;
 
 #endif
 
@@ -2065,7 +2065,7 @@ namespace user
 
 #ifdef ANDROID
 
-               fDensity = oslocal()->m_fDensity;
+               fDensity = operating_system_driver::get()->m_fDensity;
 
 #endif
 

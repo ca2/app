@@ -144,6 +144,14 @@ namespace windowing
    }
 
 
+   text_editor_interface * windowing::get_text_editor_interface()
+   {
+
+      return nullptr;
+
+   }
+   
+   
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 

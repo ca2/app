@@ -1324,12 +1324,6 @@
     <ClCompile Include="operating_system\android\nano\_nano.cpp">
       <Filter>Source Files\operating_system\android\nano</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\_jni_object.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="_jni_impl.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\posix\chldstatus.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
@@ -1766,24 +1760,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\var_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem_dir_system_heap.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\listing.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -2736,9 +2712,6 @@
     <ClInclude Include="primitive\collection\var_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_watcher.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="os\_user.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
@@ -2845,15 +2818,6 @@
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\_os_impl.h">
-      <Filter>Header Files\operating_system\android</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\android\_os_local.h">
-      <Filter>Header Files\operating_system\android</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\android\_os_object.h">
-      <Filter>Header Files\operating_system\android</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\android\_os_remote.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\_user.h">
@@ -3632,6 +3596,33 @@
     </ClInclude>
     <ClInclude Include="user\user\theme_colors.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\android\jni_object.h">
+      <Filter>Header Files\operating_system\android</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_impl.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_directory.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_file.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\enumerator.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_array.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_object.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -130,12 +130,12 @@ namespace aura
 
 
 
-void os_post_quit()
-{
-
-
-
-}
+//void os_post_quit()
+//{
+//
+//
+//
+//}
 
 
 

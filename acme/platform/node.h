@@ -23,6 +23,7 @@ namespace acme
 
 #ifdef LINUX
 
+      ^^^^
 
       enum_linux_distribution                            m_elinuxdistribution;
 
@@ -197,11 +198,11 @@ namespace acme
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
-      inline bool dark_mode() const { return m_bDarkMode; }
+      virtual bool dark_mode() const;
 
-      inline ::color::color background_color() const { return m_colorBackground; }
+      virtual ::color::color background_color() const;
 
-      inline double luminance() const { return m_dLuminance; }
+      virtual double luminance() const;
 
       virtual void background_color(const ::color::color & color);
 
@@ -316,6 +317,10 @@ namespace acme
       virtual ::user::enum_desktop calculate_edesktop();
 
 #ifdef LINUX
+
+
+      ^^^^
+
 
       inline enum_linux_distribution get_linux_distribution() const;
 

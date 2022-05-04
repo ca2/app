@@ -37,9 +37,6 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{ce24f5f3-316e-4170-99aa-1a47828a3667}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\memory">
-      <UniqueIdentifier>{a228c32f-3dc8-4af7-82b0-c84e6f8ec14d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{0d4baf1e-cfda-415d-b253-32d41d792bae}</UniqueIdentifier>
     </Filter>
@@ -156,9 +153,6 @@
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,28 +171,7 @@
     <ClInclude Include="message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="update.h">
@@ -584,54 +557,6 @@
     </ClInclude>
     <ClInclude Include="include\_include.h">
       <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\os_alloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocation.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_c.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item_array.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\malloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory_allocator.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\new.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap1.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap_impl1.h">
-      <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
@@ -1540,79 +1465,13 @@
     <ClCompile Include="operating_system\android\_.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\_bind_app.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\_bind_impact.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\_factory.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\android.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\application.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\android\buffer.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\c.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\debug.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\dir.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\graphics.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\jni_launcher.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\language.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\launcher.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\library.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\locale.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\main_android.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\message_loop.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\monitor.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\multithreading.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\system.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\util.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\win_base.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\window_android.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\window_impl.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\windowing.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
   </ItemGroup>

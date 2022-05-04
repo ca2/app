@@ -29,24 +29,24 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <AndroidAPILevel>android-28</AndroidAPILevel>
-    <UseOfStl>c++_shared</UseOfStl>
+    <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
-    <AndroidAPILevel>android-28</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <AndroidAPILevel>android-28</AndroidAPILevel>
+    <AndroidAPILevel>android-24</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
@@ -54,7 +54,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
-    <AndroidAPILevel>android-28</AndroidAPILevel>
+    <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -98,7 +98,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_AURA_LIBRARY;DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
@@ -108,6 +108,10 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DataLevelLinking>true</DataLevelLinking>
+      <FloatABI>
+      </FloatABI>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
@@ -115,6 +119,8 @@
       <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -127,18 +133,24 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_AURA_LIBRARY;DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DataLevelLinking>true</DataLevelLinking>
+      <FloatABI>
+      </FloatABI>
     </ClCompile>
     <Link />
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -151,25 +163,27 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <FloatABI>
+      </FloatABI>
     </ClCompile>
     <Link>
       <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
@@ -180,10 +194,14 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <FloatABI>
+      </FloatABI>
     </ClCompile>
     <Link>
       <LibraryDependencies>jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -198,7 +216,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aaa_callback.h" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
@@ -340,22 +357,6 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="memory\allocate.h" />
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
-    <ClInclude Include="memory\allocation.h" />
-    <ClInclude Include="memory\heap_.h" />
-    <ClInclude Include="memory\heap_c.h" />
-    <ClInclude Include="memory\heap_item.h" />
-    <ClInclude Include="memory\heap_item_array.h" />
-    <ClInclude Include="memory\heap_memory.h" />
-    <ClInclude Include="memory\malloc.h" />
-    <ClInclude Include="memory\memory.h" />
-    <ClInclude Include="memory\memory_allocator.h" />
-    <ClInclude Include="memory\new.h" />
-    <ClInclude Include="memory\os_alloc.h" />
-    <ClInclude Include="memory\plex.h" />
-    <ClInclude Include="memory\plex_heap1.h" />
-    <ClInclude Include="memory\plex_heap_impl1.h" />
     <ClInclude Include="message\command.h" />
     <ClInclude Include="message\timer.h" />
     <ClInclude Include="message\user.h" />
@@ -478,14 +479,7 @@
     <None Include="graphics\_impl.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="net\_net_impl.h" />
-    <ClInclude Include="node\opengl\buffer.h" />
-    <ClInclude Include="node\opengl\context.h" />
-    <ClInclude Include="node\opengl\opengl.h" />
-    <ClInclude Include="node\opengl\program.h" />
-    <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="operating_system.h" />
-    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
@@ -582,31 +576,9 @@
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="operating_system\android\android.cpp" />
-    <ClCompile Include="operating_system\android\application.cpp" />
     <ClCompile Include="operating_system\android\buffer.cpp" />
-    <ClCompile Include="operating_system\android\c.cpp" />
-    <ClCompile Include="operating_system\android\debug.cpp" />
-    <ClCompile Include="operating_system\android\dir.cpp" />
-    <ClCompile Include="operating_system\android\graphics.cpp" />
-    <ClCompile Include="operating_system\android\jni_launcher.cpp" />
-    <ClCompile Include="operating_system\android\language.cpp" />
-    <ClCompile Include="operating_system\android\launcher.cpp" />
-    <ClCompile Include="operating_system\android\library.cpp" />
-    <ClCompile Include="operating_system\android\locale.cpp" />
-    <ClCompile Include="operating_system\android\main_android.cpp" />
-    <ClCompile Include="operating_system\android\message_loop.cpp" />
-    <ClCompile Include="operating_system\android\monitor.cpp" />
-    <ClCompile Include="operating_system\android\multithreading.cpp" />
-    <ClCompile Include="operating_system\android\system.cpp" />
-    <ClCompile Include="operating_system\android\util.cpp" />
-    <ClCompile Include="operating_system\android\windowing.cpp" />
     <ClCompile Include="operating_system\android\window_android.cpp" />
-    <ClCompile Include="operating_system\android\window_impl.cpp" />
-    <ClCompile Include="operating_system\android\win_base.cpp" />
     <ClCompile Include="operating_system\android\_.cpp" />
-    <ClCompile Include="operating_system\android\_bind_app.cpp" />
-    <ClCompile Include="operating_system\android\_bind_impact.cpp" />
     <ClCompile Include="operating_system\android\_factory.cpp" />
     <ClCompile Include="operating_system\android\_os_impl.cpp" />
     <ClCompile Include="platform\application.cpp" />

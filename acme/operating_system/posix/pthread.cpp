@@ -458,30 +458,32 @@ int g_iDebug_post_thread_msg_time;
 
 // }
 
+bool __os_init_thread();
 
-//bool on_init_thread()
-//{
-//
-//   if (!__os_init_thread())
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return true;
-//
-//}
-//
-//
-//bool on_term_thread()
-//{
-//
-//   bool bOk1 = __os_term_thread();
-//
-//   return bOk1;
-//
-//}
+bool on_init_thread()
+{
+
+   if (!__os_init_thread())
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+bool __os_term_thread();
+
+bool on_term_thread()
+{
+
+   bool bOk1 = __os_term_thread();
+
+   return bOk1;
+
+}
 
 
 ::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam);

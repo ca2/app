@@ -4,12 +4,12 @@
 
 
 
-
-void CLASS_DECL_AURA __abort()
-{
-   //__android_term();
-   abort();
-}
+//
+//void CLASS_DECL_APEX __abort()
+//{
+//   //__android_term();
+//   abort();
+//}
 
 
 

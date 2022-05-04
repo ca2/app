@@ -176,13 +176,13 @@ string ca2_command_line()
 //}
 
 
-
-void os_post_quit()
-{
-
-
-
-}
+//
+//void os_post_quit()
+//{
+//
+//
+//
+//}
 
 
 

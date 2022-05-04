@@ -448,9 +448,6 @@
     <ClCompile Include="operating_system\android\c.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\aura.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\application_system_run.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
@@ -1332,6 +1329,9 @@
     </ClCompile>
     <ClCompile Include="_jni_impl.cpp">
       <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\posix\chldstatus.cpp">
+      <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

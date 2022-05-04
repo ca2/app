@@ -517,9 +517,6 @@
     <ClCompile Include="networking\http\transaction.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\posix\pthread.cpp">
-      <Filter>Source Files\operating_system\posix</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\posix\thread.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
@@ -550,16 +547,7 @@
     <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\win_base.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\util.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\thread.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\process.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\android\message_loop.cpp">
@@ -571,58 +559,10 @@
     <ClCompile Include="operating_system\android\main2.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\main_android.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\main.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\lock.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\locale.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\library.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\launcher.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\jni_launcher.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\graphics.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\file.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\exception.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\error.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\dir.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\debug.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\c.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\application_system_run.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\application.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\android1.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\android.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\android\_factory.cpp">
@@ -645,2063 +585,8 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\application_bias.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\bit.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\check.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\color.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\command.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\command_line.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\create.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\edit.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\interlocked_long.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\interlocked_long_pulse.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\factory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\job.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\memory_c.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\object.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\property.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\property_set.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\relation_set.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\request_interface.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\request_signal.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\type.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\var2.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\id.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\id_space.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\logic.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\memory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\memory_base.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\memory_container.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\shared_memory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\var.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\virtual_memory.h">
-      <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_data.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_signal_thread.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_ptr_array.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_impl.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_condition.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_base.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_mutex.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_base.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_status.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_os.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_waitable.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\service_plain_service.h">
-      <Filter>Header Files\parallelization\service</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\service_thread_pool.h">
-      <Filter>Header Files\parallelization\service</Filter>
-    </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\message_box.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem.h">
-      <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_attr.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_base_array.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_data.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_disp_option.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_document.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_edit.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_entity.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_enum.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_exportable.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_importable.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_input_tree.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_node.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_output_tree.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_parse_info.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_property_exchange.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_tree_base.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_tree_schema.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_var_exchange.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_xmlite.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\cross.h">
-      <Filter>Header Files\apex\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\e.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_base.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_error.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_file.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_time.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_types.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_user.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\apex\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\ansios\ansios.h">
-      <Filter>Header Files\apex\os\cross\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\cross\ansios\ansios_file.h">
-      <Filter>Header Files\apex\os\cross\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\message\message.h">
-      <Filter>Header Files\apex\message</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\message\message_base.h">
-      <Filter>Header Files\apex\message</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\message\message_cross_windows.h">
-      <Filter>Header Files\apex\message</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\message\message_definition.h">
-      <Filter>Header Files\apex\message</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_c.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_cpp.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_policy.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_policy_objc.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_policy_objcpp.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex_policy\apex_policy_winrt.h">
-      <Filter>Header Files\apex\apex_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\process\process.h">
-      <Filter>Header Files\apex\process</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\process\process_bidi_pipe.h">
-      <Filter>Header Files\apex\process</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\process\process_pipe.h">
-      <Filter>Header Files\apex\process</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\process\process_process.h">
-      <Filter>Header Files\apex\process</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\process\process_department.h">
-      <Filter>Header Files\apex\process</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\xml\xml_department.h">
-      <Filter>Header Files\apex\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\compress_bz.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_api.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_crypt.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_file.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_impl.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_in_file.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_internal.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_ioapi.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_iowin32.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_memory_buffer.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_unzip.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\zip\zip_util.h">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\compress.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\compress_department.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\compress_gz.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\aaa_want_to_remove_compress_bzip.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\compress\aaa_want_to_remove_compress_gzip.h">
-      <Filter>Header Files\apex\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\big5Prober.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\charDistribution.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\charguess.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\charguess_private.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\charguess_c.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\charsetProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\codingStateMachine.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\config.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\EscCharsetProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\EUCJPProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\EUCKRProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\EUCTWProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\GB2312Prober.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\jpCntx.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\Latin1Prober.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\pkgInt.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\MBCSGroupProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\SBCharsetProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\SBCSGroupProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\SJISProber.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\types.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\universal.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\charguess\UTF8Prober.h">
-      <Filter>Header Files\apex\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\api\api.h">
-      <Filter>Header Files\primitive\api</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\api\api_rotate.h">
-      <Filter>Header Files\primitive\api</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\compare.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_binary.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_compare.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_equals.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_hash.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_less.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_md5.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\comparison\comparison_var_strict.h">
-      <Filter>Header Files\primitive\comparison</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_date_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_department.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_duration.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_filetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_filetime_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_mktime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_time_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\datetime_zonetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry_quaternions.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_align.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_box.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_geometry.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_types.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_point.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_rect.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry\geometry_size.h">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_binary_operation.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_classes.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_clip.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_complex.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_count.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_c_number.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_department.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_filestream.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_index.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_int_biunique.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_math.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_natural.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number_double.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number_float.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_number_integer.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_objects.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_rng.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_scalar.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_scalar_enum.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_static_numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_mkint_c.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_std_template.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\math_value.h">
-      <Filter>Header Files\primitive\math</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_charcategory.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_charcategory2.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_charcategory_names.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_defines.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_encodings.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\str\x\x_tables.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw3d\draw3d.h">
-      <Filter>Header Files\graphics\draw3d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw3d\draw3d_ortho.h">
-      <Filter>Header Files\graphics\draw3d</Filter>
-    </ClInclude>
-    <ClInclude Include="user\experience\frame\experience_frame_updowninterface.h">
-      <Filter>Header Files\user\experience\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\_.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\_ansios.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\_c.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\callstack.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\file.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\file_c.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\multithreading.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\ansios\thread.h">
-      <Filter>Header Files\apex\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\cairo_keep.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\cross_win_file.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\cross_win_gdi.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\cross_win_gdi_internal.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\file.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\graphics.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\internal.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\process.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\view_bitmap.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\vsnord_native_app_glue.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\window_android.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\window_buffer.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\windowing.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\_.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\___serialization_draft.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\___serialization_draft001.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_c.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_defer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_serializable_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_stream_process_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_text_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_var_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_common.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_binary_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_reader.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_seekable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_simple_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_stream2.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\binary_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\buffered_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\byte_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\byte_stream_memory_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\circular_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\composite.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\const.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\cpp.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\dir.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\edit_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\exception.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\html_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\item.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\item_array.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\listing_provider.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\md5.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\memory_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\memory_map.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\opened.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\ostream_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\path.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\primitive.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\serializable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\serialize.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\set.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\status.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\stdio_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\streamable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\text_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\text_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\transfer_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\var_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem_dir_system_heap.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\listing.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\path.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\_.h">
-      <Filter>Header Files\apex\node</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\_node.h">
-      <Filter>Header Files\apex\node</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\_.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\android1.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\application.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\dir_context.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\dir_system.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\factory_exchange.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\file.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\file_context.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\file_system.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\implementation.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\interaction_impl.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\internal.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\os_context.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\shell.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\stdio_file.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\thread.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\android\_android.h">
-      <Filter>Header Files\apex\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\___ch_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_base.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_base_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_inline.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_str_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wide_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_c_unicode.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_compare.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_compare_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_conv.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_conv_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_conv_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_defer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_impl_prio.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_international.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_natural.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_str_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_string_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_uhash.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_unicode.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\_unicode_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\base64.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\bstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\ch.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\ch_class.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\composite.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\from_integer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\hex.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\international.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\international_locale_schema.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\international2.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\istring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\parse.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\static_string.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\stdstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\string_file.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\string_inst.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\string_wide_conversion.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\stringtow.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\sz.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\to_integer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\tokenizer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\x.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\exception_engine.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\_android.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\_os.h">
-      <Filter>Header Files\apex\os</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_heap.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_system_id_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_system_object_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_system_smart_pointer_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_system_var_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\_system_xml_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_application_common.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_common.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_console_window2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_runnable.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_system_common.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\aaa_want_to_remove_template.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\align_byte_count.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\allocate.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\allocate_processor_cache_oriented.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\allocation.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\app.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\app_core.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\app_launcher.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_array.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_container.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_heap.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_menu.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_message.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\application_signal_details.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\assert_running_task.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\async.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\atomic2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\apex_apex.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\apex_regex.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\apex_status.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\auto.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\auto_pointer.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\block.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\chronometer.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\class.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\cmp.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\cmp2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\command_ui_probe.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\common.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\console.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\context.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\conv.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\apex.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\cpu_architecture.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\cregexp.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\cregexp_util.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\debug.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\definition.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\department.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\department_container.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\display.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\draw_context2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\drawable.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\e_status.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\enum.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\error.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\exclusive.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\fixed_alloc.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\fixed_alloc_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\flags.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\gudo2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\heap_.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\heap_c.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\heap_item.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\heap_item_array.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\heap_memory.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\hyperlink.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\international.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\ipc.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\ipi.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\keep.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\keep_true.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\launcher.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\library.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\library_object_allocator.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\live_signal.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\log.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\lparam.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\machine_event_central2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\machine_event_data2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\machine_event2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\malloc.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\math.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\memory.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\memory_allocator.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\message_loop.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\muldiv64.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\net.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\new.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\number.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\os_alloc.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\os_context.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\plex.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\plex_heap_impl1.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\plex_heap1.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\printer.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\printf.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\profiler2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\progress.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\regex.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\restore.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\runnable_pred.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\runnable2.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\savings.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\serial.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\serial_impl.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\serializable.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\session.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\session_common.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\session_heap.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\shell_launcher.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\simple_app.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\simple_log.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\speaker.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\sprintf.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\static_start.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\status.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\str_context.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\struct.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\system.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\system_heap.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\system_str.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\millis.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\timer.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\timer_array.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\timer_callback.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\timer_event.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\timer_item.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\trace.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\trace_category.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\user.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\apex\v8stdint.h">
-      <Filter>Header Files\apex\apex</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\node\unix\file_watcher.h">
-      <Filter>Header Files\apex\node\unix</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_const.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_const_key.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_user_prelude.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\check.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\command.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\const.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\control_descriptor.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\control_descriptor_set.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\control_event.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\controller.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\copydesk.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\create.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\create_struct.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\edit_text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\edit_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\form.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\form_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\frame.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\impact_data.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\interaction_child.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\interaction_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\interaction_prodevian.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\interaction_thread.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\key.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\keyboard.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\keyboard_layout.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\language_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\layout.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\listing.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_command.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\menu_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\message.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\message_queue.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\message_queue_listener.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\mouse.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\place_holder.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\place_holder_container.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\primitive.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\primitive_impl.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\print_job.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\prodevian.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\scroll_info.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\style.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\style_base.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\style_composite.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\style_coord.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\style_rect.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\text.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\theme.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\tooltip.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\user_interaction.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\validate.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\window_map.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\window_state.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\window_util.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\windowing.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\_.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\buffer.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\console.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\device_context.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\double_buffer.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\double_pass_scale.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\filters.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\graphics.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\image_console.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\ipc_buffer.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\multiple_buffer.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\window.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\window_buffer.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\graphics\window_dc.h">
-      <Filter>Header Files\graphics\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread_flag.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\_c.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre_util.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_authenticator.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_const.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_contact_list.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_credentials.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_department.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_e_status.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_interactive.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_network_authenticator.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_product.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_product_array.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_storage.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_storage_client.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_system_storage.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_user.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_user_array.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_user_set.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\account\account_usera.h">
-      <Filter>Header Files\apex\account</Filter>
-    </ClInclude>
-    <ClInclude Include="apex\os\android\node_data_exchange.h">
-      <Filter>Header Files\apex\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\box.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\control.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\form_callback.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\scroll.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\scroll_bar.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\callback.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\linux.h">
       <Filter>Header Files\inline\application</Filter>
@@ -2751,711 +636,6 @@
     <ClInclude Include="inline\application\android.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="html\html\core_data.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\data.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\_.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\os_alloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocation.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_c.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item_array.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\malloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory_allocator.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\new.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap1.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap_impl1.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aaa_want_to_remove_template.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\all.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\app.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_array.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_consumer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_container.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_heap.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_menu.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_message.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\application_signal_details.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\app_core.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\app_launcher.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\assert_running_task.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\async.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\atomic2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_apex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_main_struct.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_regex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_status.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\auto.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\auto_pointer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\back_insert_iterator.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\class.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cmp.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cmp2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\console_application.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\const.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\constraint.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\conv.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\core.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\core1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cpu_architecture.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cregexp.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\cregexp_util.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\debug.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\definition.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\department.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\department_container.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\display.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\document_manager_container.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\drawable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\draw_context2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\enum.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\error.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\exclusive.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\e_status.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\factory.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\filestream.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\fixed_alloc.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\fixed_alloc_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\flags.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\gudo2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\Header.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\history.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\hyperlink.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\international.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ipc.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ipi.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\keep.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\keep_true.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\launcher.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\less.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\library.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\library_object_allocator.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\live_signal.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\log.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\logic.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\lparam.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event_central2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\machine_event_data2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\main.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\match.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\message_loop.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\muldiv32.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\muldiv64.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\net.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\number.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\os_context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\os_history.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\patch.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\plane.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\printer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\printf.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\process_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\profiler2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\progress.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\progress_interface.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\regex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\restore.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\runnable2.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\runnable_pred.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\run_start_installer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\savings.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\serial.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\serializable.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\serial_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\session.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\session_common.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\session_heap.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\shell_launcher.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\simple_app.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\simple_log.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\smart_pointer_query.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\sprintf.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\static_setup.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\static_start.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\status.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\std_pair.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\strn.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\struct.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\str_context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\system.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\system_heap.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\system_str.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\theme.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\this_build_number.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\millis.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_array.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_callback.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_event.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\timer_item.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\trace.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\trace_category.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\types.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\update (2).h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\user_edit_window.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\util1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\v8stdint.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\version.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_platform.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_defer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_features.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_id_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_object_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_smart_pointer_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_var_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\_system_xml_impl.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\_.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\attributes.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\common.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\entity_resolver.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\enum.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\html.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\reader.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_lite\tag.h">
-      <Filter>Header Files\html\html_lite</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\elemental_elemental.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\elemental\internal.h">
-      <Filter>Header Files\html\elemental</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\child_frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\document.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\form.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\form_view.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\internal.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\user.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\impact.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\cell.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\elemental.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\form.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\image.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_button.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_checkbox.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_text.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\select.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table_elemental.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table_row.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\text.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\_.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\_impl.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\hi5\hi5_twitter_authorization.h">
-      <Filter>Header Files\html\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\attribute.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\base.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\border.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\box.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\ex.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\font.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\form.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\graphics.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\html_html2.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\internal.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\message.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\point.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\reader.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\size.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style_sheet.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style_sheet_array.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\tag.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\value.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_impl.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\container.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\listener.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -3486,723 +666,6 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_c_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_defer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_factory_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_factory_prefix.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_papaya_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_app_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_array.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_context_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_relation_set.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_stick.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_topic_text_string.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_transport_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\action_context.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\application_bias.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\atomic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\bit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\block.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\cflag.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\collection.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\collection_file.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command_line.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\compare_pred.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\context_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\create.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\edit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum_type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\eobject.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\estatus.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\factory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\form_property_set.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\function.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\function_arg.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\function_base.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\generic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\id.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\id_space.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked_long.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked_long_pulse.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\job.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\logic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\malloc.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\map.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\math_math.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\member.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_base.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_container.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\natural.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\number.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\object_meta.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pointer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pointer2.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\primitive_update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\promise.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\property.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\property_set.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\property_set_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\request_interface.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\request_signal.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\runnable.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\shared_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\simple_object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\smillis.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\str.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\trait.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\trait_pred.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\traits.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\uid.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\util.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\value.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\var.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\var2.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\virtual_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\threading.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\apex_main_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_array_base_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_collection_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_collection_impl1.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_collection_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_fifo_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_list_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_array2d_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_heap.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_weak.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_raw_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_raw_array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_sort_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_sort_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\_string_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_rect_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_size_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_primitive_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\address_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\array_base.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\attrib_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\back_insert_iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\base_2array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\base_enum.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\bit_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\bitset.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\common.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_eq_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_eq_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_primitive_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_raw_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\composite_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\deque.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\fifo_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\file_path_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\forward.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\insert_iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\int_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\logic_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\map_association.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\map_to_smart_pointer.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\numeric_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\numeric_array_range.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\packset.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\pair.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\pointer_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\pointer_array_process.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\priority_queue.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\ptr_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\queue.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\raw_array_decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\runnable_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\set.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\sort.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\sort_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\sort_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\spreadset.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\stack.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\std_iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\std_pair.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\strid_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\string_iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\string_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\string_to_string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\stringl.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\template.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\unique_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\collection\var_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_watcher.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_image.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_image_impl.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_impl.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\_visual_impl.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_font_effects.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_image.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\api.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\bitmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\brush.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\buffered_graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\color.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\color_matrix.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\colorref_array.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\common.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\cursor.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\cursor_set.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\draw2d.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\fastblur.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_department.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_enumeration.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\font_list.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\fwd.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\glyph.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\glyph_set.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\graphics.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\graphics_extension.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\icon.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\igui.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_array.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_dynamic.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_extension.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_frame.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_frame_array.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_header.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_list.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_map.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_map_ex1.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_meta.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\imaging.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\keep.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\matrix.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\object.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\palette.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\path.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\pen.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\pixmap.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\printer.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\region.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\text_box.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\thread_tool.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\water_routine.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\ttf_util.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="crypto\rsa.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
@@ -4220,18 +683,6 @@
     </ClInclude>
     <ClInclude Include="crypto\_.h">
       <Filter>Header Files\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\openssl\rsa.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\openssl\hasher_algorithm.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\openssl\hasher.h">
-      <Filter>Header Files\crypto\openssl</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\openssl\_openssl.h">
-      <Filter>Header Files\crypto\openssl</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\vsnord_native_app_glue.h">
       <Filter>Header Files\operating_system\android</Filter>
@@ -4386,73 +837,649 @@
     <ClInclude Include="operating_system\posix\_.h">
       <Filter>Header Files\operating_system\posix</Filter>
     </ClInclude>
+    <ClInclude Include="platform\_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\apex.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\apex_aura.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\api.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\api_client.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\app_consumer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\app_container.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\app_launcher.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_array.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_exit.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_heap.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_menu.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application_signal_details.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\assert_running_task.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\async.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aura_regex.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\command_line.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\console_application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\create.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\display.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\event.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\event_source.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\history.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_call.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_communication.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_intercommunication.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\interprocess_task.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\launcher.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\library.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\log.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event_central.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\machine_event_data.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\message_box.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
     <ClInclude Include="platform\node.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\os_context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\os_history.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\savings.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\shell_launcher.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\simple_app.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\thread_set.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\method.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\set.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\html_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\edit_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\aaa_cpp.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\_file.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\_data.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\_.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_watcher.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_listener.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_context.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\dir_system_heap.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\dir_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\dir_context.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_impl.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\_.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\data.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\ifs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\ifs_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\item.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\item_array.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\link.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\net.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\remote_native_file.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\remote_native_fs.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\set.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="database\_.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\_impl.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\change_event.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\client.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\const.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\key.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\selection.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\selection_item.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\server.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\stringhelper.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="message\_.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\_impl.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\_message.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\application.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\base.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\channel.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\command.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\command_ui_probe.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\const.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\cross_windows.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\definition.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\dispatcher.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\global.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\listener_smart_pointer_array.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\message.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\predicate_handler.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\receiver.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\simple_command.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\_.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\context.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\cookie.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\form.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\get_socket.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\listener.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\request.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\response.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\signal.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\status.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\stream.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\http\transaction.h">
+      <Filter>Header Files\networking\http</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\base\base_socket.h">
+      <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\base\base_socket_handler.h">
+      <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\base\socket_thread.h">
+      <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\_.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\listen_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\net.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\sctp_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\socket_handler.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\stream_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\sync_socket_handler.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\tcp_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\tls_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\basic\udp_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\dns\resolv_server.h">
+      <Filter>Header Files\networking\sockets\bsd\dns</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\dns\resolv_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\dns</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\ticket_key.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\initializer.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\context.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\client_context_map.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\client_context.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\webserver\httpd_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\_.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\_strconv.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\config.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\socket_id_list.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\sockets.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\_.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\_sockets.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\http_batch_buffer.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\http_buffer.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\link_in_socket.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\link_out_socket.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\logger.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\sockets_base.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\transfer_socket.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\websocket_client.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_impl.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_networking.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_networking_impl.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\address.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\address_department.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\byte_order.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\email.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\email_address.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ip_enum.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\net.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\open_weather_city.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\port_forward.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\_.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\_impl.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\aaa_pred_procedure.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\aaa_retry_multi_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\aaa_retry_single_lock.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\common.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\create_thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\data.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\delay_thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\handler_manager.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\retry.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_handler.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_status.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread_impl.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\thread_os.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\threading.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_const_key.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\command.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\language.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\language_map.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared_command.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\notify_icon_bridge.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\primitive.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="progress\_.h">
+      <Filter>Header Files\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="progress\integer.h">
+      <Filter>Header Files\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="progress\listener.h">
+      <Filter>Header Files\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="progress\progress.h">
+      <Filter>Header Files\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="progress\real.h">
+      <Filter>Header Files\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\_.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\_impl.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\context.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\manager.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\predicate.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\promise.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\promise1.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\signal.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\source.h">
+      <Filter>Header Files\handler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{b7eda4ed-89d1-41cf-9075-dd86737c5b3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{41080c7b-9620-48c4-9067-179ac83cbc63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{41a5bddc-53a7-471b-9ee9-dec2b3eba49d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\simple">
-      <UniqueIdentifier>{55796a5c-733e-4e2f-b5c4-45ce822571b2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
       <UniqueIdentifier>{0a70f80b-6d1a-4784-9332-88c81d4120f8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\file">
       <UniqueIdentifier>{002a8c79-6f9e-46d0-9f6f-9cdfbb3cf692}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex">
-      <UniqueIdentifier>{86406752-2a1d-4fa9-b11a-3c053bb10965}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\xml">
-      <UniqueIdentifier>{bb9af5b8-4a58-496e-8301-33965acdb98a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\apex">
-      <UniqueIdentifier>{e5b306d3-e742-4627-aa06-7f7eb814f067}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os">
-      <UniqueIdentifier>{c08ed0f4-5baf-48e6-b2cf-54bf9b4c30fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os\android">
-      <UniqueIdentifier>{8036478a-6465-481d-a81f-09fb3515fcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os\cross">
-      <UniqueIdentifier>{a7a6029c-7670-47f9-be15-511dd690673d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os\cross\windows">
-      <UniqueIdentifier>{33ae4938-63ae-40a3-a1fb-ed0c891d782f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os\cross\ansios">
-      <UniqueIdentifier>{2169cf1e-a07b-4d2b-a2ed-cbd3e1eb4788}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\os\ansios">
-      <UniqueIdentifier>{dfb64b3c-9fa9-49f7-a1f1-41799f69ae3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\node">
-      <UniqueIdentifier>{70968596-becd-4a17-a087-af578c09cd7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\node\android">
-      <UniqueIdentifier>{6391676e-1644-4c3d-95aa-f93a8754c0fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\node\ansios">
-      <UniqueIdentifier>{6fe81333-dfae-407d-b66b-5367e3a0e0ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\message">
-      <UniqueIdentifier>{3f1e79c8-1c73-46f6-93b7-a614bf6ef455}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\apex_policy">
-      <UniqueIdentifier>{fb6a4544-c2c4-4957-bb05-ce2803c60b69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\process">
-      <UniqueIdentifier>{94ccc36f-448d-4466-93f0-b4270dae5ce1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{51a31782-ed58-419d-9476-4a5951159132}</UniqueIdentifier>
@@ -4469,131 +1496,8 @@
     <Filter Include="Source Files\filesystem\filesystem">
       <UniqueIdentifier>{4c299533-e47a-4b86-8444-68e456ab3c54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\user">
-      <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{cf33ca26-3a3f-4822-bfd4-2e6fb4fff10f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\compress">
-      <UniqueIdentifier>{a1571713-31af-40b8-a8c8-b28bac70f5ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\compress\zip">
-      <UniqueIdentifier>{d856c0e2-dace-4164-9972-94a047083f58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\compress\bsdiff">
-      <UniqueIdentifier>{9407b558-b507-4346-9cdb-127cbc28d02f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\charguess">
-      <UniqueIdentifier>{d79e5319-26b1-46f8-b8dd-f58e9c82b254}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{514e6656-970c-4227-b852-9553d9042cc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\ftp">
-      <UniqueIdentifier>{15053a4e-9275-4ac0-9ae8-3625e7880661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\http">
-      <UniqueIdentifier>{38ec6041-204b-4bb3-8f5e-629ce743790f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\http\webserver">
-      <UniqueIdentifier>{2d4c5e5e-d527-4d55-a861-2b61b380e195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\mail">
-      <UniqueIdentifier>{38c74999-afc4-436c-af15-b28b858d8b16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\netserver">
-      <UniqueIdentifier>{2e91d2c3-ff85-46a7-86bb-f966cb5ca2ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets">
-      <UniqueIdentifier>{b97e1afe-6c93-46bf-b917-9ea510f9e0e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\base">
-      <UniqueIdentifier>{4676a0cb-6d9c-4a65-944a-6297fc518ea1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd">
-      <UniqueIdentifier>{668cfcfa-50ff-4cca-adb1-f0ef8ef37d46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\asynch_dns">
-      <UniqueIdentifier>{cbbc1f73-a52a-4edd-a545-ef3ef89a0129}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{087cfe9e-889a-43a1-85c5-ee67a5368d5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\internal">
-      <UniqueIdentifier>{d20c3e7f-0c3d-439c-bb69-c9f951a4c53f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\sip">
-      <UniqueIdentifier>{0cb97377-ef45-4ae7-8ddc-57f91da6144c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{64d23493-6e82-40d9-8758-12c3b9c1ecca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{c05391a7-73d8-44d2-9aa1-a19b72caedf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{3947a14d-8128-43a6-bdbf-34bc91aea6b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\http">
-      <UniqueIdentifier>{d96b41e3-e5e2-41f3-8bb3-87efc8d1bcbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\api">
-      <UniqueIdentifier>{afea8c9c-ab84-4327-8481-dcf74df87464}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\collection">
-      <UniqueIdentifier>{2a64a02f-8de2-4980-858b-0d41f30be40c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\comparison">
-      <UniqueIdentifier>{093f621b-e9ea-479a-b9ed-dbe0a7bab56d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{48effab1-6668-453e-9fd1-706d5def7696}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{c4744f04-7e8a-4898-bab0-c7147f5d34b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\geometry">
-      <UniqueIdentifier>{157e3772-5d32-42a2-9b7b-08bafdf96e7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\math">
-      <UniqueIdentifier>{99f9377a-0123-432d-b731-12bffdb421d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics">
-      <UniqueIdentifier>{7049813b-6cde-4b7a-9f35-d7df833bf16d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw3d">
-      <UniqueIdentifier>{b7f36fed-eb15-4734-9109-1bd3b1ab46b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\draw2d">
-      <UniqueIdentifier>{12bddb1a-2c12-4f34-9bd4-f6f4e8358541}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\experience">
-      <UniqueIdentifier>{61ad17b7-f87c-4fc1-91ee-ce02bf8e8ffa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\experience\frame">
-      <UniqueIdentifier>{367005ba-6258-437f-98ca-72defa185d31}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\string">
-      <UniqueIdentifier>{3a6fa529-1d54-41a6-8a8e-aa2198fa529e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\string\x">
-      <UniqueIdentifier>{6d709f7a-4023-48d3-8958-d8abc124a9a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\node\unix">
-      <UniqueIdentifier>{f440c033-18f4-4f31-97fc-b81892417c8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\graphics\graphics">
-      <UniqueIdentifier>{0734d198-6aae-4cdc-a8d4-dcf46cfae52c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\pcre">
-      <UniqueIdentifier>{c1e9cf98-3242-4f06-b382-38fae7181e6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\apex\account">
-      <UniqueIdentifier>{c4ded642-6d7f-4b41-90c9-d4d3e115be99}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{220305b3-f16d-4676-b2f5-22d495f36a06}</UniqueIdentifier>
@@ -4616,35 +1520,8 @@
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{007b0a5c-63be-4d23-8cd4-1ac82dfd16ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html">
-      <UniqueIdentifier>{ddf517e5-ee2a-489d-8c05-affebf3cfe6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\html">
-      <UniqueIdentifier>{d625b2af-5340-4c34-a1cc-9d6b32937fb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\memory">
-      <UniqueIdentifier>{6b3e3e23-2bf7-4802-9d13-a37103276920}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{66e8e9cd-90bc-4d6f-8c23-60b1a841dd5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\html_lite">
-      <UniqueIdentifier>{70d09af1-18ac-4468-a5bf-de31389a11f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\elemental">
-      <UniqueIdentifier>{b3aa5d7a-2c8f-4dcf-9f37-8ca0a012b6a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\user">
-      <UniqueIdentifier>{04a6084c-6cc3-4de2-b71f-7d903873d889}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\impl">
-      <UniqueIdentifier>{c9b13c19-8f5c-4020-bdae-4fdb511c5759}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\hi5">
-      <UniqueIdentifier>{09c2fb6c-8dee-4275-aeb7-e2a7fb71f372}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\graphics">
-      <UniqueIdentifier>{5d7ebb9f-01a2-4dad-9a53-384797c38330}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{cd4f1040-a2e4-41f8-9c63-0de5fbf31c0e}</UniqueIdentifier>
@@ -4655,20 +1532,11 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{f521b2ca-b3aa-4fcd-a2d4-2306a8d92f0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\primitive">
-      <UniqueIdentifier>{188768d1-6867-4673-aa21-f909cb02ff1e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{6e087c37-ec7d-4b7b-b56b-ab709e9e8c28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{f54982b4-2bc3-4942-a7d9-a93eb53f0a7c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{bddaf073-ad94-4dd9-83ef-7480dbcdbafe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\crypto\openssl">
-      <UniqueIdentifier>{315ef8d3-a3fe-42dc-abed-53fdc21ec1fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
@@ -4712,9 +1580,6 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{013d16d5-d38d-4c05-94de-ab13a612ad00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\parallelization\service">
-      <UniqueIdentifier>{e31e2e07-1fab-420b-9858-a35d2a474bb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
     </Filter>
@@ -4739,45 +1604,55 @@
     <Filter Include="Source Files\operating_system\ansi">
       <UniqueIdentifier>{0d1679fa-3ffc-4ec7-9025-2608fd619715}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{514e6656-970c-4227-b852-9553d9042cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\message">
+      <UniqueIdentifier>{6b3e3e23-2bf7-4802-9d13-a37103276920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filesystem\fs">
+      <UniqueIdentifier>{ee86f366-6330-4559-9ef2-90920a5535f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{7049813b-6cde-4b7a-9f35-d7df833bf16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\http">
+      <UniqueIdentifier>{ea8ee2a5-7168-4e4c-94c0-09c060c3d66c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets">
+      <UniqueIdentifier>{3e446e96-f9bd-4b43-9761-8cbfcf37dd3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\basic">
+      <UniqueIdentifier>{1df093ed-5a4b-424b-97c3-61d5c9f632aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd">
+      <UniqueIdentifier>{eaee60e1-c983-4c0e-b658-1cf7c5207ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\basic">
+      <UniqueIdentifier>{4a4f1f1a-24bf-43ca-993d-3c284850ab38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\dns">
+      <UniqueIdentifier>{3ae33863-9988-44f0-8de4-5565f8b9855c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\ssl">
+      <UniqueIdentifier>{df49cf05-7a29-45bd-a438-71db09df7282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\webserver">
+      <UniqueIdentifier>{6108dd7e-3a78-4296-9f32-745f9cb0529d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\progress">
+      <UniqueIdentifier>{10c28512-43f2-4b32-bfbb-e26436ade8df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\handler">
+      <UniqueIdentifier>{74ee6faf-23e9-4150-a419-c4907aad825d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\factory_impl.inl">
-      <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="multithreading\multithreading.inl">
-      <Filter>Header Files\parallelization</Filter>
-    </None>
-    <None Include="apex\message\message.inl">
-      <Filter>Header Files\apex\message</Filter>
-    </None>
-    <None Include="primitive\primitive.inl">
-      <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="net\net.inl">
-      <Filter>Header Files\net</Filter>
-    </None>
-    <None Include="primitive\geometry\geometry_size.inl">
-      <Filter>Header Files\primitive\geometry</Filter>
-    </None>
     <None Include="inline\aaa_want_to_remove_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>
-    <None Include="platform\apex1.inl">
-      <Filter>Header Files\platform</Filter>
-    </None>
-    <None Include="platform\apex2.inl">
-      <Filter>Header Files\platform</Filter>
-    </None>
-    <None Include="platform\gudo_application2.inl">
-      <Filter>Header Files\platform</Filter>
-    </None>
-    <None Include="primitive\primitive\block.inl">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="apex\compress\zip\zip_algorithm.txt">
-      <Filter>Header Files\apex\compress\zip</Filter>
-    </Text>
   </ItemGroup>
 </Project>

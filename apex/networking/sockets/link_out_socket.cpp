@@ -49,7 +49,7 @@ namespace sockets
       
       auto p = phandler->m_socketmap.begin();
 
-      SOCKET key;
+      SOCKET key = psocket->m_socket;
 
       for (; p; p++)
       {

@@ -3142,43 +3142,6 @@ namespace aura
 
    //}
 
-//#ifdef ANDROID
-//
-//   bool system::android_set_user_wallpaper(string strUrl)
-//   {
-//
-//      oslocal()->m_strSetUserWallpaper = strUrl;
-//
-//      return true;
-//
-//   }
-//
-//   bool system::android_get_user_wallpaper(string & strUrl)
-//   {
-//
-//      ::oslocal()->m_bGetUserWallpaper = true;
-//
-//      for(int i = 0; i < 10; i++)
-//      {
-//
-//         if (!::oslocal()->m_bGetUserWallpaper)
-//         {
-//
-//
-//         }
-//
-//         sleep(50_ms);
-//
-//      }
-//
-//      strUrl = ::oslocal()->m_strGetUserWallpaper;
-//
-//      return true;
-//
-//   }
-//
-//
-//#endif
 
    // class ::crypto::crypto & system::crypto()
    // {
@@ -3658,15 +3621,6 @@ namespace aura
 //
 //#else
 //
-//      prectangle->left = 0;
-//
-//      prectangle->top = 0;
-//
-//      prectangle->right = oslocal().m_iScreenWidth;
-//
-//      prectangle->bottom = oslocal().m_iScreenHeight;
-//
-//
 //#endif
 //
 //      return true;
@@ -4092,44 +4046,7 @@ namespace aura
 //         //#elif defined(__APPLE__)
 //         //    openURL(strLink);
 //         //  return true;
-//#elif defined(ANDROID)
-//
-//         string strOpenUrl;
-//
-//         if (::oslocal()->m_pszOpenUrl != nullptr)
-//         {
-//
-//            strOpenUrl = ::oslocal()->m_pszOpenUrl;
-//
-//            try
-//            {
-//
-//               ::free((void *)::oslocal()->m_pszOpenUrl);
-//
-//            }
-//            catch (...)
-//            {
-//
-//
-//            }
-//
-//            ::oslocal()->m_pszOpenUrl = nullptr;
-//
-//         }
-//
-//
-//         //strOpenUrl = strUrl + str::has_char(strOpenUrl, ";");
-//
-//         //if (strOpenUrl.has_char())
-//         {
-//
-//            // m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
-//
-//            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
-//
-//         }
-//
-//
+
 //#elif defined(MACOS)
 //
 //         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");

@@ -1,46 +1,8 @@
 #include "framework.h"
 #include "acme/id.h"
-#include <jni.h>
-#include "acme/operating_system/android/_os_object.h"
-#include "acme/operating_system/android/_os_remote.h"
 
 
-__pointer(os_local) g_poslocal;
-__pointer(os_remote) g_posremote;
-
-
-os_local * oslocal()
-{
-
-   return g_poslocal;
-
-}
-
-os_remote * osremote()
-{
-
-   return g_posremote;
-
-}
-
-
-void set_oslocal(os_local * poslocal)
-{
-
-   g_poslocal = poslocal;
-
-}
-
-
-void set_osremote(os_remote * posremote)
-{
-
-   g_posremote = posremote;
-
-}
-
-
-::duration os_get_system_update_poll_time(const ::atom & atom)
+::duration os_get_system_update_poll_time(const ::atom& atom)
 {
 
    if (atom == id_operating_system_user_theme_change)
@@ -109,3 +71,6 @@ CLASS_DECL_ACME int __node_is_debugger_attached()
    return false;
 
 }
+
+
+

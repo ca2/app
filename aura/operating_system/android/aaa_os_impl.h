@@ -51,9 +51,9 @@ extern const char * g_pszCommandLine;
 
 extern const char * g_pszCacheDir;
 
-extern __pointer(os_remote) g_posremote;
+extern __pointer(operating_system_direct) g_pandroidcontext;
 
-extern __pointer(os_local) g_poslocal;
+extern __pointer(operating_system_driver) g_pandroiddriver;
 
 CLASS_DECL_AURA string get_string(jstring jstring);
 

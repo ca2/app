@@ -43,17 +43,17 @@
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-24</AndroidAPILevel>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>c++_static</UseOfStl>
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -241,20 +241,6 @@
     <ClInclude Include="path.h" />
     <ClInclude Include="pen.h" />
     <ClInclude Include="region.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\acme\nord_acme.vcxproj">
-      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\nord_apex.vcxproj">
-      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{aab9136f-66db-4cd3-9d6b-2085e951739a}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

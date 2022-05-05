@@ -56,7 +56,6 @@ public:
 #else
 
    void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
-   //void system_construct(os_local * poslocal, const ::e_display & edisplay = ::e_display_none);
 
 #endif
 

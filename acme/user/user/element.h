@@ -603,6 +603,11 @@ namespace user
       /*virtual void pre_translate_message(::message::message * pmessage);
 */
 
+      virtual float preferred_dpi_x();
+
+      virtual float preferred_dpi_y();
+
+      virtual float preferred_density();
 
 
 
@@ -735,6 +740,8 @@ namespace user
       virtual ::user::element * above_user_primitive();
       virtual ::user::element * next_user_primitive();
       virtual ::user::element * previous_user_primitive();
+
+
 
    };
 

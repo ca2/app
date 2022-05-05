@@ -19,47 +19,46 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{85DD443E-1930-4C2D-A917-200E09D871E8}</ProjectGuid>
+    <ProjectGuid>{D2DC518F-3219-41B4-89F1-AC6055677ED0}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>app_app</ProjectName>
+    <ProjectName>crypto_openssl</ProjectName>
     <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_static</UseOfStl>
-    <AndroidAPILevel>android-26</AndroidAPILevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
     <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
+    <UseOfStl>c++_static</UseOfStl>
     <AndroidAPILevel>android-24</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="Shared" />
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -68,7 +67,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <Import Project="..\..\..\operating-system\operating-system-android\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -98,42 +97,43 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
       </CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <PreprocessorDefinitions>DEBUG;CUBE</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DataLevelLinking>true</DataLevelLinking>
       <FloatABI>
       </FloatABI>
     </ClCompile>
+    <Link />
     <Link>
+      <LibraryDependencies>cairo;freetype;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
       <FunctionBinding>false</FunctionBinding>
-      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <PreprocessorDefinitions>CUBE;DEBUG</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DataLevelLinking>true</DataLevelLinking>
       <FloatABI>
@@ -142,118 +142,89 @@
     <Link />
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
-      <LibraryDependencies>cairo;$(StlLibraryName);android;m</LibraryDependencies>
-      <WholeArchiveBegin>true</WholeArchiveBegin>
-      <FunctionBinding>false</FunctionBinding>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ExceptionHandling>Enabled</ExceptionHandling>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>
-      </CppLanguageStandard>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <PreprocessorDefinitions>CUBE</PreprocessorDefinitions>
-      <FloatABI>
-      </FloatABI>
-    </ClCompile>
-    <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>cairo;freetype;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
       <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <PreprocessorDefinitions>CUBE</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <FloatABI>
       </FloatABI>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>crypto;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <WholeArchiveBegin>true</WholeArchiveBegin>
+      <FunctionBinding>false</FunctionBinding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;$(SolutionDir)../../../source/third_graphics/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>
+      </CppLanguageStandard>
+      <PreprocessorDefinitions>_CRYPTO_OPENSSL_LIBRARY;</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <FloatABI>
+      </FloatABI>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>crypto;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
       <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="application.cpp" />
+    <ClCompile Include="crypto.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="main_window.cpp" />
-    <ClCompile Include="_main.cpp" />
+    <ClCompile Include="hasher.cpp" />
+    <ClCompile Include="hasher_algorithm.cpp" />
+    <ClCompile Include="initializer.cpp" />
+    <ClCompile Include="rsa.cpp" />
+    <ClCompile Include="_factory.cpp" />
+    <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="application.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="window.h" />
-    <ClInclude Include="_.h" />
-    <ClInclude Include="_user.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\acme_android\nord_acme_android.vcxproj">
-      <Project>{c296392c-dc67-41f2-badc-7ad2f2f0fb3e}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\apex_android\nord_apex_android.vcxproj">
-      <Project>{4220bcf1-dac7-4a08-b434-437cc8f763b7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\aura_android\nord_aura_android.vcxproj">
-      <Project>{df3b00c6-a62e-427e-aa59-233b10f9f933}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\node_android\nord_node_android.vcxproj">
-      <Project>{e31edcb1-a35f-4d04-affe-6f37135d3bf9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\windowing_android\nord_windowing_android.vcxproj">
-      <Project>{c8abdf79-52b6-4fd1-92ff-42c9e6c253a7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-android\write_text_android\nord_write_text_android.vcxproj">
-      <Project>{4991a865-caa8-40c4-8da6-ccb3a0f9bc47}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\acme_posix\nord_acme_posix.vcxproj">
-      <Project>{92f2d035-26c5-48ae-8090-3e7e3aec3d45}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\apex_posix\nord_apex_posix.vcxproj">
-      <Project>{7588cdd0-e83b-46a2-9910-0da2e8d37e6d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-posix\aura_posix\nord_aura_posix.vcxproj">
-      <Project>{b23268d6-75cd-4f51-b3a7-fbfce1552c7d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\acme\nord_acme.vcxproj">
-      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\apex\nord_apex.vcxproj">
-      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
-      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{aab9136f-66db-4cd3-9d6b-2085e951739a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\crypto_openssl\nord_crypto_openssl.vcxproj">
-      <Project>{d2dc518f-3219-41b4-89f1-ac6055677ed0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\draw2d_cairo\nord_draw2d_cairo.vcxproj">
-      <Project>{06207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
+    <ClInclude Include="aaa_initializer.h" />
+    <ClInclude Include="aaa__openssl.h" />
+    <ClInclude Include="crypto.h" />
+    <ClInclude Include="hasher.h" />
+    <ClInclude Include="hasher_algorithm.h" />
+    <ClInclude Include="initializer.h" />
+    <ClInclude Include="rsa.h" />
+    <ClInclude Include="_crypto_openssl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

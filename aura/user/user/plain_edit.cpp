@@ -14,6 +14,7 @@
 #include "acme/primitive/string/base64.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/platform/timer.h"
+#include "aura/windowing/text_editor_interface.h"
 //#include "_tree.h"
 
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
@@ -1802,41 +1803,84 @@ namespace user
 
       m_bNewSel = true;
 
-#ifdef ANDROID
-
       if (action_context.is_user_source())
       {
 
-         string strText;
+         auto pwindowing = windowing();
 
-         _001GetText(strText);
+         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-         oslocal()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
-
-         oslocal()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
-
-         if (m_pitemComposing)
+         if (::is_set(ptexteditorinterface))
          {
 
-            oslocal()->m_iInputMethodManagerCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
 
-            oslocal()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+            string strText;
+
+            _001GetText(strText);
+
+            //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+
+            //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+
+            auto iSelectionStart = ansi_to_wd16_len(strText, iBeg);
+
+            auto iSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+
+            ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd);
+
+            if (m_pitemComposing)
+            {
+
+               auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+
+               auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+               ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
+
+            }
+            else
+            {
+
+               ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
+
+            }
 
          }
-         else
-         {
-
-            oslocal()->m_iInputMethodManagerCandidateStart = oslocal()->m_iInputMethodManagerSelectionEnd;
-
-            oslocal()->m_iInputMethodManagerCandidateEnd = oslocal()->m_iInputMethodManagerSelectionEnd;
-
-         }
-
-         oslocal()->m_bInputMethodManagerUpdateSelection = true;
 
       }
 
-#endif
+//#ifdef ANDROID
+//
+//      if (action_context.is_user_source())
+//      {
+//
+//         
+//         operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+//
+//         operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+//
+//         if (m_pitemComposing)
+//         {
+//
+//            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+//
+//            operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+//
+//         }
+//         else
+//         {
+//
+//            operating_system_driver::get()->m_iInputMethodManagerCandidateStart = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
+//
+//            operating_system_driver::get()->m_iInputMethodManagerCandidateEnd = operating_system_driver::get()->m_iInputMethodManagerSelectionEnd;
+//
+//         }
+//
+//         operating_system_driver::get()->m_bInputMethodManagerUpdateSelection = true;
+//
+//      }
+//
+//#endif
 
    }
 
@@ -6243,17 +6287,20 @@ finished_update:
 
       }
 
-#ifdef ANDROID
-
       string strText;
 
       plain_edit_get_text(strText);
 
-      oslocal()->m_strEditorText = strText;
+      auto pwindowing = windowing();
 
-      oslocal()->m_bEditorTextUpdated = true;
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-#endif
+      if (::is_set(ptexteditorinterface))
+      {
+
+         ptexteditorinterface->set_editor_text(strText);
+
+      }
       
       if(has_handler())
       {

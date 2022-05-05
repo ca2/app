@@ -945,6 +945,9 @@
     <ClInclude Include="user\user\windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="windowing\text_editor_interface.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\_impl.h">
@@ -1459,9 +1462,6 @@
     <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\_os_impl.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\android\_.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
@@ -1473,6 +1473,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\android\window_android.cpp">
       <Filter>Source Files\operating_system\android</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\text_edit_interface.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -30,6 +30,11 @@
 //#define App(playered) (*::get_app(playered)->m_pauraapplication)
 
 
+namespace acme_posix { class node; }
+namespace apex_posix { class node; }
+namespace aura_posix { class node; }
+
+
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
 

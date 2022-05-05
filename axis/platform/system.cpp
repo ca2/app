@@ -446,7 +446,7 @@ namespace axis
 //   bool system::android_set_user_wallpaper(string strUrl)
 //   {
 //
-//      oslocal().m_strSetUserWallpaper = strUrl;
+//      operating_system_driver::get().m_strSetUserWallpaper = strUrl;
 //
 //      return true;
 //
@@ -455,12 +455,12 @@ namespace axis
 //   bool system::android_get_user_wallpaper(string & strUrl)
 //   {
 //
-//      oslocal()->m_bGetUserWallpaper = true;
+//      operating_system_driver::get()->m_bGetUserWallpaper = true;
 //
 //      for(int i = 0; i < 10; i++)
 //      {
 //
-//         if (!oslocal()->m_bGetUserWallpaper)
+//         if (!operating_system_driver::get()->m_bGetUserWallpaper)
 //         {
 //
 //
@@ -470,7 +470,7 @@ namespace axis
 //
 //      }
 //
-//      strUrl = oslocal()->m_strGetUserWallpaper;
+//      strUrl = operating_system_driver::get()->m_strGetUserWallpaper;
 //
 //      return true;
 //

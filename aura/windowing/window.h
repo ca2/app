@@ -299,6 +299,17 @@ namespace windowing
       itask_t get_itask() const;
 
 
+      virtual void on_touch_down(int x, int y);
+      virtual void on_touch_drag(int x, int y);
+      virtual void on_touch_up(int x, int y);
+
+      virtual void on_size(int w, int h);
+
+      virtual void on_text(const ansichar * pansisz, strsize length);
+      virtual void on_text(const wd16char * pwd16sz, strsize length);
+      virtual void on_text(const wd32char * pwd32sz, strsize length);
+
+
    };
 
 

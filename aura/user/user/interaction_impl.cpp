@@ -5174,11 +5174,11 @@ namespace user
    {
 
 
-#ifdef ANDROID
-
-      oslocal()->m_bRedraw = true;
-
-#endif
+//#ifdef ANDROID
+//
+//      operating_system_driver::get()->m_bRedraw = true;
+//
+//#endif
 
 
    }
@@ -6398,6 +6398,29 @@ namespace user
       return m_pwindow->set_tool_window(bSet);
 
    }
+
+   
+   void interaction_impl::android_fill_plasma(const void* pixels, int width, int height, int stride, ::i64 time_ms)
+   {
+
+      synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
+
+      auto pimageSource = m_pgraphics->get_screen_image();
+
+      pimageSource->map();
+
+      auto wSource = pimageSource->width();
+
+      auto hSource = pimageSource->height();
+
+      auto pdataSource = pimageSource->get_data();
+
+      auto scanSource = pimageSource->m_iScan;
+
+      ::copy_colorref((color32_t *) pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+
+   }
+
 
 } // namespace user
 

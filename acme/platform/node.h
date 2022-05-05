@@ -39,51 +39,51 @@ namespace acme
       union
       {
 
-         ::u64                               m_uNodeFlags;
+         ::u64                                              m_uNodeFlags;
 
-         bool                                m_bHasNodePostedSystemInitialRequest : 1;
+         bool                                               m_bHasNodePostedSystemInitialRequest : 1;
 
       };
 
-      htask_t                                m_htaskSystem;
-      ::apex::node *                         m_papexnode;
-      ::aura::node *                         m_pauranode;
+      htask_t                                               m_htaskSystem;
+      ::apex::node *                                        m_papexnode;
+      ::aura::node *                                        m_pauranode;
 
-      ::acme::posix::node *                  m_pAcmePosix;
-      ::apex::posix::node *                  m_pApexPosix;
-      ::aura::posix::node *                  m_pAuraPosix;
+      ::acme_posix::node *                                  m_pAcmePosix;
+      ::apex_posix::node *                                  m_pApexPosix;
+      ::aura_posix::node *                                  m_pAuraPosix;
 
-      ::acme::OPERATING_SYSTEM_NAMESPACE::node *     m_pAcmePlatform;
-      ::apex::OPERATING_SYSTEM_NAMESPACE::node *     m_pApexPlatform;
-      ::aura::OPERATING_SYSTEM_NAMESPACE::node *     m_pAuraPlatform;
+      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node *  m_pAcmePlatform;
+      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node *  m_pApexPlatform;
+      :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
 
-      ::OPERATING_SYSTEM_NAMESPACE::node *           m_pNode;
-
-
-      ::windowing_win32::node *              m_pWindowingWin32Node;
-      ::windowing_universal_windows::node *  m_pWindowingUniversalWindowsNode;
+      //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
 
-      ::windowing_x11::node *                m_pNodeX11;
-      ::windowing_xcb::node *                m_pNodeXcb;
-      ::node_gtk::node *                     m_pNodeGtk;
-      ::node_gnome::node *                   m_pNodeGnome;
-      ::node_kde::node *                     m_pNodeKDE;
-      ::node_xfce::node *                    m_pNodeXfce;
-      ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
-      ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
-      ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
+      ::windowing_win32::node *                             m_pWindowingWin32Node;
+      ::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
 
-      //bool                    m_bUserDarkMode;
 
-      //bool                    m_bDarkModeSystem;
-      bool                    m_bDarkMode;
-      ::color::color          m_colorBackground;
-      double                  m_dLuminance;
-      int                     m_iWeatherDarkness;
-      ::file::path            m_pathModule;
+      ::windowing_x11::node *                               m_pNodeX11;
+      ::windowing_xcb::node *                               m_pNodeXcb;
+      ::node_gtk::node *                                    m_pNodeGtk;
+      ::node_gnome::node *                                  m_pNodeGnome;
+      ::node_kde::node *                                    m_pNodeKDE;
+      ::node_xfce::node *                                   m_pNodeXfce;
+      ::desktop_environment_gnome::node *                   m_pNodeDesktopEnvironmentGnome;
+      ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;
+      ::desktop_environment_xfce::node *                    m_pNodeDesktopEnvironmentXfce;
 
-      ::user::enum_desktop    m_edesktop;
+      //bool                                                m_bUserDarkMode;
+
+      //bool                                                m_bDarkModeSystem;
+      bool                                                  m_bDarkMode;
+      ::color::color                                        m_colorBackground;
+      double                                                m_dLuminance;
+      int                                                   m_iWeatherDarkness;
+      ::file::path                                          m_pathModule;
+
+      ::user::enum_desktop                                  m_edesktop;
 
 
       node();
@@ -423,6 +423,10 @@ namespace acme
 
 
       virtual void create_app_shortcut(::app * papp);
+
+
+      virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+
 
 
    };

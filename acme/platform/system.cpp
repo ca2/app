@@ -1659,7 +1659,17 @@ void system::report_system_instance()
 
       strModifier = strDate + "_" + strPid;
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->roaming();
+      ::file::path pathFolder;
+      
+#ifdef ANDROID
+
+      pathFolder = m_psystem->m_pathCacheDirectory;
+
+#else
+
+      pathFolder = m_psystem->m_pacmedirectory->roaming();
+
+#endif
 
       pathFolder /= strAppId;
 

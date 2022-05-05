@@ -780,7 +780,7 @@ class acme_file;
 class acme_path;
 
 
-namespace OPERATING_SYSTEM_NAMESPACE
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 {
 
 
@@ -791,7 +791,7 @@ namespace OPERATING_SYSTEM_NAMESPACE
    class acme_path;
 
 
-} // namespace OPERATING_SYSTEM_NAMESPACE
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 
 
 // returns true if it should continue...

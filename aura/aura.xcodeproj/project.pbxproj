@@ -418,6 +418,7 @@
 		9A92317E27EAE41000B5A78D /* window_state.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92301327EACA3A00B5A78D /* window_state.cpp */; };
 		9A92317F27EAE41000B5A78D /* window_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92300927EACA3A00B5A78D /* window_util.cpp */; };
 		9A92318027EAE41000B5A78D /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92306127EACA3B00B5A78D /* windowing.cpp */; };
+		9A956D062824082A00002F51 /* font_utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D052824082A00002F51 /* font_utf8.cpp */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
@@ -1060,6 +1061,7 @@
 		9A92358123286D7100804A1C /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A92358323286D8400804A1C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A92358523286D8D00804A1C /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		9A956D052824082A00002F51 /* font_utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_utf8.cpp; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -1714,6 +1716,7 @@
 		9A8FCD6F2651AFAB00C0D8A1 /* write_text */ = {
 			isa = PBXGroup;
 			children = (
+				9A956D052824082A00002F51 /* font_utf8.cpp */,
 				9A9230AF27EACE1000B5A78D /* font_enumeration_item.cpp */,
 				9A9230AE27EACE0F00B5A78D /* true_type_font_utilities.cpp */,
 				9A8FCD812651AFAB00C0D8A1 /* _.h */,
@@ -2511,6 +2514,7 @@
 				9A92317227EAE41000B5A78D /* scroll.cpp in Sources */,
 				9A92317327EAE41000B5A78D /* shell.cpp in Sources */,
 				9A92317427EAE41000B5A78D /* still.cpp in Sources */,
+				9A956D062824082A00002F51 /* font_utf8.cpp in Sources */,
 				9A92317527EAE41000B5A78D /* style_base.cpp in Sources */,
 				9A92317627EAE41000B5A78D /* style_control.cpp in Sources */,
 				9A92317727EAE41000B5A78D /* style.cpp in Sources */,

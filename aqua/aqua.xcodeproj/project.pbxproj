@@ -83,8 +83,6 @@
 		9A2819FE25242523009FA9CB /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198725242523009FA9CB /* application_common.h */; };
 		9A2819FF25242523009FA9CB /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198825242523009FA9CB /* _app_impl1.h */; };
 		9A281A0025242523009FA9CB /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198925242523009FA9CB /* _acid_app_impl.h */; };
-		9A281A0125242523009FA9CB /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198B25242523009FA9CB /* idpool.h */; };
-		9A281A0225242523009FA9CB /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28198C25242523009FA9CB /* idpool.cpp */; };
 		9A281A0325242524009FA9CB /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28198D25242523009FA9CB /* _.cpp */; };
 		9A281A0425242524009FA9CB /* xml.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198E25242523009FA9CB /* xml.h */; };
 		9A281A0525242524009FA9CB /* file_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199025242523009FA9CB /* file_application.h */; };
@@ -128,6 +126,8 @@
 		9A41243A266C3F3500C3FF0E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7864982650A3CF0034A0E1 /* libacme.dylib */; };
 		9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
 		9A81F8CF2750744E003F38EC /* text_to_speech_client.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */; };
+		9A97C7C028236AFA00755A0A /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C7BE28236AFA00755A0A /* idpool.h */; };
+		9A97C7C128236AFA00755A0A /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C7BF28236AFA00755A0A /* idpool.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,8 +235,6 @@
 		9A28198725242523009FA9CB /* application_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_common.h; sourceTree = "<group>"; };
 		9A28198825242523009FA9CB /* _app_impl1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _app_impl1.h; sourceTree = "<group>"; };
 		9A28198925242523009FA9CB /* _acid_app_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _acid_app_impl.h; sourceTree = "<group>"; };
-		9A28198B25242523009FA9CB /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
-		9A28198C25242523009FA9CB /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
 		9A28198D25242523009FA9CB /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A28198E25242523009FA9CB /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
 		9A28199025242523009FA9CB /* file_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file_application.h; sourceTree = "<group>"; };
@@ -280,6 +278,8 @@
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
 		9A81F8CD2750744E003F38EC /* text_to_speech_client.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = text_to_speech_client.hpp; sourceTree = "<group>"; };
+		9A97C7BE28236AFA00755A0A /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
+		9A97C7BF28236AFA00755A0A /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,7 +333,7 @@
 		9A28192625242523009FA9CB /* aqua */ = {
 			isa = PBXGroup;
 			children = (
-				9A28198A25242523009FA9CB /* const */,
+				9A97C7BD28236AFA00755A0A /* constant */,
 				9A2E624C252588430001CC7E /* game */,
 				9A28196E25242523009FA9CB /* inline */,
 				9A28198F25242523009FA9CB /* multimedia */,
@@ -463,15 +463,6 @@
 			path = aaa_console;
 			sourceTree = "<group>";
 		};
-		9A28198A25242523009FA9CB /* const */ = {
-			isa = PBXGroup;
-			children = (
-				9A28198B25242523009FA9CB /* idpool.h */,
-				9A28198C25242523009FA9CB /* idpool.cpp */,
-			);
-			path = const;
-			sourceTree = "<group>";
-		};
 		9A28198F25242523009FA9CB /* multimedia */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +546,15 @@
 			path = game;
 			sourceTree = "<group>";
 		};
+		9A97C7BD28236AFA00755A0A /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				9A97C7BE28236AFA00755A0A /* idpool.h */,
+				9A97C7BF28236AFA00755A0A /* idpool.cpp */,
+			);
+			path = constant;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -589,7 +589,6 @@
 				9A2819E825242523009FA9CB /* _.h in Headers */,
 				9A281A0025242523009FA9CB /* _acid_app_impl.h in Headers */,
 				9A2819EA25242523009FA9CB /* _draw2d_impl.h in Headers */,
-				9A281A0125242523009FA9CB /* idpool.h in Headers */,
 				9A2819C925242523009FA9CB /* importable.h in Headers */,
 				9A2819F625242523009FA9CB /* __debug_box_set_impl.h in Headers */,
 				9A2819AF25242523009FA9CB /* library.h in Headers */,
@@ -611,6 +610,7 @@
 				9A2819FC25242523009FA9CB /* __debug_box_clear_impl.h in Headers */,
 				9A281A0A25242524009FA9CB /* _c.h in Headers */,
 				9A281A2925242870009FA9CB /* system.h in Headers */,
+				9A97C7C028236AFA00755A0A /* idpool.h in Headers */,
 				9A2819C725242523009FA9CB /* enum.h in Headers */,
 				9A2E6254252588430001CC7E /* estamira.h in Headers */,
 				9A281A1B25242524009FA9CB /* framework.h in Headers */,
@@ -743,6 +743,7 @@
 				9A2819E225242523009FA9CB /* document.cpp in Sources */,
 				9A281A0D25242524009FA9CB /* decoder_plugin.cpp in Sources */,
 				9A281A0E25242524009FA9CB /* multimedia.cpp in Sources */,
+				9A97C7C128236AFA00755A0A /* idpool.cpp in Sources */,
 				9A281A0325242524009FA9CB /* _.cpp in Sources */,
 				9A2819DF25242523009FA9CB /* xml.cpp in Sources */,
 				9A281A0F25242524009FA9CB /* sound_track_player.cpp in Sources */,
@@ -756,7 +757,6 @@
 				9A2819DC25242523009FA9CB /* property_exchange.cpp in Sources */,
 				9A2819C425242523009FA9CB /* xmlite.cpp in Sources */,
 				9A281A1725242524009FA9CB /* decoder.cpp in Sources */,
-				9A281A0225242523009FA9CB /* idpool.cpp in Sources */,
 				9A2819DE25242523009FA9CB /* output_tree.cpp in Sources */,
 				9A2819D625242523009FA9CB /* base_array.cpp in Sources */,
 				9A2819C825242523009FA9CB /* entity.cpp in Sources */,

@@ -72,14 +72,14 @@ namespace universal_windows
 #endif
 
 
-namespace OPERATING_SYSTEM_NAMESPACE
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 {
 
 
    class interaction_impl;
 
 
-} // namespace OPERATING_SYSTEM_NAMESPACE
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 
 
 #include "aura/graphics/draw2d/_.h"

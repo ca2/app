@@ -92,7 +92,7 @@ void main::system_construct(const main& main)
 
    m_pfnImplement = main.m_pfnImplement;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
    if(!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
    && main.m_pchar_binary__matter_zip_start && main.m_pchar_binary__matter_zip_end)

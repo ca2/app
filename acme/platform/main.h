@@ -21,7 +21,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
    hinstance         m_hinstancePrev = nullptr;
    int               m_nCmdShow = -1000;
 
-#elif defined(LINUX) || defined(FREEBSD)
+#elif defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
    char * m_pchar_binary__matter_zip_start = nullptr;
    char * m_pchar_binary__matter_zip_end = nullptr;
@@ -119,7 +119,7 @@ namespace acme
 } // namespace acme
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
 
 class embed_resource
@@ -151,7 +151,7 @@ public:
 };
 
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
 
 #define __embed_resource(app) \

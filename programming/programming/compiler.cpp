@@ -175,7 +175,7 @@ namespace programming
 
             m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
-            ::windows::registry::key key;
+            ::acme_windows::registry::key key;
 
             key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false);
 

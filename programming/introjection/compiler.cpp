@@ -214,7 +214,7 @@ namespace introjection
 //
 //         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
-//         ::windows::registry::key key;
+//         ::acme_windows::registry::key key;
 //
 //         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
 //         {
@@ -242,7 +242,7 @@ namespace introjection
 //
 //         m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Auxiliary/Build/vcvarsall.bat";
 //
-//         ::windows::registry::key key;
+//         ::acme_windows::registry::key key;
 //
 //         if (key._open(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Microsoft\\VisualStudio\\SxS\\VS7", false))
 //         {

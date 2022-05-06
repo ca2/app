@@ -4368,7 +4368,7 @@ namespace aura
 //      try
 //      {
 //
-//         ::windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
+//         ::acme_windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
 //
 //         string strCurrentVersion;
 //

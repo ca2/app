@@ -552,53 +552,158 @@ namespace user
    void interaction_impl::native_create_host()
    {
 
-      auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
+//      auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
+//
+//      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
+//      {
+//
+//         m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
+//
+//         m_pwindow->m_puserinteractionimpl = this;
+//
+//         m_puserinteraction->m_pinteractionimpl = this;
+//
+//      }
+//      else
+//      {
+//
+//         //auto estatus =
+//
+//         __construct(m_pwindow);
+//
+//         //if (!estatus)
+//         //{
+//
+//         //   return estatus;
+//
+//         //}
+//
+//         if (!m_psystem->m_paurasystem->m_pwindowMain)
+//         {
+//
+//            m_psystem->m_paurasystem->m_pwindowMain = m_pwindow;
+//
+//         }
+//
+//      }
+//
+//      //auto estatus =
+//
+//      m_pwindow->create_window(this);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return true;
 
-      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
+      __pointer(::user::system) pusersystem;
+
+      if(m_puserinteraction->m_pusersystem)
       {
 
-         m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
-
-         m_pwindow->m_puserinteractionimpl = this;
-
-         m_puserinteraction->m_pinteractionimpl = this;
+         pusersystem = m_puserinteraction->m_pusersystem;
 
       }
       else
       {
 
-         //auto estatus = 
-         
-         __construct(m_pwindow);
-
-         //if (!estatus)
-         //{
-
-         //   return estatus;
-
-         //}
-
-         if (!m_psystem->m_paurasystem->m_pwindowMain)
-         {
-
-            m_psystem->m_paurasystem->m_pwindowMain = m_pwindow;
-
-         }
+         pusersystem = __new(::user::system);
 
       }
 
-      //auto estatus =
-      
-      m_pwindow->create_window(this);
+//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+//
+      if (!m_puserinteraction->pre_create_window(pusersystem))
+      {
 
-      //if (!estatus)
-      //{
+         //return false;
 
-      //   return estatus;
+         throw ::exception(error_failed);
 
-      //}
+      }
 
-      //return true;
+      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+
+      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
+
+      install_message_routing(m_puserinteraction);
+
+      bool bOk = true;
+
+//      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+//      {
+//
+//         auto pwindowing = m_pwindowwindowing();
+//
+//         m_oswindow = pwindowing->new_message_window(this);
+//
+//         m_puserinteraction->m_bMessageWindow = true;
+//
+//         //send_message(e_message_create, 0, (LPARAM) &cs);
+//
+//      }
+//      else
+      {
+
+         m_puserinteraction->m_bMessageWindow = false;
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->windowing_send([&]()
+                                    {
+
+                                       auto psession = get_session();
+
+                                       auto puser = psession->user();
+
+                                       auto pwindowing = puser->windowing();
+
+                                       m_pwindow = pwindowing->new_window(this);
+
+                                       if(m_pwindow)
+                                       {
+
+                                          output_debug_string("window created");
+
+                                       }
+                                       else
+                                       {
+
+                                          output_debug_string("window not created");
+
+                                       }
+
+                                    });
+
+      }
+
+//      if(bOk)
+//      {
+//
+//         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+//
+//         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+//
+//      }
+
+      if(!bOk)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+
+
+
 
    }
 

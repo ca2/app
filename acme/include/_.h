@@ -169,18 +169,22 @@ namespace acme
    } // namespace posix
 
 
-   namespace OPERATING_SYSTEM_NAMESPACE
-   {
-
-
-      class node;
-      class buffer;
-
-
-   } // namespace OPERATING_SYSTEM_NAMESPACE
-
-
 } // namespace acme
+
+
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+{
+
+
+   class node;
+   class buffer;
+
+
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+
+
+
+
 //class ____start
 //{
 //public:

@@ -637,12 +637,12 @@
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\graphics_lock.cpp" />
     <ClCompile Include="windowing\icon.cpp" />
-    <ClCompile Include="windowing\text_edit_interface.cpp" />
     <ClCompile Include="windowing\keyboard.cpp" />
     <ClCompile Include="windowing\menu.cpp" />
     <ClCompile Include="windowing\menu_command.cpp" />
     <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\xrender.cpp" />

@@ -65,8 +65,9 @@
 
       virtual bool  is(const ::file::path & pcsz);
 
+      virtual bool  _is(const ::file::path& pcsz);
 
-      virtual bool  is_impl(const ::file::path & pcsz);
+      virtual bool  __is(const ::file::path & pcsz, bool & bIsDir);
 
 
       virtual bool  is_cached(bool & bIs, const ::file::path & pcsz);

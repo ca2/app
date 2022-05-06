@@ -1103,6 +1103,7 @@
     <ClCompile Include="windowing\menu_command.cpp" />
     <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\xrender.cpp" />
@@ -1224,6 +1225,7 @@
     <ClInclude Include="user\user\_menu.h" />
     <ClInclude Include="user\user\_prelude.h" />
     <ClInclude Include="user\user\_user.h" />
+    <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="_factory.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_c.h" />

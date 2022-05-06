@@ -1474,7 +1474,7 @@
     <ClCompile Include="operating_system\android\window_android.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\text_edit_interface.cpp">
+    <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>

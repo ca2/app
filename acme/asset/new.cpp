@@ -1,3 +1,6 @@
+#ifndef __ACME_ASSET_NEW_CPP__
+#define __ACME_ASSET_NEW_CPP__
+
 #undef new
 
 
@@ -199,5 +202,9 @@ void MEMORY_DECL operator delete[](void* p, i32 nType, const char* pszFileName, 
 
 
 #endif
+
+
+#endif // __ACME_ASSET_NEW_CPP__
+
 
 

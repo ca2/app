@@ -39,22 +39,22 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
-    <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
-    <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
-    <UseOfStl>c++_shared</UseOfStl>
-    <AndroidAPILevel>android-24</AndroidAPILevel>
+    <UseOfStl>c++_static</UseOfStl>
+    <AndroidAPILevel>android-26</AndroidAPILevel>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -109,16 +109,13 @@
       <PreprocessorDefinitions>DEBUG;CUBE</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <DataLevelLinking>true</DataLevelLinking>
       <FloatABI>
       </FloatABI>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
+      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
-      <FunctionBinding>false</FunctionBinding>
-      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -134,8 +131,6 @@
       </CppLanguageStandard>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <DataLevelLinking>true</DataLevelLinking>
       <FloatABI>
       </FloatABI>
     </ClCompile>
@@ -144,7 +139,6 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <LibraryDependencies>cairo;$(StlLibraryName);android;m</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
-      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -168,7 +162,6 @@
       <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
-      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -192,7 +185,6 @@
       <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
-      <FunctionBinding>false</FunctionBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -257,15 +249,6 @@
     <ProjectReference Include="..\folder_zip\nord_folder_zip.vcxproj">
       <Project>{74cd7e4f-a9f4-4c9c-b7ce-0d8765201f66}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="_matter.zip">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">ld -r -b binary -o $(IntDir)%(RelativeDir)%(Filename).o %(Filename)%(Extension)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">ld -r -b binary -o $(IntDir)%(RelativeDir)%(Filename).o %(Filename)%(Extension)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">ld -r -b binary -o $(IntDir)%(RelativeDir)%(Filename).o %(Filename)%(Extension)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x86'">ld -r -b binary -o $(IntDir)%(RelativeDir)%(Filename).o %(Filename)%(Extension)</Command>
-    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

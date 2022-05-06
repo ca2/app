@@ -656,6 +656,17 @@ namespace apex
    void session::on_request(::create * pcreate)
    {
 
+      auto procedure = m_psystem->payload("on_finish_launching1").get_procedure();
+
+      if (procedure)
+      {
+
+         procedure();
+
+         m_psystem->payload("on_finish_launching1") = "";
+
+      }
+
       auto psystem = get_system()->m_papexsystem;
 
       if (pcreate->m_ecommand == command_protocol)

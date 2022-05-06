@@ -222,6 +222,7 @@ namespace acme
 
       /* auto estatus =*/ m_psystem->main();
 
+      //g_psystem->m_bIsReadyForUserInteraction = true;
       //if(!estatus)
       //{
 

@@ -33,7 +33,7 @@ CLASS_DECL_AURA double fabs_dup(double f)
 CLASS_DECL_AURA double atan_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         fatan
@@ -58,7 +58,7 @@ CLASS_DECL_AURA double acos_dup(double d)
 CLASS_DECL_AURA double sqrt_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         fsqrt
@@ -84,7 +84,7 @@ CLASS_DECL_AURA double fmod_dup(double x, double y)
 CLASS_DECL_AURA double exp_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         fexp
@@ -99,7 +99,7 @@ CLASS_DECL_AURA double exp_dup(double d)
 CLASS_DECL_AURA double log_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         flog
@@ -114,7 +114,7 @@ CLASS_DECL_AURA double log_dup(double d)
 CLASS_DECL_AURA double tan_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         ftan
@@ -129,7 +129,7 @@ CLASS_DECL_AURA double tan_dup(double d)
 CLASS_DECL_AURA double sin_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxx
     {
         fld u32 PTR [d]
         fsin
@@ -144,7 +144,7 @@ CLASS_DECL_AURA double sin_dup(double d)
 CLASS_DECL_AURA double cos_dup(double d)
 {
 #ifdef X86
-    _asm
+    _asmxxxx
     {
         fld u32 PTR [d]
         fcos

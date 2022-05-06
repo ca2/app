@@ -839,7 +839,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
         if(!__assert_failed_line(__FILE__, __LINE__))          \
         {                                                      \
                                                                \
-            DEBUG_BREAK;                                       \
+            debug_break();                                     \
                                                                \
         }                                                      \
                                                                \

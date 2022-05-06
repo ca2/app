@@ -23,8 +23,8 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
 
 #elif defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
-   char * m_pchar_binary__matter_zip_start = nullptr;
-   char * m_pchar_binary__matter_zip_end = nullptr;
+   const char * m_pchar_binary__matter_zip_start = nullptr;
+   const char * m_pchar_binary__matter_zip_end = nullptr;
 
 #endif
 
@@ -119,7 +119,7 @@ namespace acme
 } // namespace acme
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) //|| defined(ANDROID)
 
 
 class embed_resource
@@ -151,7 +151,7 @@ public:
 };
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) //|| defined(ANDROID)
 
 
 #define __embed_resource(app) \

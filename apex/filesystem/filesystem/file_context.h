@@ -187,7 +187,7 @@ public:
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 
 
-   virtual ::file::path replace_with_extension(const char * pszExtension,  const ::file::path & pszFile);
+   virtual ::file::path replace_with_extension(const ::string & strExtension,  const ::file::path & pszFile);
    virtual void set_extension(::file::path & str, const char * pszExtension);
 
 

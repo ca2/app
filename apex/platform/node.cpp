@@ -158,6 +158,86 @@ namespace apex
    }
 
 
+   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   {
+
+      //throw ::interface_only();
+
+   }
+
+
+   void node::set_application_menu(::application_menu * pmenu, ::application * papp)
+   {
+
+   }
+
+
+   ::file::path node::get_desktop_file_path(::application * papp) const
+   {
+
+      return "";
+
+   }
+
+
+   void node::defer_notify_startup_complete()
+   {
+
+
+   }
+
+
+   void node::start_node()
+   {
+
+      auto psystem = get_system()->m_papexsystem;
+
+      //auto estatus = 
+      psystem->on_start_system();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+
+   }
+
+
+   void node::on_operating_system_user_theme_change()
+   {
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      psystem->signal(id_operating_system_user_theme_change);
+
+   }
+
+
+   void node::on_operating_system_user_color_change()
+   {
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      psystem->signal(id_operating_system_user_color_change);
+
+   }
+
+
+   void node::on_operating_system_font_list_change()
+   {
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      psystem->signal(id_operating_system_font_list_change);
+
+   }
+
+
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
@@ -290,84 +370,12 @@ namespace apex
 //   }
 
 
-   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
-   {
-      
-      //throw ::interface_only();
-      
-   }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::application * papp)
-   {
-
-   }
 
 
-   ::file::path node::get_desktop_file_path(::application * papp) const
-   {
-
-      return "";
-
-   }
 
 
-   void node::defer_notify_startup_complete()
-   {
-
-
-   }
-
-
-   void node::start_node()
-   {
-
-      auto psystem = get_system()->m_papexsystem;
-
-      //auto estatus = 
-      psystem->on_start_system();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-
-   }
-
-
-   void node::on_operating_system_user_theme_change()
-   {
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      psystem->signal(id_operating_system_user_theme_change);
-
-   }
-
-
-   void node::on_operating_system_user_color_change()
-   {
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      psystem->signal(id_operating_system_user_color_change);
-
-   }
-
-
-   void node::on_operating_system_font_list_change()
-   {
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      psystem->signal(id_operating_system_font_list_change);
-
-   }
 
 
    void node::os_menu_item_enable(void * pitem, bool bEnable)

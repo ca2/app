@@ -20,12 +20,14 @@ int get_current_process_affinity_order()
 }
 
 
-void main_asynchronous(::procedure function)
+void main_asynchronous(const ::procedure & procedure)
 {
+   
+   auto procedureLocal = procedure;
   
    ns_main_async(^{
       
-      function();
+      procedureLocal();
       
    });
    
@@ -35,9 +37,27 @@ void main_asynchronous(::procedure function)
 void system::windowing_post(const ::procedure & procedure)
 {
    
-   main_asynchronous(function);
+   main_asynchronous(procedure);
    
 }
 
 
 
+
+
+bool __os_init_thread()
+{
+
+   return true;
+
+}
+
+
+bool __os_term_thread()
+{
+
+   //thread_shutdown();
+
+   return true;
+
+}

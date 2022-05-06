@@ -23,6 +23,7 @@ namespace windowing
    class display;
    class window;
    class windowing;
+   class text_editor_interface;
 
 
    enum enum_status

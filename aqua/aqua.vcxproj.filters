@@ -22,9 +22,6 @@
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{168ea230-ce83-4199-a897-712f155b8049}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
     </Filter>
@@ -46,9 +43,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{0a84bbef-ff11-4ea1-867a-2a3aa6ed4b67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{906a8a0b-f60b-4fa7-9981-ddd212c9e981}</UniqueIdentifier>
     </Filter>
@@ -69,6 +63,12 @@
     </Filter>
     <Filter Include="Header Files\operating_system\windows">
       <UniqueIdentifier>{bc8bf4fa-94f8-41d2-87f2-5079dc0646af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{6fc21995-1225-4b7b-8d36-166f83dba56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +125,6 @@
     </ClInclude>
     <ClInclude Include="user\controller.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
@@ -297,6 +294,9 @@
     <ClInclude Include="multimedia\audio\_c_audio.h">
       <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -404,9 +404,6 @@
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
@@ -421,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\audio.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

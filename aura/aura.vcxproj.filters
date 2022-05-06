@@ -1070,6 +1070,9 @@
     <ClInclude Include="graphics\draw2d\host.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="windowing\text_editor_interface.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1644,6 +1647,9 @@
     </ClCompile>
     <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\text_editor_interface.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

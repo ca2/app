@@ -995,16 +995,35 @@ bool dir_context::is(const ::file::path & pathParam)
 
    }
 
-   return is_impl(path);
+   return _is(path);
 
 }
 
 
-bool dir_context::is_impl(const ::file::path & path)
+bool dir_context::_is(const ::file::path& path)
+{
+
+   bool bDir = false;
+
+   if (__is(path, bDir))
+   {
+
+      return bDir;
+
+   }
+
+   return m_psystem->m_pacmedirectory->is(path);
+
+}
+
+
+bool dir_context::__is(const ::file::path & path, bool & bDir)
 {
 
    if (path.ends_ci("://") || path.ends_ci(":/") || path.ends_ci(":"))
    {
+
+      bDir = true;
 
       return true;
 
@@ -1022,14 +1041,16 @@ bool dir_context::is_impl(const ::file::path & path)
 
       }
 
-      return m_pcontext->m_papexcontext->http().exists(path, set);
+      bDir = m_pcontext->m_papexcontext->http().exists(path, set);
+
+      return true;
 
    }
 
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
-      //m_isdirmap.set(path, true, 0);
+      bDir = true;
 
       return true;
 
@@ -1090,7 +1111,9 @@ bool dir_context::is_impl(const ::file::path & path)
 
       //            m_isdirmap.set(path, bHasSubFolder, get_last_error());
 
-      return bHasSubFolder;
+      bDir = bHasSubFolder;
+
+      return true;
 
    }
 

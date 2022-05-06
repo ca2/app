@@ -184,7 +184,9 @@ namespace parallelization
 
    CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);
 
-   CLASS_DECL_ACME i32 priority();
+   CLASS_DECL_ACME enum_priority get_priority();
+
+   CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
 
 
    //inline i32 get_priority_none()

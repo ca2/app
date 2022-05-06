@@ -3,8 +3,6 @@
 #include "aura/os/android/windowing.h"
 
 
-extern __pointer(os_local) g_poslocal;
-
 
 void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, int iBeg, int iEnd);
 void android_edit_on_kill_focus();
@@ -4580,7 +4578,7 @@ namespace android
 
       __UNREFERENCED_PARAMETER(pfocus);
 
-      psystem->oslocal().m_bShowKeyboard = true;
+      psystem->operating_system_driver::get().m_bShowKeyboard = true;
 
       return true;
 
@@ -4592,7 +4590,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-      psystem->oslocal().m_bHideKeyboard = true;
+      psystem->operating_system_driver::get().m_bHideKeyboard = true;
 
       return true;
 
@@ -4603,7 +4601,7 @@ namespace android
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
-      psystem->oslocal().m_bHideKeyboard = true;
+      psystem->operating_system_driver::get().m_bHideKeyboard = true;
 
       return true;
 
@@ -4726,7 +4724,7 @@ namespace android
       if (bShow)
       {
 
-         auto plocal = g_poslocal;
+         auto plocal = g_pandroidproxy;
 
          plocal->m_bShowKeyboard = true;
 
@@ -4734,7 +4732,7 @@ namespace android
       else
       {
 
-         auto plocal = g_poslocal;
+         auto plocal = g_pandroidproxy;
 
          plocal->m_bHideKeyboard = true;
 

@@ -8,7 +8,7 @@ class CLASS_DECL_ACME acme_file :
 public:
 
 
-   ::OPERATING_SYSTEM_NAMESPACE::acme_file *    m_pplatformfile;
+   ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_file *    m_pplatformfile;
    acme_directory *                                   m_pacmedirectory;
    acme_path *                                  m_pacmepath;
 

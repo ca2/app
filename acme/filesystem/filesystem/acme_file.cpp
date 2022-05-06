@@ -8,6 +8,7 @@
 #include "acme_path.h"
 #include <stdio.h>
 
+CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 
 void trace_last_error()
 {
@@ -359,8 +360,8 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
    }
 
 #else
-
-   char pPathBuffer[MAX_PATH * 16];
+#define MAX_PATH_HERE 300
+   char pPathBuffer[MAX_PATH_HERE * 16];
 
    strcpy(pPathBuffer, "/tmp/");
 
@@ -1501,8 +1502,9 @@ void acme_file::_erase(const char * path)
       if(estatus != error_file_not_found)
       {
 
+         // ::exception exception(estatus);
+
          throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"",
-                           m_psystem->m_pappMain->m_strAppId, e_message_box_ok,
                            "Failed to erase file:\n\"" + string(path) + "\"");
 
       }

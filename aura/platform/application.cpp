@@ -58,7 +58,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #elif defined(ANDROID)
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/node/android/_.h"
+#include "aura/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
@@ -3791,7 +3791,7 @@ retry_license:
          if (psession->get_user_interaction_host() != nullptr)
          {
 
-            auto puserinteraction = __user_interaction(psession->get_user_interaction_host());
+            __pointer(::user::interaction) puserinteraction = psession->get_user_interaction_host();
 
             if (puserinteraction)
             {

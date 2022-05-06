@@ -478,9 +478,6 @@ namespace base
 //      ::mutex * get_openweather_city_mutex();
 //
 //
-//      virtual os_local & oslocal();
-//
-//
 //      template < typename T >
 //      inline T * cast_clone(T * point_i32)
 //      {

@@ -10,6 +10,11 @@
 #include "acme/parallelization/install_mutex.h"
 
 
+
+CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
+
+
+
 namespace acme
 {
 
@@ -140,6 +145,30 @@ namespace acme
    }
 
 
+   string node::multimedia_audio_get_default_library_name()
+   {
+
+      return "audio_alsa";
+
+   }
+
+
+   string node::multimedia_audio_mixer_get_default_library_name()
+   {
+
+      return "audio_mixer_alsa";
+
+   }
+
+
+   string node::veriwell_multimedia_music_midi_get_default_library_name()
+   {
+
+      return "music_midi_alsa";
+
+   }
+
+
    void node::_launch_macos_app(const ::string & pszAppFolder)
    {
       
@@ -180,39 +209,6 @@ namespace acme
    }
 
    
-   enum_operating_system node::get_operating_system() const
-   {
-
-      throw ::interface_only();
-
-      return e_operating_system_unknown;
-
-   }
-
-
-   ::user::enum_desktop node::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calculate_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
-
-
-   ::user::enum_desktop node::calculate_edesktop()
-   {
-
-      return ::user::e_desktop_none;
-
-   }
-   
-
    void node::initialize_memory_counter()
    {
 
@@ -238,17 +234,9 @@ namespace acme
    }
 
 
-   //void node::defer_()
-   //{
-   //   
-   //   return ::success;
-
-   //}
-
-
    void node::_will_finish_launching()
    {
-   
+
       //return ::success;
 
    }
@@ -267,18 +255,18 @@ namespace acme
    void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
    {
 
-//      auto psystem = m_psystem;
-//
-//      auto estatus = psystem->main();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
+      //      auto psystem = m_psystem;
+      //
+      //      auto estatus = psystem->main();
+      //
+      //      if (!estatus)
+      //      {
+      //
+      //         return estatus;
+      //
+      //      }
+      //
+      //      return estatus;
 
       /*auto estatus = */ system_main();
 
@@ -296,33 +284,31 @@ namespace acme
    }
 
 
-#ifdef LINUX
-
-
-   ::enum_linux_distribution node::get_linux_distribution() const
+   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
    {
 
-      if(m_elinuxdistribution == e_linux_distribution_not_initialized)
-      {
 
-         ((node *)this)->calculate_linux_distribution();
 
-      }
-
-      return m_elinuxdistribution;
 
    }
 
 
-   void node::calculate_linux_distribution()
-   {
-
-      //return ::success;
-
-   }
 
 
-#endif
+
+   //void node::defer_()
+   //{
+   //   
+   //   return ::success;
+
+   //}
+
+
+
+
+
+
+
 
 
    //::file::path node::roaming()
@@ -357,39 +343,10 @@ namespace acme
 #endif
 
 
-   void node::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
-   {
-
-
-
-
-   }
-
-
-   ::file::path node::_module_path()
-   {
-
-      return "";
-
-   }
-
-
-#ifdef WINDOWS_DESKTOP
-
-   platform_char** node::_get_envp(wcsdup_array& a)
-   {
-
-      return nullptr;
-
-   }
-
-#endif
-
-
    ::file::path node::module_path_source()
    {
 
-      if(m_pathModule.has_char())
+      if (m_pathModule.has_char())
       {
 
          return m_pathModule;
@@ -433,7 +390,7 @@ namespace acme
 
    string node::app_id_to_executable_name(const ::string & strAppId)
    {
-      
+
       string strName = app_id_to_app_name(strAppId);
 
       return strName;
@@ -441,7 +398,7 @@ namespace acme
    }
 
 
-   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
+   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       ::file::path path;
@@ -455,7 +412,7 @@ namespace acme
    }
 
 
-   void node::set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
+   void node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       ::file::path path;
@@ -467,7 +424,7 @@ namespace acme
    }
 
 
-   ::file::path node::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
+   ::file::path node::application_installer_folder(const ::file::path & pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       string strFolder = pathExe.folder();
@@ -481,14 +438,14 @@ namespace acme
 
    ::file::path node::get_application_path(string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration)
    {
-      
+
       auto pathLastRun = get_last_run_application_path(strAppId);
-      
-      if(pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
+
+      if (pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
       {
-         
+
          return pathLastRun;
-         
+
       }
 
       ::file::path pathFolder;
@@ -508,9 +465,6 @@ namespace acme
    }
 
 
-
-
-
    ::file::path node::get_last_run_application_path_file(const ::string & strAppIdParam)
    {
 
@@ -518,17 +472,17 @@ namespace acme
 
       auto iSlash = strAppId.find('/');
 
-      if(iSlash > 0)
+      if (iSlash > 0)
       {
 
          auto iOpenParenthesis = strAppId.find('(', iSlash + 1);
 
-         if(iOpenParenthesis > iSlash + 1)
+         if (iOpenParenthesis > iSlash + 1)
          {
 
             auto iCloseParenthesis = strAppId.find('(', iOpenParenthesis + 1);
 
-            if(iCloseParenthesis > iOpenParenthesis + 1)
+            if (iCloseParenthesis > iOpenParenthesis + 1)
             {
 
                strAppId = strAppId.Left(iOpenParenthesis) + strAppId.Mid(iCloseParenthesis + 1);
@@ -576,9 +530,9 @@ namespace acme
 
    ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
-   
+
       return ::success;
-      
+
    }
 
 
@@ -598,6 +552,13 @@ namespace acme
    }
 
 
+   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+
+      return ::success;
+
+   }
+
    void node::install_mouse_hook(::matter * pmatterListener)
    {
 
@@ -605,19 +566,20 @@ namespace acme
 
    }
 
-   
-   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-   
-   }
 
 
    void node::uninstall_mouse_hook(::matter * pmatterListener)
    {
 
       //return ::success;
+
+   }
+
+
+   ::file::path node::_module_path()
+   {
+
+      return "";
 
    }
 
@@ -647,6 +609,14 @@ namespace acme
    }
 
 
+   void node::install_sigchld_handler()
+   {
+
+      //return ::success;
+
+   }
+
+
    ::color::color node::get_system_color(enum_system_color esystemcolor)
    {
 
@@ -657,6 +627,66 @@ namespace acme
    }
 
 
+   bool node::dark_mode() const 
+   { 
+      
+      return m_bDarkMode; 
+   
+   }
+
+   
+   ::color::color node::background_color() const 
+   {
+      
+      return m_colorBackground; 
+   
+   }
+
+
+   double node::luminance() const 
+   { 
+      
+      return m_dLuminance; 
+   
+   }
+
+
+   void node::background_color(const ::color::color & color)
+   {
+
+      if (m_colorBackground == color)
+      {
+
+         return;
+
+      }
+
+      m_colorBackground = color;
+
+      m_dLuminance = m_colorBackground.get_luminance();
+
+      m_bDarkMode = m_dLuminance < 0.5;
+
+      on_operating_system_user_color_change();
+
+   }
+
+
+
+   int node::get_simple_ui_darkness()
+   {
+
+      return m_iWeatherDarkness;
+
+   }
+
+
+   void node::set_simple_ui_darkness(int iWeatherDarkness)
+   {
+
+      m_iWeatherDarkness = iWeatherDarkness;
+
+   }
 
    void node::fetch_user_color()
    {
@@ -685,26 +715,6 @@ namespace acme
    }
 
 
-   void node::background_color(const ::color::color & color)
-   {
-
-      if (m_colorBackground == color)
-      {
-
-         return;
-
-      }
-
-      m_colorBackground = color;
-
-      m_dLuminance = m_colorBackground.get_luminance();
-
-      m_bDarkMode = m_dLuminance < 0.5;
-
-      on_operating_system_user_color_change();
-
-   }
-
 
    //double node::get_user_luminance()
    //{
@@ -721,21 +731,6 @@ namespace acme
 
    //}
 
-
-   int node::get_simple_ui_darkness()
-   {
-
-      return m_iWeatherDarkness;
-
-   }
-
-
-   void node::set_simple_ui_darkness(int iWeatherDarkness)
-   {
-
-      m_iWeatherDarkness = iWeatherDarkness;
-
-   }
 
 
    string node::os_get_user_theme()
@@ -758,8 +753,6 @@ namespace acme
 
    void node::os_process_user_theme(string strTheme)
    {
-
-
 
    }
 
@@ -971,13 +964,7 @@ namespace acme
    }
 
 
-   double node::get_time_zone()
-   {
-
-      return 0.;
-
-   }
-
+ 
 
    void node::browse_for_folder(::file::path & pathFolder)
    {
@@ -997,6 +984,15 @@ namespace acme
       //throw ::interface_only();
 
    }
+
+
+   double node::get_time_zone()
+   {
+
+      return 0.;
+
+   }
+
 
 //void node::get_system_time_as_file_time(file_time_t * pfile_time)
    //{
@@ -1109,14 +1105,6 @@ namespace acme
    }
 
 
-   void node::install_sigchld_handler()
-   {
-
-      //return ::success;
-
-   }
-
-
    //string node::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
    //{
 
@@ -1164,29 +1152,6 @@ namespace acme
    }
 
 
-   string node::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_alsa";
-
-   }
-
-
-   string node::multimedia_audio_get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-
-   string node::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "music_midi_alsa";
-
-   }
-
 //
 //#ifdef MACOS
 //      
@@ -1197,6 +1162,81 @@ namespace acme
 //   }
 //      
 //#endif
+
+   enum_operating_system node::get_operating_system() const
+   {
+
+      throw ::interface_only();
+
+      return e_operating_system_unknown;
+
+   }
+
+
+   ::user::enum_desktop node::get_edesktop()
+   {
+
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         m_edesktop = calculate_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
+
+
+   ::user::enum_desktop node::calculate_edesktop()
+   {
+
+      return ::user::e_desktop_none;
+
+   }
+
+
+#ifdef LINUX
+
+
+   ::enum_linux_distribution node::get_linux_distribution() const
+   {
+
+      if (m_elinuxdistribution == e_linux_distribution_not_initialized)
+      {
+
+         ((node *)this)->calculate_linux_distribution();
+
+      }
+
+      return m_elinuxdistribution;
+
+   }
+
+
+   void node::calculate_linux_distribution()
+   {
+
+      //return ::success;
+
+   }
+
+
+#endif
+
+
+#ifdef WINDOWS_DESKTOP
+
+   
+   platform_char ** node::_get_envp(wcsdup_array & a)
+   {
+
+      return nullptr;
+
+   }
+
+
+#endif
 
 
    void node::launch_app(const ::string & psz, const char ** argv, int iFlags)
@@ -1248,7 +1288,7 @@ namespace acme
 
       throw ::interface_only();
 
-      //return false;
+      return false;
 
    }
 
@@ -1403,6 +1443,7 @@ namespace acme
 
 
 #if !defined(_UWP)
+
 
    array <::serial::port_info> node::list_serial_ports()
    {
@@ -1620,6 +1661,14 @@ namespace acme
    void node::create_app_shortcut(::app * papp)
    {
 
+
+   }
+
+
+   void node::report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails)
+   {
+
+      exception_message_box(this, exception, strMoreDetails);
 
    }
 

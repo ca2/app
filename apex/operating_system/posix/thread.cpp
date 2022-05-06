@@ -48,20 +48,20 @@
 
 
 
-void CLASS_DECL_APEX __init_thread()
-{
-
-}
-
-
+//void CLASS_DECL_APEX __init_thread()
+//{
+//
+//}
 
 
 
 
-void CLASS_DECL_APEX __term_thread()
-{
 
-}
+
+//void CLASS_DECL_APEX __term_thread()
+//{
+//
+//}
 
 
 

@@ -67,8 +67,11 @@
 
 inline const char* callstack_default_format() { return "%f(%l) %s\n"; }
 
-
+#if defined(ANDROID)
+CLASS_DECL_ACME string unwind_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
+#else
 CLASS_DECL_ACME string get_callstack(const char * pszFormat = callstack_default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
+#endif
 
 
 

@@ -1,8 +1,8 @@
 #include "framework.h"
 
-
-namespace apex
-{
+//
+//namespace apex
+//{
 
 
 
@@ -18,21 +18,21 @@ namespace apex
 //   }
 
 
-   void application::get_time(struct timeval * ptimeval)
-   {
+   //void application::get_time(struct timeval * ptimeval)
+   //{
 
-      gettimeofday(ptimeval, nullptr);
+   //   gettimeofday(ptimeval, nullptr);
 
-   }
+   //}
 
 
 
-   string application::get_version()
-   {
+   //string application::get_version()
+   //{
 
-      return "1.0.0";
+   //   return "1.0.0";
 
-   }
+   //}
 
 
    //bool application::impl_process_init()
@@ -154,31 +154,31 @@ namespace apex
    // }
 
 
-   string application::multimedia_audio_get_default_library_name()
-   {
+   //string application::multimedia_audio_get_default_library_name()
+   //{
 
-      return "audio_opensles";
+   //   return "audio_opensles";
 
-   }
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_opensles";
-
-   }
+   //}
 
 
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
+   //string application::multimedia_audio_mixer_get_default_library_name()
+   //{
 
-      return "";
+   //   return "audio_mixer_opensles";
 
-   }
+   //}
 
 
-} // namespace android
+//   string application::veriwell_multimedia_music_midi_get_default_library_name()
+//   {
+//
+//      return "";
+//
+//   }
+//
+//
+//} // namespace android
 
 
 

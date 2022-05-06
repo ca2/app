@@ -52,25 +52,6 @@ int get_processor_count()
 }
 
 
-namespace parallelization
-{
-
-
-//   i32 priority()
-//   {
-//
-//      return ::GetThreadPriority(::GetCurrentThread());
-//
-//   }
-
-
-} // namespace parallelization
-
-
-
-
-
-
 bool ns_set_thread_name(const char * psz);
 
 

@@ -73,7 +73,7 @@ namespace user
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
-      ::OPERATING_SYSTEM_NAMESPACE::interaction_impl *  m_pImpl2;
+      ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
       ::rectangle_i32                           m_rectangleClientScreen;
       int                                       m_iState1;
@@ -390,7 +390,7 @@ namespace user
       // Window Text Functions
       virtual void set_window_text(const ::string & pszString) override;
 
-      virtual strsize get_window_text(char * pszStringBuf,i32 nMaxCount);
+      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
 
       void get_window_text(string & rString) override;
       strsize get_window_text_length() override;
@@ -792,6 +792,7 @@ namespace user
 
       virtual ::windowing::window * get_window() const override;
 
+      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 
    };
 

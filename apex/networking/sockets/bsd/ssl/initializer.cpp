@@ -154,7 +154,7 @@ namespace sockets
 
       //INFORMATION("SSLInitializer::SSLInitializer .1");
 
-#if OPENSSL_API_COMPAT < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
       ERR_load_crypto_strings();
       //SSL_load_error_strings(); // just once

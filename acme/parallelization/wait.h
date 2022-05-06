@@ -14,6 +14,7 @@ public:
 
 
    wait() : INTEGRAL_MILLISECOND{} {}
+   wait(enum_zero) : INTEGRAL_MILLISECOND(e_zero){}
    wait(const INTEGRAL_NANOSECOND & integralnanosecond) :INTEGRAL_MILLISECOND(integralnanosecond.m_i / 1'000'000) { }
    wait(const INTEGRAL_MICROSECOND & integralmicrosecond):INTEGRAL_MILLISECOND(integralmicrosecond.m_i / 1'000) { }
    wait(const INTEGRAL_MILLISECOND & integralmillisecond) :INTEGRAL_MILLISECOND(integralmillisecond) { }
@@ -25,7 +26,7 @@ public:
 
    static inline ::i64 __infinite() { return 0xffffffffu ; }
 
-   static inline INTEGRAL_MILLISECOND _infinite() { return e_zero; }
+   static inline INTEGRAL_MILLISECOND _infinite() { return INTEGRAL_MILLISECOND{ __infinite() }; }
 
    static inline class ::wait infinite() { return _infinite(); }
 

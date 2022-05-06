@@ -144,6 +144,14 @@ namespace windowing
    }
 
 
+   text_editor_interface * windowing::get_text_editor_interface()
+   {
+
+      return nullptr;
+
+   }
+   
+   
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
@@ -266,6 +274,14 @@ namespace windowing
    //   return pimpl->m_puserinteraction;
 
    //}
+
+
+   ::windowing::window * windowing::get_application_host_window()
+   {
+
+      return nullptr;
+
+   }
 
 
    ::windowing::window * windowing::get_desktop_window()

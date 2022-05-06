@@ -115,6 +115,14 @@ namespace aura
    }
 
 
+   ::windowing::windowing * node::windowing()
+   {
+
+      return m_pwindowing;
+
+   }
+
+
 //   void * node::node_wrap_window(void * pdisplay, i64 window)
 //   {
 //

@@ -69,7 +69,7 @@ namespace aura
 
       //virtual void user_fork(const ::procedure & procedure) override;
 
-      inline ::windowing::windowing * windowing() { return m_pwindowing; }
+      virtual ::windowing::windowing * windowing();
 
 
       //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;

@@ -2,7 +2,9 @@
 //#include "_internal.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
-
+#ifndef _MAX_PATH
+#define _MAX_PATH 400
+#endif
 
 namespace folder_zip
 {

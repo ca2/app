@@ -52,55 +52,7 @@ int get_processor_count()
 }
 
 
-namespace parallelization
-{
-
-
-//   i32 priority()
-//   {
-//
-//      return ::GetThreadPriority(::GetCurrentThread());
-//
-//   }
-
-
-} // namespace parallelization
-
-
-
-
-
-
 bool ns_set_thread_name(const ::string & psz);
 
 
-//char * ns_get_thread_name();
-//
-//
-//bool task_set_name(const ::string & psz)
-//{
-//   
-//   return ns_set_thread_name(psz);
-//
-//}
-//
-//string task_get_name()
-//{
-//   
-//   return ::string_from_strdup(ns_get_thread_name());
-//   
-//}
-//
-//
-//
-//CLASS_DECL_AURA void main_branch(::matter* pobjectTask, enum_priority epriority)
-//{
-//
-//   ns_main_sync(^()
-//   {
-//
-//      pobjectTask->call();
-//
-//   });
-//
-//}
+

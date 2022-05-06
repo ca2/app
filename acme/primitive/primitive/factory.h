@@ -65,6 +65,7 @@ namespace factory
 
       string __type_name() const override { return ::demangle(typeid(TYPE).name()); }
 
+
       __pointer(BASE_TYPE) _create() override
       {
 

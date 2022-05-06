@@ -3288,8 +3288,9 @@ namespace user
    }
 
 
-   void element::_001OnExitFullScreen()
+   void element::_001OnExitNormal()
    {
+
 
    }
 
@@ -3300,9 +3301,8 @@ namespace user
    }
 
 
-   void element::_001OnExitNormal()
+   void element::_001OnExitFullScreen()
    {
-
 
    }
 
@@ -4392,6 +4392,31 @@ namespace user
    //   return m_bUserElementOk;
 
    //}
+
+   
+   float element::preferred_dpi_x()
+   {
+
+      return 96.0f;
+
+   }
+
+   
+   float element::preferred_dpi_y()
+   {
+
+      return 96.0f;
+
+   }
+
+   
+   float element::preferred_density()
+   {
+
+      return 1.0f;
+
+   }
+
 
 
    void element::set_need_redraw(bool bAscendants)

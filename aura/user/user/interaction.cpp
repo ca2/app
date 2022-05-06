@@ -12794,21 +12794,6 @@ namespace user
    }
 
 
-   void interaction::_001OnExitFullScreen()
-   {
-
-      if (m_pprimitiveimpl.is_null())
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->_001OnExitFullScreen();
-
-   }
-
-
    void interaction::_001OnExitNormal()
    {
 
@@ -12819,6 +12804,47 @@ namespace user
       bool bProdevian = is_prodevian();
 
       layout().normal().m_bProdevian = bProdevian;
+
+   }
+
+
+   void interaction::_001OnExitZoomed()
+   {
+
+      auto rect = layout().window().parent_client_rect();
+
+      auto edisplay = layout().window().display();
+
+      layout().normal().display() = edisplay;
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
+
+   }
+
+
+   void interaction::_001OnExitFullScreen()
+   {
+
+      auto rect = layout().window().parent_client_rect();
+
+      auto edisplay = layout().window().display();
+
+      layout().normal().display() = edisplay;
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
+
+      if (m_pprimitiveimpl.is_null())
+      {
+
+         return;
+
+      }
+
+      m_pprimitiveimpl->_001OnExitFullScreen();
 
    }
 
@@ -12845,6 +12871,12 @@ namespace user
          {
 
             _001OnExitIconic();
+
+         }
+         else if (edisplaySketch != e_display_zoomed && edisplayDesign == e_display_zoomed)
+         {
+
+            _001OnExitZoomed();
 
          }
          else if(

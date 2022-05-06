@@ -135,8 +135,8 @@
 //      virtual iptr get_os_int();
 //
 //
-//      int GetThreadPriority();
-//      bool SetThreadPriority(int nPriority);
+//      int aaaGetThreadPriority();
+//      bool aaaSetThreadPriority(int nPriority);
 //
 //   // Operations
 //      ::u32 SuspendThread();

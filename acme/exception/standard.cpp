@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 
 void * standard_exception::siginfodup(void * psiginfo)

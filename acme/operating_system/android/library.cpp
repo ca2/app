@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/platform/library.h"
 #include "_android.h"
 #include <dlfcn.h>
 

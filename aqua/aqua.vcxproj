@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h" />
-    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="game\estamira.h" />
     <ClInclude Include="game\game.h" />
@@ -112,7 +112,7 @@
     <ClInclude Include="_defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">Create</PrecompiledHeader>

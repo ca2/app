@@ -371,6 +371,8 @@ namespace aura
 
       virtual void defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr) override;
 
+      //virtual ::user::interaction * get_host_window();
+
       //virtual service_base * allocate_new_service() override;
 
       //void on_request(::create* pcreate) override;

@@ -128,7 +128,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      FORMATTED_FATAL(log_this, "exception on select %d %s" , err, __cstr(bsd_socket_error(err)));
+      FORMATTED_FATAL(log_this, "exception on select %d %s" , err, __c_str(bsd_socket_error(err)));
       SetIsCloseAndDelete();
    }
 
@@ -1048,7 +1048,7 @@ namespace sockets
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
       {
-         FATAL(log_this, "setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, __cstr(bsd_socket_error(Errno)));
+         FATAL(log_this, "setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, __c_str(bsd_socket_error(Errno)));
          return false;
       }
       return true;

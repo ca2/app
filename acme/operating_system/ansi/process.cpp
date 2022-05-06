@@ -30,7 +30,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(__APPLE__)
 
 
 
@@ -110,9 +110,6 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
    return (enum_priority) iCa2Priority;
 
 }
-
-
-
 
 
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)

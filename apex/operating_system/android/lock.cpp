@@ -1,10 +1,13 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 #include <fcntl.h>
 #include <sys/file.h>
 
-
+i32 _c_lock(const char * pszName, void ** pdata);
+i32 _c_unlock(void ** pdata);
+string _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd);
 
 i32 _c_lock_is_active(const char * pszName)
 {
@@ -27,7 +30,7 @@ i32 _c_lock(const char * pszName, void ** pdata)
 
    i32 fd;
 
-   _ca_get_file_name(::file::path("/::payload/lib/apex/") / pszName, true, &fd);
+   _ca_get_file_name(::file::path("/var/lib/apex/") / pszName, true, &fd);
 
    if(fd == -1)
       return 0;
@@ -79,21 +82,21 @@ i32 _c_unlock(void ** pdata)
 
 }
 
-
+extern class system * g_psystem;
 
 string _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd)
 {
 
    string str(pszName);
 
-   str.replace("\\", "/");
-   str.replace("::", "_");
+   str.find_replace("\\", "/");
+   str.find_replace("::", "_");
 
-            auto psystem = m_psystem;
+   auto psystem = g_psystem;
 
-         auto pacmedirectory = psystem->m_pacmedirectory;
+   auto pacmedirectory = psystem->m_pacmedirectory;
 
-pacmedirectory->create(::file_path_folder(str));
+   pacmedirectory->create(::file_path_folder(str));
 
    if(bCreate)
    {

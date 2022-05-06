@@ -4,9 +4,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3239,9 +3239,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\pcre">
       <UniqueIdentifier>{c1e9cf98-3242-4f06-b382-38fae7181e6b}</UniqueIdentifier>
     </Filter>
@@ -3338,6 +3335,9 @@
     <Filter Include="Source Files\os">
       <UniqueIdentifier>{6e087c37-ec7d-4b7b-b56b-ab709e9e8c28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="multithreading\multithreading.inl">
@@ -3345,9 +3345,6 @@
     </None>
     <None Include="apex\message\message.inl">
       <Filter>Header Files\apex\message</Filter>
-    </None>
-    <None Include="apex.def">
-      <Filter>Source Files</Filter>
     </None>
     <None Include="net\net.inl">
       <Filter>Header Files\net</Filter>

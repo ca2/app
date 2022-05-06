@@ -765,7 +765,7 @@ void system::call_init_system()
 
       strMoreDetails = "caught at system::call_init_system";
 
-      exception_message_box(this, exception, strMoreDetails);
+      g_psystem->m_pnode->report_exception_to_user(this, exception, strMoreDetails);
 
       m_estatus = exception.m_estatus;
 
@@ -1659,7 +1659,17 @@ void system::report_system_instance()
 
       strModifier = strDate + "_" + strPid;
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->roaming();
+      ::file::path pathFolder;
+      
+#ifdef ANDROID
+
+      pathFolder = m_psystem->m_pathCacheDirectory;
+
+#else
+
+      pathFolder = m_psystem->m_pacmedirectory->roaming();
+
+#endif
 
       pathFolder /= strAppId;
 
@@ -2392,6 +2402,10 @@ __pointer(::app) system::new_app(const char* pszAppId)
    return papp;
 
 }
+
+
+
+
 
 
 

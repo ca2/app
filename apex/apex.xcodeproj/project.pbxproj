@@ -29,7 +29,6 @@
 		9A2269FB27CE8DB90042BAC2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22674627CE8DB70042BAC2 /* _.h */; };
 		9A2269FC27CE8DB90042BAC2 /* binreloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22674727CE8DB70042BAC2 /* binreloc.h */; };
 		9A226A4627CE8DBA0042BAC2 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22679527CE8DB70042BAC2 /* thread.cpp */; };
-		9A226A4727CE8DBA0042BAC2 /* pthread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22679627CE8DB70042BAC2 /* pthread.cpp */; };
 		9A226A4827CE8DBA0042BAC2 /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22679727CE8DB70042BAC2 /* _posix.h */; };
 		9A226A4927CE8DBA0042BAC2 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22679827CE8DB70042BAC2 /* timer.cpp */; };
 		9A226A4A27CE8DBA0042BAC2 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22679927CE8DB70042BAC2 /* _c.h */; };
@@ -993,7 +992,6 @@
 		9A22674627CE8DB70042BAC2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A22674727CE8DB70042BAC2 /* binreloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binreloc.h; sourceTree = "<group>"; };
 		9A22679527CE8DB70042BAC2 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
-		9A22679627CE8DB70042BAC2 /* pthread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pthread.cpp; sourceTree = "<group>"; };
 		9A22679727CE8DB70042BAC2 /* _posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _posix.h; sourceTree = "<group>"; };
 		9A22679827CE8DB70042BAC2 /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
 		9A22679927CE8DB70042BAC2 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
@@ -1748,7 +1746,6 @@
 			isa = PBXGroup;
 			children = (
 				9A22679527CE8DB70042BAC2 /* thread.cpp */,
-				9A22679627CE8DB70042BAC2 /* pthread.cpp */,
 				9A22679727CE8DB70042BAC2 /* _posix.h */,
 				9A22679827CE8DB70042BAC2 /* timer.cpp */,
 				9A22679927CE8DB70042BAC2 /* _c.h */,
@@ -3438,7 +3435,6 @@
 				9A787D73264C960F003DF8A0 /* thread.cpp in Sources */,
 				9A226D0127CE8FAB0042BAC2 /* apex.cpp in Sources */,
 				9A68BB4A2511444D008DABD2 /* event_change.cpp in Sources */,
-				9A226A4727CE8DBA0042BAC2 /* pthread.cpp in Sources */,
 				9A787D8D264C960F003DF8A0 /* _.cpp in Sources */,
 				9A239DE826CDF9AF00F98012 /* tunnel.cpp in Sources */,
 				9A68BD0C2511444E008DABD2 /* application.cpp in Sources */,

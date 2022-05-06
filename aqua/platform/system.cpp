@@ -3,7 +3,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
 //#endif
-#include "aqua/const/idpool.h"
+#include "aqua/constant/idpool.h"
 #include "acme/parallelization/pool.h"
 //#include "acme/platform/system_impl.h"
 

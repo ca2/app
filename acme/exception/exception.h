@@ -36,7 +36,11 @@ public:
 
 
    exception();
+#ifdef ANDROID
+   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+#else
    exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+#endif
    virtual ~exception();
 
 
@@ -140,8 +144,13 @@ public:
    int m_iErrNo;
 
 
-   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
+#ifdef ANDROID
+   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER) :
+      ::exception(estatus, pszMessage, pszDetails, iSkip),
+#else
+      error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
    ::exception(estatus, pszMessage, pszDetails, iSkip, caller_address),
+#endif
    m_iErrNo(iError)
    {
 

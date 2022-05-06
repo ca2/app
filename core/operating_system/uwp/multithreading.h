@@ -22,18 +22,9 @@ typedef struct tag_MSG
 
 //CLASS_DECL_CORE int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
-
 CLASS_DECL_CORE void WINAPI TlsShutdown();
 
-
-#ifndef _UWP
-
-CLASS_DECL_CORE BOOL WINAPI SetThreadPriority(htask_t htask,int iPriority);
-
-CLASS_DECL_CORE int WINAPI GetThreadPriority(htask_t htask);
-
-#endif
-
-
-
 //::u32 WinMsgWaitForMultipleObjects(::u32 dwSize,const HANDLE * lphandles,::u32 tickTimeout,::u32 dwWakeMask,::u32 dwFlags);
+
+
+

@@ -87,6 +87,9 @@ namespace windowing
       virtual void windowing_main();
 
       virtual void windowing_post_quit();
+
+
+      virtual text_editor_interface * get_text_editor_interface();
       
 
       __pointer(cursor) get_cursor(enum_cursor ecursor);
@@ -99,7 +102,9 @@ namespace windowing
 
       virtual ::windowing::window * window(oswindow oswindow);
 
-
+      
+      
+      virtual ::windowing::window * get_application_host_window();
 
       virtual ::windowing::window * get_desktop_window();
 

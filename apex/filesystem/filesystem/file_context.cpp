@@ -1118,7 +1118,7 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
 
    if(m_psystem->m_pchar_binary__matter_zip_start && m_psystem->m_pchar_binary__matter_zip_end)
    {
@@ -2123,12 +2123,12 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
-::file::path file_context::replace_with_extension(const char * pszExtension, const ::file::path & path)
+::file::path file_context::replace_with_extension(const ::string & strExtension, const ::file::path & path)
 {
 
    ::file::path pathNew(path);
 
-   set_extension(pathNew, pszExtension);
+   set_extension(pathNew, strExtension);
 
    return pathNew;
 

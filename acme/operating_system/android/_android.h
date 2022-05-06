@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACMEvoid os_shell_initialize();
+CLASS_DECL_ACME void os_shell_initialize();
 
 
 //#include "acme/node/ansios/ansios.h"

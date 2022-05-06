@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/graphics/_graphics.h"
+
+
 namespace android
 {
 
@@ -12,13 +15,13 @@ namespace android
 
 
       buffer();
-      virtual ~buffer();
+      ~buffer() override;
 
 
-      virtual bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
-      virtual void destroy_buffer() override;
+      bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
+      void destroy_buffer() override;
 
-      virtual bool update_window(::image * pimage) override;
+      bool update_screen(::image * pimage) override;
 
       //virtual ::draw2d::graphics * on_begin_draw();
 

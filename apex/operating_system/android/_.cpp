@@ -1,22 +1,22 @@
 #include "framework.h"
 
+//
+//CLASS_DECL_APEX bool _istlead(i32 ch)
+//{
+//
+//   return false;
+//
+//}
+//
 
-CLASS_DECL_APEX bool _istlead(i32 ch)
-{
-
-   return false;
-
-}
-
-
-void sleep(const ::duration & duration)
-{
-   timespec t;
-   t.tv_sec = ::duration.m_i::durations / 1000;
-   t.tv_nsec = (::duration.m_i::durations % 1000) * 1000 * 1000;
-   nanosleep(&t, nullptr);
-}
-
+//void sleep(const ::duration & duration)
+//{
+//   timespec t;
+//   t.tv_sec = ::duration.m_i::durations / 1000;
+//   t.tv_nsec = (::duration.m_i::durations % 1000) * 1000 * 1000;
+//   nanosleep(&t, nullptr);
+//}
+//
 
 
 
@@ -44,29 +44,29 @@ bool __node_apex_pre_init()
 
 }
 
-bool __node_pos_init()
-{
-
-   return true;
-
-}
-
-bool __node_pre_term()
-{
-
-   return true;
-
-}
-
-
-bool __node_pos_term()
-{
-
-   return true;
-
-}
-
-
+//bool __node_pos_init()
+//{
+//
+//   return true;
+//
+//}
+//
+//bool __node_pre_term()
+//{
+//
+//   return true;
+//
+//}
+//
+//
+//bool __node_pos_term()
+//{
+//
+//   return true;
+//
+//}
+//
+//
 
 
 
@@ -156,92 +156,10 @@ bool __node_apex_pos_term()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-CLASS_DECL_APEX int __node_is_debugger_attached()
-{
-   return 0;
-}
+//CLASS_DECL_APEX int __node_is_debugger_attached()
+//{
+//   return 0;
+//}
 
 
 

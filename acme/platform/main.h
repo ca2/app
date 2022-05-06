@@ -151,7 +151,7 @@ public:
 };
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(ANDROID)
 
 
 #define __embed_resource(app) \

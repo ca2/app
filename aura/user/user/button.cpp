@@ -690,6 +690,7 @@ namespace user
             pgraphics->set_text_color(colorText);
 
             ::e_align ealign;
+
             ::e_draw_text edrawtext;
 
             if (m_estyle == e_style_image_and_text)
@@ -770,7 +771,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::rectangle_i32 rectangleMargin(2, 2,2, 2);
+      ::rectangle_i32 rectangleMargin(2, 2, 2, 2);
 
       ::rectangle_i32 rectangleBorder(2, 2, 2, 2);
 

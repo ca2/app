@@ -2167,27 +2167,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 __pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 {
 
-   initialize_nano();
-
-   auto pmessagebox = __create_new < nano_message_box >();
-
-   auto psequence = __new(::sequence <::conversation >());
-
-   psequence->m_p = pmessagebox;
-
-   pmessagebox->m_functionClose = [ psequence ](nano_window * pwindow)
-   {
-
-      psequence->on_sequence();
-
-   };
-
-   main_asynchronous([strMessage, strTitle, emessagebox, pmessagebox]()
-   {
-
-      pmessagebox->display(strMessage, strTitle, emessagebox);
-
-   });
+   auto psequence = m_pnode->message_box(strMessage, strTitle, emessagebox);
 
    return psequence;
 

@@ -41,7 +41,12 @@ namespace app_app
 
 #if !STEPPY_DEBUG
 
-      set_prodevian();
+      if (!is_sandboxed())
+      {
+
+         set_prodevian();
+
+      }
 
 #endif
 
@@ -72,7 +77,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
       
       auto dMinimumDimension = (double) rectangleClient.minimum_signed_absolute_dimension();
 

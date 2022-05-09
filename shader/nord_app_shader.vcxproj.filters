@@ -4,43 +4,16 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_shader_application.cpp">
+    <ClCompile Include="_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_shader_document.cpp">
+    <ClCompile Include="main_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_shader_edit_view.cpp">
+    <ClCompile Include="render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_shader_frame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_full_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_lite_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_main_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_pane_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="aaa_want_to_erase_simple_shader_view_update_hint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_switcher_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_toggle_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_top_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="simple_shader_view.cpp">
+    <ClCompile Include="application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,46 +29,25 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader.h">
+    <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_application.h">
+    <ClInclude Include="_app_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_document.h">
+    <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_edit_view.h">
+    <ClInclude Include="main_window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_frame.h">
+    <ClInclude Include="render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_full_view.h">
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_shader_lite_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_main_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_pane_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_simple_shader_view_update_hint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_switcher_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_toggle_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_top_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="simple_shader_view.h">
+    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

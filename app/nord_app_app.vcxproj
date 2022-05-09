@@ -137,7 +137,7 @@
     <Link />
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
-      <LibraryDependencies>cairo;$(StlLibraryName);android;m</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
   </ItemDefinitionGroup>
@@ -159,7 +159,7 @@
       </FloatABI>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>
@@ -182,7 +182,7 @@
       </FloatABI>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;cairo;freetype;pixman;iconv;idn;zlib;jnigraphics;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-android\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\..\operating-system\storage-android\third\library\$(PlatformName)\$(Configuration)\;$(OutDir)</AdditionalLibraryDirectories>
       <WholeArchiveBegin>true</WholeArchiveBegin>
     </Link>

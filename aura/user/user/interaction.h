@@ -366,6 +366,10 @@ namespace user
       virtual void set_appearance(::appearance::appearance * pappearance);
       virtual ::appearance::appearance * get_appearance();
 
+
+      virtual bool is_sandboxed();
+
+
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
       inline ::aura::application * get_app() const;
@@ -662,6 +666,12 @@ namespace user
 
       virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
       ::property_object * parent_property_set_holder() const override;
+
+
+      float preferred_dpi_x() override;
+      float preferred_dpi_y() override;
+      float preferred_density() override;
+
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);

@@ -67,7 +67,7 @@ dir_context::~dir_context()
 }
 
 
-void dir_context::initialize(::object * pobject)
+void dir_context::initialize(::object* pobject)
 {
 
    /*auto estatus = */ ::object::initialize(pobject);
@@ -379,7 +379,7 @@ inline bool myspace(char ch)
 //}
 
 
-::file::listing & dir_context::root_ones(::file::listing & listing)
+::file::listing& dir_context::root_ones(::file::listing& listing)
 {
 
    throw ::interface_only("this is an interface");
@@ -423,7 +423,7 @@ inline bool myspace(char ch)
 
 
 
-bool dir_context::enumerate(::file::listing & listing)
+bool dir_context::enumerate(::file::listing& listing)
 {
 
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -453,7 +453,7 @@ bool dir_context::enumerate(::file::listing & listing)
 
          ::file::path pathBase("zipresource://");
 
-         for (auto & path : listing)
+         for (auto& path : listing)
          {
 
             path = pathBase / path;
@@ -478,7 +478,7 @@ bool dir_context::enumerate(::file::listing & listing)
 
       property_set set;
 
-      string str =m_pcontext->m_papexcontext->http().get(listing.m_pathFinal, set);
+      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathFinal, set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -488,7 +488,7 @@ bool dir_context::enumerate(::file::listing & listing)
    else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto& pfactory = m_psystem->folder_factory();
 
       if (!pfactory)
       {
@@ -784,7 +784,7 @@ bool dir_context::enumerate(::file::listing & listing)
 //}
 
 
-bool dir_context::has_subdir(const ::file::path & pathFolder)
+bool dir_context::has_subdir(const ::file::path& pathFolder)
 {
 
    ::file::listing listing;
@@ -798,7 +798,7 @@ bool dir_context::has_subdir(const ::file::path & pathFolder)
 }
 
 
-bool dir_context::is_cached(bool & bIs, const ::file::path & path)
+bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 {
 
    bIs = false;
@@ -814,9 +814,9 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
       m_pcontext->m_papexcontext->file().resolve_link(pathTarget, path);
       //{
 
-         bIs = is(pathTarget);
+      bIs = is(pathTarget);
 
-         return true;
+      return true;
 
       //}
 
@@ -870,7 +870,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
   //    bHasSubFolder = zip.has_sub_folder(path);
 
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto& pfactory = m_psystem->folder_factory();
 
       if (!pfactory)
       {
@@ -966,7 +966,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 }
 
 
-bool dir_context::is(const ::file::path & pathParam)
+bool dir_context::is(const ::file::path& pathParam)
 {
 
    ::file::path path;
@@ -1017,7 +1017,7 @@ bool dir_context::_is(const ::file::path& path)
 }
 
 
-bool dir_context::__is(const ::file::path & path, bool & bDir)
+bool dir_context::__is(const ::file::path& path, bool& bDir)
 {
 
    if (path.ends_ci("://") || path.ends_ci(":/") || path.ends_ci(":"))
@@ -1061,7 +1061,7 @@ bool dir_context::__is(const ::file::path & path, bool & bDir)
 
       bool bHasSubFolder;
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto& pfactory = m_psystem->folder_factory();
 
       if (!pfactory)
       {
@@ -1122,7 +1122,7 @@ bool dir_context::__is(const ::file::path & path, bool & bDir)
 }
 
 
-bool dir_context::name_is(const ::file::path & strPath)
+bool dir_context::name_is(const ::file::path& strPath)
 {
 
    //output_debug_string(strPath);
@@ -1135,7 +1135,7 @@ bool dir_context::name_is(const ::file::path & strPath)
    {
       bool bHasSubFolder;
 
-      auto & pfactory = m_psystem->folder_factory();
+      auto& pfactory = m_psystem->folder_factory();
 
       if (!pfactory)
       {
@@ -1179,12 +1179,12 @@ bool dir_context::name_is(const ::file::path & strPath)
 
       }
 
-//      zip_context zip(this);
-      //            u32 dwLastError;
-                  //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
-                  //   return bHasSubFolder;
-  //    bHasSubFolder = zip.has_sub_folder(strPath);
-      //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
+      //      zip_context zip(this);
+            //            u32 dwLastError;
+                        //if (m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
+                        //   return bHasSubFolder;
+        //    bHasSubFolder = zip.has_sub_folder(strPath);
+            //m_isdirmap.set(strPath, bHasSubFolder, get_last_error());
       return bHasSubFolder;
    }
    return false;
@@ -1590,7 +1590,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
 ::file::path dir_context::time()
 {
-   
+
    throw ::interface_only("this is an interface");
 
    return "";
@@ -1708,11 +1708,11 @@ bool dir_context::name_is(const ::file::path & strPath)
 }
 
 
-::file::path dir_context::time_log(const string & pszId)
+::file::path dir_context::time_log(const string& pszId)
 {
 
    __UNREFERENCED_PARAMETER(pszId);
-   
+
    throw ::interface_only("this is an interface");
 
    return "";
@@ -1720,7 +1720,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 }
 
 
-void dir_context::create(const ::file::path & path)
+void dir_context::create(const ::file::path& path)
 {
 
    m_psystem->m_pacmedirectory->create(path);
@@ -1740,7 +1740,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 
       enumerate(listing);
 
-      for (auto & path : listing)
+      for (auto& path : listing)
       {
 
          if (is(path))
@@ -1765,7 +1765,7 @@ void dir_context::erase(const ::file::path& path, bool bRecursive)
 }
 
 
-void dir_context::get_matter_locator(string_array & straMatterLocator, bool bIncludeMain)
+void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncludeMain)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -1784,7 +1784,7 @@ void dir_context::get_matter_locator(string_array & straMatterLocator, bool bInc
 }
 
 
-::file::path dir_context::locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
+::file::path dir_context::locale_schema_matter(const ::string& strLocale, const ::string& strSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
    string strHint = pathRoot / "_matter" / pathDomain / get_app()->m_papplication->get_locale_schema_dir(strLocale, strSchema);
@@ -1794,7 +1794,7 @@ void dir_context::get_matter_locator(string_array & straMatterLocator, bool bInc
 }
 
 
-::file::path dir_context::matter(const ::file::path & path, bool bDir, const ::file::path & pathRoot, const ::file::path & pathDomain)
+::file::path dir_context::matter(const ::file::path& path, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
    string strMatter = ::file::path("appmatter://") / pathRoot / "_matter" / pathDomain / "_std/_std" / path;
@@ -1804,14 +1804,14 @@ void dir_context::get_matter_locator(string_array & straMatterLocator, bool bInc
 }
 
 
-bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & listing, ::file::e_flag eflag, enum_depth edepth)
+bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& listing, ::file::e_flag eflag, enum_depth edepth)
 {
 
    auto psystem = get_system()->m_papexsystem;
 
    synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
-   string strDir = matter(path, true);
+   string strDir = matter(path);
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2024,9 +2024,9 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 //}
 
 
-::file::path dir_context::matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir)
+::file::path dir_context::matter_from_locator(const ::file::path_array& patha, const string_array& straMatterLocator)
 {
-   
+
    bool bOk = true;
 
    if (patha.is_empty())
@@ -2047,7 +2047,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
    ::file::path path;
 
-   if(patha[0].contains("yesno.xhtml"))
+   if (patha[0].contains("yesno.xhtml"))
    {
 
       output_debug_string("test");
@@ -2109,7 +2109,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
             auto etype = m_psystem->m_pacmepath->get_type(strFinal);
 
-            if(etype == ::file::e_type_file || etype == ::file::e_type_folder)
+            if (etype == ::file::e_type_file || etype == ::file::e_type_folder)
             {
 
                INFORMATION("!!Cache Hit: " << strFinal);
@@ -2136,7 +2136,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
    auto psession = get_session();
 
-   ::text::context * ptextcontext = psession->text_context();
+   ::text::context* ptextcontext = psession->text_context();
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -2145,10 +2145,10 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
       string strMatter;
 
-      for (auto & strLs : straLocaleSchema)
+      for (auto& strLs : straLocaleSchema)
       {
 
-         for (auto & pathItem : patha)
+         for (auto& pathItem : patha)
          {
 
             strMatter = strLs / pathItem;
@@ -2188,9 +2188,9 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
       }
 
-//      TRACE("");
+      //      TRACE("");
       INFORMATION("Topic: " << patha[0]);
-//      TRACE("");
+      //      TRACE("");
 
       string strCandidate = stra.implode("|");
 
@@ -2202,25 +2202,28 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
       string strUrl;
 
-      if (bDir)
-      {
+      //if (bDir)
+      //{
 
-         strUrl = "https://ca2.software/api/matter/query_dir?candidate=" + strParam;
+      strUrl = "https://ca2.software/api/matter/query?candidate=" + strParam;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         strUrl = "https://ca2.software/api/matter/query_file?candidate=" + strParam;
+        // strUrl = "https://ca2.software/api/matter/query_file?candidate=" + strParam;
 
-      }
+      //}
 
-      const char * pszUrl = strUrl;
+      const char* pszUrl = strUrl;
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
+      bool bDir = strMatter.ends("/");
+
       //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
       strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
+
 
       //TRACE("");
       //TRACE("");
@@ -2241,6 +2244,8 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
          path = "appmatter://" + strMatter.Mid(iFind);
 
+         path.m_iDir = bDir ? 1 : 0;
+
          if (bDir)
          {
 
@@ -2253,7 +2258,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
       }
 
    }
-   else if(psystem->m_pdirsystem->m_bMatterFromResource)
+   else if (psystem->m_pdirsystem->m_bMatterFromResource)
    {
 
       string strMatter;
@@ -2270,7 +2275,7 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
             auto etype = m_psystem->m_papexsystem->file().resource_get_type(strMatter);
 
-            if(::is_file_or_folder(etype))
+            if (::is_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
@@ -2289,26 +2294,28 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
    else
    {
 
+      string strMatter;
 
-
-   string strMatter;
-
-   for (auto& strLs : straLocaleSchema)
-   {
-
-      for (auto& pathItem : patha)
+      for (auto& strLs : straLocaleSchema)
       {
 
-         strMatter = strLs / pathItem;
-
-         path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
-
-         auto etype = m_psystem->m_pacmepath->get_type(path);
-
-         if(::is_file_or_folder(etype))
+         for (auto& pathItem : patha)
          {
 
-            goto ret;
+            strMatter = strLs / pathItem;
+
+            path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+
+            auto etype = m_psystem->m_pacmepath->get_type(path);
+
+            if (::is_file_or_folder(etype))
+            {
+
+               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
+
+               goto ret;
+
+            }
 
          }
 
@@ -2316,10 +2323,8 @@ bool dir_context::matter_enumerate(const ::file::path & path, ::file::listing & 
 
    }
 
-   }
-   
    bOk = false;
-   
+
    path = "itdoesntexist." + __string(get_integral_millisecond().m_i);
 
 ret:
@@ -2327,7 +2332,18 @@ ret:
    if (pathCache.has_char() && psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
 
-      m_pcontext->m_papexcontext->file().put_text(pathCache, path);
+      string strPath;
+
+      strPath = path;
+
+      if (path.m_iDir > 0)
+      {
+
+         strPath += "/";
+
+      }
+
+      m_pcontext->m_papexcontext->file().put_text(pathCache, strPath);
 
       //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
@@ -2354,14 +2370,14 @@ ret:
       ((enumeration < ::file::enum_flag >&)path) = patha[0];
 
    }
-   
-   if(!bOk)
+
+   if (!bOk)
    {
-      
+
       return {};
-      
+
       //throw exception(error_not_found);
-      
+
    }
 
    return path;
@@ -2369,23 +2385,23 @@ ret:
 }
 
 
-::file::path dir_context::matter_from_locator(::file::path path, const string_array & straMatterLocator, bool bDir)
+::file::path dir_context::matter_from_locator(::file::path path, const string_array& straMatterLocator)
 {
 
    ::file::path_array patha;
 
    path.begins_eat_ci("matter://");
-   
+
    path.begins_eat_ci("appmatter://");
 
    patha.add(path);
 
-   return matter_from_locator(patha, straMatterLocator, bDir);
+   return matter_from_locator(patha, straMatterLocator);
 
 }
 
 
-::file::path dir_context::matter(const ::file::path_array & patha, bool bDir)
+::file::path dir_context::matter(const ::file::path_array& patha)
 {
 
    string_array straMatterLocator;
@@ -2397,31 +2413,31 @@ ret:
 
    }
 
-   return matter_from_locator(patha, straMatterLocator, bDir);
+   return matter_from_locator(patha, straMatterLocator);
 
 }
 
 
-::file::path dir_context::matter(::file::path path, bool bDir)
+::file::path dir_context::matter(::file::path path)
 {
 
    string_array straMatterLocator;
 
    get_matter_locator(straMatterLocator, true);
 
-   return matter_from_locator(path, straMatterLocator, bDir);
+   return matter_from_locator(path, straMatterLocator);
 
 }
 
 
-::file::path dir_context::appmatter(::file::path path, bool bDir)
+::file::path dir_context::appmatter(::file::path path)
 {
 
    string_array straMatterLocator;
 
    get_matter_locator(straMatterLocator, false);
 
-   return matter_from_locator(path, straMatterLocator, bDir);
+   return matter_from_locator(path, straMatterLocator);
 
 }
 
@@ -2446,7 +2462,7 @@ ret:
 
       strApp.replace_with("_", "-");
 
-      strApp.replace_with("_",  "\\");
+      strApp.replace_with("_", "\\");
 
       if (::str::begins_eat_ci(strApp, "app_veriwell_"))
       {
@@ -2491,7 +2507,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration)
+::file::path dir_context::commonappdata(const char* pszAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -2525,7 +2541,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata_locale_schema(const char * pszAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+::file::path dir_context::commonappdata_locale_schema(const char* pszAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -2557,7 +2573,7 @@ ret:
 }
 
 
-::file::path dir_context::trash_that_is_not_trash(const ::file::path & psz)
+::file::path dir_context::trash_that_is_not_trash(const ::file::path& psz)
 {
 
    __UNREFERENCED_PARAMETER(psz);
@@ -2569,7 +2585,7 @@ ret:
 }
 
 
-::file::path dir_context::appdata(const ::string & strAppId)
+::file::path dir_context::appdata(const ::string& strAppId)
 {
 
    if (strAppId.is_empty())
@@ -2616,7 +2632,7 @@ ret:
 
 }
 
-::file::path dir_context::element_commonappdata(const ::string & strElement)
+::file::path dir_context::element_commonappdata(const ::string& strElement)
 {
 
    string strRelative;
@@ -2747,7 +2763,7 @@ ret:
 }
 
 
-bool dir_context::is_inside_time(const ::file::path & pszPath)
+bool dir_context::is_inside_time(const ::file::path& pszPath)
 {
 
    __UNREFERENCED_PARAMETER(pszPath);
@@ -2759,7 +2775,7 @@ bool dir_context::is_inside_time(const ::file::path & pszPath)
 }
 
 
-bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
+bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszPath)
 {
 
    __UNREFERENCED_PARAMETER(pszDir);
@@ -2772,7 +2788,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 }
 
 
-::file::watcher & dir_context::watcher()
+::file::watcher& dir_context::watcher()
 {
 
    auto psystem = get_system()->m_papexsystem;
@@ -2860,11 +2876,11 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
 #ifdef _UWP
 
-    return image();
+   return image();
 
 #else
 
-    return document();
+   return document();
 
 #endif
 
@@ -2906,7 +2922,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::dropbox()
 {
 
-   if(m_bDropboxCalculated)
+   if (m_bDropboxCalculated)
    {
 
 
@@ -2919,7 +2935,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    if (!m_pcontext->m_papexcontext->file().exists(pathNetworkPayload))
    {
 
-      auto pathHome =  m_pcontext->m_papexcontext->dir().home();
+      auto pathHome = m_pcontext->m_papexcontext->dir().home();
 
       auto pathTxt = pathHome / "dropbox.txt";
 
@@ -2957,7 +2973,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    string strIni = m_pcontext->m_papexcontext->file().as_string(pathIni);
 
-   if(strIni.is_empty())
+   if (strIni.is_empty())
    {
 
       return "";
@@ -2969,7 +2985,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    set.parse_ini(strIni);
 
    string strLibrary;
-   
+
    strLibrary = set["library"];
 
    ::str::tokenizer token(strLibrary);
@@ -2993,8 +3009,8 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
       throw ::exception(error_wrong_state, "m_psystem is null");
 
-   } 
-   
+   }
+
    if (m_psystem->m_pappStartup)
    {
 
@@ -3192,7 +3208,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //}
 
 
-::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)
+::file::path dir_context::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
 {
 
    return m_psystem->m_pacmedirectory->pathfind(pszEnv, pszTopic, pszMode);

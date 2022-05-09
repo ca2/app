@@ -3884,7 +3884,8 @@ namespace draw2d_cairo
 
 #endif
 
-      if (::is_set(pfont->get_os_data(this, 1)))
+      //if (::is_set(pfont->get_os_data(this, 1)))
+      if (::is_set(pfont->get_os_data(this, 0)))
       {
 
          return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
@@ -5313,7 +5314,7 @@ namespace draw2d_cairo
 
       }
 
-      auto posdata = pfontParam->get_os_data(this, 1);
+      auto posdata = pfontParam->get_os_data(this, 0);
 
       if (::is_null(posdata))
       {
@@ -5322,20 +5323,32 @@ namespace draw2d_cairo
 
       }
 
-      if (::is_set(posdata))
-      {
+      cairo_font_face_t * pfontface = (cairo_font_face_t *) posdata;
 
-         cairo_font_face_t * pfontface = (cairo_font_face_t *) posdata;
-
-         cairo_set_font_face(m_pdc, pfontface);
-
-      }
+      cairo_set_font_face(m_pdc, pfontface);
 
       float fPreferredDpiX = 96.0f;
 
       float fPreferredDpiY = 96.0f;
 
       float fPreferredDensity = 1.0f;
+
+      float fDenominatorDpi;
+
+#ifdef ANDROID
+
+      fDenominatorDpi = 160.0;
+
+#elif defined(MACOS)
+
+      fDenominatorDpi = 72.0;
+
+#else
+
+      fDenominatorDpi = 96.0;
+
+#endif
+
 
       if (::is_set(m_puserinteraction))
       {
@@ -5361,7 +5374,7 @@ namespace draw2d_cairo
       else
       {
 
-         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 96.0 / 72.0);
+         cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fPreferredDpiX / fDenominatorDpi);
 
       }
 
@@ -6190,18 +6203,18 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set_os_color(color32_t color32)
+   bool graphics::_set_os_color(const ::color::color& color)
    {
 
       _synchronous_lock ml(cairo_mutex());
 
-      auto r = colorref_get_r_value(color32);
+      auto r = color.red;
 
-      auto g = colorref_get_g_value(color32);
+      auto g = color.green;
 
-      auto b = colorref_get_b_value(color32);
+      auto b = color.blue;
 
-      auto a = colorref_get_a_value(color32);
+      auto a = color.alpha;
 
       cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 

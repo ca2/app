@@ -411,4 +411,11 @@ void element::destroy()
 }
 
 
+void element::on_sequence()
+{
+
+
+}
+
+
 

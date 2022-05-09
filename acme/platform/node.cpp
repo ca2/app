@@ -8,6 +8,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/install_mutex.h"
+#include "acme/user/nano/_nano.h"
 
 
 
@@ -1672,6 +1673,39 @@ namespace acme
       exception_message_box(this, exception, strMoreDetails);
 
    }
+
+
+   __pointer(::conversation) node::create_new_message_box_conversation()
+   {
+
+      return __create_new < ::nano_message_box >();
+
+   }
+
+
+   __pointer(::sequence < ::conversation >) node::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   {
+
+      auto psequence = __new(::sequence < ::conversation >());
+
+      auto pmessagebox = create_new_message_box_conversation();
+
+      psequence->m_p = pmessagebox;
+
+      pmessagebox->m_psequence = psequence;
+
+      pmessagebox->do_message_box(strMessage, strTitle, emessagebox);
+
+      return psequence;
+
+   }
+
+
+   //void node::nano_message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //{
+
+
+   //}
 
 
 } // namespace acme

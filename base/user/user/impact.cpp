@@ -774,7 +774,7 @@ namespace user
 
       auto pusersystem = __new(::user::system);
 
-      pusersystem = pusersystem;
+      m_pusersystem = pusersystem;
 
       pusersystem->m_puserprimitiveNew = pimpactAlloc;
 

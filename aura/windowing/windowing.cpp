@@ -275,6 +275,29 @@ namespace windowing
 
    //}
 
+   void windowing::defer_initialize_host_window(const RECTANGLE_I32* lpcrect)
+   {
+
+
+   }
+
+   
+   bool windowing::is_sandboxed()
+   {
+
+      auto pwindow = get_application_host_window();
+
+      if (::is_null(pwindow))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
    ::windowing::window * windowing::get_application_host_window()
    {

@@ -163,7 +163,6 @@ namespace draw2d_cairo
    void font::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
-
       bool bFont = false;
 
       if (m_path.has_char())
@@ -175,7 +174,9 @@ namespace draw2d_cairo
 
          m_pfontface = pfontface;
 
-         m_osdata[1] = m_pfontface;
+         //m_osdata[1] = m_pfontface;
+
+         m_osdata[0] = m_pfontface;
 
 //         if (pprivatefont)
 //         {

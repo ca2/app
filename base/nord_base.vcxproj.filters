@@ -4,13 +4,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="__matter_ca2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
@@ -21,6 +15,69 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\frame_window.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\scroll_bar.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\button.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\central.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\list_view.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\list_window.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu_view.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\button.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\control_box.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\department.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\dock_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\experience_updown.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\frame_window.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\menu_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\move_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\orto_button.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="user\experience\size_manager.cpp">
+      <Filter>Source Files\user\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -88,6 +145,9 @@
     <ClCompile Include="user\user\impact_host.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\impact_kit.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\impact_system.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -95,9 +155,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\menu.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_command.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\menu_interaction.cpp">
@@ -113,12 +170,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\notification_area.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\notify_icon.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\notify_icon_listener.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\picture.cpp">
@@ -151,6 +202,9 @@
     <ClCompile Include="user\user\split_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\split_pane.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\split_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -166,6 +220,15 @@
     <ClCompile Include="user\user\tab_callback.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\tab_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\user\tab_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -177,69 +240,6 @@
     </ClCompile>
     <ClCompile Include="user\user\validate.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\frame_window.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\main_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\scroll_bar.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\button.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\central.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\list_view.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\list_window.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu\menu_view.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\button.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\control_box.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\department.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\dock_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\experience.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\experience_updown.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\frame.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\frame_window.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\menu_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\move_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\orto_button.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="user\experience\size_manager.cpp">
-      <Filter>Source Files\user\experience</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\frame_window.cpp">
-      <Filter>Source Files\node\android</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -635,12 +635,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{7e171fc6-d4b9-437e-865d-a3f23b103629}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{4405361e-a438-46bb-bddd-7ada62a9af80}</UniqueIdentifier>
     </Filter>
@@ -671,14 +665,11 @@
     <Filter Include="Source Files\user\experience">
       <UniqueIdentifier>{0cf74e4b-65f0-4ede-9c1e-f7a8e8573734}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\android">
-      <UniqueIdentifier>{17dd1dd7-a05d-45b6-8d8a-244300a9ea90}</UniqueIdentifier>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="inline\aaa_want_to_remove_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>

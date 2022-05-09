@@ -1233,7 +1233,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   if (!pfolder->locate(strPath))
+   if (!pfolder->locate_file(strPath))
    {
 
       return nullptr;
@@ -1305,16 +1305,14 @@ void file_context::calculate_main_resource_memory()
 
    strPath.trim_right("\\/");
 
-   if (pfolder->locate(strPath))
+   if (pfolder->locate_file(strPath))
    {
 
       return ::file::e_type_file;
 
    }
 
-   strPath += "/";
-
-   if (pfolder->locate(strPath))
+   if (pfolder->locate_folder(strPath))
    {
 
       return ::file::e_type_folder;

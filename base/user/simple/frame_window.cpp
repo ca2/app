@@ -795,7 +795,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //}
 
-   if (m_bWindowFrame || m_bFramePayloadFlags)
+   //if (m_bWindowFrame || m_bFramePayloadFlags)
    {
 
       if (!(m_ewindowflag & e_window_flag_window_created))
@@ -815,6 +815,14 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          }
 
 //#endif
+         if (m_varFrame["experience"].is_empty())
+         {
+
+            string strPreferredExperience = get_app()->preferred_experience();
+
+            m_varFrame["experience"] = strPreferredExperience;
+
+         }
 
          if (m_varFrame["schema"].is_empty())
          {
@@ -868,8 +876,8 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   if (m_bWindowFrame)
-   {
+   //if (m_bWindowFrame)
+   //{
       
       initialize_frame_window_experience();
 
@@ -884,7 +892,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       //}
 
-   }
+   //}
 
    if (get_parent() == nullptr && m_strFrameTitle.is_empty())
    {

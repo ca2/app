@@ -39,7 +39,7 @@ namespace opengl
 
       int cy = m_pimage->m_size.cy;
       
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(ANDROID)
       
       glReadPixels(
          0, 0,

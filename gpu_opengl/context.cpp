@@ -74,21 +74,28 @@ namespace opengl
          -1.f,  1.f, 0.0f   // top left
       };
 
-//#ifdef __APPLE__
+#if defined(__APPLE__)
+      
+      glGenVertexArraysAPPLE(1, &m_VAO);
+      glGenBuffers(1, &m_VBO);
+      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+      glBindVertexArrayAPPLE(m_VAO);
+
+//#elif defined(ANDROID)
 //
-//      glGenVertexArraysAPPLE(1, &m_VAO);
+//      glGenVertexArrays(1, &m_VAO);
 //      glGenBuffers(1, &m_VBO);
 //      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-//      glBindVertexArrayAPPLE(m_VAO);
-//
-//#else
+//      glBindVertexArray(m_VAO);
+
+#else
 
       glGenVertexArrays(1, &m_VAO);
       glGenBuffers(1, &m_VBO);
       // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
       glBindVertexArray(m_VAO);
 
-//#endif
+#endif
 
       glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -207,7 +214,7 @@ namespace opengl
 
          glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
          
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(ANDROID)
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
 #else

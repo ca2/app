@@ -7,51 +7,63 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{327263bd-e196-44d7-ab13-69870bdbcb59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{2ce4199e-eed1-4086-afb8-a60924a97849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\experience">
+      <UniqueIdentifier>{4d3ffebc-d888-49ea-9c8b-e5589aafb611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{bfa84ea4-d7d1-45ba-8c58-b9386bf2f892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\experience">
+      <UniqueIdentifier>{ba84e116-404b-42df-a4f4-7b68b1d6ce69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="control_box.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="experience.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_001.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_002.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_005.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_008.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_011.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_013.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="frame_Minimal001.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="library.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="style.cpp">
+    <ClCompile Include="user\style.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\control_box.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\control_box_button.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\experience.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_001.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_002.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_005.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_008.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_011.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_013.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="experience\frame_Minimal001.cpp">
+      <Filter>Source Files\experience</Filter>
+    </ClCompile>
+    <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,47 +71,50 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="control_box.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="experience.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_001.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_002.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_005.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_008.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_011.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_013.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="frame_Minimal001.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="library.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="experience\_experience.h">
+      <Filter>Header Files\experience</Filter>
     </ClInclude>
-    <ClInclude Include="theme.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="experience\control_box.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\control_box_button.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\experience.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_001.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_002.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_005.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_008.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_011.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_013.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="experience\frame_Minimal001.h">
+      <Filter>Header Files\experience</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_user.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

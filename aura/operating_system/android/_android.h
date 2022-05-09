@@ -12,8 +12,8 @@ string get_error_message(::u32 dwError);
 ::aura::application* win_instantiate_application(::aura::application* pappSystem, const ::string & pszId);
 
 
-#include "buffer.h"
-#include "window_android.h"
+//#include "buffer.h"
+//#include "window_android.h"
 //#include "factory_exchange.h"
 //#include "thread.h"
 //#include "os_context.h"

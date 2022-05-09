@@ -128,6 +128,10 @@ namespace opengl
       
 #endif
 
+#elif defined(ANDROID)
+
+      return create_egl_context();
+
 #else
 
       string strWaylandDisplay(getenv("WAYLAND_DISPLAY"));
@@ -156,7 +160,7 @@ namespace opengl
       if (!m_bGlewInit)
       {
          
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
 
          glewExperimental = GL_TRUE;
 

@@ -107,15 +107,15 @@
 
 
       virtual ::file::path locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
-      virtual ::file::path matter(const ::file::path & path, bool bDir, const ::file::path & pathRoot, const ::file::path & pathDomain);
+      virtual ::file::path matter(const ::file::path & path, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
-      virtual ::file::path matter(const ::file::path_array & patha, bool bDir = false);
-      virtual ::file::path matter(::file::path path, bool bDir = false);
+      virtual ::file::path matter(const ::file::path_array & patha);
+      virtual ::file::path matter(::file::path path);
 
-      virtual ::file::path appmatter(::file::path path, bool bDir = false);
+      virtual ::file::path appmatter(::file::path path);
 
-      virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator, bool bDir = false);
-      virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator, bool bDir = false);
+      virtual ::file::path matter_from_locator(const ::file::path_array & patha, const string_array & straMatterLocator);
+      virtual ::file::path matter_from_locator(::file::path path, const string_array & straMatterLocator);
 
       virtual ::file::path appmatter(string strApp, ::file::path pathRel);
 

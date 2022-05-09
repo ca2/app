@@ -521,7 +521,7 @@ namespace draw2d_cairo
 
 
       // operating-system-specific or operating-system-internals
-      bool _set_os_color(color32_t color32);
+      bool _set_os_color(const ::color::color & color);
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);
       bool _set(::write_text::font * pfont);

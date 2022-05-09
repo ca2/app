@@ -8,9 +8,16 @@ class CLASS_DECL_ACME conversation :
 public:
 
 
-   //__pointer(::object)                           m_pobject;
-   //enum_dialog_result                            m_edialogresult;
-   ::atom                                            m_atomResult;
+   __pointer(::sequence < ::conversation >)           m_psequence;
+   ::atom                                             m_atomResult;
+
+
+   virtual void do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox);
+
+
+   virtual ::string get_message_box_message();
+   virtual ::string get_message_box_title();
+   virtual ::e_message_box get_message_box_flags();
 
 
 };

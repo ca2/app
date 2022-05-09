@@ -62,8 +62,6 @@ namespace user
    class thread;
 
 
-
-
    class CLASS_DECL_AURA interaction_impl:
       virtual public ::user::primitive_impl
    {
@@ -640,6 +638,7 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage) override;
 
       virtual void message_handler(::message::message * pusermessage) override;
+      virtual void _message_handler(::message::message* pusermessage);
       //virtual lresult default_window_procedure() override;
       virtual void default_window_procedure(::message::message * pmessage);
 

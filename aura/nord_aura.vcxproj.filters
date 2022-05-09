@@ -148,6 +148,12 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{3550cd31-758f-4d06-bd3e-ef3a190757b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\micro">
+      <UniqueIdentifier>{72c962c1-dea5-4221-88a1-57d9e5971b91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\micro">
+      <UniqueIdentifier>{4e2db1aa-2921-40a1-8540-160a0538ee13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -738,9 +744,6 @@
     <ClInclude Include="operating_system\android\application.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\android\buffer.h">
-      <Filter>Header Files\operating_system\android</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\android\file.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
@@ -748,9 +751,6 @@
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\vsnord_native_app_glue.h">
-      <Filter>Header Files\operating_system\android</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\android\window_android.h">
       <Filter>Header Files\operating_system\android</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\android\windowing.h">
@@ -947,6 +947,9 @@
     </ClInclude>
     <ClInclude Include="windowing\text_editor_interface.h">
       <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\message_box.h">
+      <Filter>Header Files\user\micro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1258,9 +1261,6 @@
     <ClCompile Include="graphics\user\control_box_icon.cpp">
       <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\buffer.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\cursor.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -1468,14 +1468,11 @@
     <ClCompile Include="operating_system\android\_factory.cpp">
       <Filter>Source Files\operating_system\android</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\android\buffer.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\android\window_android.cpp">
-      <Filter>Source Files\operating_system\android</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\message_box.cpp">
+      <Filter>Source Files\user\micro</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

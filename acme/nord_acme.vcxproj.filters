@@ -1327,6 +1327,12 @@
     <ClCompile Include="operating_system\posix\chldstatus.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\conversation.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\particle.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3629,9 +3635,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{b7eda4ed-89d1-41cf-9075-dd86737c5b3a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{41080c7b-9620-48c4-9067-179ac83cbc63}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{41a5bddc-53a7-471b-9ee9-dec2b3eba49d}</UniqueIdentifier>
     </Filter>
@@ -3671,24 +3674,6 @@
     <Filter Include="Source Files\primitive\datetime">
       <UniqueIdentifier>{8abe459f-ef11-40c7-bbb4-2e41ba254cdf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\api">
-      <UniqueIdentifier>{afea8c9c-ab84-4327-8481-dcf74df87464}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\collection">
-      <UniqueIdentifier>{2a64a02f-8de2-4980-858b-0d41f30be40c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\comparison">
-      <UniqueIdentifier>{093f621b-e9ea-479a-b9ed-dbe0a7bab56d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{48effab1-6668-453e-9fd1-706d5def7696}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{c4744f04-7e8a-4898-bab0-c7147f5d34b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\math">
-      <UniqueIdentifier>{99f9377a-0123-432d-b731-12bffdb421d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\primitive">
       <UniqueIdentifier>{1f8b2dc7-0126-4b1d-8675-6dab1bd1ab71}</UniqueIdentifier>
     </Filter>
@@ -3697,12 +3682,6 @@
     </Filter>
     <Filter Include="Source Files\primitive\geometry3d">
       <UniqueIdentifier>{635e9861-1f96-41d0-b70f-1f9aeeec18f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\string">
-      <UniqueIdentifier>{3a6fa529-1d54-41a6-8a8e-aa2198fa529e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\string\x">
-      <UniqueIdentifier>{6d709f7a-4023-48d3-8958-d8abc124a9a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{4405361e-a438-46bb-bddd-7ada62a9af80}</UniqueIdentifier>
@@ -3737,9 +3716,6 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{f521b2ca-b3aa-4fcd-a2d4-2306a8d92f0b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\primitive">
-      <UniqueIdentifier>{188768d1-6867-4673-aa21-f909cb02ff1e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\exception">
       <UniqueIdentifier>{00afc728-058b-455d-8d1a-d592a77fd7a8}</UniqueIdentifier>
     </Filter>
@@ -3760,12 +3736,6 @@
     </Filter>
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{a9eefb3b-cbd9-47ff-83d2-4d8b655a6944}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\geometry2d">
-      <UniqueIdentifier>{157e3772-5d32-42a2-9b7b-08bafdf96e7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\geometry3d">
-      <UniqueIdentifier>{50f88a2a-5a40-4b93-88e5-c6d57fe4315c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\operating_system">
       <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
@@ -3847,6 +3817,42 @@
     </Filter>
     <Filter Include="Source Files\operating_system\android\nano">
       <UniqueIdentifier>{580dd29b-009a-44a1-a23c-55a01f9ba921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive">
+      <UniqueIdentifier>{41080c7b-9620-48c4-9067-179ac83cbc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\api">
+      <UniqueIdentifier>{afea8c9c-ab84-4327-8481-dcf74df87464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\collection">
+      <UniqueIdentifier>{2a64a02f-8de2-4980-858b-0d41f30be40c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\comparison">
+      <UniqueIdentifier>{093f621b-e9ea-479a-b9ed-dbe0a7bab56d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\data">
+      <UniqueIdentifier>{48effab1-6668-453e-9fd1-706d5def7696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\datetime">
+      <UniqueIdentifier>{c4744f04-7e8a-4898-bab0-c7147f5d34b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\math">
+      <UniqueIdentifier>{99f9377a-0123-432d-b731-12bffdb421d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string">
+      <UniqueIdentifier>{3a6fa529-1d54-41a6-8a8e-aa2198fa529e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\string\x">
+      <UniqueIdentifier>{6d709f7a-4023-48d3-8958-d8abc124a9a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\primitive">
+      <UniqueIdentifier>{188768d1-6867-4673-aa21-f909cb02ff1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\geometry2d">
+      <UniqueIdentifier>{157e3772-5d32-42a2-9b7b-08bafdf96e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\geometry3d">
+      <UniqueIdentifier>{50f88a2a-5a40-4b93-88e5-c6d57fe4315c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

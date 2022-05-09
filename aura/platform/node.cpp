@@ -196,6 +196,16 @@ namespace aura
 #endif
 
 
+   //__pointer(::sequence < ::conversation >) node::get_new_conversation_sequence()
+   //{
+
+   //   auto psequence = __new(micro_message_box());
+
+   //   return psequence;
+
+   //}
+
+
 } // namespace aura
 
 

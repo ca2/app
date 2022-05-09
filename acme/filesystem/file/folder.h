@@ -27,20 +27,43 @@ public:
    virtual void open_for_reading(file_pointer pfile, int iBufferLevel = 2);
 
 
-   virtual bool locate(const char* pszFileName);
+   virtual bool locate_file(const char* pszFileName);
+   virtual bool locate_folder(const char* pszFileName);
    virtual ::file_pointer get_file(const char* pszFile = nullptr);
+   
    inline ::file::enum_type type(const char* pszItem = nullptr)
    {
 
-      if (::is_set(pszItem)) locate(pszItem);
+      if (::is_empty(pszItem))
+      {
 
-      return m_etypeCurrent;
+         throw ::exception(error_bad_argument);
+
+      }
+
+      if(locate_file(pszItem))
+      {
+
+         return ::file::e_type_file;
+
+      }
+
+      if (locate_folder(pszItem))
+      {
+
+         return ::file::e_type_folder;
+
+      }
+
+      return ::file::e_type_doesnt_exist;
 
    }
+
    virtual bool has_sub_folder(const char* pszDir = nullptr);
    virtual void extract(memory& m, const char* pszFile = nullptr);
    virtual bool is_compressed(const char* pszItem = nullptr);
 
+   virtual bool locate(const ::function < bool(const char *) > & function);
 
    virtual void extract_all(const char* pszTargetDir, ::file::path_array * ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr);
 

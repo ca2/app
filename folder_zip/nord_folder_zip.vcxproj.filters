@@ -54,6 +54,9 @@
     <ClInclude Include="rsa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="folder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

@@ -269,6 +269,8 @@ namespace windowing
 
       virtual float get_dpi_for_window();
 
+      virtual float get_density_for_window();
+
 
       virtual float point_dpi(float points);
 

@@ -5,6 +5,8 @@
 //
 // Created by camilo on 19/01/2021. <3-<3ThomasBS!!
 //
+// Aura(Mummi) addition of micro message box!! 2022-05-08 Mother's day 2022!!
+//
 #pragma once
 
 
@@ -84,6 +86,15 @@ namespace aura
       virtual void* HICON_from_ico_file(const ::block& block);
 
 #endif
+
+
+      __pointer(::conversation) create_new_message_box_conversation() override;
+
+
+      //__pointer(::sequence < ::conversation >) get_new_conversation_sequence() override;
+
+      //__pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override;
+
 
    };
 

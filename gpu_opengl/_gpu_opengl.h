@@ -5,8 +5,20 @@
 #include "aura/operating_system.h"
 #include "aura/gpu/gpu/_gpu.h"
 
+#ifdef ANDROID
 
-#ifdef _UWP
+
+// OpenGL ES includes
+#include <GLES3/gl3.h>
+#include <GLES3/gl3ext.h>
+
+// EGL includes
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <EGL/eglplatform.h>
+
+
+#elif defined(_UWP)
 
 
 // Enable function definitions in the GL headers below

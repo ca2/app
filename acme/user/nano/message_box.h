@@ -11,18 +11,24 @@ class nano_message_box :
 public:
 
 
+   e_message_box                          m_emessagebox;
    string                              m_strLabelDetails;
-
-
    __pointer(nano_still)               m_pstillDetails;
 
 
    nano_message_box();
    ~nano_message_box() override;
 
+
+
+   ::e_message_box get_message_box_flags() override;
+
+
    virtual void calculate_size();
 
    virtual void display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr);
+
+   void do_message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box & emessagebox) override;
 
    void on_draw(nano_device * pnanodevice) override;
 

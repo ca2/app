@@ -428,6 +428,14 @@ namespace acme
       virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
 
 
+      virtual __pointer(::conversation) create_new_message_box_conversation();
+
+
+      virtual __pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+
+
+      //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+
 
    };
 

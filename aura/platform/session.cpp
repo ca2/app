@@ -1898,6 +1898,10 @@ namespace aura
    void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
+      auto puser = m_puser;
+
+      puser->windowing()->defer_initialize_host_window(lpcrect);
+
       //return ::success;
 
 //#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)

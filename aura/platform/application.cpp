@@ -4105,6 +4105,41 @@ retry_license:
    }
 
 
+   bool application::is_sandboxed()
+   {
+
+      auto psession = get_session();
+
+      if (::is_null(psession))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      auto puser = psession->user();
+
+      if (::is_null(puser))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      auto pwindowing = puser->windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      return pwindowing->is_sandboxed();
+
+   }
+
+
    __pointer(::user::message) application::get_user_message(MESSAGE * pmsg)
    {
 

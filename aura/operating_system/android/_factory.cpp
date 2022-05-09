@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_android.h"
-#include "buffer.h"
+//#include "buffer.h"
 //#include "aura/node/posix/pipe.h"
 
 
@@ -42,7 +42,7 @@ void __node_aura_factory(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::android::buffer, ::graphics::graphics > ();
+   //pfactory->add_factory_item < ::android::buffer, ::graphics::graphics > ();
 
 
    //add_factory_item < ::android::file_system         , ::file_system               > ();

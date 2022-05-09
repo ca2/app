@@ -3177,7 +3177,9 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->m_phost = this;
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
 
       if (pgraphics == nullptr)
       {
@@ -3954,6 +3956,10 @@ namespace user
          return;
 
       }
+
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
 
       bool bUpdateBuffer = false;
 
@@ -6545,6 +6551,19 @@ namespace user
 
       }
 
+      auto pwindowing = get_session()->m_puser->windowing();
+
+      auto pwindowHost = pwindowing->get_application_host_window();
+
+      if (::is_set(pwindowHost))
+      {
+
+         create_child(pwindowHost->m_puserinteractionimpl->m_puserinteraction);
+
+         return;
+
+      }
+
       //__refer(m_pthreadUserInteraction, ::get_task() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //if (m_pthreadUserInteraction)
@@ -8073,6 +8092,25 @@ namespace user
    }
 
 
+   bool interaction::is_sandboxed()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      bool bSandboxed = pwindowing->get_application_host_window() != nullptr;
+
+      return bSandboxed;
+
+   }
+
+
    //void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
    //{
 
@@ -8415,6 +8453,56 @@ namespace user
 
    }
 
+
+   float interaction::preferred_dpi_x()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_dpi_x();
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::preferred_dpi_y()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_dpi_y();
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::preferred_density()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_density();
+
+      }
+
+      return pwindow->get_density_for_window();
+
+   }
 
    //void interaction::set_need_redraw()
    //{
@@ -8937,7 +9025,7 @@ namespace user
 
                if (pinteraction->m_bExtendOnParent ||
                    (pinteraction->m_bExtendOnParentIfClientOnly
-                    && papp->m_bExperienceMainFrame))
+                    && papp && papp->m_bExperienceMainFrame))
                {
 
                   bool bThisVisible = pinteraction->is_this_visible();
@@ -17379,6 +17467,30 @@ namespace user
 
    void interaction::add_user_item(item * pitem)
    {
+
+      if (is_sandboxed())
+      {
+
+         if (pitem->m_atom == ::id_close_app)
+         {
+
+            return;
+
+         }
+         else if (pitem->m_atom == ::id_maximize)
+         {
+
+            return;
+
+         }
+         else if (pitem->m_atom == ::id_minimize)
+         {
+
+            return;
+
+         }
+
+      }
 
       m_useritema.add(pitem);
 

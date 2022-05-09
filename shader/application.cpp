@@ -125,9 +125,36 @@ namespace app_shader
 
       auto pcontext = m_pcontext->m_papexcontext;
 
-      listing.set_pattern_file_listing("dropbox://shader/simple shader/", { "*.frag" });
+      bool bUseOwnResources = is_sandboxed();
 
-      pcontext->dir().enumerate(listing);
+      for (;;)
+      {
+
+         if (bUseOwnResources)
+         {
+
+            listing.set_pattern_file_listing("matter://shader/simple shader/", { "*.frag" });
+
+         }
+         else
+         {
+
+            listing.set_pattern_file_listing("dropbox://shader/simple shader/", { "*.frag" });
+
+         }
+
+         pcontext->dir().enumerate(listing);
+
+         if (listing.has_elements() || bUseOwnResources)
+         {
+
+            break;
+
+         }
+
+         bUseOwnResources = true;
+
+      }
 
       listing.sort();
 

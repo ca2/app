@@ -14,7 +14,7 @@
 #pragma once
 #ifndef __FULL_MULDIV64_
 #define __FULL_MULDIV64_
-
+#include "acme/primitive/primitive/muldiv64.h"
 
 /*
  * muldiv64
@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ACME i64 muldiv64(i64 operant, i64 multiplier, i64 divider);
+//CLASS_DECL_ACME i64 muldiv64(i64 operant, i64 multiplier, i64 divider);
 
 
 /*

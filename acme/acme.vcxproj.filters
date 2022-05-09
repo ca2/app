@@ -2963,6 +2963,9 @@
     <ClInclude Include="primitive\string\from_numeric_type.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\muldiv64.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -4182,6 +4185,9 @@
     </ClCompile>
     <ClCompile Include="user\nano\display.cpp">
       <Filter>Source Files\user\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\conversation.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

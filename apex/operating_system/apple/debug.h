@@ -8,7 +8,9 @@
 
 
 #undef DEBUG
+#ifdef MACOS
 #include <Carbon/Carbon.h>
+#endif
 
 
 void throw_ns_exception();

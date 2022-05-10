@@ -36,17 +36,17 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, ::message::message
 CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 
 #include "implementation.h"
-#include "dir_system.h"
-#include "file_system.h"
-#include "dir_context.h"
-#include "file_context.h"
-#include "file.h"
-#include "factory_exchange.h"
-#include "thread.h"
-#include "os_context.h"
-#include "ip_enum.h"
+//#include "dir_system.h"
+//#include "file_system.h"
+//#include "dir_context.h"
+//#include "file_context.h"
+//#include "file.h"
+//#include "factory_exchange.h"
+//#include "thread.h"
+//#include "os_context.h"
+//#include "ip_enum.h"
 //#include "shell.h"
-#include "file_os_watcher.h"
+//#include "file_os_watcher.h"
 //#include "host_interaction.h"
 
 
@@ -84,22 +84,22 @@ i32 CLASS_DECL_APEX __ios_main(i32 argc, char * argv[]);
 //
 //CLASS_DECL_APEX ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
-
-
-namespace ios
-{
-
-
-   class thread;
-
-   class IOS
-   {
-      i32 function();
-   };
-
-
-
-} // namespace ios
-
+//
+//
+//namespace ios
+//{
+//
+//
+//   class thread;
+//
+//   class IOS
+//   {
+//      i32 function();
+//   };
+//
+//
+//
+//} // namespace ios
+//
 
 

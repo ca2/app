@@ -85,21 +85,21 @@ CLASS_DECL_AURA void vfxThrowFileException(::object * pobject, const ::e_status 
 CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
-
-namespace ios
-{
-
-
-   class thread;
-
-   class IOS
-   {
-      i32 function();
-   };
-
-
-
-} // namespace ios
+//
+//namespace ios
+//{
+//
+//
+//   class thread;
+//
+//   class IOS
+//   {
+//      i32 function();
+//   };
+//
+//
+//
+//} // namespace ios
 
 
 ///#include "ios_plane_system.h"

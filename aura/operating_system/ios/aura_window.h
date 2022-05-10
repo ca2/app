@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "acme/user/user/_const_key.h"
+//#include "acme/user/user/_const_key.h"
 
 
 #ifdef __OBJC__
@@ -91,5 +91,6 @@ bool m_bDirty;
    
 };
 
-
+#ifdef __OBJC__
 UIWindow * new_aura_window(aura_window * pwindow, CGRect rectangle_i32);
+#endif

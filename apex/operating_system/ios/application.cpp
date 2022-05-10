@@ -34,14 +34,14 @@ namespace apex
 //      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
-
-   void application::_001EnableShellOpen()
-   {
-      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-   }
+//
+//   void application::_001EnableShellOpen()
+//   {
+//      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//
+//      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+//   }
 
 //   bool application::_001OnDDECommand(const char * pcsz)
 //   {

@@ -204,3 +204,63 @@ bool _ui_library_dir(char * psz, unsigned int * puiSize)
 //
 //}
 
+
+
+
+bool ns_open_url(const char * psz)
+{
+   
+   NSString * str = [NSString stringWithUTF8String:psz];
+   
+   if(str == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   NSURL * url = [[NSURL alloc] initWithString: str];
+   
+   if(url == NULL)
+   {
+      
+      return false;
+      
+   }
+   
+   if(![[UIApplication sharedApplication] openURL: url options: nil completionHandler: nil])
+   {
+      
+      return false;
+      
+   }
+   
+   return true;
+   
+}
+
+
+
+bool ns_open_file(const char * psz)
+{
+   
+   return ns_open_url(psz);
+//   NSString * path = [NSString stringWithUTF8String:psz];
+//   
+//   if(path == NULL)
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   if(![[NSWorkspace sharedWorkspace] openFile: path])
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   return true;
+   
+}

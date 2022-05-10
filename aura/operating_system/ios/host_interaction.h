@@ -18,7 +18,7 @@ namespace ios
 
 
       host_interaction();
-      virtual ~host_interaction();
+      ~host_interaction() override;
 
 
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
@@ -28,7 +28,7 @@ namespace ios
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) const override;
+      //virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) const override;
 
 
    };

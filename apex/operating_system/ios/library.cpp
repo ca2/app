@@ -78,7 +78,9 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
 
-   path = ::file::path(::dir::ca2_module()).folder() / strPath;
+   //path = ::file::path(::dir::ca2_module()).folder() / strPath;
+   
+   path = strPath;
 
    plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

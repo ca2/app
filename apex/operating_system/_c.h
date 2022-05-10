@@ -16,9 +16,9 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 
 #elif defined(APPLE_IOS)
 
-#include "apex/os/ansios/_c.h"
-#include "apex/os/apple/_c.h"
-#include "apex/os/ios/_c.h"
+#include "apex/operating_system/ansi/_c.h"
+#include "apex/operating_system/apple/_c.h"
+#include "apex/operating_system/ios/_c.h"
 
 #elif defined(LINUX)
 

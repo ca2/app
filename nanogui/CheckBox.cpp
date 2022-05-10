@@ -31,6 +31,8 @@ bool CheckBox::mouse_button_event(const Vector2i & p, int button, bool down, con
    if (button == __MOUSE_LEFT_BUTTON) {
       if (down) {
          m_bMouseDown = true;
+         screen()->m_puserinteraction->set_need_redraw();
+         screen()->m_puserinteraction->post_redraw();
       }
       else if (m_bMouseDown) {
          if (contains(p)) {

@@ -15,14 +15,6 @@
 		9A7F3F33274D5AA500D914CC /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01BE42748C2DE006BEBCC /* application.cpp */; };
 		9A7F3F34274D5AA500D914CC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01A9F2748C2D5006BEBCC /* framework.cpp */; };
 		9A7F3F35274D5AA500D914CC /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01BE22748C2DE006BEBCC /* main_window.cpp */; };
-		9AA14D8F282A17A900B1621E /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01B2F2748C2D8006BEBCC /* _.cpp */; };
-		9AA14D90282A17A900B1621E /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01BE42748C2DE006BEBCC /* application.cpp */; };
-		9AA14D91282A17A900B1621E /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01A9F2748C2D5006BEBCC /* framework.cpp */; };
-		9AA14D92282A17A900B1621E /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01BE22748C2DE006BEBCC /* main_window.cpp */; };
-		9AA14D94282A17A900B1621E /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4E02761565800802DB8 /* libapex.dylib */; };
-		9AA14D95282A17A900B1621E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4E22761565800802DB8 /* libaqua.dylib */; };
-		9AA14D96282A17A900B1621E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4D72761558100802DB8 /* libaura.dylib */; };
-		9AA14D97282A17A900B1621E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CF4DE2761562600802DB8 /* libacme.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,13 +46,6 @@
 			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
 			remoteInfo = aura;
 		};
-		9AA14D8C282A17A900B1621E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A1CF4D02761558000802DB8 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +57,6 @@
 		9A21ACD72761128D001E14CC /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../time-macos/output/libaura.dylib"; sourceTree = "<group>"; };
 		9A21ACD82761128D001E14CC /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = "../../../time-macos/output/libapex.dylib"; sourceTree = "<group>"; };
 		9A21ACD92761128D001E14CC /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = "../../../time-macos/output/libacme.dylib"; sourceTree = "<group>"; };
-		9AA14D9B282A17A900B1621E /* libios_app_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_app_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC01A582748C26A006BEBCC /* libapp_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC01A7B2748C2D5006BEBCC /* _app.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _app.h; sourceTree = "<group>"; };
 		9AC01A9F2748C2D5006BEBCC /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -91,17 +75,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AA14D93282A17A900B1621E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AA14D94282A17A900B1621E /* libapex.dylib in Frameworks */,
-				9AA14D95282A17A900B1621E /* libaqua.dylib in Frameworks */,
-				9AA14D96282A17A900B1621E /* libaura.dylib in Frameworks */,
-				9AA14D97282A17A900B1621E /* libacme.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AC01A562748C26A006BEBCC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				9AC01A582748C26A006BEBCC /* libapp_app.dylib */,
-				9AA14D9B282A17A900B1621E /* libios_app_app.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,13 +155,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9AA14D8D282A17A900B1621E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AC01A542748C26A006BEBCC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,28 +165,11 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9AA14D8A282A17A900B1621E /* ios_app_app */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9AA14D98282A17A900B1621E /* Build configuration list for PBXNativeTarget "ios_app_app" */;
-			buildPhases = (
-				9AA14D8D282A17A900B1621E /* Headers */,
-				9AA14D8E282A17A900B1621E /* Sources */,
-				9AA14D93282A17A900B1621E /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9AA14D8B282A17A900B1621E /* PBXTargetDependency */,
-			);
-			name = ios_app_app;
-			productName = app_app;
-			productReference = 9AA14D9B282A17A900B1621E /* libios_app_app.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
-		};
 		9AC01A572748C26A006BEBCC /* app_app */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AC01A5C2748C26A006BEBCC /* Build configuration list for PBXNativeTarget "app_app" */;
 			buildPhases = (
+				9A81F0AA274F429C003F38EC /* ShellScript */,
 				9AC01A542748C26A006BEBCC /* Headers */,
 				9AC01A552748C26A006BEBCC /* Sources */,
 				9AC01A562748C26A006BEBCC /* Frameworks */,
@@ -270,7 +218,6 @@
 			projectRoot = "";
 			targets = (
 				9AC01A572748C26A006BEBCC /* app_app */,
-				9AA14D8A282A17A900B1621E /* ios_app_app */,
 			);
 		};
 /* End PBXProject section */
@@ -300,17 +247,6 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9AA14D8E282A17A900B1621E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AA14D8F282A17A900B1621E /* _.cpp in Sources */,
-				9AA14D90282A17A900B1621E /* application.cpp in Sources */,
-				9AA14D91282A17A900B1621E /* framework.cpp in Sources */,
-				9AA14D92282A17A900B1621E /* main_window.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AC01A552748C26A006BEBCC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,32 +266,9 @@
 			name = aura;
 			targetProxy = 9A1CF4DC276155B100802DB8 /* PBXContainerItemProxy */;
 		};
-		9AA14D8B282A17A900B1621E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9AA14D8C282A17A900B1621E /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		9AA14D99282A17A900B1621E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
-				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9AA14D9A282A17A900B1621E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
-				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		9AC01A5A2748C26A006BEBCC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -428,6 +341,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -537,6 +451,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-all_load";
@@ -594,15 +509,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AA14D98282A17A900B1621E /* Build configuration list for PBXNativeTarget "ios_app_app" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9AA14D99282A17A900B1621E /* Debug */,
-				9AA14D9A282A17A900B1621E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9AC01A532748C269006BEBCC /* Build configuration list for PBXProject "app_app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

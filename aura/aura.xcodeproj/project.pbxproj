@@ -419,6 +419,8 @@
 		9A92317F27EAE41000B5A78D /* window_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92300927EACA3A00B5A78D /* window_util.cpp */; };
 		9A92318027EAE41000B5A78D /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92306127EACA3B00B5A78D /* windowing.cpp */; };
 		9A956D062824082A00002F51 /* font_utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D052824082A00002F51 /* font_utf8.cpp */; };
+		9AA14D46282A07BA00B1621E /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14D40282A073900B1621E /* message_box.cpp */; };
+		9AA14D47282A07C000B1621E /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14D40282A073900B1621E /* message_box.cpp */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
@@ -1063,6 +1065,8 @@
 		9A92358523286D8D00804A1C /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9A956D052824082A00002F51 /* font_utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_utf8.cpp; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA14D40282A073900B1621E /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
+		9AA14D41282A073900B1621E /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
@@ -1971,6 +1975,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9AA14D3F282A073900B1621E /* micro */ = {
+			isa = PBXGroup;
+			children = (
+				9AA14D40282A073900B1621E /* message_box.cpp */,
+				9AA14D41282A073900B1621E /* message_box.h */,
+			);
+			path = micro;
+			sourceTree = "<group>";
+		};
 		9AC2CEA22653455600CC8096 /* windowing */ = {
 			isa = PBXGroup;
 			children = (
@@ -2016,6 +2029,7 @@
 		9AE7233517E83B69003E47F9 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9AA14D3F282A073900B1621E /* micro */,
 				9A92306827EACA3B00B5A78D /* appearance */,
 				9A92306427EACA3B00B5A78D /* menu */,
 				9A922FF327EACA3A00B5A78D /* user */,
@@ -2460,6 +2474,7 @@
 				9A201C63247733DC00A31CBF /* draw_context.cpp in Sources */,
 				9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */,
 				9A201C86247733DD00A31CBF /* session.cpp in Sources */,
+				9AA14D47282A07C000B1621E /* message_box.cpp in Sources */,
 				9A201C92247733DD00A31CBF /* system.cpp in Sources */,
 				9A201C94247733DD00A31CBF /* theme.cpp in Sources */,
 				9A8B636B24CBCD5000A93185 /* context.cpp in Sources */,
@@ -2541,6 +2556,7 @@
 				9AC2CED52653455600CC8096 /* monitor.cpp in Sources */,
 				9A3764DB2409BF0C002D15D3 /* printer.cpp in Sources */,
 				9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */,
+				9AA14D46282A07BA00B1621E /* message_box.cpp in Sources */,
 				9A22714627CEE2020042BAC2 /* keyboard.cpp in Sources */,
 				9A22711027CEE2020042BAC2 /* thread.cpp in Sources */,
 				9AC2CCC326533BB700CC8096 /* context.cpp in Sources */,

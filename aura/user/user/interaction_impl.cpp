@@ -3437,6 +3437,24 @@ namespace user
          throw ::exception(error_wrong_state);
 
       }
+      
+      auto puserinteraction = m_puserinteraction;
+
+      auto pthread = puserinteraction->m_pthreadUserInteraction;
+      
+      if(atom == e_message_redraw)
+      {
+         
+         if(m_pprodevian)
+         {
+            
+            puserinteraction->prodevian_redraw(wParam & 1);
+            
+            return;
+            
+         }
+         
+      }
 
       MESSAGE message = {};
 
@@ -3447,10 +3465,6 @@ namespace user
       message.wParam = wParam;
 
       message.lParam = lParam;
-
-      auto puserinteraction = m_puserinteraction;
-
-      auto pthread = puserinteraction->m_pthreadUserInteraction;
 
       auto pmessagequeue = pthread->get_message_queue();
       

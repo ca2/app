@@ -1721,7 +1721,7 @@ namespace user
       else if (xEnd - get_viewport_offset().x < rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
+         xViewport = (int) maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
 
       }
       else if (x < xViewport && xViewport > 0)
@@ -1739,7 +1739,7 @@ namespace user
       else if (x > get_viewport_offset().x + rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
+         xViewport = (int) maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
 
       }
 

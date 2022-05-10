@@ -2362,18 +2362,23 @@ namespace user
       else if (bKeyMessage)
       {
 
-         __pointer(::user::interaction) puiFocus = m_puserinteractionFocus1;
-
-         if (puiFocus)
+         if (::is_set(pkey))
          {
 
-            puiFocus->route_message(pkey);
+            __pointer(::user::interaction) puiFocus = m_puserinteractionFocus1;
 
-         }
-         else
-         {
+            if (puiFocus)
+            {
 
-            m_puserinteraction->route_message(pkey);
+               puiFocus->route_message(pkey);
+
+            }
+            else
+            {
+
+               m_puserinteraction->route_message(pkey);
+
+            }
 
          }
 

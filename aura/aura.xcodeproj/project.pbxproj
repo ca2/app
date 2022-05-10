@@ -514,6 +514,20 @@
 			remoteGlobalIDString = 9A2818FD25242488009FA9CB;
 			remoteInfo = aqua;
 		};
+		9A8E9EDC282A3433005FF778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A281A2C252428BA009FA9CB /* aqua.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A8E9E37282A3210005FF778;
+			remoteInfo = ios_aqua;
+		};
+		9A8E9EDF282A3433005FF778 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A281A2C252428BA009FA9CB /* aqua.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A8E9EB9282A3210005FF778;
+			remoteInfo = ios_aqua;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1539,6 +1553,7 @@
 			isa = PBXGroup;
 			children = (
 				9A281A31252428BA009FA9CB /* libaqua.dylib */,
+				9A8E9EE0282A3433005FF778 /* libios_aqua.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2322,6 +2337,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A8E9EDD282A3433005FF778 /* PBXTargetDependency */,
 			);
 			name = ios_aura;
 			productName = ios_aura;
@@ -2411,6 +2427,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libaqua.dylib;
 			remoteRef = 9A281A30252428BA009FA9CB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8E9EE0282A3433005FF778 /* libios_aqua.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_aqua.a;
+			remoteRef = 9A8E9EDF282A3433005FF778 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2711,6 +2734,11 @@
 			name = aqua;
 			targetProxy = 9A281A4125242929009FA9CB /* PBXContainerItemProxy */;
 		};
+		9A8E9EDD282A3433005FF778 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_aqua;
+			targetProxy = 9A8E9EDC282A3433005FF778 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -2731,7 +2759,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2742,8 +2771,8 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				KEEP_PRIVATE_EXTERNS = YES;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2768,15 +2797,16 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
-				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
 				GCC_PREPROCESSOR_DEFINITIONS = APPLE_IOS;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				KEEP_PRIVATE_EXTERNS = YES;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

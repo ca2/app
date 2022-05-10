@@ -953,12 +953,12 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
-		9AD692BB251A754800C0EBD7 /* PBXContainerItemProxy */ = {
+		9A8E9EE3282A345C005FF778 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A68C188251145CA008DABD2 /* acme.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A68A41325114352008DABD2;
-			remoteInfo = acme;
+			remoteGlobalIDString = 9AD68E39251A753A00C0EBD7;
+			remoteInfo = ios_acme;
 		};
 		9AD695C4251A754800C0EBD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -3343,7 +3343,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AD692BA251A754800C0EBD7 /* PBXTargetDependency */,
+				9A8E9EE4282A345C005FF778 /* PBXTargetDependency */,
 			);
 			name = ios_apex;
 			productName = apex;
@@ -3816,10 +3816,10 @@
 			name = acme;
 			targetProxy = 9A68C18E251145D7008DABD2 /* PBXContainerItemProxy */;
 		};
-		9AD692BA251A754800C0EBD7 /* PBXTargetDependency */ = {
+		9A8E9EE4282A345C005FF778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = acme;
-			targetProxy = 9AD692BB251A754800C0EBD7 /* PBXContainerItemProxy */;
+			name = ios_acme;
+			targetProxy = 9A8E9EE3282A345C005FF778 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4068,11 +4068,10 @@
 		9AD695C0251A754800C0EBD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4080,11 +4079,10 @@
 		9AD695C1251A754800C0EBD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
-				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

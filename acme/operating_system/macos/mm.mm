@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
+
 //
 //void _openURL(const char * psz);
 //

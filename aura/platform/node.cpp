@@ -7,6 +7,7 @@
 #ifdef LINUX
 #include "aura/operating_system/linux/x11.h"
 #endif
+#include "aura/user/micro/message_box.h"
 
 
 namespace aura
@@ -196,15 +197,12 @@ namespace aura
 #endif
 
 
-   //__pointer(::sequence < ::conversation >) node::get_new_conversation_sequence()
-   //{
+   __pointer(::conversation) node::create_new_message_box_conversation()
+   {
 
-   //   auto psequence = __new(micro_message_box());
+      return __create_new < ::micro_message_box >();
 
-   //   return psequence;
-
-   //}
-
+   }
 
 } // namespace aura
 

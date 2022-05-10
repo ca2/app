@@ -1521,25 +1521,9 @@ void system::post_initial_request()
 void system::system_main()
 {
 
-   /*auto estatus = */ init_system();
+   init_system();
 
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /*estatus = */ m_pnode->system_main();
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
+   m_pnode->system_main();
 
 }
 

@@ -5310,17 +5310,7 @@ namespace apex
    void system::system_main()
    {
 
-      //auto estatus = 
       ::system::system_main();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
 

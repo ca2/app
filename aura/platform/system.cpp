@@ -514,34 +514,7 @@ namespace aura
    void system::system_main()
    {
 
-      //auto estatus =
-      
       ::aqua::system::system_main();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = create_os_node();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //if (m_pnode)
-      //{
-
-      //   return m_pnode->start();
-
-      //}
-
-      //return ::success;
 
    }
 

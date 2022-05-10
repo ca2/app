@@ -4,10 +4,12 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 10/05/22.
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//  15:56
 //
-
-#ifndef _mm_h
-#define _mm_h
+#pragma once
 
 
-#endif /* _mm_h */
+char * ns_string(NSString * str);
+
+
+

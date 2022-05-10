@@ -28,14 +28,14 @@
 
 #define __MM
 
-#ifdef MACOS
+//#ifdef MACOS
 
 #include "_no_templates.h"
 
-#else
+//#else
 
-#include "apex/os/ios/_mm.h"
+//#include "apex/operating_system/ios/_mm.h"
 
-#endif
+//#endif
 
 

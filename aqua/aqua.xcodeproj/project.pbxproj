@@ -245,8 +245,6 @@
 		9A8E9EB0282A3210005FF778 /* file_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28199125242523009FA9CB /* file_application.cpp */; };
 		9A8E9EB1282A3210005FF778 /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A28194525242523009FA9CB /* edit.cpp */; };
 		9A8E9EB2282A3210005FF778 /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
-		9A8E9EB4282A3210005FF778 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7864982650A3CF0034A0E1 /* libacme.dylib */; };
-		9A8E9EB5282A3210005FF778 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281A38252428C3009FA9CB /* libapex.dylib */; };
 		9A97C7C028236AFA00755A0A /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C7BE28236AFA00755A0A /* idpool.h */; };
 		9A97C7C128236AFA00755A0A /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C7BF28236AFA00755A0A /* idpool.cpp */; };
 /* End PBXBuildFile section */
@@ -425,8 +423,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8E9EB4282A3210005FF778 /* libacme.dylib in Frameworks */,
-				9A8E9EB5282A3210005FF778 /* libapex.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,6 +1317,7 @@
 		9A8E9EB7282A3210005FF778 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
@@ -1332,6 +1329,7 @@
 		9A8E9EB8282A3210005FF778 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;

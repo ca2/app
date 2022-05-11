@@ -49,8 +49,6 @@
 		9AA14DD3282A17D900B1621E /* zip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E7B274DFD11000B7A22 /* zip.cpp */; };
 		9AA14DD4282A17D900B1621E /* folder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E4D274DFD0F000B7A22 /* folder.cpp */; };
 		9AA14DD5282A17D900B1621E /* file_function_definitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */; };
-		9AA14DD7282A17D900B1621E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5D7607274E4D2100403BC3 /* libz.tbd */; };
-		9AA14DD8282A17D900B1621E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,8 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA14DD7282A17D900B1621E /* libz.tbd in Frameworks */,
-				9AA14DD8282A17D900B1621E /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

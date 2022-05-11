@@ -144,7 +144,7 @@ Screen::Screen(::user::interaction* puserinteraction,
    m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
    m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
 {
-   
+   initialize(puserinteraction);
    m_puserinteraction = puserinteraction;
    
    common_construct();

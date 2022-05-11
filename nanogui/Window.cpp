@@ -226,10 +226,7 @@ bool Window::mouse_drag_event(const Vector2i &, const Vector2i & rel, const ::us
       m_pos = max(m_pos, Vector2i(0));
 
       m_pos = min(m_pos, parent()->size() - m_size);
-      if(m_functionOnMoved)
-      {
-         m_functionOnMoved();
-      }
+ 
                            
       return true;
 
@@ -253,7 +250,19 @@ bool Window::mouse_button_event(const Vector2i & p, int button, bool down, const
    if (button == __MOUSE_LEFT_BUTTON) 
    {
    
-      m_drag = down && (p.y() - m_pos.y()) < m_theme->m_window_header_height;
+      auto bDrag = down && (p.y() - m_pos.y()) < m_theme->m_window_header_height;
+      
+      if(m_drag && !bDrag)
+      {
+         
+         if(m_functionOnMoved)
+         {
+            m_functionOnMoved();
+         }
+         
+      }
+      
+      m_drag = bDrag;
 
       return true;
 

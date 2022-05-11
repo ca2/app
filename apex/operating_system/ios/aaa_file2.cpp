@@ -15,13 +15,13 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
    
 }
 
-
-::file::path dir::home()
-{
-
-   return getenv("HOME");
-
-}
+//
+//::file::path dir::home()
+//{
+//
+//   return getenv("HOME");
+//
+//}
 
 //::file::path dir::ca2_user()
 //{
@@ -30,19 +30,19 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 //
 //}
 
-::file::path dir::sys_temp()
-{
-   
-   return ::dir::module() / "time";
-   
-}
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::dir::module() / "time";
+//
+//}
 
 
 
-
-string apple_app_module_path()
-{
-   
-   return ::string_from_strdup(ns_get_executable_path());
-   
-}
+//
+//string apple_app_module_path()
+//{
+//   
+//   return ::string_from_strdup(ns_get_executable_path());
+//   
+//}

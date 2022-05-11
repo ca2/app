@@ -61,12 +61,12 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
 
 
 
-int_bool delete_hcursor(HCURSOR h)
-{
-   
-   return 1;
-   
-}
+//int_bool delete_hcursor(HCURSOR h)
+//{
+//   
+//   return 1;
+//   
+//}
 
 
 

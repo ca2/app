@@ -15,6 +15,7 @@
 #include <wordexp.h>
 #include <fcntl.h>
 
+#if !defined(APPLE_IOS)
 
 void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
@@ -237,6 +238,7 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
 }
 
+#endif
 
 critical_section * g_pcsPid2 = nullptr;
 

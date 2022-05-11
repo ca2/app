@@ -19,18 +19,18 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 
-void message_box_synchronous(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback )
+void message_box_synchronous(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::function < void(::enum_dialog_result) > & function)
 {
 
    string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""
 
    string strHeader(pszTitle); // string "absorbs" nullptr pointers into ""
 
-   int iResult = ui_MessageBoxA((void *) oswindow, strMessage, strHeader, emessagebox);
+   auto eresult = (::enum_dialog_result) ui_MessageBoxA((void *) oswindow, strMessage, strHeader, emessagebox);
    
-   string strResult = message_box_result_to_string(iResult);
+   //string strResult = message_box_result_to_string(iResult);
 
-   callback.receive_response(strResult);
+   function(eresult);
 
    return ::success;
    

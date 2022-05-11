@@ -35,19 +35,19 @@ string get_error_message(::u32 dwError);
 CLASS_DECL_AURA void __trace_message(const char * pszPrefix, ::message::message * pmessage);
 CLASS_DECL_AURA void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
 
-#include "implementation.h"
+//#include "implementation.h"
 //#include "dir_system.h"
 //#include "file_system.h"
 //#include "dir_context.h"
 //#include "file_context.h"
 //#include "file.h"
-#include "factory_exchange.h"
-#include "thread.h"
+//#include "factory_exchange.h"
+//#include "thread.h"
 //#include "os_context.h"
 //#include "ip_enum.h"
 //#include "shell.h"
 //#include "file_os_watcher.h"
-#include "host_interaction.h"
+//#include "host_interaction.h"
 
 
 //#include "application.h"
@@ -105,7 +105,7 @@ CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const 
 ///#include "ios_plane_system.h"
 
 
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 
 
 

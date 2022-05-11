@@ -35,7 +35,7 @@ string get_error_message(::u32 dwError);
 CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
 CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 
-#include "implementation.h"
+//#include "implementation.h"
 //#include "dir_system.h"
 //#include "file_system.h"
 //#include "dir_context.h"
@@ -50,7 +50,7 @@ CLASS_DECL_APEX void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 //#include "host_interaction.h"
 
 
-#include "application.h"
+//#include "application.h"
 
 
 //#include "printer.h"

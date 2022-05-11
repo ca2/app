@@ -657,99 +657,39 @@
 		9A226EB727CEE1FE0042BAC2 /* _application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _application.cpp; sourceTree = "<group>"; };
 		9A226EB827CEE1FE0042BAC2 /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
 		9A226EBC27CEE1FE0042BAC2 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
-		9A226EC327CEE1FE0042BAC2 /* multithreading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multithreading.h; sourceTree = "<group>"; };
 		9A226EC427CEE1FE0042BAC2 /* cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_win.cpp; sourceTree = "<group>"; };
 		9A226EC527CEE1FE0042BAC2 /* mm_thread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_thread.mm; sourceTree = "<group>"; };
-		9A226EC627CEE1FE0042BAC2 /* internal2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal2.h; sourceTree = "<group>"; };
 		9A226EC727CEE1FE0042BAC2 /* crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypt.cpp; sourceTree = "<group>"; };
-		9A226EC827CEE1FE0042BAC2 /* window_boot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_boot.h; sourceTree = "<group>"; };
-		9A226EC927CEE1FE0042BAC2 /* aura_window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aura_window.h; sourceTree = "<group>"; };
-		9A226ECA27CEE1FE0042BAC2 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
-		9A226ECB27CEE1FE0042BAC2 /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
-		9A226ECC27CEE1FE0042BAC2 /* win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = win_base.cpp; sourceTree = "<group>"; };
-		9A226ECD27CEE1FE0042BAC2 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
 		9A226ECE27CEE1FE0042BAC2 /* mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm.mm; sourceTree = "<group>"; };
 		9A226ECF27CEE1FE0042BAC2 /* _mm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
-		9A226ED027CEE1FE0042BAC2 /* RoundTextPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTextPosition.h; sourceTree = "<group>"; };
-		9A226ED127CEE1FE0042BAC2 /* AuraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraViewController.mm; sourceTree = "<group>"; };
 		9A226ED227CEE1FE0042BAC2 /* application_system_run.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_system_run.cpp; sourceTree = "<group>"; };
-		9A226ED327CEE1FE0042BAC2 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9A226ED427CEE1FE0042BAC2 /* MessageBoxA_W.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MessageBoxA_W.mm; sourceTree = "<group>"; };
-		9A226ED527CEE1FE0042BAC2 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		9A226ED627CEE1FE0042BAC2 /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
 		9A226ED727CEE1FE0042BAC2 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A226ED827CEE1FE0042BAC2 /* base_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = base_user.cpp; sourceTree = "<group>"; };
 		9A226ED927CEE1FE0042BAC2 /* cross_win_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross_win_gdi.h; sourceTree = "<group>"; };
 		9A226EDA27CEE1FE0042BAC2 /* _m.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _m.h; sourceTree = "<group>"; };
-		9A226EDB27CEE1FE0042BAC2 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
 		9A226EDC27CEE1FE0042BAC2 /* cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_win_file.cpp; sourceTree = "<group>"; };
 		9A226EDD27CEE1FE0042BAC2 /* mm_graphics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_graphics.mm; sourceTree = "<group>"; };
-		9A226EDE27CEE1FE0042BAC2 /* RoundCaretView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundCaretView.h; sourceTree = "<group>"; };
-		9A226EDF27CEE1FE0042BAC2 /* trace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trace.cpp; sourceTree = "<group>"; };
 		9A226EE027CEE1FE0042BAC2 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
-		9A226EE127CEE1FE0042BAC2 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
-		9A226EE227CEE1FE0042BAC2 /* AuraWindowFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowFrameView.h; sourceTree = "<group>"; };
-		9A226EE327CEE1FE0042BAC2 /* language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = language.cpp; sourceTree = "<group>"; };
 		9A226EE427CEE1FE0042BAC2 /* ios.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ios.cpp; sourceTree = "<group>"; };
 		9A226EE527CEE1FE0042BAC2 /* aura.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aura.cpp; sourceTree = "<group>"; };
 		9A226EE727CEE1FE0042BAC2 /* _ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
-		9A226EE827CEE1FE0042BAC2 /* plane_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane_system.h; sourceTree = "<group>"; };
-		9A226EE927CEE1FE0042BAC2 /* host_interaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = host_interaction.cpp; sourceTree = "<group>"; };
-		9A226EEA27CEE1FE0042BAC2 /* exception_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_engine.cpp; sourceTree = "<group>"; };
-		9A226EEB27CEE1FE0042BAC2 /* gen_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gen_1.h; sourceTree = "<group>"; };
 		9A226EEC27CEE1FE0042BAC2 /* mm_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mm_graphics.h; sourceTree = "<group>"; };
-		9A226EED27CEE1FE0042BAC2 /* exception_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_engine.h; sourceTree = "<group>"; };
-		9A226EEE27CEE1FE0042BAC2 /* plane_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plane_system.cpp; sourceTree = "<group>"; };
-		9A226EEF27CEE1FE0042BAC2 /* library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library.cpp; sourceTree = "<group>"; };
-		9A226EF027CEE1FE0042BAC2 /* AuraWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindow.mm; sourceTree = "<group>"; };
-		9A226EF127CEE1FE0042BAC2 /* implementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implementation.h; sourceTree = "<group>"; };
 		9A226EF227CEE1FE0042BAC2 /* graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
-		9A226EF327CEE1FE0042BAC2 /* RoundTextRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTextRange.h; sourceTree = "<group>"; };
-		9A226EF427CEE1FE0042BAC2 /* oswindow_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = oswindow_data.cpp; sourceTree = "<group>"; };
 		9A226EF527CEE1FE0042BAC2 /* base_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base_internal.h; sourceTree = "<group>"; };
-		9A226EF627CEE1FE0042BAC2 /* aura_window.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = aura_window.mm; sourceTree = "<group>"; };
-		9A226EF727CEE1FE0042BAC2 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread.h; sourceTree = "<group>"; };
 		9A226EF827CEE1FE0042BAC2 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
-		9A226EFA27CEE1FE0042BAC2 /* AuraWindowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindowApp.h; sourceTree = "<group>"; };
-		9A226EFB27CEE1FE0042BAC2 /* AuraWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraWindow.h; sourceTree = "<group>"; };
-		9A226EFD27CEE1FE0042BAC2 /* RoundEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundEditView.h; sourceTree = "<group>"; };
-		9A226EFE27CEE1FE0042BAC2 /* window_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window_impl.h; sourceTree = "<group>"; };
-		9A226EFF27CEE1FE0042BAC2 /* AuraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraViewController.h; sourceTree = "<group>"; };
 		9A226F0027CEE1FE0042BAC2 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
-		9A226F0127CEE1FE0042BAC2 /* interaction_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interaction_impl.h; sourceTree = "<group>"; };
 		9A226F0227CEE1FE0042BAC2 /* mm_user.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_user.mm; sourceTree = "<group>"; };
-		9A226F0327CEE1FE0042BAC2 /* RoundTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextView.mm; sourceTree = "<group>"; };
 		9A226F0427CEE1FE0042BAC2 /* debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = debug.cpp; sourceTree = "<group>"; };
-		9A226F0527CEE1FE0042BAC2 /* RoundTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTextView.h; sourceTree = "<group>"; };
-		9A226F0727CEE1FE0042BAC2 /* RoundTextRange.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextRange.mm; sourceTree = "<group>"; };
-		9A226F0827CEE1FE0042BAC2 /* window_boot 2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "window_boot 2.h"; sourceTree = "<group>"; };
-		9A226F0927CEE1FE0042BAC2 /* host_interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = host_interaction.h; sourceTree = "<group>"; };
-		9A226F0A27CEE1FE0042BAC2 /* windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
-		9A226F0B27CEE1FE0042BAC2 /* oswindow_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oswindow_data.h; sourceTree = "<group>"; };
-		9A226F0C27CEE1FE0042BAC2 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
-		9A226F0D27CEE1FE0042BAC2 /* implementation2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implementation2.h; sourceTree = "<group>"; };
-		9A226F0F27CEE1FE0042BAC2 /* RoundCaretView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundCaretView.mm; sourceTree = "<group>"; };
 		9A226F1027CEE1FE0042BAC2 /* _mm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mm2.h; sourceTree = "<group>"; };
 		9A226F1127CEE1FE0042BAC2 /* mm_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm_cross_gdi.mm; sourceTree = "<group>"; };
 		9A226F1227CEE1FE0042BAC2 /* _ios2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ios2.h; sourceTree = "<group>"; };
-		9A226F1327CEE1FE0042BAC2 /* RoundEditView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundEditView.mm; sourceTree = "<group>"; };
 		9A226F1427CEE1FE0042BAC2 /* _m2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _m2.h; sourceTree = "<group>"; };
 		9A226F1527CEE1FE0042BAC2 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
-		9A226F1627CEE1FF0042BAC2 /* RoundTextPosition.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RoundTextPosition.mm; sourceTree = "<group>"; };
-		9A226F1827CEE1FF0042BAC2 /* interaction_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_impl.cpp; sourceTree = "<group>"; };
-		9A226F1927CEE1FF0042BAC2 /* state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
-		9A226F1A27CEE1FF0042BAC2 /* lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lock.cpp; sourceTree = "<group>"; };
-		9A226F1B27CEE1FF0042BAC2 /* AuraWindowApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowApp.mm; sourceTree = "<group>"; };
-		9A226F1D27CEE1FF0042BAC2 /* AuraWindowFrameView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraWindowFrameView.mm; sourceTree = "<group>"; };
 		9A226F1E27CEE1FF0042BAC2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A226F1F27CEE1FF0042BAC2 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		9A226F2027CEE1FF0042BAC2 /* fontopus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fontopus.cpp; sourceTree = "<group>"; };
-		9A226F2127CEE1FF0042BAC2 /* mm_oswindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mm_oswindow.h; sourceTree = "<group>"; };
-		9A226F2227CEE1FF0042BAC2 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
-		9A226F2327CEE1FF0042BAC2 /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		9A226F2427CEE1FF0042BAC2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A226F2527CEE1FF0042BAC2 /* multithreading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multithreading.cpp; sourceTree = "<group>"; };
-		9A226F2627CEE1FF0042BAC2 /* launcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = launcher.cpp; sourceTree = "<group>"; };
 		9A226F2727CEE1FF0042BAC2 /* serial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial.h; sourceTree = "<group>"; };
 		9A226F6F27CEE1FF0042BAC2 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
 		9A226FB327CEE1FF0042BAC2 /* _node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _node.h; sourceTree = "<group>"; };
@@ -1400,17 +1340,7 @@
 				9A226ED227CEE1FE0042BAC2 /* application_system_run.cpp */,
 				9A226F1527CEE1FE0042BAC2 /* application.cpp */,
 				9A226ED727CEE1FE0042BAC2 /* application.h */,
-				9A226EC927CEE1FE0042BAC2 /* aura_window.h */,
-				9A226EF627CEE1FE0042BAC2 /* aura_window.mm */,
 				9A226EE527CEE1FE0042BAC2 /* aura.cpp */,
-				9A226EFF27CEE1FE0042BAC2 /* AuraViewController.h */,
-				9A226ED127CEE1FE0042BAC2 /* AuraViewController.mm */,
-				9A226EFB27CEE1FE0042BAC2 /* AuraWindow.h */,
-				9A226EF027CEE1FE0042BAC2 /* AuraWindow.mm */,
-				9A226EFA27CEE1FE0042BAC2 /* AuraWindowApp.h */,
-				9A226F1B27CEE1FF0042BAC2 /* AuraWindowApp.mm */,
-				9A226EE227CEE1FE0042BAC2 /* AuraWindowFrameView.h */,
-				9A226F1D27CEE1FF0042BAC2 /* AuraWindowFrameView.mm */,
 				9A226EF527CEE1FE0042BAC2 /* base_internal.h */,
 				9A226ED827CEE1FE0042BAC2 /* base_user.cpp */,
 				9A226EDC27CEE1FE0042BAC2 /* cross_win_file.cpp */,
@@ -1419,67 +1349,17 @@
 				9A226EC727CEE1FE0042BAC2 /* crypt.cpp */,
 				9A226F0427CEE1FE0042BAC2 /* debug.cpp */,
 				9A226ED627CEE1FE0042BAC2 /* error.cpp */,
-				9A226EEA27CEE1FE0042BAC2 /* exception_engine.cpp */,
-				9A226EED27CEE1FE0042BAC2 /* exception_engine.h */,
-				9A226ED327CEE1FE0042BAC2 /* exception.cpp */,
-				9A226EDB27CEE1FE0042BAC2 /* factory_exchange.h */,
 				9A226EF827CEE1FE0042BAC2 /* file.cpp */,
-				9A226F2027CEE1FF0042BAC2 /* fontopus.cpp */,
-				9A226EEB27CEE1FE0042BAC2 /* gen_1.h */,
 				9A226EF227CEE1FE0042BAC2 /* graphics.cpp */,
-				9A226EE927CEE1FE0042BAC2 /* host_interaction.cpp */,
-				9A226F0927CEE1FE0042BAC2 /* host_interaction.h */,
-				9A226EF127CEE1FE0042BAC2 /* implementation.h */,
-				9A226F0D27CEE1FE0042BAC2 /* implementation2.h */,
-				9A226F1827CEE1FF0042BAC2 /* interaction_impl.cpp */,
-				9A226F0127CEE1FE0042BAC2 /* interaction_impl.h */,
-				9A226ECD27CEE1FE0042BAC2 /* internal.h */,
-				9A226EC627CEE1FE0042BAC2 /* internal2.h */,
 				9A226EE427CEE1FE0042BAC2 /* ios.cpp */,
-				9A226EE327CEE1FE0042BAC2 /* language.cpp */,
-				9A226F2627CEE1FF0042BAC2 /* launcher.cpp */,
-				9A226EEF27CEE1FE0042BAC2 /* library.cpp */,
-				9A226F1A27CEE1FF0042BAC2 /* lock.cpp */,
 				9A226F1E27CEE1FF0042BAC2 /* main.cpp */,
 				9A226ED427CEE1FE0042BAC2 /* MessageBoxA_W.mm */,
 				9A226F1127CEE1FE0042BAC2 /* mm_cross_gdi.mm */,
 				9A226EEC27CEE1FE0042BAC2 /* mm_graphics.h */,
 				9A226EDD27CEE1FE0042BAC2 /* mm_graphics.mm */,
-				9A226F2127CEE1FF0042BAC2 /* mm_oswindow.h */,
 				9A226EC527CEE1FE0042BAC2 /* mm_thread.mm */,
 				9A226F0227CEE1FE0042BAC2 /* mm_user.mm */,
 				9A226ECE27CEE1FE0042BAC2 /* mm.mm */,
-				9A226F2527CEE1FF0042BAC2 /* multithreading.cpp */,
-				9A226EC327CEE1FE0042BAC2 /* multithreading.h */,
-				9A226EF427CEE1FE0042BAC2 /* oswindow_data.cpp */,
-				9A226F0B27CEE1FE0042BAC2 /* oswindow_data.h */,
-				9A226EEE27CEE1FE0042BAC2 /* plane_system.cpp */,
-				9A226EE827CEE1FE0042BAC2 /* plane_system.h */,
-				9A226EDE27CEE1FE0042BAC2 /* RoundCaretView.h */,
-				9A226F0F27CEE1FE0042BAC2 /* RoundCaretView.mm */,
-				9A226EFD27CEE1FE0042BAC2 /* RoundEditView.h */,
-				9A226F1327CEE1FE0042BAC2 /* RoundEditView.mm */,
-				9A226ED027CEE1FE0042BAC2 /* RoundTextPosition.h */,
-				9A226F1627CEE1FF0042BAC2 /* RoundTextPosition.mm */,
-				9A226EF327CEE1FE0042BAC2 /* RoundTextRange.h */,
-				9A226F0727CEE1FE0042BAC2 /* RoundTextRange.mm */,
-				9A226F0527CEE1FE0042BAC2 /* RoundTextView.h */,
-				9A226F0327CEE1FE0042BAC2 /* RoundTextView.mm */,
-				9A226F1927CEE1FF0042BAC2 /* state.h */,
-				9A226ECA27CEE1FE0042BAC2 /* thread.cpp */,
-				9A226EF727CEE1FE0042BAC2 /* thread.h */,
-				9A226F2327CEE1FF0042BAC2 /* time.cpp */,
-				9A226EDF27CEE1FE0042BAC2 /* trace.cpp */,
-				9A226F0C27CEE1FE0042BAC2 /* user.cpp */,
-				9A226ECB27CEE1FE0042BAC2 /* util.cpp */,
-				9A226ECC27CEE1FE0042BAC2 /* win_base.cpp */,
-				9A226F0827CEE1FE0042BAC2 /* window_boot 2.h */,
-				9A226EC827CEE1FE0042BAC2 /* window_boot.h */,
-				9A226EFE27CEE1FE0042BAC2 /* window_impl.h */,
-				9A226ED527CEE1FE0042BAC2 /* window.cpp */,
-				9A226EE127CEE1FE0042BAC2 /* window.h */,
-				9A226F2227CEE1FF0042BAC2 /* windowing.cpp */,
-				9A226F0A27CEE1FE0042BAC2 /* windowing.h */,
 			);
 			path = ios;
 			sourceTree = "<group>";

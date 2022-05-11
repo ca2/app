@@ -170,7 +170,7 @@ int safe_get_any_char(const ::duration & duration)
 
       millisStart.Now();
 
-#if defined(_UWP) || defined(ANDROID)
+#if defined(_UWP) || defined(ANDROID) || defined(APPLE_IOS)
 
       iSafeChar = getchar();
 

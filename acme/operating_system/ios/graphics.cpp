@@ -25,20 +25,20 @@ bool ios1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ch
 
 }
 
-
-bool ios_get_file_image(::image * pimage, const char * psz)
-{
-
-   if(!ios1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//
+//bool ios_get_file_image(::image * pimage, const char * psz)
+//{
+//
+//   if(!ios1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 //
 //
@@ -60,14 +60,14 @@ bool ios_get_file_image(::image * pimage, const char * psz)
 //
 
 
-
-int_bool delete_hcursor(HCURSOR h)
-{
-   
-   return 1;
-   
-}
-
+//
+//int_bool delete_hcursor(HCURSOR h)
+//{
+//   
+//   return 1;
+//   
+//}
+//
 
 
 

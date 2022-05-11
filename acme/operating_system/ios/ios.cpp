@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-
-
-extern i32 CLASS_DECL_ACME __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * lpCmdLine, i32 nCmdShow);
-
+//
+//
+//extern i32 CLASS_DECL_ACME __win_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, char * lpCmdLine, i32 nCmdShow);
+//
 
 
 

@@ -12,8 +12,8 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
    throw ::exception(::exception());
 }
 
-
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 u32 __run_system(void * p);

@@ -228,12 +228,16 @@ bool ns_open_url(const char * psz)
       
    }
    
-   if(![[UIApplication sharedApplication] openURL: url options: nil completionHandler: nil])
-   {
+   [[UIApplication sharedApplication] openURL: url options: @{} completionHandler: ^(BOOL i)
+    {
       
-      return false;
       
-   }
+   }];
+//   {
+//
+//      return false;
+//
+//   }
    
    return true;
    

@@ -43,6 +43,7 @@ public:
       std::vector<Widget *> m_children;
       ::index m_iHoverCandidateChildStart;
       ::index m_iHoverCandidateChildEnd;
+   ::function <void() > m_functionOnMoved;
       /**
        * Whether or not this Widget is currently visible.  When a Widget is not
        * currently visible, no time is wasted executing its drawing method.

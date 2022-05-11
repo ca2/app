@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <wchar.h>
 
-#include "cross_win_gdi.h"
+//#include "cross_win_gdi.h"
 
 
 #define _fileno   fileno

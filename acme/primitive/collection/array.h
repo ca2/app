@@ -59,8 +59,8 @@ public:
 
 
 
-   inline const TYPE * data() const { return get_data(); }
-   inline TYPE * data() { return get_data(); }
+   inline const TYPE * data() const { return this->get_data(); }
+   inline TYPE * data() { return this->get_data(); }
 
    // must not be overloaded!!
    inline ::index add_item(ARG_TYPE newElement);

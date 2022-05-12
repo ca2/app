@@ -21,11 +21,11 @@ poled & poled::rotate(const poled & pole)
    pole2.z = pole1.y * sin(pole.x) + pole1.z * cos(pole.x) ;
    pole2.x = pole1.x;
    
-   pole1.z = pole2.z * cos(pole.y) - pole2.x * sin(pole.y) ;
-   pole1.x = pole2.z * sin(pole.y) + pole2.x * cos(pole.y) ;
-   pole1.y = pole2.y;
+   z = pole2.z * cos(pole.y) - pole2.x * sin(pole.y) ;
+   x = pole2.z * sin(pole.y) + pole2.x * cos(pole.y) ;
+   y = pole2.y;
    
-   return pole1;
+   return *this;
 
 }
 

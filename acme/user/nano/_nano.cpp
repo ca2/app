@@ -9,7 +9,8 @@ void operating_system_initialize_nano(::factory::factory * pfactory);
 
 bool g_bNanoInitialize = false;
 
-CLASS_DECL_ACME void initialize_nano()
+
+CLASS_DECL_ACME void initialize_nano_window()
 {
 
    if(g_bNanoInitialize)

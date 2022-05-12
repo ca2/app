@@ -150,7 +150,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void initialize_nano();
+CLASS_DECL_ACME void initialize_nano_window();
 
 
 

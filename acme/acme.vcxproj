@@ -1601,8 +1601,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\main.h" />
     <ClInclude Include="platform\main1.h" />
     <ClInclude Include="platform\message.h" />
-    <ClInclude Include="platform\muldiv32.h" />
-    <ClInclude Include="platform\muldiv64.h" />
     <ClInclude Include="platform\nanosecond_timer.h" />
     <ClInclude Include="platform\net.h" />
     <ClInclude Include="platform\node.h" />
@@ -1645,6 +1643,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\title.h" />
     <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
+    <ClInclude Include="platform\uint32_muldiv.h" />
+    <ClInclude Include="platform\uint64_muldiv.h" />
+    <ClInclude Include="platform\uint64_utilities.h" />
     <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />

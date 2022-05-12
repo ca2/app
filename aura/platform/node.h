@@ -88,7 +88,7 @@ namespace aura
 #endif
 
 
-      __pointer(::conversation) create_new_message_box_conversation() override;
+      //__pointer(::conversation) create_new_message_box_conversation() override;
 
 
       //__pointer(::sequence < ::conversation >) get_new_conversation_sequence() override;

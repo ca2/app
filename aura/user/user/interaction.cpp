@@ -3075,12 +3075,12 @@ namespace user
 
          string strType = __type_name(this);
 
-         //         if(strType.contains_ci("control_box"))
-         //         {
-         //
-         //            output_debug_string("control box on clip");
-         //
-         //         }
+                  if(strType.contains_ci("app_simple_application::impact"))
+                  {
+         
+                     output_debug_string("app_simple_application::impact");
+         
+                 }
          //         else if (strType.contains_ci("combo_box"))
          //         {
          //
@@ -3118,6 +3118,8 @@ namespace user
          synchronous_lock synchronouslock(mutex());
 
          //auto pinteractiondraw2d = get_draw2d();
+
+         m_pshapeaClip.release();
 
          if (!m_pshapeaClip)
          {

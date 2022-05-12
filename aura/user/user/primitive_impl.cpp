@@ -296,6 +296,8 @@ namespace user
 
             puiLeft->display();
 
+            puiLeft->set_need_layout();
+
          }
 
       }

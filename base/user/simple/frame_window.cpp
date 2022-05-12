@@ -2071,7 +2071,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       }
 
-      design_display();
+      //design_display();
 
    }
 

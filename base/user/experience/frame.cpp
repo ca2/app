@@ -724,7 +724,15 @@ namespace experience
 
       rectangleClient.deflate(rectangleMargin);
 
-      rectangleClient.top = m_rectangleCaption.bottom - 1;
+      auto eappearance = m_pframewindow->layout().design().appearance();
+
+      if (!m_pframewindow->layout().is_full_screen() &&
+         !(eappearance & ::e_appearance_transparent_frame))
+      {
+
+         rectangleClient.top = m_rectangleCaption.bottom - 1;
+
+      }
 
       m_rectangleClient = rectangleClient;
 

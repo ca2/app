@@ -1064,12 +1064,6 @@
     <ClInclude Include="platform\main.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\muldiv32.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\muldiv64.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\net.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2969,9 +2963,15 @@
     <ClInclude Include="primitive\geometry3d\pole.h">
       <Filter>Header Files\primitive\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\muldiv64.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>   
+    <ClInclude Include="platform\uint32_muldiv.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\uint64_muldiv.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\uint64_utilities.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

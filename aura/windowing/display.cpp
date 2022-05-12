@@ -1134,7 +1134,7 @@ namespace windowing
 
       ::size_i32 sizeCompact;
 
-      ::size_i32 sizeNormal;
+      ::rectangle_i32 rectangleNormal;
 
       index iMatchingWorkspace;
 
@@ -1158,12 +1158,12 @@ namespace windowing
 
          sizeCompact = pinteraction->m_sizeRestoreCompact;
 
-         sizeNormal = pinteraction->layout().normal().m_size;
+         rectangleNormal.set(pinteraction->layout().normal().m_point, pinteraction->layout().normal().m_size);
 
-         if(sizeNormal.is_empty())
+         if(rectangleNormal.is_empty())
          {
 
-            sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
+            rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
 
          }
 
@@ -1179,42 +1179,40 @@ namespace windowing
 
          sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
 
-         sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
-
-      }
-
-      ::size_i32 sizeRestore;
-
-      if(edisplay == e_display_broad)
-      {
-
-         sizeRestore = sizeBroad;
-
-      }
-      else if(edisplay == e_display_compact)
-      {
-
-         sizeRestore = sizeCompact;
-
-      }
-      else
-      {
-
-         sizeRestore = sizeNormal;
+         rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
 
       }
 
       ::rectangle_i32 rectangleRestore;
 
-      rectangleRestore.move_to(rectangleHint.top_left());
+      if(edisplay == e_display_broad)
+      {
 
-      rectangleRestore.set_size(sizeRestore);
+         rectangleRestore.set_size(sizeBroad);
+
+         rectangleRestore.move_to(rectangleHint.top_left());
+
+      }
+      else if(edisplay == e_display_compact)
+      {
+
+         rectangleRestore.set_size(sizeCompact);
+
+         rectangleRestore.move_to(rectangleHint.top_left());
+
+      }
+      else
+      {
+
+         rectangleRestore = rectangleNormal;
+
+      }
 
       ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
 
       rectangleWorkspaceBitSmaller.deflate(5);
 
-      if (!rectangleWorkspaceBitSmaller.contains(rectangleRestore))
+      if (!rectangleWorkspaceBitSmaller.intersects(rectangleRestore))
       {
 
          rectangleRestore.move_to(rectangleWorkspace.origin() + rectangleWorkspace.size() / 10);

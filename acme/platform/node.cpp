@@ -1678,6 +1678,8 @@ namespace acme
    __pointer(::conversation) node::create_new_message_box_conversation()
    {
 
+      initialize_nano_window();
+
       return __create_new < ::nano_message_box >();
 
    }

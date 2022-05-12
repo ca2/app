@@ -307,7 +307,7 @@ extern class ::system * g_psystem;
 CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
 {
 
-   initialize_nano();
+   initialize_nano_window();
 
    if (::is_null(pobject))
    {
@@ -399,7 +399,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    //pobject->fork([pmessagebox]()
    //{
 
-   initialize_nano();
+   initialize_nano_window();
 
    if (::is_null(pobject))
    {

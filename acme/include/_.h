@@ -2877,7 +2877,7 @@ namespace text
 #include "acme/memory/new.h"
 
 
-#include "acme/platform/muldiv64.h"
+//#include "acme/platform/muldiv64.h"
 
 
 #include "acme/platform/auto_pointer.h"

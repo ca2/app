@@ -61,3 +61,16 @@ void utc_timespec(timespec * ptimespec)
 
 
 
+
+
+void utc_timespec(timespec * ptimespec);
+
+
+int mach_timespec_get(timespec * ptimespec, int i)
+{
+   
+   utc_timespec(ptimespec);
+   
+   return i;
+   
+}

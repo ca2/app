@@ -533,7 +533,7 @@ namespace apex
       if (::str::begins_ci(path, "matter://"))
       {
 
-         path = dir().matter(path, false);
+         path = dir().matter(path);
 
       }
 
@@ -549,7 +549,7 @@ namespace apex
 
          path += ".ico";
 
-         path = dir().matter(path, false);
+         path = dir().matter(path);
 
       }
 

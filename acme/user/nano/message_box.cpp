@@ -9,6 +9,7 @@
 bool is_ui_possible();
 void ns_do_main_loop(double dSeconds);
 
+
 nano_message_box::nano_message_box()
 {
 
@@ -22,6 +23,14 @@ nano_message_box::nano_message_box()
 nano_message_box::~nano_message_box()
 {
 
+
+}
+
+
+::e_message_box nano_message_box::get_message_box_flags()
+{
+
+   return m_emessagebox;
 
 }
 
@@ -222,6 +231,26 @@ void nano_message_box::display(const ::string & strMessage, const ::string & str
       message_loop();
 
    });
+
+}
+
+
+void nano_message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox)
+{
+
+   m_functionClose = [this](nano_window* pwindow)
+   {
+
+      m_psequence->on_sequence();
+
+   };
+
+   main_asynchronous([this, strMessage, strTitle, emessagebox]()
+      {
+
+         display(strMessage, strTitle, emessagebox);
+
+      });
 
 }
 
@@ -460,7 +489,6 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    auto pbutton = __create_new < popup_button >();
 
-
    pbutton->m_functionClose = [this](nano_window * pwindow)
    {
 
@@ -475,9 +503,7 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    };
 
-
    pbutton->display("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
-
 
 }
 
@@ -488,5 +514,6 @@ bool nano_message_box::is_popup_window() const
    return true;
    
 }
+
 
 

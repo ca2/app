@@ -21,7 +21,6 @@ class raw_fail {};
 // Not even new/delete/strings/ids can be used after it goes out of scope.
 
 
-class os_local;
 //
 //
 //class main_runner_data

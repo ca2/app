@@ -3,14 +3,15 @@ workspace.xml
 cmake-build-*/
 cmake-time-*/
 **/.visualgdb
+**/CMakeFiles
 **/.vs
 **/.DS_Store
 **/.git
 **/.svn
 **/.link_object
 **/VisualGDB
-
 **/CVS
+*.xcuserdata
 .DS_Store
 ._.DS_Store
 *.suo

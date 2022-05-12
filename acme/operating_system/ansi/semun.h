@@ -7,6 +7,7 @@
    Definition of the semun union used by the ::acme::get_system() V semaphore semop()
    system call.
 */
+#if !defined(ANDROID)
 #ifndef SEMUN_H
 #define SEMUN_H                 /* Prevent accidental double inclusion */
 
@@ -31,4 +32,5 @@ union semun {                   /* Used in calls to semctl() */
 
 #endif
 
-#endif
+#endif // !defined(SEMUN_H)
+#endif // !defined(ANDROID)

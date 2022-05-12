@@ -993,6 +993,13 @@ namespace windowing
    }
 
 
+   float window::get_density_for_window()
+   {
+
+      return 1.0f;
+
+   }
+
 
    float window::dpiy(float y)
    {
@@ -1366,10 +1373,68 @@ namespace windowing
    }
 
 
+   void window::on_touch_down(int x, int y)
+   {
+
+      ::lparam lparam(x, y);
+
+      m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
+
+   }
+
+
+   void window::on_touch_drag(int x, int y)
+   {
+
+      ::lparam lparam(x, y);
+
+      m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
+
+   }
+
+
+   void window::on_touch_up(int x, int y)
+   {
+
+      ::lparam lparam(x, y);
+
+      m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
+
+   }
+
+
+   void window::on_size(int w, int h)
+   {
+
+      ::lparam lparam(w, h);
+
+      m_puserinteractionimpl->m_puserinteraction->post_message(e_message_size, 0, lparam);
+
+   }
+
+
+   void window::on_text(const ansichar* pansisz, strsize length)
+   {
+
+
+   }
+
+
+   void window::on_text(const wd16char* pwd16sz, strsize length)
+   {
+
+
+   }
+
+
+   void window::on_text(const wd32char* pwd32sz, strsize length)
+   {
+
+
+   }
+
+
 } // namespace windowing
-
-
-
 
 
 CLASS_DECL_AURA ::user::interaction* __user_interaction(::windowing::window* pwindow)

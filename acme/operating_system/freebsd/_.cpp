@@ -160,14 +160,3 @@ int get_proc_cpuinfo_core_count()
 
 }
 
-
-//
-//void debug_break()
-//{
-//
-//   asm("int $3");
-//
-//}
-//
-
-

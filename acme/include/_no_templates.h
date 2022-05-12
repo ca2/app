@@ -6,14 +6,13 @@
 //
 #define NO_TEMPLATE
 
+
 #include "operating_system/config.h"
 
 
 #include "_c.h"
-#include "__/__bit.h"
-#include "__/__stdint.h"
-#include "__/__inttypes.h"
-#include "_aura_type.h"
+#include "__standard_type.h"
+
 
 #ifndef CLASS_DECL_ACME
 #define CLASS_DECL_ACME

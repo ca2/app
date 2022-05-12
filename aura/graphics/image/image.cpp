@@ -312,7 +312,7 @@ void image::create_isotropic(::image* pimage)
 
    pimage->create({ cx, cy });
 
-   if (::parallelization::priority() == ::e_priority_idle)
+   if (::parallelization::get_priority() == ::e_priority_idle)
    {
 
       map();
@@ -7045,7 +7045,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
          cy /= 2.0;
 
-         if (::parallelization::priority() == ::e_priority_idle)
+         if (::parallelization::get_priority() == ::e_priority_idle)
          {
 
             map();
@@ -7123,7 +7123,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
          for (int y = 0, dy = (i32)cy; dy > 0; y += dy, dy /= 2)
          {
 
-            if (::parallelization::priority() == ::e_priority_idle)
+            if (::parallelization::get_priority() == ::e_priority_idle)
             {
 
                map();

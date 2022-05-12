@@ -45,7 +45,7 @@ namespace user
 
       defer_set_icon();
 
-      add_user_item(__new(::item( ::e_element_close_button, ::id_close_app)));
+      add_user_item(__new(::item(::e_element_close_button, ::id_close_app)));
       add_user_item(__new(::item(::e_element_maximize_button, ::id_maximize)));
       add_user_item(__new(::item(::e_element_minimize_button, ::id_minimize)));
 

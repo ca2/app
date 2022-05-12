@@ -88,23 +88,6 @@ va_list *Arguments
 void ns_log(const char * pszLog);
 
 
-void output_debug_string(const char * pszOutputString)
-{
-
-   string strOutputString(pszOutputString);
-
-   strOutputString.find_replace("\r\n", "\n");
-
-   strOutputString.find_replace("\n", "\r");
-
-   wd32char * pusz = ansi_to_wd32_dup(strOutputString);
-
-   wprintf(L"%S", pusz);
-
-   memory_free(pusz);
-
-}
-
 
 
 

@@ -185,6 +185,12 @@ public:
    virtual void destroy();
 
 
+   virtual void on_sequence();
+
+
+
+
+
 };
 
 

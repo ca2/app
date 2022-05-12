@@ -30,6 +30,11 @@
 //#define App(playered) (*::get_app(playered)->m_pauraapplication)
 
 
+namespace acme_posix { class node; }
+namespace apex_posix { class node; }
+namespace aura_posix { class node; }
+
+
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
 
 
@@ -67,14 +72,14 @@ namespace universal_windows
 #endif
 
 
-namespace OPERATING_SYSTEM_NAMESPACE
+namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 {
 
 
    class interaction_impl;
 
 
-} // namespace OPERATING_SYSTEM_NAMESPACE
+} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 
 
 #include "aura/graphics/draw2d/_.h"
@@ -808,8 +813,6 @@ CLASS_DECL_AURA void aura_ref();
 //using string = string_base < ansichar >;
 //using wstring = string_base < widechar >;
 //
-//
-//inline const ansichar* __c_str(const string& str);
 //
 //class machine_event_central;
 //

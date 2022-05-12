@@ -735,7 +735,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    if ((byte *) 0x0000000200000020 == ((byte *)pParam))
    {
 
-      DEBUG_BREAK;
+      debug_break();
 
    }
    //else if ((((iptr)pParam) & 0xcccccc) == 0xcccccc)
@@ -950,7 +950,7 @@ void plex_heap_alloc_sync::NewBlock()
    if ((byte *)0x0000000200000020 == ((byte *)pnodeNext))
    {
 
-      DEBUG_BREAK;
+      debug_break();
 
    }
 

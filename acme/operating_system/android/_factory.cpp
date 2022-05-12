@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_android.h"
 //#include "buffer.h"
-#include "acme/node/posix/pipe.h"
+//#include "acme/operating_system/posix/pipe.h"
 
 
 //namespace android
@@ -49,9 +49,9 @@ void __node_acme_factory(::factory::factory * pfactory)
    //add_factory_item < ::android::dir_system          , ::dir_system                > ();
    //add_factory_item < ::android::file_context        , ::file_context              > ();
    //add_factory_item < ::android::dir_context         , ::dir_context               > ();
-   add_factory_item < ::android::file                , ::file::file                > ();
+   //add_factory_item < ::android::file                , ::file::file                > ();
    //add_factory_item < ::android::os_context          , ::os_context                > ();
-   add_factory_item < ::posix::pipe                  , ::operating_system::pipe             > ();
+   //add_factory_item < ::posix::pipe                  , ::operating_system::pipe             > ();
 
    //add_factory_item < ::android::shell               , ::user::shell               > ();
 

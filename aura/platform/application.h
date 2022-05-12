@@ -209,6 +209,7 @@ namespace aura
       inline ::aura::system* get_system();
 
 
+
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
@@ -795,6 +796,11 @@ namespace aura
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue) override;
 
       virtual ::user::interaction * main_window();
+
+
+      virtual bool is_sandboxed();
+
+
 
       virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
 

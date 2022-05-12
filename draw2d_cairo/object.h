@@ -15,16 +15,16 @@ namespace draw2d_cairo
       virtual ~object();
 
 
-      virtual void * get_os_data() const;
+      //virtual void * get_os_data() const;
 
 
       bool delete_object();
 
 
       i32 get_object(i32 nCount, void * lpObject) const;
-      ::u32 GetObjectType() const;
-      bool CreateStockObject(i32 nIndex);
-      bool UnrealizeObject();
+      ::u32 GetObjectType() const override;
+      bool CreateStockObject(i32 nIndex) override;
+      bool UnrealizeObject() override;
       bool operator==(const object& obj) const;
       bool operator!=(const object& obj) const;
 

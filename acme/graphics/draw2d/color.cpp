@@ -1273,3 +1273,33 @@ void __exchange(::stream & s, ::color::hls & hls)
 
 }
 
+::color::color g_color20[] = {
+::color::color(0xff808080),
+::color::color(0xff000075),
+::color::color(0xff008080),
+::color::color(0xff808000),
+::color::color(0xff800000),
+::color::color(0xffe6194b),
+::color::color(0xff3cb44b),
+::color::color(0xffffe119),
+::color::color(0xff4363d8),
+::color::color(0xfff58231),
+::color::color(0xff911eb4),
+::color::color(0xff46f0f0),
+::color::color(0xfff032e6),
+::color::color(0xffbcf60c),
+::color::color(0xfffabebe),
+::color::color(0xffe6beff),
+::color::color(0xff9a6324),
+::color::color(0xfffffac8),
+::color::color(0xffaaffc3),
+::color::color(0xffffd8b1)
+};
+
+
+CLASS_DECL_ACME::color::color _020GetColor(::index i)
+{
+   
+   return g_color20[i %20];
+
+}

@@ -17,6 +17,9 @@ namespace opengl
 
    context_egl::context_egl()
    {
+
+#if !defined(ANDROID)
+
       if (glewInit() != GLEW_NO_ERROR)
       {
          //cout << "Failed to initialize GLEW... " << endl;
@@ -24,6 +27,7 @@ namespace opengl
 
       }
 
+#endif
 
       m_emode = e_mode_egl;
 
@@ -57,15 +61,15 @@ namespace opengl
       {
 
          EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
-         EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT,
-         EGL_CONFORMANT, EGL_OPENGL_BIT,
-         EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
+         EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+         //EGL_CONFORMANT, EGL_OPENGL_BIT,
+         //EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
          EGL_RED_SIZE, 8,
          EGL_GREEN_SIZE, 8,
          EGL_BLUE_SIZE, 8,
          EGL_ALPHA_SIZE, 8,
-         EGL_LEVEL, 0,
-         EGL_BUFFER_SIZE, 24,
+         //EGL_LEVEL, 0,
+         //EGL_BUFFER_SIZE, 24,
          EGL_NONE
 
       };
@@ -105,7 +109,7 @@ namespace opengl
 
          int iError = eglGetError();
 
-         const char * pszError = (const ::string &) eglQueryString(m_display, iError);
+         const char * pszError = eglQueryString(m_display, iError);
 
          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
 
@@ -154,9 +158,15 @@ namespace opengl
 
       }
 
+      EGLint contextAttribs[] =
+      {
+          EGL_CONTEXT_MAJOR_VERSION, 3, // Specifies OpenGL ES 3.0.
+          EGL_CONTEXT_MINOR_VERSION, 0, // Specifies OpenGL ES 3.0.
+          EGL_NONE
+      };
       // Step 7 - Create a context.
       //EGLContext eglContext;
-      m_context = eglCreateContext(m_display, m_config, NULL, NULL);
+      m_context = eglCreateContext(m_display, m_config, NULL, contextAttribs);
       //qDebug() << "egl error" << eglGetError();
 
       if (m_context == EGL_NO_CONTEXT)
@@ -166,6 +176,8 @@ namespace opengl
          throw ::exception(::error_failed);
 
       }
+
+      m_itaskGpu = ::get_current_itask();
 
       //return ::success;
 
@@ -254,7 +266,15 @@ namespace opengl
    string context_egl::get_shader_version_text()
    {
 
+#if defined(ANDROID)
+
+      return "#version 300 es";
+
+#else
+
       return "version 300 es";
+
+#endif
 
    }
 

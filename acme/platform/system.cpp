@@ -765,7 +765,7 @@ void system::call_init_system()
 
       strMoreDetails = "caught at system::call_init_system";
 
-      exception_message_box(this, exception, strMoreDetails);
+      g_psystem->m_pnode->report_exception_to_user(this, exception, strMoreDetails);
 
       m_estatus = exception.m_estatus;
 
@@ -1521,25 +1521,9 @@ void system::post_initial_request()
 void system::system_main()
 {
 
-   /*auto estatus = */ init_system();
+   init_system();
 
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /*estatus = */ m_pnode->system_main();
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
+   m_pnode->system_main();
 
 }
 
@@ -1659,7 +1643,17 @@ void system::report_system_instance()
 
       strModifier = strDate + "_" + strPid;
 
-      ::file::path pathFolder = m_psystem->m_pacmedirectory->roaming();
+      ::file::path pathFolder;
+      
+#ifdef ANDROID
+
+      pathFolder = m_psystem->m_pathCacheDirectory;
+
+#else
+
+      pathFolder = m_psystem->m_pacmedirectory->roaming();
+
+#endif
 
       pathFolder /= strAppId;
 
@@ -2157,27 +2151,7 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 __pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 {
 
-   initialize_nano();
-
-   auto pmessagebox = __create_new < nano_message_box >();
-
-   auto psequence = __new(::sequence <::conversation >());
-
-   psequence->m_p = pmessagebox;
-
-   pmessagebox->m_functionClose = [ psequence ](nano_window * pwindow)
-   {
-
-      psequence->on_sequence();
-
-   };
-
-   main_asynchronous([strMessage, strTitle, emessagebox, pmessagebox]()
-   {
-
-      pmessagebox->display(strMessage, strTitle, emessagebox);
-
-   });
+   auto psequence = m_pnode->message_box(strMessage, strTitle, emessagebox);
 
    return psequence;
 
@@ -2392,6 +2366,10 @@ __pointer(::app) system::new_app(const char* pszAppId)
    return papp;
 
 }
+
+
+
+
 
 
 

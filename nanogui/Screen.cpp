@@ -144,7 +144,7 @@ Screen::Screen(::user::interaction* puserinteraction,
    m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
    m_stencil_buffer(stencil_buffer), m_float_buffer(float_buffer)*/, m_redraw(false)
 {
-   
+   initialize(puserinteraction);
    m_puserinteraction = puserinteraction;
    
    common_construct();
@@ -1267,29 +1267,56 @@ void Screen::on_mouse_leave()
 
 }
 
+int user_key_to_nano2d_button(::user::e_key ekeyButton)
+{
 
-bool Screen::on_button_down(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+   if (ekeyButton == ::user::e_key_left_button)
+   {
+
+      return __MOUSE_LEFT_BUTTON;
+
+   }
+   else if (ekeyButton == ::user::e_key_right_button)
+   {
+
+      return __MOUSE_RIGHT_BUTTON;
+
+   }
+   else
+   {
+
+      return -1;
+
+   }
+
+}
+
+bool Screen::on_button_down(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
 
    p += m_pos;
 
-   bool bRet = mouse_button_event(p, 0, 1, ekeyModifiers);
+   int iNanoGuiButton = user_key_to_nano2d_button(ekeyButton);
+
+   bool bRet = mouse_button_event(p, iNanoGuiButton, 1, ekeyModifiers);
 
    return bRet;
 
 }
 
 
-bool Screen::on_button_up(const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
+bool Screen::on_button_up(::user::e_key ekeyButton, const ::point_i32 & point, const ::user::e_key & ekeyModifiers)
 {
 
    Vector2i p(point.x, point.y);
 
    p += m_pos;
 
-   bool bRet = mouse_button_event(p, 0, 0, ekeyModifiers);
+   int iNanoGuiButton = user_key_to_nano2d_button(ekeyButton);
+
+   bool bRet = mouse_button_event(p, iNanoGuiButton, 0, ekeyModifiers);
 
    return bRet;
 

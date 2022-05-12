@@ -143,8 +143,6 @@ public:
    virtual void on_set_finish();
 
 
-
-
    //virtual void do_task();
    //virtual void on_task();
 

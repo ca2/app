@@ -72,13 +72,18 @@ namespace app_shader
 
          auto pitem = get_user_item(::e_element_close_button);
 
-         *pitem = ::e_element_close_icon;
+         if (pitem)
+         {
+
+            *pitem = ::e_element_close_icon;
+
+         }
 
       }
 
       {
 
-         add_user_item(__new(::item(::e_element_switch_button, ::id_close_app )));
+         add_user_item(__new(::item(::e_element_switch_button, ::id_switch)));
 
          auto pitem = get_user_item(::e_element_switch_button);
 
@@ -90,7 +95,12 @@ namespace app_shader
 
          auto pitem = get_user_item(::e_element_maximize_button);
 
-         *pitem = ::e_element_maximize_icon;
+         if (pitem)
+         {
+
+            *pitem = ::e_element_maximize_icon;
+
+         }
 
       }
 
@@ -99,10 +109,14 @@ namespace app_shader
 
          auto pitem = get_user_item(::e_element_minimize_button);
 
-         *pitem = ::e_element_minimize_icon;
+         if (pitem)
+         {
+
+            *pitem = ::e_element_minimize_icon;
+
+         }
 
       }
-
 
       get_top_level()->set_prodevian();
 
@@ -111,10 +125,9 @@ namespace app_shader
    }
 
 
-
-
    void main_window::on_message_destroy(::message::message * pmessage)
    {
+
 
    }
 
@@ -282,7 +295,7 @@ namespace app_shader
 
          }
 
-         prender->m_pinteraction = this;
+//         prender->m_pinteraction = this;
 
          string strText;
 

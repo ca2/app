@@ -795,7 +795,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //}
 
-   if (m_bWindowFrame || m_bFramePayloadFlags)
+   //if (m_bWindowFrame || m_bFramePayloadFlags)
    {
 
       if (!(m_ewindowflag & e_window_flag_window_created))
@@ -815,6 +815,14 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          }
 
 //#endif
+         if (m_varFrame["experience"].is_empty())
+         {
+
+            string strPreferredExperience = get_app()->preferred_experience();
+
+            m_varFrame["experience"] = strPreferredExperience;
+
+         }
 
          if (m_varFrame["schema"].is_empty())
          {
@@ -868,8 +876,8 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   if (m_bWindowFrame)
-   {
+   //if (m_bWindowFrame)
+   //{
       
       initialize_frame_window_experience();
 
@@ -884,7 +892,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       //}
 
-   }
+   //}
 
    if (get_parent() == nullptr && m_strFrameTitle.is_empty())
    {
@@ -1992,7 +2000,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          rectangleFrame = screen_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str((::i32)layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2042,7 +2050,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       //pusersystem->set_rect(rectangleFrame);
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str((::i32)layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {

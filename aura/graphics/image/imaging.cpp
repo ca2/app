@@ -18,11 +18,11 @@
 
 #endif
 
-#ifdef ANDROID
-
-#define _stricmp strcasecmp
-
-#endif
+//#ifdef ANDROID
+//
+//#define _stricmp strcasecmp
+//
+//#endif
 
 
 

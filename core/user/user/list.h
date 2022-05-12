@@ -331,7 +331,8 @@ namespace user
       void DILoadOrder() override;
 
 
-      void _001OnSelectionChange() override;
+      //void _001OnSelectionChange() override;
+
 
       virtual void _001UpdateColumns();
 
@@ -343,11 +344,11 @@ namespace user
 
       bool _001IsItemVisible(index iItem) override;
 
-      virtual void _001ClearSelection() override;
+      //virtual void _001ClearSelection() override;
 
-      void _001SetSelection(const range & range) override;
+      //void _001SetSelection(const range & range) override;
 
-      void _001AddSelection(const item_range & itemrange) override;
+      //void _001AddSelection(const item_range & itemrange) override;
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
       ::item_pointer current_item() override;

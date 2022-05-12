@@ -109,4 +109,22 @@ void system::windowing_post(const ::procedure & procedure)
 }
 
 
+bool __os_init_thread()
+{
+
+   return true;
+
+}
+
+
+bool __os_term_thread()
+{
+
+   //thread_shutdown();
+
+   return true;
+
+}
+
+
 

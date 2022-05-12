@@ -8,7 +8,9 @@
 
 #include "framework.h"
 #undef DEBUG
+#if defined(MACOS)
 #include <Carbon/Carbon.h>
+#endif
 
 #if defined(__APPLE__)
 

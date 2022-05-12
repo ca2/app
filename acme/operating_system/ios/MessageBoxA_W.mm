@@ -140,56 +140,56 @@ dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
    
    switch(uType)
    {
-      case MB_OKCANCEL:
+      case e_message_box_ok_cancel:
          if(b1)
-            return IDOK;
+            return e_dialog_result_ok;
          else if(b2)
-            return IDCANCEL;
+            return e_dialog_result_cancel;
          break;
-      case MB_ABORTRETRYIGNORE:
+      case e_message_box_abort_retry_ignore:
          if(b1)
-            return IDABORT;
+            return e_dialog_result_abort;
          else if(b2)
-            return IDRETRY;
+            return e_dialog_result_retry;
          else if(b3)
-            return IDIGNORE;
+            return e_dialog_result_ignore;
          break;
-      case MB_YESNOCANCEL:
+      case e_message_box_yes_no_cancel:
          if(b1)
-            return IDYES;
+            return e_dialog_result_yes;
          else if(b2)
-            return IDNO;
+            return e_dialog_result_no;
          else if(b3)
-            return IDCANCEL;
+            return e_dialog_result_cancel;
          break;
-      case MB_YESNO:
+      case e_message_box_yes_no:
          if(b1)
-            return IDYES;
+            return e_dialog_result_yes;
          else if(b2)
-            return IDNO;
+            return e_dialog_result_no;
          break;
-      case MB_RETRYCANCEL:
+      case e_message_box_retry_cancel:
          if(b1)
-            return IDRETRY;
+            return e_dialog_result_retry;
          else if(b2)
-            return IDCANCEL;
+            return e_dialog_result_cancel;
          break;
-      case MB_CANCELTRYCONTINUE:
+      case e_message_box_cancel_try_continue:
          if(b1)
-            return IDCANCEL;
+            return e_dialog_result_cancel;
          else if(b2)
-            return IDTRYAGAIN;
+            return e_dialog_result_try_again;
          else if(b3)
-            return IDCONTINUE;
+            return e_dialog_result_continue;
          break;
       default:
          if(b1)
-            return IDOK;
+            return e_dialog_result_ok;
          break;
    }
    
    
-   return IDCANCEL;
+   return e_dialog_result_cancel;
 
 }
 

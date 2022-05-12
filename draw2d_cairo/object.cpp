@@ -132,12 +132,12 @@ namespace draw2d_cairo
 //   }
 
 
-   void * object::get_os_data() const
-   {
+   //void * object::get_os_data() const
+   //{
 
-      return get_os_data();
+   //   return ::draw2d::object::get_os_data();
 
-   }
+   //}
 
 
 

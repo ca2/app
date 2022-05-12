@@ -232,70 +232,70 @@ bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interactio
 
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
-{
-
-  int iOsPolicy;
-
-  int iCa2Min;
-
-  int iCa2Max;
-
-/*   if(nCa2Priority == ::e_priority_normal)
-  {
-
-     iOsPolicy = SCHED_OTHER;
-
-     iCa2Min = (int) ::e_priority_normal;
-
-     iCa2Max = (int) ::e_priority_normal;
-
-  }*/
-  if(nCa2Priority > ::e_priority_normal)
-  {
-
-     iOsPolicy = SCHED_RR;
-
-     iCa2Min = (int) ::e_priority_normal;
-
-     iCa2Max = 99;
-
-  }
-  else
-  {
-
-     //iOsPolicy = SCHED_IDLE;
-     iOsPolicy = SCHED_OTHER;
-
-     iCa2Min = 0;
-
-     iCa2Max = (int) ::e_priority_normal;
-
-  }
-
-  int iOsMax = sched_get_priority_max(iOsPolicy);
-
-  int iOsMin = sched_get_priority_min(iOsPolicy);
-
-  int iOsPriority;
-
-  if(iCa2Min == iCa2Max)
-  {
-     iOsPriority = 0;
-  }
-  else
-  {
-     iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
-  }
-
-  iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
-
-  *piPolicy = iOsPolicy;
-
-  pparam->sched_priority = iOsPriority;
-
-}
-
+//void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
+//{
+//
+//  int iOsPolicy;
+//
+//  int iCa2Min;
+//
+//  int iCa2Max;
+//
+///*   if(nCa2Priority == ::e_priority_normal)
+//  {
+//
+//     iOsPolicy = SCHED_OTHER;
+//
+//     iCa2Min = (int) ::e_priority_normal;
+//
+//     iCa2Max = (int) ::e_priority_normal;
+//
+//  }*/
+//  if(nCa2Priority > ::e_priority_normal)
+//  {
+//
+//     iOsPolicy = SCHED_RR;
+//
+//     iCa2Min = (int) ::e_priority_normal;
+//
+//     iCa2Max = 99;
+//
+//  }
+//  else
+//  {
+//
+//     //iOsPolicy = SCHED_IDLE;
+//     iOsPolicy = SCHED_OTHER;
+//
+//     iCa2Min = 0;
+//
+//     iCa2Max = (int) ::e_priority_normal;
+//
+//  }
+//
+//  int iOsMax = sched_get_priority_max(iOsPolicy);
+//
+//  int iOsMin = sched_get_priority_min(iOsPolicy);
+//
+//  int iOsPriority;
+//
+//  if(iCa2Min == iCa2Max)
+//  {
+//     iOsPriority = 0;
+//  }
+//  else
+//  {
+//     iOsPriority = (((nCa2Priority - iCa2Min)  * (iOsMax - iOsMin)) / (iCa2Max - iCa2Min)) + iOsMin;
+//  }
+//
+//  iOsPriority = maximum(iOsMin, minimum(iOsMax, iOsPriority));
+//
+//  *piPolicy = iOsPolicy;
+//
+//  pparam->sched_priority = iOsPriority;
+//
+//}
+//
 //
 //i32 get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 //{
@@ -480,23 +480,6 @@ void __node_term_multitasking()
 // thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
 
-bool __os_init_thread()
-{
-
-   return true;
-
-}
-
-
-
-bool __os_term_thread()
-{
-
-   //thread_shutdown();
-
-   return true;
-
-}
 
 
 //int get_processor_count()
@@ -537,14 +520,14 @@ bool __os_term_thread()
 //
 //}
 
-int get_processor_count();
-
-int get_current_process_affinity_order()
-{
-
-   return get_processor_count();
-
-}
+//int get_processor_count();
+//
+//int get_current_process_affinity_order()
+//{
+//
+//   return get_processor_count();
+//
+//}
 
 
 

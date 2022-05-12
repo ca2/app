@@ -5,7 +5,7 @@ inline ::u32 GetTickCount()
 {
    timeval ts;
    gettimeofday(&ts,0);
-   return (ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu;
+   return (::u32) ((ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu);
 
 }
 
@@ -38,10 +38,10 @@ inline ::u32 GetTickCount()
 //}
 
 
-CLASS_DECL_APEX void sleep(unsigned int dwMillis)
-{
-   
-   usleep(dwMillis * 1000);
-   
-}
+//CLASS_DECL_APEX void sleep(unsigned int dwMillis)
+//{
+//   
+//   usleep(dwMillis * 1000);
+//   
+//}
 

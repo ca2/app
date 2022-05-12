@@ -14,7 +14,6 @@ public:
 
 
    string                                 m_strMessage;
-   //string                                 m_strTitle;
    ::function < void(nano_window *) >     m_functionClose;
 
    __pointer(nano_window_implementation)  m_pimplementation;
@@ -61,6 +60,10 @@ public:
 
    nano_window();
    ~nano_window() override;
+
+
+   ::string get_message_box_message() override;
+   ::string get_message_box_title() override;
 
 
    void on_initialize_object() override;

@@ -17,13 +17,13 @@ CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses
    
 }
 
-
-::file::path dir::home()
-{
-
-   return getenv("HOME");
-
-}
+//
+//::file::path dir::home()
+//{
+//
+//   return getenv("HOME");
+//
+//}
 
 //::file::path dir::ca2_user()
 //{
@@ -32,12 +32,12 @@ CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses
 //
 //}
 
-::file::path dir::sys_temp()
-{
-   
-   return ::dir::module() / "time";
-   
-}
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::dir::module() / "time";
+//
+//}
 
 
 

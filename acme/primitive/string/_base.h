@@ -1123,20 +1123,10 @@ public:
 };
 
 
-
-//inline string CLASS_DECL_ACME operator + (const char * psz, const ::string & str);
-//inline string CLASS_DECL_ACME operator + (ansichar ansich, const ::string & str);
-//inline string CLASS_DECL_ACME operator + (wd16char wd16ch, const ::string & str);
-//inline string CLASS_DECL_ACME operator + (wd16char wd32ch, const ::string & str);
-
-inline const ansichar* __c_str(const string& str) { return str.c_str(); }
-
-
 inline ::string operator+(const char* pszLeft, const ::string & strRight);
 
+
 inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight);
-
-
 
 
 inline ::ansistring operator + (ansichar ch, const ::ansistring & strRight)

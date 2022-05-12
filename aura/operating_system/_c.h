@@ -13,9 +13,9 @@
 
 #elif defined(APPLE_IOS)
 
-#include "aura/os/ansios/_c.h"
-#include "aura/os/apple/_c.h"
-#include "aura/os/ios/_c.h"
+#include "aura/operating_system/ansi/_c.h"
+#include "aura/operating_system/apple/_c.h"
+#include "aura/operating_system/ios/_c.h"
 
 #elif defined(LINUX)
 

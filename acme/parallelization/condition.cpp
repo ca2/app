@@ -131,7 +131,9 @@ bool condition::pulse()
 
       while (m_iHold > 0)
       {
-         sleep(1_ms);
+         
+         preempt(1_ms);
+
       }
 
       m_bSignaled = false;
@@ -246,7 +248,7 @@ bool condition::pulse()
 
 #elif defined(ANDROID)
 
-   u32 timeout = duration.u32_millis();
+   u32 timeout = wait;
 
    pthread_mutex_lock(&m_mutex);
 
@@ -261,7 +263,7 @@ bool condition::pulse()
 
       pthread_cond_wait(&m_cond, &m_mutex);
 
-      if (start.elapsed() > duration)
+      if (start.elapsed() > wait)
       {
 
          m_iHold--;
@@ -276,7 +278,8 @@ bool condition::pulse()
 
    pthread_mutex_unlock(&m_mutex);
 
-   return ::synchronization_result(e_synchronization_result_signaled_base);
+   //return e_synchronization_result_signaled_base;
+   return true;
 
 #else
 

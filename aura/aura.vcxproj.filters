@@ -177,6 +177,12 @@
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{e9b19d32-f46d-440a-a639-032432198333}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\micro">
+      <UniqueIdentifier>{cd7e74bb-3590-4c00-8631-8a96ad18b3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\micro">
+      <UniqueIdentifier>{e95e8044-ed11-4d88-8ca9-4263f57e4b18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics\double_buffer.h">
@@ -1072,6 +1078,11 @@
     </ClInclude>
     <ClInclude Include="graphics\draw3d\matrix.h">
       <Filter>Header Files\graphics\draw3d</Filter>
+    <ClInclude Include="windowing\text_editor_interface.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\message_box.h">
+      <Filter>Header Files\user\micro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1647,6 +1658,12 @@
     </ClCompile>
     <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\text_editor_interface.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\message_box.cpp">
+      <Filter>Source Files\user\micro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

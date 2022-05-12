@@ -642,7 +642,7 @@ list(APPEND library_source
    primitive/string/_compare_impl.h
    primitive/string/_conv.h
    #primitive/string/_conv_ansi.cpp
-   primitive/string/_conv_ansi.h
+   #primitive/string/_conv_ansi.h
    primitive/string/_conv_ansi_impl.h
    primitive/string/_defer.h
    primitive/string/_impl.h
@@ -783,6 +783,8 @@ list(APPEND library_source
    user/nano/window_interface.h
    user/user/check.cpp
    user/user/check.h
+   user/user/conversation.cpp
+   user/user/conversation.h
    user/user/drag.cpp
    user/user/drag.h
    user/user/element.cpp
@@ -1022,21 +1024,6 @@ list(APPEND library_source
    operating_system/_impl.h
    operating_system/_operating_system.h
    operating_system/_user.h
-   operating_system/android/_.h
-   operating_system/android/_android.h
-   operating_system/android/_c.h
-   operating_system/android/_os_impl.h
-   operating_system/android/_os_local.h
-   operating_system/android/_os_object.h
-   operating_system/android/_os_remote.h
-   operating_system/android/cross_win_file.h
-   operating_system/android/cross_win_gdi.h
-   operating_system/android/cross_win_gdi_internal.h
-   operating_system/android/exception_engine.h
-   operating_system/android/file.h
-   operating_system/android/graphics.h
-   operating_system/android/internal.h
-   operating_system/android/process.h
    operating_system/ansi/_.h
    operating_system/ansi/_ansi.h
    operating_system/ansi/_c.h
@@ -1053,26 +1040,7 @@ list(APPEND library_source
    operating_system/ansi/semun.h
    operating_system/file.h
    operating_system/graphics.h
-   operating_system/ios/_.h
-   operating_system/ios/_c.h
-   operating_system/ios/_ios.h
-   operating_system/ios/_m.h
-   operating_system/ios/_mm.h
-   operating_system/ios/base_internal.h
-   operating_system/ios/cross_win_gdi.h
-   operating_system/ios/engine.h
-   operating_system/ios/gen_1.h
-   operating_system/ios/implementation.h
-   operating_system/ios/internal.h
-   operating_system/ios/mm_graphics.h
-   operating_system/ios/mm_oswindow.h
-   operating_system/ios/oswindow_data.h
-   operating_system/ios/parallelization.h
-   operating_system/ios/process.h
-   operating_system/ios/window.h
-   operating_system/ios/window_boot.h
-   operating_system/ios/window_impl.h
-   operating_system/ios/windowing.h
+
    operating_system/os_windowing2.h
    operating_system/parallelization.h
    operating_system/posix/mq_base.h
@@ -1381,6 +1349,58 @@ list(APPEND library_source
    version/version.config.h
    version/version.h
    )
+
+if(ANDROID)
+   list(APPEND library_source
+
+      operating_system/android/_.h
+      operating_system/android/_android.h
+      operating_system/android/_c.h
+      operating_system/android/_os_impl.h
+      operating_system/android/_os_local.h
+      operating_system/android/_os_object.h
+      operating_system/android/_os_remote.h
+      operating_system/android/cross_win_file.h
+      operating_system/android/cross_win_gdi.h
+      operating_system/android/cross_win_gdi_internal.h
+      operating_system/android/exception_engine.h
+      operating_system/android/file.h
+      operating_system/android/graphics.h
+      operating_system/android/internal.h
+      operating_system/android/process.h
+
+      )
+
+endif()
+
+if(APPLE_IOS)
+   list(APPEND library_source
+
+
+      operating_system/ios/_.h
+      operating_system/ios/_c.h
+      operating_system/ios/_ios.h
+      operating_system/ios/_m.h
+      operating_system/ios/_mm.h
+      operating_system/ios/base_internal.h
+      operating_system/ios/cross_win_gdi.h
+      operating_system/ios/engine.h
+      operating_system/ios/gen_1.h
+      operating_system/ios/implementation.h
+      operating_system/ios/internal.h
+      operating_system/ios/mm_graphics.h
+      operating_system/ios/mm_oswindow.h
+      operating_system/ios/oswindow_data.h
+      operating_system/ios/parallelization.h
+      operating_system/ios/process.h
+      operating_system/ios/window.h
+      operating_system/ios/window_boot.h
+      operating_system/ios/window_impl.h
+      operating_system/ios/windowing.h
+
+      )
+
+endif()
 
 
 if (UWP)
@@ -2043,6 +2063,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
       operating_system/posix/_.h
       operating_system/posix/_posix.h
       operating_system/posix/base_file.cpp
+      operating_system/posix/chldstatus.cpp
       operating_system/posix/desktop.cpp
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h

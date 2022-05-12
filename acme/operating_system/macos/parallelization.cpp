@@ -20,24 +20,24 @@ int get_current_process_affinity_order()
 }
 
 
-void main_asynchronous(::procedure function)
+
+
+
+
+
+bool __os_init_thread()
 {
-  
-   ns_main_async(^{
-      
-      function();
-      
-   });
-   
+
+   return true;
+
 }
 
 
-void system::windowing_post(const ::procedure & procedure)
+bool __os_term_thread()
 {
-   
-   main_asynchronous(function);
-   
+
+   //thread_shutdown();
+
+   return true;
+
 }
-
-
-

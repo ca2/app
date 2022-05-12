@@ -7,6 +7,7 @@
 #ifdef LINUX
 #include "aura/operating_system/linux/x11.h"
 #endif
+#include "aura/user/micro/message_box.h"
 
 
 namespace aura
@@ -115,6 +116,14 @@ namespace aura
    }
 
 
+   ::windowing::windowing * node::windowing()
+   {
+
+      return m_pwindowing;
+
+   }
+
+
 //   void * node::node_wrap_window(void * pdisplay, i64 window)
 //   {
 //
@@ -187,6 +196,13 @@ namespace aura
 
 #endif
 
+
+   __pointer(::conversation) node::create_new_message_box_conversation()
+   {
+
+      return __create_new < ::micro_message_box >();
+
+   }
 
 } // namespace aura
 

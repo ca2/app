@@ -423,15 +423,10 @@ namespace parallelization
 {
 
 
-   CLASS_DECL_APEX bool set_priority(::enum_priority epriority)
-   {
-
-      return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);
-
-   }
 
 
-   CLASS_DECL_APEX int32_t priority()
+
+CLASS_DECL_APEX int32_t priority()
    {
 
       return ::GetThreadPriority(::GetCurrentThread());

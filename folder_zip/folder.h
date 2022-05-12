@@ -30,7 +30,11 @@ namespace folder_zip
 
       void open_for_reading(file_pointer pfile, int iBufferLevel = 2) override;
 
-      bool locate(const char* pszFileName) override;
+      bool locate_file(const char* pszFileName) override;
+
+      bool locate_folder(const char* pszFileName) override;
+
+      bool locate(const ::function < bool(const char*) >& function) override;
 
       bool has_sub_folder(const char* pszDir = nullptr) override;
 

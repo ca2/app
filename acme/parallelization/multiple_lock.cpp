@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/parallelization/synchronization_array.h"
 #include "multiple_lock.h"
 
 

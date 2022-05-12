@@ -58,7 +58,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #elif defined(ANDROID)
 
 //#include "aura/node/ansios/ansios.h"
-#include "aura/node/android/_.h"
+#include "aura/operating_system/android/_.h"
 
 //#elif defined(WINDOWS_DESKTOP)
 
@@ -3791,7 +3791,7 @@ retry_license:
          if (psession->get_user_interaction_host() != nullptr)
          {
 
-            auto puserinteraction = __user_interaction(psession->get_user_interaction_host());
+            __pointer(::user::interaction) puserinteraction = psession->get_user_interaction_host();
 
             if (puserinteraction)
             {
@@ -4101,6 +4101,41 @@ retry_license:
       }
 
       return m_puserinteractionMain;
+
+   }
+
+
+   bool application::is_sandboxed()
+   {
+
+      auto psession = get_session();
+
+      if (::is_null(psession))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      auto puser = psession->user();
+
+      if (::is_null(puser))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      auto pwindowing = puser->windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      return pwindowing->is_sandboxed();
 
    }
 

@@ -573,7 +573,7 @@ namespace apex
       //}
 
 
-#if !defined(ANDROID)
+#if !defined(ANDROID) && !defined(APPLE_IOS)
 
       if (!m_pappStartup->m_papplication->is_service() || m_pappStartup->m_papplication->is_user_service())
       {
@@ -3072,7 +3072,7 @@ pacmedirectory->create("/ca2core");
    bool system::android_set_user_wallpaper(string strUrl)
    {
 
-      //oslocal().m_strSetUserWallpaper = strUrl;
+      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
 
       return true;
 
@@ -3081,12 +3081,12 @@ pacmedirectory->create("/ca2core");
    bool system::android_get_user_wallpaper(string & strUrl)
    {
 
-      //oslocal().m_bGetUserWallpaper = true;
+      //operating_system_driver::get().m_bGetUserWallpaper = true;
 
       //for(int i = 0; i < 10; i++)
       //{
 
-      //   if (!oslocal().m_bGetUserWallpaper)
+      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
       //   {
 
 
@@ -3096,7 +3096,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      //strUrl = oslocal().m_strGetUserWallpaper;
+      //strUrl = operating_system_driver::get().m_strGetUserWallpaper;
 
       return true;
 
@@ -3811,15 +3811,15 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          string strOpenUrl;
 
-         if (::oslocal()->m_pszOpenUrl != nullptr)
+         if (::operating_system_driver::get()->m_pszOpenUrl != nullptr)
          {
 
-            strOpenUrl = ::oslocal()->m_pszOpenUrl;
+            strOpenUrl = ::operating_system_driver::get()->m_pszOpenUrl;
 
             try
             {
 
-               ::free((void *)::oslocal()->m_pszOpenUrl);
+               ::free((void *)::operating_system_driver::get()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -3828,7 +3828,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
             }
 
-            ::oslocal()->m_pszOpenUrl = nullptr;
+            ::operating_system_driver::get()->m_pszOpenUrl = nullptr;
 
          }
 
@@ -3840,7 +3840,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
             // psystem->m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
-            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
+            ::operating_system_driver::get()->m_pszOpenUrl = strdup(strUrl);
 
          }
 
@@ -5225,15 +5225,9 @@ namespace apex
 //
 //   }
 //
-//
-//   void system::system_construct(os_local* poslocal, const ::e_display& edisplay)
-//   {
-//
-//      return ::success;
-//
-//   }
-//
-//
+
+
+
 //#endif
 
 
@@ -5316,17 +5310,7 @@ namespace apex
    void system::system_main()
    {
 
-      //auto estatus = 
       ::system::system_main();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
 

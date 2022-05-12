@@ -13,8 +13,9 @@
 
 #undef DEBUG
 
-
+#if defined(MACOS)
 #include <Carbon/Carbon.h>
+#endif
 
 
 CGColorRef cg_create_color(color32_t crText);

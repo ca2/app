@@ -1,11 +1,11 @@
 #include "framework.h"
-#include <mach-o/dyld.h>
+//#include <mach-o/dyld.h>
 
-
-
-namespace apex
-{
-
+//
+//
+//namespace apex
+//{
+//
 
 //   application::application(::object * pobject) :
 //      ::object(pobject)
@@ -34,14 +34,14 @@ namespace apex
 //      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
-
-   void application::_001EnableShellOpen()
-   {
-      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-   }
+//
+//   void application::_001EnableShellOpen()
+//   {
+//      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//
+//      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+//   }
 
 //   bool application::_001OnDDECommand(const char * pcsz)
 //   {
@@ -278,11 +278,11 @@ namespace apex
 //   }
 
 
-
-   void application::get_time(struct timeval *p)
-   {
-      gettimeofday(p, nullptr);
-   }
+//
+//   void application::get_time(struct timeval *p)
+//   {
+//      gettimeofday(p, nullptr);
+//   }
 
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
@@ -395,25 +395,25 @@ namespace apex
 //      return "draw2d_quartz2d";
 //
 //   }
-   string application::multimedia_audio_get_default_library_name()
-   {
+//   string application::multimedia_audio_get_default_library_name()
+//   {
+//
+//      return "audio_core_audio";
+//
+//   }
 
-      return "audio_core_audio";
-
-   }
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_core_audio";
-
-   }
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "music_midi_core_audio";
-
-   }
+//   string application::multimedia_audio_mixer_get_default_library_name()
+//   {
+//
+//      return "audio_mixer_core_audio";
+//
+//   }
+//   string application::veriwell_multimedia_music_midi_get_default_library_name()
+//   {
+//
+//      return "music_midi_core_audio";
+//
+//   }
 
 //   void application::show_wait_cursor(bool bShow)
 //   {
@@ -432,7 +432,7 @@ namespace apex
 //
 //   }
 
-
+//
    bool application::os_on_start_application()
    {
 
@@ -440,9 +440,9 @@ namespace apex
 
    }
 
-
-
-} // namespace apex
-
-
+//
+//
+//} // namespace apex
+//
+//
 

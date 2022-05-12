@@ -25,7 +25,7 @@ void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLin
       if(!__assert_failed_line(pszFileName, nLine))
       {
 
-         DEBUG_BREAK;
+         debug_break();
 
       }
 
@@ -39,7 +39,7 @@ void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLin
       if (__assert_failed_line(pszFileName, nLine))
       {
 
-         DEBUG_BREAK;
+         debug_break();
 
       }
 
@@ -53,7 +53,7 @@ void __assert_object_ok(const ::matter * pOb, const char * pszFileName, i32 nLin
       if (!__assert_failed_line(pszFileName, nLine))
       {
 
-         DEBUG_BREAK;
+         debug_break();
 
       }
 

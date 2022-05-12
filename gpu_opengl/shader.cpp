@@ -15,7 +15,7 @@ namespace opengl
          return "VERTEX";
       case GL_FRAGMENT_SHADER:
          return "FRAGMENT";
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
       case GL_GEOMETRY_SHADER:
          return "GEOMETRY";
 #endif
@@ -52,7 +52,7 @@ namespace opengl
 
          GLenum eerror = glGetError();
          
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(ANDROID)
 //         auto errString = glErrorString(eerror);
          FORMATTED_TRACE("error %d \"%s\"", eerror);
 
@@ -102,7 +102,7 @@ namespace opengl
 
       unsigned int uFragment = create_shader(pszFragment, GL_FRAGMENT_SHADER);
       
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
 
       unsigned int uGeometry = 0;
 
@@ -123,7 +123,7 @@ namespace opengl
 
       glAttachShader(m_uId, uFragment);
       
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
 
       if (bGeometry)
       {
@@ -159,7 +159,7 @@ namespace opengl
 
       glDeleteShader(uFragment);
 
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(ANDROID)
 
       if (bGeometry)
       {

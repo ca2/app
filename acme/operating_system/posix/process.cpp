@@ -15,6 +15,7 @@
 #include <wordexp.h>
 #include <fcntl.h>
 
+#if !defined(APPLE_IOS)
 
 void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
@@ -234,6 +235,36 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
    }
 
    //return ::success;
+
+}
+
+#endif
+
+critical_section * g_pcsPid2 = nullptr;
+
+
+//chldstatus_map * g_ppid = nullptr;
+
+namespace acme{
+extern critical_section * g_pcsGlobal;
+}
+
+critical_section * get_pid_cs()
+{
+
+   critical_section_lock cs(::acme::g_pcsGlobal);
+
+   if(g_pcsPid2 == nullptr)
+   {
+
+      g_pcsPid2 = new critical_section();
+
+      //g_ppid = new chldstatus_map();
+
+
+   }
+
+   return g_pcsPid2;
 
 }
 

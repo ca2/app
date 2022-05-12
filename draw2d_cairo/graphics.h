@@ -308,9 +308,9 @@ namespace draw2d_cairo
 
 
       //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
-      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
+      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc) override;
       bool _draw_blend(const ::image_drawing & imagedrawing) override;
-      void _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
+      void _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc) override;
       //bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource) override;
 
 
@@ -521,7 +521,7 @@ namespace draw2d_cairo
 
 
       // operating-system-specific or operating-system-internals
-      bool _set_os_color(color32_t color32);
+      bool _set_os_color(const ::color::color & color);
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);
       bool _set(::write_text::font * pfont);

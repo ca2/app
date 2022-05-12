@@ -18,9 +18,9 @@
 
 #elif defined(APPLE_IOS)
 
-#include "apex/os/apple/_apple.h"
-#include "apex/os/ios/_ios.h"
-#include "apex/os/ansios/_ansios.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/apple/_apple.h"
+#include "apex/operating_system/ios/_ios.h"
 
 #elif defined(LINUX)
 
@@ -51,8 +51,8 @@
 
 #elif defined(ANDROID)
 
-#include "apex/os/ansios/_ansios.h"
-#include "apex/os/android/_android.h"
+#include "apex/operating_system/ansi/_ansi.h"
+#include "apex/operating_system/android/_android.h"
 
 #elif defined(SOLARIS)
 

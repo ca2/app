@@ -1,5 +1,12 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include <dlfcn.h>
+
+
+extern class ::system * g_psystem;
+
+
+void * __node_library_open(const char * pszPath, string & strMessage);
 
 void * __node_library_touch(const char * pszPath, string & strMessage)
 {
@@ -78,7 +85,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
 
-   path = ::file::path(::dir::ca2_module()).folder() / strPath;
+   path = ::file::path(g_psystem->m_pacmedirectory->module()).folder() / strPath;
 
    plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

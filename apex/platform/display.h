@@ -29,8 +29,4 @@ using eappearance = enumeration < enum_appearance >;
 //CLASS_DECL_APEX enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & eactivation);
 
 
-//CLASS_DECL_APEX string __string(enum_display edisplay);
-//inline string __string(const ::e_display & edisplay);
-
-
 

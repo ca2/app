@@ -30,7 +30,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(__APPLE__)
 
 
 
@@ -112,13 +112,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 }
 
 
-
-::enum_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
-{
-
-   return get_scheduling_priority(iOsPolicy, pparam);
-
-}
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)

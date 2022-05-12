@@ -3754,12 +3754,18 @@ namespace user
       _001OnSelectionChange();
    }
 
+   
    void mesh::_001SetSelection(const range &range)
    {
+   
       m_rangeSelection = range;
+      
       on_select();
+
       _001OnSelectionChange();
+
    }
+
 
    void mesh::_001AddSelection(const item_range & itemrange)
    {
@@ -5428,6 +5434,19 @@ namespace user
 
    void mesh::_001OnSelectionChange()
    {
+
+      auto ptopic = create_topic(::id_after_change_cur_sel);
+
+      ptopic->m_actioncontext = e_source_user;
+
+      ptopic->m_puserelement = this;
+
+      route(ptopic);
+
+      set_need_redraw();
+
+      post_redraw();
+
    }
 
 

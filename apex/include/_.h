@@ -362,12 +362,7 @@ using string = string_base < ansichar >;
 using wstring = string_base < widechar >;
 
 
-inline const ansichar * __c_str(const string& str);
-
 class machine_event_central;
-
-
-//#include "apex/primitive/math/_.h"
 
 
 #include "apex/crypto/_.h"

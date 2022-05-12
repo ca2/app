@@ -266,7 +266,7 @@ memsize stdio_file::read(void * pdata, memsize nCount)
       if (iError > 0)
       {
 
-         throw ::file::exception(error_file, -1, ::file::dos_to_os_error(iError), m_strFileName);
+         throw ::file::exception(error_file, -1, ::file::dos_to_os_error(iError), m_path);
 
          return 0;
 

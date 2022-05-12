@@ -92,19 +92,19 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx = { 0xB2D0778B,0xAC99,0x4c58,{0
 #endif
 
 
-void gen_CrtErrorCheck(i32 i);
+//void gen_CrtErrorCheck(i32 i);
+//
+//
+//void gen_CrtErrorCheck(i32 i)
+//{
+//   __UNREFERENCED_PARAMETER(i);
+//}
 
 
-void gen_CrtErrorCheck(i32 i)
-{
-   __UNREFERENCED_PARAMETER(i);
-}
 
 
 
-
-
-int g_iAuraRefCount = 0;
+//int g_iAuraRefCount = 0;
 
 
 //extern "C"
@@ -157,16 +157,16 @@ int g_iAuraRefCount = 0;
 //}
 
 
-
-CLASS_DECL_AXIS int g_bAura = 0;
-
-
-
-
-
-
-CLASS_DECL_AXIS u32 g_tickStartTime = 0;
-
+//
+//CLASS_DECL_AXIS int g_bAura = 0;
+//
+//
+//
+//
+//
+//
+//CLASS_DECL_AXIS u32 g_tickStartTime = 0;
+//
 
 
 

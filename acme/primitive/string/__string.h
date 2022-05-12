@@ -38,13 +38,3 @@ template < >
 inline string __string(const natural_widestring & naturalwidestr);
 
 
-template < typename T >
-inline const ::ansichar * __c_str(const T & t)
-{
-	
-	return ::__string(t).c_str();
-
-}
-
-
-

@@ -104,12 +104,6 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 }
 
 
-char * ns_get_executable_path()
-{
-   
-   return ns_string([[NSBundle mainBundle] executablePath]);
-   
-}
 
 
 NSString * applicationDocumentsDirectory()
@@ -141,66 +135,130 @@ bool _ui_library_dir(char * psz, unsigned int * puiSize)
 
 
 
+//
+//bool ns_open_file(const char * psz)
+//{
+//
+//   NSString * path = [NSString stringWithUTF8String:psz];
+//
+//   if(path == NULL)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   NSURL * url = [NSURL fileURLWithPath: path];
+//
+//   //https://stackoverflow.com/questions/20869815/open-file-from-local-file-system-with-default-application-ios
+//
+//   BOOL canOpenResource = [ [UIApplication sharedApplication] canOpenURL: url];
+//
+//   if (!canOpenResource)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if([[UIApplication sharedApplication] openURL: url])
+//   {
+//
+//      return true;
+//
+//   }
+//
+//
+//   RoundWindowApp * papp = (RoundWindowApp *)[ [UIApplication sharedApplication] delegate];
+//
+//   UIDocumentInteractionController *documentController = [UIDocumentInteractionController interactionControllerWithURL: url];
+//   documentController.delegate = papp;
+//   if([documentController presentOpenInMenuFromRect:CGRectZero inView: [papp view] animated:YES])
+//   {
+//
+//      return false;
+//
+//   }
+//   //https://www.infragistics.com/community/blogs/b/stevez/posts/ios-tips-and-tricks-associate-a-file-type-with-your-app-part-3
+////
+////   NSFileManager *filemgr = [NSFileManager defaultManager];
+////   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+////   NSString *documentsDirectory = [paths objectAtIndex:0];
+////   NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
+////   NSArray *dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
+//
+//
+//
+//   //(However,) if your wish to present the user with a list of apps that have registered with the appropriate UTI for that file type you can do something like this-
+//   //UIDocumentInteractionController *documentController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
+//   //documentController.delegate = self;
+//   //[documentController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+//
+//   return true;
+//
+//}
 
-bool ns_open_file(const char * psz)
+
+
+
+bool ns_open_url(const char * psz)
 {
    
-   NSString * path = [NSString stringWithUTF8String:psz];
+   NSString * str = [NSString stringWithUTF8String:psz];
    
-   if(path == NULL)
+   if(str == NULL)
    {
       
       return false;
       
    }
    
-   NSURL * url = [NSURL fileURLWithPath: path];
+   NSURL * url = [[NSURL alloc] initWithString: str];
    
-   //https://stackoverflow.com/questions/20869815/open-file-from-local-file-system-with-default-application-ios
-   
-   BOOL canOpenResource = [ [UIApplication sharedApplication] canOpenURL: url];
-   
-   if (!canOpenResource)
+   if(url == NULL)
    {
       
       return false;
       
    }
-      
-   if([[UIApplication sharedApplication] openURL: url])
-   {
-      
-      return true;
-      
-   }
    
-   
-   RoundWindowApp * papp = (RoundWindowApp *)[ [UIApplication sharedApplication] delegate];
-   
-   UIDocumentInteractionController *documentController = [UIDocumentInteractionController interactionControllerWithURL: url];
-   documentController.delegate = papp;
-   if([documentController presentOpenInMenuFromRect:CGRectZero inView: [papp view] animated:YES])
-   {
+   [[UIApplication sharedApplication] openURL: url options: @{} completionHandler: ^(BOOL i)
+    {
       
-      return false;
-
-   }
-   //https://www.infragistics.com/community/blogs/b/stevez/posts/ios-tips-and-tricks-associate-a-file-type-with-your-app-part-3
+      
+   }];
+//   {
 //
-//   NSFileManager *filemgr = [NSFileManager defaultManager];
-//   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//   NSString *documentsDirectory = [paths objectAtIndex:0];
-//   NSString* inboxPath = [documentsDirectory stringByAppendingPathComponent:@"Inbox"];
-//   NSArray *dirFiles = [filemgr contentsOfDirectoryAtPath:inboxPath error:nil];
-
-      
-   
-   //(However,) if your wish to present the user with a list of apps that have registered with the appropriate UTI for that file type you can do something like this-
-   //UIDocumentInteractionController *documentController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:filePath]];
-   //documentController.delegate = self;
-   //[documentController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+//      return false;
+//
+//   }
    
    return true;
    
 }
 
+
+
+bool ns_open_file(const char * psz)
+{
+   
+   return ns_open_url(psz);
+//   NSString * path = [NSString stringWithUTF8String:psz];
+//   
+//   if(path == NULL)
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   if(![[NSWorkspace sharedWorkspace] openFile: path])
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   return true;
+   
+}

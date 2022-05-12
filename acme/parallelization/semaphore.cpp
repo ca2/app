@@ -148,19 +148,32 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 
 #if defined(ANDROID)
 
-synchronization_result semaphore::wait(const duration & durationTimeout)
+bool semaphore::_wait(const class ::wait & wait)
 {
 
    timespec ts;
 
-   ((duration &)durationTimeout).normalize();
+   ::duration duration(wait);
 
-   ts.tv_nsec = durationTimeout.m_nanos.m_i;
-   ts.tv_sec = durationTimeout.m_secs.m_i;
+   ts.tv_nsec = duration.m_iNanosecond;
+   ts.tv_sec = duration.m_iSecond;
 
-   sem_timedwait(m_psem, &ts);
+   auto iRet = sem_timedwait(m_psem, &ts);
 
-   return synchronization_result(e_synchronization_result_signaled_base);
+   if (iRet == ETIMEDOUT)
+   {
+
+      return false;
+
+   }
+   else if (iRet)
+   {
+
+      throw ::exception(::error_failed);
+
+   }
+
+   return true;
 
 
 }
@@ -344,7 +357,6 @@ bool semaphore::_wait(const class ::wait & wait)
 #endif
 
 
-
 void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 {
 
@@ -359,23 +371,21 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
    if (sem_getvalue(m_psem, &val) != 0)
    {
 
-      return false;
+      throw ::exception(error_failed);
 
    }
 
    if(pPrevCount !=  nullptr)
-
    {
 
       *pPrevCount = val;
-
 
    }
 
    if(lCount + val > m_lMaxCount)
    {
 
-      return false;
+      throw ::exception(::error_failed);
 
    }
 
@@ -390,7 +400,7 @@ void semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 
 
-   return true;
+   //return true;
 
 #elif defined(__APPLE__)
 

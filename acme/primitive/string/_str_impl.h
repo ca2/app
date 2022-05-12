@@ -1239,7 +1239,7 @@ inline void to_string(string& str, const u64& u)
 }
 
 
-//<<<<<<< HEAD
+/// 
 //#if !defined(WINDOWS) && !defined(LINUX) && !defined(FREEBSD)
 //
 //

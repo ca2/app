@@ -14,44 +14,6 @@ APPLICATION::application g_app;
 __embed_resource(g_app)
 
 
-//////#ifdef LINUX
-//////
-//////
-//////#include "application/linux.h"
-//////
-//////
-//////#elif defined(FREEBSD)
-//////
-//////
-//////#include "application/freebsd.h"
-//////
-//////
-//////#elif defined(_UWP)
-//////
-//////#include "application/universal_windows.h"
-//////
-//////#elif defined(WINDOWS)
-//////
-//////#include "application/windows.h"
-//////
-//////#elif defined(MACOS)
-//////
-//////#include "application/macos.h"
-//////
-//////#elif defined(ANDROID)
-//////
-//////#include "application/android.h"
-//////
-//////#elif defined(APPLE_IOS)
-//////
-//////#include "application/ios.h"
-//////
-//////#else
-//////
-//////#error "application/---->platform_name<---- not implemented"
-//////
-//////#endif
-
 
 #if !defined(CUBE)
 

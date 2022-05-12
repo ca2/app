@@ -669,7 +669,7 @@ inline class ::duration duration::create_null()
 inline bool duration::is_pos_infinity() const
 {
 
-   return m_iSecond == MAXI64;
+   return m_iSecond == ::numeric_info < decltype(m_iSecond) > ::maximum();
 
 }
 
@@ -677,7 +677,7 @@ inline bool duration::is_pos_infinity() const
 inline bool duration::is_infinite() const
 {
 
-   return m_iSecond == MAXI64;
+   return m_iSecond == ::numeric_info < decltype(m_iSecond) > ::maximum();
 
 }
 

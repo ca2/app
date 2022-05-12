@@ -3177,7 +3177,9 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->m_phost = this;
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
 
       if (pgraphics == nullptr)
       {
@@ -3334,6 +3336,10 @@ namespace user
 
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
 
       point_i32 pointScroll = m_pointScroll;
 
@@ -3950,6 +3956,10 @@ namespace user
          return;
 
       }
+
+      ___scoped_restore(pgraphics->m_puserinteraction);
+
+      pgraphics->m_puserinteraction = this;
 
       bool bUpdateBuffer = false;
 
@@ -6541,6 +6551,19 @@ namespace user
 
       }
 
+      auto pwindowing = get_session()->m_puser->windowing();
+
+      auto pwindowHost = pwindowing->get_application_host_window();
+
+      if (::is_set(pwindowHost))
+      {
+
+         create_child(pwindowHost->m_puserinteractionimpl->m_puserinteraction);
+
+         return;
+
+      }
+
       //__refer(m_pthreadUserInteraction, ::get_task() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //if (m_pthreadUserInteraction)
@@ -8069,6 +8092,25 @@ namespace user
    }
 
 
+   bool interaction::is_sandboxed()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      bool bSandboxed = pwindowing->get_application_host_window() != nullptr;
+
+      return bSandboxed;
+
+   }
+
+
    //void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
    //{
 
@@ -8411,6 +8453,56 @@ namespace user
 
    }
 
+
+   float interaction::preferred_dpi_x()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_dpi_x();
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::preferred_dpi_y()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_dpi_y();
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::preferred_density()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return ::user::primitive::preferred_density();
+
+      }
+
+      return pwindow->get_density_for_window();
+
+   }
 
    //void interaction::set_need_redraw()
    //{
@@ -8933,7 +9025,7 @@ namespace user
 
                if (pinteraction->m_bExtendOnParent ||
                    (pinteraction->m_bExtendOnParentIfClientOnly
-                    && papp->m_bExperienceMainFrame))
+                    && papp && papp->m_bExperienceMainFrame))
                {
 
                   bool bThisVisible = pinteraction->is_this_visible();
@@ -12790,21 +12882,6 @@ namespace user
    }
 
 
-   void interaction::_001OnExitFullScreen()
-   {
-
-      if (m_pprimitiveimpl.is_null())
-      {
-
-         return;
-
-      }
-
-      m_pprimitiveimpl->_001OnExitFullScreen();
-
-   }
-
-
    void interaction::_001OnExitNormal()
    {
 
@@ -12815,6 +12892,47 @@ namespace user
       bool bProdevian = is_prodevian();
 
       layout().normal().m_bProdevian = bProdevian;
+
+   }
+
+
+   void interaction::_001OnExitZoomed()
+   {
+
+      auto rect = layout().window().parent_client_rect();
+
+      auto edisplay = layout().window().display();
+
+      layout().normal().display() = edisplay;
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
+
+   }
+
+
+   void interaction::_001OnExitFullScreen()
+   {
+
+      auto rect = layout().window().parent_client_rect();
+
+      auto edisplay = layout().window().display();
+
+      layout().normal().display() = edisplay;
+
+      bool bProdevian = is_prodevian();
+
+      layout().normal().m_bProdevian = bProdevian;
+
+      if (m_pprimitiveimpl.is_null())
+      {
+
+         return;
+
+      }
+
+      m_pprimitiveimpl->_001OnExitFullScreen();
 
    }
 
@@ -12841,6 +12959,12 @@ namespace user
          {
 
             _001OnExitIconic();
+
+         }
+         else if (edisplaySketch != e_display_zoomed && edisplayDesign == e_display_zoomed)
+         {
+
+            _001OnExitZoomed();
 
          }
          else if(
@@ -15085,39 +15209,39 @@ namespace user
 
       }
 
-#ifdef APPLE_IOS
-
-      {
-
-         synchronous_lock synchronouslock(mutex());
-
-         for (index i = 0; i < m_uiptraChild.get_size(); i++)
-         {
-
-            ::user::interaction * pinteraction = m_uiptraChild[i];
-
-            if (pinteraction)
-            {
-               synchronouslock.unlock();
-
-
-               if (pinteraction->has_pending_graphical_update())
-               {
-
-                  return true;
-
-               }
-
-               synchronouslock.lock();
-
-            }
-
-
-         }
-
-      }
-
-#endif
+//#ifdef APPLE_IOS
+//
+//      {
+//
+//         synchronous_lock synchronouslock(mutex());
+//
+//         for (index i = 0; i < m_uiptraChild.get_size(); i++)
+//         {
+//
+//            ::user::interaction * pinteraction = m_uiptraChild[i];
+//
+//            if (pinteraction)
+//            {
+//               synchronouslock.unlock();
+//
+//
+//               if (pinteraction->has_pending_graphical_update())
+//               {
+//
+//                  return true;
+//
+//               }
+//
+//               synchronouslock.lock();
+//
+//            }
+//
+//
+//         }
+//
+//      }
+//
+//#endif
 
       if (is_window_visible())
       {
@@ -16232,7 +16356,7 @@ namespace user
 
             auto ekeyModifiers = psession->key_modifiers();
 
-            if (pappearance->on_button_down(pointClient, ekeyModifiers))
+            if (pappearance->on_button_down(e_key_left_button, pointClient, ekeyModifiers))
             {
 
                pmouse->m_bRet = true;
@@ -16405,7 +16529,7 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (pappearance->on_button_up(pointClient, ekeyModifiers))
+         if (pappearance->on_button_up(e_key_left_button, pointClient, ekeyModifiers))
          {
 
             pmessage->m_bRet = true;
@@ -16652,6 +16776,36 @@ namespace user
 
       }
 
+      {
+
+         auto pappearance = get_appearance();
+
+         if (::is_set(pappearance))
+         {
+
+            ::point_i32 pointClient;
+
+            _screen_to_client(pointClient, pmouse->m_point);
+
+            auto psession = m_puserinteraction->get_session();
+
+            auto ekeyModifiers = psession->key_modifiers();
+
+            if (pappearance->on_button_down(e_key_right_button, pointClient, ekeyModifiers))
+            {
+
+               pmouse->m_bRet = true;
+
+               return;
+
+            }
+
+         }
+
+      }
+
+
+
       auto pcontextmenu = __new(::message::context_menu);
 
       pcontextmenu->set(get_oswindow(), get_window(), e_message_context_menu, (wparam)(iptr)get_oswindow(), pmouse->m_point.lparam());
@@ -16672,6 +16826,32 @@ namespace user
          return;
 
       }
+
+      auto pappearance = get_appearance();
+
+      if (::is_set(pappearance))
+      {
+
+         ::point_i32 pointClient;
+
+         _screen_to_client(pointClient, pmouse->m_point);
+
+         auto psession = m_puserinteraction->get_session();
+
+         auto ekeyModifiers = psession->key_modifiers();
+
+         if (pappearance->on_button_up(e_key_right_button, pointClient, ekeyModifiers))
+         {
+
+            pmessage->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+
 
    }
 
@@ -17287,6 +17467,30 @@ namespace user
 
    void interaction::add_user_item(item * pitem)
    {
+
+      if (is_sandboxed())
+      {
+
+         if (pitem->m_atom == ::id_close_app)
+         {
+
+            return;
+
+         }
+         else if (pitem->m_atom == ::id_maximize)
+         {
+
+            return;
+
+         }
+         else if (pitem->m_atom == ::id_minimize)
+         {
+
+            return;
+
+         }
+
+      }
 
       m_useritema.add(pitem);
 

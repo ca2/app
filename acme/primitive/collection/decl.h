@@ -483,6 +483,8 @@ inline void copy_construct_count(TYPE * p, ::count c, const TYPE & t)
 
       p++;
 
+      c--;
+
    }
 
 }

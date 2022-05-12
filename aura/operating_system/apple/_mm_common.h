@@ -23,21 +23,21 @@
 
 #endif
 
-#ifdef MACOS
-
-//#include "aura/os/macos/mm_oswindow.h"
-//#include "aura/os/macos/windowing.h"
-
-#elif defined(APPLE_IOS)
-
-#include "aura/os/ios/mm_oswindow.h"
-#include "aura/os/ios/windowing.h"
-
-#else
-
-#error "Not implemented... (not MACOS, not APPLE_IOS, but __APPLE__ ?)"
-
-#endif
+//#ifdef MACOS
+//
+////#include "aura/os/macos/mm_oswindow.h"
+////#include "aura/os/macos/windowing.h"
+//
+//#elif defined(APPLE_IOS)
+//
+//#include "aura/operating_system/ios/mm_oswindow.h"
+//#include "aura/operating_system/ios/windowing.h"
+//
+//#else
+//
+//#error "Not implemented... (not MACOS, not APPLE_IOS, but __APPLE__ ?)"
+//
+//#endif
 
 
 #undef _

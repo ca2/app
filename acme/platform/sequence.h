@@ -66,7 +66,7 @@ public:
 
    ///void set_object(const TYPE & result, const ::e_status & estatus = ::success);
    //void set_status(const ::e_status & estatus = ::success);
-   void on_sequence();
+   void on_sequence() override;
    void fork();
 
 

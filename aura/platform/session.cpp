@@ -22,13 +22,13 @@
 
 
 
-
-
-#if defined(APPLE_IOS)
-
-#include "aura/node/ios/interaction_impl.h"
-
-#endif
+//
+//
+//#if defined(APPLE_IOS)
+//
+//#include "aura/node/ios/interaction_impl.h"
+//
+//#endif
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -1312,23 +1312,23 @@ namespace aura
 
          }
 
-#if defined(APPLE_IOS)
-
-         main_async([this]()
-         {
-
-            __pointer(::ios::interaction_impl) pimpl = psession->get_user_interaction_host()->m_pimpl;
-
-            if (pimpl.is_set())
-            {
-
-               pimpl->defer_update_text_view();
-
-            }
-
-         });
-
-#endif
+//#if defined(APPLE_IOS)
+//
+//         main_async([this]()
+//         {
+//
+//            __pointer(::ios::interaction_impl) pimpl = psession->get_user_interaction_host()->m_pimpl;
+//
+//            if (pimpl.is_set())
+//            {
+//
+//               pimpl->defer_update_text_view();
+//
+//            }
+//
+//         });
+//
+//#endif
 
       }
 
@@ -1897,6 +1897,10 @@ namespace aura
 
    void session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
+
+      auto puser = m_puser;
+
+      puser->windowing()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 

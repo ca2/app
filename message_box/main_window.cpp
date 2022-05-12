@@ -65,9 +65,6 @@ namespace app_message_box
    }
 
 
-
-
-
    void main_window::on_create_user_interaction()
    {
 

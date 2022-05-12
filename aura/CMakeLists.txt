@@ -318,6 +318,8 @@ list(APPEND library_source
    user/menu/_menu.h
    user/menu/menu_command.cpp
    user/menu/menu_command.h
+   user/micro/message_box.cpp
+   user/micro/message_box.h
    user/user/_.cpp
    user/user/_.h
    #user/_const-.h

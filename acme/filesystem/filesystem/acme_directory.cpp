@@ -275,11 +275,7 @@ string acme_directory::system_short_name()
 
 #elif defined(ANDROID)
 
-   return          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->roaming();
+   return "./";
 
 #else
 
@@ -310,11 +306,7 @@ pacmedirectory->roaming();
 
 #elif defined(ANDROID)
 
-   return          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->roaming();
+   return         "./";
 
 #else
 
@@ -345,11 +337,7 @@ pacmedirectory->roaming();
 
 #ifdef ANDROID
 
-   return          auto psystem = m_psystem;
-
-         auto pacmedirectory = psystem->m_pacmedirectory;
-
-pacmedirectory->roaming();
+   return "./";
 
 #elif defined(__APPLE__)
 

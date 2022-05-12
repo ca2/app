@@ -36,7 +36,7 @@ public:
 
    __pointer(string_map < __pointer(::regular_expression::context) >)                        m_pmapRegularExpressionContext;
 
-#ifdef MACOS
+#ifdef __APPLE__
    void *                                                            m_pmmos;
 #endif
 
@@ -65,8 +65,8 @@ public:
 
    __composite(class ::xml::xml)                                     m_pxml;
 
-   __pointer(class ::acme::node)                                   m_pnode;
-   __composite(class ::acme_directory)                                     m_pacmedirectory;
+   __pointer(class ::acme::node)                                     m_pnode;
+   __composite(class ::acme_directory)                               m_pacmedirectory;
    __composite(class ::acme_file)                                    m_pacmefile;
    __composite(class ::acme_path)                                    m_pacmepath;
    __composite(geometry::geometry)                                   m_pgeometry;
@@ -76,8 +76,9 @@ public:
 
 
    enum_trace_level                                                  m_etracelevel;
-   ::duration                                         m_durationMainStart;
-   ::duration                                         m_durationAfterApplicationFirstRequest;
+   ::duration                                                        m_durationMainStart;
+   ::duration                                                        m_durationAfterApplicationFirstRequest;
+   bool                                                              m_bIsReadyForUserInteraction;
 
 
    system();
@@ -178,6 +179,9 @@ public:
    virtual __pointer(::factory::factory) & folder_factory();
 
 
+   using app_core::system_construct;
+
+
    void system_construct(const ::main & main) override;
 
 #ifdef WINDOWS_DESKTOP
@@ -188,13 +192,9 @@ public:
 
    void system_construct(const ::string_array & stra);
 
-#elif defined(ANDROID)
+//#else
 
-   void system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
-
-#else
-
-   void system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+   //void system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 

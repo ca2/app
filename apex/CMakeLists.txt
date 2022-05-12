@@ -1350,7 +1350,7 @@ endif ()
 if (PTHREAD)
 
    list(APPEND apex_source
-      operating_system/posix/pthread.cpp
+      #operating_system/posix/pthread.cpp
       )
 
 endif ()

@@ -52,25 +52,6 @@ int get_processor_count()
 }
 
 
-namespace parallelization
-{
-
-
-//   i32 priority()
-//   {
-//
-//      return ::GetThreadPriority(::GetCurrentThread());
-//
-//   }
-
-
-} // namespace parallelization
-
-
-
-
-
-
 bool ns_set_thread_name(const char * psz);
 
 
@@ -90,6 +71,39 @@ string task_get_name()
    return ::string_from_strdup(ns_get_thread_name());
    
 }
+
+
+void system::windowing_post(const ::procedure & procedure)
+{
+   
+   main_asynchronous(procedure);
+   
+}
+
+
+
+int get_current_process_affinity_order()
+{
+
+   int numCPU = (int) (sysconf(_SC_NPROCESSORS_ONLN));
+
+   return numCPU;
+}
+
+
+void main_asynchronous(const ::procedure & procedure)
+{
+   
+   auto procedureLocal = procedure;
+  
+   ns_main_async(^{
+      
+      procedureLocal();
+      
+   });
+   
+}
+
 
 
 

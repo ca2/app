@@ -2001,12 +2001,7 @@ namespace user
 
                prectangle->right = rectangle.right;
 
-
-#ifdef ANDROID
-
-               fDensity = oslocal()->m_fDensity;
-
-#endif
+               fDensity = window()->get_density_for_window();
 
                prectangle->bottom = rectangle.top + (::i32) (8.0f * fDensity);
 
@@ -2020,11 +2015,7 @@ namespace user
 
                prectangle->top = rectangle.top;
 
-#ifdef ANDROID
-
-               fDensity = oslocal()->m_fDensity;
-
-#endif
+               fDensity = window()->get_density_for_window();
 
                prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
 
@@ -2045,11 +2036,7 @@ namespace user
 
                prectangle->left = rectangle.left;
 
-#ifdef ANDROID
-
-               fDensity = oslocal()->m_fDensity;
-
-#endif
+               fDensity = window()->get_density_for_window();
 
                prectangle->top = rectangle.bottom - (::i32)(8.0f* fDensity);
 
@@ -2063,11 +2050,7 @@ namespace user
 
                ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
 
-#ifdef ANDROID
-
-               fDensity = oslocal()->m_fDensity;
-
-#endif
+               fDensity = window()->get_density_for_window();
 
                prectangle->left = rectangle.right - (::i32) (8.0f * fDensity);
 

@@ -22,6 +22,8 @@ namespace write_text
       string_to_string                                m_mapFontFaceName;
       string_map < ::memory_pointer >                 m_mapFileMemory;
 
+      string_map < int_to_string >                    m_mapFontKeyFaceName;
+
 
       write_text();
       ~write_text() override;

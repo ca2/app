@@ -21,16 +21,7 @@ folder::~folder()
 void folder::initialize(::object* pobject)
 {
 
-   /* auto estatus = */ ::object::initialize(pobject);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
+   ::object::initialize(pobject);
 
 }
 
@@ -40,7 +31,7 @@ bool folder::is_reading() const
 
    throw ::interface_only();
 
-   //return false;
+   return false;
 
 }
 
@@ -50,17 +41,35 @@ void folder::open_for_reading(file_pointer pfile, int iBufferLevel)
 
    throw ::interface_only();
 
-   //throw ::interface_only();
-
 }
 
 
-bool folder::locate(const char* pszFileName)
+bool folder::locate_file(const char* pszFileName)
 {
 
    throw ::interface_only();
 
-//   return false;
+   return false;
+
+}
+
+
+bool folder::locate_folder(const char* pszFolderName)
+{
+
+   throw ::interface_only();
+
+   return false;
+
+}
+
+
+bool folder::locate(const ::function < bool(const char*) >& function)
+{
+
+   throw ::interface_only();
+
+   return false;
 
 }
 

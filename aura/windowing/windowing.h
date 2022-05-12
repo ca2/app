@@ -87,9 +87,12 @@ namespace windowing
       virtual void windowing_main();
 
       virtual void windowing_post_quit();
+
+
+      virtual text_editor_interface * get_text_editor_interface();
       
 
-      __pointer(cursor) get_cursor(enum_cursor ecursor);
+      virtual __pointer(cursor) get_cursor(enum_cursor ecursor);
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
@@ -99,7 +102,11 @@ namespace windowing
 
       virtual ::windowing::window * window(oswindow oswindow);
 
+      virtual void defer_initialize_host_window(const RECTANGLE_I32* lpcrect);
 
+      virtual bool is_sandboxed();
+      
+      virtual ::windowing::window * get_application_host_window();
 
       virtual ::windowing::window * get_desktop_window();
 

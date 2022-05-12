@@ -1267,8 +1267,12 @@ breakFilter2:
 
       return "pango";
 
+#elif defined(ANDROID)
+
+      return "android";
+
 #else
-      
+
       return "write_text";
 
       //return PLATFORM_COMMON_STRING;

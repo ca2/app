@@ -4,42 +4,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="net\email_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\Event.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\EventHandler.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\EventTime.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\timer\IEventOwner.cpp">
-      <Filter>Source Files\net\sockets\bsd\timer</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_handler.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_thread.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlitedb\database.cpp">
-      <Filter>Source Files\database\sqlitedb</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\file_set.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -60,18 +24,6 @@
     </ClCompile>
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
       <Filter>Source Files\database\simpledb</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\android.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\android1.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\android\_factory.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="account\account.cpp">
       <Filter>Source Files\account</Filter>
@@ -133,12 +85,6 @@
     <ClCompile Include="html\html_lite\tag.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
-    <ClCompile Include="__matter_ca2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\bz.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\database.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
@@ -172,69 +118,6 @@
     <ClCompile Include="geoip\update.cpp">
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\calculator.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\element.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\parser.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\parser_exception.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\payload.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\calculator\scanner.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fft_shared.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\fftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifft.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="math\kissfft\ifftd.cpp">
-      <Filter>Source Files\math\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="user\button.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\list_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui_draw.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\still.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\validate.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -262,26 +145,107 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\code.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\code_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\email_department.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\context.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\context_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\networking_application_handler.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\regex.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\networking_application_socket.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\system.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
-    <ClCompile Include="pcre\util_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
+    <ClCompile Include="networking\netserver\socket_handler.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\timer\Event.cpp">
+      <Filter>Source Files\networking\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\timer\EventHandler.cpp">
+      <Filter>Source Files\networking\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\timer\EventTime.cpp">
+      <Filter>Source Files\networking\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\timer\IEventOwner.cpp">
+      <Filter>Source Files\networking\sockets\bsd\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\stmp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\stmp</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\calculator.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\element.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\parser.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\parser_exception.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\result.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\calculator\scanner.cpp">
+      <Filter>Source Files\mathematics\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fft.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fft_shared.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\fftd.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\ifft.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="mathematics\kissfft\ifftd.cpp">
+      <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="user\combo_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\list_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple_ui_draw.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\slider.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\validate.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\transaction.cpp">
+      <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\database_impl.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,776 +345,11 @@
     <ClInclude Include="primitive\virtual_memory.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\multithreading_data.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_go_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_set_event_on_exit.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_signal_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_simple_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_iterator.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_index_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_ptr_array.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_impl.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_condition.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_critical_section.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_event_collection.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_file_change_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_initial_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_manual_reset_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_mutex.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_semaphore.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_base.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_service_status.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_single_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_socket_event.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_synch_lock.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_sync_object.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_thread_os.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_waitable.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\multithreading_wait_result.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\service_plain_service.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
-    <ClInclude Include="multithreading\service\service_thread_pool.h">
-      <Filter>Header Files\multithreading\service</Filter>
-    </ClInclude>
     <ClInclude Include="user\user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\message_box.h">
       <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem.h">
-      <Filter>Header Files\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_attr.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_base_array.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_data.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_disp_option.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_document.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_edit.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_entity.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_enum.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_exportable.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_importable.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_input_tree.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_node.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_output_tree.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_parse_info.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_property_exchange.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_tree_base.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_tree_schema.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_var_exchange.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_xmlite.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\cross.h">
-      <Filter>Header Files\aura\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\e.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_defs.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_errno.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_error.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_file.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_internals.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nls.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_nt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_poppack.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack2.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack4.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_pshpack8.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_time.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_types.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_user.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\aura\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\ansios\ansios.h">
-      <Filter>Header Files\aura\os\cross\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\cross\ansios\ansios_file.h">
-      <Filter>Header Files\aura\os\cross\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\message\message.h">
-      <Filter>Header Files\aura\message</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\message\message_base.h">
-      <Filter>Header Files\aura\message</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\message\message_cross_windows.h">
-      <Filter>Header Files\aura\message</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\message\message_definition.h">
-      <Filter>Header Files\aura\message</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_c.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_cpp.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_objc.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_objcpp.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura_policy\aura_policy_winrt.h">
-      <Filter>Header Files\aura\aura_policy</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_bidi_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_pipe.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_process.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\process\process_department.h">
-      <Filter>Header Files\aura\process</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\xml\xml_department.h">
-      <Filter>Header Files\aura\xml</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_bz.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_api.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_crypt.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_file.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_impl.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_in_file.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_internal.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_ioapi.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_iowin32.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_memory_buffer.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_unzip.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\zip\zip_util.h">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_department.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\compress_gz.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\aaa_want_to_remove_compress_bzip.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\compress\aaa_want_to_remove_compress_gzip.h">
-      <Filter>Header Files\aura\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\big5Prober.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\charDistribution.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\charguess.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\charguess_private.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\charguess_c.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\charsetProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\codingStateMachine.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\config.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\EscCharsetProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\EUCJPProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\EUCKRProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\EUCTWProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\GB2312Prober.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\jpCntx.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\Latin1Prober.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\pkgInt.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\MBCSGroupProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\SBCharsetProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\SBCSGroupProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\SJISProber.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\types.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\universal.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\charguess\UTF8Prober.h">
-      <Filter>Header Files\aura\charguess</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_byte_order.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_email_address.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_ip_enum.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_net.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_open_weather_city.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_port_forward.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_sockets.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\net_url_domain.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_client_socket.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_data_types.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file_list_parser.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_file_status.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_interface.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_output.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_output_stream.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\ftp_transfer_notification.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_application.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_get_socket.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_http.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_listener.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_ostream.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_signal.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_status.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\http_system.h">
-      <Filter>Header Files\net\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_cookie.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_form.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_request.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_response.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\http\webserver\webserver_http_transaction.h">
-      <Filter>Header Files\net\http\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\mail_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\pop3_socket.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\mail\simple_pop3.h">
-      <Filter>Header Files\net\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket_handler.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\netserver_socket_thread.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_batch_buffer.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_http_buffer.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_link_in_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_link_out_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_logger.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_trace_logger.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_transfer_socket.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\sockets_websocket_client.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\base\sockets_base_socket.h">
-      <Filter>Header Files\net\sockets\base</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\base\sockets_base_socket_handler.h">
-      <Filter>Header Files\net\sockets\base</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_bsd.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_config.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sockets_sockets.h">
-      <Filter>Header Files\net\sockets\bsd</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_server.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\asynch_dns\resolv_socket.h">
-      <Filter>Header Files\net\sockets\bsd\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_listen_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_net.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sctp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_ssl_client_context_map.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_stream_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_sync_socket_handler.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\internal\SSLInitializer.h">
-      <Filter>Header Files\net\sockets\bsd\internal</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_base_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_callback.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_client.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_event.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_request.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_response.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_server.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_tcp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_transaction.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\sip\sip_udp_client_socket.h">
-      <Filter>Header Files\net\sockets\bsd\sip</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\Event.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\EventTime.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventHandler.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\timer\IEventOwner.h">
-      <Filter>Header Files\net\sockets\bsd\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\ajp13.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\Ajp13Socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\AjpBaseSocket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\webserver\http_base_socket.h">
-      <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_client_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_debug_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_get_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_listener.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_post_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_put_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_session.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_socket.h">
-      <Filter>Header Files\net\sockets\http</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\http\sockets_http_tunnel.h">
-      <Filter>Header Files\net\sockets\http</Filter>
     </ClInclude>
     <ClInclude Include="primitive\api\api.h">
       <Filter>Header Files\primitive\api</Filter>
@@ -1340,327 +539,6 @@
     </ClInclude>
     <ClInclude Include="user\experience\frame\experience_frame_updowninterface.h">
       <Filter>Header Files\user\experience\frame</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\_.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\_ansios.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\_c.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\callstack.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\file.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\file_c.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\multithreading.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\ansios\thread.h">
-      <Filter>Header Files\aura\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\cairo_keep.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\cross_win_file.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\cross_win_gdi.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\cross_win_gdi_internal.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\file.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\graphics.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\internal.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\process.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\view_bitmap.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\vsnord_native_app_glue.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\window_android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\window_buffer.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\windowing.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\_.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\___serialization_draft.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\___serialization_draft001.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_c.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_defer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_papaya_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_serializable_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_stream_process_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_text_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\_var_stream_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_common.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_binary_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_reader.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_seekable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_simple_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_file_writer_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\aaa_want_to_remove_stream2.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\binary_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\buffer.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\buffered_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\byte_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\byte_stream_memory_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\circular_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\composite.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\const.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\cpp.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\dir.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\edit_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\exception.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file_stream1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\file1.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\html_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\item.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\item_array.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\listing_provider.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\md5.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\memory_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\memory_map.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\opened.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\ostream_flush.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\path.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\primitive.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\serializable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\serialize.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\set.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\status.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\stdio_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\streamable.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\text_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\text_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\transfer_file.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\file\var_stream.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\dir_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_context.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_system.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\filesystem_dir_system_heap.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\listing.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\path.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\_.h">
-      <Filter>Header Files\aura\node</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\_node.h">
-      <Filter>Header Files\aura\node</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\_.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\android1.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\application.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\dir_context.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\dir_system.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\factory_exchange.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\file_context.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\file_system.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\implementation.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\interaction_impl.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\internal.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\os_context.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\shell.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\stdio_file.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\thread.h">
-      <Filter>Header Files\aura\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\android\_android.h">
-      <Filter>Header Files\aura\node\android</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_.h">
       <Filter>Header Files\primitive\string</Filter>
@@ -1887,426 +765,6 @@
     <ClInclude Include="primitive\string\x.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="aura\os\android\exception_engine.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\_android.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\_os.h">
-      <Filter>Header Files\aura\os</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_system_id_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_system_object_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_system_smart_pointer_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_system_var_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\_system_xml_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_application_common.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_common.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_console_window2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_runnable.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_system_common.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aaa_want_to_remove_template.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\align_byte_count.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\allocate.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\allocate_processor_cache_oriented.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\allocation.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\app.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\app_core.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\app_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_array.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_container.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_menu.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_message.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\application_signal_details.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\assert_running_task.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\async.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\atomic2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_aura.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_regex.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura_status.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\auto.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\auto_pointer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\block.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\chronometer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\class.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\cmp.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\cmp2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\command_ui_probe.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\common.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\console.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\context.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\conv.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\aura.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\cpu_architecture.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\cregexp.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\cregexp_util.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\debug.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\definition.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\department.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\department_container.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\display.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\draw_context2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\drawable.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\e_status.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\enum.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\error.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\exclusive.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\fixed_alloc.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\fixed_alloc_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\flags.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\gudo2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\heap_.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\heap_c.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\heap_item.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\heap_item_array.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\heap_memory.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\hyperlink.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\international.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\ipc.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\ipi.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\keep.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\keep_true.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\library.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\library_object_allocator.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\live_signal.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\log.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\lparam.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\machine_event_central2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\machine_event_data2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\machine_event2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\malloc.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\math.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\memory.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\memory_allocator.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\message_loop.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\muldiv64.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\net.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\new.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\number.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\os_alloc.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\os_context.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\plex.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\plex_heap_impl1.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\plex_heap1.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\printer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\printf.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\profiler2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\progress.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\regex.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\restore.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\runnable_pred.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\runnable2.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\savings.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\serial.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\serial_impl.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\serializable.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\session.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\session_common.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\session_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\shell_launcher.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\simple_app.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\simple_log.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\speaker.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\sprintf.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\static_start.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\status.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\str_context.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\struct.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\system.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\system_heap.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\system_str.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\millis.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\timer.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\timer_array.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\timer_callback.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\timer_event.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\timer_item.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\trace.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\trace_category.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\user.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\aura\v8stdint.h">
-      <Filter>Header Files\aura\aura</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\node\unix\file_watcher.h">
-      <Filter>Header Files\aura\node\unix</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\_const.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2496,111 +954,6 @@
     <ClInclude Include="user\user\windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread_flag.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\_c.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\pcre_util.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_authenticator.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_const.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_contact_list.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_credentials.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_department.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_e_status.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_interactive.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_network_authenticator.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_product.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_product_array.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_storage.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_storage_client.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_system_storage.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_user.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_user_array.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_user_set.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\account\account_usera.h">
-      <Filter>Header Files\aura\account</Filter>
-    </ClInclude>
-    <ClInclude Include="aura\os\android\node_data_exchange.h">
-      <Filter>Header Files\aura\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -2666,33 +1019,6 @@
     </ClInclude>
     <ClInclude Include="inline\application\android.h">
       <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\_.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\_android.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\aaa_want_to_move_from_here_file_watcher.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\android1.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\application.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\factory_exchange.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\implementation.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\internal.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
-    <ClInclude Include="node\android\thread.h">
-      <Filter>Header Files\node\android</Filter>
     </ClInclude>
     <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h">
       <Filter>Header Files\account</Filter>
@@ -2771,54 +1097,6 @@
     </ClInclude>
     <ClInclude Include="html\html\_.h">
       <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\os_alloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\allocation.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_c.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_item_array.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\heap_memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\malloc.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\memory_allocator.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\new.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap1.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="memory\plex_heap_impl1.h">
-      <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="xml\attr.h">
       <Filter>Header Files\xml</Filter>
@@ -3510,9 +1788,6 @@
     <ClInclude Include="html\graphics\value.h">
       <Filter>Header Files\html\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_want_to_remove_shell.h">
-      <Filter>Header Files\node\android</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\data\_tree.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
@@ -3546,114 +1821,6 @@
     <ClInclude Include="primitive\data\tree_item.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\aura.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\threading.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\windowing.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\window_android.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\vsnord_native_app_glue.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\view_bitmap.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\process.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\internal.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\graphics.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\file.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\exception_engine.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_gdi_internal.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_gdi.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cross_win_file.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\cairo_keep.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\aaa_want_to_remove_android_window_impl.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_c.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_android.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -3683,18 +1850,6 @@
     </ClInclude>
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_local.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_remote.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_impl.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_object.h">
-      <Filter>Header Files\os\android</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -3954,104 +2109,8 @@
     <ClInclude Include="primitive\primitive\virtual_memory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="multithreading\threading.h">
-      <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
     <ClInclude Include="platform\aura_main_data.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\cross.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\e.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_base.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_base_tsd.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_common_controls.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_crt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_crtdefs.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_defs.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_errno.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_error.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_file.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_gdi.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_guid_def.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_internals.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_mmeapi.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_mmsystem.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_nls.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_nt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_ntstatus.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_ole_automation.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_shared_memory.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_thread.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_thread_impl.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_time.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_types.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_user.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_wincon.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\windows_winnt.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\message_box.h">
-      <Filter>Header Files\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
@@ -4326,44 +2385,101 @@
     <ClInclude Include="primitive\collection\var_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="net\_impl.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="filesystem\filesystem\file_watcher.h">
-      <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\render\water_routine.h">
       <Filter>Header Files\graphics\render</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_interaction_impl.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_os_context.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\sockets\_sockets.h">
+      <Filter>Header Files\networking\sockets</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_host_interaction.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\netserver\socket_thread.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_file_system.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\netserver\socket_handler.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_file_context.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\netserver\socket.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_file.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\netserver\_netserver.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_dir_system.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\netserver\_.h">
+      <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_dir_context.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\networking_application_socket.h">
+      <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="node\android\aaa_buffer.h">
-      <Filter>Header Files\node\android</Filter>
+    <ClInclude Include="networking\networking_application_handler.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\networking_application.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\email_department.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_networking.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_impl.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\sockets.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\socket_id_list.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\config.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\aaa_want_to_remove_sockets_sockets.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\_strconv.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\_.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\ievent_owner.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\ievent_handler.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\event_time.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\event_handler.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\event.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\timer\_.h">
+      <Filter>Header Files\networking\sockets\bsd\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\webserver\ajp_base_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\webserver\ajp13.h">
+      <Filter>Header Files\networking\sockets\bsd\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\webserver\ajp13_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\webserver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4373,68 +2489,11 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{41080c7b-9620-48c4-9067-179ac83cbc63}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\multithreading">
-      <UniqueIdentifier>{013d16d5-d38d-4c05-94de-ab13a612ad00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\multithreading\service">
-      <UniqueIdentifier>{e31e2e07-1fab-420b-9858-a35d2a474bb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{41a5bddc-53a7-471b-9ee9-dec2b3eba49d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{55796a5c-733e-4e2f-b5c4-45ce822571b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem">
-      <UniqueIdentifier>{0a70f80b-6d1a-4784-9332-88c81d4120f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\file">
-      <UniqueIdentifier>{002a8c79-6f9e-46d0-9f6f-9cdfbb3cf692}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura">
-      <UniqueIdentifier>{86406752-2a1d-4fa9-b11a-3c053bb10965}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\xml">
-      <UniqueIdentifier>{bb9af5b8-4a58-496e-8301-33965acdb98a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\aura">
-      <UniqueIdentifier>{e5b306d3-e742-4627-aa06-7f7eb814f067}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os">
-      <UniqueIdentifier>{c08ed0f4-5baf-48e6-b2cf-54bf9b4c30fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\android">
-      <UniqueIdentifier>{8036478a-6465-481d-a81f-09fb3515fcf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross">
-      <UniqueIdentifier>{a7a6029c-7670-47f9-be15-511dd690673d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\windows">
-      <UniqueIdentifier>{33ae4938-63ae-40a3-a1fb-ed0c891d782f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\cross\ansios">
-      <UniqueIdentifier>{2169cf1e-a07b-4d2b-a2ed-cbd3e1eb4788}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\os\ansios">
-      <UniqueIdentifier>{dfb64b3c-9fa9-49f7-a1f1-41799f69ae3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node">
-      <UniqueIdentifier>{70968596-becd-4a17-a087-af578c09cd7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\android">
-      <UniqueIdentifier>{6391676e-1644-4c3d-95aa-f93a8754c0fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\ansios">
-      <UniqueIdentifier>{6fe81333-dfae-407d-b66b-5367e3a0e0ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\message">
-      <UniqueIdentifier>{3f1e79c8-1c73-46f6-93b7-a614bf6ef455}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\aura_policy">
-      <UniqueIdentifier>{fb6a4544-c2c4-4957-bb05-ce2803c60b69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\process">
-      <UniqueIdentifier>{94ccc36f-448d-4466-93f0-b4270dae5ce1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{51a31782-ed58-419d-9476-4a5951159132}</UniqueIdentifier>
@@ -4442,89 +2501,8 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{df13b398-35ae-4305-a145-16f8952586f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{08e2a220-5913-4f59-b0bc-95076e0fe8d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\filesystem\filesystem">
-      <UniqueIdentifier>{cf33ca26-3a3f-4822-bfd4-2e6fb4fff10f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress">
-      <UniqueIdentifier>{a1571713-31af-40b8-a8c8-b28bac70f5ec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress\zip">
-      <UniqueIdentifier>{d856c0e2-dace-4164-9972-94a047083f58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\compress\bsdiff">
-      <UniqueIdentifier>{9407b558-b507-4346-9cdb-127cbc28d02f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\charguess">
-      <UniqueIdentifier>{d79e5319-26b1-46f8-b8dd-f58e9c82b254}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{514e6656-970c-4227-b852-9553d9042cc8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\ftp">
-      <UniqueIdentifier>{15053a4e-9275-4ac0-9ae8-3625e7880661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\http">
-      <UniqueIdentifier>{38ec6041-204b-4bb3-8f5e-629ce743790f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\http\webserver">
-      <UniqueIdentifier>{2d4c5e5e-d527-4d55-a861-2b61b380e195}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\mail">
-      <UniqueIdentifier>{38c74999-afc4-436c-af15-b28b858d8b16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\netserver">
-      <UniqueIdentifier>{2e91d2c3-ff85-46a7-86bb-f966cb5ca2ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets">
-      <UniqueIdentifier>{b97e1afe-6c93-46bf-b917-9ea510f9e0e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\base">
-      <UniqueIdentifier>{4676a0cb-6d9c-4a65-944a-6297fc518ea1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd">
-      <UniqueIdentifier>{668cfcfa-50ff-4cca-adb1-f0ef8ef37d46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\asynch_dns">
-      <UniqueIdentifier>{cbbc1f73-a52a-4edd-a545-ef3ef89a0129}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\basic">
-      <UniqueIdentifier>{087cfe9e-889a-43a1-85c5-ee67a5368d5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\internal">
-      <UniqueIdentifier>{d20c3e7f-0c3d-439c-bb69-c9f951a4c53f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\sip">
-      <UniqueIdentifier>{0cb97377-ef45-4ae7-8ddc-57f91da6144c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{64d23493-6e82-40d9-8758-12c3b9c1ecca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{c05391a7-73d8-44d2-9aa1-a19b72caedf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\webserver">
-      <UniqueIdentifier>{3947a14d-8128-43a6-bdbf-34bc91aea6b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\http">
-      <UniqueIdentifier>{d96b41e3-e5e2-41f3-8bb3-87efc8d1bcbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\netserver">
-      <UniqueIdentifier>{38c4e220-16bc-4e11-b035-c3f9ea8c3e54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets">
-      <UniqueIdentifier>{aaf08d22-97f9-477e-a0b1-322faa704a4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd">
-      <UniqueIdentifier>{045d995b-b048-4996-bcb5-38358c13de2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\timer">
-      <UniqueIdentifier>{f4b99e0e-9044-4c14-aa9f-13b88bcd9c3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\api">
       <UniqueIdentifier>{afea8c9c-ab84-4327-8481-dcf74df87464}</UniqueIdentifier>
@@ -4559,32 +2537,11 @@
     <Filter Include="Header Files\user\experience\frame">
       <UniqueIdentifier>{367005ba-6258-437f-98ca-72defa185d31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{7856a784-90b0-413c-b6d5-b661b1e80661}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\string">
       <UniqueIdentifier>{3a6fa529-1d54-41a6-8a8e-aa2198fa529e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\string\x">
       <UniqueIdentifier>{6d709f7a-4023-48d3-8958-d8abc124a9a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\node\unix">
-      <UniqueIdentifier>{f440c033-18f4-4f31-97fc-b81892417c8d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\pcre">
-      <UniqueIdentifier>{5f97c566-4cf4-4f87-9ced-c9892244c9b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\pcre">
-      <UniqueIdentifier>{c1e9cf98-3242-4f06-b382-38fae7181e6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\aura\account">
-      <UniqueIdentifier>{c4ded642-6d7f-4b41-90c9-d4d3e115be99}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{220305b3-f16d-4676-b2f5-22d495f36a06}</UniqueIdentifier>
@@ -4595,35 +2552,14 @@
     <Filter Include="Source Files\database\simpledb">
       <UniqueIdentifier>{ea6fc466-272b-4680-baf1-72d4eff4cee4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database\sqlitedb">
-      <UniqueIdentifier>{7b4c4967-17f2-4bd4-9df8-d3a7b733afd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{7e171fc6-d4b9-437e-865d-a3f23b103629}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\android">
-      <UniqueIdentifier>{3de59e61-f798-4178-8319-cc4e11a58b89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{82ef53e1-f756-4ae9-ab37-361e24b32e64}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{4405361e-a438-46bb-bddd-7ada62a9af80}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline\application">
       <UniqueIdentifier>{888e24b3-7902-4b63-84fd-2913fa2c8fe7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{d5cbfcce-c088-43ef-940d-10ea63b387ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\android">
-      <UniqueIdentifier>{f3043ec3-c7e2-4633-b1cc-57abad302ac2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\account">
       <UniqueIdentifier>{f21756af-3502-4e54-b460-768c9392619d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\compress">
-      <UniqueIdentifier>{cfb9a164-fe11-4408-a558-00024ad61959}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{a55e7ab3-749e-4dc3-9332-931acb018dae}</UniqueIdentifier>
@@ -4639,9 +2575,6 @@
     </Filter>
     <Filter Include="Header Files\html\html">
       <UniqueIdentifier>{d625b2af-5340-4c34-a1cc-9d6b32937fb4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\memory">
-      <UniqueIdentifier>{6b3e3e23-2bf7-4802-9d13-a37103276920}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\xml">
       <UniqueIdentifier>{5c26e669-9088-418b-909b-2f131c335b36}</UniqueIdentifier>
@@ -4670,26 +2603,14 @@
     <Filter Include="Header Files\html\graphics">
       <UniqueIdentifier>{5d7ebb9f-01a2-4dad-9a53-384797c38330}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\android">
-      <UniqueIdentifier>{7cde14bd-c04f-4a6c-aeca-a7b8d8d1a9dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{cd4f1040-a2e4-41f8-9c63-0de5fbf31c0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\posix">
-      <UniqueIdentifier>{fc239057-5fe6-43cc-bf2e-a3fdac615211}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{f521b2ca-b3aa-4fcd-a2d4-2306a8d92f0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\primitive">
       <UniqueIdentifier>{188768d1-6867-4673-aa21-f909cb02ff1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{b8c078fb-117d-40d1-9650-a68c4992cf26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{c9238d4c-6180-41fa-a354-a392621a73c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphics\render">
       <UniqueIdentifier>{a3159866-bf3a-45af-8c0c-f0223f23c9a6}</UniqueIdentifier>
@@ -4700,13 +2621,58 @@
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{dbe71c43-de39-4dbc-a56c-3cbe9aa4d55b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math">
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{2394a59d-c038-42d3-b280-e6187148c923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{514e6656-970c-4227-b852-9553d9042cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets">
+      <UniqueIdentifier>{68599de8-0fe4-43a9-8bb2-338e6887fd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\netserver">
+      <UniqueIdentifier>{0c557ced-aeb7-4138-a1ac-110b252af0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd">
+      <UniqueIdentifier>{24efd964-43b0-4e1a-9fcb-37fcec65b197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\webserver">
+      <UniqueIdentifier>{22012729-1070-44c2-999b-b0d805fe6bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\timer">
+      <UniqueIdentifier>{23d39cb9-79a9-4483-9dcb-701d6402af9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\smtp">
+      <UniqueIdentifier>{3f129dc3-8af1-4c56-92a6-5c3b7d030982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking">
+      <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\netserver">
+      <UniqueIdentifier>{38c4e220-16bc-4e11-b035-c3f9ea8c3e54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets">
+      <UniqueIdentifier>{aaf08d22-97f9-477e-a0b1-322faa704a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd">
+      <UniqueIdentifier>{045d995b-b048-4996-bcb5-38358c13de2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\timer">
+      <UniqueIdentifier>{7856a784-90b0-413c-b6d5-b661b1e80661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\stmp">
+      <UniqueIdentifier>{f4b99e0e-9044-4c14-aa9f-13b88bcd9c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mathematics">
       <UniqueIdentifier>{007b0a5c-63be-4d23-8cd4-1ac82dfd16ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math\calculator">
+    <Filter Include="Source Files\mathematics\calculator">
       <UniqueIdentifier>{78ec9020-b31b-4ba2-b767-68034a5f5c36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\math\kissfft">
+    <Filter Include="Source Files\mathematics\kissfft">
       <UniqueIdentifier>{f685facc-9a77-4238-aae0-0b3d1afa0def}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -4714,20 +2680,8 @@
     <None Include="primitive\factory_impl.inl">
       <Filter>Header Files\primitive</Filter>
     </None>
-    <None Include="multithreading\multithreading.inl">
-      <Filter>Header Files\multithreading</Filter>
-    </None>
-    <None Include="aura\message\message.inl">
-      <Filter>Header Files\aura\message</Filter>
-    </None>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="primitive\primitive.inl">
       <Filter>Header Files\primitive</Filter>
-    </None>
-    <None Include="net\net.inl">
-      <Filter>Header Files\net</Filter>
     </None>
     <None Include="primitive\geometry\geometry_size.inl">
       <Filter>Header Files\primitive\geometry</Filter>
@@ -4747,10 +2701,5 @@
     <None Include="primitive\primitive\block.inl">
       <Filter>Header Files\primitive\primitive</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="aura\compress\zip\zip_algorithm.txt">
-      <Filter>Header Files\aura\compress\zip</Filter>
-    </Text>
   </ItemGroup>
 </Project>

@@ -16,7 +16,7 @@ namespace user
 
 
       form_list();
-      virtual ~form_list();
+      ~form_list() override;
 
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
@@ -35,8 +35,6 @@ namespace user
       virtual void on_check_save(::user::interaction* puserinteraction);
       virtual void on_check_load(::user::interaction* puserinteraction);
 
-      //void _000OnMouse(::message::mouse * pmouse) override;
-
       void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
       void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
@@ -52,7 +50,6 @@ namespace user
       virtual void _001HideEditingControls();
       virtual void _001HideControl(::user::interaction * pinteraction);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,lparam lparam) override;
 
       void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();
@@ -108,9 +105,8 @@ namespace user
 
    };
 
+
 } // namespace user
-
-
 
 
 

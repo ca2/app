@@ -24,7 +24,7 @@ namespace nano
       ~display() override;
 
 
-      virtual void kick_idle();
+      void kick_idle() override;
       virtual void display_post(const ::procedure & procedure);
       virtual void display_send(const ::procedure & procedure);
       virtual bool display_posted_routine_step();

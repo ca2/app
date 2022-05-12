@@ -446,6 +446,14 @@ public:
    }
 
 
+   inline const TYPE * get_data() const { return m_pData; }
+   inline TYPE * get_data() { return m_pData; }
+
+
+   inline const TYPE * data() const { return m_pData; }
+   inline TYPE * data() { return m_pData; }
+
+
    inline bool contains(const TYPE * pmatter) const { return pmatter >= m_pData && pmatter < m_pData + m_nSize; }
 
 
@@ -457,6 +465,7 @@ public:
    inline ::count size() const;
    inline ::count count() const;
    inline ::count length() const;
+   inline ::count byte_count() const { return get_byte_count(); }
 
 
    inline bool has_element() const noexcept { return m_nSize > 0; }
@@ -495,6 +504,9 @@ public:
 
    template < ::std::size_t N >
    TYPE& get() { return element_at(N); }
+
+
+   void reserve(::count nReserve) { set_size(get_size(), nReserve); }
 
 
    ::count set_size(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements

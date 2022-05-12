@@ -7,6 +7,8 @@ struct DURATION { time_t m_iSecond; /* Seconds - >= 0 */ long m_iNanosecond; /* 
 
 struct FREQUENCY { double m_d; /* Hz */ };
 
+constexpr FREQUENCY operator "" _Hz(long double d) { return { (double) d }; }
+
 #define DURATION_UNIT(unit, type, member)             \
 struct unit                                           \
 {                                                     \

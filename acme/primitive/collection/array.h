@@ -58,8 +58,6 @@ public:
 
 
 
-   inline const TYPE* get_data() const;
-   inline TYPE* get_data();
 
    // must not be overloaded!!
    inline ::index add_item(ARG_TYPE newElement);

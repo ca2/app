@@ -143,6 +143,17 @@ public:
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }
 
+   inline ::duration update_elapsed(const ::duration & durationStop = ::now < DURATION >())
+   {
+
+      auto elapsed = durationStop - *this;
+
+      operator=(durationStop);
+
+      return elapsed;
+
+   }
+
    inline double period_rate(const class ::duration & durationPeriod, const class ::duration & duration = now()) const { return ((duration - *this) % durationPeriod) / durationPeriod; }
 
    

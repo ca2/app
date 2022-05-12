@@ -1,20 +1,23 @@
 #pragma once
 
 
-struct DIMENSIOND
-{
-
-   double cx;
-   double cy;
-   double cz;
-
-};
+using DIMENSIOND = poled;
+using dimensiond = DIMENSIOND;
 
 
-class CLASS_DECL_ACME dimensiond :
-   public DIMENSIOND
-{
-public:
+//{
+//
+//   double cx;
+//   double cy;
+//   double cz;
+//
+//};
 
-};
+
+//class CLASS_DECL_ACME dimensiond :
+//   public DIMENSIOND
+//{
+//public:
+//
+//};
 

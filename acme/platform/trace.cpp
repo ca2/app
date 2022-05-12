@@ -26,130 +26,36 @@ void logger::t_release()
 }
 
 
-//namespace trace
-//{
+
+trace::trace()
+{
+
+   //m_pobject = pobject;
+
+}
 
 
-   trace::trace()
-   {
+trace::~trace()
+{
 
-      //m_pobject = pobject;
-
-   }
+}
 
 
-   trace::~trace()
-   {
 
-   }
+trace_category::trace_category()
+{
 
+   m_etracelevelMinimum    = e_trace_level_information;
+   m_etracecategory        = e_trace_category_general;
+   m_bEnabled              = true;
 
-   //typedef void ( * PFN_trace_v)(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_ACME void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_ACME PFN_trace_v trace_v = &raw_trace_v;
-
-
-   //void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
-   //{
-   //   __UNREFERENCED_PARAMETER(pszFileName);
-   //   __UNREFERENCED_PARAMETER(nLine);
-   //   /*      const category *pCategory;
-   //   trace_module * pmodule = nullptr;
-   //   static const i32 nCount = 1024;
-   //   char szBuf[nCount] = {'\0'};
-   //   i32 nLen = 0;*/
-
-   //   auto pcategory = ((trace *) this)->enabled_get(ecategory, elevel);
-
-   //   /*
-   //   if (nLen >= 0 && nLen < nCount)
-   //   {
-   //   if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
-   //   {
-   //   i32 nTemp;
-   //   C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
-   //   if( nTemp < 0 )
-   //   nLen = nCount;
-   //   else
-   //   nLen += nTemp;
-   //   }
-   //   }
-   //   if (nLen >= 0 && nLen < nCount)
-   //   {
-   //   if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
-   //   {
-   //   i32 nTemp;
-   //   C_RUNTIME_FORMATTED_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
-   //   if( nTemp < 0 )
-   //   nLen = nCount;
-   //   else
-   //   nLen += nTemp;
-   //   }
-   //   }
-   //   */
-   //   /*
-   //   if (nLen >= 0 && nLen < nCount)
-   //   {
-   //   C_RUNTIME_ERRORCHECK_SPRINTF(_vsnprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, pszFormat, ptr));
-   //   }
-   //   */
-
-   //   string str;
-
-   //   str.format(pszFormat, args);
-
-   //   ::output_debug_string(str);
-
-   //   /*
-   //   if(pmodule != nullptr)
-   //   pmodule->DebugReport(_CRT_WARN, nullptr, 0, nullptr, pszFormat, ptr);
-   //   else
-   //   output_debug_string(szBuf);
-   //   */
-
-   //}
+}
 
 
-   trace_category::trace_category()
-   {
+trace_category::~trace_category()
+{
 
-      m_etracelevelMinimum    = e_trace_level_information;
-      m_etracecategory        = e_trace_category_general;
-      m_bEnabled              = true;
-
-   }
-
-
-   trace_category::~trace_category()
-   {
-
-   }
-
-
-   //CLASS_DECL_ACME void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pszFileName);
-   //   __UNREFERENCED_PARAMETER(nLine);
-   //   __UNREFERENCED_PARAMETER(dwCategory);
-   //   __UNREFERENCED_PARAMETER(nLevel);
-
-   //   string str;
-
-   //   str.format(pszFmt, args);
-
-   //   ::output_debug_string(str);
-
-   //}
-
-   /*CLASS_DECL_ACME void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
-   {
-   get_system()->log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
-   }*/
-
-//
-//} // namespace trace
-//
+}
 
 
 
@@ -480,10 +386,21 @@ tracer & tracer::operator << (const integral_byte & memsize)
 void tracer::flush()
 {
 
-   if (::is_set(m_plogger))
+   auto plogger = ::is_set(m_plogger) ? m_plogger : t_plogger.m_p;
+
+   if(::is_null(plogger))
    {
 
-      m_plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
+      ::logger::t_construct(m_psystem);
+
+      plogger = t_plogger.m_p;
+
+   }
+
+   if (::is_set(plogger))
+   {
+
+      plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
 
    }
 

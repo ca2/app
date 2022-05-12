@@ -1132,6 +1132,7 @@
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
+    <ClInclude Include="graphics\draw3d\matrix.h" />
     <ClInclude Include="graphics\user\control_box_button.h" />
     <ClInclude Include="graphics\user\control_box_icon.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />

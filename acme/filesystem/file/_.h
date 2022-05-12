@@ -10,6 +10,8 @@
 #include "stdio_file.h"
 
 
+
+
 CLASS_DECL_ACME int get_sync_io_error();
 CLASS_DECL_ACME void set_sync_io_error(int iError);
 CLASS_DECL_ACME int get_generate_sync_io_error();

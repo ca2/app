@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "aura/graphics/image/image.h"
+#include "glm/mat4x4.hpp"
 
 
 namespace opengl
@@ -104,14 +105,31 @@ namespace opengl
    }
 
 
-   void context::start()
+   void context::start_drawing()
    {
+
+
+      //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
+//int iError16 = glGetError();
+
+//int size = 0; 
+//glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
+//int iError17 = glGetError();
+
+//glDrawElements(GL_TRIANGLES, size / sizeof(GLushort), GL_UNSIGNED_SHORT, 0);
+//int iError18 = glGetError();
+
+
+
 
       ASSERT(m_itaskGpu == ::get_current_itask());
 
-      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+//      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-      glClear(GL_COLOR_BUFFER_BIT);
+      // Clear the screen
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      //glClear(GL_COLOR_BUFFER_BIT);
 
       if (m_pprogram && m_pprogram->m_pshader)
       {
@@ -119,6 +137,8 @@ namespace opengl
          m_pprogram->m_pshader->use();
 
       }
+      // Use our shader
+      //glUseProgram(programID);
 
       // be sure to activate the shader
       //glUseProgram(shaderProgram);
@@ -130,6 +150,55 @@ namespace opengl
       //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
       //return ::success;
+
+   }
+
+ 
+   
+   void context::global_transform()
+   {
+      
+
+      // Get a handle for our "MVP" uniform
+      //GLint MatrixID = glGetUniformLocation(programID, "MVP");
+
+      if (m_iMatrixUniform >= 0)
+      {
+
+         // Compute the MVP matrix from keyboard and mouse input
+         //computeMatricesFromInputs();
+         ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
+         ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
+         ::glm::mat4 matrixModel = glm::mat4(1.0);
+         ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
+
+         // Send our transformation to the currently bound shader, 
+         // in the "MVP" uniform
+         glUniformMatrix4fv(m_iMatrixUniform, 1, GL_FALSE, &matrixMVP[0][0]);
+
+      }
+
+      //glm::mat4 getViewMatrix() {
+      //   return ViewMatrix;
+      //}
+      //glm::mat4 getProjectionMatrix() {
+      //   return ProjectionMatrix;
+      //}
+
+
+      //// Initial position : on +Z
+      //glm::vec3 position = glm::vec3(0, 0, 5);
+      //// Initial horizontal angle : toward -Z
+      //float horizontalAngle = 3.14f;
+      //// Initial vertical angle : none
+      //float verticalAngle = 0.0f;
+      //// Initial Field of View
+      //float initialFoV = 45.0f;
+
+      //float speed = 3.0f; // 3 units / second
+      //float mouseSpeed = 0.005f;
+
+
 
    }
 

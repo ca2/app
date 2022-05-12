@@ -8,23 +8,26 @@
 #include "_.h"
 
 
-locationd locationd::rotate(locationd point)
+poled & poled::rotate(const poled & pole)
 {
    
-   locationd point1;
-   point1.x = x *cos(point.z) - y * sin(point.z) ;
-   point1.y = x *sin(point.z) + y * cos(point.z) ;
-   point1.z = z;
+   poled pole1;
+   pole1.x = x * cos(pole.z) - y * sin(pole.z) ;
+   pole1.y = x * sin(pole.z) + y * cos(pole.z) ;
+   pole1.z = z;
    
-   locationd point2;
-   point2.y = point1.y*cos(point.x) - point1.z * sin(point.x) ;
-   point2.z = point1.y *sin(point.x) + point1.z * cos(point.x) ;
-   point2.x = point1.x;
+   poled pole2;
+   pole2.y = pole1.y * cos(pole.x) - pole1.z * sin(pole.x) ;
+   pole2.z = pole1.y * sin(pole.x) + pole1.z * cos(pole.x) ;
+   pole2.x = pole1.x;
    
-   locationd p3;
-   p3.z = point2.z *cos(point.y) - point2.x * sin(point.y) ;
-   p3.x = point2.z *sin(point.y) + point2.x * cos(point.y) ;
-   p3.y = point2.y;
+   pole1.z = pole2.z * cos(pole.y) - pole2.x * sin(pole.y) ;
+   pole1.x = pole2.z * sin(pole.y) + pole2.x * cos(pole.y) ;
+   pole1.y = pole2.y;
    
-   return p3;
+   return pole1;
+
 }
+
+
+

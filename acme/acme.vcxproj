@@ -1792,6 +1792,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\geometry3d\box.h" />
     <ClInclude Include="primitive\geometry3d\dimension.h" />
     <ClInclude Include="primitive\geometry3d\location.h" />
+    <ClInclude Include="primitive\geometry3d\pole.h" />
     <ClInclude Include="primitive\geometry3d\quaternions.h" />
     <ClInclude Include="primitive\geometry3d\_.h" />
     <ClInclude Include="primitive\logic\bit.h" />
@@ -1868,6 +1869,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\promise_predicate\predicate_routine.h" />
     <ClInclude Include="primitive\promise_predicate\synchronized_predicate_routine.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
+    <ClInclude Include="primitive\string\string_block.h" />
     <ClInclude Include="primitive\string\to_string.h" />
     <ClInclude Include="primitive\subject\aaa_handler.h" />
     <ClInclude Include="primitive\subject\context.h" />

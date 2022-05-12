@@ -91,6 +91,10 @@ namespace str
       //};
       // return UTF8 Extra Bytes based on supplied First Char
 
+      inline i32 parse_unicode(const ansichar * & pszChar);
+      inline i32 parse_unicode(const wd16char * & pszChar);
+      inline i32 parse_unicode(const wd32char * & pszChar) { return *pszChar++; }
+
       // return Unicode Index
       inline i32 uni_index(const ansichar * pszChar);
       inline i32 uni_index(const wd16char * pszChar) { strsize srclen = 2; return ::__uni_index(pszChar, &srclen); }
@@ -112,8 +116,8 @@ namespace str
 
       // return Unicode Index and
       // number of characters need to be consumed to parse a Unicode Character
-      i32 uni_index_len(const ansichar * pszChar, i32 & len);
-      i32 uni_index_len(const wd16char * pszChar, i32 & len);
+      inline i32 uni_index_len(const ansichar * pszChar, i32 & len);
+      inline i32 uni_index_len(const wd16char * pszChar, i32 & len);
       inline i32 uni_index_len(const wd32char * pszChar, i32 & len) { len = 1; return *pszChar; }
 
 
@@ -277,16 +281,19 @@ namespace str
  * ***** END LICENSE BLOCK ***** */
 
 
+inline i32 parse_unicode(const ansichar * pszChar) { return ::str::ch::parse_unicode(pszChar); }
 inline i32 __uni_index(const ansichar * pszChar) { return ::str::ch::uni_index(pszChar); }
 inline i32 __uni_len(const ansichar * pszChar) { return ::str::ch::uni_len(pszChar); }
 inline i32 __uni_index_len(const ansichar * pszChar, i32 & len) { return ::str::ch::uni_index_len(pszChar, len); }
 
 
+inline i32 parse_unicode(const wd16char * pszChar) { return ::str::ch::parse_unicode(pszChar); }
 inline i32 __uni_index(const wd16char * pszChar) { return ::str::ch::uni_index(pszChar); }
 inline i32 __uni_len(const wd16char * pszChar) { return ::str::ch::uni_len(pszChar); }
 inline i32 __uni_index_len(const wd16char * pszChar, i32 & len) { return ::str::ch::uni_index_len(pszChar, len); }
 
 
+inline i32 parse_unicode(const wd32char * pszChar) { return ::str::ch::parse_unicode(pszChar); }
 inline i32 __uni_index(const wd32char * pszChar) { return ::str::ch::uni_index(pszChar); }
 inline i32 __uni_len(const wd32char * pszChar) { return ::str::ch::uni_len(pszChar); }
 inline i32 __uni_index_len(const wd32char * pszChar, i32 & len) { return ::str::ch::uni_index_len(pszChar, len); }

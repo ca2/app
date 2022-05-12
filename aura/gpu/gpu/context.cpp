@@ -98,7 +98,7 @@ namespace gpu
    }
 
 
-   void context::start()
+   void context::start_drawing()
    {
 
       //glClearColor(0.2f, 0.3f, 0.3f, 0.5f);
@@ -123,6 +123,12 @@ namespace gpu
       ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
       //return ::success;
+
+   }
+
+
+   void context::global_transform()
+   {
 
    }
 

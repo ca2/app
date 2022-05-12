@@ -2,14 +2,6 @@
 #pragma once
 
 
-//namespace trace
-//{
-
-         //static thread_local logger * t_plogger;
-
-         //namespace acme
-         //{
-
 class logger :
    virtual public ::object
 {
@@ -26,45 +18,37 @@ public:
 };
 
 
-//::logger & log() { return *(::logger::t_plogger ? ::logger::t_plogger : ::logger::create()); }
+class CLASS_DECL_ACME log :
+   virtual public ::logger
+{
+public:
+
+
+   bool                       m_bLog : 1;
+   bool                       m_bExtendedLog : 1;
+   bool                       m_bLogFileName : 1;
+   bool                       m_bLogFunctionName : 1;
+   bool                       m_bLogThreadName : 1;
+
+
+   log();
+   ~log() override;
+
+
+   void initialize(::object* pobject) override;
+   
+
+   virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);
+
+
+   virtual void process_init();
+
+   virtual void set_extended_log(bool bSet = true);
+   virtual bool get_extended_log();
 
 
 
-   class CLASS_DECL_ACME log :
-      virtual public ::logger
-   {
-   public:
-
-
-      bool                       m_bLog : 1;
-      bool                       m_bExtendedLog : 1;
-      bool                       m_bLogFileName : 1;
-      bool                       m_bLogFunctionName : 1;
-      bool                       m_bLogThreadName : 1;
-
-
-      log();
-      ~log() override;
-
-
-      void initialize(::object* pobject) override;
-      
-
-      virtual void initialize_log(enum_trace_level etracelevelMin, const ::atom& atom);
-
-
-      //virtual void print(const char* pszFormat, ...);
-      //virtual void print_v(const char* pszFormat, va_list valist);
-
-      
-      virtual void process_init();
-
-      virtual void set_extended_log(bool bSet = true);
-      virtual bool get_extended_log();
-
-
-
-   };
+};
 
 
 CLASS_DECL_ACME void set_verbose_log(bool bVerbose);

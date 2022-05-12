@@ -1070,6 +1070,9 @@
     <ClInclude Include="graphics\draw2d\host.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw3d\matrix.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">

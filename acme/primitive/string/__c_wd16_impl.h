@@ -1140,13 +1140,47 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //inline wd16char * ::str::international::unicode_to_utf8(const unichar * psz);
 
 
+inline i32 parse_unicode(const wd16char *& input)
+{
 
+   if (input[0] == 0)
+   {
 
+      return 0;
 
+   }
 
+   if (utf16_is_2nd_surrogate(input[0]))
+   {
 
+      return -1;
 
+   }
+   else if (utf16_is_1st_surrogate(input[0]))
+   {
 
+      if (utf16_is_2nd_surrogate(input[1]))
+      {
+
+         return utf16_surrogate_to_utf32(input[0], input[1]);
+
+      }
+      else
+      {
+
+         return -1;
+
+      }
+
+   }
+   else
+   {
+
+      return input[0];
+
+   }
+
+}
 
 
 

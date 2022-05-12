@@ -181,7 +181,7 @@ inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_at(::inde
 
    ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
-   return get_data()[nIndex];
+   return this->get_data()[nIndex];
 
 }
 
@@ -192,7 +192,7 @@ inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_at(
 
    ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
-   return get_data()[nIndex];
+   return this->get_data()[nIndex];
 
 }
 
@@ -203,7 +203,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::set_at(::index
 
    ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
-   get_data()[nIndex] = newElement;
+   this->get_data()[nIndex] = newElement;
 
 }
 
@@ -255,17 +255,17 @@ inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::element_
 
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline const TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_data() const
-{
-   return (const TYPE*)this->m_pData;
-}
-
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_data()
-{
-   return (TYPE*)this->m_pData;
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline const TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_data() const
+//{
+//   return (const TYPE*)this->m_pData;
+//}
+//
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline TYPE* array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::get_data()
+//{
+//   return (TYPE*)this->m_pData;
+//}
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >

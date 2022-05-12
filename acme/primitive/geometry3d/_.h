@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "pole.h"
+
 #include "location.h"
 
 #include "dimension.h"

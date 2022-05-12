@@ -9,6 +9,51 @@ namespace str
    {
 
 
+      inline i32 parse_unicode(const ansichar * & pszUtf8)
+      {
+
+         if (*pszUtf8 == '\0')
+         {
+
+            return 0;
+
+         }
+
+         i32 ch = 0;
+
+         byte c;
+
+         char extraBytesToRead = utf8_e(*pszUtf8);
+
+         switch (extraBytesToRead)
+         {
+         case 5:
+            ch += c = *pszUtf8++; ch <<= 6;
+            if (c == '\0') { return -1; }
+         case 4:
+            ch += c = *pszUtf8++; ch <<= 6;
+            if (c == '\0') { return -1; }
+         case 3:
+            ch += c = *pszUtf8++; ch <<= 6;
+            if (c == '\0') { return -1; }
+         case 2:
+            ch += c = *pszUtf8++; ch <<= 6;
+            if (c == '\0') { return -1; }
+         case 1:
+            ch += c = *pszUtf8++; ch <<= 6;
+            if (c == '\0') { return -1; }
+         case 0:
+            ch += c = *pszUtf8++;
+            if (c == '\0') { return -1; }
+         }
+
+         ch -= utf8_o(extraBytesToRead);
+
+         return ch;
+
+      }
+
+
       inline i32 uni_index_len(const ansichar * pszUtf8, ::i32 & len)
       {
 
@@ -83,7 +128,7 @@ namespace str
          return uni_index_len(pszUtf8, len);
 
       }
-       
+
       
       inline ::i32 to_lower_case(::i32 i)
       {

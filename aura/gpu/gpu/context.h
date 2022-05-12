@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw3d/matrix.h"
+
+
 namespace gpu
 {
 
@@ -44,6 +47,8 @@ namespace gpu
       __pointer(::gpu::buffer)         m_pbuffer;
       __pointer(::gpu::program)        m_pprogram;
       bool                             m_bCreated;
+      ::draw3d::matrix                 m_matrixProjection;
+      ::draw3d::matrix                 m_matrixView;
 
 
       context();
@@ -58,8 +63,15 @@ namespace gpu
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
 
+
+      inline const ::draw3d::matrix & view_matrix() const { return m_matrixView; }
+      inline ::draw3d::matrix & view_matrix() { return m_matrixView; }
+      inline const ::draw3d::matrix & projection_matrix() const { return m_matrixProjection; }
+      inline ::draw3d::matrix & projection_matrix() { return m_matrixProjection; }
+
       virtual void draw();
-      virtual void start();
+      virtual void start_drawing();
+      virtual void global_transform();
       virtual void render();
 
 

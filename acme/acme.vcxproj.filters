@@ -2963,6 +2963,12 @@
     <ClInclude Include="primitive\string\from_numeric_type.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\string_block.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\pole.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

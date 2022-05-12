@@ -358,32 +358,3 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel
 }
 
 
-//thread_local __pointer(logger) logger::t_plogger;
-
-
-//logger * logger::create()
-//{
-//
-//   __construct(t_plogger);
-//
-//   return t_plogger.m_p;
-//
-//}
-//
-//
-//void logger::destroy()
-//{
-//
-//   ::release(t_plogger);
-//
-//}
-
-
-//void logger::print(enum_trace_level elevel, enum_trace_category, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
-//{
-//
-//
-//}
-
-
-

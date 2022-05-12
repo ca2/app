@@ -22,11 +22,30 @@ public:
 
    }
 
+   floating_duration(enum_now)
+   {
+
+      Now();
+
+   }
+
 
    inline floating_duration elapsed(const floating_duration & durationStop = ::now < DURATION >()) const
    {
 
       return durationStop.m_d - this->m_d;
+
+   }
+
+
+   inline floating_duration update_elapsed(const floating_duration & durationStop = e_now)
+   {
+
+      auto elapsed = durationStop - *this;
+
+      operator=(durationStop);
+
+      return elapsed;
 
    }
 
@@ -44,6 +63,14 @@ public:
 
       return fmod(elapsed().m_d, period.m_d) / period.m_d;
 
+   }
+
+   
+   inline class floating_duration & Now() 
+   { 
+      
+      return operator=(::now <floating_duration>()); 
+   
    }
 
 
@@ -72,7 +99,7 @@ public:
 
    }
 
-
+   
 
    template < primitive_floating FLOATING >
    floating_duration operator %(FLOATING floating) const { return typename DURATION::BASE_TYPE(fmod(this->m_d, floating)); }

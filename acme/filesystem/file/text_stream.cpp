@@ -364,40 +364,36 @@ void text_stream::read(u16 & u)
 
 void text_stream::read(i32 & i)
 {
-   u64 uRead = m_p->read(&i, sizeof(i));
-   if (uRead != sizeof(i))
-      throw ::exception(error_io, "failed to read i32");
+   number_read(i);
 }
 
 void text_stream::read(u32 & u)
 {
-   u64 uRead = m_p->read(&u, sizeof(u));
-   if (uRead != sizeof(u))
-      throw ::exception(error_io, "failed to read u32");
+   number_read(u);
 }
 
 
 void text_stream::read(i64 & i)
 {
 
-   m_p->read(&i, sizeof(i));
+   number_read(i);
 
 }
 
 
 void text_stream::read(u64 & u)
 {
-   m_p->read(&u, sizeof(u));
+   number_read(u);
 }
 
 void text_stream::read(float & f)
 {
-   m_p->read(&f, sizeof(f));
+   number_read(f);
 }
 
 void text_stream::read(double & d)
 {
-   m_p->read(&d, sizeof(d));
+   number_read(d);
 }
 
 //void text_stream::read(RECTANGLE_I32 * prectangle)

@@ -187,6 +187,7 @@ namespace opengl
 
       }
 
+      auto pszVersion = (const char *)glGetString(GL_VERSION);
       //::e_status estatus = 
 
       popengl->defer_init_glew();

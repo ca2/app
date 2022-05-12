@@ -43,6 +43,17 @@ public:
 
    }
 
+   inline integral_duration update_elapsed(const integral_duration & durationStop = ::now < DURATION >())
+   {
+
+      auto elapsed = durationStop - *this;
+
+      operator=(durationStop);
+
+      return elapsed;
+
+   }
+
 
    inline integral_duration half() const
    {
@@ -58,6 +69,14 @@ public:
       return (double)(elapsed().m_i % period.m_i) / (double)period.m_i;
 
    }
+
+
+   //inline class integral_duration & Now()
+   //{
+
+   //   return operator=(::now <integral_duration>());
+
+   //}
 
 
    inline double period_rate(const integral_duration & period)

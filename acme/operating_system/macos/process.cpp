@@ -120,12 +120,6 @@ CLASS_DECL_ACME ::file::path core_app_path(::acme_directory * pacmedirectory, st
 }
 
 
-::u32 get_current_process_id()
-{
-
-    return getpid();
-
-}
 
 
 

@@ -17,91 +17,91 @@
 
 
 // ThomasBS-LiveEdu.TV(LiveCoding.TV)
-
-void * CreateDispatchQueue()
-{
-
-   return dispatch_queue_create (nullptr, nullptr);
-
-}
-
-
-void CancelDispatchSource(void * p)
-{
-
-   dispatch_source_cancel((dispatch_source_t) p);
-
-}
-
-
-void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void (*pfnTimer)(void * p), void * p)
-{
-
-   dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, (dispatch_queue_t) queue);
-
-   if (timer)
-   {
-
-      dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, interval * NSEC_PER_MSEC), DISPATCH_TIME_FOREVER, leeway * NSEC_PER_MSEC);
-
-      dispatch_source_set_event_handler(timer, ^() { pfnTimer(p); });
-
-      dispatch_resume(timer);
-
-   }
-
-   return timer;
-
-}
-
-
-void * ResetDispatchTimer(void * timerParam, u64 interval, u64 leeway)
-{
-
-   dispatch_source_t timer = (dispatch_source_t) timerParam;
-
-   if (timer)
-   {
-
-      dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, interval * NSEC_PER_MSEC), DISPATCH_TIME_FOREVER, leeway * NSEC_PER_MSEC);
-
-      //dispatch_resume(timer);
-
-   }
-
-   return timer;
-
-}
-
-
-void ReleaseDispatch(void * p)
-{
-
-   dispatch_release((dispatch_object_t) p);
-
-}
-
-
-static bool g_bRunSystem = false;
-
-
-i32 defer_run_system()
-{
-
-   if(g_bRunSystem)
-   {
-
-      return 0;
-
-   }
-
-   g_bRunSystem = true;
-
-   //return __start_system_with_file(nullptr);
-   
-   return 0;
-
-}
+//
+//void * CreateDispatchQueue()
+//{
+//
+//   return dispatch_queue_create (nullptr, nullptr);
+//
+//}
+//
+//
+//void CancelDispatchSource(void * p)
+//{
+//
+//   dispatch_source_cancel((dispatch_source_t) p);
+//
+//}
+//
+//
+//void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void (*pfnTimer)(void * p), void * p)
+//{
+//
+//   dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, (dispatch_queue_t) queue);
+//
+//   if (timer)
+//   {
+//
+//      dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, interval * NSEC_PER_MSEC), DISPATCH_TIME_FOREVER, leeway * NSEC_PER_MSEC);
+//
+//      dispatch_source_set_event_handler(timer, ^() { pfnTimer(p); });
+//
+//      dispatch_resume(timer);
+//
+//   }
+//
+//   return timer;
+//
+//}
+//
+//
+//void * ResetDispatchTimer(void * timerParam, u64 interval, u64 leeway)
+//{
+//
+//   dispatch_source_t timer = (dispatch_source_t) timerParam;
+//
+//   if (timer)
+//   {
+//
+//      dispatch_source_set_timer(timer, dispatch_walltime(DISPATCH_TIME_NOW, interval * NSEC_PER_MSEC), DISPATCH_TIME_FOREVER, leeway * NSEC_PER_MSEC);
+//
+//      //dispatch_resume(timer);
+//
+//   }
+//
+//   return timer;
+//
+//}
+//
+//
+//void ReleaseDispatch(void * p)
+//{
+//
+//   dispatch_release((dispatch_object_t) p);
+//
+//}
+//
+//
+//static bool g_bRunSystem = false;
+//
+//
+//i32 defer_run_system()
+//{
+//
+//   if(g_bRunSystem)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   g_bRunSystem = true;
+//
+//   //return __start_system_with_file(nullptr);
+//
+//   return 0;
+//
+//}
 
 //
 //i32 defer_run_system(const ::string & pszFileName)
@@ -347,13 +347,13 @@ void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
 //}
 
 
-
-i64 oswindow_id(oswindow w)
-{
-
-   return (i64) (w);
-
-}
+//
+//i64 oswindow_id(oswindow w)
+//{
+//
+//   return (i64) (w);
+//
+//}
 
 
 int is_window(oswindow window)

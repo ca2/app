@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <mach-o/dyld.h>
+//#include <mach-o/dyld.h>
 
 //
 //
@@ -433,16 +433,16 @@
 //   }
 
 //
-//   bool application::os_on_start_application()
-//   {
+   bool application::os_on_start_application()
+   {
+
+      return true;
+
+   }
+
 //
-//      return true;
 //
-//   }
-
-
-
-} // namespace apex
-
-
+//} // namespace apex
+//
+//
 

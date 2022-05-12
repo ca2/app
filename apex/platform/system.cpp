@@ -573,7 +573,7 @@ namespace apex
       //}
 
 
-#if !defined(ANDROID)
+#if !defined(ANDROID) && !defined(APPLE_IOS)
 
       if (!m_pappStartup->m_papplication->is_service() || m_pappStartup->m_papplication->is_user_service())
       {

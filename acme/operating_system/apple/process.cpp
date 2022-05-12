@@ -50,3 +50,14 @@ void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
    *piOsPriority = iOsPriority;
 
 }
+
+
+::u32 get_current_process_id()
+{
+
+    return getpid();
+
+}
+
+
+

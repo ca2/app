@@ -20,26 +20,6 @@ int get_current_process_affinity_order()
 }
 
 
-void main_asynchronous(const ::procedure & procedure)
-{
-   
-   auto procedureLocal = procedure;
-  
-   ns_main_async(^{
-      
-      procedureLocal();
-      
-   });
-   
-}
-
-
-void system::windowing_post(const ::procedure & procedure)
-{
-   
-   main_asynchronous(procedure);
-   
-}
 
 
 

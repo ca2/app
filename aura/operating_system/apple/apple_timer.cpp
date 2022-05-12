@@ -1,13 +1,13 @@
-void * CreateDispatchQueue();
-
-void CancelDispatchSource(void * p);
-
-void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void(*timer)(void * p), void * p);
-void * ResetDispatchTimer(void * timer, u64 interval, u64 leeway);
-
-void ReleaseDispatch(void * p);
-
-void aura_timer(void * p);
+//void * CreateDispatchQueue();
+//
+//void CancelDispatchSource(void * p);
+//
+//void * CreateDispatchTimer(u64 interval, u64 leeway, void * queue, void(*timer)(void * p), void * p);
+//void * ResetDispatchTimer(void * timer, u64 interval, u64 leeway);
+//
+//void ReleaseDispatch(void * p);
+//
+//void aura_timer(void * p);
 
 //
 //void timer::impl_init()

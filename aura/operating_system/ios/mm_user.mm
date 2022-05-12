@@ -10,7 +10,7 @@
 #include "_mm.h"
 
 
-int get_uiwindow_rect(oswindow oswindow, LPRECT lprect);
+//int get_uiwindow_rect(oswindow oswindow, LPRECT lprect);
 
 
 bool uiwindow_is_visible(UIWindow * window)
@@ -108,96 +108,96 @@ void mm_init_workspace_rect()
 //}
 //
 
-
-int_bool get_uiwindow_rect(oswindow oswindow, LPRECT lprect)
-{
-   
-   CGRect rect = [__uiwindow(oswindow) frame];
-   
-   lprect->left        = rect.origin.x;
-   lprect->bottom      = [[UIScreen mainScreen] bounds ].size.height - rect.origin.y;
-   lprect->right       = rect.origin.x  + rect.size.width;
-   lprect->top         = lprect->bottom - rect.size.height;
-   
-   return 1;
-   
-}
-
-
-
-bool uiwindow_show_window(UIWindow * window, int iShow)
-{
-   
-   if(iShow <= 0)
-   {
-   
-//   printf("\nhide window");
-      
+//
+//int_bool get_uiwindow_rect(oswindow oswindow, LPRECT lprect)
+//{
+//
+//   CGRect rect = [__uiwindow(oswindow) frame];
+//
+//   lprect->left        = rect.origin.x;
+//   lprect->bottom      = [[UIScreen mainScreen] bounds ].size.height - rect.origin.y;
+//   lprect->right       = rect.origin.x  + rect.size.width;
+//   lprect->top         = lprect->bottom - rect.size.height;
+//
+//   return 1;
+//
+//}
+//
+//
+//
+//bool uiwindow_show_window(UIWindow * window, int iShow)
+//{
+//   
+//   if(iShow <= 0)
+//   {
+//   
+////   printf("\nhide window");
+//      
+////      ns_main_async(^
+////      {
+////         [window orderOut : nil];
+////      });
+//
+//      ns_main_async(^
+//       {
+//          [window setHidden: true];
+//       });
+//
+//   }
+//   else if(iShow == SW_MINIMIZE)
+//   {
+//   
+////   printf("\nhide window");
+//      
+////      ns_main_async(^
+////      {
+////         [window miniaturize : nil];
+////      });
+//      
+//      ns_main_async(^
+//       {
+//          [window setHidden: true];
+//       });
+//   }
+//   else if(iShow == SWP_NOACTIVATE)
+//   {
+//
+////      ns_main_async(^
+////                    {
+////                       [window orderFront : nil];
+////                    });
 //      ns_main_async(^
 //      {
-//         [window orderOut : nil];
+//         [window makeKeyAndVisible];
 //      });
-
-      ns_main_async(^
-       {
-          [window setHidden: true];
-       });
-
-   }
-   else if(iShow == SW_MINIMIZE)
-   {
-   
-//   printf("\nhide window");
-      
+//
+//   }
+//   else
+//   {
+//  //    printf("\nshow window");
+////
+//      
 //      ns_main_async(^
 //      {
-//         [window miniaturize : nil];
+//         [window makeKeyAndVisible];
 //      });
-      
-      ns_main_async(^
-       {
-          [window setHidden: true];
-       });
-   }
-   else if(iShow == SWP_NOACTIVATE)
-   {
-
-//      ns_main_async(^
-//                    {
-//                       [window orderFront : nil];
-//                    });
-      ns_main_async(^
-      {
-         [window makeKeyAndVisible];
-      });
-
-   }
-   else
-   {
-  //    printf("\nshow window");
 //
-      
-      ns_main_async(^
-      {
-         [window makeKeyAndVisible];
-      });
-
-//      defer_dock_application(true);
+////      defer_dock_application(true);
+////
+////      nsapp_activate_ignoring_other_apps(1);
+////
+////      //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]showWindow: nil];
+////
+////      ns_main_async(^
+////                    {
+////                       [window makeKeyAndOrderFront : nil];
+////                    });
 //
-//      nsapp_activate_ignoring_other_apps(1);
-//
-//      //[[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]showWindow: nil];
-//
-//      ns_main_async(^
-//                    {
-//                       [window makeKeyAndOrderFront : nil];
-//                    });
-
-      
-//      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]display];
-      
-   }
-   
-   return 1;
-   
-}
+//      
+////      [[m_nswindow dd_invokeOnMainThreadAndWaitUntilDone:TRUE ]display];
+//      
+//   }
+//   
+//   return 1;
+//   
+//}

@@ -105,3 +105,22 @@ void ns_main_async(dispatch_block_t block)
    }
 
 }
+
+
+unsigned int m_sleep(unsigned int seconds)
+{
+
+   [NSThread sleepForTimeInterval:seconds];
+   
+   return 0;
+
+}
+
+
+
+char * ns_get_executable_path()
+{
+   
+   return ns_string([[NSBundle mainBundle] executablePath]);
+   
+}

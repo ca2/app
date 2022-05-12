@@ -9,24 +9,15 @@
 /* Begin PBXBuildFile section */
 		9A750E28282B5BC500C4861B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E23282B5BC500C4861B /* UIKit.framework */; };
 		9A750E34282B5BE900C4861B /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E29282B5BE900C4861B /* libios_acme.a */; };
-		9A750E35282B5BE900C4861B /* libios_acme.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E29282B5BE900C4861B /* libios_acme.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E36282B5BE900C4861B /* libios_acme_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2A282B5BE900C4861B /* libios_acme_apple.a */; };
-		9A750E37282B5BE900C4861B /* libios_acme_apple.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2A282B5BE900C4861B /* libios_acme_apple.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E38282B5BE900C4861B /* libios_acme_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2B282B5BE900C4861B /* libios_acme_posix.a */; };
-		9A750E39282B5BE900C4861B /* libios_acme_posix.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2B282B5BE900C4861B /* libios_acme_posix.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E3A282B5BE900C4861B /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2C282B5BE900C4861B /* libios_apex.a */; };
-		9A750E3B282B5BE900C4861B /* libios_apex.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2C282B5BE900C4861B /* libios_apex.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E3C282B5BE900C4861B /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2D282B5BE900C4861B /* libios_apex_apple.a */; };
-		9A750E3D282B5BE900C4861B /* libios_apex_apple.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2D282B5BE900C4861B /* libios_apex_apple.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E3E282B5BE900C4861B /* libios_apex_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2E282B5BE900C4861B /* libios_apex_posix.a */; };
-		9A750E3F282B5BE900C4861B /* libios_apex_posix.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2E282B5BE900C4861B /* libios_apex_posix.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E40282B5BE900C4861B /* libios_app_app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E999D282A2ACC005FF778 /* libios_app_app.a */; };
-		9A750E41282B5BE900C4861B /* libios_app_app.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8E999D282A2ACC005FF778 /* libios_app_app.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E42282B5BE900C4861B /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2F282B5BE900C4861B /* libios_aqua.a */; };
-		9A750E43282B5BE900C4861B /* libios_aqua.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E2F282B5BE900C4861B /* libios_aqua.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E44282B5BE900C4861B /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E30282B5BE900C4861B /* libios_aura.a */; };
 		9A750E45282B5BE900C4861B /* libios_aura_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E31282B5BE900C4861B /* libios_aura_apple.a */; };
-		9A750E46282B5BE900C4861B /* libios_aura_apple.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A750E31282B5BE900C4861B /* libios_aura_apple.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A750E48282B5BE900C4861B /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E33282B5BE900C4861B /* libios_aura_posix.a */; };
 		9A750E4B282B5C2000C4861B /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E4A282B5C2000C4861B /* libios_aura_posix.a */; };
 		9A750E4D282B5C2000C4861B /* libios_idn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E4C282B5C2000C4861B /* libios_idn.a */; };
@@ -34,15 +25,23 @@
 		9A750E4F282B5C2000C4861B /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99AF282A2AE6005FF778 /* libios_draw2d_quartz2d.a */; };
 		9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99B8282A2AF3005FF778 /* libios_folder_zip.a */; };
 		9A750E51282B5C2000C4861B /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E99CC282A2B1B005FF778 /* libnode_ios.a */; };
+		9A750F46282B89E100C4861B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F41282B89E100C4861B /* CoreGraphics.framework */; };
+		9A750F48282B8A9C00C4861B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F47282B8A9C00C4861B /* libcrypto.a */; };
+		9A750F4A282B8AA900C4861B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F49282B8AA900C4861B /* libssl.a */; };
+		9A750F4C282B8F4E00C4861B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750F4B282B8F4E00C4861B /* Foundation.framework */; };
 		9A8E9C80282A2B90005FF778 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA1282A2B89005FF778 /* InfoPlist.strings */; };
 		9A8E9C82282A2B90005FF778 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA4282A2B89005FF778 /* Images.xcassets */; };
 		9A8E9D85282A2C09005FF778 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9D84282A2C09005FF778 /* _matter.zip */; };
 		9A8E9D9A282A2D4C005FF778 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA8282A2B89005FF778 /* _main.cpp */; };
 		9A8E9D9D282A2DAA005FF778 /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E9D9C282A2DAA005FF778 /* libios_acme.a */; };
 		9A8E9D9F282A2DAA005FF778 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E9D9E282A2DAA005FF778 /* libios_apex.a */; };
-		9AA14F7E282A2A6600B1621E /* _ios_app_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14F7D282A2A6600B1621E /* _ios_app_appTests.m */; };
-		9AA14F88282A2A6700B1621E /* _ios_app_appUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14F87282A2A6700B1621E /* _ios_app_appUITests.m */; };
-		9AA14F8A282A2A6700B1621E /* _ios_app_appUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14F89282A2A6700B1621E /* _ios_app_appUITestsLaunchTests.m */; };
+		9A94DE59282C059200F5C1CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE54282C04D400F5C1CA /* libiconv.tbd */; };
+		9A94DE5C282C061900F5C1CA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE5B282C05CA00F5C1CA /* libz.tbd */; };
+		9A94DE78282C0E9100F5C1CA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE77282C0E9100F5C1CA /* CoreText.framework */; };
+		9A94DEB2282C3F6000F5C1CA /* libwindowing_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DEB1282C3F6000F5C1CA /* libwindowing_ios.a */; };
+		9A94DECF282C4ABB00F5C1CA /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DECE282C4ABB00F5C1CA /* libaura_ios.a */; };
+		9A94DED3282C4AC400F5C1CA /* libapex_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED2282C4AC400F5C1CA /* libapex_ios.a */; };
+		9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,28 +159,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9A750E49282B5BEA00C4861B /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9A750E3D282B5BE900C4861B /* libios_apex_apple.a in Embed Libraries */,
-				9A750E3F282B5BE900C4861B /* libios_apex_posix.a in Embed Libraries */,
-				9A750E39282B5BE900C4861B /* libios_acme_posix.a in Embed Libraries */,
-				9A750E46282B5BE900C4861B /* libios_aura_apple.a in Embed Libraries */,
-				9A750E41282B5BE900C4861B /* libios_app_app.a in Embed Libraries */,
-				9A750E37282B5BE900C4861B /* libios_acme_apple.a in Embed Libraries */,
-				9A750E43282B5BE900C4861B /* libios_aqua.a in Embed Libraries */,
-				9A750E35282B5BE900C4861B /* libios_acme.a in Embed Libraries */,
-				9A750E3B282B5BE900C4861B /* libios_apex.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		9A750E23282B5BC500C4861B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A750E29282B5BE900C4861B /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,13 +174,16 @@
 		9A750E33282B5BE900C4861B /* libios_aura_posix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_aura_posix.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A750E4A282B5C2000C4861B /* libios_aura_posix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_aura_posix.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A750E4C282B5C2000C4861B /* libios_idn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_idn.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A750F41282B89E100C4861B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9A750F47282B8A9C00C4861B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libcrypto.a"; sourceTree = "<group>"; };
+		9A750F49282B8AA900C4861B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libssl.a"; sourceTree = "<group>"; };
+		9A750F4B282B8F4E00C4861B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A8E9995282A2ACC005FF778 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app.xcodeproj; sourceTree = "<group>"; };
 		9A8E999E282A2AD9005FF778 /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = "<group>"; };
 		9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../operating-system/operating-system-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
 		9A8E99C0282A2B1B005FF778 /* node_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_ios.xcodeproj; path = "../../../operating-system/operating-system-ios/node_ios/node_ios.xcodeproj"; sourceTree = "<group>"; };
 		9A8E9AA2282A2B89005FF778 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A8E9AA3282A2B89005FF778 /* wiosapp_core_beatmapper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wiosapp_core_beatmapper-Info.plist"; sourceTree = "<group>"; };
 		9A8E9AA4282A2B89005FF778 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8E9AA5282A2B89005FF778 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A8E9AA6282A2B89005FF778 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,12 +191,18 @@
 		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
 		9A8E9D9C282A2DAA005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9D9E282A2DAA005FF778 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94DE54282C04D400F5C1CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		9A94DE5B282C05CA00F5C1CA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9A94DE73282C0CB300F5C1CA /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
+		9A94DE75282C0E7000F5C1CA /* _static_factory.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _static_factory.inl; sourceTree = "<group>"; };
+		9A94DE77282C0E9100F5C1CA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9A94DEB1282C3F6000F5C1CA /* libwindowing_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94DECE282C4ABB00F5C1CA /* libaura_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94DED2282C4AC400F5C1CA /* libapex_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14F5E282A2A6200B1621E /* _ios_app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14F79282A2A6600B1621E /* _ios_app_appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _ios_app_appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AA14F7D282A2A6600B1621E /* _ios_app_appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _ios_app_appTests.m; sourceTree = "<group>"; };
 		9AA14F83282A2A6700B1621E /* _ios_app_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _ios_app_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AA14F87282A2A6700B1621E /* _ios_app_appUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _ios_app_appUITests.m; sourceTree = "<group>"; };
-		9AA14F89282A2A6700B1621E /* _ios_app_appUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _ios_app_appUITestsLaunchTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,12 +210,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A750F46282B89E100C4861B /* CoreGraphics.framework in Frameworks */,
 				9A750E4B282B5C2000C4861B /* libios_aura_posix.a in Frameworks */,
+				9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */,
 				9A750E4E282B5C2000C4861B /* libios_crypto_openssl.a in Frameworks */,
 				9A750E4F282B5C2000C4861B /* libios_draw2d_quartz2d.a in Frameworks */,
+				9A94DEB2282C3F6000F5C1CA /* libwindowing_ios.a in Frameworks */,
+				9A94DED3282C4AC400F5C1CA /* libapex_ios.a in Frameworks */,
 				9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */,
+				9A94DE78282C0E9100F5C1CA /* CoreText.framework in Frameworks */,
+				9A94DECF282C4ABB00F5C1CA /* libaura_ios.a in Frameworks */,
 				9A750E4D282B5C2000C4861B /* libios_idn.a in Frameworks */,
+				9A750F48282B8A9C00C4861B /* libcrypto.a in Frameworks */,
+				9A750F4C282B8F4E00C4861B /* Foundation.framework in Frameworks */,
 				9A750E51282B5C2000C4861B /* libnode_ios.a in Frameworks */,
+				9A94DE59282C059200F5C1CA /* libiconv.tbd in Frameworks */,
 				9A8E9D9D282A2DAA005FF778 /* libios_acme.a in Frameworks */,
 				9A750E42282B5BE900C4861B /* libios_aqua.a in Frameworks */,
 				9A750E40282B5BE900C4861B /* libios_app_app.a in Frameworks */,
@@ -237,6 +232,8 @@
 				9A750E3C282B5BE900C4861B /* libios_apex_apple.a in Frameworks */,
 				9A750E3A282B5BE900C4861B /* libios_apex.a in Frameworks */,
 				9A750E48282B5BE900C4861B /* libios_aura_posix.a in Frameworks */,
+				9A94DE5C282C061900F5C1CA /* libz.tbd in Frameworks */,
+				9A750F4A282B8AA900C4861B /* libssl.a in Frameworks */,
 				9A750E44282B5BE900C4861B /* libios_aura.a in Frameworks */,
 				9A750E3E282B5BE900C4861B /* libios_apex_posix.a in Frameworks */,
 				9A750E45282B5BE900C4861B /* libios_aura_apple.a in Frameworks */,
@@ -311,6 +308,8 @@
 		9A8E99CF282A2B85005FF778 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				9A94DE75282C0E7000F5C1CA /* _static_factory.inl */,
+				9A94DE73282C0CB300F5C1CA /* _main.inl */,
 				9A8E9D84282A2C09005FF778 /* _matter.zip */,
 				9A8E9AA8282A2B89005FF778 /* _main.cpp */,
 				9A8E9AA0282A2B89005FF778 /* ios */,
@@ -322,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				9A8E9AA1282A2B89005FF778 /* InfoPlist.strings */,
-				9A8E9AA3282A2B89005FF778 /* wiosapp_core_beatmapper-Info.plist */,
 				9A8E9AA4282A2B89005FF778 /* Images.xcassets */,
 				9A8E9AA5282A2B89005FF778 /* main.cpp */,
 				9A8E9AA6282A2B89005FF778 /* Info.plist */,
@@ -333,6 +331,15 @@
 		9A8E9D9B282A2DAA005FF778 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */,
+				9A94DED2282C4AC400F5C1CA /* libapex_ios.a */,
+				9A94DECE282C4ABB00F5C1CA /* libaura_ios.a */,
+				9A94DEB1282C3F6000F5C1CA /* libwindowing_ios.a */,
+				9A94DE77282C0E9100F5C1CA /* CoreText.framework */,
+				9A94DE5B282C05CA00F5C1CA /* libz.tbd */,
+				9A94DE54282C04D400F5C1CA /* libiconv.tbd */,
+				9A750F4B282B8F4E00C4861B /* Foundation.framework */,
+				9A750F41282B89E100C4861B /* CoreGraphics.framework */,
 				9A750E4A282B5C2000C4861B /* libios_aura_posix.a */,
 				9A750E4C282B5C2000C4861B /* libios_idn.a */,
 				9A750E29282B5BE900C4861B /* libios_acme.a */,
@@ -340,7 +347,9 @@
 				9A750E2B282B5BE900C4861B /* libios_acme_posix.a */,
 				9A750E2C282B5BE900C4861B /* libios_apex.a */,
 				9A750E2D282B5BE900C4861B /* libios_apex_apple.a */,
+				9A750F47282B8A9C00C4861B /* libcrypto.a */,
 				9A750E2E282B5BE900C4861B /* libios_apex_posix.a */,
+				9A750F49282B8AA900C4861B /* libssl.a */,
 				9A750E2F282B5BE900C4861B /* libios_aqua.a */,
 				9A750E30282B5BE900C4861B /* libios_aura.a */,
 				9A750E31282B5BE900C4861B /* libios_aura_apple.a */,
@@ -362,8 +371,6 @@
 				9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */,
 				9A8E99C0282A2B1B005FF778 /* node_ios.xcodeproj */,
 				9A8E99CF282A2B85005FF778 /* app */,
-				9AA14F7C282A2A6600B1621E /* _ios_app_appTests */,
-				9AA14F86282A2A6700B1621E /* _ios_app_appUITests */,
 				9AA14F5F282A2A6200B1621E /* Products */,
 				9A8E9D9B282A2DAA005FF778 /* Frameworks */,
 			);
@@ -379,23 +386,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AA14F7C282A2A6600B1621E /* _ios_app_appTests */ = {
-			isa = PBXGroup;
-			children = (
-				9AA14F7D282A2A6600B1621E /* _ios_app_appTests.m */,
-			);
-			path = _ios_app_appTests;
-			sourceTree = "<group>";
-		};
-		9AA14F86282A2A6700B1621E /* _ios_app_appUITests */ = {
-			isa = PBXGroup;
-			children = (
-				9AA14F87282A2A6700B1621E /* _ios_app_appUITests.m */,
-				9AA14F89282A2A6700B1621E /* _ios_app_appUITestsLaunchTests.m */,
-			);
-			path = _ios_app_appUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -406,7 +396,6 @@
 				9AA14F5A282A2A6200B1621E /* Sources */,
 				9AA14F5C282A2A6200B1621E /* Resources */,
 				9AA14F5B282A2A6200B1621E /* Frameworks */,
-				9A750E49282B5BEA00C4861B /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -628,7 +617,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA14F7E282A2A6600B1621E /* _ios_app_appTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,8 +624,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA14F8A282A2A6700B1621E /* _ios_app_appUITestsLaunchTests.m in Sources */,
-				9AA14F88282A2A6700B1621E /* _ios_app_appUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,20 +855,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = _ios_app_app/Info.plist;
+				INFOPLIST_FILE = ios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2015 ca2 Desenvolvimento de Software Ltdal. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = UIApplication;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				PLATFORM_MODIFIER = ios;
@@ -897,20 +890,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = _ios_app_app/Info.plist;
+				INFOPLIST_FILE = ios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2015 ca2 Desenvolvimento de Software Ltdal. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = UIApplication;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				MARKETING_VERSION = 1.0;
 				PLATFORM_MODIFIER = ios;

@@ -36,7 +36,7 @@ public:
 
    __pointer(string_map < __pointer(::regular_expression::context) >)                        m_pmapRegularExpressionContext;
 
-#ifdef MACOS
+#ifdef __APPLE__
    void *                                                            m_pmmos;
 #endif
 

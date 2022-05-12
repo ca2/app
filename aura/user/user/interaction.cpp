@@ -15209,39 +15209,39 @@ namespace user
 
       }
 
-#ifdef APPLE_IOS
-
-      {
-
-         synchronous_lock synchronouslock(mutex());
-
-         for (index i = 0; i < m_uiptraChild.get_size(); i++)
-         {
-
-            ::user::interaction * pinteraction = m_uiptraChild[i];
-
-            if (pinteraction)
-            {
-               synchronouslock.unlock();
-
-
-               if (pinteraction->has_pending_graphical_update())
-               {
-
-                  return true;
-
-               }
-
-               synchronouslock.lock();
-
-            }
-
-
-         }
-
-      }
-
-#endif
+//#ifdef APPLE_IOS
+//
+//      {
+//
+//         synchronous_lock synchronouslock(mutex());
+//
+//         for (index i = 0; i < m_uiptraChild.get_size(); i++)
+//         {
+//
+//            ::user::interaction * pinteraction = m_uiptraChild[i];
+//
+//            if (pinteraction)
+//            {
+//               synchronouslock.unlock();
+//
+//
+//               if (pinteraction->has_pending_graphical_update())
+//               {
+//
+//                  return true;
+//
+//               }
+//
+//               synchronouslock.lock();
+//
+//            }
+//
+//
+//         }
+//
+//      }
+//
+//#endif
 
       if (is_window_visible())
       {

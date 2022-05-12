@@ -168,7 +168,7 @@ namespace aura
       ::factory::add_factory_item < ::user::user >();
 
 
-
+      ::factory::add_factory_item < ::stdio_file, ::file::text_file >();
 
    }
 

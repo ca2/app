@@ -3,8 +3,8 @@ project(aqua CXX)
 
 
 list(APPEND library_source
-        const/idpool.cpp
-        const/idpool.h
+        constant/idpool.cpp
+        constant/idpool.h
         game/_.h
         game/_game.h
         game/estamira.cpp

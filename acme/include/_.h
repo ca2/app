@@ -159,17 +159,17 @@ namespace acme
    class library;
 
 
-   namespace posix
-   {
-
-
-      class node;
-
-
-   } // namespace posix
-
-
 } // namespace acme
+
+
+namespace acme_posix
+{
+
+
+   class node;
+
+
+} // namespace acme_posix
 
 
 namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)

@@ -23,10 +23,7 @@ namespace acme
 
 #ifdef LINUX
 
-      ^^^^
-
       enum_linux_distribution                            m_elinuxdistribution;
-
 
 #endif
 
@@ -317,10 +314,6 @@ namespace acme
       virtual ::user::enum_desktop calculate_edesktop();
 
 #ifdef LINUX
-
-
-      ^^^^
-
 
       inline enum_linux_distribution get_linux_distribution() const;
 

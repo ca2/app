@@ -480,23 +480,6 @@ void __node_term_multitasking()
 // thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
 
-bool __os_init_thread()
-{
-
-   return true;
-
-}
-
-
-
-bool __os_term_thread()
-{
-
-   //thread_shutdown();
-
-   return true;
-
-}
 
 
 //int get_processor_count()

@@ -20,7 +20,7 @@ public:
 
 
    FILE *                        m_pfile;
-   string                        m_strFileName;
+//   string                        m_strFileName;
    e_flag                        m_eflag;
 
 

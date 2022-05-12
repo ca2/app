@@ -112,6 +112,9 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 }
 
 
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
+
+
 void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 

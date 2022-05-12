@@ -119,20 +119,20 @@ va_list *Arguments
 }
 
 
-void debug_break()
-{
-
-#ifdef __arm__
-
-   __asm__("BKPT");
-
-#else
-
-   asm("int $3");
-
-#endif
-
-}
+//void debug_break()
+//{
+//
+//#ifdef __arm__
+//
+//   __asm__("BKPT");
+//
+//#else
+//
+//   asm("int $3");
+//
+//#endif
+//
+//}
 
 
 

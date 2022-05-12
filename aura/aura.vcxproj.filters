@@ -177,12 +177,6 @@
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{e9b19d32-f46d-440a-a639-032432198333}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\micro">
-      <UniqueIdentifier>{cd7e74bb-3590-4c00-8631-8a96ad18b3d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\micro">
-      <UniqueIdentifier>{e95e8044-ed11-4d88-8ca9-4263f57e4b18}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics\double_buffer.h">

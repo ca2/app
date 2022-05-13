@@ -17,7 +17,8 @@ namespace graphics
       //::image_pointer         m_pimage;
       //int                     m_cx;
       //int                     m_cy;
-
+      ::function < void() >               m_functionFallback;
+      ::function < void(target *) >       m_functionInitializationComplete;
 
 
       target();

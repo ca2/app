@@ -282,7 +282,7 @@ namespace app_shader
 
             m_pcontext->make_current();
 
-            m_pcontext->start();
+            m_pcontext->start_drawing();
 
             {
 

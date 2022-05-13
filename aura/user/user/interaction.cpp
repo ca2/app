@@ -4881,7 +4881,7 @@ namespace user
       if (is_top_level_window() && !is_message_only_window())
       {
 
-         synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(mutex());
 
          //if (get_app()->get_context_system() != nullptr)
          //{

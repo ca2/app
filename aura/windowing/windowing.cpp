@@ -562,9 +562,11 @@ namespace windowing
    window *windowing::new_window(::user::interaction_impl *pimpl)
    {
 
-      throw ::interface_only();
+      auto pwindow = pimpl->__create < ::windowing::window >();
 
-      return nullptr;
+      pwindow->create_window(pimpl);
+
+      return pwindow;
 
    }
 

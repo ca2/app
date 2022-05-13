@@ -27,9 +27,9 @@
 #endif
 
 //#include  "app/axis/freeimage/Source/FreeImage/FreeImageFramework.h"
-#include "third/freeimage/Source/FreeImage.h"
-#include "third/freeimage/Source/Utilities.h"
-#include "third/freeimage/Source/MetaData/FreeImageTag.h"
+#include "freeimage/Source/FreeImage.h"
+#include "freeimage/Source/Utilities.h"
+#include "freeimage/Source/MetaData/FreeImageTag.h"
 #include "os_hint.h"
 
 // ----------------------------------------------------------

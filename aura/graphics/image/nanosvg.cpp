@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "third/nanosvg/nanosvg.h"
-#include "third/nanosvg/nanosvgrast.h"
+#include "nanosvg/nanosvg.h"
+#include "nanosvg/nanosvgrast.h"
 #include "image.h"
 
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/os/linux/_user.h"
-//#include "third/sn/sn.h"
+//#include "sn/sn.h"
 
 
 extern ::mutex * user_mutex();

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "aura/graphics/image/image.h"
-//#include "glm/mat4x4.hpp"
+#include "glm/mat4x4.hpp"
 
 
 namespace opengl

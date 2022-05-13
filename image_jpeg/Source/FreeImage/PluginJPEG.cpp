@@ -27,9 +27,9 @@
 // ==========================================================
 
 #include "third_private_c.h"
-#include "third/freeimage/Source/FreeImage.h"
-#include "third/freeimage/Source/Utilities.h"
-#include "third/freeimage/Source/MetaData/FreeImageTag.h"
+#include "freeimage/Source/FreeImage.h"
+#include "freeimage/Source/Utilities.h"
+#include "freeimage/Source/MetaData/FreeImageTag.h"
 
 #ifdef _MSC_VER
 #pragma warning (disable : 4786) // identifier was truncated to 'number' characters

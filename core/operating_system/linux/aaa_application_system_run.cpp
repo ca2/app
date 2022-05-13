@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_user.h"
 #include <gio/gio.h>
-//#include "third/sn/sn.h"
+//#include "sn/sn.h"
 #include "apex/platform/app_core.h"
 #include "apex_application.h"
 

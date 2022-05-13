@@ -14,7 +14,7 @@
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
-#include "third/nanosvg/nanosvg.h"
+#include "nanosvg/nanosvg.h"
 
 CLASS_DECL_AURA image_array * g_pimagea = nullptr;
 

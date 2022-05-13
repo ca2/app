@@ -339,7 +339,9 @@ namespace user
 
       //virtual bool create_host();
 
-      virtual void native_create_host();
+      virtual void operating_system_create_host();
+
+      virtual void native_create_host_alternate();
 
 
       void destroy_impl_only() override;

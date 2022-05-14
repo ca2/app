@@ -79,7 +79,7 @@ inline DURATION now()
 
    throw "interface_only";
 
-   return 0;
+   return e_now;
 
 }
 

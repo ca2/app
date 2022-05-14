@@ -1199,8 +1199,8 @@ list(APPEND library_source
    platform/lparam.h
    platform/main.h
    #platform/message_box.h
-   platform/muldiv32.h
-   platform/muldiv64.h
+   platform/uint32_muldiv.h
+   platform/uint64_muldiv.h
    platform/nanosecond_timer.h
    platform/net.h
    platform/number.h

@@ -143,7 +143,7 @@ public:
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }
 
-   inline ::duration update_elapsed(const ::duration & durationStop = ::now < DURATION >())
+   inline ::duration update_elapsed(const ::duration & durationStop = ::now < ::duration >())
    {
 
       auto elapsed = durationStop - *this;

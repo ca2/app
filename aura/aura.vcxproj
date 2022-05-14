@@ -842,6 +842,7 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filemanager\callback.cpp" />
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
@@ -1110,6 +1111,7 @@
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
+    <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="constant\idpool.h" />

@@ -85,3 +85,27 @@ void system::windowing_post(const ::procedure & procedure)
 
 
 
+
+
+
+
+bool __os_init_thread()
+{
+
+   return true;
+
+}
+
+
+bool __os_term_thread()
+{
+
+   //   __clear_mq("__os_term_thread", true);
+
+      //thread_shutdown();
+
+   return true;
+
+}
+
+

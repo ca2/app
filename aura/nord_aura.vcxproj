@@ -194,21 +194,8 @@
     <ClInclude Include="astr.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
-    <ClInclude Include="const\aaa_callback.h" />
-    <ClInclude Include="const\aaa_check.h" />
-    <ClInclude Include="const\aaa_context.h" />
-    <ClInclude Include="const\aaa_GLOBAL_ID.h" />
-    <ClInclude Include="const\aaa_id.h" />
-    <ClInclude Include="const\aaa_impact.h" />
-    <ClInclude Include="const\aaa_procedure.h" />
-    <ClInclude Include="const\aaa_source.h" />
-    <ClInclude Include="const\aaa_status.h" />
-    <ClInclude Include="const\aaa_status_range_authentication.h" />
-    <ClInclude Include="const\aaa_thread.h" />
-    <ClInclude Include="const\aaa_timer.h" />
-    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="constant\hardware.h" />
     <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="const\_const.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="framework.h" />
@@ -305,6 +292,8 @@
     <ClInclude Include="graphics\write_text\true_type_font_utilities.h" />
     <ClInclude Include="graphics\write_text\write_text.h" />
     <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -362,7 +351,6 @@
     <ClInclude Include="platform\_features.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="user\micro\message_box.h" />
     <ClInclude Include="user\user\aaaa_plain_edit_style.h" />
     <ClInclude Include="user\user\aaa_create.h" />
     <ClInclude Include="user\user\aaa_interaction_draw2d.h" />
@@ -547,6 +535,8 @@
     <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="graphics\write_text\_shape.cpp" />
+    <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -567,7 +557,6 @@
     <ClCompile Include="user\appearance\button.cpp" />
     <ClCompile Include="user\appearance\still.cpp" />
     <ClCompile Include="user\menu\menu_command.cpp" />
-    <ClCompile Include="user\micro\message_box.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />
     <ClCompile Include="user\user\call_message_handler_task.cpp" />

@@ -216,7 +216,7 @@ namespace user
       __pointer(::user::frame_window) GetDockingFrame();
       bool IsFloating();
       virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
-      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32 nLength, u32 nMode);
+      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 nMode);
 
       // Operations
       void EnableDocking(u32 dwDockStyle);

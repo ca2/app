@@ -1213,7 +1213,7 @@ namespace user
    }
 
 
-   ::user::element * interaction::get_parent_primitive() const
+   ::user::element* interaction::get_parent_primitive() const
    {
 
       return get_parent();
@@ -1221,7 +1221,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent() const
+   interaction* interaction::get_parent() const
    {
 
       if (!m_puserinteractionParent)
@@ -1235,6 +1235,20 @@ namespace user
       {
 
          return nullptr;
+
+      }
+
+      auto pwindowApplicationHost = windowing()->get_application_host_window();
+
+      if (pwindowApplicationHost)
+      {
+
+         if (m_puserinteractionParent == pwindowApplicationHost->m_puserinteractionimpl->m_puserinteraction)
+         {
+
+            return nullptr;
+
+         }
 
       }
       //if (!m_pdescriptor)

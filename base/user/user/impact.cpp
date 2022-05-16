@@ -848,8 +848,6 @@ namespace user
 
       auto pusersystem= __new(::user::system);
 
-      pusersystem = pusersystem;
-
       pusersystem->m_typeNewImpact = type;
 
       pusersystem->m_puserprimitiveLastImpact = pviewLast;

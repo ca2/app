@@ -877,7 +877,7 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
-#ifndef _UWP
+#if !defined(_UWP) && !defined(ANDROID)
 
       //auto estatus =
       
@@ -6514,6 +6514,32 @@ finished_update:
       on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CARET);
 
 #endif
+
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         strsize iBeg = 0;
+
+         strsize iEnd = 0;
+
+         _001GetSel(iBeg, iEnd);
+
+         string strText;
+
+         _001GetText(strText);
+
+         ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+         ptexteditorinterface->set_editor_text(strText);
+
+         ptexteditorinterface->show_software_keyboard();
+
+      }
+
 
    }
 

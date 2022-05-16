@@ -27,6 +27,8 @@ namespace user
    tab::tab()
    {
 
+      m_bTabScrollingActive = false;
+
       m_bHoverDefaultMouseHandling = true;
 
       m_econtroltype = e_control_type_tab;
@@ -1729,6 +1731,10 @@ namespace user
 
       get_data()->m_iClickTab = -1;
 
+      m_pointLeftButtonDown = pmouse->m_point;
+
+      m_bMouseDown = true;
+
       if(::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
@@ -1742,8 +1748,6 @@ namespace user
             post_redraw();
 
             pmouse->m_bRet = true;
-
-            m_bMouseDown = true;
 
             set_mouse_capture();
 
@@ -1765,8 +1769,6 @@ namespace user
             post_redraw();
 
             pmouse->m_bRet = true;
-
-            m_bMouseDown = true;
 
             set_mouse_capture();
 
@@ -1837,6 +1839,19 @@ namespace user
 
       }
 
+      if (m_bTabScrollingActive)
+      {
+
+         pmouse->m_bRet = true;
+
+         pmouse->m_lresult = 1;
+
+         m_bTabScrollingActive = false;
+
+         return;
+
+      }
+
       auto pitem = hit_test(pmouse);
 
       index iClickTab = get_data()->m_iClickTab;
@@ -1904,40 +1919,70 @@ namespace user
       if(m_bMouseDown)
       {
 
-         if(::is_element(m_pitemClick, e_element_tab_far_scroll))
+         if (window()->windowing()->is_sandboxed())
          {
 
-            if(m_iTabScroll < m_iTabScrollMax)
+            m_bTabScrollingActive = true;
+
+            int iOffset = m_pointLeftButtonDown.x - pmouse->m_point.x;
+
+            auto iTabScroll = minimum_maximum(m_iTabScroll + iOffset, 0, m_iTabScrollMax);
+
+            if (iTabScroll != m_iTabScroll)
             {
 
-               m_iTabScroll++;
+               m_iTabScroll = iTabScroll;
 
                set_need_redraw();
 
                post_redraw();
-
-               pmouse->m_bRet = true;
-
-               return;
 
             }
 
-         }
-         else if(::is_element(m_pitemClick, e_element_tab_near_scroll))
-         {
+            pmouse->m_bRet = true;
 
-            if(m_iTabScroll > 0)
+            return;
+
+
+         }
+         else
+         {
+            if (::is_element(m_pitemClick, e_element_tab_far_scroll))
             {
 
-               m_iTabScroll--;
+               if (m_iTabScroll < m_iTabScrollMax)
+               {
 
-               set_need_redraw();
+                  m_iTabScroll++;
 
-               post_redraw();
+                  set_need_redraw();
 
-               pmouse->m_bRet = true;
+                  post_redraw();
 
-               return;
+                  pmouse->m_bRet = true;
+
+                  return;
+
+               }
+
+            }
+            else if (::is_element(m_pitemClick, e_element_tab_near_scroll))
+            {
+
+               if (m_iTabScroll > 0)
+               {
+
+                  m_iTabScroll--;
+
+                  set_need_redraw();
+
+                  post_redraw();
+
+                  pmouse->m_bRet = true;
+
+                  return;
+
+               }
 
             }
 
@@ -1987,82 +2032,87 @@ namespace user
 
          float fDensity = 1.0f;
 
-         if(eelement == e_element_tab_near_scroll)
+         if (!window()->windowing()->is_sandboxed())
          {
 
-            if(get_data()->m_bVertical)
+            if (eelement == e_element_tab_near_scroll)
             {
 
-               ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+               if (get_data()->m_bVertical)
+               {
 
-               prectangle->left = rectangle.left;
+                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
 
-               prectangle->top = rectangle.top;
+                  prectangle->left = rectangle.left;
 
-               prectangle->right = rectangle.right;
+                  prectangle->top = rectangle.top;
 
-               fDensity = window()->get_density_for_window();
+                  prectangle->right = rectangle.right;
 
-               prectangle->bottom = rectangle.top + (::i32) (8.0f * fDensity);
+                  fDensity = window()->get_density_for_window();
+
+                  prectangle->bottom = rectangle.top + (::i32)(8.0f * fDensity);
+
+               }
+               else
+               {
+
+                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+
+                  prectangle->left = rectangle.left;
+
+                  prectangle->top = rectangle.top;
+
+                  fDensity = window()->get_density_for_window();
+
+                  prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
+
+                  prectangle->bottom = rectangle.bottom;
+
+               }
+
+               return true;
 
             }
-            else
+            else if (eelement == e_element_tab_far_scroll)
             {
 
-               ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+               if (get_data()->m_bVertical)
+               {
 
-               prectangle->left = rectangle.left;
+                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
 
-               prectangle->top = rectangle.top;
+                  prectangle->left = rectangle.left;
 
-               fDensity = window()->get_density_for_window();
+                  fDensity = window()->get_density_for_window();
 
-               prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
+                  prectangle->top = rectangle.bottom - (::i32)(8.0f * fDensity);
 
-               prectangle->bottom = rectangle.bottom;
+                  prectangle->right = rectangle.right;
 
-            }
+                  prectangle->bottom = rectangle.bottom;
 
-            return true;
+               }
+               else
+               {
 
-         }
-         else if(eelement == e_element_tab_far_scroll)
-         {
+                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
 
-            if(get_data()->m_bVertical)
-            {
+                  fDensity = window()->get_density_for_window();
 
-               ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  prectangle->left = rectangle.right - (::i32)(8.0f * fDensity);
 
-               prectangle->left = rectangle.left;
+                  prectangle->top = rectangle.top;
 
-               fDensity = window()->get_density_for_window();
+                  prectangle->right = rectangle.right;
 
-               prectangle->top = rectangle.bottom - (::i32)(8.0f* fDensity);
+                  prectangle->bottom = rectangle.bottom;
 
-               prectangle->right = rectangle.right;
+               }
 
-               prectangle->bottom = rectangle.bottom;
-
-            }
-            else
-            {
-
-               ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
-
-               fDensity = window()->get_density_for_window();
-
-               prectangle->left = rectangle.right - (::i32) (8.0f * fDensity);
-
-               prectangle->top = rectangle.top;
-
-               prectangle->right = rectangle.right;
-
-               prectangle->bottom = rectangle.bottom;
+               return true;
 
             }
-
-            return true;
 
          }
 
@@ -2184,7 +2234,7 @@ namespace user
 
          ::rect_deflate(prectangle, &get_data()->m_rectangleTextMargin);
 
-         ::offset_rect(prectangle, ptOffset.x, ptOffset.y);
+         //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2391,25 +2441,34 @@ namespace user
       if(bScroll)
       {
 
-         if(get_element_rect(-1,rectangleScroll, ::e_element_tab_near_scroll))
+         if (window()->windowing()->is_sandboxed())
          {
 
-            if(rectangleScroll.contains(point))
+         }
+         else
+         {
+
+            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_near_scroll))
             {
 
-               return __new(::item(::e_element_tab_near_scroll, -1));
+               if (rectangleScroll.contains(point))
+               {
+
+                  return __new(::item(::e_element_tab_near_scroll, -1));
+
+               }
 
             }
 
-         }
-
-         if(get_element_rect(-1,rectangleScroll, ::e_element_tab_far_scroll))
-         {
-
-            if(rectangleScroll.contains(point))
+            if (get_element_rect(-1, rectangleScroll, ::e_element_tab_far_scroll))
             {
 
-               return __new(::item(::e_element_tab_far_scroll, -1));
+               if (rectangleScroll.contains(point))
+               {
+
+                  return __new(::item(::e_element_tab_far_scroll, -1));
+
+               }
 
             }
 

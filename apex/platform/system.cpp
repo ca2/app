@@ -266,7 +266,7 @@ namespace apex
 
       //estatus =
       __compose_new(m_pprocess);
-
+      
       //if (!estatus)
       //{
 

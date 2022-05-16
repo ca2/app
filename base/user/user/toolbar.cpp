@@ -1148,7 +1148,7 @@ return { 0,0 };
    }
 
 
-   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 dwMode)
+   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32 nLength, u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&

@@ -88,13 +88,13 @@ void TextBox::draw(NVGcontext * ctx) {
 
    NVGpaint bg = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(255, 32), Color(32, 32));
+      3.f, 4.f, Color(255, 32), m_colorBackground);
    NVGpaint fg1 = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(150, 32), Color(32, 32));
+      3.f, 4.f, Color(150, 32), m_colorBackground);
    NVGpaint fg2 = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, nvgRGBA(255, 0, 0, 100), nvgRGBA(255, 0, 0, 50));
+      3.f, 4.f, nvgRGBA(255, 0, 0, 100), m_colorBackground);
 
    nvgBeginPath(ctx);
    nvgRoundedRect(ctx, m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f,

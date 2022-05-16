@@ -53,7 +53,7 @@ Vector2i Label::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
          }
          else {
             nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
-            int iSize = nvgTextBounds(ctx, 0.f, 0.f, m_caption.c_str(), nullptr, bounds);
+            int iSize = (int) nvgTextBounds(ctx, 0.f, 0.f, m_caption.c_str(), nullptr, bounds);
             m_sizePreferred = Vector2i(
                 iSize +2 ,
                (int)(int)(bounds[3] - bounds[1])

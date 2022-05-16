@@ -39,6 +39,8 @@ NAMESPACE_BEGIN(nanogui)
          Center,
          Right
       };
+
+      Color                         m_colorBackground = Color(32, 32);
       
       ::write_text::font_pointer       m_pfontSpin;
 

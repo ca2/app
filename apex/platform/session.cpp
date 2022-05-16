@@ -1244,7 +1244,11 @@ namespace apex
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::e_key_command)
+      else if (ekey == ::user::e_key_command
+#ifdef __APPLE__
+         || ekey == ::user::e_key_system_command
+#endif
+         )
       {
          m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
          if (bPressed)
@@ -1256,7 +1260,11 @@ namespace apex
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::e_key_control)
+      else if (ekey == ::user::e_key_control
+#ifndef __APPLE__
+         || ekey == ::user::e_key_system_command
+#endif
+         )
       {
          m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
          if (bPressed)

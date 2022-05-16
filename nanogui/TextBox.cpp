@@ -436,6 +436,9 @@ bool TextBox::focus_event(bool focused) {
 
 bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers) {
    if (m_editable && focused()) {
+
+      auto psession = screen()->m_puserinteraction->get_session();
+
       //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
       if (action == ::e_message_key_down) {
          if (ekey == ::user::e_key_left) {
@@ -502,18 +505,18 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
             if (!m_committed)
                focus_event(false);
          }
-         else if (ekey == ::user::e_key_a && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_a && psession->is_key_pressed(::user::e_key_system_command)) {
             m_cursor_pos = (int)m_value_temp.length();
             m_selection_pos = 0;
          }
-         else if (ekey == ::user::e_key_x && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_x && psession->is_key_pressed(::user::e_key_system_command)) {
             copy_selection();
             delete_selection();
          }
-         else if (ekey == ::user::e_key_c && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_c && psession->is_key_pressed(::user::e_key_system_command)) {
             copy_selection();
          }
-         else if (ekey == ::user::e_key_v && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_v && psession->is_key_pressed(::user::e_key_system_command)) {
             delete_selection();
             paste_from_clipboard();
          }
@@ -538,6 +541,12 @@ bool TextBox::keyboard_character_event(unsigned int codepoint) {
       {
 
          return false;
+      }
+      if (codepoint == 22)
+      {
+
+         return false;
+
       }
       std::ostringstream convert;
       convert << (char)codepoint;

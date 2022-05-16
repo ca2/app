@@ -1077,8 +1077,8 @@ void Screen::dispose_window(Window * window) {
 void Screen::center_window(Window * window, NVGcontext * pcontext) {
    if (window->size() == 0) {
       window->set_size(window->preferred_size(pcontext));
-      window->perform_layout(pcontext);
    }
+   window->perform_layout(pcontext);
    window->set_position((m_size - window->size()) / 2);
 }
 

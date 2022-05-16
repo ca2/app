@@ -283,6 +283,43 @@ namespace windowing
    }
 
 
+   ::index  display::get_main_monitor_of_rectangle(const RECTANGLE_I32* prectangle)
+   {
+
+      ::rectangle_i32 rectangleMonitor;
+
+      ::i32 iMaximumArea = -1;
+
+      ::index iMainMonitor = -1;
+
+      for (::index i = 0; i < get_monitor_count(); i++)
+      {
+
+         get_monitor_rectangle(i, &rectangleMonitor);
+
+         ::rectangle_i32 rectangleIntersection;
+
+         if (rectangleIntersection.intersect(rectangleMonitor, *prectangle))
+         {
+
+            if (rectangleIntersection.area() > iMaximumArea)
+            {
+
+               iMaximumArea = rectangleIntersection.area();
+
+               iMainMonitor = i;
+
+            }
+
+         }
+
+      }
+
+      return iMainMonitor;
+
+   }
+
+
    ::count display::get_desk_monitor_count()
    {
 

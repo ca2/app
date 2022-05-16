@@ -796,7 +796,6 @@ namespace user
    }
 
 
-
    void keyboard::translate_os_key_message(key * pkey)
    {
 
@@ -810,70 +809,6 @@ namespace user
 
       }
 
-   #if defined(MACOS)
-
-//      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
-//
-//      if(ekey != ::user::e_key_none)
-//      {
-//
-//          pkey->m_ekey = ekey;
-//
-//          return;
-//
-//      }
-
-   #elif !defined(LINUX)
-
-
-   #else
-//
-//     auto ekey = keysym_to_userkey(pkey->m_lparam);
-//
-//     if(ekey != ::user::e_key_none)
-//     {
-//
-//         pkey->m_ekey = ekey;
-//
-//         return;
-//
-//     }
-
-   #endif
-
-
-#if defined(WINDOWS_DESKTOP) || defined(MACOS)
-
-      if(pkey->m_bExt)
-      {
-
-         pkey->m_ekey = m_mapExt[(i32)pkey->m_nScanCode];
-
-         if(pkey->m_ekey != ::user::e_key_none)
-            return;
-
-      }
-
-      pkey->m_ekey = m_mapScan[(i32)pkey->m_nScanCode];
-
-      if(pkey->m_ekey != ::user::e_key_none)
-         return;
-
-#endif
-
-      if(pkey->m_ekey == ::user::e_key_none)
-      {
-
-         pkey->m_ekey = m_mapKey[(i32) pkey->m_iVirtualKey];
-
-      }
-      
-      if(pkey->m_ekey == ::user::e_key_none)
-      {
-
-         pkey->m_ekey = wparam_to_userkey(pkey->m_wparam);
-
-      }
 
    }
 

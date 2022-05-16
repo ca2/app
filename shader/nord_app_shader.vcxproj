@@ -249,9 +249,6 @@
     <ProjectReference Include="..\folder_zip\nord_folder_zip.vcxproj">
       <Project>{74cd7e4f-a9f4-4c9c-b7ce-0d8765201f66}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\gpu_opengl\nord_gpu_opengl.vcxproj">
-      <Project>{3c4a93d3-9b9b-4ea9-8bcf-a53be3a0f9b5}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

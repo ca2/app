@@ -2000,6 +2000,12 @@ namespace write_text
 } // namespace write_text
 
 
+#include "aura/hardware/devices.h"
+
+
+
+
+
 #include "aura/platform/session.h"
 
 #include "aura/platform/node.h"

@@ -304,6 +304,21 @@ namespace aura
    }
 
 
+   void system::defer_initialize_hardware_devices()
+   {
+
+      if (::is_set(m_phardwaredevices))
+      {
+
+         return;
+
+      }
+
+      __construct(m_phardwaredevices);
+
+   }
+
+
 //   void system::run_system()
 //   {
 //

@@ -194,6 +194,8 @@
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\device_context.cpp" />
     <ClCompile Include="graphics\graphics\graphics.cpp" />
+    <ClCompile Include="hardware\device_listener.cpp" />
+    <ClCompile Include="hardware\devices.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h" />
@@ -495,6 +497,9 @@
     <ClInclude Include="windowing\_windowing.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
+    <ClInclude Include="hardware\device_listener.h" />
+    <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="constant\hardware.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

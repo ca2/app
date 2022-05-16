@@ -1140,47 +1140,120 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //inline wd16char * ::str::international::unicode_to_utf8(const unichar * psz);
 
 
-inline i32 parse_unicode(const wd16char *& input)
+namespace str
 {
 
-   if (input[0] == 0)
+
+   namespace ch
    {
 
-      return 0;
 
-   }
-
-   if (utf16_is_2nd_surrogate(input[0]))
-   {
-
-      return -1;
-
-   }
-   else if (utf16_is_1st_surrogate(input[0]))
-   {
-
-      if (utf16_is_2nd_surrogate(input[1]))
+      inline i32 parse_unicode(const wd16char *& input)
       {
 
-         return utf16_surrogate_to_utf32(input[0], input[1]);
+         if (input[0] == 0)
+         {
+
+            return 0;
+
+         }
+
+         if (utf16_is_2nd_surrogate(input[0]))
+         {
+
+            return -1;
+
+         }
+         else if (utf16_is_1st_surrogate(input[0]))
+         {
+
+            if (utf16_is_2nd_surrogate(input[1]))
+            {
+
+               auto iUnicode = utf16_surrogate_to_utf32(input[0], input[1]);
+
+               input+=2;
+
+               return iUnicode;
+
+            }
+            else
+            {
+
+               return -1;
+
+            }
+
+         }
+         else
+         {
+
+            auto iUnicode = input[0];
+
+            input++;
+
+            return iUnicode;
+
+         }
 
       }
-      else
+
+
+      inline i32 uni_index_len(const wd16char * input, i32 & len)
       {
 
-         return -1;
+         if (input[0] == 0)
+         {
+
+            len = 0;
+
+            return 0;
+
+         }
+
+         if (utf16_is_2nd_surrogate(input[0]))
+         {
+
+            len = -1;
+
+            return -1;
+
+         }
+         else if (utf16_is_1st_surrogate(input[0]))
+         {
+
+            if (utf16_is_2nd_surrogate(input[1]))
+            {
+
+               len = 2;
+
+               return utf16_surrogate_to_utf32(input[0], input[1]);
+
+            }
+            else
+            {
+
+               len = -1;
+
+               return -1;
+
+            }
+
+         }
+         else
+         {
+
+            len = 1;
+
+            return input[0];
+
+         }
 
       }
 
-   }
-   else
-   {
 
-      return input[0];
+   } // namespace ch
 
-   }
-
-}
-
+} // namespace str
 
 

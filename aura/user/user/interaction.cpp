@@ -8628,7 +8628,7 @@ namespace user
          else
          {
 
-            design_window_full_screen(this->screen_rect());
+            design_window_full_screen(layout().sketch().parent_client_rect());
 
          }
 

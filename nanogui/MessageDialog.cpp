@@ -19,7 +19,7 @@ NAMESPACE_BEGIN(nanogui)
 MessageDialog::MessageDialog(Widget * parent, Type type, const std::string & title,
    const std::string & message,
    const std::string & button_text,
-   const std::string & alt_button_text, bool alt_button) : Window(parent, title) {
+   const std::string & alt_button_text, bool alt_button, const ::function < void(Widget* p) > functionExtras) : Window(parent, title) {
    set_layout(new BoxLayout(Orientation::Vertical,
       Alignment::Middle, 10, 10));
    set_modal(true);
@@ -33,10 +33,19 @@ MessageDialog::MessageDialog(Widget * parent, Type type, const std::string & tit
    case Type::Question: icon = m_theme->m_message_question_icon; break;
    case Type::Warning: icon = m_theme->m_message_warning_icon; break;
    }
-   Label * icon_label = new Label(panel1, std::string(get_utf8_character(icon)), "icons");
+   Label* icon_label = new Label(panel1, std::string(get_utf8_character(icon)), "icons");
    icon_label->set_font_size(50);
-   m_message_label = new Label(panel1, message);
-   m_message_label->set_fixed_width(200);
+   Widget* panelB = new Widget(panel1);
+   panelB->set_layout(new BoxLayout(Orientation::Vertical,
+      Alignment::Middle, 0, 5));
+   if (functionExtras)
+   {
+
+      functionExtras(panelB);
+
+   }
+   m_message_label = new Label(panelB, message);
+   //m_message_label->set_fixed_width(200);
    Widget * panel2 = new Widget(this);
    panel2->set_layout(new BoxLayout(Orientation::Horizontal,
       Alignment::Middle, 0, 15));

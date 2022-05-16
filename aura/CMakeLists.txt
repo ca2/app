@@ -127,6 +127,8 @@ list(APPEND library_source
    graphics/graphics/monitor.cpp
    graphics/graphics/multiple_buffer.cpp
    graphics/graphics/multiple_buffer.h
+   graphics/graphics/target.cpp
+   graphics/graphics/target.h
    graphics/graphics/window.h
    graphics/graphics/window_buffer.h
    graphics/graphics/window_dc.h
@@ -318,8 +320,8 @@ list(APPEND library_source
    user/menu/_menu.h
    user/menu/menu_command.cpp
    user/menu/menu_command.h
-   user/micro/message_box.cpp
-   user/micro/message_box.h
+   #user/micro/message_box.cpp
+   #user/micro/message_box.h
    user/user/_.cpp
    user/user/_.h
    #user/_const-.h

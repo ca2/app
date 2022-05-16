@@ -186,3 +186,4 @@ inline string __string(const ::property & property) { return property; }
 
 
 #include "___ch_impl.h"
+#include "__c_wd16_impl.h"

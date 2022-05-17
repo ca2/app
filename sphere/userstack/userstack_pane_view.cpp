@@ -182,7 +182,7 @@ namespace userstack
 
             __pointer(::create) pcreate(e_create);
             pcreate->m_pappbias = pappbias;
-            pcreate->m_pcommandline->_001ParseCommandFork(strId);
+            pcreate->_001ParseCommandFork(strId);
 
 
             string str;
@@ -190,12 +190,12 @@ namespace userstack
             if(papp->has_property(strId))
             {
 
-               pcreate->m_pcommandline->).merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
+               pcreate->).merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
 
                if(papp->m_varTopicQuery[(const ::string &) strId].has_property("file"))
                {
 
-                  pcreate->m_pcommandline->m_payloadFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
+                  pcreate->m_payloadFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
 
                }
 
@@ -203,11 +203,11 @@ namespace userstack
 
             str = __string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
 
-            pcreate->m_pcommandline->m_eventReady.ResetEvent();
+            pcreate->m_eventReady.ResetEvent();
 
             psession->on_request(pcreate);
 
-            pcreate->m_pcommandline->m_eventReady.wait();
+            pcreate->m_eventReady.wait();
 
          }
 

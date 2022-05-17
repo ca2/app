@@ -256,13 +256,13 @@ namespace filehandler
 
          __pointer(::create) pcreate(e_create);
 
-         pcreate->m_pcommandline->m_strApp = m_plist->operator [](item)->m_strApp;
+         pcreate->m_strApp = m_plist->operator [](item)->m_strApp;
 
-         pcreate->m_pcommandline->m_payloadFile                = m_strName;
+         pcreate->m_payloadFile                = m_strName;
 
          psession->do_request(pcreate);
 
-         //payloadFile = pcreate->m_pcommandline->m_payloadFile;
+         //payloadFile = pcreate->m_payloadFile;
 
       }
 

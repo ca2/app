@@ -436,7 +436,7 @@ namespace aura
 
       auto purl = psystem->url();
 
-      if (pcreate->m_ecommand == ::command_protocol)
+      if (pcreate->m_ecommand == ::e_command_protocol)
       {
 
          string str;
@@ -527,7 +527,7 @@ namespace aura
       //   return;
 
       //}
-      else if (pcreate->m_ecommand == ::command_request_exit)
+      else if (pcreate->m_ecommand == ::e_command_request_exit)
       {
 
          request_exit_application();
@@ -598,7 +598,7 @@ namespace aura
          try
          {
 
-            pcreate->m_pcommandline->get_property_set().unset("document");
+            pcreate->get_property_set().unset("document");
 
          }
          catch (...)
@@ -606,13 +606,13 @@ namespace aura
 
          }
 
-         //__pointer(::aura::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::aura::session >();
+         //__pointer(::aura::session) pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
          // todobergedge
          /*if(pbergedge != nullptr)
          {
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
-         pcreate->m_pcommandline->m_eventReady.SetEvent();
+         pcreate->m_eventReady.SetEvent();
 
       }
 

@@ -60,7 +60,7 @@ namespace user
 
       do_request(pcreate);
 
-      //      return pcreate->m_pcommandline->payload("document").cast < ::user::document >();
+      //      return pcreate->payload("document").cast < ::user::document >();
 
    }
 

@@ -454,8 +454,8 @@ __pointer(::application) application_container::start_application(const char * p
 
    }
 
-   if (pcreate->m_pcommandline->has_property("install")
-      || pcreate->m_pcommandline->has_property("uninstall"))
+   if (pcreate->has_property("install")
+      || pcreate->has_property("uninstall"))
    {
 
       m_applicationa.erase(papp);
@@ -505,10 +505,10 @@ __pointer(::application) application_container::start_application(const char * p
 
    }
 
-   if (pcreate->m_pcommandline)
+   if (pcreate)
    {
 
-      pcreate->m_pcommandline->m_eventReady.ResetEvent();
+      pcreate->m_eventReady.ResetEvent();
 
    }
 
@@ -527,7 +527,7 @@ __pointer(::application) application_container::start_application(const char * p
    //      if (strApp != "session")
    //      {
 
-   psystem->merge_accumulated_on_open_file(pcreate);
+   //psystem->merge_accumulated_on_open_file(pcreate);
 
    //papp->do_request(pcreate);
    papp->post_element(e_message_system, e_system_message_create, pcreate);
@@ -535,7 +535,7 @@ __pointer(::application) application_container::start_application(const char * p
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_pcommandline->m_eventReady.wait(::duration(84)).signaled())
+   //            if (pcreate->m_eventReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }

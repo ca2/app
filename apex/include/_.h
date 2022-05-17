@@ -392,12 +392,6 @@ namespace install
 } // namespace install
 
 
-class command_line;
-
-
-using command_line_pointer = __pointer(command_line);
-
-
 namespace message
 {
 

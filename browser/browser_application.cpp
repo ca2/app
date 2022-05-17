@@ -192,7 +192,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
       }
 
-      if (pcreate->m_pcommandline->m_payloadFile.has_char())
+      if (pcreate->m_payloadFile.has_char())
       {
 
          m_ptemplateHelloBrowserView->do_request(pcreate);

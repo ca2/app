@@ -1805,13 +1805,18 @@ class synchronization_object;
 enum enum_command
 {
 
-   command_none,
-   command_default,
-   command_request_exit,
-   //command_on_agree_exit,
-   //command_france_exit,
-   //command_check_exit,
-   command_protocol
+   e_command_file_nothing = -1,
+   e_command_none = 0,
+   e_command_default,
+   e_command_application_start,
+   e_command_file_new,
+   e_command_file_open,
+   e_command_file_print,
+   e_command_file_print_to,
+   e_command_file_dde,
+   e_command_app_unregister,
+   e_command_request_exit,
+   e_command_protocol
 
 };
 
@@ -2178,10 +2183,10 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-class command_line;
+//class command_line;
 
 
-using command_line_pointer = __pointer(command_line);
+//using command_line_pointer = __pointer(command_line);
 
 
 namespace message

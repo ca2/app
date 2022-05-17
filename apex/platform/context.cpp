@@ -1298,17 +1298,17 @@ namespace apex
       if (m_payloadFile.is_empty())
       {
 
-         m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
+         m_payloadFile = pcreate->m_payloadFile;
 
       }
       else
       {
 
-         m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
+         m_payloadFile.payloada().add(pcreate->m_payloadFile);
 
       }
 
-      get_property_set().merge(pcreate->m_pcommandline->get_property_set());
+      get_property_set().merge(pcreate->get_property_set());
 
 
    }
@@ -1343,14 +1343,14 @@ namespace apex
 
       }
 
-      if (!m_pcreate->m_pcommandline)
-      {
+      //if (!m_pcreate->m_pcommandline)
+      //{
 
-         return "";
+      //   return "";
 
-      }
+      //}
 
-      return m_pcreate->m_pcommandline->m_strCommandLine;
+      return m_pcreate->m_strCommandLine;
 
    }
 
@@ -1383,17 +1383,17 @@ namespace apex
    //   if (m_payloadFile.is_empty())
    //   {
 
-   //      m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
+   //      m_payloadFile = pcreate->m_payloadFile;
 
    //   }
    //   else
    //   {
 
-   //      m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
+   //      m_payloadFile.payloada().add(pcreate->m_payloadFile);
 
    //   }
 
-   //   ).merge(pcreate->m_pcommandline->));
+   //   ).merge(pcreate->));
 
    //}
 

@@ -23,19 +23,19 @@
 //      if (m_payloadFile.is_empty())
 //      {
 //
-//         m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
+//         m_payloadFile = pcreate->m_payloadFile;
 //
 //      }
 //      else
 //      {
 //
-//         m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
+//         m_payloadFile.payloada().add(pcreate->m_payloadFile);
 //
 //      }
 //
-//      //).merge(pcreate->m_pcommandline->));
+//      //).merge(pcreate->));
 //
-//      get_property_set().merge(pcreate->m_pcommandline->));
+//      get_property_set().merge(pcreate->));
 //
 //
 //   }
@@ -109,17 +109,17 @@
 //   //   if (m_payloadFile.is_empty())
 //   //   {
 //
-//   //      m_payloadFile = pcreate->m_pcommandline->m_payloadFile;
+//   //      m_payloadFile = pcreate->m_payloadFile;
 //
 //   //   }
 //   //   else
 //   //   {
 //
-//   //      m_payloadFile.payloada().add(pcreate->m_pcommandline->m_payloadFile);
+//   //      m_payloadFile.payloada().add(pcreate->m_payloadFile);
 //
 //   //   }
 //
-//   //   ).merge(pcreate->m_pcommandline->));
+//   //   ).merge(pcreate->));
 //
 //   //}
 //

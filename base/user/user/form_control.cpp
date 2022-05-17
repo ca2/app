@@ -1093,7 +1093,7 @@ namespace user
       if(::is_set(pcreate))
       {
 
-         set_form_callback(pcreate->m_varArgs["form_callback"].cast < ::user::form_callback >());
+         set_form_callback(pcreate->m_payloadArgs["form_callback"].cast < ::user::form_callback >());
 
       }
 

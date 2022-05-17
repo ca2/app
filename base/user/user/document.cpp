@@ -1820,10 +1820,10 @@ namespace user
    void document::on_request(::create * pcreate)
    {
 
-      if(!on_open_document(pcreate->m_pcommandline->m_payloadFile))
+      if(!on_open_document(pcreate->m_payloadFile))
          return;
 
-      pcreate->m_pcommandline->payload("document") = this;
+      pcreate->payload("document") = this;
 
    }
 
@@ -1891,16 +1891,7 @@ namespace user
 
       }
 
-      if (pcreate->m_pcommandline.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-
-      return pcreate->m_pcommandline->payload("document").cast < ::user::document >();
-
+      return pcreate->payload("document").cast < ::user::document >();
 
    }
 

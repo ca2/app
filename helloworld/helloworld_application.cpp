@@ -161,7 +161,7 @@ namespace helloworld
 
       }
 
-      if (pcreate->m_pcommandline->m_payloadFile.has_char())
+      if (pcreate->m_payloadFile.has_char())
       {
 
          m_ptemplateHelloWorldView->do_request(pcreate);
@@ -171,7 +171,7 @@ namespace helloworld
       if (m_varTopicQuery["wfi_maximize"].is_set())
       {
 
-         pcreate->m_pcommandline->payload("document").cast < document >()->get_type_impact < ::userex::pane_tab_impact >()->top_level_frame()->_001WindowMaximize();
+         pcreate->payload("document").cast < document >()->get_type_impact < ::userex::pane_tab_impact >()->top_level_frame()->_001WindowMaximize();
 
       }
 

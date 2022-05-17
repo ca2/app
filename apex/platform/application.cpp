@@ -471,11 +471,11 @@ string application::__get_text(string str)
 }
 
 
-void application::process_command_line(command_line* pcommandline)
-{
-
-
-}
+//void application::process_command_line(command_line* pcommandline)
+//{
+//
+//
+//}
 
 
 //::user::style* application::get_user_style() const
@@ -858,7 +858,7 @@ void application::on_request(::create* pcreate)
       try
       {
 
-         pcreate->m_pcommandline->get_property_set().unset("document");
+         pcreate->get_property_set().unset("document");
 
       }
       catch (...)
@@ -866,13 +866,13 @@ void application::on_request(::create* pcreate)
 
       }
 
-      //__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::apex::session >();
+      //__pointer(::apex::session) pbergedge = pcreate->payload("bergedge_callback").cast < ::apex::session >();
       // todobergedge
       /*if(pbergedge != nullptr)
       {
       pbergedge->on_app_request_bergedge_callback(this);
       }*/
-      pcreate->m_pcommandline->m_eventReady.SetEvent();
+      pcreate->m_eventReady.SetEvent();
 
    }
 
@@ -4152,11 +4152,11 @@ void application::on_exclusive_instance_local_conflict_id(bool& bHandled, string
 void application::on_additional_local_instance(bool& bHandled, string strModule, int iPid, string strCommandLine)
 {
 
-   auto pcommandline = __create_new < command_line >();
+   auto pcreate = __create_new < create >();
 
-   pcommandline->initialize_command_line2(strCommandLine);
+   pcreate->initialize_command_line2(strCommandLine);
 
-   process_command_line(pcommandline);
+   do_request(pcreate);
 
    bHandled = true;
 

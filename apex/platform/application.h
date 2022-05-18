@@ -160,7 +160,7 @@ public:
       virtual string __get_text(string str);
 
 
-      virtual void process_command_line(command_line* pcommandline);
+      //virtual void process_command_line(command_line* pcommandline);
 
 
       //virtual ::user::style* get_user_style() const;

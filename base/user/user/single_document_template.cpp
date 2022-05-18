@@ -84,25 +84,25 @@ namespace user
 
       }
 
-      if (pcreate->m_varOptions.has_property("visible"))
+      if (pcreate->m_payloadOptions.has_property("visible"))
       {
 
-         pcreate->m_bMakeVisible = pcreate->m_varOptions.is_true("visible");
+         pcreate->m_bMakeVisible = pcreate->m_payloadOptions.is_true("visible");
 
       }
 
       pcreate->m_estatus = error_failed;
 
-      if (pcreate->m_pcommandline)
+      if (pcreate)
       {
 
-         pcreate->m_pcommandline->payload("document").release();
+         pcreate->payload("document").release();
 
       }
 
-      //bool bMakeVisible = pcreate->m_pcommandline->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
-      //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->payload("parent_user_interaction").cast < ::user::interaction > ();
-      //   __pointer(::user::impact) pviewAlloc = pcreate->m_pcommandline->payload("allocation_view").cast < ::user::impact > ();
+      //bool bMakeVisible = pcreate->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
+      //   __pointer(::user::interaction) puserinteractionParent = pcreate->payload("parent_user_interaction").cast < ::user::interaction > ();
+      //   __pointer(::user::impact) pviewAlloc = pcreate->payload("allocation_view").cast < ::user::impact > ();
 
       __pointer(::user::document) pdocument;
 
@@ -201,10 +201,10 @@ namespace user
 
       bool bMakeVisible = true;
       
-      if (pcreate->m_pcommandline)
+      if (pcreate)
       {
 
-         bMakeVisible = pcreate->m_pcommandline->payload("make_visible_boolean").get_bool() || pcreate->m_bMakeVisible;
+         bMakeVisible = pcreate->payload("make_visible_boolean").get_bool() || pcreate->m_bMakeVisible;
 
       }
 
@@ -314,10 +314,10 @@ namespace user
 
       }*/
 
-      if (pcreate->m_pcommandline)
+      if (pcreate)
       {
 
-         pcreate->m_pcommandline->payload("document") = pdocument;
+         pcreate->payload("document") = pdocument;
 
       }
       else

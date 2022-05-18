@@ -559,7 +559,6 @@ namespace apex
 
       
       ::factory::add_factory_item<::create>();
-      ::factory::add_factory_item<command_line>();
       ::factory::add_factory_item<http::context>();
 
       //auto estatus = 
@@ -1691,14 +1690,14 @@ pacmedirectory->create("/ca2core");
 
       pcreate->m_strAppId = strAppId;
 
-      pcreate->m_pcommandline = __create_new < command_line >();
+      //pcreate->m_pcommandline = __create_new < command_line >();
 
       auto straArguments = get_arguments();
 
       if (straArguments.has_element())
       {
 
-         pcreate->m_pcommandline->initialize_arguments(straArguments);
+         pcreate->initialize_arguments(straArguments);
 
       }
       else
@@ -1706,7 +1705,7 @@ pacmedirectory->create("/ca2core");
 
          string strCommandLine = m_strCommandLine;
 
-         pcreate->m_pcommandline->initialize_command_line2(strCommandLine);
+         pcreate->initialize_command_line2(strCommandLine);
 
       }
 
@@ -3201,7 +3200,7 @@ pacmedirectory->create("/ca2core");
 
          __pointer(::create) pcreate(e_create_new, this);
 
-         merge_accumulated_on_open_file(pcreate)
+         //merge_accumulated_on_open_file(pcreate)
 ;
          papp->post_element(e_message_system, e_system_message_create, pcreate);
 
@@ -3214,69 +3213,69 @@ pacmedirectory->create("/ca2core");
 
 
 
-   bool system::merge_accumulated_on_open_file(::create * pcreate)
-   {
+   //bool system::merge_accumulated_on_open_file(::create * pcreate)
+   //{
 
-      if(m_straCommandLineAccumul.is_empty())
-      {
+   //   if(m_straCommandLineAccumul.is_empty())
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      string_array straAccumul = m_straCommandLineAccumul;
+   //   string_array straAccumul = m_straCommandLineAccumul;
 
-      string_array straExtra = m_straCommandLineExtra;
+   //   string_array straExtra = m_straCommandLineExtra;
 
-      m_straCommandLineAccumul.erase_all();
+   //   m_straCommandLineAccumul.erase_all();
 
-      m_straCommandLineExtra.erase_all();
+   //   m_straCommandLineExtra.erase_all();
 
-      command_line_pointer line(e_create_new, this);
+   //   //auto pcreate = __create_new < ::create >();
 
-      string strExtra = straExtra.implode(" ");
+   //   string strExtra = straExtra.implode(" ");
 
-      if(straAccumul.is_empty())
-      {
+   //   if(straAccumul.is_empty())
+   //   {
 
-         line->_001ParseCommandFork("app.exe : open_default " + strExtra);
+   //      pcreate->_001ParseCommandFork("app.exe : open_default " + strExtra);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
+   //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-         line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
 
-      }
+   //   }
 
-      if(pcreate->m_pcommandline.is_null())
-      {
+   //   if(pcreate->m_pcommandline.is_null())
+   //   {
 
-         pcreate->m_pcommandline = line;
+   //      pcreate->m_pcommandline = line;
 
-      }
-      else if(line->m_ecommand == command_line::command_file_open)
-      {
+   //   }
+   //   else if(line->m_ecommand == command_line::command_file_open)
+   //   {
 
-         pcreate->m_pcommandline->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
 
-         pcreate->m_pcommandline->m_ecommand = command_line::command_file_open;
+   //      pcreate->m_ecommand = command_line::command_file_open;
 
-      }
-      else if(line->m_ecommand == command_line::command_application_start)
-      {
+   //   }
+   //   else if(line->m_ecommand == command_line::command_application_start)
+   //   {
 
-         pcreate->m_pcommandline->m_payloadFile.stra().add(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add(line->m_payloadFile.stra());
 
-         pcreate->m_pcommandline->m_ecommand = command_line::command_application_start;
+   //      pcreate->m_ecommand = command_line::command_application_start;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool system::on_open_file(::payload payloadFile, string strExtra)
@@ -4630,7 +4629,7 @@ namespace apex
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
+   //   //get_platform(pcreate->m_iEdge,pcreate->m_pappbias);
 
    //   ::apex::system::on_request(pcreate);
 

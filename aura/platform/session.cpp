@@ -351,7 +351,7 @@ namespace aura
 
       auto pcreateNew = __create_new < ::create >();
 
-      pcreateNew->m_pcommandline->m_payloadFile = pszPathName;
+      pcreateNew->m_payloadFile = pszPathName;
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
@@ -369,7 +369,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_payloadFile.get_string());
+      string strOriginalPathName(pcreate->m_payloadFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -402,7 +402,7 @@ namespace aura
 
          ::str::begins_eat(str, "/");
 
-         pcreate->m_pcommandline->m_payloadFile = str;
+         pcreate->m_payloadFile = str;
 
       }
       else

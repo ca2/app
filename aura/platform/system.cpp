@@ -3308,17 +3308,17 @@ namespace aura
    //   else if(line->m_ecommand == command_line::command_file_open)
    //   {
 
-   //      pcreate->m_pcommandline->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
 
-   //      pcreate->m_pcommandline->m_ecommand = command_line::command_file_open;
+   //      pcreate->m_ecommand = command_line::command_file_open;
 
    //   }
    //   else if(line->m_ecommand == command_line::command_application_start)
    //   {
 
-   //      pcreate->m_pcommandline->m_payloadFile.stra().add(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add(line->m_payloadFile.stra());
 
-   //      pcreate->m_pcommandline->m_ecommand = command_line::command_application_start;
+   //      pcreate->m_ecommand = command_line::command_application_start;
 
    //   }
 
@@ -5969,7 +5969,7 @@ namespace aura
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
+   //   //get_platform(pcreate->m_iEdge,pcreate->m_pappbias);
 
    //   ::aura::system::on_request(pcreate);
 

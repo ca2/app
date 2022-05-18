@@ -89,12 +89,7 @@ namespace user
 
       pcreate->m_estatus = error_failed;
 
-      if(pcreate->m_pcommandline)
-      {
-
-         pcreate->m_pcommandline->payload("document") = (::object *) nullptr;
-
-      }
+      pcreate->payload("document") = (::object *) nullptr;
 
       bool bMakeVisible = pcreate->m_bMakeVisible;
 
@@ -184,7 +179,7 @@ namespace user
             return;
 
          }
-         //pdocument->set_path_name(pcreate->m_pcommandline->m_payloadFile);
+         //pdocument->set_path_name(pcreate->m_payloadFile);
 
          pdocument->id_update_all_views(id_open_document);
 
@@ -199,12 +194,7 @@ namespace user
 
       InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
 
-      if (pcreate->m_pcommandline)
-      {
-
-         pcreate->m_pcommandline->payload("document") = pdocument;
-
-      }
+      pcreate->payload("document") = pdocument;
 
       pcreate->m_estatus = ::success;
 

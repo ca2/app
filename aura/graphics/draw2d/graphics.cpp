@@ -16,7 +16,7 @@
 
 #include "nanosvg/nanosvg.h"
 
-CLASS_DECL_AURA image_array * g_pimagea = nullptr;
+//CLASS_DECL_AURA image_array * g_pimagea = nullptr;
 
 namespace draw2d
 {

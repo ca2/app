@@ -19,7 +19,6 @@
     <ClCompile Include="graphics\draw2d\nano_svg.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
-    <ClCompile Include="graphics\graphics\target.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
     <ClCompile Include="graphics\image\context_image.cpp" />
@@ -221,7 +220,6 @@
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
-    <ClInclude Include="graphics\graphics\target.h" />
     <ClInclude Include="graphics\user\control_box_button.h" />
     <ClInclude Include="graphics\user\control_box_icon.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />

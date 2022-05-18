@@ -55,7 +55,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    auto pcreateContext = pcreate->get_create();
 
-   if (pcreateContext && pcreateContext->m_varArgs.is_true("window_frame"))
+   if (pcreateContext && pcreateContext->m_payloadArgs.is_true("window_frame"))
    {
 
       m_bWindowFrame = true;

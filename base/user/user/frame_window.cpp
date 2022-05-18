@@ -1024,7 +1024,7 @@ namespace user
          if (get_parent() == nullptr || !get_parent()->is_place_holder())
          {
 
-            InitialFramePosition();
+            _001InitialFramePlacement();
 
          }
 
@@ -1265,7 +1265,7 @@ namespace user
    }
 
 
-   void frame_window::InitialFramePosition(bool bForceRestore)
+   bool frame_window::_001InitialFramePlacement(bool bForceRestore)
    {
 
       __UNREFERENCED_PARAMETER(bForceRestore);
@@ -1288,6 +1288,8 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+      return true;
 
    }
 

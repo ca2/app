@@ -654,7 +654,7 @@ namespace user
       else
       {
 
-         if (colorBackground.is_translucent())
+         if (colorBackground.non_transparent())
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

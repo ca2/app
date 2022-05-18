@@ -537,11 +537,10 @@ namespace user
    }
 
 
-
-
-   void frame::InitialFramePosition(bool bForceRestore)
+   bool frame::_001InitialFramePlacement(bool bForceRestore)
    {
 
+      return ::user::box::_001InitialFramePlacement(bForceRestore);
 
    }
 

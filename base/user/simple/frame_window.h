@@ -115,7 +115,7 @@ public:
 
 
 
-   virtual void InitialFramePosition(bool bForceRestore = false) override;
+   bool _001InitialFramePlacement(bool bForceRestore = false) override;
    virtual void on_frame_position();
 
    __pointer(::user::interaction) WindowDataGetWnd();

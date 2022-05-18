@@ -1973,9 +1973,9 @@ namespace user
 
       }*/
 
-      bool _001InitialFramePosition();
+      virtual bool _001InitialFramePlacement(bool bForceRestore = false);
 
-      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
+      virtual bool _001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 

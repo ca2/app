@@ -742,7 +742,7 @@ namespace apex
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
-            //      pframe->InitialFramePosition();
+            //      pframe->_001InitialFramePlacement();
             //   }
             //}
          }

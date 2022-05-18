@@ -2193,7 +2193,7 @@ void simple_frame_window::on_frame_position()
 }
 
 
-void simple_frame_window::InitialFramePosition(bool bForceRestore)
+bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
 {
 
    //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
@@ -2292,6 +2292,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    m_bLockSketchToDesign = false;
 
    post_redraw();
+
+   return true;
 
 }
 
@@ -3997,7 +3999,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 
       //OnUpdateToolWindow(bMakeVisible);
 
-      InitialFramePosition();
+      _001InitialFramePlacement();
 
    }
 

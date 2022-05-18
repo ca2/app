@@ -93,6 +93,13 @@ namespace user
    }
 
 
+   void check_box::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
+   {
+
+
+   }
+
+
    void check_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -189,23 +196,31 @@ namespace user
 
          rectangleText.left = rectangleCheckBox.right + 4;
 
+         auto colorBackground = get_color(pstyle, e_element_background);
+
+         pgraphics->fill_rectangle(rectangleCheckBox, colorBackground);
+
          if (echeck == ::e_check_tristate)
          {
 
-            pgraphics->fill_rectangle(rectangleCheckBox, argb(255, 220, 220, 220));
+            pgraphics->fill_rectangle(rectangleCheckBox, argb(120, 120, 120, 120));
 
          }
+
+         auto rectangleBorder = rectangleCheckBox;
+
+         rectangleBorder.inflate(1);
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_inset_rectangle(rectangleCheckBox, argb(255, 60, 120, 200));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_inset_rectangle(rectangleCheckBox, argb(255, 128, 128, 128));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128));
 
          }
 

@@ -203,10 +203,10 @@ namespace user
       bool IsTracking() const;
 
       // Operations
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void ActivateFrame(::e_display edisplay = e_display_undefined) override;
       virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
-      virtual void InitialFramePosition(bool bForceRestore = false) override;
+      bool _001InitialFramePlacement(bool bForceRestore = false) override;
 
       // to set text of standard status bar
       //void SetMessageText(const ::string & pszText);

@@ -711,7 +711,7 @@ namespace base
 //         //      }
 //         //      else
 //         //      {
-//         //         pframe->InitialFramePosition();
+//         //         pframe->_001InitialFramePlacement();
 //         //      }
 //         //   }
 //         //}

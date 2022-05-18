@@ -4701,7 +4701,7 @@ namespace user
    void interaction::on_message_display_change(::message::message * pmessage)
    {
 
-      _001InitialFramePosition();
+      _001InitialFramePlacement();
 
    }
 
@@ -17836,7 +17836,7 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePosition()
+   bool interaction::_001InitialFramePlacement(bool bForceRestore)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -17865,7 +17865,7 @@ namespace user
       if (!bSet)
       {
 
-         if (!_001InitialFramePosition(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
+         if (!_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
          {
 
             return false;
@@ -17889,7 +17889,7 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
+   bool interaction::_001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
    {
 
       return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);

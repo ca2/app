@@ -1492,24 +1492,7 @@ bool acme_file::_exists(const char * path)
 void acme_file::_erase(const char * path)
 {
 
-   if (::unlink(path) == -1)
-   {
-
-      int iErrNo = errno;
-
-      auto estatus = errno_to_status(iErrNo);
-
-      if(estatus != error_file_not_found)
-      {
-
-         // ::exception exception(estatus);
-
-         throw ::exception(estatus, "Failed to erase file:\n\"" + string(path) + "\"",
-                           "Failed to erase file:\n\"" + string(path) + "\"");
-
-      }
-
-   }
+    throw ::interface_only();
 
 }
 

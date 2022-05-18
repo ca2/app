@@ -1611,7 +1611,7 @@ if (WIN32 OR UWP)
 
 endif ()
 
-if(LINUX)
+if(LINUX OR FREEBSD)
 
    list(APPEND library_source
       operating_system/cairo/nano/_nano.cpp
@@ -1988,6 +1988,7 @@ if (FREEBSD)
       operating_system/freebsd/_factory.cpp
       #operating_system/freebsd/file.cpp
       operating_system/freebsd/freebsd.cpp
+      operating_system/freebsd/freebsd2.cpp
       #operating_system/freebsd/operating_system.cpp
       #operating_system/freebsd/operating_system.h
       operating_system/freebsd/root_tools.cpp
@@ -2014,7 +2015,7 @@ if (FREEBSD)
       operating_system/freebsd/freebsd.inl
       #operating_system/freebsd/list_serial_ports.cpp
       operating_system/freebsd/parallelization.cpp
-      operating_system/freebsd/operating_system.cpp
+      operating_system/freebsd/_.cpp
       operating_system/freebsd/os.cpp
       operating_system/freebsd/process.cpp
       operating_system/freebsd/process_pid.cpp
@@ -2092,7 +2093,17 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+if (LINUX OR FREEBSD)
+
+
+    list(APPEND library_source
+            operating_system/posix/callstack.cpp
+            )
+
+
+endif ()
+
+add_library(acme SHARED ${library_source} operating_system/posix/callstack.cpp)
 
 
 if(NOT DEFINED NO_PRECOMPILED_HEADER)
@@ -2127,7 +2138,7 @@ elseif(LINUX OR FREEBSD)
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})
    target_link_libraries(acme PRIVATE z dl idn pthread)
 if(FREEBSD)
-   target_link_libraries(acme PRIVATE iconv)
+   target_link_libraries(acme PRIVATE iconv execinfo)
 endif()
    target_link_libraries(acme PRIVATE  ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)

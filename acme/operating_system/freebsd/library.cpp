@@ -11,6 +11,10 @@ string m_strPathOut;
 
 };
 
+
+CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage);
+
+
 static int
 __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *data)
 {

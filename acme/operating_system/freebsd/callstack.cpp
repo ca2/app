@@ -1,7 +1,23 @@
 #include "framework.h"
+#include "acme/operating_system/ansi/callstack.h"
 #include "_freebsd.h"
+#include <execinfo.h>
+#include <cxxabi.h>
+#undef USE_MISC
+
+string get_callstack(const char* pszFormat, i32 iSkip, void * caller_address, int iCount)
+{
 
 
+    const size_t iMaximumFramesToCapture = 64;
+
+    void * stack[iMaximumFramesToCapture];
+
+    auto frames = ::backtrace(stack, iMaximumFramesToCapture);
+
+    return _ansi_stack_trace(stack, frames, pszFormat);
+
+}
 //namespace linux
 //{
 //

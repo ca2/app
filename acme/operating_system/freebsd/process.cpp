@@ -2,7 +2,7 @@
 //#include "_linux.h"
 ////#include "acme/platform/app_core.h"
 //#include <sys/types.h>
-//#include <unistd.h>
+#include <unistd.h>
 //#include <signal.h>
 //#undef USE_MISC
 //

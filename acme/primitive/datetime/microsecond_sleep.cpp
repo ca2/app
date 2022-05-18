@@ -15,6 +15,13 @@ struct MICROSECOND_SLEEP
 #endif
 
 
+#if defined(FREEBSD)
+
+#include <unistd.h>
+
+#endif
+
+
 microsecond_sleep::microsecond_sleep()
 {
 

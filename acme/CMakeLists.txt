@@ -2082,7 +2082,7 @@ if (LINUX OR APPLE OR SOLARIS OR FREEBSD)
 endif ()
 
 
-if (LINUX)
+if (LINUX OR FREEBSD)
 
 
    list(APPEND library_source

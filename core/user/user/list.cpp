@@ -7707,7 +7707,7 @@ namespace user
             }
 
          }
-         else
+         else if(m_strText.has_char())
          {
 
             //auto pbrushText = __create < ::draw2d::brush > ();

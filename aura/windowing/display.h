@@ -16,7 +16,7 @@ namespace windowing
 
       void *                        m_pDisplay;
       void *                        m_pDisplay2;
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
       void *                        _m_pX11Display;
 #endif
 

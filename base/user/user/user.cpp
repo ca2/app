@@ -210,7 +210,7 @@ namespace base
    void user::init2()
    {
 
-      ::acme::department::init2();
+      ::user::user::init2();
       //if (!::acme::department::init2())
       //{
 

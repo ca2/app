@@ -5102,7 +5102,7 @@ finished_update:
             else if(is_window_enabled())
             {
 
-#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS)
+#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
                return;
 

@@ -33,18 +33,33 @@ if (MSVC)
     target_link_options(regular_expression_pcre2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/regular_expression_pcre2.def")
     target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
 
-elseif(LINUX OR FREEBSD)
+elseif(LINUX)
 
 
    if(NOT DONT_USE_PKG_CONFIG)
       pkg_check_modules(PKGCONFIG libpcre2-8)
    endif()
+
+   message(STATUS "regular_expression_pcre2")
+   message(STATUS "PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
+   message(STATUS "PKGCONFIG_LDFLAGS is ${PKGCONFIG_LDFLAGS}")
+   message(STATUS "PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
+
    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
    target_compile_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references})
-   target_link_libraries(regular_expression_pcre2 PRIVATE ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
+
+
+elseif(FREEBSD)
+
+
+    target_compile_options(regular_expression_pcre2 PRIVATE -fpermissive)
+    target_compile_options(regular_expression_pcre2 PRIVATE -I/usr/local/include)
+    target_link_options(regular_expression_pcre2 PRIVATE -L/usr/local/lib)
+    target_link_libraries(regular_expression_pcre2 PRIVATE ${library_references} pcre2-8)
+    target_link_options(regular_expression_pcre2 PRIVATE -Wl,-z,defs)
 
 
 endif()

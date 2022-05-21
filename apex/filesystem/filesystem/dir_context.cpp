@@ -422,8 +422,22 @@ inline bool myspace(char ch)
 //}
 
 
-
 bool dir_context::enumerate(::file::listing& listing)
+{
+
+   if(_enumerate(listing))
+   {
+
+      return true;
+
+   }
+
+   return m_psystem->m_pacmedirectory->enumerate(listing);
+
+}
+
+
+bool dir_context::_enumerate(::file::listing& listing)
 {
 
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);

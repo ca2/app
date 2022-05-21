@@ -212,10 +212,10 @@ namespace windowing
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
-      void windowing_send(OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
+      void windowing_get_posted_payload_synchronously(OBJECT_POINTER preturning, OBJECT_METHOD returning_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::material_object::__send_payload(this, &windowing::windowing_post, pobject, object_method, ppayload);
+         return ::material_object::__get_posted_payload_synchronously(this, &windowing::windowing_post, preturning, returning_method, ppayload);
 
       }
 

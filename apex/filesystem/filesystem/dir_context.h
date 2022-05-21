@@ -34,6 +34,7 @@
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing & listing) override;
+      virtual bool _enumerate(::file::listing & listing);
 
 
       //virtual bool list_relative_name(::file::listing & listing);

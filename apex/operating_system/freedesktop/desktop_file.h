@@ -6,7 +6,7 @@
 // best
 // Everyone wants to rule the world....
 
-namespace linux
+namespace freedesktop
 {
 
 
@@ -35,10 +35,14 @@ namespace linux
       void set_file_path(const ::file::path & path);
       ::file::path get_file_path();
 
+      virtual void set_app_id(const ::string & strAppId);
+      virtual string get_app_id();
+
+
+
       ::file::path get_board_path();
 
       void write();
-
 
       string get_wm_class();
 
@@ -47,7 +51,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace freedesktop
 
 
 

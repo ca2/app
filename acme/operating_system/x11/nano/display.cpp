@@ -151,79 +151,85 @@ namespace x11
    }
 
 
-//   void display::display_post(const ::procedure & procedure)
-//   {
-//
-//
-//   }
-//
-//
-//
-//
+   Window display::window_from_name_search(Display *display, Window current, char const *needle, int iOffset, int depth)
+   {
 
-//int g_fdX11[2] = {};
-//
-//bool g_bX11Idle = false;
-//
-//
-//
-//void display::wait_timer_or_event()
-//{
-//
-//   struct timeval tv;
-//
-//   // This returns the FD of the X11 display (or something like that)
-//   int x11_fd = ConnectionNumber(m_pdisplay);
-//
-//   fd_set in_fds;
-//
-//   // Create a File Description Set containing x11_fd
-//   FD_ZERO(&in_fds);
-//   FD_SET(x11_fd, &in_fds);
-//   FD_SET(g_fdX11[0], &in_fds);
-//
-//   // Set our timer.  One second sounds good.
-//   tv.tv_usec = 0;
-//   tv.tv_sec = 1;
-//
-//   // Wait for X Event or a Timer
-//   int num_ready_fds = select(maximum(x11_fd, g_fdX11[0]) + 1, &in_fds, NULL, NULL, &tv);
-//
-//   if (num_ready_fds > 0)
-//   {
-//
-//      //printf("Event Received!\n");
-//
-//      g_bX11Idle = false;
-//
-//      char buf[32];
-//
-//      int iRead;
-//
-//      while((iRead = read(g_fdX11[0], buf, sizeof(buf)))>0)
-//      {
-//
-//         //printf("X11 fork count = %d\n", iRead);
-//
-//      }
-//
-//   }
-//   else if (num_ready_fds == 0)
-//   {
-//
-//      // Handle timer here
-//      //printf("Timer Fired!\n");
-//
-//   }
-//   else
-//   {
-//
-//      //printf("An error occured!\n");
-//
-//   }
-//
-//}
-//
+      Window window, root, parent, *children;
+
+      unsigned children_count;
+
+      char *name = NULL;
+
+      window = 0;
+
+      /* If it does not: check all subwindows recursively. */
+      if(0 != XQueryTree(display, current, &root, &parent, &children, &children_count))
+      {
+
+         unsigned i;
+
+         for(i = 0; i < children_count; ++i)
+         {
+
+            /* Check if this window has the name we seek */
+            if(XFetchName(display,  children[i], &name) > 0)
+            {
+
+               int r = strcmp(needle, name);
+
+               XFree(name);
+
+               if(r == 0)
+               {
+
+                  window = children[i+iOffset];
+
+                  break;
+
+               }
+
+            }
+
+            if(depth > 1)
+            {
+
+               Window win = window_from_name_search(display, children[i], needle, depth - 1);
+
+               if (win != 0)
+               {
+
+                  window = win;
+
+                  break;
+
+               }
+
+            }
+
+         }
+
+         XFree(children);
+
+      }
+      
+      return window;
+      
+   }
+   
+
+   Window display::window_from_name(char const *name, int iOffset, int depth)
+   {
+      
+      auto display = m_pdisplay;
+      
+      auto windowRoot = XDefaultRootWindow(display);
+      
+      auto window = window_from_name_search(display, windowRoot, name, iOffset, depth);
+      
+      return window;
+      
+   }
+
 
    display * display::get(::object * pobject, bool bBranch, Display * pdisplay)
    {
@@ -339,13 +345,6 @@ namespace x11
 
       synchronous_lock synchronouslock(mutex());
 
-      // if(pevent->type == ButtonPress)
-      // {
-
-      //    output_debug_string("ButtonPress");
-
-      // }
-
       for (; i < m_eventlistenera.get_count(); i++)
       {
 
@@ -353,12 +352,30 @@ namespace x11
 
          synchronouslock.unlock();
 
-         if (plistener->_on_event(pevent))
+         if(i == 0)
          {
 
-            bHandled = true;
+            if (plistener->_on_event(pevent))
+            {
 
-            break;
+               bHandled = true;
+
+               break;
+
+            }
+
+         }
+         else
+         {
+
+            if (plistener->_on_event(pevent))
+            {
+
+               bHandled = true;
+
+               break;
+
+            }
 
          }
 
@@ -426,7 +443,7 @@ namespace x11
       if(m_psystem->m_ewindowing == e_windowing_none)
       {
 
-         set_main_user_thread();
+         //set_main_user_thread();
 
          m_psystem->m_ewindowing = e_windowing_x11;
 

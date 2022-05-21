@@ -57,6 +57,8 @@ namespace nano
    void display::display_send(const ::procedure & procedure)
    {
 
+      auto bIsCurrentBranch = is_branch_current();
+
       __send_procedure(this, &display::display_post, procedure);
 
    }

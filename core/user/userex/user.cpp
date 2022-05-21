@@ -459,7 +459,7 @@ namespace core
    void user::init2()
    {
 
-      ::acme::department::init2();
+      ::base::user::init2();
 
       //if (!::acme::department::init2())
       //{
@@ -573,12 +573,10 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.create(this);
 
          pcreate->m_payloadFile = payload.get_file_path();
 
@@ -1049,14 +1047,12 @@ namespace core
 
       pcreate->m_puserprimitiveAlloc = pimpact;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
-      pcreate->m_varArgs["form_callback"] = pcallback;
+      pcreate->m_payloadArgs["form_callback"] = pcallback;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.create(this);
 
          pcreate->m_payloadFile = payload.get_file_path();
 
@@ -1131,14 +1127,12 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
-      pcreate->m_varArgs["form_callback"] = pcallback;
+      pcreate->m_payloadArgs["form_callback"] = pcallback;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.create(this);
 
          pcreate->m_payloadFile = payload.get_file_path();
 
@@ -1222,14 +1216,12 @@ namespace core
 
       pcreate->m_puserprimitiveAlloc = pimpact;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
-      pcreate->m_varArgs["form_callback"] = pcallback;
+      pcreate->m_payloadArgs["form_callback"] = pcallback;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.defer_create(this);
 
          pcreate->m_payloadFile = payload.get_file_path();
 
@@ -1304,14 +1296,12 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
-      pcreate->m_varArgs["form_callback"] = pcallback;
+      pcreate->m_payloadArgs["form_callback"] = pcallback;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.create(this);
 
          ::file::path path = payload.get_file_path();
 
@@ -1418,12 +1408,10 @@ namespace core
 
       pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_varArgs = varArgs;
+      pcreate->m_payloadArgs = varArgs;
 
       if (payload.get_file_path().has_char())
       {
-
-         pcreate->m_pcommandline.create(this);
 
          pcreate->m_payloadFile = payload.get_file_path();
 

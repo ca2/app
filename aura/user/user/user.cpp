@@ -61,8 +61,8 @@ namespace user
 
       //}
 
-      //estatus = 
-      
+      //estatus =
+
       create_windowing();
 
       //if (!estatus)

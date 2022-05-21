@@ -244,30 +244,35 @@ namespace user
 
          get_window_text(strText);
 
-         ::e_align ealign = e_align_left_center;
-         
-         ::e_draw_text edrawtext = e_draw_text_single_line;
-
-         pgraphics->set_font(this, ::e_element_none);
-
-         ::color::color crText;
-
-         if (drawcontext.m_bListItemHover)
+         if(strText.has_char())
          {
 
-            crText = argb(255, 0, 0, 0);
+            ::e_align ealign = e_align_left_center;
+
+            ::e_draw_text edrawtext = e_draw_text_single_line;
+
+            pgraphics->set_font(this, ::e_element_none);
+
+            ::color::color crText;
+
+            if (drawcontext.m_bListItemHover)
+            {
+
+               crText = argb(255, 0, 0, 0);
+
+            }
+            else
+            {
+
+               crText = argb(255, 0, 0, 0);
+
+            }
+
+            pgraphics->set_text_color(crText);
+
+            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
 
          }
-         else
-         {
-
-            crText = argb(255, 0, 0, 0);
-
-         }
-
-         pgraphics->set_text_color(crText);
-
-         pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
 
       }
 

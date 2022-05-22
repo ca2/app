@@ -17,6 +17,9 @@ extern char _binary__matter_zip_end[];
 #endif
 
 
+const char * g_psz_br_init_symbol_app = __APP_ID;
+
+
 int main(int argc, char * argv[], char * envp[])
 {
 
@@ -35,6 +38,8 @@ int main(int argc, char * argv[], char * envp[])
    main.m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 
    main.m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
+
+   br_init_set_symbol(g_psz_br_init_symbol_app);
 
    auto estatus = __main(main);
 

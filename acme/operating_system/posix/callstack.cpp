@@ -5,6 +5,74 @@
 #include <cxxabi.h>
 
 
+#ifdef FREEBSD
+
+
+void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
+{
+
+   char * pszAddress = pmessage;
+
+   char * pszMangledName = nullptr;
+
+   char * pszOffsetBeg = nullptr;
+
+   // find parantheses and +address offset surrounding mangled name
+   for (char * psz = pmessage; *psz; ++psz)
+   {
+
+      if (*psz == '<')
+      {
+
+         pszMangledName = psz;
+
+      }
+      else if (*psz == '+')
+      {
+
+         pszOffsetBeg = psz;
+
+         break;
+
+      }
+
+   }
+
+   if (pszAddress && pszMangledName)
+   {
+
+      *pszMangledName++ = '\0';
+      *pszOffsetBeg++ = '\0';
+
+      i32 status;
+
+      acme::malloc < char * > pszRealName = abi::__cxa_demangle(pszMangledName, 0, 0, &status);
+
+      const char * pszSymbolName;
+
+      if (status == 0)
+      {
+
+         strSymbolName = (const char *) (char *) pszRealName;
+
+      }
+      else
+      {
+
+         strSymbolName = pszMangledName;
+
+      }
+
+      strAddress = pszAddress;
+
+   }
+
+}
+
+
+#else
+
+
 void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)
 {
 
@@ -72,5 +140,9 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
     }
 
 }
+
+
+#endif
+
 
 

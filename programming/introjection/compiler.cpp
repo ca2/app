@@ -1029,7 +1029,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       string strBuildCmd;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
       strBuildCmd = pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #elif defined(__APPLE__)
       strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
@@ -1182,7 +1182,7 @@ auto tickStart = ::duration::now();
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 15_min)
          {
 
             bTimeout = true;
@@ -1247,7 +1247,7 @@ auto tickStart = ::duration::now();
 
 #ifndef MACOS
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
          strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
          strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
@@ -1388,7 +1388,7 @@ auto tickStart = ::duration::now();
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 15_min)
             {
 
                bTimeout = true;

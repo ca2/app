@@ -285,13 +285,13 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
    strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
-   string strAppId(strApp);
+   string strAppId(strApp);|
 
    strAppId.find_replace("\\","-");
 
@@ -586,7 +586,7 @@ id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    id_array idaPid;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
    auto psystem = m_psystem;
    

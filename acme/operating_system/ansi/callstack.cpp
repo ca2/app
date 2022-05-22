@@ -60,7 +60,7 @@ string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat
       string strSymbolName;
       
       string strAddress;
-      
+
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
 
       string strLine;

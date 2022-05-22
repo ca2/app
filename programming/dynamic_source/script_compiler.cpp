@@ -700,7 +700,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strBuildCmd;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
       strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
       strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
@@ -867,7 +867,7 @@ pacmedirectory->create(pathDVP_Folder);
 
          //strBuildCmd;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
          strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / "operating-system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
          strBuildCmd.format(m_pcontext->m_papexcontext->dir().install() / "operating-system" / ("operating-system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");

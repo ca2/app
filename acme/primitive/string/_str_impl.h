@@ -1475,6 +1475,72 @@ namespace str
    }
 
 
+   inline bool begins_ci_skip(const char*& psz, const char* pszPrefix)
+   {
+
+      auto length = strlen(pszPrefix);
+
+      if (strnicmp(psz, pszPrefix, length) != 0)
+      {
+
+         return false;
+
+      }
+
+      psz += length;
+
+      return true;
+
+   }
+
+
+   /// Returns:
+   /// end of line, and;
+   /// next line or null if no next line
+   inline struct ::end_of_line_and_next_line end_of_line_and_next_line(const char* psz)
+   {
+
+      struct ::end_of_line_and_next_line pair;
+
+      pair.end_of_line = strpbrk(psz, "\r\n\0");
+
+      pair.next_line = pair.end_of_line;
+
+      if (!*pair.next_line  )
+      {
+
+         pair.next_line   = nullptr;
+
+      }
+      else if (*pair.next_line   == '\r')
+      {
+
+         pair.next_line  ++;
+
+         if (*pair.next_line   == '\r')
+         {
+
+            pair.next_line  ++;
+
+         }
+
+      }
+      else if (*pair.next_line   == '\n')
+      {
+
+         pair.next_line  ++;
+
+      }
+      else
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      return pair;
+
+   }
 
 
 } // namespace str

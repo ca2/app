@@ -94,6 +94,7 @@ PAIR_IMPL(T1, T2, ARG_T1, ARG_T2, DATA1, DATA2) \
 PAIR_DEFAULT_CONSTRUCTORS(PAIR, T1, T2, ARG_T1, ARG_T2, DATA1, DATA2)
 
 
+
 template < typename T1, typename T2, typename ARG_T1, typename ARG_T2 >
 class pair 
 {
@@ -111,6 +112,8 @@ class pair
 
 
 };
+
+
 
 
 #if defined(ANDROID)

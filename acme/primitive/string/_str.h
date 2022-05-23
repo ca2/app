@@ -1,6 +1,15 @@
 #pragma once
 
 
+struct end_of_line_and_next_line
+{
+
+   const char * end_of_line;
+   const char * next_line;
+
+};
+
+
 namespace str
 {
 
@@ -141,6 +150,13 @@ namespace str
 
    CLASS_DECL_ACME  const ansichar *   utf8_dec(::str::utf8_char * pchar, const ansichar * pszBeg, const ansichar * psz);
    CLASS_DECL_ACME  const ansichar *   utf8_dec( const ansichar* pszBeg, const ansichar* psz);
+
+
+
+
+   
+   inline bool begins_ci_skip(const char*& psz, const char* pszPrefix);
+   inline struct ::end_of_line_and_next_line end_of_line_and_next_line(const char* psz);
 
 
 } // namespace str

@@ -72,6 +72,8 @@ bool CompareElements(const TYPE * pElement1, const ARG_TYPE pElement2)
 #include "pair.h"
 
 
+
+
 // Range-based for loop support // Thank you PUGIXML
 template < typename CONST_ITERATOR >
 class const_range

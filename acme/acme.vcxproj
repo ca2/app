@@ -1851,6 +1851,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\stick.h" />
     <ClInclude Include="primitive\primitive\system.h" />
     <ClInclude Include="primitive\primitive\tracer.h" />
+    <ClInclude Include="primitive\primitive\tuple.h" />
     <ClInclude Include="primitive\primitive\work.h" />
     <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />

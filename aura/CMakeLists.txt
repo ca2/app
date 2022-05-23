@@ -212,6 +212,10 @@ list(APPEND library_source
    graphics/write_text/write_text.h
    graphics/_.h
    graphics/_impl.h
+   hardware/device_listener.cpp
+   hardware/device_listener.h
+   hardware/devices.cpp
+   hardware/devices.h
    include/_.cpp
    include/_.h
    include/_c.h
@@ -823,8 +827,8 @@ if (FREEBSD)
       operating_system/freebsd/cross_win_gdi_internal.h
       operating_system/freebsd/debug.cpp
       operating_system/freebsd/debug.h
-      operating_system/freebsd/desktop_file.cpp
-      operating_system/freebsd/desktop_file.h
+      #operating_system/freebsd/desktop_file.cpp
+      #operating_system/freebsd/desktop_file.h
       #operating_system/freebsd/exception_engine.cpp
       #operating_system/freebsd/exception_engine.h
       operating_system/freebsd/file.cpp
@@ -874,6 +878,7 @@ if (FREEBSD)
       #operating_system/x11/x11_keyboard.h
       #operating_system/x11/x11_windowing.cpp
       #operating_system/x11/x11_xrender.cpp
+      graphics/write_text/font_utf8.cpp
       ${windowing_source}
       )
 endif ()

@@ -25,6 +25,10 @@
 //#include <ctype.h>
 #endif
 
+#if defined(FREEBSD)
+#include <unistd.h>
+#endif
+
 
 namespace net
 {

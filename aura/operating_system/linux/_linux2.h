@@ -26,7 +26,7 @@
 
 #include "_user.h"
 
-#include "desktop_file.h"
+#include "app/apex/operating_system/freedesktop/desktop_file.h"
 #include "x11.h"
 
 

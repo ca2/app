@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-20 11:35 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-20 11:35 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -13,8 +13,30 @@ enum enum_as
 #define __as(p) { e_as, p }
 
 
+struct function_common
+{
+
+
+#ifdef DEBUG
+
+   class ::wait m_waitTimeout = 30_min;
+
+#else
+
+   class ::wait m_waitTimeout = 5_s;
+
+#endif
+
+   void timeout(const class ::wait & wait)  { m_waitTimeout = wait;}
+   class ::wait timeout() const {return m_waitTimeout;}
+
+};
+
+
 template < typename FUNCTION >
-struct function {
+struct function :
+   public function_common
+{
 
 };
 
@@ -36,7 +58,8 @@ struct function {
 
 template < >
 class function < void() > :
-   public ___pointer < ::element >
+   public ___pointer < ::element >,
+   public function_common
 {
 public:
 
@@ -205,7 +228,8 @@ public:
 
 
 template < typename RETURN_TYPE >
-class function < RETURN_TYPE() >
+class function < RETURN_TYPE() > :
+   public function_common
 {
 public:
 
@@ -332,7 +356,8 @@ public:
 
 
 template < typename RETURN_TYPE, typename... TYPES >
-class function < RETURN_TYPE(TYPES...) >
+class function < RETURN_TYPE(TYPES...) > :
+   public function_common
 {
 public:
 

@@ -106,7 +106,7 @@ namespace user
       bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;
       //::user::primitive *                       m_pprimitiveFocus;
-      ::user::primitive *                       m_pprimitiveSoftwareKeyboard;
+      __pointer(::user::element)                m_pelementSoftwareKeyboard;
 
       __pointer(::windowing::window)            m_pwindow;
       bool                                      m_bScreenRelativeMouseMessagePosition;
@@ -131,18 +131,20 @@ namespace user
       lparam                                    m_lparam;
       lparam                                    m_lparamLastMouseMove;
 
-      __pointer(::user::interaction)            m_puserinteractionCapture;
-      __pointer(::user::interaction)            m_puserinteractionFocus1;
-      __pointer(::user::interaction)            m_puserinteractionFocusRequest;
-      __pointer(::user::interaction)            m_puserinteractionToKillFocus;
+      __pointer(::user::interaction)            m_puserinteractionMouseCapture;
+      __pointer(::user::interaction)            m_puserinteractionKeyboardFocus;
+      __pointer(::user::interaction)            m_puserinteractionKeyboardFocusRequest;
+      /// message handling helper besides (possibly duplicate of) m_puserinteractionKeyboardFocusRequest
+      __pointer(::user::interaction)            m_puserinteractionKeyboardGainingFocusIfAny;
+      __pointer(::user::interaction)            m_puserinteractionToKillKeyboardFocus;
 
       bool                                      m_bPendingRedraw;
-      ::duration                                    m_durationLastRedraw;
+      ::duration                                m_durationLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       
-      ::nanosecond                                   m_nanosDeviceDrawBeg;
-      ::nanosecond                                   m_nanosDeviceDrawEnd;
-      ::duration                                    m_durationLastDeviceDraw;
+      ::nanosecond                              m_nanosDeviceDrawBeg;
+      ::nanosecond                              m_nanosDeviceDrawEnd;
+      ::duration                                m_durationLastDeviceDraw;
 
 
 
@@ -168,7 +170,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void default_message_handler(::message::message * pusermessage) override;
+      void default_message_handler(::message::message * pusermessage) override;
 
       virtual void on_tsf_activate(bool bActivate);
 
@@ -194,13 +196,13 @@ namespace user
 
 
 
-      virtual void set_tool_window(bool bSet) override;
+      void set_tool_window(bool bSet) override;
 
 
       void create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
-      virtual void interaction_post(const ::procedure & procedure) override;
+      void interaction_post(const ::procedure & procedure) override;
 
       // call these from window
       //virtual void set_keyboard_focus();
@@ -262,13 +264,13 @@ namespace user
       bool is_prodevian(const ::matter * pmatter) const override;
       inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
-      virtual void prodevian_stop() override;
+      void prodevian_stop() override;
 
 
       //virtual ::user::interaction * get_owner();
-      virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
+      ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
-      virtual bool has_pending_redraw_flags() override;
+      bool has_pending_redraw_flags() override;
 
       virtual ::user::interaction_impl * from_os_data(void * pdata);
       virtual void * get_os_data() const;
@@ -302,7 +304,7 @@ namespace user
 //#endif   // WINVER >= 0x0500
 
       // subclassing/unsubclassing functions
-      virtual void pre_subclass_window() override;
+      void pre_subclass_window() override;
       //virtual bool subclass_window(::windowing::window * pwindow) override;
       //virtual bool SubclassDlgItem(::u32 nID, ::user::interaction_impl * pParent);
       //virtual oswindow unsubclass_window() override;
@@ -366,7 +368,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual lresult send_message(const ::atom& atom, wparam wParam = 0, lparam lParam = 0, const ::point_i32 & point = nullptr) override;
+      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32 & point = nullptr) override;
 
 
 //#ifdef LINUX
@@ -390,7 +392,7 @@ namespace user
       // Window Text Functions
       virtual void set_window_text(const ::string & pszString) override;
 
-      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
+      strsize get_window_text(char * pszStringBuf, strsize nMaxCount) override;
 
       void get_window_text(string & rString) override;
       strsize get_window_text_length() override;
@@ -423,8 +425,8 @@ namespace user
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
       virtual void PrintClient(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
 
-      virtual void UpdateWindow() override;
-      virtual void SetRedraw(bool bRedraw = true) override;
+      void UpdateWindow() override;
+      void SetRedraw(bool bRedraw = true) override;
       //virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
       //i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
@@ -471,7 +473,7 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor) override;
+      void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
@@ -727,7 +729,7 @@ namespace user
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual void clear_keyboard_focus() override;
+      void clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual void impl_clear_keyboard_focus() override;
@@ -766,9 +768,9 @@ namespace user
 
       virtual void user_interaction_on_hide() override;
 
-      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      void show_software_keyboard(::user::element * pelement) override;
 
-      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
+      void hide_software_keyboard(::user::element * pelement) override;
 
 
       // Occlusion and Translucency
@@ -791,7 +793,7 @@ namespace user
       virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta);
 
 
-      virtual ::windowing::window * get_window() const override;
+      ::windowing::window * get_window() const override;
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 

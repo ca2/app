@@ -105,7 +105,7 @@ namespace user
       //__pointer(::message::message) get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
 
-      virtual ::user::interaction * get_host_window() const;
+      ::user::interaction * get_host_window() const;
 
       virtual ::user::form * get_form();
 
@@ -147,9 +147,11 @@ namespace user
 
       //void install_message_routing(::channel * pchannel) override;
 
-      virtual void show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd);
+      //virtual void show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd);
 
-      virtual void hide_software_keyboard(::user::element * pprimitive);
+      virtual void show_software_keyboard(::user::element* pelement);
+
+      virtual void hide_software_keyboard(::user::element* pelement);
 
       virtual void UpdateWindow();
       
@@ -476,7 +478,7 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      virtual oswindow detach();
+      virtual oswindow detach_window();
 
 
       virtual windowing::window * get_window() const;
@@ -565,7 +567,7 @@ namespace user
       //virtual bool set_previous_display(edisplay edisplay);
 
 
-      virtual void show_keyboard(bool bShow = true);
+      //virtual void show_keyboard(bool bShow = true);
 
       virtual void keep_alive(::object * pliveobject = nullptr);
 
@@ -636,6 +638,7 @@ namespace user
 
       virtual ::user::element * get_parent_primitive() const;
 
+      virtual ::user::primitive_impl* get_primitive_impl();
 
       virtual ::user::interaction * get_first_child_window() const;
 
@@ -647,7 +650,7 @@ namespace user
       //virtual element * get_keyboard_focus() const;
       virtual void set_keyboard_focus();
       virtual void erase_keyboard_focus();
-      virtual void clear_keyboard_focus();
+      virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
       virtual ::user::element * get_keyboard_focus();
       virtual element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual bool has_keyboard_focus();
@@ -709,6 +712,7 @@ namespace user
       virtual void InputConnectionBeginBatchEdit();
       virtual void InputConnectionEndBatchEdit();
       virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition);
+      virtual void InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength);
       virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition);
       virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
       virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd);
@@ -720,6 +724,7 @@ namespace user
 
       // Text Edit
       virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
+      virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
       virtual index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
       virtual index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
       virtual index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);

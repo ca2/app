@@ -93,6 +93,13 @@ namespace user
    }
 
 
+   void check_box::_001OnNcDraw(::draw2d::graphics_pointer& pgraphics)
+   {
+
+
+   }
+
+
    void check_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -189,23 +196,31 @@ namespace user
 
          rectangleText.left = rectangleCheckBox.right + 4;
 
+         auto colorBackground = get_color(pstyle, e_element_background);
+
+         pgraphics->fill_rectangle(rectangleCheckBox, colorBackground);
+
          if (echeck == ::e_check_tristate)
          {
 
-            pgraphics->fill_rectangle(rectangleCheckBox, argb(255, 220, 220, 220));
+            pgraphics->fill_rectangle(rectangleCheckBox, argb(120, 120, 120, 120));
 
          }
+
+         auto rectangleBorder = rectangleCheckBox;
+
+         rectangleBorder.inflate(1);
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_inset_rectangle(rectangleCheckBox, argb(255, 60, 120, 200));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_inset_rectangle(rectangleCheckBox, argb(255, 128, 128, 128));
+            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128));
 
          }
 
@@ -229,30 +244,35 @@ namespace user
 
          get_window_text(strText);
 
-         ::e_align ealign = e_align_left_center;
-         
-         ::e_draw_text edrawtext = e_draw_text_single_line;
-
-         pgraphics->set_font(this, ::e_element_none);
-
-         ::color::color crText;
-
-         if (drawcontext.m_bListItemHover)
+         if(strText.has_char())
          {
 
-            crText = argb(255, 0, 0, 0);
+            ::e_align ealign = e_align_left_center;
+
+            ::e_draw_text edrawtext = e_draw_text_single_line;
+
+            pgraphics->set_font(this, ::e_element_none);
+
+            ::color::color crText;
+
+            if (drawcontext.m_bListItemHover)
+            {
+
+               crText = argb(255, 0, 0, 0);
+
+            }
+            else
+            {
+
+               crText = argb(255, 0, 0, 0);
+
+            }
+
+            pgraphics->set_text_color(crText);
+
+            pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
 
          }
-         else
-         {
-
-            crText = argb(255, 0, 0, 0);
-
-         }
-
-         pgraphics->set_text_color(crText);
-
-         pgraphics->draw_text(strText, rectangleText, ealign, edrawtext);
 
       }
 

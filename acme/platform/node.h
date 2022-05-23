@@ -430,6 +430,9 @@ namespace acme
       //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
 
 
+      virtual void shell_launch(const ::string & strAppId);
+
+
    };
 
 

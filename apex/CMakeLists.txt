@@ -830,8 +830,6 @@ if (LINUX)
       operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.cpp
       operating_system/linux/debug.h
-      operating_system/linux/desktop_file.cpp
-      operating_system/linux/desktop_file.h
       operating_system/linux/dumpinit.cpp
       operating_system/linux/error.cpp
       operating_system/linux/exception.cpp
@@ -874,8 +872,8 @@ if (MACOS)
    list(APPEND apex_source
       crypto/macos/rsa.cpp
       crypto/macos/rsa.h
-           #operating_system/macos/_.h
-           #operating_system/macos/_macos.h
+      #operating_system/macos/_.h
+      #operating_system/macos/_macos.h
       #operating_system/macos/_mm.h
       #operating_system/macos/apex_window.h
       #operating_system/macos/apex_window.mm
@@ -971,6 +969,16 @@ if (MACOS)
 
 
 endif ()
+
+
+if(LINUX OR FREEBSD OR MACOS)
+
+   list(APPEND apex_source
+     operating_system/freedesktop/desktop_file.cpp
+     operating_system/freedesktop/desktop_file.h
+     )
+
+endif()
 
 
 if (IOS)

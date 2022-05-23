@@ -17,6 +17,7 @@ namespace user
    primitive_impl::primitive_impl()
    {
 
+      m_bUserImplCreated = false;
       m_pinteractionimpl = nullptr;
       m_pinteractionchild = nullptr;
       //m_bDestroying = false;
@@ -26,7 +27,7 @@ namespace user
       m_puserinteraction = nullptr;
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
-      m_bUserElementOk = true;
+      //m_bUserElementOk = true;
 
    }
 
@@ -144,10 +145,22 @@ namespace user
    }
 
 
+   oswindow primitive_impl::detach_window()
+   {
+
+      return nullptr;
+
+   }
+
+
    void primitive_impl::destroy()
    {
 
-      ::user::primitive::destroy();
+      ::channel::destroy();
+
+      ::source::destroy();
+
+      ::manager::destroy();
 
       //auto estatus = 
       m_puserinteraction.release();
@@ -173,136 +186,136 @@ namespace user
    }
 
 
-   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
-   {
+   //void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
+   //{
 
-      if (!_is_window())
-      {
+   //   if (!_is_window())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      __UNREFERENCED_PARAMETER(nIDFirst);
+   //   __UNREFERENCED_PARAMETER(nIDFirst);
 
-      __UNREFERENCED_PARAMETER(nIDLast);
+   //   __UNREFERENCED_PARAMETER(nIDLast);
 
-      ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
+   //   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
-      SIZEPARENTPARAMS sizeparentparams;
+   //   SIZEPARENTPARAMS sizeparentparams;
 
-      __pointer(::user::interaction) puiLeft;
+   //   __pointer(::user::interaction) puiLeft;
 
-      sizeparentparams.bStretch = bStretch;
+   //   sizeparentparams.bStretch = bStretch;
 
-      sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
+   //   sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
 
-      if (rectangleClient != nullptr)
-      {
+   //   if (rectangleClient != nullptr)
+   //   {
 
-         sizeparentparams.rectangle = rectangleClient;
+   //      sizeparentparams.rectangle = rectangleClient;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         m_puserinteraction->get_client_rect(&sizeparentparams.rectangle);
+   //      m_puserinteraction->get_client_rect(&sizeparentparams.rectangle);
 
-      }
+   //   }
 
-      if (::is_empty(sizeparentparams.rectangle))
-      {
+   //   if (::is_empty(sizeparentparams.rectangle))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      __pointer(::user::interaction) pinteraction;
+   //   __pointer(::user::interaction) pinteraction;
 
-      while (m_puserinteraction->get_child(pinteraction))
-      {
+   //   while (m_puserinteraction->get_child(pinteraction))
+   //   {
 
-         atom atom = pinteraction->GetDlgCtrlId();
+   //      atom atom = pinteraction->GetDlgCtrlId();
 
-         if (atom == idLeft)
-         {
+   //      if (atom == idLeft)
+   //      {
 
-            puiLeft = pinteraction;
+   //         puiLeft = pinteraction;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
+   //         pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if ((nFlags & ~reposNoPosLeftOver) == reposQuery)
-      {
+   //   if ((nFlags & ~reposNoPosLeftOver) == reposQuery)
+   //   {
 
-         ASSERT(prectParam != nullptr);
+   //      ASSERT(prectParam != nullptr);
 
-         if (bStretch)
-         {
+   //      if (bStretch)
+   //      {
 
-            ::copy(prectParam, &sizeparentparams.rectangle);
+   //         ::copy(prectParam, &sizeparentparams.rectangle);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            prectParam->left = prectParam->top = 0;
+   //         prectParam->left = prectParam->top = 0;
 
-            prectParam->right = sizeparentparams.sizeTotal.cx;
+   //         prectParam->right = sizeparentparams.sizeTotal.cx;
 
-            prectParam->bottom = sizeparentparams.sizeTotal.cy;
-
-
-         }
-
-         return;
-
-      }
+   //         prectParam->bottom = sizeparentparams.sizeTotal.cy;
 
 
-      if (!idLeft.is_empty() && puiLeft != nullptr)
-      {
+   //      }
 
-         if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
-         {
+   //      return;
 
-            ASSERT(prectParam != nullptr);
+   //   }
 
 
-            sizeparentparams.rectangle.left += prectParam->left;
+   //   if (!idLeft.is_empty() && puiLeft != nullptr)
+   //   {
 
-            sizeparentparams.rectangle.top += prectParam->top;
+   //      if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
+   //      {
 
-            sizeparentparams.rectangle.right -= prectParam->right;
-
-            sizeparentparams.rectangle.bottom -= prectParam->bottom;
+   //         ASSERT(prectParam != nullptr);
 
 
-         }
+   //         sizeparentparams.rectangle.left += prectParam->left;
 
-         if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
-         {
+   //         sizeparentparams.rectangle.top += prectParam->top;
 
-            //puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
+   //         sizeparentparams.rectangle.right -= prectParam->right;
 
-            puiLeft->place(sizeparentparams.rectangle);
+   //         sizeparentparams.rectangle.bottom -= prectParam->bottom;
 
-            puiLeft->display();
 
-            puiLeft->set_need_layout();
+   //      }
 
-         }
+   //      if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
+   //      {
 
-      }
+   //         //puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
 
-   }
+   //         puiLeft->place(sizeparentparams.rectangle);
+
+   //         puiLeft->display();
+
+   //         puiLeft->set_need_layout();
+
+   //      }
+
+   //   }
+
+   //}
 
 
    void primitive_impl::window_move(i32 x, i32 y)
@@ -467,6 +480,432 @@ namespace user
 
       viewport_screen_to_client((POINT_I32 *)& prectangle->left);
       viewport_screen_to_client((POINT_I32 *)& prectangle->right);
+
+   }
+
+
+   void primitive_impl::post(::message::message* pusermessage)
+   {
+
+
+   }
+
+
+   void primitive_impl::set_bitmap_source(const string& strBitmapSource)
+   {
+
+
+   }
+
+
+   void primitive_impl::clear_bitmap_source()
+   {
+
+
+   }
+
+
+   void primitive_impl::set_tool_window(bool bSet)
+   {
+
+
+   }
+
+
+   void primitive_impl::interaction_post(const ::procedure& procedure)
+   {
+
+
+   }
+
+
+   void primitive_impl::_000OnMouseLeave(::message::message* pmessage)
+   {
+
+
+   }
+
+
+   void primitive_impl::track_mouse_hover()
+   {
+
+
+   }
+
+
+   void primitive_impl::track_mouse_leave()
+   {
+
+
+   }
+
+
+   void primitive_impl::add_prodevian(::matter* pmatter)
+   {
+
+
+   }
+
+
+   void primitive_impl::erase_prodevian(::matter* pmatter)
+   {
+
+
+   }
+
+
+   bool primitive_impl::is_prodevian(const ::matter* pmatter) const
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::prodevian_stop()
+   {
+
+
+   }
+
+
+   ::user::primitive* primitive_impl::set_owner(::user::primitive* pprimitiveOwner)
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool primitive_impl::has_pending_redraw_flags()
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::pre_subclass_window()
+   {
+
+
+   }
+
+
+   //void primitive_impl::destroy_impl_only()
+   //{
+
+
+   //}
+
+
+   //void primitive_impl::start_destroying_window()
+   //{
+
+
+   //}
+
+
+   void primitive_impl::destroy_window()
+   {
+
+
+   }
+
+
+   bool primitive_impl::_is_window() const
+   {
+
+      return false;
+
+   }
+
+
+   lresult primitive_impl::send_message(const ::atom& atom, wparam wparam, lparam lparam, const ::point_i32& point)
+   {
+
+      return message_call(atom, wparam, lparam, point);
+
+   }
+
+
+   //void primitive_impl::post_message(const ::atom& atom, ::wparam wParam, ::lparam lParam)
+   //{
+
+
+   //}
+
+
+   void primitive_impl::set_window_text(const ::string& pszString)
+   {
+
+
+   }
+
+
+   strsize primitive_impl::get_window_text(char* pszStringBuf, strsize nMaxCount)
+   {
+
+      return 0;
+
+   }
+
+
+   void primitive_impl::get_window_text(string& rString)
+   {
+
+
+   }
+
+
+   strsize primitive_impl::get_window_text_length()
+   {
+
+      return 0;
+
+   }
+
+
+   void primitive_impl::UpdateWindow()
+   {
+
+
+   }
+
+
+   void primitive_impl::SetRedraw(bool bRedraw)
+   {
+
+
+   }
+
+
+   void primitive_impl::prodevian_redraw(bool bUpdateBuffer)
+   {
+
+
+   }
+
+
+   void primitive_impl::set_mouse_cursor(::windowing::cursor* pcursor)
+   {
+
+
+   }
+
+
+   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive_impl::ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction* primitive_impl::GetLastActivePopup()
+   {
+
+      return nullptr;
+
+   }
+
+
+   void primitive_impl::update_data(bool bSaveAndValidate)
+   {
+
+
+   }
+
+
+   void primitive_impl::CenterWindow(::user::interaction* pAlternateOwner)
+   {
+
+
+   }
+
+
+   bool primitive_impl::OnChildNotify(::message::message* pusermessage)
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::ActivateTopParent()
+   {
+
+
+   }
+
+
+   void primitive_impl::_001UpdateWindow()
+   {
+
+
+   }
+
+
+   void primitive_impl::on_start_layout_experience(enum_layout_experience elayoutexperience)
+   {
+
+
+   }
+
+
+   void primitive_impl::on_configuration_change(::user::primitive* pprimitiveSource)
+   {
+
+
+   }
+
+
+   //::user::element* primitive_impl::get_keyboard_focus()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+   
+   void primitive_impl::_001OnExitIconic()
+   {
+
+
+   }
+
+
+   void primitive_impl::_001OnExitFullScreen()
+   {
+
+
+   }
+
+
+   void primitive_impl::default_message_handler(::message::message * pmessage)
+   {
+
+
+   }
+
+
+   void primitive_impl::_001OnTriggerMouseInside()
+   {
+
+
+   }
+
+
+   bool primitive_impl::has_pending_graphical_update()
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::on_after_graphical_update()
+   {
+
+
+   }
+
+
+   bool primitive_impl::is_this_visible(enum_layout elayout)
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::post_redraw(bool bAscendants)
+   {
+
+
+
+   }
+
+
+   double primitive_impl::_001GetTopLeftWeightedOccludedOpaqueRate()
+   {
+
+      return 0.;
+
+   }
+
+
+   ::windowing::window* primitive_impl::get_window() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool primitive_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   {
+
+      return false;
+
+   }
+
+
+   bool primitive_impl::keyboard_focus_OnChildKillFocus()
+   {
+
+      return false;
+
+   }
+
+
+   void primitive_impl::edit_on_set_focus(::user::interaction* pinteraction)
+   {
+
+
+   }
+
+
+   void primitive_impl::edit_on_kill_focus(::user::interaction* pinteraction)
+   {
+
+
+   }
+
+
+   //void primitive_impl::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
+   //{
+
+
+   //}
+
+
+   //void primitive_impl::hide_software_keyboard(::user::primitive* pprimitive)
+   //{
+
+
+   //}
+
+
+   ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::index iItem, i32 iLevel)
+   {
+
+      return nullptr;
+
+   }
+
+
+   void primitive_impl::set_need_redraw(bool bAscendants)
+   {
+
 
    }
 
@@ -1272,14 +1711,14 @@ namespace user
    void primitive_impl::start_destroying_window()
    {
 
-      if (!m_bUserElementOk)
+      if (!m_bUserImplCreated)
       {
 
          return;
 
       }
 
-      m_bUserElementOk = false;
+      m_bUserImplCreated = false;
 
       if (m_puserinteraction == nullptr && !m_bDestroyImplOnly)
       {
@@ -1327,7 +1766,16 @@ namespace user
    void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_host_window();
+      auto puserinteraction = m_puserinteraction;
+
+      if (!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      ::user::interaction * pinteraction = puserinteraction->get_host_window();
 
       if (!pinteraction)
       {
@@ -1357,7 +1805,16 @@ namespace user
    bool primitive_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_host_window();
+      auto puserinteraction = m_puserinteraction;
+
+      if (!puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      ::user::interaction * pinteraction = puserinteraction->get_host_window();
 
       if (pinteraction != nullptr)
       {
@@ -1377,6 +1834,32 @@ namespace user
    }
 
 
+   ::windowing::window* primitive_impl::window()
+   {
+
+      auto puserinteraction = m_puserinteraction;
+
+      if (!puserinteraction)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = puserinteraction->window();
+
+      if (!pwindow)
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindow;
+
+   }
+
+
    ::user::element * primitive_impl::get_keyboard_focus()
    {
 
@@ -1385,46 +1868,41 @@ namespace user
    }
 
 
-   void primitive_impl::set_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::set_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitive);
+      __UNREFERENCED_PARAMETER(pprimitiveimpl);
 
       //return ::error_failed;
 
    }
 
 
-   void primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      __UNREFERENCED_PARAMETER(pprimitive);
-
-      //return ::error_failed;
+      __UNREFERENCED_PARAMETER(pprimitiveimpl);
 
    }
 
 
-   void primitive_impl::clear_keyboard_focus()
+   void primitive_impl::clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny)
    {
 
-      //return ::error_failed;
 
    }
 
 
-   void primitive_impl::impl_set_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::impl_set_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      //return ::error_failed;
 
    }
 
 
-   void primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
+   void primitive_impl::impl_erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      //return ::error_failed;
 
    }
 
@@ -1432,7 +1910,6 @@ namespace user
    void primitive_impl::impl_clear_keyboard_focus()
    {
 
-      //return ::error_failed;
 
    }
 
@@ -1483,7 +1960,7 @@ namespace user
 
       }
 
-      ::user::primitive::post_non_client_destroy();
+      //::user::primitive_impl::post_non_client_destroy();
 
 
 
@@ -1789,7 +2266,7 @@ namespace user
    }
 
 
-   void primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void primitive_impl::show_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -1797,7 +2274,7 @@ namespace user
    }
 
 
-   void primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void primitive_impl::hide_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();

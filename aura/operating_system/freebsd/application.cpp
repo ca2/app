@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "_freebsd.h"
 #include "aura/operating_system/freebsd/_freebsd.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/operating_system/freedesktop/desktop_file.h"
 
 
 //#include <X11/cursorfont.h>
@@ -500,7 +502,7 @@ namespace aura
    bool application::os_on_start_application()
    {
 
-   #ifndef RASPBIAN
+#ifndef RASPBIAN
 
       try
       {
@@ -509,14 +511,14 @@ namespace aura
 
          auto pnode = psystem->node()->m_papexnode;
 
-         auto papp = get_app();
+         auto papp = get_app()->m_papplication;
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
          if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
-            auto pfile = __create_new<::linux::desktop_file>();
+            auto pfile = __create_new < ::freedesktop::desktop_file >();
 
             pfile->set_file_path(path);
 
@@ -534,7 +536,7 @@ namespace aura
 
       }
 
-      #endif
+#endif
 
       return true;
 

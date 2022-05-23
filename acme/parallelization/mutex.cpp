@@ -26,7 +26,7 @@ void utc_timespec(timespec * ptimespec);
 #endif
 
 
-#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__)
+#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
@@ -41,6 +41,12 @@ void utc_timespec(timespec * ptimespec);
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
 
+#if defined(FREEBSD)
+
+#include	<sys/types.h>
+#include	<sys/stat.h>
+#include    <unistd.h>
+#endif
 
 
 static int g_iMutex = 0;

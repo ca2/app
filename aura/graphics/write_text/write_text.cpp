@@ -24,6 +24,27 @@ namespace write_text
    }
 
 
+   void write_text::on_initialize_object()
+   {
+
+      ::acme::department::on_initialize_object();
+
+#ifdef ANDROID
+
+      auto pfonts = fonts();
+
+      if (pfonts)
+      {
+
+         pfonts->enumerate_fonts();
+
+      }
+
+#endif
+
+   }
+
+
    class fonts * write_text::fonts()
    {
 
@@ -169,228 +190,228 @@ namespace write_text
    }
 
 
-   void write_text::enum_write_text_fonts(::write_text::font_enumeration_item_array& itema)
-   {
+   //void write_text::enum_write_text_fonts(::write_text::font_enumeration_item_array& itema)
+   //{
 
-      critical_section_lock synchronouslock(&m_csFont);
+   //   critical_section_lock synchronouslock(&m_csFont);
 
-      __pointer(::write_text::font_enumeration_item) pitem;
+   //   __pointer(::write_text::font_enumeration_item) pitem;
 
-      double dAndroid = 4.4;
+   //   double dAndroid = 4.4;
 
-      string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
+   //   string strSystemFonts = m_pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 
-      auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = m_psystem->m_paurasystem;
 
-      auto pxml = psystem->xml();
+   //   auto pxml = psystem->xml();
 
-      auto pdoc = pxml->create_document();
+   //   auto pdoc = pxml->create_document();
 
-      __pointer(true_type_font_utilities) ptruetypefontutilities;
+   //   __pointer(true_type_font_utilities) ptruetypefontutilities;
 
-      __construct_new(ptruetypefontutilities);
+   //   __construct_new(ptruetypefontutilities);
 
-      if (pdoc->load(strSystemFonts))
-      {
+   //   if (pdoc->load(strSystemFonts))
+   //   {
 
-         ::index iFamilyPos = 0;
+   //      ::index iFamilyPos = 0;
 
-         while (auto pfamily = pdoc->root()->get_child("family", iFamilyPos))
-         {
+   //      while (auto pfamily = pdoc->root()->get_child("family", iFamilyPos))
+   //      {
 
-            if (iFamilyPos < 0)
-            {
+   //         if (iFamilyPos < 0)
+   //         {
 
-               break;
+   //            break;
 
-            }
+   //         }
 
-            iFamilyPos++;
+   //         iFamilyPos++;
 
-            if (pfamily->get_name() == "family")
-            {
+   //         if (pfamily->get_name() == "family")
+   //         {
 
-               ::index iNamesetPos = 0;
+   //            ::index iNamesetPos = 0;
 
-               auto pnameset = pfamily->get_child("nameset", iNamesetPos);
+   //            auto pnameset = pfamily->get_child("nameset", iNamesetPos);
 
-               ::index iFilesetPos = 0;
+   //            ::index iFilesetPos = 0;
 
-               auto pfileset = pfamily->get_child("fileset", iFilesetPos);
+   //            auto pfileset = pfamily->get_child("fileset", iFilesetPos);
 
-               if (pnameset && pfileset)
-               {
+   //            if (pnameset && pfileset)
+   //            {
 
-                  if (pnameset->get_children_count() >= 1 && pfileset->get_children_count() >= 1)
-                  {
+   //               if (pnameset->get_children_count() >= 1 && pfileset->get_children_count() >= 1)
+   //               {
 
-                     ::index iNamePos = 0;
+   //                  ::index iNamePos = 0;
 
-                     auto pfirstname = pnameset->get_child("name", iNamePos);
+   //                  auto pfirstname = pnameset->get_child("name", iNamePos);
 
-                     ::index iFilePos = 0;
+   //                  ::index iFilePos = 0;
 
-                     auto pfirstfile = pfileset->get_child("file", iFilePos);
+   //                  auto pfirstfile = pfileset->get_child("file", iFilePos);
 
-                     if (pfirstname && pfirstfile)
-                     {
+   //                  if (pfirstname && pfirstfile)
+   //                  {
 
-                        string strName = pfirstname->get_value();
+   //                     string strName = pfirstname->get_value();
 
-                        string strFile = pfirstfile->get_value();
+   //                     string strFile = pfirstfile->get_value();
 
-                        ::file::path path = "/system/fonts";
+   //                     ::file::path path = "/system/fonts";
 
-                        path /= strFile;
+   //                     path /= strFile;
 
-                        pitem = __new(::write_text::font_enumeration_item);
+   //                     pitem = __new(::write_text::font_enumeration_item);
 
-                        if (m_psystem->m_pacmefile->exists(path))
-                        {
+   //                     if (m_psystem->m_pacmefile->exists(path))
+   //                     {
 
-                           pitem->m_mapFileName[400] = path;
+   //                        pitem->m_mapFileName[400] = path;
 
-                        }
-                        else
-                        {
+   //                     }
+   //                     else
+   //                     {
 
-                           pitem->m_mapFileName[400] = strFile;
+   //                        pitem->m_mapFileName[400] = strFile;
 
-                        }
+   //                     }
 
-                        pitem->m_strName = strName;
+   //                     pitem->m_strName = strName;
 
-                        itema.add(pitem);
+   //                     itema.add(pitem);
 
-                        m_mapFontFaceName.set_at(strName, pitem->m_mapFileName[400]);
+   //                     m_mapFontFaceName.set_at(strName, pitem->m_mapFileName[400]);
 
-                     }
+   //                  }
 
-                  }
+   //               }
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (dAndroid >= 8.0)
-      {
+   //   if (dAndroid >= 8.0)
+   //   {
 
-         ::file::listing listing;
+   //      ::file::listing listing;
 
-         listing.set_file_listing("/system/fonts");
+   //      listing.set_file_listing("/system/fonts");
 
-         m_psystem->m_pacmedirectory->enumerate(listing);
+   //      m_psystem->m_pacmedirectory->enumerate(listing);
 
-         for (auto & path : listing)
-         {
+   //      for (auto & path : listing)
+   //      {
 
-            pitem = __new(::write_text::font_enumeration_item);
+   //         pitem = __new(::write_text::font_enumeration_item);
 
-            pitem->m_mapFileName[400] = path;
+   //         pitem->m_mapFileName[400] = path;
 
-            string strName = ptruetypefontutilities->GetFontNameFromFile(path);
+   //         string strName = ptruetypefontutilities->GetFontNameFromFile(path);
 
-            if (strName.is_empty())
-            {
+   //         if (strName.is_empty())
+   //         {
 
-               strName = path.title();
+   //            strName = path.title();
 
-            }
+   //         }
 
-            pitem->m_strName = strName;
+   //         pitem->m_strName = strName;
 
-            itema.add(pitem);
+   //         itema.add(pitem);
 
-            m_mapFontFaceName.set_at(strName, path);
+   //         m_mapFontFaceName.set_at(strName, path);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (itema.is_empty())
-      {
-         
-         auto pnode = m_psystem->node();
+   //   if (itema.is_empty())
+   //   {
+   //      
+   //      auto pnode = m_psystem->node();
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_monospace);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_monospace);
 
-         pitem->m_strName = pnode->font_name(e_font_monospace);
+   //      pitem->m_strName = pnode->font_name(e_font_monospace);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_sans);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans);
 
-         pitem->m_strName = pnode->font_name(e_font_sans);
+   //      pitem->m_strName = pnode->font_name(e_font_sans);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_serif);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif);
 
-         pitem->m_strName = pnode->font_name(e_font_serif);
+   //      pitem->m_strName = pnode->font_name(e_font_serif);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_ex);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_ex);
 
-         pitem->m_strName = pnode->font_name(e_font_sans_ex);
+   //      pitem->m_strName = pnode->font_name(e_font_sans_ex);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ex);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ex);
 
-         pitem->m_strName = pnode->font_name(e_font_serif_ex);
+   //      pitem->m_strName = pnode->font_name(e_font_serif_ex);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_fx);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_fx);
 
-         pitem->m_strName = pnode->font_name(e_font_sans_fx);
+   //      pitem->m_strName = pnode->font_name(e_font_sans_fx);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_fx);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_fx);
 
-         pitem->m_strName = pnode->font_name(e_font_serif_fx);
+   //      pitem->m_strName = pnode->font_name(e_font_serif_fx);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-         pitem = __new(::write_text::font_enumeration_item);
+   //      pitem = __new(::write_text::font_enumeration_item);
 
-         pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ui);
+   //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ui);
 
-         pitem->m_strName = pnode->font_name(e_font_serif_ui);
+   //      pitem->m_strName = pnode->font_name(e_font_serif_ui);
 
-         itema.add(pitem);
+   //      itema.add(pitem);
 
 
-      }
+   //   }
 
-   }
+   //}
 
 
 } // namespace write_text

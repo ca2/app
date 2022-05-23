@@ -6,7 +6,7 @@
 // best
 // Everyone wants to rule the world....
 
-namespace linux
+namespace freedesktop
 {
 
 
@@ -51,7 +51,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace freedesktop
 
 
 

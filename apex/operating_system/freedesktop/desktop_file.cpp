@@ -1,12 +1,12 @@
 #include "framework.h"
-#include "_linux.h"
-#include "_user.h"
+#include "app/apex/operating_system/linux/_linux.h"
+#include "app/apex/operating_system/linux/_user.h"
 #include "desktop_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
-namespace linux
+namespace freedesktop
 {
 
 
@@ -479,7 +479,7 @@ namespace linux
 //   }
 
 
-} // namespace linux
+} // namespace freedesktop
 
 
 

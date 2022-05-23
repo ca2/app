@@ -114,9 +114,6 @@
     <Filter Include="Header Files\progress">
       <UniqueIdentifier>{f1b2880e-2015-4295-84bc-e2996bcfa2d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\progress">
-      <UniqueIdentifier>{574c34b0-e44d-40e8-b3fb-f394aeda9cd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{3b04ff9f-5bd9-45cc-afe3-93cb56f5f110}</UniqueIdentifier>
     </Filter>
@@ -209,6 +206,9 @@
     </Filter>
     <Filter Include="Header Files\filesystem\filesystem\NewFilter1">
       <UniqueIdentifier>{8479be1c-b262-429f-8325-423583bea44f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\progress">
+      <UniqueIdentifier>{574c34b0-e44d-40e8-b3fb-f394aeda9cd6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

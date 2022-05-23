@@ -433,9 +433,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="inline\aaa_want_to_remove_app_prelude.inl">
       <Filter>Header Files\inline</Filter>
     </None>

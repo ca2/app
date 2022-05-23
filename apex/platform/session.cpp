@@ -513,6 +513,8 @@ namespace apex
 
       //return ::success;
 
+      initialize_context();
+
    }
 
 
@@ -742,7 +744,7 @@ namespace apex
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
-            //      pframe->InitialFramePosition();
+            //      pframe->_001InitialFramePlacement();
             //   }
             //}
          }
@@ -1323,7 +1325,9 @@ ret:
    {
 
       //auto estatus = 
-      initialize_context();
+      
+
+      initialize_context_1();
 
       //if (!estatus)
       //{
@@ -2014,7 +2018,7 @@ namespace apex
    //}
 
 
-   void     session::main()
+   void session::main()
    {
 
       //return ::apex::session::main();

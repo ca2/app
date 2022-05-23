@@ -1271,6 +1271,10 @@ breakFilter2:
 
       return "android";
 
+#elif defined(FREEBSD)
+
+      return "pango";
+
 #else
 
       return "write_text";

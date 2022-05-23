@@ -38,8 +38,6 @@ namespace file
    };
 
 
-   
-   
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
    class CLASS_DECL_ACME path :
       public string,

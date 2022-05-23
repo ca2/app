@@ -61,7 +61,13 @@ namespace acme
    void context::initialize_context()
    {
 
-      //return ::success;
+
+   }
+
+
+   void context::initialize_context_1()
+   {
+
 
    }
 

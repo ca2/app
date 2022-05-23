@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_freebsd.h"
 #include "acme/operating_system/ansi/binreloc.h"
+#include <unistd.h>
 
 
 string get_sys_temp_path()
@@ -111,6 +112,14 @@ namespace path
 
 
 } // namespace path
+
+
+char * get_current_dir_name()
+{
+
+    return getcwd(nullptr, 0);
+
+}
 
 
 

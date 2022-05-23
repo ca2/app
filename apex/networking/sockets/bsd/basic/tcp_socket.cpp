@@ -17,7 +17,7 @@
 #include <openssl/rsa.h>
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 #undef USE_MISC
 #include <unistd.h>
 #endif

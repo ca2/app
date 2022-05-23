@@ -3836,6 +3836,13 @@ namespace draw2d_cairo
                             const ::e_draw_text & edrawtext)
    {
 
+      if(strParam.is_empty())
+      {
+
+         throw exception(error_invalid_empty_argument);
+
+      }
+
       _synchronous_lock ml(cairo_mutex());
 
       cairo_keep keep(m_pdc);

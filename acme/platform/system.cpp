@@ -862,12 +862,10 @@ bool system::has_audio()
 }
 
 
-
-
 void system::init1()
 {
 
-   //return ::success;
+   initialize_context_1();
 
 }
 

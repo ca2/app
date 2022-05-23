@@ -1160,26 +1160,6 @@ namespace aura
 
       //estatus = 
       
-      m_pdraw2d->init1();
-
-      //if(!estatus)
-      //{
-
-      //   INFORMATION("Couldn't initialize draw2d (init1).");
-
-      //   return estatus;
-
-      //}
-
-      //if (::succeeded(estatus))
-      //{
-
-         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
-
-      //}
-
-      //return estatus;
-
    }
 
 
@@ -1631,6 +1611,33 @@ namespace aura
 
    void system::init1()
    {
+
+      if (m_pdraw2d)
+      {
+
+         m_pdraw2d->init1();
+
+      }
+
+      //if(!estatus)
+      //{
+
+      //   INFORMATION("Couldn't initialize draw2d (init1).");
+
+      //   return estatus;
+
+      //}
+
+      //if (::succeeded(estatus))
+      //{
+
+      ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+
+      //}
+
+      //return estatus;
+
+
 //
 //#ifdef _DEBUG
 //
@@ -5430,6 +5437,7 @@ namespace aura
    void system::initialize_context()
    {
 
+
       if (m_bDraw2d)
       {
 
@@ -5445,9 +5453,13 @@ namespace aura
       }
 
       //auto estatus =
-      
-      __compose_new(m_pimaging);
 
+      if (m_bImaging)
+      {
+
+         __compose_new(m_pimaging);
+
+      }
       /*/if (!estatus)
       {*/
 
@@ -5463,6 +5475,7 @@ namespace aura
       //estatus =
       
       ::aura::context::initialize_context();
+
 
       //if(!estatus)
       //{

@@ -64,6 +64,14 @@ namespace user
 	}
 
 
+	void text_composition_client::set_text_composition_active(bool bActive)
+	{
+
+		throw interface_only();
+
+	}
+
+
 	string text_composition_client::get_ime_composition() const
 	{
 

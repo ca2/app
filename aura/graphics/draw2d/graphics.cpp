@@ -5186,13 +5186,15 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
+      m_psystem->m_paurasystem->draw2d()->write_text()->fonts()->enumeration()->m_eventReady.wait(30_s);
+
       critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
 
       string strFontName(strName);
 
       strFontName.make_lower();
 
-      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
+      string strPath = m_psystem->m_paurasystem->draw2d()->write_text()->m_mapFontKeyFaceName[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 

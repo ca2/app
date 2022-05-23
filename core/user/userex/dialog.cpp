@@ -120,7 +120,7 @@ bool dialog::show(const ::string & pszMatter)
 
    on_show(m_strMatter);
 
-   m_pframe->InitialFramePosition();
+   m_pframe->_001InitialFramePlacement();
 
    //m_pframe->RunModalLoop();
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#if defined(LINUX) || defined(__APPLE__)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
 #include <unistd.h>
 #endif
 

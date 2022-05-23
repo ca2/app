@@ -619,31 +619,6 @@ namespace apex
 
       //return estatus;
 
-   }
-
-
-   void system::init1()
-   {
-
-      //auto estatus = 
-      ::system::init1();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      system_init();
-
-      /*if (!estatus)
-      {
-
-         return estatus;
-
-      }*/
 
       if (m_bConsole.undefined())
       {
@@ -897,7 +872,7 @@ pacmedirectory->create("/ca2core");
 
 #if 0
 
-         // Create authorization object
+                  // Create authorization object
          OSStatus status;
 
          AuthorizationRef authorizationRef;
@@ -979,7 +954,7 @@ pacmedirectory->create("/ca2core");
       }
 
       //estatus = 
-      
+
       __compose(m_pfilesystem);
 
       //if(!estatus)
@@ -1122,28 +1097,56 @@ pacmedirectory->create("/ca2core");
 
       }
 
-//      {
-//
-//         string strCurrentWorkingDirectory;
-//
-//         strCurrentWorkingDirectory = get_current_directory_name();
-//
-//         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
-//
-//      }
+      //      {
+      //
+      //         string strCurrentWorkingDirectory;
+      //
+      //         strCurrentWorkingDirectory = get_current_directory_name();
+      //
+      //         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //
+      //      }
 
-      //estatus = m_ptracelog->process_init();
+            //estatus = m_ptracelog->process_init();
 
-      //if(!estatus)
+            //if(!estatus)
+            //{
+
+               //WARNING("failed to process_init ::apex::log trace");
+
+            //}
+
+            //estatus = 
+
+      initialize_context();
+
+
+   }
+
+
+   void system::init1()
+   {
+
+      //auto estatus = 
+      ::system::init1();
+
+      //if (!estatus)
       //{
 
-         //WARNING("failed to process_init ::apex::log trace");
+      //   return estatus;
 
       //}
 
       //estatus = 
-      
-      initialize_context();
+      system_init();
+
+      /*if (!estatus)
+      {
+
+         return estatus;
+
+      }*/
+
 
       //if (!estatus)
       //{

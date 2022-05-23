@@ -653,12 +653,12 @@ namespace user
    bool interaction_child::_is_window() const
    {
 
-      if (!m_bUserElementOk)
-      {
+      //if (!m_bUserElementOk)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (!m_bCreate)
       {

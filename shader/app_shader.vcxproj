@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1B31139B-7CD2-44D7-9765-6E438AE15D9F}</ProjectGuid>
+    <ProjectGuid>{A18176C9-0892-4FF4-9BE4-2A7FE6EA3005}</ProjectGuid>
     <RootNamespace>app-simple</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>app_shader</ProjectName>

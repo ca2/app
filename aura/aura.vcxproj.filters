@@ -195,6 +195,7 @@
     <ClCompile Include="graphics\graphics\graphics.cpp" />
     <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="graphics\graphics\target.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h" />
@@ -498,6 +499,7 @@
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="hardware\devices.h" />
     <ClInclude Include="constant\hardware.h" />
+    <ClInclude Include="graphics\graphics\target.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />

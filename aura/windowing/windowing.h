@@ -122,6 +122,8 @@ namespace windowing
 
       virtual void release_mouse_capture();
 
+      virtual void clear_keyboard_focus(::windowing::window * pwindowGainingFocusIfAny = nullptr);
+
       void term1() override;
 
       void term2() override;

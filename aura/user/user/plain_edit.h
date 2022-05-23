@@ -270,13 +270,14 @@ namespace user
       void clear_ime_composition() override;
 
 
-      virtual void InputConnectionBeginBatchEdit() override;
-      virtual void InputConnectionEndBatchEdit() override;
-      virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
-      virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
-      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
-      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
-      virtual void InputConnectionFinishComposingText() override;
+      void InputConnectionBeginBatchEdit() override;
+      void InputConnectionEndBatchEdit() override;
+      void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
+      void InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength) override;
+      void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
+      void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
+      void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
+      void InputConnectionFinishComposingText() override;
 
       bool validate_viewport_offset(::point_i32 & point) override;
 
@@ -409,6 +410,7 @@ namespace user
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
       void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) const override;
+      void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
 
       void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
       void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, index iLine);
@@ -418,8 +420,11 @@ namespace user
 
       bool should_load_full_file();
 
-      void plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, index iLine = -1);
-      void plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iLine = -1);
+      void plain_edit_on_calc_offset(::draw2d::graphics_pointer & pgraphics, index iOnlyLineToUpdate = -1);
+      void plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
+      void _plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
+      void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
+      void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate = -1);
       //void _001OnCalcLayoutProc(::user::primitive * pimpact);
 
       void FileSave();
@@ -490,6 +495,8 @@ namespace user
       virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, index iLineUpdate);
+
+      virtual void plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, strsize beforeLength, strsize afterLength);
 
       virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics);
 

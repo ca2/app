@@ -59,7 +59,10 @@ namespace apex
       //virtual ::task_pool* taskpool() override;
 
 
-      virtual void initialize_context() override;
+      void initialize_context() override;
+
+
+      void initialize_context_1() override;
 
 
       void clear_cache();

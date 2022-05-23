@@ -742,7 +742,7 @@ namespace user
 
                synchronouslock.unlock();
 
-               m_pprimitiveSoftwareKeyboard->show_software_keyboard(pprimitive, str, iBeg, iEnd);
+               m_pprimitiveSoftwareKeyboard->show_software_keyboard(pprimitive);
 
             }
 

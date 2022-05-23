@@ -35,11 +35,21 @@ namespace aura
 
       //}
 
+      //return ::success;
+
+   }
+
+
+   void context::initialize_context_1()
+   {
+
+      ::apex::context::initialize_context_1();
+
       if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
       {
 
          //estatus = 
-         
+
          __compose(m_pcontextimage);
 
          //if (!estatus)
@@ -53,9 +63,8 @@ namespace aura
 
       }
 
-      //return ::success;
-
    }
+
 
 
    //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)

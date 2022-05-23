@@ -9,7 +9,9 @@ namespace user
 
 
    class CLASS_DECL_AURA primitive_impl :
-      virtual public ::user::primitive
+      virtual public ::channel,
+      virtual public ::source,
+      virtual public ::manager
    {
    public:
 
@@ -20,6 +22,7 @@ namespace user
 
       iptr_to_iptr                              m_iptrmap;
 
+      bool                                      m_bUserImplCreated;
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
       //bool                                      m_bDestroying;
@@ -43,7 +46,8 @@ namespace user
 
 
       primitive_impl();
-      virtual ~primitive_impl();
+      ~primitive_impl() override;
+
 
       inline critical_section * cs_display() { return m_pcsDisplay; }
       virtual ::user::interaction_impl * get_user_interaction_impl();
@@ -59,11 +63,12 @@ namespace user
       virtual void prio_install_message_routing(::channel * pchannel);
       virtual void last_install_message_routing(::channel * pchannel);
 
+      virtual void default_message_handler(::message::message* pusermessage);
 
       virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual void enable_window(bool bEnable = true) override;
+      virtual void enable_window(bool bEnable = true);
 
 
 
@@ -75,11 +80,14 @@ namespace user
       //virtual bool check_need_layout();
       //virtual void clear_need_layout();
       virtual void set_need_layout();
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void on_reposition() override;
-      virtual void on_show_window() override;
+      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_reposition();
+      virtual void on_show_window();
 
-      virtual void destroy() override;
+
+      virtual oswindow detach_window();
+
+      void destroy() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
@@ -90,16 +98,160 @@ namespace user
       
       virtual void prodevian_update_screen();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
       virtual void window_move(i32 x, i32 y);
+
+
+      virtual void post(::message::message* pusermessage);
+
+      virtual void set_bitmap_source(const string& strBitmapSource);
+      virtual void clear_bitmap_source();
+
+      virtual void set_tool_window(bool bSet);
+
+      virtual void interaction_post(const ::procedure& procedure);
+
+      virtual void _000OnMouseLeave(::message::message* pmessage);
+
+      virtual void track_mouse_hover();
+      virtual void track_mouse_leave();
+
+
+      virtual void add_prodevian(::matter* pmatter);
+      virtual void erase_prodevian(::matter* pmatter);
+      virtual bool is_prodevian(const ::matter* pmatter) const;
+
+
+      virtual void prodevian_stop();
+
+
+      virtual ::user::primitive* set_owner(::user::primitive* pprimitiveOwner);
+
+
+      virtual bool has_pending_redraw_flags();
+
+
+      virtual void pre_subclass_window();
+
+
+      virtual void destroy_impl_only();
+      virtual void start_destroying_window();
+      virtual void destroy_window();
+
+
+      virtual bool _is_window() const;
+
+      
+      virtual ::lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::point_i32& point = nullptr);
+
+
+      virtual void post_message(const ::atom& atom, wparam wParam = 0, ::lparam lParam = 0);
+
+
+      virtual void set_window_text(const ::string& pszString);
+
+
+      virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount);
+
+
+      virtual void get_window_text(string& rString);
+
+
+      virtual strsize get_window_text_length();
+
+
+      virtual void UpdateWindow();
+      virtual void SetRedraw(bool bRedraw = true);
+
+
+      virtual void prodevian_redraw(bool bUpdateBuffer);
+
+
+      virtual void set_mouse_cursor(::windowing::cursor* pcursor);
+
+
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point);
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags);
+
+
+      virtual ::user::interaction* GetLastActivePopup();
+
+
+      virtual void update_data(bool bSaveAndValidate = true);
+
+
+      virtual void CenterWindow(::user::interaction* pAlternateOwner = nullptr);
+
+
+      virtual bool OnChildNotify(::message::message* pusermessage);
+
+
+      virtual void ActivateTopParent();
+
+
+      virtual void _001UpdateWindow();
+
+
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
+
+
+      virtual void on_configuration_change(::user::primitive* pprimitiveSource);
+
+
+      //virtual ::user::element* get_keyboard_focus();
+
+
+      virtual void _001OnExitIconic();
+      virtual void _001OnExitFullScreen();
+
+
+      virtual void _001OnTriggerMouseInside();
+
+
+      virtual bool has_pending_graphical_update();
+
+
+      virtual void on_after_graphical_update();
+
+
+      virtual bool is_this_visible(enum_layout elayout);
+
+
+      virtual void post_redraw(bool bAscendants = true);
+
+
+      virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
+
+
+      virtual ::windowing::window* get_window() const;
+
+
+      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
+      virtual bool keyboard_focus_OnChildKillFocus();
+
+
+      virtual void edit_on_set_focus(::user::interaction* pinteraction);
+
+
+      virtual void edit_on_kill_focus(::user::interaction* pinteraction);
+
+
+      virtual void show_software_keyboard(::user::element * pelement);
+      virtual void hide_software_keyboard(::user::element * pelement);
+
+      
+      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::index iItem = -1, i32 iLevel = -1);
+
+
+      virtual void set_need_redraw(bool bAscendants = true);
 
 
       virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
-      virtual void Invalidate(bool bErase = true) override;
+      virtual void Invalidate(bool bErase = true);
       virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
 
       virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
@@ -124,97 +276,97 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual ::user::interaction * get_wnd() const override;
+      virtual ::user::interaction * get_wnd() const;
 
 
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(POINT_I32 * ppt) override;
-      virtual void viewport_client_to_screen(POINT_I32 * ppt) override;
-      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt) override;
-      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt) override;
-
-
+      virtual void viewport_screen_to_client(POINT_I32 * ppt);
+      virtual void viewport_client_to_screen(POINT_I32 * ppt);
+      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt);
+      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt);
 
 
-      //virtual u32 GetStyle() const override;
-      //virtual u32 GetExStyle() const override;
-      //virtual void ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
-      //virtual void ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
-      //virtual ::i32 get_window_long(i32 nIndex) const override;
-      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;
 
-      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual u32 GetStyle() const;
+      //virtual u32 GetExStyle() const;
+      //virtual void ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
+      //virtual void ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
 
-      virtual atom GetDlgCtrlId() const override;
-      virtual atom SetDlgCtrlId(::atom atom) override;
+      //virtual ::i32 get_window_long(i32 nIndex) const;
+      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
 
-      virtual ::user::interaction * first_child() override;
-      virtual ::user::interaction * top_child() override;
-      virtual ::user::interaction * under_sibling() override;
-      virtual ::user::interaction * above_sibling() override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const;
+      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue);
 
-      virtual ::user::interaction * above_sibling(::user::interaction * pinteraction) override;
-      virtual ::user::interaction * under_sibling(::user::interaction * pinteraction) override;
+      virtual atom GetDlgCtrlId() const;
+      virtual atom SetDlgCtrlId(::atom atom);
+
+      virtual ::user::interaction * first_child();
+      virtual ::user::interaction * top_child();
+      virtual ::user::interaction * under_sibling();
+      virtual ::user::interaction * above_sibling();
+
+      virtual ::user::interaction * above_sibling(::user::interaction * pinteraction);
+      virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
 
 
       virtual ::u32 ArrangeIconicWindows();
-      //virtual void BringToTop(edisplay edisplay) override;
-      //virtual bool BringWindowToTop() override;
+      //virtual void BringToTop(edisplay edisplay);
+      //virtual bool BringWindowToTop();
 
 
-      virtual bool is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const override;
-      virtual bool is_parent(const ::user::primitive * puiIsParent) const override;
-      virtual bool is_child(const ::user::primitive * puiIsChild) const override;
-      virtual bool is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const override;
+      virtual bool is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const;
+      virtual bool is_parent(const ::user::primitive * puiIsParent) const;
+      virtual bool is_child(const ::user::primitive * puiIsChild) const;
+      virtual bool is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const;
 
 
 //      virtual ::user::interaction * get_wnd() const;
-      virtual ::user::interaction * get_wnd(::u32 nCmd) const override;
+      virtual ::user::interaction * get_wnd(::u32 nCmd) const;
 
 
       virtual ::user::frame * frame() const;
       virtual ::user::frame * top_level_frame() const;
 
 
-      //virtual ::user::interaction * GetTopWindow() const override;
-      virtual ::user::interaction * get_parent() const override;
-      virtual ::user::interaction * get_top_level() const override;
-      //virtual ::user::interaction * GetParentTopLevel() const override;
-      //virtual ::user::interaction * EnsureTopLevel() override;
-      //virtual ::user::interaction * EnsureParentTopLevel() override;
-      virtual ::user::interaction * get_owner() const override;
-      virtual ::user::interaction * get_parent_owner() const override;
-      virtual ::user::interaction * get_parent_or_owner() const override;
-      virtual ::user::interaction * get_top_level_owner() const override;
+      //virtual ::user::interaction * GetTopWindow() const;
+      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * get_top_level() const;
+      //virtual ::user::interaction * GetParentTopLevel() const;
+      //virtual ::user::interaction * EnsureTopLevel();
+      //virtual ::user::interaction * EnsureParentTopLevel();
+      virtual ::user::interaction * get_owner() const;
+      virtual ::user::interaction * get_parent_owner() const;
+      virtual ::user::interaction * get_parent_or_owner() const;
+      virtual ::user::interaction * get_top_level_owner() const;
       virtual ::user::frame * get_parent_frame() const;
-      //virtual ::user::frame * GetParentTopLevelFrame() const override;
-      //virtual ::user::frame * EnsureParentFrame() override;
+      //virtual ::user::frame * GetParentTopLevelFrame() const;
+      //virtual ::user::frame * EnsureParentFrame();
 
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point = nullptr) override;
-      virtual lresult message_call(::message::message * pmessage) override;
-
-
-
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
+      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point = nullptr);
+      virtual lresult message_call(::message::message * pmessage);
 
 
 
-      virtual void pre_translate_message(::message::message * pmessage) override;
+      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
 
 
-      //virtual bool is_active() const override;
 
-      //virtual bool has_capture() const override;
-      //virtual bool set_capture(::user::interaction * pinteraction = nullptr) override;
-      //virtual ::user::interaction * get_capture() const override;
+      virtual void pre_translate_message(::message::message * pmessage);
 
-      //virtual bool has_keyboard_focus() const override;
-      //virtual bool set_keyboard_focus(::user::interaction * pinteraction = nullptr) override;
-      //virtual ::user::interaction * get_keyboard_focus() const override;
+
+      //virtual bool is_active() const;
+
+      //virtual bool has_capture() const;
+      //virtual bool set_capture(::user::interaction * pinteraction = nullptr);
+      //virtual ::user::interaction * get_capture() const;
+
+      //virtual bool has_keyboard_focus() const;
+      //virtual bool set_keyboard_focus(::user::interaction * pinteraction = nullptr) ;
+      //virtual ::user::interaction * get_keyboard_focus() const ;
 
 
 
@@ -222,17 +374,17 @@ namespace user
       virtual void get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
-      virtual void KillTimer(uptr uEvent) override;
+      virtual void SetTimer(uptr uEvent, const ::duration & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
+      virtual void KillTimer(uptr uEvent);
 
 
 
-      void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer);
 
       virtual bool IsTopParentActive();
 
-      virtual void destroy_impl_only();
-      void start_destroying_window() override;
+      //virtual void destroy_impl_only();
+      //void start_destroying_window();
 
 
       //virtual void defer_start_prodevian();
@@ -246,20 +398,23 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::user::element * get_keyboard_focus() override;
-      virtual void set_keyboard_focus(::user::primitive * pprimitive);
-      virtual void erase_keyboard_focus(::user::primitive * pprimitive);
-      virtual void clear_keyboard_focus() override;
-      virtual void impl_set_keyboard_focus(::user::primitive * pprimitive);
-      virtual void impl_erase_keyboard_focus(::user::primitive * pprimitive);
+      ::windowing::window* window();
+
+
+      virtual ::user::element * get_keyboard_focus();
+      virtual void set_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
+      virtual void erase_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
+      virtual void clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr);
+      virtual void impl_set_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
+      virtual void impl_erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
       virtual void impl_clear_keyboard_focus();
 
 
-      virtual void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+      //virtual void post_message(const ::atom & atom, ::wparam wparam = 0, lparam lparam = 0);
 
-      virtual void post_non_client_destroy() override;
+      virtual void post_non_client_destroy();
 
-      //void display(::display edisplay) override;
+      //void display(::display edisplay);
 
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
@@ -272,8 +427,8 @@ namespace user
       virtual void redraw_erase(::object * point_i32);
       virtual bool has_redraw();
 
-      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
+      //virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
+      //virtual void hide_software_keyboard(::user::primitive * pprimitive);
 
       virtual void user_interaction_on_hide();
 

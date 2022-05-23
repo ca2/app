@@ -21,7 +21,7 @@ namespace write_text
 
 
       font_enumeration();
-      virtual ~font_enumeration();
+      ~font_enumeration() override;
 
 
       virtual void initialize(::object * pobject) override;

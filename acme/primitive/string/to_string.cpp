@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-#if !defined(__clang__) && ((defined(__GNUC__) && __GNUC__ < 11) || defined(WINDOWS))
+#if defined(ANDROID) || defined(WINDOWS)
 
 
 CLASS_DECL_ACME void to_string(string & str, const unsigned long & ul)

@@ -398,13 +398,13 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      virtual ::windowing::window * window() const;
+      ::windowing::window * window() const;
 
-      virtual ::windowing::windowing * windowing() const;
+      ::windowing::windowing * windowing() const;
 
-      virtual ::windowing::display * get_display() const;
+      ::windowing::display * get_display() const;
 
-      ::user::interaction * get_host_window() const override;
+      ::user::interaction * get_host_window() const;
 
       ::item_pointer get_user_item(const ::item & item);
 
@@ -1166,6 +1166,7 @@ namespace user
 
       virtual bool has_keyboard_focus() const;
       void set_keyboard_focus() override;
+      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
       virtual void set_foreground_window();
       virtual void set_active_window();
@@ -1458,7 +1459,7 @@ namespace user
 
       //inline oswindow get_oswindow() const { return m_oswindow; }
       //virtual bool attach(::windowing::window * pwindow_New) override;
-      virtual oswindow detach() override;
+      oswindow detach_window() override;
 
 
       virtual windowing::window * get_window() const override;
@@ -1548,7 +1549,7 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
 
-      virtual void show_keyboard(bool bShow = true) override;
+      //virtual void show_keyboard(bool bShow = true) override;
 
 
       virtual void keep_alive(::object* pliveobject = nullptr) override;
@@ -1703,9 +1704,7 @@ namespace user
       //virtual void set_keyboard_focus(::user::primitive* pprimitive);
       //virtual void erase_keyboard_focus(::user::primitive * pprimitive);
 
-      //virtual void set_keyboard_focus() override;
       //virtual void erase_keyboard_focus() override;
-      //virtual void clear_keyboard_focus() override;
 
 
       virtual bool is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
@@ -1923,8 +1922,9 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
+      //virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual void show_software_keyboard(::user::element* pelement) override;
+      virtual void hide_software_keyboard(::user::element* pelement) override;
 
 
       virtual void set_stock_icon(enum_stock_icon eicon);

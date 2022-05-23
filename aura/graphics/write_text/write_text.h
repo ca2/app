@@ -19,7 +19,7 @@ namespace write_text
 
 
       critical_section                                m_csFont;
-      string_to_string                                m_mapFontFaceName;
+      //string_to_string                                m_mapFontFaceName;
       string_map < ::memory_pointer >                 m_mapFileMemory;
 
       string_map < int_to_string >                    m_mapFontKeyFaceName;
@@ -27,6 +27,9 @@ namespace write_text
 
       write_text();
       ~write_text() override;
+
+
+      void on_initialize_object() override;
 
       
       class fonts * fonts();
@@ -50,7 +53,7 @@ namespace write_text
       virtual string get_font_descriptor_face(const font_descriptor & font_descriptor);
 
       
-      virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);
+      //virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);
 
 
    };

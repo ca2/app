@@ -133,6 +133,17 @@ int app::main_loop()
 
 }
 
+
+void app::init1()
+{
+
+   
+   initialize_context_1();
+
+
+}
+
+
 //
 //class ::main main(argc, argv, envp);
 //

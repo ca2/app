@@ -222,7 +222,7 @@ namespace user
 
       }
 
-      return puserinteractionimpl->m_puserinteractionCapture;
+      return puserinteractionimpl->m_puserinteractionMouseCapture;
 
    }
 
@@ -257,7 +257,7 @@ namespace user
 
       }
 
-      return puserinteractionimpl->m_puserinteractionFocus1;
+      return puserinteractionimpl->m_puserinteractionKeyboardFocus;
 
    }
 

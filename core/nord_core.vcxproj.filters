@@ -610,6 +610,7 @@
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\userfs\userfs.h">
@@ -1677,6 +1678,7 @@
     <ClInclude Include="user\userex\calculator_edit_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filemanager\impact.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1841,10 +1843,5 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{83efbd7b-ac2d-4f30-8c6f-6dab94dcc8da}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -12,15 +12,13 @@ namespace aura
    public:
 
 
-      //__creatable(context);
-
-
       context();
       ~context() override;
 
 
-      virtual void initialize_context() override;
+      void initialize_context() override;
 
+      void initialize_context_1() override;
 
 
    };

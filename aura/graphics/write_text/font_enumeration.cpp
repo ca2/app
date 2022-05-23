@@ -18,6 +18,8 @@ namespace write_text
       m_iUpdateId = -1;
       m_bUpdating = true;
 
+      m_eventReady.ResetEvent();
+
    }
 
 
@@ -272,6 +274,8 @@ namespace write_text
 
    void font_enumeration::enumerate_fonts()
    {
+
+      m_eventReady.ResetEvent();
 
       on_enumerate_fonts();
 

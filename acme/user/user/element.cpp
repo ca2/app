@@ -40,7 +40,8 @@ namespace user
    //}
 
 
-   void element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
+   //void element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void element::show_software_keyboard(::user::element* pprimitive)
    {
 
       //throw ::interface_only();
@@ -2371,7 +2372,7 @@ namespace user
    //}
 
 
-   oswindow element::detach()
+   oswindow element::detach_window()
    {
 
       return nullptr;
@@ -3382,12 +3383,12 @@ namespace user
    //}
 
 
-   void element::show_keyboard(bool bShow)
-   {
+   //void element::show_keyboard(bool bShow)
+   //{
 
-      __UNREFERENCED_PARAMETER(bShow);
+   //   __UNREFERENCED_PARAMETER(bShow);
 
-   }
+   //}
 
 
 
@@ -3953,6 +3954,13 @@ namespace user
    }
 
 
+   void element::_001GetSel(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd) const
+   {
+
+
+   }
+
+
    index element::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
@@ -4273,7 +4281,7 @@ namespace user
    }
 
 
-   void element::clear_keyboard_focus()
+   void element::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
    {
 
       throw ::interface_only();
@@ -4281,10 +4289,10 @@ namespace user
    }
 
 
-   // mouse focus
-
    void element::mouse_focus_OnLButtonUp(::message::message * pmessage)
    {
+
+
    }
 
 
@@ -4355,6 +4363,14 @@ namespace user
 
 
    ::user::element* element::get_parent_primitive() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::primitive_impl* element::get_primitive_impl()
    {
 
       return nullptr;
@@ -4545,6 +4561,13 @@ namespace user
 
 
    void element::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
+   {
+
+
+   }
+
+
+   void element::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
    {
 
 

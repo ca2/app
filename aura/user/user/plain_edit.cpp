@@ -722,22 +722,7 @@ namespace user
 
             }
 
-            if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
-            {
-
-               pgraphics->fill_rectangle(
-                  ::rectangle_f64_dimension((double)((double)left + compose1),
-                  (double)y,
-                  (double)minimum(compose2 - compose1, (double)rectangleClient.right - ((double)left + compose1)),
-                  (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
-                  colorComposeBk);
-
-               pgraphics->set(pbrushTextSel);
-
-            }
-
-
-            if(bOverride)
+            if (bOverride)
             {
 
                pbrushText->create_solid(crOverride);
@@ -751,6 +736,27 @@ namespace user
                pgraphics->set(pbrushTextCr);
 
             }
+
+            if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
+            {
+
+               //pgraphics->fill_rectangle(
+               //   ::rectangle_f64_dimension((double)((double)left + compose1),
+               //      (double)y,
+               //      (double)minimum(compose2 - compose1, (double)rectangleClient.right - ((double)left + compose1)),
+               //      (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
+               //   colorComposeBk);
+
+               pgraphics->fill_rectangle(
+                  ::rectangle_f64_dimension((double)((double)left + compose1),
+                  ((double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom)) - 1.0,
+                  (double)minimum(compose2 - compose1, (double)rectangleClient.right - ((double)left + compose1)),
+                  1.0));
+
+               //pgraphics->set(pbrushTextSel);
+
+            }
+
 
             if(iCurLineSelBeg > 0)
             {
@@ -877,7 +883,7 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
-#if !defined(_UWP) && !defined(ANDROID)
+#if !defined(_UWP)
 
       //auto estatus =
       
@@ -1702,7 +1708,9 @@ namespace user
 
       index xEnd = 0;
 
-      xEnd = index (plain_edit_get_line_extent(pgraphics, iLine, m_iaLineLength[iLine]));
+      auto iLineLength = m_iaLineLength[iLine];
+
+      xEnd = index (plain_edit_get_line_extent(pgraphics, iLine, iLineLength));
 
       ::rectangle_i32 rectangleClient;
 
@@ -1803,51 +1811,51 @@ namespace user
 
       m_bNewSel = true;
 
-      if (action_context.is_user_source())
-      {
+      //if (action_context.is_user_source())
+      //{
 
-         auto pwindowing = windowing();
+      //   auto pwindowing = windowing();
 
-         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+      //   auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-         if (::is_set(ptexteditorinterface))
-         {
+      //   if (::is_set(ptexteditorinterface))
+      //   {
 
 
-            string strText;
+      //      string strText;
 
-            _001GetText(strText);
+      //      _001GetText(strText);
 
-            //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+      //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
 
-            //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+      //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-            auto iSelectionStart = ansi_to_wd16_len(strText, iBeg);
+      //      auto iSelectionStart = ansi_to_wd16_len(strText, iBeg);
 
-            auto iSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+      //      auto iSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-            ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd);
+      //      ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd);
 
-            if (m_pitemComposing)
-            {
+      //      if (m_pitemComposing)
+      //      {
 
-               auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+      //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
 
-               auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+      //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-               ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
+      //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
+      //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
 //#ifdef ANDROID
 //
@@ -2191,373 +2199,377 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
+   void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      ::rectangle_i32 rectangleClient;
+      _plain_edit_update_lines_and_extents(pgraphics, iOnlyLineToUpdate);
 
-      GetFocusRect(rectangleClient);
+      //synchronous_lock synchronouslock(mutex());
 
-      if (m_ptree == nullptr)
-      {
+      //::rectangle_i32 rectangleClient;
 
-         m_iCurrentPagePotentialLineCount = 0;
+      //GetFocusRect(rectangleClient);
 
-         m_iCurrentPageLineOffset = 0;
-
-         m_iCurrentPageLineStart = 0;
-
-         m_iCurrentPageLineEnd = 0;
-
-         m_iImpactOffset = 0;
-
-         m_iImpactSize = 0;
-
-         return;
-
-      }
-
-      ::index i;
-
-      ::index iLine;
-
-      if (pgraphics.is_null())
-      {
-
-         return;
-
-      }
-
-      pgraphics->set_font(this, ::e_element_none);
-
-      size_f64 sizeUniText;
-
-      ::write_text::text_metric metric;
-
-      pgraphics->get_text_metrics(&metric);
-
-      m_dLineHeight = metric.get_line_spacing();
-
-      if (m_dLineHeight <= 0.0)
-      {
-
-         m_dLineHeight = 18.0;
-
-      }
-
-      auto pointOffset = get_viewport_offset();
-
-      m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
-
-      m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
-
-      bool bLoadFullFile = should_load_full_file();
-
-      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
-
-      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
-
-      if (m_iCurrentPageLineOffset < 0)
-      {
-
-         return;
-
-      }
-
-      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
-
-      strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
-
-      strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
-
-      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
-
-      index iLineStart;
-
-      index iLineEnd;
-
-      index iImpactOffset;
-
-      index iImpactSize;
-
-      if (iLineUpdate < 0)
-      {
-
-         iLineStart = m_iCurrentPageLineStart;
-
-         iLineEnd = m_iCurrentPageLineEnd;
-
-         iImpactOffset = m_iImpactOffset;
-
-         iImpactSize = m_iImpactSize;
-
-      }
-      else
-      {
-
-         iLineStart = iLineUpdate;
-
-         iLineEnd = iLineStart + 1;
-
-         iImpactOffset = m_iaLineStart[iLineStart];
-
-         iProperBeg = m_iaLineStart[iLineEnd - 1];
-
-         iLen = m_iaLineLength[iLineEnd - 1];
-
-         iImpactSize = iProperBeg + iLen - iImpactOffset;
-
-      }
-
-      string strLine;
-
-      memory mem;
-
-      mem.set_size(iImpactSize + 1);
-
-      strsize iRead;
-
-      {
-
-         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
-
-         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
-
-         if (iRead < iImpactSize)
-         {
-
-            TRACE("ops1");
-
-            iImpactSize = iRead;
-
-         }
-
-         mem.get_data()[iImpactSize] = 0;
-
-      }
-
-      strsize iPos = 0;
-
-      //      strsize iLen;
-
-      strsize iStrLen;
-
-      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-      m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-
-      i = 0;
-
-      iLine = iLineStart;
-
-      m_daExtent.set_size(m_iaLineLength.get_size());
-
-      for (; iLine < iLineEnd; i++, iLine++)
-      {
-
-         iLen = m_iaLineLength[iLine];
-
-         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
-
-         if (iPos + iStrLen > m_iImpactSize)
-         {
-
-            TRACE("ops3");
-
-            iStrLen = iImpactSize - iPos;
-
-            if (iStrLen <= 0)
-            {
-
-               TRACE("ops4");
-
-               break;
-
-            }
-
-         }
-
-         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
-
-         //if (strLine != m_plinea->lines[i])
-         if (strLine != m_straLines[i])
-         {
-
-            //m_plinea->lines[i] = strLine;
-            m_straLines[i] = strLine;
-
-            m_daExtent[i + iLineStart].set_size(0);
-
-         }
-         else
-         {
-
-            //TRACE("optstr");
-
-         }
-
-         iPos += iLen;
-
-         if (iPos > iImpactSize)
-         {
-
-            TRACE("ops2");
-
-            break;
-
-         }
-
-      }
-
-      m_dy = pointOffset.y;
-
-      //::colorertake5::base_editor * pcolorer = colorertake5();
-
-      //if (pcolorer != nullptr)
+      //if (m_ptree == nullptr)
       //{
 
-      //   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+      //   m_iCurrentPagePotentialLineCount = 0;
+
+      //   m_iCurrentPageLineOffset = 0;
+
+      //   m_iCurrentPageLineStart = 0;
+
+      //   m_iCurrentPageLineEnd = 0;
+
+      //   m_iImpactOffset = 0;
+
+      //   m_iImpactSize = 0;
+
+      //   return;
 
       //}
 
-      //string_array & straLines = m_plinea->lines;
+      //::index i;
 
-      string_array & straLines = m_straLines;
+      //::index iLine;
 
-      if (iLineUpdate < 0)
-      {
+      //if (pgraphics.is_null())
+      //{
 
-         //m_sizeTotal.cx = 0;
+      //   return;
 
-      }
+      //}
 
-      size_f64 size;
+      //pgraphics->set_font(this, ::e_element_none);
 
-      string strLineGraphics;
+      //size_f64 sizeUniText;
 
-      strsize_array iaTab;
+      //::write_text::text_metric metric;
 
-      strsize iTab;
+      //pgraphics->get_text_metrics(&metric);
 
-      strsize iAddUp;
+      //m_dLineHeight = metric.get_line_spacing();
 
-      for (i32 i = 0; i < straLines.get_size(); i++)
-      {
+      //if (m_dLineHeight <= 0.0)
+      //{
 
-         strLine = straLines[i];
+      //   m_dLineHeight = 18.0;
 
-         iTab = -1;
+      //}
 
-         iaTab.erase_all();
+      //auto pointOffset = get_viewport_offset();
 
-         strLineGraphics = strLine;
+      //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
-         ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+      //m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
-         const char * pszStart = strLine;
+      //bool bLoadFullFile = should_load_full_file();
 
-         const char * psz = pszStart;
+      //m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
 
-         strsize iLen = 0;
+      //m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
 
-         iAddUp = 0;
+      //if (m_iCurrentPageLineOffset < 0)
+      //{
 
-         iPos = 0;
+      //   return;
 
-         const char * pszNext = pszStart;
+      //}
 
-         double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+      //m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
 
-         if (daExtent.get_size() <= 0)
-         {
+      //strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
 
-            daExtent.set_size(strLine.get_length() + 1);
+      //strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
 
-            while (*pszNext != '\0')
-            {
+      //m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
-               pszNext = ::str::utf8_inc(psz);
+      //index iLineStart;
 
-               iLen = pszNext - psz;
+      //index iLineEnd;
 
-               if (*psz == '\t')
-               {
+      //index iImpactOffset;
 
-                  iTab++;
-
-                  iAddUp += iaTab[iTab] - 1;
-
-               }
-
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
-
-               for (int j = 0; j < iLen; j++)
-               {
-
-                 daExtent [(::index)(psz - pszStart + j)] = size.cx;
-
-               }
-
-               psz = pszNext;
-
-            }
-
-            if (strLineGraphics.has_char())
-            {
-
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
-
-               for (int j = 0; j < iLen; j++)
-               {
-
-                  daExtent[(::index)(psz - pszStart)] = size.cx;
-
-               }
-
-            }
-
-
-            if (size.cx > m_sizeTotal.cx)
-            {
-
-               m_sizeTotal.cx = (i32)size.cx;
-
-            }
-
-         }
-
-
-      }
+      //index iImpactSize;
 
       //if (iLineUpdate < 0)
       //{
 
-      //   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      //   iLineStart = m_iCurrentPageLineStart;
 
-      //   const ::size_i32 & sizePage;
+      //   iLineEnd = m_iCurrentPageLineEnd;
 
-      //   sizePage = rectangleClient.size();
+      //   iImpactOffset = m_iImpactOffset;
 
-      //   if (m_sizeTotal.cy < sizePage.cy)
+      //   iImpactSize = m_iImpactSize;
+
+      //}
+      //else
+      //{
+
+      //   iLineStart = iLineUpdate;
+
+      //   iLineEnd = iLineStart + 1;
+
+      //   iImpactOffset = m_iaLineStart[iLineStart];
+
+      //   iProperBeg = m_iaLineStart[iLineEnd - 1];
+
+      //   iLen = m_iaLineLength[iLineEnd - 1];
+
+      //   iImpactSize = iProperBeg + iLen - iImpactOffset;
+
+      //}
+
+      //string strLine;
+
+      //memory mem;
+
+      //mem.set_size(iImpactSize + 1);
+
+      //strsize iRead;
+
+      //{
+
+      //   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+
+      //   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+
+      //   if (iRead < iImpactSize)
       //   {
 
-      //      sizePage.cy = m_sizeTotal.cy;
+      //      TRACE("ops1");
+
+      //      iImpactSize = iRead;
+
+      //   }
+
+      //   mem.get_data()[iImpactSize] = 0;
+
+      //}
+
+      //strsize iPos = 0;
+
+      ////      strsize iLen;
+
+      //strsize iStrLen;
+
+      ////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+      //m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+
+      //i = 0;
+
+      //iLine = iLineStart;
+
+      //auto iLineLength = m_iaLineLength.get_size();
+
+      //m_daExtent.set_size(iLineLength);
+
+      //for (; iLine < iLineEnd; i++, iLine++)
+      //{
+
+      //   iLen = m_iaLineLength[iLine];
+
+      //   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+
+      //   if (iPos + iStrLen > m_iImpactSize)
+      //   {
+
+      //      TRACE("ops3");
+
+      //      iStrLen = iImpactSize - iPos;
+
+      //      if (iStrLen <= 0)
+      //      {
+
+      //         TRACE("ops4");
+
+      //         break;
+
+      //      }
+
+      //   }
+
+      //   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+
+      //   //if (strLine != m_plinea->lines[i])
+      //   if (strLine != m_straLines[i])
+      //   {
+
+      //      //m_plinea->lines[i] = strLine;
+      //      m_straLines[i] = strLine;
+
+      //      m_daExtent[i + iLineStart].set_size(0);
+
+      //   }
+      //   else
+      //   {
+
+      //      //TRACE("optstr");
+
+      //   }
+
+      //   iPos += iLen;
+
+      //   if (iPos > iImpactSize)
+      //   {
+
+      //      TRACE("ops2");
+
+      //      break;
 
       //   }
 
       //}
 
-      //on_change_view_size();
+      //m_dy = pointOffset.y;
 
-      //m_bCalcLayoutHintNoTextChange = false;
+      ////::colorertake5::base_editor * pcolorer = colorertake5();
+
+      ////if (pcolorer != nullptr)
+      ////{
+
+      ////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+
+      ////}
+
+      ////string_array & straLines = m_plinea->lines;
+
+      //string_array & straLines = m_straLines;
+
+      //if (iLineUpdate < 0)
+      //{
+
+      //   //m_sizeTotal.cx = 0;
+
+      //}
+
+      //size_f64 size;
+
+      //string strLineGraphics;
+
+      //strsize_array iaTab;
+
+      //strsize iTab;
+
+      //strsize iAddUp;
+
+      //for (i32 i = 0; i < straLines.get_size(); i++)
+      //{
+
+      //   strLine = straLines[i];
+
+      //   iTab = -1;
+
+      //   iaTab.erase_all();
+
+      //   strLineGraphics = strLine;
+
+      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+
+      //   const char * pszStart = strLine;
+
+      //   const char * psz = pszStart;
+
+      //   strsize iLen = 0;
+
+      //   iAddUp = 0;
+
+      //   iPos = 0;
+
+      //   const char * pszNext = pszStart;
+
+      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+
+      //   if (daExtent.get_size() <= 0)
+      //   {
+
+      //      daExtent.set_size(strLine.get_length() + 1);
+
+      //      while (*pszNext != '\0')
+      //      {
+
+      //         pszNext = ::str::utf8_inc(psz);
+
+      //         iLen = pszNext - psz;
+
+      //         if (*psz == '\t')
+      //         {
+
+      //            iTab++;
+
+      //            iAddUp += iaTab[iTab] - 1;
+
+      //         }
+
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+
+      //         for (int j = 0; j < iLen; j++)
+      //         {
+
+      //           daExtent [(::index)(psz - pszStart + j)] = size.cx;
+
+      //         }
+
+      //         psz = pszNext;
+
+      //      }
+
+      //      if (strLineGraphics.has_char())
+      //      {
+
+      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+
+      //         for (int j = 0; j < iLen; j++)
+      //         {
+
+      //            daExtent[(::index)(psz - pszStart)] = size.cx;
+
+      //         }
+
+      //      }
+
+
+      //      if (size.cx > m_sizeTotal.cx)
+      //      {
+
+      //         m_sizeTotal.cx = (i32)size.cx;
+
+      //      }
+
+      //   }
+
+
+      //}
+
+      ////if (iLineUpdate < 0)
+      ////{
+
+      ////   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+
+      ////   const ::size_i32 & sizePage;
+
+      ////   sizePage = rectangleClient.size();
+
+      ////   if (m_sizeTotal.cy < sizePage.cy)
+      ////   {
+
+      ////      sizePage.cy = m_sizeTotal.cy;
+
+      ////   }
+
+      ////}
+
+      ////on_change_view_size();
+
+      ////m_bCalcLayoutHintNoTextChange = false;
 
    }
 
    
-
-
-   void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
+   void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -2619,7 +2631,6 @@ namespace user
             m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Insert(strText, strText.get_length());
 
-
          }
 
       }
@@ -2644,401 +2655,1145 @@ namespace user
 
       }
 
-      if (m_ptree == nullptr)
-      {
-
-         m_iCurrentPagePotentialLineCount = 0;
-
-         m_iCurrentPageLineOffset = 0;
-
-         m_iCurrentPageLineStart = 0;
-
-         m_iCurrentPageLineEnd = 0;
-
-         m_iImpactOffset = 0;
-
-         m_iImpactSize = 0;
-
-         m_sizeTotal = { 0, 0 };
-
-         on_change_view_size(pgraphics);
-
-         return;
-
-      }
-
-      ::index i;
-
-      ::index iLine;
-
-      pgraphics->set_font(this, ::e_element_none);
-
-      size_f64 sizeUniText;
-
-      if (pgraphics == nullptr)
-      {
-
-         return;
-
-      }
-
-      ::write_text::text_metric metric;
-
-      pgraphics->get_text_metrics(&metric);
-
-      m_dLineHeight = metric.get_line_spacing();
-
-      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
-
-      if (m_dLineHeight <= 0)
-      {
-
-         m_dLineHeight = 18;
-
-      }
-
-      auto pointOffset = get_viewport_offset();
-
-      m_iCurrentPagePotentialLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
-
-      m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
-
-      bool bLoadFullFile = should_load_full_file();
-
-      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
-
-      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
-
-      if (m_iCurrentPageLineOffset < 0)
-      {
-
-         return;
-
-      }
-
-      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
-
-      strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
-
-      strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
-
-      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
-
-      index iLineStart;
-
-      index iLineEnd;
-
-      index iImpactOffset;
-
-      index iImpactSize;
-
-      if (iLineUpdate < 0)
-      {
-
-         iLineStart = m_iCurrentPageLineStart;
-
-         iLineEnd = m_iCurrentPageLineEnd;
-
-         iImpactOffset = m_iImpactOffset;
-
-         iImpactSize = m_iImpactSize;
-
-      }
-      else
-      {
-
-         iLineStart = iLineUpdate;
-
-         iLineEnd = iLineStart + 1;
-
-         iImpactOffset = m_iaLineStart[iLineStart];
-
-         iProperBeg = m_iaLineStart[iLineEnd - 1];
-
-         iLen = m_iaLineLength[iLineEnd - 1];
-
-         iImpactSize = iProperBeg + iLen - iImpactOffset;
-
-      }
-
-      string strLine;
-
-      memory mem;
-
-      mem.set_size(iImpactSize + 1);
-
-      strsize iRead;
-
-      {
-
-         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
-
-         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
-
-         if (iRead < iImpactSize)
-         {
-
-            TRACE("ops1");
-
-            iImpactSize = iRead;
-
-         }
-
-         mem.get_data()[iImpactSize] = 0;
-
-      }
-
-      strsize iPos = 0;
-
-      //      strsize iLen;
-
-      strsize iStrLen;
-
-      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-
-      string_array & straLines = m_straLines;
-
-      straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-
-      i = 0;
-
-      iLine = iLineStart;
-
-      m_daExtent.set_size(m_iaLineLength.get_size());
-
-      for (; iLine < iLineEnd; i++, iLine++)
-      {
-
-         iLen = m_iaLineLength[iLine];
-
-         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
-
-         if (iPos + iStrLen > m_iImpactSize)
-         {
-
-            TRACE("ops3");
-
-            iStrLen = iImpactSize - iPos;
-
-            if (iStrLen <= 0)
-            {
-
-               TRACE("ops4");
-
-               break;
-
-            }
-
-         }
-
-         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
-
-         string_array & straLines = m_straLines;
-
-         //if (strLine != m_plinea->lines[i])
-         if (strLine != straLines[i])
-         {
-
-            straLines[i] = strLine;
-
-            m_daExtent[i + iLineStart].set_size(0);
-
-         }
-         else
-         {
-
-            //TRACE("optstr");
-
-         }
-
-
-
-
-         iPos += iLen;
-
-         if (iPos > iImpactSize)
-         {
-
-            TRACE("ops2");
-
-            break;
-
-         }
-
-      }
-
-      m_dy = pointOffset.y;
-
-      //::colorertake5::base_editor * pcolorer = colorertake5();
-
-      //if (pcolorer != nullptr)
-      //{
-
-      //   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
-
-      //}
-
-//      string_array & straLines = m_plinea->lines;
+      _plain_edit_update_lines_and_extents(pgraphics, iOnlyLineToUpdate);
+
+//      if (m_ptree == nullptr)
+//      {
+//
+//         m_iCurrentPagePotentialLineCount = 0;
+//
+//         m_iCurrentPageLineOffset = 0;
+//
+//         m_iCurrentPageLineStart = 0;
+//
+//         m_iCurrentPageLineEnd = 0;
+//
+//         m_iImpactOffset = 0;
+//
+//         m_iImpactSize = 0;
+//
+//         m_sizeTotal = { 0, 0 };
+//
+//         on_change_view_size(pgraphics);
+//
+//         return;
+//
+//      }
+//
+//      ::index i;
+//
+//      ::index iLine;
+//
+//      pgraphics->set_font(this, ::e_element_none);
+//
+//      size_f64 sizeUniText;
+//
+//      if (pgraphics == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      ::write_text::text_metric metric;
+//
+//      pgraphics->get_text_metrics(&metric);
+//
+//      m_dLineHeight = metric.get_line_spacing();
+//
+//      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
+//
+//      if (m_dLineHeight <= 0)
+//      {
+//
+//         m_dLineHeight = 18;
+//
+//      }
+//
+//      auto pointOffset = get_viewport_offset();
+//
+//      m_iCurrentPagePotentialLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
+//
+//      m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//
+//      bool bLoadFullFile = should_load_full_file();
+//
+//      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+//
+//      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+//
+//      if (m_iCurrentPageLineOffset < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+//
+//      strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+//
+//      strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+//
+//      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+//
+//      index iLineStart;
+//
+//      index iLineEnd;
+//
+//      index iImpactOffset;
+//
+//      index iImpactSize;
+//
+//      if (iLineUpdate < 0)
+//      {
+//
+//         iLineStart = m_iCurrentPageLineStart;
+//
+//         iLineEnd = m_iCurrentPageLineEnd;
+//
+//         iImpactOffset = m_iImpactOffset;
+//
+//         iImpactSize = m_iImpactSize;
+//
+//      }
+//      else
+//      {
+//
+//         iLineStart = iLineUpdate;
+//
+//         iLineEnd = iLineStart + 1;
+//
+//         iImpactOffset = m_iaLineStart[iLineStart];
+//
+//         iProperBeg = m_iaLineStart[iLineEnd - 1];
+//
+//         iLen = m_iaLineLength[iLineEnd - 1];
+//
+//         iImpactSize = iProperBeg + iLen - iImpactOffset;
+//
+//      }
+//
+//      string strLine;
+//
+//      memory mem;
+//
+//      mem.set_size(iImpactSize + 1);
+//
+//      strsize iRead;
+//
+//      {
+//
+//         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+//
+//         iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+//
+//         if (iRead < iImpactSize)
+//         {
+//
+//            TRACE("ops1");
+//
+//            iImpactSize = iRead;
+//
+//         }
+//
+//         mem.get_data()[iImpactSize] = 0;
+//
+//      }
+//
+//      strsize iPos = 0;
+//
+//      //      strsize iLen;
+//
+//      strsize iStrLen;
+//
+//      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//
 //      string_array & straLines = m_straLines;
+//
+//      straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//
+//      i = 0;
+//
+//      iLine = iLineStart;
+//
+//      m_daExtent.set_size(m_iaLineLength.get_size());
+//
+//      for (; iLine < iLineEnd; i++, iLine++)
+//      {
+//
+//         iLen = m_iaLineLength[iLine];
+//
+//         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+//
+//         if (iPos + iStrLen > m_iImpactSize)
+//         {
+//
+//            TRACE("ops3");
+//
+//            iStrLen = iImpactSize - iPos;
+//
+//            if (iStrLen <= 0)
+//            {
+//
+//               TRACE("ops4");
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//         string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+//
+//         string_array & straLines = m_straLines;
+//
+//         //if (strLine != m_plinea->lines[i])
+//         if (strLine != straLines[i])
+//         {
+//
+//            straLines[i] = strLine;
+//
+//            m_daExtent[i + iLineStart].set_size(0);
+//
+//         }
+//         else
+//         {
+//
+//            //TRACE("optstr");
+//
+//         }
+//
+//
+//
+//
+//         iPos += iLen;
+//
+//         if (iPos > iImpactSize)
+//         {
+//
+//            TRACE("ops2");
+//
+//            break;
+//
+//         }
+//
+//      }
+//
+//      m_dy = pointOffset.y;
+//
+//      //::colorertake5::base_editor * pcolorer = colorertake5();
+//
+//      //if (pcolorer != nullptr)
+//      //{
+//
+//      //   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+//
+//      //}
+//
+////      string_array & straLines = m_plinea->lines;
+////      string_array & straLines = m_straLines;
+//
+//      if (iLineUpdate < 0)
+//      {
+//
+//         //m_sizeTotal.cx = 0;
+//
+//      }
+//
+//      size_f64 size;
+//
+//
+//
+//      string strLineGraphics;
+//
+//      strsize_array iaTab;
+//
+//      strsize iTab;
+//
+//      strsize iAddUp;
+//
+//
+//      for (i32 i = 0; i < straLines.get_size(); i++)
+//      {
+//
+//         strLine = straLines[i];
+//
+//         iTab = -1;
+//
+//         iaTab.erase_all();
+//
+//         strLineGraphics = strLine;
+//
+//         bool bTabs = strLine.find('\t') >= 0;
+//
+//         if (bTabs)
+//         {
+//
+//            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+//
+//         }
+//
+//         const char * pszStart = strLine;
+//
+//         const char * psz = pszStart;
+//
+//         strsize iLen = 0;
+//
+//         iAddUp = 0;
+//
+//         iPos = 0;
+//
+//         const char * pszNext = pszStart;
+//
+//         ::size_i32 sizeLast(0, 0);
+//
+//         auto & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+//
+//         if (daExtent.get_size() <= 0)
+//         {
+//
+//            daExtent.set_size(strLine.get_length() + 1);
+//
+//            while (*pszNext != '\0')
+//            {
+//
+//               pszNext = ::str::utf8_inc(psz);
+//
+//               if (pszNext == nullptr)
+//               {
+//
+//                  break;
+//
+//               }
+//
+//               iLen = pszNext - psz;
+//
+//               if (*psz == '\t')
+//               {
+//
+//                  iTab++;
+//
+//                  iAddUp += iaTab[iTab] - 1;
+//
+//               }
+//
+//               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+//
+//               if (size.cx > rectangleClient.width() + 200)
+//               {
+//
+//                  while (*psz != '\0')
+//                  {
+//
+//                     daExtent[(::index)(psz - pszStart)] = -1;
+//                     psz++;
+//
+//                  }
+//
+//                  break;
+//
+//               }
+//
+//               sizeLast.cx = (::i32) size.cx;
+//
+//               for (int j = 0; j < iLen; j++)
+//               {
+//
+//                  daExtent[(::index)(psz - pszStart + j)] = size.cx;
+//
+//               }
+//
+//               psz = pszNext;
+//
+//            }
+//
+//            if (strLineGraphics.has_char())
+//            {
+//
+//               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+//
+//               daExtent[(::index)(psz - pszStart)] = size.cx;
+//
+//            }
+//
+//            if (size.cx > m_sizeTotal.cx)
+//            {
+//
+//               m_sizeTotal.cx = (i32)size.cx;
+//
+//            }
+//
+//         }
+//
+//
+//      }
+//
+//      if (iLineUpdate < 0)
+//      {
+//
+//         m_sizeTotal.cy = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+//
+//         ::size_f64 sizePage;
+//
+//         sizePage = rectangleClient.size();
+//
+//         if (m_sizeTotal.cy < sizePage.cy)
+//         {
+//
+//            sizePage.cy = m_sizeTotal.cy;
+//
+//         }
+//
+//      }
+//
+//      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
+//
+//      on_change_view_size(pgraphics);
+//
+//      m_bCalcLayoutHintNoTextChange = false;
 
-      if (iLineUpdate < 0)
+   }
+
+
+   void plain_edit::_plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate)
+   {
+
+      _plain_edit_update_lines(pgraphics, iOnlyLineToUpdate);
+
+      _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
+
+   }
+
+
+   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate)
+   {
+
+      //synchronous_lock synchronouslock(mutex());
+
+::rectangle_i32 rectangleClient;
+
+GetFocusRect(rectangleClient);
+
+if (m_ptree == nullptr)
+{
+
+   m_iCurrentPagePotentialLineCount = 0;
+
+   m_iCurrentPageLineOffset = 0;
+
+   m_iCurrentPageLineStart = 0;
+
+   m_iCurrentPageLineEnd = 0;
+
+   m_iImpactOffset = 0;
+
+   m_iImpactSize = 0;
+
+   return;
+
+}
+
+::index i;
+
+::index iLine;
+
+if (pgraphics.is_null())
+{
+
+   return;
+
+}
+
+pgraphics->set_font(this, ::e_element_none);
+
+size_f64 sizeUniText;
+
+::write_text::text_metric metric;
+
+pgraphics->get_text_metrics(&metric);
+
+m_dLineHeight = metric.get_line_spacing();
+
+if (m_dLineHeight <= 0.0)
+{
+
+   m_dLineHeight = 18.0;
+
+}
+
+auto pointOffset = get_viewport_offset();
+
+m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
+
+m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+
+bool bLoadFullFile = should_load_full_file();
+
+m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+
+m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+
+if (m_iCurrentPageLineOffset < 0)
+{
+
+   return;
+
+}
+
+m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+
+strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+
+strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+
+m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+
+index iLineStart;
+
+index iLineEnd;
+
+index iImpactOffset;
+
+index iImpactSize;
+
+if (iOnlyLineToUpdate < 0)
+{
+
+   iLineStart = m_iCurrentPageLineStart;
+
+   iLineEnd = m_iCurrentPageLineEnd;
+
+   iImpactOffset = m_iImpactOffset;
+
+   iImpactSize = m_iImpactSize;
+
+}
+else
+{
+
+   iLineStart = iOnlyLineToUpdate;
+
+   iLineEnd = iLineStart + 1;
+
+   iImpactOffset = m_iaLineStart[iLineStart];
+
+   iProperBeg = m_iaLineStart[iLineEnd - 1];
+
+   iLen = m_iaLineLength[iLineEnd - 1];
+
+   iImpactSize = iProperBeg + iLen - iImpactOffset;
+
+}
+
+string strLine;
+
+memory mem;
+
+mem.set_size(iImpactSize + 1);
+
+strsize iRead;
+
+{
+
+   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+
+   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+
+   if (iRead < iImpactSize)
+   {
+
+      TRACE("ops1");
+
+      iImpactSize = iRead;
+
+   }
+
+   mem.get_data()[iImpactSize] = 0;
+
+}
+
+strsize iPos = 0;
+
+//      strsize iLen;
+
+strsize iStrLen;
+
+//m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+
+i = 0;
+
+iLine = iLineStart;
+
+auto iLineLength = m_iaLineLength.get_size();
+
+m_daExtent.set_size(iLineLength);
+
+for (; iLine < iLineEnd; i++, iLine++)
+{
+
+   iLen = m_iaLineLength[iLine];
+
+   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+
+   if (iPos + iStrLen > m_iImpactSize)
+   {
+
+      TRACE("ops3");
+
+      iStrLen = iImpactSize - iPos;
+
+      if (iStrLen <= 0)
       {
 
-         //m_sizeTotal.cx = 0;
+         TRACE("ops4");
+
+         break;
 
       }
 
-      size_f64 size;
+   }
+
+   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+
+   //if (strLine != m_plinea->lines[i])
+   if (strLine != m_straLines[i])
+   {
+
+      //m_plinea->lines[i] = strLine;
+      m_straLines[i] = strLine;
+
+      m_daExtent[i + iLineStart].set_size(0);
+
+   }
+   else
+   {
+
+      //TRACE("optstr");
+
+   }
+
+   iPos += iLen;
+
+   if (iPos > iImpactSize)
+   {
+
+      TRACE("ops2");
+
+      break;
+
+   }
+
+}
+
+//m_dy = pointOffset.y;
+
+////::colorertake5::base_editor * pcolorer = colorertake5();
+
+////if (pcolorer != nullptr)
+////{
+
+////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+
+////}
+
+////string_array & straLines = m_plinea->lines;
+
+//string_array & straLines = m_straLines;
+
+//if (iLineUpdate < 0)
+//{
+
+//   //m_sizeTotal.cx = 0;
+
+//}
+
+//size_f64 size;
+
+//string strLineGraphics;
+
+//strsize_array iaTab;
+
+//strsize iTab;
+
+//strsize iAddUp;
+
+//for (i32 i = 0; i < straLines.get_size(); i++)
+//{
+
+//   strLine = straLines[i];
+
+//   iTab = -1;
+
+//   iaTab.erase_all();
+
+//   strLineGraphics = strLine;
+
+//   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+
+//   const char * pszStart = strLine;
+
+//   const char * psz = pszStart;
+
+//   strsize iLen = 0;
+
+//   iAddUp = 0;
+
+//   iPos = 0;
+
+//   const char * pszNext = pszStart;
+
+//   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+
+//   if (daExtent.get_size() <= 0)
+//   {
+
+//      daExtent.set_size(strLine.get_length() + 1);
+
+//      while (*pszNext != '\0')
+//      {
+
+//         pszNext = ::str::utf8_inc(psz);
+
+//         iLen = pszNext - psz;
+
+//         if (*psz == '\t')
+//         {
+
+//            iTab++;
+
+//            iAddUp += iaTab[iTab] - 1;
+
+//         }
+
+//         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+
+//         for (int j = 0; j < iLen; j++)
+//         {
+
+//           daExtent [(::index)(psz - pszStart + j)] = size.cx;
+
+//         }
+
+//         psz = pszNext;
+
+//      }
+
+//      if (strLineGraphics.has_char())
+//      {
+
+//         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
+
+//         for (int j = 0; j < iLen; j++)
+//         {
+
+//            daExtent[(::index)(psz - pszStart)] = size.cx;
+
+//         }
+
+//      }
 
 
+//      if (size.cx > m_sizeTotal.cx)
+//      {
 
-      string strLineGraphics;
+//         m_sizeTotal.cx = (i32)size.cx;
 
-      strsize_array iaTab;
+//      }
 
-      strsize iTab;
-
-      strsize iAddUp;
+//   }
 
 
-      for (i32 i = 0; i < straLines.get_size(); i++)
+//}
+
+////if (iLineUpdate < 0)
+////{
+
+////   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+
+////   const ::size_i32 & sizePage;
+
+////   sizePage = rectangleClient.size();
+
+////   if (m_sizeTotal.cy < sizePage.cy)
+////   {
+
+////      sizePage.cy = m_sizeTotal.cy;
+
+////   }
+
+////}
+
+////on_change_view_size();
+
+////m_bCalcLayoutHintNoTextChange = false;
+
+   }
+
+
+   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, index iOnlyLineToUpdate)
+   {
+
+      //synchronous_lock synchronouslock(mutex());
+
+//::rectangle_i32 rectangleClient;
+
+//GetFocusRect(rectangleClient);
+
+//if (m_ptree == nullptr)
+//{
+
+//   m_iCurrentPagePotentialLineCount = 0;
+
+//   m_iCurrentPageLineOffset = 0;
+
+//   m_iCurrentPageLineStart = 0;
+
+//   m_iCurrentPageLineEnd = 0;
+
+//   m_iImpactOffset = 0;
+
+//   m_iImpactSize = 0;
+
+//   return;
+
+//}
+
+//::index i;
+
+//::index iLine;
+
+//if (pgraphics.is_null())
+//{
+
+//   return;
+
+//}
+
+//pgraphics->set_font(this, ::e_element_none);
+
+//size_f64 sizeUniText;
+
+//::write_text::text_metric metric;
+
+//pgraphics->get_text_metrics(&metric);
+
+//m_dLineHeight = metric.get_line_spacing();
+
+//if (m_dLineHeight <= 0.0)
+//{
+
+//   m_dLineHeight = 18.0;
+
+//}
+
+//auto pointOffset = get_viewport_offset();
+
+//m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
+
+//m_iCurrentPageLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
+
+//bool bLoadFullFile = should_load_full_file();
+
+//m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+
+//m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+
+//if (m_iCurrentPageLineOffset < 0)
+//{
+
+//   return;
+
+//}
+
+//m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+
+//strsize iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+
+//strsize iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+
+//m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+
+//index iLineStart;
+
+//index iLineEnd;
+
+//index iImpactOffset;
+
+//index iImpactSize;
+
+//if (iLineUpdate < 0)
+//{
+
+//   iLineStart = m_iCurrentPageLineStart;
+
+//   iLineEnd = m_iCurrentPageLineEnd;
+
+//   iImpactOffset = m_iImpactOffset;
+
+//   iImpactSize = m_iImpactSize;
+
+//}
+//else
+//{
+
+//   iLineStart = iLineUpdate;
+
+//   iLineEnd = iLineStart + 1;
+
+//   iImpactOffset = m_iaLineStart[iLineStart];
+
+//   iProperBeg = m_iaLineStart[iLineEnd - 1];
+
+//   iLen = m_iaLineLength[iLineEnd - 1];
+
+//   iImpactSize = iProperBeg + iLen - iImpactOffset;
+
+//}
+
+//string strLine;
+
+//memory mem;
+
+//mem.set_size(iImpactSize + 1);
+
+//strsize iRead;
+
+//{
+
+//   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+
+//   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+
+//   if (iRead < iImpactSize)
+//   {
+
+//      TRACE("ops1");
+
+//      iImpactSize = iRead;
+
+//   }
+
+//   mem.get_data()[iImpactSize] = 0;
+
+//}
+
+//strsize iPos = 0;
+
+////      strsize iLen;
+
+//strsize iStrLen;
+
+////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+//m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+
+//i = 0;
+
+//iLine = iLineStart;
+
+//auto iLineLength = m_iaLineLength.get_size();
+
+//m_daExtent.set_size(iLineLength);
+
+//for (; iLine < iLineEnd; i++, iLine++)
+//{
+
+//   iLen = m_iaLineLength[iLine];
+
+//   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+
+//   if (iPos + iStrLen > m_iImpactSize)
+//   {
+
+//      TRACE("ops3");
+
+//      iStrLen = iImpactSize - iPos;
+
+//      if (iStrLen <= 0)
+//      {
+
+//         TRACE("ops4");
+
+//         break;
+
+//      }
+
+//   }
+
+//   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+
+//   //if (strLine != m_plinea->lines[i])
+//   if (strLine != m_straLines[i])
+//   {
+
+//      //m_plinea->lines[i] = strLine;
+//      m_straLines[i] = strLine;
+
+//      m_daExtent[i + iLineStart].set_size(0);
+
+//   }
+//   else
+//   {
+
+//      //TRACE("optstr");
+
+//   }
+
+//   iPos += iLen;
+
+//   if (iPos > iImpactSize)
+//   {
+
+//      TRACE("ops2");
+
+//      break;
+
+//   }
+
+//}
+
+//m_dy = pointOffset.y;
+
+////::colorertake5::base_editor * pcolorer = colorertake5();
+
+////if (pcolorer != nullptr)
+////{
+
+////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+
+////}
+
+////string_array & straLines = m_plinea->lines;
+
+//string_array & straLines = m_straLines;
+
+//if (iLineUpdate < 0)
+//{
+
+//   //m_sizeTotal.cx = 0;
+
+//}
+
+size_f64 size;
+
+string strLineGraphics;
+
+strsize_array iaTab;
+
+strsize iTab;
+
+strsize iAddUp;
+
+for (i32 i = 0; i < m_straLines.get_size(); i++)
+{
+
+   string strLine = m_straLines[i];
+
+   iTab = -1;
+
+   iaTab.erase_all();
+
+   strLineGraphics = strLine;
+
+   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+
+   const char * pszStart = strLine;
+
+   const char * psz = pszStart;
+
+   strsize iLen = 0;
+
+   iAddUp = 0;
+
+   strsize iPos = 0;
+
+   const char * pszNext = pszStart;
+
+   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+
+   if (daExtent.get_size() <= 0)
+   {
+
+      daExtent.set_size(strLine.get_length() + 1);
+
+      while (*pszNext != '\0')
       {
 
-         strLine = straLines[i];
+         pszNext = ::str::utf8_inc(psz);
 
-         iTab = -1;
+         iLen = pszNext - psz;
 
-         iaTab.erase_all();
-
-         strLineGraphics = strLine;
-
-         bool bTabs = strLine.find('\t') >= 0;
-
-         if (bTabs)
+         if (*psz == '\t')
          {
 
-            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+            iTab++;
+
+            iAddUp += iaTab[iTab] - 1;
 
          }
 
-         const char * pszStart = strLine;
+         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
 
-         const char * psz = pszStart;
-
-         strsize iLen = 0;
-
-         iAddUp = 0;
-
-         iPos = 0;
-
-         const char * pszNext = pszStart;
-
-         ::size_i32 sizeLast(0, 0);
-
-         auto & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
-
-         if (daExtent.get_size() <= 0)
+         for (int j = 0; j < iLen; j++)
          {
 
-            daExtent.set_size(strLine.get_length() + 1);
-
-            while (*pszNext != '\0')
-            {
-
-               pszNext = ::str::utf8_inc(psz);
-
-               if (pszNext == nullptr)
-               {
-
-                  break;
-
-               }
-
-               iLen = pszNext - psz;
-
-               if (*psz == '\t')
-               {
-
-                  iTab++;
-
-                  iAddUp += iaTab[iTab] - 1;
-
-               }
-
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
-
-               if (size.cx > rectangleClient.width() + 200)
-               {
-
-                  while (*psz != '\0')
-                  {
-
-                     daExtent[(::index)(psz - pszStart)] = -1;
-                     psz++;
-
-                  }
-
-                  break;
-
-               }
-
-               sizeLast.cx = (::i32) size.cx;
-
-               for (int j = 0; j < iLen; j++)
-               {
-
-                  daExtent[(::index)(psz - pszStart + j)] = size.cx;
-
-               }
-
-               psz = pszNext;
-
-            }
-
-            if (strLineGraphics.has_char())
-            {
-
-               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
-
-               daExtent[(::index)(psz - pszStart)] = size.cx;
-
-            }
-
-            if (size.cx > m_sizeTotal.cx)
-            {
-
-               m_sizeTotal.cx = (i32)size.cx;
-
-            }
+           daExtent [(::index)(psz - pszStart + j)] = size.cx;
 
          }
 
+         psz = pszNext;
 
       }
 
-      if (iLineUpdate < 0)
+      if (strLineGraphics.has_char())
       {
 
-         m_sizeTotal.cy = (::i32) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
 
-         ::size_f64 sizePage;
-
-         sizePage = rectangleClient.size();
-
-         if (m_sizeTotal.cy < sizePage.cy)
+         for (int j = 0; j < iLen; j++)
          {
 
-            sizePage.cy = m_sizeTotal.cy;
+            daExtent[(::index)(psz - pszStart)] = size.cx;
 
          }
 
       }
 
-      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
 
-      on_change_view_size(pgraphics);
+      if (size.cx > m_sizeTotal.cx)
+      {
 
-      m_bCalcLayoutHintNoTextChange = false;
+         m_sizeTotal.cx = (i32)size.cx;
+
+      }
+
+   }
+
+
+}
+
+//if (iLineUpdate < 0)
+//{
+
+//   m_sizeTotal.cy = (((i32)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+
+//   const ::size_i32 & sizePage;
+
+//   sizePage = rectangleClient.size();
+
+//   if (m_sizeTotal.cy < sizePage.cy)
+//   {
+
+//      sizePage.cy = m_sizeTotal.cy;
+
+//   }
+
+//}
+
+//on_change_view_size();
+
+//m_bCalcLayoutHintNoTextChange = false;
 
    }
 
@@ -3688,6 +4443,35 @@ end:
    }
 
 
+   void plain_edit::_001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize& iComposingStart, strsize& iComposingEnd) const
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      iSelStart = m_ptree->m_iSelBeg;
+
+      iSelEnd = m_ptree->m_iSelEnd;
+
+      if (m_pitemComposing)
+      {
+
+         iComposingStart = (strsize)m_pitemComposing->m_position;
+
+         iComposingEnd = (strsize)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+      }
+      else
+      {
+
+         iComposingStart = iSelStart;
+
+         iComposingEnd = iSelEnd;
+
+      }
+
+   }
+
+
    void plain_edit::FileSave()
    {
 
@@ -4094,6 +4878,163 @@ finished_update:
    }
 
 
+   void plain_edit::plain_edit_on_delete_surrounding_text(::draw2d::graphics_pointer& pgraphics, strsize beforeLength, strsize afterLength)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      bool bFullUpdate = false;
+
+      index iLineUpdate = -1;
+
+      if (!m_bReadOnly)
+      {
+
+         auto iSelBeg = m_ptree->m_iSelBeg;
+
+         auto iSelEnd = m_ptree->m_iSelEnd;
+
+         if (afterLength > 0 && iSelEnd < m_ptree->m_peditfile->get_length())
+         {
+
+            on_before_change_text();
+
+            string str;
+
+            _001GetText(str, iSelEnd, -1);
+
+            const char * pdata = str.c_str();
+
+            const char * psz = pdata;
+            
+            for (strsize i = 0; i < afterLength; i++)
+            {
+
+               auto pszNew = ::str::utf8_inc(psz);
+
+               if (::is_empty(pszNew))
+               {
+
+                  break;
+
+               }
+
+               psz = pszNew;
+
+            }
+
+            strsize iMultiByteUtf8DeleteCount = psz - pdata;
+
+            auto i1 = iSelEnd;
+
+            auto i2 = i1 + iMultiByteUtf8DeleteCount;
+
+            string strSel;
+
+            _001GetText(strSel, i1, i2);
+
+            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+
+            if (!bFullUpdate)
+            {
+
+               iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+            }
+
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+            m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
+
+            m_pinsert = nullptr;
+
+            IndexRegisterDelete(i1, iMultiByteUtf8DeleteCount);
+
+            MacroBegin();
+
+            MacroRecord(__new(plain_text_file_command()));
+
+            MacroEnd();
+
+         }
+
+         if (beforeLength > 0 && iSelBeg > 0)
+         {
+
+            on_before_change_text();
+
+            string str;
+
+            _001GetText(str, 0, iSelBeg);
+
+            const char* psz = str.c_str() + iSelBeg;
+
+            const char* pdata = psz;
+
+            for (strsize i = 0; i < beforeLength; i++)
+            {
+
+               auto pdataNew = ::str::utf8_dec(str.c_str(), pdata);
+
+               if (::is_empty(pdataNew))
+               {
+
+                  break;
+
+               }
+
+               pdata = pdataNew;
+
+            }
+
+            strsize iMultiByteUtf8DeleteCount = psz - pdata;
+
+            auto i1 = m_ptree->m_iSelBeg - iMultiByteUtf8DeleteCount;
+
+            auto i2 = i1 + iMultiByteUtf8DeleteCount;
+
+            string strSel;
+
+            _001GetText(strSel, i1, i2);
+
+            bFullUpdate = strSel.find('\n') >= 0 || strSel.find('\r') >= 0;
+
+            if (!bFullUpdate)
+            {
+
+               iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+            }
+
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+            m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
+
+            m_pinsert = nullptr;
+
+            IndexRegisterDelete(i1, iMultiByteUtf8DeleteCount);
+
+            m_ptree->m_iSelBeg = i1;
+
+            m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
+
+            MacroBegin();
+
+            MacroRecord(__new(plain_text_file_command()));
+
+            MacroEnd();
+
+         }
+
+      }
+
+      plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+      _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+
+   }
+
+
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -4163,7 +5104,7 @@ finished_update:
             MacroEnd();
 
          }
-         else if (m_ptree->m_iSelEnd< m_ptree->m_peditfile->get_length())
+         else if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
          {
 
             on_before_change_text();
@@ -5483,12 +6424,38 @@ finished_update:
    }
 
 
-   void plain_edit::InputConnectionSetComposingText(const ::string & strText, strsize iNewCursorPosition)
+   void plain_edit::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
    {
 
-      bool bAlreadyComposing = m_pitemComposing
-         && !strText.contains('\r')
-         && !strText.contains('\n');
+      queue_graphics_call([this, iBeforeLength, iAfterLength](::draw2d::graphics_pointer& pgraphics)
+         {
+
+            plain_edit_on_delete_surrounding_text(pgraphics, iBeforeLength, iAfterLength);
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
+   void plain_edit::InputConnectionSetComposingText(const ::string& strText, strsize iNewCursorPosition)
+   {
+
+      if (m_ptextcompositionclient)
+      {
+
+         m_ptextcompositionclient->set_text_composition_active();
+
+      }
+
+      auto pevent = __new(manual_reset_event);
+
+      bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
+
+      bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
 
       if (bAlreadyComposing)
       {
@@ -5505,93 +6472,109 @@ finished_update:
 
       }
 
-      string strFull;
-
-      _001GetText(strFull);
-
-      ::index iAfterComposingCursorPosition;
-
-      strsize iOffset = 0;
-
-      if (iNewCursorPosition > 0)
+      queue_graphics_call([this, iNewCursorPosition, bTextHasNewLine, pevent](::draw2d::graphics_pointer& pgraphics)
       {
 
-         iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
-
-         if (iNewCursorPosition > 1)
-         {
-
-            wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
-
-            iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
-
-         }
-       
-         iAfterComposingCursorPosition += iOffset;
-
-      }
-      else
-      {
-
-         iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
-
-         if (iNewCursorPosition < 0)
-         {
-
-            wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
-
-            iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
-
-         }
-
-         iAfterComposingCursorPosition -= iOffset;
-
-      }
-
-      //m_ptree->m_iSelEnd = iAfterComposingPosition;
-      //m_ptree->m_iSelBeg = iAfterComposingPosition;
-      //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
-      //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
-
-      if (bAlreadyComposing)
-      {
+         bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
 
          strsize i1 = iNewCursorPosition;
 
-         queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
+         ::index iAfterComposingCursorPosition = -1;
+
+         if (::is_set(m_pitemComposing))
+         {
+
+            string strFull;
+
+            _001GetText(strFull);
+
+            strsize iOffset = 0;
+
+            if (iNewCursorPosition > 0)
             {
 
-               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+               iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-               bool bFullUpdate = false;
-
-               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
-
-               if (iLineUpdate < 0)
+               if (iNewCursorPosition > 1)
                {
 
-                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                  wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+
+                  iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
 
                }
 
-               if (iLineUpdate >= 0)
+               iAfterComposingCursorPosition += iOffset;
+
+            }
+            else
+            {
+
+               iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
+
+               if (iNewCursorPosition < 0)
                {
 
-                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
+                  wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+
+                  iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
 
                }
 
-            });
+               iAfterComposingCursorPosition -= iOffset;
 
-         set_need_redraw();
+            }
 
-         post_redraw();
+            //m_ptree->m_iSelEnd = iAfterComposingPosition;
+            //m_ptree->m_iSelBeg = iAfterComposingPosition;
+            //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
+            //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
 
-      }
+         }
 
-      ::output_debug_string("Current Text: " + strText + "\n");
+         if (bAlreadyComposing)
+         {
 
-      _001SetSel(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
+            int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+
+            bool bFullUpdate = false;
+
+            plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+            if (iLineUpdate < 0)
+            {
+
+               iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+
+            }
+
+            if (iLineUpdate >= 0)
+            {
+
+               _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
+
+            }
+
+         }
+
+         if (iAfterComposingCursorPosition >= 0)
+         {
+
+            _001SetSel(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
+
+         }
+
+         _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
+
+         pevent->SetEvent();
+
+      });
+
+      set_need_redraw();
+
+      post_redraw();
+
+      pevent->wait(5_s);
 
    }
 
@@ -6389,7 +7372,6 @@ finished_update:
 
       }
 
-
    }
 
 
@@ -6576,6 +7558,37 @@ finished_update:
       //DestroyImeWindow();
 
       m_ewindowflag -= e_window_flag_focus;
+
+      auto pwindowing = windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         //strsize iBeg = 0;
+
+         //strsize iEnd = 0;
+
+         //_001GetSel(iBeg, iEnd);
+
+         //string strText;
+
+         //_001GetText(strText);
+
+         //ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+         //ptexteditorinterface->set_editor_text(strText);
+
+         //ptexteditorinterface->show_software_keyboard();
+
+         ptexteditorinterface->hide_software_keyboard();
+
+      }
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

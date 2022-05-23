@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   void primitive::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void primitive::show_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   void primitive::hide_software_keyboard(::user::primitive * pprimitive)
+   void primitive::hide_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -2381,7 +2381,7 @@ namespace user
    //}
 
 
-   oswindow primitive::detach()
+   oswindow primitive::detach_window()
    {
 
       return nullptr;
@@ -3395,12 +3395,12 @@ namespace user
    //}
 
 
-   void primitive::show_keyboard(bool bShow)
-   {
+   //void primitive::show_keyboard(bool bShow)
+   //{
 
-      __UNREFERENCED_PARAMETER(bShow);
+   //   __UNREFERENCED_PARAMETER(bShow);
 
-   }
+   //}
 
 
 
@@ -4390,7 +4390,7 @@ namespace user
    }
 
 
-   void primitive::clear_keyboard_focus()
+   void primitive::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
    {
 
       //throw ::interface_only();
@@ -4620,51 +4620,58 @@ namespace user
    }
 
 
-   void primitive::InputConnectionBeginBatchEdit()
-   {
+   //void primitive::InputConnectionBeginBatchEdit()
+   //{
 
 
-   }
+   //}
 
 
-   void primitive::InputConnectionEndBatchEdit()
-   {
+   //void primitive::InputConnectionEndBatchEdit()
+   //{
 
 
-   }
+   //}
 
 
-   void primitive::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
-   {
+   //void primitive::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
+   //{
 
 
-   }
+   //}
 
 
-   void primitive::InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition)
-   {
+   //void primitive::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
+   //{
 
 
-   }
+   //}
 
 
-   void primitive::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
-   {
-
-   }
+   //void primitive::InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition)
+   //{
 
 
-   void primitive::InputConnectionSetSelection(strsize iStart, strsize iEnd)
-   {
-
-   }
+   //}
 
 
-   void primitive::InputConnectionFinishComposingText()
-   {
+   //void primitive::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   //{
+
+   //}
 
 
-   }
+   //void primitive::InputConnectionSetSelection(strsize iStart, strsize iEnd)
+   //{
+
+   //}
+
+
+   //void primitive::InputConnectionFinishComposingText()
+   //{
+
+
+   //}
 
 
    //void primitive::set_icon(::windowing::icon * picon)

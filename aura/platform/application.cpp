@@ -2106,25 +2106,27 @@ retry_license:
       //else
       //{
 
-      if (!m_pcontextimage)
-      {
-
-         //estatus = 
          
-         __compose_new(m_pcontextimage);
 
-         //if (!estatus)
-         //{
+      // if (!m_pcontextimage)
+      // {
 
-         //   INFORMATION("ERROR: context_image required but missing.");
+      //    //estatus = 
+         
+      //    __compose_new(m_pcontextimage);
 
-         //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //    //if (!estatus)
+      //    //{
 
-         //   return estatus;
+      //    //   INFORMATION("ERROR: context_image required but missing.");
 
-         //}
+      //    //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
-      }
+      //    //   return estatus;
+
+      //    //}
+
+      // }
 
 
       INFORMATION("start");
@@ -4185,12 +4187,12 @@ retry_license:
 
         }
 
-        if (pinteraction == nullptr)
-        {
+        //if (pinteraction == nullptr)
+        //{
 
-           pinteraction = puserinteractionimpl;
+        //   pinteraction = puserinteractionimpl;
 
-        }
+        //}
 
       }
 

@@ -423,6 +423,7 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
+
    class CLASS_DECL_AURA window_pos : public ::user::message
    {
    public:

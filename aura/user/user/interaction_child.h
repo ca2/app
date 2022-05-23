@@ -142,7 +142,7 @@ namespace user
       //virtual bool screen_to_client(POINT_I64 * ppoint) override;
 
 
-      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
 
 
    };

@@ -3121,6 +3121,9 @@ void application::process_init()
 
    //return true;
 
+   initialize_context();
+
+
 }
 
 
@@ -3313,8 +3316,10 @@ __pointer(::interprocess_intercommunication) application::create_interprocess_in
 void application::init1()
 {
 
+
+   initialize_context_1();
+
    //auto estatus = 
-   initialize_context();
 
    //if (!estatus)
    //{

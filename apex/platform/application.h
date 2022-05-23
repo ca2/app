@@ -211,7 +211,7 @@ public:
 
       virtual void init_application();
 
-      virtual void init1();
+      void init1() override;
       virtual void init2();
       virtual void init3();
 

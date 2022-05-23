@@ -4478,6 +4478,7 @@ namespace user
 
    class primitive;
    class element;
+   class primitive_impl;
 
 
    DECLARE_ENUMERATION(e_flag, enum_flag);

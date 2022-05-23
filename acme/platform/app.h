@@ -46,7 +46,12 @@ public:
 
 #endif
 
+   
    int main_loop();
+
+
+
+   virtual void init1();
 
 
 };

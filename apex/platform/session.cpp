@@ -513,6 +513,8 @@ namespace apex
 
       //return ::success;
 
+      initialize_context();
+
    }
 
 
@@ -1323,7 +1325,9 @@ ret:
    {
 
       //auto estatus = 
-      initialize_context();
+      
+
+      initialize_context_1();
 
       //if (!estatus)
       //{

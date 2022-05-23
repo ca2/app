@@ -238,6 +238,14 @@ namespace apex
    }
 
 
+   void context::initialize_context_1()
+   {
+
+      ::acme::context::initialize_context_1();
+
+   }
+
+
    void context::clear_cache()
    {
 

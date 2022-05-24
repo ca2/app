@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-#if defined(ANDROID) || defined(WINDOWS)
+#if defined(ANDROID) || defined(WINDOWS) || defined(__APPLE__)
 
 
 CLASS_DECL_ACME void to_string(string & str, const unsigned long & ul)

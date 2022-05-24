@@ -299,7 +299,6 @@
 		9A750F6D282B90B600C4861B /* notify_icon_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92302B27EACA3B00B5A78D /* notify_icon_listener.h */; };
 		9A750F6E282B90B600C4861B /* shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92300427EACA3A00B5A78D /* shell.h */; };
 		9A750F6F282B90B600C4861B /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92302D27EACA3B00B5A78D /* _user.h */; };
-		9A750F70282B90B600C4861B /* notify_icon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A92306027EACA3B00B5A78D /* notify_icon.mm */; };
 		9A750F71282B90B600C4861B /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92304227EACA3B00B5A78D /* user.h */; };
 		9A750F72282B90B600C4861B /* keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92303D27EACA3B00B5A78D /* keyboard.h */; };
 		9A750F73282B90B600C4861B /* graphics_call.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92304827EACA3B00B5A78D /* graphics_call.h */; };
@@ -591,8 +590,6 @@
 		9A94DEEC282C5A3900F5C1CA /* mm_user.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A226F0227CEE1FE0042BAC2 /* mm_user.mm */; };
 		9A94DEED282C5AA000F5C1CA /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A226DDB27CEE1FD0042BAC2 /* _.cpp */; };
 		9A956D062824082A00002F51 /* font_utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D052824082A00002F51 /* font_utf8.cpp */; };
-		9AA14D46282A07BA00B1621E /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14D40282A073900B1621E /* message_box.cpp */; };
-		9AA14D47282A07C000B1621E /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA14D40282A073900B1621E /* message_box.cpp */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
@@ -1115,7 +1112,6 @@
 		9A92305D27EACA3B00B5A78D /* interaction_child.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = interaction_child.h; sourceTree = "<group>"; };
 		9A92305E27EACA3B00B5A78D /* interaction_layout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_layout.cpp; sourceTree = "<group>"; };
 		9A92305F27EACA3B00B5A78D /* message_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_window.h; sourceTree = "<group>"; };
-		9A92306027EACA3B00B5A78D /* notify_icon.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = notify_icon.mm; sourceTree = "<group>"; };
 		9A92306127EACA3B00B5A78D /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A92306227EACA3B00B5A78D /* primitive_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitive_impl.h; sourceTree = "<group>"; };
 		9A92306327EACA3B00B5A78D /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -1190,8 +1186,6 @@
 		9A92358523286D8D00804A1C /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9A956D052824082A00002F51 /* font_utf8.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_utf8.cpp; sourceTree = "<group>"; };
 		9A98A6151771D67E000AE16E /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AA14D40282A073900B1621E /* message_box.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message_box.cpp; sourceTree = "<group>"; };
-		9AA14D41282A073900B1621E /* message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_box.h; sourceTree = "<group>"; };
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
@@ -1930,7 +1924,6 @@
 				9A92302427EACA3B00B5A78D /* window_state.h */,
 				9A92305627EACA3B00B5A78D /* window_util.h */,
 				9A92304A27EACA3B00B5A78D /* windowing.h */,
-				9A92306027EACA3B00B5A78D /* notify_icon.mm */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -2040,15 +2033,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9AA14D3F282A073900B1621E /* micro */ = {
-			isa = PBXGroup;
-			children = (
-				9AA14D40282A073900B1621E /* message_box.cpp */,
-				9AA14D41282A073900B1621E /* message_box.h */,
-			);
-			path = micro;
-			sourceTree = "<group>";
-		};
 		9AC2CEA22653455600CC8096 /* windowing */ = {
 			isa = PBXGroup;
 			children = (
@@ -2094,7 +2078,6 @@
 		9AE7233517E83B69003E47F9 /* user */ = {
 			isa = PBXGroup;
 			children = (
-				9AA14D3F282A073900B1621E /* micro */,
 				9A92306827EACA3B00B5A78D /* appearance */,
 				9A92306427EACA3B00B5A78D /* menu */,
 				9A922FF327EACA3A00B5A78D /* user */,
@@ -2704,7 +2687,6 @@
 				9A750FE3282B92A900C4861B /* control_box_icon.cpp in Sources */,
 				9A750FA8282B911800C4861B /* form.cpp in Sources */,
 				9A94DE63282C0ADA00F5C1CA /* cursor_manager.cpp in Sources */,
-				9AA14D47282A07C000B1621E /* message_box.cpp in Sources */,
 				9A750FD3282B929E00C4861B /* meta.cpp in Sources */,
 				9A750FD4282B929E00C4861B /* context_image.cpp in Sources */,
 				9A750FAE282B913600C4861B /* interaction_scaler.cpp in Sources */,
@@ -2753,7 +2735,6 @@
 				9A92315E27EAE40F00B5A78D /* interaction_layout.cpp in Sources */,
 				9A92315F27EAE40F00B5A78D /* interaction_prodevian.cpp in Sources */,
 				9A92316027EAE40F00B5A78D /* interaction_scaler.cpp in Sources */,
-				9A750F70282B90B600C4861B /* notify_icon.mm in Sources */,
 				9A92316127EAE40F00B5A78D /* interaction_thread.cpp in Sources */,
 				9A92316227EAE40F00B5A78D /* interaction.cpp in Sources */,
 				9A92316327EAE40F00B5A78D /* key.cpp in Sources */,
@@ -2801,7 +2782,6 @@
 				9AC2CED52653455600CC8096 /* monitor.cpp in Sources */,
 				9A3764DB2409BF0C002D15D3 /* printer.cpp in Sources */,
 				9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */,
-				9AA14D46282A07BA00B1621E /* message_box.cpp in Sources */,
 				9A22714627CEE2020042BAC2 /* keyboard.cpp in Sources */,
 				9A22711027CEE2020042BAC2 /* thread.cpp in Sources */,
 				9AC2CCC326533BB700CC8096 /* context.cpp in Sources */,
@@ -3210,8 +3190,8 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = "";
 				WorkspaceDir = "$(SRCROOT)/../../..";
@@ -3299,8 +3279,8 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = "";

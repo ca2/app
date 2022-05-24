@@ -11,16 +11,16 @@
 #undef user
 
 
-int get_current_process_affinity_order()
-{
-
-   int numCPU = (int) (sysconf(_SC_NPROCESSORS_ONLN));
-
-   return numCPU;
-}
-
-
-
+//int get_current_process_affinity_order()
+//{
+//
+//   int numCPU = (int) (sysconf(_SC_NPROCESSORS_ONLN));
+//
+//   return numCPU;
+//}
+//
+//
+//
 
 
 

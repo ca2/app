@@ -291,7 +291,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #elif defined(__APPLE__)
 
-   string strAppId(strApp);|
+   string strAppId(strApp);
 
    strAppId.find_replace("\\","-");
 

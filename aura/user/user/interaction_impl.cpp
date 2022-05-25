@@ -665,7 +665,7 @@ namespace user
          //      auto puser = psession->user();
 
          //      auto pwindowing = puser->windowing();
-
+         
          m_pwindow = pwindowing->new_window(this);
 
          if (m_pwindow)
@@ -5465,6 +5465,13 @@ namespace user
 
    oswindow interaction_impl::get_oswindow() const
    {
+       
+      if(!m_pwindow)
+      {
+         
+         return nullptr;
+         
+      }
 
       return (oswindow) m_pwindow->get_oswindow();
 

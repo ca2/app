@@ -423,6 +423,12 @@
 		9A750FF1282B932100C4861B /* aura_mq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ACC5E0D251A9743008528B1 /* aura_mq.cpp */; };
 		9A750FF2282B932100C4861B /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2480B82452C48200F23D28 /* application.cpp */; };
 		9A750FF3282B933400C4861B /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD19A0F2512B8CB00B4C44A /* timer.cpp */; };
+		9A75C6A6283D6E6400EC37F2 /* devices.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75C6A2283D6E6400EC37F2 /* devices.h */; };
+		9A75C6A7283D6E6400EC37F2 /* device_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A75C6A3283D6E6400EC37F2 /* device_listener.h */; };
+		9A75C6A8283D6E6400EC37F2 /* devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A4283D6E6400EC37F2 /* devices.cpp */; };
+		9A75C6A9283D6E6400EC37F2 /* devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A4283D6E6400EC37F2 /* devices.cpp */; };
+		9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
+		9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A8B635F24CBCD3C00A93185 /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B635424CBCD3C00A93185 /* program.cpp */; };
 		9A8B636024CBCD3C00A93185 /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B635524CBCD3C00A93185 /* shader.h */; };
 		9A8B636124CBCD3C00A93185 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B635624CBCD3C00A93185 /* context.cpp */; };
@@ -977,6 +983,10 @@
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
 		9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitmap_source_buffer.cpp; sourceTree = "<group>"; };
 		9A68557A2432F2BF0002FE94 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		9A75C6A2283D6E6400EC37F2 /* devices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = devices.h; sourceTree = "<group>"; };
+		9A75C6A3283D6E6400EC37F2 /* device_listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device_listener.h; sourceTree = "<group>"; };
+		9A75C6A4283D6E6400EC37F2 /* devices.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = devices.cpp; sourceTree = "<group>"; };
+		9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_listener.cpp; sourceTree = "<group>"; };
 		9A8B635424CBCD3C00A93185 /* program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = program.cpp; sourceTree = "<group>"; };
 		9A8B635524CBCD3C00A93185 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
 		9A8B635624CBCD3C00A93185 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
@@ -1739,6 +1749,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A75C6A1283D6E6400EC37F2 /* hardware */ = {
+			isa = PBXGroup;
+			children = (
+				9A75C6A2283D6E6400EC37F2 /* devices.h */,
+				9A75C6A3283D6E6400EC37F2 /* device_listener.h */,
+				9A75C6A4283D6E6400EC37F2 /* devices.cpp */,
+				9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */,
+			);
+			path = hardware;
+			sourceTree = "<group>";
+		};
 		9A8B635224CBCD3C00A93185 /* gpu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2095,6 +2116,7 @@
 				9A2BE846251EC3BC0075218C /* game */,
 				9A8B635224CBCD3C00A93185 /* gpu */,
 				9A2A52F81F1FEDFD001AB0F8 /* graphics */,
+				9A75C6A1283D6E6400EC37F2 /* hardware */,
 				9A2488C02452C4F100F23D28 /* include */,
 				9A37650C2409C094002D15D3 /* inline */,
 				9A2489B32453417E00F23D28 /* message */,
@@ -2297,6 +2319,7 @@
 				9AC2CEE02653455600CC8096 /* monitor.h in Headers */,
 				9A22714227CEE2020042BAC2 /* _mm2.h in Headers */,
 				9A2270BF27CEE2010042BAC2 /* _apple.h in Headers */,
+				9A75C6A6283D6E6400EC37F2 /* devices.h in Headers */,
 				9A2BE853251EC3BC0075218C /* _.h in Headers */,
 				9A750F78282B90B700C4861B /* interaction_prodevian.h in Headers */,
 				9A92313427EACF2100B5A78D /* meta.h in Headers */,
@@ -2374,6 +2397,7 @@
 				9A750F6A282B90B600C4861B /* interaction.h in Headers */,
 				9AC2CEF02653455600CC8096 /* menu_item.h in Headers */,
 				9A2270BC27CEE2010042BAC2 /* time.h in Headers */,
+				9A75C6A7283D6E6400EC37F2 /* device_listener.h in Headers */,
 				9A750F9F282B90B700C4861B /* scroll.h in Headers */,
 				9A22713E27CEE2020042BAC2 /* graphics_mm.h in Headers */,
 				9A22710E27CEE2020042BAC2 /* _impl.h in Headers */,
@@ -2611,6 +2635,7 @@
 				9A750FD6282B929E00C4861B /* gif_detect_8bit_borders.cpp in Sources */,
 				9A750FDD282B929E00C4861B /* drawer.cpp in Sources */,
 				9A750FAA282B912300C4861B /* interaction_child.cpp in Sources */,
+				9A75C6A9283D6E6400EC37F2 /* devices.cpp in Sources */,
 				9A750FCB282B929E00C4861B /* fastblur.cpp in Sources */,
 				9A750FE0282B929E00C4861B /* icon.cpp in Sources */,
 				9A750F61282B909E00C4861B /* shell.cpp in Sources */,
@@ -2679,6 +2704,7 @@
 				9A94DE65282C0ADA00F5C1CA /* debug.cpp in Sources */,
 				9A750F57282B906B00C4861B /* window_map.cpp in Sources */,
 				9A750FBD282B916D00C4861B /* progress.cpp in Sources */,
+				9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */,
 				9A750FD1282B929E00C4861B /* drawing.cpp in Sources */,
 				9A750FC1282B927200C4861B /* lock.cpp in Sources */,
 				9A750FA5282B910A00C4861B /* control_descriptor.cpp in Sources */,
@@ -2887,6 +2913,7 @@
 				9A9230B127EACE1000B5A78D /* font_enumeration_item.cpp in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
 				9A92310D27EACF2100B5A78D /* context_image.cpp in Sources */,
+				9A75C6A8283D6E6400EC37F2 /* devices.cpp in Sources */,
 				9A22712927CEE2020042BAC2 /* trace.cpp in Sources */,
 				9A2BE852251EC3BC0075218C /* game.cpp in Sources */,
 				9A4AE6FF27F9549A00A4B000 /* control_box_button.cpp in Sources */,
@@ -2908,6 +2935,7 @@
 				9A92312527EACF2100B5A78D /* array.cpp in Sources */,
 				9A2270D427CEE2010042BAC2 /* exe_path.cpp in Sources */,
 				9A3764C32409BF0C002D15D3 /* glyph.cpp in Sources */,
+				9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */,
 				9A92311127EACF2100B5A78D /* frame.cpp in Sources */,
 				9A8FCD8A2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A92312327EACF2100B5A78D /* drawing.cpp in Sources */,

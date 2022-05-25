@@ -87,8 +87,9 @@ namespace user
 
       void _001OnTreeDataChange();
       __pointer(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);
+      virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
       virtual i32 _001CalcCurrentImpactWidth();
-      virtual i32 _001CalcTotalImpactWidth();
+      virtual i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
       virtual i32 _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item * pitem);
       count _001GetProperItemCount();

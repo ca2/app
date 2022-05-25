@@ -767,6 +767,19 @@ namespace user
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
 
+
+      inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         if (!pgraphics) pgraphics = create_memory_graphics();
+
+      }
+
+      virtual ::draw2d::graphics_pointer create_memory_graphics();
+
+
+      virtual double _001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics);
+
       //virtual void set_cursor(enum_cursor ecursor) override;
 
 

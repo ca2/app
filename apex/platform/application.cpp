@@ -1819,9 +1819,11 @@ void application::init_instance()
    if (m_pinterprocessintercommunication)
    {
 
-      m_pinterprocessintercommunication->on_new_instance(
-         m_pcontext->m_papexcontext->file().module(),
-         m_pcontext->m_papexcontext->os_context()->get_pid());
+      auto pathModule = m_pcontext->m_papexcontext->file().module();
+
+      auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
+
+      m_pinterprocessintercommunication->on_new_instance(pathModule, processId);
 
    }
 

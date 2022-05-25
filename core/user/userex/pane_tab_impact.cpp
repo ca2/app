@@ -277,7 +277,11 @@ namespace userex
 
             auto pcontext = m_pcontext->m_papexcontext;
 
-            pcontext->file().put_memory(pcontext->dir().home() / "debug_ca2/menu_view" / get_app()->m_strAppId + ".html", strOptionsImpact);
+            ::file::path path;
+            
+            path = pcontext->dir().home() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+
+            pcontext->file().put_memory(path, strOptionsImpact);
 
 #endif
 

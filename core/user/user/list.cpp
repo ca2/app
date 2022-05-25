@@ -12,8 +12,10 @@
 
 CLASS_DECL_CORE index_array array_translate_a_array(index_biunique & ia, index_array iaNew, index_array iaOld);
 
+
 namespace user
 {
+
 
    auto predicate_list_compare_key = [](auto& p1, auto& p2)
    {
@@ -917,7 +919,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      m_dItemHeight = m_sizeMaximumItem.cy + 1;
+      //m_dItemHeight = m_sizeMaximumItem.cy + 1;
+
+      _001CalculateItemHeight(pgraphics);
 
       auto rect1 = get_client_rect();
 
@@ -3125,10 +3129,13 @@ namespace user
                         rectangleIcon.Align(e_align_left_center, rectangleAlign);
                         pdrawitem->m_rectangleImage = rectangleIcon;
 
-                        if (ii.m_rectangle.size() > m_sizeMaximumItem)
+                        if (ii.m_rectangle.size().cx > m_sizeMaximumImage.cx 
+                           || ii.m_rectangle.size().cy > m_sizeMaximumImage.cy)
                         {
 
-                           m_sizeMaximumItem = ii.m_rectangle.size();
+                           m_sizeMaximumImage.cx = maximum(m_sizeMaximumImage.cx, ii.m_rectangle.size().cx);
+
+                           m_sizeMaximumImage.cy = maximum(m_sizeMaximumImage.cy, ii.m_rectangle.size().cy);
 
                            set_need_layout();
 
@@ -6593,7 +6600,6 @@ namespace user
       }
 
       m_nDisplayCount = _001CalcDisplayItemCount();
-
 
       if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y != 0 && m_nDisplayCount > 0)
       {

@@ -63,7 +63,9 @@ namespace filemanager
       if (bPathImpact)
       {
 
-         set_position(0, 24);
+         auto preferredDensity = preferred_density();
+
+         set_position(0, 24.0 * preferredDensity);
 
          m_splitpanecompositea[0]->m_bFixedSize = true;
 

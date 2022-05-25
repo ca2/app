@@ -915,6 +915,9 @@
     <ClInclude Include="constant\hardware.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\graphics\target.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\_impl.h">
@@ -1440,6 +1443,9 @@
     </ClCompile>
     <ClCompile Include="hardware\devices.cpp">
       <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\target.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

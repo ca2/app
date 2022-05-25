@@ -125,7 +125,9 @@ namespace html
 
          }
 
-         m_box.set_size(iSize * 10.f, 23.f);
+         auto preferredDensity = m_pedit->preferred_density();
+
+         m_box.set_size(iSize * 10.f * preferredDensity, 23.f * preferredDensity);
 
          return true;
 

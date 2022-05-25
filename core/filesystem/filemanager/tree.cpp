@@ -210,8 +210,6 @@ namespace filemanager
    }
 
 
-
-
    void tree::browse_sync(const ::action_context & context)
    {
 

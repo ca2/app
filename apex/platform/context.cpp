@@ -363,6 +363,12 @@ namespace apex
          return "Bookmark";
 
       }
+      else if (dir.bookmark().has_char() && path.compare("/") == 0)
+      {
+
+         return "File System";
+
+      }
       else
       {
 

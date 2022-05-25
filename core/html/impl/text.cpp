@@ -178,6 +178,8 @@ namespace html
 
          }
 
+         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
+
          ::size_f32 size = pgraphics->get_text_extent(strMax);
 
          m_cxMax = (float) size.cx;
@@ -355,6 +357,8 @@ namespace html
 
          if (pgraphics == nullptr)
             return false;
+
+         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
 
          pgraphics->set(pdata->get_font(m_pelemental)->m_pfont);
 

@@ -40,7 +40,7 @@ namespace user
       m_pitemFirstVisible        = nullptr;
       m_pitemHover                = nullptr;
       m_iItemCount               = 0;
-      m_dItemHeight              = 18.0;
+      m_dItemHeight              = 0.;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
       m_uchHoverAlphaInit        = 0;
@@ -1228,6 +1228,10 @@ namespace user
 
       }
 
+//      auto preferredDensity = preferred_density();
+
+//      m_dItemHeight = 18.0 * preferredDensity;
+
       //if (m_puserstyle == nullptr)
       //{
 
@@ -1242,9 +1246,11 @@ namespace user
 
       //}
 
-      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
+      _001CalculateItemHeight(pgraphics);
 
-      m_iCurrentImpactWidth = _001CalcTotalImpactWidth();
+      m_iCurrentImpactWidth = _001CalcTotalImpactWidth(pgraphics);
+
+      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
       size_f64 sizeTotal;
 
@@ -1495,7 +1501,19 @@ namespace user
    }
 
 
-   i32 tree::_001CalcTotalImpactWidth()
+   void tree::_001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto dFontHeight = _001GetDefaultFontHeight(pgraphics);
+
+      auto pstyle = get_style(pgraphics);
+
+      m_dItemHeight = dFontHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, ::user::e_state_none, 1.0);
+
+   }
+
+
+   i32 tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics)
    {
 
       index nOffset;
@@ -1514,6 +1532,8 @@ namespace user
 
       }
 
+      defer_graphics(pgraphics);
+
       auto pointOffset = get_viewport_offset();
 
       nOffset = (::index)(pointOffset.y / _001GetItemHeight());
@@ -1530,37 +1550,19 @@ namespace user
 
       auto iIndent = _001GetIndentation();
 
-      auto psystem = m_psystem->m_paurasystem;
+      //auto psystem = m_psystem->m_paurasystem;
 
-      auto pdraw2d = psystem->draw2d();
+      //auto pdraw2d = psystem->draw2d();
 
-      auto pgraphics = pdraw2d->create_memory_graphics(this);
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      pgraphics->CreateCompatibleDC(nullptr);
+      //pgraphics->CreateCompatibleDC(nullptr);
 
       //auto pfont = __create < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);
 
-      pgraphics->set_font(this, ::e_element_none);
-
-      ::size_i32 size;
-
-      size = pgraphics->get_text_extent(unitext("Ág"));
-
-      int iItemHeight = m_sizeItemMaximum.cy + 1;
-
-      if (size.cy > iItemHeight)
-      {
-
-         iItemHeight = maximum(size.cy, iItemHeight);
-
-      }
-
-      auto pstyle = get_style(pgraphics);
-
-      m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, ::user::e_state_none, 1.0));
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 
@@ -1620,6 +1622,7 @@ namespace user
       return iMaxWidth;
 
    }
+
 
    int tree::_001CalcTotalImpactHeight()
    {

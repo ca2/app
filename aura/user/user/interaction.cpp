@@ -9127,16 +9127,7 @@ namespace user
 
       }
 
-      if (!pgraphics)
-      {
-
-         auto psystem = m_psystem->m_paurasystem;
-
-         auto pdraw2d = psystem->draw2d();
-
-         pgraphics = pdraw2d->create_memory_graphics(this);
-
-      }
+      defer_graphics(pgraphics);
 
       m_pprimitiveimpl->on_layout(pgraphics);
 
@@ -11949,6 +11940,36 @@ namespace user
    {
 
       return m_pcursor;
+
+   }
+
+
+   ::draw2d::graphics_pointer interaction::create_memory_graphics()
+   {
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      return pgraphics;
+
+   }
+
+
+   double interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      defer_graphics(pgraphics);
+
+      pgraphics->set_font(this, ::e_element_none);
+
+      ::size_f64 size;
+
+      pgraphics->get_text_extent(size, unitext("Ág"));
+
+      return size.cy;
 
    }
 
@@ -17487,12 +17508,7 @@ namespace user
 
             auto & pgraphics = pitem->m_pgraphics;
 
-            if (!pgraphics)
-            {
-
-               pgraphics = m_psystem->m_paurasystem->draw2d()->create_memory_graphics(this);
-
-            }
+            defer_graphics(pgraphics);
 
             if (ppath->contains(pgraphics, pointScroll))
             {

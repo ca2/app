@@ -1057,7 +1057,6 @@ namespace filemanager
 
       }
 
-
       m_pointScroll = {0,0};
 
       string_array straStrictOrder;

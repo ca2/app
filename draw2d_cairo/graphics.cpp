@@ -4367,7 +4367,7 @@ namespace draw2d_cairo
 
             size.cx = textextents.x_advance;
 
-            size.cy = fontextents.height;
+            size.cy = textextents.height;
 
          }
 

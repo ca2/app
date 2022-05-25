@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{74CD7E4F-A9F4-4C9C-B7CE-0D8765201F66}</ProjectGuid>
+    <ProjectGuid>{B084109E-8BD2-4E91-BD66-7D008B53F41C}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>folder_zip</ProjectName>
+    <ProjectName>regular_expression_pcre2</ProjectName>
     <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
@@ -103,7 +103,7 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_FOLDER_ZIP_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REGULAR_EXPRESSION_PCRE2_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -126,7 +126,7 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <PreprocessorDefinitions>_FOLDER_ZIP_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REGULAR_EXPRESSION_PCRE2_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -152,7 +152,7 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <PreprocessorDefinitions>_FOLDER_ZIP_LIBRARY;CUBE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REGULAR_EXPRESSION_PCRE2_LIBRARY;CUBE;</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <Optimization>Full</Optimization>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -179,7 +179,7 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <PreprocessorDefinitions>_FOLDER_ZIP_LIBRARY;CUBE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_REGULAR_EXPRESSION_PCRE2_LIBRARY;CUBE;</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -195,26 +195,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="file.cpp" />
-    <ClCompile Include="file_function_definitions.cpp" />
-    <ClCompile Include="folder.cpp" />
+    <ClCompile Include="context.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="ioapi.cpp" />
-    <ClCompile Include="unzip.cpp" />
-    <ClCompile Include="zip.cpp" />
+    <ClCompile Include="regular_expression.cpp" />
+    <ClCompile Include="result.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aaa_initializer.h" />
-    <ClInclude Include="aaa__openssl.h" />
-    <ClInclude Include="crypto.h" />
-    <ClInclude Include="folder.h" />
-    <ClInclude Include="hasher.h" />
-    <ClInclude Include="hasher_algorithm.h" />
-    <ClInclude Include="initializer.h" />
-    <ClInclude Include="rsa.h" />
-    <ClInclude Include="_crypto_openssl.h" />
+    <ClInclude Include="context.h" />
+    <ClInclude Include="factory_exchange.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="regular_expression.h" />
+    <ClInclude Include="result.h" />
+    <ClInclude Include="util_impl.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_regular_expression_pcre2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

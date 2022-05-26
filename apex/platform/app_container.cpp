@@ -302,7 +302,8 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          string strStartupApplicationAppId = psystem->m_pappStartup->m_strAppId;
 
-         if (strStartupApplicationAppId != strAppId)
+         if (strStartupApplicationAppId != strAppId ||
+            !strAppId.begins(strStartupApplicationAppId))
          {
 
             INFORMATION("Wrong papp Data Type");

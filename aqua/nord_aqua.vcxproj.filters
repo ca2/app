@@ -3090,6 +3090,9 @@
     <ClInclude Include="user\controller.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="include\_audio.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

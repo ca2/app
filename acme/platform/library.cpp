@@ -22,6 +22,8 @@ namespace acme
    library::library()
    {
 
+      m_pfnFactory = nullptr;
+
    }
 
 
@@ -1117,24 +1119,31 @@ namespace acme
 
       }
 
-      string strFactoryFunction;
-
-      strFactoryFunction = strName + "_factory";
-
-      auto pfnFactory = get < PFN_factory >(strFactoryFunction);
-
-      if (::is_null(pfnFactory))
+      if (!m_pfnFactory)
       {
 
-         string strDetails;
+         string strFactoryFunction;
 
-         strDetails = "Function \"" + strFactoryFunction + "\" wasn't found";
-      
-         throw ::exception(error_function_entry_not_found, "Function \""+strFactoryFunction + "\" not found", strDetails);
-      
+         strFactoryFunction = strName + "_factory";
+
+         auto pfnFactory = get < PFN_factory >(strFactoryFunction);
+
+         if (::is_null(pfnFactory))
+         {
+
+            string strDetails;
+
+            strDetails = "Function \"" + strFactoryFunction + "\" wasn't found";
+
+            throw ::exception(error_function_entry_not_found, "Function \"" + strFactoryFunction + "\" not found", strDetails);
+
+         }
+
+         m_pfnFactory = pfnFactory;
+
       }
 
-      pfnFactory(pfactory);
+      m_pfnFactory(pfactory);
 
       return pfactory;
 

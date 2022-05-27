@@ -764,6 +764,7 @@
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
     <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_audio.h" />
     <ClInclude Include="include\_c.h" />
     <ClInclude Include="include\_c_bridge.h" />
     <ClInclude Include="include\_include.h" />

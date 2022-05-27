@@ -1065,7 +1065,25 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
    if (!plibrary)
    {
 
-      throw ::exception(error_resource);
+#ifdef CUBE
+
+      auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
+
+      if (!pfnFactory)
+      {
+
+         throw ::exception(error_resource);
+
+
+      }
+
+      plibrary = m_psystem->__create_new < ::acme::library >();
+
+      plibrary->m_strName = strLibrary;
+
+      plibrary->m_pfnFactory = pfnFactory;
+
+#endif
 
    }
 

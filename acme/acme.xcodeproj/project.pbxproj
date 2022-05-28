@@ -263,7 +263,6 @@
 		9A16260626EFCD6A003D9CB9 /* install_mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16260326EFCD69003D9CB9 /* install_mutex.h */; };
 		9A16260726EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
 		9A16260826EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
-		9A18D29D283C72F40036A360 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A18D28E283C6E3E0036A360 /* libidn.dylib */; };
 		9A220F09251A1993002B42B7 /* printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A220EA7251A1993002B42B7 /* printf.cpp */; };
 		9A220F66251A1993002B42B7 /* printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F06251A1993002B42B7 /* printf.h */; };
 		9A22670A27CDDD9C0042BAC2 /* popup_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670727CDDD9C0042BAC2 /* popup_button.cpp */; };
@@ -1260,6 +1259,7 @@
 		9A7F3EDF274D543A00D914CC /* implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDB274D543900D914CC /* implement.h */; };
 		9A7F3EE0274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
 		9A7F3EE1274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
+		9A84D3F2284229CD00890F9D /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A84D3ED284229AB00890F9D /* libidn.dylib */; };
 		9A892DD626CD9061008D6412 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DBD26CD9061008D6412 /* filesystem.h */; };
 		9A892DD726CD9061008D6412 /* filesystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DBD26CD9061008D6412 /* filesystem.h */; };
 		9A892DD826CD9061008D6412 /* activate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892DBE26CD9061008D6412 /* activate.h */; };
@@ -2547,23 +2547,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A18D28D283C6E3E0036A360 /* PBXContainerItemProxy */ = {
+		9A84D3EC284229AB00890F9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18D288283C6E3E0036A360 /* idn.xcodeproj */;
+			containerPortal = 9A84D3E7284229AB00890F9D /* idn.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AA5E6D616F7C61B005C45CE;
 			remoteInfo = idn;
 		};
-		9A18D28F283C6E3E0036A360 /* PBXContainerItemProxy */ = {
+		9A84D3EE284229AB00890F9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18D288283C6E3E0036A360 /* idn.xcodeproj */;
+			containerPortal = 9A84D3E7284229AB00890F9D /* idn.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 077A00AB1B4D4F9E001C85FF;
 			remoteInfo = ios_idn;
 		};
-		9A18D291283C6E550036A360 /* PBXContainerItemProxy */ = {
+		9A84D3F0284229C100890F9D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A18D288283C6E3E0036A360 /* idn.xcodeproj */;
+			containerPortal = 9A84D3E7284229AB00890F9D /* idn.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
 			remoteInfo = idn;
@@ -2715,7 +2715,6 @@
 		9A1625F726EFCCC0003D9CB9 /* streamable_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamable_composite.h; sourceTree = "<group>"; };
 		9A16260326EFCD69003D9CB9 /* install_mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_mutex.h; sourceTree = "<group>"; };
 		9A16260426EFCD69003D9CB9 /* install_mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_mutex.cpp; sourceTree = "<group>"; };
-		9A18D288283C6E3E0036A360 /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../../../basis/source/port/idn/idn.xcodeproj; sourceTree = "<group>"; };
 		9A21AFD127611EA0001E14CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A21AFD527611F59001E14CC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A220EA7251A1993002B42B7 /* printf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printf.cpp; sourceTree = "<group>"; };
@@ -3563,6 +3562,7 @@
 		9A787DBA264CA807003DF8A0 /* bidirectional_pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bidirectional_pipe.h; sourceTree = "<group>"; };
 		9A7F3EDB274D543900D914CC /* implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement.h; sourceTree = "<group>"; };
 		9A7F3EDD274D543900D914CC /* implement_console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement_console.h; sourceTree = "<group>"; };
+		9A84D3E7284229AB00890F9D /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../port/idn/idn.xcodeproj; sourceTree = "<group>"; };
 		9A892DBD26CD9061008D6412 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
 		9A892DBE26CD9061008D6412 /* activate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = activate.h; sourceTree = "<group>"; };
 		9A892DBF26CD9061008D6412 /* status_range_authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = status_range_authentication.h; sourceTree = "<group>"; };
@@ -3968,7 +3968,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A18D29D283C72F40036A360 /* libidn.dylib in Frameworks */,
+				9A84D3F2284229CD00890F9D /* libidn.dylib in Frameworks */,
 				9A0B8D8F27AA2AD700760D34 /* AppKit.framework in Frameworks */,
 				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
 				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
@@ -4084,15 +4084,6 @@
 			path = data;
 			sourceTree = "<group>";
 		};
-		9A18D289283C6E3E0036A360 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A18D28E283C6E3E0036A360 /* libidn.dylib */,
-				9A18D290283C6E3E0036A360 /* libios_idn.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A5F8DC027193D4D002CB2B8 /* duration */ = {
 			isa = PBXGroup;
 			children = (
@@ -4164,7 +4155,7 @@
 		9A68A40B25114352008DABD2 = {
 			isa = PBXGroup;
 			children = (
-				9A18D288283C6E3E0036A360 /* idn.xcodeproj */,
+				9A84D3E7284229AB00890F9D /* idn.xcodeproj */,
 				9A68A4522511442E008DABD2 /* acme */,
 				9AEA11DE275FE2FD006437A3 /* acme_framework */,
 				9AEA11EA275FE2FE006437A3 /* acme_frameworkTests */,
@@ -5386,6 +5377,15 @@
 				9A017F5727AE49D900DB039E /* result.h */,
 			);
 			path = regular_expression;
+			sourceTree = "<group>";
+		};
+		9A84D3E8284229AB00890F9D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A84D3ED284229AB00890F9D /* libidn.dylib */,
+				9A84D3EF284229AB00890F9D /* libios_idn.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A892DBC26CD9061008D6412 /* constant */ = {
@@ -7544,7 +7544,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A18D292283C6E550036A360 /* PBXTargetDependency */,
+				9A84D3F1284229C100890F9D /* PBXTargetDependency */,
 			);
 			name = acme;
 			productName = acme;
@@ -7595,8 +7595,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A18D289283C6E3E0036A360 /* Products */;
-					ProjectRef = 9A18D288283C6E3E0036A360 /* idn.xcodeproj */;
+					ProductGroup = 9A84D3E8284229AB00890F9D /* Products */;
+					ProjectRef = 9A84D3E7284229AB00890F9D /* idn.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -7608,18 +7608,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A18D28E283C6E3E0036A360 /* libidn.dylib */ = {
+		9A84D3ED284229AB00890F9D /* libidn.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libidn.dylib;
-			remoteRef = 9A18D28D283C6E3E0036A360 /* PBXContainerItemProxy */;
+			remoteRef = 9A84D3EC284229AB00890F9D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A18D290283C6E3E0036A360 /* libios_idn.a */ = {
+		9A84D3EF284229AB00890F9D /* libios_idn.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_idn.a;
-			remoteRef = 9A18D28F283C6E3E0036A360 /* PBXContainerItemProxy */;
+			remoteRef = 9A84D3EE284229AB00890F9D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -8524,10 +8524,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A18D292283C6E550036A360 /* PBXTargetDependency */ = {
+		9A84D3F1284229C100890F9D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = idn;
-			targetProxy = 9A18D291283C6E550036A360 /* PBXContainerItemProxy */;
+			targetProxy = 9A84D3F0284229C100890F9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

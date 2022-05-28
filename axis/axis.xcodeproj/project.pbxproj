@@ -194,7 +194,6 @@
 		9AE6457C252A5BF100BED5B8 /* simple_ui_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64020252A5BEB00BED5B8 /* simple_ui_draw.h */; };
 		9AE6457D252A5BF100BED5B8 /* list_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64021252A5BEB00BED5B8 /* list_box.h */; };
 		9AE6457E252A5BF100BED5B8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64022252A5BEB00BED5B8 /* _.h */; };
-		9AE6459C252A5BF100BED5B8 /* __matter_ca2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64047252A5BEB00BED5B8 /* __matter_ca2.cpp */; };
 		9AE6459D252A5BF100BED5B8 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64049252A5BEB00BED5B8 /* console.h */; };
 		9AE6459E252A5BF100BED5B8 /* _draw2d_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6404A252A5BEB00BED5B8 /* _draw2d_impl.h */; };
 		9AE6459F252A5BF100BED5B8 /* _application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6404B252A5BEB00BED5B8 /* _application.h */; };
@@ -496,7 +495,6 @@
 		9AE64020252A5BEB00BED5B8 /* simple_ui_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_draw.h; sourceTree = "<group>"; };
 		9AE64021252A5BEB00BED5B8 /* list_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_box.h; sourceTree = "<group>"; };
 		9AE64022252A5BEB00BED5B8 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AE64047252A5BEB00BED5B8 /* __matter_ca2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __matter_ca2.cpp; sourceTree = "<group>"; };
 		9AE64049252A5BEB00BED5B8 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9AE6404A252A5BEB00BED5B8 /* _draw2d_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _draw2d_impl.h; sourceTree = "<group>"; };
 		9AE6404B252A5BEB00BED5B8 /* _application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _application.h; sourceTree = "<group>"; };
@@ -794,7 +792,6 @@
 				9AE63F7A252A5BEA00BED5B8 /* platform */,
 				9AE6400C252A5BEB00BED5B8 /* user */,
 				9AE64088252A5BEB00BED5B8 /* version */,
-				9AE64047252A5BEB00BED5B8 /* __matter_ca2.cpp */,
 				9AE64077252A5BEB00BED5B8 /* _.cpp */,
 				9AE6444F252A5BEE00BED5B8 /* _to.cpp */,
 				9AE63FEA252A5BEB00BED5B8 /* context_glx.cpp */,
@@ -1461,7 +1458,6 @@
 				9A1626CE26F0041A003D9CB9 /* smtp_socket.cpp in Sources */,
 				9AE64496252A5BEF00BED5B8 /* item.cpp in Sources */,
 				9A00E5F526614F9400517464 /* database_impl.cpp in Sources */,
-				9AE6459C252A5BF100BED5B8 /* __matter_ca2.cpp in Sources */,
 				9AE644A3252A5BF000BED5B8 /* server.cpp in Sources */,
 				9A1626C326F0041A003D9CB9 /* IEventOwner.cpp in Sources */,
 				9AE64556252A5BF100BED5B8 /* region_name.cpp in Sources */,
@@ -1567,7 +1563,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1673,7 +1668,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

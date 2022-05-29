@@ -76,7 +76,7 @@ public:
 
    virtual void initialize_command_line2(const string& strCommandLine);
 
-   virtual void initialize_arguments(const ::string_array& straArguments);
+   virtual void initialize_arguments(::string_array& straArguments);
 
 
    //command_line & operator = (const command_line & commandline);
@@ -95,7 +95,7 @@ public:
    virtual void _001ParseCommandForkUri(const ::string& strCommandFork);
 
 
-   virtual void _001ParseCommandArguments(const ::string_array& straArguments);
+   virtual void _001ParseCommandArguments(::string_array& straArguments);
 
    
    virtual void initialize_create(arguments arguments);

@@ -326,7 +326,7 @@ void create::initialize_command_line2(const string& strCommandLine)
 }
 
 
-void create::initialize_arguments(const ::string_array& straArguments)
+void create::initialize_arguments(::string_array& straArguments)
 {
 
    common_construct();
@@ -641,7 +641,7 @@ void create::_001ParseCommandFork(const ::string& strCommandFork)
 }
 
 
-void create::_001ParseCommandArguments(const ::string_array& straArguments)
+void create::_001ParseCommandArguments(::string_array& straArguments)
 {
 
    get_property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);

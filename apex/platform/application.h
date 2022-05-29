@@ -219,7 +219,7 @@ public:
       virtual void init();
 
 
-      virtual void init_instance();
+      void init_instance() override;
 
 
       virtual void     run() override;

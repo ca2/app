@@ -162,7 +162,7 @@ namespace base
       if (itema.get_size() == 1)
       {
 
-         pcreate->m_payloadFile = itema[0]->get_final_path();
+         pcreate->m_payloadFile = itema[0]->get_user_path();
 
       }
       else
@@ -173,7 +173,7 @@ namespace base
          for (auto& pitem : itema)
          {
 
-            stra.add(pitem->get_final_path());
+            stra.add(pitem->get_user_path());
 
          }
 

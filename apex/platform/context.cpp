@@ -441,6 +441,14 @@ namespace apex
    }
 
 
+   bool context::defer_process_media_library_path(::file::path& path)
+   {
+
+      return m_psystem->m_pacmedirectory->defer_process_media_library_path(path);
+
+   }
+
+
    ::file::path context::__defer_process_path(::file::path path)
    {
 
@@ -448,7 +456,13 @@ namespace apex
 
       path = m_psystem->m_pacmepath->defer_process_relative_path(path);
 
-      if (::str::begins_eat_ci(path, "music://"))
+      if (defer_process_media_library_path(path))
+      {
+
+         return path;
+
+      }
+      else if (::str::begins_eat_ci(path, "music://"))
       {
 
          path = dir().music() / path;

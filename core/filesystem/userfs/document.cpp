@@ -132,7 +132,7 @@ namespace userfs
       else
       {
 
-         listingUser.set_listing(pitem->m_filepathFinal);
+         listingUser.set_listing(pitem->m_filepathUser);
 
          pcontext->m_papexcontext->dir().enumerate(listingUser);
 

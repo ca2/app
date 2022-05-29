@@ -82,6 +82,8 @@ namespace acme
 
       ::user::enum_desktop                                  m_edesktop;
 
+      enum_application_capability_array                     m_eapplicationcapabilitya;
+
 
       node();
       ~node() override;
@@ -431,6 +433,11 @@ namespace acme
 
 
       virtual void shell_launch(const ::string & strAppId);
+
+
+      virtual bool has_application_capability(::enum_application_capability ecapability) const;
+      virtual void add_application_capability(const ::enum_application_capability_array& ecapabilitya);
+      virtual void on_change_application_capability();
 
 
    };

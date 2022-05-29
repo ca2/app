@@ -1728,6 +1728,8 @@ void application::pos_run()
 void application::init_instance()
 {
 
+   ::app::init_instance();
+
    //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
 
    if (m_bInterprocessIntercommunication)

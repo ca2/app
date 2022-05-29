@@ -9,11 +9,57 @@
 #endif
 
 
+#include "acme/primitive/media_library/item.h"
+
+
 class CLASS_DECL_ACME acme_directory :
    virtual public ::matter,
    virtual public ::file::enumerator
 {
 public:
+
+
+
+
+
+
+   //class music_item :
+   //   virtual public library_item
+   //{
+   //public:
+
+
+   //   ::string       m_strTitle;
+   //   ::string       m_strArtist;
+
+
+   //};
+
+
+   //class image_item :
+   //   virtual public library_item
+   //{
+   //public:
+
+
+   //   ::string       m_strTitle;
+
+
+   //};
+
+
+   //class video_item :
+   //   virtual public library_item
+   //{
+   //public:
+
+
+   //   ::string       m_strTitle;
+   //   ::string       m_strArtist;
+
+
+   //};
+
 
 
    ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::acme_directory *  m_pplatformdir;
@@ -22,7 +68,12 @@ public:
 
    ::file::path                                    m_pathInstallFolder;
    ::file::path                                    m_pathModuleFolder;
+
+
+   ::media_library::item_map                       m_medialibraryitemmap;
    
+   ::mutex                                         m_mutexMediaLibrary;
+
 
    acme_directory();
    ~acme_directory() override;
@@ -136,6 +187,11 @@ public:
          
          bool enumerate(::file::listing & listing) override;
 
+         virtual bool defer_enumerate_media_library(::file::listing& listing);
+         virtual ::media_library::item* media_library_item(const ::file::path& path);
+         virtual bool defer_process_media_library_path(::file::path& path);
+         virtual bool defer_media_library_representative_file_name(::file::path & path);
+
          bool list(::string_array & stra, const char * path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
 
@@ -176,7 +232,7 @@ public:
    virtual void change_to_home();
 
 
-
+   virtual void add_media_library_item(::media_library::item* pmedialibraryitem);
 
 
 };

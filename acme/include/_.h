@@ -4431,6 +4431,12 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/user/user/ewindowflag.h"
 
 
+#include "acme/constant/application_capability.h"
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+
 #include "acme/platform/node.h"
 
 

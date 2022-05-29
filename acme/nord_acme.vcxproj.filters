@@ -1333,6 +1333,9 @@
     <ClCompile Include="primitive\primitive\particle.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\media_library\item.cpp">
+      <Filter>Source Files\primitive\media_library</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3630,6 +3633,33 @@
     <ClInclude Include="filesystem\filesystem\path_object.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="constant\media_library.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\quaternions.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\pole.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\location.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\dimension.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\box.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry3d\_.h">
+      <Filter>Header Files\primitive\geometry3d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\media_library\item.h">
+      <Filter>Header Files\primitive\media_library</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\application_capability.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3853,6 +3883,12 @@
     </Filter>
     <Filter Include="Header Files\primitive\geometry3d">
       <UniqueIdentifier>{50f88a2a-5a40-4b93-88e5-c6d57fe4315c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\media_library">
+      <UniqueIdentifier>{83394a8b-bcf9-46a3-ba1a-d8837daf3d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\media_library">
+      <UniqueIdentifier>{cca40843-f906-49e8-9c93-3ccb9dd83de4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -3093,6 +3093,30 @@
     <ClInclude Include="include\_audio.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\multimedia.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\file_application.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\exception.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\decoder_plugin.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\decoder.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\_c.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\_.h">
+      <Filter>Header Files\multimedia</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3340,6 +3364,9 @@
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multimedia">
+      <UniqueIdentifier>{2fc52b47-dfb2-4af6-8990-400b9fe410cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

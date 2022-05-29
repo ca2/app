@@ -1724,6 +1724,31 @@ namespace acme
     }
 
 
+    bool node::has_application_capability(::enum_application_capability ecapability) const
+    {
+
+       return m_eapplicationcapabilitya.contains(ecapability);
+
+    }
+
+
+    void node::add_application_capability(const ::enum_application_capability_array& ecapabilitya)
+    {
+
+       m_eapplicationcapabilitya.add_unique(ecapabilitya);
+
+       on_change_application_capability();
+
+    }
+
+
+    void node::on_change_application_capability()
+    {
+
+
+    }
+
+
 } // namespace acme
 
 

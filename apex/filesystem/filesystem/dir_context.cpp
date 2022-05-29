@@ -440,6 +440,8 @@ bool dir_context::enumerate(::file::listing& listing)
 bool dir_context::_enumerate(::file::listing& listing)
 {
 
+   m_psystem->m_pacmedirectory->defer_enumerate_media_library(listing);
+
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
    if (listing.m_pathFinal.begins_ci("matter://"))

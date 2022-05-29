@@ -565,6 +565,7 @@
     <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\atom_space.cpp" />
@@ -687,6 +688,7 @@
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\activate.h" />
+    <ClInclude Include="constant\application_capability.h" />
     <ClInclude Include="constant\button_state.h" />
     <ClInclude Include="constant\character_set.h" />
     <ClInclude Include="constant\check.h" />
@@ -702,6 +704,7 @@
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="constant\impact.h" />
+    <ClInclude Include="constant\media_library.h" />
     <ClInclude Include="constant\memory_heap.h" />
     <ClInclude Include="constant\message.h" />
     <ClInclude Include="constant\parallelization.h" />
@@ -1191,6 +1194,12 @@
     <ClInclude Include="primitive\geometry2d\_rect_impl.h" />
     <ClInclude Include="primitive\geometry2d\_size_impl.h" />
     <ClInclude Include="primitive\geometry2d\_struct.h" />
+    <ClInclude Include="primitive\geometry3d\box.h" />
+    <ClInclude Include="primitive\geometry3d\dimension.h" />
+    <ClInclude Include="primitive\geometry3d\location.h" />
+    <ClInclude Include="primitive\geometry3d\pole.h" />
+    <ClInclude Include="primitive\geometry3d\quaternions.h" />
+    <ClInclude Include="primitive\geometry3d\_.h" />
     <ClInclude Include="primitive\math\math_binary_operation.h" />
     <ClInclude Include="primitive\math\math_classes.h" />
     <ClInclude Include="primitive\math\math_clip.h" />
@@ -1231,6 +1240,7 @@
     <ClInclude Include="primitive\interlocked_long_pulse.h" />
     <ClInclude Include="primitive\job.h" />
     <ClInclude Include="primitive\logic.h" />
+    <ClInclude Include="primitive\media_library\item.h" />
     <ClInclude Include="primitive\memory.h" />
     <ClInclude Include="primitive\memory_base.h" />
     <ClInclude Include="primitive\memory_c.h" />

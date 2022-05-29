@@ -185,6 +185,10 @@ namespace file
    watch_id watcher::add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
+#ifdef ANDROID
+      return -1;
+#endif
+
       if (pathFolder.is_empty())
       {
 
@@ -204,17 +208,17 @@ namespace file
 
       m_watchmap[pwatch->m_atom] = pwatch;
 
-      if (m_bCreateWatchThread)
-      {
+      //if (m_bCreateWatchThread)
+      //{
 
-         if (m_htask == nullptr)
-         {
-               
-            branch();
+      //   if (m_htask == nullptr)
+      //   {
 
-         }
+      //      branch();
 
-      }
+      //   }
+
+      //}
 
       if (!pwatch->open(pathFolder, bRecursive))
       {
@@ -222,6 +226,18 @@ namespace file
          m_watchmap.erase_key(pwatch->m_atom);
 
          return -1;
+
+      }
+
+      if (m_bCreateWatchThread)
+      {
+
+         if (m_htask == nullptr)
+         {
+
+            branch();
+
+         }
 
       }
 

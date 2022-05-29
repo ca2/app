@@ -802,6 +802,14 @@
     <ClInclude Include="memory\plex.h" />
     <ClInclude Include="memory\plex_heap1.h" />
     <ClInclude Include="memory\plex_heap_impl1.h" />
+    <ClInclude Include="multimedia\audio.h" />
+    <ClInclude Include="multimedia\decoder.h" />
+    <ClInclude Include="multimedia\decoder_plugin.h" />
+    <ClInclude Include="multimedia\exception.h" />
+    <ClInclude Include="multimedia\file_application.h" />
+    <ClInclude Include="multimedia\multimedia.h" />
+    <ClInclude Include="multimedia\_.h" />
+    <ClInclude Include="multimedia\_c.h" />
     <ClInclude Include="multithreading\multithreading.h" />
     <ClInclude Include="multithreading\multithreading_condition.h" />
     <ClInclude Include="multithreading\multithreading_critical_section.h" />

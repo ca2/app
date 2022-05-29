@@ -900,6 +900,163 @@ bool acme_directory::enumerate(::file::listing & listing)
 }
 
 
+bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
+{
+
+   synchronous_lock sl(&m_mutexMediaLibrary);
+
+   for (auto& pair : m_medialibraryitemmap)
+   {
+
+      auto emedialibrary = pair.m_element1;
+
+      string strProtocol = ::media_library::media_library_protocol(emedialibrary);
+
+      if (listing.m_pathUser == strProtocol)
+      {
+
+         auto& libraryitema = pair.m_element2;
+
+         if (libraryitema.has_element())
+         {
+
+            if (!listing.on_start_enumerating(this))
+            {
+
+               return false;
+
+            }
+
+            for (auto& plibraryitem : libraryitema)
+            {
+
+               ::file::path path;
+
+               path = plibraryitem->get_path();
+
+               path.m_iDir = 0;
+
+               listing.defer_add(path);
+
+               string strTitle = plibraryitem->get_title();
+
+               listing.m_straTitle.add(strTitle);
+
+            }
+
+            return true;
+
+         }
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+::media_library::item* acme_directory::media_library_item(const ::file::path& path)
+{
+
+   synchronous_lock sl(&m_mutexMediaLibrary);
+
+   string strId(path);
+
+   for (auto& pair : m_medialibraryitemmap)
+   {
+
+      auto emedialibrary = pair.m_element1;
+
+      string strProtocol = ::media_library::media_library_protocol(emedialibrary);
+
+      if (strId.begins_eat_ci(strProtocol))
+      {
+
+         auto& libraryitema = pair.m_element2;
+
+         if (libraryitema.has_element())
+         {
+
+            for (auto& plibraryitem : libraryitema)
+            {
+
+               if (strId == plibraryitem->get_id())
+               {
+
+                  return plibraryitem;
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
+
+bool acme_directory::defer_process_media_library_path(::file::path& path)
+{
+
+   auto plibraryitem = media_library_item(path);
+
+   if(::is_set(plibraryitem) && plibraryitem->get_full_path().has_char())
+   {
+
+      path = plibraryitem->get_full_path();
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool acme_directory::defer_media_library_representative_file_name(::file::path & path)
+{
+
+   auto plibraryitem = media_library_item(path);
+
+   if (::is_set(plibraryitem) && plibraryitem->get_mime_type().has_char())
+   {
+
+      string strMimeType = plibraryitem->get_mime_type();
+
+      strMimeType.make_lower();
+
+      if (strMimeType.begins_eat_ci("audio/"))
+      {
+
+         if (strMimeType == "mpeg")
+         {
+
+            path = "file.mp3";
+
+            return true;
+
+         }
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+
 bool acme_directory::list(string_array & stra, const char * psz, ::file::e_flag eflag)
 {
 
@@ -1058,5 +1215,18 @@ void acme_directory::change_to_home()
 
 }
 
+
+void acme_directory::add_media_library_item(::media_library::item* pmedialibraryitem)
+{
+
+   synchronous_lock lock(&m_mutexMediaLibrary);
+
+   auto emedialibrary = pmedialibraryitem->media_library_type();
+
+   auto& a = m_medialibraryitemmap[emedialibrary];
+
+   a.add(pmedialibraryitem);
+
+}
 
 

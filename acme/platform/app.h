@@ -12,6 +12,7 @@ class CLASS_DECL_ACME app :
 public:
 
 
+
    static app *                                    g_p;
 
    string                                          m_strAppName;
@@ -23,6 +24,8 @@ public:
    string_array                                    m_straAppCategory;
    bool                                            m_bLicense;
    
+   enum_application_capability_array               m_eapplicationcapabilitya;
+
 
    app();
    ~app() override;
@@ -52,6 +55,13 @@ public:
 
 
    virtual void init1();
+
+
+   virtual void init_instance();
+
+
+   virtual bool has_capability(enum_application_capability eapplicationcapability) const;
+   virtual void add_capability(enum_application_capability ecapability);
 
 
 };

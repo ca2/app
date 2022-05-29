@@ -144,6 +144,30 @@ void app::init1()
 }
 
 
+void app::init_instance()
+{
+
+   m_psystem->node()->add_application_capability(m_eapplicationcapabilitya);
+
+}
+
+
+bool app::has_capability(enum_application_capability ecapability) const
+{
+
+   return m_eapplicationcapabilitya.contains(ecapability);
+
+}
+
+
+void app::add_capability(enum_application_capability ecapability)
+{
+
+   m_eapplicationcapabilitya.add_unique(ecapability);
+
+}
+
+
 //
 //class ::main main(argc, argv, envp);
 //

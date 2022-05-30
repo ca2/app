@@ -429,6 +429,7 @@
 		9A75C6A9283D6E6400EC37F2 /* devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A4283D6E6400EC37F2 /* devices.cpp */; };
 		9A75C6AA283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
 		9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A75C6A5283D6E6400EC37F2 /* device_listener.cpp */; };
+		9A882EB52844A651004113D1 /* menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92306727EACA3B00B5A78D /* menu_command.cpp */; };
 		9A8B635F24CBCD3C00A93185 /* program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B635424CBCD3C00A93185 /* program.cpp */; };
 		9A8B636024CBCD3C00A93185 /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8B635524CBCD3C00A93185 /* shader.h */; };
 		9A8B636124CBCD3C00A93185 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8B635624CBCD3C00A93185 /* context.cpp */; };
@@ -2590,6 +2591,7 @@
 				9A201AB1247733D900A31CBF /* _.cpp in Sources */,
 				9A201AB2247733D900A31CBF /* alpha.cpp in Sources */,
 				9A750FEE282B932100C4861B /* shell_open.cpp in Sources */,
+				9A882EB52844A651004113D1 /* menu_command.cpp in Sources */,
 				9A750FE9282B932100C4861B /* context.cpp in Sources */,
 				9A750F54282B905B00C4861B /* windowing.cpp in Sources */,
 				9A94DE68282C0ADA00F5C1CA /* keyboard.cpp in Sources */,

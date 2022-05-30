@@ -1290,6 +1290,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
@@ -1819,6 +1820,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\mathematics\value.h" />
     <ClInclude Include="primitive\mathematics\_.h" />
     <ClInclude Include="primitive\mathematics\_impl.h" />
+    <ClInclude Include="primitive\media_library\item.h" />
     <ClInclude Include="primitive\primitive\bbb_object.h" />
     <ClInclude Include="primitive\primitive\bits.h" />
     <ClInclude Include="primitive\primitive\block.h" />

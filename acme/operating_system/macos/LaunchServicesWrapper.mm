@@ -5,23 +5,17 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/05/22.
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-#import <Foundation/Foundation.h>
-
-@interface LaunchServicesWrapper : NSObject
-
-+ (BOOL)setMyselfAsDefaultApplicationForFileExtension:
-  (NSString *)fileExtension;
-
-@end
-
-
+#include "framework.h"
 #import <ApplicationServices/ApplicationServices.h>
 #import "LaunchServicesWrapper.h"
 
+
 @implementation LaunchServicesWrapper
+
 
 + (NSString *)UTIforFileExtension:(NSString *)extension
 {
+   
   return (NSString *)CFBridgingRelease(
     UTTypeCreatePreferredIdentifierForTag(
       kUTTagClassFilenameExtension, (__bridge CFStringRef)extension,
@@ -45,9 +39,11 @@
 
 
 
-void setMyselfAsDefaultApplicationForFileExtension(const char * psz)
+void setMyselfAsDefaultApplicationForFileExtension(const char * pszExtension)
 {
    
-   [ LaunchServicesWrapper setMyselfAsDefaultApplicationForFileExtension : psz];
+   NSString * strExtension = [ NSString stringWithUTF8String: pszExtension ];
+   
+   [ LaunchServicesWrapper setMyselfAsDefaultApplicationForFileExtension : strExtension];
    
 }

@@ -6,8 +6,15 @@
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 
-#ifndef LaunchServicesWrapper_h
-#define LaunchServicesWrapper_h
+
+@interface LaunchServicesWrapper : NSObject
 
 
-#endif /* LaunchServicesWrapper_h */
++ (BOOL)setMyselfAsDefaultApplicationForFileExtension:
+  (NSString *)fileExtension;
+
+
+@end
+
+
+

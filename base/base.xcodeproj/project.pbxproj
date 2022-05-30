@@ -149,7 +149,6 @@
 		9A1D5D832751A98B003D9B5F /* message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		9A1D5D872751A98B003D9B5F /* move_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move_manager.h; sourceTree = "<group>"; };
 		9A1D5D882751A98B003D9B5F /* frame_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame_window.h; sourceTree = "<group>"; };
-		9A1D5D892751A98B003D9B5F /* _const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _const.h; sourceTree = "<group>"; };
 		9A1D5D8A2751A98B003D9B5F /* control_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = control_box.h; sourceTree = "<group>"; };
 		9A1D5D8B2751A98B003D9B5F /* frame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = frame.cpp; sourceTree = "<group>"; };
 		9A1D5D8C2751A98B003D9B5F /* button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
@@ -439,7 +438,6 @@
 			isa = PBXGroup;
 			children = (
 				9A1D5DA12751A98B003D9B5F /* _.h */,
-				9A1D5D892751A98B003D9B5F /* _const.h */,
 				9A1D5D9B2751A98B003D9B5F /* _experience.h */,
 				9A1D5D8C2751A98B003D9B5F /* button.cpp */,
 				9A1D5D992751A98B003D9B5F /* button.h */,

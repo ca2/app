@@ -28,7 +28,7 @@ namespace experience_core
       //}
 
 #if !defined(CUBE)
-      fork([this]()
+      fork([]()
          {
 
             auto psession = get_session();

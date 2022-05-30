@@ -8,7 +8,7 @@
 
 #include "framework.h"
 
-char * ns_get_executable_path();
+//char * ns_get_executable_path();
 
 CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const ::string & pszDll)
 {
@@ -42,9 +42,9 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 
-string apple_app_module_path()
-{
-   
-   return ::string_from_strdup(ns_get_executable_path());
-   
-}
+//string apple_app_module_path()
+//{
+//
+//   return ::string_from_strdup(ns_get_executable_path());
+//
+//}

@@ -82,29 +82,29 @@ void ns_main_sync(dispatch_block_t block)
 }
 
 
-
-void ns_main_async(dispatch_block_t block)
-{
-
-   //   dispatch_block_t block = ^{
-   //      // Code for the method goes here
-   //   };
-   //
-
-   if ([NSThread isMainThread])
-   {
-
-      block();
-
-   }
-   else
-   {
-
-      dispatch_async(dispatch_get_main_queue(), block);
-
-   }
-
-}
+//
+//void ns_main_async(dispatch_block_t block)
+//{
+//
+//   //   dispatch_block_t block = ^{
+//   //      // Code for the method goes here
+//   //   };
+//   //
+//
+//   if ([NSThread isMainThread])
+//   {
+//
+//      block();
+//
+//   }
+//   else
+//   {
+//
+//      dispatch_async(dispatch_get_main_queue(), block);
+//
+//   }
+//
+//}
 
 
 unsigned int m_sleep(unsigned int seconds)

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A488A5224EB4BAF00119EC4 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A488A4224EB4B0C00119EC4 /* libaura.dylib */; };
 		9A64C1172660BBEF0074030F /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9A64C11A2660BBF60074030F /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFE2651A84D00C0D8A1 /* main_window.cpp */; };
 		9A64C11B2660BC130074030F /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
@@ -15,37 +14,27 @@
 		9A64C11E2660BC5C0074030F /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A64C11D2660BC5C0074030F /* libacme.dylib */; };
 		9A64C1202660BC5C0074030F /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A64C11F2660BC5C0074030F /* libapex.dylib */; };
 		9A64C1222660BCC10074030F /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A64C1212660BCC10074030F /* libaqua.dylib */; };
+		9A882E6A28449DBC004113D1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
+		9A882E6B28449DBC004113D1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
+		9A882E6C28449DBC004113D1 /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFE2651A84D00C0D8A1 /* main_window.cpp */; };
+		9A882E6D28449DBC004113D1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
 		9AC01D7E2748C548006BEBCC /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC01A4E2748C210006BEBCC /* libapp_app.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A488A4124EB4B0C00119EC4 /* PBXContainerItemProxy */ = {
+		9A882E7928449DBD004113D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */;
+			containerPortal = 9AC01A492748C20F006BEBCC /* app_app.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 9AA14D9B282A17A900B1621E;
+			remoteInfo = ios_app_app;
 		};
-		9A488A4324EB4B0C00119EC4 /* PBXContainerItemProxy */ = {
+		9A882EA72844A1DC004113D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A20198A24772E9000A31CBF;
-			remoteInfo = ios_aura;
-		};
-		9A488A4524EB4B0C00119EC4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
-		};
-		9A488A4724EB4B1B00119EC4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */;
+			containerPortal = 9AC01A492748C20F006BEBCC /* app_app.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 9AA14D8A282A17A900B1621E;
+			remoteInfo = ios_app_app;
 		};
 		9AC01A4D2748C210006BEBCC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,19 +54,15 @@
 
 /* Begin PBXFileReference section */
 		9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A64C11D2660BC5C0074030F /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C11F2660BC5C0074030F /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C1212660BCC10074030F /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_view_update_hint.h; sourceTree = "<group>"; };
+		9A882E7728449DBC004113D1 /* libios_app_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_app_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A8FCAFE2651A84D00C0D8A1 /* main_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_window.cpp; sourceTree = "<group>"; };
 		9A8FCAFF2651A84D00C0D8A1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
-		9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_simple_app_main_view.cpp; sourceTree = "<group>"; };
 		9A8FCB722651A84E00C0D8A1 /* main_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A8FCB742651A84E00C0D8A1 /* _app_message_box.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _app_message_box.h; sourceTree = "<group>"; };
-		9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_simple_app_main_view.h; sourceTree = "<group>"; };
-		9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_pane_view_update_hint.cpp; sourceTree = "<group>"; };
 		9A8FCB8C2651A84F00C0D8A1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A8FCBA42651A84F00C0D8A1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8FCBA62651A84F00C0D8A1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
@@ -94,7 +79,13 @@
 				9AC01D7E2748C548006BEBCC /* libapp_app.dylib in Frameworks */,
 				9A64C11E2660BC5C0074030F /* libacme.dylib in Frameworks */,
 				9A64C1202660BC5C0074030F /* libapex.dylib in Frameworks */,
-				9A488A5224EB4BAF00119EC4 /* libaura.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A882E6E28449DBC004113D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				9AC01A492748C20F006BEBCC /* app_app.xcodeproj */,
-				9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */,
 				9A8FCADA2651A84D00C0D8A1 /* message_box */,
 				9A48898724EB48DE00119EC4 /* Products */,
 				9A488A5124EB4BAF00119EC4 /* Frameworks */,
@@ -116,16 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A488A3C24EB4B0C00119EC4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A488A4224EB4B0C00119EC4 /* libaura.dylib */,
-				9A488A4424EB4B0C00119EC4 /* libios_aura.a */,
-				9A488A4624EB4B0C00119EC4 /* aura_iosTests.xctest */,
+				9A882E7728449DBC004113D1 /* libios_app_message_box.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,10 +127,6 @@
 				9A8FCB8C2651A84F00C0D8A1 /* _.cpp */,
 				9A8FCC162651A85000C0D8A1 /* _.h */,
 				9A8FCB742651A84E00C0D8A1 /* _app_message_box.h */,
-				9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.cpp */,
-				9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */,
-				9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.cpp */,
-				9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.h */,
 				9A8FCBA62651A84F00C0D8A1 /* application.cpp */,
 				9A8FCAFF2651A84D00C0D8A1 /* application.h */,
 				9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */,
@@ -164,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC01A4E2748C210006BEBCC /* libapp_app.dylib */,
+				9A882E7A28449DBD004113D1 /* libios_app_app.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +156,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A882E6828449DBC004113D1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -185,7 +170,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_message_box" */;
 			buildPhases = (
-				9A81F0B0274F42FA003F38EC /* ShellScript */,
 				9A48898224EB48DE00119EC4 /* Headers */,
 				9A48898324EB48DE00119EC4 /* Sources */,
 				9A48898424EB48DE00119EC4 /* Frameworks */,
@@ -194,11 +178,28 @@
 			);
 			dependencies = (
 				9AC01D662748C3F8006BEBCC /* PBXTargetDependency */,
-				9A488A4824EB4B1B00119EC4 /* PBXTargetDependency */,
 			);
 			name = app_message_box;
 			productName = app_app_app;
 			productReference = 9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9A882E6328449DBC004113D1 /* ios_app_message_box */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A882E7428449DBC004113D1 /* Build configuration list for PBXNativeTarget "ios_app_message_box" */;
+			buildPhases = (
+				9A882E6828449DBC004113D1 /* Headers */,
+				9A882E6928449DBC004113D1 /* Sources */,
+				9A882E6E28449DBC004113D1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A882EA82844A1DC004113D1 /* PBXTargetDependency */,
+			);
+			name = ios_app_message_box;
+			productName = app_app_app;
+			productReference = 9A882E7728449DBC004113D1 /* libios_app_message_box.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -231,38 +232,21 @@
 					ProductGroup = 9AC01A4A2748C20F006BEBCC /* Products */;
 					ProjectRef = 9AC01A492748C20F006BEBCC /* app_app.xcodeproj */;
 				},
-				{
-					ProductGroup = 9A488A3C24EB4B0C00119EC4 /* Products */;
-					ProjectRef = 9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
 				9A48898524EB48DE00119EC4 /* app_message_box */,
+				9A882E6328449DBC004113D1 /* ios_app_message_box */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A488A4224EB4B0C00119EC4 /* libaura.dylib */ = {
+		9A882E7A28449DBD004113D1 /* libios_app_app.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A488A4124EB4B0C00119EC4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A488A4424EB4B0C00119EC4 /* libios_aura.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_aura.a;
-			remoteRef = 9A488A4324EB4B0C00119EC4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A488A4624EB4B0C00119EC4 /* aura_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 9A488A4524EB4B0C00119EC4 /* PBXContainerItemProxy */;
+			path = libios_app_app.a;
+			remoteRef = 9A882E7928449DBD004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AC01A4E2748C210006BEBCC /* libapp_app.dylib */ = {
@@ -286,13 +270,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A882E6928449DBC004113D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A882E6A28449DBC004113D1 /* application.cpp in Sources */,
+				9A882E6B28449DBC004113D1 /* _.cpp in Sources */,
+				9A882E6C28449DBC004113D1 /* main_window.cpp in Sources */,
+				9A882E6D28449DBC004113D1 /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A488A4824EB4B1B00119EC4 /* PBXTargetDependency */ = {
+		9A882EA82844A1DC004113D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 9A488A4724EB4B1B00119EC4 /* PBXContainerItemProxy */;
+			name = ios_app_app;
+			targetProxy = 9A882EA72844A1DC004113D1 /* PBXContainerItemProxy */;
 		};
 		9AC01D662748C3F8006BEBCC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -368,7 +363,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -470,7 +464,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 					"$(WorkspaceDir)/operating-system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -536,6 +529,38 @@
 			};
 			name = Release;
 		};
+		9A882E7528449DBC004113D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A882E7628449DBC004113D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -553,6 +578,15 @@
 			buildConfigurations = (
 				9A48899024EB48DE00119EC4 /* Debug */,
 				9A48899124EB48DE00119EC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A882E7428449DBC004113D1 /* Build configuration list for PBXNativeTarget "ios_app_message_box" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A882E7528449DBC004113D1 /* Debug */,
+				9A882E7628449DBC004113D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

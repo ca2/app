@@ -984,6 +984,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\implement_console.h" />
+    <ClInclude Include="inline\windows\main.h" />
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <None Include="inline\__apps.inl" />

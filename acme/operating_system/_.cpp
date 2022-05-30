@@ -6,7 +6,7 @@
 //  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-
+#include "acme/platform/system_setup.h"
 
 
 //
@@ -35,6 +35,31 @@ CLASS_DECL_ACME void destroy_pointer(FILE * p)
       fclose(p);
 
    }
+
+}
+
+
+static PFN_factory g_pfnFactoryApp = nullptr;
+
+
+app_factory::app_factory(PFN_factory pfnFactory)
+{
+
+    g_pfnFactoryApp = pfnFactory;
+
+}
+
+
+__pointer(::app)app_factory::new_app()
+{
+
+   auto pfactory = __new(::factory::factory);
+
+   g_pfnFactoryApp(pfactory);
+
+   auto papp = pfactory->create<::app>();
+
+   return papp;
 
 }
 

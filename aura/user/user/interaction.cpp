@@ -11977,25 +11977,23 @@ namespace user
    void interaction::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      //if (!m_pprimitiveimpl)
-      //{
-
-      //   return false;
-
-      //}
-
-      //auto estatus = m_pprimitiveimpl->set_mouse_cursor(pcursor);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
+//      if (!m_pprimitiveimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto estatus = m_pprimitiveimpl->set_mouse_cursor(pcursor);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       m_pcursor = pcursor;
-
-      //return ::success;
 
    }
 

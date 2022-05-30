@@ -6584,12 +6584,12 @@ namespace user
 
       }
 
-      if (m_puserinteraction->layout().m_eflag)
-      {
-
-         return;
-
-      }
+//      if (m_puserinteraction->layout().m_eflag)
+//      {
+//
+//         return;
+//
+//      }
 
       __pointer(::message::move) pmove(pmessage);
 

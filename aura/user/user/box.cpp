@@ -221,13 +221,9 @@ namespace user
 
          defer_update_display();
 
-         //bSave = 
-         
          SaveWindowRect_(m_databasekey + window_data_key_modifier());
 
       }
-
-      //return bSave;
 
    }
 
@@ -384,13 +380,26 @@ namespace user
       }
       else
       {
-            
-         send_procedure([this, windowrectangle]()
+         
+         auto functionGoodRestore = [this, windowrectangle]()
          {
 
             good_restore(nullptr, windowrectangle.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
                
-         });
+         };
+         
+         if(m_ewindowflag & e_window_flag_window_created)
+         {
+            
+            send_procedure(functionGoodRestore);
+            
+         }
+         else
+         {
+            
+            functionGoodRestore();
+            
+         }
 
       }
 

@@ -139,7 +139,7 @@ void dir_system::init_system()
 
    //}
 
-   m_pathDefaultAppData /= strAppFolder;
+   //m_pathDefaultAppData /= strAppFolder;
 
    //m_strCa2DefaultAppData /= psystem->get_system_platform();
 
@@ -168,11 +168,8 @@ void dir_system::init_system()
    {
 
       m_pathAppData = m_pathDefaultAppData;
+      
    }
-
-
-
-   //return ::success;
 
 }
 

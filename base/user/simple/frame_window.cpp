@@ -446,12 +446,8 @@ void simple_frame_window::_thread_save_window_placement()
          m_bPendingSaveWindowRect = false;
 
          WindowDataSaveWindowRect();
-         
 
          break;
-
-         
-
 
       }
       catch (...)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1160"
+   LastUpgradeVersion = "1340"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -38,9 +38,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "078C352E1921758500354453"
-            BuildableName = "simple_app.app"
-            BlueprintName = "ios_simple_app"
-            ReferencedContainer = "container:ios_app.xcodeproj">
+            BuildableName = "_ios_app_message_box.app"
+            BlueprintName = "_ios_app_message_box"
+            ReferencedContainer = "container:_ios_app_message_box.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>

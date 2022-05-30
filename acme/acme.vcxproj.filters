@@ -291,6 +291,15 @@
     <Filter Include="Source Files\primitive\duration\duration">
       <UniqueIdentifier>{2cbe4311-e05f-4365-b2d7-b56e10861e4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\inline\windows">
+      <UniqueIdentifier>{3c81f65d-27d1-4fac-878a-de21f3dc2c3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\media_library">
+      <UniqueIdentifier>{64ce1085-e6b6-4c2a-a07b-6d839c4523f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\media_library">
+      <UniqueIdentifier>{2ba9cca5-9984-4952-8198-7e129e4ab6e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -2975,6 +2984,12 @@
     <ClInclude Include="primitive\primitive\tuple.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="inline\windows\main.h">
+      <Filter>Header Files\inline\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\media_library\item.h">
+      <Filter>Header Files\primitive\media_library</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -4197,6 +4212,9 @@
     </ClCompile>
     <ClCompile Include="user\user\conversation.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\media_library\item.cpp">
+      <Filter>Source Files\primitive\media_library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

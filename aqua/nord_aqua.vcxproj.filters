@@ -115,6 +115,9 @@
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
+    <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -3117,6 +3120,30 @@
     <ClInclude Include="multimedia\_.h">
       <Filter>Header Files\multimedia</Filter>
     </ClInclude>
+    <ClInclude Include="multimedia\audio\text_to_speech_client.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\speaker.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\sound_track_player.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\out.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\audio_c.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\_c_audio.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="multimedia\audio\_.h">
+      <Filter>Header Files\multimedia\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="_audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -3367,6 +3394,9 @@
     </Filter>
     <Filter Include="Header Files\multimedia">
       <UniqueIdentifier>{2fc52b47-dfb2-4af6-8990-400b9fe410cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\multimedia\audio">
+      <UniqueIdentifier>{0460c784-51d2-4f1b-9588-e9c3d572e105}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

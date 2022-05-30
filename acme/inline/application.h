@@ -7,11 +7,12 @@
 
 #include "_main_hold.h"
 
+__FACTORY_IMPORT void IDENTIFIER_CONCATENATE(APPLICATION, _factory)(::factory::factory *);
 
-APPLICATION::application g_app;
+app_factory g_appfactory(&::IDENTIFIER_CONCATENATE(APPLICATION, _factory));
 
 
-__embed_resource(g_app)
+//__embed_resource(g_app)
 
 
 

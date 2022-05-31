@@ -1656,13 +1656,13 @@ namespace acme
 //
 //#endif
 
-
+#include "acme/platform/system_setup.h"
 
 
 int main(int argc, char * argv[], char * envp[])
 {
 
-   ::app * papp = ::app::g_p;
+   auto papp = ::app_factory::new_app();
 
    papp->set_args(argc, argv, envp);
 

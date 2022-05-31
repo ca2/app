@@ -12,7 +12,7 @@
 
 
 
-int ui_MessageBoxA(void * oswindow, const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType );
+int ui_MessageBoxA(const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType );
 
 
 

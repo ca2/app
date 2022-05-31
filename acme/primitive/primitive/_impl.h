@@ -3117,7 +3117,7 @@ inline __pointer(task) object::fork(const ::procedure & procedure, const ::eleme
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload)
+bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
 {
 
    if(pposting->is_branch_current())
@@ -3138,8 +3138,6 @@ bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting
 
    ::function < void(const ::procedure &) > functionPost(posting);
 
-   functionPost.timeout(pposting->timeout());
-
    auto functionReturn = [preturning, returning_method]()
    {
 
@@ -3147,7 +3145,7 @@ bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting
 
    };
 
-   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
+   return __get_posted_payload_synchronously(functionPost, functionReturn, payload, wait);
 
 //   auto psynchronization = __new(::promise::synchronization);
 //
@@ -3200,7 +3198,7 @@ bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
+void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure, const class ::wait & wait)
 {
 
    if(pposting->is_branch_current())
@@ -3217,7 +3215,7 @@ void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD p
 
    };
 
-   __send_procedure(posting, procedure);
+   __send_procedure(posting, procedure, wait);
 
 //   auto psignalization = __new(::promise::signalization);
 //

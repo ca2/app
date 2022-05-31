@@ -13,9 +13,9 @@ class CLASS_DECL_ACME wait :
 public:
 
 
-   wait() : wait(5.0, 1800.0) {}
-   wait(double dWait) : wait(dWait, dWait * 60.0) {}
-   wait(
+   constexpr wait() : wait(5.0, 1800.0) {}
+   constexpr wait(double dWait) : wait(dWait, dWait * 60.0) {}
+   constexpr wait(
 #if DEBUG
       double,
       double dWait
@@ -24,6 +24,7 @@ public:
       double
 #endif
    ) :time(dWait) {}
+   wait(const class ::time& time) : time(time.m_d) {}
    wait(const class ::wait& wait) : time(wait.m_d) {}
 
 

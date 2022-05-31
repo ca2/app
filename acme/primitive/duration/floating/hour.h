@@ -11,7 +11,7 @@ public:
    using BASE_TYPE = FLOATING_HOUR;
 
 
-   floating_hour_t(FLOATING_HOUR hour = {}) : FLOATING_HOUR(hour) {}
+   constexpr floating_hour_t(FLOATING_HOUR hour = {}) : FLOATING_HOUR(hour) {}
 
 
    INTEGRAL_SECOND integral_seconds() const { return INTEGRAL_SECOND((::i64)(m_d * 3'600.0)); }
@@ -23,10 +23,10 @@ public:
 
 using floating_hour = floating_duration < floating_hour_t >;
 
-
-constexpr FLOATING_HOUR operator "" _h(long double d) { return (FLOATING_HOUR)d; }
-constexpr FLOATING_HOUR operator "" _hour(long double d) { return (FLOATING_HOUR)d; }
-constexpr FLOATING_HOUR operator "" _hours(long double d) { return (FLOATING_HOUR)d; }
+//
+//constexpr FLOATING_HOUR operator "" _h(long double d) { return (FLOATING_HOUR)d; }
+//constexpr FLOATING_HOUR operator "" _hour(long double d) { return (FLOATING_HOUR)d; }
+//constexpr FLOATING_HOUR operator "" _hours(long double d) { return (FLOATING_HOUR)d; }
 
 
 inline floating_hour get_floating_hour() { return FLOATING_HOUR(get_floating_nanosecond().m_d / 3'600'000'000'000.0); }

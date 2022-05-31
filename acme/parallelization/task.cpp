@@ -1520,10 +1520,6 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
    }
 
-   auto iTenths = wait.m_i / 10;
-
-   auto iMillis = wait.m_i % 10;
-
    try
    {
 
@@ -1553,9 +1549,6 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       }
 
-      //while(iTenths > 0)
-      //{
-
       ptask->m_pevSleep->wait(wait);
 
       if (!ptask->task_get_run())
@@ -1564,10 +1557,6 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
          return false;
 
       }
-
-      //iTenths--;
-
-   //}
 
    }
    catch (...)
@@ -1623,9 +1612,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 
    }
 
-   auto iTenths = wait.m_i / 100;
-
-   auto iMillis = wait.m_i % 100;
+   auto iTenths = (::i32) (wait.m_d * 10.0);
 
    try
    {

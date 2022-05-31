@@ -3138,67 +3138,22 @@ bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting
 
    ::function < void(const ::procedure &) > functionPost(posting);
 
-   auto functionReturn = [preturning, returning_method]()
+   ::function < ::payload() > functionReturn([preturning, returning_method]()
    {
 
       return (preturning->*returning_method)();
 
-   };
+   });
 
-   return __get_posted_payload_synchronously(functionPost, functionReturn, payload, wait);
+   functionReturn.m_waitTimeout = wait;
 
-//   auto psynchronization = __new(::promise::synchronization);
-//
-//   auto function = [pobject, method, &payload, psynchronization]()
-//                             {
-//
-//                                auto statuspayload = (pobject->*method)();
-//
-//                                synchronous_lock synchronizationlock(psynchronization->mutex());
-//
-//                                psynchronization->m_evGoingToWrite.SetEvent();
-//
-//                                psynchronization->m_evResponse.wait();
-//
-//                                if(!psynchronization->m_bTimeout)
-//                                {
-//
-//                                   payload = statuspayload;
-//
-//                                   psynchronization->m_estatus = statuspayload;
-//
-//                                }
-//
-//                                psynchronization->m_evReady.SetEvent();
-//
-//                                ::release((::element * &)psynchronization.m_p);
-//
-//                             };
-//
-//   functionPost(function);
-//
-//   if (psynchronization->m_evGoingToWrite.wait(proutine->timeout()).failed())
-//   {
-//
-//      psynchronization->m_bTimeout = true;
-//
-//      psynchronization->m_evResponse.SetEvent();
-//
-//      return false;
-//
-//   }
-//
-//   psynchronization->m_evResponse.SetEvent();
-//
-//   psynchronization->m_evReady.wait();
-//
-//   return true;
+   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
 
 }
 
 
 template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure, const class ::wait & wait)
+void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
 {
 
    if(pposting->is_branch_current())
@@ -3215,54 +3170,7 @@ void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD p
 
    };
 
-   __send_procedure(posting, procedure, wait);
-
-//   auto psignalization = __new(::promise::signalization);
-//
-//   auto function = [procedure, psignalization]()
-//                             {
-//
-//                                try
-//                                {
-//
-//                                   procedure();
-//
-//                                   psignalization->m_estatus = ::success;
-//
-//                                }
-//                                catch (const ::exception& exception)
-//                                {
-//
-//                                   psignalization->m_estatus = exception.m_estatus;
-//
-//                                }
-//                                catch(...)
-//                                {
-//
-//                                   psignalization->m_estatus = ::error_exception;
-//
-//                                }
-//
-//                                psignalization->m_evReady.SetEvent();
-//
-//                                psignalization->m_pelementHold.release();
-//
-//                             };
-//
-//   auto procedurePost = ::procedure(function);
-//
-//   psignalization->m_pelementHold = procedurePost;
-//
-//   (pposting->*posting_method)(procedurePost);
-//
-//   auto estatus = psignalization->m_evReady.wait(procedurePost->timeout());
-//
-//   if(estatus == error_wait_timeout)
-//   {
-//
-//      procedurePost->set_timed_out();
-//
-//   }
+   __send_procedure(posting, procedure);
 
 }
 
@@ -3273,6 +3181,7 @@ inline void assign(bool & b, const payload & payload)
    b = payload.get_bool(); 
 
 }
+
 
 inline void assign(::block & block, const ::payload & r)
 {

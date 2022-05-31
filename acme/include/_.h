@@ -2479,7 +2479,29 @@ namespace audio
 #include "acme/primitive/primitive/papaya.h"
 
 
+#include "acme/primitive/primitive/logic.h"
+
+
+#include "acme/primitive/mathematics/static_numeric_info.h"
+#include "acme/primitive/mathematics/numeric_info.h"
+
+
+#include "acme/primitive/mathematics/c_number.h"
+
+
+#include "acme/primitive/duration/time.h"
+
+
+#include "acme/parallelization/wait.h"
+
+
+#include "acme/primitive/duration/_.h"
+
+
 #include "acme/primitive/duration/_unit.h"
+
+
+#include "acme/primitive/duration/time_comparison.h"
 
 
 template<class t>
@@ -3049,10 +3071,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 class duration;
 
-#include "acme/primitive/duration/time.h"
-
-#include "acme/parallelization/wait.h"
-
 #include "acme/parallelization/thread_parameter.h"
 
 #include "acme/platform/keep_true.h"
@@ -3088,14 +3106,6 @@ inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 }
 
 
-#include "acme/primitive/primitive/logic.h"
-
-
-#include "acme/primitive/mathematics/static_numeric_info.h"
-#include "acme/primitive/mathematics/numeric_info.h"
-
-
-#include "acme/primitive/mathematics/c_number.h"
 
 using wparam = c_number<iptr>;
 
@@ -4614,6 +4624,9 @@ class task_tool;
 
 
 #include "acme/primitive/duration/integral/_impl.h"
+
+
+#include "acme/primitive/duration/duration/_impl.h"
 
 
 #include "acme/primitive/datetime/_impl.h"

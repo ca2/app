@@ -249,7 +249,7 @@ namespace acme
       /// returns true if processed something
       //virtual bool run_posted_routine_step();
 
-      virtual void node_send(const ::procedure & procedure, const class ::wait & wait);
+      virtual void node_send(const ::procedure & procedure);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)

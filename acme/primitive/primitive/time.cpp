@@ -5,7 +5,15 @@
 class ::time time::now()
 {
 
-   return { floating_second::now().m_d };
+   return { get_floating_second().m_d };
+
+}
+
+
+CLASS_DECL_ACME void preempt(const class time& time)
+{
+
+   preempt((INTEGRAL_MILLISECOND)((::i64)(time.m_d * 1'000.0)));
 
 }
 

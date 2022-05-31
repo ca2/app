@@ -2993,6 +2993,12 @@
     <ClInclude Include="primitive\duration\time.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\duration\time_comparison.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_unit.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

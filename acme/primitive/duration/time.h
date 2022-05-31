@@ -2,6 +2,11 @@
 #pragma once
 
 
+#ifdef time
+#undef time
+#endif
+
+
 class CLASS_DECL_ACME time
 {
 public:
@@ -10,18 +15,35 @@ public:
    double      m_d; // seconds
 
 
-   time() {}
-   time(enum_zero) : m_d(0.) {}
-   time(double d) : m_d(d) {}
-   time(const class ::time & time) : m_d(time.m_d) {}
+   constexpr time() {}
+   constexpr time(enum_zero) : m_d(0.) {}
+   constexpr time(double d) : m_d(d) {}
+   time(const class ::time& time) : m_d(time.m_d) {}
 
 
-   static inline class ::time now();
+   static class ::time now();
 
-   inline class ::time elapsed(const class ::time & waitSample = now()) { return waitSample.m_d - m_d; }
+   inline class ::time elapsed(const class ::time& waitSample = now()) { return waitSample.m_d - m_d; }
+
+
+   inline bool operator < (const class ::time& timeduration) const { return m_d < timeduration.m_d; }
+   inline bool operator <= (const class ::time& timeduration) const { return m_d <= timeduration.m_d; }
+   inline bool operator > (const class ::time& timeduration) const { return m_d > timeduration.m_d; }
+   inline bool operator >= (const class ::time& timeduration) const { return m_d >= timeduration.m_d; }
+   inline bool operator == (const class ::time& timeduration) const { return m_d == timeduration.m_d; }
+   inline bool operator != (const class ::time& timeduration) const { return m_d != timeduration.m_d; }
+
+   inline class ::time operator + (const class ::time& timeduration) const { return m_d + timeduration.m_d; }
+   inline class ::time operator - (const class ::time& timeduration) const { return m_d - timeduration.m_d; }
+
+   
+   inline bool operator !() const { return m_d <= 0.; }
 
 
 };
+
+
+CLASS_DECL_ACME void preempt(const class ::time& duration);
 
 
 

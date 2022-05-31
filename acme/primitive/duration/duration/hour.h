@@ -18,7 +18,7 @@ public:
    hour(FLOATING floating) : duration(::floating_hour(floating)) { }
    
    
-   bool done() const { return integral_hour() >= 1_hour; }
+   bool done() const { return integral_hour().m_i >= 1; }
 
 
 };

@@ -73,15 +73,6 @@ inline void to_string(string & str, const INTEGRAL_DAY & integral)
 }
 
 
-template < typename DURATION >
-inline DURATION now()
-{
-
-   throw "interface_only";
-
-   return e_now;
-
-}
 
 
 

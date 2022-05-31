@@ -73,10 +73,10 @@ void material_object::post_procedure(const ::procedure & procedure)
 }
 
 
-void material_object::send_procedure(const ::procedure & procedure, const class ::wait & wait)
+void material_object::send_procedure(const ::procedure & procedure)
 {
 
-   return __send_procedure(this, &material_object::post_procedure, procedure, wait);
+   return __send_procedure(this, &material_object::post_procedure, procedure);
 
 }
 
@@ -131,8 +131,7 @@ void material_object::add_procedure(const ::atom & atom, const ::procedure & pro
 }
 
 
-
-bool material_object::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload, const class ::wait & wait)
+bool material_object::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
    auto psynchronization = __new(::promise::synchronization);
@@ -165,7 +164,7 @@ bool material_object::__get_posted_payload_synchronously(const ::function < void
 
    functionPost(function);
 
-   if (psynchronization->m_evGoingToWrite.wait(wait).failed())
+   if (psynchronization->m_evGoingToWrite.wait(functionReturn.m_waitTimeout).failed())
    {
 
       psynchronization->m_bTimeout = true;

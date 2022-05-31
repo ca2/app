@@ -1766,9 +1766,11 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\duration\integral\_.h" />
     <ClInclude Include="primitive\duration\integral\_impl.h" />
     <ClInclude Include="primitive\duration\time.h" />
+    <ClInclude Include="primitive\duration\time_comparison.h" />
     <ClInclude Include="primitive\duration\_.h" />
     <ClInclude Include="primitive\duration\_duration.h" />
     <ClInclude Include="primitive\duration\_struct.h" />
+    <ClInclude Include="primitive\duration\_unit.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
     <ClInclude Include="primitive\geometry2d\arc.h" />
     <ClInclude Include="primitive\geometry2d\bounding_rect.h" />

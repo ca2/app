@@ -14,7 +14,7 @@ public:
    using BASE_TYPE = INTEGRAL_NANOSECOND;
 
 
-   integral_nanosecond_t(INTEGRAL_NANOSECOND nanosecond = {}): INTEGRAL_NANOSECOND(nanosecond) {}
+   constexpr integral_nanosecond_t(INTEGRAL_NANOSECOND nanosecond = {}): INTEGRAL_NANOSECOND(nanosecond) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i / 1'000'000'000); }

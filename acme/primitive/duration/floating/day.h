@@ -11,7 +11,7 @@ public:
    using BASE_TYPE = FLOATING_DAY;
 
 
-   floating_day_t(FLOATING_DAY day = {}) : FLOATING_DAY(day) {}
+   constexpr floating_day_t(FLOATING_DAY day = {}) : FLOATING_DAY(day) {}
 
 
    INTEGRAL_SECOND integral_seconds() const { return INTEGRAL_SECOND((::i64)(m_d * 86'400.0)); }
@@ -23,9 +23,9 @@ public:
 
 using floating_day = floating_duration < floating_day_t >; 
 
-
-constexpr FLOATING_DAY operator "" _day(long double d) { return (FLOATING_DAY)d; }
-constexpr FLOATING_DAY operator "" _days(long double d) { return (FLOATING_DAY)d; }
+//
+//constexpr FLOATING_DAY operator "" _day(long double d) { return (FLOATING_DAY)d; }
+//constexpr FLOATING_DAY operator "" _days(long double d) { return (FLOATING_DAY)d; }
 
 
 inline floating_day get_floating_day() { return FLOATING_DAY(get_floating_nanosecond().m_d / 86'400'000'000'000.0); }

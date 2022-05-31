@@ -292,7 +292,7 @@ namespace sockets
       if (passociation->m_psocket->is_connecting())
       {
 
-         if (passociation->m_psocket->m_durationConnectionMaximum > 0)
+         if (passociation->m_psocket->m_durationConnectionMaximum > 0_s)
          {
 
             socketlist_add(passociation->m_psocket->GetSocket(), e_list_timeout);

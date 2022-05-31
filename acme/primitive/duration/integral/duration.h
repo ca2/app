@@ -15,6 +15,8 @@ public:
    using DURATION::DURATION;
 
 
+   constexpr integral_duration(DURATION duration) : DURATION(duration) {}
+
    integral_duration(const integral_duration & type)
    {
 
@@ -103,8 +105,24 @@ public:
    }
 
 
-   operator class ::wait const () { return this->total_milliseconds(); }
+   inline operator class ::wait ()const;
 
+
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator %(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i % integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator /(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i / integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator *(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i * integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator +(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i + integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator -(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i - integral); }
 
 
 

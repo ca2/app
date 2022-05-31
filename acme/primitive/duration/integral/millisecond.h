@@ -12,13 +12,15 @@ public:
    using BASE_TYPE = INTEGRAL_MILLISECOND;
 
 
-   integral_millisecond_t(INTEGRAL_MILLISECOND millisecond = {}) : INTEGRAL_MILLISECOND(millisecond) {}
+   constexpr integral_millisecond_t(INTEGRAL_MILLISECOND millisecond = {}) : INTEGRAL_MILLISECOND(millisecond) {}
 
 
-   INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i / 1'000); }
-   INTEGRAL_NANOSECOND nanoseconds() const { return INTEGRAL_NANOSECOND((m_i % 1'000) * 1'000'000); }
-   INTEGRAL_MILLISECOND total_milliseconds() const { return INTEGRAL_MILLISECOND(m_i); }
+   constexpr operator INTEGRAL_SECOND() const { return { m_i / 1'000 }; }
+   constexpr operator INTEGRAL_NANOSECOND() const { return { (m_i % 1'000) * 1'000'000 }; }
+   constexpr operator INTEGRAL_MILLISECOND() const { return { m_i }; }
 
+
+   constexpr operator FLOATING_SECOND() const { return { m_i / 1'000.0 }; }
 
 };
 

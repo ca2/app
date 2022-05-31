@@ -18,7 +18,7 @@ struct unit                                           \
                                                       \
    constexpr unit():member{} {}                       \
    constexpr unit(enum_zero):member{} {}              \
-   explicit constexpr unit(type t):member(t){}        \
+   constexpr unit(type t):member(t){}                 \
                                                       \
 };
 

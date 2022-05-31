@@ -61,17 +61,17 @@ public:
    virtual void post_procedure(const ::procedure & procedure);
 
 
-   virtual void send_procedure(const ::procedure & procedure);
+   virtual void send_procedure(const ::procedure & procedure, const class ::wait & wait);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-   bool __get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload);
+   bool __get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
-   void __send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
+   void __send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure, const class ::wait & wait);
 
-   bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload);
+   bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payloadd, const class ::wait & wait);
 
-   void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure);
+   void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure, const class ::wait & wait);
 
 
 

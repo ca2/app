@@ -5,9 +5,10 @@
 //  Created by Camilo Sasuke Tsumanuma on 09/07/15.
 //
 //
+#include "framework.h"
+#include "acme/primitive/primitive/function.h"
 
-
-int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType )
+int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, ::function < void (enum_dialog_result) > function)
 {
    
    NSString * strMessage = [NSString stringWithUTF8String:pszMessageParam];
@@ -129,67 +130,69 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    UIWindow *window = [UIApplication sharedApplication].keyWindow;
    
   // Get its rootViewController:
+    
+    
    
    UIViewController *rootViewController = window.rootViewController;
 [rootViewController presentViewController:alert animated:YES completion:^{
-   dispatch_semaphore_signal(semaphore);
+    enum_dialog_result eresult =e_dialog_result_ok;
+    switch(uType)
+    {
+       case e_message_box_ok_cancel:
+          if(b1)
+              eresult= e_dialog_result_ok;
+          else if(b2)
+              eresult= e_dialog_result_cancel;
+          break;
+       case e_message_box_abort_retry_ignore:
+          if(b1)
+              eresult= e_dialog_result_abort;
+          else if(b2)
+              eresult= e_dialog_result_retry;
+          else if(b3)
+              eresult= e_dialog_result_ignore;
+          break;
+       case e_message_box_yes_no_cancel:
+          if(b1)
+              eresult= e_dialog_result_yes;
+          else if(b2)
+              eresult= e_dialog_result_no;
+          else if(b3)
+              eresult= e_dialog_result_cancel;
+          break;
+       case e_message_box_yes_no:
+          if(b1)
+              eresult= e_dialog_result_yes;
+          else if(b2)
+              eresult= e_dialog_result_no;
+          break;
+       case e_message_box_retry_cancel:
+          if(b1)
+              eresult= e_dialog_result_retry;
+          else if(b2)
+              eresult= e_dialog_result_cancel;
+          break;
+       case e_message_box_cancel_try_continue:
+          if(b1)
+              eresult= e_dialog_result_cancel;
+          else if(b2)
+              eresult= e_dialog_result_try_again;
+          else if(b3)
+              eresult= e_dialog_result_continue;
+          break;
+       default:
+          if(b1)
+              eresult= e_dialog_result_ok;
+          break;
+    }
+    
+    
+    completion(eresult);
+
+    
+    
 }];
 
-dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//dispatch_release(semaphore);
-   
-   switch(uType)
-   {
-      case e_message_box_ok_cancel:
-         if(b1)
-            return e_dialog_result_ok;
-         else if(b2)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_abort_retry_ignore:
-         if(b1)
-            return e_dialog_result_abort;
-         else if(b2)
-            return e_dialog_result_retry;
-         else if(b3)
-            return e_dialog_result_ignore;
-         break;
-      case e_message_box_yes_no_cancel:
-         if(b1)
-            return e_dialog_result_yes;
-         else if(b2)
-            return e_dialog_result_no;
-         else if(b3)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_yes_no:
-         if(b1)
-            return e_dialog_result_yes;
-         else if(b2)
-            return e_dialog_result_no;
-         break;
-      case e_message_box_retry_cancel:
-         if(b1)
-            return e_dialog_result_retry;
-         else if(b2)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_cancel_try_continue:
-         if(b1)
-            return e_dialog_result_cancel;
-         else if(b2)
-            return e_dialog_result_try_again;
-         else if(b3)
-            return e_dialog_result_continue;
-         break;
-      default:
-         if(b1)
-            return e_dialog_result_ok;
-         break;
-   }
-   
-   
-   return e_dialog_result_cancel;
 
 }
 

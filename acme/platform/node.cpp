@@ -833,10 +833,10 @@ namespace acme
    }
 
 
-   void node::node_send(const ::procedure & procedure)
+   void node::node_send(const ::procedure & procedure, const class ::wait & wait)
    {
 
-      __send_procedure(this, &node::node_post, procedure);
+      __send_procedure(this, &node::node_post, procedure, wait);
 
    }
 

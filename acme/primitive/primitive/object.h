@@ -905,6 +905,9 @@ public:
    template < typename BASE_TYPE, typename SOURCE >
    inline void __compose(__composite(BASE_TYPE)& ptype, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
+   template < typename BASE_TYPE, typename SOURCE >
+   inline void __compose(__composite(BASE_TYPE)& ptype, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
    template < typename BASE_TYPE >
    inline void __id_compose(__composite(BASE_TYPE)& ptype, const ::atom& atom);
 

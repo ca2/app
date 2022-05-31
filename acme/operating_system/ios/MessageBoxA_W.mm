@@ -187,7 +187,7 @@ int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, un
     }
     
     
-    completion(eresult);
+    function(eresult);
 
     
     

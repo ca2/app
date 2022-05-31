@@ -1842,35 +1842,7 @@ namespace install
 
 } // namespace install
 
-
-template<class T>
-struct erase_reference
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct erase_reference<T &>
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct erase_reference<T &&>
-{
-   typedef T TYPE;
-};
-
-
-template<class T>
-inline
-typename erase_reference<T>::TYPE &&move(T &&t)
-{
-
-   return (static_cast<typename erase_reference<T>::TYPE &&>(t));
-
-}
-
+#include "acme/primitive/primitive/move.h"
 
 class task;
 
@@ -2951,7 +2923,7 @@ namespace primitive
 
 
 } // namespace primitive
-
+#include "acme/primitive/primitive/ptr.h"
 
 
 #include "acme/primitive/primitive/member.h"
@@ -3013,7 +2985,7 @@ inline ::i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_
 
 
 template<typename T>
-inline __pointer(T) move_transfer(T * p);
+inline ptr < T > move_transfer(T * p);
 
 
 template < typename T >
@@ -3464,7 +3436,7 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 //#include "acme/primitive/primitive/function.h"
 
 
-#include "acme/primitive/primitive/member.h"
+//#include "acme/primitive/primitive/member.h"
 
 
 #include "acme/primitive/primitive/trait.h"

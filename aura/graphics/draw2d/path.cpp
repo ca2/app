@@ -2347,7 +2347,7 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
          for (auto & pshape : path.m_shapea)
          {
 
-            m_shapea.add(::move_transfer(pshape->clone()));
+            m_shapea.add(::clone(pshape));
 
          }
 

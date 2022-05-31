@@ -314,20 +314,20 @@ inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & sr
 }
 
 
-template < typename T >
-inline __pointer(T) clone(const __pointer(T) & t)
-{
-
-   if (t.is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return t->clone();
-
-}
+//template < typename T >
+//inline __pointer(T) clone(const __pointer(T) & t)
+//{
+//
+//   if (t.is_null())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return t->clone();
+//
+//}
 
 
 

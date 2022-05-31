@@ -2898,6 +2898,35 @@ namespace user
          }
 
       }
+      
+      if(is_host_window())
+      {
+         
+         if(m_puserinteractionpointeraChild)
+         {
+            
+            if(m_puserinteractionpointeraChild->has_interaction())
+            {
+             
+               for(auto & puserinteraction :
+               m_puserinteractionpointeraChild->interactiona())
+               {
+               
+                  puserinteraction->set_size(psize->m_size);
+                  
+//                  puserinteraction->set_need_layout();
+//                  
+//                  puserinteraction->set_need_redraw();
+//                  
+//                  puserinteraction->post_redraw();
+                  
+               }
+               
+            }
+            
+         }
+         
+      }
 
    }
 

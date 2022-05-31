@@ -2,10 +2,22 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/move.h"
+
+#include "acme/primitive/primitive/ptr.h"
+
 enum enum_as
 {
 
    e_as,
+
+}; // enum enum_base
+
+
+enum enum_as_lparam
+{
+
+   e_as_lparam,
 
 }; // enum enum_base
 
@@ -52,7 +64,7 @@ struct function :
 
 template < >
 class function < void() > :
-   public ___pointer < ::element >,
+   public ptr < ::element >,
    public function_common
 {
 public:
@@ -100,22 +112,24 @@ public:
    }
 
 
-   //function(enum_as, ::element * pelement)
-   //{
-
-   //   m_p = pelement;
-
-   //   m_pelement = m_p;
-
-   //}
-
-
-   function(::lparam & lparam)
+   function(const ptr < ::element > & p) :
+      ptr < ::element >(p)
    {
 
-      m_p = (::element *) lparam.m_lparam;
+   }
 
-      m_pelement = m_p;
+
+   function(ptr < ::element > && p) :
+      ptr < ::element >(::move(p))
+   {
+
+   }
+
+
+   function(enum_as_lparam, iptr iptr)
+   {
+
+      m_p = (::element *) iptr;
 
    }
 
@@ -126,25 +140,9 @@ public:
 
       m_p = p;
 
-      m_pelement = m_p;
-
       p->increment_reference_count();
 
    }
-
-
-   template < typename TYPE >
-   function(const __pointer(TYPE) & p)
-   {
-
-      m_p = p;
-
-      m_pelement = m_p;
-
-      p->increment_reference_count();
-
-   }
-
 
 
    template < typename PREDICATE >
@@ -153,20 +151,18 @@ public:
 
       m_p = new class predicate <PREDICATE >(predicateParam);
 
-      m_pelement = m_p;
-
    }
 
 
    function(const function & function) :
-      ___pointer < ::element > (function)
+      ptr < ::element > (function)
    {
 
    }
 
 
    function(function && function) :
-      ___pointer < ::element >(::move(function))
+      ptr < ::element >(::move(function))
    {
 
    }
@@ -181,8 +177,6 @@ public:
    void operator()() const
    {
 
-      ASSERT(m_p);
-
       m_p->call_run();
 
    }
@@ -191,25 +185,25 @@ public:
    function & operator = (const function & function)
    {
 
-      ___pointer < ::element >::operator=(function.m_p);
+      ptr < ::element >::operator=(function.m_p);
 
       return *this;
 
    }
 
+//
+//   function & operator = (function && function)
+//   {
+//
+//      ptr < ::element >::operator=(::move(function));
+//
+//      return *this;
+//
+//   }
 
-   function & operator = (function && function)
-   {
+   operator bool() const { return __pointer_is_set(m_p); }
 
-      ___pointer < ::element >::operator=(::move(function));
-
-      return *this;
-
-   }
-
-   operator bool() const { return ::is_set(m_p); }
-
-   bool operator !() const { return ::is_null(m_p); }
+   bool operator !() const { return __pointer_is_null(m_p); }
 
    operator ::element *() const { return m_p; }
 
@@ -262,7 +256,7 @@ public:
 
    };
 
-   __pointer(predicate_base)     m_ppredicate;
+   ptr<predicate_base >     m_ppredicate;
 
 
    function(nullptr_t = nullptr)
@@ -274,7 +268,7 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.move(new class predicate <PREDICATE >(predicateParam));
 
    }
 
@@ -315,7 +309,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_ppredicate = __new(class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.move(new class predicate <PREDICATE >(predicateParam));
 
       return *this;
 
@@ -340,9 +334,9 @@ public:
 
    }
 
-   operator bool() const { return ::is_set(m_ppredicate); }
+   operator bool() const { return __pointer_is_set(m_ppredicate); }
 
-   bool operator !() const { return ::is_null(m_ppredicate); }
+   bool operator !() const { return __pointer_is_null(m_ppredicate); }
 
 
 };
@@ -381,7 +375,7 @@ public:
       }
 
 
-      RETURN_TYPE operator()(TYPES... args)
+      RETURN_TYPE operator()(TYPES... args) override
       {
 
          return m_predicate(args...);
@@ -391,7 +385,7 @@ public:
    };
 
    
-   __pointer(base)     m_pbase;
+   ptr < base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -412,7 +406,7 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pbase = __new(class implementation < FUNCTION >(functionParam));
+      m_pbase.move(new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -440,9 +434,9 @@ public:
    RETURN_TYPE operator()(TYPES... args) const
    {
 
-      ASSERT(m_pbase);
+      //ASSERT(m_pbase);
 
-      return m_pbase->operator()(args...);
+      return ((base *)m_pbase.m_p)->operator()(args...);
 
    }
 
@@ -454,7 +448,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase = __new(class implementation <FUNCTION >(functionParam));
+      m_pbase.move ( new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -470,9 +464,9 @@ public:
 
    }
 
-   operator bool() const { return ::is_set(m_pbase); }
+   operator bool() const { return __pointer_is_set(m_pbase); }
 
-   bool operator !() const { return ::is_null(m_pbase); }
+   bool operator !() const { return __pointer_is_null(m_pbase); }
 
    function & operator = (const function & function) { m_pbase = function.m_pbase; return *this; }
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
@@ -480,6 +474,144 @@ public:
 
 
 };
+
+
+
+
+template < typename... TYPES >
+class function < void(TYPES...) > :
+   public function_common
+{
+public:
+
+
+   class base :
+      virtual public ::element
+   {
+   public:
+
+      virtual void operator()(TYPES... args) = 0;
+
+   };
+
+
+   template < typename PREDICATE >
+   class implementation :
+      public base
+   {
+   public:
+
+      PREDICATE m_predicate;
+
+      implementation(PREDICATE predicate) :
+         m_predicate(predicate)
+      {
+
+      }
+
+
+      void operator()(TYPES... args) override
+      {
+
+         m_predicate(args...);
+
+      }
+
+   };
+
+   
+   ptr < base >     m_pbase;
+
+
+   function(nullptr_t = nullptr)
+   {
+
+   }
+
+
+   function(enum_as, base * pbase)
+   {
+
+      m_pbase = pbase;
+
+   }
+
+
+   template < typename FUNCTION >
+   function(FUNCTION functionParam)
+   {
+
+      m_pbase.move(new class implementation < FUNCTION >(functionParam));
+
+   }
+
+
+   function(const function & function) :
+      m_pbase(function.m_pbase)
+   {
+
+   }
+
+
+   function(function && function) :
+      m_pbase(::move(function.m_pbase))
+   {
+
+   }
+
+
+   ~function()
+   {
+
+   }
+
+
+   void operator()(TYPES... args) const
+   {
+
+      //ASSERT(m_pbase);
+
+      ((base *)m_pbase.m_p)->operator()(args...);
+
+   }
+
+
+   void clear() { m_pbase.release(); }
+
+
+   template < typename FUNCTION >
+   function & operator = (FUNCTION functionParam)
+   {
+
+      m_pbase.move ( new class implementation <FUNCTION >(functionParam));
+
+      return *this;
+
+   }
+
+
+   function & operator = (nullptr_t)
+   {
+
+      clear();
+
+      return *this;
+
+   }
+
+   operator bool() const { return __pointer_is_set(m_pbase.m_p); }
+
+   bool operator !() const { return __pointer_is_null(m_pbase.m_p); }
+
+   function & operator = (const function & function) { m_pbase = function.m_pbase.m_p; return *this; }
+   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   bool operator != (const function & function) const { return !operator==(function); }
+
+
+};
+
+
+
 
 
 

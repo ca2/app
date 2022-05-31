@@ -86,7 +86,7 @@ namespace file
    void watch::add_listener(const listener & listenerParam)
    {
 
-      auto & listener = m_listenera.insert_unique(listenerParam);
+      auto & listener = m_listenera.insert_unique(::move(listenerParam));
 
       listener.m_watcha.add_unique(this);
 

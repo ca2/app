@@ -262,3 +262,18 @@ bool ns_open_file(const char * psz)
 //   return true;
    
 }
+
+
+CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy)
+{
+   
+   auto bounds = [[UIScreen mainScreen] bounds];
+   
+   cx = bounds.size.width;
+   
+   cy = bounds.size.height;
+   
+}
+
+
+

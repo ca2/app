@@ -3049,6 +3049,8 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 class duration;
 
+#include "acme/primitive/duration/time.h"
+
 #include "acme/parallelization/wait.h"
 
 #include "acme/parallelization/thread_parameter.h"

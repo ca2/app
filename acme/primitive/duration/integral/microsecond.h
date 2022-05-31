@@ -23,7 +23,7 @@ public:
    INTEGRAL_MILLISECOND total_milliseconds() const { return INTEGRAL_MILLISECOND(m_i / 1'000); }
 
 
-   operator class ::wait const () { return total_milliseconds(); }
+   operator class ::wait const () { return total_milliseconds().m_i / 1'000.0; }
 
 
 };

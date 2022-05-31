@@ -1302,6 +1302,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\time.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
@@ -1764,6 +1765,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\duration\integral\second.h" />
     <ClInclude Include="primitive\duration\integral\_.h" />
     <ClInclude Include="primitive\duration\integral\_impl.h" />
+    <ClInclude Include="primitive\duration\time.h" />
     <ClInclude Include="primitive\duration\_.h" />
     <ClInclude Include="primitive\duration\_duration.h" />
     <ClInclude Include="primitive\duration\_struct.h" />
@@ -2137,7 +2139,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\comparison\var_strict.h" />
     <ClInclude Include="primitive\datetime\_.h" />
     <ClInclude Include="primitive\datetime\date_span.h" />
-    <ClInclude Include="primitive\datetime\time.h" />
+    <ClInclude Include="primitive\datetime\earth_time.h" />
     <ClInclude Include="primitive\datetime\time_span.h" />
     <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />

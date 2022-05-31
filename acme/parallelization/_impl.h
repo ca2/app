@@ -195,7 +195,7 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //
 
 
-inline class ::wait wait::now() { return get_integral_millisecond(); }
+//inline class ::wait wait::now() { return get_integral_millisecond(); }
 
 
 inline void preempt()

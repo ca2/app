@@ -807,7 +807,7 @@ CLASS_DECL_ACME class ::duration __random(const class ::duration & d1, const cla
 inline duration::operator class ::wait() const
 {
 
-   return INTEGRAL_MILLISECOND(is_infinite() ? INT64_MAX : integral_millisecond().m_i);
+   return is_infinite() ? ::wait::__infinite() : floating_second().m_d;
 
 }
 

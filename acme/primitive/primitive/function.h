@@ -17,18 +17,12 @@ struct function_common
 {
 
 
-#ifdef DEBUG
+   class ::wait m_waitTimeout;
 
-   class ::wait m_waitTimeout = 30_min;
-
-#else
-
-   class ::wait m_waitTimeout = 5_s;
-
-#endif
 
    void timeout(const class ::wait & wait)  { m_waitTimeout = wait;}
    class ::wait timeout() const {return m_waitTimeout;}
+
 
 };
 

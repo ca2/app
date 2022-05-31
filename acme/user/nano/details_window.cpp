@@ -29,10 +29,10 @@ void nano_details_window::calculate_size()
 
 #if !defined(_UWP)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
+   int wScreen = 1280;
+   int hScreen = 768;
 
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   operating_system_get_main_screen_size(wScreen, hScreen);
 
    int w = wScreen / 2;
    int h = (w /8) * 5;

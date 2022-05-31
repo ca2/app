@@ -28,10 +28,10 @@ void popup_button::calculate_size_and_position(int x, int y)
 
 #if !defined(_UWP)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
-
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   int wScreen = 1280;
+   int hScreen = 768;
+   
+   operating_system_get_main_screen_size(wScreen, hScreen);
 
    //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

@@ -452,6 +452,12 @@ public:
    inline bool operator >= (const ::FLOATING_DAY & day) const { return operator >= (::duration(day)); }
 
 
+   inline bool operator == (const class time & time) const { return operator == (::duration(FLOATING_SECOND(time.m_d))); }
+   inline bool operator != (const class time & time) const { return operator != (::duration(FLOATING_SECOND(time.m_d))); }
+   inline bool operator < (const class time & time) const { return operator < (::duration(FLOATING_SECOND(time.m_d))); }
+   inline bool operator <= (const class time & time) const { return operator <= (::duration(FLOATING_SECOND(time.m_d))); }
+   inline bool operator > (const class time & time) const { return operator > (::duration(FLOATING_SECOND(time.m_d))); }
+   inline bool operator >= (const class time & time) const { return operator >= (::duration(FLOATING_SECOND(time.m_d))); }
 
 
 
@@ -555,6 +561,10 @@ public:
 
 
 
+   duration operator %(const class time & time) const { return *this % ::duration(FLOATING_SECOND(time.m_d));}
+   double operator /(const class time & time) const { return *this / ::duration(FLOATING_SECOND(time.m_d));}
+   duration operator +(const class time & time) const { return *this + ::duration(FLOATING_SECOND(time.m_d)); }
+   duration operator -(const class time & time) const { return *this - ::duration(FLOATING_SECOND(time.m_d)); }
 
 
 

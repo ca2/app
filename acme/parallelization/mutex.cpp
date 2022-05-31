@@ -968,9 +968,9 @@ bool mutex::_wait(const class ::wait & wait)
 
             ::duration d;
 
-            d.m_iSecond = abs_time.tv_sec + wait.m_i / 1'000;
+            d.m_iSecond = abs_time.tv_sec + wait.m_d;
 
-            d.m_iNanosecond = abs_time.tv_nsec + (wait.m_i%1000) * 1'000'000;
+            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_d, 1.0) * 1'000'000'000;
 
             d.normalize();
 

@@ -350,6 +350,8 @@
 		9A5F8E0727193D4E002CB2B8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5F8DE427193D4D002CB2B8 /* _.h */; };
 		9A5F8E0827193D4E002CB2B8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5F8DE527193D4D002CB2B8 /* _.h */; };
 		9A5F8E0A27193E7D002CB2B8 /* _struct.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5F8E0927193E7C002CB2B8 /* _struct.h */; };
+		9A64515428464C1A00A94AAB /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A64515328464BFC00A94AAB /* time.cpp */; };
+		9A64515528464C1A00A94AAB /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A64515328464BFC00A94AAB /* time.cpp */; };
 		9A6549BE2667FC5400F8A254 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6549BC2667FC5400F8A254 /* _.cpp */; };
 		9A6549BF2667FC5400F8A254 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6549BC2667FC5400F8A254 /* _.cpp */; };
 		9A68AC9925114434008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A4552511442E008DABD2 /* procedure.h */; };
@@ -2794,6 +2796,9 @@
 		9A5F8E122719A377002CB2B8 /* _unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit.h; sourceTree = "<group>"; };
 		9A5F8E132719AB1E002CB2B8 /* _unit_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit_operator.h; sourceTree = "<group>"; };
 		9A5F8E142719ABA9002CB2B8 /* _string_format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _string_format.h; sourceTree = "<group>"; };
+		9A6451512846458100A94AAB /* time_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time_operator.h; sourceTree = "<group>"; };
+		9A6451522846458200A94AAB /* time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		9A64515328464BFC00A94AAB /* time.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		9A6549BC2667FC5400F8A254 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A68A41425114352008DABD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68A4552511442E008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
@@ -4117,6 +4122,9 @@
 				9A5F8E122719A377002CB2B8 /* _unit.h */,
 				9A5F8E132719AB1E002CB2B8 /* _unit_operator.h */,
 				9A5F8E142719ABA9002CB2B8 /* _string_format.h */,
+				9A64515328464BFC00A94AAB /* time.cpp */,
+				9A6451522846458200A94AAB /* time.h */,
+				9A6451512846458100A94AAB /* time_operator.h */,
 			);
 			path = duration;
 			sourceTree = "<group>";
@@ -7752,6 +7760,7 @@
 				9AA8FD4927BA729A008FF9AA /* pthread.cpp in Sources */,
 				9A68AD7125114434008DABD2 /* lparam.cpp in Sources */,
 				9A220F09251A1993002B42B7 /* printf.cpp in Sources */,
+				9A64515428464C1A00A94AAB /* time.cpp in Sources */,
 				9AA8FE2327BA729C008FF9AA /* dir.cpp in Sources */,
 				9AA8F8F327BA7268008FF9AA /* details_window.cpp in Sources */,
 				9A68AE8925114435008DABD2 /* property_set.cpp in Sources */,
@@ -8202,6 +8211,7 @@
 				9ADD654F26B5CFE700D11298 /* memory_allocate.cpp in Sources */,
 				9AA8FF4827BA729F008FF9AA /* mm.mm in Sources */,
 				9AD6918C251A753A00C0EBD7 /* lparam.cpp in Sources */,
+				9A64515528464C1A00A94AAB /* time.cpp in Sources */,
 				9AD6918E251A753A00C0EBD7 /* printf.cpp in Sources */,
 				9A94DE4D282C03AD00F5C1CA /* regular_expression.cpp in Sources */,
 				9AA8FDF627BA729B008FF9AA /* winpr_scancode.cpp in Sources */,

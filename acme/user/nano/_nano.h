@@ -52,10 +52,7 @@ namespace nano
 
 } // namespace nano
 
-
-
-CLASS_DECL_ACME ::size_i32 operating_system_get_main_screen_size();
-CLASS_DECL_ACME void operating_system_set_main_screen_rectangle(const ::rectangle_i32 & rectangle);
+CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy);
 
 CLASS_DECL_ACME void initialize_nano();
 

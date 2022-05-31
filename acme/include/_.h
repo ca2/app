@@ -2501,7 +2501,7 @@ namespace audio
 #include "acme/primitive/duration/_unit.h"
 
 
-#include "acme/primitive/duration/time_comparison.h"
+#include "acme/primitive/duration/time_operator.h"
 
 
 template<class t>

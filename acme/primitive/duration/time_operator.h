@@ -128,4 +128,18 @@ template < primitive_number NUMBER >
 inline class ::time operator * (const class ::time& timeduration, const NUMBER & number) { return (double) (timeduration.m_d * number); }
 
 
+inline timespec & operator +=(timespec & timespec, const class time & time)
+{
+
+   timespec.tv_sec += (::i64) time.m_d;
+
+   timespec.tv_nsec += (::i64) (fmod(time.m_d, 1.0)) *1'000'000'000;
+
+   normalize(timespec);
+
+   return timespec;
+
+}
+
+
 

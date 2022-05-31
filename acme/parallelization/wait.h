@@ -24,8 +24,8 @@ public:
       double
 #endif
    ) :time(dWait) {}
-   wait(const class ::time& time) : time(time.m_d) {}
-   wait(const class ::wait& wait) : time(wait.m_d) {}
+   wait(const class time& timeWait) : time(timeWait.m_d) {}
+   wait(const class wait& waitTime) : time(waitTime.m_d) {}
 
 
    static inline double __infinite() { return 1.e9; }

@@ -1948,7 +1948,7 @@ namespace user
       virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      void send_procedure(const ::procedure & procedure, const class ::wait & wait) override;
+      void send_procedure(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >

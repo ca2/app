@@ -261,7 +261,7 @@ bool Widget::focus_event(bool focused)
 }
 
 
-bool Widget::keyboard_event(::user::enum_key , int, int, const ::user::e_key &) 
+bool Widget::keyboard_event(::user::enum_key , int, int, const ::user::e_key &, const ::string & strText) 
 {
 
    return false;

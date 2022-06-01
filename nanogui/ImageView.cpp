@@ -92,7 +92,7 @@ Vector2f ImageView::pixel_to_pos(const Vector2f & p) const {
    return pos;
 }
 
-bool ImageView::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */) {
+bool ImageView::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) {
    if (!m_enabled || !m_pimage)
       return false;
 

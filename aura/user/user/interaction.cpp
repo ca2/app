@@ -5522,7 +5522,8 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers,
+                                        pmessage->m_union.m_pkey->m_strText))
          {
 
             pmessage->m_bRet = true;

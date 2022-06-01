@@ -775,10 +775,10 @@ void Screen::draw_widgets(NVGcontext * ctx) {
    //nvgEndFrame(ctx);
 }
 
-bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) {
+bool Screen::keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) {
    if (m_focus_path.size() > 0) {
       for (auto it = m_focus_path.rbegin() + 1; it != m_focus_path.rend(); ++it)
-         if ((*it)->focused() && (*it)->keyboard_event(ekey, scancode, action, ekeyModifiers))
+         if ((*it)->focused() && (*it)->keyboard_event(ekey, scancode, action, ekeyModifiers, strText))
             return true;
    }
 
@@ -971,7 +971,7 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
 //void Screen::key_callback_event(int key, int scancode, int action, int mods) {
 //   m_last_interaction = glfwGetTime();
 //   try {
-//      m_redraw |= keyboard_event(key, scancode, action, mods);
+//      m_redraw |= keyboard_event(key, scancode, action, mods, strTExt);
 //   }
 //   catch (const std::exception & e) {
 //      std::cerr << "Caught exception in event handler: " << e.what() << std::endl;
@@ -1355,10 +1355,10 @@ bool Screen::on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekey
 }
 
 
-bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
+bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const ::string & strText)
 {
 
-   return keyboard_event(ekey, (int) scancode, e_message_key_down, ekeyModifiers);
+   return keyboard_event(ekey, (int) scancode, e_message_key_down, ekeyModifiers, strText);
 
 }
 
@@ -1366,7 +1366,7 @@ bool Screen::on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_
 bool Screen::on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers)
 {
 
-   return keyboard_event(ekey, (int) scancode, e_message_key_up, ekeyModifiers);
+   return keyboard_event(ekey, (int) scancode, e_message_key_up, ekeyModifiers, "");
 
 }
 

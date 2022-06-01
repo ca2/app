@@ -434,7 +434,7 @@ bool TextBox::focus_event(bool focused) {
    return true;
 }
 
-bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers) {
+bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) {
    if (m_editable && focused()) {
 
       auto psession = screen()->m_puserinteraction->get_session();

@@ -9861,6 +9861,12 @@ namespace user
 
       //}
 
+      if (is_host_window())
+      {
+
+         m_puserinteraction->set_size(get_size());
+
+      }
 
    }
 

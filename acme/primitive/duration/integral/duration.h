@@ -160,7 +160,7 @@ template < primitive_floating FLOATING, typename DURATION >
 integral_duration < DURATION > operator * (FLOATING floating, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE) (DURATION::BASE_TYPE::BASE_TYPE)(floating * integralduration.m_i);
+   return (typename DURATION::BASE_TYPE) (typename DURATION::BASE_TYPE::BASE_TYPE)(floating * integralduration.m_i);
 
 }
 
@@ -169,7 +169,7 @@ template < primitive_integral INTEGRAL, typename DURATION >
 integral_duration < DURATION > operator * (INTEGRAL integral, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE)(DURATION::BASE_TYPE::BASE_TYPE)(integral * integralduration.m_i);
+   return (typename DURATION::BASE_TYPE) (typename DURATION::BASE_TYPE::BASE_TYPE)(integral * integralduration.m_i);
 
 }
 

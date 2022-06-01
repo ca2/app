@@ -669,7 +669,7 @@ void thread::run()
    if (m_procedure && m_procedure != this)
    {
 
-      m_atom = __type_name(*m_procedure.m_pelement);
+      m_atom = __type_name(*m_procedure.m_p);
 
       task_set_name(m_atom);
 
@@ -702,7 +702,7 @@ bool thread::pump_runnable()
 void thread::on_message_branch(::message::message* pmessage)
 {
 
-   ::procedure routine(pmessage->m_lparam);
+   ::procedure routine(e_as_lparam, pmessage->m_lparam);
 
    if (pmessage->m_wparam == 0)
    {
@@ -4070,7 +4070,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_method)
          {
 
-            ::procedure routine(message.lParam);
+            ::procedure routine(e_as_lparam, message.lParam);
 
             routine();
 

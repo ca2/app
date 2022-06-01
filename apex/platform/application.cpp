@@ -9868,12 +9868,12 @@ void application::data_on_after_change(::database::client* pclient, const ::data
 }
 
 
-__pointer(::application) application::create_platform(::apex::session* psession)
-{
-
-   return __new(::apex::session);
-
-}
+//__pointer(::application) application::create_platform(::apex::session* psession)
+//{
+//
+//   return __new(::apex::session);
+//
+//}
 
 
 void application::report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic)

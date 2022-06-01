@@ -24,15 +24,15 @@ public:
       double
 #endif
    ) :time(dWait) {}
-   wait(const class ::time& time) : time(time.m_d) {}
-   wait(const class ::wait& wait) : time(wait.m_d) {}
+   wait(const class time& timeWait) : time(timeWait.m_d) {}
+   wait(const class wait& waitTime) : time(waitTime.m_d) {}
 
 
-   static inline double __infinite() { return 1.e9; }
+   static inline double __infinite() { return 0xffffffffu; }
 
    static inline class ::wait infinite() { return __infinite(); }
 
-   inline operator ::u32() const { return (::u32) ::minimum_maximum(m_d, 0., __infinite()); }
+   inline operator ::u32() const { return (::u32) m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)( m_d * 1'000.0)); }
 
    inline bool is_infinite() const { return m_d >= __infinite(); }
 

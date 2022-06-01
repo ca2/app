@@ -107,10 +107,10 @@ void nano_message_box::calculate_size()
 
 #if !defined(_UWP)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
+   int wScreen = 1280;
+   int hScreen = 768;
 
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   operating_system_get_main_screen_size(wScreen, hScreen);
 
    //printf("nano_message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

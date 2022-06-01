@@ -145,10 +145,6 @@ namespace user
       virtual string get_title();
 
 
-      //void install_message_routing(::channel * pchannel) override;
-
-      //virtual void show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd);
-
       virtual void show_software_keyboard(::user::element* pelement);
 
       virtual void hide_software_keyboard(::user::element* pelement);

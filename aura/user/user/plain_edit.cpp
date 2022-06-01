@@ -6451,8 +6451,6 @@ finished_update:
 
       }
 
-      auto pevent = __new(manual_reset_event);
-
       bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
 
       bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
@@ -6472,7 +6470,7 @@ finished_update:
 
       }
 
-      queue_graphics_call([this, iNewCursorPosition, bTextHasNewLine, pevent](::draw2d::graphics_pointer& pgraphics)
+      queue_graphics_call([this, iNewCursorPosition, bTextHasNewLine](::draw2d::graphics_pointer& pgraphics)
       {
 
          bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
@@ -6566,15 +6564,11 @@ finished_update:
 
          _set_sel_end(pgraphics, m_ptree->m_iSelEnd);
 
-         pevent->SetEvent();
-
       });
 
       set_need_redraw();
 
       post_redraw();
-
-      pevent->wait(5_s);
 
    }
 
@@ -7565,22 +7559,6 @@ finished_update:
 
       if (::is_set(ptexteditorinterface))
       {
-
-         //strsize iBeg = 0;
-
-         //strsize iEnd = 0;
-
-         //_001GetSel(iBeg, iEnd);
-
-         //string strText;
-
-         //_001GetText(strText);
-
-         //ptexteditorinterface->set_editor_selection(iBeg, iEnd);
-
-         //ptexteditorinterface->set_editor_text(strText);
-
-         //ptexteditorinterface->show_software_keyboard();
 
          ptexteditorinterface->hide_software_keyboard();
 

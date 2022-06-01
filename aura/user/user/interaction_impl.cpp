@@ -6739,7 +6739,21 @@ namespace user
       {
 
          m_puserinteraction->layout().sketch().size() = m_puserinteraction->layout().window().size();
-         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+         
+         int cx = m_puserinteraction->layout().sketch().size().width();
+         
+         int cy = m_puserinteraction->layout().sketch().size().height();
+//         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+         
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+         
+         m_puserinteraction->post_redraw();
+
+         //
+         //         m_puserinteraction->post_redraw();
+
 
          //if (m_puserinteraction->layout().is_moving())
          //{

@@ -1706,18 +1706,6 @@ namespace user
 
          }
 
-         //string strText;
-
-         //_001GetText(strText);
-
-         //strsize iBeg;
-
-         //strsize iEnd;
-
-         //_001GetSel(iBeg, iEnd);
-
-         //show_software_keyboard(this, strText, iBeg, iEnd);
-
          show_software_keyboard(this);
 
       }
@@ -2897,6 +2885,35 @@ namespace user
 
          }
 
+      }
+      
+      if(is_host_window())
+      {
+         
+         if(m_puserinteractionpointeraChild)
+         {
+            
+            if(m_puserinteractionpointeraChild->has_interaction())
+            {
+             
+               for(auto & puserinteraction :
+               m_puserinteractionpointeraChild->interactiona())
+               {
+               
+                  puserinteraction->set_size(psize->m_size);
+                  
+//                  puserinteraction->set_need_layout();
+//                  
+//                  puserinteraction->set_need_redraw();
+//                  
+//                  puserinteraction->post_redraw();
+                  
+               }
+               
+            }
+            
+         }
+         
       }
 
    }
@@ -5493,7 +5510,8 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers,
+                                        pmessage->m_union.m_pkey->m_strText))
          {
 
             pmessage->m_bRet = true;
@@ -5623,8 +5641,6 @@ namespace user
 
    ::point_i32 interaction::on_drag_start(::user::drag * pdrag)
    {
-
-      //get_wnd()->show_software_keyboard(this, false);
 
       get_wnd()->hide_software_keyboard(this);
 
@@ -16119,17 +16135,6 @@ namespace user
 
          }
 
-         //::user::primitive_impl* pprimitiveimpl = nullptr;
-
-         //if (pprimitiveimpl)
-         //{
-
-         //   pprimitiveimpl = pelement->get_primitive_impl();
-
-         //}
-
-         //return m_pprimitiveimpl->show_software_keyboard(pprimitive, str, iBeg, iEnd);
-
          return m_pprimitiveimpl->show_software_keyboard(pelement);
 
       }
@@ -16144,8 +16149,6 @@ namespace user
             throw ::exception(error_null_pointer);
 
          }
-
-         //return pwindow->show_software_keyboard(pprimitive, str, iBeg, iEnd);
 
          return pwindow->show_software_keyboard(pelement);
 

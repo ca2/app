@@ -1059,4 +1059,16 @@ void acme_macos_application_main(void * pApplication, int argc, char *argv[])
 //} // namespace user
 
 
+CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy)
+{
+   
+   auto frame = [[NSScreen mainScreen] frame];
+   
+   cx = frame.size.width;
+   
+   cy = frame.size.height;
+   
+}
+
+
 

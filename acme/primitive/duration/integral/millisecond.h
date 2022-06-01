@@ -17,7 +17,6 @@ public:
 
    constexpr operator INTEGRAL_SECOND() const { return { m_i / 1'000 }; }
    constexpr operator INTEGRAL_NANOSECOND() const { return { (m_i % 1'000) * 1'000'000 }; }
-   constexpr operator INTEGRAL_MILLISECOND() const { return { m_i }; }
 
 
    constexpr operator FLOATING_SECOND() const { return { m_i / 1'000.0 }; }

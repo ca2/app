@@ -8518,12 +8518,12 @@ namespace aura
    //}
 
 
-   __pointer(::application) application::create_platform(::apex::session* psession)
-   {
-
-      return __new(::aura::session);
-
-   }
+//   __pointer(::application) application::create_platform(::apex::session* psession)
+//   {
+//
+//      return __new(::aura::session);
+//
+//   }
 
 
    //void application::on_change_cur_sel(::user::tab* ptab)

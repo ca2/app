@@ -98,5 +98,14 @@ class duration;
 #include "acme/parallelization/_impl_synchronization_result.h"
 //#include "acme/primitive/datetime/_impl.h"
 
+#include "acme/primitive/duration/time.h"
+
+
+
+#include "acme/primitive/primitive/ptr.h"
+
+#include "acme/parallelization/wait.h"
+
+#include "acme/primitive/primitive/function.h"
 
 

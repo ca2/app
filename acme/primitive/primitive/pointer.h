@@ -34,6 +34,10 @@ public:
 
    ___pointer(const ___pointer & t);
    ___pointer(___pointer && t);
+   template < typename T2 >
+   ___pointer(const ptr < T2 > & p);
+   template < typename T2 >
+   ___pointer(ptr < T2 > && p);
    //inline ___pointer(const ::trait & trait);
 
 
@@ -229,6 +233,10 @@ public:
 
    ___pointer & operator = (const ___pointer & t);
    ___pointer & operator = (___pointer && t);
+   template < typename T2 >
+   ___pointer & operator = (const ptr < T2 > & p);
+   template < typename T2 >
+   ___pointer & operator = (ptr < T2 > && p);
 
    template < typename VAR >
    inline ___pointer & operator = (const payload_type < VAR > & payload);
@@ -494,6 +502,15 @@ public:
       release();
 
    }
+   
+   
+   inline void operator()() const
+   {
+      
+      ((TYPE *) m_p)->call_run();
+      
+   }
+   
 
 };
 
@@ -593,57 +610,22 @@ inline void swap(__pointer(TYPE) & a, __pointer(TYPE) & b)
 }
 
 
-template < typename TYPE >
-inline __pointer(TYPE) __clone(const __pointer(TYPE) & p)
-{
-
-   if (!p)
-   {
-
-      return nullptr;
-
-   }
-
-   return ::move_transfer(p->clone());
-
-}
 
 
 template < typename TYPE >
-inline __pointer(TYPE) & __clone(__pointer(TYPE) & p)
-{
-
-   if (!p)
-   {
-
-      return p;
-
-   }
-
-   return p = ::move_transfer(p->clone());
-
-}
+inline __pointer(TYPE) clone(const __pointer(TYPE) & p);
 
 
 template < typename TYPE >
-inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
-{
-
-   if (!p || p->reference_count() <= 1)
-   {
-
-      return p;
-
-   }
-
-   return p = ::move_transfer(p->clone());
-
-}
+inline __pointer(TYPE) & clone(__pointer(TYPE) & p);
 
 
+template < typename TYPE >
+inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p);
 
-//template < class T >
-//inline ___pointer < T > & __move(___pointer < T > & p, ::lparam & lparam);
+
+template < typename TYPE >
+ptr < TYPE > clone(TYPE * p);
 
 
 

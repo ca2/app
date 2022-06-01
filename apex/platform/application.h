@@ -1023,7 +1023,7 @@ public:
 
 
 
-      virtual __pointer(::application) create_platform(::apex::session* psession);
+//      virtual __pointer(::application) create_platform(::apex::session* psession);
 
 
 

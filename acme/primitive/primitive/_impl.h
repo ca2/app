@@ -12,6 +12,86 @@ inline bool __enum_is_failed(const ::e_status & e)
 }
 
 
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > ::___pointer(const ptr < T2 > & t) :
+   m_p(t.m_p),
+   m_pelement(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > ::___pointer(ptr < T2 > && t) :
+   m_p(t.m_p),
+   m_pelement(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > & ___pointer < T > ::operator = (const ptr < T2 >  & t)
+{
+
+   auto pold = m_pelement;
+
+   m_p = t.m_p;
+
+   m_pelement = t.m_p;
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+   ::release(pold REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > & ___pointer < T > ::operator = (ptr < T2 > && t)
+{
+
+   auto pOld         = m_pelement;
+
+   m_p           = t.m_p;
+
+   m_pelement        = t.m_p;
+
+   t.m_p         = nullptr;
+
+   ::release(pOld REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
 //template < class T >
 //inline const char * ___pointer < T >::__type_name(this)
 //{
@@ -1389,7 +1469,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 template < typename T >
-inline __pointer(T) move_transfer(T* p) { return { e_move_transfer, p }; }
+inline ptr < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 template < typename TYPE >
@@ -2115,7 +2195,7 @@ inline ::payload operator + (::payload payload, const ::procedure & procedure)
 
    }
 
-   payload["routine"] = procedure.m_pelement;
+   payload["routine"] = procedure.m_p;
 
    return payload;
 
@@ -2516,6 +2596,15 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const SO
 
 template < typename BASE_TYPE, typename SOURCE >
 inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -3383,6 +3472,8 @@ inline ::topic_pointer matter::create_topic(const ::atom & atom)
    return ::move(ptopic);
 
 }
+
+
 
 
 

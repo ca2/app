@@ -26,20 +26,9 @@ public:
    inline class ::time elapsed(const class ::time& waitSample = now()) { return waitSample.m_d - m_d; }
 
 
-   inline bool operator < (const class ::time& timeduration) const { return m_d < timeduration.m_d; }
-   inline bool operator <= (const class ::time& timeduration) const { return m_d <= timeduration.m_d; }
-   inline bool operator > (const class ::time& timeduration) const { return m_d > timeduration.m_d; }
-   inline bool operator >= (const class ::time& timeduration) const { return m_d >= timeduration.m_d; }
-   inline bool operator == (const class ::time& timeduration) const { return m_d == timeduration.m_d; }
-   inline bool operator != (const class ::time& timeduration) const { return m_d != timeduration.m_d; }
-
-   inline class ::time operator + (const class ::time& timeduration) const { return m_d + timeduration.m_d; }
-   inline class ::time operator - (const class ::time& timeduration) const { return m_d - timeduration.m_d; }
-
-   
    inline bool operator !() const { return m_d <= 0.; }
 
-
+   
 };
 
 

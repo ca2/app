@@ -37,7 +37,7 @@
 		9A882EBC2844A87E004113D1 /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E5828449D5A004113D1 /* libnode_ios.a */; };
 		9A882EBD2844A8EE004113D1 /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E5228449D5A004113D1 /* libios_draw2d_quartz2d.a */; };
 		9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EBF2844A9B0004113D1 /* libwindowing_ios.a */; };
-		9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.dylib */; };
+		9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */; };
 		9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EED2844ACAD004113D1 /* libaura_ios.a */; };
 		9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4028449D59004113D1 /* libios_folder_zip.a */; };
 		9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4928449D59004113D1 /* libios_crypto_openssl.a */; };
@@ -246,7 +246,7 @@
 				9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */,
 				9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */,
 				9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */,
-				9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.dylib in Frameworks */,
+				9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */,
 				9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */,
 				9A882EBD2844A8EE004113D1 /* libios_draw2d_quartz2d.a in Frameworks */,
 				9A882EBC2844A87E004113D1 /* libnode_ios.a in Frameworks */,
@@ -424,7 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				9A882EC72844AA51004113D1 /* libwrite_text_quartz2d.dylib */,
-				9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.dylib */,
+				9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -618,10 +618,10 @@
 			remoteRef = 9A882EC62844AA51004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.dylib */ = {
+		9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_write_text_quartz2d.dylib;
+			path = libios_write_text_quartz2d.a;
 			remoteRef = 9A882EE52844AA9D004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -732,7 +732,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app-message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
@@ -754,7 +754,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app-message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;

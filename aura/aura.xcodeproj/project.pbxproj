@@ -28,7 +28,6 @@
 		9A1E1D9522F0AF69004243B8 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D6C22F0AF69004243B8 /* graphics.h */; };
 		9A1E1D9722F0AF69004243B8 /* filters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1E1D6D22F0AF69004243B8 /* filters.h */; };
 		9A1E1D9922F0AF69004243B8 /* device_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1E1D6E22F0AF69004243B8 /* device_context.cpp */; };
-		9A20198F24772E9000A31CBF /* ios_aura.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A20198C24772E9000A31CBF /* ios_aura.h */; };
 		9A201A56247733D800A31CBF /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB2DE2449821A0056E362 /* callback.cpp */; };
 		9A201A6A247733D800A31CBF /* item_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB30E2449821B0056E362 /* item_action.cpp */; };
 		9A201AB1247733D900A31CBF /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764112409BEFA002D15D3 /* _.cpp */; };
@@ -705,19 +704,6 @@
 			remoteInfo = ios_aqua;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9A20198824772E9000A31CBF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				9A20198F24772E9000A31CBF /* ios_aura.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		07F5B188184A3B430092C3E1 /* filesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
@@ -1842,51 +1828,6 @@
 			isa = PBXGroup;
 			children = (
 				9A92303B27EACA3B00B5A78D /* _.cpp */,
-				9A92300D27EACA3A00B5A78D /* box.cpp */,
-				9A92300627EACA3A00B5A78D /* button.cpp */,
-				9A92301E27EACA3A00B5A78D /* call_message_handler_task.cpp */,
-				9A92303527EACA3B00B5A78D /* check_box.cpp */,
-				9A92305227EACA3B00B5A78D /* control_descriptor.cpp */,
-				9A92304927EACA3B00B5A78D /* copydesk.cpp */,
-				9A922FF427EACA3A00B5A78D /* form_callback.cpp */,
-				9A922FFA27EACA3A00B5A78D /* form.cpp */,
-				9A92300527EACA3A00B5A78D /* frame.cpp */,
-				9A922FF727EACA3A00B5A78D /* interaction_child.cpp */,
-				9A92305927EACA3B00B5A78D /* interaction_impl.cpp */,
-				9A92305E27EACA3B00B5A78D /* interaction_layout.cpp */,
-				9A92305527EACA3B00B5A78D /* interaction_prodevian.cpp */,
-				9A92303427EACA3B00B5A78D /* interaction_scaler.cpp */,
-				9A92303E27EACA3B00B5A78D /* interaction_thread.cpp */,
-				9A92301627EACA3A00B5A78D /* interaction.cpp */,
-				9A92305C27EACA3B00B5A78D /* key.cpp */,
-				9A92305A27EACA3B00B5A78D /* keyboard.cpp */,
-				9A92304D27EACA3B00B5A78D /* main_window.cpp */,
-				9A922FFC27EACA3A00B5A78D /* message_box.cpp */,
-				9A92302F27EACA3B00B5A78D /* message_window.cpp */,
-				9A92300F27EACA3A00B5A78D /* message.cpp */,
-				9A922FFD27EACA3A00B5A78D /* notify_icon_listener.cpp */,
-				9A92301227EACA3A00B5A78D /* notify_icon.cpp */,
-				9A92305827EACA3B00B5A78D /* plain_edit.cpp */,
-				9A92301D27EACA3A00B5A78D /* plain_text_data.cpp */,
-				9A92300227EACA3A00B5A78D /* primitive_impl.cpp */,
-				9A92305027EACA3B00B5A78D /* progress.cpp */,
-				9A922FFE27EACA3A00B5A78D /* range.cpp */,
-				9A92302627EACA3B00B5A78D /* scroll_bar.cpp */,
-				9A92301427EACA3A00B5A78D /* scroll.cpp */,
-				9A92305B27EACA3B00B5A78D /* shell.cpp */,
-				9A92303327EACA3B00B5A78D /* still.cpp */,
-				9A92303F27EACA3B00B5A78D /* style_base.cpp */,
-				9A92301A27EACA3A00B5A78D /* style_control.cpp */,
-				9A92301127EACA3A00B5A78D /* style.cpp */,
-				9A92304427EACA3B00B5A78D /* system.cpp */,
-				9A92304627EACA3B00B5A78D /* text_composition.cpp */,
-				9A92304E27EACA3B00B5A78D /* tool_window.cpp */,
-				9A92304C27EACA3B00B5A78D /* user.cpp */,
-				9A92300E27EACA3A00B5A78D /* wait_cursor.cpp */,
-				9A922FFF27EACA3A00B5A78D /* window_map.cpp */,
-				9A92301327EACA3A00B5A78D /* window_state.cpp */,
-				9A92300927EACA3A00B5A78D /* window_util.cpp */,
-				9A92306127EACA3B00B5A78D /* windowing.cpp */,
 				9A92306327EACA3B00B5A78D /* _.h */,
 				9A92301527EACA3A00B5A78D /* _constant.h */,
 				9A92303A27EACA3B00B5A78D /* _data.h */,
@@ -1895,56 +1836,101 @@
 				9A92304027EACA3B00B5A78D /* _interaction_impl.h */,
 				9A922FF927EACA3A00B5A78D /* _prelude.h */,
 				9A92302D27EACA3B00B5A78D /* _user.h */,
+				9A92300D27EACA3A00B5A78D /* box.cpp */,
 				9A922FF827EACA3A00B5A78D /* box.h */,
+				9A92300627EACA3A00B5A78D /* button.cpp */,
 				9A92304527EACA3B00B5A78D /* button.h */,
+				9A92301E27EACA3A00B5A78D /* call_message_handler_task.cpp */,
 				9A92302727EACA3B00B5A78D /* call_message_handler_task.h */,
+				9A92303527EACA3B00B5A78D /* check_box.cpp */,
 				9A92303727EACA3B00B5A78D /* check_box.h */,
+				9A92305227EACA3B00B5A78D /* control_descriptor.cpp */,
 				9A92302927EACA3B00B5A78D /* control_descriptor.h */,
 				9A92303827EACA3B00B5A78D /* control_event_listener.h */,
+				9A92304927EACA3B00B5A78D /* copydesk.cpp */,
 				9A92300027EACA3A00B5A78D /* copydesk.h */,
+				9A922FF427EACA3A00B5A78D /* form_callback.cpp */,
 				9A92302227EACA3B00B5A78D /* form_callback.h */,
+				9A922FFA27EACA3A00B5A78D /* form.cpp */,
 				9A92301027EACA3A00B5A78D /* form.h */,
+				9A92300527EACA3A00B5A78D /* frame.cpp */,
 				9A92302027EACA3B00B5A78D /* frame.h */,
 				9A92304827EACA3B00B5A78D /* graphics_call.h */,
+				9A922FF727EACA3A00B5A78D /* interaction_child.cpp */,
 				9A92305D27EACA3B00B5A78D /* interaction_child.h */,
+				9A92305927EACA3B00B5A78D /* interaction_impl.cpp */,
 				9A92304327EACA3B00B5A78D /* interaction_impl.h */,
+				9A92305E27EACA3B00B5A78D /* interaction_layout.cpp */,
 				9A92300827EACA3A00B5A78D /* interaction_layout.h */,
+				9A92305527EACA3B00B5A78D /* interaction_prodevian.cpp */,
 				9A92303027EACA3B00B5A78D /* interaction_prodevian.h */,
+				9A92303427EACA3B00B5A78D /* interaction_scaler.cpp */,
 				9A92305127EACA3B00B5A78D /* interaction_scaler.h */,
+				9A92303E27EACA3B00B5A78D /* interaction_thread.cpp */,
 				9A92300C27EACA3A00B5A78D /* interaction_thread.h */,
+				9A92301627EACA3A00B5A78D /* interaction.cpp */,
 				9A92301827EACA3A00B5A78D /* interaction.h */,
+				9A92305C27EACA3B00B5A78D /* key.cpp */,
 				9A92301C27EACA3A00B5A78D /* key.h */,
+				9A92305A27EACA3B00B5A78D /* keyboard.cpp */,
 				9A92303D27EACA3B00B5A78D /* keyboard.h */,
+				9A92304D27EACA3B00B5A78D /* main_window.cpp */,
 				9A92301727EACA3A00B5A78D /* main_window.h */,
+				9A922FFC27EACA3A00B5A78D /* message_box.cpp */,
 				9A92302527EACA3B00B5A78D /* message_box.h */,
 				9A92304B27EACA3B00B5A78D /* message_window_listener.h */,
+				9A92302F27EACA3B00B5A78D /* message_window.cpp */,
 				9A92305F27EACA3B00B5A78D /* message_window.h */,
+				9A92300F27EACA3A00B5A78D /* message.cpp */,
 				9A92302A27EACA3B00B5A78D /* message.h */,
+				9A922FFD27EACA3A00B5A78D /* notify_icon_listener.cpp */,
 				9A92302B27EACA3B00B5A78D /* notify_icon_listener.h */,
 				9A92301B27EACA3A00B5A78D /* notify_icon_mm.h */,
+				9A92301227EACA3A00B5A78D /* notify_icon.cpp */,
 				9A92302C27EACA3B00B5A78D /* notify_icon.h */,
+				9A92305827EACA3B00B5A78D /* plain_edit.cpp */,
 				9A92300727EACA3A00B5A78D /* plain_edit.h */,
+				9A92301D27EACA3A00B5A78D /* plain_text_data.cpp */,
 				9A92304F27EACA3B00B5A78D /* plain_text_data.h */,
+				9A92300227EACA3A00B5A78D /* primitive_impl.cpp */,
 				9A92306227EACA3B00B5A78D /* primitive_impl.h */,
 				9A92305727EACA3B00B5A78D /* prodevian.h */,
+				9A92305027EACA3B00B5A78D /* progress.cpp */,
 				9A922FF527EACA3A00B5A78D /* progress.h */,
+				9A922FFE27EACA3A00B5A78D /* range.cpp */,
 				9A92300127EACA3A00B5A78D /* range.h */,
+				9A92302627EACA3B00B5A78D /* scroll_bar.cpp */,
 				9A92303227EACA3B00B5A78D /* scroll_bar.h */,
 				9A92300327EACA3A00B5A78D /* scroll_info.h */,
+				9A92301427EACA3A00B5A78D /* scroll.cpp */,
 				9A92300A27EACA3A00B5A78D /* scroll.h */,
+				9A92305B27EACA3B00B5A78D /* shell.cpp */,
 				9A92300427EACA3A00B5A78D /* shell.h */,
+				9A92303327EACA3B00B5A78D /* still.cpp */,
 				9A92301F27EACA3A00B5A78D /* still.h */,
+				9A92303F27EACA3B00B5A78D /* style_base.cpp */,
 				9A92302327EACA3B00B5A78D /* style_base.h */,
+				9A92301A27EACA3A00B5A78D /* style_control.cpp */,
 				9A92304727EACA3B00B5A78D /* style_control.h */,
+				9A92301127EACA3A00B5A78D /* style.cpp */,
 				9A92300B27EACA3A00B5A78D /* style.h */,
+				9A92304427EACA3B00B5A78D /* system.cpp */,
 				9A92305327EACA3B00B5A78D /* system.h */,
+				9A92304627EACA3B00B5A78D /* text_composition.cpp */,
 				9A92305427EACA3B00B5A78D /* text_composition.h */,
+				9A92304E27EACA3B00B5A78D /* tool_window.cpp */,
 				9A92302827EACA3B00B5A78D /* tool_window.h */,
+				9A92304C27EACA3B00B5A78D /* user.cpp */,
 				9A92304227EACA3B00B5A78D /* user.h */,
+				9A92300E27EACA3A00B5A78D /* wait_cursor.cpp */,
 				9A92303927EACA3B00B5A78D /* wait_cursor.h */,
+				9A922FFF27EACA3A00B5A78D /* window_map.cpp */,
 				9A92304127EACA3B00B5A78D /* window_map.h */,
+				9A92301327EACA3A00B5A78D /* window_state.cpp */,
 				9A92302427EACA3B00B5A78D /* window_state.h */,
+				9A92300927EACA3A00B5A78D /* window_util.cpp */,
 				9A92305627EACA3B00B5A78D /* window_util.h */,
+				9A92306127EACA3B00B5A78D /* windowing.cpp */,
 				9A92304A27EACA3B00B5A78D /* windowing.h */,
 			);
 			path = user;
@@ -2449,7 +2435,6 @@
 			buildPhases = (
 				9A20198624772E9000A31CBF /* Sources */,
 				9A20198724772E9000A31CBF /* Frameworks */,
-				9A20198824772E9000A31CBF /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -75,12 +75,6 @@
 		9A93B4EC2846E655005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F58F27505EB3003F38EC /* _.cpp */; };
 		9A93B4ED2846E655005ACD11 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F57B27505EB2003F38EC /* framework.cpp */; };
 		9A93B4EE2846E655005ACD11 /* frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7C27EB45E000C31E16 /* frame_011.cpp */; };
-		9A93B4F02846E655005ACD11 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5F927505F4D003F38EC /* libacme.dylib */; };
-		9A93B4F12846E655005ACD11 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5FB27505F4D003F38EC /* libapex.dylib */; };
-		9A93B4F22846E655005ACD11 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5FD27505F4D003F38EC /* libaqua.dylib */; };
-		9A93B4F32846E655005ACD11 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5FF27505F4D003F38EC /* libaura.dylib */; };
-		9A93B4F42846E655005ACD11 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F60127505F4D003F38EC /* libaxis.dylib */; };
-		9A93B4F52846E655005ACD11 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5F527505F1F003F38EC /* libbase.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,7 +147,7 @@
 		9A81F5FD27505F4D003F38EC /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F5FF27505F4D003F38EC /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F60127505F4D003F38EC /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A93B4F92846E655005ACD11 /* libios_experience_core.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_experience_core.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A93B4F92846E655005ACD11 /* libios_experience_core.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_experience_core.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,19 +161,6 @@
 				9A81F60027505F4D003F38EC /* libaura.dylib in Frameworks */,
 				9A81F60227505F4D003F38EC /* libaxis.dylib in Frameworks */,
 				9A81F60327505F4D003F38EC /* libbase.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A93B4EF2846E655005ACD11 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9A93B4F02846E655005ACD11 /* libacme.dylib in Frameworks */,
-				9A93B4F12846E655005ACD11 /* libapex.dylib in Frameworks */,
-				9A93B4F22846E655005ACD11 /* libaqua.dylib in Frameworks */,
-				9A93B4F32846E655005ACD11 /* libaura.dylib in Frameworks */,
-				9A93B4F42846E655005ACD11 /* libaxis.dylib in Frameworks */,
-				9A93B4F52846E655005ACD11 /* libbase.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F48127500224003F38EC /* libexperience_core.dylib */,
-				9A93B4F92846E655005ACD11 /* libios_experience_core.dylib */,
+				9A93B4F92846E655005ACD11 /* libios_experience_core.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,7 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F5F527505F1F003F38EC /* libbase.dylib */,
-				9A93B7022846EB75005ACD11 /* libios_base.dylib */,
+				9A93B7022846EB75005ACD11 /* libios_base.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,7 +337,6 @@
 			buildPhases = (
 				9A93B4CE2846E655005ACD11 /* Headers */,
 				9A93B4DF2846E655005ACD11 /* Sources */,
-				9A93B4EF2846E655005ACD11 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,7 +345,7 @@
 			);
 			name = ios_experience_core;
 			productName = experience_core;
-			productReference = 9A93B4F92846E655005ACD11 /* libios_experience_core.dylib */;
+			productReference = 9A93B4F92846E655005ACD11 /* libios_experience_core.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -415,10 +395,10 @@
 			remoteRef = 9A81F5F427505F1F003F38EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A93B7022846EB75005ACD11 /* libios_base.dylib */ = {
+		9A93B7022846EB75005ACD11 /* libios_base.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_base.dylib;
+			path = libios_base.a;
 			remoteRef = 9A93B7012846EB75005ACD11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -541,6 +521,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -634,6 +615,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -708,7 +690,9 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -722,7 +706,9 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

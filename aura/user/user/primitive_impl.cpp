@@ -881,18 +881,20 @@ namespace user
    }
 
 
-   //void primitive_impl::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
-   //{
+   void primitive_impl::show_software_keyboard(::user::element * pelement)
+   {
+      
+      throw interface_only();
+      
+   }
 
 
-   //}
-
-
-   //void primitive_impl::hide_software_keyboard(::user::primitive* pprimitive)
-   //{
-
-
-   //}
+   void primitive_impl::hide_software_keyboard(::user::element * pelement)
+   {
+   
+      throw interface_only();
+   
+   }
 
 
    ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::index iItem, i32 iLevel)
@@ -2262,22 +2264,6 @@ namespace user
       m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
       //return bWasDisabled;
-
-   }
-
-
-   void primitive_impl::show_software_keyboard(::user::element * pelement)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   void primitive_impl::hide_software_keyboard(::user::element * pelement)
-   {
-
-      throw ::interface_only();
 
    }
 

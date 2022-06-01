@@ -432,7 +432,7 @@
 		9A4E5C9F2519315800CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
-		9A93B6FA2846EB33005ACD11 /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD117F324F51BE400177261 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD1181E24F51C4000177261 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9AD1183024F51CE500177261 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -777,7 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				9AD117F324F51BE400177261 /* libbase.dylib */,
-				9A93B6FA2846EB33005ACD11 /* libios_base.dylib */,
+				9A93B6FA2846EB33005ACD11 /* libios_base.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -843,7 +843,7 @@
 			);
 			name = ios_base;
 			productName = base;
-			productReference = 9A93B6FA2846EB33005ACD11 /* libios_base.dylib */;
+			productReference = 9A93B6FA2846EB33005ACD11 /* libios_base.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AD117F224F51BE400177261 /* base */ = {
@@ -1121,7 +1121,9 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -1139,7 +1141,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

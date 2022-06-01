@@ -1706,18 +1706,6 @@ namespace user
 
          }
 
-         //string strText;
-
-         //_001GetText(strText);
-
-         //strsize iBeg;
-
-         //strsize iEnd;
-
-         //_001GetSel(iBeg, iEnd);
-
-         //show_software_keyboard(this, strText, iBeg, iEnd);
-
          show_software_keyboard(this);
 
       }
@@ -5653,8 +5641,6 @@ namespace user
 
    ::point_i32 interaction::on_drag_start(::user::drag * pdrag)
    {
-
-      //get_wnd()->show_software_keyboard(this, false);
 
       get_wnd()->hide_software_keyboard(this);
 
@@ -16143,17 +16129,6 @@ namespace user
 
          }
 
-         //::user::primitive_impl* pprimitiveimpl = nullptr;
-
-         //if (pprimitiveimpl)
-         //{
-
-         //   pprimitiveimpl = pelement->get_primitive_impl();
-
-         //}
-
-         //return m_pprimitiveimpl->show_software_keyboard(pprimitive, str, iBeg, iEnd);
-
          return m_pprimitiveimpl->show_software_keyboard(pelement);
 
       }
@@ -16168,8 +16143,6 @@ namespace user
             throw ::exception(error_null_pointer);
 
          }
-
-         //return pwindow->show_software_keyboard(pprimitive, str, iBeg, iEnd);
 
          return pwindow->show_software_keyboard(pelement);
 

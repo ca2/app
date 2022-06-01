@@ -8,11 +8,11 @@
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
 
 
-#if defined(APPLE_IOS)
-
-#include "aura/node/ios/interaction_impl.h"
-
-#endif
+//#if defined(APPLE_IOS)
+//
+//#include "aura/node/ios/interaction_impl.h"
+//
+//#endif
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)

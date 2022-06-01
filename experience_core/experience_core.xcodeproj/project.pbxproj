@@ -44,6 +44,37 @@
 		9A81F60027505F4D003F38EC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5FF27505F4D003F38EC /* libaura.dylib */; };
 		9A81F60227505F4D003F38EC /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F60127505F4D003F38EC /* libaxis.dylib */; };
 		9A81F60327505F4D003F38EC /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5F527505F1F003F38EC /* libbase.dylib */; };
+		9A93B4CF2846E655005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F5BF27505EB6003F38EC /* _.h */; };
+		9A93B4D02846E655005ACD11 /* frame_Minimal001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6C27EB45E000C31E16 /* frame_Minimal001.h */; };
+		9A93B4D12846E655005ACD11 /* frame_008.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7127EB45E000C31E16 /* frame_008.h */; };
+		9A93B4D22846E655005ACD11 /* frame_013.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6D27EB45E000C31E16 /* frame_013.h */; };
+		9A93B4D32846E655005ACD11 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6427EB45E000C31E16 /* _user.h */; };
+		9A93B4D42846E655005ACD11 /* control_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6827EB45E000C31E16 /* control_box.h */; };
+		9A93B4D52846E655005ACD11 /* _experience.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7427EB45E000C31E16 /* _experience.h */; };
+		9A93B4D62846E655005ACD11 /* frame_002.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7227EB45E000C31E16 /* frame_002.h */; };
+		9A93B4D72846E655005ACD11 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F5AA27505EB4003F38EC /* framework.h */; };
+		9A93B4D82846E655005ACD11 /* experience.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7027EB45E000C31E16 /* experience.h */; };
+		9A93B4D92846E655005ACD11 /* frame_005.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7927EB45E000C31E16 /* frame_005.h */; };
+		9A93B4DA2846E655005ACD11 /* frame_011.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7627EB45E000C31E16 /* frame_011.h */; };
+		9A93B4DB2846E655005ACD11 /* control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6F27EB45E000C31E16 /* control_box_button.h */; };
+		9A93B4DC2846E655005ACD11 /* frame_001.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B7827EB45E000C31E16 /* frame_001.h */; };
+		9A93B4DD2846E655005ACD11 /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6B27EB45E000C31E16 /* frame.h */; };
+		9A93B4DE2846E655005ACD11 /* style.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B4B6227EB45E000C31E16 /* style.h */; };
+		9A93B4E02846E655005ACD11 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6A27EB45E000C31E16 /* control_box.cpp */; };
+		9A93B4E12846E655005ACD11 /* frame_008.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6627EB45E000C31E16 /* frame_008.cpp */; };
+		9A93B4E22846E655005ACD11 /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6927EB45E000C31E16 /* frame.cpp */; };
+		9A93B4E32846E655005ACD11 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6E27EB45E000C31E16 /* control_box_button.cpp */; };
+		9A93B4E42846E655005ACD11 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F5BB27505EB5003F38EC /* _factory.cpp */; };
+		9A93B4E52846E655005ACD11 /* frame_002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7527EB45E000C31E16 /* frame_002.cpp */; };
+		9A93B4E62846E655005ACD11 /* frame_001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7327EB45E000C31E16 /* frame_001.cpp */; };
+		9A93B4E72846E655005ACD11 /* frame_005.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7B27EB45E000C31E16 /* frame_005.cpp */; };
+		9A93B4E82846E655005ACD11 /* style.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6327EB45E000C31E16 /* style.cpp */; };
+		9A93B4E92846E655005ACD11 /* frame_Minimal001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B6727EB45E000C31E16 /* frame_Minimal001.cpp */; };
+		9A93B4EA2846E655005ACD11 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7A27EB45E000C31E16 /* experience.cpp */; };
+		9A93B4EB2846E655005ACD11 /* frame_013.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7727EB45E000C31E16 /* frame_013.cpp */; };
+		9A93B4EC2846E655005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F58F27505EB3003F38EC /* _.cpp */; };
+		9A93B4ED2846E655005ACD11 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F57B27505EB2003F38EC /* framework.cpp */; };
+		9A93B4EE2846E655005ACD11 /* frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7C27EB45E000C31E16 /* frame_011.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +91,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AD117F224F51BE400177261;
 			remoteInfo = base;
+		};
+		9A93B7012846EB75005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A81F5F027505F1E003F38EC /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6FA2846EB33005ACD11;
+			remoteInfo = ios_base;
+		};
+		9A93B7032846EB80005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A81F5F027505F1E003F38EC /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B6992846EB33005ACD11;
+			remoteInfo = ios_base;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -102,6 +147,7 @@
 		9A81F5FD27505F4D003F38EC /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F5FF27505F4D003F38EC /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F60127505F4D003F38EC /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A93B4F92846E655005ACD11 /* libios_experience_core.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_experience_core.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F48127500224003F38EC /* libexperience_core.dylib */,
+				9A93B4F92846E655005ACD11 /* libios_experience_core.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F5F527505F1F003F38EC /* libbase.dylib */,
+				9A93B7022846EB75005ACD11 /* libios_base.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -239,6 +287,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A93B4CE2846E655005ACD11 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4CF2846E655005ACD11 /* _.h in Headers */,
+				9A93B4D02846E655005ACD11 /* frame_Minimal001.h in Headers */,
+				9A93B4D12846E655005ACD11 /* frame_008.h in Headers */,
+				9A93B4D22846E655005ACD11 /* frame_013.h in Headers */,
+				9A93B4D32846E655005ACD11 /* _user.h in Headers */,
+				9A93B4D42846E655005ACD11 /* control_box.h in Headers */,
+				9A93B4D52846E655005ACD11 /* _experience.h in Headers */,
+				9A93B4D62846E655005ACD11 /* frame_002.h in Headers */,
+				9A93B4D72846E655005ACD11 /* framework.h in Headers */,
+				9A93B4D82846E655005ACD11 /* experience.h in Headers */,
+				9A93B4D92846E655005ACD11 /* frame_005.h in Headers */,
+				9A93B4DA2846E655005ACD11 /* frame_011.h in Headers */,
+				9A93B4DB2846E655005ACD11 /* control_box_button.h in Headers */,
+				9A93B4DC2846E655005ACD11 /* frame_001.h in Headers */,
+				9A93B4DD2846E655005ACD11 /* frame.h in Headers */,
+				9A93B4DE2846E655005ACD11 /* style.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +329,23 @@
 			name = experience_core;
 			productName = experience_core;
 			productReference = 9A81F48127500224003F38EC /* libexperience_core.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9A93B4CB2846E655005ACD11 /* ios_experience_core */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A93B4F62846E655005ACD11 /* Build configuration list for PBXNativeTarget "ios_experience_core" */;
+			buildPhases = (
+				9A93B4CE2846E655005ACD11 /* Headers */,
+				9A93B4DF2846E655005ACD11 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A93B7042846EB80005ACD11 /* PBXTargetDependency */,
+			);
+			name = ios_experience_core;
+			productName = experience_core;
+			productReference = 9A93B4F92846E655005ACD11 /* libios_experience_core.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -294,6 +382,7 @@
 			projectRoot = "";
 			targets = (
 				9A81F48027500224003F38EC /* experience_core */,
+				9A93B4CB2846E655005ACD11 /* ios_experience_core */,
 			);
 		};
 /* End PBXProject section */
@@ -304,6 +393,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libbase.dylib;
 			remoteRef = 9A81F5F427505F1F003F38EC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A93B7022846EB75005ACD11 /* libios_base.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_base.a;
+			remoteRef = 9A93B7012846EB75005ACD11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -331,6 +427,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A93B4DF2846E655005ACD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4E02846E655005ACD11 /* control_box.cpp in Sources */,
+				9A93B4E12846E655005ACD11 /* frame_008.cpp in Sources */,
+				9A93B4E22846E655005ACD11 /* frame.cpp in Sources */,
+				9A93B4E32846E655005ACD11 /* control_box_button.cpp in Sources */,
+				9A93B4E42846E655005ACD11 /* _factory.cpp in Sources */,
+				9A93B4E52846E655005ACD11 /* frame_002.cpp in Sources */,
+				9A93B4E62846E655005ACD11 /* frame_001.cpp in Sources */,
+				9A93B4E72846E655005ACD11 /* frame_005.cpp in Sources */,
+				9A93B4E82846E655005ACD11 /* style.cpp in Sources */,
+				9A93B4E92846E655005ACD11 /* frame_Minimal001.cpp in Sources */,
+				9A93B4EA2846E655005ACD11 /* experience.cpp in Sources */,
+				9A93B4EB2846E655005ACD11 /* frame_013.cpp in Sources */,
+				9A93B4EC2846E655005ACD11 /* _.cpp in Sources */,
+				9A93B4ED2846E655005ACD11 /* framework.cpp in Sources */,
+				9A93B4EE2846E655005ACD11 /* frame_011.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -338,6 +456,11 @@
 			isa = PBXTargetDependency;
 			name = base;
 			targetProxy = 9A81F5F627505F33003F38EC /* PBXContainerItemProxy */;
+		};
+		9A93B7042846EB80005ACD11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_base;
+			targetProxy = 9A93B7032846EB80005ACD11 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -398,6 +521,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -491,6 +615,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -558,6 +683,38 @@
 			};
 			name = Release;
 		};
+		9A93B4F72846E655005ACD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A93B4F82846E655005ACD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -575,6 +732,15 @@
 			buildConfigurations = (
 				9A81F48627500224003F38EC /* Debug */,
 				9A81F48727500224003F38EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A93B4F62846E655005ACD11 /* Build configuration list for PBXNativeTarget "ios_experience_core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A93B4F72846E655005ACD11 /* Debug */,
+				9A93B4F82846E655005ACD11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -427,8 +427,6 @@ namespace user
       virtual void redraw_erase(::object * point_i32);
       virtual bool has_redraw();
 
-      //virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
-      //virtual void hide_software_keyboard(::user::primitive * pprimitive);
 
       virtual void user_interaction_on_hide();
 

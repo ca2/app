@@ -73,9 +73,6 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      //virtual void show_software_keyboard(::user::element * pelement, string str, strsize iBeg, strsize iEnd);
-
-      //virtual void show_software_keyboard(::user::element* pelement, string str, strsize iBeg, strsize iEnd);
 
       void show_software_keyboard(::user::element* pelement) override;
 

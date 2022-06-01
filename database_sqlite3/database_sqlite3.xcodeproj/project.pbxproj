@@ -13,6 +13,17 @@
 		9A353E72266235EA0060257B /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E71266235EA0060257B /* libaura.dylib */; };
 		9A353E73266235EA0060257B /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E6726622FEB0060257B /* libaxis.dylib */; };
 		9A353E7526623BC40060257B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E7426623BC30060257B /* libsqlite3.tbd */; };
+		9A93B4AD2846E5EF005ACD11 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDC2661EA35009F476A /* _database_sqlite3.h */; };
+		9A93B4AE2846E5EF005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EE92661EA35009F476A /* _.h */; };
+		9A93B4AF2846E5EF005ACD11 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED92661EA35009F476A /* database.h */; };
+		9A93B4B02846E5EF005ACD11 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED12661EA35009F476A /* factory_exchange.h */; };
+		9A93B4B12846E5EF005ACD11 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDF2661EA35009F476A /* framework.h */; };
+		9A93B4B22846E5EF005ACD11 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED62661EA35009F476A /* dataset.h */; };
+		9A93B4B32846E5EF005ACD11 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDA2661EA35009F476A /* _2.h */; };
+		9A93B4B52846E5EF005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED82661EA35009F476A /* _.cpp */; };
+		9A93B4B62846E5EF005ACD11 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED72661EA35009F476A /* database.cpp */; };
+		9A93B4B72846E5EF005ACD11 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ECB2661EA35009F476A /* framework.cpp */; };
+		9A93B4B82846E5EF005ACD11 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12EDD2661EA35009F476A /* _factory.cpp */; };
 		9AE12EEA2661EA35009F476A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ECB2661EA35009F476A /* framework.cpp */; };
 		9AE12EEB2661EA35009F476A /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED12661EA35009F476A /* factory_exchange.h */; };
 		9AE12EEC2661EA35009F476A /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED62661EA35009F476A /* dataset.h */; };
@@ -41,6 +52,20 @@
 			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
 			remoteInfo = axis;
 		};
+		9A93B6942846EAFC005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B5822846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
+		9A93B6972846EAFC005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6912846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +75,7 @@
 		9A353E6F266235EA0060257B /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A353E71266235EA0060257B /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A353E7426623BC30060257B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9A93B4C32846E5EF005ACD11 /* libios_database_sqlite3.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_database_sqlite3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE12E782661E97E009F476A /* libdatabase_sqlite3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdatabase_sqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE12ECB2661EA35009F476A /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9AE12ED12661EA35009F476A /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
@@ -65,6 +91,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A93B4B92846E5EF005ACD11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE12E762661E97E009F476A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				9A353E6726622FEB0060257B /* libaxis.dylib */,
+				9A93B6982846EAFC005ACD11 /* libios_axis.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE12E782661E97E009F476A /* libdatabase_sqlite3.dylib */,
+				9A93B4C32846E5EF005ACD11 /* libios_database_sqlite3.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +175,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9A93B4AC2846E5EF005ACD11 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4AD2846E5EF005ACD11 /* _database_sqlite3.h in Headers */,
+				9A93B4AE2846E5EF005ACD11 /* _.h in Headers */,
+				9A93B4AF2846E5EF005ACD11 /* database.h in Headers */,
+				9A93B4B02846E5EF005ACD11 /* factory_exchange.h in Headers */,
+				9A93B4B12846E5EF005ACD11 /* framework.h in Headers */,
+				9A93B4B22846E5EF005ACD11 /* dataset.h in Headers */,
+				9A93B4B32846E5EF005ACD11 /* _2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE12E742661E97E009F476A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +206,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9A93B4A92846E5EF005ACD11 /* ios_database_sqlite3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A93B4C02846E5EF005ACD11 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */;
+			buildPhases = (
+				9A93B4AC2846E5EF005ACD11 /* Headers */,
+				9A93B4B42846E5EF005ACD11 /* Sources */,
+				9A93B4B92846E5EF005ACD11 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A93B6952846EAFC005ACD11 /* PBXTargetDependency */,
+			);
+			name = ios_database_sqlite3;
+			productName = database_sqlite3;
+			productReference = 9A93B4C32846E5EF005ACD11 /* libios_database_sqlite3.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9AE12E772661E97E009F476A /* database_sqlite3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AE12E812661E97E009F476A /* Build configuration list for PBXNativeTarget "database_sqlite3" */;
@@ -208,6 +275,7 @@
 			projectRoot = "";
 			targets = (
 				9AE12E772661E97E009F476A /* database_sqlite3 */,
+				9A93B4A92846E5EF005ACD11 /* ios_database_sqlite3 */,
 			);
 		};
 /* End PBXProject section */
@@ -220,9 +288,27 @@
 			remoteRef = 9A353E6626622FEB0060257B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A93B6982846EAFC005ACD11 /* libios_axis.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axis.a;
+			remoteRef = 9A93B6972846EAFC005ACD11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9A93B4B42846E5EF005ACD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4B52846E5EF005ACD11 /* _.cpp in Sources */,
+				9A93B4B62846E5EF005ACD11 /* database.cpp in Sources */,
+				9A93B4B72846E5EF005ACD11 /* framework.cpp in Sources */,
+				9A93B4B82846E5EF005ACD11 /* _factory.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE12E752661E97E009F476A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,9 +328,48 @@
 			name = axis;
 			targetProxy = 9A353E68266232C40060257B /* PBXContainerItemProxy */;
 		};
+		9A93B6952846EAFC005ACD11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axis;
+			targetProxy = 9A93B6942846EAFC005ACD11 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9A93B4C12846E5EF005ACD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A93B4C22846E5EF005ACD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		9AE12E7F2661E97E009F476A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -301,11 +426,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -393,11 +518,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -465,6 +590,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A93B4C02846E5EF005ACD11 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A93B4C12846E5EF005ACD11 /* Debug */,
+				9A93B4C22846E5EF005ACD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9AE12E732661E97E009F476A /* Build configuration list for PBXProject "database_sqlite3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

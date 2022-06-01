@@ -7560,22 +7560,6 @@ finished_update:
       if (::is_set(ptexteditorinterface))
       {
 
-         //strsize iBeg = 0;
-
-         //strsize iEnd = 0;
-
-         //_001GetSel(iBeg, iEnd);
-
-         //string strText;
-
-         //_001GetText(strText);
-
-         //ptexteditorinterface->set_editor_selection(iBeg, iEnd);
-
-         //ptexteditorinterface->set_editor_text(strText);
-
-         //ptexteditorinterface->show_software_keyboard();
-
          ptexteditorinterface->hide_software_keyboard();
 
       }

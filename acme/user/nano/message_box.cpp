@@ -105,7 +105,7 @@ void nano_message_box::calculate_size()
 {
 
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
    int wScreen = 1280;
    int hScreen = 768;

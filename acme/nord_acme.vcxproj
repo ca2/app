@@ -540,6 +540,7 @@
     <ClCompile Include="primitive\duration\duration\duration.cpp" />
     <ClCompile Include="primitive\duration\duration\microsecond.cpp" />
     <ClCompile Include="primitive\duration\duration\second.cpp" />
+    <ClCompile Include="primitive\duration\time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle.cpp" />

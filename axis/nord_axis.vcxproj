@@ -181,7 +181,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="account\account.cpp" />
     <ClCompile Include="account\authenticator.cpp" />
     <ClCompile Include="account\contact_list.cpp" />
     <ClCompile Include="account\credentials.cpp" />
@@ -255,7 +254,6 @@
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
     <ClCompile Include="user\list_box.cpp" />
     <ClCompile Include="user\simple_ui_draw.cpp" />

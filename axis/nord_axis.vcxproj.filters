@@ -25,9 +25,6 @@
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="account\account.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="account\authenticator.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
     </ClCompile>
     <ClCompile Include="geoip\update.cpp">
       <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\_.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>

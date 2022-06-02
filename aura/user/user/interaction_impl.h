@@ -210,6 +210,11 @@ namespace user
       //virtual void set_active_window();
       //virtual void set_foreground_window();
 
+
+      virtual bool on_keyboard_focus(::user::primitive* pfocus);
+      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      virtual bool keyboard_focus_OnChildKillFocus() override;
+
       virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
       virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
 

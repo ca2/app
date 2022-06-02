@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnSetFocus(::message::message * pmessage)
+   void tab_view::on_message_set_focus(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -238,7 +238,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::_001OnSetFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::on_message_set_focus);
 
    }
 

@@ -3,6 +3,7 @@
 #pragma once
 #ifndef WINRT_Windows_Storage_Provider_2_H
 #define WINRT_Windows_Storage_Provider_2_H
+#include "winrt/impl/Windows.Foundation.Collections.1.h"
 #include "winrt/impl/Windows.Storage.1.h"
 #include "winrt/impl/Windows.Storage.Provider.1.h"
 WINRT_EXPORT namespace winrt::Windows::Storage::Provider
@@ -33,6 +34,58 @@ WINRT_EXPORT namespace winrt::Windows::Storage::Provider
     {
         FileUpdateRequestedEventArgs(std::nullptr_t) noexcept {}
         FileUpdateRequestedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IFileUpdateRequestedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) StorageProviderFileTypeInfo : winrt::Windows::Storage::Provider::IStorageProviderFileTypeInfo
+    {
+        StorageProviderFileTypeInfo(std::nullptr_t) noexcept {}
+        StorageProviderFileTypeInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderFileTypeInfo(ptr, take_ownership_from_abi) {}
+        StorageProviderFileTypeInfo(param::hstring const& fileExtension, param::hstring const& iconResource);
+    };
+    struct __declspec(empty_bases) StorageProviderGetContentInfoForPathResult : winrt::Windows::Storage::Provider::IStorageProviderGetContentInfoForPathResult
+    {
+        StorageProviderGetContentInfoForPathResult(std::nullptr_t) noexcept {}
+        StorageProviderGetContentInfoForPathResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderGetContentInfoForPathResult(ptr, take_ownership_from_abi) {}
+        StorageProviderGetContentInfoForPathResult();
+    };
+    struct __declspec(empty_bases) StorageProviderGetPathForContentUriResult : winrt::Windows::Storage::Provider::IStorageProviderGetPathForContentUriResult
+    {
+        StorageProviderGetPathForContentUriResult(std::nullptr_t) noexcept {}
+        StorageProviderGetPathForContentUriResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderGetPathForContentUriResult(ptr, take_ownership_from_abi) {}
+        StorageProviderGetPathForContentUriResult();
+    };
+    struct StorageProviderItemProperties
+    {
+        StorageProviderItemProperties() = delete;
+        static auto SetAsync(winrt::Windows::Storage::IStorageItem const& item, param::async_iterable<winrt::Windows::Storage::Provider::StorageProviderItemProperty> const& itemProperties);
+    };
+    struct __declspec(empty_bases) StorageProviderItemProperty : winrt::Windows::Storage::Provider::IStorageProviderItemProperty
+    {
+        StorageProviderItemProperty(std::nullptr_t) noexcept {}
+        StorageProviderItemProperty(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderItemProperty(ptr, take_ownership_from_abi) {}
+        StorageProviderItemProperty();
+    };
+    struct __declspec(empty_bases) StorageProviderItemPropertyDefinition : winrt::Windows::Storage::Provider::IStorageProviderItemPropertyDefinition
+    {
+        StorageProviderItemPropertyDefinition(std::nullptr_t) noexcept {}
+        StorageProviderItemPropertyDefinition(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderItemPropertyDefinition(ptr, take_ownership_from_abi) {}
+        StorageProviderItemPropertyDefinition();
+    };
+    struct __declspec(empty_bases) StorageProviderSyncRootInfo : winrt::Windows::Storage::Provider::IStorageProviderSyncRootInfo,
+        impl::require<StorageProviderSyncRootInfo, winrt::Windows::Storage::Provider::IStorageProviderSyncRootInfo2, winrt::Windows::Storage::Provider::IStorageProviderSyncRootInfo3>
+    {
+        StorageProviderSyncRootInfo(std::nullptr_t) noexcept {}
+        StorageProviderSyncRootInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Storage::Provider::IStorageProviderSyncRootInfo(ptr, take_ownership_from_abi) {}
+        StorageProviderSyncRootInfo();
+    };
+    struct StorageProviderSyncRootManager
+    {
+        StorageProviderSyncRootManager() = delete;
+        static auto Register(winrt::Windows::Storage::Provider::StorageProviderSyncRootInfo const& syncRootInformation);
+        static auto Unregister(param::hstring const& id);
+        static auto GetSyncRootInformationForFolder(winrt::Windows::Storage::IStorageFolder const& folder);
+        static auto GetSyncRootInformationForId(param::hstring const& id);
+        static auto GetCurrentSyncRoots();
+        static auto IsSupported();
     };
 }
 #endif

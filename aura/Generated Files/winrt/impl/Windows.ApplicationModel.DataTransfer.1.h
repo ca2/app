@@ -70,6 +70,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::DataTransfer
         IDataPackage3(std::nullptr_t = nullptr) noexcept {}
         IDataPackage3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IDataPackage4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDataPackage4>
+    {
+        IDataPackage4(std::nullptr_t = nullptr) noexcept {}
+        IDataPackage4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDataPackagePropertySet :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDataPackagePropertySet>,

@@ -1768,6 +1768,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::ILanguage2)->get_LayoutDirection(reinterpret_cast<int32_t*>(&value)));
         return value;
     }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Globalization_ILanguage3<D>::AbbreviatedName() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::ILanguage3)->get_AbbreviatedName(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<hstring>) consume_Windows_Globalization_ILanguageExtensionSubtags<D>::GetExtensionSubtags(param::hstring const& singleton) const
     {
         void* value{};
@@ -1797,6 +1803,12 @@ namespace winrt::impl
         bool result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::ILanguageStatics2)->TrySetInputMethodLanguageTag(*(void**)(&languageTag), &result));
         return result;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVector<hstring>) consume_Windows_Globalization_ILanguageStatics3<D>::GetMuiCompatibleLanguageListFromLanguageTags(param::iterable<hstring> const& languageTags) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Globalization::ILanguageStatics3)->GetMuiCompatibleLanguageListFromLanguageTags(*(void**)(&languageTags), &result));
+        return winrt::Windows::Foundation::Collections::IVector<hstring>{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Globalization_INumeralSystemIdentifiersStatics<D>::Arab() const
     {
@@ -4573,6 +4585,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Globalization::ILanguage3> : produce_base<D, winrt::Windows::Globalization::ILanguage3>
+    {
+        int32_t __stdcall get_AbbreviatedName(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().AbbreviatedName());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Globalization::ILanguageExtensionSubtags> : produce_base<D, winrt::Windows::Globalization::ILanguageExtensionSubtags>
     {
         int32_t __stdcall GetExtensionSubtags(void* singleton, void** value) noexcept final try
@@ -4628,6 +4654,20 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *result = detach_from<bool>(this->shim().TrySetInputMethodLanguageTag(*reinterpret_cast<hstring const*>(&languageTag)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Globalization::ILanguageStatics3> : produce_base<D, winrt::Windows::Globalization::ILanguageStatics3>
+    {
+        int32_t __stdcall GetMuiCompatibleLanguageListFromLanguageTags(void* languageTags, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVector<hstring>>(this->shim().GetMuiCompatibleLanguageListFromLanguageTags(*reinterpret_cast<winrt::Windows::Foundation::Collections::IIterable<hstring> const*>(&languageTags)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -5853,6 +5893,10 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     {
         return impl::call_factory<Language, ILanguageStatics2>([&](ILanguageStatics2 const& f) { return f.TrySetInputMethodLanguageTag(languageTag); });
     }
+    inline auto Language::GetMuiCompatibleLanguageListFromLanguageTags(param::iterable<hstring> const& languageTags)
+    {
+        return impl::call_factory<Language, ILanguageStatics3>([&](ILanguageStatics3 const& f) { return f.GetMuiCompatibleLanguageListFromLanguageTags(languageTags); });
+    }
     inline auto NumeralSystemIdentifiers::Arab()
     {
         return impl::call_factory_cast<hstring(*)(INumeralSystemIdentifiersStatics const&), NumeralSystemIdentifiers, INumeralSystemIdentifiersStatics>([](INumeralSystemIdentifiersStatics const& f) { return f.Arab(); });
@@ -6068,10 +6112,12 @@ namespace std
     template<> struct hash<winrt::Windows::Globalization::IGeographicRegionStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguage> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguage2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::ILanguage3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguageExtensionSubtags> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguageFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguageStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ILanguageStatics2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Globalization::ILanguageStatics3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Globalization::ITimeZoneOnCalendar> : winrt::impl::hash_base {};

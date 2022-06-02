@@ -256,5 +256,32 @@ itask_t get_main_user_itask()
 }
 
 
+void system::windowing_post(const ::procedure& procedure)
+{
+
+   m_pnode->windowing_post(procedure);
+
+}
+
+
+extern class system* g_psystem;
+
+
+void main_asynchronous(const ::procedure& procedure)
+{
+
+   if (is_main_thread())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
+   g_psystem->windowing_post(procedure);
+
+}
+
 
 

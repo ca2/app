@@ -70,6 +70,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::Connectivity
         Ihv = 9,
         Wpa3 = 10,
         Wpa3Sae = 11,
+        Owe = 12,
     };
     enum class NetworkConnectivityLevel : int32_t
     {

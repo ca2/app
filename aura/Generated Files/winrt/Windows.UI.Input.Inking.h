@@ -227,6 +227,16 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Input::Inking::IInkModelerAttributes)->put_ScalingFactor(value));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_Input_Inking_IInkModelerAttributes2<D>::UseVelocityBasedPressure() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Input::Inking::IInkModelerAttributes2)->get_UseVelocityBasedPressure(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Input_Inking_IInkModelerAttributes2<D>::UseVelocityBasedPressure(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Input::Inking::IInkModelerAttributes2)->put_UseVelocityBasedPressure(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Point) consume_Windows_UI_Input_Inking_IInkPoint<D>::Position() const
     {
         winrt::Windows::Foundation::Point value{};
@@ -1441,6 +1451,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().ScalingFactor(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Input::Inking::IInkModelerAttributes2> : produce_base<D, winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>
+    {
+        int32_t __stdcall get_UseVelocityBasedPressure(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().UseVelocityBasedPressure());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_UseVelocityBasedPressure(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().UseVelocityBasedPressure(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2803,6 +2833,7 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkInputProcessingConfiguration> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkModelerAttributes> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkPoint> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkPoint2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Input::Inking::IInkPointFactory> : winrt::impl::hash_base {};

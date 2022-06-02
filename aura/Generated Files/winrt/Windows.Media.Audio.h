@@ -817,6 +817,78 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioNodeWithListener)->get_Listener(&value));
         return winrt::Windows::Media::Audio::AudioNodeListener{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::Start() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->Start());
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::StartAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->StartAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::DeviceId() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->get_DeviceId(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionState) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::State() const
+    {
+        winrt::Windows::Media::Audio::AudioPlaybackConnectionState value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->get_State(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::Open() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->Open(&result));
+        return winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::OpenAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->OpenAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::StateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioPlaybackConnection, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->add_StateChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::StateChanged_revoker consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::StateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioPlaybackConnection, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, StateChanged_revoker>(this, StateChanged(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Audio_IAudioPlaybackConnection<D>::StateChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnection)->remove_StateChanged(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus) consume_Windows_Media_Audio_IAudioPlaybackConnectionOpenResult<D>::Status() const
+    {
+        winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult)->get_Status(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::hresult) consume_Windows_Media_Audio_IAudioPlaybackConnectionOpenResult<D>::ExtendedError() const
+    {
+        winrt::hresult value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult)->get_ExtendedError(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_Audio_IAudioPlaybackConnectionStatics<D>::GetDeviceSelector() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics)->GetDeviceSelector(&result));
+        return hstring{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnection) consume_Windows_Media_Audio_IAudioPlaybackConnectionStatics<D>::TryCreateFromId(param::hstring const& id) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics)->TryCreateFromId(*(void**)(&id), &result));
+        return winrt::Windows::Media::Audio::AudioPlaybackConnection{ result, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Media_Audio_IAudioStateMonitor<D>::SoundLevelChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioStateMonitor, winrt::Windows::Foundation::IInspectable> const& handler) const
     {
         winrt::event_token token{};
@@ -2783,6 +2855,115 @@ namespace winrt::impl
     };
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Audio::IAudioPlaybackConnection> : produce_base<D, winrt::Windows::Media::Audio::IAudioPlaybackConnection>
+    {
+        int32_t __stdcall Start() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Start();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall StartAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().StartAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DeviceId(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().DeviceId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_State(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Audio::AudioPlaybackConnectionState>(this->shim().State());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Open(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>(this->shim().Open());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall OpenAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>>(this->shim().OpenAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_StateChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().StateChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioPlaybackConnection, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_StateChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().StateChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult> : produce_base<D, winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult>
+    {
+        int32_t __stdcall get_Status(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus>(this->shim().Status());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ExtendedError(winrt::hresult* value) noexcept final try
+        {
+            zero_abi<winrt::hresult>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::hresult>(this->shim().ExtendedError());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics> : produce_base<D, winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics>
+    {
+        int32_t __stdcall GetDeviceSelector(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<hstring>(this->shim().GetDeviceSelector());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall TryCreateFromId(void* id, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::Audio::AudioPlaybackConnection>(this->shim().TryCreateFromId(*reinterpret_cast<hstring const*>(&id)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Audio::IAudioStateMonitor> : produce_base<D, winrt::Windows::Media::Audio::IAudioStateMonitor>
     {
         int32_t __stdcall add_SoundLevelChanged(void* handler, winrt::event_token* token) noexcept final try
@@ -4006,6 +4187,14 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
         AudioNodeListener(impl::call_factory_cast<AudioNodeListener(*)(winrt::Windows::Foundation::IActivationFactory const&), AudioNodeListener>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<AudioNodeListener>(); }))
     {
     }
+    inline auto AudioPlaybackConnection::GetDeviceSelector()
+    {
+        return impl::call_factory_cast<hstring(*)(IAudioPlaybackConnectionStatics const&), AudioPlaybackConnection, IAudioPlaybackConnectionStatics>([](IAudioPlaybackConnectionStatics const& f) { return f.GetDeviceSelector(); });
+    }
+    inline auto AudioPlaybackConnection::TryCreateFromId(param::hstring const& id)
+    {
+        return impl::call_factory<AudioPlaybackConnection, IAudioPlaybackConnectionStatics>([&](IAudioPlaybackConnectionStatics const& f) { return f.TryCreateFromId(id); });
+    }
     inline auto AudioStateMonitor::CreateForRenderMonitoring()
     {
         return impl::call_factory_cast<winrt::Windows::Media::Audio::AudioStateMonitor(*)(IAudioStateMonitorStatics const&), AudioStateMonitor, IAudioStateMonitorStatics>([](IAudioStateMonitorStatics const& f) { return f.CreateForRenderMonitoring(); });
@@ -4120,6 +4309,9 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Audio::IAudioNodeEmitterShapeStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::IAudioNodeListener> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::IAudioNodeWithListener> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Audio::IAudioPlaybackConnection> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::IAudioStateMonitor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::IAudioStateMonitorStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::ICreateAudioDeviceInputNodeResult> : winrt::impl::hash_base {};
@@ -4169,6 +4361,8 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Audio::AudioNodeEmitterNaturalDecayModelProperties> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::AudioNodeEmitterShape> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::AudioNodeListener> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Audio::AudioPlaybackConnection> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::AudioStateMonitor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::AudioSubmixNode> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Audio::CreateAudioDeviceInputNodeResult> : winrt::impl::hash_base {};

@@ -62,6 +62,13 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Capture
         IGraphicsCaptureSession(std::nullptr_t = nullptr) noexcept {}
         IGraphicsCaptureSession(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IGraphicsCaptureSession2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGraphicsCaptureSession2>
+    {
+        IGraphicsCaptureSession2(std::nullptr_t = nullptr) noexcept {}
+        IGraphicsCaptureSession2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IGraphicsCaptureSessionStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IGraphicsCaptureSessionStatics>

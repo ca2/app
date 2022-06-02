@@ -3,6 +3,10 @@
 #pragma once
 #ifndef WINRT_Windows_Media_Devices_0_H
 #define WINRT_Windows_Media_Devices_0_H
+WINRT_EXPORT namespace winrt::Windows::Devices::Enumeration
+{
+    enum class Panel : int32_t;
+}
 WINRT_EXPORT namespace winrt::Windows::Foundation
 {
     struct EventRegistrationToken;
@@ -225,6 +229,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     struct IAdvancedVideoCaptureDeviceController5;
     struct IAdvancedVideoCaptureDeviceController6;
     struct IAdvancedVideoCaptureDeviceController7;
+    struct IAdvancedVideoCaptureDeviceController8;
     struct IAudioDeviceController;
     struct IAudioDeviceModule;
     struct IAudioDeviceModuleNotificationEventArgs;
@@ -251,6 +256,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     struct IMediaDeviceStatics;
     struct IModuleCommandResult;
     struct IOpticalImageStabilizationControl;
+    struct IPanelBasedOptimizationControl;
     struct IPhotoConfirmationControl;
     struct IRegionOfInterest;
     struct IRegionOfInterest2;
@@ -288,6 +294,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     struct MediaDeviceControlCapabilities;
     struct ModuleCommandResult;
     struct OpticalImageStabilizationControl;
+    struct PanelBasedOptimizationControl;
     struct PhotoConfirmationControl;
     struct RegionOfInterest;
     struct RegionsOfInterestControl;
@@ -311,6 +318,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IAudioDeviceController>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IAudioDeviceModule>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IAudioDeviceModuleNotificationEventArgs>{ using type = interface_category; };
@@ -337,6 +345,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Devices::IMediaDeviceStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IModuleCommandResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IPhotoConfirmationControl>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IRegionOfInterest>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Devices::IRegionOfInterest2>{ using type = interface_category; };
@@ -374,6 +383,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Devices::MediaDeviceControlCapabilities>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Devices::ModuleCommandResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Devices::OpticalImageStabilizationControl>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Devices::PanelBasedOptimizationControl>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Devices::PhotoConfirmationControl>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Devices::RegionOfInterest>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Devices::RegionsOfInterestControl>{ using type = class_category; };
@@ -432,6 +442,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::MediaDeviceControlCapabilities> = L"Windows.Media.Devices.MediaDeviceControlCapabilities";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::ModuleCommandResult> = L"Windows.Media.Devices.ModuleCommandResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::OpticalImageStabilizationControl> = L"Windows.Media.Devices.OpticalImageStabilizationControl";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::PanelBasedOptimizationControl> = L"Windows.Media.Devices.PanelBasedOptimizationControl";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::PhotoConfirmationControl> = L"Windows.Media.Devices.PhotoConfirmationControl";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::RegionOfInterest> = L"Windows.Media.Devices.RegionOfInterest";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::RegionsOfInterestControl> = L"Windows.Media.Devices.RegionsOfInterestControl";
@@ -475,6 +486,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5> = L"Windows.Media.Devices.IAdvancedVideoCaptureDeviceController5";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6> = L"Windows.Media.Devices.IAdvancedVideoCaptureDeviceController6";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7> = L"Windows.Media.Devices.IAdvancedVideoCaptureDeviceController7";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8> = L"Windows.Media.Devices.IAdvancedVideoCaptureDeviceController8";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAudioDeviceController> = L"Windows.Media.Devices.IAudioDeviceController";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAudioDeviceModule> = L"Windows.Media.Devices.IAudioDeviceModule";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IAudioDeviceModuleNotificationEventArgs> = L"Windows.Media.Devices.IAudioDeviceModuleNotificationEventArgs";
@@ -501,6 +513,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IMediaDeviceStatics> = L"Windows.Media.Devices.IMediaDeviceStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IModuleCommandResult> = L"Windows.Media.Devices.IModuleCommandResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl> = L"Windows.Media.Devices.IOpticalImageStabilizationControl";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl> = L"Windows.Media.Devices.IPanelBasedOptimizationControl";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IPhotoConfirmationControl> = L"Windows.Media.Devices.IPhotoConfirmationControl";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IRegionOfInterest> = L"Windows.Media.Devices.IRegionOfInterest";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Devices::IRegionOfInterest2> = L"Windows.Media.Devices.IRegionOfInterest2";
@@ -523,6 +536,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5>{ 0x33512B17,0xB9CB,0x4A23,{ 0xB8,0x75,0xF9,0xEA,0xAB,0x53,0x54,0x92 } }; // 33512B17-B9CB-4A23-B875-F9EAAB535492
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6>{ 0xB6563A53,0x68A1,0x44B7,{ 0x9F,0x89,0xB5,0xFA,0x97,0xAC,0x0C,0xBE } }; // B6563A53-68A1-44B7-9F89-B5FA97AC0CBE
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7>{ 0x8D2927F0,0xA054,0x50E7,{ 0xB7,0xDF,0x7C,0x04,0x23,0x4D,0x10,0xF0 } }; // 8D2927F0-A054-50E7-B7DF-7C04234D10F0
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>{ 0xD843F010,0xE7FB,0x595B,{ 0x9A,0x78,0x0E,0x54,0xC4,0x53,0x2B,0x43 } }; // D843F010-E7FB-595B-9A78-0E54C4532B43
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAudioDeviceController>{ 0xEDD4A388,0x79C7,0x4F7C,{ 0x90,0xE8,0xEF,0x93,0x4B,0x21,0x58,0x0A } }; // EDD4A388-79C7-4F7C-90E8-EF934B21580A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAudioDeviceModule>{ 0x86CFAC36,0x47C1,0x4B33,{ 0x98,0x52,0x87,0x73,0xEC,0x4B,0xE1,0x23 } }; // 86CFAC36-47C1-4B33-9852-8773EC4BE123
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IAudioDeviceModuleNotificationEventArgs>{ 0xE3E3CCAF,0x224C,0x48BE,{ 0x95,0x6B,0x9A,0x13,0x13,0x4E,0x96,0xE8 } }; // E3E3CCAF-224C-48BE-956B-9A13134E96E8
@@ -549,6 +563,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IMediaDeviceStatics>{ 0xAA2D9A40,0x909F,0x4BBA,{ 0xBF,0x8B,0x0C,0x0D,0x29,0x6F,0x14,0xF0 } }; // AA2D9A40-909F-4BBA-BF8B-0C0D296F14F0
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IModuleCommandResult>{ 0x520D1EB4,0x1374,0x4C7D,{ 0xB1,0xE4,0x39,0xDC,0xDF,0x3E,0xAE,0x4E } }; // 520D1EB4-1374-4C7D-B1E4-39DCDF3EAE4E
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl>{ 0xBFAD9C1D,0x00BC,0x423B,{ 0x8E,0xB2,0xA0,0x17,0x8C,0xA9,0x42,0x47 } }; // BFAD9C1D-00BC-423B-8EB2-A0178CA94247
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl>{ 0x33323223,0x6247,0x5419,{ 0xA5,0xA4,0x3D,0x80,0x86,0x45,0xD9,0x17 } }; // 33323223-6247-5419-A5A4-3D808645D917
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IPhotoConfirmationControl>{ 0xC8F3F363,0xFF5E,0x4582,{ 0xA9,0xA8,0x05,0x50,0xF8,0x5A,0x4A,0x76 } }; // C8F3F363-FF5E-4582-A9A8-0550F85A4A76
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IRegionOfInterest>{ 0xE5ECC834,0xCE66,0x4E05,{ 0xA7,0x8F,0xCF,0x39,0x1A,0x5E,0xC2,0xD1 } }; // E5ECC834-CE66-4E05-A78F-CF391A5EC2D1
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Devices::IRegionOfInterest2>{ 0x19FE2A91,0x73AA,0x4D51,{ 0x8A,0x9D,0x56,0xCC,0xF7,0xDB,0x7F,0x54 } }; // 19FE2A91-73AA-4D51-8A9D-56CCF7DB7F54
@@ -585,6 +600,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Media::Devices::MediaDeviceControlCapabilities>{ using type = winrt::Windows::Media::Devices::IMediaDeviceControlCapabilities; };
     template <> struct default_interface<winrt::Windows::Media::Devices::ModuleCommandResult>{ using type = winrt::Windows::Media::Devices::IModuleCommandResult; };
     template <> struct default_interface<winrt::Windows::Media::Devices::OpticalImageStabilizationControl>{ using type = winrt::Windows::Media::Devices::IOpticalImageStabilizationControl; };
+    template <> struct default_interface<winrt::Windows::Media::Devices::PanelBasedOptimizationControl>{ using type = winrt::Windows::Media::Devices::IPanelBasedOptimizationControl; };
     template <> struct default_interface<winrt::Windows::Media::Devices::PhotoConfirmationControl>{ using type = winrt::Windows::Media::Devices::IPhotoConfirmationControl; };
     template <> struct default_interface<winrt::Windows::Media::Devices::RegionOfInterest>{ using type = winrt::Windows::Media::Devices::IRegionOfInterest; };
     template <> struct default_interface<winrt::Windows::Media::Devices::RegionsOfInterestControl>{ using type = winrt::Windows::Media::Devices::IRegionsOfInterestControl; };
@@ -685,6 +701,13 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_InfraredTorchControl(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_PanelBasedOptimizationControl(void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Devices::IAudioDeviceController>
@@ -1004,6 +1027,15 @@ namespace winrt::impl
             virtual int32_t __stdcall put_Mode(int32_t) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsSupported(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_Panel(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall put_Panel(int32_t) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::Devices::IPhotoConfirmationControl>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -1265,6 +1297,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7>
     {
         template <typename D> using type = consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController7<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController8
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Media::Devices::PanelBasedOptimizationControl) PanelBasedOptimizationControl() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>
+    {
+        template <typename D> using type = consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController8<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Devices_IAudioDeviceController
@@ -1640,6 +1681,17 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl>
     {
         template <typename D> using type = consume_Windows_Media_Devices_IOpticalImageStabilizationControl<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Devices_IPanelBasedOptimizationControl
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) IsSupported() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) Panel() const;
+        WINRT_IMPL_AUTO(void) Panel(winrt::Windows::Devices::Enumeration::Panel const& value) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl>
+    {
+        template <typename D> using type = consume_Windows_Media_Devices_IPanelBasedOptimizationControl<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Devices_IPhotoConfirmationControl

@@ -183,7 +183,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
     struct IUISettings3;
     struct IUISettings4;
     struct IUISettings5;
+    struct IUISettings6;
+    struct IUISettingsAnimationsEnabledChangedEventArgs;
     struct IUISettingsAutoHideScrollBarsChangedEventArgs;
+    struct IUISettingsMessageDurationChangedEventArgs;
     struct IUIViewSettings;
     struct IUIViewSettingsStatics;
     struct IViewModePreferences;
@@ -200,7 +203,9 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
     struct InputPaneVisibilityEventArgs;
     struct ProjectionManager;
     struct UISettings;
+    struct UISettingsAnimationsEnabledChangedEventArgs;
     struct UISettingsAutoHideScrollBarsChangedEventArgs;
+    struct UISettingsMessageDurationChangedEventArgs;
     struct UIViewSettings;
     struct ViewModePreferences;
 }
@@ -244,7 +249,10 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::ViewManagement::IUISettings3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IUISettings4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IUISettings5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::IUISettings6>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IUIViewSettings>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IUIViewSettingsStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::IViewModePreferences>{ using type = interface_category; };
@@ -261,7 +269,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::ViewManagement::InputPaneVisibilityEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::ProjectionManager>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UISettings>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UISettingsAutoHideScrollBarsChangedEventArgs>{ using type = class_category; };
+    template <> struct category<winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::UIViewSettings>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::ViewModePreferences>{ using type = class_category; };
     template <> struct category<winrt::Windows::UI::ViewManagement::ApplicationViewBoundsMode>{ using type = enum_category; };
@@ -288,7 +298,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::InputPaneVisibilityEventArgs> = L"Windows.UI.ViewManagement.InputPaneVisibilityEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::ProjectionManager> = L"Windows.UI.ViewManagement.ProjectionManager";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UISettings> = L"Windows.UI.ViewManagement.UISettings";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> = L"Windows.UI.ViewManagement.UISettingsAnimationsEnabledChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UISettingsAutoHideScrollBarsChangedEventArgs> = L"Windows.UI.ViewManagement.UISettingsAutoHideScrollBarsChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> = L"Windows.UI.ViewManagement.UISettingsMessageDurationChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::UIViewSettings> = L"Windows.UI.ViewManagement.UIViewSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::ViewModePreferences> = L"Windows.UI.ViewManagement.ViewModePreferences";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::ApplicationViewBoundsMode> = L"Windows.UI.ViewManagement.ApplicationViewBoundsMode";
@@ -341,7 +353,10 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettings3> = L"Windows.UI.ViewManagement.IUISettings3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettings4> = L"Windows.UI.ViewManagement.IUISettings4";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettings5> = L"Windows.UI.ViewManagement.IUISettings5";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettings6> = L"Windows.UI.ViewManagement.IUISettings6";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs> = L"Windows.UI.ViewManagement.IUISettingsAnimationsEnabledChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs> = L"Windows.UI.ViewManagement.IUISettingsAutoHideScrollBarsChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs> = L"Windows.UI.ViewManagement.IUISettingsMessageDurationChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUIViewSettings> = L"Windows.UI.ViewManagement.IUIViewSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IUIViewSettingsStatics> = L"Windows.UI.ViewManagement.IUIViewSettingsStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::ViewManagement::IViewModePreferences> = L"Windows.UI.ViewManagement.IViewModePreferences";
@@ -384,7 +399,10 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettings3>{ 0x03021BE4,0x5254,0x4781,{ 0x81,0x94,0x51,0x68,0xF7,0xD0,0x6D,0x7B } }; // 03021BE4-5254-4781-8194-5168F7D06D7B
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettings4>{ 0x52BB3002,0x919B,0x4D6B,{ 0x9B,0x78,0x8D,0xD6,0x6F,0xF4,0xB9,0x3B } }; // 52BB3002-919B-4D6B-9B78-8DD66FF4B93B
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettings5>{ 0x5349D588,0x0CB5,0x5F05,{ 0xBD,0x34,0x70,0x6B,0x32,0x31,0xF0,0xBD } }; // 5349D588-0CB5-5F05-BD34-706B3231F0BD
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettings6>{ 0xAEF19BD7,0xFE31,0x5A04,{ 0xAD,0xA4,0x46,0x9A,0xAE,0xC6,0xDF,0xA9 } }; // AEF19BD7-FE31-5A04-ADA4-469AAEC6DFA9
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs>{ 0x0C7B4B3D,0x2EA1,0x533E,{ 0x89,0x4D,0x41,0x5B,0xC5,0x24,0x3C,0x29 } }; // 0C7B4B3D-2EA1-533E-894D-415BC5243C29
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs>{ 0x87AFD4B2,0x9146,0x5F02,{ 0x8F,0x6B,0x06,0xD4,0x54,0x17,0x4C,0x0F } }; // 87AFD4B2-9146-5F02-8F6B-06D454174C0F
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs>{ 0x338AAD52,0x4A5D,0x5B59,{ 0x80,0x02,0xD9,0x30,0xF6,0x08,0xFD,0x6E } }; // 338AAD52-4A5D-5B59-8002-D930F608FD6E
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUIViewSettings>{ 0xC63657F6,0x8850,0x470D,{ 0x88,0xF8,0x45,0x5E,0x16,0xEA,0x2C,0x26 } }; // C63657F6-8850-470D-88F8-455E16EA2C26
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IUIViewSettingsStatics>{ 0x595C97A5,0xF8F6,0x41CF,{ 0xB0,0xFB,0xAA,0xCD,0xB8,0x1F,0xD5,0xF6 } }; // 595C97A5-F8F6-41CF-B0FB-AACDB81FD5F6
     template <> inline constexpr guid guid_v<winrt::Windows::UI::ViewManagement::IViewModePreferences>{ 0x878FCD3A,0x0B99,0x42C9,{ 0x84,0xD0,0xD3,0xF1,0xD4,0x03,0x55,0x4B } }; // 878FCD3A-0B99-42C9-84D0-D3F1D403554B
@@ -399,7 +417,9 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::InputPane>{ using type = winrt::Windows::UI::ViewManagement::IInputPane; };
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::InputPaneVisibilityEventArgs>{ using type = winrt::Windows::UI::ViewManagement::IInputPaneVisibilityEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::UISettings>{ using type = winrt::Windows::UI::ViewManagement::IUISettings; };
+    template <> struct default_interface<winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs>{ using type = winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::UISettingsAutoHideScrollBarsChangedEventArgs>{ using type = winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs; };
+    template <> struct default_interface<winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs>{ using type = winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::UIViewSettings>{ using type = winrt::Windows::UI::ViewManagement::IUIViewSettings; };
     template <> struct default_interface<winrt::Windows::UI::ViewManagement::ViewModePreferences>{ using type = winrt::Windows::UI::ViewManagement::IViewModePreferences; };
     template <> struct abi<winrt::Windows::UI::ViewManagement::IAccessibilitySettings>
@@ -779,7 +799,29 @@ namespace winrt::impl
             virtual int32_t __stdcall remove_AutoHideScrollBarsChanged(winrt::event_token) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::UI::ViewManagement::IUISettings6>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_AnimationsEnabledChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_AnimationsEnabledChanged(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall add_MessageDurationChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_MessageDurationChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+        };
+    };
     template <> struct abi<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs>
     {
         struct __declspec(novtable) type : inspectable_abi
         {
@@ -1290,12 +1332,44 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_UI_ViewManagement_IUISettings5<D>;
     };
     template <typename D>
+    struct consume_Windows_UI_ViewManagement_IUISettings6
+    {
+        WINRT_IMPL_AUTO(winrt::event_token) AnimationsEnabledChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> const& handler) const;
+        using AnimationsEnabledChanged_revoker = impl::event_revoker<winrt::Windows::UI::ViewManagement::IUISettings6, &impl::abi_t<winrt::Windows::UI::ViewManagement::IUISettings6>::remove_AnimationsEnabledChanged>;
+        [[nodiscard]] AnimationsEnabledChanged_revoker AnimationsEnabledChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> const& handler) const;
+        WINRT_IMPL_AUTO(void) AnimationsEnabledChanged(winrt::event_token const& token) const noexcept;
+        WINRT_IMPL_AUTO(winrt::event_token) MessageDurationChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> const& handler) const;
+        using MessageDurationChanged_revoker = impl::event_revoker<winrt::Windows::UI::ViewManagement::IUISettings6, &impl::abi_t<winrt::Windows::UI::ViewManagement::IUISettings6>::remove_MessageDurationChanged>;
+        [[nodiscard]] MessageDurationChanged_revoker MessageDurationChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> const& handler) const;
+        WINRT_IMPL_AUTO(void) MessageDurationChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::UI::ViewManagement::IUISettings6>
+    {
+        template <typename D> using type = consume_Windows_UI_ViewManagement_IUISettings6<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ViewManagement_IUISettingsAnimationsEnabledChangedEventArgs
+    {
+    };
+    template <> struct consume<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_UI_ViewManagement_IUISettingsAnimationsEnabledChangedEventArgs<D>;
+    };
+    template <typename D>
     struct consume_Windows_UI_ViewManagement_IUISettingsAutoHideScrollBarsChangedEventArgs
     {
     };
     template <> struct consume<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs>
     {
         template <typename D> using type = consume_Windows_UI_ViewManagement_IUISettingsAutoHideScrollBarsChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_ViewManagement_IUISettingsMessageDurationChangedEventArgs
+    {
+    };
+    template <> struct consume<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs>
+    {
+        template <typename D> using type = consume_Windows_UI_ViewManagement_IUISettingsMessageDurationChangedEventArgs<D>;
     };
     template <typename D>
     struct consume_Windows_UI_ViewManagement_IUIViewSettings

@@ -69,6 +69,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         IAdvancedVideoCaptureDeviceController7(std::nullptr_t = nullptr) noexcept {}
         IAdvancedVideoCaptureDeviceController7(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAdvancedVideoCaptureDeviceController8 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAdvancedVideoCaptureDeviceController8>
+    {
+        IAdvancedVideoCaptureDeviceController8(std::nullptr_t = nullptr) noexcept {}
+        IAdvancedVideoCaptureDeviceController8(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAudioDeviceController :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAudioDeviceController>,
@@ -251,6 +258,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
     {
         IOpticalImageStabilizationControl(std::nullptr_t = nullptr) noexcept {}
         IOpticalImageStabilizationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPanelBasedOptimizationControl :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPanelBasedOptimizationControl>
+    {
+        IPanelBasedOptimizationControl(std::nullptr_t = nullptr) noexcept {}
+        IPanelBasedOptimizationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPhotoConfirmationControl :
         winrt::Windows::Foundation::IInspectable,

@@ -562,6 +562,14 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4)->MakeCurrentInTransferGroup());
     }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_BackgroundTransfer_IDownloadOperation5<D>::SetRequestHeader(param::hstring const& headerName, param::hstring const& headerValue) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5)->SetRequestHeader(*(void**)(&headerName), *(void**)(&headerValue)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_BackgroundTransfer_IDownloadOperation5<D>::RemoveRequestHeader(param::hstring const& headerName) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5)->RemoveRequestHeader(*(void**)(&headerName)));
+    }
     template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Networking_BackgroundTransfer_IResponseInformation<D>::IsResumable() const
     {
         bool value{};
@@ -625,6 +633,14 @@ namespace winrt::impl
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_BackgroundTransfer_IUploadOperation3<D>::MakeCurrentInTransferGroup() const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3)->MakeCurrentInTransferGroup());
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_BackgroundTransfer_IUploadOperation4<D>::SetRequestHeader(param::hstring const& headerName, param::hstring const& headerValue) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4)->SetRequestHeader(*(void**)(&headerName), *(void**)(&headerValue)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_BackgroundTransfer_IUploadOperation4<D>::RemoveRequestHeader(param::hstring const& headerName) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4)->RemoveRequestHeader(*(void**)(&headerName)));
     }
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
@@ -1566,6 +1582,26 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5> : produce_base<D, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>
+    {
+        int32_t __stdcall SetRequestHeader(void* headerName, void* headerValue) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetRequestHeader(*reinterpret_cast<hstring const*>(&headerName), *reinterpret_cast<hstring const*>(&headerValue));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RemoveRequestHeader(void* headerName) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoveRequestHeader(*reinterpret_cast<hstring const*>(&headerName));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Networking::BackgroundTransfer::IResponseInformation> : produce_base<D, winrt::Windows::Networking::BackgroundTransfer::IResponseInformation>
     {
         int32_t __stdcall get_IsResumable(bool* value) noexcept final try
@@ -1673,6 +1709,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().MakeCurrentInTransferGroup();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4> : produce_base<D, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>
+    {
+        int32_t __stdcall SetRequestHeader(void* headerName, void* headerValue) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetRequestHeader(*reinterpret_cast<hstring const*>(&headerName), *reinterpret_cast<hstring const*>(&headerValue));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RemoveRequestHeader(void* headerName) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RemoveRequestHeader(*reinterpret_cast<hstring const*>(&headerName));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1804,11 +1860,13 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IResponseInformation> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IUnconstrainedTransferRequestResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::BackgroundDownloader> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroup> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroupTriggerDetails> : winrt::impl::hash_base {};

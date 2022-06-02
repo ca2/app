@@ -317,7 +317,8 @@ WINRT_EXPORT namespace winrt::Windows::System
         UserAuthenticationStatusChangingEventArgs(std::nullptr_t) noexcept {}
         UserAuthenticationStatusChangingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) UserChangedEventArgs : winrt::Windows::System::IUserChangedEventArgs
+    struct __declspec(empty_bases) UserChangedEventArgs : winrt::Windows::System::IUserChangedEventArgs,
+        impl::require<UserChangedEventArgs, winrt::Windows::System::IUserChangedEventArgs2>
     {
         UserChangedEventArgs(std::nullptr_t) noexcept {}
         UserChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::System::IUserChangedEventArgs(ptr, take_ownership_from_abi) {}

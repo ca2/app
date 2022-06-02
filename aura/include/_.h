@@ -57,7 +57,7 @@ namespace aura
 #if defined _UWP
 
 
-namespace universal_windows
+namespace aura_universal_windows
 {
 
 

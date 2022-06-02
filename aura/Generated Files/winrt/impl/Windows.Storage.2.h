@@ -118,6 +118,9 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         [[nodiscard]] static auto AppCaptures();
         [[nodiscard]] static auto RecordedCalls();
         static auto GetFolderForUserAsync(winrt::Windows::System::User const& user, winrt::Windows::Storage::KnownFolderId const& folderId);
+        static auto RequestAccessAsync(winrt::Windows::Storage::KnownFolderId const& folderId);
+        static auto RequestAccessForUserAsync(winrt::Windows::System::User const& user, winrt::Windows::Storage::KnownFolderId const& folderId);
+        static auto GetFolderAsync(winrt::Windows::Storage::KnownFolderId const& folderId);
     };
     struct PathIO
     {
@@ -163,6 +166,7 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         static auto ReplaceWithStreamedFileAsync(winrt::Windows::Storage::IStorageFile const& fileToReplace, winrt::Windows::Storage::StreamedFileDataRequestedHandler const& dataRequested, winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& thumbnail);
         static auto CreateStreamedFileFromUriAsync(param::hstring const& displayNameWithExtension, winrt::Windows::Foundation::Uri const& uri, winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& thumbnail);
         static auto ReplaceWithStreamedFileFromUriAsync(winrt::Windows::Storage::IStorageFile const& fileToReplace, winrt::Windows::Foundation::Uri const& uri, winrt::Windows::Storage::Streams::IRandomAccessStreamReference const& thumbnail);
+        static auto GetFileFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path);
     };
     struct __declspec(empty_bases) StorageFolder : winrt::Windows::Storage::IStorageFolder,
         impl::require<StorageFolder, winrt::Windows::Storage::Search::IStorageFolderQueryOperations, winrt::Windows::Storage::IStorageItemProperties, winrt::Windows::Storage::IStorageItemProperties2, winrt::Windows::Storage::IStorageItem2, winrt::Windows::Storage::IStorageFolder2, winrt::Windows::Storage::IStorageItemPropertiesWithProvider, winrt::Windows::Storage::IStorageFolder3>
@@ -176,6 +180,7 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         using winrt::Windows::Storage::IStorageFolder::GetItemsAsync;
         using impl::consume_t<StorageFolder, winrt::Windows::Storage::Search::IStorageFolderQueryOperations>::GetItemsAsync;
         static auto GetFolderFromPathAsync(param::hstring const& path);
+        static auto GetFolderFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path);
     };
     struct __declspec(empty_bases) StorageLibrary : winrt::Windows::Storage::IStorageLibrary,
         impl::require<StorageLibrary, winrt::Windows::Storage::IStorageLibrary2, winrt::Windows::Storage::IStorageLibrary3>

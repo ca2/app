@@ -196,9 +196,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::DataTransfer::DataPackageView) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::GetView() const
     {
-        void* value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->GetView(&value));
-        return winrt::Windows::ApplicationModel::DataTransfer::DataPackageView{ value, take_ownership_from_abi };
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->GetView(&result));
+        return winrt::Windows::ApplicationModel::DataTransfer::DataPackageView{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::DataTransfer::DataPackagePropertySet) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Properties() const
     {
@@ -218,31 +218,31 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::OperationCompleted(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const& handler) const
     {
-        winrt::event_token eventCookie{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->add_OperationCompleted(*(void**)(&handler), put_abi(eventCookie)));
-        return eventCookie;
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->add_OperationCompleted(*(void**)(&handler), put_abi(token)));
+        return token;
     }
     template <typename D> typename consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::OperationCompleted_revoker consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::OperationCompleted(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const& handler) const
     {
         return impl::make_event_revoker<D, OperationCompleted_revoker>(this, OperationCompleted(handler));
     }
-    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::OperationCompleted(winrt::event_token const& eventCookie) const noexcept
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::OperationCompleted(winrt::event_token const& token) const noexcept
     {
-        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->remove_OperationCompleted(impl::bind_in(eventCookie)));
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->remove_OperationCompleted(impl::bind_in(token)));
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Destroyed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const
     {
-        winrt::event_token eventCookie{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->add_Destroyed(*(void**)(&handler), put_abi(eventCookie)));
-        return eventCookie;
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->add_Destroyed(*(void**)(&handler), put_abi(token)));
+        return token;
     }
     template <typename D> typename consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Destroyed_revoker consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Destroyed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const
     {
         return impl::make_event_revoker<D, Destroyed_revoker>(this, Destroyed(handler));
     }
-    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Destroyed(winrt::event_token const& eventCookie) const noexcept
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::Destroyed(winrt::event_token const& token) const noexcept
     {
-        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->remove_Destroyed(impl::bind_in(eventCookie)));
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage)->remove_Destroyed(impl::bind_in(token)));
     }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage<D>::SetData(param::hstring const& formatId, winrt::Windows::Foundation::IInspectable const& value) const
     {
@@ -307,6 +307,20 @@ namespace winrt::impl
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage3<D>::ShareCompleted(winrt::event_token const& token) const noexcept
     {
         WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3)->remove_ShareCompleted(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_ApplicationModel_DataTransfer_IDataPackage4<D>::ShareCanceled(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4)->add_ShareCanceled(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_ApplicationModel_DataTransfer_IDataPackage4<D>::ShareCanceled_revoker consume_Windows_ApplicationModel_DataTransfer_IDataPackage4<D>::ShareCanceled(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, ShareCanceled_revoker>(this, ShareCanceled(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_ApplicationModel_DataTransfer_IDataPackage4<D>::ShareCanceled(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4)->remove_ShareCanceled(impl::bind_in(token)));
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_DataTransfer_IDataPackagePropertySet<D>::Title() const
     {
@@ -1244,11 +1258,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage> : produce_base<D, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage>
     {
-        int32_t __stdcall GetView(void** value) noexcept final try
+        int32_t __stdcall GetView(void** result) noexcept final try
         {
-            clear_abi(value);
+            clear_abi(result);
             typename D::abi_guard guard(this->shim());
-            *value = detach_from<winrt::Windows::ApplicationModel::DataTransfer::DataPackageView>(this->shim().GetView());
+            *result = detach_from<winrt::Windows::ApplicationModel::DataTransfer::DataPackageView>(this->shim().GetView());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1274,32 +1288,32 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall add_OperationCompleted(void* handler, winrt::event_token* eventCookie) noexcept final try
+        int32_t __stdcall add_OperationCompleted(void* handler, winrt::event_token* token) noexcept final try
         {
-            zero_abi<winrt::event_token>(eventCookie);
+            zero_abi<winrt::event_token>(token);
             typename D::abi_guard guard(this->shim());
-            *eventCookie = detach_from<winrt::event_token>(this->shim().OperationCompleted(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const*>(&handler)));
+            *token = detach_from<winrt::event_token>(this->shim().OperationCompleted(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const*>(&handler)));
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall remove_OperationCompleted(winrt::event_token eventCookie) noexcept final
+        int32_t __stdcall remove_OperationCompleted(winrt::event_token token) noexcept final
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().OperationCompleted(*reinterpret_cast<winrt::event_token const*>(&eventCookie));
+            this->shim().OperationCompleted(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
-        int32_t __stdcall add_Destroyed(void* handler, winrt::event_token* eventCookie) noexcept final try
+        int32_t __stdcall add_Destroyed(void* handler, winrt::event_token* token) noexcept final try
         {
-            zero_abi<winrt::event_token>(eventCookie);
+            zero_abi<winrt::event_token>(token);
             typename D::abi_guard guard(this->shim());
-            *eventCookie = detach_from<winrt::event_token>(this->shim().Destroyed(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            *token = detach_from<winrt::event_token>(this->shim().Destroyed(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall remove_Destroyed(winrt::event_token eventCookie) noexcept final
+        int32_t __stdcall remove_Destroyed(winrt::event_token token) noexcept final
         {
             typename D::abi_guard guard(this->shim());
-            this->shim().Destroyed(*reinterpret_cast<winrt::event_token const*>(&eventCookie));
+            this->shim().Destroyed(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
         int32_t __stdcall SetData(void* formatId, void* value) noexcept final try
@@ -1411,6 +1425,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().ShareCompleted(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4> : produce_base<D, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>
+    {
+        int32_t __stdcall add_ShareCanceled(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().ShareCanceled(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_ShareCanceled(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ShareCanceled(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
     };
@@ -2819,6 +2853,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet3> : winrt::impl::hash_base {};

@@ -45,6 +45,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::AppService
         RemoteSystemUnavailable = 5,
         RemoteSystemNotSupportedByApp = 6,
         NotAuthorized = 7,
+        AuthenticationError = 8,
+        NetworkNotAvailable = 9,
+        DisabledByPolicy = 10,
+        WebServiceUnavailable = 11,
     };
     enum class AppServiceResponseStatus : int32_t
     {
@@ -54,6 +58,11 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::AppService
         Unknown = 3,
         RemoteSystemUnavailable = 4,
         MessageSizeTooLarge = 5,
+        AppUnavailable = 6,
+        AuthenticationError = 7,
+        NetworkNotAvailable = 8,
+        DisabledByPolicy = 9,
+        WebServiceUnavailable = 10,
     };
     enum class StatelessAppServiceResponseStatus : int32_t
     {
@@ -68,6 +77,10 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::AppService
         MessageSizeTooLarge = 8,
         Failure = 9,
         Unknown = 10,
+        AuthenticationError = 11,
+        NetworkNotAvailable = 12,
+        DisabledByPolicy = 13,
+        WebServiceUnavailable = 14,
     };
     struct IAppServiceCatalogStatics;
     struct IAppServiceClosedEventArgs;

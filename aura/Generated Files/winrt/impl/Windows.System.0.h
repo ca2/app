@@ -210,6 +210,11 @@ WINRT_EXPORT namespace winrt::Windows::System
         Stopped = 4,
         Aborted = 5,
     };
+    enum class UserWatcherUpdateKind : int32_t
+    {
+        Properties = 0,
+        Picture = 1,
+    };
     enum class VirtualKey : int32_t
     {
         None = 0,
@@ -230,10 +235,12 @@ WINRT_EXPORT namespace winrt::Windows::System
         CapitalLock = 20,
         Kana = 21,
         Hangul = 21,
+        ImeOn = 22,
         Junja = 23,
         Final = 24,
         Hanja = 25,
         Kanji = 25,
+        ImeOff = 26,
         Escape = 27,
         Convert = 28,
         NonConvert = 29,
@@ -457,6 +464,7 @@ WINRT_EXPORT namespace winrt::Windows::System
     struct IUserAuthenticationStatusChangeDeferral;
     struct IUserAuthenticationStatusChangingEventArgs;
     struct IUserChangedEventArgs;
+    struct IUserChangedEventArgs2;
     struct IUserDeviceAssociationChangedEventArgs;
     struct IUserDeviceAssociationStatics;
     struct IUserPicker;
@@ -579,6 +587,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::System::IUserAuthenticationStatusChangeDeferral>{ using type = interface_category; };
     template <> struct category<winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::System::IUserChangedEventArgs>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::System::IUserChangedEventArgs2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::System::IUserDeviceAssociationChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::System::IUserDeviceAssociationStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::System::IUserPicker>{ using type = interface_category; };
@@ -651,6 +660,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::System::UserPictureSize>{ using type = enum_category; };
     template <> struct category<winrt::Windows::System::UserType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::System::UserWatcherStatus>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::System::UserWatcherUpdateKind>{ using type = enum_category; };
     template <> struct category<winrt::Windows::System::VirtualKey>{ using type = enum_category; };
     template <> struct category<winrt::Windows::System::VirtualKeyModifiers>{ using type = enum_category; };
     template <> struct category<winrt::Windows::System::DispatcherQueueHandler>{ using type = delegate_category; };
@@ -720,6 +730,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::System::UserPictureSize> = L"Windows.System.UserPictureSize";
     template <> inline constexpr auto& name_v<winrt::Windows::System::UserType> = L"Windows.System.UserType";
     template <> inline constexpr auto& name_v<winrt::Windows::System::UserWatcherStatus> = L"Windows.System.UserWatcherStatus";
+    template <> inline constexpr auto& name_v<winrt::Windows::System::UserWatcherUpdateKind> = L"Windows.System.UserWatcherUpdateKind";
     template <> inline constexpr auto& name_v<winrt::Windows::System::VirtualKey> = L"Windows.System.VirtualKey";
     template <> inline constexpr auto& name_v<winrt::Windows::System::VirtualKeyModifiers> = L"Windows.System.VirtualKeyModifiers";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IAppActivationResult> = L"Windows.System.IAppActivationResult";
@@ -788,6 +799,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserAuthenticationStatusChangeDeferral> = L"Windows.System.IUserAuthenticationStatusChangeDeferral";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs> = L"Windows.System.IUserAuthenticationStatusChangingEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserChangedEventArgs> = L"Windows.System.IUserChangedEventArgs";
+    template <> inline constexpr auto& name_v<winrt::Windows::System::IUserChangedEventArgs2> = L"Windows.System.IUserChangedEventArgs2";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserDeviceAssociationChangedEventArgs> = L"Windows.System.IUserDeviceAssociationChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserDeviceAssociationStatics> = L"Windows.System.IUserDeviceAssociationStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::System::IUserPicker> = L"Windows.System.IUserPicker";
@@ -861,6 +873,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserAuthenticationStatusChangeDeferral>{ 0x88B59568,0xBB30,0x42FB,{ 0xA2,0x70,0xE9,0x90,0x2E,0x40,0xEF,0xA7 } }; // 88B59568-BB30-42FB-A270-E9902E40EFA7
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs>{ 0x8C030F28,0xA711,0x4C1E,{ 0xAB,0x48,0x04,0x17,0x9C,0x15,0x93,0x8F } }; // 8C030F28-A711-4C1E-AB48-04179C15938F
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserChangedEventArgs>{ 0x086459DC,0x18C6,0x48DB,{ 0xBC,0x99,0x72,0x4F,0xB9,0x20,0x3C,0xCC } }; // 086459DC-18C6-48DB-BC99-724FB9203CCC
+    template <> inline constexpr guid guid_v<winrt::Windows::System::IUserChangedEventArgs2>{ 0x6B2CCB44,0x6F01,0x560C,{ 0x97,0xAD,0xFC,0x7F,0x32,0xEC,0x58,0x1F } }; // 6B2CCB44-6F01-560C-97AD-FC7F32EC581F
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserDeviceAssociationChangedEventArgs>{ 0xBD1F6F6C,0xBB5D,0x4D7B,{ 0xA5,0xF0,0xC8,0xCD,0x11,0xA3,0x8D,0x42 } }; // BD1F6F6C-BB5D-4D7B-A5F0-C8CD11A38D42
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserDeviceAssociationStatics>{ 0x7E491E14,0xF85A,0x4C07,{ 0x8D,0xA9,0x7F,0xE3,0xD0,0x54,0x23,0x43 } }; // 7E491E14-F85A-4C07-8DA9-7FE3D0542343
     template <> inline constexpr guid guid_v<winrt::Windows::System::IUserPicker>{ 0x7D548008,0xF1E3,0x4A6C,{ 0x8D,0xDC,0xA9,0xBB,0x0F,0x48,0x8A,0xED } }; // 7D548008-F1E3-4A6C-8DDC-A9BB0F488AED
@@ -1525,6 +1538,13 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_User(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::System::IUserChangedEventArgs2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ChangedPropertyKinds(void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::System::IUserDeviceAssociationChangedEventArgs>
@@ -2387,6 +2407,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::System::IUserChangedEventArgs>
     {
         template <typename D> using type = consume_Windows_System_IUserChangedEventArgs<D>;
+    };
+    template <typename D>
+    struct consume_Windows_System_IUserChangedEventArgs2
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::System::UserWatcherUpdateKind>) ChangedPropertyKinds() const;
+    };
+    template <> struct consume<winrt::Windows::System::IUserChangedEventArgs2>
+    {
+        template <typename D> using type = consume_Windows_System_IUserChangedEventArgs2<D>;
     };
     template <typename D>
     struct consume_Windows_System_IUserDeviceAssociationChangedEventArgs

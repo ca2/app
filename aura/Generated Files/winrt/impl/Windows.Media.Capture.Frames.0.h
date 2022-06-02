@@ -6,6 +6,7 @@
 WINRT_EXPORT namespace winrt::Windows::Devices::Enumeration
 {
     struct DeviceInformation;
+    enum class Panel : int32_t;
 }
 WINRT_EXPORT namespace winrt::Windows::Foundation
 {
@@ -60,6 +61,10 @@ WINRT_EXPORT namespace winrt::Windows::Perception::Spatial
 WINRT_EXPORT namespace winrt::Windows::Storage::Streams
 {
     struct IBuffer;
+}
+WINRT_EXPORT namespace winrt::Windows::UI::WindowManagement
+{
+    struct DisplayRegion;
 }
 WINRT_EXPORT namespace winrt::Windows::Media::Capture::Frames
 {
@@ -133,6 +138,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture::Frames
     struct IMediaFrameSourceGroupStatics;
     struct IMediaFrameSourceInfo;
     struct IMediaFrameSourceInfo2;
+    struct IMediaFrameSourceInfo3;
     struct IMultiSourceMediaFrameArrivedEventArgs;
     struct IMultiSourceMediaFrameReader;
     struct IMultiSourceMediaFrameReader2;
@@ -183,6 +189,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceGroupStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader2>{ using type = interface_category; };
@@ -261,6 +268,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceGroupStatics> = L"Windows.Media.Capture.Frames.IMediaFrameSourceGroupStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo> = L"Windows.Media.Capture.Frames.IMediaFrameSourceInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2> = L"Windows.Media.Capture.Frames.IMediaFrameSourceInfo2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3> = L"Windows.Media.Capture.Frames.IMediaFrameSourceInfo3";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs> = L"Windows.Media.Capture.Frames.IMultiSourceMediaFrameArrivedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader> = L"Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader2> = L"Windows.Media.Capture.Frames.IMultiSourceMediaFrameReader2";
@@ -289,6 +297,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceGroupStatics>{ 0x1C48BFC5,0x436F,0x4508,{ 0x94,0xCF,0xD5,0xD8,0xB7,0x32,0x64,0x45 } }; // 1C48BFC5-436F-4508-94CF-D5D8B7326445
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo>{ 0x87BDC9CD,0x4601,0x408F,{ 0x91,0xCF,0x03,0x83,0x18,0xCD,0x0A,0xF3 } }; // 87BDC9CD-4601-408F-91CF-038318CD0AF3
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2>{ 0x195A7855,0x6457,0x42C6,{ 0xA7,0x69,0x19,0xB6,0x5B,0xD3,0x2E,0x6E } }; // 195A7855-6457-42C6-A769-19B65BD32E6E
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3>{ 0xCA824AB6,0x66EA,0x5885,{ 0xA2,0xB6,0x26,0xC0,0xEE,0xEC,0x3C,0x7B } }; // CA824AB6-66EA-5885-A2B6-26C0EEEC3C7B
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs>{ 0x63115E01,0xCF51,0x48FD,{ 0xAA,0xB0,0x6D,0x69,0x3E,0xB4,0x81,0x27 } }; // 63115E01-CF51-48FD-AAB0-6D693EB48127
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader>{ 0x8D144402,0xF763,0x488D,{ 0x98,0xF2,0xB4,0x37,0xBC,0xF0,0x75,0xE7 } }; // 8D144402-F763-488D-98F2-B437BCF075E7
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader2>{ 0xEF5C8ABD,0xFC5C,0x4C6B,{ 0x9D,0x81,0x3C,0xB9,0xCC,0x63,0x7C,0x26 } }; // EF5C8ABD-FC5C-4C6B-9D81-3CB9CC637C26
@@ -513,6 +522,13 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_ProfileId(void**) noexcept = 0;
             virtual int32_t __stdcall get_VideoProfileMediaDescription(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetRelativePanel(void*, int32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs>
@@ -819,6 +835,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2>
     {
         template <typename D> using type = consume_Windows_Media_Capture_Frames_IMediaFrameSourceInfo2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_Frames_IMediaFrameSourceInfo3
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) GetRelativePanel(winrt::Windows::UI::WindowManagement::DisplayRegion const& displayRegion) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_Frames_IMediaFrameSourceInfo3<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_Frames_IMultiSourceMediaFrameArrivedEventArgs

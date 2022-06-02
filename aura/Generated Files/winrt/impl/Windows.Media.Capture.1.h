@@ -191,6 +191,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         IMediaCapture6(std::nullptr_t = nullptr) noexcept {}
         IMediaCapture6(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IMediaCapture7 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaCapture7>
+    {
+        IMediaCapture7(std::nullptr_t = nullptr) noexcept {}
+        IMediaCapture7(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs>
@@ -254,12 +261,26 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         IMediaCaptureInitializationSettings6(std::nullptr_t = nullptr) noexcept {}
         IMediaCaptureInitializationSettings6(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IMediaCaptureInitializationSettings7 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaCaptureInitializationSettings7>
+    {
+        IMediaCaptureInitializationSettings7(std::nullptr_t = nullptr) noexcept {}
+        IMediaCaptureInitializationSettings7(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMediaCapturePauseResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMediaCapturePauseResult>
     {
         IMediaCapturePauseResult(std::nullptr_t = nullptr) noexcept {}
         IMediaCapturePauseResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IMediaCaptureRelativePanelWatcher :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaCaptureRelativePanelWatcher>
+    {
+        IMediaCaptureRelativePanelWatcher(std::nullptr_t = nullptr) noexcept {}
+        IMediaCaptureRelativePanelWatcher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IMediaCaptureSettings :
         winrt::Windows::Foundation::IInspectable,

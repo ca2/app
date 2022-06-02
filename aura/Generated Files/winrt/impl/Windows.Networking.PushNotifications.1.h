@@ -48,6 +48,20 @@ WINRT_EXPORT namespace winrt::Windows::Networking::PushNotifications
         IPushNotificationChannelManagerStatics3(std::nullptr_t = nullptr) noexcept {}
         IPushNotificationChannelManagerStatics3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPushNotificationChannelManagerStatics4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPushNotificationChannelManagerStatics4>
+    {
+        IPushNotificationChannelManagerStatics4(std::nullptr_t = nullptr) noexcept {}
+        IPushNotificationChannelManagerStatics4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPushNotificationChannelsRevokedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPushNotificationChannelsRevokedEventArgs>
+    {
+        IPushNotificationChannelsRevokedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPushNotificationChannelsRevokedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPushNotificationReceivedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPushNotificationReceivedEventArgs>
@@ -68,6 +82,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::PushNotifications
     {
         IRawNotification2(std::nullptr_t = nullptr) noexcept {}
         IRawNotification2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IRawNotification3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IRawNotification3>
+    {
+        IRawNotification3(std::nullptr_t = nullptr) noexcept {}
+        IRawNotification3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

@@ -125,6 +125,19 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
         AudioNodeListener(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Audio::IAudioNodeListener(ptr, take_ownership_from_abi) {}
         AudioNodeListener();
     };
+    struct __declspec(empty_bases) AudioPlaybackConnection : winrt::Windows::Media::Audio::IAudioPlaybackConnection,
+        impl::require<AudioPlaybackConnection, winrt::Windows::Foundation::IClosable>
+    {
+        AudioPlaybackConnection(std::nullptr_t) noexcept {}
+        AudioPlaybackConnection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Audio::IAudioPlaybackConnection(ptr, take_ownership_from_abi) {}
+        static auto GetDeviceSelector();
+        static auto TryCreateFromId(param::hstring const& id);
+    };
+    struct __declspec(empty_bases) AudioPlaybackConnectionOpenResult : winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult
+    {
+        AudioPlaybackConnectionOpenResult(std::nullptr_t) noexcept {}
+        AudioPlaybackConnectionOpenResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) AudioStateMonitor : winrt::Windows::Media::Audio::IAudioStateMonitor
     {
         AudioStateMonitor(std::nullptr_t) noexcept {}

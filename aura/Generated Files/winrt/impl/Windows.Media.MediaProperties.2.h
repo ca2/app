@@ -127,6 +127,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
         [[nodiscard]] static auto Flac();
         [[nodiscard]] static auto P010();
         [[nodiscard]] static auto Heif();
+        [[nodiscard]] static auto Pgs();
+        [[nodiscard]] static auto Srt();
+        [[nodiscard]] static auto Ssa();
+        [[nodiscard]] static auto VobSub();
     };
     struct __declspec(empty_bases) MediaPropertySet : winrt::Windows::Foundation::Collections::IMap<winrt::guid, winrt::Windows::Foundation::IInspectable>
     {
@@ -154,6 +158,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
         TimedMetadataEncodingProperties(std::nullptr_t) noexcept {}
         TimedMetadataEncodingProperties(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::MediaProperties::IMediaEncodingProperties(ptr, take_ownership_from_abi) {}
         TimedMetadataEncodingProperties();
+        static auto CreatePgs();
+        static auto CreateSrt();
+        static auto CreateSsa(array_view<uint8_t const> formatUserData);
+        static auto CreateVobSub(array_view<uint8_t const> formatUserData);
     };
     struct __declspec(empty_bases) VideoEncodingProperties : winrt::Windows::Media::MediaProperties::IVideoEncodingProperties,
         impl::require<VideoEncodingProperties, winrt::Windows::Media::MediaProperties::IVideoEncodingProperties2, winrt::Windows::Media::MediaProperties::IVideoEncodingProperties3, winrt::Windows::Media::MediaProperties::IVideoEncodingProperties4, winrt::Windows::Media::MediaProperties::IVideoEncodingProperties5>

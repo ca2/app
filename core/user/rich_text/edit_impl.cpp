@@ -130,8 +130,8 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::on_message_key_down);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::on_message_key_up);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::on_message_set_focus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::on_message_kill_focus);
 
 
          text_composition_composite::initialize_text_composition_client(pchannel, this);

@@ -36,7 +36,8 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input::Inking
         InkManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::Inking::IInkManager(ptr, take_ownership_from_abi) {}
         InkManager();
     };
-    struct __declspec(empty_bases) InkModelerAttributes : winrt::Windows::UI::Input::Inking::IInkModelerAttributes
+    struct __declspec(empty_bases) InkModelerAttributes : winrt::Windows::UI::Input::Inking::IInkModelerAttributes,
+        impl::require<InkModelerAttributes, winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>
     {
         InkModelerAttributes(std::nullptr_t) noexcept {}
         InkModelerAttributes(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::Inking::IInkModelerAttributes(ptr, take_ownership_from_abi) {}

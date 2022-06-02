@@ -84,8 +84,8 @@ namespace tsf
 
       MESSAGE_LINK(e_message_create, pchannel, this, &edit_window::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_window::on_message_destroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::_001OnKillFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_window::on_message_set_focus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_window::on_message_kill_focus);
 
    }
 

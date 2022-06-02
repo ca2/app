@@ -871,6 +871,34 @@ namespace winrt::impl
     {
         WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::IUISettings5)->remove_AutoHideScrollBarsChanged(impl::bind_in(token)));
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_ViewManagement_IUISettings6<D>::AnimationsEnabledChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::IUISettings6)->add_AnimationsEnabledChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_ViewManagement_IUISettings6<D>::AnimationsEnabledChanged_revoker consume_Windows_UI_ViewManagement_IUISettings6<D>::AnimationsEnabledChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, AnimationsEnabledChanged_revoker>(this, AnimationsEnabledChanged(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_IUISettings6<D>::AnimationsEnabledChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::IUISettings6)->remove_AnimationsEnabledChanged(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_ViewManagement_IUISettings6<D>::MessageDurationChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::IUISettings6)->add_MessageDurationChanged(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_ViewManagement_IUISettings6<D>::MessageDurationChanged_revoker consume_Windows_UI_ViewManagement_IUISettings6<D>::MessageDurationChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, MessageDurationChanged_revoker>(this, MessageDurationChanged(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_IUISettings6<D>::MessageDurationChanged(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::IUISettings6)->remove_MessageDurationChanged(impl::bind_in(token)));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::ViewManagement::UserInteractionMode) consume_Windows_UI_ViewManagement_IUIViewSettings<D>::UserInteractionMode() const
     {
         winrt::Windows::UI::ViewManagement::UserInteractionMode value{};
@@ -2236,7 +2264,53 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::IUISettings6> : produce_base<D, winrt::Windows::UI::ViewManagement::IUISettings6>
+    {
+        int32_t __stdcall add_AnimationsEnabledChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AnimationsEnabledChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AnimationsEnabledChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AnimationsEnabledChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_MessageDurationChanged(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().MessageDurationChanged(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::UISettings, winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_MessageDurationChanged(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().MessageDurationChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs> : produce_base<D, winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs>
+    {
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs> : produce_base<D, winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs>
+    {
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs> : produce_base<D, winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs>
     {
     };
 #endif
@@ -2573,7 +2647,10 @@ namespace std
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettings3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettings4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettings5> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettings6> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUIViewSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IUIViewSettingsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::IViewModePreferences> : winrt::impl::hash_base {};
@@ -2590,7 +2667,9 @@ namespace std
     template<> struct hash<winrt::Windows::UI::ViewManagement::InputPaneVisibilityEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::ProjectionManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::UISettings> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::UISettingsAnimationsEnabledChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::UISettingsAutoHideScrollBarsChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::UISettingsMessageDurationChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::UIViewSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::ViewModePreferences> : winrt::impl::hash_base {};
 #endif

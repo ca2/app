@@ -38,7 +38,7 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Capture
         GraphicsCapturePicker();
     };
     struct __declspec(empty_bases) GraphicsCaptureSession : winrt::Windows::Graphics::Capture::IGraphicsCaptureSession,
-        impl::require<GraphicsCaptureSession, winrt::Windows::Foundation::IClosable>
+        impl::require<GraphicsCaptureSession, winrt::Windows::Graphics::Capture::IGraphicsCaptureSession2, winrt::Windows::Foundation::IClosable>
     {
         GraphicsCaptureSession(std::nullptr_t) noexcept {}
         GraphicsCaptureSession(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Capture::IGraphicsCaptureSession(ptr, take_ownership_from_abi) {}

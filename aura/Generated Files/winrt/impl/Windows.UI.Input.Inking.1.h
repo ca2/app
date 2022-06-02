@@ -86,6 +86,13 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input::Inking
         IInkModelerAttributes(std::nullptr_t = nullptr) noexcept {}
         IInkModelerAttributes(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IInkModelerAttributes2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IInkModelerAttributes2>
+    {
+        IInkModelerAttributes2(std::nullptr_t = nullptr) noexcept {}
+        IInkModelerAttributes2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IInkPoint :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IInkPoint>

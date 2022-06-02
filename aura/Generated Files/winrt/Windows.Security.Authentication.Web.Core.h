@@ -80,6 +80,20 @@ namespace winrt::impl
     {
         WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor)->remove_DefaultSignInAccountChanged(impl::bind_in(token)));
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2<D>::AccountPictureUpdated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Security::Authentication::Web::Core::WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::WebAccountEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2)->add_AccountPictureUpdated(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2<D>::AccountPictureUpdated_revoker consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2<D>::AccountPictureUpdated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Security::Authentication::Web::Core::WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::WebAccountEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, AccountPictureUpdated_revoker>(this, AccountPictureUpdated(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2<D>::AccountPictureUpdated(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2)->remove_AccountPictureUpdated(impl::bind_in(token)));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Security::Authentication::Web::Core::WebTokenRequestResult>) consume_Windows_Security_Authentication_Web_Core_IWebAuthenticationCoreManagerStatics<D>::GetTokenSilentlyAsync(winrt::Windows::Security::Authentication::Web::Core::WebTokenRequest const& request) const
     {
         void* asyncInfo{};
@@ -411,6 +425,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().DefaultSignInAccountChanged(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2> : produce_base<D, winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>
+    {
+        int32_t __stdcall add_AccountPictureUpdated(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().AccountPictureUpdated(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Security::Authentication::Web::Core::WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::WebAccountEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_AccountPictureUpdated(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AccountPictureUpdated(*reinterpret_cast<winrt::event_token const*>(&token));
             return 0;
         }
     };
@@ -919,6 +953,7 @@ namespace std
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IFindAllAccountsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAccountEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics3> : winrt::impl::hash_base {};

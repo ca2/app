@@ -3,8 +3,6 @@
 #pragma once
 #ifndef WINRT_Windows_UI_Composition_1_H
 #define WINRT_Windows_UI_Composition_1_H
-#include "winrt/impl/Windows.Foundation.Collections.0.h"
-#include "winrt/impl/Windows.Graphics.Effects.0.h"
 #include "winrt/impl/Windows.UI.Composition.0.h"
 WINRT_EXPORT namespace winrt::Windows::UI::Composition
 {
@@ -129,8 +127,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     };
     struct __declspec(empty_bases) ICompositionAnimationGroup :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<ICompositionAnimationGroup>,
-        impl::require<winrt::Windows::UI::Composition::ICompositionAnimationGroup, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::CompositionAnimation>>
+        impl::consume_t<ICompositionAnimationGroup>
     {
         ICompositionAnimationGroup(std::nullptr_t = nullptr) noexcept {}
         ICompositionAnimationGroup(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -214,8 +211,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     };
     struct __declspec(empty_bases) ICompositionColorGradientStopCollection :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<ICompositionColorGradientStopCollection>,
-        impl::require<winrt::Windows::UI::Composition::ICompositionColorGradientStopCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::CompositionColorGradientStop>, winrt::Windows::Foundation::Collections::IVector<winrt::Windows::UI::Composition::CompositionColorGradientStop>>
+        impl::consume_t<ICompositionColorGradientStopCollection>
     {
         ICompositionColorGradientStopCollection(std::nullptr_t = nullptr) noexcept {}
         ICompositionColorGradientStopCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -285,8 +281,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     };
     struct __declspec(empty_bases) ICompositionEffectSourceParameter :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<ICompositionEffectSourceParameter>,
-        impl::require<winrt::Windows::UI::Composition::ICompositionEffectSourceParameter, winrt::Windows::Graphics::Effects::IGraphicsEffectSource>
+        impl::consume_t<ICompositionEffectSourceParameter>
     {
         ICompositionEffectSourceParameter(std::nullptr_t = nullptr) noexcept {}
         ICompositionEffectSourceParameter(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -825,8 +820,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     };
     struct __declspec(empty_bases) IImplicitAnimationCollection :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IImplicitAnimationCollection>,
-        impl::require<winrt::Windows::UI::Composition::IImplicitAnimationCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::Foundation::Collections::IKeyValuePair<hstring, winrt::Windows::UI::Composition::ICompositionAnimationBase>>, winrt::Windows::Foundation::Collections::IMap<hstring, winrt::Windows::UI::Composition::ICompositionAnimationBase>>
+        impl::consume_t<IImplicitAnimationCollection>
     {
         IImplicitAnimationCollection(std::nullptr_t = nullptr) noexcept {}
         IImplicitAnimationCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -1104,10 +1098,16 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
         IVisual2(std::nullptr_t = nullptr) noexcept {}
         IVisual2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IVisual3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IVisual3>
+    {
+        IVisual3(std::nullptr_t = nullptr) noexcept {}
+        IVisual3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IVisualCollection :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IVisualCollection>,
-        impl::require<winrt::Windows::UI::Composition::IVisualCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::Visual>>
+        impl::consume_t<IVisualCollection>
     {
         IVisualCollection(std::nullptr_t = nullptr) noexcept {}
         IVisualCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -1128,8 +1128,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     };
     struct __declspec(empty_bases) IVisualUnorderedCollection :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<IVisualUnorderedCollection>,
-        impl::require<winrt::Windows::UI::Composition::IVisualUnorderedCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::Visual>>
+        impl::consume_t<IVisualUnorderedCollection>
     {
         IVisualUnorderedCollection(std::nullptr_t = nullptr) noexcept {}
         IVisualUnorderedCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}

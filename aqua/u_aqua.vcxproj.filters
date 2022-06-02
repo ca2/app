@@ -43,12 +43,6 @@
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{352f184a-ba43-4ba3-b781-cf15b343e893}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{a0220a7b-0cf5-4e31-8fe5-f4854de6f9dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{c8e5fab9-4774-4bfd-89ab-5975b4e50c93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{1c96d7ab-4bef-46d0-9dd0-e7409f70700b}</UniqueIdentifier>
     </Filter>
@@ -69,6 +63,12 @@
     </Filter>
     <Filter Include="Source Files\node\operating_system\universal_windows">
       <UniqueIdentifier>{4fa89011-2e49-4621-b0ab-59970d3d6ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{c8e5fab9-4774-4bfd-89ab-5975b4e50c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{a0220a7b-0cf5-4e31-8fe5-f4854de6f9dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +177,6 @@
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
@@ -188,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +249,7 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="game\game.h">
       <Filter>Header Files\game</Filter>

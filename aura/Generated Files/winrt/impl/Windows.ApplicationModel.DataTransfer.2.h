@@ -86,7 +86,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::DataTransfer
         ClipboardHistoryItemsResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::DataTransfer::IClipboardHistoryItemsResult(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) DataPackage : winrt::Windows::ApplicationModel::DataTransfer::IDataPackage,
-        impl::require<DataPackage, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3>
+        impl::require<DataPackage, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3, winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>
     {
         DataPackage(std::nullptr_t) noexcept {}
         DataPackage(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::DataTransfer::IDataPackage(ptr, take_ownership_from_abi) {}

@@ -8,12 +8,17 @@
 WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement::Core
 {
     struct __declspec(empty_bases) CoreInputView : winrt::Windows::UI::ViewManagement::Core::ICoreInputView,
-        impl::require<CoreInputView, winrt::Windows::UI::ViewManagement::Core::ICoreInputView2, winrt::Windows::UI::ViewManagement::Core::ICoreInputView3>
+        impl::require<CoreInputView, winrt::Windows::UI::ViewManagement::Core::ICoreInputView2, winrt::Windows::UI::ViewManagement::Core::ICoreInputView3, winrt::Windows::UI::ViewManagement::Core::ICoreInputView4>
     {
         CoreInputView(std::nullptr_t) noexcept {}
         CoreInputView(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::ICoreInputView(ptr, take_ownership_from_abi) {}
         static auto GetForCurrentView();
         static auto GetForUIContext(winrt::Windows::UI::UIContext const& context);
+    };
+    struct __declspec(empty_bases) CoreInputViewHidingEventArgs : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs
+    {
+        CoreInputViewHidingEventArgs(std::nullptr_t) noexcept {}
+        CoreInputViewHidingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) CoreInputViewOcclusion : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusion
     {
@@ -25,10 +30,21 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement::Core
         CoreInputViewOcclusionsChangedEventArgs(std::nullptr_t) noexcept {}
         CoreInputViewOcclusionsChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusionsChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) CoreInputViewShowingEventArgs : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs
+    {
+        CoreInputViewShowingEventArgs(std::nullptr_t) noexcept {}
+        CoreInputViewShowingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) CoreInputViewTransferringXYFocusEventArgs : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewTransferringXYFocusEventArgs
     {
         CoreInputViewTransferringXYFocusEventArgs(std::nullptr_t) noexcept {}
         CoreInputViewTransferringXYFocusEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::ICoreInputViewTransferringXYFocusEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) UISettingsController : winrt::Windows::UI::ViewManagement::Core::IUISettingsController
+    {
+        UISettingsController(std::nullptr_t) noexcept {}
+        UISettingsController(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::Core::IUISettingsController(ptr, take_ownership_from_abi) {}
+        static auto RequestDefaultAsync();
     };
 }
 #endif

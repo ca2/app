@@ -273,15 +273,15 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_Composition_ICompositionCapabilities<D>::AreEffectsSupported() const
     {
-        bool value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilities)->AreEffectsSupported(&value));
-        return value;
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilities)->AreEffectsSupported(&result));
+        return result;
     }
     template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_Composition_ICompositionCapabilities<D>::AreEffectsFast() const
     {
-        bool value{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilities)->AreEffectsFast(&value));
-        return value;
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilities)->AreEffectsFast(&result));
+        return result;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_Composition_ICompositionCapabilities<D>::Changed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Composition::CompositionCapabilities, winrt::Windows::Foundation::IInspectable> const& handler) const
     {
@@ -299,9 +299,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::CompositionCapabilities) consume_Windows_UI_Composition_ICompositionCapabilitiesStatics<D>::GetForCurrentView() const
     {
-        void* current{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilitiesStatics)->GetForCurrentView(&current));
-        return winrt::Windows::UI::Composition::CompositionCapabilities{ current, take_ownership_from_abi };
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionCapabilitiesStatics)->GetForCurrentView(&result));
+        return winrt::Windows::UI::Composition::CompositionCapabilities{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Numerics::float2) consume_Windows_UI_Composition_ICompositionClip2<D>::AnchorPoint() const
     {
@@ -515,9 +515,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::CompositionEffectSourceParameter) consume_Windows_UI_Composition_ICompositionEffectSourceParameterFactory<D>::Create(param::hstring const& name) const
     {
-        void* instance{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionEffectSourceParameterFactory)->Create(*(void**)(&name), &instance));
-        return winrt::Windows::UI::Composition::CompositionEffectSourceParameter{ instance, take_ownership_from_abi };
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionEffectSourceParameterFactory)->Create(*(void**)(&name), &value));
+        return winrt::Windows::UI::Composition::CompositionEffectSourceParameter{ value, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Numerics::float2) consume_Windows_UI_Composition_ICompositionEllipseGeometry<D>::Center() const
     {
@@ -1041,9 +1041,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::CompositionPath) consume_Windows_UI_Composition_ICompositionPathFactory<D>::Create(winrt::Windows::Graphics::IGeometrySource2D const& source) const
     {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionPathFactory)->Create(*(void**)(&source), &result));
-        return winrt::Windows::UI::Composition::CompositionPath{ result, take_ownership_from_abi };
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositionPathFactory)->Create(*(void**)(&source), &value));
+        return winrt::Windows::UI::Composition::CompositionPath{ value, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::CompositionPath) consume_Windows_UI_Composition_ICompositionPathGeometry<D>::Path() const
     {
@@ -2175,9 +2175,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_UI_Composition_ICompositor5<D>::RequestCommitAsync() const
     {
-        void* action{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositor5)->RequestCommitAsync(&action));
-        return winrt::Windows::Foundation::IAsyncAction{ action, take_ownership_from_abi };
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::ICompositor5)->RequestCommitAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::CompositionGeometricClip) consume_Windows_UI_Composition_ICompositor6<D>::CreateGeometricClip() const
     {
@@ -3299,6 +3299,16 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::IVisual2)->put_RelativeSizeAdjustment(impl::bind_in(value)));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_Composition_IVisual3<D>::IsHitTestVisible() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::IVisual3)->get_IsHitTestVisible(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_Composition_IVisual3<D>::IsHitTestVisible(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::IVisual3)->put_IsHitTestVisible(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(int32_t) consume_Windows_UI_Composition_IVisualCollection<D>::Count() const
     {
         int32_t value{};
@@ -3860,17 +3870,17 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::ICompositionCapabilities> : produce_base<D, winrt::Windows::UI::Composition::ICompositionCapabilities>
     {
-        int32_t __stdcall AreEffectsSupported(bool* value) noexcept final try
+        int32_t __stdcall AreEffectsSupported(bool* result) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_from<bool>(this->shim().AreEffectsSupported());
+            *result = detach_from<bool>(this->shim().AreEffectsSupported());
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall AreEffectsFast(bool* value) noexcept final try
+        int32_t __stdcall AreEffectsFast(bool* result) noexcept final try
         {
             typename D::abi_guard guard(this->shim());
-            *value = detach_from<bool>(this->shim().AreEffectsFast());
+            *result = detach_from<bool>(this->shim().AreEffectsFast());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3894,11 +3904,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::ICompositionCapabilitiesStatics> : produce_base<D, winrt::Windows::UI::Composition::ICompositionCapabilitiesStatics>
     {
-        int32_t __stdcall GetForCurrentView(void** current) noexcept final try
+        int32_t __stdcall GetForCurrentView(void** result) noexcept final try
         {
-            clear_abi(current);
+            clear_abi(result);
             typename D::abi_guard guard(this->shim());
-            *current = detach_from<winrt::Windows::UI::Composition::CompositionCapabilities>(this->shim().GetForCurrentView());
+            *result = detach_from<winrt::Windows::UI::Composition::CompositionCapabilities>(this->shim().GetForCurrentView());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -4298,11 +4308,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::ICompositionEffectSourceParameterFactory> : produce_base<D, winrt::Windows::UI::Composition::ICompositionEffectSourceParameterFactory>
     {
-        int32_t __stdcall Create(void* name, void** instance) noexcept final try
+        int32_t __stdcall Create(void* name, void** value) noexcept final try
         {
-            clear_abi(instance);
+            clear_abi(value);
             typename D::abi_guard guard(this->shim());
-            *instance = detach_from<winrt::Windows::UI::Composition::CompositionEffectSourceParameter>(this->shim().Create(*reinterpret_cast<hstring const*>(&name)));
+            *value = detach_from<winrt::Windows::UI::Composition::CompositionEffectSourceParameter>(this->shim().Create(*reinterpret_cast<hstring const*>(&name)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -5214,11 +5224,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::ICompositionPathFactory> : produce_base<D, winrt::Windows::UI::Composition::ICompositionPathFactory>
     {
-        int32_t __stdcall Create(void* source, void** result) noexcept final try
+        int32_t __stdcall Create(void* source, void** value) noexcept final try
         {
-            clear_abi(result);
+            clear_abi(value);
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::UI::Composition::CompositionPath>(this->shim().Create(*reinterpret_cast<winrt::Windows::Graphics::IGeometrySource2D const*>(&source)));
+            *value = detach_from<winrt::Windows::UI::Composition::CompositionPath>(this->shim().Create(*reinterpret_cast<winrt::Windows::Graphics::IGeometrySource2D const*>(&source)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -7030,11 +7040,11 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall RequestCommitAsync(void** action) noexcept final try
+        int32_t __stdcall RequestCommitAsync(void** operation) noexcept final try
         {
-            clear_abi(action);
+            clear_abi(operation);
             typename D::abi_guard guard(this->shim());
-            *action = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().RequestCommitAsync());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().RequestCommitAsync());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -8984,6 +8994,26 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::UI::Composition::IVisual3> : produce_base<D, winrt::Windows::UI::Composition::IVisual3>
+    {
+        int32_t __stdcall get_IsHitTestVisible(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsHitTestVisible());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_IsHitTestVisible(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().IsHitTestVisible(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::IVisualCollection> : produce_base<D, winrt::Windows::UI::Composition::IVisualCollection>
     {
         int32_t __stdcall get_Count(int32_t* value) noexcept final try
@@ -9319,6 +9349,7 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Composition::IVector4KeyFrameAnimation> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::IVisual> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::IVisual2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Composition::IVisual3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::IVisualCollection> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::IVisualElement> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::IVisualFactory> : winrt::impl::hash_base {};

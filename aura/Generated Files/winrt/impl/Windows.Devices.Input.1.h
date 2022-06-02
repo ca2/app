@@ -41,6 +41,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Input
         IMouseEventArgs(std::nullptr_t = nullptr) noexcept {}
         IMouseEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPenButtonListener :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenButtonListener>
+    {
+        IPenButtonListener(std::nullptr_t = nullptr) noexcept {}
+        IPenButtonListener(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenButtonListenerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenButtonListenerStatics>
+    {
+        IPenButtonListenerStatics(std::nullptr_t = nullptr) noexcept {}
+        IPenButtonListenerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPenDevice :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPenDevice>
@@ -54,6 +68,55 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Input
     {
         IPenDeviceStatics(std::nullptr_t = nullptr) noexcept {}
         IPenDeviceStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenDockListener :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenDockListener>
+    {
+        IPenDockListener(std::nullptr_t = nullptr) noexcept {}
+        IPenDockListener(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenDockListenerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenDockListenerStatics>
+    {
+        IPenDockListenerStatics(std::nullptr_t = nullptr) noexcept {}
+        IPenDockListenerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenDockedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenDockedEventArgs>
+    {
+        IPenDockedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPenDockedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenTailButtonClickedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenTailButtonClickedEventArgs>
+    {
+        IPenTailButtonClickedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPenTailButtonClickedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenTailButtonDoubleClickedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenTailButtonDoubleClickedEventArgs>
+    {
+        IPenTailButtonDoubleClickedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPenTailButtonDoubleClickedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenTailButtonLongPressedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenTailButtonLongPressedEventArgs>
+    {
+        IPenTailButtonLongPressedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPenTailButtonLongPressedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPenUndockedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPenUndockedEventArgs>
+    {
+        IPenUndockedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IPenUndockedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPointerDevice :
         winrt::Windows::Foundation::IInspectable,

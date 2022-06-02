@@ -103,6 +103,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         IBackgroundTaskBuilder4(std::nullptr_t = nullptr) noexcept {}
         IBackgroundTaskBuilder4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBackgroundTaskBuilder5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBackgroundTaskBuilder5>
+    {
+        IBackgroundTaskBuilder5(std::nullptr_t = nullptr) noexcept {}
+        IBackgroundTaskBuilder5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBackgroundTaskCompletedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBackgroundTaskCompletedEventArgs>
@@ -220,6 +227,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         IBluetoothLEAdvertisementPublisherTrigger(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementPublisherTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementPublisherTrigger2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementPublisherTrigger2>
+    {
+        IBluetoothLEAdvertisementPublisherTrigger2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementPublisherTrigger2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcherTrigger :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEAdvertisementWatcherTrigger>,
@@ -227,6 +241,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
     {
         IBluetoothLEAdvertisementWatcherTrigger(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementWatcherTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcherTrigger2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementWatcherTrigger2>
+    {
+        IBluetoothLEAdvertisementWatcherTrigger2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementWatcherTrigger2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ICachedFileUpdaterTrigger :
         winrt::Windows::Foundation::IInspectable,

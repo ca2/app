@@ -98,6 +98,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IAccelerometer2;
     struct IAccelerometer3;
     struct IAccelerometer4;
+    struct IAccelerometer5;
+    struct IAccelerometerDataThreshold;
     struct IAccelerometerDeviceId;
     struct IAccelerometerReading;
     struct IAccelerometerReading2;
@@ -120,6 +122,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IAltimeterStatics;
     struct IBarometer;
     struct IBarometer2;
+    struct IBarometer3;
+    struct IBarometerDataThreshold;
     struct IBarometerReading;
     struct IBarometerReading2;
     struct IBarometerReadingChangedEventArgs;
@@ -128,6 +132,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct ICompass;
     struct ICompass2;
     struct ICompass3;
+    struct ICompass4;
+    struct ICompassDataThreshold;
     struct ICompassDeviceId;
     struct ICompassReading;
     struct ICompassReading2;
@@ -138,6 +144,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IGyrometer;
     struct IGyrometer2;
     struct IGyrometer3;
+    struct IGyrometer4;
+    struct IGyrometerDataThreshold;
     struct IGyrometerDeviceId;
     struct IGyrometerReading;
     struct IGyrometerReading2;
@@ -151,6 +159,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IInclinometer;
     struct IInclinometer2;
     struct IInclinometer3;
+    struct IInclinometer4;
+    struct IInclinometerDataThreshold;
     struct IInclinometerDeviceId;
     struct IInclinometerReading;
     struct IInclinometerReading2;
@@ -162,6 +172,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IInclinometerStatics4;
     struct ILightSensor;
     struct ILightSensor2;
+    struct ILightSensor3;
+    struct ILightSensorDataThreshold;
     struct ILightSensorDeviceId;
     struct ILightSensorReading;
     struct ILightSensorReading2;
@@ -171,6 +183,8 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct IMagnetometer;
     struct IMagnetometer2;
     struct IMagnetometer3;
+    struct IMagnetometer4;
+    struct IMagnetometerDataThreshold;
     struct IMagnetometerDeviceId;
     struct IMagnetometerReading;
     struct IMagnetometerReading2;
@@ -213,6 +227,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct ISimpleOrientationSensorStatics;
     struct ISimpleOrientationSensorStatics2;
     struct Accelerometer;
+    struct AccelerometerDataThreshold;
     struct AccelerometerReading;
     struct AccelerometerReadingChangedEventArgs;
     struct AccelerometerShakenEventArgs;
@@ -225,24 +240,30 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     struct AltimeterReading;
     struct AltimeterReadingChangedEventArgs;
     struct Barometer;
+    struct BarometerDataThreshold;
     struct BarometerReading;
     struct BarometerReadingChangedEventArgs;
     struct Compass;
+    struct CompassDataThreshold;
     struct CompassReading;
     struct CompassReadingChangedEventArgs;
     struct Gyrometer;
+    struct GyrometerDataThreshold;
     struct GyrometerReading;
     struct GyrometerReadingChangedEventArgs;
     struct HingeAngleReading;
     struct HingeAngleSensor;
     struct HingeAngleSensorReadingChangedEventArgs;
     struct Inclinometer;
+    struct InclinometerDataThreshold;
     struct InclinometerReading;
     struct InclinometerReadingChangedEventArgs;
     struct LightSensor;
+    struct LightSensorDataThreshold;
     struct LightSensorReading;
     struct LightSensorReadingChangedEventArgs;
     struct Magnetometer;
+    struct MagnetometerDataThreshold;
     struct MagnetometerReading;
     struct MagnetometerReadingChangedEventArgs;
     struct OrientationSensor;
@@ -269,6 +290,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometer2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometer3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometer4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometer5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometerDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometerReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IAccelerometerReading2>{ using type = interface_category; };
@@ -291,6 +314,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IAltimeterStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IBarometer>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IBarometer2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IBarometer3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IBarometerDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IBarometerReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IBarometerReading2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs>{ using type = interface_category; };
@@ -299,6 +324,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::ICompass>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ICompass2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ICompass3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::ICompass4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::ICompassDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ICompassDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ICompassReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ICompassReading2>{ using type = interface_category; };
@@ -309,6 +336,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometer>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometer2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometer3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IGyrometer4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometerDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometerReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IGyrometerReading2>{ using type = interface_category; };
@@ -322,6 +351,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometer>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometer2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometer3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IInclinometer4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometerDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometerReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometerReading2>{ using type = interface_category; };
@@ -333,6 +364,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IInclinometerStatics4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ILightSensor>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ILightSensor2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::ILightSensor3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ILightSensorDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ILightSensorReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ILightSensorReading2>{ using type = interface_category; };
@@ -342,6 +375,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometer>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometer2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometer3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometer4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometerDeviceId>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometerReading>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::IMagnetometerReading2>{ using type = interface_category; };
@@ -384,6 +419,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Accelerometer>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::AccelerometerDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::AccelerometerReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::AccelerometerShakenEventArgs>{ using type = class_category; };
@@ -396,24 +432,30 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::AltimeterReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::AltimeterReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Barometer>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::BarometerDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::BarometerReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::BarometerReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Compass>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::CompassDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::CompassReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::CompassReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Gyrometer>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::GyrometerDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::GyrometerReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::GyrometerReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::HingeAngleReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::HingeAngleSensor>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Inclinometer>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::InclinometerDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::InclinometerReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::InclinometerReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::LightSensor>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::LightSensorDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::LightSensorReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::LightSensorReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::Magnetometer>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::MagnetometerReading>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::OrientationSensor>{ using type = class_category; };
@@ -443,6 +485,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Devices::Sensors::SensorType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Devices::Sensors::SimpleOrientation>{ using type = enum_category; };
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Accelerometer> = L"Windows.Devices.Sensors.Accelerometer";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AccelerometerDataThreshold> = L"Windows.Devices.Sensors.AccelerometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AccelerometerReading> = L"Windows.Devices.Sensors.AccelerometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.AccelerometerReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AccelerometerShakenEventArgs> = L"Windows.Devices.Sensors.AccelerometerShakenEventArgs";
@@ -455,24 +498,30 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AltimeterReading> = L"Windows.Devices.Sensors.AltimeterReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> = L"Windows.Devices.Sensors.AltimeterReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Barometer> = L"Windows.Devices.Sensors.Barometer";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::BarometerDataThreshold> = L"Windows.Devices.Sensors.BarometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::BarometerReading> = L"Windows.Devices.Sensors.BarometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::BarometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.BarometerReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Compass> = L"Windows.Devices.Sensors.Compass";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::CompassDataThreshold> = L"Windows.Devices.Sensors.CompassDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::CompassReading> = L"Windows.Devices.Sensors.CompassReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::CompassReadingChangedEventArgs> = L"Windows.Devices.Sensors.CompassReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Gyrometer> = L"Windows.Devices.Sensors.Gyrometer";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::GyrometerDataThreshold> = L"Windows.Devices.Sensors.GyrometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::GyrometerReading> = L"Windows.Devices.Sensors.GyrometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::GyrometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.GyrometerReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::HingeAngleReading> = L"Windows.Devices.Sensors.HingeAngleReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::HingeAngleSensor> = L"Windows.Devices.Sensors.HingeAngleSensor";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs> = L"Windows.Devices.Sensors.HingeAngleSensorReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Inclinometer> = L"Windows.Devices.Sensors.Inclinometer";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::InclinometerDataThreshold> = L"Windows.Devices.Sensors.InclinometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::InclinometerReading> = L"Windows.Devices.Sensors.InclinometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::InclinometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.InclinometerReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::LightSensor> = L"Windows.Devices.Sensors.LightSensor";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::LightSensorDataThreshold> = L"Windows.Devices.Sensors.LightSensorDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::LightSensorReading> = L"Windows.Devices.Sensors.LightSensorReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::LightSensorReadingChangedEventArgs> = L"Windows.Devices.Sensors.LightSensorReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::Magnetometer> = L"Windows.Devices.Sensors.Magnetometer";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold> = L"Windows.Devices.Sensors.MagnetometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::MagnetometerReading> = L"Windows.Devices.Sensors.MagnetometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.MagnetometerReadingChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::OrientationSensor> = L"Windows.Devices.Sensors.OrientationSensor";
@@ -505,6 +554,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometer2> = L"Windows.Devices.Sensors.IAccelerometer2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometer3> = L"Windows.Devices.Sensors.IAccelerometer3";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometer4> = L"Windows.Devices.Sensors.IAccelerometer4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometer5> = L"Windows.Devices.Sensors.IAccelerometer5";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold> = L"Windows.Devices.Sensors.IAccelerometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometerDeviceId> = L"Windows.Devices.Sensors.IAccelerometerDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometerReading> = L"Windows.Devices.Sensors.IAccelerometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAccelerometerReading2> = L"Windows.Devices.Sensors.IAccelerometerReading2";
@@ -527,6 +578,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IAltimeterStatics> = L"Windows.Devices.Sensors.IAltimeterStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometer> = L"Windows.Devices.Sensors.IBarometer";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometer2> = L"Windows.Devices.Sensors.IBarometer2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometer3> = L"Windows.Devices.Sensors.IBarometer3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometerDataThreshold> = L"Windows.Devices.Sensors.IBarometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometerReading> = L"Windows.Devices.Sensors.IBarometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometerReading2> = L"Windows.Devices.Sensors.IBarometerReading2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs> = L"Windows.Devices.Sensors.IBarometerReadingChangedEventArgs";
@@ -535,6 +588,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompass> = L"Windows.Devices.Sensors.ICompass";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompass2> = L"Windows.Devices.Sensors.ICompass2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompass3> = L"Windows.Devices.Sensors.ICompass3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompass4> = L"Windows.Devices.Sensors.ICompass4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompassDataThreshold> = L"Windows.Devices.Sensors.ICompassDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompassDeviceId> = L"Windows.Devices.Sensors.ICompassDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompassReading> = L"Windows.Devices.Sensors.ICompassReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ICompassReading2> = L"Windows.Devices.Sensors.ICompassReading2";
@@ -545,6 +600,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometer> = L"Windows.Devices.Sensors.IGyrometer";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometer2> = L"Windows.Devices.Sensors.IGyrometer2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometer3> = L"Windows.Devices.Sensors.IGyrometer3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometer4> = L"Windows.Devices.Sensors.IGyrometer4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold> = L"Windows.Devices.Sensors.IGyrometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometerDeviceId> = L"Windows.Devices.Sensors.IGyrometerDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometerReading> = L"Windows.Devices.Sensors.IGyrometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IGyrometerReading2> = L"Windows.Devices.Sensors.IGyrometerReading2";
@@ -558,6 +615,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometer> = L"Windows.Devices.Sensors.IInclinometer";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometer2> = L"Windows.Devices.Sensors.IInclinometer2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometer3> = L"Windows.Devices.Sensors.IInclinometer3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometer4> = L"Windows.Devices.Sensors.IInclinometer4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold> = L"Windows.Devices.Sensors.IInclinometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometerDeviceId> = L"Windows.Devices.Sensors.IInclinometerDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometerReading> = L"Windows.Devices.Sensors.IInclinometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometerReading2> = L"Windows.Devices.Sensors.IInclinometerReading2";
@@ -569,6 +628,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IInclinometerStatics4> = L"Windows.Devices.Sensors.IInclinometerStatics4";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensor> = L"Windows.Devices.Sensors.ILightSensor";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensor2> = L"Windows.Devices.Sensors.ILightSensor2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensor3> = L"Windows.Devices.Sensors.ILightSensor3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold> = L"Windows.Devices.Sensors.ILightSensorDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensorDeviceId> = L"Windows.Devices.Sensors.ILightSensorDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensorReading> = L"Windows.Devices.Sensors.ILightSensorReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::ILightSensorReading2> = L"Windows.Devices.Sensors.ILightSensorReading2";
@@ -578,6 +639,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometer> = L"Windows.Devices.Sensors.IMagnetometer";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometer2> = L"Windows.Devices.Sensors.IMagnetometer2";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometer3> = L"Windows.Devices.Sensors.IMagnetometer3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometer4> = L"Windows.Devices.Sensors.IMagnetometer4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold> = L"Windows.Devices.Sensors.IMagnetometerDataThreshold";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometerDeviceId> = L"Windows.Devices.Sensors.IMagnetometerDeviceId";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometerReading> = L"Windows.Devices.Sensors.IMagnetometerReading";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Sensors::IMagnetometerReading2> = L"Windows.Devices.Sensors.IMagnetometerReading2";
@@ -623,6 +686,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometer2>{ 0xE8F092EE,0x4964,0x401A,{ 0xB6,0x02,0x22,0x0D,0x71,0x53,0xC6,0x0A } }; // E8F092EE-4964-401A-B602-220D7153C60A
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometer3>{ 0x87E0022A,0xED80,0x49EB,{ 0xBF,0x8A,0xA4,0xEA,0x31,0xE5,0xCD,0x84 } }; // 87E0022A-ED80-49EB-BF8A-A4EA31E5CD84
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometer4>{ 0x1D373C4F,0x42D3,0x45B2,{ 0x81,0x44,0xAB,0x7F,0xB6,0x65,0xEB,0x59 } }; // 1D373C4F-42D3-45B2-8144-AB7FB665EB59
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometer5>{ 0x7E7E7021,0xDEF4,0x53A6,{ 0xAF,0x43,0x80,0x6F,0xD5,0x38,0xED,0xF6 } }; // 7E7E7021-DEF4-53A6-AF43-806FD538EDF6
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold>{ 0xF92C1B68,0x6320,0x5577,{ 0x87,0x9E,0x99,0x42,0x62,0x1C,0x3D,0xD9 } }; // F92C1B68-6320-5577-879E-9942621C3DD9
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometerDeviceId>{ 0x7EAC64A9,0x97D5,0x446D,{ 0xAB,0x5A,0x91,0x7D,0xF9,0xB9,0x6A,0x2C } }; // 7EAC64A9-97D5-446D-AB5A-917DF9B96A2C
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometerReading>{ 0xB9FE7ACB,0xD351,0x40AF,{ 0x8B,0xB6,0x7A,0xA9,0xAE,0x64,0x1F,0xB7 } }; // B9FE7ACB-D351-40AF-8BB6-7AA9AE641FB7
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAccelerometerReading2>{ 0x0A864AA2,0x15AE,0x4A40,{ 0xBE,0x55,0xDB,0x58,0xD7,0xDE,0x73,0x89 } }; // 0A864AA2-15AE-4A40-BE55-DB58D7DE7389
@@ -645,6 +710,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IAltimeterStatics>{ 0x9EB4D7C3,0xE5AC,0x47CE,{ 0x8E,0xEF,0xD3,0x71,0x81,0x68,0xC0,0x1F } }; // 9EB4D7C3-E5AC-47CE-8EEF-D3718168C01F
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometer>{ 0x934475A8,0x78BF,0x452F,{ 0xB0,0x17,0xF0,0x20,0x9C,0xE6,0xDA,0xB4 } }; // 934475A8-78BF-452F-B017-F0209CE6DAB4
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometer2>{ 0x32BCC418,0x3EEB,0x4D04,{ 0x95,0x74,0x76,0x33,0xA8,0x78,0x1F,0x9F } }; // 32BCC418-3EEB-4D04-9574-7633A8781F9F
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometer3>{ 0x0E35F0EA,0x02B5,0x5A04,{ 0xB0,0x3D,0x82,0x20,0x84,0x86,0x3A,0x54 } }; // 0E35F0EA-02B5-5A04-B03D-822084863A54
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometerDataThreshold>{ 0x076B952C,0xCB62,0x5A90,{ 0xA0,0xD1,0xF8,0x5E,0x4A,0x93,0x63,0x94 } }; // 076B952C-CB62-5A90-A0D1-F85E4A936394
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometerReading>{ 0xF5B9D2E6,0x1DF6,0x4A1A,{ 0xA7,0xAD,0x32,0x1D,0x4F,0x5D,0xB2,0x47 } }; // F5B9D2E6-1DF6-4A1A-A7AD-321D4F5DB247
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometerReading2>{ 0x85A244EB,0x90C5,0x4875,{ 0x89,0x1C,0x38,0x65,0xB4,0xC3,0x57,0xE7 } }; // 85A244EB-90C5-4875-891C-3865B4C357E7
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs>{ 0x3D84945F,0x037B,0x404F,{ 0x9B,0xBB,0x62,0x32,0xD6,0x95,0x43,0xC3 } }; // 3D84945F-037B-404F-9BBB-6232D69543C3
@@ -653,6 +720,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompass>{ 0x292FFA94,0x1B45,0x403C,{ 0xBA,0x06,0xB1,0x06,0xDB,0xA6,0x9A,0x64 } }; // 292FFA94-1B45-403C-BA06-B106DBA69A64
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompass2>{ 0x36F26D09,0xC7D7,0x434F,{ 0xB4,0x61,0x97,0x9D,0xDF,0xC2,0x32,0x2F } }; // 36F26D09-C7D7-434F-B461-979DDFC2322F
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompass3>{ 0xA424801B,0xC5EA,0x4D45,{ 0xA0,0xEC,0x4B,0x79,0x1F,0x04,0x1A,0x89 } }; // A424801B-C5EA-4D45-A0EC-4B791F041A89
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompass4>{ 0x291E7F11,0xEC32,0x5DCC,{ 0xBF,0xCB,0x0B,0xB3,0x9E,0xBA,0x57,0x74 } }; // 291E7F11-EC32-5DCC-BFCB-0BB39EBA5774
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompassDataThreshold>{ 0xD15B52B3,0xD39D,0x5EC8,{ 0xB2,0xE4,0xF1,0x93,0xE6,0xAB,0x34,0xED } }; // D15B52B3-D39D-5EC8-B2E4-F193E6AB34ED
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompassDeviceId>{ 0xD181CA29,0xB085,0x4B1D,{ 0x87,0x0A,0x4F,0xF5,0x7B,0xA7,0x4F,0xD4 } }; // D181CA29-B085-4B1D-870A-4FF57BA74FD4
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompassReading>{ 0x82911128,0x513D,0x4DC9,{ 0xB7,0x81,0x5E,0xED,0xFB,0xF0,0x2D,0x0C } }; // 82911128-513D-4DC9-B781-5EEDFBF02D0C
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ICompassReading2>{ 0xB13A661E,0x51BB,0x4A12,{ 0xBE,0xDD,0xAD,0x47,0xFF,0x87,0xD2,0xE8 } }; // B13A661E-51BB-4A12-BEDD-AD47FF87D2E8
@@ -663,6 +732,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometer>{ 0xFDB9A9C4,0x84B1,0x4CA2,{ 0x97,0x63,0x9B,0x58,0x95,0x06,0xC7,0x0C } }; // FDB9A9C4-84B1-4CA2-9763-9B589506C70C
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometer2>{ 0x63DF2443,0x8CE8,0x41C3,{ 0xAC,0x44,0x86,0x98,0x81,0x0B,0x55,0x7F } }; // 63DF2443-8CE8-41C3-AC44-8698810B557F
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometer3>{ 0x5D6F88D5,0x8FBC,0x4484,{ 0x91,0x4B,0x52,0x8A,0xDF,0xD9,0x47,0xB1 } }; // 5D6F88D5-8FBC-4484-914B-528ADFD947B1
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometer4>{ 0x0628A60C,0x4C4B,0x5096,{ 0x94,0xE6,0xC3,0x56,0xDF,0x68,0xBE,0xF7 } }; // 0628A60C-4C4B-5096-94E6-C356DF68BEF7
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold>{ 0x8648B31E,0x6E52,0x5259,{ 0xBB,0xAD,0x24,0x2A,0x69,0xDC,0x38,0xC8 } }; // 8648B31E-6E52-5259-BBAD-242A69DC38C8
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometerDeviceId>{ 0x1EE5E978,0x89A2,0x4275,{ 0x9E,0x95,0x71,0x26,0xF4,0x70,0x87,0x60 } }; // 1EE5E978-89A2-4275-9E95-7126F4708760
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometerReading>{ 0xB3D6DE5C,0x1EE4,0x456F,{ 0x9D,0xE7,0xE2,0x49,0x3B,0x5C,0x8E,0x03 } }; // B3D6DE5C-1EE4-456F-9DE7-E2493B5C8E03
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IGyrometerReading2>{ 0x16AFE13C,0x2B89,0x44BB,{ 0x82,0x2B,0xD1,0xE1,0x55,0x6F,0xF0,0x9B } }; // 16AFE13C-2B89-44BB-822B-D1E1556FF09B
@@ -676,6 +747,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometer>{ 0x2648CA6F,0x2286,0x406F,{ 0x91,0x61,0xF0,0xC4,0xBD,0x80,0x6E,0xBF } }; // 2648CA6F-2286-406F-9161-F0C4BD806EBF
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometer2>{ 0x029F3393,0x28B2,0x45F8,{ 0xBB,0x16,0x61,0xE8,0x6A,0x7F,0xAE,0x6E } }; // 029F3393-28B2-45F8-BB16-61E86A7FAE6E
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometer3>{ 0x3A095004,0xD765,0x4384,{ 0xA3,0xD7,0x02,0x83,0xF3,0xAB,0xE6,0xAE } }; // 3A095004-D765-4384-A3D7-0283F3ABE6AE
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometer4>{ 0x43852618,0x8FCA,0x548E,{ 0xBB,0xF5,0x5C,0x50,0x41,0x2B,0x6A,0xA4 } }; // 43852618-8FCA-548E-BBF5-5C50412B6AA4
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold>{ 0xF80A4783,0x7BFE,0x545E,{ 0xBB,0x60,0xA0,0xEB,0xC4,0x7B,0xD2,0xFB } }; // F80A4783-7BFE-545E-BB60-A0EBC47BD2FB
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometerDeviceId>{ 0x01E91982,0x41FF,0x4406,{ 0xAE,0x83,0x62,0x21,0x0F,0xF1,0x6F,0xE3 } }; // 01E91982-41FF-4406-AE83-62210FF16FE3
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometerReading>{ 0x9F44F055,0xB6F6,0x497F,{ 0xB1,0x27,0x1A,0x77,0x5E,0x50,0x14,0x58 } }; // 9F44F055-B6F6-497F-B127-1A775E501458
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometerReading2>{ 0x4F164781,0xE90B,0x4658,{ 0x89,0x15,0x01,0x03,0xE0,0x8A,0x80,0x5A } }; // 4F164781-E90B-4658-8915-0103E08A805A
@@ -687,6 +760,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IInclinometerStatics4>{ 0xE8BA96F9,0x6E85,0x4A83,{ 0xAE,0xD0,0xD7,0xCD,0xCC,0x98,0x56,0xC8 } }; // E8BA96F9-6E85-4A83-AED0-D7CDCC9856C8
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensor>{ 0xF84C0718,0x0C54,0x47AE,{ 0x92,0x2E,0x78,0x9F,0x57,0xFB,0x03,0xA0 } }; // F84C0718-0C54-47AE-922E-789F57FB03A0
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensor2>{ 0x486B24E8,0xA94C,0x4090,{ 0x8F,0x48,0x09,0xF7,0x82,0xA9,0xF7,0xD5 } }; // 486B24E8-A94C-4090-8F48-09F782A9F7D5
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensor3>{ 0x4876D0FF,0x9F4C,0x5F72,{ 0xAD,0xBD,0xA3,0x47,0x1B,0x06,0x3C,0x00 } }; // 4876D0FF-9F4C-5F72-ADBD-A3471B063C00
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold>{ 0xB160AFD1,0x878F,0x5492,{ 0x9F,0x2C,0x33,0xDC,0x3A,0xE5,0x84,0xA3 } }; // B160AFD1-878F-5492-9F2C-33DC3AE584A3
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensorDeviceId>{ 0x7FEE49F8,0x0AFB,0x4F51,{ 0x87,0xF0,0x6C,0x26,0x37,0x5C,0xE9,0x4F } }; // 7FEE49F8-0AFB-4F51-87F0-6C26375CE94F
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensorReading>{ 0xFFDF6300,0x227C,0x4D2B,{ 0xB3,0x02,0xFC,0x01,0x42,0x48,0x5C,0x68 } }; // FFDF6300-227C-4D2B-B302-FC0142485C68
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ILightSensorReading2>{ 0xB7512185,0x44A3,0x44C9,{ 0x81,0x90,0x9E,0xF6,0xDE,0x0A,0x8A,0x74 } }; // B7512185-44A3-44C9-8190-9EF6DE0A8A74
@@ -696,6 +771,8 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometer>{ 0x484F626E,0xD3C9,0x4111,{ 0xB3,0xF6,0x2C,0xF1,0xFA,0xA4,0x18,0xD5 } }; // 484F626E-D3C9-4111-B3F6-2CF1FAA418D5
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometer2>{ 0xB4656C85,0x26F6,0x444B,{ 0xA9,0xE2,0xA2,0x3F,0x96,0x6C,0xD3,0x68 } }; // B4656C85-26F6-444B-A9E2-A23F966CD368
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometer3>{ 0xBE93DB7C,0xA625,0x48EF,{ 0xAC,0xF7,0xFA,0xC1,0x04,0x83,0x26,0x71 } }; // BE93DB7C-A625-48EF-ACF7-FAC104832671
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometer4>{ 0xDFB17901,0x3E0F,0x508F,{ 0xB2,0x4B,0xF2,0xBB,0x75,0x01,0x5F,0x40 } }; // DFB17901-3E0F-508F-B24B-F2BB75015F40
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold>{ 0xD177CB01,0x9063,0x5FA5,{ 0xB5,0x96,0xB4,0x45,0xE9,0xDC,0x34,0x01 } }; // D177CB01-9063-5FA5-B596-B445E9DC3401
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometerDeviceId>{ 0x58B498C2,0x7E4B,0x404C,{ 0x9F,0xC5,0x5D,0xE8,0xB4,0x0E,0xBA,0xE3 } }; // 58B498C2-7E4B-404C-9FC5-5DE8B40EBAE3
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometerReading>{ 0x0C2CC40D,0xEBFD,0x4E5C,{ 0xBB,0x11,0xAF,0xC2,0x9B,0x3C,0xAE,0x61 } }; // 0C2CC40D-EBFD-4E5C-BB11-AFC29B3CAE61
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::IMagnetometerReading2>{ 0xD4C95C61,0x61D9,0x404B,{ 0xA3,0x28,0x06,0x6F,0x17,0x7A,0x14,0x09 } }; // D4C95C61-61D9-404B-A328-066F177A1409
@@ -738,6 +815,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics>{ 0x72ED066F,0x70AA,0x40C6,{ 0x9B,0x1B,0x34,0x33,0xF7,0x45,0x9B,0x4E } }; // 72ED066F-70AA-40C6-9B1B-3433F7459B4E
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics2>{ 0x848F9C7F,0xB138,0x4E11,{ 0x89,0x10,0xA2,0xA2,0xA3,0xB5,0x6D,0x83 } }; // 848F9C7F-B138-4E11-8910-A2A2A3B56D83
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Accelerometer>{ using type = winrt::Windows::Devices::Sensors::IAccelerometer; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::AccelerometerDataThreshold>{ using type = winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::AccelerometerReading>{ using type = winrt::Windows::Devices::Sensors::IAccelerometerReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IAccelerometerReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::AccelerometerShakenEventArgs>{ using type = winrt::Windows::Devices::Sensors::IAccelerometerShakenEventArgs; };
@@ -750,24 +828,30 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Devices::Sensors::AltimeterReading>{ using type = winrt::Windows::Devices::Sensors::IAltimeterReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::AltimeterReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IAltimeterReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Barometer>{ using type = winrt::Windows::Devices::Sensors::IBarometer; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::BarometerDataThreshold>{ using type = winrt::Windows::Devices::Sensors::IBarometerDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::BarometerReading>{ using type = winrt::Windows::Devices::Sensors::IBarometerReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::BarometerReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Compass>{ using type = winrt::Windows::Devices::Sensors::ICompass; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::CompassDataThreshold>{ using type = winrt::Windows::Devices::Sensors::ICompassDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::CompassReading>{ using type = winrt::Windows::Devices::Sensors::ICompassReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::CompassReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::ICompassReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Gyrometer>{ using type = winrt::Windows::Devices::Sensors::IGyrometer; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::GyrometerDataThreshold>{ using type = winrt::Windows::Devices::Sensors::IGyrometerDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::GyrometerReading>{ using type = winrt::Windows::Devices::Sensors::IGyrometerReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::GyrometerReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IGyrometerReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::HingeAngleReading>{ using type = winrt::Windows::Devices::Sensors::IHingeAngleReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::HingeAngleSensor>{ using type = winrt::Windows::Devices::Sensors::IHingeAngleSensor; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IHingeAngleSensorReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Inclinometer>{ using type = winrt::Windows::Devices::Sensors::IInclinometer; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::InclinometerDataThreshold>{ using type = winrt::Windows::Devices::Sensors::IInclinometerDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::InclinometerReading>{ using type = winrt::Windows::Devices::Sensors::IInclinometerReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::InclinometerReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IInclinometerReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::LightSensor>{ using type = winrt::Windows::Devices::Sensors::ILightSensor; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::LightSensorDataThreshold>{ using type = winrt::Windows::Devices::Sensors::ILightSensorDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::LightSensorReading>{ using type = winrt::Windows::Devices::Sensors::ILightSensorReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::LightSensorReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::ILightSensorReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::Magnetometer>{ using type = winrt::Windows::Devices::Sensors::IMagnetometer; };
+    template <> struct default_interface<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold>{ using type = winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::MagnetometerReading>{ using type = winrt::Windows::Devices::Sensors::IMagnetometerReading; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs>{ using type = winrt::Windows::Devices::Sensors::IMagnetometerReadingChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Devices::Sensors::OrientationSensor>{ using type = winrt::Windows::Devices::Sensors::IOrientationSensor; };
@@ -823,6 +907,25 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_ReadingType(int32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IAccelerometer5>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_XAxisInGForce(double*) noexcept = 0;
+            virtual int32_t __stdcall put_XAxisInGForce(double) noexcept = 0;
+            virtual int32_t __stdcall get_YAxisInGForce(double*) noexcept = 0;
+            virtual int32_t __stdcall put_YAxisInGForce(double) noexcept = 0;
+            virtual int32_t __stdcall get_ZAxisInGForce(double*) noexcept = 0;
+            virtual int32_t __stdcall put_ZAxisInGForce(double) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Devices::Sensors::IAccelerometerDeviceId>
@@ -1015,6 +1118,21 @@ namespace winrt::impl
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IBarometer3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IBarometerDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Hectopascals(double*) noexcept = 0;
+            virtual int32_t __stdcall put_Hectopascals(double) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Devices::Sensors::IBarometerReading>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -1080,6 +1198,21 @@ namespace winrt::impl
             virtual int32_t __stdcall put_ReportLatency(uint32_t) noexcept = 0;
             virtual int32_t __stdcall get_ReportLatency(uint32_t*) noexcept = 0;
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::ICompass4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::ICompassDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Degrees(double*) noexcept = 0;
+            virtual int32_t __stdcall put_Degrees(double) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Devices::Sensors::ICompassDeviceId>
@@ -1162,6 +1295,25 @@ namespace winrt::impl
             virtual int32_t __stdcall put_ReportLatency(uint32_t) noexcept = 0;
             virtual int32_t __stdcall get_ReportLatency(uint32_t*) noexcept = 0;
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IGyrometer4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_XAxisInDegreesPerSecond(double*) noexcept = 0;
+            virtual int32_t __stdcall put_XAxisInDegreesPerSecond(double) noexcept = 0;
+            virtual int32_t __stdcall get_YAxisInDegreesPerSecond(double*) noexcept = 0;
+            virtual int32_t __stdcall put_YAxisInDegreesPerSecond(double) noexcept = 0;
+            virtual int32_t __stdcall get_ZAxisInDegreesPerSecond(double*) noexcept = 0;
+            virtual int32_t __stdcall put_ZAxisInDegreesPerSecond(double) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Devices::Sensors::IGyrometerDeviceId>
@@ -1280,6 +1432,25 @@ namespace winrt::impl
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IInclinometer4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_PitchInDegrees(float*) noexcept = 0;
+            virtual int32_t __stdcall put_PitchInDegrees(float) noexcept = 0;
+            virtual int32_t __stdcall get_RollInDegrees(float*) noexcept = 0;
+            virtual int32_t __stdcall put_RollInDegrees(float) noexcept = 0;
+            virtual int32_t __stdcall get_YawInDegrees(float*) noexcept = 0;
+            virtual int32_t __stdcall put_YawInDegrees(float) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Devices::Sensors::IInclinometerDeviceId>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -1369,6 +1540,23 @@ namespace winrt::impl
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Devices::Sensors::ILightSensor3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_LuxPercentage(float*) noexcept = 0;
+            virtual int32_t __stdcall put_LuxPercentage(float) noexcept = 0;
+            virtual int32_t __stdcall get_AbsoluteLux(float*) noexcept = 0;
+            virtual int32_t __stdcall put_AbsoluteLux(float) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Devices::Sensors::ILightSensorDeviceId>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -1441,6 +1629,25 @@ namespace winrt::impl
             virtual int32_t __stdcall put_ReportLatency(uint32_t) noexcept = 0;
             virtual int32_t __stdcall get_ReportLatency(uint32_t*) noexcept = 0;
             virtual int32_t __stdcall get_MaxBatchSize(uint32_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IMagnetometer4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_ReportThreshold(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_XAxisMicroteslas(float*) noexcept = 0;
+            virtual int32_t __stdcall put_XAxisMicroteslas(float) noexcept = 0;
+            virtual int32_t __stdcall get_YAxisMicroteslas(float*) noexcept = 0;
+            virtual int32_t __stdcall put_YAxisMicroteslas(float) noexcept = 0;
+            virtual int32_t __stdcall get_ZAxisMicroteslas(float*) noexcept = 0;
+            virtual int32_t __stdcall put_ZAxisMicroteslas(float) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Devices::Sensors::IMagnetometerDeviceId>
@@ -1840,6 +2047,29 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Devices_Sensors_IAccelerometer4<D>;
     };
     template <typename D>
+    struct consume_Windows_Devices_Sensors_IAccelerometer5
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::AccelerometerDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IAccelerometer5>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IAccelerometer5<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IAccelerometerDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(double) XAxisInGForce() const;
+        WINRT_IMPL_AUTO(void) XAxisInGForce(double value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(double) YAxisInGForce() const;
+        WINRT_IMPL_AUTO(void) YAxisInGForce(double value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(double) ZAxisInGForce() const;
+        WINRT_IMPL_AUTO(void) ZAxisInGForce(double value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>;
+    };
+    template <typename D>
     struct consume_Windows_Devices_Sensors_IAccelerometerDeviceId
     {
         [[nodiscard]] WINRT_IMPL_AUTO(hstring) DeviceId() const;
@@ -2080,6 +2310,25 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Devices_Sensors_IBarometer2<D>;
     };
     template <typename D>
+    struct consume_Windows_Devices_Sensors_IBarometer3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::BarometerDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IBarometer3>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IBarometer3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IBarometerDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(double) Hectopascals() const;
+        WINRT_IMPL_AUTO(void) Hectopascals(double value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IBarometerDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IBarometerDataThreshold<D>;
+    };
+    template <typename D>
     struct consume_Windows_Devices_Sensors_IBarometerReading
     {
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::DateTime) Timestamp() const;
@@ -2163,6 +2412,25 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Devices::Sensors::ICompass3>
     {
         template <typename D> using type = consume_Windows_Devices_Sensors_ICompass3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_ICompass4
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::CompassDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::ICompass4>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_ICompass4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_ICompassDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(double) Degrees() const;
+        WINRT_IMPL_AUTO(void) Degrees(double value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::ICompassDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_ICompassDataThreshold<D>;
     };
     template <typename D>
     struct consume_Windows_Devices_Sensors_ICompassDeviceId
@@ -2267,6 +2535,29 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Devices::Sensors::IGyrometer3>
     {
         template <typename D> using type = consume_Windows_Devices_Sensors_IGyrometer3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IGyrometer4
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::GyrometerDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IGyrometer4>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IGyrometer4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IGyrometerDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(double) XAxisInDegreesPerSecond() const;
+        WINRT_IMPL_AUTO(void) XAxisInDegreesPerSecond(double value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(double) YAxisInDegreesPerSecond() const;
+        WINRT_IMPL_AUTO(void) YAxisInDegreesPerSecond(double value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(double) ZAxisInDegreesPerSecond() const;
+        WINRT_IMPL_AUTO(void) ZAxisInDegreesPerSecond(double value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>;
     };
     template <typename D>
     struct consume_Windows_Devices_Sensors_IGyrometerDeviceId
@@ -2415,6 +2706,29 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Devices_Sensors_IInclinometer3<D>;
     };
     template <typename D>
+    struct consume_Windows_Devices_Sensors_IInclinometer4
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::InclinometerDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IInclinometer4>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IInclinometer4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IInclinometerDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(float) PitchInDegrees() const;
+        WINRT_IMPL_AUTO(void) PitchInDegrees(float value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(float) RollInDegrees() const;
+        WINRT_IMPL_AUTO(void) RollInDegrees(float value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(float) YawInDegrees() const;
+        WINRT_IMPL_AUTO(void) YawInDegrees(float value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>;
+    };
+    template <typename D>
     struct consume_Windows_Devices_Sensors_IInclinometerDeviceId
     {
         [[nodiscard]] WINRT_IMPL_AUTO(hstring) DeviceId() const;
@@ -2528,6 +2842,27 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Devices_Sensors_ILightSensor2<D>;
     };
     template <typename D>
+    struct consume_Windows_Devices_Sensors_ILightSensor3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::LightSensorDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::ILightSensor3>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_ILightSensor3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_ILightSensorDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(float) LuxPercentage() const;
+        WINRT_IMPL_AUTO(void) LuxPercentage(float value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(float) AbsoluteLux() const;
+        WINRT_IMPL_AUTO(void) AbsoluteLux(float value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_ILightSensorDataThreshold<D>;
+    };
+    template <typename D>
     struct consume_Windows_Devices_Sensors_ILightSensorDeviceId
     {
         [[nodiscard]] WINRT_IMPL_AUTO(hstring) DeviceId() const;
@@ -2620,6 +2955,29 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Devices::Sensors::IMagnetometer3>
     {
         template <typename D> using type = consume_Windows_Devices_Sensors_IMagnetometer3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IMagnetometer4
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::MagnetometerDataThreshold) ReportThreshold() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IMagnetometer4>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IMagnetometer4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Sensors_IMagnetometerDataThreshold
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(float) XAxisMicroteslas() const;
+        WINRT_IMPL_AUTO(void) XAxisMicroteslas(float value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(float) YAxisMicroteslas() const;
+        WINRT_IMPL_AUTO(void) YAxisMicroteslas(float value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(float) ZAxisMicroteslas() const;
+        WINRT_IMPL_AUTO(void) ZAxisMicroteslas(float value) const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold>
+    {
+        template <typename D> using type = consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>;
     };
     template <typename D>
     struct consume_Windows_Devices_Sensors_IMagnetometerDeviceId

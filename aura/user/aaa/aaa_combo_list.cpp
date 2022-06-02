@@ -56,8 +56,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::_001OnKillFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
       MESSAGE_LINK(e_message_close, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
@@ -516,7 +516,7 @@ namespace user
    }
 
 
-   void list_box::_001OnKillFocus(::message::message * pmessage)
+   void list_box::on_message_kill_focus(::message::message * pmessage)
    {
 
       if (m_pcombo)
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   void list_box::_001OnSetFocus(::message::message * pmessage)
+   void list_box::on_message_set_focus(::message::message * pmessage)
    {
 
       if (m_pcombo)

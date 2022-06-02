@@ -69,8 +69,8 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
-      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
-      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
+      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::on_message_kill_focus);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
       MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::on_message_move);
 

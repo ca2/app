@@ -3,6 +3,10 @@
 #pragma once
 #ifndef WINRT_Windows_Media_Capture_0_H
 #define WINRT_Windows_Media_Capture_0_H
+WINRT_EXPORT namespace winrt::Windows::Devices::Enumeration
+{
+    enum class Panel : int32_t;
+}
 WINRT_EXPORT namespace winrt::Windows::Foundation
 {
     struct EventRegistrationToken;
@@ -12,6 +16,7 @@ WINRT_EXPORT namespace winrt::Windows::Foundation
     struct Rect;
     struct Size;
     template <typename TSender, typename TResult> struct __declspec(empty_bases) TypedEventHandler;
+    struct Uri;
 }
 WINRT_EXPORT namespace winrt::Windows::Foundation::Collections
 {
@@ -76,6 +81,10 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     struct MediaRatio;
     struct VideoEncodingProperties;
 }
+WINRT_EXPORT namespace winrt::Windows::Security::Credentials
+{
+    struct PasswordCredential;
+}
 WINRT_EXPORT namespace winrt::Windows::Storage
 {
     struct IStorageFile;
@@ -84,6 +93,10 @@ WINRT_EXPORT namespace winrt::Windows::Storage
 WINRT_EXPORT namespace winrt::Windows::Storage::Streams
 {
     struct IRandomAccessStream;
+}
+WINRT_EXPORT namespace winrt::Windows::UI::WindowManagement
+{
+    struct DisplayRegion;
 }
 WINRT_EXPORT namespace winrt::Windows::Media::Capture
 {
@@ -228,6 +241,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct IMediaCapture4;
     struct IMediaCapture5;
     struct IMediaCapture6;
+    struct IMediaCapture7;
     struct IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs;
     struct IMediaCaptureFailedEventArgs;
     struct IMediaCaptureFocusChangedEventArgs;
@@ -237,7 +251,9 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct IMediaCaptureInitializationSettings4;
     struct IMediaCaptureInitializationSettings5;
     struct IMediaCaptureInitializationSettings6;
+    struct IMediaCaptureInitializationSettings7;
     struct IMediaCapturePauseResult;
+    struct IMediaCaptureRelativePanelWatcher;
     struct IMediaCaptureSettings;
     struct IMediaCaptureSettings2;
     struct IMediaCaptureSettings3;
@@ -270,6 +286,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     struct MediaCaptureFocusChangedEventArgs;
     struct MediaCaptureInitializationSettings;
     struct MediaCapturePauseResult;
+    struct MediaCaptureRelativePanelWatcher;
     struct MediaCaptureSettings;
     struct MediaCaptureStopResult;
     struct MediaCaptureVideoProfile;
@@ -310,6 +327,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::IMediaCapture4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCapture5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCapture6>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IMediaCapture7>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureFailedEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs>{ using type = interface_category; };
@@ -319,7 +337,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCapturePauseResult>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureSettings>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureSettings2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Capture::IMediaCaptureSettings3>{ using type = interface_category; };
@@ -352,6 +372,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureFocusChangedEventArgs>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureInitializationSettings>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCapturePauseResult>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureSettings>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureStopResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Capture::MediaCaptureVideoProfile>{ using type = class_category; };
@@ -398,6 +419,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureFocusChangedEventArgs> = L"Windows.Media.Capture.MediaCaptureFocusChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureInitializationSettings> = L"Windows.Media.Capture.MediaCaptureInitializationSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCapturePauseResult> = L"Windows.Media.Capture.MediaCapturePauseResult";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher> = L"Windows.Media.Capture.MediaCaptureRelativePanelWatcher";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureSettings> = L"Windows.Media.Capture.MediaCaptureSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureStopResult> = L"Windows.Media.Capture.MediaCaptureStopResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::MediaCaptureVideoProfile> = L"Windows.Media.Capture.MediaCaptureVideoProfile";
@@ -450,6 +472,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCapture4> = L"Windows.Media.Capture.IMediaCapture4";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCapture5> = L"Windows.Media.Capture.IMediaCapture5";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCapture6> = L"Windows.Media.Capture.IMediaCapture6";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCapture7> = L"Windows.Media.Capture.IMediaCapture7";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs> = L"Windows.Media.Capture.IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureFailedEventArgs> = L"Windows.Media.Capture.IMediaCaptureFailedEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs> = L"Windows.Media.Capture.IMediaCaptureFocusChangedEventArgs";
@@ -459,7 +482,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4> = L"Windows.Media.Capture.IMediaCaptureInitializationSettings4";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5> = L"Windows.Media.Capture.IMediaCaptureInitializationSettings5";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6> = L"Windows.Media.Capture.IMediaCaptureInitializationSettings6";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7> = L"Windows.Media.Capture.IMediaCaptureInitializationSettings7";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCapturePauseResult> = L"Windows.Media.Capture.IMediaCapturePauseResult";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher> = L"Windows.Media.Capture.IMediaCaptureRelativePanelWatcher";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureSettings> = L"Windows.Media.Capture.IMediaCaptureSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureSettings2> = L"Windows.Media.Capture.IMediaCaptureSettings2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Capture::IMediaCaptureSettings3> = L"Windows.Media.Capture.IMediaCaptureSettings3";
@@ -502,6 +527,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCapture4>{ 0xBACD6FD6,0xFB08,0x4947,{ 0xAE,0xA2,0xCE,0x14,0xEF,0xF0,0xCE,0x13 } }; // BACD6FD6-FB08-4947-AEA2-CE14EFF0CE13
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCapture5>{ 0xDA787C22,0x3A9B,0x4720,{ 0xA7,0x1E,0x97,0x90,0x0A,0x31,0x6E,0x5A } }; // DA787C22-3A9B-4720-A71E-97900A316E5A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCapture6>{ 0x228948BD,0x4B20,0x4BB1,{ 0x9F,0xD6,0xA5,0x83,0x21,0x2A,0x10,0x12 } }; // 228948BD-4B20-4BB1-9FD6-A583212A1012
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCapture7>{ 0x9169F102,0x8888,0x541A,{ 0x95,0xBC,0x24,0xE4,0xD4,0x62,0x54,0x2A } }; // 9169F102-8888-541A-95BC-24E4D462542A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs>{ 0x9D2F920D,0xA588,0x43C6,{ 0x89,0xD6,0x5A,0xD3,0x22,0xAF,0x00,0x6A } }; // 9D2F920D-A588-43C6-89D6-5AD322AF006A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureFailedEventArgs>{ 0x80FDE3F4,0x54C4,0x42C0,{ 0x8D,0x19,0xCE,0xA1,0xA8,0x7C,0xA1,0x8B } }; // 80FDE3F4-54C4-42C0-8D19-CEA1A87CA18B
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs>{ 0x81E1BC7F,0x2277,0x493E,{ 0xAB,0xEE,0xD3,0xF4,0x4F,0xF9,0x8C,0x04 } }; // 81E1BC7F-2277-493E-ABEE-D3F44FF98C04
@@ -511,7 +537,9 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4>{ 0xF502A537,0x4CB7,0x4D28,{ 0x95,0xED,0x4F,0x9F,0x01,0x2E,0x05,0x18 } }; // F502A537-4CB7-4D28-95ED-4F9F012E0518
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5>{ 0xD5A2E3B8,0x2626,0x4E94,{ 0xB7,0xB3,0x53,0x08,0xA0,0xF6,0x4B,0x1A } }; // D5A2E3B8-2626-4E94-B7B3-5308A0F64B1A
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6>{ 0xB2E26B47,0x3DB1,0x4D33,{ 0xAB,0x63,0x0F,0xFA,0x09,0x05,0x65,0x85 } }; // B2E26B47-3DB1-4D33-AB63-0FFA09056585
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>{ 0x41546967,0xF58A,0x5D82,{ 0x9E,0xF4,0xED,0x57,0x2F,0xB5,0xE3,0x4E } }; // 41546967-F58A-5D82-9EF4-ED572FB5E34E
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCapturePauseResult>{ 0xAEC47CA3,0x4477,0x4B04,{ 0xA0,0x6F,0x2C,0x1C,0x51,0x82,0xFE,0x9D } }; // AEC47CA3-4477-4B04-A06F-2C1C5182FE9D
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>{ 0x7D896566,0x04BE,0x5B89,{ 0xB3,0x0E,0xBD,0x34,0xA9,0xF1,0x2D,0xB0 } }; // 7D896566-04BE-5B89-B30E-BD34A9F12DB0
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureSettings>{ 0x1D83AAFE,0x6D45,0x4477,{ 0x8D,0xC4,0xAC,0x5B,0xC0,0x1C,0x40,0x91 } }; // 1D83AAFE-6D45-4477-8DC4-AC5BC01C4091
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureSettings2>{ 0x6F9E7CFB,0xFA9F,0x4B13,{ 0x9C,0xBE,0x5A,0xB9,0x4F,0x1F,0x34,0x93 } }; // 6F9E7CFB-FA9F-4B13-9CBE-5AB94F1F3493
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Capture::IMediaCaptureSettings3>{ 0x303C67C2,0x8058,0x4B1B,{ 0xB8,0x77,0x8C,0x2E,0xF3,0x52,0x84,0x40 } }; // 303C67C2-8058-4B1B-B877-8C2EF3528440
@@ -546,6 +574,7 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureFocusChangedEventArgs>{ using type = winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs; };
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureInitializationSettings>{ using type = winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings; };
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCapturePauseResult>{ using type = winrt::Windows::Media::Capture::IMediaCapturePauseResult; };
+    template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher>{ using type = winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher; };
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureSettings>{ using type = winrt::Windows::Media::Capture::IMediaCaptureSettings; };
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureStopResult>{ using type = winrt::Windows::Media::Capture::IMediaCaptureStopResult; };
     template <> struct default_interface<winrt::Windows::Media::Capture::MediaCaptureVideoProfile>{ using type = winrt::Windows::Media::Capture::IMediaCaptureVideoProfile; };
@@ -844,6 +873,13 @@ namespace winrt::impl
             virtual int32_t __stdcall CreateMultiSourceFrameReaderAsync(void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::Capture::IMediaCapture7>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreateRelativePanelWatcher(int32_t, void*, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -935,12 +971,33 @@ namespace winrt::impl
             virtual int32_t __stdcall put_AlwaysPlaySystemShutterSound(bool) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_DeviceUriPasswordCredential(void**) noexcept = 0;
+            virtual int32_t __stdcall put_DeviceUriPasswordCredential(void*) noexcept = 0;
+            virtual int32_t __stdcall get_DeviceUri(void**) noexcept = 0;
+            virtual int32_t __stdcall put_DeviceUri(void*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::Capture::IMediaCapturePauseResult>
     {
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall get_LastFrame(void**) noexcept = 0;
             virtual int32_t __stdcall get_RecordDuration(int64_t*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_RelativePanel(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall add_Changed(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_Changed(winrt::event_token) noexcept = 0;
+            virtual int32_t __stdcall Start() noexcept = 0;
+            virtual int32_t __stdcall Stop() noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Capture::IMediaCaptureSettings>
@@ -1454,6 +1511,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Media_Capture_IMediaCapture6<D>;
     };
     template <typename D>
+    struct consume_Windows_Media_Capture_IMediaCapture7
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher) CreateRelativePanelWatcher(winrt::Windows::Media::Capture::StreamingCaptureMode const& captureMode, winrt::Windows::UI::WindowManagement::DisplayRegion const& displayRegion) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IMediaCapture7>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IMediaCapture7<D>;
+    };
+    template <typename D>
     struct consume_Windows_Media_Capture_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs
     {
         [[nodiscard]] WINRT_IMPL_AUTO(hstring) DeviceId() const;
@@ -1563,6 +1629,18 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Media_Capture_IMediaCaptureInitializationSettings6<D>;
     };
     template <typename D>
+    struct consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Security::Credentials::PasswordCredential) DeviceUriPasswordCredential() const;
+        WINRT_IMPL_AUTO(void) DeviceUriPasswordCredential(winrt::Windows::Security::Credentials::PasswordCredential const& value) const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Uri) DeviceUri() const;
+        WINRT_IMPL_AUTO(void) DeviceUri(winrt::Windows::Foundation::Uri const& value) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7<D>;
+    };
+    template <typename D>
     struct consume_Windows_Media_Capture_IMediaCapturePauseResult
     {
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Media::VideoFrame) LastFrame() const;
@@ -1571,6 +1649,21 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Capture::IMediaCapturePauseResult>
     {
         template <typename D> using type = consume_Windows_Media_Capture_IMediaCapturePauseResult<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) RelativePanel() const;
+        WINRT_IMPL_AUTO(winrt::event_token) Changed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using Changed_revoker = impl::event_revoker<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher, &impl::abi_t<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>::remove_Changed>;
+        [[nodiscard]] Changed_revoker Changed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        WINRT_IMPL_AUTO(void) Changed(winrt::event_token const& token) const noexcept;
+        WINRT_IMPL_AUTO(void) Start() const;
+        WINRT_IMPL_AUTO(void) Stop() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>
+    {
+        template <typename D> using type = consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Capture_IMediaCaptureSettings

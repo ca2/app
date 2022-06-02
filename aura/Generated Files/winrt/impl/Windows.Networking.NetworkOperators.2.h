@@ -386,7 +386,8 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
         NetworkOperatorDataUsageTriggerDetails(std::nullptr_t) noexcept {}
         NetworkOperatorDataUsageTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) NetworkOperatorTetheringAccessPointConfiguration : winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration
+    struct __declspec(empty_bases) NetworkOperatorTetheringAccessPointConfiguration : winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration,
+        impl::require<NetworkOperatorTetheringAccessPointConfiguration, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2>
     {
         NetworkOperatorTetheringAccessPointConfiguration(std::nullptr_t) noexcept {}
         NetworkOperatorTetheringAccessPointConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration(ptr, take_ownership_from_abi) {}
@@ -407,6 +408,11 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
         static auto GetTetheringCapabilityFromConnectionProfile(winrt::Windows::Networking::Connectivity::ConnectionProfile const& profile);
         static auto CreateFromConnectionProfile(winrt::Windows::Networking::Connectivity::ConnectionProfile const& profile);
         static auto CreateFromConnectionProfile(winrt::Windows::Networking::Connectivity::ConnectionProfile const& profile, winrt::Windows::Networking::Connectivity::NetworkAdapter const& adapter);
+        static auto IsNoConnectionsTimeoutEnabled();
+        static auto EnableNoConnectionsTimeout();
+        static auto EnableNoConnectionsTimeoutAsync();
+        static auto DisableNoConnectionsTimeout();
+        static auto DisableNoConnectionsTimeoutAsync();
     };
     struct __declspec(empty_bases) NetworkOperatorTetheringOperationResult : winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringOperationResult
     {

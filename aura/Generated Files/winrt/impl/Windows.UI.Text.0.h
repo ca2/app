@@ -177,6 +177,11 @@ WINRT_EXPORT namespace winrt::Windows::UI::Text
         Inward = 3,
         Outward = 4,
     };
+    enum class RichEditMathMode : int32_t
+    {
+        NoMath = 0,
+        MathOnly = 1,
+    };
     enum class SelectionOptions : uint32_t
     {
         StartActive = 0x1,
@@ -379,6 +384,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Text
     struct ITextDocument;
     struct ITextDocument2;
     struct ITextDocument3;
+    struct ITextDocument4;
     struct ITextParagraphFormat;
     struct ITextRange;
     struct ITextSelection;
@@ -400,6 +406,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Text::ITextDocument>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Text::ITextDocument2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Text::ITextDocument3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Text::ITextDocument4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Text::ITextParagraphFormat>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Text::ITextRange>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Text::ITextSelection>{ using type = interface_category; };
@@ -424,6 +431,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Text::ParagraphStyle>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Text::PointOptions>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Text::RangeGravity>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::UI::Text::RichEditMathMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Text::SelectionOptions>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Text::SelectionType>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Text::TabAlignment>{ using type = enum_category; };
@@ -457,6 +465,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ParagraphStyle> = L"Windows.UI.Text.ParagraphStyle";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::PointOptions> = L"Windows.UI.Text.PointOptions";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::RangeGravity> = L"Windows.UI.Text.RangeGravity";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::RichEditMathMode> = L"Windows.UI.Text.RichEditMathMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::SelectionOptions> = L"Windows.UI.Text.SelectionOptions";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::SelectionType> = L"Windows.UI.Text.SelectionType";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::TabAlignment> = L"Windows.UI.Text.TabAlignment";
@@ -478,6 +487,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextDocument> = L"Windows.UI.Text.ITextDocument";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextDocument2> = L"Windows.UI.Text.ITextDocument2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextDocument3> = L"Windows.UI.Text.ITextDocument3";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextDocument4> = L"Windows.UI.Text.ITextDocument4";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextParagraphFormat> = L"Windows.UI.Text.ITextParagraphFormat";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextRange> = L"Windows.UI.Text.ITextRange";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Text::ITextSelection> = L"Windows.UI.Text.ITextSelection";
@@ -490,6 +500,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextDocument>{ 0xBEEE4DDB,0x90B2,0x408C,{ 0xA2,0xF6,0x0A,0x0A,0xC3,0x1E,0x33,0xE4 } }; // BEEE4DDB-90B2-408C-A2F6-0A0AC31E33E4
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextDocument2>{ 0xF2311112,0x8C89,0x49C9,{ 0x91,0x18,0xF0,0x57,0xCB,0xB8,0x14,0xEE } }; // F2311112-8C89-49C9-9118-F057CBB814EE
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextDocument3>{ 0x75AB03A1,0xA6F8,0x441D,{ 0xAA,0x18,0x0A,0x85,0x1D,0x6E,0x5E,0x3C } }; // 75AB03A1-A6F8-441D-AA18-0A851D6E5E3C
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextDocument4>{ 0x619C20F2,0xCB3B,0x4521,{ 0x98,0x1F,0x28,0x65,0xB1,0xB9,0x3F,0x04 } }; // 619C20F2-CB3B-4521-981F-2865B1B93F04
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextParagraphFormat>{ 0x2CF8CFA6,0x4676,0x498A,{ 0x93,0xF5,0xBB,0xDB,0xFC,0x0B,0xD8,0x83 } }; // 2CF8CFA6-4676-498A-93F5-BBDBFC0BD883
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextRange>{ 0x5B9E4E57,0xC072,0x42A0,{ 0x89,0x45,0xAF,0x50,0x3E,0xE5,0x47,0x68 } }; // 5B9E4E57-C072-42A0-8945-AF503EE54768
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Text::ITextSelection>{ 0xA6D36724,0xF28F,0x430A,{ 0xB2,0xCF,0xC3,0x43,0x67,0x1E,0xC0,0xE9 } }; // A6D36724-F28F-430A-B2CF-C343671EC0E9
@@ -662,6 +673,15 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall ClearUndoRedoHistory() noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Text::ITextDocument4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall SetMath(void*) noexcept = 0;
+            virtual int32_t __stdcall GetMath(void**) noexcept = 0;
+            virtual int32_t __stdcall SetMathMode(int32_t) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Text::ITextParagraphFormat>
@@ -976,6 +996,17 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Text::ITextDocument3>
     {
         template <typename D> using type = consume_Windows_UI_Text_ITextDocument3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Text_ITextDocument4
+    {
+        WINRT_IMPL_AUTO(void) SetMath(param::hstring const& value) const;
+        WINRT_IMPL_AUTO(void) GetMath(hstring& value) const;
+        WINRT_IMPL_AUTO(void) SetMathMode(winrt::Windows::UI::Text::RichEditMathMode const& mode) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Text::ITextDocument4>
+    {
+        template <typename D> using type = consume_Windows_UI_Text_ITextDocument4<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Text_ITextParagraphFormat

@@ -20,6 +20,20 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         IAppInfo(std::nullptr_t = nullptr) noexcept {}
         IAppInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAppInfo2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppInfo2>
+    {
+        IAppInfo2(std::nullptr_t = nullptr) noexcept {}
+        IAppInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAppInfoStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAppInfoStatics>
+    {
+        IAppInfoStatics(std::nullptr_t = nullptr) noexcept {}
+        IAppInfoStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAppInstallerInfo :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAppInstallerInfo>
@@ -131,6 +145,13 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     {
         IPackage7(std::nullptr_t = nullptr) noexcept {}
         IPackage7(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IPackage8 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPackage8>
+    {
+        IPackage8(std::nullptr_t = nullptr) noexcept {}
+        IPackage8(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IPackageCatalog :
         winrt::Windows::Foundation::IInspectable,

@@ -112,7 +112,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         LowLagPhotoSequenceCapture(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::ILowLagPhotoSequenceCapture(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) MediaCapture : winrt::Windows::Media::Capture::IMediaCapture,
-        impl::require<MediaCapture, winrt::Windows::Media::Capture::IMediaCaptureVideoPreview, winrt::Windows::Media::Capture::IMediaCapture2, winrt::Windows::Foundation::IClosable, winrt::Windows::Media::Capture::IMediaCapture3, winrt::Windows::Media::Capture::IMediaCapture4, winrt::Windows::Media::Capture::IMediaCapture5, winrt::Windows::Media::Capture::IMediaCapture6>
+        impl::require<MediaCapture, winrt::Windows::Media::Capture::IMediaCaptureVideoPreview, winrt::Windows::Media::Capture::IMediaCapture2, winrt::Windows::Foundation::IClosable, winrt::Windows::Media::Capture::IMediaCapture3, winrt::Windows::Media::Capture::IMediaCapture4, winrt::Windows::Media::Capture::IMediaCapture5, winrt::Windows::Media::Capture::IMediaCapture6, winrt::Windows::Media::Capture::IMediaCapture7>
     {
         MediaCapture(std::nullptr_t) noexcept {}
         MediaCapture(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::IMediaCapture(ptr, take_ownership_from_abi) {}
@@ -138,7 +138,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
         MediaCaptureFocusChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) MediaCaptureInitializationSettings : winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings,
-        impl::require<MediaCaptureInitializationSettings, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings2, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings3, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6>
+        impl::require<MediaCaptureInitializationSettings, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings2, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings3, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>
     {
         MediaCaptureInitializationSettings(std::nullptr_t) noexcept {}
         MediaCaptureInitializationSettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings(ptr, take_ownership_from_abi) {}
@@ -149,6 +149,12 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture
     {
         MediaCapturePauseResult(std::nullptr_t) noexcept {}
         MediaCapturePauseResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::IMediaCapturePauseResult(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) MediaCaptureRelativePanelWatcher : winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher,
+        impl::require<MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IClosable>
+    {
+        MediaCaptureRelativePanelWatcher(std::nullptr_t) noexcept {}
+        MediaCaptureRelativePanelWatcher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) MediaCaptureSettings : winrt::Windows::Media::Capture::IMediaCaptureSettings,
         impl::require<MediaCaptureSettings, winrt::Windows::Media::Capture::IMediaCaptureSettings2, winrt::Windows::Media::Capture::IMediaCaptureSettings3>

@@ -145,6 +145,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         OpticalImageStabilizationControl(std::nullptr_t) noexcept {}
         OpticalImageStabilizationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IOpticalImageStabilizationControl(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) PanelBasedOptimizationControl : winrt::Windows::Media::Devices::IPanelBasedOptimizationControl
+    {
+        PanelBasedOptimizationControl(std::nullptr_t) noexcept {}
+        PanelBasedOptimizationControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IPanelBasedOptimizationControl(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) PhotoConfirmationControl : winrt::Windows::Media::Devices::IPhotoConfirmationControl
     {
         PhotoConfirmationControl(std::nullptr_t) noexcept {}
@@ -173,7 +178,7 @@ WINRT_EXPORT namespace winrt::Windows::Media::Devices
         TorchControl(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::ITorchControl(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) VideoDeviceController : winrt::Windows::Media::Devices::IVideoDeviceController,
-        impl::require<VideoDeviceController, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController2, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController3, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController4, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7>
+        impl::require<VideoDeviceController, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController2, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController3, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController4, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>
     {
         VideoDeviceController(std::nullptr_t) noexcept {}
         VideoDeviceController(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Media::Devices::IVideoDeviceController(ptr, take_ownership_from_abi) {}

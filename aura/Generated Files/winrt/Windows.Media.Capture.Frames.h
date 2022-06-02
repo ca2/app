@@ -19,6 +19,7 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.210806.1"), "Mismatche
 #include "winrt/impl/Windows.Media.MediaProperties.2.h"
 #include "winrt/impl/Windows.Perception.Spatial.2.h"
 #include "winrt/impl/Windows.Storage.Streams.2.h"
+#include "winrt/impl/Windows.UI.WindowManagement.2.h"
 #include "winrt/impl/Windows.Media.Capture.Frames.2.h"
 namespace winrt::impl
 {
@@ -437,6 +438,12 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2)->get_VideoProfileMediaDescription(&value));
         return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Media::Capture::MediaCaptureVideoProfileMediaDescription>{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) consume_Windows_Media_Capture_Frames_IMediaFrameSourceInfo3<D>::GetRelativePanel(winrt::Windows::UI::WindowManagement::DisplayRegion const& displayRegion) const
+    {
+        winrt::Windows::Devices::Enumeration::Panel result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3)->GetRelativePanel(*(void**)(&displayRegion), reinterpret_cast<int32_t*>(&result)));
+        return result;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Media_Capture_Frames_IMultiSourceMediaFrameReader<D>::FrameArrived(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::Frames::MultiSourceMediaFrameReader, winrt::Windows::Media::Capture::Frames::MultiSourceMediaFrameArrivedEventArgs> const& handler) const
     {
@@ -1230,6 +1237,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3> : produce_base<D, winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3>
+    {
+        int32_t __stdcall GetRelativePanel(void* displayRegion, int32_t* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Devices::Enumeration::Panel>(this->shim().GetRelativePanel(*reinterpret_cast<winrt::Windows::UI::WindowManagement::DisplayRegion const*>(&displayRegion)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs>
     {
     };
@@ -1459,6 +1479,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceGroupStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::Frames::IMediaFrameSourceInfo3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameArrivedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::Frames::IMultiSourceMediaFrameReader2> : winrt::impl::hash_base {};

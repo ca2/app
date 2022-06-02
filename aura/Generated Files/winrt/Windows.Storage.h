@@ -462,6 +462,24 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IKnownFoldersStatics3)->GetFolderForUserAsync(*(void**)(&user), static_cast<int32_t>(folderId), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>{ operation, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>) consume_Windows_Storage_IKnownFoldersStatics4<D>::RequestAccessAsync(winrt::Windows::Storage::KnownFolderId const& folderId) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IKnownFoldersStatics4)->RequestAccessAsync(static_cast<int32_t>(folderId), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>) consume_Windows_Storage_IKnownFoldersStatics4<D>::RequestAccessForUserAsync(winrt::Windows::System::User const& user, winrt::Windows::Storage::KnownFolderId const& folderId) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IKnownFoldersStatics4)->RequestAccessForUserAsync(*(void**)(&user), static_cast<int32_t>(folderId), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>) consume_Windows_Storage_IKnownFoldersStatics4<D>::GetFolderAsync(winrt::Windows::Storage::KnownFolderId const& folderId) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IKnownFoldersStatics4)->GetFolderAsync(static_cast<int32_t>(folderId), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>{ operation, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<hstring>) consume_Windows_Storage_IPathIOStatics<D>::ReadTextAsync(param::hstring const& absolutePath) const
     {
         void* textOperation{};
@@ -700,6 +718,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IStorageFileStatics)->ReplaceWithStreamedFileFromUriAsync(*(void**)(&fileToReplace), *(void**)(&uri), *(void**)(&thumbnail), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>{ operation, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>) consume_Windows_Storage_IStorageFileStatics2<D>::GetFileFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IStorageFileStatics2)->GetFileFromPathForUserAsync(*(void**)(&user), *(void**)(&path), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>{ operation, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>) consume_Windows_Storage_IStorageFolder<D>::CreateFileAsync(param::hstring const& desiredName) const
     {
         void* operation{};
@@ -776,6 +800,12 @@ namespace winrt::impl
     {
         void* operation{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IStorageFolderStatics)->GetFolderFromPathAsync(*(void**)(&path), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>) consume_Windows_Storage_IStorageFolderStatics2<D>::GetFolderFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Storage::IStorageFolderStatics2)->GetFolderFromPathForUserAsync(*(void**)(&user), *(void**)(&path), &operation));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>{ operation, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_Storage_IStorageItem<D>::RenameAsync(param::hstring const& desiredName) const
@@ -2272,6 +2302,36 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Storage::IKnownFoldersStatics4> : produce_base<D, winrt::Windows::Storage::IKnownFoldersStatics4>
+    {
+        int32_t __stdcall RequestAccessAsync(int32_t folderId, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>>(this->shim().RequestAccessAsync(*reinterpret_cast<winrt::Windows::Storage::KnownFolderId const*>(&folderId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall RequestAccessForUserAsync(void* user, int32_t folderId, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>>(this->shim().RequestAccessForUserAsync(*reinterpret_cast<winrt::Windows::System::User const*>(&user), *reinterpret_cast<winrt::Windows::Storage::KnownFolderId const*>(&folderId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetFolderAsync(int32_t folderId, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>>(this->shim().GetFolderAsync(*reinterpret_cast<winrt::Windows::Storage::KnownFolderId const*>(&folderId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Storage::IPathIOStatics> : produce_base<D, winrt::Windows::Storage::IPathIOStatics>
     {
         int32_t __stdcall ReadTextAsync(void* absolutePath, void** textOperation) noexcept final try
@@ -2622,6 +2682,20 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Storage::IStorageFileStatics2> : produce_base<D, winrt::Windows::Storage::IStorageFileStatics2>
+    {
+        int32_t __stdcall GetFileFromPathForUserAsync(void* user, void* path, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>>(this->shim().GetFileFromPathForUserAsync(*reinterpret_cast<winrt::Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&path)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
     template <typename D>
     struct produce<D, winrt::Windows::Storage::IStorageFolder> : produce_base<D, winrt::Windows::Storage::IStorageFolder>
     {
@@ -2741,6 +2815,20 @@ namespace winrt::impl
             clear_abi(operation);
             typename D::abi_guard guard(this->shim());
             *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>>(this->shim().GetFolderFromPathAsync(*reinterpret_cast<hstring const*>(&path)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Storage::IStorageFolderStatics2> : produce_base<D, winrt::Windows::Storage::IStorageFolderStatics2>
+    {
+        int32_t __stdcall GetFolderFromPathForUserAsync(void* user, void* path, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>>(this->shim().GetFolderFromPathForUserAsync(*reinterpret_cast<winrt::Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&path)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -4202,6 +4290,18 @@ WINRT_EXPORT namespace winrt::Windows::Storage
     {
         return impl::call_factory<KnownFolders, IKnownFoldersStatics3>([&](IKnownFoldersStatics3 const& f) { return f.GetFolderForUserAsync(user, folderId); });
     }
+    inline auto KnownFolders::RequestAccessAsync(winrt::Windows::Storage::KnownFolderId const& folderId)
+    {
+        return impl::call_factory<KnownFolders, IKnownFoldersStatics4>([&](IKnownFoldersStatics4 const& f) { return f.RequestAccessAsync(folderId); });
+    }
+    inline auto KnownFolders::RequestAccessForUserAsync(winrt::Windows::System::User const& user, winrt::Windows::Storage::KnownFolderId const& folderId)
+    {
+        return impl::call_factory<KnownFolders, IKnownFoldersStatics4>([&](IKnownFoldersStatics4 const& f) { return f.RequestAccessForUserAsync(user, folderId); });
+    }
+    inline auto KnownFolders::GetFolderAsync(winrt::Windows::Storage::KnownFolderId const& folderId)
+    {
+        return impl::call_factory<KnownFolders, IKnownFoldersStatics4>([&](IKnownFoldersStatics4 const& f) { return f.GetFolderAsync(folderId); });
+    }
     inline auto PathIO::ReadTextAsync(param::hstring const& absolutePath)
     {
         return impl::call_factory<PathIO, IPathIOStatics>([&](IPathIOStatics const& f) { return f.ReadTextAsync(absolutePath); });
@@ -4286,9 +4386,17 @@ WINRT_EXPORT namespace winrt::Windows::Storage
     {
         return impl::call_factory<StorageFile, IStorageFileStatics>([&](IStorageFileStatics const& f) { return f.ReplaceWithStreamedFileFromUriAsync(fileToReplace, uri, thumbnail); });
     }
+    inline auto StorageFile::GetFileFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path)
+    {
+        return impl::call_factory<StorageFile, IStorageFileStatics2>([&](IStorageFileStatics2 const& f) { return f.GetFileFromPathForUserAsync(user, path); });
+    }
     inline auto StorageFolder::GetFolderFromPathAsync(param::hstring const& path)
     {
         return impl::call_factory<StorageFolder, IStorageFolderStatics>([&](IStorageFolderStatics const& f) { return f.GetFolderFromPathAsync(path); });
+    }
+    inline auto StorageFolder::GetFolderFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path)
+    {
+        return impl::call_factory<StorageFolder, IStorageFolderStatics2>([&](IStorageFolderStatics2 const& f) { return f.GetFolderFromPathForUserAsync(user, path); });
     }
     inline auto StorageLibrary::GetLibraryAsync(winrt::Windows::Storage::KnownLibraryId const& libraryId)
     {
@@ -4432,6 +4540,7 @@ namespace std
     template<> struct hash<winrt::Windows::Storage::IKnownFoldersStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IKnownFoldersStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IKnownFoldersStatics3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Storage::IKnownFoldersStatics4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IPathIOStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::ISetVersionDeferral> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::ISetVersionRequest> : winrt::impl::hash_base {};
@@ -4439,10 +4548,12 @@ namespace std
     template<> struct hash<winrt::Windows::Storage::IStorageFile2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFilePropertiesWithAvailability> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFileStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Storage::IStorageFileStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFolder> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFolder2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFolder3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageFolderStatics> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Storage::IStorageFolderStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageItem> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageItem2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Storage::IStorageItemProperties> : winrt::impl::hash_base {};

@@ -272,12 +272,33 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
         IUISettings5(std::nullptr_t = nullptr) noexcept {}
         IUISettings5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IUISettings6 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUISettings6>
+    {
+        IUISettings6(std::nullptr_t = nullptr) noexcept {}
+        IUISettings6(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUISettingsAnimationsEnabledChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUISettingsAnimationsEnabledChangedEventArgs>
+    {
+        IUISettingsAnimationsEnabledChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IUISettingsAnimationsEnabledChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IUISettingsAutoHideScrollBarsChangedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IUISettingsAutoHideScrollBarsChangedEventArgs>
     {
         IUISettingsAutoHideScrollBarsChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IUISettingsAutoHideScrollBarsChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUISettingsMessageDurationChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUISettingsMessageDurationChangedEventArgs>
+    {
+        IUISettingsMessageDurationChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IUISettingsMessageDurationChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IUIViewSettings :
         winrt::Windows::Foundation::IInspectable,

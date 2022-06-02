@@ -109,11 +109,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::BackgroundTransfer
     struct IDownloadOperation2;
     struct IDownloadOperation3;
     struct IDownloadOperation4;
+    struct IDownloadOperation5;
     struct IResponseInformation;
     struct IUnconstrainedTransferRequestResult;
     struct IUploadOperation;
     struct IUploadOperation2;
     struct IUploadOperation3;
+    struct IUploadOperation4;
     struct BackgroundDownloader;
     struct BackgroundTransferCompletionGroup;
     struct BackgroundTransferCompletionGroupTriggerDetails;
@@ -164,11 +166,13 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IResponseInformation>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IUnconstrainedTransferRequestResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::BackgroundDownloader>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroup>{ using type = class_category; };
     template <> struct category<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroupTriggerDetails>{ using type = class_category; };
@@ -240,11 +244,13 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2> = L"Windows.Networking.BackgroundTransfer.IDownloadOperation2";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3> = L"Windows.Networking.BackgroundTransfer.IDownloadOperation3";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4> = L"Windows.Networking.BackgroundTransfer.IDownloadOperation4";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5> = L"Windows.Networking.BackgroundTransfer.IDownloadOperation5";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IResponseInformation> = L"Windows.Networking.BackgroundTransfer.IResponseInformation";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IUnconstrainedTransferRequestResult> = L"Windows.Networking.BackgroundTransfer.IUnconstrainedTransferRequestResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation> = L"Windows.Networking.BackgroundTransfer.IUploadOperation";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2> = L"Windows.Networking.BackgroundTransfer.IUploadOperation2";
     template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3> = L"Windows.Networking.BackgroundTransfer.IUploadOperation3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4> = L"Windows.Networking.BackgroundTransfer.IUploadOperation4";
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IBackgroundDownloader>{ 0xC1C79333,0x6649,0x4B1D,{ 0xA8,0x26,0xA4,0xB3,0xDD,0x23,0x4D,0x0B } }; // C1C79333-6649-4B1D-A826-A4B3DD234D0B
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IBackgroundDownloader2>{ 0xA94A5847,0x348D,0x4A35,{ 0x89,0x0E,0x8A,0x1E,0xF3,0x79,0x84,0x79 } }; // A94A5847-348D-4A35-890E-8A1EF3798479
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IBackgroundDownloader3>{ 0xD11A8C48,0x86E8,0x48E2,{ 0xB6,0x15,0x69,0x76,0xAA,0xBF,0x86,0x1D } }; // D11A8C48-86E8-48E2-B615-6976AABF861D
@@ -276,11 +282,13 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2>{ 0xA3CCED40,0x8F9C,0x4353,{ 0x9C,0xD4,0x29,0x0D,0xEE,0x38,0x7C,0x38 } }; // A3CCED40-8F9C-4353-9CD4-290DEE387C38
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3>{ 0x5027351C,0x7D5E,0x4ADC,{ 0xB8,0xD3,0xDF,0x5C,0x60,0x31,0xB9,0xCC } }; // 5027351C-7D5E-4ADC-B8D3-DF5C6031B9CC
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4>{ 0x0CDAAEF4,0x8CEF,0x404A,{ 0x96,0x6D,0xF0,0x58,0x40,0x0B,0xED,0x80 } }; // 0CDAAEF4-8CEF-404A-966D-F058400BED80
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>{ 0xA699A86F,0x5590,0x463A,{ 0xB8,0xD6,0x1E,0x49,0x1A,0x27,0x60,0xA5 } }; // A699A86F-5590-463A-B8D6-1E491A2760A5
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IResponseInformation>{ 0xF8BB9A12,0xF713,0x4792,{ 0x8B,0x68,0xD9,0xD2,0x97,0xF9,0x1D,0x2E } }; // F8BB9A12-F713-4792-8B68-D9D297F91D2E
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IUnconstrainedTransferRequestResult>{ 0x4C24B81F,0xD944,0x4112,{ 0xA9,0x8E,0x6A,0x69,0x52,0x2B,0x7E,0xBB } }; // 4C24B81F-D944-4112-A98E-6A69522B7EBB
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation>{ 0x3E5624E0,0x7389,0x434C,{ 0x8B,0x35,0x42,0x7F,0xD3,0x6B,0xBD,0xAE } }; // 3E5624E0-7389-434C-8B35-427FD36BBDAE
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2>{ 0x556189F2,0x2774,0x4DF6,{ 0x9F,0xA5,0x20,0x9F,0x2B,0xFB,0x12,0xF7 } }; // 556189F2-2774-4DF6-9FA5-209F2BFB12F7
     template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3>{ 0x42C92CA3,0xDE39,0x4546,{ 0xBC,0x62,0x37,0x74,0xB4,0x29,0x4D,0xE3 } }; // 42C92CA3-DE39-4546-BC62-3774B4294DE3
+    template <> inline constexpr guid guid_v<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>{ 0x50EDEF31,0xFAC5,0x41EE,{ 0xB0,0x30,0xDC,0x77,0xCA,0xEE,0x9F,0xAA } }; // 50EDEF31-FAC5-41EE-B030-DC77CAEE9FAA
     template <> struct default_interface<winrt::Windows::Networking::BackgroundTransfer::BackgroundDownloader>{ using type = winrt::Windows::Networking::BackgroundTransfer::IBackgroundDownloader; };
     template <> struct default_interface<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroup>{ using type = winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferCompletionGroup; };
     template <> struct default_interface<winrt::Windows::Networking::BackgroundTransfer::BackgroundTransferCompletionGroupTriggerDetails>{ using type = winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferCompletionGroupTriggerDetails; };
@@ -578,6 +586,14 @@ namespace winrt::impl
             virtual int32_t __stdcall MakeCurrentInTransferGroup() noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall SetRequestHeader(void*, void*) noexcept = 0;
+            virtual int32_t __stdcall RemoveRequestHeader(void*) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Networking::BackgroundTransfer::IResponseInformation>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -617,6 +633,14 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall MakeCurrentInTransferGroup() noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall SetRequestHeader(void*, void*) noexcept = 0;
+            virtual int32_t __stdcall RemoveRequestHeader(void*) noexcept = 0;
         };
     };
     template <typename D>
@@ -970,6 +994,16 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Networking_BackgroundTransfer_IDownloadOperation4<D>;
     };
     template <typename D>
+    struct consume_Windows_Networking_BackgroundTransfer_IDownloadOperation5
+    {
+        WINRT_IMPL_AUTO(void) SetRequestHeader(param::hstring const& headerName, param::hstring const& headerValue) const;
+        WINRT_IMPL_AUTO(void) RemoveRequestHeader(param::hstring const& headerName) const;
+    };
+    template <> struct consume<winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>
+    {
+        template <typename D> using type = consume_Windows_Networking_BackgroundTransfer_IDownloadOperation5<D>;
+    };
+    template <typename D>
     struct consume_Windows_Networking_BackgroundTransfer_IResponseInformation
     {
         [[nodiscard]] WINRT_IMPL_AUTO(bool) IsResumable() const;
@@ -1019,6 +1053,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3>
     {
         template <typename D> using type = consume_Windows_Networking_BackgroundTransfer_IUploadOperation3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Networking_BackgroundTransfer_IUploadOperation4
+    {
+        WINRT_IMPL_AUTO(void) SetRequestHeader(param::hstring const& headerName, param::hstring const& headerValue) const;
+        WINRT_IMPL_AUTO(void) RemoveRequestHeader(param::hstring const& headerName) const;
+    };
+    template <> struct consume<winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>
+    {
+        template <typename D> using type = consume_Windows_Networking_BackgroundTransfer_IUploadOperation4<D>;
     };
     struct struct_Windows_Networking_BackgroundTransfer_BackgroundDownloadProgress
     {

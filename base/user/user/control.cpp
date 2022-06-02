@@ -51,8 +51,8 @@
 //      MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
 //
 //      MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
-//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::_001OnSetFocus);
-//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::interaction::_001OnKillFocus);
+//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
+//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::interaction::on_message_kill_focus);
 //
 //
 //
@@ -467,7 +467,7 @@
 //   }
 //
 //
-//   void control::_001OnSetFocus(::message::message * pmessage)
+//   void control::on_message_set_focus(::message::message * pmessage)
 //   {
 //
 //      //if (!::user::box::keyboard_focus_OnSetFocus())
@@ -490,7 +490,7 @@
 //   }
 //
 //
-//   void control::_001OnKillFocus(::message::message * pmessage)
+//   void control::on_message_kill_focus(::message::message * pmessage)
 //   {
 //
 //      __pointer(::message::kill_focus) pkillfocus(pmessage);

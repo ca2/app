@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "_.h"
+#include <winrt/Windows.UI.Popups.h>
+#include <winrt/Windows.Foundation.Collections.h>
 
 
 namespace universal_windows
@@ -31,7 +33,7 @@ namespace universal_windows
          auto predicate = [this, pbutton](::winrt::Windows::UI::Popups::IUICommand command)
          {
 
-            on_click(pbutton->m_edialogresult, INT_MIN, INT_MIN);
+            on_click(pbutton->m_edialogresult, nullptr);
 
          };
 
@@ -52,7 +54,7 @@ namespace universal_windows
    }
 
    
-   void nano_window::display_synchronously()
+   void nano_window::display()
    {
 
       m_messagedialog.ShowAsync();
@@ -61,9 +63,6 @@ namespace universal_windows
 
 
 } // namespace universal_windows
-
-
-
 
 
 

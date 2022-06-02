@@ -67,7 +67,8 @@ WINRT_EXPORT namespace winrt::Windows::AI::MachineLearning
         LearningModelSession(winrt::Windows::AI::MachineLearning::LearningModel const& model, winrt::Windows::AI::MachineLearning::LearningModelDevice const& deviceToRunOn);
         LearningModelSession(winrt::Windows::AI::MachineLearning::LearningModel const& model, winrt::Windows::AI::MachineLearning::LearningModelDevice const& deviceToRunOn, winrt::Windows::AI::MachineLearning::LearningModelSessionOptions const& learningModelSessionOptions);
     };
-    struct __declspec(empty_bases) LearningModelSessionOptions : winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions
+    struct __declspec(empty_bases) LearningModelSessionOptions : winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions,
+        impl::require<LearningModelSessionOptions, winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2>
     {
         LearningModelSessionOptions(std::nullptr_t) noexcept {}
         LearningModelSessionOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions(ptr, take_ownership_from_abi) {}

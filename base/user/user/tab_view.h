@@ -39,7 +39,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
 
 
       virtual bool add_impact(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr) override;

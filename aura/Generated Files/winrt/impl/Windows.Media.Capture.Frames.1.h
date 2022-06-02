@@ -163,6 +163,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::Capture::Frames
         IMediaFrameSourceInfo2(std::nullptr_t = nullptr) noexcept {}
         IMediaFrameSourceInfo2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IMediaFrameSourceInfo3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaFrameSourceInfo3>
+    {
+        IMediaFrameSourceInfo3(std::nullptr_t = nullptr) noexcept {}
+        IMediaFrameSourceInfo3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMultiSourceMediaFrameArrivedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMultiSourceMediaFrameArrivedEventArgs>

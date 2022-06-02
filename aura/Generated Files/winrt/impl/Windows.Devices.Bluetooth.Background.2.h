@@ -6,7 +6,8 @@
 #include "winrt/impl/Windows.Devices.Bluetooth.Background.1.h"
 WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Background
 {
-    struct __declspec(empty_bases) BluetoothLEAdvertisementPublisherTriggerDetails : winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails
+    struct __declspec(empty_bases) BluetoothLEAdvertisementPublisherTriggerDetails : winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails,
+        impl::require<BluetoothLEAdvertisementPublisherTriggerDetails, winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails2>
     {
         BluetoothLEAdvertisementPublisherTriggerDetails(std::nullptr_t) noexcept {}
         BluetoothLEAdvertisementPublisherTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Bluetooth::Background::IBluetoothLEAdvertisementPublisherTriggerDetails(ptr, take_ownership_from_abi) {}

@@ -413,7 +413,9 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    if(pobject->m_psystem->m_bConsole || !is_ui_possible())
    {
 
-      return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+      auto result = message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+
+      function(result);
 
    }
    else

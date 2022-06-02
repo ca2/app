@@ -440,6 +440,9 @@ namespace acme
       virtual void on_change_application_capability();
 
 
+      virtual void windowing_post(const ::procedure& procedure);
+
+
    };
 
 

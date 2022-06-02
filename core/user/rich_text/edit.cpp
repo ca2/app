@@ -88,8 +88,8 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::on_message_key_down);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::on_message_key_up);
-//         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::_001OnKillFocus);
+//         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::on_message_set_focus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::on_message_kill_focus);
          
 #ifdef WINDOWS_DESKTOP
 

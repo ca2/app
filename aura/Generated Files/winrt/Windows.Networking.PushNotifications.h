@@ -111,6 +111,20 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics3)->GetDefault(&result));
         return winrt::Windows::Networking::PushNotifications::PushNotificationChannelManagerForUser{ result, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Networking_PushNotifications_IPushNotificationChannelManagerStatics4<D>::ChannelsRevoked(winrt::Windows::Foundation::EventHandler<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4)->add_ChannelsRevoked(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_Networking_PushNotifications_IPushNotificationChannelManagerStatics4<D>::ChannelsRevoked_revoker consume_Windows_Networking_PushNotifications_IPushNotificationChannelManagerStatics4<D>::ChannelsRevoked(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, ChannelsRevoked_revoker>(this, ChannelsRevoked(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_PushNotifications_IPushNotificationChannelManagerStatics4<D>::ChannelsRevoked(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4)->remove_ChannelsRevoked(impl::bind_in(token)));
+    }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_PushNotifications_IPushNotificationReceivedEventArgs<D>::Cancel(bool value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IPushNotificationReceivedEventArgs)->put_Cancel(value));
@@ -168,6 +182,12 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IRawNotification2)->get_ChannelId(&value));
         return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Storage::Streams::IBuffer) consume_Windows_Networking_PushNotifications_IRawNotification3<D>::ContentBytes() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::PushNotifications::IRawNotification3)->get_ContentBytes(&value));
+        return winrt::Windows::Storage::Streams::IBuffer{ value, take_ownership_from_abi };
     }
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
@@ -332,6 +352,32 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4> : produce_base<D, winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4>
+    {
+        int32_t __stdcall add_ChannelsRevoked(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().ChannelsRevoked(*reinterpret_cast<winrt::Windows::Foundation::EventHandler<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_ChannelsRevoked(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ChannelsRevoked(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::PushNotifications::IPushNotificationChannelsRevokedEventArgs> : produce_base<D, winrt::Windows::Networking::PushNotifications::IPushNotificationChannelsRevokedEventArgs>
+    {
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Networking::PushNotifications::IPushNotificationReceivedEventArgs> : produce_base<D, winrt::Windows::Networking::PushNotifications::IPushNotificationReceivedEventArgs>
     {
         int32_t __stdcall put_Cancel(bool value) noexcept final try
@@ -425,6 +471,20 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::PushNotifications::IRawNotification3> : produce_base<D, winrt::Windows::Networking::PushNotifications::IRawNotification3>
+    {
+        int32_t __stdcall get_ContentBytes(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::Streams::IBuffer>(this->shim().ContentBytes());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 }
 WINRT_EXPORT namespace winrt::Windows::Networking::PushNotifications
 {
@@ -448,6 +508,19 @@ WINRT_EXPORT namespace winrt::Windows::Networking::PushNotifications
     {
         return impl::call_factory_cast<winrt::Windows::Networking::PushNotifications::PushNotificationChannelManagerForUser(*)(IPushNotificationChannelManagerStatics3 const&), PushNotificationChannelManager, IPushNotificationChannelManagerStatics3>([](IPushNotificationChannelManagerStatics3 const& f) { return f.GetDefault(); });
     }
+    inline auto PushNotificationChannelManager::ChannelsRevoked(winrt::Windows::Foundation::EventHandler<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> const& handler)
+    {
+        return impl::call_factory<PushNotificationChannelManager, IPushNotificationChannelManagerStatics4>([&](IPushNotificationChannelManagerStatics4 const& f) { return f.ChannelsRevoked(handler); });
+    }
+    inline PushNotificationChannelManager::ChannelsRevoked_revoker PushNotificationChannelManager::ChannelsRevoked(auto_revoke_t, winrt::Windows::Foundation::EventHandler<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> const& handler)
+    {
+        auto f = get_activation_factory<PushNotificationChannelManager, winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4>();
+        return { f, f.ChannelsRevoked(handler) };
+    }
+    inline auto PushNotificationChannelManager::ChannelsRevoked(winrt::event_token const& token)
+    {
+        impl::call_factory<PushNotificationChannelManager, IPushNotificationChannelManagerStatics4>([&](IPushNotificationChannelManagerStatics4 const& f) { return f.ChannelsRevoked(token); });
+    }
 }
 namespace std
 {
@@ -458,12 +531,16 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationChannelManagerStatics4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationChannelsRevokedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IPushNotificationReceivedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IRawNotification> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::IRawNotification2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::PushNotifications::IRawNotification3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::PushNotificationChannel> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::PushNotificationChannelManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::PushNotificationChannelManagerForUser> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::PushNotifications::PushNotificationChannelsRevokedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::PushNotificationReceivedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::PushNotifications::RawNotification> : winrt::impl::hash_base {};
 #endif

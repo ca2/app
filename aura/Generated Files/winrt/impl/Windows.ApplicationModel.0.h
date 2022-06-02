@@ -40,6 +40,7 @@ WINRT_EXPORT namespace winrt::Windows::Storage::Streams
 WINRT_EXPORT namespace winrt::Windows::System
 {
     enum class ProcessorArchitecture : int32_t;
+    struct User;
 }
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel
 {
@@ -89,6 +90,8 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     };
     struct IAppDisplayInfo;
     struct IAppInfo;
+    struct IAppInfo2;
+    struct IAppInfoStatics;
     struct IAppInstallerInfo;
     struct IAppInstance;
     struct IAppInstanceStatics;
@@ -105,6 +108,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
     struct IPackage5;
     struct IPackage6;
     struct IPackage7;
+    struct IPackage8;
     struct IPackageCatalog;
     struct IPackageCatalog2;
     struct IPackageCatalog3;
@@ -170,6 +174,8 @@ namespace winrt::impl
 {
     template <> struct category<winrt::Windows::ApplicationModel::IAppDisplayInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInfo>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IAppInfo2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IAppInfoStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstallerInfo>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstance>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IAppInstanceStatics>{ using type = interface_category; };
@@ -186,6 +192,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::IPackage5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IPackage6>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IPackage7>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::IPackage8>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IPackageCatalog>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IPackageCatalog2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::IPackageCatalog3>{ using type = interface_category; };
@@ -291,6 +298,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::PackageVersion> = L"Windows.ApplicationModel.PackageVersion";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppDisplayInfo> = L"Windows.ApplicationModel.IAppDisplayInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo> = L"Windows.ApplicationModel.IAppInfo";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfo2> = L"Windows.ApplicationModel.IAppInfo2";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInfoStatics> = L"Windows.ApplicationModel.IAppInfoStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstallerInfo> = L"Windows.ApplicationModel.IAppInstallerInfo";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstance> = L"Windows.ApplicationModel.IAppInstance";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IAppInstanceStatics> = L"Windows.ApplicationModel.IAppInstanceStatics";
@@ -307,6 +316,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackage5> = L"Windows.ApplicationModel.IPackage5";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackage6> = L"Windows.ApplicationModel.IPackage6";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackage7> = L"Windows.ApplicationModel.IPackage7";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackage8> = L"Windows.ApplicationModel.IPackage8";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackageCatalog> = L"Windows.ApplicationModel.IPackageCatalog";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackageCatalog2> = L"Windows.ApplicationModel.IPackageCatalog2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::IPackageCatalog3> = L"Windows.ApplicationModel.IPackageCatalog3";
@@ -338,6 +348,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::ISuspendingOperation> = L"Windows.ApplicationModel.ISuspendingOperation";
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppDisplayInfo>{ 0x1AEB1103,0xE4D4,0x41AA,{ 0xA4,0xF6,0xC4,0xA2,0x76,0xE7,0x9E,0xAC } }; // 1AEB1103-E4D4-41AA-A4F6-C4A276E79EAC
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo>{ 0xCF7F59B3,0x6A09,0x4DE8,{ 0xA6,0xC0,0x57,0x92,0xD5,0x68,0x80,0xD1 } }; // CF7F59B3-6A09-4DE8-A6C0-5792D56880D1
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfo2>{ 0xBE4B1F5A,0x2098,0x431B,{ 0xBD,0x25,0xB3,0x08,0x78,0x74,0x8D,0x47 } }; // BE4B1F5A-2098-431B-BD25-B30878748D47
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInfoStatics>{ 0xCF1F782A,0xE48B,0x4F0C,{ 0x9B,0x0B,0x79,0xC3,0xF8,0x95,0x7D,0xD7 } }; // CF1F782A-E48B-4F0C-9B0B-79C3F8957DD7
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstallerInfo>{ 0x29AB2AC0,0xD4F6,0x42A3,{ 0xAD,0xCD,0xD6,0x58,0x3C,0x65,0x95,0x08 } }; // 29AB2AC0-D4F6-42A3-ADCD-D6583C659508
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstance>{ 0x675F2B47,0xF25F,0x4532,{ 0x9F,0xD6,0x36,0x33,0xE0,0x63,0x4D,0x01 } }; // 675F2B47-F25F-4532-9FD6-3633E0634D01
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IAppInstanceStatics>{ 0x9D11E77F,0x9EA6,0x47AF,{ 0xA6,0xEC,0x46,0x78,0x4C,0x5B,0xA2,0x54 } }; // 9D11E77F-9EA6-47AF-A6EC-46784C5BA254
@@ -354,6 +366,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackage5>{ 0x0E842DD4,0xD9AC,0x45ED,{ 0x9A,0x1E,0x74,0xCE,0x05,0x6B,0x26,0x35 } }; // 0E842DD4-D9AC-45ED-9A1E-74CE056B2635
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackage6>{ 0x8B1AD942,0x12D7,0x4754,{ 0xAE,0x4E,0x63,0x8C,0xBC,0x0E,0x3A,0x2E } }; // 8B1AD942-12D7-4754-AE4E-638CBC0E3A2E
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackage7>{ 0x86FF8D31,0xA2E4,0x45E0,{ 0x97,0x32,0x28,0x3A,0x6D,0x88,0xFD,0xE1 } }; // 86FF8D31-A2E4-45E0-9732-283A6D88FDE1
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackage8>{ 0x2C584F7B,0xCE2A,0x4BE6,{ 0xA0,0x93,0x77,0xCF,0xBB,0x2A,0x7E,0xA1 } }; // 2C584F7B-CE2A-4BE6-A093-77CFBB2A7EA1
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackageCatalog>{ 0x230A3751,0x9DE3,0x4445,{ 0xBE,0x74,0x91,0xFB,0x32,0x5A,0xBE,0xFE } }; // 230A3751-9DE3-4445-BE74-91FB325ABEFE
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackageCatalog2>{ 0x96A60C36,0x8FF7,0x4344,{ 0xB6,0xBF,0xEE,0x64,0xC2,0x20,0x7E,0xD2 } }; // 96A60C36-8FF7-4344-B6BF-EE64C2207ED2
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::IPackageCatalog3>{ 0x96DD5C88,0x8837,0x43F9,{ 0x90,0x15,0x03,0x34,0x34,0xBA,0x14,0xF3 } }; // 96DD5C88-8837-43F9-9015-033434BA14F3
@@ -427,6 +440,22 @@ namespace winrt::impl
             virtual int32_t __stdcall get_AppUserModelId(void**) noexcept = 0;
             virtual int32_t __stdcall get_DisplayInfo(void**) noexcept = 0;
             virtual int32_t __stdcall get_PackageFamilyName(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IAppInfo2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Package(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IAppInfoStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Current(void**) noexcept = 0;
+            virtual int32_t __stdcall GetFromAppUserModelId(void*, void**) noexcept = 0;
+            virtual int32_t __stdcall GetFromAppUserModelIdForUser(void*, void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::IAppInstallerInfo>
@@ -566,6 +595,24 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_MutableLocation(void**) noexcept = 0;
             virtual int32_t __stdcall get_EffectiveLocation(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::IPackage8>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_EffectiveExternalLocation(void**) noexcept = 0;
+            virtual int32_t __stdcall get_MachineExternalLocation(void**) noexcept = 0;
+            virtual int32_t __stdcall get_UserExternalLocation(void**) noexcept = 0;
+            virtual int32_t __stdcall get_InstalledPath(void**) noexcept = 0;
+            virtual int32_t __stdcall get_MutablePath(void**) noexcept = 0;
+            virtual int32_t __stdcall get_EffectivePath(void**) noexcept = 0;
+            virtual int32_t __stdcall get_EffectiveExternalPath(void**) noexcept = 0;
+            virtual int32_t __stdcall get_MachineExternalPath(void**) noexcept = 0;
+            virtual int32_t __stdcall get_UserExternalPath(void**) noexcept = 0;
+            virtual int32_t __stdcall GetLogoAsRandomAccessStreamReference(winrt::Windows::Foundation::Size, void**) noexcept = 0;
+            virtual int32_t __stdcall GetAppListEntries(void**) noexcept = 0;
+            virtual int32_t __stdcall get_IsStub(bool*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::IPackageCatalog>
@@ -866,6 +913,26 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_ApplicationModel_IAppInfo<D>;
     };
     template <typename D>
+    struct consume_Windows_ApplicationModel_IAppInfo2
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::Package) Package() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IAppInfo2>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IAppInfo2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_IAppInfoStatics
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) Current() const;
+        WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) GetFromAppUserModelId(param::hstring const& appUserModelId) const;
+        WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) GetFromAppUserModelIdForUser(winrt::Windows::System::User const& user, param::hstring const& appUserModelId) const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IAppInfoStatics>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IAppInfoStatics<D>;
+    };
+    template <typename D>
     struct consume_Windows_ApplicationModel_IAppInstallerInfo
     {
         [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Foundation::Uri) Uri() const;
@@ -1035,6 +1102,26 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::IPackage7>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_IPackage7<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_IPackage8
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) EffectiveExternalLocation() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) MachineExternalLocation() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) UserExternalLocation() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) InstalledPath() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) MutablePath() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) EffectivePath() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) EffectiveExternalPath() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) MachineExternalPath() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) UserExternalPath() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Storage::Streams::RandomAccessStreamReference) GetLogoAsRandomAccessStreamReference(winrt::Windows::Foundation::Size const& size) const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::ApplicationModel::Core::AppListEntry>) GetAppListEntries() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) IsStub() const;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::IPackage8>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_IPackage8<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_IPackageCatalog

@@ -63,8 +63,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);

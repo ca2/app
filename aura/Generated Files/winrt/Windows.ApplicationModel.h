@@ -58,6 +58,30 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfo)->get_PackageFamilyName(&value));
         return hstring{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::Package) consume_Windows_ApplicationModel_IAppInfo2<D>::Package() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfo2)->get_Package(&value));
+        return winrt::Windows::ApplicationModel::Package{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) consume_Windows_ApplicationModel_IAppInfoStatics<D>::Current() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfoStatics)->get_Current(&value));
+        return winrt::Windows::ApplicationModel::AppInfo{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) consume_Windows_ApplicationModel_IAppInfoStatics<D>::GetFromAppUserModelId(param::hstring const& appUserModelId) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfoStatics)->GetFromAppUserModelId(*(void**)(&appUserModelId), &result));
+        return winrt::Windows::ApplicationModel::AppInfo{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::ApplicationModel::AppInfo) consume_Windows_ApplicationModel_IAppInfoStatics<D>::GetFromAppUserModelIdForUser(winrt::Windows::System::User const& user, param::hstring const& appUserModelId) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IAppInfoStatics)->GetFromAppUserModelIdForUser(*(void**)(&user), *(void**)(&appUserModelId), &result));
+        return winrt::Windows::ApplicationModel::AppInfo{ result, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Uri) consume_Windows_ApplicationModel_IAppInstallerInfo<D>::Uri() const
     {
         void* value{};
@@ -311,6 +335,78 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage7)->get_EffectiveLocation(&value));
         return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) consume_Windows_ApplicationModel_IPackage8<D>::EffectiveExternalLocation() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_EffectiveExternalLocation(&value));
+        return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) consume_Windows_ApplicationModel_IPackage8<D>::MachineExternalLocation() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_MachineExternalLocation(&value));
+        return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Storage::StorageFolder) consume_Windows_ApplicationModel_IPackage8<D>::UserExternalLocation() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_UserExternalLocation(&value));
+        return winrt::Windows::Storage::StorageFolder{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::InstalledPath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_InstalledPath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::MutablePath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_MutablePath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::EffectivePath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_EffectivePath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::EffectiveExternalPath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_EffectiveExternalPath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::MachineExternalPath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_MachineExternalPath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_ApplicationModel_IPackage8<D>::UserExternalPath() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_UserExternalPath(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Storage::Streams::RandomAccessStreamReference) consume_Windows_ApplicationModel_IPackage8<D>::GetLogoAsRandomAccessStreamReference(winrt::Windows::Foundation::Size const& size) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->GetLogoAsRandomAccessStreamReference(impl::bind_in(size), &result));
+        return winrt::Windows::Storage::Streams::RandomAccessStreamReference{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::ApplicationModel::Core::AppListEntry>) consume_Windows_ApplicationModel_IPackage8<D>::GetAppListEntries() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->GetAppListEntries(&result));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::ApplicationModel::Core::AppListEntry>{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_ApplicationModel_IPackage8<D>::IsStub() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::ApplicationModel::IPackage8)->get_IsStub(&value));
+        return value;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_ApplicationModel_IPackageCatalog<D>::PackageStaging(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::PackageCatalog, winrt::Windows::ApplicationModel::PackageStagingEventArgs> const& handler) const
     {
@@ -988,6 +1084,48 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IAppInfo2> : produce_base<D, winrt::Windows::ApplicationModel::IAppInfo2>
+    {
+        int32_t __stdcall get_Package(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::Package>(this->shim().Package());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IAppInfoStatics> : produce_base<D, winrt::Windows::ApplicationModel::IAppInfoStatics>
+    {
+        int32_t __stdcall get_Current(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::ApplicationModel::AppInfo>(this->shim().Current());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetFromAppUserModelId(void* appUserModelId, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::ApplicationModel::AppInfo>(this->shim().GetFromAppUserModelId(*reinterpret_cast<hstring const*>(&appUserModelId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetFromAppUserModelIdForUser(void* user, void* appUserModelId, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::ApplicationModel::AppInfo>(this->shim().GetFromAppUserModelIdForUser(*reinterpret_cast<winrt::Windows::System::User const*>(&user), *reinterpret_cast<hstring const*>(&appUserModelId)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::ApplicationModel::IAppInstallerInfo> : produce_base<D, winrt::Windows::ApplicationModel::IAppInstallerInfo>
     {
         int32_t __stdcall get_Uri(void** value) noexcept final try
@@ -1405,6 +1543,107 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().EffectiveLocation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::ApplicationModel::IPackage8> : produce_base<D, winrt::Windows::ApplicationModel::IPackage8>
+    {
+        int32_t __stdcall get_EffectiveExternalLocation(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().EffectiveExternalLocation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MachineExternalLocation(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().MachineExternalLocation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UserExternalLocation(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Storage::StorageFolder>(this->shim().UserExternalLocation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_InstalledPath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().InstalledPath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MutablePath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().MutablePath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_EffectivePath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().EffectivePath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_EffectiveExternalPath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().EffectiveExternalPath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MachineExternalPath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().MachineExternalPath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_UserExternalPath(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().UserExternalPath());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetLogoAsRandomAccessStreamReference(winrt::Windows::Foundation::Size size, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Storage::Streams::RandomAccessStreamReference>(this->shim().GetLogoAsRandomAccessStreamReference(*reinterpret_cast<winrt::Windows::Foundation::Size const*>(&size)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall GetAppListEntries(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::ApplicationModel::Core::AppListEntry>>(this->shim().GetAppListEntries());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_IsStub(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsStub());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2362,6 +2601,18 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         left = left ^ right;
         return left;
     }
+    inline auto AppInfo::Current()
+    {
+        return impl::call_factory_cast<winrt::Windows::ApplicationModel::AppInfo(*)(IAppInfoStatics const&), AppInfo, IAppInfoStatics>([](IAppInfoStatics const& f) { return f.Current(); });
+    }
+    inline auto AppInfo::GetFromAppUserModelId(param::hstring const& appUserModelId)
+    {
+        return impl::call_factory<AppInfo, IAppInfoStatics>([&](IAppInfoStatics const& f) { return f.GetFromAppUserModelId(appUserModelId); });
+    }
+    inline auto AppInfo::GetFromAppUserModelIdForUser(winrt::Windows::System::User const& user, param::hstring const& appUserModelId)
+    {
+        return impl::call_factory<AppInfo, IAppInfoStatics>([&](IAppInfoStatics const& f) { return f.GetFromAppUserModelIdForUser(user, appUserModelId); });
+    }
     inline auto AppInstance::RecommendedInstance()
     {
         return impl::call_factory_cast<winrt::Windows::ApplicationModel::AppInstance(*)(IAppInstanceStatics const&), AppInstance, IAppInstanceStatics>([](IAppInstanceStatics const& f) { return f.RecommendedInstance(); });
@@ -2424,6 +2675,8 @@ namespace std
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::ApplicationModel::IAppDisplayInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IAppInfo2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IAppInfoStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstallerInfo> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstance> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IAppInstanceStatics> : winrt::impl::hash_base {};
@@ -2440,6 +2693,7 @@ namespace std
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage6> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackage7> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::ApplicationModel::IPackage8> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::ApplicationModel::IPackageCatalog3> : winrt::impl::hash_base {};

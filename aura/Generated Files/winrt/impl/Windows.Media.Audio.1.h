@@ -238,6 +238,27 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
         IAudioNodeWithListener(std::nullptr_t = nullptr) noexcept {}
         IAudioNodeWithListener(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAudioPlaybackConnection :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAudioPlaybackConnection>
+    {
+        IAudioPlaybackConnection(std::nullptr_t = nullptr) noexcept {}
+        IAudioPlaybackConnection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAudioPlaybackConnectionOpenResult :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAudioPlaybackConnectionOpenResult>
+    {
+        IAudioPlaybackConnectionOpenResult(std::nullptr_t = nullptr) noexcept {}
+        IAudioPlaybackConnectionOpenResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAudioPlaybackConnectionStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAudioPlaybackConnectionStatics>
+    {
+        IAudioPlaybackConnectionStatics(std::nullptr_t = nullptr) noexcept {}
+        IAudioPlaybackConnectionStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAudioStateMonitor :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAudioStateMonitor>

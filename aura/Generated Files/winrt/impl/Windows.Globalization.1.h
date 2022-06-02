@@ -139,6 +139,13 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
         ILanguage2(std::nullptr_t = nullptr) noexcept {}
         ILanguage2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILanguage3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILanguage3>
+    {
+        ILanguage3(std::nullptr_t = nullptr) noexcept {}
+        ILanguage3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ILanguageExtensionSubtags :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ILanguageExtensionSubtags>
@@ -166,6 +173,13 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     {
         ILanguageStatics2(std::nullptr_t = nullptr) noexcept {}
         ILanguageStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ILanguageStatics3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILanguageStatics3>
+    {
+        ILanguageStatics3(std::nullptr_t = nullptr) noexcept {}
+        ILanguageStatics3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) INumeralSystemIdentifiersStatics :
         winrt::Windows::Foundation::IInspectable,

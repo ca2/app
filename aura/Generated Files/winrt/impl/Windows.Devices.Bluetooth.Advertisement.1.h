@@ -62,6 +62,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Advertisement
         IBluetoothLEAdvertisementPublisher(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementPublisher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementPublisher2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementPublisher2>
+    {
+        IBluetoothLEAdvertisementPublisher2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementPublisher2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementPublisherFactory :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEAdvertisementPublisherFactory>
@@ -76,6 +83,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Advertisement
         IBluetoothLEAdvertisementPublisherStatusChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementPublisherStatusChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2>
+    {
+        IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementPublisherStatusChangedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementReceivedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEAdvertisementReceivedEventArgs>
@@ -83,12 +97,26 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Advertisement
         IBluetoothLEAdvertisementReceivedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementReceivedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementReceivedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementReceivedEventArgs2>
+    {
+        IBluetoothLEAdvertisementReceivedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementReceivedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcher :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEAdvertisementWatcher>
     {
         IBluetoothLEAdvertisementWatcher(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementWatcher(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcher2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementWatcher2>
+    {
+        IBluetoothLEAdvertisementWatcher2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementWatcher2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcherFactory :
         winrt::Windows::Foundation::IInspectable,

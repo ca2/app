@@ -98,6 +98,14 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         AllAppMods = 14,
         CurrentAppMods = 15,
     };
+    enum class KnownFoldersAccessStatus : int32_t
+    {
+        DeniedBySystem = 0,
+        NotDeclaredByApp = 1,
+        DeniedByUser = 2,
+        UserPromptRequired = 3,
+        Allowed = 4,
+    };
     enum class KnownLibraryId : int32_t
     {
         Music = 0,
@@ -165,6 +173,7 @@ WINRT_EXPORT namespace winrt::Windows::Storage
     struct IKnownFoldersStatics;
     struct IKnownFoldersStatics2;
     struct IKnownFoldersStatics3;
+    struct IKnownFoldersStatics4;
     struct IPathIOStatics;
     struct ISetVersionDeferral;
     struct ISetVersionRequest;
@@ -172,10 +181,12 @@ WINRT_EXPORT namespace winrt::Windows::Storage
     struct IStorageFile2;
     struct IStorageFilePropertiesWithAvailability;
     struct IStorageFileStatics;
+    struct IStorageFileStatics2;
     struct IStorageFolder;
     struct IStorageFolder2;
     struct IStorageFolder3;
     struct IStorageFolderStatics;
+    struct IStorageFolderStatics2;
     struct IStorageItem;
     struct IStorageItem2;
     struct IStorageItemProperties;
@@ -259,6 +270,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Storage::IKnownFoldersStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IKnownFoldersStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IKnownFoldersStatics3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Storage::IKnownFoldersStatics4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IPathIOStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::ISetVersionDeferral>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::ISetVersionRequest>{ using type = interface_category; };
@@ -266,10 +278,12 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Storage::IStorageFile2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFilePropertiesWithAvailability>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFileStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Storage::IStorageFileStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFolder>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFolder2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFolder3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageFolderStatics>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Storage::IStorageFolderStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageItem>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageItem2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Storage::IStorageItemProperties>{ using type = interface_category; };
@@ -336,6 +350,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Storage::FileAccessMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Storage::FileAttributes>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Storage::KnownFolderId>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Storage::KnownFoldersAccessStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Storage::KnownLibraryId>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Storage::NameCollisionOption>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Storage::StorageDeleteOption>{ using type = enum_category; };
@@ -382,6 +397,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::FileAccessMode> = L"Windows.Storage.FileAccessMode";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::FileAttributes> = L"Windows.Storage.FileAttributes";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::KnownFolderId> = L"Windows.Storage.KnownFolderId";
+    template <> inline constexpr auto& name_v<winrt::Windows::Storage::KnownFoldersAccessStatus> = L"Windows.Storage.KnownFoldersAccessStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::KnownLibraryId> = L"Windows.Storage.KnownLibraryId";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::NameCollisionOption> = L"Windows.Storage.NameCollisionOption";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::StorageDeleteOption> = L"Windows.Storage.StorageDeleteOption";
@@ -407,6 +423,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IKnownFoldersStatics> = L"Windows.Storage.IKnownFoldersStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IKnownFoldersStatics2> = L"Windows.Storage.IKnownFoldersStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IKnownFoldersStatics3> = L"Windows.Storage.IKnownFoldersStatics3";
+    template <> inline constexpr auto& name_v<winrt::Windows::Storage::IKnownFoldersStatics4> = L"Windows.Storage.IKnownFoldersStatics4";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IPathIOStatics> = L"Windows.Storage.IPathIOStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::ISetVersionDeferral> = L"Windows.Storage.ISetVersionDeferral";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::ISetVersionRequest> = L"Windows.Storage.ISetVersionRequest";
@@ -414,10 +431,12 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFile2> = L"Windows.Storage.IStorageFile2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFilePropertiesWithAvailability> = L"Windows.Storage.IStorageFilePropertiesWithAvailability";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFileStatics> = L"Windows.Storage.IStorageFileStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFileStatics2> = L"Windows.Storage.IStorageFileStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFolder> = L"Windows.Storage.IStorageFolder";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFolder2> = L"Windows.Storage.IStorageFolder2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFolder3> = L"Windows.Storage.IStorageFolder3";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFolderStatics> = L"Windows.Storage.IStorageFolderStatics";
+    template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageFolderStatics2> = L"Windows.Storage.IStorageFolderStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageItem> = L"Windows.Storage.IStorageItem";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageItem2> = L"Windows.Storage.IStorageItem2";
     template <> inline constexpr auto& name_v<winrt::Windows::Storage::IStorageItemProperties> = L"Windows.Storage.IStorageItemProperties";
@@ -467,6 +486,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IKnownFoldersStatics>{ 0x5A2A7520,0x4802,0x452D,{ 0x9A,0xD9,0x43,0x51,0xAD,0xA7,0xEC,0x35 } }; // 5A2A7520-4802-452D-9AD9-4351ADA7EC35
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IKnownFoldersStatics2>{ 0x194BD0CD,0xCF6E,0x4D07,{ 0x9D,0x53,0xE9,0x16,0x3A,0x25,0x36,0xE9 } }; // 194BD0CD-CF6E-4D07-9D53-E9163A2536E9
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IKnownFoldersStatics3>{ 0xC5194341,0x9742,0x4ED5,{ 0x82,0x3D,0xFC,0x14,0x01,0x14,0x87,0x64 } }; // C5194341-9742-4ED5-823D-FC1401148764
+    template <> inline constexpr guid guid_v<winrt::Windows::Storage::IKnownFoldersStatics4>{ 0x1722E6BF,0x9FF9,0x4B21,{ 0xBE,0xD5,0x90,0xEC,0xB1,0x3A,0x19,0x2E } }; // 1722E6BF-9FF9-4B21-BED5-90ECB13A192E
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IPathIOStatics>{ 0x0F2F3758,0x8EC7,0x4381,{ 0x92,0x2B,0x8F,0x6C,0x07,0xD2,0x88,0xF3 } }; // 0F2F3758-8EC7-4381-922B-8F6C07D288F3
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::ISetVersionDeferral>{ 0x033508A2,0x781A,0x437A,{ 0xB0,0x78,0x3F,0x32,0xBA,0xDC,0xFE,0x47 } }; // 033508A2-781A-437A-B078-3F32BADCFE47
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::ISetVersionRequest>{ 0xB9C76B9B,0x1056,0x4E69,{ 0x83,0x30,0x16,0x26,0x19,0x95,0x6F,0x9B } }; // B9C76B9B-1056-4E69-8330-162619956F9B
@@ -474,10 +494,12 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFile2>{ 0x954E4BCF,0x0A77,0x42FB,{ 0xB7,0x77,0xC2,0xED,0x58,0xA5,0x2E,0x44 } }; // 954E4BCF-0A77-42FB-B777-C2ED58A52E44
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFilePropertiesWithAvailability>{ 0xAFCBBE9B,0x582B,0x4133,{ 0x96,0x48,0xE4,0x4C,0xA4,0x6E,0xE4,0x91 } }; // AFCBBE9B-582B-4133-9648-E44CA46EE491
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFileStatics>{ 0x5984C710,0xDAF2,0x43C8,{ 0x8B,0xB4,0xA4,0xD3,0xEA,0xCF,0xD0,0x3F } }; // 5984C710-DAF2-43C8-8BB4-A4D3EACFD03F
+    template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFileStatics2>{ 0x5C76A781,0x212E,0x4AF9,{ 0x8F,0x04,0x74,0x0C,0xAE,0x10,0x89,0x74 } }; // 5C76A781-212E-4AF9-8F04-740CAE108974
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFolder>{ 0x72D1CB78,0xB3EF,0x4F75,{ 0xA8,0x0B,0x6F,0xD9,0xDA,0xE2,0x94,0x4B } }; // 72D1CB78-B3EF-4F75-A80B-6FD9DAE2944B
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFolder2>{ 0xE827E8B9,0x08D9,0x4A8E,{ 0xA0,0xAC,0xFE,0x5E,0xD3,0xCB,0xBB,0xD3 } }; // E827E8B9-08D9-4A8E-A0AC-FE5ED3CBBBD3
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFolder3>{ 0x9F617899,0xBDE1,0x4124,{ 0xAE,0xB3,0xB0,0x6A,0xD9,0x6F,0x98,0xD4 } }; // 9F617899-BDE1-4124-AEB3-B06AD96F98D4
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFolderStatics>{ 0x08F327FF,0x85D5,0x48B9,{ 0xAE,0xE9,0x28,0x51,0x1E,0x33,0x9F,0x9F } }; // 08F327FF-85D5-48B9-AEE9-28511E339F9F
+    template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageFolderStatics2>{ 0xB4656DC3,0x71D2,0x467D,{ 0x8B,0x29,0x37,0x1F,0x0F,0x62,0xBF,0x6F } }; // B4656DC3-71D2-467D-8B29-371F0F62BF6F
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageItem>{ 0x4207A996,0xCA2F,0x42F7,{ 0xBD,0xE8,0x8B,0x10,0x45,0x7A,0x7F,0x30 } }; // 4207A996-CA2F-42F7-BDE8-8B10457A7F30
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageItem2>{ 0x53F926D2,0x083C,0x4283,{ 0xB4,0x5B,0x81,0xC0,0x07,0x23,0x7E,0x44 } }; // 53F926D2-083C-4283-B45B-81C007237E44
     template <> inline constexpr guid guid_v<winrt::Windows::Storage::IStorageItemProperties>{ 0x86664478,0x8029,0x46FE,{ 0xA7,0x89,0x1C,0x2F,0x3E,0x2F,0xFB,0x5C } }; // 86664478-8029-46FE-A789-1C2F3E2FFB5C
@@ -717,6 +739,15 @@ namespace winrt::impl
             virtual int32_t __stdcall GetFolderForUserAsync(void*, int32_t, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Storage::IKnownFoldersStatics4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall RequestAccessAsync(int32_t, void**) noexcept = 0;
+            virtual int32_t __stdcall RequestAccessForUserAsync(void*, int32_t, void**) noexcept = 0;
+            virtual int32_t __stdcall GetFolderAsync(int32_t, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Storage::IPathIOStatics>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -799,6 +830,13 @@ namespace winrt::impl
             virtual int32_t __stdcall ReplaceWithStreamedFileFromUriAsync(void*, void*, void*, void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Storage::IStorageFileStatics2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetFileFromPathForUserAsync(void*, void*, void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Storage::IStorageFolder>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -834,6 +872,13 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall GetFolderFromPathAsync(void*, void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Storage::IStorageFolderStatics2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetFolderFromPathForUserAsync(void*, void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Storage::IStorageItem>
@@ -1375,6 +1420,17 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Storage_IKnownFoldersStatics3<D>;
     };
     template <typename D>
+    struct consume_Windows_Storage_IKnownFoldersStatics4
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>) RequestAccessAsync(winrt::Windows::Storage::KnownFolderId const& folderId) const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::KnownFoldersAccessStatus>) RequestAccessForUserAsync(winrt::Windows::System::User const& user, winrt::Windows::Storage::KnownFolderId const& folderId) const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>) GetFolderAsync(winrt::Windows::Storage::KnownFolderId const& folderId) const;
+    };
+    template <> struct consume<winrt::Windows::Storage::IKnownFoldersStatics4>
+    {
+        template <typename D> using type = consume_Windows_Storage_IKnownFoldersStatics4<D>;
+    };
+    template <typename D>
     struct consume_Windows_Storage_IPathIOStatics
     {
         WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<hstring>) ReadTextAsync(param::hstring const& absolutePath) const;
@@ -1471,6 +1527,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Storage_IStorageFileStatics<D>;
     };
     template <typename D>
+    struct consume_Windows_Storage_IStorageFileStatics2
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>) GetFileFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path) const;
+    };
+    template <> struct consume<winrt::Windows::Storage::IStorageFileStatics2>
+    {
+        template <typename D> using type = consume_Windows_Storage_IStorageFileStatics2<D>;
+    };
+    template <typename D>
     struct consume_Windows_Storage_IStorageFolder
     {
         WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFile>) CreateFileAsync(param::hstring const& desiredName) const;
@@ -1514,6 +1579,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Storage::IStorageFolderStatics>
     {
         template <typename D> using type = consume_Windows_Storage_IStorageFolderStatics<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Storage_IStorageFolderStatics2
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Storage::StorageFolder>) GetFolderFromPathForUserAsync(winrt::Windows::System::User const& user, param::hstring const& path) const;
+    };
+    template <> struct consume<winrt::Windows::Storage::IStorageFolderStatics2>
+    {
+        template <typename D> using type = consume_Windows_Storage_IStorageFolderStatics2<D>;
     };
     template <typename D>
     struct consume_Windows_Storage_IStorageItem

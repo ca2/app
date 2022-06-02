@@ -226,6 +226,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::BackgroundTransfer
         IDownloadOperation4(std::nullptr_t = nullptr) noexcept {}
         IDownloadOperation4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IDownloadOperation5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDownloadOperation5>
+    {
+        IDownloadOperation5(std::nullptr_t = nullptr) noexcept {}
+        IDownloadOperation5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IResponseInformation :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IResponseInformation>
@@ -261,6 +268,13 @@ WINRT_EXPORT namespace winrt::Windows::Networking::BackgroundTransfer
     {
         IUploadOperation3(std::nullptr_t = nullptr) noexcept {}
         IUploadOperation3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IUploadOperation4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUploadOperation4>
+    {
+        IUploadOperation4(std::nullptr_t = nullptr) noexcept {}
+        IUploadOperation4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

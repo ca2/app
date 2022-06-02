@@ -13,6 +13,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Display
         IDisplayMonitor(std::nullptr_t = nullptr) noexcept {}
         IDisplayMonitor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IDisplayMonitor2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDisplayMonitor2>
+    {
+        IDisplayMonitor2(std::nullptr_t = nullptr) noexcept {}
+        IDisplayMonitor2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDisplayMonitorStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDisplayMonitorStatics>

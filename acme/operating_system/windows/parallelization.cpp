@@ -87,13 +87,12 @@ CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
 }
 
 
-
-
-
-
 void system::windowing_post(const ::procedure & procedure)
 {
 
    main_asynchronous(procedure);
 
 }
+
+
+

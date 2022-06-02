@@ -34,6 +34,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         IAccelerometer4(std::nullptr_t = nullptr) noexcept {}
         IAccelerometer4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IAccelerometer5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAccelerometer5>
+    {
+        IAccelerometer5(std::nullptr_t = nullptr) noexcept {}
+        IAccelerometer5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IAccelerometerDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAccelerometerDataThreshold>
+    {
+        IAccelerometerDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        IAccelerometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IAccelerometerDeviceId :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IAccelerometerDeviceId>
@@ -188,6 +202,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         IBarometer2(std::nullptr_t = nullptr) noexcept {}
         IBarometer2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBarometer3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBarometer3>
+    {
+        IBarometer3(std::nullptr_t = nullptr) noexcept {}
+        IBarometer3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IBarometerDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBarometerDataThreshold>
+    {
+        IBarometerDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        IBarometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBarometerReading :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBarometerReading>
@@ -243,6 +271,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     {
         ICompass3(std::nullptr_t = nullptr) noexcept {}
         ICompass3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICompass4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICompass4>
+    {
+        ICompass4(std::nullptr_t = nullptr) noexcept {}
+        ICompass4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ICompassDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICompassDataThreshold>
+    {
+        ICompassDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        ICompassDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) ICompassDeviceId :
         winrt::Windows::Foundation::IInspectable,
@@ -313,6 +355,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     {
         IGyrometer3(std::nullptr_t = nullptr) noexcept {}
         IGyrometer3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGyrometer4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGyrometer4>
+    {
+        IGyrometer4(std::nullptr_t = nullptr) noexcept {}
+        IGyrometer4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IGyrometerDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGyrometerDataThreshold>
+    {
+        IGyrometerDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        IGyrometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IGyrometerDeviceId :
         winrt::Windows::Foundation::IInspectable,
@@ -405,6 +461,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         IInclinometer3(std::nullptr_t = nullptr) noexcept {}
         IInclinometer3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IInclinometer4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IInclinometer4>
+    {
+        IInclinometer4(std::nullptr_t = nullptr) noexcept {}
+        IInclinometer4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IInclinometerDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IInclinometerDataThreshold>
+    {
+        IInclinometerDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        IInclinometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IInclinometerDeviceId :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IInclinometerDeviceId>
@@ -482,6 +552,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         ILightSensor2(std::nullptr_t = nullptr) noexcept {}
         ILightSensor2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILightSensor3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILightSensor3>
+    {
+        ILightSensor3(std::nullptr_t = nullptr) noexcept {}
+        ILightSensor3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ILightSensorDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILightSensorDataThreshold>
+    {
+        ILightSensorDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        ILightSensorDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ILightSensorDeviceId :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ILightSensorDeviceId>
@@ -544,6 +628,20 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
     {
         IMagnetometer3(std::nullptr_t = nullptr) noexcept {}
         IMagnetometer3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IMagnetometer4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMagnetometer4>
+    {
+        IMagnetometer4(std::nullptr_t = nullptr) noexcept {}
+        IMagnetometer4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IMagnetometerDataThreshold :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMagnetometerDataThreshold>
+    {
+        IMagnetometerDataThreshold(std::nullptr_t = nullptr) noexcept {}
+        IMagnetometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IMagnetometerDeviceId :
         winrt::Windows::Foundation::IInspectable,

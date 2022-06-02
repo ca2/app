@@ -10,6 +10,7 @@ WINRT_EXPORT namespace winrt::Windows::Foundation::Collections
 {
     template <typename T> struct __declspec(empty_bases) IIterable;
     template <typename T> struct __declspec(empty_bases) IVectorView;
+    template <typename T> struct __declspec(empty_bases) IVector;
 }
 WINRT_EXPORT namespace winrt::Windows::System
 {
@@ -53,10 +54,12 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
     struct IGeographicRegionStatics;
     struct ILanguage;
     struct ILanguage2;
+    struct ILanguage3;
     struct ILanguageExtensionSubtags;
     struct ILanguageFactory;
     struct ILanguageStatics;
     struct ILanguageStatics2;
+    struct ILanguageStatics3;
     struct INumeralSystemIdentifiersStatics;
     struct INumeralSystemIdentifiersStatics2;
     struct ITimeZoneOnCalendar;
@@ -91,10 +94,12 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Globalization::IGeographicRegionStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguage>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguage2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Globalization::ILanguage3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguageExtensionSubtags>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguageFactory>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguageStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ILanguageStatics2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Globalization::ILanguageStatics3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Globalization::ITimeZoneOnCalendar>{ using type = interface_category; };
@@ -139,10 +144,12 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::IGeographicRegionStatics> = L"Windows.Globalization.IGeographicRegionStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage> = L"Windows.Globalization.ILanguage";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage2> = L"Windows.Globalization.ILanguage2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguage3> = L"Windows.Globalization.ILanguage3";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguageExtensionSubtags> = L"Windows.Globalization.ILanguageExtensionSubtags";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguageFactory> = L"Windows.Globalization.ILanguageFactory";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguageStatics> = L"Windows.Globalization.ILanguageStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguageStatics2> = L"Windows.Globalization.ILanguageStatics2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ILanguageStatics3> = L"Windows.Globalization.ILanguageStatics3";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics> = L"Windows.Globalization.INumeralSystemIdentifiersStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics2> = L"Windows.Globalization.INumeralSystemIdentifiersStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Globalization::ITimeZoneOnCalendar> = L"Windows.Globalization.ITimeZoneOnCalendar";
@@ -165,10 +172,12 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::IGeographicRegionStatics>{ 0x29E28974,0x7AD9,0x4EF4,{ 0x87,0x99,0xB3,0xB4,0x4F,0xAD,0xEC,0x08 } }; // 29E28974-7AD9-4EF4-8799-B3B44FADEC08
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage>{ 0xEA79A752,0xF7C2,0x4265,{ 0xB1,0xBD,0xC4,0xDE,0xC4,0xE4,0xF0,0x80 } }; // EA79A752-F7C2-4265-B1BD-C4DEC4E4F080
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage2>{ 0x6A47E5B5,0xD94D,0x4886,{ 0xA4,0x04,0xA5,0xA5,0xB9,0xD5,0xB4,0x94 } }; // 6A47E5B5-D94D-4886-A404-A5A5B9D5B494
+    template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguage3>{ 0xC6AF3D10,0x641A,0x5BA4,{ 0xBB,0x43,0x5E,0x12,0xAE,0xD7,0x59,0x54 } }; // C6AF3D10-641A-5BA4-BB43-5E12AED75954
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguageExtensionSubtags>{ 0x7D7DAF45,0x368D,0x4364,{ 0x85,0x2B,0xDE,0xC9,0x27,0x03,0x7B,0x85 } }; // 7D7DAF45-368D-4364-852B-DEC927037B85
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguageFactory>{ 0x9B0252AC,0x0C27,0x44F8,{ 0xB7,0x92,0x97,0x93,0xFB,0x66,0xC6,0x3E } }; // 9B0252AC-0C27-44F8-B792-9793FB66C63E
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguageStatics>{ 0xB23CD557,0x0865,0x46D4,{ 0x89,0xB8,0xD5,0x9B,0xE8,0x99,0x0F,0x0D } }; // B23CD557-0865-46D4-89B8-D59BE8990F0D
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguageStatics2>{ 0x30199F6E,0x914B,0x4B2A,{ 0x9D,0x6E,0xE3,0xB0,0xE2,0x7D,0xBE,0x4F } }; // 30199F6E-914B-4B2A-9D6E-E3B0E27DBE4F
+    template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ILanguageStatics3>{ 0xD15ECB5A,0x71DE,0x5752,{ 0x95,0x42,0xFA,0xC5,0xB4,0xF2,0x72,0x61 } }; // D15ECB5A-71DE-5752-9542-FAC5B4F27261
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics>{ 0xA5C662C3,0x68C9,0x4D3D,{ 0xB7,0x65,0x97,0x20,0x29,0xE2,0x1D,0xEC } }; // A5C662C3-68C9-4D3D-B765-972029E21DEC
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics2>{ 0x7F003228,0x9DDB,0x4A34,{ 0x91,0x04,0x02,0x60,0xC0,0x91,0xA7,0xC7 } }; // 7F003228-9DDB-4A34-9104-0260C091A7C7
     template <> inline constexpr guid guid_v<winrt::Windows::Globalization::ITimeZoneOnCalendar>{ 0xBB3C25E5,0x46CF,0x4317,{ 0xA3,0xF5,0x02,0x62,0x1A,0xD5,0x44,0x78 } }; // BB3C25E5-46CF-4317-A3F5-02621AD54478
@@ -592,6 +601,13 @@ namespace winrt::impl
             virtual int32_t __stdcall get_LayoutDirection(int32_t*) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Globalization::ILanguage3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_AbbreviatedName(void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Globalization::ILanguageExtensionSubtags>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -619,6 +635,13 @@ namespace winrt::impl
         struct __declspec(novtable) type : inspectable_abi
         {
             virtual int32_t __stdcall TrySetInputMethodLanguageTag(void*, bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Globalization::ILanguageStatics3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetMuiCompatibleLanguageListFromLanguageTags(void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Globalization::INumeralSystemIdentifiersStatics>
@@ -1146,6 +1169,15 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Globalization_ILanguage2<D>;
     };
     template <typename D>
+    struct consume_Windows_Globalization_ILanguage3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) AbbreviatedName() const;
+    };
+    template <> struct consume<winrt::Windows::Globalization::ILanguage3>
+    {
+        template <typename D> using type = consume_Windows_Globalization_ILanguage3<D>;
+    };
+    template <typename D>
     struct consume_Windows_Globalization_ILanguageExtensionSubtags
     {
         WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<hstring>) GetExtensionSubtags(param::hstring const& singleton) const;
@@ -1181,6 +1213,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Globalization::ILanguageStatics2>
     {
         template <typename D> using type = consume_Windows_Globalization_ILanguageStatics2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Globalization_ILanguageStatics3
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVector<hstring>) GetMuiCompatibleLanguageListFromLanguageTags(param::iterable<hstring> const& languageTags) const;
+    };
+    template <> struct consume<winrt::Windows::Globalization::ILanguageStatics3>
+    {
+        template <typename D> using type = consume_Windows_Globalization_ILanguageStatics3<D>;
     };
     template <typename D>
     struct consume_Windows_Globalization_INumeralSystemIdentifiersStatics

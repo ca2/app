@@ -295,6 +295,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Interactions::IInteractionTracker4)->get_IsInertiaFromImpulse(&value));
         return value;
     }
+    template <typename D> WINRT_IMPL_AUTO(int32_t) consume_Windows_UI_Composition_Interactions_IInteractionTracker5<D>::TryUpdatePosition(winrt::Windows::Foundation::Numerics::float3 const& value, winrt::Windows::UI::Composition::Interactions::InteractionTrackerClampingOption const& option, winrt::Windows::UI::Composition::Interactions::InteractionTrackerPositionUpdateOption const& posUpdateOption) const
+    {
+        int32_t result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Interactions::IInteractionTracker5)->TryUpdatePositionWithOption(impl::bind_in(value), static_cast<int32_t>(option), static_cast<int32_t>(posUpdateOption), &result));
+        return result;
+    }
     template <typename D> WINRT_IMPL_AUTO(int32_t) consume_Windows_UI_Composition_Interactions_IInteractionTrackerCustomAnimationStateEnteredArgs<D>::RequestId() const
     {
         int32_t value{};
@@ -1170,6 +1176,19 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<bool>(this->shim().IsInertiaFromImpulse());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::Composition::Interactions::IInteractionTracker5> : produce_base<D, winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>
+    {
+        int32_t __stdcall TryUpdatePositionWithOption(winrt::Windows::Foundation::Numerics::float3 value, int32_t option, int32_t posUpdateOption, int32_t* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<int32_t>(this->shim().TryUpdatePosition(*reinterpret_cast<winrt::Windows::Foundation::Numerics::float3 const*>(&value), *reinterpret_cast<winrt::Windows::UI::Composition::Interactions::InteractionTrackerClampingOption const*>(&option), *reinterpret_cast<winrt::Windows::UI::Composition::Interactions::InteractionTrackerPositionUpdateOption const*>(&posUpdateOption)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2063,6 +2082,7 @@ namespace std
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTracker2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTracker3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTracker4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs> : winrt::impl::hash_base {};

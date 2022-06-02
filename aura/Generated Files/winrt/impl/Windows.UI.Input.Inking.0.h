@@ -120,6 +120,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input::Inking
     struct IInkInputProcessingConfiguration;
     struct IInkManager;
     struct IInkModelerAttributes;
+    struct IInkModelerAttributes2;
     struct IInkPoint;
     struct IInkPoint2;
     struct IInkPointFactory;
@@ -190,6 +191,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkInputProcessingConfiguration>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkManager>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkModelerAttributes>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkPoint>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkPoint2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Input::Inking::IInkPointFactory>{ using type = interface_category; };
@@ -304,6 +306,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkInputProcessingConfiguration> = L"Windows.UI.Input.Inking.IInkInputProcessingConfiguration";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkManager> = L"Windows.UI.Input.Inking.IInkManager";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkModelerAttributes> = L"Windows.UI.Input.Inking.IInkModelerAttributes";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2> = L"Windows.UI.Input.Inking.IInkModelerAttributes2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkPoint> = L"Windows.UI.Input.Inking.IInkPoint";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkPoint2> = L"Windows.UI.Input.Inking.IInkPoint2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Input::Inking::IInkPointFactory> = L"Windows.UI.Input.Inking.IInkPointFactory";
@@ -348,6 +351,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkInputProcessingConfiguration>{ 0x2778D85E,0x33CA,0x4B06,{ 0xA6,0xD3,0xAC,0x39,0x45,0x11,0x6D,0x37 } }; // 2778D85E-33CA-4B06-A6D3-AC3945116D37
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkManager>{ 0x4744737D,0x671B,0x4163,{ 0x9C,0x95,0x4E,0x8D,0x7A,0x03,0x5F,0xE1 } }; // 4744737D-671B-4163-9C95-4E8D7A035FE1
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkModelerAttributes>{ 0xBAD31F27,0x0CD9,0x4BFD,{ 0xB6,0xF3,0x9E,0x03,0xBA,0x8D,0x74,0x54 } }; // BAD31F27-0CD9-4BFD-B6F3-9E03BA8D7454
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>{ 0x86D1D09A,0x4EF8,0x5E25,{ 0xB7,0xBC,0xB6,0x54,0x24,0xF1,0x6B,0xB3 } }; // 86D1D09A-4EF8-5E25-B7BC-B65424F16BB3
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkPoint>{ 0x9F87272B,0x858C,0x46A5,{ 0x9B,0x41,0xD1,0x95,0x97,0x04,0x59,0xFD } }; // 9F87272B-858C-46A5-9B41-D195970459FD
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkPoint2>{ 0xFBA9C3F7,0xAE56,0x4D5C,{ 0xBD,0x2F,0x0A,0xC4,0x5F,0x5E,0x4A,0xF9 } }; // FBA9C3F7-AE56-4D5C-BD2F-0AC45F5E4AF9
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Input::Inking::IInkPointFactory>{ 0x29E5D51C,0xC98F,0x405D,{ 0x9F,0x3B,0xE5,0x3E,0x31,0x06,0x8D,0x4D } }; // 29E5D51C-C98F-405D-9F3B-E53E31068D4D
@@ -509,6 +513,14 @@ namespace winrt::impl
             virtual int32_t __stdcall put_PredictionTime(int64_t) noexcept = 0;
             virtual int32_t __stdcall get_ScalingFactor(float*) noexcept = 0;
             virtual int32_t __stdcall put_ScalingFactor(float) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_UseVelocityBasedPressure(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_UseVelocityBasedPressure(bool) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Input::Inking::IInkPoint>
@@ -987,6 +999,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Input::Inking::IInkModelerAttributes>
     {
         template <typename D> using type = consume_Windows_UI_Input_Inking_IInkModelerAttributes<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Input_Inking_IInkModelerAttributes2
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) UseVelocityBasedPressure() const;
+        WINRT_IMPL_AUTO(void) UseVelocityBasedPressure(bool value) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Input::Inking::IInkModelerAttributes2>
+    {
+        template <typename D> using type = consume_Windows_UI_Input_Inking_IInkModelerAttributes2<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Input_Inking_IInkPoint

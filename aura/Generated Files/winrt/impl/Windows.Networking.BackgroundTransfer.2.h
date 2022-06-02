@@ -123,7 +123,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::BackgroundTransfer
         [[nodiscard]] static auto LastSuccessfulPrefetchTime();
     };
     struct __declspec(empty_bases) DownloadOperation : winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation,
-        impl::require<DownloadOperation, winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferOperationPriority, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4>
+        impl::require<DownloadOperation, winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferOperationPriority, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation2, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation3, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation4, winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation5>
     {
         DownloadOperation(std::nullptr_t) noexcept {}
         DownloadOperation(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::BackgroundTransfer::IDownloadOperation(ptr, take_ownership_from_abi) {}
@@ -141,7 +141,7 @@ WINRT_EXPORT namespace winrt::Windows::Networking::BackgroundTransfer
         UnconstrainedTransferRequestResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::BackgroundTransfer::IUnconstrainedTransferRequestResult(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) UploadOperation : winrt::Windows::Networking::BackgroundTransfer::IUploadOperation,
-        impl::require<UploadOperation, winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferOperationPriority, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3>
+        impl::require<UploadOperation, winrt::Windows::Networking::BackgroundTransfer::IBackgroundTransferOperationPriority, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation2, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation3, winrt::Windows::Networking::BackgroundTransfer::IUploadOperation4>
     {
         UploadOperation(std::nullptr_t) noexcept {}
         UploadOperation(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Networking::BackgroundTransfer::IUploadOperation(ptr, take_ownership_from_abi) {}

@@ -27,12 +27,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         ICrossSlidingEventArgs(std::nullptr_t = nullptr) noexcept {}
         ICrossSlidingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ICrossSlidingEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ICrossSlidingEventArgs2>
+    {
+        ICrossSlidingEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        ICrossSlidingEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDraggingEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDraggingEventArgs>
     {
         IDraggingEventArgs(std::nullptr_t = nullptr) noexcept {}
         IDraggingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDraggingEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDraggingEventArgs2>
+    {
+        IDraggingEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IDraggingEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IEdgeGesture :
         winrt::Windows::Foundation::IInspectable,
@@ -62,12 +76,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         IGestureRecognizer(std::nullptr_t = nullptr) noexcept {}
         IGestureRecognizer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IGestureRecognizer2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IGestureRecognizer2>
+    {
+        IGestureRecognizer2(std::nullptr_t = nullptr) noexcept {}
+        IGestureRecognizer2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IHoldingEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IHoldingEventArgs>
     {
         IHoldingEventArgs(std::nullptr_t = nullptr) noexcept {}
         IHoldingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHoldingEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHoldingEventArgs2>
+    {
+        IHoldingEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IHoldingEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IInputActivationListener :
         winrt::Windows::Foundation::IInspectable,
@@ -104,12 +132,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         IManipulationCompletedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IManipulationCompletedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IManipulationCompletedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IManipulationCompletedEventArgs2>
+    {
+        IManipulationCompletedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IManipulationCompletedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IManipulationInertiaStartingEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IManipulationInertiaStartingEventArgs>
     {
         IManipulationInertiaStartingEventArgs(std::nullptr_t = nullptr) noexcept {}
         IManipulationInertiaStartingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IManipulationInertiaStartingEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IManipulationInertiaStartingEventArgs2>
+    {
+        IManipulationInertiaStartingEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IManipulationInertiaStartingEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IManipulationStartedEventArgs :
         winrt::Windows::Foundation::IInspectable,
@@ -118,12 +160,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         IManipulationStartedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IManipulationStartedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IManipulationStartedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IManipulationStartedEventArgs2>
+    {
+        IManipulationStartedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IManipulationStartedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IManipulationUpdatedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IManipulationUpdatedEventArgs>
     {
         IManipulationUpdatedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IManipulationUpdatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IManipulationUpdatedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IManipulationUpdatedEventArgs2>
+    {
+        IManipulationUpdatedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IManipulationUpdatedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IMouseWheelParameters :
         winrt::Windows::Foundation::IInspectable,
@@ -370,12 +426,61 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         IRightTappedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IRightTappedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IRightTappedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IRightTappedEventArgs2>
+    {
+        IRightTappedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IRightTappedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISystemButtonEventController :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISystemButtonEventController>
+    {
+        ISystemButtonEventController(std::nullptr_t = nullptr) noexcept {}
+        ISystemButtonEventController(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISystemButtonEventControllerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISystemButtonEventControllerStatics>
+    {
+        ISystemButtonEventControllerStatics(std::nullptr_t = nullptr) noexcept {}
+        ISystemButtonEventControllerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISystemFunctionButtonEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISystemFunctionButtonEventArgs>
+    {
+        ISystemFunctionButtonEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISystemFunctionButtonEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISystemFunctionLockChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISystemFunctionLockChangedEventArgs>
+    {
+        ISystemFunctionLockChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISystemFunctionLockChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ISystemFunctionLockIndicatorChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ISystemFunctionLockIndicatorChangedEventArgs>
+    {
+        ISystemFunctionLockIndicatorChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        ISystemFunctionLockIndicatorChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ITappedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ITappedEventArgs>
     {
         ITappedEventArgs(std::nullptr_t = nullptr) noexcept {}
         ITappedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ITappedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ITappedEventArgs2>
+    {
+        ITappedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        ITappedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

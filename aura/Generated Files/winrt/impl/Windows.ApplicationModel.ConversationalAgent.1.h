@@ -6,6 +6,34 @@
 #include "winrt/impl/Windows.ApplicationModel.ConversationalAgent.0.h"
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel::ConversationalAgent
 {
+    struct __declspec(empty_bases) IActivationSignalDetectionConfiguration :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IActivationSignalDetectionConfiguration>
+    {
+        IActivationSignalDetectionConfiguration(std::nullptr_t = nullptr) noexcept {}
+        IActivationSignalDetectionConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IActivationSignalDetector :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IActivationSignalDetector>
+    {
+        IActivationSignalDetector(std::nullptr_t = nullptr) noexcept {}
+        IActivationSignalDetector(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IConversationalAgentDetectorManager :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IConversationalAgentDetectorManager>
+    {
+        IConversationalAgentDetectorManager(std::nullptr_t = nullptr) noexcept {}
+        IConversationalAgentDetectorManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IConversationalAgentDetectorManagerStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IConversationalAgentDetectorManagerStatics>
+    {
+        IConversationalAgentDetectorManagerStatics(std::nullptr_t = nullptr) noexcept {}
+        IConversationalAgentDetectorManagerStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IConversationalAgentSession :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IConversationalAgentSession>
@@ -47,6 +75,20 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::ConversationalAgent
     {
         IConversationalAgentSystemStateChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IConversationalAgentSystemStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDetectionConfigurationAvailabilityChangedEventArgs :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDetectionConfigurationAvailabilityChangedEventArgs>
+    {
+        IDetectionConfigurationAvailabilityChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
+        IDetectionConfigurationAvailabilityChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IDetectionConfigurationAvailabilityInfo :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IDetectionConfigurationAvailabilityInfo>
+    {
+        IDetectionConfigurationAvailabilityInfo(std::nullptr_t = nullptr) noexcept {}
+        IDetectionConfigurationAvailabilityInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

@@ -59,6 +59,11 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
         Auto = 0,
         Disabled = 1,
     };
+    enum class InteractionTrackerPositionUpdateOption : int32_t
+    {
+        Default = 0,
+        AllowActiveCustomScaleAnimation = 1,
+    };
     enum class VisualInteractionSourceRedirectionMode : int32_t
     {
         Off = 0,
@@ -75,6 +80,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     struct IInteractionTracker2;
     struct IInteractionTracker3;
     struct IInteractionTracker4;
+    struct IInteractionTracker5;
     struct IInteractionTrackerCustomAnimationStateEnteredArgs;
     struct IInteractionTrackerCustomAnimationStateEnteredArgs2;
     struct IInteractionTrackerIdleStateEnteredArgs;
@@ -136,6 +142,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTracker2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTracker3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTracker4>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs>{ using type = interface_category; };
@@ -190,6 +197,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Composition::Interactions::InteractionSourceMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::InteractionSourceRedirectionMode>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::InteractionTrackerClampingOption>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::UI::Composition::Interactions::InteractionTrackerPositionUpdateOption>{ using type = enum_category; };
     template <> struct category<winrt::Windows::UI::Composition::Interactions::VisualInteractionSourceRedirectionMode>{ using type = enum_category; };
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::CompositionConditionalValue> = L"Windows.UI.Composition.Interactions.CompositionConditionalValue";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::CompositionInteractionSourceCollection> = L"Windows.UI.Composition.Interactions.CompositionInteractionSourceCollection";
@@ -213,6 +221,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::InteractionSourceMode> = L"Windows.UI.Composition.Interactions.InteractionSourceMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::InteractionSourceRedirectionMode> = L"Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::InteractionTrackerClampingOption> = L"Windows.UI.Composition.Interactions.InteractionTrackerClampingOption";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::InteractionTrackerPositionUpdateOption> = L"Windows.UI.Composition.Interactions.InteractionTrackerPositionUpdateOption";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::VisualInteractionSourceRedirectionMode> = L"Windows.UI.Composition.Interactions.VisualInteractionSourceRedirectionMode";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::ICompositionConditionalValue> = L"Windows.UI.Composition.Interactions.ICompositionConditionalValue";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::ICompositionConditionalValueStatics> = L"Windows.UI.Composition.Interactions.ICompositionConditionalValueStatics";
@@ -223,6 +232,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker2> = L"Windows.UI.Composition.Interactions.IInteractionTracker2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker3> = L"Windows.UI.Composition.Interactions.IInteractionTracker3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker4> = L"Windows.UI.Composition.Interactions.IInteractionTracker4";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5> = L"Windows.UI.Composition.Interactions.IInteractionTracker5";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs> = L"Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs2> = L"Windows.UI.Composition.Interactions.IInteractionTrackerCustomAnimationStateEnteredArgs2";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs> = L"Windows.UI.Composition.Interactions.IInteractionTrackerIdleStateEnteredArgs";
@@ -264,6 +274,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker2>{ 0x25769A3E,0xCE6D,0x448C,{ 0x83,0x86,0x92,0x62,0x0D,0x24,0x07,0x56 } }; // 25769A3E-CE6D-448C-8386-92620D240756
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker3>{ 0xE6C5D7A2,0x5C4B,0x42C6,{ 0x84,0xB7,0xF6,0x94,0x41,0xB1,0x80,0x91 } }; // E6C5D7A2-5C4B-42C6-84B7-F69441B18091
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker4>{ 0xEBD222BC,0x04AF,0x4AC7,{ 0x84,0x7D,0x06,0xEA,0x36,0xE8,0x0A,0x16 } }; // EBD222BC-04AF-4AC7-847D-06EA36E80A16
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>{ 0xD3EF5DA2,0xA254,0x40E4,{ 0x88,0xD5,0x44,0xE4,0xE1,0x6B,0x58,0x09 } }; // D3EF5DA2-A254-40E4-88D5-44E4E16B5809
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs>{ 0x8D1C8CF1,0xD7B0,0x434C,{ 0xA5,0xD2,0x2D,0x76,0x11,0x86,0x48,0x34 } }; // 8D1C8CF1-D7B0-434C-A5D2-2D7611864834
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs2>{ 0x47D579B7,0x0985,0x5E99,{ 0xB0,0x24,0x2F,0x32,0xC3,0x80,0xC1,0xA4 } }; // 47D579B7-0985-5E99-B024-2F32C380C1A4
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerIdleStateEnteredArgs>{ 0x50012FAA,0x1510,0x4142,{ 0xA1,0xA5,0x01,0x9B,0x09,0xF8,0x85,0x7B } }; // 50012FAA-1510-4142-A1A5-019B09F8857B
@@ -419,6 +430,13 @@ namespace winrt::impl
             virtual int32_t __stdcall TryUpdatePositionWithOption(winrt::Windows::Foundation::Numerics::float3, int32_t, int32_t*) noexcept = 0;
             virtual int32_t __stdcall TryUpdatePositionByWithOption(winrt::Windows::Foundation::Numerics::float3, int32_t, int32_t*) noexcept = 0;
             virtual int32_t __stdcall get_IsInertiaFromImpulse(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall TryUpdatePositionWithOption(winrt::Windows::Foundation::Numerics::float3, int32_t, int32_t, int32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Composition::Interactions::IInteractionTrackerCustomAnimationStateEnteredArgs>
@@ -821,6 +839,15 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Composition::Interactions::IInteractionTracker4>
     {
         template <typename D> using type = consume_Windows_UI_Composition_Interactions_IInteractionTracker4<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Composition_Interactions_IInteractionTracker5
+    {
+        WINRT_IMPL_AUTO(int32_t) TryUpdatePosition(winrt::Windows::Foundation::Numerics::float3 const& value, winrt::Windows::UI::Composition::Interactions::InteractionTrackerClampingOption const& option, winrt::Windows::UI::Composition::Interactions::InteractionTrackerPositionUpdateOption const& posUpdateOption) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>
+    {
+        template <typename D> using type = consume_Windows_UI_Composition_Interactions_IInteractionTracker5<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Composition_Interactions_IInteractionTrackerCustomAnimationStateEnteredArgs

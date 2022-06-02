@@ -29,8 +29,8 @@ public:
 
 
    //virtual void handle(::topic * ptopic, ::context * pcontext) override;
-   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+   DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+   DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
    form_document * get_document();

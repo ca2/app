@@ -3,6 +3,7 @@
 #pragma once
 #ifndef WINRT_Windows_ApplicationModel_2_H
 #define WINRT_Windows_ApplicationModel_2_H
+#include "winrt/impl/Windows.System.1.h"
 #include "winrt/impl/Windows.ApplicationModel.1.h"
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel
 {
@@ -38,10 +39,14 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         AppDisplayInfo(std::nullptr_t) noexcept {}
         AppDisplayInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IAppDisplayInfo(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) AppInfo : winrt::Windows::ApplicationModel::IAppInfo
+    struct __declspec(empty_bases) AppInfo : winrt::Windows::ApplicationModel::IAppInfo,
+        impl::require<AppInfo, winrt::Windows::ApplicationModel::IAppInfo2>
     {
         AppInfo(std::nullptr_t) noexcept {}
         AppInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IAppInfo(ptr, take_ownership_from_abi) {}
+        [[nodiscard]] static auto Current();
+        static auto GetFromAppUserModelId(param::hstring const& appUserModelId);
+        static auto GetFromAppUserModelIdForUser(winrt::Windows::System::User const& user, param::hstring const& appUserModelId);
     };
     struct __declspec(empty_bases) AppInstallerInfo : winrt::Windows::ApplicationModel::IAppInstallerInfo
     {
@@ -85,7 +90,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel
         static auto TryUnlockFeature(param::hstring const& featureId, param::hstring const& token, param::hstring const& attestation);
     };
     struct __declspec(empty_bases) Package : winrt::Windows::ApplicationModel::IPackage,
-        impl::require<Package, winrt::Windows::ApplicationModel::IPackage2, winrt::Windows::ApplicationModel::IPackage3, winrt::Windows::ApplicationModel::IPackageWithMetadata, winrt::Windows::ApplicationModel::IPackage4, winrt::Windows::ApplicationModel::IPackage5, winrt::Windows::ApplicationModel::IPackage6, winrt::Windows::ApplicationModel::IPackage7>
+        impl::require<Package, winrt::Windows::ApplicationModel::IPackage2, winrt::Windows::ApplicationModel::IPackage3, winrt::Windows::ApplicationModel::IPackageWithMetadata, winrt::Windows::ApplicationModel::IPackage4, winrt::Windows::ApplicationModel::IPackage5, winrt::Windows::ApplicationModel::IPackage6, winrt::Windows::ApplicationModel::IPackage7, winrt::Windows::ApplicationModel::IPackage8>
     {
         Package(std::nullptr_t) noexcept {}
         Package(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::IPackage(ptr, take_ownership_from_abi) {}

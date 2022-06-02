@@ -24,9 +24,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_UI_Composition_Core_ICompositorController<D>::EnsurePreviousCommitCompletedAsync() const
     {
-        void* action{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Core::ICompositorController)->EnsurePreviousCommitCompletedAsync(&action));
-        return winrt::Windows::Foundation::IAsyncAction{ action, take_ownership_from_abi };
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Core::ICompositorController)->EnsurePreviousCommitCompletedAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_Composition_Core_ICompositorController<D>::CommitNeeded(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::Composition::Core::CompositorController, winrt::Windows::Foundation::IInspectable> const& handler) const
     {
@@ -61,11 +61,11 @@ namespace winrt::impl
             return 0;
         }
         catch (...) { return to_hresult(); }
-        int32_t __stdcall EnsurePreviousCommitCompletedAsync(void** action) noexcept final try
+        int32_t __stdcall EnsurePreviousCommitCompletedAsync(void** operation) noexcept final try
         {
-            clear_abi(action);
+            clear_abi(operation);
             typename D::abi_guard guard(this->shim());
-            *action = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().EnsurePreviousCommitCompletedAsync());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().EnsurePreviousCommitCompletedAsync());
             return 0;
         }
         catch (...) { return to_hresult(); }

@@ -111,16 +111,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement
         static auto GetDeviceSelector();
     };
     struct __declspec(empty_bases) UISettings : winrt::Windows::UI::ViewManagement::IUISettings,
-        impl::require<UISettings, winrt::Windows::UI::ViewManagement::IUISettings2, winrt::Windows::UI::ViewManagement::IUISettings3, winrt::Windows::UI::ViewManagement::IUISettings4, winrt::Windows::UI::ViewManagement::IUISettings5>
+        impl::require<UISettings, winrt::Windows::UI::ViewManagement::IUISettings2, winrt::Windows::UI::ViewManagement::IUISettings3, winrt::Windows::UI::ViewManagement::IUISettings4, winrt::Windows::UI::ViewManagement::IUISettings5, winrt::Windows::UI::ViewManagement::IUISettings6>
     {
         UISettings(std::nullptr_t) noexcept {}
         UISettings(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::IUISettings(ptr, take_ownership_from_abi) {}
         UISettings();
     };
+    struct __declspec(empty_bases) UISettingsAnimationsEnabledChangedEventArgs : winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs
+    {
+        UISettingsAnimationsEnabledChangedEventArgs(std::nullptr_t) noexcept {}
+        UISettingsAnimationsEnabledChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::IUISettingsAnimationsEnabledChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) UISettingsAutoHideScrollBarsChangedEventArgs : winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs
     {
         UISettingsAutoHideScrollBarsChangedEventArgs(std::nullptr_t) noexcept {}
         UISettingsAutoHideScrollBarsChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::IUISettingsAutoHideScrollBarsChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) UISettingsMessageDurationChangedEventArgs : winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs
+    {
+        UISettingsMessageDurationChangedEventArgs(std::nullptr_t) noexcept {}
+        UISettingsMessageDurationChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::ViewManagement::IUISettingsMessageDurationChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) UIViewSettings : winrt::Windows::UI::ViewManagement::IUIViewSettings
     {

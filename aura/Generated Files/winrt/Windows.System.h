@@ -1333,6 +1333,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUserChangedEventArgs)->get_User(&value));
         return winrt::Windows::System::User{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::System::UserWatcherUpdateKind>) consume_Windows_System_IUserChangedEventArgs2<D>::ChangedPropertyKinds() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::System::IUserChangedEventArgs2)->get_ChangedPropertyKinds(&value));
+        return winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::System::UserWatcherUpdateKind>{ value, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_System_IUserDeviceAssociationChangedEventArgs<D>::DeviceId() const
     {
         void* value{};
@@ -3650,6 +3656,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::System::IUserChangedEventArgs2> : produce_base<D, winrt::Windows::System::IUserChangedEventArgs2>
+    {
+        int32_t __stdcall get_ChangedPropertyKinds(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::System::UserWatcherUpdateKind>>(this->shim().ChangedPropertyKinds());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::System::IUserDeviceAssociationChangedEventArgs> : produce_base<D, winrt::Windows::System::IUserDeviceAssociationChangedEventArgs>
     {
         int32_t __stdcall get_DeviceId(void** value) noexcept final try
@@ -4449,6 +4469,7 @@ namespace std
     template<> struct hash<winrt::Windows::System::IUserAuthenticationStatusChangeDeferral> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserAuthenticationStatusChangingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::System::IUserChangedEventArgs2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserDeviceAssociationChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserDeviceAssociationStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::System::IUserPicker> : winrt::impl::hash_base {};

@@ -354,6 +354,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrame2)->GetQuadLayerUpdateParameters(*(void**)(&layer), &value));
         return winrt::Windows::Graphics::Holographic::HolographicQuadLayerUpdateParameters{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::Holographic::HolographicFrameId) consume_Windows_Graphics_Holographic_IHolographicFrame3<D>::Id() const
+    {
+        winrt::Windows::Graphics::Holographic::HolographicFrameId value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrame3)->get_Id(put_abi(value)));
+        return value;
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVectorView<winrt::Windows::Graphics::Holographic::HolographicCameraPose>) consume_Windows_Graphics_Holographic_IHolographicFramePrediction<D>::CameraPoses() const
     {
         void* value{};
@@ -400,6 +406,72 @@ namespace winrt::impl
     {
         uint32_t value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFramePresentationReport)->get_PresentationCount(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::Holographic::HolographicFrameId) consume_Windows_Graphics_Holographic_IHolographicFrameRenderingReport<D>::FrameId() const
+    {
+        winrt::Windows::Graphics::Holographic::HolographicFrameId value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport)->get_FrameId(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(uint32_t) consume_Windows_Graphics_Holographic_IHolographicFrameRenderingReport<D>::MissedLatchCount() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport)->get_MissedLatchCount(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameRenderingReport<D>::SystemRelativeFrameReadyTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport)->get_SystemRelativeFrameReadyTime(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameRenderingReport<D>::SystemRelativeActualGpuFinishTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport)->get_SystemRelativeActualGpuFinishTime(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameRenderingReport<D>::SystemRelativeTargetLatchTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport)->get_SystemRelativeTargetLatchTime(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutReport>) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutMonitor<D>::ReadReports() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor)->ReadReports(&result));
+        return winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutReport>{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::Holographic::HolographicFrameRenderingReport) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutReport<D>::RenderingReport() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport)->get_RenderingReport(&value));
+        return winrt::Windows::Graphics::Holographic::HolographicFrameRenderingReport{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(uint32_t) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutReport<D>::MissedScanoutCount() const
+    {
+        uint32_t value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport)->get_MissedScanoutCount(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutReport<D>::SystemRelativeLatchTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport)->get_SystemRelativeLatchTime(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutReport<D>::SystemRelativeScanoutStartTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport)->get_SystemRelativeScanoutStartTime(put_abi(value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::TimeSpan) consume_Windows_Graphics_Holographic_IHolographicFrameScanoutReport<D>::SystemRelativePhotonTime() const
+    {
+        winrt::Windows::Foundation::TimeSpan value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport)->get_SystemRelativePhotonTime(put_abi(value)));
         return value;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::DirectX::DirectXPixelFormat) consume_Windows_Graphics_Holographic_IHolographicQuadLayer<D>::PixelFormat() const
@@ -541,6 +613,12 @@ namespace winrt::impl
         void* result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicSpace2)->CreateFramePresentationMonitor(maxQueuedReports, &result));
         return winrt::Windows::Graphics::Holographic::HolographicFramePresentationMonitor{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::Holographic::HolographicFrameScanoutMonitor) consume_Windows_Graphics_Holographic_IHolographicSpace3<D>::CreateFrameScanoutMonitor(uint32_t maxQueuedReports) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Graphics::Holographic::IHolographicSpace3)->CreateFrameScanoutMonitor(maxQueuedReports, &result));
+        return winrt::Windows::Graphics::Holographic::HolographicFrameScanoutMonitor{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Graphics::Holographic::HolographicCamera) consume_Windows_Graphics_Holographic_IHolographicSpaceCameraAddedEventArgs<D>::Camera() const
     {
@@ -1231,6 +1309,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicFrame3> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicFrame3>
+    {
+        int32_t __stdcall get_Id(struct struct_Windows_Graphics_Holographic_HolographicFrameId* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Graphics::Holographic::HolographicFrameId>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Graphics::Holographic::HolographicFrameId>(this->shim().Id());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicFramePrediction> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicFramePrediction>
     {
         int32_t __stdcall get_CameraPoses(void** value) noexcept final try
@@ -1304,6 +1396,110 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<uint32_t>(this->shim().PresentationCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport>
+    {
+        int32_t __stdcall get_FrameId(struct struct_Windows_Graphics_Holographic_HolographicFrameId* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Graphics::Holographic::HolographicFrameId>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Graphics::Holographic::HolographicFrameId>(this->shim().FrameId());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MissedLatchCount(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MissedLatchCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativeFrameReadyTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativeFrameReadyTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativeActualGpuFinishTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativeActualGpuFinishTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativeTargetLatchTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativeTargetLatchTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor>
+    {
+        int32_t __stdcall ReadReports(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutReport>>(this->shim().ReadReports());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport>
+    {
+        int32_t __stdcall get_RenderingReport(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Graphics::Holographic::HolographicFrameRenderingReport>(this->shim().RenderingReport());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_MissedScanoutCount(uint32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<uint32_t>(this->shim().MissedScanoutCount());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativeLatchTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativeLatchTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativeScanoutStartTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativeScanoutStartTime());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_SystemRelativePhotonTime(int64_t* value) noexcept final try
+        {
+            zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().SystemRelativePhotonTime());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1523,6 +1719,20 @@ namespace winrt::impl
             clear_abi(result);
             typename D::abi_guard guard(this->shim());
             *result = detach_from<winrt::Windows::Graphics::Holographic::HolographicFramePresentationMonitor>(this->shim().CreateFramePresentationMonitor(maxQueuedReports));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Graphics::Holographic::IHolographicSpace3> : produce_base<D, winrt::Windows::Graphics::Holographic::IHolographicSpace3>
+    {
+        int32_t __stdcall CreateFrameScanoutMonitor(uint32_t maxQueuedReports, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutMonitor>(this->shim().CreateFrameScanoutMonitor(maxQueuedReports));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -1786,15 +1996,20 @@ namespace std
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicDisplayStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrame> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrame2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrame3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFramePrediction> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFramePresentationMonitor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFramePresentationReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicQuadLayer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicQuadLayerFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicQuadLayerUpdateParameters> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicQuadLayerUpdateParameters2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpace> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpace2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpace3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpaceCameraAddedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpaceCameraRemovedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::IHolographicSpaceStatics> : winrt::impl::hash_base {};
@@ -1810,6 +2025,9 @@ namespace std
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFramePrediction> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFramePresentationMonitor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFramePresentationReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFrameRenderingReport> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutMonitor> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicFrameScanoutReport> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicQuadLayer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicQuadLayerUpdateParameters> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Graphics::Holographic::HolographicSpace> : winrt::impl::hash_base {};

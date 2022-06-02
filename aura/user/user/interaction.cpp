@@ -1662,59 +1662,70 @@ namespace user
    void interaction::on_set_keyboard_focus()
    {
 
-      on_reset_focus_start_tick();
-
-      // get_keyboard_focus will return the control with focus
-
-      auto psession = get_session();
-
-      auto puserinteractionHost = psession->get_user_interaction_host();
-
-      if (puserinteractionHost == this)
+      if (get_parent() != nullptr)
       {
 
-         return;
+         on_reset_focus_start_tick();
 
-      }
+         // get_keyboard_focus will return the control with focus
 
-      __pointer(::aura::application) papp = get_app();
+         auto psession = get_session();
 
-      if (papp)
-      {
+         auto puserinteractionHost = psession->get_user_interaction_host();
 
-         // return true to set focus to this control
-         papp->keyboard_focus_OnSetFocus(this);
-
-      }
-
-      auto einputtypePreferred = preferred_input_type();
-
-      if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
-      {
-
-         if (psession->get_user_interaction_host())
+         if (puserinteractionHost == this)
          {
 
-            auto puserinteractionHost = psession->get_user_interaction_host();
-
-            if (puserinteractionHost)
-            {
-
-               puserinteractionHost->edit_on_set_focus(this);
-
-            }
+            return;
 
          }
 
-         show_software_keyboard(this);
+         __pointer(::aura::application) papp = get_app();
+
+         if (papp)
+         {
+
+            // return true to set focus to this control
+            papp->keyboard_focus_OnSetFocus(this);
+
+         }
+
+         auto einputtypePreferred = preferred_input_type();
+
+         if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
+         {
+
+            if (psession->get_user_interaction_host())
+            {
+
+               auto puserinteractionHost = psession->get_user_interaction_host();
+
+               if (puserinteractionHost)
+               {
+
+                  puserinteractionHost->edit_on_set_focus(this);
+
+               }
+
+            }
+
+            show_software_keyboard(this);
+
+         }
+
+         auto ptopic = create_topic(::id_set_focus);
+
+         ptopic->m_puserelement = this;
+
+         route(ptopic);
+
+         // Finished setting focus, finally... Uff!
+
+         // Now notify it is done...
+
+         post_message(e_message_set_focus);
 
       }
-
-      auto ptopic = create_topic(::id_set_focus);
-
-      ptopic->m_puserelement = this;
-
-      route(ptopic);
 
    }
 
@@ -1825,6 +1836,7 @@ namespace user
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_subject, pchannel, this, &interaction::on_message_subject);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDataUpdateDefaultHandling)
          {
@@ -16726,6 +16738,12 @@ namespace user
       //      }
 
    }
+
+
+   //void interaction::on_message_set_focus(::message::message* pmessage)
+   //{
+
+   //}
 
 
    void interaction::on_message_left_button_up(::message::message * pmessage)

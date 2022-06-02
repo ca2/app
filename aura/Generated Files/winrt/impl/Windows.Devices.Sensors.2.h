@@ -8,7 +8,7 @@
 WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
 {
     struct __declspec(empty_bases) Accelerometer : winrt::Windows::Devices::Sensors::IAccelerometer,
-        impl::require<Accelerometer, winrt::Windows::Devices::Sensors::IAccelerometerDeviceId, winrt::Windows::Devices::Sensors::IAccelerometer2, winrt::Windows::Devices::Sensors::IAccelerometer3, winrt::Windows::Devices::Sensors::IAccelerometer4>
+        impl::require<Accelerometer, winrt::Windows::Devices::Sensors::IAccelerometerDeviceId, winrt::Windows::Devices::Sensors::IAccelerometer2, winrt::Windows::Devices::Sensors::IAccelerometer3, winrt::Windows::Devices::Sensors::IAccelerometer4, winrt::Windows::Devices::Sensors::IAccelerometer5>
     {
         Accelerometer(std::nullptr_t) noexcept {}
         Accelerometer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IAccelerometer(ptr, take_ownership_from_abi) {}
@@ -16,6 +16,11 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         static auto GetDefault(winrt::Windows::Devices::Sensors::AccelerometerReadingType const& readingType);
         static auto FromIdAsync(param::hstring const& deviceId);
         static auto GetDeviceSelector(winrt::Windows::Devices::Sensors::AccelerometerReadingType const& readingType);
+    };
+    struct __declspec(empty_bases) AccelerometerDataThreshold : winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold
+    {
+        AccelerometerDataThreshold(std::nullptr_t) noexcept {}
+        AccelerometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) AccelerometerReading : winrt::Windows::Devices::Sensors::IAccelerometerReading,
         impl::require<AccelerometerReading, winrt::Windows::Devices::Sensors::IAccelerometerReading2>
@@ -82,13 +87,18 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         AltimeterReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IAltimeterReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Barometer : winrt::Windows::Devices::Sensors::IBarometer,
-        impl::require<Barometer, winrt::Windows::Devices::Sensors::IBarometer2>
+        impl::require<Barometer, winrt::Windows::Devices::Sensors::IBarometer2, winrt::Windows::Devices::Sensors::IBarometer3>
     {
         Barometer(std::nullptr_t) noexcept {}
         Barometer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IBarometer(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto FromIdAsync(param::hstring const& deviceId);
         static auto GetDeviceSelector();
+    };
+    struct __declspec(empty_bases) BarometerDataThreshold : winrt::Windows::Devices::Sensors::IBarometerDataThreshold
+    {
+        BarometerDataThreshold(std::nullptr_t) noexcept {}
+        BarometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IBarometerDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) BarometerReading : winrt::Windows::Devices::Sensors::IBarometerReading,
         impl::require<BarometerReading, winrt::Windows::Devices::Sensors::IBarometerReading2>
@@ -102,13 +112,18 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         BarometerReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Compass : winrt::Windows::Devices::Sensors::ICompass,
-        impl::require<Compass, winrt::Windows::Devices::Sensors::ICompassDeviceId, winrt::Windows::Devices::Sensors::ICompass2, winrt::Windows::Devices::Sensors::ICompass3>
+        impl::require<Compass, winrt::Windows::Devices::Sensors::ICompassDeviceId, winrt::Windows::Devices::Sensors::ICompass2, winrt::Windows::Devices::Sensors::ICompass3, winrt::Windows::Devices::Sensors::ICompass4>
     {
         Compass(std::nullptr_t) noexcept {}
         Compass(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ICompass(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto GetDeviceSelector();
         static auto FromIdAsync(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) CompassDataThreshold : winrt::Windows::Devices::Sensors::ICompassDataThreshold
+    {
+        CompassDataThreshold(std::nullptr_t) noexcept {}
+        CompassDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ICompassDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) CompassReading : winrt::Windows::Devices::Sensors::ICompassReading,
         impl::require<CompassReading, winrt::Windows::Devices::Sensors::ICompassReadingHeadingAccuracy, winrt::Windows::Devices::Sensors::ICompassReading2>
@@ -122,13 +137,18 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         CompassReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ICompassReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Gyrometer : winrt::Windows::Devices::Sensors::IGyrometer,
-        impl::require<Gyrometer, winrt::Windows::Devices::Sensors::IGyrometerDeviceId, winrt::Windows::Devices::Sensors::IGyrometer2, winrt::Windows::Devices::Sensors::IGyrometer3>
+        impl::require<Gyrometer, winrt::Windows::Devices::Sensors::IGyrometerDeviceId, winrt::Windows::Devices::Sensors::IGyrometer2, winrt::Windows::Devices::Sensors::IGyrometer3, winrt::Windows::Devices::Sensors::IGyrometer4>
     {
         Gyrometer(std::nullptr_t) noexcept {}
         Gyrometer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IGyrometer(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto GetDeviceSelector();
         static auto FromIdAsync(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) GyrometerDataThreshold : winrt::Windows::Devices::Sensors::IGyrometerDataThreshold
+    {
+        GyrometerDataThreshold(std::nullptr_t) noexcept {}
+        GyrometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IGyrometerDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) GyrometerReading : winrt::Windows::Devices::Sensors::IGyrometerReading,
         impl::require<GyrometerReading, winrt::Windows::Devices::Sensors::IGyrometerReading2>
@@ -161,7 +181,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         HingeAngleSensorReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IHingeAngleSensorReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Inclinometer : winrt::Windows::Devices::Sensors::IInclinometer,
-        impl::require<Inclinometer, winrt::Windows::Devices::Sensors::IInclinometerDeviceId, winrt::Windows::Devices::Sensors::IInclinometer2, winrt::Windows::Devices::Sensors::IInclinometer3>
+        impl::require<Inclinometer, winrt::Windows::Devices::Sensors::IInclinometerDeviceId, winrt::Windows::Devices::Sensors::IInclinometer2, winrt::Windows::Devices::Sensors::IInclinometer3, winrt::Windows::Devices::Sensors::IInclinometer4>
     {
         Inclinometer(std::nullptr_t) noexcept {}
         Inclinometer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IInclinometer(ptr, take_ownership_from_abi) {}
@@ -170,6 +190,11 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         static auto GetDefault(winrt::Windows::Devices::Sensors::SensorReadingType const& sensorReadingtype);
         static auto GetDeviceSelector(winrt::Windows::Devices::Sensors::SensorReadingType const& readingType);
         static auto FromIdAsync(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) InclinometerDataThreshold : winrt::Windows::Devices::Sensors::IInclinometerDataThreshold
+    {
+        InclinometerDataThreshold(std::nullptr_t) noexcept {}
+        InclinometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IInclinometerDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) InclinometerReading : winrt::Windows::Devices::Sensors::IInclinometerReading,
         impl::require<InclinometerReading, winrt::Windows::Devices::Sensors::IInclinometerReadingYawAccuracy, winrt::Windows::Devices::Sensors::IInclinometerReading2>
@@ -183,13 +208,18 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         InclinometerReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IInclinometerReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) LightSensor : winrt::Windows::Devices::Sensors::ILightSensor,
-        impl::require<LightSensor, winrt::Windows::Devices::Sensors::ILightSensorDeviceId, winrt::Windows::Devices::Sensors::ILightSensor2>
+        impl::require<LightSensor, winrt::Windows::Devices::Sensors::ILightSensorDeviceId, winrt::Windows::Devices::Sensors::ILightSensor2, winrt::Windows::Devices::Sensors::ILightSensor3>
     {
         LightSensor(std::nullptr_t) noexcept {}
         LightSensor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ILightSensor(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto GetDeviceSelector();
         static auto FromIdAsync(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) LightSensorDataThreshold : winrt::Windows::Devices::Sensors::ILightSensorDataThreshold
+    {
+        LightSensorDataThreshold(std::nullptr_t) noexcept {}
+        LightSensorDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ILightSensorDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) LightSensorReading : winrt::Windows::Devices::Sensors::ILightSensorReading,
         impl::require<LightSensorReading, winrt::Windows::Devices::Sensors::ILightSensorReading2>
@@ -203,13 +233,18 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Sensors
         LightSensorReadingChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::ILightSensorReadingChangedEventArgs(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) Magnetometer : winrt::Windows::Devices::Sensors::IMagnetometer,
-        impl::require<Magnetometer, winrt::Windows::Devices::Sensors::IMagnetometerDeviceId, winrt::Windows::Devices::Sensors::IMagnetometer2, winrt::Windows::Devices::Sensors::IMagnetometer3>
+        impl::require<Magnetometer, winrt::Windows::Devices::Sensors::IMagnetometerDeviceId, winrt::Windows::Devices::Sensors::IMagnetometer2, winrt::Windows::Devices::Sensors::IMagnetometer3, winrt::Windows::Devices::Sensors::IMagnetometer4>
     {
         Magnetometer(std::nullptr_t) noexcept {}
         Magnetometer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IMagnetometer(ptr, take_ownership_from_abi) {}
         static auto GetDefault();
         static auto GetDeviceSelector();
         static auto FromIdAsync(param::hstring const& deviceId);
+    };
+    struct __declspec(empty_bases) MagnetometerDataThreshold : winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold
+    {
+        MagnetometerDataThreshold(std::nullptr_t) noexcept {}
+        MagnetometerDataThreshold(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) MagnetometerReading : winrt::Windows::Devices::Sensors::IMagnetometerReading,
         impl::require<MagnetometerReading, winrt::Windows::Devices::Sensors::IMagnetometerReading2>

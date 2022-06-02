@@ -26,8 +26,8 @@ imm_client::~imm_client()
 void imm_client::install_message_routing(::channel * pchannel)
 {
 
-   MESSAGE_LINK(e_message_set_focus, pchannel, this, &::imm_client::_001OnSetFocus);
-   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::imm_client::_001OnKillFocus);
+   MESSAGE_LINK(e_message_set_focus, pchannel, this, &::imm_client::on_message_set_focus);
+   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::imm_client::on_message_kill_focus);
    MESSAGE_LINK(WM_IME_SETCONTEXT, pchannel, this, &::imm_client::_001OnIme);
    MESSAGE_LINK(WM_IME_STARTCOMPOSITION, pchannel, this, &::imm_client::_001OnIme);
    MESSAGE_LINK(WM_IME_COMPOSITION, pchannel, this, &::imm_client::_001OnIme);
@@ -50,13 +50,13 @@ void imm_client::install_message_routing(::channel * pchannel)
 
 
 
-void imm_client::_001OnSetFocus(::message::message * pmessage)
+void imm_client::on_message_set_focus(::message::message * pmessage)
 {
 
 }
 
 
-void imm_client::_001OnKillFocus(::message::message * pmessage)
+void imm_client::on_message_kill_focus(::message::message * pmessage)
 {
 
    m_bImeCandidateOpened = false;

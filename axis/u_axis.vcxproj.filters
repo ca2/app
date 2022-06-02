@@ -566,9 +566,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="account\account.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="account\authenticator.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>

@@ -6,6 +6,13 @@
 #include "winrt/impl/Windows.Management.Deployment.0.h"
 WINRT_EXPORT namespace winrt::Windows::Management::Deployment
 {
+    struct __declspec(empty_bases) IAddPackageOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IAddPackageOptions>
+    {
+        IAddPackageOptions(std::nullptr_t = nullptr) noexcept {}
+        IAddPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IDeploymentResult :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IDeploymentResult>
@@ -76,6 +83,13 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         IPackageManager8(std::nullptr_t = nullptr) noexcept {}
         IPackageManager8(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IPackageManager9 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IPackageManager9>
+    {
+        IPackageManager9(std::nullptr_t = nullptr) noexcept {}
+        IPackageManager9(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPackageManagerDebugSettings :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPackageManagerDebugSettings>
@@ -103,6 +117,20 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
     {
         IPackageVolume2(std::nullptr_t = nullptr) noexcept {}
         IPackageVolume2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IRegisterPackageOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IRegisterPackageOptions>
+    {
+        IRegisterPackageOptions(std::nullptr_t = nullptr) noexcept {}
+        IRegisterPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IStagePackageOptions :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStagePackageOptions>
+    {
+        IStagePackageOptions(std::nullptr_t = nullptr) noexcept {}
+        IStagePackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

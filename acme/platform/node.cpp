@@ -1749,6 +1749,13 @@ namespace acme
     }
 
 
+    void node::windowing_post(const ::procedure& procedure)
+    {
+
+
+    }
+
+
 } // namespace acme
 
 

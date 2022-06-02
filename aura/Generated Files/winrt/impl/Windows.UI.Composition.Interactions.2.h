@@ -11,7 +11,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
 {
     struct __declspec(empty_bases) CompositionConditionalValue : winrt::Windows::UI::Composition::Interactions::ICompositionConditionalValue,
         impl::base<CompositionConditionalValue, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<CompositionConditionalValue, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<CompositionConditionalValue, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         CompositionConditionalValue(std::nullptr_t) noexcept {}
         CompositionConditionalValue(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::ICompositionConditionalValue(ptr, take_ownership_from_abi) {}
@@ -19,26 +19,27 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) CompositionInteractionSourceCollection : winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection,
         impl::base<CompositionInteractionSourceCollection, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<CompositionInteractionSourceCollection, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<CompositionInteractionSourceCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource>, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         CompositionInteractionSourceCollection(std::nullptr_t) noexcept {}
         CompositionInteractionSourceCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) InteractionSourceConfiguration : winrt::Windows::UI::Composition::Interactions::IInteractionSourceConfiguration,
         impl::base<InteractionSourceConfiguration, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionSourceConfiguration, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionSourceConfiguration, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionSourceConfiguration(std::nullptr_t) noexcept {}
         InteractionSourceConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionSourceConfiguration(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) InteractionTracker : winrt::Windows::UI::Composition::Interactions::IInteractionTracker,
         impl::base<InteractionTracker, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTracker, winrt::Windows::UI::Composition::Interactions::IInteractionTracker2, winrt::Windows::UI::Composition::Interactions::IInteractionTracker3, winrt::Windows::UI::Composition::Interactions::IInteractionTracker4, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTracker, winrt::Windows::UI::Composition::Interactions::IInteractionTracker2, winrt::Windows::UI::Composition::Interactions::IInteractionTracker3, winrt::Windows::UI::Composition::Interactions::IInteractionTracker4, winrt::Windows::UI::Composition::Interactions::IInteractionTracker5, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTracker(std::nullptr_t) noexcept {}
         InteractionTracker(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTracker(ptr, take_ownership_from_abi) {}
         using winrt::Windows::UI::Composition::Interactions::IInteractionTracker::TryUpdatePosition;
         using impl::consume_t<InteractionTracker, winrt::Windows::UI::Composition::Interactions::IInteractionTracker4>::TryUpdatePosition;
+        using impl::consume_t<InteractionTracker, winrt::Windows::UI::Composition::Interactions::IInteractionTracker5>::TryUpdatePosition;
         using winrt::Windows::UI::Composition::Interactions::IInteractionTracker::TryUpdatePositionBy;
         using impl::consume_t<InteractionTracker, winrt::Windows::UI::Composition::Interactions::IInteractionTracker4>::TryUpdatePositionBy;
         static auto Create(winrt::Windows::UI::Composition::Compositor const& compositor);
@@ -60,14 +61,14 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) InteractionTrackerInertiaModifier : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier,
         impl::base<InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerInertiaModifier(std::nullptr_t) noexcept {}
         InteractionTrackerInertiaModifier(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) InteractionTrackerInertiaMotion : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion,
         impl::base<InteractionTrackerInertiaMotion, winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerInertiaMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerInertiaMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerInertiaMotion(std::nullptr_t) noexcept {}
         InteractionTrackerInertiaMotion(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaMotion(ptr, take_ownership_from_abi) {}
@@ -75,7 +76,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) InteractionTrackerInertiaNaturalMotion : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaNaturalMotion,
         impl::base<InteractionTrackerInertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerInertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerInertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerInertiaNaturalMotion(std::nullptr_t) noexcept {}
         InteractionTrackerInertiaNaturalMotion(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaNaturalMotion(ptr, take_ownership_from_abi) {}
@@ -83,7 +84,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) InteractionTrackerInertiaRestingValue : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue,
         impl::base<InteractionTrackerInertiaRestingValue, winrt::Windows::UI::Composition::Interactions::InteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerInertiaRestingValue, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerInertiaRestingValue, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerInertiaRestingValue(std::nullptr_t) noexcept {}
         InteractionTrackerInertiaRestingValue(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerInertiaRestingValue(ptr, take_ownership_from_abi) {}
@@ -113,14 +114,14 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) InteractionTrackerVector2InertiaModifier : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaModifier,
         impl::base<InteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerVector2InertiaModifier(std::nullptr_t) noexcept {}
         InteractionTrackerVector2InertiaModifier(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaModifier(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) InteractionTrackerVector2InertiaNaturalMotion : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaNaturalMotion,
         impl::base<InteractionTrackerVector2InertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::InteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<InteractionTrackerVector2InertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<InteractionTrackerVector2InertiaNaturalMotion, winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaModifier, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         InteractionTrackerVector2InertiaNaturalMotion(std::nullptr_t) noexcept {}
         InteractionTrackerVector2InertiaNaturalMotion(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IInteractionTrackerVector2InertiaNaturalMotion(ptr, take_ownership_from_abi) {}
@@ -128,7 +129,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) VisualInteractionSource : winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource,
         impl::base<VisualInteractionSource, winrt::Windows::UI::Composition::CompositionObject>,
-        impl::require<VisualInteractionSource, winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource2, winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource3, winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::UI::Composition::IAnimationObject>
+        impl::require<VisualInteractionSource, winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource2, winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource3, winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource, winrt::Windows::UI::Composition::ICompositionObject, winrt::Windows::UI::Composition::ICompositionObject2, winrt::Windows::UI::Composition::ICompositionObject3, winrt::Windows::UI::Composition::ICompositionObject4, winrt::Windows::Foundation::IClosable, winrt::Windows::UI::Composition::IAnimationObject>
     {
         VisualInteractionSource(std::nullptr_t) noexcept {}
         VisualInteractionSource(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Interactions::IVisualInteractionSource(ptr, take_ownership_from_abi) {}

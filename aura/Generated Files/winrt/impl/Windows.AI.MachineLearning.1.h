@@ -125,6 +125,13 @@ WINRT_EXPORT namespace winrt::Windows::AI::MachineLearning
         ILearningModelSessionOptions(std::nullptr_t = nullptr) noexcept {}
         ILearningModelSessionOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ILearningModelSessionOptions2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ILearningModelSessionOptions2>
+    {
+        ILearningModelSessionOptions2(std::nullptr_t = nullptr) noexcept {}
+        ILearningModelSessionOptions2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ILearningModelStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ILearningModelStatics>

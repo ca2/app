@@ -111,9 +111,11 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     struct IMediaEncodingSubtypesStatics3;
     struct IMediaEncodingSubtypesStatics4;
     struct IMediaEncodingSubtypesStatics5;
+    struct IMediaEncodingSubtypesStatics6;
     struct IMediaRatio;
     struct IMpeg2ProfileIdsStatics;
     struct ITimedMetadataEncodingProperties;
+    struct ITimedMetadataEncodingPropertiesStatics;
     struct IVideoEncodingProperties;
     struct IVideoEncodingProperties2;
     struct IVideoEncodingProperties3;
@@ -161,9 +163,11 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics5>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IMediaRatio>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IMpeg2ProfileIdsStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties3>{ using type = interface_category; };
@@ -235,9 +239,11 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics3> = L"Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics3";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics4> = L"Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics4";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics5> = L"Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics5";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6> = L"Windows.Media.MediaProperties.IMediaEncodingSubtypesStatics6";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMediaRatio> = L"Windows.Media.MediaProperties.IMediaRatio";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IMpeg2ProfileIdsStatics> = L"Windows.Media.MediaProperties.IMpeg2ProfileIdsStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties> = L"Windows.Media.MediaProperties.ITimedMetadataEncodingProperties";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics> = L"Windows.Media.MediaProperties.ITimedMetadataEncodingPropertiesStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties> = L"Windows.Media.MediaProperties.IVideoEncodingProperties";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties2> = L"Windows.Media.MediaProperties.IVideoEncodingProperties2";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties3> = L"Windows.Media.MediaProperties.IVideoEncodingProperties3";
@@ -271,9 +277,11 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics3>{ 0xBA2414E4,0x883D,0x464E,{ 0xA4,0x4F,0x09,0x7D,0xA0,0x8E,0xF7,0xFF } }; // BA2414E4-883D-464E-A44F-097DA08EF7FF
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics4>{ 0xDDECE58A,0x3949,0x4644,{ 0x8A,0x2C,0x59,0xEF,0x02,0xC6,0x42,0xFA } }; // DDECE58A-3949-4644-8A2C-59EF02C642FA
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics5>{ 0x5AD4A007,0xFFCE,0x4760,{ 0x98,0x28,0x5D,0x0C,0x99,0x63,0x7E,0x6A } }; // 5AD4A007-FFCE-4760-9828-5D0C99637E6A
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6>{ 0xA1252973,0xA984,0x5912,{ 0x93,0xBB,0x54,0xE7,0xE5,0x69,0xE0,0x53 } }; // A1252973-A984-5912-93BB-54E7E569E053
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMediaRatio>{ 0xD2D0FEE5,0x8929,0x401D,{ 0xAC,0x78,0x7D,0x35,0x7E,0x37,0x81,0x63 } }; // D2D0FEE5-8929-401D-AC78-7D357E378163
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IMpeg2ProfileIdsStatics>{ 0xA461FF85,0xE57A,0x4128,{ 0x9B,0x21,0xD5,0x33,0x1B,0x04,0x23,0x5C } }; // A461FF85-E57A-4128-9B21-D5331B04235C
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties>{ 0x51CD30D3,0xD690,0x4CFA,{ 0x97,0xF4,0x4A,0x39,0x8E,0x9D,0xB4,0x20 } }; // 51CD30D3-D690-4CFA-97F4-4A398E9DB420
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics>{ 0x6629BB67,0x6E55,0x5643,{ 0x89,0xA0,0x7A,0x7E,0x8D,0x85,0xB5,0x2C } }; // 6629BB67-6E55-5643-89A0-7A7E8D85B52C
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties>{ 0x76EE6C9A,0x37C2,0x4F2A,{ 0x88,0x0A,0x12,0x82,0xBB,0xB4,0x37,0x3D } }; // 76EE6C9A-37C2-4F2A-880A-1282BBB4373D
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties2>{ 0xF743A1EF,0xD465,0x4290,{ 0xA9,0x4B,0xEF,0x0F,0x15,0x28,0xF8,0xE3 } }; // F743A1EF-D465-4290-A94B-EF0F1528F8E3
     template <> inline constexpr guid guid_v<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties3>{ 0x386BCDC4,0x873A,0x479F,{ 0xB3,0xEB,0x56,0xC1,0xFC,0xBE,0xC6,0xD7 } }; // 386BCDC4-873A-479F-B3EB-56C1FCBEC6D7
@@ -562,6 +570,16 @@ namespace winrt::impl
             virtual int32_t __stdcall get_Heif(void**) noexcept = 0;
         };
     };
+    template <> struct abi<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Pgs(void**) noexcept = 0;
+            virtual int32_t __stdcall get_Srt(void**) noexcept = 0;
+            virtual int32_t __stdcall get_Ssa(void**) noexcept = 0;
+            virtual int32_t __stdcall get_VobSub(void**) noexcept = 0;
+        };
+    };
     template <> struct abi<winrt::Windows::Media::MediaProperties::IMediaRatio>
     {
         struct __declspec(novtable) type : inspectable_abi
@@ -590,6 +608,16 @@ namespace winrt::impl
             virtual int32_t __stdcall SetFormatUserData(uint32_t, uint8_t*) noexcept = 0;
             virtual int32_t __stdcall GetFormatUserData(uint32_t*, uint8_t**) noexcept = 0;
             virtual int32_t __stdcall Copy(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall CreatePgs(void**) noexcept = 0;
+            virtual int32_t __stdcall CreateSrt(void**) noexcept = 0;
+            virtual int32_t __stdcall CreateSsa(uint32_t, uint8_t*, void**) noexcept = 0;
+            virtual int32_t __stdcall CreateVobSub(uint32_t, uint8_t*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties>
@@ -979,6 +1007,18 @@ namespace winrt::impl
         template <typename D> using type = consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics5<D>;
     };
     template <typename D>
+    struct consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Pgs() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Srt() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) Ssa() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) VobSub() const;
+    };
+    template <> struct consume<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6>
+    {
+        template <typename D> using type = consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6<D>;
+    };
+    template <typename D>
     struct consume_Windows_Media_MediaProperties_IMediaRatio
     {
         WINRT_IMPL_AUTO(void) Numerator(uint32_t value) const;
@@ -1013,6 +1053,18 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties>
     {
         template <typename D> using type = consume_Windows_Media_MediaProperties_ITimedMetadataEncodingProperties<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics
+    {
+        WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) CreatePgs() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) CreateSrt() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) CreateSsa(array_view<uint8_t const> formatUserData) const;
+        WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) CreateVobSub(array_view<uint8_t const> formatUserData) const;
+    };
+    template <> struct consume<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Media_MediaProperties_IVideoEncodingProperties

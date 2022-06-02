@@ -687,6 +687,30 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics5)->get_Heif(&value));
         return hstring{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6<D>::Pgs() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6)->get_Pgs(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6<D>::Srt() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6)->get_Srt(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6<D>::Ssa() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6)->get_Ssa(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_MediaProperties_IMediaEncodingSubtypesStatics6<D>::VobSub() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6)->get_VobSub(&value));
+        return hstring{ value, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_MediaProperties_IMediaRatio<D>::Numerator(uint32_t value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::IMediaRatio)->put_Numerator(value));
@@ -749,6 +773,30 @@ namespace winrt::impl
     {
         void* result{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties)->Copy(&result));
+        return winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics<D>::CreatePgs() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics)->CreatePgs(&result));
+        return winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics<D>::CreateSrt() const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics)->CreateSrt(&result));
+        return winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics<D>::CreateSsa(array_view<uint8_t const> formatUserData) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics)->CreateSsa(formatUserData.size(), get_abi(formatUserData), &result));
+        return winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties{ result, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties) consume_Windows_Media_MediaProperties_ITimedMetadataEncodingPropertiesStatics<D>::CreateVobSub(array_view<uint8_t const> formatUserData) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics)->CreateVobSub(formatUserData.size(), get_abi(formatUserData), &result));
         return winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties{ result, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_MediaProperties_IVideoEncodingProperties<D>::Bitrate(uint32_t value) const
@@ -1914,6 +1962,44 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6> : produce_base<D, winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6>
+    {
+        int32_t __stdcall get_Pgs(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Pgs());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Srt(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Srt());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Ssa(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().Ssa());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_VobSub(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<hstring>(this->shim().VobSub());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::MediaProperties::IMediaRatio> : produce_base<D, winrt::Windows::Media::MediaProperties::IMediaRatio>
     {
         int32_t __stdcall put_Numerator(uint32_t value) noexcept final try
@@ -2011,6 +2097,44 @@ namespace winrt::impl
             clear_abi(result);
             typename D::abi_guard guard(this->shim());
             *result = detach_from<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties>(this->shim().Copy());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics> : produce_base<D, winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics>
+    {
+        int32_t __stdcall CreatePgs(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties>(this->shim().CreatePgs());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall CreateSrt(void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties>(this->shim().CreateSrt());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall CreateSsa(uint32_t __formatUserDataSize, uint8_t* formatUserData, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties>(this->shim().CreateSsa(array_view<uint8_t const>(reinterpret_cast<uint8_t const *>(formatUserData), reinterpret_cast<uint8_t const *>(formatUserData) + __formatUserDataSize)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall CreateVobSub(uint32_t __formatUserDataSize, uint8_t* formatUserData, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties>(this->shim().CreateVobSub(array_view<uint8_t const>(reinterpret_cast<uint8_t const *>(formatUserData), reinterpret_cast<uint8_t const *>(formatUserData) + __formatUserDataSize)));
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2581,6 +2705,22 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     {
         return impl::call_factory_cast<hstring(*)(IMediaEncodingSubtypesStatics5 const&), MediaEncodingSubtypes, IMediaEncodingSubtypesStatics5>([](IMediaEncodingSubtypesStatics5 const& f) { return f.Heif(); });
     }
+    inline auto MediaEncodingSubtypes::Pgs()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaEncodingSubtypesStatics6 const&), MediaEncodingSubtypes, IMediaEncodingSubtypesStatics6>([](IMediaEncodingSubtypesStatics6 const& f) { return f.Pgs(); });
+    }
+    inline auto MediaEncodingSubtypes::Srt()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaEncodingSubtypesStatics6 const&), MediaEncodingSubtypes, IMediaEncodingSubtypesStatics6>([](IMediaEncodingSubtypesStatics6 const& f) { return f.Srt(); });
+    }
+    inline auto MediaEncodingSubtypes::Ssa()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaEncodingSubtypesStatics6 const&), MediaEncodingSubtypes, IMediaEncodingSubtypesStatics6>([](IMediaEncodingSubtypesStatics6 const& f) { return f.Ssa(); });
+    }
+    inline auto MediaEncodingSubtypes::VobSub()
+    {
+        return impl::call_factory_cast<hstring(*)(IMediaEncodingSubtypesStatics6 const&), MediaEncodingSubtypes, IMediaEncodingSubtypesStatics6>([](IMediaEncodingSubtypesStatics6 const& f) { return f.VobSub(); });
+    }
     inline MediaPropertySet::MediaPropertySet() :
         MediaPropertySet(impl::call_factory_cast<MediaPropertySet(*)(winrt::Windows::Foundation::IActivationFactory const&), MediaPropertySet>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<MediaPropertySet>(); }))
     {
@@ -2608,6 +2748,22 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     inline TimedMetadataEncodingProperties::TimedMetadataEncodingProperties() :
         TimedMetadataEncodingProperties(impl::call_factory_cast<TimedMetadataEncodingProperties(*)(winrt::Windows::Foundation::IActivationFactory const&), TimedMetadataEncodingProperties>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<TimedMetadataEncodingProperties>(); }))
     {
+    }
+    inline auto TimedMetadataEncodingProperties::CreatePgs()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties(*)(ITimedMetadataEncodingPropertiesStatics const&), TimedMetadataEncodingProperties, ITimedMetadataEncodingPropertiesStatics>([](ITimedMetadataEncodingPropertiesStatics const& f) { return f.CreatePgs(); });
+    }
+    inline auto TimedMetadataEncodingProperties::CreateSrt()
+    {
+        return impl::call_factory_cast<winrt::Windows::Media::MediaProperties::TimedMetadataEncodingProperties(*)(ITimedMetadataEncodingPropertiesStatics const&), TimedMetadataEncodingProperties, ITimedMetadataEncodingPropertiesStatics>([](ITimedMetadataEncodingPropertiesStatics const& f) { return f.CreateSrt(); });
+    }
+    inline auto TimedMetadataEncodingProperties::CreateSsa(array_view<uint8_t const> formatUserData)
+    {
+        return impl::call_factory<TimedMetadataEncodingProperties, ITimedMetadataEncodingPropertiesStatics>([&](ITimedMetadataEncodingPropertiesStatics const& f) { return f.CreateSsa(formatUserData); });
+    }
+    inline auto TimedMetadataEncodingProperties::CreateVobSub(array_view<uint8_t const> formatUserData)
+    {
+        return impl::call_factory<TimedMetadataEncodingProperties, ITimedMetadataEncodingPropertiesStatics>([&](ITimedMetadataEncodingPropertiesStatics const& f) { return f.CreateVobSub(formatUserData); });
     }
     inline VideoEncodingProperties::VideoEncodingProperties() :
         VideoEncodingProperties(impl::call_factory_cast<VideoEncodingProperties(*)(winrt::Windows::Foundation::IActivationFactory const&), VideoEncodingProperties>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<VideoEncodingProperties>(); }))
@@ -2659,9 +2815,11 @@ namespace std
     template<> struct hash<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics5> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::MediaProperties::IMediaEncodingSubtypesStatics6> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IMediaRatio> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IMpeg2ProfileIdsStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingProperties> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::MediaProperties::ITimedMetadataEncodingPropertiesStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::MediaProperties::IVideoEncodingProperties3> : winrt::impl::hash_base {};

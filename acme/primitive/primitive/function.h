@@ -22,6 +22,14 @@ enum enum_as_lparam
 }; // enum enum_base
 
 
+enum enum_timeout
+{
+
+   e_timeout,
+
+}; // enum enum_timeout
+
+
 #define __as(p) { e_as, p }
 
 
@@ -31,6 +39,9 @@ struct function_common
 
    class ::wait m_waitTimeout;
 
+
+   function_common() {}
+   function_common(enum_timeout, const class wait& wait): m_waitTimeout(wait) {}
 
    void timeout(const class ::wait & wait)  { m_waitTimeout = wait;}
    class ::wait timeout() const {return m_waitTimeout;}
@@ -151,6 +162,16 @@ public:
 
       m_p = new class predicate <PREDICATE >(predicateParam);
 
+   }
+
+
+   template < typename PREDICATE >
+   function(enum_timeout, const class ::wait & wait, PREDICATE predicateParam) :
+      function(predicateParam)
+   {
+
+      m_waitTimeout = wait;
+   
    }
 
 

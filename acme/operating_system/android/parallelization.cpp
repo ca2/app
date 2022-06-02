@@ -70,23 +70,12 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
-
-
-
 void system::windowing_post(const ::procedure & procedure)
 {
 
-
    main_asynchronous(procedure);
 
-   //::nano::display::g_p->display_post(procedure);
-
 }
-
-
-
-
-
 
 
 bool __os_init_thread()

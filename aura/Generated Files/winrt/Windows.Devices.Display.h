@@ -133,6 +133,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Display::IDisplayMonitor)->GetDescriptor(static_cast<int32_t>(descriptorKind), &result_impl_size, &result));
         return com_array<uint8_t>{ result, result_impl_size, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Devices_Display_IDisplayMonitor2<D>::IsDolbyVisionSupportedInHdrMode() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Display::IDisplayMonitor2)->get_IsDolbyVisionSupportedInHdrMode(&value));
+        return value;
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Display_IDisplayMonitorStatics<D>::GetDeviceSelector() const
     {
         void* result{};
@@ -310,6 +316,19 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::Display::IDisplayMonitor2> : produce_base<D, winrt::Windows::Devices::Display::IDisplayMonitor2>
+    {
+        int32_t __stdcall get_IsDolbyVisionSupportedInHdrMode(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsDolbyVisionSupportedInHdrMode());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::Display::IDisplayMonitorStatics> : produce_base<D, winrt::Windows::Devices::Display::IDisplayMonitorStatics>
     {
         int32_t __stdcall GetDeviceSelector(void** result) noexcept final try
@@ -358,6 +377,7 @@ namespace std
 {
 #ifndef WINRT_LEAN_AND_MEAN
     template<> struct hash<winrt::Windows::Devices::Display::IDisplayMonitor> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Display::IDisplayMonitor2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Display::IDisplayMonitorStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Display::DisplayMonitor> : winrt::impl::hash_base {};
 #endif

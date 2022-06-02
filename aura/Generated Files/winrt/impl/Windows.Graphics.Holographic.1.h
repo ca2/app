@@ -138,6 +138,13 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
         IHolographicFrame2(std::nullptr_t = nullptr) noexcept {}
         IHolographicFrame2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IHolographicFrame3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHolographicFrame3>
+    {
+        IHolographicFrame3(std::nullptr_t = nullptr) noexcept {}
+        IHolographicFrame3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IHolographicFramePrediction :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IHolographicFramePrediction>
@@ -159,6 +166,28 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
     {
         IHolographicFramePresentationReport(std::nullptr_t = nullptr) noexcept {}
         IHolographicFramePresentationReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHolographicFrameRenderingReport :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHolographicFrameRenderingReport>
+    {
+        IHolographicFrameRenderingReport(std::nullptr_t = nullptr) noexcept {}
+        IHolographicFrameRenderingReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHolographicFrameScanoutMonitor :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHolographicFrameScanoutMonitor>,
+        impl::require<winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor, winrt::Windows::Foundation::IClosable>
+    {
+        IHolographicFrameScanoutMonitor(std::nullptr_t = nullptr) noexcept {}
+        IHolographicFrameScanoutMonitor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHolographicFrameScanoutReport :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHolographicFrameScanoutReport>
+    {
+        IHolographicFrameScanoutReport(std::nullptr_t = nullptr) noexcept {}
+        IHolographicFrameScanoutReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IHolographicQuadLayer :
         winrt::Windows::Foundation::IInspectable,
@@ -201,6 +230,13 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
     {
         IHolographicSpace2(std::nullptr_t = nullptr) noexcept {}
         IHolographicSpace2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IHolographicSpace3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IHolographicSpace3>
+    {
+        IHolographicSpace3(std::nullptr_t = nullptr) noexcept {}
+        IHolographicSpace3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IHolographicSpaceCameraAddedEventArgs :
         winrt::Windows::Foundation::IInspectable,

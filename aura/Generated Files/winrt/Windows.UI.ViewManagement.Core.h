@@ -97,6 +97,40 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputView3)->TryHide(&result));
         return result;
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewShowing(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewShowingEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputView4)->add_PrimaryViewShowing(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewShowing_revoker consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewShowing(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewShowingEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, PrimaryViewShowing_revoker>(this, PrimaryViewShowing(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewShowing(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputView4)->remove_PrimaryViewShowing(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewHiding(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewHidingEventArgs> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputView4)->add_PrimaryViewHiding(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewHiding_revoker consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewHiding(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewHidingEventArgs> const& handler) const
+    {
+        return impl::make_event_revoker<D, PrimaryViewHiding_revoker>(this, PrimaryViewHiding(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_ICoreInputView4<D>::PrimaryViewHiding(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputView4)->remove_PrimaryViewHiding(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_ViewManagement_Core_ICoreInputViewHidingEventArgs<D>::TryCancel() const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs)->TryCancel(&result));
+        return result;
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Rect) consume_Windows_UI_ViewManagement_Core_ICoreInputViewOcclusion<D>::OccludingRect() const
     {
         winrt::Windows::Foundation::Rect value{};
@@ -124,6 +158,12 @@ namespace winrt::impl
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_ICoreInputViewOcclusionsChangedEventArgs<D>::Handled(bool value) const
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusionsChangedEventArgs)->put_Handled(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_UI_ViewManagement_Core_ICoreInputViewShowingEventArgs<D>::TryCancel() const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs)->TryCancel(&result));
+        return result;
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::ViewManagement::Core::CoreInputView) consume_Windows_UI_ViewManagement_Core_ICoreInputViewStatics<D>::GetForCurrentView() const
     {
@@ -168,6 +208,32 @@ namespace winrt::impl
         bool value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::ICoreInputViewTransferringXYFocusEventArgs)->get_KeepPrimaryViewVisible(&value));
         return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_IUISettingsController<D>::SetAdvancedEffectsEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsController)->SetAdvancedEffectsEnabled(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_IUISettingsController<D>::SetAnimationsEnabled(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsController)->SetAnimationsEnabled(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_IUISettingsController<D>::SetAutoHideScrollBars(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsController)->SetAutoHideScrollBars(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_IUISettingsController<D>::SetMessageDuration(uint32_t value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsController)->SetMessageDuration(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_UI_ViewManagement_Core_IUISettingsController<D>::SetTextScaleFactor(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsController)->SetTextScaleFactor(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::ViewManagement::Core::UISettingsController>) consume_Windows_UI_ViewManagement_Core_IUISettingsControllerStatics<D>::RequestDefaultAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::ViewManagement::Core::IUISettingsControllerStatics)->RequestDefaultAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::ViewManagement::Core::UISettingsController>{ operation, take_ownership_from_abi };
     }
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
@@ -281,6 +347,53 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputView4> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputView4>
+    {
+        int32_t __stdcall add_PrimaryViewShowing(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().PrimaryViewShowing(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewShowingEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PrimaryViewShowing(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PrimaryViewShowing(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall add_PrimaryViewHiding(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().PrimaryViewHiding(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::UI::ViewManagement::Core::CoreInputView, winrt::Windows::UI::ViewManagement::Core::CoreInputViewHidingEventArgs> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_PrimaryViewHiding(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PrimaryViewHiding(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs>
+    {
+        int32_t __stdcall TryCancel(bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().TryCancel());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusion> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusion>
     {
         int32_t __stdcall get_OccludingRect(winrt::Windows::Foundation::Rect* value) noexcept final try
@@ -323,6 +436,19 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().Handled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs>
+    {
+        int32_t __stdcall TryCancel(bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().TryCancel());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -405,6 +531,61 @@ namespace winrt::impl
         catch (...) { return to_hresult(); }
     };
 #endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::Core::IUISettingsController> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::IUISettingsController>
+    {
+        int32_t __stdcall SetAdvancedEffectsEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetAdvancedEffectsEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAnimationsEnabled(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetAnimationsEnabled(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetAutoHideScrollBars(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetAutoHideScrollBars(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetMessageDuration(uint32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetMessageDuration(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall SetTextScaleFactor(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().SetTextScaleFactor(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::UI::ViewManagement::Core::IUISettingsControllerStatics> : produce_base<D, winrt::Windows::UI::ViewManagement::Core::IUISettingsControllerStatics>
+    {
+        int32_t __stdcall RequestDefaultAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::ViewManagement::Core::UISettingsController>>(this->shim().RequestDefaultAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
 }
 WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement::Core
 {
@@ -416,6 +597,10 @@ WINRT_EXPORT namespace winrt::Windows::UI::ViewManagement::Core
     {
         return impl::call_factory<CoreInputView, ICoreInputViewStatics2>([&](ICoreInputViewStatics2 const& f) { return f.GetForUIContext(context); });
     }
+    inline auto UISettingsController::RequestDefaultAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::UI::ViewManagement::Core::UISettingsController>(*)(IUISettingsControllerStatics const&), UISettingsController, IUISettingsControllerStatics>([](IUISettingsControllerStatics const& f) { return f.RequestDefaultAsync(); });
+    }
 }
 namespace std
 {
@@ -423,15 +608,23 @@ namespace std
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputView> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputView2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputView3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputView4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewHidingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusion> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewOcclusionsChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewShowingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::ICoreInputViewTransferringXYFocusEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::IUISettingsController> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::IUISettingsControllerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputView> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputViewHidingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputViewOcclusion> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputViewOcclusionsChangedEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputViewShowingEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::UI::ViewManagement::Core::CoreInputViewTransferringXYFocusEventArgs> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::UI::ViewManagement::Core::UISettingsController> : winrt::impl::hash_base {};
 #endif
 }
 #endif

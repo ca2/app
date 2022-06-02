@@ -175,7 +175,7 @@ namespace user
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
@@ -2465,7 +2465,7 @@ namespace user
    }
 
 
-   void frame_window::_001OnSetFocus(::message::message * pmessage)
+   void frame_window::on_message_set_focus(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);

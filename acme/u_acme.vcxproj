@@ -74,8 +74,8 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>acme</ProjectName>
   </PropertyGroup>
@@ -353,7 +353,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -388,7 +388,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -415,7 +415,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -450,7 +450,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -479,7 +479,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -515,7 +515,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -542,7 +542,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -577,7 +577,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -720,7 +720,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -755,7 +755,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -782,7 +782,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
@@ -818,7 +818,7 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <AdditionalOptions>/Zc:twoPhase- /bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -1040,6 +1040,7 @@
     <ClInclude Include="primitive\datetime\file_time_span.h" />
     <ClInclude Include="primitive\datetime\system_time.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
+    <ClInclude Include="primitive\media_library\item.h" />
     <ClInclude Include="primitive\primitive\atom.h" />
     <ClInclude Include="primitive\primitive\atom_array.h" />
     <ClInclude Include="primitive\primitive\atom_space.h" />
@@ -1067,18 +1068,22 @@
     <ClInclude Include="user\nano\window_implementation.h" />
     <ClInclude Include="user\nano\window_interface.h" />
     <ClInclude Include="user\nano\_nano.h" />
-    <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check.h" />
+    <ClInclude Include="user\user\command_update_target.h" />
     <ClInclude Include="user\user\conversation.h" />
+    <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\drag_move.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\ewindowflag.h" />
+    <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />
     <ClInclude Include="user\user\os_theme_colors.h" />
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\user\theme_colors.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_const.h" />
+    <ClInclude Include="user\user\_constant.h" />
+    <ClInclude Include="user\user\_constant_key.h" />
     <ClInclude Include="user\user\_const_key.h" />
     <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="_start.h" />
@@ -1967,7 +1972,6 @@
     <ClCompile Include="parallelization\synchronization_object.cpp" />
     <ClCompile Include="parallelization\synchronization_result.cpp" />
     <ClCompile Include="parallelization\synchronized_process.cpp" />
-    <ClCompile Include="parallelization\synchronized_routine.cpp" />
     <ClCompile Include="parallelization\synchronized_task.cpp" />
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
@@ -2014,8 +2018,6 @@
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
-    <ClCompile Include="platform\routine.cpp" />
-    <ClCompile Include="platform\routine_array.cpp" />
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
@@ -2080,6 +2082,7 @@
     <ClCompile Include="primitive\duration\duration\duration.cpp" />
     <ClCompile Include="primitive\duration\duration\microsecond.cpp" />
     <ClCompile Include="primitive\duration\duration\second.cpp" />
+    <ClCompile Include="primitive\duration\time.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
     <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
@@ -2105,6 +2108,7 @@
     <ClCompile Include="primitive\mathematics\scalar.cpp" />
     <ClCompile Include="primitive\mathematics\value.cpp" />
     <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\application_bias.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\atom_space.cpp" />
@@ -2150,6 +2154,7 @@
     <ClCompile Include="primitive\string\bstring.cpp" />
     <ClCompile Include="primitive\string\ch.cpp" />
     <ClCompile Include="primitive\string\ch_class.cpp" />
+    <ClCompile Include="primitive\string\command_line.cpp" />
     <ClCompile Include="primitive\string\dup.cpp" />
     <ClCompile Include="primitive\string\from_integer.cpp" />
     <ClCompile Include="primitive\string\hex.cpp" />
@@ -2167,16 +2172,16 @@
     <ClCompile Include="primitive\string\sz.cpp" />
     <ClCompile Include="primitive\string\tokenizer.cpp" />
     <ClCompile Include="primitive\string\to_integer.cpp" />
+    <ClCompile Include="primitive\string\to_string.cpp" />
+    <ClCompile Include="primitive\string\unicode.cpp" />
+    <ClCompile Include="primitive\string\unicode16.cpp" />
+    <ClCompile Include="primitive\string\unicode16_32.cpp" />
+    <ClCompile Include="primitive\string\unicode32.cpp" />
+    <ClCompile Include="primitive\string\wildcard.cpp" />
     <ClCompile Include="primitive\string\x.cpp" />
     <ClCompile Include="primitive\string\_.cpp" />
-    <ClCompile Include="primitive\string\_c.cpp" />
-    <ClCompile Include="primitive\string\_conv_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
-    <ClCompile Include="primitive\string\_unicode.cpp" />
-    <ClCompile Include="primitive\string\_unicode16.cpp" />
-    <ClCompile Include="primitive\string\_unicode16_32.cpp" />
-    <ClCompile Include="primitive\string\_unicode32.cpp" />
     <ClCompile Include="primitive\text\context.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
@@ -2207,8 +2212,10 @@
     <ClCompile Include="user\nano\window_interface.cpp" />
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
-    <ClCompile Include="user\user\drag_move.cpp" />
+    <ClCompile Include="user\user\conversation.cpp" />
+    <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\element.cpp" />
+    <ClCompile Include="user\user\mouse.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />

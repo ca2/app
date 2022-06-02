@@ -154,6 +154,15 @@
     <Filter Include="Header Files\hardware">
       <UniqueIdentifier>{86d9eac5-78af-4858-84f4-412d2d004dcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\windowing\sandbox">
+      <UniqueIdentifier>{b061d7c7-d018-40f8-a8d6-27da3b4a89d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing\sandbox">
+      <UniqueIdentifier>{d000fa82-9faa-476f-a405-d66450486dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{11727c76-a534-45ac-840a-ee8e54afe59a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -918,6 +927,99 @@
     <ClInclude Include="graphics\graphics\target.h">
       <Filter>Header Files\graphics\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="windowing\sandbox\windowing.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\window.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\_sandbox.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\host_interaction.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\source.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\save_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\pixmap.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\palette.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\meta.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map_ex1.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\load_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\list.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\imaging.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\icon.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\header.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\fastblur.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\extension.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\dynamic.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawing.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawer.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\cursor_set.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\cursor.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\context_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image_impl.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\_impl.h">
@@ -1446,6 +1548,15 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics\target.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\windowing.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\window.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

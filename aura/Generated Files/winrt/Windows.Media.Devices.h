@@ -7,6 +7,7 @@
 static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.210806.1"), "Mismatched C++/WinRT headers.");
 #define CPPWINRT_VERSION "2.0.210806.1"
 #include "winrt/Windows.Media.h"
+#include "winrt/impl/Windows.Devices.Enumeration.2.h"
 #include "winrt/impl/Windows.Foundation.2.h"
 #include "winrt/impl/Windows.Foundation.Collections.2.h"
 #include "winrt/impl/Windows.Media.Capture.2.h"
@@ -227,6 +228,12 @@ namespace winrt::impl
         void* value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7)->get_InfraredTorchControl(&value));
         return winrt::Windows::Media::Devices::InfraredTorchControl{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Devices::PanelBasedOptimizationControl) consume_Windows_Media_Devices_IAdvancedVideoCaptureDeviceController8<D>::PanelBasedOptimizationControl() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8)->get_PanelBasedOptimizationControl(&value));
+        return winrt::Windows::Media::Devices::PanelBasedOptimizationControl{ value, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Devices_IAudioDeviceController<D>::Muted(bool value) const
     {
@@ -1146,6 +1153,22 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IOpticalImageStabilizationControl)->put_Mode(static_cast<int32_t>(value)));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Media_Devices_IPanelBasedOptimizationControl<D>::IsSupported() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IPanelBasedOptimizationControl)->get_IsSupported(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) consume_Windows_Media_Devices_IPanelBasedOptimizationControl<D>::Panel() const
+    {
+        winrt::Windows::Devices::Enumeration::Panel value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IPanelBasedOptimizationControl)->get_Panel(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Devices_IPanelBasedOptimizationControl<D>::Panel(winrt::Windows::Devices::Enumeration::Panel const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Devices::IPanelBasedOptimizationControl)->put_Panel(static_cast<int32_t>(value)));
+    }
     template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Media_Devices_IPhotoConfirmationControl<D>::Supported() const
     {
         bool pbSupported{};
@@ -1897,6 +1920,20 @@ namespace winrt::impl
             clear_abi(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Media::Devices::InfraredTorchControl>(this->shim().InfraredTorchControl());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8> : produce_base<D, winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8>
+    {
+        int32_t __stdcall get_PanelBasedOptimizationControl(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Media::Devices::PanelBasedOptimizationControl>(this->shim().PanelBasedOptimizationControl());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3232,6 +3269,33 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Devices::IPanelBasedOptimizationControl> : produce_base<D, winrt::Windows::Media::Devices::IPanelBasedOptimizationControl>
+    {
+        int32_t __stdcall get_IsSupported(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().IsSupported());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Panel(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Enumeration::Panel>(this->shim().Panel());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Panel(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Panel(*reinterpret_cast<winrt::Windows::Devices::Enumeration::Panel const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Devices::IPhotoConfirmationControl> : produce_base<D, winrt::Windows::Media::Devices::IPhotoConfirmationControl>
     {
         int32_t __stdcall get_Supported(bool* pbSupported) noexcept final try
@@ -3937,6 +4001,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController6> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController7> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IAdvancedVideoCaptureDeviceController8> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceController> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceModule> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IAudioDeviceModuleNotificationEventArgs> : winrt::impl::hash_base {};
@@ -3963,6 +4028,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::IMediaDeviceStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IModuleCommandResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IOpticalImageStabilizationControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::IPanelBasedOptimizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IPhotoConfirmationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IRegionOfInterest> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::IRegionOfInterest2> : winrt::impl::hash_base {};
@@ -4000,6 +4066,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Devices::MediaDeviceControlCapabilities> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::ModuleCommandResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::OpticalImageStabilizationControl> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Devices::PanelBasedOptimizationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::PhotoConfirmationControl> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::RegionOfInterest> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Devices::RegionsOfInterestControl> : winrt::impl::hash_base {};

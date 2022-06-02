@@ -340,6 +340,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition
     struct IVector4KeyFrameAnimation;
     struct IVisual;
     struct IVisual2;
+    struct IVisual3;
     struct IVisualCollection;
     struct IVisualElement;
     struct IVisualFactory;
@@ -598,6 +599,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::UI::Composition::IVector4KeyFrameAnimation>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::IVisual>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::IVisual2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::UI::Composition::IVisual3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::IVisualCollection>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::IVisualElement>{ using type = interface_category; };
     template <> struct category<winrt::Windows::UI::Composition::IVisualFactory>{ using type = interface_category; };
@@ -988,6 +990,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVector4KeyFrameAnimation> = L"Windows.UI.Composition.IVector4KeyFrameAnimation";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisual> = L"Windows.UI.Composition.IVisual";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisual2> = L"Windows.UI.Composition.IVisual2";
+    template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisual3> = L"Windows.UI.Composition.IVisual3";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisualCollection> = L"Windows.UI.Composition.IVisualCollection";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisualElement> = L"Windows.UI.Composition.IVisualElement";
     template <> inline constexpr auto& name_v<winrt::Windows::UI::Composition::IVisualFactory> = L"Windows.UI.Composition.IVisualFactory";
@@ -1148,6 +1151,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVector4KeyFrameAnimation>{ 0x2457945B,0xADDD,0x4385,{ 0x96,0x06,0xB6,0xA3,0xD5,0xE4,0xE1,0xB9 } }; // 2457945B-ADDD-4385-9606-B6A3D5E4E1B9
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisual>{ 0x117E202D,0xA859,0x4C89,{ 0x87,0x3B,0xC2,0xAA,0x56,0x67,0x88,0xE3 } }; // 117E202D-A859-4C89-873B-C2AA566788E3
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisual2>{ 0x3052B611,0x56C3,0x4C3E,{ 0x8B,0xF3,0xF6,0xE1,0xAD,0x47,0x3F,0x06 } }; // 3052B611-56C3-4C3E-8BF3-F6E1AD473F06
+    template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisual3>{ 0x30BE580D,0xF4B6,0x4AB7,{ 0x80,0xDD,0x37,0x38,0xCB,0xAC,0x9F,0x2C } }; // 30BE580D-F4B6-4AB7-80DD-3738CBAC9F2C
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisualCollection>{ 0x8B745505,0xFD3E,0x4A98,{ 0x84,0xA8,0xE9,0x49,0x46,0x8C,0x6B,0xCB } }; // 8B745505-FD3E-4A98-84A8-E949468C6BCB
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisualElement>{ 0x01E64612,0x1D82,0x42F4,{ 0x8E,0x3F,0xA7,0x22,0xDE,0xD3,0x3F,0xC7 } }; // 01E64612-1D82-42F4-8E3F-A722DED33FC7
     template <> inline constexpr guid guid_v<winrt::Windows::UI::Composition::IVisualFactory>{ 0xAD0FF93E,0xB502,0x4EB5,{ 0x87,0xB4,0x9A,0x38,0xA7,0x1D,0x01,0x37 } }; // AD0FF93E-B502-4EB5-87B4-9A38A71D0137
@@ -2822,6 +2826,14 @@ namespace winrt::impl
             virtual int32_t __stdcall put_RelativeOffsetAdjustment(winrt::Windows::Foundation::Numerics::float3) noexcept = 0;
             virtual int32_t __stdcall get_RelativeSizeAdjustment(winrt::Windows::Foundation::Numerics::float2*) noexcept = 0;
             virtual int32_t __stdcall put_RelativeSizeAdjustment(winrt::Windows::Foundation::Numerics::float2) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::UI::Composition::IVisual3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsHitTestVisible(bool*) noexcept = 0;
+            virtual int32_t __stdcall put_IsHitTestVisible(bool) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::UI::Composition::IVisualCollection>
@@ -4755,6 +4767,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::UI::Composition::IVisual2>
     {
         template <typename D> using type = consume_Windows_UI_Composition_IVisual2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_UI_Composition_IVisual3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) IsHitTestVisible() const;
+        WINRT_IMPL_AUTO(void) IsHitTestVisible(bool value) const;
+    };
+    template <> struct consume<winrt::Windows::UI::Composition::IVisual3>
+    {
+        template <typename D> using type = consume_Windows_UI_Composition_IVisual3<D>;
     };
     template <typename D>
     struct consume_Windows_UI_Composition_IVisualCollection

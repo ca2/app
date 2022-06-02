@@ -184,8 +184,8 @@ namespace tsf
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 
       //void on_edit_set_focus(::user::interaction * pinteraction);

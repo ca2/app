@@ -77,6 +77,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::DataTransfer
     struct IDataPackage;
     struct IDataPackage2;
     struct IDataPackage3;
+    struct IDataPackage4;
     struct IDataPackagePropertySet;
     struct IDataPackagePropertySet2;
     struct IDataPackagePropertySet3;
@@ -155,6 +156,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet3>{ using type = interface_category; };
@@ -264,6 +266,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage> = L"Windows.ApplicationModel.DataTransfer.IDataPackage";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2> = L"Windows.ApplicationModel.DataTransfer.IDataPackage2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3> = L"Windows.ApplicationModel.DataTransfer.IDataPackage3";
+    template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4> = L"Windows.ApplicationModel.DataTransfer.IDataPackage4";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet> = L"Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet2> = L"Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet2";
     template <> inline constexpr auto& name_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet3> = L"Windows.ApplicationModel.DataTransfer.IDataPackagePropertySet3";
@@ -313,6 +316,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage>{ 0x61EBF5C7,0xEFEA,0x4346,{ 0x95,0x54,0x98,0x1D,0x7E,0x19,0x8F,0xFE } }; // 61EBF5C7-EFEA-4346-9554-981D7E198FFE
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage2>{ 0x041C1FE9,0x2409,0x45E1,{ 0xA5,0x38,0x4C,0x53,0xEE,0xEE,0x04,0xA7 } }; // 041C1FE9-2409-45E1-A538-4C53EEEE04A7
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3>{ 0x88F31F5D,0x787B,0x4D32,{ 0x96,0x5A,0xA9,0x83,0x81,0x05,0xA0,0x56 } }; // 88F31F5D-787B-4D32-965A-A9838105A056
+    template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>{ 0x13A24EC8,0x9382,0x536F,{ 0x85,0x2A,0x30,0x45,0xE1,0xB2,0x9A,0x3B } }; // 13A24EC8-9382-536F-852A-3045E1B29A3B
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet>{ 0xCD1C93EB,0x4C4C,0x443A,{ 0xA8,0xD3,0xF5,0xC2,0x41,0xE9,0x16,0x89 } }; // CD1C93EB-4C4C-443A-A8D3-F5C241E91689
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet2>{ 0xEB505D4A,0x9800,0x46AA,{ 0xB1,0x81,0x7B,0x6F,0x0F,0x2B,0x91,0x9A } }; // EB505D4A-9800-46AA-B181-7B6F0F2B919A
     template <> inline constexpr guid guid_v<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet3>{ 0x9E87FD9B,0x5205,0x401B,{ 0x87,0x4A,0x45,0x56,0x53,0xBD,0x39,0xE8 } }; // 9E87FD9B-5205-401B-874A-455653BD39E8
@@ -479,6 +483,14 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall add_ShareCompleted(void*, winrt::event_token*) noexcept = 0;
             virtual int32_t __stdcall remove_ShareCompleted(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_ShareCanceled(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_ShareCanceled(winrt::event_token) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::ApplicationModel::DataTransfer::IDataPackagePropertySet>
@@ -936,11 +948,11 @@ namespace winrt::impl
         WINRT_IMPL_AUTO(winrt::event_token) OperationCompleted(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const& handler) const;
         using OperationCompleted_revoker = impl::event_revoker<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage, &impl::abi_t<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage>::remove_OperationCompleted>;
         [[nodiscard]] OperationCompleted_revoker OperationCompleted(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::ApplicationModel::DataTransfer::OperationCompletedEventArgs> const& handler) const;
-        WINRT_IMPL_AUTO(void) OperationCompleted(winrt::event_token const& eventCookie) const noexcept;
+        WINRT_IMPL_AUTO(void) OperationCompleted(winrt::event_token const& token) const noexcept;
         WINRT_IMPL_AUTO(winrt::event_token) Destroyed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const;
         using Destroyed_revoker = impl::event_revoker<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage, &impl::abi_t<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage>::remove_Destroyed>;
         [[nodiscard]] Destroyed_revoker Destroyed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const;
-        WINRT_IMPL_AUTO(void) Destroyed(winrt::event_token const& eventCookie) const noexcept;
+        WINRT_IMPL_AUTO(void) Destroyed(winrt::event_token const& token) const noexcept;
         WINRT_IMPL_AUTO(void) SetData(param::hstring const& formatId, winrt::Windows::Foundation::IInspectable const& value) const;
         WINRT_IMPL_AUTO(void) SetDataProvider(param::hstring const& formatId, winrt::Windows::ApplicationModel::DataTransfer::DataProviderHandler const& delayRenderer) const;
         WINRT_IMPL_AUTO(void) SetText(param::hstring const& value) const;
@@ -977,6 +989,18 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage3>
     {
         template <typename D> using type = consume_Windows_ApplicationModel_DataTransfer_IDataPackage3<D>;
+    };
+    template <typename D>
+    struct consume_Windows_ApplicationModel_DataTransfer_IDataPackage4
+    {
+        WINRT_IMPL_AUTO(winrt::event_token) ShareCanceled(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using ShareCanceled_revoker = impl::event_revoker<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4, &impl::abi_t<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>::remove_ShareCanceled>;
+        [[nodiscard]] ShareCanceled_revoker ShareCanceled(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::ApplicationModel::DataTransfer::DataPackage, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        WINRT_IMPL_AUTO(void) ShareCanceled(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::ApplicationModel::DataTransfer::IDataPackage4>
+    {
+        template <typename D> using type = consume_Windows_ApplicationModel_DataTransfer_IDataPackage4<D>;
     };
     template <typename D>
     struct consume_Windows_ApplicationModel_DataTransfer_IDataPackagePropertySet

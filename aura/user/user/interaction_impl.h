@@ -289,8 +289,8 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
-      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
+      DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
       DECLARE_MESSAGE_HANDLER(on_message_move);

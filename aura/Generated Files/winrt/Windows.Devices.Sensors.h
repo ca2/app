@@ -95,6 +95,42 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometer4)->get_ReadingType(reinterpret_cast<int32_t*>(&type)));
         return type;
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::AccelerometerDataThreshold) consume_Windows_Devices_Sensors_IAccelerometer5<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometer5)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::AccelerometerDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::XAxisInGForce() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->get_XAxisInGForce(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::XAxisInGForce(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->put_XAxisInGForce(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::YAxisInGForce() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->get_YAxisInGForce(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::YAxisInGForce(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->put_YAxisInGForce(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::ZAxisInGForce() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->get_ZAxisInGForce(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IAccelerometerDataThreshold<D>::ZAxisInGForce(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold)->put_ZAxisInGForce(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_IAccelerometerDeviceId<D>::DeviceId() const
     {
         void* value{};
@@ -441,6 +477,22 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IBarometer2)->get_MaxBatchSize(&value));
         return value;
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::BarometerDataThreshold) consume_Windows_Devices_Sensors_IBarometer3<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IBarometer3)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::BarometerDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IBarometerDataThreshold<D>::Hectopascals() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IBarometerDataThreshold)->get_Hectopascals(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IBarometerDataThreshold<D>::Hectopascals(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IBarometerDataThreshold)->put_Hectopascals(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::DateTime) consume_Windows_Devices_Sensors_IBarometerReading<D>::Timestamp() const
     {
         winrt::Windows::Foundation::DateTime value{};
@@ -550,6 +602,22 @@ namespace winrt::impl
         uint32_t value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ICompass3)->get_MaxBatchSize(&value));
         return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::CompassDataThreshold) consume_Windows_Devices_Sensors_ICompass4<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ICompass4)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::CompassDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_ICompassDataThreshold<D>::Degrees() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ICompassDataThreshold)->get_Degrees(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_ICompassDataThreshold<D>::Degrees(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ICompassDataThreshold)->put_Degrees(value));
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_ICompassDeviceId<D>::DeviceId() const
     {
@@ -678,6 +746,42 @@ namespace winrt::impl
         uint32_t value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometer3)->get_MaxBatchSize(&value));
         return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::GyrometerDataThreshold) consume_Windows_Devices_Sensors_IGyrometer4<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometer4)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::GyrometerDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::XAxisInDegreesPerSecond() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->get_XAxisInDegreesPerSecond(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::XAxisInDegreesPerSecond(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->put_XAxisInDegreesPerSecond(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::YAxisInDegreesPerSecond() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->get_YAxisInDegreesPerSecond(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::YAxisInDegreesPerSecond(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->put_YAxisInDegreesPerSecond(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(double) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::ZAxisInDegreesPerSecond() const
+    {
+        double value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->get_ZAxisInDegreesPerSecond(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IGyrometerDataThreshold<D>::ZAxisInDegreesPerSecond(double value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IGyrometerDataThreshold)->put_ZAxisInDegreesPerSecond(value));
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_IGyrometerDeviceId<D>::DeviceId() const
     {
@@ -903,6 +1007,42 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometer3)->get_MaxBatchSize(&value));
         return value;
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::InclinometerDataThreshold) consume_Windows_Devices_Sensors_IInclinometer4<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometer4)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::InclinometerDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::PitchInDegrees() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->get_PitchInDegrees(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::PitchInDegrees(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->put_PitchInDegrees(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::RollInDegrees() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->get_RollInDegrees(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::RollInDegrees(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->put_RollInDegrees(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::YawInDegrees() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->get_YawInDegrees(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IInclinometerDataThreshold<D>::YawInDegrees(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IInclinometerDataThreshold)->put_YawInDegrees(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_IInclinometerDeviceId<D>::DeviceId() const
     {
         void* value{};
@@ -1039,6 +1179,32 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensor2)->get_MaxBatchSize(&value));
         return value;
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::LightSensorDataThreshold) consume_Windows_Devices_Sensors_ILightSensor3<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensor3)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::LightSensorDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_ILightSensorDataThreshold<D>::LuxPercentage() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensorDataThreshold)->get_LuxPercentage(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_ILightSensorDataThreshold<D>::LuxPercentage(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensorDataThreshold)->put_LuxPercentage(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_ILightSensorDataThreshold<D>::AbsoluteLux() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensorDataThreshold)->get_AbsoluteLux(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_ILightSensorDataThreshold<D>::AbsoluteLux(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::ILightSensorDataThreshold)->put_AbsoluteLux(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_ILightSensorDeviceId<D>::DeviceId() const
     {
         void* value{};
@@ -1154,6 +1320,42 @@ namespace winrt::impl
         uint32_t value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometer3)->get_MaxBatchSize(&value));
         return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Sensors::MagnetometerDataThreshold) consume_Windows_Devices_Sensors_IMagnetometer4<D>::ReportThreshold() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometer4)->get_ReportThreshold(&value));
+        return winrt::Windows::Devices::Sensors::MagnetometerDataThreshold{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::XAxisMicroteslas() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->get_XAxisMicroteslas(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::XAxisMicroteslas(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->put_XAxisMicroteslas(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::YAxisMicroteslas() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->get_YAxisMicroteslas(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::YAxisMicroteslas(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->put_YAxisMicroteslas(value));
+    }
+    template <typename D> WINRT_IMPL_AUTO(float) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::ZAxisMicroteslas() const
+    {
+        float value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->get_ZAxisMicroteslas(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Devices_Sensors_IMagnetometerDataThreshold<D>::ZAxisMicroteslas(float value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold)->put_ZAxisMicroteslas(value));
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Devices_Sensors_IMagnetometerDeviceId<D>::DeviceId() const
     {
@@ -1878,6 +2080,68 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IAccelerometer5> : produce_base<D, winrt::Windows::Devices::Sensors::IAccelerometer5>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::AccelerometerDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold>
+    {
+        int32_t __stdcall get_XAxisInGForce(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().XAxisInGForce());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_XAxisInGForce(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().XAxisInGForce(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_YAxisInGForce(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().YAxisInGForce());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_YAxisInGForce(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().YAxisInGForce(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ZAxisInGForce(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().ZAxisInGForce());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ZAxisInGForce(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ZAxisInGForce(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::Sensors::IAccelerometerDeviceId> : produce_base<D, winrt::Windows::Devices::Sensors::IAccelerometerDeviceId>
     {
         int32_t __stdcall get_DeviceId(void** value) noexcept final try
@@ -2448,6 +2712,40 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IBarometer3> : produce_base<D, winrt::Windows::Devices::Sensors::IBarometer3>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::BarometerDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IBarometerDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::IBarometerDataThreshold>
+    {
+        int32_t __stdcall get_Hectopascals(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().Hectopascals());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Hectopascals(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Hectopascals(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::Sensors::IBarometerReading> : produce_base<D, winrt::Windows::Devices::Sensors::IBarometerReading>
     {
         int32_t __stdcall get_Timestamp(int64_t* value) noexcept final try
@@ -2630,6 +2928,40 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<uint32_t>(this->shim().MaxBatchSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::ICompass4> : produce_base<D, winrt::Windows::Devices::Sensors::ICompass4>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::CompassDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::ICompassDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::ICompassDataThreshold>
+    {
+        int32_t __stdcall get_Degrees(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().Degrees());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Degrees(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Degrees(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2854,6 +3186,68 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<uint32_t>(this->shim().MaxBatchSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IGyrometer4> : produce_base<D, winrt::Windows::Devices::Sensors::IGyrometer4>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::GyrometerDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IGyrometerDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::IGyrometerDataThreshold>
+    {
+        int32_t __stdcall get_XAxisInDegreesPerSecond(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().XAxisInDegreesPerSecond());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_XAxisInDegreesPerSecond(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().XAxisInDegreesPerSecond(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_YAxisInDegreesPerSecond(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().YAxisInDegreesPerSecond());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_YAxisInDegreesPerSecond(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().YAxisInDegreesPerSecond(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ZAxisInDegreesPerSecond(double* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<double>(this->shim().ZAxisInDegreesPerSecond());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ZAxisInDegreesPerSecond(double value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ZAxisInDegreesPerSecond(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3223,6 +3617,68 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IInclinometer4> : produce_base<D, winrt::Windows::Devices::Sensors::IInclinometer4>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::InclinometerDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IInclinometerDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::IInclinometerDataThreshold>
+    {
+        int32_t __stdcall get_PitchInDegrees(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().PitchInDegrees());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_PitchInDegrees(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().PitchInDegrees(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_RollInDegrees(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().RollInDegrees());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_RollInDegrees(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().RollInDegrees(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_YawInDegrees(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().YawInDegrees());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_YawInDegrees(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().YawInDegrees(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::Sensors::IInclinometerDeviceId> : produce_base<D, winrt::Windows::Devices::Sensors::IInclinometerDeviceId>
     {
         int32_t __stdcall get_DeviceId(void** value) noexcept final try
@@ -3461,6 +3917,54 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::ILightSensor3> : produce_base<D, winrt::Windows::Devices::Sensors::ILightSensor3>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::LightSensorDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::ILightSensorDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::ILightSensorDataThreshold>
+    {
+        int32_t __stdcall get_LuxPercentage(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().LuxPercentage());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_LuxPercentage(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().LuxPercentage(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_AbsoluteLux(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().AbsoluteLux());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_AbsoluteLux(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().AbsoluteLux(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Devices::Sensors::ILightSensorDeviceId> : produce_base<D, winrt::Windows::Devices::Sensors::ILightSensorDeviceId>
     {
         int32_t __stdcall get_DeviceId(void** value) noexcept final try
@@ -3657,6 +4161,68 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             *value = detach_from<uint32_t>(this->shim().MaxBatchSize());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IMagnetometer4> : produce_base<D, winrt::Windows::Devices::Sensors::IMagnetometer4>
+    {
+        int32_t __stdcall get_ReportThreshold(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold>(this->shim().ReportThreshold());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold> : produce_base<D, winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold>
+    {
+        int32_t __stdcall get_XAxisMicroteslas(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().XAxisMicroteslas());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_XAxisMicroteslas(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().XAxisMicroteslas(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_YAxisMicroteslas(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().YAxisMicroteslas());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_YAxisMicroteslas(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().YAxisMicroteslas(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_ZAxisMicroteslas(float* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<float>(this->shim().ZAxisMicroteslas());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_ZAxisMicroteslas(float value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().ZAxisMicroteslas(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -4890,6 +5456,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometer2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometer3> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometer4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometer5> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometerDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IAccelerometerReading2> : winrt::impl::hash_base {};
@@ -4912,6 +5480,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IAltimeterStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IBarometer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IBarometer2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IBarometer3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IBarometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IBarometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IBarometerReading2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IBarometerReadingChangedEventArgs> : winrt::impl::hash_base {};
@@ -4920,6 +5490,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompass> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompass2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompass3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::ICompass4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::ICompassDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompassDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompassReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ICompassReading2> : winrt::impl::hash_base {};
@@ -4930,6 +5502,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometer2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometer3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometer4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometerDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IGyrometerReading2> : winrt::impl::hash_base {};
@@ -4943,6 +5517,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometer2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometer3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometer4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometerDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometerReading2> : winrt::impl::hash_base {};
@@ -4954,6 +5530,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IInclinometerStatics4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensor2> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensor3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensorDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensorDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensorReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ILightSensorReading2> : winrt::impl::hash_base {};
@@ -4963,6 +5541,8 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometer> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometer2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometer3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometer4> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometerDeviceId> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::IMagnetometerReading2> : winrt::impl::hash_base {};
@@ -5005,6 +5585,7 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::ISimpleOrientationSensorStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Accelerometer> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::AccelerometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::AccelerometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::AccelerometerReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::AccelerometerShakenEventArgs> : winrt::impl::hash_base {};
@@ -5017,24 +5598,30 @@ namespace std
     template<> struct hash<winrt::Windows::Devices::Sensors::AltimeterReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::AltimeterReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Barometer> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::BarometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::BarometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::BarometerReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Compass> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::CompassDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::CompassReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::CompassReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Gyrometer> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::GyrometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::GyrometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::GyrometerReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::HingeAngleReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::HingeAngleSensor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::HingeAngleSensorReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Inclinometer> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::InclinometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::InclinometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::InclinometerReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::LightSensor> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::LightSensorDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::LightSensorReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::LightSensorReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::Magnetometer> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Devices::Sensors::MagnetometerDataThreshold> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::MagnetometerReading> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::MagnetometerReadingChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Devices::Sensors::OrientationSensor> : winrt::impl::hash_base {};

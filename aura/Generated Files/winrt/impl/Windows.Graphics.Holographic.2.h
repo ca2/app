@@ -23,6 +23,18 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
     {
         return !(left == right);
     }
+    struct HolographicFrameId
+    {
+        uint64_t Value;
+    };
+    inline bool operator==(HolographicFrameId const& left, HolographicFrameId const& right) noexcept
+    {
+        return left.Value == right.Value;
+    }
+    inline bool operator!=(HolographicFrameId const& left, HolographicFrameId const& right) noexcept
+    {
+        return !(left == right);
+    }
     struct HolographicStereoTransform
     {
         winrt::Windows::Foundation::Numerics::float4x4 Left;
@@ -67,7 +79,7 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
         static auto GetDefault();
     };
     struct __declspec(empty_bases) HolographicFrame : winrt::Windows::Graphics::Holographic::IHolographicFrame,
-        impl::require<HolographicFrame, winrt::Windows::Graphics::Holographic::IHolographicFrame2>
+        impl::require<HolographicFrame, winrt::Windows::Graphics::Holographic::IHolographicFrame2, winrt::Windows::Graphics::Holographic::IHolographicFrame3>
     {
         HolographicFrame(std::nullptr_t) noexcept {}
         HolographicFrame(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicFrame(ptr, take_ownership_from_abi) {}
@@ -87,6 +99,21 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
         HolographicFramePresentationReport(std::nullptr_t) noexcept {}
         HolographicFramePresentationReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicFramePresentationReport(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) HolographicFrameRenderingReport : winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport
+    {
+        HolographicFrameRenderingReport(std::nullptr_t) noexcept {}
+        HolographicFrameRenderingReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicFrameRenderingReport(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) HolographicFrameScanoutMonitor : winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor
+    {
+        HolographicFrameScanoutMonitor(std::nullptr_t) noexcept {}
+        HolographicFrameScanoutMonitor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutMonitor(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) HolographicFrameScanoutReport : winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport
+    {
+        HolographicFrameScanoutReport(std::nullptr_t) noexcept {}
+        HolographicFrameScanoutReport(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicFrameScanoutReport(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) HolographicQuadLayer : winrt::Windows::Graphics::Holographic::IHolographicQuadLayer,
         impl::require<HolographicQuadLayer, winrt::Windows::Foundation::IClosable>
     {
@@ -102,7 +129,7 @@ WINRT_EXPORT namespace winrt::Windows::Graphics::Holographic
         HolographicQuadLayerUpdateParameters(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicQuadLayerUpdateParameters(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) HolographicSpace : winrt::Windows::Graphics::Holographic::IHolographicSpace,
-        impl::require<HolographicSpace, winrt::Windows::Graphics::Holographic::IHolographicSpace2>
+        impl::require<HolographicSpace, winrt::Windows::Graphics::Holographic::IHolographicSpace2, winrt::Windows::Graphics::Holographic::IHolographicSpace3>
     {
         HolographicSpace(std::nullptr_t) noexcept {}
         HolographicSpace(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Graphics::Holographic::IHolographicSpace(ptr, take_ownership_from_abi) {}

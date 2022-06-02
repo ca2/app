@@ -27,6 +27,13 @@ WINRT_EXPORT namespace winrt::Windows::Security::Authentication::Web::Core
         IWebAccountMonitor(std::nullptr_t = nullptr) noexcept {}
         IWebAccountMonitor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IWebAccountMonitor2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IWebAccountMonitor2>
+    {
+        IWebAccountMonitor2(std::nullptr_t = nullptr) noexcept {}
+        IWebAccountMonitor2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IWebAuthenticationCoreManagerStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IWebAuthenticationCoreManagerStatics>

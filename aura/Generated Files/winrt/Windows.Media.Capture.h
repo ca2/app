@@ -7,6 +7,7 @@
 static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.210806.1"), "Mismatched C++/WinRT headers.");
 #define CPPWINRT_VERSION "2.0.210806.1"
 #include "winrt/Windows.Media.h"
+#include "winrt/impl/Windows.Devices.Enumeration.2.h"
 #include "winrt/impl/Windows.Foundation.2.h"
 #include "winrt/impl/Windows.Foundation.Collections.2.h"
 #include "winrt/impl/Windows.Graphics.DirectX.Direct3D11.2.h"
@@ -18,8 +19,10 @@ static_assert(winrt::check_version(CPPWINRT_VERSION, "2.0.210806.1"), "Mismatche
 #include "winrt/impl/Windows.Media.Devices.2.h"
 #include "winrt/impl/Windows.Media.Effects.2.h"
 #include "winrt/impl/Windows.Media.MediaProperties.2.h"
+#include "winrt/impl/Windows.Security.Credentials.2.h"
 #include "winrt/impl/Windows.Storage.2.h"
 #include "winrt/impl/Windows.Storage.Streams.2.h"
+#include "winrt/impl/Windows.UI.WindowManagement.2.h"
 #include "winrt/impl/Windows.Media.Capture.2.h"
 namespace winrt::impl
 {
@@ -823,6 +826,12 @@ namespace winrt::impl
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCapture6)->CreateMultiSourceFrameReaderAsync(*(void**)(&inputSources), &value));
         return winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Media::Capture::Frames::MultiSourceMediaFrameReader>{ value, take_ownership_from_abi };
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher) consume_Windows_Media_Capture_IMediaCapture7<D>::CreateRelativePanelWatcher(winrt::Windows::Media::Capture::StreamingCaptureMode const& captureMode, winrt::Windows::UI::WindowManagement::DisplayRegion const& displayRegion) const
+    {
+        void* result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCapture7)->CreateRelativePanelWatcher(static_cast<int32_t>(captureMode), *(void**)(&displayRegion), &result));
+        return winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher{ result, take_ownership_from_abi };
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_Capture_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs<D>::DeviceId() const
     {
         void* value{};
@@ -1013,6 +1022,26 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6)->put_AlwaysPlaySystemShutterSound(value));
     }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Security::Credentials::PasswordCredential) consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7<D>::DeviceUriPasswordCredential() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7)->get_DeviceUriPasswordCredential(&value));
+        return winrt::Windows::Security::Credentials::PasswordCredential{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7<D>::DeviceUriPasswordCredential(winrt::Windows::Security::Credentials::PasswordCredential const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7)->put_DeviceUriPasswordCredential(*(void**)(&value)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::Uri) consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7<D>::DeviceUri() const
+    {
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7)->get_DeviceUri(&value));
+        return winrt::Windows::Foundation::Uri{ value, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Capture_IMediaCaptureInitializationSettings7<D>::DeviceUri(winrt::Windows::Foundation::Uri const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7)->put_DeviceUri(*(void**)(&value)));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Media::VideoFrame) consume_Windows_Media_Capture_IMediaCapturePauseResult<D>::LastFrame() const
     {
         void* value{};
@@ -1024,6 +1053,34 @@ namespace winrt::impl
         winrt::Windows::Foundation::TimeSpan value{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCapturePauseResult)->get_RecordDuration(put_abi(value)));
         return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Devices::Enumeration::Panel) consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::RelativePanel() const
+    {
+        winrt::Windows::Devices::Enumeration::Panel value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher)->get_RelativePanel(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::event_token) consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Changed(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        winrt::event_token token{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher)->add_Changed(*(void**)(&handler), put_abi(token)));
+        return token;
+    }
+    template <typename D> typename consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Changed_revoker consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Changed(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IInspectable> const& handler) const
+    {
+        return impl::make_event_revoker<D, Changed_revoker>(this, Changed(handler));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Changed(winrt::event_token const& token) const noexcept
+    {
+        WINRT_VERIFY_(0, WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher)->remove_Changed(impl::bind_in(token)));
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Start() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher)->Start());
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Media_Capture_IMediaCaptureRelativePanelWatcher<D>::Stop() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher)->Stop());
     }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Media_Capture_IMediaCaptureSettings<D>::AudioDeviceId() const
     {
@@ -2513,6 +2570,20 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IMediaCapture7> : produce_base<D, winrt::Windows::Media::Capture::IMediaCapture7>
+    {
+        int32_t __stdcall CreateRelativePanelWatcher(int32_t captureMode, void* displayRegion, void** result) noexcept final try
+        {
+            clear_abi(result);
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher>(this->shim().CreateRelativePanelWatcher(*reinterpret_cast<winrt::Windows::Media::Capture::StreamingCaptureMode const*>(&captureMode), *reinterpret_cast<winrt::Windows::UI::WindowManagement::DisplayRegion const*>(&displayRegion)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs> : produce_base<D, winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs>
     {
         int32_t __stdcall get_DeviceId(void** value) noexcept final try
@@ -2837,6 +2908,42 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7> : produce_base<D, winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7>
+    {
+        int32_t __stdcall get_DeviceUriPasswordCredential(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Security::Credentials::PasswordCredential>(this->shim().DeviceUriPasswordCredential());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DeviceUriPasswordCredential(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DeviceUriPasswordCredential(*reinterpret_cast<winrt::Windows::Security::Credentials::PasswordCredential const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_DeviceUri(void** value) noexcept final try
+        {
+            clear_abi(value);
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Foundation::Uri>(this->shim().DeviceUri());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_DeviceUri(void* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DeviceUri(*reinterpret_cast<winrt::Windows::Foundation::Uri const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Media::Capture::IMediaCapturePauseResult> : produce_base<D, winrt::Windows::Media::Capture::IMediaCapturePauseResult>
     {
         int32_t __stdcall get_LastFrame(void** value) noexcept final try
@@ -2852,6 +2959,47 @@ namespace winrt::impl
             zero_abi<winrt::Windows::Foundation::TimeSpan>(value);
             typename D::abi_guard guard(this->shim());
             *value = detach_from<winrt::Windows::Foundation::TimeSpan>(this->shim().RecordDuration());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher> : produce_base<D, winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher>
+    {
+        int32_t __stdcall get_RelativePanel(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Devices::Enumeration::Panel>(this->shim().RelativePanel());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall add_Changed(void* handler, winrt::event_token* token) noexcept final try
+        {
+            zero_abi<winrt::event_token>(token);
+            typename D::abi_guard guard(this->shim());
+            *token = detach_from<winrt::event_token>(this->shim().Changed(*reinterpret_cast<winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher, winrt::Windows::Foundation::IInspectable> const*>(&handler)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall remove_Changed(winrt::event_token token) noexcept final
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Changed(*reinterpret_cast<winrt::event_token const*>(&token));
+            return 0;
+        }
+        int32_t __stdcall Start() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Start();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall Stop() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Stop();
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -3428,6 +3576,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCapture4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCapture5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCapture6> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IMediaCapture7> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureFailedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureFocusChangedEventArgs> : winrt::impl::hash_base {};
@@ -3437,7 +3586,9 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings5> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings6> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureInitializationSettings7> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCapturePauseResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureRelativePanelWatcher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureSettings2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::IMediaCaptureSettings3> : winrt::impl::hash_base {};
@@ -3470,6 +3621,7 @@ namespace std
     template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureFocusChangedEventArgs> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureInitializationSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::MediaCapturePauseResult> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureRelativePanelWatcher> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureSettings> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureStopResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Media::Capture::MediaCaptureVideoProfile> : winrt::impl::hash_base {};

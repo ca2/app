@@ -469,6 +469,13 @@ WINRT_EXPORT namespace winrt::Windows::System
         IUserChangedEventArgs(std::nullptr_t = nullptr) noexcept {}
         IUserChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IUserChangedEventArgs2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IUserChangedEventArgs2>
+    {
+        IUserChangedEventArgs2(std::nullptr_t = nullptr) noexcept {}
+        IUserChangedEventArgs2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IUserDeviceAssociationChangedEventArgs :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IUserDeviceAssociationChangedEventArgs>

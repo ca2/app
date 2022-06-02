@@ -2008,6 +2008,28 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration)->put_Passphrase(*(void**)(&value)));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration2<D>::IsBandSupported(winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const& band) const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2)->IsBandSupported(static_cast<int32_t>(band), &result));
+        return result;
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<bool>) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration2<D>::IsBandSupportedAsync(winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const& band) const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2)->IsBandSupportedAsync(static_cast<int32_t>(band), &operation));
+        return winrt::Windows::Foundation::IAsyncOperation<bool>{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration2<D>::Band() const
+    {
+        winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2)->get_Band(reinterpret_cast<int32_t*>(&value)));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringAccessPointConfiguration2<D>::Band(winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const& value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2)->put_Band(static_cast<int32_t>(value)));
+    }
     template <typename D> WINRT_IMPL_AUTO(hstring) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringClient<D>::MacAddress() const
     {
         void* value{};
@@ -2097,6 +2119,32 @@ namespace winrt::impl
         void* ppManager{};
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics3)->CreateFromConnectionProfileWithTargetAdapter(*(void**)(&profile), *(void**)(&adapter), &ppManager));
         return winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager{ ppManager, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManagerStatics4<D>::IsNoConnectionsTimeoutEnabled() const
+    {
+        bool result{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4)->IsNoConnectionsTimeoutEnabled(&result));
+        return result;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManagerStatics4<D>::EnableNoConnectionsTimeout() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4)->EnableNoConnectionsTimeout());
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManagerStatics4<D>::EnableNoConnectionsTimeoutAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4)->EnableNoConnectionsTimeoutAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManagerStatics4<D>::DisableNoConnectionsTimeout() const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4)->DisableNoConnectionsTimeout());
+    }
+    template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringManagerStatics4<D>::DisableNoConnectionsTimeoutAsync() const
+    {
+        void* operation{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4)->DisableNoConnectionsTimeoutAsync(&operation));
+        return winrt::Windows::Foundation::IAsyncAction{ operation, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Networking::NetworkOperators::TetheringOperationStatus) consume_Windows_Networking_NetworkOperators_INetworkOperatorTetheringOperationResult<D>::Status() const
     {
@@ -5259,6 +5307,41 @@ namespace winrt::impl
 #endif
 #ifndef WINRT_LEAN_AND_MEAN
     template <typename D>
+    struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2>
+    {
+        int32_t __stdcall IsBandSupported(int32_t band, bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().IsBandSupported(*reinterpret_cast<winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const*>(&band)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall IsBandSupportedAsync(int32_t band, void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncOperation<bool>>(this->shim().IsBandSupportedAsync(*reinterpret_cast<winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const*>(&band)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall get_Band(int32_t* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand>(this->shim().Band());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_Band(int32_t value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().Band(*reinterpret_cast<winrt::Windows::Networking::NetworkOperators::TetheringWiFiBand const*>(&value));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
     struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient>
     {
         int32_t __stdcall get_MacAddress(void** value) noexcept final try
@@ -5403,6 +5486,49 @@ namespace winrt::impl
             clear_abi(ppManager);
             typename D::abi_guard guard(this->shim());
             *ppManager = detach_from<winrt::Windows::Networking::NetworkOperators::NetworkOperatorTetheringManager>(this->shim().CreateFromConnectionProfile(*reinterpret_cast<winrt::Windows::Networking::Connectivity::ConnectionProfile const*>(&profile), *reinterpret_cast<winrt::Windows::Networking::Connectivity::NetworkAdapter const*>(&adapter)));
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4> : produce_base<D, winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4>
+    {
+        int32_t __stdcall IsNoConnectionsTimeoutEnabled(bool* result) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *result = detach_from<bool>(this->shim().IsNoConnectionsTimeoutEnabled());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall EnableNoConnectionsTimeout() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().EnableNoConnectionsTimeout();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall EnableNoConnectionsTimeoutAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().EnableNoConnectionsTimeoutAsync());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall DisableNoConnectionsTimeout() noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().DisableNoConnectionsTimeout();
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall DisableNoConnectionsTimeoutAsync(void** operation) noexcept final try
+        {
+            clear_abi(operation);
+            typename D::abi_guard guard(this->shim());
+            *operation = detach_from<winrt::Windows::Foundation::IAsyncAction>(this->shim().DisableNoConnectionsTimeoutAsync());
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -5837,6 +5963,26 @@ WINRT_EXPORT namespace winrt::Windows::Networking::NetworkOperators
     {
         return impl::call_factory<NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics3>([&](INetworkOperatorTetheringManagerStatics3 const& f) { return f.CreateFromConnectionProfile(profile, adapter); });
     }
+    inline auto NetworkOperatorTetheringManager::IsNoConnectionsTimeoutEnabled()
+    {
+        return impl::call_factory_cast<bool(*)(INetworkOperatorTetheringManagerStatics4 const&), NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics4>([](INetworkOperatorTetheringManagerStatics4 const& f) { return f.IsNoConnectionsTimeoutEnabled(); });
+    }
+    inline auto NetworkOperatorTetheringManager::EnableNoConnectionsTimeout()
+    {
+        impl::call_factory_cast<void(*)(INetworkOperatorTetheringManagerStatics4 const&), NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics4>([](INetworkOperatorTetheringManagerStatics4 const& f) { return f.EnableNoConnectionsTimeout(); });
+    }
+    inline auto NetworkOperatorTetheringManager::EnableNoConnectionsTimeoutAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncAction(*)(INetworkOperatorTetheringManagerStatics4 const&), NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics4>([](INetworkOperatorTetheringManagerStatics4 const& f) { return f.EnableNoConnectionsTimeoutAsync(); });
+    }
+    inline auto NetworkOperatorTetheringManager::DisableNoConnectionsTimeout()
+    {
+        impl::call_factory_cast<void(*)(INetworkOperatorTetheringManagerStatics4 const&), NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics4>([](INetworkOperatorTetheringManagerStatics4 const& f) { return f.DisableNoConnectionsTimeout(); });
+    }
+    inline auto NetworkOperatorTetheringManager::DisableNoConnectionsTimeoutAsync()
+    {
+        return impl::call_factory_cast<winrt::Windows::Foundation::IAsyncAction(*)(INetworkOperatorTetheringManagerStatics4 const&), NetworkOperatorTetheringManager, INetworkOperatorTetheringManagerStatics4>([](INetworkOperatorTetheringManagerStatics4 const& f) { return f.DisableNoConnectionsTimeoutAsync(); });
+    }
     inline ProvisioningAgent::ProvisioningAgent() :
         ProvisioningAgent(impl::call_factory_cast<ProvisioningAgent(*)(winrt::Windows::Foundation::IActivationFactory const&), ProvisioningAgent>([](winrt::Windows::Foundation::IActivationFactory const& f) { return f.template ActivateInstance<ProvisioningAgent>(); }))
     {
@@ -5942,12 +6088,14 @@ namespace std
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IMobileBroadbandUiccAppsResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorDataUsageTriggerDetails> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringAccessPointConfiguration2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClient> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringClientManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManager> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics3> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringManagerStatics4> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::INetworkOperatorTetheringOperationResult> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IProvisionFromXmlDocumentResults> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::Networking::NetworkOperators::IProvisionedProfile> : winrt::impl::hash_base {};

@@ -261,6 +261,7 @@ export module winrt;
 #include "winrt/Windows.Security.DataProtection.h"
 #include "winrt/Windows.Security.EnterpriseData.h"
 #include "winrt/Windows.Security.ExchangeActiveSyncProvisioning.h"
+#include "winrt/Windows.Security.Isolation.h"
 #include "winrt/Windows.Services.Cortana.h"
 #include "winrt/Windows.Services.Maps.h"
 #include "winrt/Windows.Services.Maps.Guidance.h"

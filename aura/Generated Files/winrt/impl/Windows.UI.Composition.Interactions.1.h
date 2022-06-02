@@ -3,7 +3,6 @@
 #pragma once
 #ifndef WINRT_Windows_UI_Composition_Interactions_1_H
 #define WINRT_Windows_UI_Composition_Interactions_1_H
-#include "winrt/impl/Windows.Foundation.Collections.0.h"
 #include "winrt/impl/Windows.UI.Composition.Interactions.0.h"
 WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
 {
@@ -30,8 +29,7 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     };
     struct __declspec(empty_bases) ICompositionInteractionSourceCollection :
         winrt::Windows::Foundation::IInspectable,
-        impl::consume_t<ICompositionInteractionSourceCollection>,
-        impl::require<winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSourceCollection, winrt::Windows::Foundation::Collections::IIterable<winrt::Windows::UI::Composition::Interactions::ICompositionInteractionSource>>
+        impl::consume_t<ICompositionInteractionSourceCollection>
     {
         ICompositionInteractionSourceCollection(std::nullptr_t = nullptr) noexcept {}
         ICompositionInteractionSourceCollection(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
@@ -70,6 +68,13 @@ WINRT_EXPORT namespace winrt::Windows::UI::Composition::Interactions
     {
         IInteractionTracker4(std::nullptr_t = nullptr) noexcept {}
         IInteractionTracker4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IInteractionTracker5 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IInteractionTracker5>
+    {
+        IInteractionTracker5(std::nullptr_t = nullptr) noexcept {}
+        IInteractionTracker5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IInteractionTrackerCustomAnimationStateEnteredArgs :
         winrt::Windows::Foundation::IInspectable,

@@ -134,6 +134,13 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         IKnownFoldersStatics3(std::nullptr_t = nullptr) noexcept {}
         IKnownFoldersStatics3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IKnownFoldersStatics4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IKnownFoldersStatics4>
+    {
+        IKnownFoldersStatics4(std::nullptr_t = nullptr) noexcept {}
+        IKnownFoldersStatics4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IPathIOStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IPathIOStatics>
@@ -184,6 +191,13 @@ WINRT_EXPORT namespace winrt::Windows::Storage
         IStorageFileStatics(std::nullptr_t = nullptr) noexcept {}
         IStorageFileStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IStorageFileStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStorageFileStatics2>
+    {
+        IStorageFileStatics2(std::nullptr_t = nullptr) noexcept {}
+        IStorageFileStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IStorageFolder :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IStorageFolder>,
@@ -212,6 +226,13 @@ WINRT_EXPORT namespace winrt::Windows::Storage
     {
         IStorageFolderStatics(std::nullptr_t = nullptr) noexcept {}
         IStorageFolderStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) IStorageFolderStatics2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IStorageFolderStatics2>
+    {
+        IStorageFolderStatics2(std::nullptr_t = nullptr) noexcept {}
+        IStorageFolderStatics2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IStorageItem :
         winrt::Windows::Foundation::IInspectable,

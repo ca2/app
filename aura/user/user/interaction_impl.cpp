@@ -1207,6 +1207,7 @@ namespace user
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
 
@@ -1232,8 +1233,8 @@ namespace user
 
 
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
-         MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
 
       }
 
@@ -5503,7 +5504,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnSetFocus(::message::message * pmessage)
+   void interaction_impl::on_prio_message_set_focus(::message::message * pmessage)
    {
 
       __pointer(::message::set_keyboard_focus) psetkeyboardfocus(pmessage);
@@ -5634,7 +5635,7 @@ namespace user
 
 
 
-   void interaction_impl::_001OnKillFocus(::message::message * pmessage)
+   void interaction_impl::on_message_kill_focus(::message::message * pmessage)
    {
 
       __pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);

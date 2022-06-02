@@ -19,7 +19,8 @@ WINRT_EXPORT namespace winrt::Windows::Security::Authentication::Web::Core
         WebAccountEventArgs(std::nullptr_t) noexcept {}
         WebAccountEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Security::Authentication::Web::Core::IWebAccountEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) WebAccountMonitor : winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor
+    struct __declspec(empty_bases) WebAccountMonitor : winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor,
+        impl::require<WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>
     {
         WebAccountMonitor(std::nullptr_t) noexcept {}
         WebAccountMonitor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor(ptr, take_ownership_from_abi) {}

@@ -1812,6 +1812,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_middle_button_up);
 
 
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+
+
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
       virtual void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
@@ -1899,8 +1902,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEnable);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
-      //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;

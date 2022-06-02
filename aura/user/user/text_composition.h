@@ -35,8 +35,8 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 
@@ -75,8 +75,8 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 
@@ -119,8 +119,8 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 

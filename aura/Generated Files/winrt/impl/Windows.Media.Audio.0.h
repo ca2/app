@@ -112,6 +112,18 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
         Omnidirectional = 0,
         Cone = 1,
     };
+    enum class AudioPlaybackConnectionOpenResultStatus : int32_t
+    {
+        Success = 0,
+        RequestTimedOut = 1,
+        DeniedBySystem = 2,
+        UnknownFailure = 3,
+    };
+    enum class AudioPlaybackConnectionState : int32_t
+    {
+        Closed = 0,
+        Opened = 1,
+    };
     enum class MediaSourceAudioInputNodeCreationStatus : int32_t
     {
         Success = 0,
@@ -174,6 +186,9 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
     struct IAudioNodeEmitterShapeStatics;
     struct IAudioNodeListener;
     struct IAudioNodeWithListener;
+    struct IAudioPlaybackConnection;
+    struct IAudioPlaybackConnectionOpenResult;
+    struct IAudioPlaybackConnectionStatics;
     struct IAudioStateMonitor;
     struct IAudioStateMonitorStatics;
     struct ICreateAudioDeviceInputNodeResult;
@@ -223,6 +238,8 @@ WINRT_EXPORT namespace winrt::Windows::Media::Audio
     struct AudioNodeEmitterNaturalDecayModelProperties;
     struct AudioNodeEmitterShape;
     struct AudioNodeListener;
+    struct AudioPlaybackConnection;
+    struct AudioPlaybackConnectionOpenResult;
     struct AudioStateMonitor;
     struct AudioSubmixNode;
     struct CreateAudioDeviceInputNodeResult;
@@ -275,6 +292,9 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Audio::IAudioNodeEmitterShapeStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Audio::IAudioNodeListener>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Audio::IAudioNodeWithListener>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Audio::IAudioPlaybackConnection>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Audio::IAudioStateMonitor>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Audio::IAudioStateMonitorStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Media::Audio::ICreateAudioDeviceInputNodeResult>{ using type = interface_category; };
@@ -324,6 +344,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeEmitterNaturalDecayModelProperties>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeEmitterShape>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeListener>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Audio::AudioPlaybackConnection>{ using type = class_category; };
+    template <> struct category<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioStateMonitor>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioSubmixNode>{ using type = class_category; };
     template <> struct category<winrt::Windows::Media::Audio::CreateAudioDeviceInputNodeResult>{ using type = class_category; };
@@ -350,6 +372,8 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeEmitterDecayKind>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeEmitterSettings>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Audio::AudioNodeEmitterShapeKind>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus>{ using type = enum_category; };
+    template <> struct category<winrt::Windows::Media::Audio::AudioPlaybackConnectionState>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Audio::MediaSourceAudioInputNodeCreationStatus>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Audio::MixedRealitySpatialAudioFormatPolicy>{ using type = enum_category; };
     template <> struct category<winrt::Windows::Media::Audio::QuantumSizeSelectionMode>{ using type = enum_category; };
@@ -373,6 +397,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeEmitterNaturalDecayModelProperties> = L"Windows.Media.Audio.AudioNodeEmitterNaturalDecayModelProperties";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeEmitterShape> = L"Windows.Media.Audio.AudioNodeEmitterShape";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeListener> = L"Windows.Media.Audio.AudioNodeListener";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioPlaybackConnection> = L"Windows.Media.Audio.AudioPlaybackConnection";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult> = L"Windows.Media.Audio.AudioPlaybackConnectionOpenResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioStateMonitor> = L"Windows.Media.Audio.AudioStateMonitor";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioSubmixNode> = L"Windows.Media.Audio.AudioSubmixNode";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::CreateAudioDeviceInputNodeResult> = L"Windows.Media.Audio.CreateAudioDeviceInputNodeResult";
@@ -399,6 +425,8 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeEmitterDecayKind> = L"Windows.Media.Audio.AudioNodeEmitterDecayKind";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeEmitterSettings> = L"Windows.Media.Audio.AudioNodeEmitterSettings";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioNodeEmitterShapeKind> = L"Windows.Media.Audio.AudioNodeEmitterShapeKind";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus> = L"Windows.Media.Audio.AudioPlaybackConnectionOpenResultStatus";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::AudioPlaybackConnectionState> = L"Windows.Media.Audio.AudioPlaybackConnectionState";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::MediaSourceAudioInputNodeCreationStatus> = L"Windows.Media.Audio.MediaSourceAudioInputNodeCreationStatus";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::MixedRealitySpatialAudioFormatPolicy> = L"Windows.Media.Audio.MixedRealitySpatialAudioFormatPolicy";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::QuantumSizeSelectionMode> = L"Windows.Media.Audio.QuantumSizeSelectionMode";
@@ -434,6 +462,9 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioNodeEmitterShapeStatics> = L"Windows.Media.Audio.IAudioNodeEmitterShapeStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioNodeListener> = L"Windows.Media.Audio.IAudioNodeListener";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioNodeWithListener> = L"Windows.Media.Audio.IAudioNodeWithListener";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioPlaybackConnection> = L"Windows.Media.Audio.IAudioPlaybackConnection";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult> = L"Windows.Media.Audio.IAudioPlaybackConnectionOpenResult";
+    template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics> = L"Windows.Media.Audio.IAudioPlaybackConnectionStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioStateMonitor> = L"Windows.Media.Audio.IAudioStateMonitor";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::IAudioStateMonitorStatics> = L"Windows.Media.Audio.IAudioStateMonitorStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Media::Audio::ICreateAudioDeviceInputNodeResult> = L"Windows.Media.Audio.ICreateAudioDeviceInputNodeResult";
@@ -495,6 +526,9 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioNodeEmitterShapeStatics>{ 0x57BB2771,0xFFA5,0x4B86,{ 0xA7,0x79,0xE2,0x64,0xAE,0xB9,0x14,0x5F } }; // 57BB2771-FFA5-4B86-A779-E264AEB9145F
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioNodeListener>{ 0xD9722E16,0x0C0A,0x41DA,{ 0xB7,0x55,0x6C,0x77,0x83,0x5F,0xB1,0xEB } }; // D9722E16-0C0A-41DA-B755-6C77835FB1EB
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioNodeWithListener>{ 0x0E0F907C,0x79FF,0x4544,{ 0x9E,0xEB,0x01,0x25,0x7B,0x15,0x10,0x5A } }; // 0E0F907C-79FF-4544-9EEB-01257B15105A
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioPlaybackConnection>{ 0x1A4C1DEA,0xCAFC,0x50E7,{ 0x87,0x18,0xEA,0x3F,0x81,0xCB,0xFA,0x51 } }; // 1A4C1DEA-CAFC-50E7-8718-EA3F81CBFA51
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult>{ 0x4E656AEF,0x39F9,0x5FC9,{ 0xA5,0x19,0xA5,0xBB,0xFD,0x9F,0xE9,0x21 } }; // 4E656AEF-39F9-5FC9-A519-A5BBFD9FE921
+    template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics>{ 0xE60963A2,0x69E6,0x5FFC,{ 0x9E,0x13,0x82,0x4A,0x85,0x21,0x3D,0xAF } }; // E60963A2-69E6-5FFC-9E13-824A85213DAF
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioStateMonitor>{ 0x1D13D136,0x0199,0x4CDC,{ 0xB8,0x4E,0xE7,0x2C,0x2B,0x58,0x1E,0xCE } }; // 1D13D136-0199-4CDC-B84E-E72C2B581ECE
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::IAudioStateMonitorStatics>{ 0x6374EA4C,0x1B3B,0x4001,{ 0x94,0xD9,0xDD,0x22,0x53,0x30,0xFA,0x40 } }; // 6374EA4C-1B3B-4001-94D9-DD225330FA40
     template <> inline constexpr guid guid_v<winrt::Windows::Media::Audio::ICreateAudioDeviceInputNodeResult>{ 0x16EEC7A8,0x1CA7,0x40EF,{ 0x91,0xA4,0xD3,0x46,0xE0,0xAA,0x1B,0xBA } }; // 16EEC7A8-1CA7-40EF-91A4-D346E0AA1BBA
@@ -544,6 +578,8 @@ namespace winrt::impl
     template <> struct default_interface<winrt::Windows::Media::Audio::AudioNodeEmitterNaturalDecayModelProperties>{ using type = winrt::Windows::Media::Audio::IAudioNodeEmitterNaturalDecayModelProperties; };
     template <> struct default_interface<winrt::Windows::Media::Audio::AudioNodeEmitterShape>{ using type = winrt::Windows::Media::Audio::IAudioNodeEmitterShape; };
     template <> struct default_interface<winrt::Windows::Media::Audio::AudioNodeListener>{ using type = winrt::Windows::Media::Audio::IAudioNodeListener; };
+    template <> struct default_interface<winrt::Windows::Media::Audio::AudioPlaybackConnection>{ using type = winrt::Windows::Media::Audio::IAudioPlaybackConnection; };
+    template <> struct default_interface<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>{ using type = winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult; };
     template <> struct default_interface<winrt::Windows::Media::Audio::AudioStateMonitor>{ using type = winrt::Windows::Media::Audio::IAudioStateMonitor; };
     template <> struct default_interface<winrt::Windows::Media::Audio::AudioSubmixNode>{ using type = winrt::Windows::Media::Audio::IAudioInputNode; };
     template <> struct default_interface<winrt::Windows::Media::Audio::CreateAudioDeviceInputNodeResult>{ using type = winrt::Windows::Media::Audio::ICreateAudioDeviceInputNodeResult; };
@@ -884,6 +920,36 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall put_Listener(void*) noexcept = 0;
             virtual int32_t __stdcall get_Listener(void**) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Audio::IAudioPlaybackConnection>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall Start() noexcept = 0;
+            virtual int32_t __stdcall StartAsync(void**) noexcept = 0;
+            virtual int32_t __stdcall get_DeviceId(void**) noexcept = 0;
+            virtual int32_t __stdcall get_State(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall Open(void**) noexcept = 0;
+            virtual int32_t __stdcall OpenAsync(void**) noexcept = 0;
+            virtual int32_t __stdcall add_StateChanged(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_StateChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_Status(int32_t*) noexcept = 0;
+            virtual int32_t __stdcall get_ExtendedError(winrt::hresult*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall GetDeviceSelector(void**) noexcept = 0;
+            virtual int32_t __stdcall TryCreateFromId(void*, void**) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Media::Audio::IAudioStateMonitor>
@@ -1599,6 +1665,44 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Media::Audio::IAudioNodeWithListener>
     {
         template <typename D> using type = consume_Windows_Media_Audio_IAudioNodeWithListener<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Audio_IAudioPlaybackConnection
+    {
+        WINRT_IMPL_AUTO(void) Start() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncAction) StartAsync() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(hstring) DeviceId() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionState) State() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult) Open() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResult>) OpenAsync() const;
+        WINRT_IMPL_AUTO(winrt::event_token) StateChanged(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioPlaybackConnection, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        using StateChanged_revoker = impl::event_revoker<winrt::Windows::Media::Audio::IAudioPlaybackConnection, &impl::abi_t<winrt::Windows::Media::Audio::IAudioPlaybackConnection>::remove_StateChanged>;
+        [[nodiscard]] StateChanged_revoker StateChanged(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Media::Audio::AudioPlaybackConnection, winrt::Windows::Foundation::IInspectable> const& handler) const;
+        WINRT_IMPL_AUTO(void) StateChanged(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Media::Audio::IAudioPlaybackConnection>
+    {
+        template <typename D> using type = consume_Windows_Media_Audio_IAudioPlaybackConnection<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Audio_IAudioPlaybackConnectionOpenResult
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnectionOpenResultStatus) Status() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(winrt::hresult) ExtendedError() const;
+    };
+    template <> struct consume<winrt::Windows::Media::Audio::IAudioPlaybackConnectionOpenResult>
+    {
+        template <typename D> using type = consume_Windows_Media_Audio_IAudioPlaybackConnectionOpenResult<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Media_Audio_IAudioPlaybackConnectionStatics
+    {
+        WINRT_IMPL_AUTO(hstring) GetDeviceSelector() const;
+        WINRT_IMPL_AUTO(winrt::Windows::Media::Audio::AudioPlaybackConnection) TryCreateFromId(param::hstring const& id) const;
+    };
+    template <> struct consume<winrt::Windows::Media::Audio::IAudioPlaybackConnectionStatics>
+    {
+        template <typename D> using type = consume_Windows_Media_Audio_IAudioPlaybackConnectionStatics<D>;
     };
     template <typename D>
     struct consume_Windows_Media_Audio_IAudioStateMonitor

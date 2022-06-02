@@ -7,6 +7,22 @@
 #include "winrt/impl/Windows.ApplicationModel.ConversationalAgent.1.h"
 WINRT_EXPORT namespace winrt::Windows::ApplicationModel::ConversationalAgent
 {
+    struct __declspec(empty_bases) ActivationSignalDetectionConfiguration : winrt::Windows::ApplicationModel::ConversationalAgent::IActivationSignalDetectionConfiguration
+    {
+        ActivationSignalDetectionConfiguration(std::nullptr_t) noexcept {}
+        ActivationSignalDetectionConfiguration(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IActivationSignalDetectionConfiguration(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ActivationSignalDetector : winrt::Windows::ApplicationModel::ConversationalAgent::IActivationSignalDetector
+    {
+        ActivationSignalDetector(std::nullptr_t) noexcept {}
+        ActivationSignalDetector(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IActivationSignalDetector(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ConversationalAgentDetectorManager : winrt::Windows::ApplicationModel::ConversationalAgent::IConversationalAgentDetectorManager
+    {
+        ConversationalAgentDetectorManager(std::nullptr_t) noexcept {}
+        ConversationalAgentDetectorManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IConversationalAgentDetectorManager(ptr, take_ownership_from_abi) {}
+        [[nodiscard]] static auto Default();
+    };
     struct __declspec(empty_bases) ConversationalAgentSession : winrt::Windows::ApplicationModel::ConversationalAgent::IConversationalAgentSession,
         impl::require<ConversationalAgentSession, winrt::Windows::Foundation::IClosable>
     {
@@ -34,6 +50,16 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::ConversationalAgent
     {
         ConversationalAgentSystemStateChangedEventArgs(std::nullptr_t) noexcept {}
         ConversationalAgentSystemStateChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IConversationalAgentSystemStateChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) DetectionConfigurationAvailabilityChangedEventArgs : winrt::Windows::ApplicationModel::ConversationalAgent::IDetectionConfigurationAvailabilityChangedEventArgs
+    {
+        DetectionConfigurationAvailabilityChangedEventArgs(std::nullptr_t) noexcept {}
+        DetectionConfigurationAvailabilityChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IDetectionConfigurationAvailabilityChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) DetectionConfigurationAvailabilityInfo : winrt::Windows::ApplicationModel::ConversationalAgent::IDetectionConfigurationAvailabilityInfo
+    {
+        DetectionConfigurationAvailabilityInfo(std::nullptr_t) noexcept {}
+        DetectionConfigurationAvailabilityInfo(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::ConversationalAgent::IDetectionConfigurationAvailabilityInfo(ptr, take_ownership_from_abi) {}
     };
 }
 #endif

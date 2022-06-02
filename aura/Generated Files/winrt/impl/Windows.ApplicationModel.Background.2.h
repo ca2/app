@@ -84,7 +84,7 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         static auto RequestAccessKindAsync(winrt::Windows::ApplicationModel::Background::BackgroundAccessRequestKind const& requestedAccess, param::hstring const& reason);
     };
     struct __declspec(empty_bases) BackgroundTaskBuilder : winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder,
-        impl::require<BackgroundTaskBuilder, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder2, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder3, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder4>
+        impl::require<BackgroundTaskBuilder, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder2, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder3, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder4, winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder5>
     {
         BackgroundTaskBuilder(std::nullptr_t) noexcept {}
         BackgroundTaskBuilder(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IBackgroundTaskBuilder(ptr, take_ownership_from_abi) {}
@@ -126,13 +126,15 @@ WINRT_EXPORT namespace winrt::Windows::ApplicationModel::Background
         BackgroundWorkCost() = delete;
         [[nodiscard]] static auto CurrentBackgroundWorkCost();
     };
-    struct __declspec(empty_bases) BluetoothLEAdvertisementPublisherTrigger : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementPublisherTrigger
+    struct __declspec(empty_bases) BluetoothLEAdvertisementPublisherTrigger : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementPublisherTrigger,
+        impl::require<BluetoothLEAdvertisementPublisherTrigger, winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementPublisherTrigger2>
     {
         BluetoothLEAdvertisementPublisherTrigger(std::nullptr_t) noexcept {}
         BluetoothLEAdvertisementPublisherTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementPublisherTrigger(ptr, take_ownership_from_abi) {}
         BluetoothLEAdvertisementPublisherTrigger();
     };
-    struct __declspec(empty_bases) BluetoothLEAdvertisementWatcherTrigger : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementWatcherTrigger
+    struct __declspec(empty_bases) BluetoothLEAdvertisementWatcherTrigger : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementWatcherTrigger,
+        impl::require<BluetoothLEAdvertisementWatcherTrigger, winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementWatcherTrigger2>
     {
         BluetoothLEAdvertisementWatcherTrigger(std::nullptr_t) noexcept {}
         BluetoothLEAdvertisementWatcherTrigger(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::ApplicationModel::Background::IBluetoothLEAdvertisementWatcherTrigger(ptr, take_ownership_from_abi) {}

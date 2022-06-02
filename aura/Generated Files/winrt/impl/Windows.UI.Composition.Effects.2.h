@@ -8,7 +8,7 @@
 WINRT_EXPORT namespace winrt::Windows::UI::Composition::Effects
 {
     struct __declspec(empty_bases) SceneLightingEffect : winrt::Windows::UI::Composition::Effects::ISceneLightingEffect,
-        impl::require<SceneLightingEffect, winrt::Windows::Graphics::Effects::IGraphicsEffectSource, winrt::Windows::Graphics::Effects::IGraphicsEffect, winrt::Windows::UI::Composition::Effects::ISceneLightingEffect2>
+        impl::require<SceneLightingEffect, winrt::Windows::UI::Composition::Effects::ISceneLightingEffect2, winrt::Windows::Graphics::Effects::IGraphicsEffectSource, winrt::Windows::Graphics::Effects::IGraphicsEffect>
     {
         SceneLightingEffect(std::nullptr_t) noexcept {}
         SceneLightingEffect(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Composition::Effects::ISceneLightingEffect(ptr, take_ownership_from_abi) {}

@@ -13,6 +13,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth::Background
         IBluetoothLEAdvertisementPublisherTriggerDetails(std::nullptr_t = nullptr) noexcept {}
         IBluetoothLEAdvertisementPublisherTriggerDetails(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothLEAdvertisementPublisherTriggerDetails2 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothLEAdvertisementPublisherTriggerDetails2>
+    {
+        IBluetoothLEAdvertisementPublisherTriggerDetails2(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothLEAdvertisementPublisherTriggerDetails2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothLEAdvertisementWatcherTriggerDetails :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothLEAdvertisementWatcherTriggerDetails>

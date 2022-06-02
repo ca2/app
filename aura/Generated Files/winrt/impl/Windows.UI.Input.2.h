@@ -5,6 +5,7 @@
 #define WINRT_Windows_UI_Input_2_H
 #include "winrt/impl/Windows.Foundation.2.h"
 #include "winrt/impl/Windows.Storage.Streams.2.h"
+#include "winrt/impl/Windows.System.2.h"
 #include "winrt/impl/Windows.UI.Input.1.h"
 WINRT_EXPORT namespace winrt::Windows::UI::Input
 {
@@ -58,12 +59,14 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         AttachableInputObject(std::nullptr_t) noexcept {}
         AttachableInputObject(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IAttachableInputObject(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) CrossSlidingEventArgs : winrt::Windows::UI::Input::ICrossSlidingEventArgs
+    struct __declspec(empty_bases) CrossSlidingEventArgs : winrt::Windows::UI::Input::ICrossSlidingEventArgs,
+        impl::require<CrossSlidingEventArgs, winrt::Windows::UI::Input::ICrossSlidingEventArgs2>
     {
         CrossSlidingEventArgs(std::nullptr_t) noexcept {}
         CrossSlidingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ICrossSlidingEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) DraggingEventArgs : winrt::Windows::UI::Input::IDraggingEventArgs
+    struct __declspec(empty_bases) DraggingEventArgs : winrt::Windows::UI::Input::IDraggingEventArgs,
+        impl::require<DraggingEventArgs, winrt::Windows::UI::Input::IDraggingEventArgs2>
     {
         DraggingEventArgs(std::nullptr_t) noexcept {}
         DraggingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IDraggingEventArgs(ptr, take_ownership_from_abi) {}
@@ -79,13 +82,15 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         EdgeGestureEventArgs(std::nullptr_t) noexcept {}
         EdgeGestureEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IEdgeGestureEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) GestureRecognizer : winrt::Windows::UI::Input::IGestureRecognizer
+    struct __declspec(empty_bases) GestureRecognizer : winrt::Windows::UI::Input::IGestureRecognizer,
+        impl::require<GestureRecognizer, winrt::Windows::UI::Input::IGestureRecognizer2>
     {
         GestureRecognizer(std::nullptr_t) noexcept {}
         GestureRecognizer(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IGestureRecognizer(ptr, take_ownership_from_abi) {}
         GestureRecognizer();
     };
-    struct __declspec(empty_bases) HoldingEventArgs : winrt::Windows::UI::Input::IHoldingEventArgs
+    struct __declspec(empty_bases) HoldingEventArgs : winrt::Windows::UI::Input::IHoldingEventArgs,
+        impl::require<HoldingEventArgs, winrt::Windows::UI::Input::IHoldingEventArgs2>
     {
         HoldingEventArgs(std::nullptr_t) noexcept {}
         HoldingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IHoldingEventArgs(ptr, take_ownership_from_abi) {}
@@ -108,22 +113,26 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         KeyboardDeliveryInterceptor(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IKeyboardDeliveryInterceptor(ptr, take_ownership_from_abi) {}
         static auto GetForCurrentView();
     };
-    struct __declspec(empty_bases) ManipulationCompletedEventArgs : winrt::Windows::UI::Input::IManipulationCompletedEventArgs
+    struct __declspec(empty_bases) ManipulationCompletedEventArgs : winrt::Windows::UI::Input::IManipulationCompletedEventArgs,
+        impl::require<ManipulationCompletedEventArgs, winrt::Windows::UI::Input::IManipulationCompletedEventArgs2>
     {
         ManipulationCompletedEventArgs(std::nullptr_t) noexcept {}
         ManipulationCompletedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IManipulationCompletedEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) ManipulationInertiaStartingEventArgs : winrt::Windows::UI::Input::IManipulationInertiaStartingEventArgs
+    struct __declspec(empty_bases) ManipulationInertiaStartingEventArgs : winrt::Windows::UI::Input::IManipulationInertiaStartingEventArgs,
+        impl::require<ManipulationInertiaStartingEventArgs, winrt::Windows::UI::Input::IManipulationInertiaStartingEventArgs2>
     {
         ManipulationInertiaStartingEventArgs(std::nullptr_t) noexcept {}
         ManipulationInertiaStartingEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IManipulationInertiaStartingEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) ManipulationStartedEventArgs : winrt::Windows::UI::Input::IManipulationStartedEventArgs
+    struct __declspec(empty_bases) ManipulationStartedEventArgs : winrt::Windows::UI::Input::IManipulationStartedEventArgs,
+        impl::require<ManipulationStartedEventArgs, winrt::Windows::UI::Input::IManipulationStartedEventArgs2>
     {
         ManipulationStartedEventArgs(std::nullptr_t) noexcept {}
         ManipulationStartedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IManipulationStartedEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) ManipulationUpdatedEventArgs : winrt::Windows::UI::Input::IManipulationUpdatedEventArgs
+    struct __declspec(empty_bases) ManipulationUpdatedEventArgs : winrt::Windows::UI::Input::IManipulationUpdatedEventArgs,
+        impl::require<ManipulationUpdatedEventArgs, winrt::Windows::UI::Input::IManipulationUpdatedEventArgs2>
     {
         ManipulationUpdatedEventArgs(std::nullptr_t) noexcept {}
         ManipulationUpdatedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IManipulationUpdatedEventArgs(ptr, take_ownership_from_abi) {}
@@ -242,12 +251,37 @@ WINRT_EXPORT namespace winrt::Windows::UI::Input
         RadialControllerScreenContactStartedEventArgs(std::nullptr_t) noexcept {}
         RadialControllerScreenContactStartedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IRadialControllerScreenContactStartedEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) RightTappedEventArgs : winrt::Windows::UI::Input::IRightTappedEventArgs
+    struct __declspec(empty_bases) RightTappedEventArgs : winrt::Windows::UI::Input::IRightTappedEventArgs,
+        impl::require<RightTappedEventArgs, winrt::Windows::UI::Input::IRightTappedEventArgs2>
     {
         RightTappedEventArgs(std::nullptr_t) noexcept {}
         RightTappedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::IRightTappedEventArgs(ptr, take_ownership_from_abi) {}
     };
-    struct __declspec(empty_bases) TappedEventArgs : winrt::Windows::UI::Input::ITappedEventArgs
+    struct __declspec(empty_bases) SystemButtonEventController : winrt::Windows::UI::Input::ISystemButtonEventController,
+        impl::base<SystemButtonEventController, winrt::Windows::UI::Input::AttachableInputObject>,
+        impl::require<SystemButtonEventController, winrt::Windows::UI::Input::IAttachableInputObject, winrt::Windows::Foundation::IClosable>
+    {
+        SystemButtonEventController(std::nullptr_t) noexcept {}
+        SystemButtonEventController(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ISystemButtonEventController(ptr, take_ownership_from_abi) {}
+        static auto CreateForDispatcherQueue(winrt::Windows::System::DispatcherQueue const& queue);
+    };
+    struct __declspec(empty_bases) SystemFunctionButtonEventArgs : winrt::Windows::UI::Input::ISystemFunctionButtonEventArgs
+    {
+        SystemFunctionButtonEventArgs(std::nullptr_t) noexcept {}
+        SystemFunctionButtonEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ISystemFunctionButtonEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SystemFunctionLockChangedEventArgs : winrt::Windows::UI::Input::ISystemFunctionLockChangedEventArgs
+    {
+        SystemFunctionLockChangedEventArgs(std::nullptr_t) noexcept {}
+        SystemFunctionLockChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ISystemFunctionLockChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) SystemFunctionLockIndicatorChangedEventArgs : winrt::Windows::UI::Input::ISystemFunctionLockIndicatorChangedEventArgs
+    {
+        SystemFunctionLockIndicatorChangedEventArgs(std::nullptr_t) noexcept {}
+        SystemFunctionLockIndicatorChangedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ISystemFunctionLockIndicatorChangedEventArgs(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) TappedEventArgs : winrt::Windows::UI::Input::ITappedEventArgs,
+        impl::require<TappedEventArgs, winrt::Windows::UI::Input::ITappedEventArgs2>
     {
         TappedEventArgs(std::nullptr_t) noexcept {}
         TappedEventArgs(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::UI::Input::ITappedEventArgs(ptr, take_ownership_from_abi) {}

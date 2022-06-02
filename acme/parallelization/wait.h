@@ -16,7 +16,7 @@ public:
    constexpr wait() : wait(5.0, 1800.0) {}
    constexpr wait(double dWait) : wait(dWait, dWait * 60.0) {}
    constexpr wait(
-#if DEBUG
+#ifdef DEBUG
       double,
       double dWait
 #else

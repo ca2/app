@@ -51,6 +51,7 @@ WINRT_EXPORT namespace winrt::Windows::Security::Authentication::Web::Core
     struct IFindAllAccountsResult;
     struct IWebAccountEventArgs;
     struct IWebAccountMonitor;
+    struct IWebAccountMonitor2;
     struct IWebAuthenticationCoreManagerStatics;
     struct IWebAuthenticationCoreManagerStatics2;
     struct IWebAuthenticationCoreManagerStatics3;
@@ -78,6 +79,7 @@ namespace winrt::impl
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IFindAllAccountsResult>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAccountEventArgs>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics2>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics3>{ using type = interface_category; };
@@ -116,6 +118,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IFindAllAccountsResult> = L"Windows.Security.Authentication.Web.Core.IFindAllAccountsResult";
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountEventArgs> = L"Windows.Security.Authentication.Web.Core.IWebAccountEventArgs";
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor> = L"Windows.Security.Authentication.Web.Core.IWebAccountMonitor";
+    template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2> = L"Windows.Security.Authentication.Web.Core.IWebAccountMonitor2";
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics> = L"Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics2> = L"Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics2";
     template <> inline constexpr auto& name_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics3> = L"Windows.Security.Authentication.Web.Core.IWebAuthenticationCoreManagerStatics3";
@@ -132,6 +135,7 @@ namespace winrt::impl
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IFindAllAccountsResult>{ 0xA5812B5D,0xB72E,0x420C,{ 0x86,0xAB,0xAA,0xC0,0xD7,0xB7,0x26,0x1F } }; // A5812B5D-B72E-420C-86AB-AAC0D7B7261F
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountEventArgs>{ 0x6FB7037D,0x424E,0x44EC,{ 0x97,0x7C,0xEF,0x24,0x15,0x46,0x2A,0x5A } }; // 6FB7037D-424E-44EC-977C-EF2415462A5A
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor>{ 0x7445F5FD,0xAA9D,0x4619,{ 0x8D,0x5D,0xC1,0x38,0xA4,0xED,0xE3,0xE5 } }; // 7445F5FD-AA9D-4619-8D5D-C138A4EDE3E5
+    template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>{ 0xA7ADC1F8,0x24B8,0x4F01,{ 0x9A,0xE5,0x24,0x54,0x5E,0x71,0x23,0x3A } }; // A7ADC1F8-24B8-4F01-9AE5-24545E71233A
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics>{ 0x6ACA7C92,0xA581,0x4479,{ 0x9C,0x10,0x75,0x2E,0xFF,0x44,0xFD,0x34 } }; // 6ACA7C92-A581-4479-9C10-752EFF44FD34
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics2>{ 0xF584184A,0x8B57,0x4820,{ 0xB6,0xA4,0x70,0xA5,0xB6,0xFC,0xF4,0x4A } }; // F584184A-8B57-4820-B6A4-70A5B6FCF44A
     template <> inline constexpr guid guid_v<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics3>{ 0x2404EEB2,0x8924,0x4D93,{ 0xAB,0x3A,0x99,0x68,0x8B,0x41,0x9D,0x56 } }; // 2404EEB2-8924-4D93-AB3A-99688B419D56
@@ -178,6 +182,14 @@ namespace winrt::impl
             virtual int32_t __stdcall remove_Removed(winrt::event_token) noexcept = 0;
             virtual int32_t __stdcall add_DefaultSignInAccountChanged(void*, winrt::event_token*) noexcept = 0;
             virtual int32_t __stdcall remove_DefaultSignInAccountChanged(winrt::event_token) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall add_AccountPictureUpdated(void*, winrt::event_token*) noexcept = 0;
+            virtual int32_t __stdcall remove_AccountPictureUpdated(winrt::event_token) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Security::Authentication::Web::Core::IWebAuthenticationCoreManagerStatics>
@@ -338,6 +350,18 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor>
     {
         template <typename D> using type = consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2
+    {
+        WINRT_IMPL_AUTO(winrt::event_token) AccountPictureUpdated(winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Security::Authentication::Web::Core::WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::WebAccountEventArgs> const& handler) const;
+        using AccountPictureUpdated_revoker = impl::event_revoker<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2, &impl::abi_t<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>::remove_AccountPictureUpdated>;
+        [[nodiscard]] AccountPictureUpdated_revoker AccountPictureUpdated(auto_revoke_t, winrt::Windows::Foundation::TypedEventHandler<winrt::Windows::Security::Authentication::Web::Core::WebAccountMonitor, winrt::Windows::Security::Authentication::Web::Core::WebAccountEventArgs> const& handler) const;
+        WINRT_IMPL_AUTO(void) AccountPictureUpdated(winrt::event_token const& token) const noexcept;
+    };
+    template <> struct consume<winrt::Windows::Security::Authentication::Web::Core::IWebAccountMonitor2>
+    {
+        template <typename D> using type = consume_Windows_Security_Authentication_Web_Core_IWebAccountMonitor2<D>;
     };
     template <typename D>
     struct consume_Windows_Security_Authentication_Web_Core_IWebAuthenticationCoreManagerStatics

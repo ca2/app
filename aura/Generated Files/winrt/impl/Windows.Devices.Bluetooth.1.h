@@ -20,6 +20,13 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
         IBluetoothAdapter2(std::nullptr_t = nullptr) noexcept {}
         IBluetoothAdapter2(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IBluetoothAdapter3 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IBluetoothAdapter3>
+    {
+        IBluetoothAdapter3(std::nullptr_t = nullptr) noexcept {}
+        IBluetoothAdapter3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IBluetoothAdapterStatics :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IBluetoothAdapterStatics>

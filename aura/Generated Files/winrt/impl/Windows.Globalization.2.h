@@ -233,7 +233,7 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
         static auto IsSupported(param::hstring const& geographicRegionCode);
     };
     struct __declspec(empty_bases) Language : winrt::Windows::Globalization::ILanguage,
-        impl::require<Language, winrt::Windows::Globalization::ILanguageExtensionSubtags, winrt::Windows::Globalization::ILanguage2>
+        impl::require<Language, winrt::Windows::Globalization::ILanguageExtensionSubtags, winrt::Windows::Globalization::ILanguage2, winrt::Windows::Globalization::ILanguage3>
     {
         Language(std::nullptr_t) noexcept {}
         Language(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Globalization::ILanguage(ptr, take_ownership_from_abi) {}
@@ -241,6 +241,7 @@ WINRT_EXPORT namespace winrt::Windows::Globalization
         static auto IsWellFormed(param::hstring const& languageTag);
         [[nodiscard]] static auto CurrentInputMethodLanguageTag();
         static auto TrySetInputMethodLanguageTag(param::hstring const& languageTag);
+        static auto GetMuiCompatibleLanguageListFromLanguageTags(param::iterable<hstring> const& languageTags);
     };
     struct NumeralSystemIdentifiers
     {

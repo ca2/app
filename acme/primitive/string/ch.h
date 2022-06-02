@@ -173,23 +173,23 @@ namespace str
       inline bool is_assigned(const wd32char * pszChar) { return is_assigned(__uni_index(pszChar)); }
       inline bool is_space_char(const wd32char * pszChar) { return is_space_char(__uni_index(pszChar)); }
 
-      inline bool is_whitespace(i64 i)
-      {
-         if (!is_legal_uni_index(i))
-            return false;
-         return  (i == 0x20)
-            ||
-            ((i <= 0x0020) &&
-            (((((1 << 0x0009) |
-               (1 << 0x000A) |
-               (1 << 0x000C) |
-               (1 << 0x000D)) >> i) & 1) != 0))
-            ||
-            (((((1 << CHAR_CATEGORY_Zs) |
-            (1 << CHAR_CATEGORY_Zl) |
-               (1 << CHAR_CATEGORY_Zp)
-               ) >> CHAR_CATEGORY(CHAR_PROP(i))) & 1) != 0);
-      }
+      inline bool is_whitespace(i32 i);
+      //{
+      //   if (!is_legal_uni_index(i))
+      //      return false;
+      //   return  (i == 0x20)
+      //      ||
+      //      ((i <= 0x0020) &&
+      //      (((((1 << 0x0009) |
+      //         (1 << 0x000A) |
+      //         (1 << 0x000C) |
+      //         (1 << 0x000D)) >> i) & 1) != 0))
+      //      ||
+      //      (((((1 << CHAR_CATEGORY_Zs) |
+      //      (1 << CHAR_CATEGORY_Zl) |
+      //         (1 << CHAR_CATEGORY_Zp)
+      //         ) >> CHAR_CATEGORY(CHAR_PROP(i))) & 1) != 0);
+      //}
 
       inline bool is_whitespace(const char * psz) { return is_whitespace(uni_index(psz)); }
       inline bool is_whitespace(const wd16char * psz) { return is_whitespace(uni_index(psz)); }

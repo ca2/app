@@ -19,6 +19,12 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
     {
         return !(left == right);
     }
+    struct __declspec(empty_bases) AddPackageOptions : winrt::Windows::Management::Deployment::IAddPackageOptions
+    {
+        AddPackageOptions(std::nullptr_t) noexcept {}
+        AddPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IAddPackageOptions(ptr, take_ownership_from_abi) {}
+        AddPackageOptions();
+    };
     struct __declspec(empty_bases) DeploymentResult : winrt::Windows::Management::Deployment::IDeploymentResult,
         impl::require<DeploymentResult, winrt::Windows::Management::Deployment::IDeploymentResult2>
     {
@@ -26,7 +32,7 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
         DeploymentResult(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IDeploymentResult(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) PackageManager : winrt::Windows::Management::Deployment::IPackageManager,
-        impl::require<PackageManager, winrt::Windows::Management::Deployment::IPackageManager2, winrt::Windows::Management::Deployment::IPackageManager3, winrt::Windows::Management::Deployment::IPackageManager4, winrt::Windows::Management::Deployment::IPackageManager5, winrt::Windows::Management::Deployment::IPackageManager6, winrt::Windows::Management::Deployment::IPackageManager7, winrt::Windows::Management::Deployment::IPackageManager8>
+        impl::require<PackageManager, winrt::Windows::Management::Deployment::IPackageManager2, winrt::Windows::Management::Deployment::IPackageManager3, winrt::Windows::Management::Deployment::IPackageManager4, winrt::Windows::Management::Deployment::IPackageManager5, winrt::Windows::Management::Deployment::IPackageManager6, winrt::Windows::Management::Deployment::IPackageManager7, winrt::Windows::Management::Deployment::IPackageManager8, winrt::Windows::Management::Deployment::IPackageManager9>
     {
         PackageManager(std::nullptr_t) noexcept {}
         PackageManager(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IPackageManager(ptr, take_ownership_from_abi) {}
@@ -64,6 +70,18 @@ WINRT_EXPORT namespace winrt::Windows::Management::Deployment
     {
         PackageVolume(std::nullptr_t) noexcept {}
         PackageVolume(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IPackageVolume(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) RegisterPackageOptions : winrt::Windows::Management::Deployment::IRegisterPackageOptions
+    {
+        RegisterPackageOptions(std::nullptr_t) noexcept {}
+        RegisterPackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IRegisterPackageOptions(ptr, take_ownership_from_abi) {}
+        RegisterPackageOptions();
+    };
+    struct __declspec(empty_bases) StagePackageOptions : winrt::Windows::Management::Deployment::IStagePackageOptions
+    {
+        StagePackageOptions(std::nullptr_t) noexcept {}
+        StagePackageOptions(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Management::Deployment::IStagePackageOptions(ptr, take_ownership_from_abi) {}
+        StagePackageOptions();
     };
 }
 #endif

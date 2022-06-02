@@ -176,6 +176,7 @@ WINRT_EXPORT namespace winrt::Windows::Devices::Bluetooth
     };
     struct IBluetoothAdapter;
     struct IBluetoothAdapter2;
+    struct IBluetoothAdapter3;
     struct IBluetoothAdapterStatics;
     struct IBluetoothClassOfDevice;
     struct IBluetoothClassOfDeviceStatics;
@@ -216,6 +217,7 @@ namespace winrt::impl
 {
     template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter2>{ using type = interface_category; };
+    template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter3>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothAdapterStatics>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDevice>{ using type = interface_category; };
     template <> struct category<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDeviceStatics>{ using type = interface_category; };
@@ -277,6 +279,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::BluetoothServiceCapabilities> = L"Windows.Devices.Bluetooth.BluetoothServiceCapabilities";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter> = L"Windows.Devices.Bluetooth.IBluetoothAdapter";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter2> = L"Windows.Devices.Bluetooth.IBluetoothAdapter2";
+    template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter3> = L"Windows.Devices.Bluetooth.IBluetoothAdapter3";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapterStatics> = L"Windows.Devices.Bluetooth.IBluetoothAdapterStatics";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDevice> = L"Windows.Devices.Bluetooth.IBluetoothClassOfDevice";
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDeviceStatics> = L"Windows.Devices.Bluetooth.IBluetoothClassOfDeviceStatics";
@@ -304,6 +307,7 @@ namespace winrt::impl
     template <> inline constexpr auto& name_v<winrt::Windows::Devices::Bluetooth::IBluetoothUuidHelperStatics> = L"Windows.Devices.Bluetooth.IBluetoothUuidHelperStatics";
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter>{ 0x7974F04C,0x5F7A,0x4A34,{ 0x92,0x25,0xA8,0x55,0xF8,0x4B,0x1A,0x8B } }; // 7974F04C-5F7A-4A34-9225-A855F84B1A8B
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter2>{ 0xAC94CECC,0x24D5,0x41B3,{ 0x91,0x6D,0x10,0x97,0xC5,0x0B,0x10,0x2B } }; // AC94CECC-24D5-41B3-916D-1097C50B102B
+    template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter3>{ 0x8F8624E0,0xCBA9,0x5211,{ 0x9F,0x89,0x3A,0xAC,0x62,0xB4,0xC6,0xB8 } }; // 8F8624E0-CBA9-5211-9F89-3AAC62B4C6B8
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothAdapterStatics>{ 0x8B02FB6A,0xAC4C,0x4741,{ 0x86,0x61,0x8E,0xAB,0x7D,0x17,0xEA,0x9F } }; // 8B02FB6A-AC4C-4741-8661-8EAB7D17EA9F
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDevice>{ 0xD640227E,0xD7D7,0x4661,{ 0x94,0x54,0x65,0x03,0x9C,0xA1,0x7A,0x2B } }; // D640227E-D7D7-4661-9454-65039CA17A2B
     template <> inline constexpr guid guid_v<winrt::Windows::Devices::Bluetooth::IBluetoothClassOfDeviceStatics>{ 0xE46135BD,0x0FA2,0x416C,{ 0x91,0xB4,0xC1,0xE4,0x8C,0xA0,0x61,0xC1 } }; // E46135BD-0FA2-416C-91B4-C1E48CA061C1
@@ -356,6 +360,14 @@ namespace winrt::impl
         {
             virtual int32_t __stdcall get_AreClassicSecureConnectionsSupported(bool*) noexcept = 0;
             virtual int32_t __stdcall get_AreLowEnergySecureConnectionsSupported(bool*) noexcept = 0;
+        };
+    };
+    template <> struct abi<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter3>
+    {
+        struct __declspec(novtable) type : inspectable_abi
+        {
+            virtual int32_t __stdcall get_IsExtendedAdvertisingSupported(bool*) noexcept = 0;
+            virtual int32_t __stdcall get_MaxAdvertisementDataLength(uint32_t*) noexcept = 0;
         };
     };
     template <> struct abi<winrt::Windows::Devices::Bluetooth::IBluetoothAdapterStatics>
@@ -676,6 +688,16 @@ namespace winrt::impl
     template <> struct consume<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter2>
     {
         template <typename D> using type = consume_Windows_Devices_Bluetooth_IBluetoothAdapter2<D>;
+    };
+    template <typename D>
+    struct consume_Windows_Devices_Bluetooth_IBluetoothAdapter3
+    {
+        [[nodiscard]] WINRT_IMPL_AUTO(bool) IsExtendedAdvertisingSupported() const;
+        [[nodiscard]] WINRT_IMPL_AUTO(uint32_t) MaxAdvertisementDataLength() const;
+    };
+    template <> struct consume<winrt::Windows::Devices::Bluetooth::IBluetoothAdapter3>
+    {
+        template <typename D> using type = consume_Windows_Devices_Bluetooth_IBluetoothAdapter3<D>;
     };
     template <typename D>
     struct consume_Windows_Devices_Bluetooth_IBluetoothAdapterStatics

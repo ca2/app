@@ -29,9 +29,9 @@ namespace winrt::impl
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::Diagnostics::CompositionDebugHeatMaps) consume_Windows_UI_Composition_Diagnostics_ICompositionDebugSettings<D>::HeatMaps() const
     {
-        void* result{};
-        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Diagnostics::ICompositionDebugSettings)->get_HeatMaps(&result));
-        return winrt::Windows::UI::Composition::Diagnostics::CompositionDebugHeatMaps{ result, take_ownership_from_abi };
+        void* value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::UI::Composition::Diagnostics::ICompositionDebugSettings)->get_HeatMaps(&value));
+        return winrt::Windows::UI::Composition::Diagnostics::CompositionDebugHeatMaps{ value, take_ownership_from_abi };
     }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::UI::Composition::Diagnostics::CompositionDebugSettings) consume_Windows_UI_Composition_Diagnostics_ICompositionDebugSettingsStatics<D>::TryGetSettings(winrt::Windows::UI::Composition::Compositor const& compositor) const
     {
@@ -77,11 +77,11 @@ namespace winrt::impl
     template <typename D>
     struct produce<D, winrt::Windows::UI::Composition::Diagnostics::ICompositionDebugSettings> : produce_base<D, winrt::Windows::UI::Composition::Diagnostics::ICompositionDebugSettings>
     {
-        int32_t __stdcall get_HeatMaps(void** result) noexcept final try
+        int32_t __stdcall get_HeatMaps(void** value) noexcept final try
         {
-            clear_abi(result);
+            clear_abi(value);
             typename D::abi_guard guard(this->shim());
-            *result = detach_from<winrt::Windows::UI::Composition::Diagnostics::CompositionDebugHeatMaps>(this->shim().HeatMaps());
+            *value = detach_from<winrt::Windows::UI::Composition::Diagnostics::CompositionDebugHeatMaps>(this->shim().HeatMaps());
             return 0;
         }
         catch (...) { return to_hresult(); }

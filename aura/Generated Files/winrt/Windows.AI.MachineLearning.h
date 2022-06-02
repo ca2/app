@@ -267,6 +267,16 @@ namespace winrt::impl
     {
         check_hresult(WINRT_IMPL_SHIM(winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions)->put_BatchSizeOverride(value));
     }
+    template <typename D> WINRT_IMPL_AUTO(bool) consume_Windows_AI_MachineLearning_ILearningModelSessionOptions2<D>::CloseModelOnSessionCreation() const
+    {
+        bool value{};
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2)->get_CloseModelOnSessionCreation(&value));
+        return value;
+    }
+    template <typename D> WINRT_IMPL_AUTO(void) consume_Windows_AI_MachineLearning_ILearningModelSessionOptions2<D>::CloseModelOnSessionCreation(bool value) const
+    {
+        check_hresult(WINRT_IMPL_SHIM(winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2)->put_CloseModelOnSessionCreation(value));
+    }
     template <typename D> WINRT_IMPL_AUTO(winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::AI::MachineLearning::LearningModel>) consume_Windows_AI_MachineLearning_ILearningModelStatics<D>::LoadFromStorageFileAsync(winrt::Windows::Storage::IStorageFile const& modelFile) const
     {
         void* operation{};
@@ -1317,6 +1327,26 @@ namespace winrt::impl
         {
             typename D::abi_guard guard(this->shim());
             this->shim().BatchSizeOverride(value);
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+    };
+#endif
+#ifndef WINRT_LEAN_AND_MEAN
+    template <typename D>
+    struct produce<D, winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2> : produce_base<D, winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2>
+    {
+        int32_t __stdcall get_CloseModelOnSessionCreation(bool* value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            *value = detach_from<bool>(this->shim().CloseModelOnSessionCreation());
+            return 0;
+        }
+        catch (...) { return to_hresult(); }
+        int32_t __stdcall put_CloseModelOnSessionCreation(bool value) noexcept final try
+        {
+            typename D::abi_guard guard(this->shim());
+            this->shim().CloseModelOnSessionCreation(value);
             return 0;
         }
         catch (...) { return to_hresult(); }
@@ -2817,6 +2847,7 @@ namespace std
     template<> struct hash<winrt::Windows::AI::MachineLearning::ILearningModelSessionFactory> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::AI::MachineLearning::ILearningModelSessionFactory2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions> : winrt::impl::hash_base {};
+    template<> struct hash<winrt::Windows::AI::MachineLearning::ILearningModelSessionOptions2> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::AI::MachineLearning::ILearningModelStatics> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::AI::MachineLearning::IMapFeatureDescriptor> : winrt::impl::hash_base {};
     template<> struct hash<winrt::Windows::AI::MachineLearning::ISequenceFeatureDescriptor> : winrt::impl::hash_base {};

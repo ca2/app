@@ -191,6 +191,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
         IMediaEncodingSubtypesStatics5(std::nullptr_t = nullptr) noexcept {}
         IMediaEncodingSubtypesStatics5(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) IMediaEncodingSubtypesStatics6 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<IMediaEncodingSubtypesStatics6>
+    {
+        IMediaEncodingSubtypesStatics6(std::nullptr_t = nullptr) noexcept {}
+        IMediaEncodingSubtypesStatics6(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) IMediaRatio :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<IMediaRatio>
@@ -211,6 +218,13 @@ WINRT_EXPORT namespace winrt::Windows::Media::MediaProperties
     {
         ITimedMetadataEncodingProperties(std::nullptr_t = nullptr) noexcept {}
         ITimedMetadataEncodingProperties(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
+    struct __declspec(empty_bases) ITimedMetadataEncodingPropertiesStatics :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ITimedMetadataEncodingPropertiesStatics>
+    {
+        ITimedMetadataEncodingPropertiesStatics(std::nullptr_t = nullptr) noexcept {}
+        ITimedMetadataEncodingPropertiesStatics(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
     struct __declspec(empty_bases) IVideoEncodingProperties :
         winrt::Windows::Foundation::IInspectable,

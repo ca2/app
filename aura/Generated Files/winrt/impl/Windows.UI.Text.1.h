@@ -69,6 +69,13 @@ WINRT_EXPORT namespace winrt::Windows::UI::Text
         ITextDocument3(std::nullptr_t = nullptr) noexcept {}
         ITextDocument3(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
     };
+    struct __declspec(empty_bases) ITextDocument4 :
+        winrt::Windows::Foundation::IInspectable,
+        impl::consume_t<ITextDocument4>
+    {
+        ITextDocument4(std::nullptr_t = nullptr) noexcept {}
+        ITextDocument4(void* ptr, take_ownership_from_abi_t) noexcept : winrt::Windows::Foundation::IInspectable(ptr, take_ownership_from_abi) {}
+    };
     struct __declspec(empty_bases) ITextParagraphFormat :
         winrt::Windows::Foundation::IInspectable,
         impl::consume_t<ITextParagraphFormat>

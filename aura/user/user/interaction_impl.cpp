@@ -11,6 +11,7 @@
 #include "aura/graphics/graphics/_graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/text_editor_interface.h"
 //#ifdef _UWP
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
@@ -5540,8 +5541,6 @@ namespace user
          string strText;
 
          pfocus->_001GetText(strText);
-
-         synchronous_lock synchronouslock(osmutex());
 
          auto pwindowing = m_puserinteraction->windowing();
 

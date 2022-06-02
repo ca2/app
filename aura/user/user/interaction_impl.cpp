@@ -5520,6 +5520,46 @@ namespace user
 
    }
    
+
+   bool interaction_impl::on_keyboard_focus(::user::primitive* pfocus)
+   {
+
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         strsize iBeg = 0;
+
+         strsize iEnd = 0;
+
+         pfocus->_001GetSel(iBeg, iEnd);
+
+         string strText;
+
+         pfocus->_001GetText(strText);
+
+         synchronous_lock synchronouslock(osmutex());
+
+         auto pwindowing = m_puserinteraction->windowing();
+
+         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+         ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+         ptexteditorinterface->set_editor_text(strText);
+
+         ptexteditorinterface->show_software_keyboard();
+
+      }
+
+      return true;
+
+   }
+
+
    
    void interaction_impl::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
    {
@@ -5551,6 +5591,48 @@ namespace user
       }
 
    }
+
+
+   bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   {
+
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         ptexteditorinterface->hide_software_keyboard();
+
+      }
+
+      return true;
+
+   }
+
+   bool interaction_impl::keyboard_focus_OnChildKillFocus()
+   {
+
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         ptexteditorinterface->hide_software_keyboard();
+
+      }
+
+      return true;
+
+   }
+
 
 
    void interaction_impl::_001OnKillFocus(::message::message * pmessage)

@@ -53,6 +53,7 @@ namespace windowing
 
       bool                                      m_bDrawCursor;
       __reference(::user::user)                 m_puser;
+      
 
 
       windowing();
@@ -63,6 +64,8 @@ namespace windowing
 
 
       bool is_branch_current() const override;
+      
+      
 
 
       inline ::aura::application* get_app() const;

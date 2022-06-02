@@ -63,7 +63,7 @@ namespace windowing
       m_ecursorDefault = e_cursor_arrow;
 
       m_ecursor = e_cursor_default;
-
+      
       m_bDrawCursor = false;
 
 //      return ::success;

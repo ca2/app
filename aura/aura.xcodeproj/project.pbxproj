@@ -598,6 +598,7 @@
 		9A956D062824082A00002F51 /* font_utf8.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D052824082A00002F51 /* font_utf8.cpp */; };
 		9A9B9B3128483DC3005CA950 /* text_editor_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */; };
 		9A9B9B3228483DC3005CA950 /* text_editor_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9B9B3028483DC3005CA950 /* text_editor_interface.h */; };
+		9A9B9B3D284856B5005CA950 /* text_editor_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B9B2F28483DC3005CA950 /* text_editor_interface.cpp */; };
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
@@ -2703,6 +2704,7 @@
 				9A750FC1282B927200C4861B /* lock.cpp in Sources */,
 				9A750FA5282B910A00C4861B /* control_descriptor.cpp in Sources */,
 				9A750FBE282B922E00C4861B /* idpool.cpp in Sources */,
+				9A9B9B3D284856B5005CA950 /* text_editor_interface.cpp in Sources */,
 				9A94DE6B282C0ADA00F5C1CA /* buffer.cpp in Sources */,
 				9A750FE3282B92A900C4861B /* control_box_icon.cpp in Sources */,
 				9A750FA8282B911800C4861B /* form.cpp in Sources */,

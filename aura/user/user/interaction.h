@@ -1935,7 +1935,6 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      //virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
       virtual void show_software_keyboard(::user::element* pelement) override;
       virtual void hide_software_keyboard(::user::element* pelement) override;
 

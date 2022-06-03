@@ -25,6 +25,7 @@ namespace sandbox_windowing
 
       __pointer(::sandbox_windowing::window)          m_pwindowKeyboardFocus;
       __pointer(::sandbox_windowing::window)          m_pwindowMouseCapture;
+      __pointer(::sandbox_windowing::window)          m_pwindowActive;
 
 
       __pointer(host_interaction)                     m_phostinteraction;

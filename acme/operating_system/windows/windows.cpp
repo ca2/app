@@ -548,3 +548,22 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance)
 
 }
 
+
+// Get the horizontal and vertical screen sizes in pixel
+void operating_system_get_main_screen_size(int& cx, int& cy)
+{
+   
+   const HWND hwndDesktop = GetDesktopWindow();
+   
+   RECT rectDesktop;
+
+   GetWindowRect(hwndDesktop, &rectDesktop);
+
+   cx = rectDesktop.right - rectDesktop.left;
+
+   cy = rectDesktop.bottom - rectDesktop.top;
+
+}
+
+
+

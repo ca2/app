@@ -192,7 +192,7 @@ namespace dynamic_source
    {
       synchronous_lock synchronouslock(mutex());
       return (m_durationLastBuildTime.elapsed()) >
-             (m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow));
+         INTEGRAL_SECOND{ m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow) };
    }
 
    bool ds_script::HasCompileOrLinkError()

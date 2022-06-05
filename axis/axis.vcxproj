@@ -590,7 +590,6 @@
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="account\account.cpp" />
     <ClCompile Include="account\authenticator.cpp" />
     <ClCompile Include="account\contact_list.cpp" />
     <ClCompile Include="account\credentials.cpp" />

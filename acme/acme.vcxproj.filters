@@ -4225,7 +4225,7 @@
     <ClCompile Include="primitive\media_library\item.cpp">
       <Filter>Source Files\primitive\media_library</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\time.cpp">
+    <ClCompile Include="primitive\duration\time.cpp">
       <Filter>Source Files\primitive\duration</Filter>
     </ClCompile>
   </ItemGroup>

@@ -958,7 +958,7 @@ pacmedirectory->create(pathDVP_Folder);
             if(process->has_exited())
                break;
 
-            sleep(100_ms);
+            preempt(100_ms);
 
             if(tickStart.elapsed() > 890_s) // 14 minutes
             {

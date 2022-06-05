@@ -2804,7 +2804,7 @@
 		9A64519E2846618B00A94AAB /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
 		9A6451A02846676E00A94AAB /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
 		9A6549BC2667FC5400F8A254 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9A68A41425114352008DABD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A68A41425114352008DABD2 /* acme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = acme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68A4552511442E008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68A4562511442E008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A68A4862511442E008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -3924,7 +3924,7 @@
 		9AD1997C2511BAA000B4C44A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9AD199862511CFB000B4C44A /* _start.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _start.h; sourceTree = "<group>"; };
 		9AD40AAF25281D3F0027B23E /* string_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_exchange.h; sourceTree = "<group>"; };
-		9AD692B6251A753A00C0EBD7 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD692B6251A753A00C0EBD7 /* ios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADD64B126B5CB3300D11298 /* message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message.h; sourceTree = "<group>"; };
 		9ADD64B226B5CB3300D11298 /* object_reference_count_debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_reference_count_debug.cpp; sourceTree = "<group>"; };
 		9ADD64B326B5CB3300D11298 /* object_type_counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_type_counter.cpp; sourceTree = "<group>"; };
@@ -3994,13 +3994,6 @@
 				9A0B8D8F27AA2AD700760D34 /* AppKit.framework in Frameworks */,
 				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
 				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AD692AC251A753A00C0EBD7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4201,8 +4194,8 @@
 		9A68A41525114352008DABD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A68A41425114352008DABD2 /* libacme.dylib */,
-				9AD692B6251A753A00C0EBD7 /* libios_acme.a */,
+				9A68A41425114352008DABD2 /* acme.dylib */,
+				9AD692B6251A753A00C0EBD7 /* ios_acme.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -7590,7 +7583,7 @@
 			);
 			name = acme;
 			productName = acme;
-			productReference = 9A68A41425114352008DABD2 /* libacme.dylib */;
+			productReference = 9A68A41425114352008DABD2 /* acme.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AD68E39251A753A00C0EBD7 /* ios_acme */ = {
@@ -7599,7 +7592,6 @@
 			buildPhases = (
 				9AD68E3A251A753A00C0EBD7 /* Headers */,
 				9AD69137251A753A00C0EBD7 /* Sources */,
-				9AD692AC251A753A00C0EBD7 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -7608,7 +7600,7 @@
 			);
 			name = ios_acme;
 			productName = acme;
-			productReference = 9AD692B6251A753A00C0EBD7 /* libios_acme.a */;
+			productReference = 9AD692B6251A753A00C0EBD7 /* ios_acme.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -8628,6 +8620,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -8741,6 +8734,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8809,60 +8803,34 @@
 		9A68A41E25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		9A68A41F25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		9AD692B4251A753A00C0EBD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
-				EXECUTABLE_PREFIX = lib;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		9AD692B5251A753A00C0EBD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
-				EXECUTABLE_PREFIX = lib;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

@@ -53,6 +53,46 @@
 		9A4B40692524363C00F476B3 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40682524363C00F476B3 /* libaura.dylib */; };
 		9A4B406A2524363C00F476B3 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281ADA252435C3009FA9CB /* libbase.dylib */; };
 		9A4B406C2524376800F476B3 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B406B2524376800F476B3 /* libaxis.dylib */; };
+		9AE6421F284AA6570079EBA0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7825243402009FA9CB /* _.h */; };
+		9AE64220284AA6570079EBA0 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7B25243402009FA9CB /* session.h */; };
+		9AE64221284AA6570079EBA0 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8C25243402009FA9CB /* android.h */; };
+		9AE64222284AA6570079EBA0 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7125243402009FA9CB /* console.h */; };
+		9AE64223284AA6570079EBA0 /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8B25243402009FA9CB /* universal_windows.h */; };
+		9AE64224284AA6570079EBA0 /* idpool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9F25243402009FA9CB /* idpool.h */; };
+		9AE64225284AA6570079EBA0 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8E25243402009FA9CB /* _console_old.h */; };
+		9AE64226284AA6570079EBA0 /* _defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7425243402009FA9CB /* _defer.h */; };
+		9AE64227284AA6570079EBA0 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9625243402009FA9CB /* macos.h */; };
+		9AE64228284AA6570079EBA0 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9B25243402009FA9CB /* application_common.h */; };
+		9AE64229284AA6570079EBA0 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9025243402009FA9CB /* application.h */; };
+		9AE6422A284AA6570079EBA0 /* ios.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8725243402009FA9CB /* ios.h */; };
+		9AE6422B284AA6570079EBA0 /* __debug_box_clear_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9925243402009FA9CB /* __debug_box_clear_impl.h */; };
+		9AE6422C284AA6570079EBA0 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7525243402009FA9CB /* library.h */; };
+		9AE6422D284AA6570079EBA0 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8025243402009FA9CB /* _platform.h */; };
+		9AE6422E284AA6570079EBA0 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7A25243402009FA9CB /* application.h */; };
+		9AE6422F284AA6570079EBA0 /* _application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8525243402009FA9CB /* _application.h */; };
+		9AE64230284AA6570079EBA0 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9825243402009FA9CB /* _new_impl.h */; };
+		9AE64231284AA6570079EBA0 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281AA825243402009FA9CB /* framework.h */; };
+		9AE64232284AA6570079EBA0 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8F25243402009FA9CB /* library.h */; };
+		9AE64233284AA6570079EBA0 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8825243402009FA9CB /* linux.h */; };
+		9AE64234284AA6570079EBA0 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9725243402009FA9CB /* windows.h */; };
+		9AE64235284AA6570079EBA0 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8A25243402009FA9CB /* windows.h */; };
+		9AE64236284AA6570079EBA0 /* _draw2d_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8425243402009FA9CB /* _draw2d_impl.h */; };
+		9AE64237284AA6570079EBA0 /* __debug_box_set_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9125243402009FA9CB /* __debug_box_set_impl.h */; };
+		9AE64238284AA6570079EBA0 /* id.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8125243402009FA9CB /* id.h */; };
+		9AE64239284AA6570079EBA0 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9C25243402009FA9CB /* _app_impl1.h */; };
+		9AE6423A284AA6570079EBA0 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8925243402009FA9CB /* macos.h */; };
+		9AE6423B284AA6570079EBA0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281AAA25243402009FA9CB /* _.h */; };
+		9AE6423C284AA6570079EBA0 /* _acid_app_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9D25243402009FA9CB /* _acid_app_impl.h */; };
+		9AE6423D284AA6570079EBA0 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8325243402009FA9CB /* console.h */; };
+		9AE6423E284AA6570079EBA0 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9525243402009FA9CB /* linux.h */; };
+		9AE6423F284AA6570079EBA0 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7E25243402009FA9CB /* system.h */; };
+		9AE64240284AA6570079EBA0 /* console_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A9225243402009FA9CB /* console_common.h */; };
+		9AE64242284AA6570079EBA0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A7F25243402009FA9CB /* application.cpp */; };
+		9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281AA025243402009FA9CB /* idpool.cpp */; };
+		9AE64244284AA6570079EBA0 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A7C25243402009FA9CB /* session.cpp */; };
+		9AE64245284AA6570079EBA0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A7625243402009FA9CB /* framework.cpp */; };
+		9AE64246284AA6570079EBA0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281AA425243402009FA9CB /* _.cpp */; };
+		9AE64247284AA6570079EBA0 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A281A7D25243402009FA9CB /* system.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +109,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AD117F224F51BE400177261;
 			remoteInfo = base;
+		};
+		9AE64254284AA6570079EBA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A281AD5252435C2009FA9CB /* base.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6FA2846EB33005ACD11;
+			remoteInfo = ios_base;
+		};
+		9AE6453D284ACEC40079EBA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A281AD5252435C2009FA9CB /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B6992846EB33005ACD11;
+			remoteInfo = ios_base;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -120,6 +174,7 @@
 		9A4B40662524363200F476B3 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B40682524363C00F476B3 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B406B2524376800F476B3 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE64252284AA6570079EBA0 /* libios_bred.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_bred.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				9A281A5D252432B5009FA9CB /* libbred.dylib */,
+				9AE64252284AA6570079EBA0 /* libios_bred.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				9A281ADA252435C3009FA9CB /* libbase.dylib */,
+				9AE64255284AA6570079EBA0 /* libios_base.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,6 +373,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE6421E284AA6570079EBA0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE6421F284AA6570079EBA0 /* _.h in Headers */,
+				9AE64220284AA6570079EBA0 /* session.h in Headers */,
+				9AE64221284AA6570079EBA0 /* android.h in Headers */,
+				9AE64222284AA6570079EBA0 /* console.h in Headers */,
+				9AE64223284AA6570079EBA0 /* universal_windows.h in Headers */,
+				9AE64224284AA6570079EBA0 /* idpool.h in Headers */,
+				9AE64225284AA6570079EBA0 /* _console_old.h in Headers */,
+				9AE64226284AA6570079EBA0 /* _defer.h in Headers */,
+				9AE64227284AA6570079EBA0 /* macos.h in Headers */,
+				9AE64228284AA6570079EBA0 /* application_common.h in Headers */,
+				9AE64229284AA6570079EBA0 /* application.h in Headers */,
+				9AE6422A284AA6570079EBA0 /* ios.h in Headers */,
+				9AE6422B284AA6570079EBA0 /* __debug_box_clear_impl.h in Headers */,
+				9AE6422C284AA6570079EBA0 /* library.h in Headers */,
+				9AE6422D284AA6570079EBA0 /* _platform.h in Headers */,
+				9AE6422E284AA6570079EBA0 /* application.h in Headers */,
+				9AE6422F284AA6570079EBA0 /* _application.h in Headers */,
+				9AE64230284AA6570079EBA0 /* _new_impl.h in Headers */,
+				9AE64231284AA6570079EBA0 /* framework.h in Headers */,
+				9AE64232284AA6570079EBA0 /* library.h in Headers */,
+				9AE64233284AA6570079EBA0 /* linux.h in Headers */,
+				9AE64234284AA6570079EBA0 /* windows.h in Headers */,
+				9AE64235284AA6570079EBA0 /* windows.h in Headers */,
+				9AE64236284AA6570079EBA0 /* _draw2d_impl.h in Headers */,
+				9AE64237284AA6570079EBA0 /* __debug_box_set_impl.h in Headers */,
+				9AE64238284AA6570079EBA0 /* id.h in Headers */,
+				9AE64239284AA6570079EBA0 /* _app_impl1.h in Headers */,
+				9AE6423A284AA6570079EBA0 /* macos.h in Headers */,
+				9AE6423B284AA6570079EBA0 /* _.h in Headers */,
+				9AE6423C284AA6570079EBA0 /* _acid_app_impl.h in Headers */,
+				9AE6423D284AA6570079EBA0 /* console.h in Headers */,
+				9AE6423E284AA6570079EBA0 /* linux.h in Headers */,
+				9AE6423F284AA6570079EBA0 /* system.h in Headers */,
+				9AE64240284AA6570079EBA0 /* console_common.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -335,6 +433,23 @@
 			name = bred;
 			productName = bred;
 			productReference = 9A281A5D252432B5009FA9CB /* libbred.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9AE6421B284AA6570079EBA0 /* ios_bred */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE6424F284AA6570079EBA0 /* Build configuration list for PBXNativeTarget "ios_bred" */;
+			buildPhases = (
+				9AE6421E284AA6570079EBA0 /* Headers */,
+				9AE64241284AA6570079EBA0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AE6453E284ACEC40079EBA0 /* PBXTargetDependency */,
+			);
+			name = ios_bred;
+			productName = bred;
+			productReference = 9AE64252284AA6570079EBA0 /* libios_bred.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -371,6 +486,7 @@
 			projectRoot = "";
 			targets = (
 				9A281A5C252432B5009FA9CB /* bred */,
+				9AE6421B284AA6570079EBA0 /* ios_bred */,
 			);
 		};
 /* End PBXProject section */
@@ -381,6 +497,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libbase.dylib;
 			remoteRef = 9A281AD9252435C3009FA9CB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AE64255284AA6570079EBA0 /* libios_base.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_base.a;
+			remoteRef = 9AE64254284AA6570079EBA0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -399,6 +522,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9AE64241284AA6570079EBA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE64242284AA6570079EBA0 /* application.cpp in Sources */,
+				9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */,
+				9AE64244284AA6570079EBA0 /* session.cpp in Sources */,
+				9AE64245284AA6570079EBA0 /* framework.cpp in Sources */,
+				9AE64246284AA6570079EBA0 /* _.cpp in Sources */,
+				9AE64247284AA6570079EBA0 /* system.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -406,6 +542,11 @@
 			isa = PBXTargetDependency;
 			name = base;
 			targetProxy = 9A281AE1252435F7009FA9CB /* PBXContainerItemProxy */;
+		};
+		9AE6453E284ACEC40079EBA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_base;
+			targetProxy = 9AE6453D284ACEC40079EBA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -476,7 +617,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -583,7 +723,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -634,7 +773,6 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -648,9 +786,34 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		9AE64250284AA6570079EBA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9AE64251284AA6570079EBA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -672,6 +835,15 @@
 			buildConfigurations = (
 				9A281A67252432B5009FA9CB /* Debug */,
 				9A281A68252432B5009FA9CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AE6424F284AA6570079EBA0 /* Build configuration list for PBXNativeTarget "ios_bred" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE64250284AA6570079EBA0 /* Debug */,
+				9AE64251284AA6570079EBA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

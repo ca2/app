@@ -34,6 +34,8 @@ public:
 
    virtual void init_system();
 
+   virtual ::file::path compute_default_app_data_path();
+
 
 };
 

@@ -5598,14 +5598,30 @@ namespace user
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-      auto pwindowing = m_puserinteraction->windowing();
+//      auto pwindowing = m_puserinteraction->windowing();
+//
+//      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+//
+//      if (::is_set(ptexteditorinterface))
+//      {
+//
+//         ptexteditorinterface->hide_software_keyboard();
+//
+//      }
 
-      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-      if (::is_set(ptexteditorinterface))
+      _synchronous_lock synchronouslock(mutex());
+
+      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+      if (puserinteractionKeyboardFocus)
       {
+         
+         m_puserinteractionKeyboardFocus.release();
 
-         ptexteditorinterface->hide_software_keyboard();
+         synchronouslock.unlock();
+
+         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
 
       }
 

@@ -283,7 +283,7 @@
 /* Begin PBXFileReference section */
 		9A22739E27CF04460042BAC2 /* graphics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
 		9A2273AB27CF04460042BAC2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A2818FE25242488009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2818FE25242488009FA9CB /* aqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = aqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A28192825242523009FA9CB /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A28192925242523009FA9CB /* _defer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer.h; sourceTree = "<group>"; };
 		9A28192D25242523009FA9CB /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -419,13 +419,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A8E9EB3282A3210005FF778 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -459,7 +452,7 @@
 		9A2818FF25242488009FA9CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A2818FE25242488009FA9CB /* libaqua.dylib */,
+				9A2818FE25242488009FA9CB /* aqua.dylib */,
 				9A8E9EB9282A3210005FF778 /* libios_aqua.a */,
 			);
 			name = Products;
@@ -883,7 +876,7 @@
 			);
 			name = aqua;
 			productName = aqua;
-			productReference = 9A2818FE25242488009FA9CB /* libaqua.dylib */;
+			productReference = 9A2818FE25242488009FA9CB /* aqua.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A8E9E37282A3210005FF778 /* ios_aqua */ = {
@@ -892,7 +885,6 @@
 			buildPhases = (
 				9A8E9E3A282A3210005FF778 /* Headers */,
 				9A8E9E8A282A3210005FF778 /* Sources */,
-				9A8E9EB3282A3210005FF778 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1116,6 +1108,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -1231,6 +1224,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1302,7 +1296,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};
@@ -1312,7 +1305,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = dylib;
-				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};

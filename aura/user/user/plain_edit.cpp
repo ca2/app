@@ -7217,6 +7217,10 @@ finished_update:
             plain_edit_on_update(pgraphics, context);
 
          });
+      
+      set_need_redraw();
+      
+      post_redraw();
 
    }
 

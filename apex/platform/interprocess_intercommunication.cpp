@@ -700,7 +700,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    
    auto pnode = psystem->node();
 
-#ifndef _UWP
+#if !defined(_UWP) && !defined(APPLE_IOS)
 
    ::file::path pathModule;
 

@@ -591,7 +591,10 @@ pacmedirectory->is(stra[i]))
 
       psystem->m_strIosHome = pathHome;
 
-      m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
+      //m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
+
+      m_pdirsystem->m_pathHome = m_psystem->m_pacmedirectory->m_pplatformdir->m_pathDocument;
+
 
       //nodeos_set_home(psystem->m_strIosHome);
 

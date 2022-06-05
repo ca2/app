@@ -273,13 +273,13 @@ namespace userex
 
             auto strOptionsImpact = get_app()->preparimpact_options();
 
-#if defined(_DEBUG) && !defined(_UWP)
+#if defined(_DEBUG) && !defined(_UWP) && !defined(APPLE_IOS)
 
             auto pcontext = m_pcontext->m_papexcontext;
 
             ::file::path path;
             
-            path = pcontext->dir().home() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir().appdata() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
 
             pcontext->file().put_memory(path, strOptionsImpact);
 

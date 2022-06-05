@@ -7,17 +7,17 @@
 		<key>aura.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>39</integer>
+			<integer>17</integer>
 		</dict>
 		<key>aura_iosTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>43</integer>
+			<integer>5</integer>
 		</dict>
 		<key>ios_aura.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>41</integer>
+			<integer>43</integer>
 		</dict>
 	</dict>
 </dict>

@@ -49,6 +49,16 @@ CLASS_DECL_ACME::u32 __u32_hash(const char* psz);
 typedef u64 file_time_t;
 
 
+#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#define DESKTOP_PLATFORM
+#endif
+
+
+#if defined(ANDROID) || defined(APPLE_IOS) || defined(UWP)
+#define SANDBOXED_PLATFORM
+#endif
+
+
 #include "acme/constant/_constant.h"
 #include "acme/constant/_enumeration.h"
 #include "acme/primitive/duration/_struct.h"

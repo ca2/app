@@ -141,6 +141,9 @@ public:
    virtual void broadcast_environment_variable_change();
 
 
+   virtual void set_this_application_as_default_for_file_extension(const ::string& strExtension);
+
+
 };
 
 

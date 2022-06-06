@@ -77,7 +77,9 @@ CLASS_DECL_ACME class ::system * get_system();
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
 {
 
-   g_psystem->fork([procedure]()
+   auto psystem = get_system();
+
+   psystem->fork([procedure]()
       {
 
          procedure();

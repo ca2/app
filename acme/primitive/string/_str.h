@@ -10,6 +10,50 @@ struct end_of_line_and_next_line
 };
 
 
+
+inline string consume_char(const ansichar * & p)
+{
+   auto len = ::utf8_len(p);
+   string strChar(p, len);
+   p+=len;
+   return strChar;
+}
+inline wd16string consume_char(const wd16char * & p)
+{
+   auto len = ::utf16_len(p);
+   wd16string wd16strChar(p, len);
+   p+=len;
+   return wd16strChar;
+}
+inline wd32string consume_char(const wd32char * & p)
+{
+   auto len = 1;
+   wd32string wd32strChar(p, len);
+   p+=len;
+   return wd32strChar;
+}
+
+
+inline ansichar * next_char(const ansichar * & p)
+{
+   auto len = ::utf8_len(p);
+   p+=len;
+   return (ansichar *)p;
+}
+inline const wd16char * next_char(const wd16char * & p)
+{
+   auto len = ::utf16_len(p);
+   p+=len;
+   return (wd16char *)p;
+}
+inline wd32char * next_char(const wd32char * & p)
+{
+   auto len = 1;
+   p+=len;
+   return(wd32char *) p;
+}
+
+
 namespace str
 {
 
@@ -433,5 +477,4 @@ namespace str
 
 
 inline CLASS_DECL_ACME string string_from_strdup(const char * psz);
-
 

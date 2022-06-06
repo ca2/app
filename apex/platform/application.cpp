@@ -10134,6 +10134,23 @@ string application::get_wm_class() const
 #endif
 
 
+//void application::interprocess_communication_open(const char * pszPath)
+//{
+//   
+//   if(!m_prx)
+//   {
+//      
+//      throw ::exception(error_wrong_state);
+//      
+//   }
+//   
+//   string strMessage(pszPath);
+//   
+//   m_prx->on_interprocess_receive();
+//   
+//}
+
+
 void application_on_menu_action(void* pApplication, const char* pszCommand)
 {
 

@@ -803,7 +803,7 @@ namespace x11
 #define MAXSTR 1000
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void x11_asynchronous(::procedure function)

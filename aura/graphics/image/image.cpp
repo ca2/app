@@ -6442,6 +6442,12 @@ void image::fill(color32_t cr)
 }
 
 
+void image::clear(const ::color::color & colorFill)
+{
+   
+   fill(colorFill);
+   
+}
 
 
 void image::fill(i32 a, i32 r, i32 g, i32 b)

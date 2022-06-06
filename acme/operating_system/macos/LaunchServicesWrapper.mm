@@ -27,11 +27,13 @@
 + (BOOL)setMyselfAsDefaultApplicationForFileExtension:
   (NSString *)fileExtension
 {
+   
+   NSString*  strBundleIdentifier =[[NSBundle mainBundle]
+                                  bundleIdentifier];
   return LSSetDefaultRoleHandlerForContentType(
     (__bridge CFStringRef) [LaunchServicesWrapper
     UTIforFileExtension:fileExtension], kLSRolesAll,
-    (__bridge CFStringRef) [[NSBundle mainBundle]
-    bundleIdentifier]
+                                               (__bridge CFStringRef)strBundleIdentifier
   );
 }
 

@@ -35,8 +35,6 @@ struct plane_system
    
 };
 
-plane_system * create_plane_system();
-
 #endif
 
 

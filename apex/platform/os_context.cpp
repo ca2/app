@@ -850,4 +850,11 @@ void os_context::broadcast_environment_variable_change()
 }
 
 
+void os_context::set_this_application_as_default_for_file_extension(const ::string& strExtension)
+{
+
+
+}
+
+
 

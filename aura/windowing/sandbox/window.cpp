@@ -3603,85 +3603,162 @@ namespace sandbox_windowing
 
 
    void window::set_keyboard_focus()
+{
+   
+   auto pwindowing = windowing();
+
+   if (!pwindowing)
    {
 
-      auto pwindowing = windowing();
-
-      if (!pwindowing)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
-      {
-
-         pwindowing->clear_keyboard_focus(this);
-
-      }
-
-      pwindowing->m_pwindowKeyboardFocus = this;
-
-      SetInternalFocus();
-
-      //auto puserinteractionimpl = m_puserinteractionimpl;
-
-      //if (puserinteractionimpl)
-      //{
-
-      //   auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-
-      //   if (puserinteraction)
-      //   {
-
-      //      if (puserinteraction->keyboard_focus_is_focusable())
-      //      {
-
-      //         //puserinteraction->post_message(e_message_set_focus);
-
-      //         
-
-      //      }
-
-      //   }
-
-      //}
-
-      //if (Window() == 0)
-      //{
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //windowing_output_debug_string("\noswindow_data::SetFocus 1");
-
-      //display_lock displaylock(x11_display()->Display());
-
-      //if (!is_window())
-      //{
-
-      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
-      //{
-
-      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //windowing_output_debug_string("\noswindow_data::SetFocus 2");
-
-      ////return ::success;
+      throw ::exception(error_wrong_state);
 
    }
+
+      auto puserinteractionimpl = m_puserinteractionimpl;
+
+   if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
+   {
+
+      pwindowing->clear_keyboard_focus(puserinteractionimpl ? puserinteractionimpl->m_puserinteractionKeyboardFocusRequest : nullptr);
+
+   }
+
+   pwindowing->m_pwindowKeyboardFocus = this;
+
+     
+      if (puserinteractionimpl)
+   {
+
+      puserinteractionimpl->on_final_set_keyboard_focus();
+//         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+//
+//         if (puserinteraction)
+//         {
+//
+//            puserinteraction->post_message(e_message_set_focus);
+//
+//         }
+
+   }
+
+   //if (Window() == 0)
+   //{
+
+   //   throw ::exception(error_failed);
+
+   //}
+
+   //windowing_output_debug_string("\noswindow_data::SetFocus 1");
+
+   //display_lock displaylock(x11_display()->Display());
+
+   //if (!is_window())
+   //{
+
+   //   windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+
+   //   throw ::exception(error_failed);
+
+   //}
+
+   //if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
+   //{
+
+   //   windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+
+   //   throw ::exception(error_failed);
+
+   //}
+
+   //windowing_output_debug_string("\noswindow_data::SetFocus 2");
+
+   ////return ::success;
+
+
+
+
+
+}
+
+//   {
+//
+//      auto pwindowing = windowing();
+//
+//      if (!pwindowing)
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
+//      {
+//
+//         pwindowing->clear_keyboard_focus(this);
+//
+//      }
+//
+//      pwindowing->m_pwindowKeyboardFocus = this;
+//
+//      SetInternalFocus();
+//
+//      //auto puserinteractionimpl = m_puserinteractionimpl;
+//
+//      //if (puserinteractionimpl)
+//      //{
+//
+//      //   auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+//
+//      //   if (puserinteraction)
+//      //   {
+//
+//      //      if (puserinteraction->keyboard_focus_is_focusable())
+//      //      {
+//
+//      //         //puserinteraction->post_message(e_message_set_focus);
+//
+//      //
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //if (Window() == 0)
+//      //{
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //windowing_output_debug_string("\noswindow_data::SetFocus 1");
+//
+//      //display_lock displaylock(x11_display()->Display());
+//
+//      //if (!is_window())
+//      //{
+//
+//      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.1");
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //if (!XSetInputFocus(Display(), Window(), RevertToNone, CurrentTime))
+//      //{
+//
+//      //   windowing_output_debug_string("\noswindow_data::SetFocus 1.3");
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //windowing_output_debug_string("\noswindow_data::SetFocus 2");
+//
+//      ////return ::success;
+//
+//   }
 
 
    void window::SetInternalFocus()

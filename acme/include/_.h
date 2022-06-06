@@ -134,6 +134,8 @@ class system; // acme - cam
 class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
 
 
+CLASS_DECL_ACME class system * get_system();
+
 
 namespace acme
 {
@@ -2061,6 +2063,10 @@ inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
 inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
 
 
+inline bool has_char(const ansichar * p) { return !is_empty(p); }
+inline bool has_char(const wd16char * p) { return !is_empty(p); }
+inline bool has_char(const wd32char * p) { return !is_empty(p); }
+
 
 template < a_pointer POINTER >
 inline bool is_set(POINTER p)
@@ -2763,12 +2769,6 @@ namespace html
 #ifndef WINDOWS_DESKTOP
 
 typedef void *HDWP;
-
-#endif
-
-#ifdef APPLE_IOS
-
-struct plane_system;
 
 #endif
 
@@ -4528,6 +4528,10 @@ class task_tool;
 
 
 #include "acme/platform/app.h"
+
+
+
+#include "acme/platform/plane_system.h"
 
 
 

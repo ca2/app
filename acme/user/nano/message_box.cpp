@@ -301,7 +301,7 @@ void nano_message_box::on_create()
 //}
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
@@ -312,7 +312,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    if (::is_null(pobject))
    {
 
-      pobject = g_psystem;
+      pobject = ::get_system();
       
    }
 
@@ -404,7 +404,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    if (::is_null(pobject))
    {
 
-      pobject = g_psystem;
+      pobject = ::get_system();
       
    }
 

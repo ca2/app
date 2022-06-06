@@ -3,7 +3,7 @@
 #include <dlfcn.h>
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void * __node_library_open(const char * pszPath, string & strMessage);
@@ -17,6 +17,8 @@ void * __node_library_touch(const char * pszPath, string & strMessage)
 
 void * __node_library_open(const char * pszPath, string & strMessage)
 {
+   
+   auto psystem = ::get_system();
 
    string strPath(pszPath);
 
@@ -84,8 +86,8 @@ void * __node_library_open(const char * pszPath, string & strMessage)
    strError = dlerror();
 
    strMessage += "\n(2) node_library_open Failed " + path + " with the error: \""+strError+"\"";
-
-   path = ::file::path(g_psystem->m_pacmedirectory->module()).folder() / strPath;
+   
+   path = ::file::path(psystem->m_pacmedirectory->module()).folder() / strPath;
 
    plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

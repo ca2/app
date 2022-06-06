@@ -682,7 +682,7 @@
 		9AC2D1FE2654454E00CC8096 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FB2654454E00CC8096 /* menu_shared_commnand.cpp */; };
 		9AC2D1FF2654454E00CC8096 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */; };
 		9AC2D2002654454E00CC8096 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */; };
-		9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A68C18D251145CA008DABD2 /* libacme.dylib */; };
+		9AD199A1251278DA00B4C44A /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A68C18D251145CA008DABD2 /* acme.dylib */; };
 		9AD19ADC2512D76200B4C44A /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD19ADB2512D76200B4C44A /* macos.h */; };
 		9AD692C1251A754800C0EBD7 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B72B2511444B008DABD2 /* fs.h */; };
 		9AD692C3251A754800C0EBD7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B72D2511444B008DABD2 /* _.h */; };
@@ -1526,7 +1526,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */,
+				9AD199A1251278DA00B4C44A /* acme.dylib in Frameworks */,
 				9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */,
 				9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */,
 			);
@@ -2070,87 +2070,87 @@
 			children = (
 				9A68B60A2511444B008DABD2 /* _.cpp */,
 				9A23A28E26CE850300F98012 /* _application_service.cpp */,
-				9A226CFA27CE8FAA0042BAC2 /* apex.cpp */,
-				9A81ECA7274EDFCA003F38EC /* api_client.cpp */,
-				9A81ECA5274EDFCA003F38EC /* api.cpp */,
-				9A226CFD27CE8FAB0042BAC2 /* app_container.cpp */,
-				9A68B6352511444B008DABD2 /* app_launcher.cpp */,
-				9A68B5D92511444B008DABD2 /* application_array.cpp */,
-				9ADD656926B5E58800D11298 /* application_exit.cpp */,
-				9A68B5C32511444B008DABD2 /* application_menu.cpp */,
-				9A68B6292511444B008DABD2 /* application.cpp */,
-				9A68B5F02511444B008DABD2 /* assert_running_task.cpp */,
-				9A68B5DA2511444B008DABD2 /* build_debug.cpp */,
-				9A787DCB264CA98C003DF8A0 /* command_line.cpp */,
-				9A68B6002511444B008DABD2 /* console_application.cpp */,
-				9A68B6312511444B008DABD2 /* context_thread.cpp */,
-				9A68B5E32511444B008DABD2 /* context.cpp */,
-				9A787DCC264CA98C003DF8A0 /* create.cpp */,
-				9A68B5E92511444B008DABD2 /* history.cpp */,
-				9AAE6EA8251921CE00F10692 /* interprocess_call.cpp */,
-				9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */,
-				9AAE6EA5251921CC00F10692 /* interprocess_intercommunication.cpp */,
-				9AAE6EA9251921CF00F10692 /* interprocess_task.cpp */,
-				9A787DC7264CA98B003DF8A0 /* launcher.cpp */,
-				9A68B5CA2511444B008DABD2 /* log.cpp */,
-				9A68B5D82511444B008DABD2 /* machine_event_central.cpp */,
-				9A68B5D52511444B008DABD2 /* machine_event_data.cpp */,
-				9A68B6062511444B008DABD2 /* machine_event.cpp */,
-				9A68B5FA2511444B008DABD2 /* net.cpp */,
-				9A787DCF264CA98C003DF8A0 /* node.cpp */,
-				9A68B6382511444B008DABD2 /* os_context.cpp */,
-				9A68B63D2511444B008DABD2 /* os_history.cpp */,
-				9A68B61A2511444B008DABD2 /* savings.cpp */,
-				9A68B6072511444B008DABD2 /* session.cpp */,
-				9A68B5F72511444B008DABD2 /* shell_launcher.cpp */,
-				9A68B6162511444B008DABD2 /* system.cpp */,
-				9A68B5D42511444B008DABD2 /* text.cpp */,
 				9A68B5C72511444B008DABD2 /* _impl.h */,
 				9A68B6412511444B008DABD2 /* _platform.h */,
 				9A68B5BD2511444B008DABD2 /* apex_aura.h */,
+				9A226CFA27CE8FAA0042BAC2 /* apex.cpp */,
 				9A226CFC27CE8FAB0042BAC2 /* apex.h */,
+				9A81ECA7274EDFCA003F38EC /* api_client.cpp */,
 				9A81ECA8274EDFCA003F38EC /* api_client.h */,
+				9A81ECA5274EDFCA003F38EC /* api.cpp */,
 				9A81ECA9274EDFCA003F38EC /* api.h */,
 				9A226CF827CE8FAA0042BAC2 /* app_consumer.h */,
+				9A226CFD27CE8FAB0042BAC2 /* app_container.cpp */,
 				9A226CFB27CE8FAA0042BAC2 /* app_container.h */,
+				9A68B6352511444B008DABD2 /* app_launcher.cpp */,
 				9A68B5BC2511444B008DABD2 /* app_launcher.h */,
+				9A68B5D92511444B008DABD2 /* application_array.cpp */,
 				9A68B6252511444B008DABD2 /* application_array.h */,
+				9ADD656926B5E58800D11298 /* application_exit.cpp */,
 				9ADD656826B5E58800D11298 /* application_exit.h */,
 				9A68B6262511444B008DABD2 /* application_heap.h */,
 				9A68B6142511444B008DABD2 /* application_impl.h */,
+				9A68B5C32511444B008DABD2 /* application_menu.cpp */,
 				9A68B6272511444B008DABD2 /* application_menu.h */,
 				9A68B5D22511444B008DABD2 /* application_signal_details.h */,
+				9A68B6292511444B008DABD2 /* application.cpp */,
 				9A68B5E12511444B008DABD2 /* application.h */,
+				9A68B5F02511444B008DABD2 /* assert_running_task.cpp */,
 				9A68B6322511444B008DABD2 /* assert_running_task.h */,
 				9A68B6032511444B008DABD2 /* async.h */,
 				9A68B5F92511444B008DABD2 /* aura_regex.h */,
+				9A68B5DA2511444B008DABD2 /* build_debug.cpp */,
+				9A787DCB264CA98C003DF8A0 /* command_line.cpp */,
 				9A787DC6264CA98B003DF8A0 /* command_line.h */,
+				9A68B6002511444B008DABD2 /* console_application.cpp */,
 				9A68B6332511444B008DABD2 /* console_application.h */,
+				9A68B6312511444B008DABD2 /* context_thread.cpp */,
+				9A68B5E32511444B008DABD2 /* context.cpp */,
 				9A68B5EE2511444B008DABD2 /* context.h */,
+				9A787DCC264CA98C003DF8A0 /* create.cpp */,
 				9A787DC9264CA98B003DF8A0 /* create.h */,
 				9A68B6042511444B008DABD2 /* display.h */,
 				9A226CF927CE8FAA0042BAC2 /* event_source.h */,
 				9A226CFE27CE8FAB0042BAC2 /* event.h */,
+				9A68B5E92511444B008DABD2 /* history.cpp */,
 				9A68B60D2511444B008DABD2 /* history.h */,
+				9AAE6EA8251921CE00F10692 /* interprocess_call.cpp */,
 				9AAE6EA2251921CC00F10692 /* interprocess_call.h */,
+				9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */,
 				9AAE6EA6251921CC00F10692 /* interprocess_communication.h */,
+				9AAE6EA5251921CC00F10692 /* interprocess_intercommunication.cpp */,
 				9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */,
+				9AAE6EA9251921CF00F10692 /* interprocess_task.cpp */,
 				9AAE6EA7251921CE00F10692 /* interprocess_task.h */,
+				9A787DC7264CA98B003DF8A0 /* launcher.cpp */,
 				9A68B5FB2511444B008DABD2 /* launcher.h */,
 				9A68B5DD2511444B008DABD2 /* library.h */,
+				9A68B5CA2511444B008DABD2 /* log.cpp */,
 				9A68B6112511444B008DABD2 /* log.h */,
+				9A68B5D82511444B008DABD2 /* machine_event_central.cpp */,
 				9A787DC8264CA98B003DF8A0 /* machine_event_central.h */,
+				9A68B5D52511444B008DABD2 /* machine_event_data.cpp */,
 				9A787DCD264CA98C003DF8A0 /* machine_event_data.h */,
+				9A68B6062511444B008DABD2 /* machine_event.cpp */,
 				9A787DCA264CA98B003DF8A0 /* machine_event.h */,
 				9A68B5ED2511444B008DABD2 /* message_box.h */,
+				9A68B5FA2511444B008DABD2 /* net.cpp */,
+				9A787DCF264CA98C003DF8A0 /* node.cpp */,
 				9A787DC5264CA98B003DF8A0 /* node.h */,
+				9A68B6382511444B008DABD2 /* os_context.cpp */,
 				9A68B6182511444B008DABD2 /* os_context.h */,
+				9A68B63D2511444B008DABD2 /* os_history.cpp */,
 				9A68B5F12511444B008DABD2 /* os_history.h */,
+				9A68B61A2511444B008DABD2 /* savings.cpp */,
 				9A68B5D72511444B008DABD2 /* savings.h */,
+				9A68B6072511444B008DABD2 /* session.cpp */,
 				9A68B6052511444B008DABD2 /* session.h */,
+				9A68B5F72511444B008DABD2 /* shell_launcher.cpp */,
 				9A68B5F42511444B008DABD2 /* shell_launcher.h */,
 				9A68B62B2511444B008DABD2 /* simple_app.h */,
+				9A68B6162511444B008DABD2 /* system.cpp */,
 				9A68B6232511444B008DABD2 /* system.h */,
+				9A68B5D42511444B008DABD2 /* text.cpp */,
 				9A220F67251A1C63002B42B7 /* thread_set.h */,
 			);
 			path = platform;
@@ -2386,7 +2386,7 @@
 		9A68C189251145CA008DABD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A68C18D251145CA008DABD2 /* libacme.dylib */,
+				9A68C18D251145CA008DABD2 /* acme.dylib */,
 				9AD695C5251A754800C0EBD7 /* ios_acme.a */,
 			);
 			name = Products;
@@ -3072,9 +3072,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A68C18D251145CA008DABD2 /* libacme.dylib */ = {
+		9A68C18D251145CA008DABD2 /* acme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A68C18C251145CA008DABD2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -3082,7 +3083,8 @@
 		9AD695C5251A754800C0EBD7 /* ios_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = ios_acme.a;
+			name = ios_acme.a;
+			path = libios_acme.a;
 			remoteRef = 9AD695C4251A754800C0EBD7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

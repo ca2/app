@@ -641,12 +641,6 @@ typedef void * HDWP;
 
 #endif
 
-#ifdef APPLE_IOS
-
-struct plane_system;
-
-#endif
-
 
 typedef void(*PFN_factory)(::factory::factory * pfactory);
 

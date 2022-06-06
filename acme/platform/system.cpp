@@ -17,7 +17,7 @@ CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
-class ::system * g_psystem = nullptr;
+static class ::system * g_psystem = nullptr;
 
 
 extern const char8_t  * g_pszTopLevelDomainList[];
@@ -669,13 +669,13 @@ string system::__get_text(const ::string & str)
 //}
 
 
-CLASS_DECL_ACME class system * get_system()
-{
-
-   return ::g_psystem;
-
-}
-
+//CLASS_DECL_ACME class system * get_system()
+//{
+//
+//   return ::g_psystem;
+//
+//}
+//
 
 
 bool system::is_task_on(itask_t atom)
@@ -2386,8 +2386,53 @@ __pointer(::app) system::new_app(const char* pszAppId)
 }
 
 
+void system::_main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded)
+{
+   
+   try
+   {
+      
+      if(m_pappMain)
+      {
+         
+         m_pappMain->open_url(pszUrl);
+         
+      }
+      else if(m_pappStartup)
+      {
+         
+         m_pappStartup->open_url(pszUrl);
+         
+      }
+         
+      functionSucceeded(true);
+      
+   }
+   catch(...)
+   {
+      
+   }
+   
+   functionSucceeded(false);
+   
+}
 
 
+
+CLASS_DECL_ACME class ::system * get_system()
+{
+   
+   return g_psystem;
+   
+}
+
+
+CLASS_DECL_ACME class ::plane_system * get_plane_system()
+{
+   
+   return get_system();
+   
+}
 
 
 

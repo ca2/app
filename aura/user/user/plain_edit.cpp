@@ -3717,7 +3717,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
       daExtent.set_size(strLine.get_length() + 1);
 
-      while (*pszNext != '\0')
+      while (::has_char(pszNext))
       {
 
          pszNext = ::str::utf8_inc(psz);
@@ -7527,16 +7527,14 @@ finished_update:
    void plain_edit::on_kill_keyboard_focus()
    {
 
-      auto psession = get_session();
-
-      if (psession->get_user_interaction_host())
-      {
-
-         auto puserinteractionHost = psession->get_user_interaction_host();
-
-         puserinteractionHost->edit_on_kill_focus(this);
-
-      }
+//      auto puserinteractionHost = get_host_window();
+//      if (puserinteractionHost)
+//      {
+//
+//
+//         puserinteractionHost->edit_on_kill_focus(this);
+//
+//      }
 
       KillTimer(100);
 

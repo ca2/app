@@ -5,7 +5,8 @@
 class CLASS_DECL_ACME system :
    virtual public ::app_core,
    virtual public ::acme::context,
-   virtual public ::task
+   virtual public ::task,
+   virtual public ::plane_system
 {
 public:
 
@@ -463,6 +464,8 @@ public:
 
    virtual void windowing_post(const ::procedure & procedure);
 
+   void _main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
+   
 
 };
 

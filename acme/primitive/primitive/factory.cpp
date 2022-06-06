@@ -4,7 +4,7 @@
 #include "acme/platform/library.h"
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 namespace factory
@@ -57,15 +57,15 @@ namespace factory
       if (!pfactory)
       {
 
-         ::g_psystem->__construct_new(pfactory);
+         auto psystem = ::get_system();
+         
+         psystem->__construct_new(pfactory);
 
       }
 
       return pfactory;
 
    }
-
-
 
 
    void factory::merge(const ::factory::factory* pfactory)

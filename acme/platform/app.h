@@ -62,6 +62,9 @@ public:
 
    virtual bool has_capability(enum_application_capability eapplicationcapability) const;
    virtual void add_capability(enum_application_capability ecapability);
+   
+   
+   virtual void open_url(const ::string & strUrl);
 
 
 };

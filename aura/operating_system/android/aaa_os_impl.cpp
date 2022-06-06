@@ -16,7 +16,7 @@ int g_iScreenH = 0;
 const char* g_pszCommandLine = NULL;
 const char* g_pszCacheDir = NULL;
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t)

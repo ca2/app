@@ -8,35 +8,18 @@
 #pragma once
 
 
-class system;
-
-
-struct PLANE_SYSTEM
+class plane_system :
+   virtual public ::element
 {
- 
+public:
    
-   void system_main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionCompletionSucceeded);
+   
+   virtual void _main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) = 0;
    
 };
 
 
-inline class ::system * get_system(OPAQUE_SYSTEM * psystem)
-{
-   
-   return (class ::system *) (void*)psystem;
-   
-}
-
-
-inline ::OPAQUE_SYSTEM * get_opaque_system(class ::system * psystem)
-{
-   
-   return (::OPAQUE_SYSTEM *) (void*)psystem;
-   
-}
-
-
-
+CLASS_DECL_ACME ::plane_system * get_plane_system();
 
 
 

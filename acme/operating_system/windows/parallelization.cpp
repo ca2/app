@@ -71,7 +71,7 @@ bool on_init_timer_thread()
 }
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)

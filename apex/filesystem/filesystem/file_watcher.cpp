@@ -336,22 +336,27 @@ restart:
       for (auto & pair : m_watchmap)
       {
 
-         if (pair.element2()->m_pwatchRelease.is_set())
+         if (::is_set(pair.element2()))
          {
+            
+            if(::is_set(pair.element2()->m_pwatchRelease))
+            {
 
-            pair.element2()->m_bStop = true;
+               pair.element2()->m_bStop = true;
 
-            pair.element2()->m_pwatchRelease.release();
+               pair.element2()->m_pwatchRelease.release();
 
-            pair.element2()->m_listenera.clear();
+               pair.element2()->m_listenera.clear();
 
-            m_watchmap.erase_key(pair.element1());
+               m_watchmap.erase_key(pair.element1());
 
-            goto restart;
+               goto restart;
 
+            }
+
+            pair.element2()->step();
+            
          }
-
-         pair.element2()->step();
 
       }
 

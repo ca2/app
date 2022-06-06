@@ -5,23 +5,6 @@
 
 
 
-//#include "apex/operating_system/ansios/_.h"
-////#define CLASS_DECL_APEX
-
-//struct plane_system
-//{
-//
-//   ::plane::system *    m_psystem;
-//
-//   plane_system(const char * pszId);
-//
-//   UIWindow * init_part_2ex(CGRect rectangle_i32);
-//
-//   void begin();
-//
-//};
-
-
 string get_error_message(::u32 dwError);
 
 ::application *     ios_instantiate_application(::application * pappSystem, const char * pszId);

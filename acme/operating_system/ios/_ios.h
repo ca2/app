@@ -5,23 +5,6 @@
 
 
 
-//#include "acme/node/ansios/_.h"
-////#define CLASS_DECL_ACME
-
-//struct plane_system
-//{
-//
-//   ::plane::system *    m_psystem;
-//
-//   plane_system(const char * pszId);
-//
-//   UIWindow * init_part_2ex(CGRect rectangle_i32);
-//
-//   void begin();
-//
-//};
-
-
 string get_error_message(::u32 dwError);
 
 ::app *     ios_instantiate_application(::app * pappSystem, const char * pszId);
@@ -100,9 +83,6 @@ namespace ios
 
 
 } // namespace ios
-
-
-///#include "ios_plane_system.h"
 
 
 

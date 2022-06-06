@@ -3717,7 +3717,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
       daExtent.set_size(strLine.get_length() + 1);
 
-      while (*pszNext != '\0')
+      while (::has_char(pszNext))
       {
 
          pszNext = ::str::utf8_inc(psz);

@@ -1,16 +1,6 @@
 #pragma once
 
 
-//#ifdef __APPLE__
-//typedef int key_t;
-//#elif defined(LINUX)
-//typedef __key_t key_t;
-//#elif defined(ANDROID)
-//#else
-////#include "ca_mutex.h"
-//#endif
-//
-
 namespace interprocess_communication
 {
 

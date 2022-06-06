@@ -1564,16 +1564,25 @@ namespace str
 
    }
 
-   index find_ww(const char * pszOld, const char * psz, index iStart)
+
+   strsize find_ww(const ::string & pszOld, const char * psz, index iStart)
    {
 
-      if(psz == nullptr)
+      if (psz == nullptr)
+      {
+
          return -1;
+
+      }
 
       const char * pszIter = &psz[iStart];
 
-      if(pszIter == nullptr)
+      if (pszIter == nullptr)
+      {
+
          return -1;
+
+      }
 
       string strFind(pszOld);
 
@@ -1602,16 +1611,25 @@ namespace str
 
    }
 
-   index find_aww(const char * pszOld, const char * psz, index iStart)
+
+   strsize find_aww(const char * pszOld, const char * psz, index iStart)
    {
 
-      if(psz == nullptr)
+      if (psz == nullptr)
+      {
+
          return -1;
+
+      }
 
       const char * pszIter = &psz[iStart];
 
-      if(pszIter == nullptr)
+      if (pszIter == nullptr)
+      {
+
          return -1;
+
+      }
 
       string strFind(pszOld);
 
@@ -1639,6 +1657,7 @@ namespace str
       return -1;
 
    }
+
 
    string has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter, const char * pszDoesnt)
    {

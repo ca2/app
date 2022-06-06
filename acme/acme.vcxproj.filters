@@ -2999,6 +2999,12 @@
     <ClInclude Include="primitive\duration\_unit.h">
       <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\from_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\to.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

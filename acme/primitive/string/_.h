@@ -138,7 +138,10 @@ public:
 
 
 #include "_compare.h"
+#include "from_string.h"
+#include "to.h"
 #include "_str.h"
+
 
 #include "stringtow.h"
 #include "from_integer.h"

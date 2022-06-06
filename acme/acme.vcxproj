@@ -1871,7 +1871,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\promise_predicate\predicate_routine.h" />
     <ClInclude Include="primitive\promise_predicate\synchronized_predicate_routine.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
+    <ClInclude Include="primitive\string\from_string.h" />
     <ClInclude Include="primitive\string\string_block.h" />
+    <ClInclude Include="primitive\string\to.h" />
     <ClInclude Include="primitive\string\to_string.h" />
     <ClInclude Include="primitive\subject\aaa_handler.h" />
     <ClInclude Include="primitive\subject\context.h" />

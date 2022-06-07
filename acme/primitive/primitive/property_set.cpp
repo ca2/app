@@ -638,7 +638,7 @@ void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile,
 
          const char * pszValue = strValue;
 
-         strValue = ::str::consume_quoted_value(pszValue);
+         strValue = ::str().consume_quoted_value(pszValue);
 
       }
 
@@ -788,7 +788,7 @@ void property_set_skip_network_payload(const char *& pszJson)
 void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '\0')
    {
@@ -797,9 +797,9 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
 
    }
 
-   ::str::consume(pszJson, "{", 1, pszEnd);
+   ::str().consume(pszJson, "{", 1, pszEnd);
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '}')
    {
@@ -819,7 +819,7 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
 
       property_skip_network_payload_value(pszJson, pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == ',')
       {
@@ -874,7 +874,7 @@ void property_set::parse_ini(const ::string & strIni)
 
       }
 
-      if(::str::begins_eat(strLine, "["))
+      if(::str().begins_eat(strLine, "["))
       {
 
          strLine.trim_right("]");
@@ -887,7 +887,7 @@ void property_set::parse_ini(const ::string & strIni)
 
          string strKey;
 
-         strKey = ::str::token(strLine, "=");
+         strKey = ::str().token(strLine, "=");
 
          if(strKey.has_char())
          {
@@ -937,13 +937,13 @@ void property_set::parse_network_payload(const char * & pszJson)
 
 void property_set::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '\0')
    {
       return;
    }
-   ::str::consume(pszJson, "{", 1, pszEnd);
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume(pszJson, "{", 1, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '}')
    {
       pszJson++;
@@ -960,7 +960,7 @@ void property_set::parse_network_payload(const char * & pszJson, const char * ps
 
       ::property_parse_network_payload_value(property,pszJson,pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if(*pszJson == ',')
       {

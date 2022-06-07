@@ -283,7 +283,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {
@@ -414,7 +414,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {
@@ -620,7 +620,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 }
 
 
-//int_bool IsChild(::windowing::window * pwindowParent, ::::windowing::window * pwindowcandidateChildOrDescendant)
+//int_bool IsChild(::windowing::window * pwindowParent, ::windowing::window * pwindowcandidateChildOrDescendant)
 //{
 //
 //   auto puiParent = ::oswindow_interaction(oswindowParent);
@@ -646,7 +646,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 //
 //
-//oswindow WINAPI get_parent(::::windowing::window * pwindow)
+//oswindow WINAPI get_parent(::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))
@@ -661,7 +661,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//oswindow WINAPI SetParent(::::windowing::window * pwindow, ::::windowing::window * pwindowNewParent)
+//oswindow WINAPI SetParent(::windowing::window * pwindow, ::windowing::window * pwindowNewParent)
 //{
 //
 //   if(::is_null(oswindow))
@@ -679,7 +679,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //#ifndef _UWP
 //
 //
-//int_bool show_window(::::windowing::window * pwindow, ::e_display edisplay)
+//int_bool show_window(::windowing::window * pwindow, ::e_display edisplay)
 //{
 //
 //   if(::is_null(oswindow))
@@ -697,7 +697,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //#endif
 //
 
-//::i32 WINAPI GetWindowLongA(::::windowing::window * pwindow, int nIndex)
+//::i32 WINAPI GetWindowLongA(::windowing::window * pwindow, int nIndex)
 //{
 //
 //   if(::is_null(oswindow))
@@ -712,7 +712,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//::i32 WINAPI SetWindowLongA(::::windowing::window * pwindow, int nIndex, ::i32 l)
+//::i32 WINAPI SetWindowLongA(::windowing::window * pwindow, int nIndex, ::i32 l)
 //{
 //
 //   if(::is_null(oswindow))
@@ -727,7 +727,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//LONG_PTR WINAPI GetWindowLongPtrA(::::windowing::window * pwindow, int nIndex)
+//LONG_PTR WINAPI GetWindowLongPtrA(::windowing::window * pwindow, int nIndex)
 //{
 //
 //   if(::is_null(oswindow))
@@ -742,7 +742,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//LONG_PTR WINAPI SetWindowLongPtrA(::::windowing::window * pwindow, int nIndex, LONG_PTR l)
+//LONG_PTR WINAPI SetWindowLongPtrA(::windowing::window * pwindow, int nIndex, LONG_PTR l)
 //{
 //
 //   if(::is_null(oswindow))
@@ -757,7 +757,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 //
-//int_bool WINAPI client_to_screen(::::windowing::window * pwindow, POINT_I32 * ppoint)
+//int_bool WINAPI client_to_screen(::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -772,7 +772,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//int_bool WINAPI screen_to_client(::::windowing::window * pwindow, POINT_I32 * ppoint)
+//int_bool WINAPI screen_to_client(::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -787,7 +787,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//int_bool WINAPI is_iconic(::::windowing::window * pwindow)
+//int_bool WINAPI is_iconic(::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))
@@ -802,7 +802,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 //
-//int_bool WINAPI IsWindowVisible(::::windowing::window * pwindow)
+//int_bool WINAPI IsWindowVisible(::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))

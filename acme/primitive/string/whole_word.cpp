@@ -18,7 +18,7 @@ namespace str
 {
 
 
-   bool x_contains(string str, string strFind)
+   bool whole_word_contains(string str, string strFind)
    {
 
       strsize iFind = 0;
@@ -47,13 +47,13 @@ namespace str
 
    }
 
-   bool x_find(string_array & stra, string str)
+   bool whole_word_find(string_array & stra, string str)
    {
 
       for (auto & strFind : stra)
       {
 
-         if (x_contains(str, strFind))
+         if (whole_word_contains(str, strFind))
          {
 
             return true;
@@ -68,7 +68,7 @@ namespace str
 
    /// [Idee:ChrifRachid@liveedutv] erase http:// and https:// from resident speech
 
-   void x_left_erase(string & str, string strFind)
+   void whole_word_erase(string & str, string strFind)
    {
 
       strsize iFind = 0;

@@ -151,7 +151,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
       if(pstrName != nullptr)
       {
 
-         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,::str::international::utf8_to_unicode(pstrName));
+         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,utf8_to_unicode(pstrName));
 
       }
 
@@ -185,7 +185,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
       strName.replace(":", "_");
       strName.replace("/", "_");
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
 #ifdef ANDROID
@@ -268,7 +268,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
       ::file::path path;
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
 #ifdef ANDROID
@@ -349,7 +349,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
       ::file::path path;
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
          path = "/::payload/lock/ca2/mutex/named";
@@ -1556,7 +1556,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, ::str::international::utf8_to_unicode(lpszName));
+   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, utf8_to_unicode(lpszName));
 
    if (h == nullptr || h == INVALID_HANDLE_VALUE)
    {
@@ -1615,7 +1615,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
    ::file::path path;
 
-   if (str::begins_ci(lpszName, "Global"))
+   if (::str().begins_ci(lpszName, "Global"))
    {
 
       path = "/payload/tmp/ca2/lock/mutex/named";

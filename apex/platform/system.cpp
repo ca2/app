@@ -2297,7 +2297,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //class ::str::base64 & system::base64()
+   //class ::base64 & system::base64()
    //{
 
    //   return *m_pbase64;
@@ -2888,13 +2888,13 @@ pacmedirectory->create("/ca2core");
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str::ends_eat_ci(strLibraryId,".dll")
-////               || ::str::ends_eat_ci(strLibraryId,".so")
-////               || ::str::ends_eat_ci(strLibraryId,".dylib"))
+////         if(::str().ends_eat_ci(strLibraryId,".dll")
+////               || ::str().ends_eat_ci(strLibraryId,".so")
+////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
 ////         {
 ////
-////            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str::begins_ci(strLibraryId,"libbase"))
+////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
+////                  || ::str().begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3008,10 +3008,10 @@ pacmedirectory->create("/ca2core");
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str::begins_eat(strLibrary,"libbase"))
+//      else if(!::str().begins_eat(strLibrary,"libbase"))
 //      {
 //
-//         ::str::begins_eat(strLibrary,"lib");
+//         ::str().begins_eat(strLibrary,"lib");
 //
 //      }
 //
@@ -3023,7 +3023,7 @@ pacmedirectory->create("/ca2core");
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str::begins_eat_ci(strLibrary,strPrefix);
+//      ::str().begins_eat_ci(strLibrary,strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3249,7 +3249,7 @@ pacmedirectory->create("/ca2core");
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
 
    //   }
 
@@ -3315,7 +3315,7 @@ pacmedirectory->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
 
       //   }
 
@@ -3479,7 +3479,7 @@ pacmedirectory->create("/ca2core");
 
          string strAppId = purl->get_script(str);
 
-         ::str::begins_eat(strAppId, "/");
+         ::str().begins_eat(strAppId, "/");
 
          string strQuery = purl->get_query(str);
 
@@ -3520,7 +3520,7 @@ pacmedirectory->create("/ca2core");
 
          string strScheme = purl->get_script(str);
 
-         ::str::begins_eat(strScheme, "/");
+         ::str().begins_eat(strScheme, "/");
 
          if(strBase == "scheme")
          {
@@ -3835,7 +3835,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
          }
 
 
-         //strOpenUrl = strUrl + str::has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + ::str().has_char(strOpenUrl, ";");
 
          //if (strOpenUrl.has_char())
          {

@@ -1154,10 +1154,10 @@ namespace draw2d
 
       virtual void is_valid_update_window_thread();
 
-      //virtual void set_current_point(double x, double y); // { return set_current_point(::::point_f64(x, y)); }
+      //virtual void set_current_point(double x, double y); // { return set_current_point(::point_f64(x, y)); }
       //inline void set_current_point(double x, double y) { return set_current_point(::point_f64(x, y)); }
 
-      //inline void line_to(double x, double y) { return line_to(::::point_f64(x, y)); }
+      //inline void line_to(double x, double y) { return line_to(::point_f64(x, y)); }
       //inline void line_to(double x, double y) { return line_to(::point_f64(x, y)); }
       //virtual void line_to(double x, double y);// { return line_to(::point_f64(x, y)); }
 

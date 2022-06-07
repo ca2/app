@@ -971,7 +971,7 @@ namespace user
 
       }
 
-      // ::str::utf8_inc(str.c_str()) - str.c_str(); // at least one char is the longest pline
+      // ::str().utf8_inc(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
       ::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)

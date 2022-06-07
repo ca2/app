@@ -121,7 +121,7 @@ namespace dynamic_source
 
       pscript = nullptr;
 
-      if(::str::begins(lpcszName, "netnode://"))
+      if(::str().begins(lpcszName, "netnode://"))
       {
          
          single_lock synchronouslock(mutex(), true);

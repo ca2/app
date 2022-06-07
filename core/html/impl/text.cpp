@@ -1214,7 +1214,7 @@ namespace html
 
                   }
 
-                  pszEnd = ::str::utf8_inc(pszEnd);
+                  pszEnd = ::str().utf8_inc(pszEnd);
 
                   iChar++;
                }

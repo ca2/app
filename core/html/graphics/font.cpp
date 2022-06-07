@@ -97,7 +97,7 @@ namespace html
       }
 
 
-      bool bUnderline = ::str::find_ci("underline", m_strTextDecoration) >= 0;
+      bool bUnderline = ::str().find_ci("underline", m_strTextDecoration) >= 0;
 
       m_pfont->create_point_font(strName, dSize, iWeight, false, bUnderline);
 

@@ -74,13 +74,13 @@ namespace universal_windows
 
       string strPath = path;
 
-      str::begins_eat_ci(strPath,"image:\\\\");
+      ::str().begins_eat_ci(strPath,"image:\\\\");
 
-      str::begins_eat_ci(strPath, "music:\\\\");
+      ::str().begins_eat_ci(strPath, "music:\\\\");
 
-      str::begins_eat_ci(strPath, "video:\\\\");
+      ::str().begins_eat_ci(strPath, "video:\\\\");
 
-      if (str::begins_eat_ci(strPath, "document:\\\\"))
+      if (::str().begins_eat_ci(strPath, "document:\\\\"))
       {
 
          output_debug_string("document:\\\\" + strPath);
@@ -105,7 +105,7 @@ pacmedirectory->create(lpszFileName.folder());
       m_path.Empty();
 
       m_path     = lpszFileName;
-//      m_wstrFileName    = ::str::international::utf8_to_unicode(m_path);
+//      m_wstrFileName    = utf8_to_unicode(m_path);
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
       ASSERT(::file::e_open_share_compat == 0);
@@ -171,7 +171,7 @@ pacmedirectory->create(lpszFileName.folder());
          dwCreateFlag = OPEN_EXISTING;
 
       // attempt file creation
-      //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+      //HANDLE hFile = shell::CreateFile(utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       hfile hfile = ::hfile_create(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       if (::is_nok(hfile))
       {
@@ -210,7 +210,7 @@ pacmedirectory->create(lpszFileName.folder());
             return error_failed;
          }
 
-         //m_path = ::str::international::unicode_to_utf8(m_wstrFileName);
+         //m_path = unicode_to_utf8(m_wstrFileName);
 
          hfile = ::hfile_create("\\\\?\\" + m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
 
@@ -644,7 +644,7 @@ pacmedirectory->create(lpszFileName.folder());
          if (*lpsz != '\0')
             lpsz[1] = '\0';
       }
-      ::str::international::unicode_to_utf8(strRoot, wstrRoot);
+      unicode_to_utf8(strRoot, wstrRoot);
    }
 
 
@@ -1031,13 +1031,13 @@ pacmedirectory->create(lpszFileName.folder());
 //      // attempt to fully qualify path first
 //      wstring wstrFullName;
 //      wstring wstrFileName;
-//      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
+//      wstrFileName = utf8_to_unicode(lpszFileName);
 //      if (!windows_full_path(wstrFullName, wstrFileName))
 //      {
 //         rStatus.m_strFullName.Empty();
 //         return false;
 //      }
-//      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+//      unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 //
 //      WIN32_FIND_DATA findFileData;
 //      HANDLE hFind = FindFirstFile((char *)lpszFileName, &findFileData);
@@ -1134,7 +1134,7 @@ bool CLASS_DECL_ACME vfxResolveShortcut(string & strTarget, const char * pszSour
    ::user::interaction * pinteraction = puiMessageParentOptional;
 
    wstring wstrFileOut;
-   wstring wstrFileIn = ::str::international::utf8_to_unicode(pszSource);
+   wstring wstrFileIn = utf8_to_unicode(pszSource);
 
    ::u32 dwVersion = GetVersion();
 
@@ -1196,7 +1196,7 @@ bool CLASS_DECL_ACME vfxResolveShortcut(string & strTarget, const char * pszSour
             {
                bOk = true;
                wstrFileOut.release_string_buffer();
-               strTarget = ::str::international::unicode_to_utf8((const widechar *) wstrFileOut);
+               strTarget = unicode_to_utf8((const widechar *) wstrFileOut);
             }
             else
             {

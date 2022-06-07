@@ -467,7 +467,7 @@ namespace userex
 
       string str = pcommand->m_atom;
 
-      if (::str::begins_eat_ci(str, "menu_item_"))
+      if (::str().begins_eat_ci(str, "menu_item_"))
       {
 
          show_group(str);

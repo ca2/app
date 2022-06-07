@@ -51,7 +51,7 @@ _br_find_exe (BrInitError *error)
    path.alloc(MAX_PATH);
    GetModuleFileNameW(nullptr, path, MAX_PATH);
    path.release_string_buffer();
-   return ansi_duplicate(::str::international::unicode_to_utf8(path));
+   return ansi_duplicate(unicode_to_utf8(path));
 #else
    char *path, *path2, *line, *result;
    size_t buf_size;

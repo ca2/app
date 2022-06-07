@@ -3,40 +3,6 @@
 #include <stdio.h>
 
 
-namespace hex
-{
-
-
-   u16 parse_u16_exc(const char * & psz, const char * pszEnd)
-   {
-      string strUni;
-      const char * pszNext = psz;
-      for (index i = 0; i < 4; i++)
-      {
-         psz = pszNext;
-         pszNext = ::str::__utf8_inc(psz);
-         if (pszNext > pszEnd)
-         {
-            throw ::exception(error_parsing, "hexadecimal digit expected, premature end");
-            return -1;
-         }
-         if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
-         {
-            strUni += *psz;
-         }
-         else
-         {
-            throw ::exception(error_parsing, "hexadecimal digit expect expected here");
-            return -1;
-         }
-      }
-      psz = pszNext;
-      return ::hex::to_u32(strUni);
-
-   }
-
-}
-
 #ifdef LINUX
 ////#include <ctype.h>
 #endif
@@ -77,7 +43,7 @@ decode_utf16_pair(u16 *units)
 namespace str
 {
 
-   CLASS_DECL_ACME enum_error g_eerror = ::str::e_error_none;
+   CLASS_DECL_ACME enum_error g_eerror = ::str().e_error_none;
 
 
 //    const char trailingBytesForUTF8[256] =
@@ -831,7 +797,7 @@ namespace str
    }
 
    
-   string replace_with(const char * pszOld, const char * pszNew, const char * psz, strsize iStart)
+   string replace_with(const char * pszOld, const char * pszNew, const ::string & strParam, strsize iStart)
    {
       
       string str(psz);
@@ -875,7 +841,7 @@ namespace str
    }
 
 
-   string  random_replace(::matter * pobject, const string_array & straNew, const string_array & straOld, const char * psz)
+   string  random_replace(::matter * pobject, const string_array & straNew, const string_array & straOld, const ::string & strParam)
    {
 
       string str(psz);
@@ -950,7 +916,7 @@ namespace str
    }
 
 
-   string utf8_replace_with(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
+   string utf8_replace_with(const char * pszNew, const char * pszOld, const ::string & strParam, strsize iStart)
    {
 
       index iPos = iStart;
@@ -985,7 +951,7 @@ namespace str
    }
 
 
-   string replace_with_ci(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
+   string replace_with_ci(const char * pszNew, const char * pszOld, const ::string & strParam, strsize iStart)
    {
 
       index iPos = iStart;
@@ -1020,7 +986,7 @@ namespace str
    }
 
 
-   ::count replace_with_ci_count(const char * pszNew, const char * pszOld, const char * psz, strsize iStart)
+   ::count replace_with_ci_count(const char * pszNew, const char * pszOld, const ::string & strParam, strsize iStart)
    {
 
       index iPos = iStart;
@@ -1084,7 +1050,7 @@ namespace str
    }
 
 
-   index find_ci(const ::string & strFind, const char * psz, index iStart)
+   index find_ci(const ::string & strFind, const ::string & strParam, index iStart)
    {
 
       ::count iFindLen = strFind.get_length();
@@ -1420,7 +1386,7 @@ namespace str
       if(pszParam == nullptr || *pszParam == '\0')
          return -1;
 
-      const char * psz = &pszParam[iStart];
+      const ::string & strParam = &pszParam[iStart];
       const char * pSrc;
       const char * pFin = pszOld;
       i32 lenSrc;
@@ -1460,7 +1426,7 @@ namespace str
    }
 
 
-   index find_ci(const char * pszOld, const char * psz, index iStart)
+   index find_ci(const char * pszOld, const ::string & strParam, index iStart)
    {
 
       index iFindLen = strlen(pszOld);
@@ -1534,7 +1500,7 @@ namespace str
 
    }
 
-   index find_wwci(const char * pszOld, const char * psz, index iStart)
+   index find_wwci(const char * pszOld, const ::string & strParam, index iStart)
    {
 
       string strFind(pszOld);
@@ -1549,7 +1515,7 @@ namespace str
 
    }
 
-   index find_awwci(const char * pszOld, const char * psz, index iStart)
+   index find_awwci(const char * pszOld, const ::string & strParam, index iStart)
    {
 
       string strFind(pszOld);
@@ -1565,7 +1531,7 @@ namespace str
    }
 
 
-   strsize find_ww(const ::string & pszOld, const char * psz, index iStart)
+   strsize find_ww(const ::string & pszOld, const ::string & strParam, index iStart)
    {
 
       if (psz == nullptr)
@@ -1590,7 +1556,7 @@ namespace str
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str().ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
 
             return pszIter - psz;
@@ -1600,10 +1566,10 @@ namespace str
          do
          {
 
-            pszIter = ::str::utf8_inc(pszIter);
+            pszIter = ::str().utf8_inc(pszIter);
 
          }
-         while(*pszIter != '\0' && ::str::ch::is_letter_or_digit(pszIter));
+         while(*pszIter != '\0' && ::str().ch::is_letter_or_digit(pszIter));
 
       }
 
@@ -1612,7 +1578,7 @@ namespace str
    }
 
 
-   strsize find_aww(const char * pszOld, const char * psz, index iStart)
+   strsize find_aww(const char * pszOld, const ::string & strParam, index iStart)
    {
 
       if (psz == nullptr)
@@ -1637,7 +1603,7 @@ namespace str
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str::ch::is_letter(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !::str().ch::is_letter(pszIter + strFind.get_length())))
          {
 
             return pszIter - psz;
@@ -1647,10 +1613,10 @@ namespace str
          do
          {
 
-            pszIter = ::str::utf8_inc(pszIter);
+            pszIter = ::str().utf8_inc(pszIter);
 
          }
-         while(*pszIter != '\0' && ::str::ch::is_letter(pszIter));
+         while(*pszIter != '\0' && ::str().ch::is_letter(pszIter));
 
       }
 
@@ -1659,7 +1625,7 @@ namespace str
    }
 
 
-   string has_char(const char * pszIfHasChar, const char * pszBefore, const char * pszAfter, const char * pszDoesnt)
+   string has_char(const ::string & pszIfHasChar, const ::string& pszBefore, const ::string& pszAfter, const ::string& pszDoesnt)
    {
 
       string str;
@@ -1706,7 +1672,7 @@ namespace str
    }
 
 
-   bool has_upper(const char * psz)
+   bool has_upper(const ::string & strParam)
    {
 
       bool bHasUpper;
@@ -1719,7 +1685,7 @@ namespace str
 
    }
 
-   bool has_lower(const char * psz)
+   bool has_lower(const ::string & strParam)
    {
 
       bool bHasUpper;
@@ -1732,7 +1698,7 @@ namespace str
 
    }
 
-   bool has_digit(const char * psz)
+   bool has_digit(const ::string & strParam)
    {
 
       bool bHasUpper;
@@ -1745,7 +1711,7 @@ namespace str
 
    }
 
-   void calc_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
+   void calc_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
 
       bHasUpper = false;
@@ -1759,15 +1725,15 @@ namespace str
          {
             break;
          }
-         else if(::str::ch::is_digit(qc))
+         else if(::str().ch::is_digit(qc))
          {
             bHasDigit = true;
          }
-         else if(::str::ch::is_lower_case(qc))
+         else if(::str().ch::is_lower_case(qc))
          {
             bHasLower = true;
          }
-         else if(::str::ch::is_upper_case(qc))
+         else if(::str().ch::is_upper_case(qc))
          {
             bHasUpper = true;
          }
@@ -1781,7 +1747,7 @@ namespace str
 
    }
 
-   bool has_one_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
+   bool has_one_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
 
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
@@ -1790,7 +1756,7 @@ namespace str
 
    }
 
-   bool has_all_v1(const char * psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
+   bool has_all_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower, bool & bHasDigit)
    {
 
       calc_v1(psz, bHasUpper, bHasLower, bHasDigit);
@@ -1799,7 +1765,7 @@ namespace str
 
    }
 
-   bool has_all_v1(const char * psz)
+   bool has_all_v1(const ::string & strParam)
    {
 
       bool bHasUpper;
@@ -1811,7 +1777,7 @@ namespace str
    }
 
 
-   string if_null(const char * psz, const char * pszIfNull)
+   string if_null(const ::string & strParam, const char * pszIfNull)
    {
 
       if(psz == nullptr)
@@ -1822,7 +1788,7 @@ namespace str
    }
 
    string get_word(
-   const char * psz,
+   const ::string & strParam,
    const char * pszSeparator,
    bool bWithSeparator,
    bool bEndIsSeparator)
@@ -1865,7 +1831,7 @@ namespace str
       }
    }
 
-//   bool to(i64 & i, const char * psz)
+//   bool to(i64 & i, const ::string & strParam)
 //   {
 //
 //      const char * pszEnd = nullptr;
@@ -1885,9 +1851,9 @@ namespace str
 //
 //   }
 //
-//   i32 to(i32 & i, const char * psz, int iBase = 10) { return i = ::ansi_to_i32(psz, nullptr, iBase); }
+//   i32 to(i32 & i, const ::string & strParam, int iBase = 10) { return i = ::ansi_to_i32(psz, nullptr, iBase); }
 //
-//   bool to(i64 & i, const char * psz)
+//   bool to(i64 & i, const ::string & strParam)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1914,7 +1880,7 @@ namespace str
 //
 //   }
 //
-//   bool to(i32 & i, i32 iBase, const char * psz)
+//   bool to(i32 & i, i32 iBase, const ::string & strParam)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1944,7 +1910,7 @@ namespace str
 //
 //   }
 //
-//   bool to(u64 & u, const char * psz)
+//   bool to(u64 & u, const ::string & strParam)
 //   {
 //
 //      char * pszEnd;
@@ -1960,7 +1926,7 @@ namespace str
 //
 //   }
 //
-//   bool to(u32 & u, const char * psz)
+//   bool to(u32 & u, const ::string & strParam)
 //   {
 //
 //      char * pszEnd;
@@ -1980,7 +1946,7 @@ namespace str
 //   }
 //
 //
-//   bool to(u64 & u, i32 iBase, const char * psz)
+//   bool to(u64 & u, i32 iBase, const ::string & strParam)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1999,7 +1965,7 @@ namespace str
 //
 //   }
 //
-//   bool to(u32 & u, i32 iBase, const char * psz)
+//   bool to(u32 & u, i32 iBase, const ::string & strParam)
 //   {
 //
 //      if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -2021,7 +1987,7 @@ namespace str
 //
 //   }
 //
-//   iptr to_iptr(const char * psz)
+//   iptr to_iptr(const ::string & strParam)
 //   {
 //
 //#if defined(_LP64) || defined(_AMD64_)
@@ -2073,7 +2039,7 @@ namespace str
    }
 
 
-   const char * utf8_inc(const char * psz)
+   const char * utf8_inc(const ::string & strParam)
    {
 
       if (psz == nullptr)
@@ -2138,7 +2104,7 @@ namespace str
    }
 
 
-   const char * utf8_inc_slide(strsize * pslide, const char * psz)
+   const char * utf8_inc_slide(strsize * pslide, const ::string & strParam)
    {
       char len =  1 + trailingBytesForUTF8(*psz);
       if(len == 0)
@@ -2191,7 +2157,7 @@ namespace str
 
       strsize count = 0;
 
-      ::str::utf8_inc_slide(&count, pchSrc);
+      ::str().utf8_inc_slide(&count, pchSrc);
 
       ::memcpy_dup(pchDst, pchSrc, count);
 
@@ -2207,7 +2173,7 @@ namespace str
 
 
 
-   const char * uni_dec(const char * pszBeg, const char * psz)
+   const char * uni_dec(const char * pszBeg, const ::string & strParam)
    {
       if(psz <= pszBeg)
       {
@@ -2308,7 +2274,7 @@ namespace str
    }
 
 
-   const char * utf8_dec(::str::utf8_char * pchar, const char * pszBeg, const char * psz)
+   const char * utf8_dec(::str().utf8_char * pchar, const char * pszBeg, const ::string & strParam)
    {
       if(psz <= pszBeg)
       {
@@ -2475,9 +2441,9 @@ namespace str
    }
 
 
-   string get_utf8_char(const char * psz)
+   string get_utf8_char(const ::string & strParam)
    {
-      ::str::utf8_char ch;
+      ::str().utf8_char ch;
       i32 len = ch.parse(psz);
       if(len < 0)
          return "";
@@ -2485,7 +2451,7 @@ namespace str
    }
 
 
-   string get_utf8_char(const char * psz, const char * pszEnd)
+   string get_utf8_char(const ::string & strParam, const char * pszEnd)
    {
       const char * pszNext = __utf8_inc(psz);
       if(pszNext > pszEnd)
@@ -2505,7 +2471,7 @@ namespace str
       return true;
    }
 
-   string get_utf8_char(const char * pszBeg, const char * psz, index i)
+   string get_utf8_char(const char * pszBeg, const ::string & strParam, index i)
    {
 
       if(i > 0)
@@ -2540,12 +2506,12 @@ namespace str
       }
    }
 
-   string utf8_next_char(const char * pszBeg, const char * psz, index i)
+   string utf8_next_char(const char * pszBeg, const ::string & strParam, index i)
    {
       return get_utf8_char(pszBeg, psz, i + 1);
    }
 
-   string utf8_previous_char(const char * pszBeg, const char * psz, index i)
+   string utf8_previous_char(const char * pszBeg, const ::string & strParam, index i)
    {
       return utf8_next_char(pszBeg, psz, -i);
    }
@@ -2600,7 +2566,7 @@ namespace str
 
    }
 
-   bool get_curly_content(const char * psz, string & str)
+   bool get_curly_content(const ::string & strParam, string & str)
    {
       if (psz[0] != '{') return false;
       const char * pszChar;
@@ -2634,14 +2600,14 @@ namespace str
 
       str.trim();
 
-      const char * psz = str;
+      const ::string & strParam = str;
 
       if(*psz == '\0')
          return false;
 
       while(*psz != '\0' && iCount != 0)
       {
-         if(!::str::ch::is_digit(psz))
+         if(!::str().ch::is_digit(psz))
             return false;
          psz = utf8_inc(psz);
          iCount--;
@@ -2650,7 +2616,7 @@ namespace str
    }
 
 
-   bool is_natural(const char * psz)
+   bool is_natural(const ::string & strParam)
    {
 
       string str(psz);
@@ -2674,14 +2640,14 @@ namespace str
    }
 
 
-   bool is_integer(const char * psz)
+   bool is_integer(const ::string & strParam)
    {
 
       string str(psz);
 
       str.trim();
 
-      if (::str::begins_eat_ci(str, "-") || ::str::begins_eat_ci(str, "+"))
+      if (::str().begins_eat_ci(str, "-") || ::str().begins_eat_ci(str, "+"))
       {
 
          return is_natural(str);
@@ -2697,7 +2663,7 @@ namespace str
    }
 
 
-   void consume(const char * & pszParse, const char * psz)
+   void consume(const char * & pszParse, const ::string & strParam)
    {
 
       index idx;
@@ -2723,7 +2689,7 @@ namespace str
    }
 
 
-   bool eats(const char * & pszParse, const char * psz)
+   bool eats(const char * & pszParse, const ::string & strParam)
    {
 
       for (; *psz != '\0'; pszParse++, psz++)
@@ -2742,7 +2708,7 @@ namespace str
    }
 
 
-   bool eats_ci(const char * & pszParse, const char * psz)
+   bool eats_ci(const char * & pszParse, const ::string & strParam)
    {
 
       for (; *psz != '\0'; pszParse++, psz++)
@@ -2761,7 +2727,7 @@ namespace str
    }
 
 
-   void consume(const char * & pszParse, const char * psz, const char * pszEnd)
+   void consume(const char * & pszParse, const ::string & strParam, const char * pszEnd)
    {
       __UNREFERENCED_PARAMETER(pszEnd);
       strsize idx;
@@ -2777,7 +2743,7 @@ namespace str
       pszParse += len;
    }
 
-   void consume(const char * & pszParse, const char * psz, strsize len, const char * pszEnd)
+   void consume(const char * & pszParse, const ::string & strParam, strsize len, const char * pszEnd)
    {
       __UNREFERENCED_PARAMETER(pszEnd);
       i32 idx;
@@ -2794,9 +2760,9 @@ namespace str
 
    void consume_spaces(const char * & pszParse, ::count iMinimumCount)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
       i32 i = 0;
-      while(::str::ch::is_whitespace(psz))
+      while(::str().ch::is_whitespace(psz))
       {
          psz = utf8_inc(psz);
          i++;
@@ -2833,13 +2799,13 @@ namespace str
 
       }
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       i32 i = 0;
 
       u64 u;
 
-      while(::str::ch::is_digit(psz))
+      while(::str().ch::is_digit(psz))
       {
 
          psz = utf8_inc(psz);
@@ -2855,7 +2821,7 @@ namespace str
 
       }
 
-      u = ::str::to_u32(string(pszParse, psz - pszParse));
+      u = ::str().to_u32(string(pszParse, psz - pszParse));
 
       if(u < uMin)
       {
@@ -2879,9 +2845,9 @@ namespace str
 
    void consume_spaces(const char * & pszParse, ::count iMinimumCount, const char * pszEnd)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
       i32 i = 0;
-      while(::str::ch::is_whitespace(psz))
+      while(::str().ch::is_whitespace(psz))
       {
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
@@ -2916,9 +2882,9 @@ namespace str
    string consume_non_spaces(const char * & pszParse, const char * pszEnd)
    {
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
-      while(!::str::ch::is_whitespace(psz))
+      while(!::str().ch::is_whitespace(psz))
       {
          psz = __utf8_inc(psz);
          if(psz >= pszEnd)
@@ -2933,11 +2899,11 @@ namespace str
 
    string consume_hex(const char * & pszParse)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 //      i32 i = 0;
       while(*psz != '\0')
       {
-         i64 i = ::str::ch::uni_index(pszParse);
+         i64 i = ::str().ch::uni_index(pszParse);
          if((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
          {
             psz = __utf8_inc(psz);
@@ -2956,7 +2922,7 @@ namespace str
 
    string consume_nc_name(const char * & pszParse)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
       bool start = true;
       while(true)
       {
@@ -2964,7 +2930,7 @@ namespace str
          // first char
          if(start)
          {
-            if(!::str::ch::is_letter(ca) || *ca == '\0')
+            if(!::str().ch::is_letter(ca) || *ca == '\0')
             {
                throw ::exception(error_parsing, "NCName required here");
                return "";
@@ -2973,11 +2939,11 @@ namespace str
          }
          else
          {
-            if(!::str::ch::is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
+            if(!::str().ch::is_letter_or_digit(ca) && *ca != '_' && *ca != '-')
             {
                break;
             }
-            psz = ::str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
          }
       }
       string str(pszParse, psz - pszParse);
@@ -2988,9 +2954,9 @@ namespace str
    //string consume_quoted_value(const char * & pszParse)
    //{
 
-   //   ::str::utf8_char utf8char;
+   //   ::str().utf8_char utf8char;
 
-   //   const char * psz = pszParse;
+   //   const ::string & strParam = pszParse;
    //   utf8char.parse(psz); // quote character
    //   if(utf8char.m_chLen != 1)
    //   {
@@ -3027,7 +2993,7 @@ namespace str
    string consume_quoted_value(const char * & pszParse, const char * pszEnd)
    {
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       pszEnd = psz + strlen(pszParse);
 
@@ -3126,7 +3092,7 @@ skip:
    void no_escape_consume_quoted_value(const char * & pszParse, const char * pszEnd, char ** ppsz, strsize & iBufferSize)
    {
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       if (*psz != '\"' && *psz != '\\')
       {
@@ -3185,7 +3151,7 @@ skip:
    string no_escape_consume_quoted_value(const char *& pszParse, const char * pszEnd)
    {
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       if (*psz != '\"' && *psz != '\\')
       {
@@ -3232,7 +3198,7 @@ skip:
    void skip_quoted_value_ex2(const char * & pszParse, const char * pszEnd)
    {
 
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       if (*psz != '\"' && *psz != '\\')
       {
@@ -3347,7 +3313,7 @@ skip:
          }
       }
 
-      void append(const char * psz, strsize iSize)
+      void append(const ::string & strParam, strsize iSize)
       {
 
          if (m_iPos + iSize > m_iSize)
@@ -3388,7 +3354,7 @@ skip:
 
    string consume_quoted_value_ex(const char * & pszParse,const char * pszEnd)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
       char qc = *psz; // quote character
       if(qc != '\"' && qc != '\'')
       {
@@ -3512,7 +3478,7 @@ skip:
 
    void skip_quoted_value_ex(const char * & pszParse, const char * pszEnd)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
       char qc = *pszParse; // quote character
       if (qc != '\"' && qc != '\'')
       {
@@ -3791,7 +3757,7 @@ skip:
 
    string consume_c_quoted_value(const char * & pszParse, const char * pszEnd)
    {
-      const char * psz = pszParse;
+      const ::string & strParam = pszParse;
 
       if(pszEnd == nullptr)
       {
@@ -3819,7 +3785,7 @@ skip:
          psz = utf8_inc(psz);
          strPreviousChar = strCurrentChar;
          strCurrentChar = get_utf8_char(psz);
-         //string str = ::str::international::utf8_to_unicode(qc2);
+         //string str = utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
             throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3943,7 +3909,7 @@ skip:
    }
 
 
-   bool begins_consume(const char * & pszParse, const char * psz)
+   bool begins_consume(const char * & pszParse, const ::string & strParam)
    {
       strsize idx;
       strsize len = strlen(psz);
@@ -3966,7 +3932,7 @@ skip:
    string xml_consume_comment(const char * & pszParse)
    {
       string str;
-      ::str::consume(pszParse, "<!--");
+      ::str().consume(pszParse, "<!--");
       while(pszParse[0] != '-' || pszParse[1] != '-' ||pszParse[2] != '>')
       {
 
@@ -3975,13 +3941,13 @@ skip:
             break;
          }
          str += *pszParse;
-         pszParse = ::str::utf8_inc(pszParse);
+         pszParse = ::str().utf8_inc(pszParse);
       }
       consume(pszParse, "-->");
       return str;
    }
 
-   string pad(const char * psz, ::count iLen, const char * pszPattern, enum_pad epad)
+   string pad(const ::string & strParam, ::count iLen, const char * pszPattern, enum_pad epad)
    {
       string str;
       str = psz;
@@ -4011,7 +3977,7 @@ skip:
       return str;
    }
 
-   ::payload ends_get(const char * pszSuffix, const char * psz)
+   ::payload ends_get(const char * pszSuffix, const ::string & strParam)
    {
       if(pszSuffix == nullptr)
          return psz;
@@ -4027,7 +3993,7 @@ skip:
       return false;
    }
 
-   ::payload ends_get_ci(const char * pszSuffix, const char * psz)
+   ::payload ends_get_ci(const char * pszSuffix, const ::string & strParam)
    {
       if(pszSuffix == nullptr)
          return psz;
@@ -4098,12 +4064,12 @@ skip:
          return str;
       }*/
 
-   i32 to_i32(const char * psz)
+   i32 to_i32(const ::string & strParam)
    {
       return ansi_to_i32(psz);
    }
 
-   u32 to_u32(const char * psz)
+   u32 to_u32(const ::string & strParam)
    {
       return (u32) ansi_to_i64(psz);
    }
@@ -4133,7 +4099,7 @@ skip:
          return (i64) u;
    }
 
-   i64 to_i64(const char * psz)
+   i64 to_i64(const ::string & strParam)
    {
 
       i32 i = 0;
@@ -4177,7 +4143,7 @@ skip:
 
    }
 
-   u64 to_u64(const char * psz)
+   u64 to_u64(const ::string & strParam)
    {
 
       i32 i = 0;
@@ -4405,7 +4371,7 @@ skip:
 //            return false;
 //         }
 //      }
-//      while(::str::ch::to_lower_case(*pcsz) == ::str::ch::to_lower_case(*pcszPrefix))
+//      while(::str().ch::to_lower_case(*pcsz) == ::str().ch::to_lower_case(*pcszPrefix))
 //
 //      {
 //         pcsz++;
@@ -4454,14 +4420,14 @@ skip:
 //            return false;
 //         }
 //      }
-//      while(*pcsz && ::str::ch::is_space_char(*pcsz))
+//      while(*pcsz && ::str().ch::is_space_char(*pcsz))
 //
 //         pcsz++;
 //
 //      if(!*pcsz)
 //
 //         return false;
-//      while(::str::ch::to_lower_case(*pcsz) == ::str::ch::to_lower_case(*pcszPrefix))
+//      while(::str().ch::to_lower_case(*pcsz) == ::str().ch::to_lower_case(*pcszPrefix))
 //
 //      {
 //         pcsz++;
@@ -4494,7 +4460,7 @@ skip:
 //   }
 //
 
-   string          ansi_lower(const char * psz)
+   string          ansi_lower(const ::string & strParam)
    {
 
       return string(psz).make_lower();
@@ -4502,7 +4468,7 @@ skip:
    }
 
 
-   string          ansi_upper(const char * psz)
+   string          ansi_upper(const ::string & strParam)
    {
 
       return string(psz).make_upper();
@@ -4662,7 +4628,7 @@ skip:
       if (!utf8_check_is_valid(str))
       {
 
-         str = ::str::international::multibyte_to_utf8(::str::international::CodePageAnsi, str);
+         str = ::str().international::multibyte_to_utf8(::str().international::CodePageAnsi, str);
 
          if (!utf8_check_is_valid(str))
          {
@@ -4819,7 +4785,7 @@ skip:
    CLASS_DECL_ACME void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array * piaTab, array < strsize * > intptra)
    {
 
-      const char * psz = strParam;
+      const ::string & strParam = strParam;
 
       string str;
 
@@ -4828,7 +4794,7 @@ skip:
       while (*psz)
       {
 
-         string strChar = ::str::get_utf8_char(psz);
+         string strChar = ::str().get_utf8_char(psz);
 
          if (strChar.is_empty())
          {

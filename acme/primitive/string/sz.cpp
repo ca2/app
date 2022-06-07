@@ -12,7 +12,7 @@ namespace sz
 
       while((*psz != 0) && (strchr(pszTrimmer,*psz) != nullptr))
       {
-         psz = ::str::__utf8_inc(psz);
+         psz = ::str().__utf8_inc(psz);
       }
 
       return psz;

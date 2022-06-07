@@ -50,7 +50,7 @@ namespace ios
          ::u32 uLen = ::DragQueryFileW(hdrop, i, nullptr, 0);
          unichar * lpwsz = (unichar *) malloc(sizeof(unichar) * (uiLen + 1));
          ::DragQueryFileW(hdrop, i, lpwsz, uiLen + 1);
-         stra.add(::str::international::unicode_to_utf8(lpwsz));
+         stra.add(unicode_to_utf8(lpwsz));
          free(lpwsz);
       }
       ::CloseClipboard();
@@ -66,7 +66,7 @@ namespace ios
 
       for(i32 i = 0; i < patha.get_size(); i++)
       {
-         iLen += ::str::international::utf8_to_unicode_count(patha[i]) + 1;
+         iLen += ::str().international::utf8_to_unicode_count(patha[i]) + 1;
       }
 
       throw ::exception(todo);
@@ -87,7 +87,7 @@ namespace ios
             for(i32 i = 0; i < stra.get_size(); i++)
             {
                ASSERT(m_p->is_window());
-               ::str::international::utf8_to_unicode(lpwstrCopy, ::str::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
+               utf8_to_unicode(lpwstrCopy, ::str().international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
                ASSERT(m_p->is_window());
                lpwstrCopy += (stra[i].get_length() + 1);
             }
@@ -154,7 +154,7 @@ namespace ios
 //   //   i32 iLen = 0;
 //
 //      string str;
-//      str = ::str::international::utf8_to_unicode(psz);
+//      str = utf8_to_unicode(psz);
 //
 //
 //
@@ -171,10 +171,10 @@ namespace ios
             EmptyClipboard();
 
 
-            count iCount = ::str::international::utf8_to_unicode_count(str) + 1;
+            count iCount = ::str().international::utf8_to_unicode_count(str) + 1;
             HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR));
             unichar * lpwstrCopy  = (unichar *) ::GlobalLock(hglbCopy);
-            ::str::international::utf8_to_unicode(lpwstrCopy, iCount, str);
+            utf8_to_unicode(lpwstrCopy, iCount, str);
             ::GlobalUnlock(hglbCopy);
 
             HGLOBAL hglbCopy2 = ::GlobalAlloc(GMEM_MOVEABLE, sizeof(char) * (strlen(psz) + 1));
@@ -202,7 +202,7 @@ namespace ios
                if(!m_p->OpenClipboard())
                   return "";
                HGLOBAL hglb = GetClipboardData(CF_UNICODETEXT);
-               string str(::str::international::unicode_to_utf8((const unichar *) GlobalLock(hglb)));
+               string str(unicode_to_utf8((const unichar *) GlobalLock(hglb)));
                GlobalUnlock(hglb);
                VERIFY(::CloseClipboard());
                return str;

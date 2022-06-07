@@ -414,7 +414,7 @@ namespace user
       rectangleClient.left += 3;
       rectangleClient.top += 3;
       ::rectangle_i32 rectangleText = m_rectangleText;
-      //      string str = ::str::international::utf8_to_unicode(str);
+      //      string str = utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
       {
          if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)

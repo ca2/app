@@ -605,7 +605,50 @@ inline strsize __ansicspn(const ansichar * psz1, const ansichar * psz2)
 }
 
 
+inline  ansichar lower_char(i32 ch)
+{
+   if (ch >= 'A' && ch <= 'Z')
+   {
+      ch = ch - 'A' + 'a';
+   }
+   return ch;
+}
+
+
+inline ansichar upper_char(i32 ch)
+{
+   if (ch >= 'a' && ch <= 'z')
+   {
+      ch = ch - 'a' + 'A';
+   }
+   return ch;
+}
 
 
 
+
+
+
+inline void make_lower(ansichar * psz)
+{
+
+   while (*psz)
+   {
+      *psz = lower_char(*psz);
+      psz++;
+   }
+
+}
+
+
+inline void make_upper(ansichar * psz)
+{
+
+   while (*psz)
+   {
+      *psz = upper_char(*psz);
+      psz++;
+   }
+
+}
 

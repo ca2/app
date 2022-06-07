@@ -32,8 +32,8 @@ namespace android
       //      string stra(lpszFilPathA);
       //      string wstrb(lpszFilPathB);
       //
-      //   //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
-      //   //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
+      //   //   ::str().international::ACPToUnicode(stra, lpszFilPathA);
+      //   //   ::str().international::ACPToUnicode(wstrb, lpszFilPathB);
       //      if(stra == wstrb)
       //         return true;
       //

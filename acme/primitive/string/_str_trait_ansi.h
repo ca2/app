@@ -4,12 +4,10 @@
 #define const_ansichar_trigger const ansichar *
 
 
-namespace str
-{
 
 
-   inline  constexpr auto     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength);
-   inline  constexpr auto     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
+   inline  constexpr strsize     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength);
+   inline  constexpr strsize     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
 
    inline  ansichar *         char_next(const ansichar * point_i32) noexcept;
    inline  bool               isalpha(ansichar ch) noexcept;
@@ -23,6 +21,8 @@ namespace str
    inline  i32                string_n_compare_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept;
    inline  i32                string_collate(const ansichar * pszA, const ansichar * pszB) noexcept;
    inline  i32                string_collate_ci(const ansichar * pszA, const ansichar * pszB) noexcept;
+   inline i32 string_n_collate(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept;
+   inline i32 string_n_collate_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept;
    inline  const ansichar * string_find_string(const ansichar * pszBlock, const ansichar * pszMatch) noexcept;
    inline  const ansichar * string_find_string_ci(const ansichar * pszBlock, const ansichar * pszMatch) noexcept;
    inline  const ansichar * string_find_char(const ansichar * pszBlock, ansichar chMatch) noexcept;
@@ -51,8 +51,4 @@ namespace str
    inline  void               copy_chars(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars(ansichar * pchDest, size_t nDestLen, const ansichar * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars_overlapped(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept;
-
-} // namespace str
-
-
 

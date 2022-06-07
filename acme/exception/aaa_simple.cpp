@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::::exception(const char * pszMessage):
+//::exception(const char * pszMessage):
 //   ::matter(pobject),
 //   ::callstack(pobject),
 //   ::exception()
@@ -27,7 +27,7 @@
 //}
 //
 //
-//::::exception(const char * pszMessage, ::acme::application * papp):
+//::exception(const char * pszMessage, ::acme::application * papp):
 //   matter(papp),
 //   ::callstack(papp),
 //   ::exception(papp)

@@ -673,7 +673,7 @@ void object::defer_update_object_id()
 
    string strType = __type_name(this);
 
-   ::str::begins_eat_ci(strType, "class ");
+   ::str().begins_eat_ci(strType, "class ");
 
    return strType;
 
@@ -2893,7 +2893,7 @@ void object::initialize(::object* pobject)
    //if (!psystem)
    //{
 
-   //   set_context_system(::::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 

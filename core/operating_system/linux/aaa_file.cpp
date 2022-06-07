@@ -185,7 +185,7 @@ namespace linux
       dwPermission |= S_IROTH | S_IROTH;
 
       // attempt file creation
-      //HANDLE hFile = shell::CreateFile(::str::international::utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
+      //HANDLE hFile = shell::CreateFile(utf8_to_unicode(m_path), dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       int iFile = ::open(m_path, dwFlags, dwPermission); //::open(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
 
       if(iFile == INVALID_FILE)

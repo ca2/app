@@ -123,7 +123,7 @@ void text_stream::write(u16 u)
 void text_stream::write(unichar wch)
 {
 
-   raw_print(::str::uni_to_utf8(wch));
+   raw_print(::str().uni_to_utf8(wch));
 
 }
 

@@ -169,7 +169,7 @@ namespace draw2d_gdiplus
       //}
 
       m_pfont = new Gdiplus::Font(
-      ::str::international::utf8_to_unicode(m_strFontFamilyName),
+      utf8_to_unicode(m_strFontFamilyName),
       (Gdiplus::REAL) m_dFontSize,
       iStyle,
       unit);

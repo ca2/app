@@ -31,7 +31,7 @@
 //plane_system::plane_system()
 //{
 //
-//   m_psystem = ::::apex::get_system();
+//   m_psystem = ::apex::get_system();
 //
 //   m_psystem->m_pplanesystem = this;
 //

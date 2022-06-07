@@ -308,7 +308,7 @@ namespace interprocess_communication
       void rx::on_interprocess_receive(::string && strMessage)
       {
 
-         if (::str::begins_ci(strMessage, "synch_"))
+         if (::str().begins_ci(strMessage, "synch_"))
          {
 
             if (m_preceiver != nullptr)

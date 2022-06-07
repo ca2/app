@@ -204,7 +204,7 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
 
          u32  ulNum = (u32) ::strtoul(pszBegin, nullptr, aura);
 
-         strChar = ::str::uni_to_utf8(ulNum);
+         strChar = ::str().uni_to_utf8(ulNum);
          return (i32) (pszEnd - pszEntity + 1);
 
       }

@@ -178,7 +178,7 @@ namespace zip
 
       string str;
 
-      ::str::international::unicode_to_utf8(str, pcsz);
+      unicode_to_utf8(str, pcsz);
 
 
       str.replace("\\", "/");

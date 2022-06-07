@@ -963,7 +963,7 @@ namespace crypto_openssl
    //   string str(pszPassword);
    //   if (str.get_length() < 6)
    //      return false;
-   //   return ::str::has_all_v1(pszPassword);
+   //   return ::str().has_all_v1(pszPassword);
    //}
 
 

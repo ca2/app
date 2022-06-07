@@ -4,12 +4,9 @@
 #define const_wd16char_trigger const wd16char *
 
 
-namespace str
-{
 
-
-   inline  constexpr auto     char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength);
-   inline  constexpr auto     byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength);
+   inline  constexpr strsize     char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength);
+   inline  constexpr strsize     byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength);
 
    inline  wd16char * char_next(const wd16char * point_i32) noexcept;
    inline  bool               isalpha(wd16char ch) noexcept;
@@ -23,6 +20,8 @@ namespace str
    inline  i32                string_n_compare_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept;
    inline  i32                string_collate(const wd16char * pszA, const wd16char * pszB) noexcept;
    inline  i32                string_collate_ci(const wd16char * pszA, const wd16char * pszB) noexcept;
+   inline  i32                string_n_collate(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept;
+   inline  i32                string_n_collate_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept;
    inline  const wd16char * string_find_string(const wd16char * pszBlock, const wd16char * pszMatch) noexcept;
    inline  const wd16char * string_find_string_ci(const wd16char * pszBlock, const wd16char * pszMatch) noexcept;
    inline  const wd16char * string_find_char(const wd16char * pszBlock, wd16char chMatch) noexcept;
@@ -54,10 +53,7 @@ namespace str
 
 
 
-} // namespace str
+//} // namespace str
 
-
-inline strsize wd16_to_ansi_char_len(wd16char wch);
-inline void wd16_to_ansi_char(char * psz, wd16char wch);
 
 

@@ -358,8 +358,8 @@ namespace filemanager
 
       __pointer(::core::application) papp = pobject->get_app();
 
-      if (::str::begins(path, astr.UifsProtocol)
-         || ::str::begins(path, astr.FsProtocol))
+      if (::str().begins(path, astr.UifsProtocol)
+         || ::str().begins(path, astr.FsProtocol))
       {
 
          papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);

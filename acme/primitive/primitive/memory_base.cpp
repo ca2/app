@@ -671,9 +671,9 @@ char * memory_base::get_psz(strsize & len)
 
       mem = *this;
 
-      set_size(::str::utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[2],get_size() - 2));
+      set_size(::str().utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[2],get_size() - 2));
 
-      ::str::utf_to_utf((char *) get_data(),(const widechar *)&mem.get_data()[2],(i32)(mem.get_size() - 2));
+      ::str().utf_to_utf((char *) get_data(),(const widechar *)&mem.get_data()[2],(i32)(mem.get_size() - 2));
 
       len = get_size();
 
@@ -687,9 +687,9 @@ char * memory_base::get_psz(strsize & len)
 
       mem = *this;
 
-      set_size(::str::utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[3],get_size() - 3));
+      set_size(::str().utf_to_utf_length((char *) get_data(),(const wd16char *)&get_data()[3],get_size() - 3));
 
-      ::str::utf_to_utf((char *)get_data(),(const wd16char *)&mem.get_data()[3],(i32)(mem.get_size() - 3));
+      ::str().utf_to_utf((char *)get_data(),(const wd16char *)&mem.get_data()[3],(i32)(mem.get_size() - 3));
 
       len = get_size();
 
@@ -726,7 +726,7 @@ string memory_base::as_utf8() const
          && get_data()[1] == 60)
    {
 
-      ::str::utf_to_utf(strResult, (wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      ::str().utf_to_utf(strResult, (wd16char *)&get_data()[2], (i32)(get_size() - 2));
 
    }
    else if (get_size() >= 2
@@ -742,7 +742,7 @@ string memory_base::as_utf8() const
       //   storage.get_data()[i + 1] = b;
       //}
 #endif
-      ::str::utf_to_utf(strResult, (const wd16char *)&get_data()[2], (i32)(get_size() - 2));
+      ::str().utf_to_utf(strResult, (const wd16char *)&get_data()[2], (i32)(get_size() - 2));
 
    }
    else if (get_size() >= 3
@@ -1326,7 +1326,7 @@ void memory_base::to_base64(string & str, memsize pos, memsize size)
 
    }
 
-   ::str::base64 base64;
+   ::base64 base64;
 
    str = base64.encode({&get_data()[pos], minimum(get_size() - pos, size)});
 
@@ -1347,7 +1347,7 @@ string memory_base::to_base64(memsize pos, memsize size)
 void memory_base::from_base64(const char * psz, strsize nCount)
 {
 
-   ::str::base64 base64;
+   ::base64 base64;
 
    base64.decode(*this, psz, nCount);
 
@@ -1372,7 +1372,7 @@ void memory_base::from_base64(const char * psz, strsize nCount)
 void memory_base::from_string(const widechar * pwsz)
 {
 
-   from_string(::str::international::unicode_to_utf8(pwsz));
+   from_string(unicode_to_utf8(pwsz));
 
 }
 
@@ -1408,7 +1408,7 @@ void memory_base::from_string(const ::payload & payload)
 void memory_base::append_from_string(const widechar * pwsz)
 {
 
-   append_from_string(::str::international::unicode_to_utf8(pwsz));
+   append_from_string(unicode_to_utf8(pwsz));
 
 }
 

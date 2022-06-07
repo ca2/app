@@ -18,24 +18,24 @@ inline string get_default_scalar_format < i64 >()
 {
    return "%lli";
 }
-
-namespace str
-{
-
-   template < typename FORMATABLE >
-   inline string printf(const ::string & strFormat, const FORMATABLE & f)
-   {
-
-      string str;
-
-      str.format(strFormat,f);
-
-      return str;
-
-   }
-
-
-} // namespace str
+//
+//namespace str
+//{
+//
+//   template < typename FORMATABLE >
+//   inline string printf(const ::string & strFormat, const FORMATABLE & f)
+//   {
+//
+//      string str;
+//
+//      str.format(strFormat,f);
+//
+//      return str;
+//
+//   }
+//
+//
+//} // namespace str
 
 
 
@@ -510,7 +510,7 @@ template < typename SCALAR >
 string scalar < SCALAR > ::printf(const ::string & strFormat)
 {
 
-   return ::str::printf(strFormat,get());
+   return ::str().printf(strFormat,get());
 
 }
 

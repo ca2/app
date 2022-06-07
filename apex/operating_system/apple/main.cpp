@@ -37,7 +37,7 @@
 //
 //   string strExtra;
 //
-//   //if(::::apex::get_system() != nullptr)
+//   //if(::apex::get_system() != nullptr)
 //   {
 //
 //      if(pszaFile != nullptr)
@@ -49,9 +49,9 @@
 //      else
 //      {
 //
-//         ::create * pcreate = new ::create(::::apex::get_system());
+//         ::create * pcreate = new ::create(::apex::get_system());
 //
-//         pcreate->m_pcommandline = new command_line(::::apex::get_system(), ::apex::get_system()->get_command_line());
+//         pcreate->m_pcommandline = new command_line(::apex::get_system(), ::apex::get_system()->get_command_line());
 //
 //         ::apex::get_system()->request({ pcreate });
 //
@@ -78,10 +78,10 @@
 //
 //   string str = apple_get_bundle_identifier();
 //
-//   if(!::str::begins_eat_ci(str, "com."))
+//   if(!::str().begins_eat_ci(str, "com."))
 //   {
 //
-//      ::str::begins_eat_ci(str, "com.ca2.");
+//      ::str().begins_eat_ci(str, "com.ca2.");
 //
 //   }
 //

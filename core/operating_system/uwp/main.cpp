@@ -49,7 +49,7 @@ CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //   //pinitmaindata->m_hInstance             = hInstance;
 //   //pinitmaindata->m_hPrevInstance         = hPrevInstance;
-//   //pinitmaindata->m_strCommandLine        = ::str::international::unicode_to_utf8(::GetCommandLineW());
+//   //pinitmaindata->m_strCommandLine        = unicode_to_utf8(::GetCommandLineW());
 //   //pinitmaindata->m_nCmdShow              = nCmdShow;
 //
 //
@@ -254,10 +254,10 @@ string ca2_command_line()
 
    }
 
-   if (!::str::begins_eat_ci(strAppId, "com."))
+   if (!::str().begins_eat_ci(strAppId, "com."))
    {
 
-      ::str::begins_eat_ci(strAppId, "com.ca2.");
+      ::str().begins_eat_ci(strAppId, "com.ca2.");
 
    }
 

@@ -768,7 +768,7 @@ namespace user
       set_title(pathFull.title());
 
       //string strPathName;
-      //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);
+      //::str().international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
       guserbase::get(this)->AddToRecentFileList(pszPathName);*/
@@ -1833,7 +1833,7 @@ namespace user
 
    //   __UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
-   //   if(::str::begins_eat(strUrl,"ext://"))
+   //   if(::str().begins_eat(strUrl,"ext://"))
    //   {
    //      papp->open_link(strUrl,"", pszTargetFrameName);
 
@@ -1843,7 +1843,7 @@ namespace user
    //      *pbCancel = true;
    //      return;
    //   }
-   //   if(::str::begins_eat(strUrl,"hist://"))
+   //   if(::str().begins_eat(strUrl,"hist://"))
    //   {
    //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;

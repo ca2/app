@@ -21,9 +21,9 @@ public:
 
    virtual ::count matches(const ::string & psz, strsize len, pcre_context*);
 
-   virtual __pointer(::str::range_array) matches_ranges(const string& str) override;
+   virtual __pointer(::strsize_range_array) matches_ranges(const string& str) override;
 
-   virtual __pointer(::str::range_array) matches_ranges(const ::string & psz, strsize len) override;
+   virtual __pointer(::strsize_range_array) matches_ranges(const ::string & psz, strsize len) override;
 
 
 };

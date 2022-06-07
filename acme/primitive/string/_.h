@@ -7,6 +7,9 @@ CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
 typedef i32 HRes;
 
 
+#include "utf8_char.h"
+
+
 /////////////////////////////////////////////////////////////////////////////
 // Verify that a nullptr-terminated string points to valid memory
 inline bool __is_valid_string(const widechar* psz, memsize nMaxLength = INT_MAX)
@@ -71,7 +74,6 @@ public:
 #include "_unicode.h"
 
 
-#include "ch.h"
 #include "sz.h"
 
 
@@ -95,9 +97,9 @@ public:
 #include "acme/primitive/primitive/natural.h"
 
 
-#include "_trait_ansi.h"
-#include "_trait_wd16.h"
-#include "_trait_wd32.h"
+//#include "_trait_ansi.h"
+//#include "_trait_wd16.h"
+//#include "_trait_wd32.h"
 
 #include "_natural.h"
 #include "_base.h"
@@ -117,7 +119,7 @@ public:
 #include "to_string.h"
 
 
-#include "_trait.h"
+//#include "_trait.h"
 
 
 #include "string_wide_conversion.h"
@@ -136,11 +138,13 @@ public:
 #define unincpy wide_count_copy
 #endif
 
+#include "ch.h"
 
-#include "_compare.h"
+//#include "_compare.h"
 #include "from_string.h"
-#include "to.h"
-#include "_str.h"
+#include "str.h"
+
+
 
 
 #include "stringtow.h"
@@ -154,7 +158,7 @@ public:
 
 #include "tokenizer.h"
 
-#include "x.h"
+#include "whole_word.h"
 #include "hex.h"
 
 //#include "istring.h"

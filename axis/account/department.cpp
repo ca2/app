@@ -130,28 +130,28 @@ namespace account
 
       }
 
-      if(::str::find_ci("/matter.ca2.software/", pathUrl) >= 0)
+      if(::str().find_ci("/matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::find_ci("-matter.ca2.software/", pathUrl) >= 0)
+      if(::str().find_ci("-matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::find_ci("sessid=", pathUrl) >= 0)
+      if(::str().find_ci("sessid=", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::find_ci("/matter/",purl->get_script(pathUrl)) >= 0)
+      if(::str().find_ci("/matter/",purl->get_script(pathUrl)) >= 0)
       {
 
          return false;
@@ -209,7 +209,7 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(::str::ends(strRequestingServer,".ca2.software"))
+//      if(::str().ends(strRequestingServer,".ca2.software"))
 //      {
 //         strGetFontopus = "https://ca2.software/get_account_login";
 //      }

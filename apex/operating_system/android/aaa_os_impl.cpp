@@ -43,7 +43,7 @@ const char* g_pszCacheDir = NULL;
 void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
 {
 
-   if (::::apex::get_system() == nullptr)
+   if (::apex::get_system() == nullptr)
    {
 
       output_debug_string("android_fill_plasma : apex_system is null");

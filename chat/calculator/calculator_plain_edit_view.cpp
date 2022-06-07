@@ -51,55 +51,55 @@ namespace calculator
 
             string strSource;
 
-            if(str::ends_eat_ci(strExp,"FPS"))
+            if(::str().ends_eat_ci(strExp,"FPS"))
             {
                strSource = "Hz";
             }
-            else if(str::ends_eat_ci(strExp,"Frames Per Second"))
+            else if(::str().ends_eat_ci(strExp,"Frames Per Second"))
             {
                strSource = "Hz";
             }
-            else if(str::ends_eat_ci(strExp,"SPF"))
+            else if(::str().ends_eat_ci(strExp,"SPF"))
             {
                strSource = "s";
             }
-            else if(str::ends_eat_ci(strExp,"Seconds per frame"))
+            else if(::str().ends_eat_ci(strExp,"Seconds per frame"))
             {
                strSource = "s";
             }
-            else if(str::ends_eat_ci(strExp,"Hz"))
+            else if(::str().ends_eat_ci(strExp,"Hz"))
             {
                strSource = "Hz";
             }
-            else if(str::ends_eat_ci(strExp,"minute"))
+            else if(::str().ends_eat_ci(strExp,"minute"))
             {
                strSource = "minimum";
             }
-            else if(str::ends_eat_ci(strExp,"days"))
+            else if(::str().ends_eat_ci(strExp,"days"))
             {
                strSource = "day";
             }
-            else if(str::ends_eat_ci(strExp,"minutes"))
+            else if(::str().ends_eat_ci(strExp,"minutes"))
             {
                strSource = "minimum";
             }
-            else if(str::ends_eat_ci(strExp,"hours"))
+            else if(::str().ends_eat_ci(strExp,"hours"))
             {
                strSource = "hour";
             }
-            else if(str::ends_eat_ci(strExp,"hour"))
+            else if(::str().ends_eat_ci(strExp,"hour"))
             {
                strSource = "hour";
             }
-            else if(str::ends_eat_ci(strExp,"day"))
+            else if(::str().ends_eat_ci(strExp,"day"))
             {
                strSource = "day";
             }
-            else if(str::ends_eat_ci(strExp,"ms"))
+            else if(::str().ends_eat_ci(strExp,"ms"))
             {
                strSource = "ms";
             }
-            else if(str::ends_eat_ci(strExp,"s"))
+            else if(::str().ends_eat_ci(strExp,"s"))
             {
                strSource = "s";
             }
@@ -109,27 +109,27 @@ namespace calculator
             }
             string strFormat(m_strFormat);
 
-            if(str::ends_eat_ci(strFormat,"FPS"))
+            if(::str().ends_eat_ci(strFormat,"FPS"))
             {
                strFormat = "Hz";
             }
-            else if(str::ends_eat_ci(strFormat,"Frames Per Second"))
+            else if(::str().ends_eat_ci(strFormat,"Frames Per Second"))
             {
                strFormat = "Hz";
             }
-            else if(str::ends_eat_ci(strFormat,"SPF"))
+            else if(::str().ends_eat_ci(strFormat,"SPF"))
             {
                strFormat = "s";
             }
-            else if(str::ends_eat_ci(strFormat,"Seconds per frame"))
+            else if(::str().ends_eat_ci(strFormat,"Seconds per frame"))
             {
                strFormat = "s";
             }
-            else if(str::ends_eat_ci(strFormat,"Hz"))
+            else if(::str().ends_eat_ci(strFormat,"Hz"))
             {
                strFormat = "Hz";
             }
-            else if(str::ends_eat_ci(strFormat,"s"))
+            else if(::str().ends_eat_ci(strFormat,"s"))
             {
                strFormat = "s";
             }

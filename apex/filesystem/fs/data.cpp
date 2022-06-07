@@ -159,7 +159,7 @@ namespace fs
    //   for(i32 i = 0; i < stra.get_size(); i++)
    //   {
    //      str += stra[i];
-   //      if(i != 0 || !::str::ends(str, "//"))
+   //      if(i != 0 || !::str().ends(str, "//"))
    //      {
    //         str += "/";
    //      }
@@ -180,7 +180,7 @@ namespace fs
    //      if(straParam[i].is_empty())
    //      {
    //         straParam.erase_at(i);
-   //         if(i == 1 && ::str::ends(straParam[0], ":"))
+   //         if(i == 1 && ::str().ends(straParam[0], ":"))
    //         {
    //            straParam[0] = straParam[0] + "//";
    //         }
@@ -260,7 +260,7 @@ namespace fs
    bool data::is_link(const ::file::path & psz)
    {
 
-      return ::str::ends_ci(psz,".lnk");
+      return ::str().ends_ci(psz,".lnk");
 
    }
 

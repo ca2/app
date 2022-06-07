@@ -47,7 +47,7 @@ string_array get_c_args_from_string(const char * psz)
    while (psz < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str().consume_spaces(psz, 0, pszEnd);
 
       if (psz >= pszEnd)
       {
@@ -58,13 +58,13 @@ string_array get_c_args_from_string(const char * psz)
       if (*psz == '\"')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str().consume_quoted_value(psz, pszEnd);
 
       }
       else if (*psz == '\'')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str().consume_quoted_value(psz, pszEnd);
 
       }
       else
@@ -72,10 +72,10 @@ string_array get_c_args_from_string(const char * psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch::is_whitespace(psz))
+         while (!::str().ch::is_whitespace(psz))
          {
 
-            psz = str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
 
             if (psz >= pszEnd)
             {
@@ -87,13 +87,13 @@ string_array get_c_args_from_string(const char * psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
 
@@ -169,7 +169,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
    while (psz < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str().consume_spaces(psz, 0, pszEnd);
 
       if (psz >= pszEnd)
       {
@@ -180,13 +180,13 @@ string_array no_escape_get_c_args_from_string(const char * psz)
       if (*psz == '\"')
       {
 
-         str = ::str::no_escape_consume_quoted_value(psz, pszEnd);
+         str = ::str().no_escape_consume_quoted_value(psz, pszEnd);
 
       }
       else if (*psz == '\'')
       {
 
-         str = ::str::no_escape_consume_quoted_value(psz, pszEnd);
+         str = ::str().no_escape_consume_quoted_value(psz, pszEnd);
 
       }
       else
@@ -196,10 +196,10 @@ string_array no_escape_get_c_args_from_string(const char * psz)
 
          char chQuote = '\0';
 
-         while (!::str::ch::is_whitespace(psz))
+         while (!::str().ch::is_whitespace(psz))
          {
 
-            psz = str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
 
             if (psz >= pszEnd)
             {
@@ -226,7 +226,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str().no_escape_consume_quoted_value(psz, pszEnd);
 
                   throw ::exception(error_parsing, "Quote character not expected here");
 
@@ -251,13 +251,13 @@ string_array no_escape_get_c_args_from_string(const char * psz)
                else
                {
 
-                  //::str::no_escape_consume_quoted_value(psz, pszEnd);
+                  //::str().no_escape_consume_quoted_value(psz, pszEnd);
 
                   throw ::exception(error_parsing, "Quote character not expected here");
 
                }
 
-               ////::str::no_escape_consume_quoted_value(psz, pszEnd);
+               ////::str().no_escape_consume_quoted_value(psz, pszEnd);
 
                //throw ::exception(error_parsing, "Quote character not expected here");
 
@@ -332,7 +332,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
    while(*psz != '\0')
    {
 
-      strChar = ::str::get_utf8_char(psz);
+      strChar = ::str().get_utf8_char(psz);
 
       if(strChar.is_empty())
       {
@@ -349,7 +349,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
          while(*psz != '\0')
          {
 
-            strChar = ::str::get_utf8_char(psz);
+            strChar = ::str().get_utf8_char(psz);
 
             if(strChar.is_empty())
             {
@@ -370,7 +370,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
             if(strChar == "\\")
             {
 
-               strChar = ::str::get_utf8_char(psz);
+               strChar = ::str().get_utf8_char(psz);
 
                if(strChar.is_empty())
                {
@@ -420,7 +420,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
       else if(strChar == "\\")
       {
 
-         strChar = ::str::get_utf8_char(psz);
+         strChar = ::str().get_utf8_char(psz);
 
          if(strChar.is_empty())
          {

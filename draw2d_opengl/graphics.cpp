@@ -4575,7 +4575,7 @@ namespace draw2d_opengl
 
       //   m_pgraphics->SetTransform(pmNew);
 
-      //   m_pgraphics->DrawString(::str::international::utf8_to_unicode(str),-1,gl2d_font(),rectangle_f32,&format,gl2d_brush());
+      //   m_pgraphics->DrawString(utf8_to_unicode(str),-1,gl2d_font(),rectangle_f32,&format,gl2d_brush());
       //}
       //catch(...)
       //{
@@ -4598,7 +4598,7 @@ namespace draw2d_opengl
       // these flags would modify the string
       //ASSERT((nFormat & (DT_END_ELLIPSIS | DT_MODIFYSTRING)) != (DT_END_ELLIPSIS | DT_MODIFYSTRING));
       //ASSERT((nFormat & (DT_PATH_ELLIPSIS | DT_MODIFYSTRING)) != (DT_PATH_ELLIPSIS | DT_MODIFYSTRING));
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
+      //wstring wstr = utf8_to_unicode(str);
       //return ::DrawTextExW(m_hdc,const_cast<wchar_t *>((const wchar_t *)wstr),(i32)wcslen(wstr),(RECTANGLE_I32 *) &rectangleParam,nFormat,lpDTParams);
       
       return false;
@@ -4633,7 +4633,7 @@ namespace draw2d_opengl
 
       return size_i32(0, 0);
 
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = utf8_to_unicode(lpszString, nCount);
 
       strsize iRange = 0;
       strsize i = 0;
@@ -4641,10 +4641,10 @@ namespace draw2d_opengl
       const char * psz = lpszString;
       while(i < iIndex)
       {
-         iLen = ::str::get_utf8_char(psz).length();
+         iLen = ::str().get_utf8_char(psz).length();
          iRange++;
          i += iLen;
-         psz = ::str::utf8_inc(psz);
+         psz = ::str().utf8_inc(psz);
          if(psz == nullptr)
             break;
          if(*psz == '\0')
@@ -4695,7 +4695,7 @@ namespace draw2d_opengl
       // ASSERT(m_hdc != nullptr);
       ::size_i32 size;
       //string str(lpszString, nCount);
-      //wstring wstr = ::str::international::utf8_to_unicode(str);
+      //wstring wstr = utf8_to_unicode(str);
       //VERIFY(::GetTextExtentPoint32W(m_hdc, wstr, (i32)wstr.get_length(), &size));
       return size;
 
@@ -4709,7 +4709,7 @@ namespace draw2d_opengl
 
       ::size_i32 size;
 
-      wstring wstr = ::str::international::utf8_to_unicode(str);
+      wstring wstr = utf8_to_unicode(str);
 
       //::GetTextExtentPoint32W(m_hdc, wstr, (i32)wstr.get_length(), &size);
 
@@ -4729,7 +4729,7 @@ namespace draw2d_opengl
 
       ::size_i32 s;
 
-      wstring wstr = ::str::international::utf8_to_unicode(string(&lpszString[iIndex], nCount));
+      wstring wstr = utf8_to_unicode(string(&lpszString[iIndex], nCount));
 
       //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (i32)wstr.get_length(), &s))
 //         return false;
@@ -4814,7 +4814,7 @@ namespace draw2d_opengl
 
       ::size_i32 s;
 
-      wstring wstr = ::str::international::utf8_to_unicode(lpszString, nCount);
+      wstring wstr = utf8_to_unicode(lpszString, nCount);
 
       //if (!::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (i32)wstr.get_length(), &s))
         // return false;
@@ -4839,7 +4839,7 @@ namespace draw2d_opengl
 
       ::size_i32 s;
 
-      wstring wstr = ::str::international::utf8_to_unicode(str);
+      wstring wstr = utf8_to_unicode(str);
 
       //if (::GetTextExtentPoint32W(pfont->m_hdcFont, wstr, (i32)wstr.get_length(), &s))
         // return false;

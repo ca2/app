@@ -245,7 +245,7 @@ namespace dynamic_source
       forallref(listing)
       {
 
-         if(::str::begins_ci(item.title(),"net-"))
+         if(::str().begins_ci(item.title(),"net-"))
          {
 
             auto pwatcher = __new(clear_include_matches_file_watcher(this));
@@ -555,7 +555,7 @@ namespace dynamic_source
    ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strNameParam)
    {
 
-      string strName = ::str::get_word(strNameParam, "?");
+      string strName = ::str().get_word(strNameParam, "?");
 
       if(strName.is_empty())
       {
@@ -1648,7 +1648,7 @@ namespace dynamic_source
 #ifdef WINDOWS
       return ::file::path("C:\\netnode")/ m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
 #else
-      ::str::begins_eat(strPath,".");
+      ::str().begins_eat(strPath,".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
       return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage /  "x86" / "lib" + strPath;
 #endif

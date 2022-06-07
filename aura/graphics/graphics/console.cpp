@@ -773,7 +773,7 @@ namespace graphics
 
             string str;
 
-            ::str::international::multibyte_to_utf8(437, str, string(ch));
+            ::str().international::multibyte_to_utf8(437, str, string(ch));
 
             //str = ch;
 

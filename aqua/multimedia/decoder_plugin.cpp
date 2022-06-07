@@ -84,7 +84,7 @@ namespace multimedia
 //
 //      string strTitle = ::file::path(pszTitle).title();
 //
-//      ::str::begins_eat_ci(strTitle, "lib");
+//      ::str().begins_eat_ci(strTitle, "lib");
 //
 //      string strFunction = strTitle + "_" + m_strNewDecoder;
 //

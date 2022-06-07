@@ -33,8 +33,8 @@ namespace ios
 //         string stra(lpszFilPathA);
 //         string wstrb(lpszFilPathB);
 //
-//         //   ::str::international::ACPToUnicode(stra, lpszFilPathA);
-//         //   ::str::international::ACPToUnicode(wstrb, lpszFilPathB);
+//         //   ::str().international::ACPToUnicode(stra, lpszFilPathA);
+//         //   ::str().international::ACPToUnicode(wstrb, lpszFilPathB);
 //         if(stra == wstrb)
 //            return true;
 //
@@ -157,7 +157,7 @@ namespace ios
 //
 //         WIN32_FILE_ATTRIBUTE_DATA data;
 //
-//         if(!GetFileAttributesExW(::str::international::utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
+//         if(!GetFileAttributesExW(utf8_to_unicode(pszPath), GetFileExInfoStandard, &data))
 //         {
 //            varRet.set_type(::e_type_null);
 //         }
@@ -285,7 +285,7 @@ namespace ios
 //         for(i32 i = 0; i < stra.get_size(); i++)
 //         {
 //            string str = stra[i];
-//            if(::str::begins_eat_ci(str, pszPrefix))
+//            if(::str().begins_eat_ci(str, pszPrefix))
 //            {
 //               if(str.get_length() < 2)
 //               {
@@ -341,7 +341,7 @@ namespace ios
 //         else
 //         {
 //            string strFilePath(payloadFile);
-//            if(papp->m_bZipIsDir && (::str::find_ci(".zip:", strFilePath) >= 0))
+//            if(papp->m_bZipIsDir && (::str().find_ci(".zip:", strFilePath) >= 0))
 //            {
 //               ::memory_file memfile(papp, &storage);
 //               zip::InFile infile(this);
@@ -350,16 +350,16 @@ namespace ios
 //               if(!infile.dump(&memfile))
 //                  return "";
 //            }
-//            else if(::str::begins_eat_ci(strFilePath, "file:///"))
+//            else if(::str().begins_eat_ci(strFilePath, "file:///"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
-//            else if(::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
+//            else if(::str().begins_eat_ci(strFilePath, "file:\\\\\\"))
 //            {
 //               as_memory(strFilePath, storage, papp);
 //            }
-//            else if(::str::begins_ci(strFilePath, "http://")
-//                    || ::str::begins_ci(strFilePath, "https://"))
+//            else if(::str().begins_ci(strFilePath, "http://")
+//                    || ::str().begins_ci(strFilePath, "https://"))
 //            {
 //
 //               if(varQuery.has_property("in_headers"))
@@ -411,7 +411,7 @@ namespace ios
 //            && storage.get_data()[0] == 255
 //            && storage.get_data()[1] == 60)
 //         {
-//            ::str::international::unicode_to_utf8(strResult, (const unichar *) &storage.get_data()[2], (i32)(storage.get_size() - 2));
+//            unicode_to_utf8(strResult, (const unichar *) &storage.get_data()[2], (i32)(storage.get_size() - 2));
 //         }
 //         else if(storage.get_size() >= 3
 //                 && storage.get_data()[0] == 0xef
@@ -449,7 +449,7 @@ namespace ios
 //
 //            strPath.trim("\"'");
 //
-//            if((::str::begins(strPath, "http://") || ::str::begins(strPath, "https://")))
+//            if((::str().begins(strPath, "http://") || ::str().begins(strPath, "https://")))
 //            {
 //
 //               property_set set;
@@ -607,9 +607,9 @@ namespace ios
 //
 //         string str(path);
 //
-//         while(::str::ends_eat(str, "\\"));
+//         while(::str().ends_eat(str, "\\"));
 //
-//         while(::str::ends_eat(str, "/"));
+//         while(::str().ends_eat(str, "/"));
 //
 //         strsize iPos;
 //
@@ -686,7 +686,7 @@ namespace ios
 //            if(exists(pszNew, papp))
 //               throw ::exception(::exception("Failed to copy file"));
 //         }
-//         if(pcontext->m_papexcontext->dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
+//         if(pcontext->m_papexcontext->dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(psz, ".zip"))))
 //         {
 //            string_array straPath;
 //            pcontext->m_papexcontext->dir().rls(papp, psz, &straPath);
@@ -694,7 +694,7 @@ namespace ios
 //            string strSrc;
 //            string strDirSrc(psz);
 //            string strDirDst(pszNew);
-//            if(papp->m_bZipIsDir && (::str::ends(strDirSrc, ".zip")))
+//            if(papp->m_bZipIsDir && (::str().ends(strDirSrc, ".zip")))
 //            {
 //               strDirSrc += ":";
 //            }
@@ -702,11 +702,11 @@ namespace ios
 //            {
 //               strSrc = straPath[i];
 //               strDst = strSrc;
-//               ::str::begins_eat_ci(strDst, strDirSrc);
+//               ::str().begins_eat_ci(strDst, strDirSrc);
 //               strDst = pcontext->m_papexcontext->dir().path(strDirDst, strDst);
 //               if(pcontext->m_papexcontext->dir().is(strSrc, papp))
 //               {
-//                  if((eextract == extract_first || eextract == extract_none) && (::str::ends_ci(psz, ".zip")))
+//                  if((eextract == extract_first || eextract == extract_none) && (::str().ends_ci(psz, ".zip")))
 //                  {
 //                  }
 //                  else
@@ -819,8 +819,8 @@ namespace ios
 //      {
 //#ifdef WINDOWS_DESKTOP
 //         if(!::MoveFileW(
-//                         ::str::international::utf8_to_unicode(psz),
-//                         ::str::international::utf8_to_unicode(pszNew)))
+//                         utf8_to_unicode(psz),
+//                         utf8_to_unicode(pszNew)))
 //         {
 //            u32 dwError = ::get_last_error();
 //            string strError;
@@ -879,7 +879,7 @@ namespace ios
 //      {
 //#ifdef WINDOWS
 //         if(!::DeleteFileW(
-//                           ::str::international::utf8_to_unicode(psz)))
+//                           utf8_to_unicode(psz)))
 //         {
 //            u32 dwError = ::get_last_error();
 //            if(dwError == 2) // the file does not exist, so delete "failed"
@@ -945,11 +945,11 @@ namespace ios
 //      bool file_system::exists(const ::string & pszPath, ::aura::application *  papp)
 //      {
 //
-//         if(::str::begins_ci_iws(pszPath, "uifs://"))
+//         if(::str().begins_ci_iws(pszPath, "uifs://"))
 //         {
 //            return AppUser(pobject).m_pifs->m_psystem->m_pacmefile->exists(pszPath);
 //         }
-//         else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
+//         else if(::str().begins_ci_iws(pszPath, "http://") || ::str().begins_ci_iws(pszPath, "https://"))
 //         {
 //
 //            property_set set;
@@ -961,7 +961,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str::find_ci(".zip:", pszPath);
+//            strsize iFind = ::str().find_ci(".zip:", pszPath);
 //
 //            zip::Util ziputil;
 //
@@ -978,7 +978,7 @@ namespace ios
 //
 //         return m_psystem->m_pacmefile->exists(pszPath);
 //
-//         //return ::windows_get_file_attributes(::str::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+//         //return ::windows_get_file_attributes(utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 //
 //#else
 //
@@ -997,13 +997,13 @@ namespace ios
 //      bool file_system::exists(const ::string & strPath, ::aura::application *  papp)
 //      {
 //
-//         if(::str::begins_ci_iws(strPath, "uifs://"))
+//         if(::str().begins_ci_iws(strPath, "uifs://"))
 //         {
 //            return AppUser(pobject).m_pifs->m_psystem->m_pacmefile->exists(strPath);
 //         }
 //
-//         if(::str::begins_ci_iws(strPath, "http://")
-//            || ::str::begins_ci_iws(strPath, "https://"))
+//         if(::str().begins_ci_iws(strPath, "http://")
+//            || ::str().begins_ci_iws(strPath, "https://"))
 //         {
 //
 //            property_set set;
@@ -1016,7 +1016,7 @@ namespace ios
 //         if(papp->m_bZipIsDir)
 //         {
 //
-//            strsize iFind = ::str::find_ci(".zip:", strPath);
+//            strsize iFind = ::str().find_ci(".zip:", strPath);
 //
 //            zip::Util ziputil;
 //
@@ -1043,7 +1043,7 @@ namespace ios
 //         // return true;
 //
 //         //return App(papp).m_spfsdata->m_psystem->m_pacmefile->exists(strPath);
-//         //return ::windows_get_file_attributes(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+//         //return ::windows_get_file_attributes(utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 //
 //#else
 //
@@ -1127,8 +1127,8 @@ namespace ios
 //            {
 //#ifdef WINDOWS
 //               //               ::MoveFileW(
-//               //                ::str::international::utf8_to_unicode(pcontext->m_papexcontext->dir().path(pszContext, strOld)),
-//               //              ::str::international::utf8_to_unicode(pcontext->m_papexcontext->dir().path(pszContext, strNew)));
+//               //                utf8_to_unicode(pcontext->m_papexcontext->dir().path(pszContext, strOld)),
+//               //              utf8_to_unicode(pcontext->m_papexcontext->dir().path(pszContext, strNew)));
 //               move(pcontext->m_papexcontext->dir().path(pszContext, strNew), pcontext->m_papexcontext->dir().path(pszContext, strOld));
 //#else
 //               ::rename(
@@ -1144,7 +1144,7 @@ namespace ios
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         u32 dwAttrib = windows_get_file_attributes(::str::international::utf8_to_unicode(psz));
+//         u32 dwAttrib = windows_get_file_attributes(utf8_to_unicode(psz));
 //         if(dwAttrib & FILE_ATTRIBUTE_READONLY)
 //            return true;
 //         return false;
@@ -1171,7 +1171,7 @@ namespace ios
 //
 //         string strTempDir = get_sys_temp_path();
 //
-//         if(!::str::ends(strTempDir, "\\") && !::str::ends(strTempDir, "/"))
+//         if(!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
 //         {
 //
 //            strTempDir += "\\";
@@ -1241,7 +1241,7 @@ namespace ios
 //         strsize iEnd = strFile.reverse_find('.');
 //         if(iEnd < 0)
 //            iEnd = strFile.get_length();
-//         strFile = strFile.Left(iEnd) + ::str::has_char(pszExtension, ".");
+//         strFile = strFile.Left(iEnd) + ::str().has_char(pszExtension, ".");
 //      }
 
       file_pointer file_system::get_file(::payload payloadFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp)

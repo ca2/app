@@ -69,7 +69,7 @@ namespace hotplugin
 
       bool bStatic = false;
 
-      if (::str::begins_eat(str, "***"))
+      if (::str().begins_eat(str, "***"))
       {
 
          bStatic = true;

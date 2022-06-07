@@ -115,7 +115,7 @@ namespace xml
 
                }
 
-               ::str::utf8_char utf8char(l);
+               ::str().utf8_char utf8char(l);
 
                for(char i = 0; i < utf8char.m_chLen; i++)
                {

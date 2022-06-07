@@ -84,7 +84,7 @@ namespace ios
 
       i32 iImage = 0x80000000;
 
-      if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
+      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
@@ -106,7 +106,7 @@ namespace ios
          return iImage;
 
       }
-      else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
+      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
@@ -128,7 +128,7 @@ namespace ios
          return iImage;
 
       }
-      else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
+      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
@@ -151,10 +151,10 @@ namespace ios
 
       }
 
-      if (::str::ends_ci(imagekey.m_strPath, ".aura"))
+      if (::str().ends_ci(imagekey.m_strPath, ".aura"))
       {
          string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
-         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
@@ -182,8 +182,8 @@ namespace ios
       }
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = ::str::find_ci("://", imagekey.m_strPath);
-      strsize iFind2 = ::str::find_ci(":", imagekey.m_strPath);
+      strsize iFind = ::str().find_ci("://", imagekey.m_strPath);
+      strsize iFind2 = ::str().find_ci(":", imagekey.m_strPath);
       if (iFind >= 0 || iFind2 >= 2)
       {
          string strProtocol = string(imagekey.m_strPath).Left(maximum(iFind, iFind2));
@@ -217,7 +217,7 @@ namespace ios
 
       string strExtension;
 
-      if (::str::ends_ci(imagekey.m_strPath, ".sln"))
+      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
       {
          output_debug_string("test");
       }
@@ -385,7 +385,7 @@ namespace ios
 ////         string strPathEx(strFilePath);
 ////         string strExtra;
 ////
-////         ::str::international::unicode_to_utf8(strExtra, lpcszExtra);
+////         unicode_to_utf8(strExtra, lpcszExtra);
 ////
 ////         if (strExtra.get_length() > 0)
 ////         {
@@ -444,7 +444,7 @@ namespace ios
 ////
 ////                  imagekey.set_path(strFilePath);
 ////
-////                  if (::str::ends_ci(strFilePath, ".lnk"))
+////                  if (::str().ends_ci(strFilePath, ".lnk"))
 ////                  {
 ////
 ////                     string strTarget;
@@ -463,7 +463,7 @@ namespace ios
 ////                           index i = m_straThemeableIconName.predicate_find_first(
 ////                              [=](auto & str)
 ////                           {
-////                              return ::str::ends_ci(imagekey.m_strPath, str);
+////                              return ::str().ends_ci(imagekey.m_strPath, str);
 ////                           }
 ////                           );
 ////
@@ -472,7 +472,7 @@ namespace ios
 ////
 ////                              string str = m_straThemeableIconName[i];
 ////
-////                              if (::str::ends_ci(imagekey.m_strPath, str))
+////                              if (::str().ends_ci(imagekey.m_strPath, str))
 ////                              {
 ////
 ////                                 strExpandEnv = imagekey.m_strPath;
@@ -590,7 +590,7 @@ namespace ios
 ////            if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////            {
 ////
-////               wstring wstr = ::str::international::utf8_to_unicode(strTarget);
+////               wstring wstr = utf8_to_unicode(strTarget);
 ////
 ////               imagekey.set_path(strTarget);
 ////
@@ -791,7 +791,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 ////                        &hicon16,
 ////                        1);
 ////
-////                     if (hicon48 == nullptr && ::str::ends_ci(imagekey.m_strPath, ".ico"))
+////                     if (hicon48 == nullptr && ::str().ends_ci(imagekey.m_strPath, ".ico"))
 ////                     {
 ////
 ////                        hicon48 = (HICON)LoadImage(nullptr, imagekey.m_strPath, IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
@@ -1042,7 +1042,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //   string strPathEx(strFilePath);
    //   string strExtra;
 
-   //   ::str::international::unicode_to_utf8(strExtra, lpcszExtra);
+   //   unicode_to_utf8(strExtra, lpcszExtra);
 
    //   if (strExtra.get_length() > 0)
    //   {
@@ -1091,7 +1091,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
    //         }
    //      }
    //   }
-   //   if (pcontext->m_papexcontext->dir().is(::str::international::unicode_to_utf8(szFilePath)))
+   //   if (pcontext->m_papexcontext->dir().is(unicode_to_utf8(szFilePath)))
    //   {
    //      if (imagekey.m_iIcon == 0x80000000)
    //      {
@@ -1309,7 +1309,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 //   e_folder ios::get_folder_type(::object * pobject, const ::string & pcsz)
 //   {
 //
-//      return get_folder_type(papp, ::str::international::utf8_to_unicode(pcsz));
+//      return get_folder_type(papp, utf8_to_unicode(pcsz));
 //
 //   }
 
@@ -1319,7 +1319,7 @@ pacmedirectory->config() / "ios/app_theme" / m_strShellThemePrefix + strExtensio
 //
 //      string strPath;
 //
-//      ::str::international::unicode_to_utf8(strPath, lpcszPath);
+//      unicode_to_utf8(strPath, lpcszPath);
 //
 //      if (         auto psystem = m_psystem;
 
@@ -1440,7 +1440,7 @@ pacmedirectory->is(strPath))
 //
 //      i32 iImage = 0x80000000;
 //
-//      if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
+//      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
 //      {
 //
 //         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
@@ -1462,7 +1462,7 @@ pacmedirectory->is(strPath))
 //         return iImage;
 //
 //      }
-//      else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
+//      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
 //      {
 //
 //         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
@@ -1484,7 +1484,7 @@ pacmedirectory->is(strPath))
 //         return iImage;
 //
 //      }
-//      else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
+//      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
 //      {
 //
 //         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
@@ -1511,10 +1511,10 @@ pacmedirectory->is(strPath))
 //
 //
 //
-//      if (::str::ends_ci(imagekey.m_strPath, ".aura"))
+//      if (::str().ends_ci(imagekey.m_strPath, ".aura"))
 //      {
 //         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
-//         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+//         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
 //         {
 //            str.trim();
 //            HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
@@ -1577,7 +1577,7 @@ pacmedirectory->is(strPath))
 //
 //      string strExtension;
 //
-//      if (::str::ends_ci(imagekey.m_strPath, ".sln"))
+//      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
 //      {
 //         output_debug_string("test");
 //      }

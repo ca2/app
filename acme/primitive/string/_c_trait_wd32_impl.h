@@ -591,3 +591,16 @@ inline strsize __wd32cspn(const wd32char * psz1, const wd32char * psz2)
 
 
 
+
+
+
+inline void make_upper(wd32char * psz)
+{
+
+   while (*psz)
+   {
+      *psz = upper_char(*psz);
+      psz++;
+   }
+
+}

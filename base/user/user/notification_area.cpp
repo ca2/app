@@ -133,7 +133,7 @@ Contact : nish@voidnish.com
 //         else
 //            wcscpy(sTip,L"[Hidden icon]");
 //
-//         info.sTip = ::str::international::unicode_to_utf8(sTip);
+//         info.sTip = unicode_to_utf8(sTip);
 //
 //         info.m_oswindow = tray.m_oswindow;
 //         info.uCallbackMessage = tray.uCallbackMessage;

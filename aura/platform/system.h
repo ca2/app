@@ -233,7 +233,7 @@ namespace aura
 
 
       //::xml::department                            &  xml();
-      //class ::str::base64                          &  base64();
+      //class ::base64                          &  base64();
       //class ::aura::log                            &  log();
       //class ::machine_event_central                &  machine_event_central();
       //inline ::parallelization::threading           *  threading() { return m_pthreading; }

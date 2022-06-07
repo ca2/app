@@ -39,13 +39,13 @@
 //
 //            string str = argument.get_string();
 //
-//            if (str::begins_eat_ci(str, "class="))
+//            if (::str().begins_eat_ci(str, "class="))
 //            {
 //
 //               m_strClass = str;
 //
 //            }
-//            else if (str::begins_eat_ci(str, "style="))
+//            else if (::str().begins_eat_ci(str, "style="))
 //            {
 //
 //               m_strStyle = str;

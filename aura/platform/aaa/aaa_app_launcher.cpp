@@ -63,7 +63,7 @@ namespace aura
 #if !defined(MACOS)
 
 #ifdef WINDOWS_DESKTOP
-      if (::str::ends_ci(get_executable_path(), "\\app.exe"))
+      if (::str().ends_ci(get_executable_path(), "\\app.exe"))
 #endif
       {
 

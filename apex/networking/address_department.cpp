@@ -225,7 +225,7 @@ namespace net
       {
          return false;
       }
-      ::str::parse pa(str, ":.");
+      ::str().parse pa(str, ":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -276,7 +276,7 @@ namespace net
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::str::parse pa((const char*)host, ".");
+         ::str().parse pa((const char*)host, ".");
          union
          {
             struct
@@ -649,7 +649,7 @@ namespace net
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::str::parse pa((const char *)host, ".");
+            ::str().parse pa((const char *)host, ".");
             union {
                struct {
                   uchar b1;
@@ -1192,8 +1192,8 @@ namespace net
    i32 address_department::service_port(const string& str, i32 flags)
    {
 
-      if (::str::is_simple_natural(str))
-         return ::str::to_i32(str);
+      if (::str().is_simple_natural(str))
+         return ::str().to_i32(str);
 
       if (str.compare_ci("http"))
       {

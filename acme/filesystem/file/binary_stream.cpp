@@ -378,7 +378,7 @@ bool binary_stream::is_writer_set()
 void binary_stream::write(const ansichar * psz)
 {
 
-   auto len = ::str::string_safe_length(psz);
+   auto len = ::str().string_safe_length(psz);
 
    write_buffer_length(len);
 
@@ -1053,7 +1053,7 @@ void binary_stream::read(string & str)
 
       auto psz = str.get_string_buffer((strsize) u);
 
-      memsize s = str::char_length_to_byte_length(psz, (strsize)u);
+      memsize s = ::str().char_length_to_byte_length(psz, (strsize)u);
 
       read(psz, s);
 

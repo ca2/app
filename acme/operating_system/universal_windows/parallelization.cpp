@@ -15,7 +15,7 @@
 //#pragma push_macro("::acme::get_system()")
 //#undef ::acme::get_system()
 //using namespace ::winrt::Windows::Foundation;
-//using namespace ::winrt::Windows::::acme::get_system()::Threading;
+//using namespace ::winrt::Windows::acme::get_system()::Threading;
 //#pragma pop_macro("::acme::get_system()")
 
 

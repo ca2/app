@@ -68,7 +68,7 @@ bool dialog::show(const ::string & pszMatter)
 
    string strMatter(pszMatter);
 
-   if(!::str::begins_ci(strMatter, "matter://"))
+   if(!::str().begins_ci(strMatter, "matter://"))
    {
 
       strMatter = "matter://" + strMatter;

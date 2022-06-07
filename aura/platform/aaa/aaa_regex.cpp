@@ -25,7 +25,7 @@
 //
 //   stra.erase_all();
 //
-//   ::str::range_array rangeaMatches;
+//   ::strsize_range_array rangeaMatches;
 //
 //   matches(rangeaMatches, str);
 //

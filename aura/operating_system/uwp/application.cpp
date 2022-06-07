@@ -43,7 +43,7 @@ namespace aura
    //{
    //   //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
    //   /*
-   //         m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+   //         m_atomApp            = ::GlobalAddAtomW(utf8_to_unicode(m_strAppName));
    //         m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
 
    //   return ::success;

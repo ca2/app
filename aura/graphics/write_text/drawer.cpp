@@ -209,7 +209,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = ::str::ch::is_whitespace(pszEnd);
+         bool bWhitespaceNow = ::str().ch::is_whitespace(pszEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {
@@ -226,7 +226,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = ::str::utf8_inc(pszEnd);
+         pszEnd = ::str().utf8_inc(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
 
@@ -324,7 +324,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         pszEnd = ::str::utf8_inc(pszEnd);
+         pszEnd = ::str().utf8_inc(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
 

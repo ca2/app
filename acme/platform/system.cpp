@@ -1159,9 +1159,9 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 
 //   }
 
-//   ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//   ::str().begins_eat_ci(strImplementation, strComponent + "_");
 
-//   ::str::begins_eat_ci(strImplementation, strComponent);
+//   ::str().begins_eat_ci(strImplementation, strComponent);
 
 //   auto psystem = get_system();
 
@@ -1248,9 +1248,9 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 //
 //      string strImplementation(pszImplementation);
 //
-//      ::str::begins_eat_ci(strImplementation, strComponent + "_");
+//      ::str().begins_eat_ci(strImplementation, strComponent + "_");
 //
-//      ::str::begins_eat_ci(strImplementation, strComponent);
+//      ::str().begins_eat_ci(strImplementation, strComponent);
 //
 //   //#ifdef CUBE
 //

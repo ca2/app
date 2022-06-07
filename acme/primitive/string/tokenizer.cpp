@@ -343,7 +343,7 @@ namespace str
       while(psz < pszEnd)
       {
 
-         if(::str::ch::is_whitespace(psz))
+         if(::str().ch::is_whitespace(psz))
          {
 
             if(pszStart != nullptr)
@@ -405,7 +405,7 @@ namespace str
             
          }
 
-         psz = ::str::utf8_inc(psz);
+         psz = ::str().utf8_inc(psz);
 
       }
 

@@ -11,12 +11,12 @@ public:
    string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
    string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
 
-   ::i32 operator *(){return ::str::ch::uni_index(m_psz); }
+   ::i32 operator *(){return ::str().ch::uni_index(m_psz); }
 
    string_iterator & operator ++()
    {
 
-      m_psz = ::str::char_next(m_psz);
+      m_psz = ::str().char_next(m_psz);
 
       return *this;
 
@@ -27,7 +27,7 @@ public:
 
       auto psz = m_psz;
 
-      m_psz = ::str::char_next(m_psz);
+      m_psz = ::str().char_next(m_psz);
 
       return psz;
 
@@ -364,7 +364,7 @@ public:
 
    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->get_length() + i; }
 
-   inline void get_string(CHAR_TYPE* psz) const noexcept { ::str::copy_chars(psz, this->m_pdata, length()); }
+   inline void get_string(CHAR_TYPE* psz) const noexcept { ::str().copy_chars(psz, this->m_pdata, length()); }
 
    inline const CHAR_TYPE* get_string() const noexcept { return this->m_pdata; }
 
@@ -390,7 +390,7 @@ public:
       if (nNewLength == -1)
       {
 
-         nNewLength = ::str::string_safe_length(this->m_pdata);
+         nNewLength = ::str().string_safe_length(this->m_pdata);
 
       }
 
@@ -411,7 +411,7 @@ public:
 
       ASSERT(pOld->m_countReference >= 1);
 
-      auto memsize = ::str::char_length_to_byte_length(this->m_pdata, strsize + 1);
+      auto memsize = ::str().char_length_to_byte_length(this->m_pdata, strsize + 1);
 
       auto pNew = this->create_meta_data(memsize);
 
@@ -966,12 +966,12 @@ public:
 
 
    inline memsize get_storage_size_in_bytes() { return this->metadata()->memsize(); }
-   inline strsize get_storage_length() { return (::strsize) ::str::byte_length_to_char_length(this->m_pdata, this->get_storage_size_in_bytes()); }
+   inline strsize get_storage_length() { return (::strsize) ::str().byte_length_to_char_length(this->m_pdata, this->get_storage_size_in_bytes()); }
 
 
    inline strsize get_length() const { return (::strsize) this->metadata()->m_datasize; }
-   inline memsize get_length_in_bytes() const { return ::str::char_length_to_byte_length(this->m_pdata, (strsize) (this->metadata()->m_datasize)); }
-   inline memsize get_length_in_bytes_with_null_terminator() const { return ::str::char_length_to_byte_length(this->m_pdata, (strsize) (this->metadata()->m_datasize + 1)); }
+   inline memsize get_length_in_bytes() const { return ::str().char_length_to_byte_length(this->m_pdata, (strsize) (this->metadata()->m_datasize)); }
+   inline memsize get_length_in_bytes_with_null_terminator() const { return ::str().char_length_to_byte_length(this->m_pdata, (strsize)(this->metadata()->m_datasize + 1)); }
    inline strsize length() const { return this->get_length(); }
    inline strsize size() const { return this->length(); }
 
@@ -1064,7 +1064,7 @@ public:
 
          auto psz = this->get_string_buffer(n);
 
-         ::str::flood_characters(psz + nOldSize, c, n - nOldSize);
+         ::str().flood_characters(psz + nOldSize, c, n - nOldSize);
 
          this->release_string_buffer(n);
 

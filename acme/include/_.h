@@ -1472,7 +1472,7 @@ namespace core
 
 
 
-#include "acme/primitive/string/_c_impl.h"
+
 
 
 //#include "acme/platform/acme_main_struct.h"
@@ -3835,7 +3835,7 @@ inline bool is_filemanager(const ::atom & atom)
    if(atom.is_text())
    {
 
-      return ::str::begins(atom.m_psz, "file_manager_");
+      return ::str().begins(atom.m_psz, "file_manager_");
 
    }
 
@@ -3867,7 +3867,7 @@ inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
 
    strFileManagerGroup += "_";
 
-   if(::str::begins(atom.m_psz, strFileManagerGroup))
+   if(::str().begins(atom.m_psz, strFileManagerGroup))
    {
 
 
@@ -4500,12 +4500,12 @@ class uncompress;
 //class system_impl;
 
 
-namespace str
-{
-
-   class base64;
-
-} // namespace str
+//namespace str
+//{
+//
+ class base64;
+//
+//} // namespace str
 
 
 namespace acme
@@ -4576,6 +4576,7 @@ class task_tool;
 #include "acme/primitive/collection/_papaya_array2d_impl.h"
 
 
+#include "acme/primitive/string/_c_impl.h"
 
 
 #include "acme/primitive/string/_impl.h"

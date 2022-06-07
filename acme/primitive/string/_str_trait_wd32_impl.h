@@ -1,46 +1,44 @@
 #pragma once
 
 
-namespace str
-{
 
 
    inline  constexpr auto     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(wd32char)); }
    inline  constexpr auto     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(wd32char)); }
 
 
-   inline i32 string_compare(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_cmp(pszA, pszB); }
-   inline i32 string_compare_ci(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_icmp(pszA, pszB); }
-   inline i32  string_n_compare(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_ncmp(pszA, pszB, len); }
-   inline i32  string_n_compare_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_nicmp(pszA, pszB, len); }
-   inline i32 string_collate(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_coll(pszA, pszB); }
-   inline i32 string_collate_ci(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_icoll(pszA, pszB); }
-   inline i32  string_n_collate(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_ncoll(pszA, pszB, len); }
-   inline i32  string_n_collate_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_nicoll(pszA, pszB, len); }
-   inline strsize string_get_length(const wd32char * psz) noexcept { return wd32_len(psz); }
-   inline strsize string_safe_length(const wd32char * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
-   inline void copy_chars(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars(wd32char * pchDest, size_t nDestLen, const wd32char * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars_overlapped(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline i32 str::string_compare(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_cmp(pszA, pszB); }
+   inline i32 str::string_compare_ci(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_icmp(pszA, pszB); }
+   inline i32 str::string_n_compare(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_ncmp(pszA, pszB, len); }
+   inline i32 str::string_n_compare_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_nicmp(pszA, pszB, len); }
+   inline i32 str::string_collate(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_coll(pszA, pszB); }
+   inline i32 str::string_collate_ci(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_icoll(pszA, pszB); }
+   inline i32 str::string_n_collate(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_ncoll(pszA, pszB, len); }
+   inline i32 str::string_n_collate_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept { return wd32_nicoll(pszA, pszB, len); }
+   inline strsize str::string_get_length(const wd32char * psz) noexcept { return wd32_len(psz); }
+   inline strsize str::string_safe_length(const wd32char * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+   inline void str::copy_chars(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars(wd32char * pchDest, size_t nDestLen, const wd32char * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars_overlapped(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
    inline wd32char * string_lowercase(wd32char * psz, strsize size) noexcept { wd32_lwr_s(psz, size); return  psz; }
 
 
 
 
 
-   wd32char * char_next(const wd32char * psz) noexcept
+   wd32char * str::char_next(const wd32char * psz) noexcept
    {
 
       return const_cast<wd32char *>(::uni_inc(psz));
 
    }
 
-   inline bool isalpha(wd32char ch) noexcept { return wd32_char_is_alphabetic(ch); }
-   inline bool isdigit(wd32char ch) noexcept { return wd32_char_is_digit(ch); }
-   inline bool isspace(wd32char ch) noexcept { return wd32_char_is_space(ch); }
+   inline bool str::isalpha(wd32char ch) noexcept { return wd32_char_is_alphabetic(ch); }
+   inline bool str::isdigit(wd32char ch) noexcept { return wd32_char_is_digit(ch); }
+   inline bool  str::isspace(wd32char ch) noexcept { return wd32_char_is_space(ch); }
 
-   inline wd32char tolower(wd32char ch) noexcept { return wd32_char_lowered(ch); }
-   inline wd32char toupper(wd32char ch) noexcept { return wd32_char_uppered(ch); }
+   inline wd32char  str::tolower(wd32char ch) noexcept { return wd32_char_lowered(ch); }
+   inline wd32char  str::toupper(wd32char ch) noexcept { return wd32_char_uppered(ch); }
 
 
    //
@@ -58,7 +56,7 @@ namespace str
    //
 
 
-   const wd32char * string_find_string(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
+   const wd32char * str::string_find_string(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
    {
 
       return wd32_str(pszBlock, pszMatch);
@@ -66,7 +64,7 @@ namespace str
    }
 
 
-   const wd32char * string_find_string_ci(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
+   const wd32char * str::string_find_string_ci(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
    {
 
       return wd32_find_string_case_insensitive(pszBlock, pszMatch);
@@ -74,7 +72,7 @@ namespace str
    }
 
 
-   inline const wd32char * string_find_char(const wd32char * pszBlock, wd32char chMatch) noexcept
+   inline const wd32char * str::string_find_char(const wd32char * pszBlock, wd32char chMatch) noexcept
    {
 
       return wd32_chr(pszBlock, (wd32char)chMatch);
@@ -124,7 +122,7 @@ namespace str
 
 
 
-   inline const wd32char * string_find_string_reverse(const wd32char * psz, const wd32char * pszFind, strsize iStart) noexcept
+   inline const wd32char * str::string_find_string_reverse(const wd32char * psz, const wd32char * pszFind, strsize iStart) noexcept
    {
       strsize iLen = strsize(wd32_len(psz));
       strsize iLenFind = strsize(wd32_len(pszFind));
@@ -143,7 +141,7 @@ namespace str
    }
 
 
-   const wd32char * string_scan_set(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
+   const wd32char * str::string_scan_set(const wd32char * pszBlock, const wd32char * pszMatch) noexcept
    {
 
       if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
@@ -154,7 +152,7 @@ namespace str
    }
 
 
-   strsize string_span_including(const wd32char * pszBlock, const wd32char * pszSet) noexcept
+   strsize  str::string_span_including(const wd32char * pszBlock, const wd32char * pszSet) noexcept
    {
 
       return (strsize)wd32_spn(pszBlock, pszSet);
@@ -163,7 +161,7 @@ namespace str
 
 
 
-   strsize string_span_excluding(const wd32char * pszBlock, const wd32char * pszSet) noexcept
+   strsize  str::string_span_excluding(const wd32char * pszBlock, const wd32char * pszSet) noexcept
    {
 
       return (strsize)wd32_cspn(pszBlock, pszSet);
@@ -184,8 +182,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_upper_case(point);
-   //      point = (wd32char *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_upper_case(point);
+   //      point = (wd32char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -208,8 +206,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_lower_case(point);
-   //      point = (wd32char *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_lower_case(point);
+   //      point = (wd32char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -218,7 +216,7 @@ namespace str
    //#pragma warning (pop)
    //}
    //
-   inline wd32char * string_uppercase(wd32char * psz, strsize size) noexcept
+   inline wd32char * str::string_uppercase(wd32char * psz, strsize size) noexcept
    {
 
       wd32_upr_s(psz, size);
@@ -228,7 +226,7 @@ namespace str
    }
 
 
-   wd32char * string_reverse(wd32char * psz) noexcept
+   wd32char * str::string_reverse(wd32char * psz) noexcept
    {
 
       if (psz == nullptr)
@@ -258,7 +256,7 @@ namespace str
    }
 
 
-   inline strsize get_formatted_length(const wd32char * pszFormat, va_list args) noexcept
+   inline strsize  str::get_formatted_length(const wd32char * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -276,7 +274,7 @@ namespace str
    }
 
 
-   strsize string_format(wd32char * pszBuffer, const wd32char * pszFormat, va_list args) noexcept
+   strsize  str::string_format(wd32char * pszBuffer, const wd32char * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -291,7 +289,8 @@ namespace str
 
    }
 
-   strsize string_format(wd32char * pszBuffer, strsize nlength, const wd32char * pszFormat, va_list args) noexcept
+
+   strsize  str::string_format(wd32char * pszBuffer, strsize nlength, const wd32char * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -435,7 +434,7 @@ namespace str
    //
    //
 
-   inline const wd32char * string_find_char_reverse(const wd32char * psz, wd32char ch, strsize iStart) noexcept
+   inline const wd32char * str::string_find_char_reverse(const wd32char * psz, wd32char ch, strsize iStart) noexcept
    {
 
 
@@ -473,7 +472,7 @@ namespace str
    }
 
 
-   inline void flood_characters(wd32char * pwsz, wd32char wch, strsize len) noexcept
+   inline void  str::flood_characters(wd32char * pwsz, wd32char wch, strsize len) noexcept
    {
 
       while (len > 0)
@@ -488,7 +487,4 @@ namespace str
       }
 
    }
-
-} // namespace str
-
 

@@ -60,7 +60,7 @@ namespace http
 
       if (content_type.get_length() >= 19 && content_type.Mid(0, 19) == "multipart/form-data")
       {
-         ::str::parse pa(content_type,";=");
+         ::str().parse pa(content_type,";=");
          memory tempcmp;
          index tc = 0;
          strsize iBoundaryLength = 0;
@@ -101,7 +101,7 @@ namespace http
                      slask.trim();
                      if(slask.is_empty())
                         break;
-                     ::str::parse pa(slask,";");
+                     ::str().parse pa(slask,";");
                      string h = pa.getword();
                      if(!ansi_compare_ci(h,"Content-type:"))
                      {
@@ -122,7 +122,7 @@ namespace http
                            while(h.has_char())
                            {
 
-                              ::str::parse pa2(h,"=");
+                              ::str().parse pa2(h,"=");
 
                               string name = pa2.getword();
 

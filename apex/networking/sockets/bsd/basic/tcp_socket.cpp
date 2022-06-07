@@ -1946,7 +1946,7 @@ namespace sockets
 
             strCert = keyfile;
 
-            ::str::begins_eat_ci(strCert, "cat://");
+            ::str().begins_eat_ci(strCert, "cat://");
 
          }
 
@@ -2608,7 +2608,7 @@ namespace sockets
 
                string str = data;
 
-               if(::str::begins_eat(str,"*."))
+               if(::str().begins_eat(str,"*."))
                {
 
                   string strCommon = common_name;
@@ -2698,7 +2698,7 @@ namespace sockets
 
                         string str = strDnsName;
 
-                        if (::str::begins_eat(str, "*."))
+                        if (::str().begins_eat(str, "*."))
                         {
 
                            string strCommon = common_name;

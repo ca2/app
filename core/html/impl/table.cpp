@@ -52,17 +52,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_char())
             {
-               m_iBorder         = (float) ::str::to_u32(ptag->get_attr_value("border"));
+               m_iBorder         = (float) ::str().to_u32(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_char())
             {
-               m_iCellSpacing    = (float) ::str::to_u32(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (float) ::str().to_u32(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_char())
             {
-               m_iCellPadding    = (float) ::str::to_u32(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (float) ::str().to_u32(ptag->get_attr_value("cellpadding"));
             }
 
          }
@@ -106,7 +106,7 @@ namespace html
 
          strWidth.trim();
 
-//         if (false && str::ends_eat(strWidth, "%"))
+//         if (false && ::str().ends_eat(strWidth, "%"))
 //         {
 //
 //            strWidth.trim();

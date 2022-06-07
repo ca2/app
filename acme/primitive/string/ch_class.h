@@ -1,49 +1,45 @@
 #pragma once
 
 
-namespace str
+
+/** Character classes store implementation.
+      - ch_class allows to store enumerations of characters in compact
+      form (two-stage bit-field tables).
+      - This class supports logical operations over it's instances,
+      char category -> enumeration conversion.
+      @ingroup unicode
+*/
+class CLASS_DECL_ACME ch_class
 {
+private:
+   bit_array **infoIndex;
+public:
+   ch_class();
+   ch_class(const ch_class &);
+   ~ch_class();
 
-   /** Character classes store implementation.
-       - ch_class allows to store enumerations of characters in compact
-         form (two-stage bit-field tables).
-       - This class supports logical operations over it's instances,
-         char category -> enumeration conversion.
-       @ingroup unicode
-   */
-   class CLASS_DECL_ACME ch_class
-   {
-   private:
-      bit_array **infoIndex;
-   public:
-      ch_class();
-      ch_class(const ch_class &);
-      ~ch_class();
+   static ch_class *createCharClass(const char * ccs, strsize pos, strsize *retPos);
 
-      static ch_class *createCharClass(const char * ccs, strsize pos, strsize *retPos);
+   void add_char(const char *);
+   void clear_char(const char *);
+   void add_range(const char *, const char *);
+   void clear_range(const char *, const char *);
 
-      void add_char(const char *);
-      void clear_char(const char *);
-      void add_range(const char *, const char *);
-      void clear_range(const char *, const char *);
+   void add_category(ECharCategory);
+   void add_category(string);
+   void clear_category(ECharCategory);
+   void clear_category(string);
 
-      void add_category(ECharCategory);
-      void add_category(string);
-      void clear_category(ECharCategory);
-      void clear_category(string);
+   void add_class(const ch_class &);
+   void clear_class(const ch_class &);
+   void intersect_class(const ch_class &);
+   void clear();
+   void fill();
 
-      void add_class(const ch_class &);
-      void clear_class(const ch_class &);
-      void intersect_class(const ch_class &);
-      void clear();
-      void fill();
-
-      bool in_class(const char *pszUtf8Char) const;
+   bool in_class(const char *pszUtf8Char) const;
 
 
-   };
-
-} // namespace str
+};
 
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1

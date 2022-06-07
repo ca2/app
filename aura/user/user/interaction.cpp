@@ -7451,9 +7451,9 @@ namespace user
          while (*psz)
          {
 
-            string strUtf8Character = ::str::get_utf8_char(psz);
+            string strUtf8Character = ::str().get_utf8_char(psz);
 
-            auto iCharacter = ::str::ch::uni_index(strUtf8Character);
+            auto iCharacter = ::str().ch::uni_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -17922,9 +17922,9 @@ namespace user
       while(*psz)
       {
          
-         string strCharacter = ::str::get_utf8_char(psz);
+         string strCharacter = ::str().get_utf8_char(psz);
          
-         int iCharacter = ::str::ch::uni_index(strCharacter);
+         int iCharacter = ::str().ch::uni_index(strCharacter);
          
          if(m_pappearance)
          {
@@ -19015,13 +19015,13 @@ namespace user
 
    //         string str = argument.get_string();
 
-   //         if (str::begins_eat_ci(str, "class="))
+   //         if (::str().begins_eat_ci(str, "class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (str::begins_eat_ci(str, "style="))
+   //         else if (::str().begins_eat_ci(str, "style="))
    //         {
 
    //            m_strStyle = str;

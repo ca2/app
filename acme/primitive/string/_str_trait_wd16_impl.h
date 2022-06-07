@@ -1,34 +1,31 @@
 #pragma once
 
 
-namespace str
-{
+
+   inline  constexpr strsize     str::char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(wd16char)); }
+   inline  constexpr strsize    str::byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(wd16char)); }
 
 
-   inline  constexpr auto     char_length_to_byte_length(const_wd16char_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(wd16char)); }
-   inline  constexpr auto     byte_length_to_char_length(const_wd16char_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(wd16char)); }
-
-
-   inline i32 string_compare(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_cmp(pszA, pszB); }
-   inline i32 string_compare_ci(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_icmp(pszA, pszB); }
-   inline i32  string_n_compare(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_ncmp(pszA, pszB, len); }
-   inline i32  string_n_compare_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_nicmp(pszA, pszB, len); }
-   inline i32 string_collate(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_coll(pszA, pszB); }
-   inline i32 string_collate_ci(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_icoll(pszA, pszB); }
-   inline i32  string_n_collate(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_ncoll(pszA, pszB, len); }
-   inline i32  string_n_collate_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_nicoll(pszA, pszB, len); }
-   inline strsize string_get_length(const wd16char * psz) noexcept { return wd16_len(psz); }
-   inline strsize string_safe_length(const wd16char * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
-   inline void copy_chars(wd16char * pchDest, const wd16char * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars(wd16char * pchDest, size_t nDestLen, const wd16char * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars_overlapped(wd16char * pchDest, const wd16char * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline wd16char * string_lowercase(wd16char * psz, strsize size) noexcept { wd16_lwr_s(psz, size); return  psz; }
+   inline i32 str::string_compare(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_cmp(pszA, pszB); }
+   inline i32 str::string_compare_ci(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_icmp(pszA, pszB); }
+   inline i32 str::string_n_compare(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_ncmp(pszA, pszB, len); }
+   inline i32 str::string_n_compare_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_nicmp(pszA, pszB, len); }
+   inline i32 str::string_collate(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_coll(pszA, pszB); }
+   inline i32 str::string_collate_ci(const wd16char * pszA, const wd16char * pszB) noexcept { return wd16_icoll(pszA, pszB); }
+   inline i32 str::string_n_collate(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_ncoll(pszA, pszB, len); }
+   inline i32 str::string_n_collate_ci(const wd16char * pszA, const wd16char * pszB, strsize len) noexcept { return wd16_nicoll(pszA, pszB, len); }
+   inline strsize str::string_get_length(const wd16char * psz) noexcept { return wd16_len(psz); }
+   inline strsize str::string_safe_length(const wd16char * psz) noexcept { if (::is_null(psz)) return 0; return string_get_length(psz); }
+   inline void str::copy_chars(wd16char * pchDest, const wd16char * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars(wd16char * pchDest, size_t nDestLen, const wd16char * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars_overlapped(wd16char * pchDest, const wd16char * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline wd16char * str::string_lowercase(wd16char * psz, strsize size) noexcept { wd16_lwr_s(psz, size); return  psz; }
 
 
 
 
 
-   wd16char * char_next(const wd16char * psz) noexcept
+   wd16char * str::char_next(const wd16char * psz) noexcept
    {
 
       return const_cast<wd16char *>(::uni_inc(psz));
@@ -36,12 +33,12 @@ namespace str
    }
 
 
-   inline bool isalpha(wd16char ch) noexcept { return wd16_char_is_alphabetic(ch); }
-   inline bool isdigit(wd16char ch) noexcept { return wd16_char_is_digit(ch); }
-   inline bool isspace(wd16char ch) noexcept { return wd16_char_is_space(ch); }
+   inline bool str::isalpha(wd16char ch) noexcept { return wd16_char_is_alphabetic(ch); }
+   inline bool str::isdigit(wd16char ch) noexcept { return wd16_char_is_digit(ch); }
+   inline bool str::isspace(wd16char ch) noexcept { return wd16_char_is_space(ch); }
 
-   inline wd16char tolower(wd16char ch) noexcept { return wd16_char_lowered(ch); }
-   inline wd16char toupper(wd16char ch) noexcept { return wd16_char_uppered(ch); }
+   inline wd16char str::tolower(wd16char ch) noexcept { return wd16_char_lowered(ch); }
+   inline wd16char str::toupper(wd16char ch) noexcept { return wd16_char_uppered(ch); }
 
 
    //
@@ -59,7 +56,7 @@ namespace str
    //
 
 
-   const wd16char * string_find_string(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
+   const wd16char * str::string_find_string(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
    {
 
       return wd16_str(pszBlock, pszMatch);
@@ -67,7 +64,7 @@ namespace str
    }
 
 
-   const wd16char * string_find_string_ci(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
+   const wd16char * str::string_find_string_ci(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
    {
 
       return wd16_find_string_case_insensitive(pszBlock, pszMatch);
@@ -75,7 +72,7 @@ namespace str
    }
 
 
-   inline const wd16char * string_find_char(const wd16char * pszBlock, wd16char chMatch) noexcept
+   inline const wd16char * str::string_find_char(const wd16char * pszBlock, wd16char chMatch) noexcept
    {
 
       return wd16_chr(pszBlock, (wd16char)chMatch);
@@ -125,7 +122,7 @@ namespace str
 
 
 
-   inline const wd16char * string_find_string_reverse(const wd16char * psz, const wd16char * pszFind, strsize iStart) noexcept
+   inline const wd16char * str::string_find_string_reverse(const wd16char * psz, const wd16char * pszFind, strsize iStart) noexcept
    {
       strsize iLen = strsize(wd16_len(psz));
       strsize iLenFind = strsize(wd16_len(pszFind));
@@ -144,7 +141,7 @@ namespace str
    }
 
 
-   const wd16char * string_scan_set(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
+   const wd16char * str::string_scan_set(const wd16char * pszBlock, const wd16char * pszMatch) noexcept
    {
 
       if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
@@ -155,7 +152,7 @@ namespace str
    }
 
 
-   strsize string_span_including(const wd16char * pszBlock, const wd16char * pszSet) noexcept
+   strsize str::string_span_including(const wd16char * pszBlock, const wd16char * pszSet) noexcept
    {
 
       return (strsize)wd16_spn(pszBlock, pszSet);
@@ -164,7 +161,7 @@ namespace str
 
 
 
-   strsize string_span_excluding(const wd16char * pszBlock, const wd16char * pszSet) noexcept
+   strsize str::string_span_excluding(const wd16char * pszBlock, const wd16char * pszSet) noexcept
    {
 
       return (strsize)wd16_cspn(pszBlock, pszSet);
@@ -185,8 +182,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_upper_case(point);
-   //      point = (wd16char *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_upper_case(point);
+   //      point = (wd16char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -209,8 +206,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_lower_case(point);
-   //      point = (wd16char *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_lower_case(point);
+   //      point = (wd16char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -219,7 +216,7 @@ namespace str
    //#pragma warning (pop)
    //}
    //
-   inline wd16char * string_uppercase(wd16char * psz, strsize size) noexcept
+   inline wd16char * str::string_uppercase(wd16char * psz, strsize size) noexcept
    {
 
       wd16_upr_s(psz, size);
@@ -229,7 +226,7 @@ namespace str
    }
 
 
-   wd16char * string_reverse(wd16char * psz) noexcept
+   wd16char * str::string_reverse(wd16char * psz) noexcept
    {
 
       if (psz == nullptr)
@@ -245,7 +242,7 @@ namespace str
 
       wd16char * pDec;
 
-      while ((pDec = (wd16char *) ::str::uni_dec(psz, p)) != nullptr)
+      while ((pDec = (wd16char *) str::uni_dec(psz, p)) != nullptr)
       {
 
          strReverse.append(pDec, pDec - p);
@@ -261,7 +258,7 @@ namespace str
    }
 
 
-   inline strsize get_formatted_length(const wd16char * pszFormat, va_list args) noexcept
+   inline strsize str::get_formatted_length(const wd16char * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -279,7 +276,7 @@ namespace str
    }
 
 
-   strsize string_format(wd16char * pszBuffer, const wd16char * pszFormat, va_list args) noexcept
+   strsize str::string_format(wd16char * pszBuffer, const wd16char * pszFormat, va_list args) noexcept
    {
 
    #ifdef WINDOWS
@@ -307,7 +304,7 @@ namespace str
    }
 
 
-   strsize string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept
+   strsize str::string_format(wd16char * pszBuffer, strsize nlength, const wd16char * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -335,7 +332,7 @@ namespace str
 
 
 
-   inline const wd16char * string_find_char_reverse(const wd16char * psz, wd16char ch, strsize iStart) noexcept
+   inline const wd16char * str::string_find_char_reverse(const wd16char * psz, wd16char ch, strsize iStart) noexcept
    {
 
 
@@ -373,7 +370,7 @@ namespace str
    }
 
 
-   inline void flood_characters(wd16char * pwsz, wd16char wch, strsize len) noexcept
+   inline void str::flood_characters(wd16char * pwsz, wd16char wch, strsize len) noexcept
    {
 
       while (len > 0)
@@ -389,9 +386,4 @@ namespace str
 
    }
 
-} // namespace str
-
-
-inline strsize wd16_to_ansi_char_len(wd16char wch) { return ::str::utf_to_utf_length((char *)nullptr, &wch, 1); }
-inline void wd16_to_ansi_char(char * psz, wd16char wch) { ::str::utf_to_utf(psz, &wch, 1); }
 

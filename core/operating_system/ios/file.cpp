@@ -120,7 +120,7 @@ namespace ios
 
       m_strFileName = path;
       
-      m_wstrFileName = ::str::international::utf8_to_unicode(m_strFileName);
+      m_wstrFileName = utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
       
@@ -226,7 +226,7 @@ namespace ios
           return false;
           }
 
-          m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
+          m_strFileName = unicode_to_utf8(m_wstrFileName);
 
           hFile = ::open(m_strFileName, nOpenFlags);*/
 
@@ -656,7 +656,7 @@ namespace ios
 //      // attempt to fully qualify path first
 //      wstring wstrFullName;
 //      wstring wstrFileName;
-//      wstrFileName = ::str::international::utf8_to_unicode(lpszFileName);
+//      wstrFileName = utf8_to_unicode(lpszFileName);
 //      //      if (!windows_full_path(wstrFullName, wstrFileName))
 //      //    {
 //      //     rStatus.m_strFullName.Empty();
@@ -665,7 +665,7 @@ namespace ios
 //
 //      wstrFullName = wstrFileName;
 //
-//      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+//      unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 //
 //      struct ::stat st;
 //      if(stat(lpszFileName, &st) == -1)

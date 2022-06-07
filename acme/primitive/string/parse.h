@@ -31,77 +31,73 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma once
 
-namespace str
+
+// Splits a string whatever way you want.
+
+class CLASS_DECL_ACME parse
 {
+public:
 
-   // Splits a string whatever way you want.
+   // publicy made(camilo already xpced a good public, so i said first :-)
+   const char * m_psz;
+   string   pa_splits;
+   string   m_strWord;
+   strsize  m_iPos;
+   char     pa_breakchar;
+   char     pa_enable;
+   char     pa_disable;
+   i16    pa_nospace;
+   bool     m_bQuote;
+   strsize  m_iLen;
 
-   class CLASS_DECL_ACME parse
-   {
-   public:
+   parse();
+   parse(const ::string & str):parse((const char *) str, str.get_length()) {}
+   parse(const ::string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
+   parse(const ::string & str,const string & splits,i16 nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
+   parse(const char * psz, strsize iLen);
+   parse(const char * psz, strsize iLen,const string &);
+   parse(const char * psz, strsize iLen,const string &,i16);
+   ~parse();
+   i16 issplit(const char);
+   void getsplit();
+   void getsplit(string &);
+   string getword();
+   void getword(string &);
+   void getword(string &, string &, i32);
+   void getsplitword();
+   void getsplitword(string &);
+   string getrest();
+   void getrest(string &);
+   long getvalue();
+   void setbreak(const char);
+   i32 getwordlen();
+   i32 getrestlen();
 
-      // publicy made(camilo already xpced a good public, so i said first :-)
-      const char * m_psz;
-      string   pa_splits;
-      string   m_strWord;
-      strsize  m_iPos;
-      char     pa_breakchar;
-      char     pa_enable;
-      char     pa_disable;
-      i16    pa_nospace;
-      bool     m_bQuote;
-      strsize  m_iLen;
-
-      parse();
-      parse(const ::string & str):parse((const char *) str, str.get_length()) {}
-      parse(const ::string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
-      parse(const ::string & str,const string & splits,i16 nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
-      parse(const char * psz, strsize iLen);
-      parse(const char * psz, strsize iLen,const string &);
-      parse(const char * psz, strsize iLen,const string &,i16);
-      ~parse();
-      i16 issplit(const char);
-      void getsplit();
-      void getsplit(string &);
-      string getword();
-      void getword(string &);
-      void getword(string &, string &, i32);
-      void getsplitword();
-      void getsplitword(string &);
-      string getrest();
-      void getrest(string &);
-      long getvalue();
-      void setbreak(const char);
-      i32 getwordlen();
-      i32 getrestlen();
-
-      inline bool has_char() const { return m_iPos < m_iLen; }
-      inline bool is_eostr() const { return !has_char();  }
+   inline bool has_char() const { return m_iPos < m_iLen; }
+   inline bool is_eostr() const { return !has_char();  }
       
 
-      void enablebreak(const char ca)
-      {
-         pa_enable = ca;
-      }
+   void enablebreak(const char ca)
+   {
+      pa_enable = ca;
+   }
 
-      void disablebreak(const char ca)
-      {
-         pa_disable = ca;
-      }
-      void getline();
-      void getline(string &);
+   void disablebreak(const char ca)
+   {
+      pa_disable = ca;
+   }
+   void getline();
+   void getline(string &);
 
-      // operational functions that does not store resulting word (pa_the_ord) starts with underscore.
-      void _get_expandable_line(strsize & start, strsize & end, bool & bFinal);
-      void _get_expandable_line(string &);
-      void get_expandable_line();
+   // operational functions that does not store resulting word (pa_the_ord) starts with underscore.
+   void _get_expandable_line(strsize & start, strsize & end, bool & bFinal);
+   void _get_expandable_line(string &);
+   void get_expandable_line();
 
-      strsize get_pos() { return m_iPos; }
-      void EnableQuote(bool b) { m_bQuote = b; }
+   strsize get_pos() { return m_iPos; }
+   void EnableQuote(bool b) { m_bQuote = b; }
 
-   };
+};
 
-
-} // namespace str
 
 

@@ -75,7 +75,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
    }
 
-   m_hsync = (HSYNC) ::CreateEventEx(psaAttribute, ::str::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_hsync = (HSYNC) ::CreateEventEx(psaAttribute, utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
    if (m_hsync == nullptr)
    {

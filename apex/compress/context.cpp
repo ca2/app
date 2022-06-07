@@ -37,7 +37,7 @@
 //
 //      const char * pszFileName = pathSource;
 //
-//      while ((iFind = ::str::find_ci(".zip:", pszFileName, iStart)) >= 0)
+//      while ((iFind = ::str().find_ci(".zip:", pszFileName, iStart)) >= 0)
 //      {
 //
 //         string strPath = string(&pszFileName[iStart], iFind + strlen(".zip"));
@@ -218,7 +218,7 @@
 //
 //   string strDir = pszFile;
 //
-//   ::str::ends_eat_ci(strDir, ".zip");
+//   ::str().ends_eat_ci(strDir, ".zip");
 //
 //   return extract_all(strDir, pszFile, pobject);
 //

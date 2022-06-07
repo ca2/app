@@ -1647,7 +1647,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto papp = get_app();
 
-      if (::str::ends_eat_ci(strImpact, "::frame"))
+      if (::str().ends_eat_ci(strImpact, "::frame"))
       {
 
          papp->data_set("frame::" + strImpact + ".visible", bShow);

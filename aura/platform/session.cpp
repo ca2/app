@@ -382,7 +382,7 @@ namespace aura
 
       }
 
-      if (::str::ends_ci(strPathName, ".ca2"))
+      if (::str().ends_ci(strPathName, ".ca2"))
       {
 
       }
@@ -400,7 +400,7 @@ namespace aura
 
          string str = purl->get_object(strPathName);
 
-         ::str::begins_eat(str, "/");
+         ::str().begins_eat(str, "/");
 
          pcreate->m_payloadFile = str;
 
@@ -2482,7 +2482,7 @@ namespace aura
    //   for (string str : straSource)
    //   {
 
-   //      if (::str::begins_eat_ci(str, "file://"))
+   //      if (::str().begins_eat_ci(str, "file://"))
    //      {
 
    //         str = purl->url_decode(str);

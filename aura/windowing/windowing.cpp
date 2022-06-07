@@ -673,7 +673,7 @@ namespace windowing
 
       string str(path);
 
-      if (!::str::ends_eat_ci(str, ".png"))
+      if (!::str().ends_eat_ci(str, ".png"))
       {
 
          //return false;

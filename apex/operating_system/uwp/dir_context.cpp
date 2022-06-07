@@ -290,7 +290,7 @@ pacmedirectory->ca2roaming() / "home";
 
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str::begins(strPath,"\\\\"))
+         if(::str().begins(strPath,"\\\\"))
          {
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
          }
@@ -302,7 +302,7 @@ pacmedirectory->ca2roaming() / "home";
 
       /*
       u32 dwAttrib;
-      dwAttrib = windows_get_file_attributes(::str::international::utf8_to_unicode(strPath));
+      dwAttrib = windows_get_file_attributes(utf8_to_unicode(strPath));
       /*if(dwAttrib == INVALID_FILE_ATTRIBUTES)
       {
       dwAttrib = GetFileAttributes(lpcszPath);
@@ -357,19 +357,19 @@ pacmedirectory->ca2roaming() / "home";
 
       }
 
-      strsize iFind = ::str::find_ci(".zip:",str);
+      strsize iFind = ::str().find_ci(".zip:",str);
 
       string strPath(str.c_str(), iLast + 1);
 
       if(strPath.get_length() >= MAX_PATH)
       {
-         if(::str::begins(strPath,"\\\\"))
+         if(::str().begins(strPath,"\\\\"))
          {
-            //::str::begin(strPath,"\\\\?\\UNC");
+            //::str().begin(strPath,"\\\\?\\UNC");
          }
          else
          {
-            //::str::begin(strPath,"\\\\?\\");
+            //::str().begin(strPath,"\\\\?\\");
          }
       }
 
@@ -584,7 +584,7 @@ try1:;
             else
             {
 
-               ::DeleteFileW(::str::international::utf8_to_unicode(straPath[i]));
+               ::DeleteFileW(utf8_to_unicode(straPath[i]));
 
             }
 
@@ -592,7 +592,7 @@ try1:;
 
       }
 
-      return RemoveDirectoryW(::str::international::utf8_to_unicode(psz)) != false;
+      return RemoveDirectoryW(utf8_to_unicode(psz)) != false;
 
    }
 
@@ -746,7 +746,7 @@ try1:;
    bool dir_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
    {
 
-      return ::str::begins_ci(pszDir,strPath);
+      return ::str().begins_ci(pszDir,strPath);
 
    }
 

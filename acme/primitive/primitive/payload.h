@@ -1120,9 +1120,9 @@ public:
 
 
 
-
-namespace str
-{
+//
+//namespace str
+//{
 
 
    inline CLASS_DECL_ACME void from(::string & str, const payload & payload)
@@ -1132,8 +1132,8 @@ namespace str
 
    }
 
-
-} // namespace str
+//
+//} // namespace str
 
 
 CLASS_DECL_ACME void var_skip_number(const char *& psz);

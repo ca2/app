@@ -4,12 +4,9 @@
 #define const_wd32char_trigger const wd32char *
 
 
-namespace str
-{
 
-
-   inline  constexpr auto     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength);
-   inline  constexpr auto     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
+   inline  constexpr strsize     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength);
+   inline  constexpr strsize     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
 
    inline  wd32char * char_next(const wd32char * point_i32) noexcept;
    inline  bool               isalpha(wd32char ch) noexcept;
@@ -23,6 +20,8 @@ namespace str
    inline  i32                string_n_compare_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept;
    inline  i32                string_collate(const wd32char * pszA, const wd32char * pszB) noexcept;
    inline  i32                string_collate_ci(const wd32char * pszA, const wd32char * pszB) noexcept;
+   inline  i32                string_n_collate(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept;
+   inline  i32                string_n_collate_ci(const wd32char * pszA, const wd32char * pszB, strsize len) noexcept;
    inline  const wd32char * string_find_string(const wd32char * pszBlock, const wd32char * pszMatch) noexcept;
    inline  const wd32char * string_find_string_ci(const wd32char * pszBlock, const wd32char * pszMatch) noexcept;
    inline  const wd32char * string_find_char(const wd32char * pszBlock, wd32char chMatch) noexcept;
@@ -51,10 +50,4 @@ namespace str
    inline  void               copy_chars(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars(wd32char * pchDest, size_t nDestLen, const wd32char * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars_overlapped(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept;
-
-
-
-} // namespace str
-
-
 

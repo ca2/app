@@ -65,7 +65,7 @@ string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPt
 //
 //   }
 //
-//   ::str::_008Trim(strValue);
+//   ::str()._008Trim(strValue);
 //
 //   return strValue;
 //
@@ -119,7 +119,7 @@ string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPt
 //
 //   }
 //
-//   return ::str::trim_any_quotes(strValue.trimmed());
+//   return ::str().trim_any_quotes(strValue.trimmed());
 //
 //
 //}
@@ -276,7 +276,7 @@ bool get_command_line_param(string & wstrValue, const ::string & psz, const ::st
 
    }
 
-   ::str::trim_any_quotes(wstrValue);
+   ::str().trim_any_quotes(wstrValue);
 
    return true;
 
@@ -425,7 +425,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
          }
          else if(*psz == '\"')
@@ -433,7 +433,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\"';
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
             argv[argc++] =(char *) psz;
 
@@ -445,7 +445,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\'';
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
             argv[argc++] = (char *) psz;
 
@@ -457,7 +457,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             argv[argc++] = (char *) psz;
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
             e = state_non_space;
 
@@ -472,13 +472,13 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             __memmov(psz, psz + 1, strlen(psz));
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
          }
          else if(*psz == quote)
          {
 
-            point = (char *) ::str::utf8_inc(psz);
+            point = (char *) ::str().utf8_inc(psz);
 
             *psz = '\0';
 
@@ -490,7 +490,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
          }
 
@@ -501,7 +501,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            point = (char *) ::str::utf8_inc(psz);
+            point = (char *) ::str().utf8_inc(psz);
 
             *psz = '\0';
 
@@ -513,7 +513,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            psz = (char *) ::str::utf8_inc(psz);
+            psz = (char *) ::str().utf8_inc(psz);
 
          }
 

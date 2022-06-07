@@ -62,7 +62,7 @@ public:
 
    __composite(::url::department)                                    m_purldepartment;
 
-   __composite(class ::str::base64)                                  m_pbase64;
+   __composite(class ::base64)                                  m_pbase64;
 
    __composite(class ::xml::xml)                                     m_pxml;
 
@@ -103,7 +103,7 @@ public:
 
    inline __pointer(::acme::node) & node() { return m_pnode; }
 
-   inline class ::str::base64* base64() { return m_pbase64; };
+   inline class ::base64* base64() { return m_pbase64; };
 
    inline ::xml::xml* xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 

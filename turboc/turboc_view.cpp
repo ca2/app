@@ -771,7 +771,7 @@ namespace turboc
 
       string str = get_turboc();
 
-      if(::str::begins_eat_ci(str,"image:"))
+      if(::str().begins_eat_ci(str,"image:"))
       {
 
          string strImage = str;
@@ -800,16 +800,16 @@ namespace turboc
          if(m_pimageImage->is_set() && m_pimageImage->area() > 0)
          {
 
-            if(::str::begins_eat_ci(str,m_strImage))
+            if(::str().begins_eat_ci(str,m_strImage))
             {
-               ::str::begins_eat_ci(str,",");
+               ::str().begins_eat_ci(str,",");
             }
 
          }
 
       }
 
-      if(::str::begins_eat_ci(str, "crt:"))
+      if(::str().begins_eat_ci(str, "crt:"))
       {
 
          m_eeffect = effect_crt;

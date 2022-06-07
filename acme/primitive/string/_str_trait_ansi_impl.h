@@ -1,12 +1,9 @@
 #pragma once
 
 
-namespace str
-{
 
-
-   inline  constexpr auto     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(ansichar)); }
-   inline  constexpr auto     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(ansichar)); }
+   inline  constexpr strsize     str::char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(ansichar)); }
+   inline  constexpr strsize     str::byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(ansichar)); }
 
    inline bool _str_safe_precmp(int & i, const ansichar* pszA, const ansichar* pszB)
    {
@@ -45,23 +42,23 @@ namespace str
 
    }
 
-   inline i32 string_compare(const ansichar* pszA, const ansichar* pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return strcmp(pszA, pszB); }
-   inline i32 string_compare_ci(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return ansi_compare_ci(pszA, pszB); }
-   inline i32  string_n_compare(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  strncmp(pszA, pszB, len); }
-   inline i32  string_n_compare_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  ansi_nicmp(pszA, pszB, len); }
-   inline i32 string_collate(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  strcoll(pszA, pszB); }
-   inline i32 string_collate_ci(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansiicoll(pszA, pszB); }
-   inline i32  string_n_collate(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansincoll(pszA, pszB, len); }
-   inline i32  string_n_collate_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansinicoll(pszA, pszB, len); }
-   inline strsize string_get_length(const ansichar * psz) noexcept { return strlen(psz); }
-   inline strsize string_safe_length(const ansichar * psz) noexcept { if (c_is_null(psz)) return 0; return string_get_length(psz); }
-   inline void copy_chars(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars(ansichar * pchDest, size_t nDestLen, const ansichar * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline void copy_chars_overlapped(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
-   inline ansichar * string_lowercase(ansichar * psz, strsize size) noexcept { ansi_lwr_s(psz, size); return  psz; }
+   inline i32 str::string_compare(const ansichar* pszA, const ansichar* pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return strcmp(pszA, pszB); }
+   inline i32 str::string_compare_ci(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return ansi_compare_ci(pszA, pszB); }
+   inline i32 str::string_n_compare(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  strncmp(pszA, pszB, len); }
+   inline i32 str::string_n_compare_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  ansi_nicmp(pszA, pszB, len); }
+   inline i32 str::string_collate(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  strcoll(pszA, pszB); }
+   inline i32 str::string_collate_ci(const ansichar * pszA, const ansichar * pszB) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansiicoll(pszA, pszB); }
+   inline i32 str::string_n_collate(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansincoll(pszA, pszB, len); }
+   inline i32 str::string_n_collate_ci(const ansichar * pszA, const ansichar * pszB, strsize len) noexcept { int i; if(_str_safe_precmp(i, pszA, pszB)) return i; return  __ansinicoll(pszA, pszB, len); }
+   inline strsize str::string_get_length(const ansichar * psz) noexcept { return strlen(psz); }
+   inline strsize str::string_safe_length(const ansichar * psz) noexcept { if (c_is_null(psz)) return 0; return string_get_length(psz); }
+   inline void str::copy_chars(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept { memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars(ansichar * pchDest, size_t nDestLen, const ansichar * pchSrc, strsize nChars) noexcept { ::memcpy_dup(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline void str::copy_chars_overlapped(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept { memmove(pchDest, pchSrc, char_length_to_byte_length(pchSrc, nChars)); }
+   inline ansichar * str::string_lowercase(ansichar * psz, strsize size) noexcept { ansi_lwr_s(psz, size); return  psz; }
 
 
-   ansichar * char_next(const ansichar * psz) noexcept
+   ansichar * str::char_next(const ansichar * psz) noexcept
    {
 
       return const_cast<ansichar *>(::utf8_inc(psz));
@@ -69,15 +66,15 @@ namespace str
    }
 
 
-   inline bool isalpha(ansichar ch) noexcept { return ansi_char_is_alphabetic(ch); }
-   inline bool isdigit(ansichar ch) noexcept { return ansi_char_is_digit(ch); }
-   inline bool isspace(ansichar ch) noexcept { return ansi_char_is_space(ch); }
+   inline bool str::isalpha(ansichar ch) noexcept { return ansi_char_is_alphabetic(ch); }
+   inline bool str::isdigit(ansichar ch) noexcept { return ansi_char_is_digit(ch); }
+   inline bool str::isspace(ansichar ch) noexcept { return ansi_char_is_space(ch); }
 
-   inline ansichar tolower(ansichar ch) noexcept { return ansi_char_lowered(ch); }
-   inline ansichar toupper(ansichar ch) noexcept { return ansi_char_uppered(ch); }
+   inline ansichar str::tolower(ansichar ch) noexcept { return ansi_char_lowered(ch); }
+   inline ansichar  str::toupper(ansichar ch) noexcept { return ansi_char_uppered(ch); }
 
 
-   const ansichar * string_find_string(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
+   const ansichar * str::string_find_string(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
    {
 
       return ansi_find_string(pszBlock, pszMatch);
@@ -85,7 +82,7 @@ namespace str
    }
 
 
-   const ansichar * string_find_string_ci(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
+   const ansichar * str::string_find_string_ci(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
    {
 
       return ansi_find_string_ci(pszBlock, pszMatch);
@@ -93,7 +90,7 @@ namespace str
    }
 
 
-   inline const ansichar * string_find_char(const ansichar * pszBlock, ansichar chMatch) noexcept
+   inline const ansichar * str::string_find_char(const ansichar * pszBlock, ansichar chMatch) noexcept
    {
 
       return strchr(pszBlock, (ansichar)chMatch);
@@ -101,7 +98,7 @@ namespace str
    }
 
 
-   inline const ansichar * string_find_string_reverse(const ansichar * psz, const ansichar * pszFind, strsize iStart) noexcept
+   inline const ansichar * str::string_find_string_reverse(const ansichar * psz, const ansichar * pszFind, strsize iStart) noexcept
    {
 
       strsize iLen = strsize(strlen(psz));
@@ -143,7 +140,7 @@ namespace str
    }
 
 
-   const ansichar * string_scan_set(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
+   const ansichar * str::string_scan_set(const ansichar * pszBlock, const ansichar * pszMatch) noexcept
    {
 
       if (pszMatch == nullptr || pszBlock == nullptr || *pszBlock == '\0')
@@ -159,7 +156,7 @@ namespace str
    // The strcspn() function calculates the length of the initial segment
    // of s which consists entirely of bytes not in reject.
 
-   inline strsize string_span_including(const ansichar * pszBlock, const ansichar * pszSet) noexcept
+   inline strsize str::string_span_including(const ansichar * pszBlock, const ansichar * pszSet) noexcept
    {
 
       return (strsize)strspn(pszBlock, pszSet);
@@ -167,7 +164,7 @@ namespace str
    }
 
 
-   inline strsize string_span_excluding(const ansichar * pszBlock, const ansichar * pszSet) noexcept
+   inline strsize str::string_span_excluding(const ansichar * pszBlock, const ansichar * pszSet) noexcept
    {
 
       return (strsize)strcspn(pszBlock, pszSet);
@@ -188,8 +185,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_upper_case(point);
-   //      point = (ansichar *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_upper_case(point);
+   //      point = (ansichar *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -212,8 +209,8 @@ namespace str
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += ::str::ch::to_lower_case(point);
-   //      point = (ansichar *) ::str::utf8_inc(point);
+   //      strFinal += str::ch::to_lower_case(point);
+   //      point = (ansichar *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
    //   return psz;
@@ -232,7 +229,7 @@ namespace str
    }
 
 
-   ansichar * string_reverse(ansichar * psz) noexcept
+   ansichar * str::string_reverse(ansichar * psz) noexcept
    {
 
       if (psz == nullptr)
@@ -248,7 +245,7 @@ namespace str
 
       ansichar * pDec;
 
-      while ((pDec = (ansichar *) ::str::uni_dec(psz, p)) != nullptr)
+      while ((pDec = (ansichar *) str::uni_dec(psz, p)) != nullptr)
       {
 
          strReverse.append(pDec, pDec - p);
@@ -264,7 +261,7 @@ namespace str
 
 
 
-   inline strsize get_formatted_length(const ansichar * pszFormat, va_list args) noexcept
+   inline strsize  str::get_formatted_length(const ansichar * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -280,7 +277,7 @@ namespace str
    }
 
 
-   inline strsize string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept
+   inline strsize str::string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept
    {
 
       return vsprintf(pszBuffer, pszFormat, args);
@@ -288,7 +285,7 @@ namespace str
    }
 
 
-   strsize string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept
+   strsize  str::string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept
    {
 
 #ifdef WINDOWS
@@ -429,7 +426,7 @@ namespace str
    //strsize  char_traits::GetCharLen(const ansichar* pch) noexcept
    //{
    //   // returns ansichar length
-   //   return  ::str::get_utf8_char(pch).get_length();
+   //   return  str::get_utf8_char(pch).get_length();
    //}
 //
 //
@@ -518,7 +515,7 @@ namespace str
    //
    //
 
-   inline const ansichar * string_find_char_reverse(const ansichar * psz, ansichar ch, strsize iStart) noexcept
+   inline const ansichar * str::string_find_char_reverse(const ansichar * psz, ansichar ch, strsize iStart) noexcept
    {
 
 
@@ -556,15 +553,13 @@ namespace str
    }
 
 
-   inline void flood_characters(ansichar * psz, ansichar ch, strsize len) noexcept
+   inline void  str::flood_characters(ansichar * psz, ansichar ch, strsize len) noexcept
    {
 
       memset(psz, ch, len);
 
    }
 
-
-} // namespace str
 
 
 

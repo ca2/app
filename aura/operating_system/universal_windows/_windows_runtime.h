@@ -14,11 +14,11 @@
 //
 //CLASS_DECL_AURA uptr keycode_to_char(uptr n);
 //
-//CLASS_DECL_AURA uptr virtualkey_to_char(::winrt::Windows::::aura::get_system()::VirtualKey e);
+//CLASS_DECL_AURA uptr virtualkey_to_char(::winrt::Windows::aura::get_system()::VirtualKey e);
 //
-//CLASS_DECL_AURA::user::enum_key virtualkey_to_userkey(::winrt::Windows::::aura::get_system()::VirtualKey e, bool& bSpecialKey);
+//CLASS_DECL_AURA::user::enum_key virtualkey_to_userkey(::winrt::Windows::aura::get_system()::VirtualKey e, bool& bSpecialKey);
 //
-//CLASS_DECL_AURA uptr virtualkey_to_code(::winrt::Windows::::aura::get_system()::VirtualKey e);
+//CLASS_DECL_AURA uptr virtualkey_to_code(::winrt::Windows::aura::get_system()::VirtualKey e);
 //
 //
 //

@@ -4,9 +4,9 @@
 #define const_char_trigger const ansichar *
 
 
-
-namespace str
-{
+//
+//namespace str
+//{
 
 
    template < typename TYPE_CHAR >
@@ -100,6 +100,8 @@ namespace str
    template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen);
 
+   inline void utf_to_utf(::string & str, const wd16char * psource, strsize srclen);
+
    template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen);
 
@@ -122,16 +124,11 @@ namespace str
    inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource);
 
    template <  >
-   inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource);
-
-   template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource);
 
    template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource);
 
-   template <  >
-   inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource);
 
    template <  >
    inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource);
@@ -214,6 +211,14 @@ namespace str
    inline void copy_string(ansichar * pszDst, const wd32char * pszSrc, strsize srclen);
 
 
+   template < typename TYPE_CHAR1 >
+   inline string_base < TYPE_CHAR1 > & assign(string_base < TYPE_CHAR1 > & strDst, const TYPE_CHAR1 * pszSrc, strsize srclen);
+
+
+   template < typename TYPE_CHAR >
+   inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const natural_string_base < TYPE_CHAR > & strSrc);
+
+
    template < typename TYPE_CHAR >
    inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const string_base < TYPE_CHAR > & strSrc);
 
@@ -229,12 +234,19 @@ namespace str
    template < typename TYPE_CHAR >
    inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const TYPE_CHAR * pszSrc);
 
+   inline wd16string & assign(wd16string & wstrDst, const natural_ansistring & strSrc);
 
    inline wd16string & assign(wd16string & wstrDst, const ansistring & strSrc);
 
+   inline wd32string & assign(wd32string & wstrDst, const natural_ansistring & strSrc);
+
    inline wd32string & assign(wd32string & wstrDst, const ansistring& strSrc);
 
+   inline ansistring & assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc);
+
    inline ansistring & assign(ansistring & strDst, const wd16string & wstrSrc);
+
+   inline ansistring & assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc);
 
    inline ansistring & assign(ansistring & strDst, const wd32string& wstrSrc);
 
@@ -295,8 +307,10 @@ namespace str
 
    inline widestring & assign(widestring & widestrDst, const ::type & type);
 
+   inline wd32string & assign(wd32string & widestrDst, const type & type);
 
-} // namespace str
 
+//} // namespace str
+//
 
 

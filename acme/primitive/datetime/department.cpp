@@ -90,7 +90,7 @@ namespace datetime
    }
 
 
-//   void department::str::initialize(::object * pobject)
+//   void department::str().initialize(::object * pobject)
 //   {
 //
 //      /* auto estatus = */ ::object::initialize(pobject);
@@ -487,7 +487,7 @@ namespace datetime
    //}
 
 
-//   department::str::str()
+//   department::str().str()
 //   {
 //      
 //      m_pdatetime = nullptr;
@@ -495,7 +495,7 @@ namespace datetime
 //   }
 //
 //
-//   string department::str::get_date_time(const ::earth::time_shift& timeshift)
+//   string department::str().get_date_time(const ::earth::time_shift& timeshift)
 //   {
 //
 //      return m_pdatetime->international().get_date_time(::earth::time::now(), timeshift);
@@ -1222,10 +1222,10 @@ namespace datetime
       const char* psz = str;
       string strNumber;
       string strText1;
-      for (i32 i = 0; *psz; psz = ::str::utf8_inc(psz))
+      for (i32 i = 0; *psz; psz = ::str().utf8_inc(psz))
       {
-         string strChar = ::str::get_utf8_char(psz);
-         if (::str::ch::is_whitespace(psz))
+         string strChar = ::str().get_utf8_char(psz);
+         if (::str().ch::is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_char() && strText.has_char())
@@ -1333,11 +1333,11 @@ namespace datetime
             bMinus = true;
             strNumber.Empty();
          }
-         else if (::str::ch::is_digit(psz))
+         else if (::str().ch::is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if (::str::ch::is_letter(psz))
+         else if (::str().ch::is_letter(psz))
          {
             strText1 += strChar;
          }
@@ -1444,7 +1444,7 @@ namespace datetime
 
             string strWord = str.Mid(19);
             strWord.trim_left();
-            strWord = ::str::get_word(strWord, " ");
+            strWord = ::str().get_word(strWord, " ");
             if (strWord.compare_ci("UTC") == 0
                || strWord.compare_ci("GMT") == 0)
             {
@@ -1525,7 +1525,7 @@ namespace datetime
          }
       }
       if (!bBaseTime && (
-         ::str::begins_eat(str, "today") ||
+         ::str().begins_eat(str, "today") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:today"))))
       {
          time = ::earth::time::now();
@@ -1533,7 +1533,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str::begins_eat(str, "tomorrow") ||
+         ::str().begins_eat(str, "tomorrow") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
          time = ::earth::time::now();
@@ -1542,7 +1542,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str::begins_eat(str, "yesterday") ||
+         ::str().begins_eat(str, "yesterday") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:yesterday"))))
       {
          time = ::earth::time::now();
@@ -1551,7 +1551,7 @@ namespace datetime
          bBaseTime = true;
       }
       if (!bBaseTime && (
-         ::str::begins_eat(str, "now") ||
+         ::str().begins_eat(str, "now") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:now"))))
       {
 

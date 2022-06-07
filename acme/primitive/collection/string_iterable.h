@@ -91,7 +91,7 @@ template < typename ITERABLE >
 typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const unichar * pwsz)
 {
    index nIndex = this->m_nSize;
-   set_at_grow(nIndex, (Type) ::str::international::unicode_to_utf8(pwsz));
+   set_at_grow(nIndex, (Type) unicode_to_utf8(pwsz));
    return m_pData + nIndex;
 }
 

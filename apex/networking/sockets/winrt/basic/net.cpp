@@ -176,7 +176,7 @@ namespace sockets
       {
          return false;
       }
-      ::str::parse pa(str,":.");
+      ::str().parse pa(str,":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -743,8 +743,8 @@ namespace sockets
    int net::service_port(const string & psz, int flags)
    {
 
-      if(::str::is_simple_natural(psz))
-         return ::str::to_i32(psz);
+      if(::str().is_simple_natural(psz))
+         return ::str().to_i32(psz);
 
       string str(psz);
 

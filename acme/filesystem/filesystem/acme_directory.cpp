@@ -194,7 +194,7 @@ string acme_directory::system_short_name()
 
    path.replace_with("", ":");
 
-   ::str::ends_eat_ci(path, ".exe");
+   ::str().ends_eat_ci(path, ".exe");
 
    return path;
 

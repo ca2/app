@@ -675,12 +675,12 @@ namespace user
 
             }
 
-            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur});
+            ::str().replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur});
 
             if (m_bPassword)
             {
 
-               strLine = ::str::block('*', i32 (strLine.get_length()));
+               strLine = ::str().block('*', i32 (strLine.get_length()));
 
             }
 
@@ -704,7 +704,7 @@ namespace user
             if (m_bPassword)
             {
 
-               strLineGraphics = ::str::block('*', i32 (strLineGraphics.get_length()));
+               strLineGraphics = ::str().block('*', i32 (strLineGraphics.get_length()));
 
             }
 
@@ -2467,7 +2467,7 @@ namespace user
 
       //   strLineGraphics = strLine;
 
-      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+      //   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
       //   const char * pszStart = strLine;
 
@@ -2491,7 +2491,7 @@ namespace user
       //      while (*pszNext != '\0')
       //      {
 
-      //         pszNext = ::str::utf8_inc(psz);
+      //         pszNext = ::str().utf8_inc(psz);
 
       //         iLen = pszNext - psz;
 
@@ -2930,7 +2930,7 @@ namespace user
 //         if (bTabs)
 //         {
 //
-//            ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+//            ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 //
 //         }
 //
@@ -2958,7 +2958,7 @@ namespace user
 //            while (*pszNext != '\0')
 //            {
 //
-//               pszNext = ::str::utf8_inc(psz);
+//               pszNext = ::str().utf8_inc(psz);
 //
 //               if (pszNext == nullptr)
 //               {
@@ -3330,7 +3330,7 @@ for (; iLine < iLineEnd; i++, iLine++)
 
 //   strLineGraphics = strLine;
 
-//   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+//   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
 //   const char * pszStart = strLine;
 
@@ -3354,7 +3354,7 @@ for (; iLine < iLineEnd; i++, iLine++)
 //      while (*pszNext != '\0')
 //      {
 
-//         pszNext = ::str::utf8_inc(psz);
+//         pszNext = ::str().utf8_inc(psz);
 
 //         iLen = pszNext - psz;
 
@@ -3696,7 +3696,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
    strLineGraphics = strLine;
 
-   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
    const char * pszStart = strLine;
 
@@ -3720,7 +3720,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
       while (::has_char(pszNext))
       {
 
-         pszNext = ::str::utf8_inc(psz);
+         pszNext = ::str().utf8_inc(psz);
 
          iLen = pszNext - psz;
 
@@ -4305,7 +4305,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
          pszPrevious = pszEnd;
 
-         pszEnd = ::str::utf8_inc(pszEnd);
+         pszEnd = ::str().utf8_inc(pszEnd);
 
          if (pszEnd == nullptr)
             break;
@@ -4314,7 +4314,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
          strExtent = string(psz, pszEnd - psz);
 
-         ::str::replace_tab(0, strExtent, m_iTabWidth);
+         ::str().replace_tab(0, strExtent, m_iTabWidth);
 
          int x;
 
@@ -4848,7 +4848,7 @@ finished_update:
 
       //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if (::str::ch::is_legal_uni_index(pusermessage->m_wparam))
+      //      if (::str().ch::is_legal_uni_index(pusermessage->m_wparam))
       //      {
       //
       //#ifdef WINDOWS_DESKTOP
@@ -4910,7 +4910,7 @@ finished_update:
             for (strsize i = 0; i < afterLength; i++)
             {
 
-               auto pszNew = ::str::utf8_inc(psz);
+               auto pszNew = ::str().utf8_inc(psz);
 
                if (::is_empty(pszNew))
                {
@@ -4974,7 +4974,7 @@ finished_update:
             for (strsize i = 0; i < beforeLength; i++)
             {
 
-               auto pdataNew = ::str::utf8_dec(str.c_str(), pdata);
+               auto pdataNew = ::str().utf8_dec(str.c_str(), pdata);
 
                if (::is_empty(pdataNew))
                {
@@ -5117,7 +5117,7 @@ finished_update:
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
-            const char * psz = ::str::utf8_inc(buf);
+            const char * psz = ::str().utf8_inc(buf);
 
             strsize iMultiByteUtf8DeleteCount = psz - buf;
 
@@ -5651,7 +5651,7 @@ finished_update:
                         else
                         {
 
-                           psz = ::str::uni_dec(buf, &buf[iCur]);
+                           psz = ::str().uni_dec(buf, &buf[iCur]);
 
                            if (psz == nullptr)
                            {
@@ -5869,7 +5869,7 @@ finished_update:
                   }
                   else
                   {
-                     m_ptree->m_iSelEnd += ::str::utf8_inc(buf) - buf;
+                     m_ptree->m_iSelEnd += ::str().utf8_inc(buf) - buf;
                   }
                   _001SetSelEnd(m_ptree->m_iSelEnd);
                   if (!bShift)
@@ -5915,7 +5915,7 @@ finished_update:
                      }
                      else
                      {
-                        m_ptree->m_iSelEnd -= psz - ::str::uni_dec(buf, psz);
+                        m_ptree->m_iSelEnd -= psz - ::str().uni_dec(buf, psz);
                      }
                   }
                   else
@@ -6696,7 +6696,7 @@ finished_update:
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const char * psz = ::str::uni_dec(buf, &buf[iCur]);
+               const char * psz = ::str().uni_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
@@ -7816,7 +7816,7 @@ finished_update:
 
       string strLine = plain_edit_get_line(pgraphics, iLine);
 
-      ::str::replace_tab(0, strLine, m_iTabWidth, intptra);
+      ::str().replace_tab(0, strLine, m_iTabWidth, intptra);
 
       return strLine;
 

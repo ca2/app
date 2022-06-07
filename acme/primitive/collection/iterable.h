@@ -1332,7 +1332,7 @@ namespace iter
       while (strParse.has_char())
       {
 
-         iterable.add((ITYPE)::str::consume_command_line_argument(strParse));
+         iterable.add((ITYPE)::str().consume_command_line_argument(strParse));
 
       }
 
@@ -1364,7 +1364,7 @@ namespace iter
    ITERABLE & add_shortest_tokens(ITERABLE & iterable, const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty, bool bWithSeparator)
    {
 
-      ::str::tokenizer strTokenizer(pcsz);
+      ::tokenizer strTokenizer(pcsz);
 
       ITYPE strToken;
 
@@ -1783,7 +1783,7 @@ end:
       for (; first < count; find++)
       {
 
-         if (::str::begins(iterable.element_at(first), pcsz))
+         if (::str().begins(iterable.element_at(first), pcsz))
          {
 
             return first;
@@ -1805,7 +1805,7 @@ end:
       for (; first < count; find++)
       {
 
-         if (::str::begins_ci(iterable.element_at(first), pcsz))
+         if (::str().begins_ci(iterable.element_at(first), pcsz))
          {
 
             return first;
@@ -1917,7 +1917,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::ends(*first, pcsz))
+         if (::str().ends(*first, pcsz))
          {
 
             return first;
@@ -1939,7 +1939,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::ends_ci(*first, pcsz))
+         if (::str().ends_ci(*first, pcsz))
          {
 
             return first;
@@ -1997,7 +1997,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::begins(iterable.element_at(find), pcsz))
+         if (::str().begins(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2013,7 +2013,7 @@ end:
       for(; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::begins_ci(*first, pcsz))
+         if (::str().begins_ci(*first, pcsz))
             return first;
 
       }
@@ -2066,7 +2066,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::ends(lpcszIdSuffixed, iterable.element_at(find)))
+         if (::str().ends(lpcszIdSuffixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2082,7 +2082,7 @@ end:
       for (; iterable.valid_iter(find, last); find++)
       {
 
-         if (::str::ends_ci(lpcszIdSuffixed, *find))
+         if (::str().ends_ci(lpcszIdSuffixed, *find))
          {
 
             return find;
@@ -2106,7 +2106,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::begins(lpcszIdPrefixed, iterable.element_at(find)))
+         if (::str().begins(lpcszIdPrefixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2123,7 +2123,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::begins_ci(lpcszIdPrefixed, iterable.element_at(find)))
+         if (::str().begins_ci(lpcszIdPrefixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2139,7 +2139,7 @@ end:
       for (; find < count; find++)
       {
 
-         if (::str::begins(iterable.element_at(find), pcsz))
+         if (::str().begins(iterable.element_at(find), pcsz))
          {
 
             return find;
@@ -2161,7 +2161,7 @@ end:
       for (; find < count; find++)
       {
 
-         if (::str::begins_ci(iterable.element_at(find), pcsz))
+         if (::str().begins_ci(iterable.element_at(find), pcsz))
          {
 
             return find;
@@ -2256,7 +2256,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::ends(iterable.element_at(find), pcsz))
+         if (::str().ends(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2271,7 +2271,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::ends_ci(iterable.element_at(find), pcsz))
+         if (::str().ends_ci(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2322,7 +2322,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (::str::begins(iterable.element_at(find), pcsz))
+         if (::str().begins(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2338,7 +2338,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::begins_ci(*first, pcsz))
+         if (::str().begins_ci(*first, pcsz))
             return first;
 
       }
@@ -2390,7 +2390,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::ends(lpcszIsSuffixed, *first))
+         if (::str().ends(lpcszIsSuffixed, *first))
          {
 
             return first;
@@ -2413,7 +2413,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::ends_ci(lpcszIsSuffixed, *first))
+         if (::str().ends_ci(lpcszIsSuffixed, *first))
          {
 
             return first;
@@ -2436,7 +2436,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::begins(lpcszIsPrefixed, *first))
+         if (::str().begins(lpcszIsPrefixed, *first))
          {
 
             return first;
@@ -2459,7 +2459,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (::str::begins_ci(lpcszIsPrefixed, *first))
+         if (::str().begins_ci(lpcszIsPrefixed, *first))
          {
 
             return first;
@@ -2694,7 +2694,7 @@ end:
    ITERABLE & add_tokens(ITERABLE & iterable, const ITYPE & pcsz, const ITYPESEP & lpcszSeparator, bool bAddEmpty)
    {
 
-      ::str::tokenizer strTokenizer(pcsz);
+      ::tokenizer strTokenizer(pcsz);
 
       string strToken;
 
@@ -2751,12 +2751,12 @@ end:
          switch (status)
          {
          case 1:
-            if (istring[i] == sep && !::str::simple_escaped(istring, i))
+            if (istring[i] == sep && !::str().simple_escaped(istring, i))
             {
                ++num;
                add("");
             }
-            else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str::simple_escaped(istring, i))
+            else if ((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str().simple_escaped(istring, i))
             {
                status = 2;
                to = (istring[i] == '(') ? ')' : istring[i];
@@ -2769,7 +2769,7 @@ end:
             break;
 
          case 2:
-            if (istring[i] == to && !::str::simple_escaped(istring, i))
+            if (istring[i] == to && !::str().simple_escaped(istring, i))
             {
                status = 1;
             }

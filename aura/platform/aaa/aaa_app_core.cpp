@@ -183,11 +183,11 @@ void app_core::system_prep()
 //
 //    string str = apple_get_bundle_identifier();
 //
-//    ::str::begins_eat_ci(str, "com.ca2.");
+//    ::str().begins_eat_ci(str, "com.ca2.");
 //
 //    str.replace(".", "/");
 //
-//    m_lpCmdLine = ::str::dup("app : app=" + str);
+//    m_lpCmdLine = ::str().dup("app : app=" + str);
 //
 // }
 //
@@ -240,7 +240,7 @@ void app_core::system_init()
 
       //const char * psz = str1;
 
-      //string str = str::consume_quoted_value(psz);
+      //string str = ::str().consume_quoted_value(psz);
 
       //output_debug_string(str);
 
@@ -1049,7 +1049,7 @@ string_array get_c_args_from_string(const ::string & psz)
    while (psz < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str().consume_spaces(psz, 0, pszEnd);
 
       if (psz >= pszEnd)
       {
@@ -1060,13 +1060,13 @@ string_array get_c_args_from_string(const ::string & psz)
       if (*psz == '\"')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str().consume_quoted_value(psz, pszEnd);
 
       }
       else if (*psz == '\'')
       {
 
-         str = ::str::consume_quoted_value(psz, pszEnd);
+         str = ::str().consume_quoted_value(psz, pszEnd);
 
       }
       else
@@ -1074,10 +1074,10 @@ string_array get_c_args_from_string(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch::is_whitespace(psz))
+         while (!::str().ch::is_whitespace(psz))
          {
 
-            psz = str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
 
             if (psz >= pszEnd)
             {
@@ -1089,13 +1089,13 @@ string_array get_c_args_from_string(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
 
@@ -1171,7 +1171,7 @@ string_array get_c_args_from_c(const ::string & psz)
    while(psz < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str().consume_spaces(psz, 0, pszEnd);
 
       if(psz >= pszEnd)
       {
@@ -1182,13 +1182,13 @@ string_array get_c_args_from_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str().consume_c_quoted_value(psz, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str().consume_c_quoted_value(psz, pszEnd);
 
       }
       else
@@ -1196,10 +1196,10 @@ string_array get_c_args_from_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str::ch::is_whitespace(psz))
+         while (!::str().ch::is_whitespace(psz))
          {
 
-            psz = str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
 
             if (psz >= pszEnd)
             {
@@ -1211,13 +1211,13 @@ string_array get_c_args_from_c(const ::string & psz)
             if (*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
             else if (*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
 
@@ -1285,7 +1285,7 @@ string_array get_c_args_for_c(const ::string & psz)
    while(psz < pszEnd)
    {
 
-      ::str::consume_spaces(psz, 0, pszEnd);
+      ::str().consume_spaces(psz, 0, pszEnd);
 
       if(psz >= pszEnd)
       {
@@ -1297,13 +1297,13 @@ string_array get_c_args_for_c(const ::string & psz)
       if(*psz == '\"')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str().consume_c_quoted_value(psz, pszEnd);
 
       }
       else if(*psz == '\'')
       {
 
-         str = ::str::consume_c_quoted_value(psz, pszEnd);
+         str = ::str().consume_c_quoted_value(psz, pszEnd);
 
       }
       else
@@ -1311,10 +1311,10 @@ string_array get_c_args_for_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while(!::str::ch::is_whitespace(psz))
+         while(!::str().ch::is_whitespace(psz))
          {
 
-            psz = str::utf8_inc(psz);
+            psz = ::str().utf8_inc(psz);
 
             if(psz >= pszEnd)
             {
@@ -1326,13 +1326,13 @@ string_array get_c_args_for_c(const ::string & psz)
             if(*psz == '\"')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
             else if(*psz == '\'')
             {
 
-               ::str::consume_quoted_value_ex(psz, pszEnd);
+               ::str().consume_quoted_value_ex(psz, pszEnd);
 
             }
 
@@ -1449,7 +1449,7 @@ string transform_to_c_arg(const ::string & psz)
          if(*pszParse == '\\')
          {
 
-            pszParse = ::str::utf8_inc(pszParse);
+            pszParse = ::str().utf8_inc(pszParse);
 
          }
          else if(*pszParse == chQuote)
@@ -1472,7 +1472,7 @@ string transform_to_c_arg(const ::string & psz)
          chQuote = '\"';
 
       }
-      else if(::str::ch::is_whitespace(pszParse)
+      else if(::str().ch::is_whitespace(pszParse)
          || isspace((unsigned char) *pszParse)
               || *pszParse == ':')
       {
@@ -1483,14 +1483,14 @@ string transform_to_c_arg(const ::string & psz)
 
       }
 
-      pszParse = ::str::utf8_inc(pszParse);
+      pszParse = ::str().utf8_inc(pszParse);
 
    }
 
    if (bNeedQuote)
    {
 
-      return string("\"") + ::str::replace("\"", "\\\"", psz) + "\"";
+      return string("\"") + ::str().replace("\"", "\\\"", psz) + "\"";
 
    }
    else
@@ -1580,7 +1580,7 @@ string merge_colon_args(const array < string_array > & str2a)
 
    }
 
-   strCommandLine += ::str::has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
+   strCommandLine += ::str().has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
 
    strCommandLine += " : ";
 

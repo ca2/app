@@ -57,7 +57,7 @@ RetryBuildNumber:
 
    strBuild = http_get(strSpaIgnitionBaseUrl + "/query?node=build&configuration=" + strConfiguration + "&atom=" + string(pszAppId));
 
-   ::str::_008Trim(strBuild);
+   ::str()._008Trim(strBuild);
 
    if (strBuild.length() != 19)
    {
@@ -374,61 +374,61 @@ string context::defer_get_file_title(string strParam)
 
    path = defer_process_matter_path(path);
 
-   if (::str::begins_eat_ci(path, "music://"))
+   if (::str().begins_eat_ci(path, "music://"))
    {
 
       path = dir().music() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "video://"))
+   else if (::str().begins_eat_ci(path, "video://"))
    {
 
       path = dir().video() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "image://"))
+   else if (::str().begins_eat_ci(path, "image://"))
    {
 
       path = dir().image() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "document://"))
+   else if (::str().begins_eat_ci(path, "document://"))
    {
 
       path = dir().document() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "dropbox://"))
+   else if (::str().begins_eat_ci(path, "dropbox://"))
    {
 
       path = dir().dropbox() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "dropbox-app://"))
+   else if (::str().begins_eat_ci(path, "dropbox-app://"))
    {
 
       path = dir().dropbox_app() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "onedrive://"))
+   else if (::str().begins_eat_ci(path, "onedrive://"))
    {
 
       path = dir().onedrive() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "appconfig://"))
+   else if (::str().begins_eat_ci(path, "appconfig://"))
    {
 
       path = papp->appconfig_folder() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "download://"))
+   else if (::str().begins_eat_ci(path, "download://"))
    {
 
       path = dir().download() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "usersystem://"))
+   else if (::str().begins_eat_ci(path, "usersystem://"))
    {
 
       path =          auto psystem = m_psystem;
@@ -438,13 +438,13 @@ string context::defer_get_file_title(string strParam)
 pacmedirectory->system() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "desktop://"))
+   else if (::str().begins_eat_ci(path, "desktop://"))
    {
 
       path = dir().desktop() / path;
 
    }
-   else if (::str::begins_eat_ci(path, "bookmark://"))
+   else if (::str().begins_eat_ci(path, "bookmark://"))
    {
 
       path = dir().bookmark() / path;
@@ -474,7 +474,7 @@ pacmedirectory->system() / path;
 ::file::path context::defer_process_matter_path(::file::path path)
 {
 
-   if (::str::begins_ci(path, "matter://"))
+   if (::str().begins_ci(path, "matter://"))
    {
 
       path = dir().matter(path, false);
@@ -495,7 +495,7 @@ pacmedirectory->system() / path;
 ::file::path context::get_matter_path(string strMatter)
 {
 
-   if (::str::begins_eat_ci(strMatter, "appmatter://"))
+   if (::str().begins_eat_ci(strMatter, "appmatter://"))
    {
 
       return dir().install() / strMatter;
@@ -528,7 +528,7 @@ pacmedirectory->system() / path;
 ::file::path context::get_matter_cache_path(::file::path path)
 {
 
-   if (::str::begins_eat_ci((string &) path, "appmatter://"))
+   if (::str().begins_eat_ci((string &) path, "appmatter://"))
    {
 
       ::file::path pathCache = ::aura::get_system()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
@@ -606,7 +606,7 @@ pacmedirectory->system() / path;
 
       }
 
-      ::str::begins_eat_ci(path, "appmatter://");
+      ::str().begins_eat_ci(path, "appmatter://");
 
       path = string(g_pszServerCa2Cc) + "matter" / path;
 

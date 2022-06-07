@@ -131,7 +131,7 @@ namespace user
 
          strPathEx = strFileParam;
 
-         ::str::international::unicode_to_utf8(strExtra, pcszExtra);
+         unicode_to_utf8(strExtra, pcszExtra);
 
 
          if (strExtra.get_length() > 0)
@@ -345,7 +345,7 @@ namespace user
          if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
                || imagekey.m_iIcon == 0x80000000
                || !pcontext->m_papexcontext->file().exists(strIconLocation))
-               && ::str::ends_ci(strFileParam, ".lnk"))
+               && ::str().ends_ci(strFileParam, ".lnk"))
          {
 
             pcontext->m_papexcontext->file().resolve_link(pathTarget, strFileParam);
@@ -797,7 +797,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
 
       {
 
-         return get_folder_type(pobject, ::str::international::utf8_to_unicode(pcsz));
+         return get_folder_type(pobject, utf8_to_unicode(pcsz));
 
 
       }
@@ -809,7 +809,7 @@ pacmedirectory->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + 
 
          string strPath;
 
-         ::str::international::unicode_to_utf8(strPath, pcszPath);
+         unicode_to_utf8(strPath, pcszPath);
 
 
          if (         auto psystem = m_psystem;
@@ -852,7 +852,7 @@ pacmedirectory->is(strPath))
 
          i32 iImage = 0x80000000;
 
-         if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
+         if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
          {
 
             if (reserve_image(imagekey, iImage))
@@ -867,7 +867,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
+         else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
          {
 
             if (reserve_image(imagekey, iImage))
@@ -882,7 +882,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
+         else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
          {
 
             if (reserve_image(imagekey, iImage))
@@ -898,12 +898,12 @@ pacmedirectory->is(strPath))
 
          }
 
-         if (::str::ends_ci(imagekey.m_strPath, ".aura"))
+         if (::str().ends_ci(imagekey.m_strPath, ".aura"))
          {
 
             string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
 
-            if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+            if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
             {
 
                str.trim();
@@ -957,7 +957,7 @@ pacmedirectory->is(strPath))
 
          string strExtension;
 
-         if (::str::ends_ci(imagekey.m_strPath, ".sln"))
+         if (::str().ends_ci(imagekey.m_strPath, ".sln"))
          {
 
             output_debug_string("test");
@@ -973,7 +973,7 @@ pacmedirectory->is(strPath))
 
          }
 
-         if (::str::begins_eat(str, "foo."))
+         if (::str().begins_eat(str, "foo."))
          {
 
             return get_image_by_file_extension(oswindow, imagekey);

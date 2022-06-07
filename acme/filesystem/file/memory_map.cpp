@@ -40,7 +40,7 @@ namespace file
 //
 //      string str = m_strName;
 //
-//      if (::str::begins_eat_ci(str, "Local\\"))
+//      if (::str().begins_eat_ci(str, "Local\\"))
 //      {
 //
 //         path /=          auto psystem = m_psystem;

@@ -240,7 +240,7 @@ void file::write(const void* pdata, memsize nCount)
 
    //   string str;
 
-   //   ::str::international::unicode_to_utf8(str, pcsz);
+   //   unicode_to_utf8(str, pcsz);
 
 
    //   str.replace("\\", "/");

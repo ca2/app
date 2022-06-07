@@ -37,7 +37,7 @@ void * __node_library_open(const ::string & pszPath, string & strMessage)
 
    }
 
-   if(!::str::begins_ci(strPath, "/") && !ansi_begins(strPath, "lib"))
+   if(!::str().begins_ci(strPath, "/") && !ansi_begins(strPath, "lib"))
    {
 
       strPath = "lib" + strPath;

@@ -661,17 +661,17 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strV(m_pcontext->m_papexcontext->dir().install());
       strV.find_replace("\\","/");
-      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
+      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
       strN.find_replace("\\","/");
-      if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+      if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
          strN += "/";
 
       string strObjFile;
 
-      string strItemName = ::str::find_replace("\\", "/", string(strTransformName));
+      string strItemName = ::str().find_replace("\\", "/", string(strTransformName));
 
       string strItemTitle = strTransformName.name();
 
@@ -709,7 +709,7 @@ pacmedirectory->create(pathDVP_Folder);
       str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
       str.find_replace("%ITEM_NAME%",strItemName);
       str.find_replace("%ITEM_TITLE%",strItemTitle);
-      str.find_replace("%ITEM_DIR%",::str::replace_with("\\","/",string(strTransformName.folder())) + "/");
+      str.find_replace("%ITEM_DIR%",::str().replace_with("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
       str.find_replace("%VS_VARS%",m_strEnv);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -732,9 +732,9 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
-      ::str::ends_eat_ci(strTargetPath,".so");
+      ::str().ends_eat_ci(strTargetPath,".so");
 #else
-      ::str::ends_eat_ci(strTargetPath,".dll");
+      ::str().ends_eat_ci(strTargetPath,".dll");
 #endif
       str.find_replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = pscript->m_strBuildBat;
@@ -874,9 +874,9 @@ pacmedirectory->create(pathDVP_Folder);
 #endif
 
          str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
-         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
+         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
-         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -900,11 +900,11 @@ pacmedirectory->create(pathDVP_Folder);
          string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
          
-         ::str::ends_eat_ci(strTargetPath,".so");
+         ::str().ends_eat_ci(strTargetPath,".so");
 
 #else
          
-         ::str::ends_eat_ci(strTargetPath,".dll");
+         ::str().ends_eat_ci(strTargetPath,".dll");
 
 #endif
          
@@ -1117,7 +1117,7 @@ pacmedirectory->create(pathDVP_Folder);
       //{
       //   string str;
       //   str = m_straLibIncludePath[i].relative();
-      //   ::str::ends_eat_ci(str, ".ds");
+      //   ::str().ends_eat_ci(str, ".ds");
       //   strDest += "#include \""+str+".h\"\r\n";
       //}
       strsize iStart = 0;
@@ -1285,7 +1285,7 @@ pacmedirectory->create(pathDVP_Folder);
       string strTransfer = path;
 
       // does not transfer
-      if(::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
+      if(::str().find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
       auto psystem = m_psystem->m_paurasystem;
@@ -1305,13 +1305,13 @@ pacmedirectory->create(pathDVP_Folder);
 
       }
 
-      if(::str::begins(path, m_pmanager->m_strNetseedDsCa2Path/ "library/include"))
+      if(::str().begins(path, m_pmanager->m_strNetseedDsCa2Path/ "library/include"))
       {
 
          m_pmanager->m_pcache->set_all_out_of_date();
 
       }
-      else if(::str::begins(path, m_pmanager->m_strNetseedDsCa2Path / "library/source"))
+      else if(::str().begins(path, m_pmanager->m_strNetseedDsCa2Path / "library/source"))
       {
 
       }
@@ -1355,12 +1355,12 @@ pacmedirectory->create(pathDVP_Folder);
 
       string strV(m_pcontext->m_papexcontext->dir().install());
       strV.find_replace("\\","/");
-      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
+      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
       strN.find_replace("\\","/");
-      if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+      if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
          strN += "/";
 
 
@@ -1404,7 +1404,7 @@ pacmedirectory->create(pathDVP_Folder);
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
          string str = l.m_straLibSourcePath[i].relative();
-         ::str::ends_eat_ci(str,".ds");
+         ::str().ends_eat_ci(str,".ds");
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
@@ -1415,7 +1415,7 @@ pacmedirectory->create(pathDVP_Folder);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].final_extension() != "h"
-               || ::str::find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
+               || ::str().find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
                || m_pcontext->m_papexcontext->dir().is(l.m_straLibIncludePath[i]))
          {
             l.m_straLibIncludePath.erase_at(i);
@@ -1429,7 +1429,7 @@ pacmedirectory->create(pathDVP_Folder);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
-         ::str::ends_eat_ci(str,".ds");
+         ::str().ends_eat_ci(str,".ds");
          str.find_replace(":","");
          l.m_straLibHppPath.add(m_strTime / strLibRel / str + ".h");
       }
@@ -1458,7 +1458,7 @@ pacmedirectory->create(pathDVP_Folder);
 
 //      string strN = m_pmanager->m_strNetnodePath;
       //    strN.replace("\\","/");
-      //  if(!::str::ends(strN,"/") && !::str::ends(strN,"\\"))
+      //  if(!::str().ends(strN,"/") && !::str().ends(strN,"\\"))
       //   strN += "/";
 
 
@@ -1500,8 +1500,8 @@ pacmedirectory->create(pathDVP_Folder);
 
          }
          string strRel = l.m_straLibSourcePath[i].relative();
-         ::str::ends_eat_ci(strRel,".ds");
-         ::str::ends_eat_ci(strRel,".cpp");
+         ::str().ends_eat_ci(strRel,".ds");
+         ::str().ends_eat_ci(strRel,".cpp");
          strRel.find_replace("\\","/");
          ::file::path str1;
          str1 = "library/source" / strRel;
@@ -1524,9 +1524,9 @@ pacmedirectory->create(pathDVP_Folder);
          string str = m_pcontext->m_papexcontext->file().as_string(strCmd);
 
 
-         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i])));
+         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(l.m_straLibCppPath[i])));
          str.find_replace("%ITEM_TITLE%",l.m_straLibCppPath[i].name());
-         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(l.m_straLibCppPath[i].folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1543,8 +1543,8 @@ pacmedirectory->create(pathDVP_Folder);
          //str.find_replace("%DVP%", strDVP_B);
 
 
-         //str.find_replace("%ITEM_NAME%",::str::replace("\\","/",string(str1)));
-         //str.find_replace("%ITEM_DIR%",::str::replace("\\", "/", string(str1.folder())) +"/" );
+         //str.find_replace("%ITEM_NAME%",::str().replace("\\","/",string(str1)));
+         //str.find_replace("%ITEM_DIR%",::str().replace("\\", "/", string(str1.folder())) +"/" );
          str.find_replace("%PLATFORM%",m_strPlatform);
          str.find_replace("%STAGEPLATFORM%",m_strStagePlatform);
          str.find_replace("%NETNODE_ROOT%",strN);
@@ -1667,7 +1667,7 @@ pacmedirectory->create(pathDVP_Folder);
       {
          strObjs += " ";
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
-         ::str::ends_eat_ci(strRel,".ds");
+         ::str().ends_eat_ci(strRel,".ds");
          strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
          strObjs += m_strTime.separator();
          strObjs += strRel;
@@ -1708,7 +1708,7 @@ pacmedirectory->create(pathDVP_Folder);
       //str.find_replace("%DVP%", strDVP_B);
 
       string strTargetName = l.m_strLibraryPath;
-      ::str::ends_eat_ci(strTargetName,".dll");
+      ::str().ends_eat_ci(strTargetName,".dll");
       str.find_replace("%TARGET_NAME%", strTargetName);
       m_pcontext->m_papexcontext->dir().create(m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
@@ -1829,7 +1829,7 @@ auto tickStart = ::duration::now();
          //{
          //   string str;
          //   str = m_straLibIncludePath[i].relative();
-         //   ::str::ends_eat_ci(str, ".ds");
+         //   ::str().ends_eat_ci(str, ".ds");
          //   strDest += "#include \""+str+".h\"\r\n";
          //}
       }
@@ -1938,7 +1938,7 @@ auto tickStart = ::duration::now();
          bInserted = false;
          ch = str[i];
          chNext = str[i + 1];
-         if(::str::begins(str.Mid(i), "bk_filter_active1"))
+         if(::str().begins(str.Mid(i), "bk_filter_active1"))
          {
             //debug_break();
          }
@@ -2537,7 +2537,7 @@ ch_else:
             return true;
          }
       }
-      if(::str::begins(psz, pszId)
+      if(::str().begins(psz, pszId)
             && !isdigit(psz[iIdLen]) && !isalpha(psz[iIdLen]) && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
@@ -2589,8 +2589,8 @@ ch_else:
       for(i32 i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(::str::begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
-               && ::str::ends_ci(str, ".ds"))
+         if(::str().begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
+               && ::str().ends_ci(str, ".ds"))
          {
             strBody += m_pcontext->m_papexcontext->file().as_string(str);
          }
@@ -2600,9 +2600,9 @@ ch_else:
 
       string strInclude = strCat;
       
-      ::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+      ::str().begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
       
-      ::str::ends_eat_ci(strInclude, ".ds");
+      ::str().ends_eat_ci(strInclude, ".ds");
       
       __pointer(script_instance) pinstance = m_pmanager->get(strInclude);
 
@@ -2664,7 +2664,7 @@ ch_else:
    {
       string str(psz);
 
-      if(::str::find_ci("pstr_set", psz) && ::str::ends_ci(psz, ".txt"))
+      if(::str().find_ci("pstr_set", psz) && ::str().ends_ci(psz, ".txt"))
       {
 
          parse_pstr_set();
@@ -2672,8 +2672,8 @@ ch_else:
          //string strCat;
          //strCat = m_pmanager->m_strNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
-         //::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-         //::str::ends_eat_ci(strInclude, ".ds");
+         //::str().begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+         //::str().ends_eat_ci(strInclude, ".ds");
          //script_instance * pinstance = m_pmanager->get(strInclude);
          //if(pinstance != nullptr)
          //{
@@ -2708,8 +2708,8 @@ ch_else:
          //   }
          //}
       }
-      else if(::str::begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
-              && ::str::ends_eat_ci(str, ".ds")
+      else if(::str().begins_eat_ci(str,m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
+              && ::str().ends_eat_ci(str, ".ds")
               && str.compare_ci("netnode_persistent_ui_str") != 0)
       {
          run_persistent();
@@ -2867,7 +2867,7 @@ ch_else:
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
-         if(::str::find_ci(".svn",strFile) >= 0 || !::str::ends_ci(strFile,".txt"))
+         if(::str().find_ci(".svn",strFile) >= 0 || !::str().ends_ci(strFile,".txt"))
             continue;
          strFile = m_pcontext->m_papexcontext->file().as_string(strFile);
          string_array straLine;
@@ -2879,19 +2879,19 @@ ch_else:
             const char * psz = strLine;
             try
             {
-               ::str::consume_spaces(psz,0);
-               string strId = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strLocale = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strSchema = ::str::consume_c_quoted_value(psz);
-               ::str::consume_spaces(psz,1);
-               string strValue = ::str::consume_c_quoted_value(psz);
+               ::str().consume_spaces(psz,0);
+               string strId = ::str().consume_c_quoted_value(psz);
+               ::str().consume_spaces(psz,1);
+               string strLocale = ::str().consume_c_quoted_value(psz);
+               ::str().consume_spaces(psz,1);
+               string strSchema = ::str().consume_c_quoted_value(psz);
+               ::str().consume_spaces(psz,1);
+               string strValue = ::str().consume_c_quoted_value(psz);
                strExtra = "";
                try
                {
-                  ::str::consume_spaces(psz,1);
-                  strExtra = ::str::consume_c_quoted_value(psz);
+                  ::str().consume_spaces(psz,1);
+                  strExtra = ::str().consume_c_quoted_value(psz);
                }
                catch(...)
                {

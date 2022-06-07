@@ -17,7 +17,7 @@ string get_error_message(::u32 dwError)
 //      nullptr);
 //      string str = pBuffer;
 
-//   string str = ::str::international::unicode_to_utf8(pBuffer);
+//   string str = unicode_to_utf8(pBuffer);
 
 // xxx   LocalFree(pBuffer);
 

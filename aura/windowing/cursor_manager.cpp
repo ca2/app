@@ -100,15 +100,15 @@ namespace windowing
       if (strCursor == "arrow") { return e_cursor_arrow; }
       else if (strCursor == "hand") { return e_cursor_hand; }
       else if (strCursor == "text_select") { return e_cursor_text_select; }
-      else if (::str::begins_eat_ci(strCursor, "size_"))
+      else if (::str().begins_eat_ci(strCursor, "size_"))
       {
-         if (::str::begins_eat_ci(strCursor, "top"))
+         if (::str().begins_eat_ci(strCursor, "top"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_top; }
             else if (strCursor == "_left") { return e_cursor_size_top_left; }
             else if (strCursor == "_right") { return e_cursor_size_top_right; }
          }
-         else if (::str::begins_eat_ci(strCursor, "bottom"))
+         else if (::str().begins_eat_ci(strCursor, "bottom"))
          {
             if (strCursor.is_empty()) { return e_cursor_size_bottom; }
             else if (strCursor == "_left") { return e_cursor_size_bottom_left; }

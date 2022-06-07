@@ -168,7 +168,7 @@ namespace user
 
       string strPo = strPoData;
 
-      ::str::begins_eat_ci(strPo, STR_BOM);
+      ::str().begins_eat_ci(strPo, STR_BOM);
 
       string_array stra;
 
@@ -207,12 +207,12 @@ namespace user
 
          pszEnd = psz + strLine.get_length();
 
-         ::str::consume_spaces(psz, 0, pszEnd);
+         ::str().consume_spaces(psz, 0, pszEnd);
 
          try
          {
 
-            strName = ::str::consume_nc_name(psz);
+            strName = ::str().consume_nc_name(psz);
 
             if (strName == "msgid")
             {
@@ -233,9 +233,9 @@ namespace user
 
             }
 
-            ::str::consume_spaces(psz, 1, pszEnd);
+            ::str().consume_spaces(psz, 1, pszEnd);
 
-            str = ::str::consume_quoted_value_ex(psz, pszEnd);
+            str = ::str().consume_quoted_value_ex(psz, pszEnd);
 
             i++;
 
@@ -248,9 +248,9 @@ namespace user
 
                pszEnd = psz + strLine.get_length();
 
-               ::str::consume_spaces(psz, 0, pszEnd);
+               ::str().consume_spaces(psz, 0, pszEnd);
 
-               strName = ::str::consume_nc_name(psz);
+               strName = ::str().consume_nc_name(psz);
 
                if (strName.has_char())
                {
@@ -270,7 +270,7 @@ namespace user
                      try
                      {
 
-                        strHeader = ::str::consume_quoted_value_ex(psz, pszEnd);
+                        strHeader = ::str().consume_quoted_value_ex(psz, pszEnd);
 
                         if (strHeader.has_char())
                         {
@@ -311,9 +311,9 @@ namespace user
                else
                {
 
-                  ::str::consume_spaces(psz, 0, pszEnd);
+                  ::str().consume_spaces(psz, 0, pszEnd);
 
-                  str += ::str::consume_quoted_value_ex(psz, pszEnd);
+                  str += ::str().consume_quoted_value_ex(psz, pszEnd);
 
                }
 

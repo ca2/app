@@ -19,7 +19,7 @@ namespace sockets
    {
 
       SetNonblocking(false);
-      ::str::parse pa(line);
+      ::str().parse pa(line);
       string code = pa.getword();
 
       code.make_upper();
@@ -67,7 +67,7 @@ namespace sockets
 
             string strRequest = pbase64->decode(strWord);
             string strResponse;
-            if(::str::find_ci("username", strRequest) >= 0)
+            if(::str().find_ci("username", strRequest) >= 0)
             {
 
                auto psystem = m_psystem;
@@ -77,7 +77,7 @@ namespace sockets
                strResponse = pbase64->encode(m_pcontext->m_papexcontext->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
                print(strResponse + "\r\n");
             }
-            else if(::str::find_ci("password", strRequest) >= 0)
+            else if(::str().find_ci("password", strRequest) >= 0)
             {
 
                auto psystem = m_psystem;

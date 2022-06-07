@@ -148,10 +148,10 @@ void apple_accumulate_on_open_file(const ::string &* psza, int iCount, const ::s
    for(index i = 0; i < stra.get_count(); i++)
    {
 
-      if(::str::begins_eat_ci(stra[i], "file://"))
+      if(::str().begins_eat_ci(stra[i], "file://"))
       {
 
-         if(!::str::begins(stra[i], "/"))
+         if(!::str().begins(stra[i], "/"))
          {
 
             stra[i] = "/" + stra[i];

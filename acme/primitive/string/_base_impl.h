@@ -1786,8 +1786,8 @@ strsize string_base < TYPE_CHAR >::find_wci(const CHAR_TYPE* pszSub, strsize iSt
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
 
-         if (::str().ch().to_lower_case(::str().uni_index(psz2, &len1)) !=
-            ::str().ch().to_lower_case(::str().uni_index(pszSub2, &len2)))
+         if (str().to_lower_case(str().uni_index(psz2, &len1)) !=
+            str::ch().to_lower_case(str().uni_index(pszSub2, &len2)))
          {
 
             bFound = false;
@@ -2210,7 +2210,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
 
          }
 
-         if (!::str().ch().is_whitespace(psz))
+         if (!str::ch().is_whitespace(psz))
          {
 
             pszLast = ::str().uni_inc(psz);
@@ -2248,7 +2248,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left()
 
    strsize iHere;
 
-   while (::str().ch().is_whitespace(psz))
+   while (str::ch().is_whitespace(psz))
    {
 
       psz = ::str().char_next(psz);

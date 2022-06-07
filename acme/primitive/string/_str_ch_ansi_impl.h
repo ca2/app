@@ -2,7 +2,7 @@
 
 
 
-inline i32 ::str().ch::parse_unicode(const ansichar *& pszUtf8)
+inline i32 str::ch::parse_unicode(const ansichar *& pszUtf8)
 {
 
    if (*pszUtf8 == '\0')
@@ -47,7 +47,7 @@ inline i32 ::str().ch::parse_unicode(const ansichar *& pszUtf8)
 }
 
 
-inline i32 ::str().ch::uni_index_len(const ansichar * pszUtf8, ::i32 & len)
+inline i32 str::ch::uni_index_len(const ansichar * pszUtf8, ::i32 & len)
 {
 
    if (*pszUtf8 == '\0')
@@ -96,7 +96,7 @@ inline i32 ::str().ch::uni_index_len(const ansichar * pszUtf8, ::i32 & len)
 }
 
 
-inline i32 ::str().ch::uni_len(const ansichar * pszUtf8)
+inline i32 str::ch::uni_len(const ansichar * pszUtf8)
 {
 
    ::i32 len;
@@ -113,7 +113,7 @@ inline i32 ::str().ch::uni_len(const ansichar * pszUtf8)
 }
 
 
-inline i32 ::str().ch::uni_index(const ansichar * pszUtf8)
+inline i32 str::ch::uni_index(const ansichar * pszUtf8)
 {
 
    ::i32 len;
@@ -123,9 +123,9 @@ inline i32 ::str().ch::uni_index(const ansichar * pszUtf8)
 }
 
 
-inline ::i32 ::str().ch::to_lower_case(::i32 i)
+inline ::i32 str::ch::to_lower_case(::i32 i)
 {
-   if (!::str().ch::is_legal_uni_index(i))
+   if (!str::ch::is_legal_uni_index(i))
       return -1;
    ::u32 c1 = CHAR_PROP(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (wd32char)i;
@@ -134,7 +134,7 @@ inline ::i32 ::str().ch::to_lower_case(::i32 i)
 }
 
 
-inline ::i32 ::str().ch::to_upper_case(::i32 i)
+inline ::i32 str::ch::to_upper_case(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return -1;
@@ -144,7 +144,7 @@ inline ::i32 ::str().ch::to_upper_case(::i32 i)
    return wd32char(i - (c1 >> 16));
 }
 
-inline ::i32 ::str().ch::to_title_case(::i32 i)
+inline ::i32 str::ch::to_title_case(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return -1;
@@ -162,7 +162,7 @@ inline ::i32 ::str().ch::to_title_case(::i32 i)
 }
 
 
-inline i32 ::str().ch::to_numeric_value(i32 i, float * f)
+inline i32 str::ch::to_numeric_value(i32 i, float * f)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -173,7 +173,7 @@ inline i32 ::str().ch::to_numeric_value(i32 i, float * f)
 }
 
 
-inline bool ::str().ch::is_lower_case(::i32 i)
+inline bool str::ch::is_lower_case(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -181,7 +181,7 @@ inline bool ::str().ch::is_lower_case(::i32 i)
 }
 
 
-inline bool ::str().ch::is_upper_case(::i32 i)
+inline bool str::ch::is_upper_case(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -189,7 +189,7 @@ inline bool ::str().ch::is_upper_case(::i32 i)
 }
 
 
-inline bool ::str().ch::is_title_case(::i32 i)
+inline bool str::ch::is_title_case(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -197,7 +197,7 @@ inline bool ::str().ch::is_title_case(::i32 i)
 }
 
 
-inline bool ::str().ch::is_letter(::i32 i)
+inline bool str::ch::is_letter(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -211,7 +211,7 @@ inline bool ::str().ch::is_letter(::i32 i)
 }
 
 
-inline bool ::str().ch::is_letter_or_digit(::i32 i)
+inline bool str::ch::is_letter_or_digit(::i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -226,7 +226,7 @@ inline bool ::str().ch::is_letter_or_digit(::i32 i)
 }
 
 
-inline bool ::str().ch::is_digit(i32 i)
+inline bool str::ch::is_digit(i32 i)
 {
 
    if (!is_legal_uni_index(i))
@@ -237,7 +237,7 @@ inline bool ::str().ch::is_digit(i32 i)
 }
 
 
-inline bool ::str().ch::is_assigned(i32 i)
+inline bool str::ch::is_assigned(i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -245,7 +245,7 @@ inline bool ::str().ch::is_assigned(i32 i)
 }
 
 
-inline bool ::str().ch::is_space_char(i32 i)
+inline bool str::ch::is_space_char(i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -256,7 +256,7 @@ inline bool ::str().ch::is_space_char(i32 i)
 }
 
 
-inline bool ::str().ch::is_whitespace(i32 i)
+inline bool str::ch::is_whitespace(i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -275,7 +275,7 @@ inline bool ::str().ch::is_whitespace(i32 i)
 }
 
 
-inline bool ::str().ch::is_number(i32 i)
+inline bool str::ch::is_number(i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -283,7 +283,7 @@ inline bool ::str().ch::is_number(i32 i)
 }
 
 
-inline ECharCategory ::str().ch::get_category(i32 i)
+inline ECharCategory str::ch::get_category(i32 i)
 {
    if (!is_legal_uni_index(i))
       return CHAR_CATEGORY_LAST;
@@ -291,7 +291,7 @@ inline ECharCategory ::str().ch::get_category(i32 i)
 }
 
 
-inline i32 ::str().ch::get_combining_class(i32 i)
+inline i32 str::ch::get_combining_class(i32 i)
 {
    if (!is_legal_uni_index(i))
       return false;
@@ -299,7 +299,7 @@ inline i32 ::str().ch::get_combining_class(i32 i)
 }
 
 
-inline bool ::str().ch::is_mirrored(i32 i)
+inline bool str::ch::is_mirrored(i32 i)
 {
 
    if (!is_legal_uni_index(i))
@@ -310,7 +310,7 @@ inline bool ::str().ch::is_mirrored(i32 i)
 }
 
 
-inline i32 ::str().ch::size_of_tables()
+inline i32 str::ch::size_of_tables()
 {
    return sizeof(arr_idxCharInfo) + sizeof(arr_CharInfo) + sizeof(arr_idxCharInfo2) + sizeof(arr_CharInfo2);
 }

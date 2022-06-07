@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline i32 ::str().ch::ansichar_uni_len(wd32char i)
+inline i32 str::ch::ansichar_uni_len(wd32char i)
 {
    if (i < 0)
    {

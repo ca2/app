@@ -7816,7 +7816,7 @@ finished_update:
 
       string strLine = plain_edit_get_line(pgraphics, iLine);
 
-      ::str().replace_tab(0, strLine, m_iTabWidth, intptra);
+      replace_tab(0, strLine, m_iTabWidth, intptra);
 
       return strLine;
 

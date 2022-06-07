@@ -675,7 +675,7 @@ namespace user
 
             }
 
-            ::str().replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur});
+            replace_tab(0, strLineGraphics, m_iTabWidth, { &iCurLineSelBeg, &iCurLineSelEnd, &iCurLineSelCur});
 
             if (m_bPassword)
             {
@@ -3696,7 +3696,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
    strLineGraphics = strLine;
 
-   ::str().replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+   replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
 
    const char * pszStart = strLine;
 
@@ -4314,7 +4314,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
          strExtent = string(psz, pszEnd - psz);
 
-         ::str().replace_tab(0, strExtent, m_iTabWidth);
+         replace_tab(0, strExtent, m_iTabWidth);
 
          int x;
 
@@ -4848,7 +4848,7 @@ finished_update:
 
       //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if (::str().ch::is_legal_uni_index(pusermessage->m_wparam))
+      //      if (::str::ch().is_legal_uni_index(pusermessage->m_wparam))
       //      {
       //
       //#ifdef WINDOWS_DESKTOP
@@ -7816,7 +7816,7 @@ finished_update:
 
       string strLine = plain_edit_get_line(pgraphics, iLine);
 
-      ::str().replace_tab(0, strLine, m_iTabWidth, intptra);
+      replace_tab(0, strLine, m_iTabWidth, intptra);
 
       return strLine;
 

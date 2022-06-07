@@ -504,17 +504,17 @@ SCALAR scalar < SCALAR > ::maximum()
 }
 
 
-
-
 template < typename SCALAR >
 string scalar < SCALAR > ::printf(const ::string & strFormat)
 {
 
-   return ::str().printf(strFormat,get());
+   ::string str;
+
+   str.format(strFormat, get());
+
+   return str;
 
 }
-
-
 
 
 using double_scalar_source = scalar_source < double >;

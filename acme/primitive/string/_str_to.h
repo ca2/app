@@ -1,5 +1,18 @@
 
 
+
+   bool to(i64 & i, const ::string & strParam);
+   bool to(i32 & i, const ::string & strParam);
+   bool to(u64 & u, const ::string & strParam);
+   bool to(u32 & u, const ::string & strParam);
+
+
+   bool to(i32 & i, i32 iBase, const ::string & strParam);
+   bool to(i64 & i, int iBase, const ::string & strParam);
+   bool to(u64 & u, i32 iBase, const ::string & strParam);
+   bool to(u32 & u, i32 iBase, const ::string & strParam);
+
+
       iptr         to_iptr(const ::string & psz);
       i32          to_i32(const ::string & psz);
       u32          to_u32(const ::string & psz);

@@ -66,7 +66,7 @@ namespace ios
 
       for(i32 i = 0; i < patha.get_size(); i++)
       {
-         iLen += ::str().international::utf8_to_unicode_count(patha[i]) + 1;
+         iLen += utf8_to_unicode_count(patha[i]) + 1;
       }
 
       throw ::exception(todo);
@@ -87,7 +87,7 @@ namespace ios
             for(i32 i = 0; i < stra.get_size(); i++)
             {
                ASSERT(m_p->is_window());
-               utf8_to_unicode(lpwstrCopy, ::str().international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
+               utf8_to_unicode(lpwstrCopy, utf8_to_unicode_count(stra[i]) + 1, stra[i]);
                ASSERT(m_p->is_window());
                lpwstrCopy += (stra[i].get_length() + 1);
             }
@@ -171,7 +171,7 @@ namespace ios
             EmptyClipboard();
 
 
-            count iCount = ::str().international::utf8_to_unicode_count(str) + 1;
+            count iCount = utf8_to_unicode_count(str) + 1;
             HGLOBAL hglbCopy = ::GlobalAlloc(GMEM_MOVEABLE, iCount * sizeof(WCHAR));
             unichar * lpwstrCopy  = (unichar *) ::GlobalLock(hglbCopy);
             utf8_to_unicode(lpwstrCopy, iCount, str);

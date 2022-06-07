@@ -31,8 +31,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 
 
-namespace str {
-
+//namespace str {
+//
 
 /* implementation of class parse */
 
@@ -514,7 +514,7 @@ namespace str {
       _get_expandable_line(m_strWord);
 
    }
-
-} // namespace str
-
+//
+//} // namespace str
+//
 

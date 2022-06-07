@@ -11,12 +11,12 @@ namespace datetime
    bool check_end_expression(const ::string & input, const char * & scanner)
    {
       scanner = input;
-      while(::str().ch::is_space_char(scanner) && *scanner != '\0')
+      while(::str::ch().is_space_char(scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
          return true;
-      if(!::str().ch::is_digit(scanner) &&
-         !::str().ch::is_letter(scanner))
+      if(!::str::ch().is_digit(scanner) &&
+         !::str::ch().is_letter(scanner))
          return true;
       return false;
    }
@@ -24,13 +24,13 @@ namespace datetime
    bool check_expression_separator(const ::string & input, const char * & scanner)
    {
       scanner = input;
-      while(::str().ch::is_space_char(scanner) && *scanner != '\0')
+      while(::str::ch().is_space_char(scanner) && *scanner != '\0')
          scanner  =::str().utf8_inc(scanner);
       if(*scanner == '\0')
          return true;
       if(scanner == input)
       {
-         if(::str().ch::is_letter(scanner))
+         if(::str::ch().is_letter(scanner))
             return true;
          else
             return false;
@@ -43,15 +43,15 @@ namespace datetime
    {
       static atom idCalendarDays("calendar:days");
       scanner = input;
-      while(::str().ch::is_space_char(scanner) && *scanner != '\0')
+      while(::str::ch().is_space_char(scanner) && *scanner != '\0')
          scanner = ::str().utf8_inc(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
       string strCandidate;
-      if(::str().ch::is_letter(scanner))
+      if(::str::ch().is_letter(scanner))
       {
-         while(::str().ch::is_letter(scanner))
+         while(::str::ch().is_letter(scanner))
             scanner = ::str().utf8_inc(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
@@ -265,12 +265,12 @@ namespace datetime
    string check_lang_date(const ::string & input, const char * & scanner)
    {
       scanner = input;
-      while(::str().ch::is_whitespace(scanner) && *scanner != '\0')
+      while(::str::ch().is_whitespace(scanner) && *scanner != '\0')
          scanner = ::str().utf8_inc(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
-      while(::str().ch::is_letter(scanner))
+      while(::str::ch().is_letter(scanner))
          scanner = ::str().utf8_inc(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
@@ -306,11 +306,11 @@ namespace datetime
       scanner = input;
       if(*scanner == '\0')
          return "";
-      if(!::str().ch::is_digit(scanner))
+      if(!::str::ch().is_digit(scanner))
          return "";
       const char * start = scanner;
       scanner = ::str().utf8_inc(scanner);
-      while(::str().ch::is_digit(scanner))
+      while(::str::ch().is_digit(scanner))
       {
          scanner = ::str().utf8_inc(scanner);
       }
@@ -323,7 +323,7 @@ namespace datetime
       if(check_end_expression(input, scanner))
          return "";
       const char * start = input;
-      while(!::str().ch::is_space_char(scanner) && *scanner != '\0')
+      while(!::str::ch().is_space_char(scanner) && *scanner != '\0')
          scanner = ::str().utf8_inc(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
@@ -898,7 +898,7 @@ namespace datetime
       else
       {
          token->m_str = consume_date_expression(m_ptextcontext, input);
-         while(::str().ch::is_space_char(input))
+         while(::str::ch().is_space_char(input))
             input = ::str().utf8_inc(input);
          if(*input == '(')
          {

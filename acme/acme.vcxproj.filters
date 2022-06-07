@@ -3056,6 +3056,9 @@
     <ClInclude Include="primitive\string\bstr.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\_string.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -4284,6 +4287,15 @@
     </ClCompile>
     <ClCompile Include="primitive\duration\time.cpp">
       <Filter>Source Files\primitive\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\utf8_char.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\_string.cpp">
+      <Filter>Source Files\primitive\string</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\string\str_to.cpp">
+      <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 #pragma once
 
 
-namespace str
-{
+//namespace str
+//{
 
 
    class CLASS_DECL_ACME base64 :
@@ -57,8 +57,8 @@ namespace str
 
    };
 
-
-} // namespace str
-
+//
+//} // namespace str
+//
 
 

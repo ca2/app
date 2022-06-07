@@ -57,7 +57,7 @@ namespace universal_windows
 
       if (pstrName == nullptr)
          pstrName = "*.*";
-      ::str().international::multibyte_to_unicode(CP_UTF8, ((WIN32_FIND_DATAW*) m_pNextInfo)->cFileName, MAX_PATH, pstrName);
+      multibyte_to_unicode(CP_UTF8, ((WIN32_FIND_DATAW*) m_pNextInfo)->cFileName, MAX_PATH, pstrName);
 
       wstring wstrName = utf8_to_unicode(pstrName);
 

@@ -185,7 +185,7 @@
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += str::ch::to_upper_case(point);
+   //      strFinal += ::str::ch().to_upper_case(point);
    //      point = (ansichar *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
@@ -209,7 +209,7 @@
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += str::ch::to_lower_case(point);
+   //      strFinal += ::str::ch().to_lower_case(point);
    //      point = (ansichar *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
@@ -219,7 +219,7 @@
    //#pragma warning (pop)
    //}
    //
-   inline ansichar * string_uppercase(ansichar * psz, strsize size) noexcept
+   inline ansichar * str::string_uppercase(ansichar * psz, strsize size) noexcept
    {
 
       ansi_upr_s(psz, size);

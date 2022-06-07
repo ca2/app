@@ -7453,7 +7453,7 @@ namespace user
 
             string strUtf8Character = ::str().get_utf8_char(psz);
 
-            auto iCharacter = ::str().ch::uni_index(strUtf8Character);
+            auto iCharacter = ::str::ch().uni_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -17924,7 +17924,7 @@ namespace user
          
          string strCharacter = ::str().get_utf8_char(psz);
          
-         int iCharacter = ::str().ch::uni_index(strCharacter);
+         int iCharacter = ::str::ch().uni_index(strCharacter);
          
          if(m_pappearance)
          {

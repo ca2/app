@@ -241,9 +241,9 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 }
 
 
-
-namespace str
-{
+//
+//namespace str
+//{
 
 
    base64::base64()
@@ -734,8 +734,8 @@ namespace str
       }
 
    }
-
-} // namespace str
-
+//
+//} // namespace str
+//
 
 

@@ -383,7 +383,7 @@ public:
    static void skip_whitespace(const char *& psz)
    {
 
-      while (::str().ch::is_whitespace(*psz))
+      while (::str::ch().is_whitespace(*psz))
       {
 
          psz++;

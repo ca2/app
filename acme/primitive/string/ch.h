@@ -118,7 +118,7 @@ inline bool is_trimmed_string_empty(CHAR_STRING p)
    while(*p)
    {
 
-      if(!::str().ch().is_whitespace(*p))
+      if(!::str::ch().is_whitespace(*p))
       {
 
          return false;

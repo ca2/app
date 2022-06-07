@@ -155,12 +155,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //i32 __cdecl char_traits::is_digit(const char * pch) noexcept
 //{
-//   return ::str().ch::is_digit(pch) ? 1 : 0;
+//   return ::str::ch().is_digit(pch) ? 1 : 0;
 //}
 //
 //i32 __cdecl char_traits::is_space(const char * pch) noexcept
 //{
-//   return ::str().ch::is_whitespace(pch) ? 1 : 0;
+//   return ::str::ch().is_whitespace(pch) ? 1 : 0;
 //}
 //
 //
@@ -319,7 +319,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   string strFinal;
 //   while(*point_i32)
 //   {
-//      strFinal += ::str().ch::to_upper_case(point);
+//      strFinal += ::str::ch().to_upper_case(point);
 //      point = (char *) ::str().utf8_inc(point);
 //   }
 //   strcpy(point,strFinal);
@@ -343,7 +343,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   string strFinal;
 //   while(*point_i32)
 //   {
-//      strFinal += ::str().ch::to_lower_case(point);
+//      strFinal += ::str::ch().to_lower_case(point);
 //      point = (char *) ::str().utf8_inc(point);
 //   }
 //   strcpy(point,strFinal);
@@ -2163,7 +2163,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      const char * pszSub2 = pszSub;
 //      while(*psz2 != '\0' && *pszSub2 != '\0')
 //      {
-//         if(::str().ch::to_lower_case(psz2) != ::str().ch::to_lower_case(pszSub2))
+//         if(::str::ch().to_lower_case(psz2) != ::str::ch().to_lower_case(pszSub2))
 //         {
 //            bFound = false;
 //            break;
@@ -3362,7 +3362,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   while(iCharCount > 0)
 //   {
 //
-//      strsize iLen = ::str().ch::uni_len(psz);
+//      strsize iLen = ::str::ch().uni_len(psz);
 //
 //      psz += iLen;
 //

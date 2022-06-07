@@ -3758,7 +3758,12 @@ class context_image;
 #include "acme/primitive/text/_.h"
 
 
+#include "acme/primitive/string/_string.h"
+
+
 #include "acme/platform/context.h"
+
+
 
 
 //#include "acme/parallelization/pool.h"

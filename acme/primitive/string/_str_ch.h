@@ -156,7 +156,10 @@ public:
    inline  bool is_katakana(const char * pszUtf8) { return is_katakana(uni_index(pszUtf8)); }
    inline  bool is_japanese(const char * pszUtf8) { return is_japanese(uni_index(pszUtf8)); }
 
+   void * char_bidi_names_non_usage_warning();
 
+   i32 ref_tables();
+   const char * get_category_name(i32 i);
 
 }; //  class ch
 

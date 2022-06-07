@@ -1148,7 +1148,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //   {
 
 //
-//      inline i32 ::str().ch::parse_unicode(const wd16char *& input)
+//      inline i32 ::str::ch().parse_unicode(const wd16char *& input)
 //      {
 //
 //         if (input[0] == 0)
@@ -1199,7 +1199,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //      }
 //
 //
-//      inline i32 ::str().ch::uni_index_len(const wd16char * input, i32 & len)
+//      inline i32 ::str::ch().uni_index_len(const wd16char * input, i32 & len)
 //      {
 //
 //         if (input[0] == 0)

@@ -715,7 +715,7 @@ namespace android
 
    //   wstring wstrPath;
 
-   //   //strsize iLen = ::str().international::utf8_to_unicode_count(strPath);
+   //   //strsize iLen = utf8_to_unicode_count(strPath);
    //   //wstrPath.alloc(iLen + 32);
    //   wstrPath = utf8_to_unicode(strPath);
    //   if(wstrPath.get_length() >= MAX_PATH)

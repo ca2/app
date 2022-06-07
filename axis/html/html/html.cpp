@@ -251,7 +251,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str().ch::uni_index(psz);
+         i32 iChar = (i32) ::str::ch().uni_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -303,7 +303,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str().ch::uni_index(psz);
+         i32 iChar = (i32) ::str::ch().uni_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";

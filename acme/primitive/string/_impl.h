@@ -4,6 +4,10 @@
 #include "_impl_prio.h"
 
 
+
+#include "_ch_impl.h"
+
+
 #include "_str_trait_ansi_impl.h"
 #include "_str_trait_wd16_impl.h"
 #include "_str_trait_wd32_impl.h"

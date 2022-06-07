@@ -4660,7 +4660,7 @@ namespace draw2d
 
          }
 
-         if(::str().ch::is_space_char(pszPrevious))
+         if(::str::ch().is_space_char(pszPrevious))
 
          {
             pszSpaceStart       = pszPrevious;
@@ -4669,7 +4669,7 @@ namespace draw2d
             {
                pszSpaceEnd      = psz;
 
-               if(!::str().ch::is_space_char(psz))
+               if(!::str::ch().is_space_char(psz))
 
                {
                   break;

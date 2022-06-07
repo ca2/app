@@ -5889,10 +5889,6 @@ void payload::parse_network_payload(const char * & pszJson)
 }
 
 
-namespace str
-{
-   string consume_quoted_value_ex(const char * & pszXml,const char * pszEnd);
-}
 
 
 

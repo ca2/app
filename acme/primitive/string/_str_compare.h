@@ -19,8 +19,6 @@
    inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent = nullptr);
 
 
-
-
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
    inline bool begins(const TOPIC_STRING & topic, const PREFIX_STRING & prefix);
 
@@ -36,8 +34,8 @@
    inline  bool begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix);
 
    // case insensitive, ignore white space - only in searched string
-   bool CLASS_DECL_ACME begins_ci_iws(const ::string & str, const ::string & strPrefix);
-   bool CLASS_DECL_ACME begins_ci_iws(const wstring & wstr, const wstring & wstrPrefix);
+   bool begins_ci_iws(const ::string & str, const ::string & strPrefix);
+   bool begins_ci_iws(const wstring & wstr, const wstring & wstrPrefix);
 
    template < typename TYPE, typename PREFIX >
    inline bool begins_eat(TYPE & str, const PREFIX & strPrefix);
@@ -57,8 +55,8 @@
    template < typename PREFIX >
    inline bool begins_eat_ci(property & property, const PREFIX& strPrefix);
 
-   bool CLASS_DECL_ACME while_begins_with_chars_eat(string & str, const char * pcszChars);
-   bool CLASS_DECL_ACME while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
+   bool  while_begins_with_chars_eat(string & str, const char * pcszChars);
+   bool  while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
 
 
 
@@ -76,12 +74,44 @@
    template < typename TYPE, typename SUFFIX >
    inline  bool ends_eat_ci(TYPE & str, const SUFFIX & strSuffix);
 
-   bool CLASS_DECL_ACME eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
-   bool CLASS_DECL_ACME eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool  eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool  eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
-   bool CLASS_DECL_ACME eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
-   bool CLASS_DECL_ACME eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
+   bool  eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
+   bool  eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
 
 
+   template <  >
+   inline i32 compare(const ::string & str1, const ::string & str2);
 
+   template <  >
+   inline i32 compare_ci(const ::string & str1, const ::string & str2);
+
+   template < >
+   bool equals(const ::string & str1, const ::string & str2);
+
+   template < >
+   bool equals_ci(const ::string & str1, const ::string & str2);
+
+
+   template < >
+   string equals_get(const ::string & str1, const ::string & str2, const ::string &strGetOnEqual, const ::string & strGetOnDifferent);
+
+
+   template < >
+   string equals_ci_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent);
+
+
+   template < >
+   bool begins(const ::string & str, const ::string & strPrefix);
+
+
+   //template < >
+   bool begins_with(const ::string & str, const ::string & strPrefix);
+
+   template < >
+   bool begins_ci(const ::string & str, const ::string & strPrefix);
+
+   template < >
+   bool begins_ci(const widestring & pcwsz, const widestring & pcwszPrefix);
 

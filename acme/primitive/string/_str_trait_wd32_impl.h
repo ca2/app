@@ -3,8 +3,8 @@
 
 
 
-   inline  constexpr auto     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(wd32char)); }
-   inline  constexpr auto     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(wd32char)); }
+   inline  constexpr strsize     str::char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength) { return (::memsize) (nCharLength * sizeof(wd32char)); }
+   inline  constexpr strsize     str::byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength) { return (::strsize) (nByteLength / sizeof(wd32char)); }
 
 
    inline i32 str::string_compare(const wd32char * pszA, const wd32char * pszB) noexcept { return wd32_cmp(pszA, pszB); }
@@ -182,7 +182,7 @@
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += str::ch::to_upper_case(point);
+   //      strFinal += ::str::ch().to_upper_case(point);
    //      point = (wd32char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
@@ -206,7 +206,7 @@
    //   string strFinal;
    //   while(*point_i32)
    //   {
-   //      strFinal += str::ch::to_lower_case(point);
+   //      strFinal += ::str::ch().to_lower_case(point);
    //      point = (wd32char *) str::utf8_inc(point);
    //   }
    //   strcpy(point,strFinal);
@@ -280,6 +280,8 @@
 #ifdef WINDOWS
 
       throw_todo();
+
+      return -1;
 
 #else
 

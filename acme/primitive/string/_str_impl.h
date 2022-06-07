@@ -89,8 +89,10 @@ inline bool equal_ignore_case(const char * left, const char * right, size_t len)
 }
 
 
-inline CLASS_DECL_ACME bool trimmed_is_empty(const char * psz)
+inline bool str::trimmed_is_empty(const ::string & str)
 {
+
+   const char * psz = str.c_str();
 
    while (true)
    {

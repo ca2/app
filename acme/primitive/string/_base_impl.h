@@ -1786,7 +1786,7 @@ strsize string_base < TYPE_CHAR >::find_wci(const CHAR_TYPE* pszSub, strsize iSt
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
 
-         if (str().to_lower_case(str().uni_index(psz2, &len1)) !=
+         if (str::ch().to_lower_case(str().uni_index(psz2, &len1)) !=
             str::ch().to_lower_case(str().uni_index(pszSub2, &len2)))
          {
 

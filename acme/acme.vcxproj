@@ -39,7 +39,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>acme</ProjectName>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -1306,7 +1306,10 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
+    <ClCompile Include="primitive\string\str_to.cpp" />
     <ClCompile Include="primitive\string\to_string.cpp" />
+    <ClCompile Include="primitive\string\utf8_char.cpp" />
+    <ClCompile Include="primitive\string\_string.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
     <ClCompile Include="primitive\text\international_locale_schema.cpp" />
@@ -1884,6 +1887,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\string\_conv_ansi_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_wide.h" />
     <ClInclude Include="primitive\string\_c_trait_wide_impl.h" />
+    <ClInclude Include="primitive\string\_string.h" />
     <ClInclude Include="primitive\string\_str_ch.h" />
     <ClInclude Include="primitive\string\_str_ch_wd16_impl.h" />
     <ClInclude Include="primitive\string\_str_ch_wd32_impl.h" />

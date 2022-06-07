@@ -1074,7 +1074,7 @@ string_array get_c_args_from_string(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str().ch::is_whitespace(psz))
+         while (!::str::ch().is_whitespace(psz))
          {
 
             psz = ::str().utf8_inc(psz);
@@ -1196,7 +1196,7 @@ string_array get_c_args_from_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str().ch::is_whitespace(psz))
+         while (!::str::ch().is_whitespace(psz))
          {
 
             psz = ::str().utf8_inc(psz);
@@ -1311,7 +1311,7 @@ string_array get_c_args_for_c(const ::string & psz)
 
          const char * pszValueStart = psz;
 
-         while(!::str().ch::is_whitespace(psz))
+         while(!::str::ch().is_whitespace(psz))
          {
 
             psz = ::str().utf8_inc(psz);
@@ -1472,7 +1472,7 @@ string transform_to_c_arg(const ::string & psz)
          chQuote = '\"';
 
       }
-      else if(::str().ch::is_whitespace(pszParse)
+      else if(::str::ch().is_whitespace(pszParse)
          || isspace((unsigned char) *pszParse)
               || *pszParse == ':')
       {

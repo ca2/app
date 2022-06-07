@@ -768,7 +768,7 @@ namespace user
       set_title(pathFull.title());
 
       //string strPathName;
-      //::str().international::Utf8ToAcp(strPathName, m_wstrPathName);
+      //Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
       guserbase::get(this)->AddToRecentFileList(pszPathName);*/

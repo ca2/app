@@ -118,20 +118,32 @@ namespace sockets
                      m_chunk_line += buf[ptr++];
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
+                     
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::str().parse pa(m_chunk_line, ";");
+                     
+                     ::parse pa(m_chunk_line, ";");
+
                      string size_str = pa.getword();
+
                      m_chunk_size = ::hex::to_u32(size_str);
+
                      if (!m_chunk_size)
                      {
+
                         m_chunk_state = 4;
+
                         m_chunk_line = "";
+
                      }
                      else
                      {
+
                         m_chunk_state = 1;
+
                         m_chunk_line = "";
+
                      }
+
                   }
                   break;
                case 1:
@@ -232,11 +244,13 @@ namespace sockets
 
          m_durationFirstTime.Now();
 
-         ::str().parse pa(line);
+         ::parse pa(line);
 
          string str = pa.getword();
+
          if (str.get_length() > 4 &&  ::str().begins_ci(str, "http/")) // response
          {
+
             //m_response.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
             m_response.attr(__id(http_version)) = str;
             string strHttpStatusCode = pa.getword();
@@ -244,9 +258,11 @@ namespace sockets
             m_response.attr(__id(http_status)) = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;
+
          }
          else // request
          {
+
             str.make_lower();
             //m_request.attr(__id(remote_addr)) = GetRemoteAddress().get_display_number();
             m_request.m_atomHttpMethod = str;
@@ -278,10 +294,14 @@ namespace sockets
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
+
          }
+
          m_bFirst = false;
          OnFirst();
+
          return;
+
       }
 
       if (!line.get_length())

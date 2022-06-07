@@ -14,9 +14,9 @@
 // };
 
 
-namespace str
-{
-
+//namespace str
+//{
+//
 
    bool whole_word_contains(string str, string strFind)
    {
@@ -92,9 +92,9 @@ namespace str
       }
 
    }
-
-
-} // namespace str
+//
+//
+//} // namespace str
 
 
 

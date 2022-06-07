@@ -13,8 +13,8 @@ void * gen_ch_class_reference_tables()
 }
 
 
-namespace str
-{
+//namespace str
+//{
 
    ch_class::ch_class()
    {
@@ -228,7 +228,7 @@ namespace str
 
    void ch_class::add_char(const char * pszUtf8Char)
    {
-      i64 iChar = ::str().ch::uni_index(pszUtf8Char);
+      i64 iChar = ::str::ch().uni_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -240,7 +240,7 @@ namespace str
 
    void ch_class::clear_char(const char * pszUtf8Char)
    {
-      i64 iChar = ::str().ch::uni_index(pszUtf8Char);
+      i64 iChar = ::str::ch().uni_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -249,8 +249,8 @@ namespace str
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      i64 iCharStart = ::str().ch::uni_index(s);
-      i64 iCharEnd = ::str().ch::uni_index(e);
+      i64 iCharStart = ::str::ch().uni_index(s);
+      i64 iCharEnd = ::str::ch().uni_index(e);
       for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -263,8 +263,8 @@ namespace str
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      i64 iCharStart = ::str().ch::uni_index(s);
-      i64 iCharEnd = ::str().ch::uni_index(e);
+      i64 iCharStart = ::str::ch().uni_index(s);
+      i64 iCharEnd = ::str::ch().uni_index(e);
       for(i64 ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
@@ -390,16 +390,16 @@ namespace str
 
    bool ch_class::in_class(const char * pszUtf8Char) const
    {
-      i64 ca = ::str().ch::uni_index(pszUtf8Char);
-      if(!::str().ch::is_legal_uni_index(ca))
+      i64 ca = ::str::ch().uni_index(pszUtf8Char);
+      if(!::str::ch().is_legal_uni_index(ca))
          return false;
       bit_array * tablePos = infoIndex[ca>>8];
       if(tablePos == nullptr)
          return false;
       return tablePos->get_bit(ca & 0xFF);
    }
-
-} // namespace str
+//
+//} // namespace str
 
 
 /* ***** BEGIN LICENSE BLOCK *****

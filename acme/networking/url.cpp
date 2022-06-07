@@ -57,7 +57,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const char * psz)
 
    }
 
-   if (::str().ch::is_letter(*psz))
+   if (::str::ch().is_letter(*psz))
    {
 
       psz++;
@@ -71,7 +71,7 @@ CLASS_DECL_ACME bool is_like_url_protocol(const char * psz)
 
    }
 
-   while (::str().ch::is_letter_or_digit(*psz) || *psz == '-' || *psz == '_' || *psz == '.')
+   while (::str::ch().is_letter_or_digit(*psz) || *psz == '-' || *psz == '_' || *psz == '.')
    {
 
       psz++;

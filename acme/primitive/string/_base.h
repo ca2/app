@@ -11,7 +11,7 @@ public:
    string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
    string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
 
-   ::i32 operator *(){return ::str().ch::uni_index(m_psz); }
+   ::i32 operator *(){return ::str::ch().uni_index(m_psz); }
 
    string_iterator & operator ++()
    {

@@ -4,7 +4,7 @@
 
 
    template < typename CHAR_TYPE >
-   inline string_base < CHAR_TYPE > ::str().repeat(const CHAR_TYPE * psz, strsize c)
+   inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
    {
 
       auto itemLen = string_safe_length(psz);
@@ -91,27 +91,29 @@
    }
 
 
-   inline CLASS_DECL_ACME bool trimmed_is_empty(const char * psz)
+   inline  bool str::trimmed_is_empty(const ::string & str)
    {
 
-      while (true)
+      ::strsize i = 0;
+
+      while (i < str.length())
       {
 
-         if (*psz == '\0')
+         if (str[i] == '\0')
          {
 
             break;
 
          }
 
-         if (!isspace(*psz))
+         if (!isspace(str[i]))
          {
 
             return false;
 
          }
 
-         psz++;
+         i++;
 
       }
 
@@ -564,14 +566,14 @@ template < size_t n >
 inline void from_string(wd16char sz[n], const ansichar * psz)
 {
 
-   if (::str().utf_to_utf_length(sz, psz) >= n)
+   if (str::utf_to_utf_length(sz, psz) >= n)
    {
 
       throw ::exception(error_would_reach_buffer_limit);
 
    }
 
-   ::str().utf_to_utf(sz, psz);
+   str::utf_to_utf(sz, psz);
 
 }
 
@@ -580,14 +582,14 @@ template < size_t n >
 inline void from_string(wd32char sz[n], const ansichar * psz)
 {
 
-   if (::str().utf_to_utf_length(sz, psz) >= n)
+   if (str::utf_to_utf_length(sz, psz) >= n)
    {
 
       throw ::exception(error_would_reach_buffer_limit);
 
    }
 
-   ::str().utf_to_utf(sz, psz);
+   str::utf_to_utf(sz, psz);
 
 }
 
@@ -1342,7 +1344,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //      if(!parse(s))
 //      {
 //
-//         ::str().format_type(this, value);
+//         str::format_type(this, value);
 //
 //         m_estate = e_state_initial;
 //
@@ -1420,10 +1422,10 @@ inline string string_from_strdup(const ansichar* psz)
 //{
 //
 
-   inline strsize ::str().utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
+   inline strsize str::utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
    {
 
-      const ansichar* pszDec = ::str().uni_dec(pszBeg, psz);
+      const ansichar* pszDec = str::uni_dec(pszBeg, psz);
 
       if (pszDec == nullptr)
       {
@@ -1436,7 +1438,7 @@ inline string string_from_strdup(const ansichar* psz)
 
    }
 
-   inline  strsize ::str().utf8_inc_len(const ansichar* psz)
+   inline  strsize str::utf8_inc_len(const ansichar* psz)
    {
 
       return get_utf8_char_length(psz);
@@ -1444,7 +1446,7 @@ inline string string_from_strdup(const ansichar* psz)
    }
 
 
-   inline bool ::str().namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar* pszSeparator)
+   inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar* pszSeparator)
    {
 
       if (::is_null(psz) || ::is_null(pszNamespace) || *psz == '\0' || *pszNamespace == '\0')
@@ -1461,7 +1463,7 @@ inline string string_from_strdup(const ansichar* psz)
 
       }
 
-      if (::str().begins(psz, string(pszNamespace) + pszSeparator))
+      if (str::begins(psz, string(pszNamespace) + pszSeparator))
       {
 
          return true;
@@ -1473,7 +1475,7 @@ inline string string_from_strdup(const ansichar* psz)
    }
 
 
-   inline bool ::str().begins_ci_skip(const char*& psz, const char* pszPrefix)
+   inline bool str::begins_ci_skip(const char*& psz, const char* pszPrefix)
    {
 
       auto length = strlen(pszPrefix);
@@ -1495,7 +1497,7 @@ inline string string_from_strdup(const ansichar* psz)
    /// Returns:
    /// end of line, and;
    /// next line or null if no next line
-   inline struct ::end_of_line_and_next_line ::str().end_of_line_and_next_line(const char* psz)
+   inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char* psz)
    {
 
       struct ::end_of_line_and_next_line pair;
@@ -1617,7 +1619,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
 
 
 
-inline int ::str().get_utf8_char_length(const char * psz)
+inline int str::get_utf8_char_length(const char * psz)
 {
 
    int len = ch_uni_len(*psz);

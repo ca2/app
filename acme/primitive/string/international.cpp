@@ -10,12 +10,12 @@
 
 #endif
 
-namespace str
-{
-
-
-   namespace international
-   {
+//namespace str
+//{
+//
+//
+//   namespace international
+//   {
 
 
       bool unicode_to_multibyte(::u32 uCodePage, ansichar * pstrMultiByte, strsize nCount, const widechar * pcsz)
@@ -679,10 +679,10 @@ namespace str
 
       //}
 
-
-   } // namespace international
-
-
-} // namespace str
-
-
+//
+//   } // namespace international
+//
+//
+//} // namespace str
+//
+//

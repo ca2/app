@@ -176,8 +176,8 @@ namespace database
 } // namespace dabase
 
 
-namespace str
-{
+//namespace str
+//{
 
    inline string & assign(string & str, const ::database::key & key)
    {
@@ -186,5 +186,5 @@ namespace str
 
    }
 
-
-} // namespace str
+//
+//} // namespace str

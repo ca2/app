@@ -65,7 +65,7 @@ namespace calculator
       token = new class token;
       if(token == nullptr)
          throw ::exception(error_no_memory);
-      while(::str().ch::is_space_char(input))
+      while(::str::ch().is_space_char(input))
          input = ::str().utf8_inc(input);
       if(*input == '\0')
       {
@@ -75,7 +75,7 @@ namespace calculator
       const char * nextinput = ::str().utf8_inc(input);
 
       if((*input == 'j' || *input == 'i') &&
-         ::str().ch::is_digit(nextinput))
+         ::str::ch().is_digit(nextinput))
       {
          token->m_etype = token::type_imaginary;
          char * endptr;
@@ -84,7 +84,7 @@ namespace calculator
          input = endptr;
          return token;
       }
-      else if(::str().ch::is_digit(input))
+      else if(::str::ch().is_digit(input))
       {
          token->m_etype = token::type_number;
          char * endptr;
@@ -144,7 +144,7 @@ namespace calculator
       else
       {
          token->m_str = ::str().consume_nc_name(input);
-         while(::str().ch::is_space_char(input))
+         while(::str::ch().is_space_char(input))
             input = ::str().utf8_inc(input);
          if(*input == '(')
          {

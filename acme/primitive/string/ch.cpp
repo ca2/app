@@ -32,61 +32,29 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
 }
 
 
-namespace str
-{
+//namespace str
+//{
 
 
    /* --------------------------------------------------------------------- */
 
 
 
-   utf8_char::utf8_char(u64 u)
-   {
-
-      m_chLen = (char) wd32_to_ansi_char(m_sz, (u32) u);
-
-      m_sz[m_chLen] = '\0';
-
-   }
+   //namespace ch
+   //{
 
 
-   i32 utf8_char::parse(const char * psz)
-   {
-      char chLen =  1 + trailingBytesForUTF8(*psz);
-      char ch = 0;
-      for(; ch < chLen; ch++)
-      {
-         if(*psz == 0)
-         {
-            m_chLen = -1;
-            return -1;
-         }
-         m_sz[ch] = *psz++;
-      }
-      m_sz[ch]   = '\0';
-      m_chLen    = chLen;
-      return chLen;
-   }
-
-
-   namespace ch
-   {
-
-      void * char_bidi_names_non_usage_warning();
-
-      i32 ref_tables();
-
-      i32 ref_tables()
+      i32 str::ch::ref_tables()
       {
          return sizeof(char_bidi_names);
       }
 
 
-      string get_category_name(i32 i)
+      const char * str::ch::get_category_name(i32 i)
       {
          if (!is_legal_uni_index(i))
             return "";
-         return string(char_category_names[CHAR_CATEGORY(CHAR_PROP(i))]);
+         return char_category_names[CHAR_CATEGORY(CHAR_PROP(i))];
       }
 
 
@@ -101,15 +69,15 @@ namespace str
 
 
 
-      void * char_bidi_names_non_usage_warning()
+      void * str::ch::char_bidi_names_non_usage_warning()
       {
          return char_bidi_names;
       }
 
-
-   } // namespace ch
-
-} // namespace str
+//
+//   } // namespace ch
+//
+//} // namespace str
 
 
 /* ***** BEGIN LICENSE BLOCK *****

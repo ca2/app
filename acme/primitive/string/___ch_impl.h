@@ -132,7 +132,7 @@
 //      //
 //      //inline ::i32 to_lower_case(::i32 i)
 //      //{
-//      //   if (!::str().ch::is_legal_uni_index(i))
+//      //   if (!::str::ch().is_legal_uni_index(i))
 //      //      return -1;
 //      //   ::u32 c1 = CHAR_PROP(i);
 //      //   if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (wd32char)i;

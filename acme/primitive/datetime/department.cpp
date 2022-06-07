@@ -1225,7 +1225,7 @@ namespace datetime
       for (i32 i = 0; *psz; psz = ::str().utf8_inc(psz))
       {
          string strChar = ::str().get_utf8_char(psz);
-         if (::str().ch::is_whitespace(psz))
+         if (::str::ch().is_whitespace(psz))
          {
             i++;
             //if(strNumber.has_char() && strText.has_char())
@@ -1333,11 +1333,11 @@ namespace datetime
             bMinus = true;
             strNumber.Empty();
          }
-         else if (::str().ch::is_digit(psz))
+         else if (::str::ch().is_digit(psz))
          {
             strNumber += strChar;
          }
-         else if (::str().ch::is_letter(psz))
+         else if (::str::ch().is_letter(psz))
          {
             strText1 += strChar;
          }

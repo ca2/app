@@ -201,7 +201,7 @@ namespace user
 //
 //            for(; i < 8; i++)
 //            {
-//               if(!::str().ch::is_digit(wsz[i]) && !(wsz[i] >= 'A' && wsz[i] <= 'F') && !(wsz[i] >= 'a' && wsz[i] <= 'f'))
+//               if(!::str::ch().is_digit(wsz[i]) && !(wsz[i] >= 'A' && wsz[i] <= 'F') && !(wsz[i] >= 'a' && wsz[i] <= 'f'))
 //                  break;
 //            }
 //

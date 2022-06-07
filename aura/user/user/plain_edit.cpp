@@ -4848,7 +4848,7 @@ finished_update:
 
       //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if (::str().ch::is_legal_uni_index(pusermessage->m_wparam))
+      //      if (::str::ch().is_legal_uni_index(pusermessage->m_wparam))
       //      {
       //
       //#ifdef WINDOWS_DESKTOP

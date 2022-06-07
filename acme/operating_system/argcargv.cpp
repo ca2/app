@@ -72,7 +72,7 @@ string_array get_c_args_from_string(const char * psz)
 
          const char * pszValueStart = psz;
 
-         while (!::str().ch::is_whitespace(psz))
+         while (!::str::ch().is_whitespace(psz))
          {
 
             psz = ::str().utf8_inc(psz);
@@ -196,7 +196,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
 
          char chQuote = '\0';
 
-         while (!::str().ch::is_whitespace(psz))
+         while (!::str::ch().is_whitespace(psz))
          {
 
             psz = ::str().utf8_inc(psz);

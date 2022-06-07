@@ -225,7 +225,9 @@ namespace net
       {
          return false;
       }
-      ::str().parse pa(str, ":.");
+      
+      ::parse pa(str, ":.");
+
       string tmp = pa.getword();
       while (tmp.get_length())
       {

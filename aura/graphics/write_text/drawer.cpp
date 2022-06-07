@@ -209,7 +209,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         bool bWhitespaceNow = ::str().ch::is_whitespace(pszEnd);
+         bool bWhitespaceNow = ::str::ch().is_whitespace(pszEnd);
 
          if (bWhitespaceNow && !bWhitespace)
          {

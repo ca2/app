@@ -1,58 +1,7 @@
 #pragma once
 
 
-struct end_of_line_and_next_line
-{
-
-   const char * end_of_line;
-   const char * next_line;
-
-};
-
-inline  string consume_char(const ansichar * & p)
-{
-   auto len = ::utf8_len(p);
-   string strChar(p, len);
-   p+=len;
-   return strChar;
-}
-inline  wd16string consume_char(const wd16char * & p)
-{
-   auto len = ::utf16_len(p);
-   wd16string wd16strChar(p, len);
-   p+=len;
-   return wd16strChar;
-}
-inline  wd32string consume_char(const wd32char * & p)
-{
-   auto len = 1;
-   wd32string wd32strChar(p, len);
-   p+=len;
-   return wd32strChar;
-}
-
-
-inline  ansichar * next_char(const ansichar * & p)
-{
-   auto len = ::utf8_len(p);
-   p+=len;
-   return (ansichar *)p;
-}
-inline  const wd16char * next_char(const wd16char * & p)
-{
-   auto len = ::utf16_len(p);
-   p+=len;
-   return (wd16char *)p;
-}
-inline  wd32char * next_char(const wd32char * & p)
-{
-   auto len = 1;
-   p+=len;
-   return(wd32char *) p;
-}
-
-
-class  str
+class CLASS_DECL_ACME str
 {
 public:
 
@@ -70,7 +19,13 @@ public:
    {
 
       e_error_none,
-      e_error_invalid_utf8_character
+      e_error_invalid_utf8_character_1,
+      e_error_invalid_utf8_character_2,
+      e_error_invalid_utf8_character_3,
+      e_error_invalid_utf8_character_4,
+      e_error_invalid_utf8_character_5,
+      e_error_invalid_utf8_character_6,
+      e_error_invalid_utf8_character_7,
 
    };
 
@@ -136,7 +91,7 @@ public:
    strsize   find_ci(const ansichar   * pszFind, const ::string & str, strsize iStart = 0);
    strsize   find_ci(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
 
-   strsize   utf8_find(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
+   strsize   utf8_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 
 
    strsize   find_ci(const ansichar   * pszFind,const ::string & str,strsize iStart, strsize iLast);
@@ -154,7 +109,7 @@ public:
    bool   has_one_v1(const ::string & psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
    bool   has_all_v1(const ::string & psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
    bool   has_all_v1(const ::string & psz);
-   string   if_null(const ansichar * psz, const ::string & pszIfNull = nullptr);
+   string   if_null(const ::string & str, const ::string & pszIfNull = nullptr);
 
 
    inline  const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
@@ -163,7 +118,7 @@ public:
    //inline  void            set_error(enum_error eerror) { g_eerror = eerror; }
    //inline  void            clear_error() { g_eerror = e_error_none; }
 
-      const ansichar *    utf8_inc(const ansichar * psz);
+      const ansichar *    utf8_inc(const ansichar * psz, enum_error * perror = nullptr);
       const ansichar *    utf8_inc_slide(strsize * pslide, const ansichar * psz);
       const ansichar *    utf8_inc_copy_slide_back(strsize * pslideback, ansichar * pchDst, const ansichar * pchSrc);
       const ansichar *    utf8_inc_count(const ansichar * psz, strsize * piCount);
@@ -183,7 +138,7 @@ public:
       string         get_utf8_char(const ansichar *psz);
       int            get_utf8_char_length(const ansichar *psz);
       string         get_utf8_char(const ansichar *psz, const ansichar * pszEnd);
-      bool           get_utf8_char(string & strChar, const char * psz, const char * pszEnd);
+      bool           get_utf8_char(string & strChar, const char * & psz, const char * pszEnd);
       string         get_utf8_char(const ansichar * pszBeg, const ansichar *psz, strsize i);
       string         utf8_next_char(const ansichar * pszBeg, const ansichar *psz, strsize i = 0);
       string         utf8_previous_char(const ansichar * pszBeg, const ansichar *psz, strsize i = 0);
@@ -213,23 +168,22 @@ public:
 
       string &       zero_pad(string & str, strsize iPad);
       string         zero_padded(const ::string & str, strsize iPad);
-      i32            get_escaped_char(const ::string & str, strsize pos, strsize &retPos);
-      bool           get_curly_content(const ::string & psz, string & str);
-      bool           is_simple_natural(const ::string & psz, strsize iCount = -1);
-      bool           is_natural(const ::string & psz);
-      bool           is_integer(const ::string & psz);
+      i32            get_escaped_char(const char * psz, strsize pos, strsize &retPos);
+      bool           get_curly_content(const char * psz, string & str);
+      bool           is_simple_natural(const char * psz, strsize iCount = -1);
+      bool           is_natural(const ::string & str);
+      bool           is_integer(const ::string & str);
 
-     string          ansi_lower(const ::string & psz);
-     string          ansi_upper(const ::string & psz);
-
-
-
-   string   get_word(const ansichar * psz, const ansichar * pszSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
+     string          ansi_lower(const ::string & str);
+     string          ansi_upper(const ::string & str);
 
 
-     bool eats(const ansichar * & pszParse, const ansichar * psz);
-     bool eats_ci(const ansichar * & szParse, const ansichar * psz);
-     void consume(const ansichar * & pszParse, const ansichar * psz);
+     string   get_word(const ::string &str, const ::string &strSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
+
+
+     bool eats(const ansichar * & pszParse, const ::string & strToEat);
+     bool eats_ci(const ansichar * & szParse, const ::string & strToEat);
+     void consume(const ansichar * & pszParse, const ::string & strToConsume);
      void consume(const ansichar * & pszParse, const ansichar * psz, const ansichar * pszEnd);
      void consume(const ansichar * & pszParse, const ansichar * psz, ::count iLen, const ansichar * pszEnd);
      void consume_spaces(const ansichar * & pszParse, ::count iMinimumCount = 1);
@@ -238,7 +192,7 @@ public:
      string consume_hex(const ansichar * & pszParse);
      void consume_spaces(const ansichar * & pszParse, ::count iMinimumCount, const ansichar * pszEnd);
      string consume_non_spaces(const ansichar * & pszParse, const ansichar * pszEnd);
-     string consume_non_spaces(string & str);
+     string consume_non_spaces(const ansichar * & psz);
      string consume_nc_name(const ansichar * & pszParse);
    //  string consume_quoted_value(const ansichar * & pszParse);
      void no_escape_consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
@@ -255,19 +209,18 @@ public:
      string consume_command_line_argument(const ansichar * & pszParse, const ansichar * pszEnd);
      bool begins_consume(const ansichar * & pszParse, const ::string & psz);
 
-     bool xml_is_comment(const ::string & pszParse);
-     string xml_consume_comment(const ansichar * & pszParse);
+   bool xml_is_comment(const ::string & pszParse);
+   string xml_consume_comment(const ansichar * & pszParse);
 
-     string consume_c_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
+   string consume_c_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
 
-     string token(string & str, const ::string & pszSeparatorText, bool bWithSeparator = false);
+   string token(string & str, const ::string & pszSeparatorText, bool bWithSeparator = false);
 
    //  void token(string & strToken, ::string & strSource, const ::string & pszSeparatorText, bool bWithSeparator = false);
 
-     string line(string& str, bool bWithNewLine = false);
+   string line(string & str, bool bWithNewLine = false);
 
-     string pad(const ::string & psz, ::count iLen, const ::string & pszPattern, enum_pad epad);
-
+   string pad(const ::string & psz, ::count iLen, const ::string & pszPattern, enum_pad epad);
 
    inline  strsize length(const ansichar * pansichar) { return ansi_length(pansichar); }
    inline  strsize length(const wd16char * pwd16char) { return wd16_length(pwd16char); }
@@ -315,6 +268,12 @@ public:
 
    }
 
+   //namespace str
+   //{
+   //string consume_quoted_value_ex(const char *& pszXml, const char * pszEnd);
+   //}
+
+
 
      string signed_double(double d);
 
@@ -342,30 +301,16 @@ public:
 #include "_str_trait_wd32.h"
 
 
-
-
 }; // class str
-
-
-
-
-
-
-
-
-
 
 
 CLASS_DECL_ACME  string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-inline  string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
+inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
-  string _002Underscore(string str);
+inline string string_from_strdup(const char * psz);
 
 
-
-
-inline    string string_from_strdup(const char * psz);
 

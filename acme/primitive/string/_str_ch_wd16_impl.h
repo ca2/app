@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline i32 ::str().ch::parse_unicode(const wd16char *& input)
+inline i32 str::ch::parse_unicode(const wd16char *& input)
 {
 
    if (input[0] == 0)
@@ -52,7 +52,7 @@ inline i32 ::str().ch::parse_unicode(const wd16char *& input)
 }
 
 
-inline i32 ::str().ch::uni_index_len(const wd16char * input, i32 & len)
+inline i32 str::ch::uni_index_len(const wd16char * input, i32 & len)
 {
 
    if (input[0] == 0)

@@ -698,7 +698,7 @@
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
-//         while(::str().ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)
@@ -726,7 +726,7 @@
 //         strRoot.assign(s, psz - s);
 //         psz++;
 //
-//         while(::str().ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)
@@ -738,7 +738,7 @@
 //
 //         psz++;
 //
-//         while(::str().ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)

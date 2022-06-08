@@ -158,7 +158,7 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
    if (s.is_storing())
    {
 
-      ::str().from(str, (const STRINGABLE &) stringable);
+      ::to_string(str, (const STRINGABLE &) stringable);
 
       s.exchange(atom::e_type_empty, str);
 

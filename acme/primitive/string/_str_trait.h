@@ -216,7 +216,7 @@
 
 
    template < typename TYPE_CHAR >
-   inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const natural_string_base < TYPE_CHAR > & strSrc);
+   inline string_base < TYPE_CHAR > & assign(string_base < TYPE_CHAR > & strDst, const string_natural_pointer < TYPE_CHAR > & strSrc);
 
 
    template < typename TYPE_CHAR >
@@ -305,7 +305,7 @@
 
    inline ansistring & assign(ansistring & ansistrDst, const ::type & type);
 
-   inline widestring & assign(widestring & widestrDst, const ::type & type);
+   inline wd16string & assign(wd16string & widestrDst, const ::type & type);
 
    inline wd32string & assign(wd32string & widestrDst, const type & type);
 

@@ -430,7 +430,7 @@
 
 
    template < typename TYPE_CHAR >
-   inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & strDst, const natural_string_base < TYPE_CHAR > & strSrc)
+   inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & strDst, const string_natural_pointer < TYPE_CHAR > & strSrc)
    {
 
       strDst.assign_natural_pointer(strSrc);

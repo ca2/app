@@ -37,6 +37,16 @@ public:
    inline i32 uni_len(const wd16char * pszChar) { return utf16_is_1st_surrogate(*pszChar) ? 2 : 1; }
    inline i32 uni_len(const wd32char * pszChar) { return 1; }
 
+   
+   template < typename CHAR_TYPE >
+   inline CHAR_TYPE * inc(CHAR_TYPE * & pszChar)
+   {
+      
+      return pszChar += uni_len(pszChar);
+      
+   }
+ 
+   
    inline i32 ansichar_uni_len(wd32char i);
    inline i32 wd16char_uni_len(wd32char i) { return utf32_is_surrogated(i) ? 2 : 1; }
    inline i32 wd32char_uni_len(wd32char i) { return 1; }

@@ -113,8 +113,13 @@ public:
 //#include "_trait_wd16.h"
 //#include "_trait_wd32.h"
 
-#include "_natural.h"
-#include "_base.h"
+#include "string_meta_data.h"
+
+#include "string_natural_pointer.h"
+
+#include "string_iterator.h"
+
+#include "string_base.h"
 
 
 #include "acme/primitive/string/x/x_charcategory.h"

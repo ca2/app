@@ -1,9 +1,6 @@
 #pragma once
 
 
-
-
-
 template < typename TYPE_CHAR >
 class string_base :
    public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >,
@@ -328,7 +325,7 @@ public:
 
    inline strsize get_upper_bound(strsize i = -1) const noexcept { return this->get_length() + i; }
 
-   inline void get_string(CHAR_TYPE* psz) const noexcept { ::str().copy_chars(psz, this->m_pdata, length()); }
+   inline void get_string(CHAR_TYPE* psz) const noexcept;
 
    inline const CHAR_TYPE* get_string() const noexcept { return this->m_pdata; }
 
@@ -348,62 +345,12 @@ public:
 
    inline bool has_char() const noexcept { return !this->is_empty(); }
 
-   string_base & release_string_buffer(strsize nNewLength = -1)
-   {
-
-      if (nNewLength == -1)
-      {
-
-         nNewLength = ::str().string_safe_length(this->m_pdata);
-
-      }
-
-      this->metadata()->set_length(nNewLength);
-
-      return *this;
-
-   }
-
+   string_base & release_string_buffer(strsize nNewLength = -1);
 //   inline void release_string_buffer(strsize nNewLength);
    inline void truncate(strsize nNewLength);
    inline void set_at(strsize iChar, CHAR_TYPE ch);
 
-   CHAR_TYPE * fork_string(strsize strsize)
-   {
-
-      auto pOld = this->metadata();
-
-      ASSERT(pOld->m_countReference >= 1);
-
-      auto memsize = ::str().char_length_to_byte_length(this->m_pdata, strsize + 1);
-
-      auto pNew = this->create_meta_data(memsize);
-
-      if (::is_set(pOld))
-      {
-
-         auto memsizeOld = pOld->memsize();
-
-         if (memsizeOld > 0)
-         {
-
-            auto memsizeCopy = minimum(memsizeOld, memsize);
-
-            memcpy_dup(pNew->get_data(), pOld->get_data(), memsizeCopy);
-
-         }
-
-      }
-
-      pNew->set_length(strsize);
-
-      this->assign_natural_meta_data(pNew);
-
-      //pNew->natural_dec_ref();
-
-      return pNew->get_data();
-
-   }
+   CHAR_TYPE * fork_string(strsize strsize);
 
 
    void prepare_write(strsize nLength)
@@ -930,12 +877,12 @@ public:
 
 
    inline memsize get_storage_size_in_bytes() { return this->metadata()->memsize(); }
-   inline strsize get_storage_length() { return (::strsize) ::str().byte_length_to_char_length(this->m_pdata, this->get_storage_size_in_bytes()); }
+   inline strsize get_storage_length();
 
 
    inline strsize get_length() const { return (::strsize) this->metadata()->m_datasize; }
-   inline memsize get_length_in_bytes() const { return ::str().char_length_to_byte_length(this->m_pdata, (strsize) (this->metadata()->m_datasize)); }
-   inline memsize get_length_in_bytes_with_null_terminator() const { return ::str().char_length_to_byte_length(this->m_pdata, (strsize)(this->metadata()->m_datasize + 1)); }
+   inline memsize get_length_in_bytes() const;
+   inline memsize get_length_in_bytes_with_null_terminator() const;
    inline strsize length() const { return this->get_length(); }
    inline strsize size() const { return this->length(); }
 
@@ -1012,29 +959,7 @@ public:
       resize(n, '\0');
    }
 
-   void resize(strsize n, CHAR_TYPE c)
-   {
-
-      strsize nOldSize = length();
-
-      if (n < nOldSize)
-      {
-
-         this->truncate(n);
-
-      }
-      else
-      {
-
-         auto psz = this->get_string_buffer(n);
-
-         ::str().flood_characters(psz + nOldSize, c, n - nOldSize);
-
-         this->release_string_buffer(n);
-
-      }
-
-   }
+   void resize(strsize n, CHAR_TYPE c);
 
 
 

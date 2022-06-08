@@ -105,33 +105,7 @@ inline i32 __uni_index_len(const wd32char * pszChar, i32 & len);
 
 
 template < typename CHAR_STRING >
-inline bool is_trimmed_string_empty(CHAR_STRING p)
-{
-
-   if(::is_null(p))
-   {
-
-      return true;
-
-   }
-
-   while(*p)
-   {
-
-      if(!::str::ch().is_whitespace(*p))
-      {
-
-         return false;
-
-      }
-
-      p++;
-
-   }
-
-   return true;
-
-}
+inline bool is_trimmed_string_empty(CHAR_STRING p);
 
 
 inline bool is_trimmed_empty(const ansichar * p) { return is_trimmed_string_empty(p); }

@@ -1,43 +1,7 @@
 #pragma once
 
 
-template < typename CHAR_TYPE >
-class string_iterator
-{
-public:
 
-   const CHAR_TYPE *         m_psz;
-
-   string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
-   string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
-
-   ::i32 operator *(){return ::str::ch().uni_index(m_psz); }
-
-   string_iterator & operator ++()
-   {
-
-      m_psz = ::str().char_next(m_psz);
-
-      return *this;
-
-   }
-
-   string_iterator operator ++(int)
-   {
-
-      auto psz = m_psz;
-
-      m_psz = ::str().char_next(m_psz);
-
-      return psz;
-
-   }
-
-   bool operator == (const string_iterator & it) const { return m_psz == it.m_psz;}
-
-   bool operator != (const string_iterator & it) const { return !operator==(it);}
-
-};
 
 
 template < typename TYPE_CHAR >

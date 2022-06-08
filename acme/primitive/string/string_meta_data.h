@@ -37,7 +37,7 @@ public:
 
    /// always char count (before first [and possibly final, but not necessarily final] null terminator)
    inline ::strsize get_length() const { return (::strsize) this->m_datasize; }
-   inline ::memsize length_in_bytes() const { return ::str().char_length_to_byte_length(&this->get_data()[0], this->m_datasize); }
+   inline ::memsize length_in_bytes() const;
    inline ::strsize length() const { return (::strsize) this->m_datasize; }
 
 

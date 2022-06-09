@@ -120,5 +120,19 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
+i32 process_get_os_priority(i32 nCa2Priority)
+{
+
+   if(nCa2Priority <= (int) ::e_priority_none)
+      return 0;
+
+   if(nCa2Priority <= (int) ::e_priority_normal)
+      return maximum(-20, minimum(0, -20 * ((int) ::e_priority_normal - nCa2Priority) / ((int) ::e_priority_normal - (int) ::e_priority_idle)));
+
+   return maximum(0, minimum(20, 20 * (nCa2Priority - (int) ::e_priority_normal) / ((int) ::e_priority_time_critical - (int) ::e_priority_normal)));
+
+}
+
+
 
 

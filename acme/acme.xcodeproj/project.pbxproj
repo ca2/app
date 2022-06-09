@@ -1238,6 +1238,8 @@
 		9A892E7626CDD00D008D6412 /* acme_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A892E6F26CDD00D008D6412 /* acme_file.cpp */; };
 		9A892E7726CDD00D008D6412 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892E7026CDD00D008D6412 /* file_path.h */; };
 		9A892E7826CDD00D008D6412 /* file_path.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A892E7026CDD00D008D6412 /* file_path.h */; };
+		9A8FDB602852061F00D947A8 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FDB5F2852061E00D947A8 /* file.cpp */; };
+		9A8FDB612852061F00D947A8 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FDB5F2852061E00D947A8 /* file.cpp */; };
 		9A9066C52845841F00333D60 /* LaunchServicesWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A9066C42845841F00333D60 /* LaunchServicesWrapper.mm */; };
 		9A922FEB27EAC9D400B5A78D /* topic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A922FE327EAC9D300B5A78D /* topic.cpp */; };
 		9A922FEC27EAC9D400B5A78D /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A922FE427EAC9D300B5A78D /* item.h */; };
@@ -3317,6 +3319,7 @@
 		9A8FDB392850AFFF00D947A8 /* string_iterator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = string_iterator.h; sourceTree = "<group>"; };
 		9A8FDB3A2850B0CF00D947A8 /* string_natural_pointer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = string_natural_pointer.h; sourceTree = "<group>"; };
 		9A8FDB3B2850B1FD00D947A8 /* _string_base_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _string_base_impl.h; sourceTree = "<group>"; };
+		9A8FDB5F2852061E00D947A8 /* file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		9A9066C42845841F00333D60 /* LaunchServicesWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LaunchServicesWrapper.mm; sourceTree = "<group>"; };
 		9A9066C928458BB400333D60 /* LaunchServicesWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaunchServicesWrapper.h; sourceTree = "<group>"; };
 		9A922FE327EAC9D300B5A78D /* topic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = topic.cpp; sourceTree = "<group>"; };
@@ -5207,6 +5210,7 @@
 				9AA8FC0027BA7297008FF9AA /* winpr_input.h */,
 				9AA8F99927BA7295008FF9AA /* winpr_keycode.cpp */,
 				9AA8F9E327BA7296008FF9AA /* winpr_scancode.cpp */,
+				9A8FDB5F2852061E00D947A8 /* file.cpp */,
 			);
 			path = operating_system;
 			sourceTree = "<group>";
@@ -7481,6 +7485,7 @@
 				9A68AEF925114435008DABD2 /* international.cpp in Sources */,
 				9A68AF2825114435008DABD2 /* string_ansi.cpp in Sources */,
 				9A97C7A9282365C600755A0A /* unicode32.cpp in Sources */,
+				9A8FDB602852061F00D947A8 /* file.cpp in Sources */,
 				9A5DCE4E271A75CE00C2ED86 /* resource.cpp in Sources */,
 				9A68AF0125114435008DABD2 /* base64.cpp in Sources */,
 				9A7861D5264B9096003DF8A0 /* linked_property.cpp in Sources */,
@@ -7595,6 +7600,7 @@
 				9AA8FE3627BA729C008FF9AA /* file_std.cpp in Sources */,
 				9A892E2526CDA3D3008D6412 /* top_level_domain_list.cpp in Sources */,
 				9AC018EC27489248006BEBCC /* transfer.cpp in Sources */,
+				9A8FDB612852061F00D947A8 /* file.cpp in Sources */,
 				9AD69177251A753A00C0EBD7 /* display.cpp in Sources */,
 				9A750FF8282B936500C4861B /* container.cpp in Sources */,
 				9A24D0ED28516A07000C9873 /* whole_word.cpp in Sources */,

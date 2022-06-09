@@ -1732,7 +1732,7 @@ namespace user
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
-                        const char * inc = ::str().utf8_inc(end);
+                        const char * inc = ::str().next(end);
 
                         m_pdata->m_iSelEnd += inc - end;
 

@@ -397,7 +397,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
          }
          else if(*psz == '\"')
@@ -405,7 +405,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\"';
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             argv[argc++] =(char *) psz;
 
@@ -417,7 +417,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             quote = '\'';
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             argv[argc++] = (char *) psz;
 
@@ -429,7 +429,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             argv[argc++] = (char *) psz;
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             e = state_non_space;
 
@@ -444,13 +444,13 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             __memmov(psz, psz + 1, strlen(psz));
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
          }
          else if(*psz == quote)
          {
 
-            p = (char *) ::str().utf8_inc(psz);
+            p = ::str().next(psz);
 
             *psz = '\0';
 
@@ -462,7 +462,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
          }
 
@@ -473,7 +473,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            p = (char *) ::str().utf8_inc(psz);
+            p = ::str().next(psz);
 
             *psz = '\0';
 
@@ -485,7 +485,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else
          {
 
-            psz = (char *) ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
          }
 
@@ -584,7 +584,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 //         while (!::str::ch().is_whitespace(psz))
 //         {
 //
-//            psz = ::str().utf8_inc(psz);
+//            ::str().increment(psz);
 //
 //            if (psz >= pszEnd)
 //            {
@@ -706,7 +706,7 @@ string_array get_c_args_from_c(const char* psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -821,7 +821,7 @@ string_array get_c_args_for_c(const char* psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -950,7 +950,7 @@ string transform_to_c_arg(const char* psz)
          if (*pszParse == '\\')
          {
 
-            pszParse = ::str().utf8_inc(pszParse);
+            ::str().increment(pszParse);
 
          }
          else if (*pszParse == chQuote)
@@ -984,7 +984,7 @@ string transform_to_c_arg(const char* psz)
 
       }
 
-      pszParse = ::str().utf8_inc(pszParse);
+      ::str().increment(pszParse);
 
    }
 

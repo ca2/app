@@ -78,7 +78,7 @@ namespace calculator
       while (::str::ch().is_space_char(input))
       {
 
-         input = ::str().utf8_inc(input);
+         ::str().increment(input);
 
       }
 
@@ -91,7 +91,7 @@ namespace calculator
 
       }
 
-      const char * nextinput = ::str().utf8_inc(input);
+      const char * nextinput = ::str().next(input);
 
       if((*input == 'j' || *input == 'i') && ::str::ch().is_digit(nextinput))
       {
@@ -184,7 +184,7 @@ namespace calculator
          while (::str::ch().is_space_char(input))
          {
 
-            input = ::str().utf8_inc(input);
+            ::str().increment(input);
 
          }
          if(*input == '(')

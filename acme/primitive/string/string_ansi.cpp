@@ -44,13 +44,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //      }
 //      else
 //      {
-//         char* point_i32=pszBuffer;
+//         char* pszPos=pszBuffer;
 //         for(strsize i=0 ; i < nLength ; ++i)
 //         {
 //            for(strsize j=0 ; j < ncharCharLen ; ++j)
 //            {
-//               *point = ((char *)buffcharChar)[j];
-//               ++point_i32;
+//               *pszPos = ((char *)buffcharChar)[j];
+//               ++pszPos;
 //            }
 //         }
 //      }
@@ -145,13 +145,6 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 
 */
 
-//
-//char* __cdecl char_traits::char_next(const char* point_i32) noexcept
-//{
-//   return const_cast<char*>(::str().utf8_inc(point));
-//}
-//
-//
 //
 //i32 __cdecl char_traits::is_digit(const char * pch) noexcept
 //{
@@ -268,7 +261,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   const char * psz = strstr(pszBlock, strUtf8Char);
 //   if(psz != nullptr)
 //   return psz;
-//   pszMatch = ::str().utf8_inc(pszMatch);
+//      ::str().increment(pszMatch);
 //   }
 //   return nullptr;*/
 //   //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ),
@@ -315,14 +308,14 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#pragma warning(disable : 4996)
 //   if(psz == nullptr)
 //      return nullptr;
-//   char * point = psz;
+//   char * pszPos = psz;
 //   string strFinal;
-//   while(*point_i32)
+//   while(*pszPos)
 //   {
-//      strFinal += ::str::ch().to_upper_case(point);
-//      point = (char *) ::str().utf8_inc(point);
+//      strFinal += ::str::ch().to_upper_case(pszPos);
+//      ::str().increment(pszPos);
 //   }
-//   strcpy(point,strFinal);
+//   strcpy(pszPos,strFinal);
 //   return psz;
 //
 //
@@ -339,14 +332,14 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#pragma warning(disable : 4996)
 //   if(psz == nullptr)
 //      return nullptr;
-//   char * point = psz;
+//   char * pszPos = psz;
 //   string strFinal;
-//   while(*point_i32)
+//   while(*pszPos)
 //   {
-//      strFinal += ::str::ch().to_lower_case(point);
-//      point = (char *) ::str().utf8_inc(point);
+//      strFinal += ::str::ch().to_lower_case(pszPos);
+//      ::str().increment(pszPos);
 //   }
-//   strcpy(point,strFinal);
+//   strcpy(pszPos,strFinal);
 //   return psz;
 //
 //   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -376,10 +369,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(psz == nullptr)
 //      return nullptr;
 //   string strRev;
-//   char * point = psz + strlen(psz);
-//   while((point = (char*) ::str().utf8_dec(psz,point_i32)) != nullptr)
+//   char * pszPos = psz + strlen(psz);
+//   while((pszPos = (char*) ::str().utf8_dec(psz,pszPos)) != nullptr)
 //   {
-//      strRev += ::str().get_utf8_char(point);
+//      strRev += ::str().get_utf8_char(pszPos);
 //   }
 //   strcpy(psz,strRev);
 //   return psz;
@@ -2116,8 +2109,8 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //            bFound = false;
 //            break;
 //         }
-//         psz2 = ::str().utf8_inc(psz2);
-//         pszSub2 = ::str().utf8_inc(pszSub2);
+//         ::str().increment(psz2);
+//         ::str().increment(pszSub2);
 //      }
 //      if(bFound)
 //      {
@@ -2168,8 +2161,8 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //            bFound = false;
 //            break;
 //         }
-//         psz2 = ::str().utf8_inc(psz2);
-//         pszSub2 = ::str().utf8_inc(pszSub2);
+//         ::str().increment(psz2);
+//         ::str().increment(pszSub2);
 //      }
 //      if(bFound)
 //      {
@@ -2530,7 +2523,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   while(::str().is_space(psz))
 //   {
 //
-//      psz = ::str().char_next(psz);
+//      ::str().increment(psz);
 //
 //      iHere = (strsize)(psz - m_psz);
 //
@@ -2613,7 +2606,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      {
 //         pszLast = nullptr;
 //      }
-//      psz = ::str().char_next(psz);
+//      ::str().increment(psz);
 //   }
 //
 //   if(pszLast != nullptr)
@@ -2655,7 +2648,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      {
 //         pszLast = nullptr;
 //      }
-//      psz = ::str().char_next(psz);
+//      ::str().increment(psz);
 //   }
 //
 //   if(pszLast != nullptr)
@@ -2676,7 +2669,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   while(chTarget == *psz)
 //   {
-//      psz = ::str().char_next(psz);
+//      ::str().increment(psz);
 //   }
 //
 //   if(psz != m_psz)
@@ -2706,7 +2699,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   const char * psz = m_psz;
 //   while((*psz != 0) && (::str().string_find_char(pszTargets,*psz) != nullptr))
 //   {
-//      psz = ::str().char_next(psz);
+//      ::str().increment(psz);
 //   }
 //
 //   if(psz != m_psz)
@@ -3299,7 +3292,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   while(cCount < iFirst && *pchStart != '\0')
 //   {
 //
-//      pchStart = ::str().unichar_inc(pchStart);
+//      ::str().increment(pchStart);
 //
 //      ca++;
 //

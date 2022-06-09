@@ -2491,7 +2491,7 @@ namespace user
       //      while (*pszNext != '\0')
       //      {
 
-      //         pszNext = ::str().utf8_inc(psz);
+      //         pszNext = ::str().next(psz);
 
       //         iLen = pszNext - psz;
 
@@ -2958,7 +2958,7 @@ namespace user
 //            while (*pszNext != '\0')
 //            {
 //
-//               pszNext = ::str().utf8_inc(psz);
+//               pszNext = ::str().next(psz);
 //
 //               if (pszNext == nullptr)
 //               {
@@ -3354,7 +3354,7 @@ for (; iLine < iLineEnd; i++, iLine++)
 //      while (*pszNext != '\0')
 //      {
 
-//         pszNext = ::str().utf8_inc(psz);
+//         pszNext = ::str().next(psz);
 
 //         iLen = pszNext - psz;
 
@@ -3720,7 +3720,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
       while (::has_char(pszNext))
       {
 
-         pszNext = ::str().utf8_inc(psz);
+         pszNext = ::str().next(psz);
 
          iLen = pszNext - psz;
 
@@ -4305,7 +4305,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
          pszPrevious = pszEnd;
 
-         pszEnd = ::str().utf8_inc(pszEnd);
+         ::str().increment(pszEnd);
 
          if (pszEnd == nullptr)
             break;
@@ -4910,7 +4910,7 @@ finished_update:
             for (strsize i = 0; i < afterLength; i++)
             {
 
-               auto pszNew = ::str().utf8_inc(psz);
+               auto pszNew = ::str().next(psz);
 
                if (::is_empty(pszNew))
                {
@@ -5117,7 +5117,7 @@ finished_update:
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
-            const char * psz = ::str().utf8_inc(buf);
+            const char * psz = ::str().next(buf);
 
             strsize iMultiByteUtf8DeleteCount = psz - buf;
 
@@ -5651,7 +5651,7 @@ finished_update:
                         else
                         {
 
-                           psz = ::str().uni_dec(buf, &buf[iCur]);
+                           psz = ::str().prior(&buf[iCur], buf);
 
                            if (psz == nullptr)
                            {
@@ -5869,7 +5869,7 @@ finished_update:
                   }
                   else
                   {
-                     m_ptree->m_iSelEnd += ::str().utf8_inc(buf) - buf;
+                     m_ptree->m_iSelEnd += ::str().next(buf) - buf;
                   }
                   _001SetSelEnd(m_ptree->m_iSelEnd);
                   if (!bShift)
@@ -5915,7 +5915,7 @@ finished_update:
                      }
                      else
                      {
-                        m_ptree->m_iSelEnd -= psz - ::str().uni_dec(buf, psz);
+                        m_ptree->m_iSelEnd -= psz - ::str().prior(psz, buf);
                      }
                   }
                   else
@@ -6696,7 +6696,7 @@ finished_update:
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
                m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
-               const char * psz = ::str().uni_dec(buf, &buf[iCur]);
+               const char * psz = ::str().prior(&buf[iCur], buf);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));

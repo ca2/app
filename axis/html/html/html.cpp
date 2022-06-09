@@ -281,7 +281,7 @@ namespace html
             strChar.format("&#%d;", iChar);
             str += strChar;
          }
-         psz = ::str().utf8_inc(psz);
+         ::str().increment(psz);
       }
       return str;
    }
@@ -334,7 +334,7 @@ namespace html
             str += strChar;
          }
          
-         psz = ::str().utf8_inc(psz);
+         ::str().increment(psz);
 
       }
       return str;

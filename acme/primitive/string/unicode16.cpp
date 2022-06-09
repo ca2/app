@@ -935,7 +935,7 @@ strsize utf16_to_utf16(wd16char * p, const wd16char* codepoints, strsize input_s
 //}
 
 
-const wd16char * utf16_inc(const wd16char * psz)
+const wd16char * unicode_next(const wd16char * psz)
 {
 
    auto len = wd16_to_wd32_len(psz, 2);
@@ -976,6 +976,35 @@ string wd16_to_ansi_str(const wd16char * pwsz, strsize srclen)
    str.release_string_buffer(iUtf8Len);
 
    return str;
+
+}
+
+
+const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg)
+{
+
+   if (psz <= pszBeg)
+   {
+      
+      return nullptr;
+
+   }
+
+   if (utf16_is_2nd_surrogate(*(psz - 1)))
+   {
+
+      if (psz - 1 <= pszBeg)
+      {
+
+         return nullptr;
+
+      }
+
+      return psz - 2;
+
+   }
+
+   return psz - 1;
 
 }
 

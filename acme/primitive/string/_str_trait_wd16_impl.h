@@ -24,15 +24,6 @@
 
 
 
-
-   wd16char * str::char_next(const wd16char * psz) noexcept
-   {
-
-      return const_cast<wd16char *>(::uni_inc(psz));
-
-   }
-
-
    inline bool str::isalpha(wd16char ch) noexcept { return wd16_char_is_alphabetic(ch); }
    inline bool str::isdigit(wd16char ch) noexcept { return wd16_char_is_digit(ch); }
    inline bool str::isspace(wd16char ch) noexcept { return wd16_char_is_space(ch); }
@@ -178,14 +169,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   wd16char * point = psz;
+   //   wd16char * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_upper_case(point);
-   //      point = (wd16char *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_upper_case(pszPos);
+   //      ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //
@@ -202,14 +193,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   wd16char * point = psz;
+   //   wd16char * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_lower_case(point);
-   //      point = (wd16char *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_lower_case(pszPos);
+   //      ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< wd16char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -242,7 +233,7 @@
 
       wd16char * pDec;
 
-      while ((pDec = (wd16char *) str::uni_dec(psz, p)) != nullptr)
+      while ((pDec = prior(psz, p)) != nullptr)
       {
 
          strReverse.append(pDec, pDec - p);

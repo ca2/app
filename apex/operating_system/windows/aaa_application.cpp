@@ -868,7 +868,7 @@
 ////
 ////      send_input_unicode(iIndex, iSleep);
 ////
-////      psz = ::str().utf8_inc(psz);
+////      ::str().increment(psz);
 ////
 ////   }
 ////

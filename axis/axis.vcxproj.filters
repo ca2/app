@@ -623,9 +623,6 @@
     <ClCompile Include="account\product_array.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
-    <ClCompile Include="account\storage.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="account\storage_client.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>

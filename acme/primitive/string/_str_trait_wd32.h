@@ -8,7 +8,6 @@
    inline  constexpr strsize     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength);
    inline  constexpr strsize     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
 
-   inline  wd32char * char_next(const wd32char * point_i32) noexcept;
    inline  bool               isalpha(wd32char ch) noexcept;
    inline  bool               isdigit(wd32char ch) noexcept;
    inline  bool               isspace(wd32char ch) noexcept;

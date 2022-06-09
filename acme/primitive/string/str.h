@@ -15,20 +15,6 @@ public:
    };
 
 
-   enum enum_error
-   {
-
-      e_error_none,
-      e_error_invalid_utf8_character_1,
-      e_error_invalid_utf8_character_2,
-      e_error_invalid_utf8_character_3,
-      e_error_invalid_utf8_character_4,
-      e_error_invalid_utf8_character_5,
-      e_error_invalid_utf8_character_6,
-      e_error_invalid_utf8_character_7,
-
-   };
-
 
 #include "_str_ch.h"
 
@@ -43,7 +29,7 @@ public:
    template < typename CHAR_TYPE >
    inline  string_base < CHAR_TYPE > repeat(const CHAR_TYPE * psz, strsize c);
 
-     //extern enum_error g_eerror;
+   //extern enum_error g_eerror;
 
 
 
@@ -87,132 +73,201 @@ public:
    strsize   find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
    strsize   find_ci(const ::string & strFind, const ::string & str, strsize iStart = 0);
-   strsize   find_ci(const ::string & strFind, const ansichar   * psz, strsize iStart = 0);
-//   strsize   find_ci(const ansichar   * pszFind, const ::string & str, strsize iStart = 0);
-//   strsize   find_ci(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
 
    strsize   utf8_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 
+   strsize   find_file_extension(const ::string & pszExtension, const ::string & str, strsize iStart = 0, strsize iLast = -1);
 
-//   strsize   find_ci(const ansichar   * pszFind,const ::string & str,strsize iStart, strsize iLast);
-   strsize   find_file_extension(const ::string & pszExtension,const ::string & str,strsize iStart = 0, strsize iLast = -1);
-
-   strsize   find_ww(const ::string& pszFind, const ::string & psz, strsize iStart = 0);
-   strsize   find_wwci(const ::string & pszFind, const ::string & psz, strsize iStart = 0);
-   strsize   find_aww(const ::string & pszFind, const ::string & psz, strsize iStart = 0);
-   strsize   find_awwci(const ::string & pszFind, const ::string & psz, strsize iStart = 0);
-   string   has_char(const ::string & pszIfHasChar, const ::string & pszBefore = nullptr, const ::string & pszAfter = nullptr, const ::string & pszDoesnt = nullptr);
-   bool   has_upper(const ::string & psz);
-   bool   has_lower(const ::string & psz);
-   bool   has_digit(const ::string & psz);
-   void   calc_v1(const ::string & psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
-   bool   has_one_v1(const ::string & psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
-   bool   has_all_v1(const ::string & psz, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
-   bool   has_all_v1(const ::string & psz);
-   string   if_null(const ::string & str, const ::string & pszIfNull = nullptr);
+   strsize   find_ww(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize   find_wwci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize   find_aww(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize   find_awwci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   string   has_char(const ::string & strIfHasChar, const ::string & strBefore = nullptr, const ::string & strAfter = nullptr, const ::string & strDoesnt = nullptr);
+   bool   has_upper(const ::string & str);
+   bool   has_lower(const ::string & str);
+   bool   has_digit(const ::string & str);
+   void   calc_v1(const ::string & str, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
+   bool   has_one_v1(const ::string & str, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
+   bool   has_all_v1(const ::string & str, bool & bHasUpper, bool & bHasLower, bool & bHasDigit);
+   bool   has_all_v1(const ::string & str);
+   string   if_null(const ::string & str, const ::string & strIfNull = nullptr);
 
 
-   inline  const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
+   //inline  const ansichar * __utf8_inc(const ansichar * psz) { return psz + 1 + trailingBytesForUTF8(*psz); }
 
-   //inline  enum_error      get_error() { return g_eerror; }
-   //inline  void            set_error(enum_error eerror) { g_eerror = eerror; }
-   //inline  void            clear_error() { g_eerror = e_error_none; }
+   //const ansichar *    utf8_next_add_length(strsize * paddlength, const ansichar * psz);
+   //const ansichar *    utf8_inc_copy_slide_back(strsize * pslideback, ansichar * pchDst, const ansichar * pchSrc);
+   //const ansichar *    utf8_inc_count(const ansichar * psz, strsize * piCount);
 
-      const ansichar *    utf8_inc(const ansichar * psz, enum_error * perror = nullptr);
-      const ansichar *    utf8_inc_slide(strsize * pslide, const ansichar * psz);
-      const ansichar *    utf8_inc_copy_slide_back(strsize * pslideback, ansichar * pchDst, const ansichar * pchSrc);
-      const ansichar *    utf8_inc_count(const ansichar * psz, strsize * piCount);
+   string block(ansichar ch, i32 iSize);
+   void fill(string & str, ansichar ch);
 
-     string block(ansichar ch, i32 iSize);
-     void fill(string & str, ansichar ch);
+   inline const ansichar * next(const ansichar * psz) { return unicode_next(psz); }
+   inline const wd16char * next(const wd16char * psz) { return unicode_next(psz); }
+   inline const wd32char * next(const wd32char * psz) { return unicode_next(psz); }
 
-   inline  const ansichar * uni_inc(const ansichar * psz) { return utf8_inc(psz); }
-   inline  const wd16char * uni_inc(const wd16char * psz) { return utf16_inc(psz); }
-   inline  const wd32char * uni_inc(const wd32char * psz) { return utf32_inc(psz); }
-
-      const ansichar * uni_dec(const ansichar * pszBeg, const ansichar * psz);
-      const wd16char * uni_dec(const wd16char * pszBeg, const wd16char * psz);
-      const wd32char * uni_dec(const wd32char * pszBeg, const wd32char * psz);
+   inline ansichar * next(ansichar * psz) { return (ansichar *)next((const ansichar *)psz); }
+   inline wd16char * next(wd16char * psz) { return (wd16char *)next((const wd16char *)psz); }
+   inline wd32char * next(wd32char * psz) { return (wd32char *)next((const wd32char *)psz); }
 
 
-      string         get_utf8_char(const ansichar *psz);
-      int            get_utf8_char_length(const ansichar *psz);
-      string         get_utf8_char(const ansichar *psz, const ansichar * pszEnd);
-      bool           get_utf8_char(string & strChar, const char * & psz, const char * pszEnd);
-      string         get_utf8_char(const ansichar * pszBeg, const ansichar *psz, strsize i);
-      string         utf8_next_char(const ansichar * pszBeg, const ansichar *psz, strsize i = 0);
-      string         utf8_previous_char(const ansichar * pszBeg, const ansichar *psz, strsize i = 0);
-      string         uni_to_utf8(i64 ch);
-      i32            uni_to_utf8_2_or_more(ansichar * dest, i32 ch);
-
-      const ansichar * utf8_dec(::utf8_char * pchar, const ansichar * pszBeg, const ansichar * psz);
-      const ansichar * utf8_dec( const ansichar* pszBeg, const ansichar* psz);
+   inline const ansichar * increment(const ansichar *& psz) { return psz = next(psz); }
+   inline const wd16char * increment(const wd16char *& psz) { return psz = next(psz); }
+   inline const wd32char * increment(const wd32char *& psz) { return psz = next(psz); }
 
 
+   ansichar * increment(ansichar *& psz)
+   {
+
+      return (ansichar *)increment((const ansichar *&)psz);
+
+   }
 
 
-   
-   inline  bool begins_ci_skip(const char*& psz, const char* pszPrefix);
-   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const char* psz);
+   wd16char * increment(wd16char *& psz)
+   {
+
+      return (wd16char *)increment((const wd16char *&)psz);
+
+   }
+
+
+   wd32char * increment(wd32char *& psz)
+   {
+
+      return (wd32char *)increment((const wd32char *&)psz);
+
+   }
+
+
+   const ::index prior_index(::index i, const ansichar * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+   const ::index prior_index(::index i, const wd16char * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+   const ::index prior_index(::index i, const wd32char * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+
+
+   const ansichar * prior(const ansichar * psz, const ansichar * pszBeg) { return unicode_prior(psz, pszBeg); }
+   const wd16char * prior(const wd16char * psz, const wd16char * pszBeg) { return unicode_prior(psz, pszBeg); }
+   const wd32char * prior(const wd32char * psz, const wd32char * pszBeg) { return unicode_prior(psz, pszBeg); }
+
+
+   ansichar * prior(ansichar * psz, const ansichar * pszBeg) { return (ansichar *)prior((const ansichar *&)psz, pszBeg); }
+   wd16char * prior(wd16char * psz, const wd16char * pszBeg) { return (wd16char *)prior((const wd16char *&)psz, pszBeg); }
+   wd32char * prior(wd32char * psz, const wd32char * pszBeg) { return (wd32char *)prior((const wd32char *&)psz, pszBeg); }
+
+
+   const strsize decrement(strsize & i, const ansichar * pszBeg) { return i = prior_index(i, pszBeg); }
+   const strsize decrement(strsize & i, const wd16char * pszBeg) { return i = prior_index(i, pszBeg); }
+   const strsize decrement(strsize & i, const wd32char * pszBeg) { return i = prior_index(i, pszBeg); }
+
+
+   const ansichar * decrement(const ansichar *& psz, const ansichar * pszBeg) { return psz = prior(psz, pszBeg); }
+   const wd16char * decrement(const wd16char *& psz, const wd16char * pszBeg) { return psz = prior(psz, pszBeg); }
+   const wd32char * decrement(const wd32char *& psz, const wd32char * pszBeg) { return psz = prior(psz, pszBeg); }
+
+
+   ansichar * decrement(ansichar *& psz, const ansichar * pszBeg = nullptr)
+   {
+
+      return (ansichar *)decrement((const ansichar *&)psz, pszBeg);
+
+   }
+
+
+   wd16char * decrement(wd16char *& psz, const wd16char * pszBeg = nullptr)
+   {
+
+      return (wd16char *)decrement((const wd16char *&)psz, pszBeg);
+
+   }
+
+
+   wd32char * decrement(wd32char *& psz, const wd32char * pszBeg = nullptr)
+   {
+
+      return (wd32char *)decrement((const wd32char *&)psz, pszBeg);
+
+   }
+
+
+   string         get_utf8_char(const ansichar * psz);
+   int            get_utf8_char_length(const ansichar * psz);
+   string         get_utf8_char(const ansichar * psz, const ansichar * pszEnd);
+   bool           get_utf8_char(string & strChar, const char *& psz, const char * pszEnd);
+   string         get_utf8_char(const ansichar * pszBeg, const ansichar * psz, strsize i);
+   string         utf8_next_char(const ansichar * pszBeg, const ansichar * psz, strsize i = 0);
+   string         utf8_previous_char(const ansichar * pszBeg, const ansichar * psz, strsize i = 0);
+   string         uni_to_utf8(i64 ch);
+   i32            uni_to_utf8_2_or_more(ansichar * dest, i32 ch);
+
+
+   const ansichar * utf8_dec(::utf8_char * pchar, const ansichar * pszBeg, const ansichar * psz);
+   const ansichar * utf8_dec(const ansichar * pszBeg, const ansichar * psz);
 
 
 
 
-      bool           trim_any_quotes(string & str);
-      bool           paired_trim(string & str, ansichar ch);
-      bool           trim(string & str);
-      bool           _008Trim(string & str);
+
+   inline  bool begins_ci_skip(const char *& psz, const char * pszPrefix);
+   inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const char * psz);
 
 
 
 
-      string &       zero_pad(string & str, strsize iPad);
-      string         zero_padded(const ::string & str, strsize iPad);
-      i32            get_escaped_char(const char * psz, strsize pos, strsize &retPos);
-      bool           get_curly_content(const char * psz, string & str);
-      bool           is_simple_natural(const char * psz, strsize iCount = -1);
-      bool           is_natural(const ::string & str);
-      bool           is_integer(const ::string & str);
-
-     string          ansi_lower(const ::string & str);
-     string          ansi_upper(const ::string & str);
+   bool           trim_any_quotes(string & str);
+   bool           paired_trim(string & str, ansichar ch);
+   bool           trim(string & str);
+   bool           _008Trim(string & str);
 
 
-     string   get_word(const ::string &str, const ::string &strSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
 
 
-     bool eats(const ansichar * & pszParse, const ::string & strToEat);
-     bool eats_ci(const ansichar * & szParse, const ::string & strToEat);
-     void consume(const ansichar * & pszParse, const ::string & strToConsume);
-     void consume(const ansichar * & pszParse, const ansichar * psz, const ansichar * pszEnd);
-     void consume(const ansichar * & pszParse, const ansichar * psz, ::count iLen, const ansichar * pszEnd);
-     void consume_spaces(const ansichar * & pszParse, ::count iMinimumCount = 1);
-     u64 consume_natural(const ansichar * & pszParse, u64 uiMax = ((u64) -1), u64 uiMin = 0);
-     u64 consume_natural(string & str, u64 uiMax = ((u64) -1), u64 uiMin = 0);
-     string consume_hex(const ansichar * & pszParse);
-     void consume_spaces(const ansichar * & pszParse, ::count iMinimumCount, const ansichar * pszEnd);
-     string consume_non_spaces(const ansichar * & pszParse, const ansichar * pszEnd);
-     string consume_non_spaces(const ansichar * & psz);
-     string consume_nc_name(const ansichar * & pszParse);
+   string & zero_pad(string & str, strsize iPad);
+   string         zero_padded(const ::string & str, strsize iPad);
+   i32            get_escaped_char(const char * psz, strsize pos, strsize & retPos);
+   bool           get_curly_content(const char * psz, string & str);
+   bool           is_simple_natural(const char * psz, strsize iCount = -1);
+   bool           is_natural(const ::string & str);
+   bool           is_integer(const ::string & str);
+
+   string          ansi_lower(const ::string & str);
+   string          ansi_upper(const ::string & str);
+
+
+   string   get_word(const ::string & str, const ::string & strSeparator, bool bWithSeparator = false, bool bEndIsSeparator = true);
+
+
+   bool eats(const ansichar *& pszParse, const ::string & strToEat);
+   bool eats_ci(const ansichar *& szParse, const ::string & strToEat);
+   void consume(const ansichar *& pszParse, const ::string & strToConsume);
+   void consume(const ansichar *& pszParse, const ansichar * psz, const ansichar * pszEnd);
+   void consume(const ansichar *& pszParse, const ansichar * psz, ::count iLen, const ansichar * pszEnd);
+   void consume_spaces(const ansichar *& pszParse, ::count iMinimumCount = 1);
+   u64 consume_natural(const ansichar *& pszParse, u64 uiMax = ((u64)-1), u64 uiMin = 0);
+   u64 consume_natural(string & str, u64 uiMax = ((u64)-1), u64 uiMin = 0);
+   string consume_hex(const ansichar *& pszParse);
+   void consume_spaces(const ansichar *& pszParse, ::count iMinimumCount, const ansichar * pszEnd);
+   string consume_non_spaces(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_non_spaces(const ansichar *& psz);
+   string consume_nc_name(const ansichar *& pszParse);
    //  string consume_quoted_value(const ansichar * & pszParse);
-     void no_escape_consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
-     string no_escape_consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd);
-     void skip_quoted_value_ex2(const ansichar * & pszParse, const ansichar * pszEnd);
-     string consume_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
-     string consume_quoted_value_ex(const ansichar * & pszParse,const ansichar * pszEnd);
-     void skip_quoted_value_ex(const ansichar * & pszParse, const ansichar * pszEnd);
-     string consume_spaced_value(string & str);
-     string consume_spaced_value(const ansichar * & pszParse);
-     string consume_spaced_value(const ansichar * & pszParse, const ansichar * pszEnd);
-     string consume_command_line_argument(string & str);
-     string consume_command_line_argument(const ansichar * & pszParse);
-     string consume_command_line_argument(const ansichar * & pszParse, const ansichar * pszEnd);
-     bool begins_consume(const ansichar * & pszParse, const ::string & psz);
+   void no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd, ansichar ** ppsz, strsize & iBufferSize);
+   string no_escape_consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd);
+   void skip_quoted_value_ex2(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd = nullptr);
+   string consume_quoted_value_ex(const ansichar *& pszParse, const ansichar * pszEnd);
+   void skip_quoted_value_ex(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_spaced_value(string & str);
+   string consume_spaced_value(const ansichar *& pszParse);
+   string consume_spaced_value(const ansichar *& pszParse, const ansichar * pszEnd);
+   string consume_command_line_argument(string & str);
+   string consume_command_line_argument(const ansichar *& pszParse);
+   string consume_command_line_argument(const ansichar *& pszParse, const ansichar * pszEnd);
+   bool begins_consume(const ansichar *& pszParse, const ::string & psz);
 
    bool xml_is_comment(const ::string & pszParse);
-   string xml_consume_comment(const ansichar * & pszParse);
+   string xml_consume_comment(const ansichar *& pszParse);
 
-   string consume_c_quoted_value(const ansichar * & pszParse, const ansichar * pszEnd = nullptr);
+   string consume_c_quoted_value(const ansichar *& pszParse, const ansichar * pszEnd = nullptr);
 
    string token(string & str, const ::string & pszSeparatorText, bool bWithSeparator = false);
 
@@ -231,16 +286,16 @@ public:
    inline  TYPE from_string(const char * psz);
 
 
-     bool simple_escaped(const ::string & str,strsize pos);
+   bool simple_escaped(const ::string & str, strsize pos);
 
 
 
 
 
 
-     bool utf8_check_is_valid(const string& string);
+   bool utf8_check_is_valid(const string & string);
 
-     string q_valid(string str);
+   string q_valid(string str);
 
    inline  ansichar * dup(const ::string & psz)
    {
@@ -275,22 +330,22 @@ public:
 
 
 
-     string signed_double(double d);
+   string signed_double(double d);
 
-     string signed_int(int i);
+   string signed_int(int i);
 
-     bool is_true(string str);
-
-
-     inline  strsize utf8_dec_len(const ansichar * pszBeg, const ansichar* psz);
-
-     inline  strsize utf8_inc_len(const ansichar * psz);
-
-     inline  bool namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar * pszSeparator = "::");
+   bool is_true(string str);
 
 
+   inline  strsize utf8_dec_len(const ansichar * pszBeg, const ansichar * psz);
 
-     void fix_eol(string & str);
+   inline  strsize utf8_inc_len(const ansichar * psz);
+
+   inline  bool namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar * pszSeparator = "::");
+
+
+
+   void fix_eol(string & str);
 
 
 #include "_str_to.h"

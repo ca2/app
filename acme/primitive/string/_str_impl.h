@@ -523,7 +523,7 @@ inline void from_string(ansichar & ch, const ansichar* psz)
 inline void from_string(widechar & wch, const ansichar* psz)
 {
 
-   str().utf_to_utf(&wch, psz, utf8_inc(psz) - psz);
+   str().utf_to_utf(&wch, psz, unicode_next(psz) - psz);
 
 }
 
@@ -1423,7 +1423,7 @@ inline string string_from_strdup(const ansichar* psz)
    inline strsize str::utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
    {
 
-      const ansichar* pszDec = str::uni_dec(pszBeg, psz);
+      const ansichar* pszDec = prior(pszBeg, psz);
 
       if (pszDec == nullptr)
       {

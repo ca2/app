@@ -4644,7 +4644,7 @@ namespace draw2d_opengl
          iLen = ::str().get_utf8_char(psz).length();
          iRange++;
          i += iLen;
-         psz = ::str().utf8_inc(psz);
+         ::str().increment(psz);
          if(psz == nullptr)
             break;
          if(*psz == '\0')

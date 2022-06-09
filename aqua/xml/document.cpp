@@ -283,7 +283,7 @@ namespace xml
 
          strName += *pszXml;
 
-         pszXml = ::str().utf8_inc(pszXml);
+         ::str().increment(pszXml);
 
       }
 

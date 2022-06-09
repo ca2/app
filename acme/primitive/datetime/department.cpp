@@ -1222,9 +1222,10 @@ namespace datetime
       const char* psz = str;
       string strNumber;
       string strText1;
-      for (i32 i = 0; *psz; psz = ::str().utf8_inc(psz))
+      string strChar;
+      for (i32 i = 0; *psz; psz += strChar.length())
       {
-         string strChar = ::str().get_utf8_char(psz);
+         strChar = ::str().get_utf8_char(psz);
          if (::str::ch().is_whitespace(psz))
          {
             i++;

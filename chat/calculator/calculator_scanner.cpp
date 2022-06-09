@@ -66,13 +66,13 @@ namespace calculator
       if(token == nullptr)
          throw ::exception(error_no_memory);
       while(::str::ch().is_space_char(input))
-         input = ::str().utf8_inc(input);
+         ::str().increment(input);
       if(*input == '\0')
       {
          token->m_etype = token::type_end;
          return token;
       }
-      const char * nextinput = ::str().utf8_inc(input);
+      const char * nextinput = ::str().next(input);
 
       if((*input == 'j' || *input == 'i') &&
          ::str::ch().is_digit(nextinput))
@@ -145,7 +145,7 @@ namespace calculator
       {
          token->m_str = ::str().consume_nc_name(input);
          while(::str::ch().is_space_char(input))
-            input = ::str().utf8_inc(input);
+            ::str().increment(input);
          if(*input == '(')
          {
             token->m_etype = token::type_function;

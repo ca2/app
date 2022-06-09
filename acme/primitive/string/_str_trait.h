@@ -189,11 +189,6 @@
    inline const widechar * windows_bb(const widestring &);
 
 
-   inline const ansichar * unichar_inc(const ansichar * psz);
-   inline const wd16char * unichar_inc(const wd16char * psz);
-   inline const wd32char * unichar_inc(const wd32char * psz);
-
-
    inline strsize unichar_count(const ansichar * pstr);
    inline strsize unichar_count(const wd16char * pstr);
    inline strsize unichar_count(const wd32char* pstr);

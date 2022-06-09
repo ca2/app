@@ -452,7 +452,7 @@ namespace simpledb
       string str;
       while(true)
       {
-         psz = ::str().utf8_inc(psz);
+         ::str().increment(psz);
          string qc2 = ::str().get_utf8_char(psz);
          //string str = utf8_to_unicode(qc2);
          if(qc2.is_empty())
@@ -463,7 +463,7 @@ namespace simpledb
             break;
          str += qc2;
       }
-      psz = ::str().utf8_inc(psz);
+      ::str().increment(psz);
       pszXml = psz;
       return str;
    }

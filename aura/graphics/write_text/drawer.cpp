@@ -226,7 +226,7 @@ namespace write_text
 
          bWhitespace = bWhitespaceNow;
 
-         pszEnd = ::str().utf8_inc(pszEnd);
+         ::str().increment(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
 
@@ -324,7 +324,7 @@ namespace write_text
 
          auto pszLast = pszEnd;
 
-         pszEnd = ::str().utf8_inc(pszEnd);
+         ::str().increment(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
 

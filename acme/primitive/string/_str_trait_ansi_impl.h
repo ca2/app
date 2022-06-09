@@ -58,14 +58,6 @@
    inline ansichar * str::string_lowercase(ansichar * psz, strsize size) noexcept { ansi_lwr_s(psz, size); return  psz; }
 
 
-   ansichar * str::char_next(const ansichar * psz) noexcept
-   {
-
-      return const_cast<ansichar *>(::utf8_inc(psz));
-
-   }
-
-
    inline bool str::isalpha(ansichar ch) noexcept { return ansi_char_is_alphabetic(ch); }
    inline bool str::isdigit(ansichar ch) noexcept { return ansi_char_is_digit(ch); }
    inline bool str::isspace(ansichar ch) noexcept { return ansi_char_is_space(ch); }
@@ -181,14 +173,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   ansichar * point = psz;
+   //   ansichar * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_upper_case(point);
-   //      point = (ansichar *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_upper_case(pszPos);
+   //      (ansichar *) ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //
@@ -205,14 +197,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   ansichar * point = psz;
+   //   ansichar * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_lower_case(point);
-   //      point = (ansichar *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_lower_case(pszPos);
+   //      ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< ansichar * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -245,7 +237,7 @@
 
       ansichar * pDec;
 
-      while ((pDec = (ansichar *) str::uni_dec(psz, p)) != nullptr)
+      while ((pDec = (ansichar *) str::decrement(psz, p)) != nullptr)
       {
 
          strReverse.append(pDec, pDec - p);

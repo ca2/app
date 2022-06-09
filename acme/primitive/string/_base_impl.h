@@ -2201,7 +2201,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
       while (true)
       {
 
-         psz = ::str().uni_dec(data(), psz);
+         psz = ::str().prior(psz, data());
 
          if (psz < data())
          {
@@ -2213,7 +2213,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
          if (!str::ch().is_whitespace(psz))
          {
 
-            pszLast = ::str().uni_inc(psz);
+            pszLast = ::str().next(psz);
 
             break;
 
@@ -2251,7 +2251,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left()
    while (str::ch().is_whitespace(psz))
    {
 
-      psz = ::str().char_next(psz);
+      ::str().increment(psz);
 
       iHere = (strsize)(psz - data());
 
@@ -2344,7 +2344,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTar
       {
          pszLast = nullptr;
       }
-      psz = ::str().char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (pszLast != nullptr)
@@ -2394,7 +2396,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(const CHAR_TYPE
       {
          pszLast = nullptr;
       }
-      psz = ::str().char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (pszLast != nullptr)
@@ -2418,7 +2422,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarg
 
    while (chTarget == *psz)
    {
-      psz = ::str().char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (psz != data())
@@ -2453,7 +2459,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(const CHAR_TYPE 
    const CHAR_TYPE* psz = data();
    while ((*psz != 0) && (::str().string_find_char(pszTargets, *psz) != nullptr))
    {
-      psz = ::str().char_next(psz);
+      ::str().increment(psz);
    }
 
    if (psz != data())
@@ -3019,7 +3025,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::unichar_substr(strsize iFir
    while (ca < iFirst && *pchStart != '\0')
    {
 
-      pchStart = ::str().uni_inc(pchStart);
+      pchStart = ::str().increment(pchStart);
 
       ca++;
 
@@ -3035,7 +3041,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::unichar_substr(strsize iFir
    while (ca < nCount && *pchEnd != '\0')
    {
 
-      pchEnd = ::str().uni_inc(pchEnd);
+      pchEnd = ::str().increment(pchEnd);
 
       ca++;
 

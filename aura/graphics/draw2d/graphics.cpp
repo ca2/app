@@ -3528,7 +3528,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = ::str().utf8_inc(psz);
+         const char * pszNext = ::str().next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4351,7 +4351,7 @@ namespace draw2d
             while (true)
             {
 
-               psz = ::str().utf8_inc(psz);
+               ::str().increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4400,7 +4400,7 @@ namespace draw2d
                if ((int) sz.cx > rectangleClip.width())
                {
 
-                  i = ::str().uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
+                  i = ::str().prior_index(i, str);
 
                   if (i <= 0)
                   {
@@ -4584,7 +4584,7 @@ namespace draw2d
 
       const char * pszEnd = pszSource + len;
 
-      const char * pszStart = ::str().utf8_inc(pszSource);
+      const char * pszStart = ::str().next(pszSource);
 
       size_i32 sz;
 
@@ -4661,22 +4661,25 @@ namespace draw2d
          }
 
          if(::str::ch().is_space_char(pszPrevious))
-
          {
+
             pszSpaceStart       = pszPrevious;
 
             do
             {
+
                pszSpaceEnd      = psz;
 
                if(!::str::ch().is_space_char(psz))
-
                {
+
                   break;
+
                }
+
                pszPrevious      = psz;
 
-               psz              = ::str().utf8_inc(psz);
+               ::str().increment(psz);
 
             }
             while(psz != nullptr);
@@ -4695,8 +4698,8 @@ namespace draw2d
             }
 
             if(pszSpaceStart != nullptr)
-
             {
+
                // "legit" word break, i.meaning., found mid space in text and split there, instead of slicing a full word in a single-character (above) or the maximum-unclipped (below).
                psz = pszSpaceStart;
 
@@ -4705,10 +4708,9 @@ namespace draw2d
                break;
             }
 
-            psz = ::str().uni_dec(pszSource, psz);
+            ::str().decrement(psz, pszSource);
 
             pszEnd = psz;
-
 
             break;
 
@@ -4716,14 +4718,20 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         psz = ::str().utf8_inc(psz);
-
+         ::str().increment(psz);
 
          if(bEnd)
+         {
+            
             break;
+
+         }
          else
+         {
+
             bEnd = psz >= pszEnd;
 
+         }
 
       }
 

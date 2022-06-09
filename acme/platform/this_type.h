@@ -10,10 +10,10 @@
 #pragma once
 
 
-void this_type_init(const char * pszThisType);
+CLASS_DECL_ACME void this_type_init(const char * pszThisType);
 
 
-void this_type_term(const char * pszThisType);
+CLASS_DECL_ACME void this_type_term(const char * pszThisType);
 
 
 class this_type

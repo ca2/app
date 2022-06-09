@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-
-
-
 strsize wd32_to_ansi_len(const wd32char* pwsz, strsize srclen)
 {
 
@@ -251,13 +248,28 @@ string wd32_to_ansi_str(const wd32char * pwszUni32, strsize iUni32Len)
 }
 
 
-
-const wd32char * utf32_inc(const wd32char * psz)
+const wd32char * unicode_next(const wd32char * psz)
 {
 
    return psz + 1;
 
 }
+
+
+const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg)
+{
+
+   if (psz <= pszBeg)
+   {
+
+      return nullptr;
+
+   }
+
+   return psz - 1;
+
+}
+
 
 
 

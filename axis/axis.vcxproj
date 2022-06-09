@@ -598,7 +598,6 @@
     <ClCompile Include="account\network_authenticator.cpp" />
     <ClCompile Include="account\product.cpp" />
     <ClCompile Include="account\product_array.cpp" />
-    <ClCompile Include="account\storage.cpp" />
     <ClCompile Include="account\storage_client.cpp" />
     <ClCompile Include="account\system_storage.cpp" />
     <ClCompile Include="account\user.cpp" />

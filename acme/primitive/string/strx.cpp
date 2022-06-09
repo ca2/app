@@ -33,7 +33,7 @@ static const u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL
                                            };
 
 
-const char * utf8_inc(const char * psz)
+const char * unicode_next(const char * psz)
 {
    char len =  1 + trailingBytesForUTF8(*psz);
    if(len == 0)      return nullptr;
@@ -133,7 +133,7 @@ CLASS_DECL_ACME ::count unichar_len(const widechar * psz)
    if(psz == nullptr)
       return -1;
    i32 count = 0;
-   while((psz = utf8_inc(psz)) != nullptr)
+   while((psz = unicode_next(psz)) != nullptr)
    {
       count++;
    }
@@ -145,7 +145,7 @@ CLASS_DECL_ACME ::count unichar_len(const widechar * psz)
    if(psz == nullptr)
       return -1;
    i32 count = 0;
-   while(srclen > 0 && (psz = utf8_inc(psz)) != nullptr)
+   while(srclen > 0 && (psz = unicode_next(psz)) != nullptr)
    {
       count++;
       srclen--;

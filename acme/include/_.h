@@ -3032,9 +3032,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 class duration;
 
-#include "acme/parallelization/thread_parameter.h"
-
-#include "acme/platform/keep_true.h"
 
 class folder;
 
@@ -3333,6 +3330,7 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/_global.h"
 
 
+#include "acme/platform/keep.h"
 
 
 namespace factory
@@ -3613,23 +3611,13 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/enum_bitset.h"
 
 
-using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
-
-
-CLASS_DECL_ACME task_bitset& task_flag();
-
-
-#include "acme/parallelization/keep_task_flag.h"
+#include "acme/parallelization/task_flag.h"
 
 
 #include "acme/exception/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"
-
-
-
-//#include "acme/exception/extended_pointer.h"
 
 
 #include "acme/user/user/conversation.h"
@@ -3659,11 +3647,39 @@ namespace file
 
 #include "acme/filesystem/filesystem/path.h"
 
+
 #include "acme/filesystem/filesystem/path_object.h"
 
-#include "acme/primitive/collection/_.h"
+
+#include "acme/primitive/collection/_collection.h"
+
+
+#include "acme/graphics/draw2d/_const.h"
+
+
+#include "acme/graphics/draw2d/opacity.h"
+
+
+#include "acme/graphics/draw2d/color.h"
+
+
+#include "acme/primitive/primitive/payload.h"
+
+
+#include "acme/primitive/collection/payload_array.h"
+
+
+#include "acme/primitive/primitive/property.h"
+
+
+#include "acme/primitive/primitive/property_set.h"
+
+
+#include "acme/primitive/primitive/property_set_papaya.h"
+
 
 #include "acme/filesystem/filesystem/path_array.h"
+
 
 #include "acme/filesystem/filesystem/enumerator.h"
 
@@ -3738,7 +3754,7 @@ class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BOD
 class context_image;
 
 
-#include "acme/parallelization/_.h"
+#include "acme/parallelization/_parallelization.h"
 
 
 #include "acme/primitive/data/_.h"
@@ -4091,25 +4107,9 @@ namespace acme
 
 
 #include "acme/platform/timer_callback.h"
-//#include "acme/platform/timer_item.h"
-//#include "acme/platform/timer_array.h"
-//#include "acme/platform/nanosecond_timer.h"
-//#include "acme/platform/timer.h"
-//#include "acme/platform/timer_task.h"
-//#include "acme/platform/timer_event.h"
 
-#include "acme/parallelization/thread_impl.h"
+
 #include "acme/platform/procedure_array.h"
-
-
-///#include "acme/primitive/primitive/job.h"
-
-//#include "acme/user/user/simple/message_box.h"
-
-
-//#include "acme/user/user/impact_data.h"
-
-//#include "acme/platform/log.h"
 
 
 #include "acme/primitive/primitive/memory_base.h"
@@ -4445,17 +4445,10 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
 CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
-//#include "acme/platform/library.h"
-
-
-#include "acme/parallelization/cleanup_task.h"
-
-
 #include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/log.h"
-
 
 
 namespace user

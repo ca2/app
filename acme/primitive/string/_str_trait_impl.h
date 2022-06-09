@@ -6,7 +6,7 @@
 //
 
    template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
+   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
    {
 
       throw ::interface_only();
@@ -395,11 +395,6 @@
    inline const widechar * str::windows_bbqbunc(const widestring &) { return L"\\\\?\\UNC"; }
    inline const widechar * str::windows_bbqb(const widestring &) { return L"\\\\?\\"; }
    inline const widechar * str::windows_bb(const widestring &) { return L"\\\\"; }
-
-   inline const ansichar * str::unichar_inc(const ansichar * psz) { return utf8_inc(psz); }
-   inline const wd16char * str::unichar_inc(const wd16char * psz) { return utf16_inc(psz); }
-   inline const wd32char * str::unichar_inc(const wd32char * psz) { return utf32_inc(psz); }
-
 
    inline strsize str::unichar_count(const ansichar * pstr) { return ansi_to_wd32_len(pstr); }
    inline strsize str::unichar_count(const wd16char * pstr) { return wd16_to_wd32_len(pstr); }

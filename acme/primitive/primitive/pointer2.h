@@ -565,7 +565,7 @@ template < typename TYPE >
 inline __pointer(TYPE) & clone(__pointer(TYPE) & p)
 {
 
-   return p = ::clone(p);
+   return p = ::clone((const __pointer(TYPE) &) p);
 
 }
 

@@ -42,7 +42,7 @@ template < typename CHAR_TYPE >
 string_iterator < CHAR_TYPE > & string_iterator < CHAR_TYPE > ::operator ++()
 {
 
-   m_psz = ::str().char_next(m_psz);
+   ::str().increment(m_psz);
 
    return *this;
 
@@ -54,7 +54,7 @@ string_iterator < CHAR_TYPE > string_iterator < CHAR_TYPE > ::operator ++(int)
 
    auto psz = m_psz;
 
-   m_psz = ::str().char_next(m_psz);
+   ::str().increment(m_psz);
 
    return psz;
 

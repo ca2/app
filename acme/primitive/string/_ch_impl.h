@@ -40,7 +40,7 @@ inline bool is_trimmed_string_empty(CHAR_STRING p)
 
       }
 
-      ::str::ch().inc(p);
+      ::str().increment(p);
 
    }
 

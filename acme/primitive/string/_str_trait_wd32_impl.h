@@ -26,12 +26,6 @@
 
 
 
-   wd32char * str::char_next(const wd32char * psz) noexcept
-   {
-
-      return const_cast<wd32char *>(::uni_inc(psz));
-
-   }
 
    inline bool str::isalpha(wd32char ch) noexcept { return wd32_char_is_alphabetic(ch); }
    inline bool str::isdigit(wd32char ch) noexcept { return wd32_char_is_digit(ch); }
@@ -178,14 +172,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   wd32char * point = psz;
+   //   wd32char * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_upper_case(point);
-   //      point = (wd32char *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_upper_case(pszPos);
+   //      ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //
@@ -202,14 +196,14 @@
    //#pragma warning(disable : 4996)
    //   if(psz == nullptr)
    //      return nullptr;
-   //   wd32char * point = psz;
+   //   wd32char * pszPos = psz;
    //   string strFinal;
-   //   while(*point_i32)
+   //   while(*pszPos)
    //   {
-   //      strFinal += ::str::ch().to_lower_case(point);
-   //      point = (wd32char *) str::utf8_inc(point);
+   //      strFinal += ::str::ch().to_lower_case(pszPos);
+   //      ::str().increment(pszPos);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(pszPos,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< wd32char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );

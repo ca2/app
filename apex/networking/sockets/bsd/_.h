@@ -235,7 +235,7 @@ namespace sockets
 
 
 #define Errno WSAGetLastError()
-CLASS_DECL_APEX string bsd_socket_error(i32 x);
+CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
 
 
 #elif defined(_UWP)

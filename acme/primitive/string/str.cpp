@@ -1759,7 +1759,7 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, index i
       do
       {
 
-         pszIter = utf8_inc(pszIter);
+         increment(pszIter);
 
       } while (*pszIter != '\0' && ch().is_letter_or_digit(pszIter));
 
@@ -1807,7 +1807,7 @@ strsize str::find_aww(const ::string & strOld, const ::string & strParam, index 
       do
       {
 
-         pszIter = utf8_inc(pszIter);
+         increment(pszIter);
 
       } while (*pszIter != '\0' && ch().is_letter(pszIter));
 
@@ -1948,7 +1948,9 @@ void str::calc_v1(const ::string & strParam, bool & bHasUpper, bool & bHasLower,
          // it is not necessary to evaluate more chars anymore
          break;
       }
-      psz = utf8_inc(psz);
+      
+      increment(psz);
+
    }
 
 }
@@ -2101,7 +2103,7 @@ string str::uni_to_utf8(i64 w)
 }
 
 
-const char * str::utf8_inc(const char * psz, enum_error * perror)
+const char * unicode_next(const char * psz, int * piError)
 {
 
    if (psz == nullptr)
@@ -2118,224 +2120,154 @@ const char * str::utf8_inc(const char * psz, enum_error * perror)
 
    }
 
-   if (perror) *perror = e_error_none;
+   *piError = 0;
 
    char len = 1 + trailingBytesForUTF8(*psz);
-   if (len == 0)      return psz;
+   
+   if (len == 0) return psz;
+   
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_1;
+
+      *piError = 1;
+
       return nullptr;
+
    }
-   if (len == 1)      return psz;
+
+   if (len == 1) return psz;
+   
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_2;
+
+      *piError = 2;
+
       return nullptr;
+
    }
-   if (len == 2)      return psz;
+
+   if (len == 2) return psz;
+
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_3;
+
+      *piError = 3;
+
       return nullptr;
+
    }
-   if (len == 3)      return psz;
+
+   if (len == 3) return psz;
+
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_4;
+
+      *piError = 4;
+
       return nullptr;
+
    }
-   if (len == 4)      return psz;
+   
+   if (len == 4) return psz;
+
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_5;
+
+      *piError = 5;
+
       return nullptr;
+
    }
-   if (len == 5)      return psz;
+   
+   if (len == 5) return psz;
+
    if (*psz++ == 0)
    {
-      if (perror) *perror = e_error_invalid_utf8_character_6;
+      
+      *piError = 6;
+      
       return nullptr;
+
    }
-   if (len == 6)      return psz;
 
-   {
-      if (perror) *perror = e_error_invalid_utf8_character_7;
-      return nullptr;
-   }
-}
+   if (len == 6) return psz;
 
-
-const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
-{
-
-   char len = 1 + trailingBytesForUTF8(*psz);
-
-   if (len == 0)
-   {
-      *pslide += 0;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 1)
-   {
-      *pslide += 1;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 2)
-   {
-      *pslide += 2;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 3)
-   {
-      *pslide += 3;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 4)
-   {
-      *pslide += 4;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 5)
-   {
-      *pslide += 5;
-      return psz;
-   }
-   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
-   if (len == 6)
-   {
-      *pslide += 6;
-      return psz;
-   }
-   throw ::exception(error_invalid_character, "invalid utf8 character");
-}
-
-
-const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
-{
-
-   strsize count = 0;
-
-   ::str().utf8_inc_slide(&count, pchSrc);
-
-   ::memcpy_dup(pchDst, pchSrc, count);
-
-   pchSrc += count;
-
-   pchDst += count;
-
-   *pslideback -= count;
-
-   return pchSrc;
+   *piError = 7;
+      
+   return nullptr;
 
 }
 
 
-const char * str::uni_dec(const char * pszBeg, const char * psz)
-{
-
-   if (psz <= pszBeg)
-   {
-      return nullptr;
-   }
-   if ((*(psz - 1) & 0x80) == 0x00)
-   {
-      if ((psz - 1) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 1;
-   }
-   else if ((*(psz - 2) & 0xE0) == 0xC0)
-   {
-      if ((psz - 2) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 2;
-   }
-   else if ((*(psz - 3) & 0xF0) == 0xE0)
-   {
-      if ((psz - 3) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 3;
-   }
-   else if ((*(psz - 4) & 0xF8) == 0xF0)
-   {
-      if ((psz - 4) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 4;
-   }
-   else if ((*(psz - 5) & 0xFC) == 0xF8)
-   {
-      if ((psz - 5) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 5;
-   }
-   else if ((*(psz - 6) & 0xFE) == 0xFC)
-   {
-      if ((psz - 6) < pszBeg)
-      {
-         return nullptr;
-      }
-      return psz - 6;
-   }
-   if ((psz - 1) < pszBeg)
-   {
-      return nullptr;
-   }
-   return psz - 1;
-}
+//const char * str::utf8_next_add_length(strsize * paddlength, const char * psz)
+//{
+//
+//   char len = 1 + trailingBytesForUTF8(*psz);
+//
+//   if (len == 0)
+//   {
+//      *paddlength += 0;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 1)
+//   {
+//      *paddlength += 1;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 2)
+//   {
+//      *paddlength += 2;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 3)
+//   {
+//      *paddlength += 3;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 4)
+//   {
+//      *paddlength += 4;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 5)
+//   {
+//      *paddlength += 5;
+//      return psz;
+//   }
+//   if (*psz++ == 0)   throw ::exception(error_invalid_character, "invalid utf8 character");
+//   if (len == 6)
+//   {
+//      *paddlength += 6;
+//      return psz;
+//   }
+//   throw ::exception(error_invalid_character, "invalid utf8 character");
+//}
 
 
-const wd16char * str::uni_dec(const wd16char * pszBeg, const wd16char * psz)
-{
+//const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
+//{
+//
+//   strsize count = 0;
+//
+//   ::str().utf8_inc_slide(&count, pchSrc);
+//
+//   ::memcpy_dup(pchDst, pchSrc, count);
+//
+//   pchSrc += count;
+//
+//   pchDst += count;
+//
+//   *pslideback -= count;
+//
+//   return pchSrc;
+//
+//}
 
-   if (psz <= pszBeg)
-   {
-      return nullptr;
-   }
-
-   if (utf16_is_2nd_surrogate(*(psz - 1)))
-   {
-
-      if (psz - 1 <= pszBeg)
-      {
-
-         return nullptr;
-
-      }
-
-      return psz - 2;
-
-   }
-
-   return psz - 1;
-
-}
-
-
-const wd32char * str::uni_dec(const wd32char * pszBeg, const wd32char * psz)
-{
-   if (psz <= pszBeg)
-   {
-      return nullptr;
-   }
-
-   return psz - 1;
-
-}
 
 
 const char * str::utf8_dec(::utf8_char * pchar, const char * pszBeg, const char * psz)
@@ -2621,7 +2553,7 @@ string str::get_utf8_char(const char * psz)
 string str::get_utf8_char(const char * psz, const char * pszEnd)
 {
 
-   const char * pszNext = __utf8_inc(psz);
+   const char * pszNext = next(psz);
 
    if (pszNext > pszEnd)
    {
@@ -2638,7 +2570,7 @@ string str::get_utf8_char(const char * psz, const char * pszEnd)
 bool str::get_utf8_char(string & strChar, const char *& psz, const char * pszEnd)
 {
 
-   const char * pszNext = __utf8_inc(psz);
+   const char * pszNext = next(psz);
 
    if (pszNext > pszEnd)
    {
@@ -2665,7 +2597,7 @@ string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
       while (i != 0)
       {
 
-         psz = utf8_inc(psz);
+         increment(psz);
 
          if (*psz == '\0')
          {
@@ -2687,7 +2619,7 @@ string str::get_utf8_char(const char * pszBeg, const char * psz, index i)
       while (i != 0)
       {
 
-         psz = uni_dec(pszBeg, psz);
+         psz = prior(pszBeg, psz);
 
          if (psz == nullptr)
          {
@@ -2806,7 +2738,7 @@ bool str::get_curly_content(const char * psz, string & str)
 
    const char * pszChar;
 
-   for (pszChar = utf8_inc(psz); pszChar != nullptr; pszChar = utf8_inc(pszChar))
+   for (pszChar = next(psz); pszChar != nullptr; increment(pszChar))
    {
 
       if (*pszChar == '}')
@@ -2860,10 +2792,14 @@ bool str::is_simple_natural(const char * pszCandidate, strsize iCount)
 
       }
 
-      psz = utf8_inc(psz);
+      increment(psz);
+
       iCount--;
+
    }
+
    return true;
+
 }
 
 
@@ -3021,7 +2957,7 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount)
    while (ch().is_whitespace(psz))
    {
 
-      psz = utf8_inc(psz);
+      increment(psz);
 
       i++;
 
@@ -3072,7 +3008,7 @@ u64 str::consume_natural(const char *& pszParse, u64 uMax, u64 uMin)
    while (ch().is_digit(psz))
    {
 
-      psz = utf8_inc(psz);
+      increment(psz);
 
       i++;
 
@@ -3117,7 +3053,7 @@ void str::consume_spaces(const char *& pszParse, ::count iMinimumCount, const ch
    while (ch().is_whitespace(psz))
    {
 
-      psz = __utf8_inc(psz);
+      increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3159,15 +3095,24 @@ string str::consume_non_spaces(const ansichar *& pszParse, const char * pszEnd)
 
    while (!ch().is_whitespace(psz))
    {
-      psz = __utf8_inc(psz);
+      
+      increment(psz);
+
       if (psz >= pszEnd)
       {
+
          break;
+
       }
+
    }
+
    string str(pszParse, psz - pszParse);
+
    pszParse = psz;
+
    return str;
+
 }
 
 
@@ -3177,12 +3122,18 @@ string str::consume_hex(const char *& pszParse)
    //      i32 i = 0;
    while (*psz != '\0')
    {
+      
       i64 i = ch().uni_index(pszParse);
+
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {
-         psz = __utf8_inc(psz);
+
+         increment(psz);
+
       }
+
    }
+
    if (psz == pszParse)
    {
       throw ::exception(error_parsing, "no hex consumed");
@@ -3217,7 +3168,7 @@ string str::consume_nc_name(const char *& pszParse)
          {
             break;
          }
-         psz = ::str().utf8_inc(psz);
+         increment(psz);
       }
    }
    string str(pszParse, psz - pszParse);
@@ -3291,7 +3242,7 @@ string str::consume_quoted_value(const char *& pszParse, const char * pszEnd)
 
    skip:
 
-      psz = uni_inc(psz);
+      increment(psz);
 
       if (psz > pszEnd || *psz == '\0')
       {
@@ -3305,7 +3256,7 @@ string str::consume_quoted_value(const char *& pszParse, const char * pszEnd)
       if (*psz == '\\')
       {
 
-         psz = __utf8_inc(psz);
+         increment(psz);
 
          if (psz > pszEnd)
          {
@@ -3386,7 +3337,7 @@ void str::no_escape_consume_quoted_value(const char *& pszParse, const char * ps
    while (*psz != qc)
    {
 
-      psz = __utf8_inc(psz);
+      increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3444,7 +3395,7 @@ string str::no_escape_consume_quoted_value(const char *& pszParse, const char * 
    while (*psz != qc)
    {
 
-      psz = __utf8_inc(psz);
+      increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3491,7 +3442,7 @@ void str::skip_quoted_value_ex2(const char *& pszParse, const char * pszEnd)
    while (*psz != qc)
    {
 
-      psz = __utf8_inc(psz);
+      increment(psz);
 
       if (psz > pszEnd)
       {
@@ -3641,7 +3592,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
    string str;
    while (true)
    {
-      pszNext = __utf8_inc(psz);
+      pszNext = next(psz);
       if (pszNext > pszEnd)
       {
          throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3660,7 +3611,7 @@ string str::consume_quoted_value_ex(const char *& pszParse, const char * pszEnd)
       else if (*psz == '\\')
       {
          psz = pszNext;
-         pszNext = __utf8_inc(psz);
+         pszNext = next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3764,7 +3715,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
    const char * pszNext = psz;
    while (true)
    {
-      pszNext = __utf8_inc(psz);
+      pszNext = next(psz);
       if (pszNext > pszEnd)
       {
          throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3783,7 +3734,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
       else if (*psz == '\\')
       {
          psz = pszNext;
-         pszNext = __utf8_inc(psz);
+         pszNext = next(psz);
          if (pszNext > pszEnd)
          {
             throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -3804,7 +3755,7 @@ void str::skip_quoted_value_ex(const char *& pszParse, const char * pszEnd)
             for (index i = 0; i < 4; i++)
             {
                psz = pszNext;
-               pszNext = __utf8_inc(psz);
+               pszNext = next(psz);
                if (pszNext > pszEnd)
                {
                   throw ::exception(error_parsing, "Quote character is required here, premature end");
@@ -4060,7 +4011,7 @@ string str::consume_c_quoted_value(const char *& pszParse, const char * pszEnd)
    while (psz < pszEnd)
    {
 
-      psz = utf8_inc(psz);
+      increment(psz);
 
       strPreviousChar = strCurrentChar;
 
@@ -4105,7 +4056,7 @@ string str::consume_c_quoted_value(const char *& pszParse, const char * pszEnd)
 
    }
 
-   psz = utf8_inc(psz);
+   increment(psz);
 
    pszParse = psz;
 
@@ -4259,7 +4210,7 @@ string str::xml_consume_comment(const char *& pszParse)
 
       str += *pszParse;
 
-      pszParse = ::str().utf8_inc(pszParse);
+      increment(pszParse);
 
    }
 

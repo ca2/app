@@ -75,7 +75,7 @@ string_array get_c_args_from_string(const char * psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -199,7 +199,7 @@ string_array no_escape_get_c_args_from_string(const char * psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {

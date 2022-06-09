@@ -25,7 +25,7 @@ namespace datetime
    {
       scanner = input;
       while(::str::ch().is_space_char(scanner) && *scanner != '\0')
-         scanner  =::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       if(*scanner == '\0')
          return true;
       if(scanner == input)
@@ -44,7 +44,7 @@ namespace datetime
       static atom idCalendarDays("calendar:days");
       scanner = input;
       while(::str::ch().is_space_char(scanner) && *scanner != '\0')
-         scanner = ::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
@@ -52,7 +52,7 @@ namespace datetime
       if(::str::ch().is_letter(scanner))
       {
          while(::str::ch().is_letter(scanner))
-            scanner = ::str().utf8_inc(scanner);
+            ::str().increment(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
          if(pcontext->matches(idCalendarDays, strCandidate))
@@ -266,12 +266,12 @@ namespace datetime
    {
       scanner = input;
       while(::str::ch().is_whitespace(scanner) && *scanner != '\0')
-         scanner = ::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
       while(::str::ch().is_letter(scanner))
-         scanner = ::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "today")
@@ -309,10 +309,10 @@ namespace datetime
       if(!::str::ch().is_digit(scanner))
          return "";
       const char * start = scanner;
-      scanner = ::str().utf8_inc(scanner);
+      ::str().increment(scanner);
       while(::str::ch().is_digit(scanner))
       {
-         scanner = ::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       }
       return string(start, scanner - start);
    }
@@ -324,7 +324,7 @@ namespace datetime
          return "";
       const char * start = input;
       while(!::str::ch().is_space_char(scanner) && *scanner != '\0')
-         scanner = ::str().utf8_inc(scanner);
+         ::str().increment(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "ago")
@@ -899,7 +899,7 @@ namespace datetime
       {
          token->m_str = consume_date_expression(m_ptextcontext, input);
          while(::str::ch().is_space_char(input))
-            input = ::str().utf8_inc(input);
+            ::str().increment(input);
          if(*input == '(')
          {
             token->m_etoken = e_token_function;

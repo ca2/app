@@ -7,12 +7,18 @@ namespace sz
    const char * trim_left(const char * psz,const char * pszTrimmer)
    {
 
-      if(psz == nullptr)
+      if (psz == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       while((*psz != 0) && (strchr(pszTrimmer,*psz) != nullptr))
       {
-         psz = ::str().__utf8_inc(psz);
+         
+         ::str().increment(psz);
+
       }
 
       return psz;

@@ -465,7 +465,7 @@ ___keep_on < TYPE > keep_on(TYPE * pKept, TYPE_KEEP keepValue, bool bStartKept =
 
 
 
-class CLASS_DECL_AURA ___keep_thread_flag
+class CLASS_DECL_AURA ___keep_task_flag
 {
 public:
 
@@ -476,7 +476,7 @@ public:
    ::payload &      m_varThread;
 
 
-   ___keep_thread_flag(const ::atom & atom) :
+   ___keep_task_flag(const ::atom & atom) :
       m_varThread(thread_property(atom))
    {
 
@@ -498,7 +498,7 @@ public:
    }
 
 
-   ~___keep_thread_flag()
+   ~___keep_task_flag()
    {
 
       if (m_bChanged)
@@ -515,7 +515,7 @@ public:
 
 
 
-inline ___keep_thread_flag keep_thread_flag(const ::atom & atom)
+inline ___keep_task_flag keep_thread_flag(const ::atom & atom)
 {
 
    return atom;

@@ -9,7 +9,6 @@
    inline  constexpr strsize     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength);
    inline  constexpr strsize     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
 
-   inline  ansichar *         char_next(const ansichar * point_i32) noexcept;
    inline  bool               isalpha(ansichar ch) noexcept;
    inline  bool               isdigit(ansichar ch) noexcept;
    inline  bool               isspace(ansichar ch) noexcept;

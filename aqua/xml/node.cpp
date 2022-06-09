@@ -471,7 +471,7 @@ namespace xml
 //                           else
 //                           {
 //
-//                              point = (char *) ::str().utf8_inc(point);
+//                              ::str().increment(psz);
 //
 //                           }
 //
@@ -1017,7 +1017,7 @@ namespace xml
                ////   }
                ////   else
                ////   {
-                   pszEnd = (char *) ::str().utf8_inc(pszEnd);
+                   ::str().increment(pszEnd);
                //   }
                }
                _SetString( xml, pszEnd, &m_strValue, trim, escape );

@@ -1077,7 +1077,7 @@ string_array get_c_args_from_string(const ::string & psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1199,7 +1199,7 @@ string_array get_c_args_from_c(const ::string & psz)
          while (!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if (psz >= pszEnd)
             {
@@ -1314,7 +1314,7 @@ string_array get_c_args_for_c(const ::string & psz)
          while(!::str::ch().is_whitespace(psz))
          {
 
-            psz = ::str().utf8_inc(psz);
+            ::str().increment(psz);
 
             if(psz >= pszEnd)
             {
@@ -1449,7 +1449,7 @@ string transform_to_c_arg(const ::string & psz)
          if(*pszParse == '\\')
          {
 
-            pszParse = ::str().utf8_inc(pszParse);
+            ::str().increment(pszParse);
 
          }
          else if(*pszParse == chQuote)
@@ -1483,7 +1483,7 @@ string transform_to_c_arg(const ::string & psz)
 
       }
 
-      pszParse = ::str().utf8_inc(pszParse);
+      ::str().increment(pszParse);
 
    }
 

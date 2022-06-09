@@ -1,13 +1,10 @@
 #pragma once
 
 
-
-
-
-
 // return UTF8 offset
 inline i32 utf8_o(char cExtraBytes)
 {
+
    switch (cExtraBytes)
    {
    case 0:
@@ -25,11 +22,13 @@ inline i32 utf8_o(char cExtraBytes)
    default:
       return -1;
    };
+
 }
 
 
 inline char utf8_e(byte c)
 {
+
    if (c < 192)
       return 0;
    else if (c < 192 + 32)
@@ -42,17 +41,21 @@ inline char utf8_e(byte c)
       return 4;
    else
       return 5;
+
 }
 
 
 inline strsize utf8_len(const char* psz) { if (::c_is_null(psz)) return 0; return strlen(psz); }
-CLASS_DECL_ACME const char* utf8_inc(const char* psz);
 
 
+const ansichar * unicode_next(const ansichar * psz, int * piError);
+const ansichar * unicode_next(const ansichar * psz);
+const ansichar * unicode_prior(const ansichar * psz, const ansichar * pszBeg);
 
 
 CLASS_DECL_ACME strsize wd16_to_wd32_len(const wd16char* pcwsz, strsize input_size = -1);
 CLASS_DECL_ACME strsize wd16_to_wd32(wd32char* pwsz, const wd16char* pcwsz, strsize input_size = -1);
+
 
 CLASS_DECL_ACME wd32char* wd16_to_wd32_dup(const wd16char* pcwsz, strsize input_size = -1);
 
@@ -67,12 +70,10 @@ CLASS_DECL_ACME wd16char* wd32_to_wd16_dup(const wd16char* pcwsz, strsize input_
 
 
 
-
-
-
-
 CLASS_DECL_ACME strsize utf16_len(const wd16char* psz);
-CLASS_DECL_ACME const wd16char* utf16_inc(const wd16char* psz);
+CLASS_DECL_ACME const wd16char * unicode_next(const wd16char* psz);
+CLASS_DECL_ACME const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg);
+
 
 CLASS_DECL_ACME strsize ansi_to_wd16_len(const char* psz, strsize srclen = -1);
 CLASS_DECL_ACME strsize ansi_to_wd16(wd16char* pwsz, const char* psz, strsize srclen = -1);
@@ -90,7 +91,8 @@ CLASS_DECL_ACME char * wd16_to_ansi_dup(const wd16char * input, strsize input_si
 
 
 CLASS_DECL_ACME strsize utf32_len(const wd32char* psz);
-CLASS_DECL_ACME const wd32char* utf32_inc(const wd32char* psz);
+CLASS_DECL_ACME const wd32char * unicode_next(const wd32char* psz);
+CLASS_DECL_ACME const wd32char * unicode_prior(const wd32char * psz, const wd32char * pszBeg);
 
 CLASS_DECL_ACME strsize ansi_to_wd32_len(const char* psz, strsize srclen = -1);
 CLASS_DECL_ACME strsize ansi_to_wd32(wd32char* pwsz, const char* psz, strsize srclen = -1);
@@ -394,7 +396,6 @@ inline strsize wd16_to_ansi_char(char* psz, const wd16char ** ppu16a, strsize * 
 }
 
 
-
 #if WCHAR_T_SIZE == 16
 
 
@@ -420,28 +421,27 @@ inline strsize unichar_to_utf8(char* psz, const wd32char* pwsz, strsize srclen =
 #endif
 
 
-
-
-
-inline const char * __utf8_inc(const char * psz, strsize srclen)
-{
-   char len =  1 + trailingBytesForUTF8(*psz);
-   if(len > srclen) return nullptr;
-   if(len == 0)      return nullptr;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 1)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 2)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 3)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 4)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 5)      return psz;
-   if(*psz++ == 0)   return nullptr;
-   if(len == 6)      return psz;
-   return nullptr;
-}
+//inline const char * __utf8_inc(const char * psz, strsize srclen)
+//{
+//
+//   char len =  1 + trailingBytesForUTF8(*psz);
+//   if(len > srclen) return nullptr;
+//   if(len == 0)      return nullptr;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 1)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 2)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 3)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 4)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 5)      return psz;
+//   if(*psz++ == 0)   return nullptr;
+//   if(len == 6)      return psz;
+//   return nullptr;
+//
+//}
 
 
 inline strsize ansi_to_wd32_char(wd32char * output, const char * input, strsize srclen)
@@ -492,9 +492,12 @@ inline strsize ansi_to_wd32_char(wd32char * output, const char * input, strsize 
       u32 += c;
       input++;
    }
+   
    u32 -= (wd32char) utf8_o(extraBytesToRead);
    *output = u32;
+   
    return len;
+
 }
 
 
@@ -519,9 +522,6 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
    return u32;
 
 }
-
-
-
 
 
 /* Some fundamental constants */
@@ -587,45 +587,47 @@ inline i64 _ansi_to_wd32_char(const char ** ppsz, strsize * psrclen)
 
 inline strsize wd32_to_wd16_char(wd16char * target, wd32char u32)
 {
+
    const int halfShift  = 10; /* used for shifting by 10 bits */
    const wd32char halfBase = 0x0010000UL;
    const wd32char halfMask = 0x3FFUL;
 
-    if (u32 <= UNI_MAX_BMP)
-    {
-        /* Target is a character <= 0xFFFF */
-	    /* UTF-16 surrogate values are illegal in UTF-32; 0xffff or 0xfffe are both reserved values */
-	    if (u32 >= UNI_SUR_HIGH_START && u32 <= UNI_SUR_LOW_END)
-        {
-		    //if (flags == strictConversion) {
-		    //--source; /* return to the illegal value itself */
-		    //result = sourceIllegal;
-            return -1;
-	    }
+   if (u32 <= UNI_MAX_BMP)
+   {
 
-        *target = (wd16char)u32; /* normal case */
+      /* Target is a character <= 0xFFFF */
+      /* UTF-16 surrogate values are illegal in UTF-32; 0xffff or 0xfffe are both reserved values */
+      if (u32 >= UNI_SUR_HIGH_START && u32 <= UNI_SUR_LOW_END)
+      {
+	      
+         //if (flags == strictConversion) {
+	      //--source; /* return to the illegal value itself */
+	      //result = sourceIllegal;
+         return -1;
 
-        return 1;
+      }
 
-	}
-    else if (u32 > UNI_MAX_LEGAL_UTF32)
-    {
-        return -1;
-	}
+      *target = (wd16char)u32; /* normal case */
 
-    u32 -= halfBase;
+   return 1;
 
-    *target++ = (wd16char)((u32 >> halfShift) + UNI_SUR_HIGH_START);
+   }
+   else if (u32 > UNI_MAX_LEGAL_UTF32)
+   {
+      
+      return -1;
 
-    *target = (wd16char)((u32 & halfMask) + UNI_SUR_LOW_START);
+   }
 
-    return 2;
+   u32 -= halfBase;
+
+   *target++ = (wd16char)((u32 >> halfShift) + UNI_SUR_HIGH_START);
+
+   *target = (wd16char)((u32 & halfMask) + UNI_SUR_LOW_START);
+
+   return 2;
 
 }
-
-
-
-
 
 
 

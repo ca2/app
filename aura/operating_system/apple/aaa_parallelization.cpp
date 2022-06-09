@@ -14,6 +14,9 @@
 #undef user
 
 
+i32 process_get_os_priority(i32 nCa2Priority);
+
+
 int get_processor_count()
 {
 
@@ -55,4 +58,15 @@ int get_processor_count()
 bool ns_set_thread_name(const ::string & psz);
 
 
+
+bool set_process_priority(::enum_priority epriority)
+{
+
+   int iOsPriority = process_get_os_priority(epriority);
+
+   setpriority(PRIO_PROCESS, 0, iOsPriority);
+
+   return true;
+
+}
 

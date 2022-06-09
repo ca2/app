@@ -867,19 +867,14 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="exception\library_not_loaded.cpp" />
     <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
-    <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
-    <ClCompile Include="exception\const.cpp" />
     <ClCompile Include="exception\debug.cpp" />
-    <ClCompile Include="exception\dump.cpp" />
     <ClCompile Include="exception\dump_context.cpp" />
     <ClCompile Include="exception\dump_floating_point.cpp" />
-    <ClCompile Include="exception\dump_output.cpp" />
     <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\resource.cpp" />
     <ClCompile Include="exception\serialization.cpp" />
-    <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
@@ -891,11 +886,9 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
-    <ClCompile Include="filesystem\file\c.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
     <ClCompile Include="filesystem\file\composite.cpp" />
     <ClCompile Include="filesystem\file\cpp.cpp" />
-    <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
     <ClCompile Include="filesystem\file\folder.cpp" />
     <ClCompile Include="filesystem\file\payload_stream.cpp" />
@@ -921,7 +914,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
     <ClCompile Include="handler\topic.cpp" />
-    <ClCompile Include="include\_.cpp" />
     <ClCompile Include="memory\alloc.cpp" />
     <ClCompile Include="memory\allocate_mid_big.cpp" />
     <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
@@ -1117,7 +1109,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="memory\property_memory_allocate.cpp" />
     <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
-    <ClCompile Include="networking\sockets\trace_interface.cpp" />
     <ClCompile Include="networking\top_level_domain_list.cpp" />
     <ClCompile Include="networking\url.cpp" />
     <ClCompile Include="networking\url_department.cpp" />
@@ -1137,8 +1128,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
-    <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\node_serial.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
@@ -1961,10 +1950,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="filesystem\file\item_array.cpp" />
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
-    <ClCompile Include="filesystem\file\path.cpp" />
-    <ClCompile Include="filesystem\file\seekable.cpp" />
-    <ClCompile Include="filesystem\file\serializable.cpp" />
-    <ClCompile Include="filesystem\file\serialize.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\string_file.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />

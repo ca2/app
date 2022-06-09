@@ -96,9 +96,6 @@
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{0ace9705-3ad7-4201-a601-a6601c80f6e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{8099a888-7e34-4494-9367-f8f06df947d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
     </Filter>
@@ -197,9 +194,6 @@
     </Filter>
     <Filter Include="Header Files\networking\sockets">
       <UniqueIdentifier>{ac03c8a4-0251-4733-b21c-70d7d4ebb3bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\sockets">
-      <UniqueIdentifier>{0ec62c58-cc39-40e4-80bb-d77c3eca3012}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
@@ -3211,16 +3205,10 @@
     <ClCompile Include="filesystem\file\buffered_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\c.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\cpp.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\dir2.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\exception.cpp">
@@ -3236,18 +3224,6 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\memory_map.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\path.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\seekable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\serializable.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\file\serialize.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\stream.cpp">
@@ -3424,19 +3400,10 @@
     <ClCompile Include="memory\inline\heap_vld.cpp">
       <Filter>Source Files\memory\inline</Filter>
     </ClCompile>
-    <ClCompile Include="exception\callstack.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\cancel.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\const.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\debug.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\dump.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\dump_context.cpp">
@@ -3445,17 +3412,8 @@
     <ClCompile Include="exception\dump_floating_point.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\dump_output.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\throw.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="include\_.cpp">
-      <Filter>Source Files\include</Filter>
     </ClCompile>
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
@@ -3934,9 +3892,6 @@
     <ClCompile Include="networking\url_domain.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\trace_interface.cpp">
-      <Filter>Source Files\networking\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
@@ -4100,12 +4055,6 @@
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\file.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\http.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\node_serial.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\parallelization.cpp">

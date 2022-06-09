@@ -15,7 +15,7 @@
 #include "acme/primitive/primitive/memory_container.h"
 //#include "acme/primitive/primitive/relation_set.h"
 //#include "acme/primitive/primitive/request_signal.h"
-#include "acme/primitive/primitive/shared_memory.h"
+//#include "acme/primitive/primitive/shared_memory.h"
 #include "acme/primitive/primitive/virtual_memory.h"
 
 

@@ -89,7 +89,7 @@ public:
 #include "sz.h"
 
 
-#include "acme/exception/throw.h"
+//#include "acme/exception/throw.h"
 #include "static_string.h"
 
 #ifdef __cplusplus

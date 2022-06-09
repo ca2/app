@@ -2,4 +2,7 @@
 #include "aura/library.h"
 
 
+IMPLEMENT_THIS_TYPE(axis);
+
+
 

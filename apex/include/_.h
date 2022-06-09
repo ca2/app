@@ -901,7 +901,7 @@ namespace core
 #include "apex/message/message.h"
 
 
-#include "apex/platform/thread_set.h"
+//#include "apex/platform/thread_set.h"
 
 
 //#include "apex/platform/simple_log.h"
@@ -1008,7 +1008,7 @@ namespace file
 
 //#include "apex/platform/net.h"
 
-#include "apex/platform/command_line.h"
+//#include "apex/platform/command_line.h"
 
 #include "apex/platform/create.h"
 

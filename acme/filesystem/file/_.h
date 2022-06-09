@@ -158,7 +158,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "composite.h"
 
-#include "serializable.h"
+//#include "serializable.h"
 
 #include "path.h"
 

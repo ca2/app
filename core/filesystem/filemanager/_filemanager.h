@@ -152,7 +152,7 @@ namespace filemanager
 #include "file_list.h"
 
 
-#include "form_document.h"
+//#include "form_document.h"
 #include "form_child_frame.h"
 //#include "form_view.h"
 
@@ -219,7 +219,7 @@ namespace filemanager
 #include "file_list.h"
 
 
-#include "form_document.h"
+//#include "form_document.h"
 #include "form_child_frame.h"
 #include "form.h"
 

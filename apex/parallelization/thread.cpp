@@ -13,6 +13,12 @@
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
+bool on_init_thread();
+
+
+bool on_term_thread();
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
 

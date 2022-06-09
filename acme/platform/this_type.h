@@ -6,8 +6,45 @@
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 
-#ifndef this_type_h
-#define this_type_h
+
+#pragma once
 
 
-#endif /* this_type_h */
+void this_type_init(const char * pszThisType);
+
+
+void this_type_term(const char * pszThisType);
+
+
+class this_type
+{
+public:
+   
+   
+   const char * m_psz;
+   
+   
+   this_type(const char * psz) :
+   m_psz(psz)
+   {
+   
+      this_type_init(m_psz);
+
+   }
+   
+   
+   ~this_type()
+   {
+      
+      this_type_term(m_psz);
+      
+   }
+   
+   
+};
+
+
+#define IMPLEMENT_THIS_TYPE(type) static this_type g_type_ ## type(STRINGFY(type));
+
+
+

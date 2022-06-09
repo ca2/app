@@ -88,13 +88,13 @@ public:
 
    strsize   find_ci(const ::string & strFind, const ::string & str, strsize iStart = 0);
    strsize   find_ci(const ::string & strFind, const ansichar   * psz, strsize iStart = 0);
-   strsize   find_ci(const ansichar   * pszFind, const ::string & str, strsize iStart = 0);
-   strsize   find_ci(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
+//   strsize   find_ci(const ansichar   * pszFind, const ::string & str, strsize iStart = 0);
+//   strsize   find_ci(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
 
    strsize   utf8_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 
 
-   strsize   find_ci(const ansichar   * pszFind,const ::string & str,strsize iStart, strsize iLast);
+//   strsize   find_ci(const ansichar   * pszFind,const ::string & str,strsize iStart, strsize iLast);
    strsize   find_file_extension(const ::string & pszExtension,const ::string & str,strsize iStart = 0, strsize iLast = -1);
 
    strsize   find_ww(const ::string& pszFind, const ::string & psz, strsize iStart = 0);

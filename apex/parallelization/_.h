@@ -253,7 +253,7 @@ public:
 //#endif
 
 //#include "service_status.h"
-#include "thread_os.h"
+//#include "thread_os.h"
 
 
 #include "create_thread.h"

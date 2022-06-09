@@ -1127,10 +1127,6 @@ enum e_image_type
 
 };
 
-
-
-#include "acme/exception/throw.h"
-
 #include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
@@ -1142,7 +1138,6 @@ enum e_image_type
 #include "acme/filesystem/file/_c.h"
 
 #include "acme/constant/thread.h"
-
 
 #if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 
@@ -1160,13 +1155,7 @@ CLASS_DECL_ACME ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priori
 CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
-//#include "acme/primitive/datetime/mktime.h"
-//#include "acme/primitive/api/api.h"
-
-
-
-
-//#include "acme/multimedia/_c.h"
+#include "acme/platform/this_type.h"
 
 
 #include "acme/operating_system/argcargv.h"

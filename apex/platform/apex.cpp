@@ -14,6 +14,18 @@
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
+namespace parallelization
+{
+
+   void destroy();
+
+
+} // namespace parallelization
+
+
+
+void on_term_thread();
+
 //extern ::mutex * g_pmutexThreadDeferredCreation;
 //extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 
@@ -54,6 +66,13 @@ CLASS_DECL_APEX string __apex_get_text(string str);
 #undef new
 
 
+namespace parallelization
+{
+
+   void initialize();
+
+
+} // namespace parallelization
 
 
 namespace apex

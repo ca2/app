@@ -19,7 +19,7 @@ namespace sockets
    {
 
       SetNonblocking(false);
-      ::str().parse pa(line);
+      ::parse pa(line);
       string code = pa.getword();
 
       code.make_upper();

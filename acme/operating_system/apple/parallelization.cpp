@@ -52,6 +52,21 @@ int get_processor_count()
 }
 
 
+i32 process_get_os_priority(i32 nCa2Priority);
+
+
+bool set_process_priority(::enum_priority epriority)
+{
+
+   int iOsPriority = process_get_os_priority(epriority);
+
+   setpriority(PRIO_PROCESS, 0, iOsPriority);
+
+   return true;
+
+}
+
+
 bool ns_set_thread_name(const char * psz);
 
 

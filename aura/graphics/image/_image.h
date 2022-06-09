@@ -456,7 +456,7 @@ inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::re
 #include "cursor.h"
 #include "icon.h"
 
-#include "cursor_set.h"
+//#include "cursor_set.h"
 
 #include "fastblur.h"
 

@@ -492,7 +492,7 @@ namespace windowing
    /// pwindowGainingFocusIfAny
    /// handlers of this notification should NOT...
    /// NOT... set focus to pwindowGainingFocusIfAny
-   void windowing::clear_keyboard_focus(::windowing::window* pwindowGainingFocusIfAny)
+   void windowing::clear_keyboard_focus(::user::element* pelementGainingFocusIfAny)
    {
 
       throw ::interface_only();
@@ -673,7 +673,7 @@ namespace windowing
 
       string str(path);
 
-      if (!::str::ends_eat_ci(str, ".png"))
+      if (!::str().ends_eat_ci(str, ".png"))
       {
 
          //return false;

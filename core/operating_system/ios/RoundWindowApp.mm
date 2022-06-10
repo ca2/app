@@ -19,32 +19,11 @@ i32 defer_run_system(char * * psza, int c);
 
 void system_call_update_app_activated();
 
-plane_system * create_plane_system();
-
 @implementation RoundWindowApp
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-//   m_psystem = create_plane_system();
-//   
-//   CGRect rect = [[UIScreen mainScreen] bounds];
-//
-//   self.window = m_psystem->plane_system_initialize(rect);
-//
-//   self.window.backgroundColor = [UIColor whiteColor];
-//
-//   self.window.opaque = NO;
-//
-//   [self.window makeKeyAndVisible];
-//   
-//   m_psystem->plane_system_begin();
-   
-   //set_apex_system_as_thread();
-   //MessageBox(NULL, "applicationDidFinishLaunching", "applicationDidFinishLaunching", e_message_box_ok);
-   
-   //defer_run_system();
-   
    os_on_finish_launching();
    
    return YES;

@@ -158,10 +158,10 @@ string apple_get_executable_path()
 //   for(index i = 0; i < stra.get_count(); i++)
 //   {
 //
-//      if(::str::begins_eat_ci(stra[i], "file://"))
+//      if(::str().begins_eat_ci(stra[i], "file://"))
 //      {
 //
-//         if(!::str::begins(stra[i], "/"))
+//         if(!::str().begins(stra[i], "/"))
 //         {
 //
 //            stra[i] = "/" + stra[i];

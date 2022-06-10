@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-inline ::u32 GetTickCount()
+::u32 GetTickCount()
 {
    timeval ts;
    gettimeofday(&ts,0);

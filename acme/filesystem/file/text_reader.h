@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-04-26 05:41 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -297,7 +297,7 @@ public:
 
       auto pszStart = psz;
 
-      while (!::str::isspace(*psz) && *psz != '\0')
+      while (!::str().isspace(*psz) && *psz != '\0')
       {
 
          *psz++;
@@ -383,7 +383,7 @@ public:
    static void skip_whitespace(const char *& psz)
    {
 
-      while (::str::ch::is_whitespace(*psz))
+      while (::str::ch().is_whitespace(*psz))
       {
 
          psz++;

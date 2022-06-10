@@ -13,6 +13,12 @@
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
+bool on_init_thread();
+
+
+bool on_term_thread();
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
 
@@ -931,7 +937,7 @@ bool thread::raw_pump_message()
       if (!get_message())
       {
 
-         if(::str::begins(strType, "multimedia::"))
+         if(::str().begins(strType, "multimedia::"))
          {
 
             if(strType.contains("wave_player"))
@@ -1487,7 +1493,7 @@ void thread::destroy()
 
    }
 
-   if (::str::begins(strType, "user::"))
+   if (::str().begins(strType, "user::"))
    {
 
       if (strType.contains("shell_thread"))
@@ -1498,7 +1504,7 @@ void thread::destroy()
       }
 
    }
-   else if (::str::begins(strType, "multimedia::"))
+   else if (::str().begins(strType, "multimedia::"))
    {
 
       if (strType.contains("wave_player"))

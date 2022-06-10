@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "acme/primitive/collection/payload_array.h"
 #include "acme/primitive/primitive/property_set.h"
 #include "acme/primitive/primitive/memory.h"
 

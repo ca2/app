@@ -1009,7 +1009,7 @@ namespace geo
       else if (utc_offset_invalid(dUTCOffset))
       {
 
-         return "(" + ::str::signed_double(dUTCOffset) + " : invalid UTC?)";
+         return "(" + ::str().signed_double(dUTCOffset) + " : invalid UTC?)";
 
       }
       else
@@ -1017,7 +1017,7 @@ namespace geo
 
          string strUTCOffset;
 
-         strUTCOffset = "UTC " + ::str::signed_int((int)dUTCOffset);
+         strUTCOffset = "UTC " + ::str().signed_int((int)dUTCOffset);
 
          double dMod = fmod(fabs(dUTCOffset), 1.0);
 

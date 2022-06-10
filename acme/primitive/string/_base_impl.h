@@ -65,7 +65,7 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //
 //      CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
 //
-//      ::str::flood_characters(ch, nLength, pszBuffer);
+//      ::str().flood_characters(ch, nLength, pszBuffer);
 //
 //      release_string_buffer(nLength);
 //
@@ -113,14 +113,14 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::operator=(const widechar* pszSrc)
 //{
 //
-//   strsize nDestLength = (pszSrc != nullptr) ? ::str::get_char_length(pszSrc) : 0;
+//   strsize nDestLength = (pszSrc != nullptr) ? ::str().get_char_length(pszSrc) : 0;
 //
 //   if (nDestLength > 0)
 //   {
 //
 //      CHAR_TYPE* pszBuffer = get_string_buffer(nDestLength);
 //
-//      ::str::ConvertTochar(pszBuffer, nDestLength, pszSrc);
+//      ::str().ConvertTochar(pszBuffer, nDestLength, pszSrc);
 //
 //      release_string_buffer(nDestLength);
 //
@@ -255,7 +255,7 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //   string_manager* pstringmanager = string_base < TYPE_CHAR >::GetManager();
 //   if (pstringmanager) { return pstringmanager; }
 //
-//   pstringmanager = ::str::GetDefaultManager();
+//   pstringmanager = ::str().GetDefaultManager();
 //   return pstringmanager->Clone();
 //}
 
@@ -310,7 +310,7 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //template < typename TYPE_CHAR >
 //string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::assign(u64 n, u64 ca)
 //{
-//   string_base < TYPE_CHAR > strChar = ::str::uni_to_utf8(ca);
+//   string_base < TYPE_CHAR > strChar = ::str().uni_to_utf8(ca);
 //   while (n > 0)
 //   {
 //      *this += strChar;
@@ -507,7 +507,7 @@ bool string_base < TYPE_CHAR >::contains_ci(const CHAR_TYPE * psz, strsize iStar
 //bool string_base < TYPE_CHAR >::contains(widechar wch, strsize iStart, strsize nCount) const
 //{
 //
-//   return find_w(::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+//   return find_w(::str().uni_to_utf8(wch), iStart, nCount) >= 0;
 //
 //}
 
@@ -516,7 +516,7 @@ bool string_base < TYPE_CHAR >::contains_ci(const CHAR_TYPE * psz, strsize iStar
 //bool string_base < TYPE_CHAR >::contains(i32 i, strsize iStart, strsize nCount) const // utf8 CHAR_TYPE index
 //{
 //
-//   return find_w(::str::uni_to_utf8(i), iStart, nCount) >= 0;
+//   return find_w(::str().uni_to_utf8(i), iStart, nCount) >= 0;
 //
 //}
 
@@ -611,7 +611,7 @@ bool string_base < TYPE_CHAR >::contains_ci(CHAR_TYPE ch, strsize iStart, strsiz
 //bool string_base < TYPE_CHAR >::contains_ci(widechar wch, strsize iStart, strsize nCount) const
 //{
 //
-//   return find_wci(::str::uni_to_utf8(wch), iStart, nCount) >= 0;
+//   return find_wci(::str().uni_to_utf8(wch), iStart, nCount) >= 0;
 //
 //}
 
@@ -620,7 +620,7 @@ bool string_base < TYPE_CHAR >::contains_ci(CHAR_TYPE ch, strsize iStart, strsiz
 //bool string_base < TYPE_CHAR >::contains_ci(i32 i, strsize iStart, strsize nCount) const// utf8 CHAR_TYPE index
 //{
 //
-//   return find_wci(::str::uni_to_utf8(i), iStart, nCount) >= 0;
+//   return find_wci(::str().uni_to_utf8(i), iStart, nCount) >= 0;
 //
 //}
 
@@ -827,7 +827,7 @@ bool string_base < TYPE_CHAR >::contains_wci(const CHAR_TYPE * psz, strsize iSta
 //bool string_base < TYPE_CHAR >::contains_wci(i32 i, strsize iStart, strsize nCount) const// utf8 CHAR_TYPE index
 //{
 //
-//   return find_wci(::str::uni_to_utf8(i), iStart, nCount) >= 0;
+//   return find_wci(::str().uni_to_utf8(i), iStart, nCount) >= 0;
 //
 //}
 
@@ -989,7 +989,7 @@ strsize string_base < TYPE_CHAR >::Insert(strsize iIndex, const CHAR_TYPE * psz)
 
    // nInsertLength and nNewLength are in XCHARs
 
-   strsize nInsertLength = ::str::string_safe_length(psz);
+   strsize nInsertLength = ::str().string_safe_length(psz);
 
    strsize nNewLength = get_length();
 
@@ -1064,11 +1064,11 @@ strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld
 
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = ::str::string_safe_length(pszOld);
+   strsize nSourceLen = ::str().string_safe_length(pszOld);
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = ::str::string_safe_length(pszNew);
+   strsize nReplacementLen = ::str().string_safe_length(pszNew);
 
    // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
@@ -1076,7 +1076,7 @@ strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld
       const CHAR_TYPE* pszStart = data() + iStart;
       //      const CHAR_TYPE * pszEnd = pszStart+get_length();
       const CHAR_TYPE* pszTarget;
-      while ((pszTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
+      while ((pszTarget = ::str().string_find_string(pszStart, pszOld)) != nullptr)
       {
          nCount++;
          pszStart = pszTarget + nSourceLen;
@@ -1100,7 +1100,7 @@ strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld
       while (pszStart < pszEnd)
       {
          CHAR_TYPE* pszTarget;
-         while ((pszTarget = (CHAR_TYPE *) ::str::string_find_string(pszStart, pszOld)) != nullptr)
+         while ((pszTarget = (CHAR_TYPE *) ::str().string_find_string(pszStart, pszOld)) != nullptr)
          {
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
             memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHAR_TYPE));
@@ -1112,7 +1112,7 @@ strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld
 
             nOldLength += (nReplacementLen - nSourceLen);
          }
-         pszStart += ::str::string_safe_length(pszStart) + 1;
+         pszStart += ::str().string_safe_length(pszStart) + 1;
       }
       ASSERT(pszBuffer[nNewLength] == 0);
       release_string_buffer(nNewLength);
@@ -1130,11 +1130,11 @@ strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD psz
 
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = ::str::string_safe_length(pszOld);
+   strsize nSourceLen = ::str().string_safe_length(pszOld);
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = ::str::string_safe_length(pszNew);
+   strsize nReplacementLen = ::str().string_safe_length(pszNew);
 
    // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
@@ -1142,7 +1142,7 @@ strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD psz
       const CHAR_TYPE * pszStart = data() + iStart;
       //      const CHAR_TYPE * pszEnd = pszStart+get_length();
       const CHAR_TYPE * pszTarget;
-      while ((pszTarget = ::str::string_find_string_ci(pszStart, pszOld)) != nullptr)
+      while ((pszTarget = ::str().string_find_string_ci(pszStart, pszOld)) != nullptr)
       {
          nCount++;
          pszStart = pszTarget + nSourceLen;
@@ -1166,7 +1166,7 @@ strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD psz
       while (pszStart < pszEnd)
       {
          CHAR_TYPE * pszTarget;
-         while ((pszTarget = (CHAR_TYPE *)::str::string_find_string_ci(pszStart, pszOld)) != nullptr)
+         while ((pszTarget = (CHAR_TYPE *)::str().string_find_string_ci(pszStart, pszOld)) != nullptr)
          {
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
             memmove(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHAR_TYPE));
@@ -1178,7 +1178,7 @@ strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD psz
 
             nOldLength += (nReplacementLen - nSourceLen);
          }
-         pszStart += ::str::string_safe_length(pszStart) + 1;
+         pszStart += ::str().string_safe_length(pszStart) + 1;
       }
       ASSERT(pszBuffer[nNewLength] == 0);
       release_string_buffer(nNewLength);
@@ -1197,11 +1197,11 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
    ::count c = 0;
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = ::str::string_safe_length(pszOld);
+   strsize nSourceLen = ::str().string_safe_length(pszOld);
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = ::str::string_safe_length(pszNew);
+   strsize nReplacementLen = ::str().string_safe_length(pszNew);
 
    // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
@@ -1209,7 +1209,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
       const CHAR_TYPE* pszStart = data() + iStart;
       //      const CHAR_TYPE * pszEnd = pszStart+get_length();
       const CHAR_TYPE* pszTarget;
-      while ((pszTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
+      while ((pszTarget = ::str().string_find_string(pszStart, pszOld)) != nullptr)
       {
          nCount++;
          pszStart = pszTarget + nSourceLen;
@@ -1236,7 +1236,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
 
          CHAR_TYPE* pszTarget;
 
-         while ((pszTarget = (CHAR_TYPE *) ::str::string_find_string(pszStart, pszOld)) != nullptr)
+         while ((pszTarget = (CHAR_TYPE *) ::str().string_find_string(pszStart, pszOld)) != nullptr)
          {
 
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
@@ -1253,7 +1253,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
 
          }
 
-         pszStart += ::str::string_safe_length(pszStart) + 1;
+         pszStart += ::str().string_safe_length(pszStart) + 1;
 
       }
 
@@ -1278,11 +1278,11 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
    ::count c = 0;
 
    // nSourceLen is in XCHARs
-   strsize nSourceLen = ::str::string_safe_length(pszOld);
+   strsize nSourceLen = ::str().string_safe_length(pszOld);
    if (nSourceLen == 0)
       return(0);
    // nReplacementLen is in XCHARs
-   strsize nReplacementLen = ::str::string_safe_length(pszNew);
+   strsize nReplacementLen = ::str().string_safe_length(pszNew);
 
    // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
@@ -1290,7 +1290,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
       const CHAR_TYPE * pszStart = data() + iStart;
       //      const CHAR_TYPE * pszEnd = pszStart+get_length();
       const CHAR_TYPE * pszTarget;
-      while ((pszTarget = ::str::string_find_string_ci(pszStart, pszOld)) != nullptr)
+      while ((pszTarget = ::str().string_find_string_ci(pszStart, pszOld)) != nullptr)
       {
          nCount++;
          pszStart = pszTarget + nSourceLen;
@@ -1317,7 +1317,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
 
          CHAR_TYPE * pszTarget;
 
-         while ((pszTarget = (CHAR_TYPE *) ::str::string_find_string_ci(pszStart, pszOld)) != nullptr)
+         while ((pszTarget = (CHAR_TYPE *) ::str().string_find_string_ci(pszStart, pszOld)) != nullptr)
          {
 
             strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
@@ -1334,7 +1334,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
 
          }
 
-         pszStart += ::str::string_safe_length(pszStart) + 1;
+         pszStart += ::str().string_safe_length(pszStart) + 1;
 
       }
 
@@ -1434,7 +1434,7 @@ template < typename TYPE_CHAR >
 strsize string_base < TYPE_CHAR >::find(CHAR_TYPE ch) const RELEASENOTHROW
 {
 
-   auto psz = ::str::string_find_char(this->m_pdata, ch);
+   auto psz = ::str().string_find_char(this->m_pdata, ch);
 
    if (!psz)
    {
@@ -1453,7 +1453,7 @@ template < typename TYPE_CHAR >
 strsize string_base < TYPE_CHAR >::find(CHAR_TYPE ch, strsize start) const RELEASENOTHROW
 {
 
-   auto psz = ::str::string_find_char(this->m_pdata + start, ch);
+   auto psz = ::str().string_find_char(this->m_pdata + start, ch);
 
    if (!psz)
    {
@@ -1588,7 +1588,7 @@ strsize string_base < TYPE_CHAR >::find(const CHAR_TYPE* pszSub, strsize iStart,
       return(-1);
    }
 
-   strsize nLength2 = ::str::string_get_length(pszSub);
+   strsize nLength2 = ::str().string_get_length(pszSub);
 
    if (nCount < 0)
       nCount = nLength;
@@ -1642,7 +1642,7 @@ strsize string_base < TYPE_CHAR >::find_ci(const CHAR_TYPE* pszSub, strsize iSta
       return(-1);
    }
 
-   strsize nLength2 = ::str::string_get_length(pszSub);
+   strsize nLength2 = ::str().string_get_length(pszSub);
 
    if (nCount < 0)
       nCount = nLength;
@@ -1709,14 +1709,14 @@ strsize string_base < TYPE_CHAR >::find_w(const CHAR_TYPE * pszSub, strsize iSta
       strsize len2;
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
-         if (::str::uni_index(psz2, &len1) != ::str::uni_index(pszSub2, &len2))
+         if (::str().uni_index(psz2, &len1) != ::str().uni_index(pszSub2, &len2))
          {
             bFound = false;
             break;
          }
-         //psz2 = ::str::uni_inc(psz2);
+         //psz2 = ::str().uni_inc(psz2);
          psz2 += len1;
-         //pszSub2 = ::str::uni_inc(pszSub2);
+         //pszSub2 = ::str().uni_inc(pszSub2);
          pszSub2 += len2;
       }
       if (bFound)
@@ -1786,8 +1786,8 @@ strsize string_base < TYPE_CHAR >::find_wci(const CHAR_TYPE* pszSub, strsize iSt
       while (*psz2 != '\0' && *pszSub2 != '\0')
       {
 
-         if (::str::ch::to_lower_case(::str::uni_index(psz2, &len1)) !=
-            ::str::ch::to_lower_case(::str::uni_index(pszSub2, &len2)))
+         if (str::ch().to_lower_case(str().uni_index(psz2, &len1)) !=
+            str::ch().to_lower_case(str().uni_index(pszSub2, &len2)))
          {
 
             bFound = false;
@@ -1928,7 +1928,7 @@ strsize string_base < TYPE_CHAR >::FindOneOf(const CHAR_TYPE* pszCharSet, strsiz
 
    }
 
-   const CHAR_TYPE* psz = ::str::string_scan_set(&data()[iStart], strCharSet);
+   const CHAR_TYPE* psz = ::str().string_scan_set(&data()[iStart], strCharSet);
 
    return((psz == nullptr) ? -1 : strsize(psz - data()));
 
@@ -1964,7 +1964,7 @@ template < typename TYPE_CHAR >
 strsize string_base < TYPE_CHAR >::find_first_not_of(const CHAR_TYPE* s, strsize pos) const
 RELEASENOTHROW
 {
-   return find_first_not_of(s, pos, ::str::string_get_length(s));
+   return find_first_not_of(s, pos, ::str().string_get_length(s));
 }
 
 
@@ -2120,7 +2120,7 @@ template < typename TYPE_CHAR >
 strsize string_base < TYPE_CHAR >::reverse_find(CHAR_TYPE ch, strsize iStart) const RELEASENOTHROW
 {
    // find last single character
-   const CHAR_TYPE* psz = ::str::string_find_char_reverse(data(), ch, iStart);
+   const CHAR_TYPE* psz = ::str().string_find_char_reverse(data(), ch, iStart);
 
    // return -1 if not found, distance from beginning otherwise
    return((psz == nullptr) ? -1 : strsize(psz - data()));
@@ -2140,7 +2140,7 @@ template < typename TYPE_CHAR >
 strsize string_base < TYPE_CHAR >::reverse_find(const CHAR_TYPE* ch, strsize iStart) const RELEASENOTHROW
 {
    // find last single character
-   const CHAR_TYPE* psz = ::str::string_find_string_reverse(data(), ch, iStart);
+   const CHAR_TYPE* psz = ::str().string_find_string_reverse(data(), ch, iStart);
 
    // return -1 if not found, distance from beginning otherwise
    return((psz == nullptr) ? -1 : strsize(psz - data()));
@@ -2154,7 +2154,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::make_upper()
 {
    strsize nLength = get_length();
    CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
-   ::str::string_uppercase(pszBuffer, nLength + 1);
+   ::str().string_uppercase(pszBuffer, nLength + 1);
    release_string_buffer(nLength);
 
    return *this;
@@ -2166,7 +2166,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::make_lower()
 {
    strsize nLength = get_length();
    CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
-   ::str::string_lowercase(pszBuffer, nLength + 1);
+   ::str().string_lowercase(pszBuffer, nLength + 1);
    release_string_buffer(nLength);
 
    return *this;
@@ -2178,7 +2178,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::MakeReverse()
 {
    strsize nLength = get_length();
    CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
-   ::str::string_reverse(pszBuffer);
+   ::str().string_reverse(pszBuffer);
    release_string_buffer(nLength);
 
    return *this;
@@ -2201,7 +2201,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
       while (true)
       {
 
-         psz = ::str::uni_dec(data(), psz);
+         psz = ::str().prior(psz, data());
 
          if (psz < data())
          {
@@ -2210,10 +2210,10 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
 
          }
 
-         if (!::str::ch::is_whitespace(psz))
+         if (!str::ch().is_whitespace(psz))
          {
 
-            pszLast = ::str::uni_inc(psz);
+            pszLast = ::str().next(psz);
 
             break;
 
@@ -2248,10 +2248,10 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left()
 
    strsize iHere;
 
-   while (::str::ch::is_whitespace(psz))
+   while (str::ch().is_whitespace(psz))
    {
 
-      psz = ::str::char_next(psz);
+      ::str().increment(psz);
 
       iHere = (strsize)(psz - data());
 
@@ -2344,7 +2344,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTar
       {
          pszLast = nullptr;
       }
-      psz = ::str::char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (pszLast != nullptr)
@@ -2383,7 +2385,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(const CHAR_TYPE
 
    while (!is_ptr_null(psz, 1024) && *psz != 0)
    {
-      if (::str::string_find_char(pszTargets, *psz) != nullptr)
+      if (::str().string_find_char(pszTargets, *psz) != nullptr)
       {
          if (pszLast == nullptr)
          {
@@ -2394,7 +2396,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(const CHAR_TYPE
       {
          pszLast = nullptr;
       }
-      psz = ::str::char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (pszLast != nullptr)
@@ -2418,7 +2422,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarg
 
    while (chTarget == *psz)
    {
-      psz = ::str::char_next(psz);
+      
+      ::str().increment(psz);
+
    }
 
    if (psz != data())
@@ -2451,9 +2457,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(const CHAR_TYPE 
    }
 
    const CHAR_TYPE* psz = data();
-   while ((*psz != 0) && (::str::string_find_char(pszTargets, *psz) != nullptr))
+   while ((*psz != 0) && (::str().string_find_char(pszTargets, *psz) != nullptr))
    {
-      psz = ::str::char_next(psz);
+      ::str().increment(psz);
    }
 
    if (psz != data())
@@ -2608,7 +2614,7 @@ void string_base < TYPE_CHAR >::AnsiToOem()
    throw ::exception(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
-   //::str::ConvertToOem(pszBuffer, nLength + 1);
+   //::str().ConvertToOem(pszBuffer, nLength + 1);
    //release_string_buffer(nLength);
 }
 
@@ -2619,7 +2625,7 @@ void string_base < TYPE_CHAR >::OemToAnsi()
    throw ::exception(error_what_exclamation_exclamation, "AnsiToOem WTF AnsiToOem ANSI is already WTF, Oem is very WTF, and what to say about ANSItoOEM Ah?!?! :/ OEMtoANSI, now a bit lesser (or more?) WTF, WHAT?! WTF Power 10!!");
    //strsize nLength = get_length();
    //CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
-   //::str::convert_to_ansi(pszBuffer, nLength + 1);
+   //::str().convert_to_ansi(pszBuffer, nLength + 1);
    //release_string_buffer(nLength);
 }
 
@@ -2769,7 +2775,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_including(const CHAR_T
 
    }
 
-   return(Left(::str::string_span_including(data(), pszCharSet)));
+   return(Left(::str().string_span_including(data(), pszCharSet)));
 
 }
 
@@ -2788,7 +2794,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::span_excluding(const CHAR_T
 
    }
 
-   return(Left(::str::string_span_excluding(data(), pszCharSet)));
+   return(Left(::str().string_span_excluding(data(), pszCharSet)));
 
 }
 
@@ -2801,17 +2807,17 @@ void string_base < TYPE_CHAR >::append_format_arguments(const CHAR_TYPE* pszForm
 
    strsize nCurrentLength = get_length();
 
-   strsize nAppendLength = ::str::get_formatted_length(pszFormat, args);
+   strsize nAppendLength = ::str().get_formatted_length(pszFormat, args);
 
    CHAR_TYPE* pszBuffer = get_string_buffer(nCurrentLength + nAppendLength);
 
 #if _SECURE_TEMPLATE
 
-   ::str::string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
+   ::str().string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
 
 #else
 
-   ::str::string_format(pszBuffer + nCurrentLength, pszFormat, args);
+   ::str().string_format(pszBuffer + nCurrentLength, pszFormat, args);
 
 #endif
 
@@ -2837,7 +2843,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
 
    va_copy(ptr1, args);
 
-   strsize nLength = ::str::get_formatted_length(pszFormat, ptr1);
+   strsize nLength = ::str().get_formatted_length(pszFormat, ptr1);
 
    va_end(ptr1);
 
@@ -2849,11 +2855,11 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
 
 #if _SECURE_TEMPLATE || defined(LINUX)
 
-   ::str::string_format(pszBuffer, nLength + 1, pszFormat, ptr2);
+   ::str().string_format(pszBuffer, nLength + 1, pszFormat, ptr2);
 
 #else
 
-   ::str::string_format(pszBuffer, pszFormat, ptr2);
+   ::str().string_format(pszBuffer, pszFormat, ptr2);
 
 #endif
 
@@ -2869,7 +2875,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
 // bool string_base < TYPE_CHAR >::xxxget_environment_variable(const CHAR_TYPE* pszVar)
 // {
 
-//    u32 nLength = ::str::xxxget_environment_variable(pszVar, nullptr, 0);
+//    u32 nLength = ::str().xxxget_environment_variable(pszVar, nullptr, 0);
 
 //    bool bRetVal = false;
 
@@ -2884,7 +2890,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
 
 //       CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
 
-//       ::str::xxxget_environment_variable(pszVar, pszBuffer, nLength);
+//       ::str().xxxget_environment_variable(pszVar, pszBuffer, nLength);
 
 //       release_string_buffer();
 
@@ -3019,7 +3025,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::unichar_substr(strsize iFir
    while (ca < iFirst && *pchStart != '\0')
    {
 
-      pchStart = ::str::uni_inc(pchStart);
+      pchStart = ::str().increment(pchStart);
 
       ca++;
 
@@ -3035,7 +3041,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::unichar_substr(strsize iFir
    while (ca < nCount && *pchEnd != '\0')
    {
 
-      pchEnd = ::str::uni_inc(pchEnd);
+      pchEnd = ::str().increment(pchEnd);
 
       ca++;
 
@@ -3060,7 +3066,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::unichar_substr(strsize iFir
 //   while (pch != nullptr && *pch != '\0')
 //   {
 //
-//      pch = ::str::__utf8_inc(pch);
+//      pch = ::str().__utf8_inc(pch);
 //
 //      cCharCount++;
 //
@@ -3111,7 +3117,7 @@ template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::eat_before(string_base < TYPE_CHAR >& strBefore, string_base < TYPE_CHAR > strSeparator, bool bEatEverythingIfNotFound)
 {
 
-   return ::str::eat_before(strBefore, strSeparator, *this, bEatEverythingIfNotFound);
+   return ::str().eat_before(strBefore, strSeparator, *this, bEatEverythingIfNotFound);
 
 }
 
@@ -3120,7 +3126,7 @@ template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::eat_before_let_separator(string_base < TYPE_CHAR >& strBefore, string_base < TYPE_CHAR > strSeparator, bool bEatEverythingIfNotFound)
 {
 
-   return ::str::eat_before_let_separator(strBefore, strSeparator, *this, bEatEverythingIfNotFound);
+   return ::str().eat_before_let_separator(strBefore, strSeparator, *this, bEatEverythingIfNotFound);
 
 }
 
@@ -3161,7 +3167,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins(const string_base& str) const
 {
 
-   return ::str::begins(*this, str);
+   return ::str().begins(*this, str);
 
 }
 
@@ -3170,7 +3176,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends(const string_base& str) const
 {
 
-   return ::str::ends(*this, str);
+   return ::str().ends(*this, str);
 
 }
 
@@ -3179,7 +3185,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_ci(const string_base& str) const
 {
 
-   return ::str::begins_ci(*this, str);
+   return ::str().begins_ci(*this, str);
 
 }
 
@@ -3188,7 +3194,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_ci(const string_base& str) const
 {
 
-   return ::str::ends_ci(*this, str);
+   return ::str().ends_ci(*this, str);
 
 }
 
@@ -3197,7 +3203,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eat(const string_base& strPrefix)
 {
 
-   return ::str::begins_eat(*this, strPrefix);
+   return ::str().begins_eat(*this, strPrefix);
 
 }
 
@@ -3206,7 +3212,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eat(const string_base& strPrefix)
 {
 
-   return ::str::ends_eat(*this, strPrefix);
+   return ::str().ends_eat(*this, strPrefix);
 
 }
 
@@ -3215,7 +3221,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const string_base& strPrefix)
 {
 
-   return ::str::begins_eat_ci(*this, strPrefix);
+   return ::str().begins_eat_ci(*this, strPrefix);
 
 }
 
@@ -3224,7 +3230,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base& strPrefix)
 {
 
-   return ::str::ends_eat_ci(*this, strPrefix);
+   return ::str().ends_eat_ci(*this, strPrefix);
 
 }
 
@@ -3320,7 +3326,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins(const CHAR_TYPE * psz) const
 {
 
-   return ::str::begins(*this, psz);
+   return ::str().begins(*this, psz);
 
 }
 
@@ -3329,7 +3335,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends(const CHAR_TYPE* psz) const
 {
 
-   return ::str::ends(*this, psz);
+   return ::str().ends(*this, psz);
 
 }
 
@@ -3338,7 +3344,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_ci(const CHAR_TYPE* psz) const
 {
 
-   return ::str::begins_ci(*this, psz);
+   return ::str().begins_ci(*this, psz);
 
 }
 
@@ -3347,7 +3353,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_ci(const CHAR_TYPE* psz) const
 {
 
-   return ::str::ends_ci(*this, psz);
+   return ::str().ends_ci(*this, psz);
 
 }
 
@@ -3356,7 +3362,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eat(const CHAR_TYPE* psz)
 {
 
-   return ::str::begins_eat(*this, psz);
+   return ::str().begins_eat(*this, psz);
 
 }
 
@@ -3365,7 +3371,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eat(const CHAR_TYPE* psz)
 {
 
-   return ::str::ends_eat(*this, psz);
+   return ::str().ends_eat(*this, psz);
 
 }
 
@@ -3374,7 +3380,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const CHAR_TYPE* psz)
 {
 
-   return ::str::begins_eat_ci(*this, psz);
+   return ::str().begins_eat_ci(*this, psz);
 
 }
 
@@ -3383,7 +3389,7 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const CHAR_TYPE* psz)
 {
 
-   return ::str::ends_eat_ci(*this, psz);
+   return ::str().ends_eat_ci(*this, psz);
 
 }
 
@@ -3392,14 +3398,14 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eaten(string_base & strEaten, const CHAR_TYPE * psz)
 {
 
-   if (!::str::begins(*this, psz))
+   if (!::str().begins(*this, psz))
    {
 
       return false;
 
    }
 
-   strEaten = c_str() + ::str::length(psz);
+   strEaten = c_str() + ::str().length(psz);
 
    return true;
 
@@ -3410,14 +3416,14 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eaten(string_base & strEaten, const CHAR_TYPE * psz)
 {
 
-   if (!::str::begins(*this, psz))
+   if (!::str().begins(*this, psz))
    {
 
       return false;
 
    }
 
-   strEaten = string(c_str(), length()- ::str::length(psz));
+   strEaten = string(c_str(), length()- ::str().length(psz));
 
    return true;
 
@@ -3428,14 +3434,14 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::begins_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
 {
 
-   if (!::str::begins_ci(*this, psz))
+   if (!::str().begins_ci(*this, psz))
    {
 
       return false;
 
    }
 
-   strEaten = c_str() + ::str::length(psz);
+   strEaten = c_str() + ::str().length(psz);
 
    return true;
 
@@ -3446,14 +3452,14 @@ template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR > ::ends_eaten_ci(string_base & strEaten, const CHAR_TYPE * psz)
 {
 
-   if (!::str::begins(*this, psz))
+   if (!::str().begins(*this, psz))
    {
 
       return false;
 
    }
 
-   strEaten = string(c_str(), length() - ::str::length(psz));
+   strEaten = string(c_str(), length() - ::str().length(psz));
 
    return true;
 
@@ -3557,9 +3563,9 @@ inline STRING & string_concatenate(STRING & str, const typename STRING::CHAR_TYP
 
    typename STRING::CHAR_TYPE * pszBuffer = str.get_string_buffer(nNewLength);
 
-   ::str::copy_chars(pszBuffer, psz1, nLength1);
+   ::str().copy_chars(pszBuffer, psz1, nLength1);
 
-   ::str::copy_chars(pszBuffer + nLength1, psz2, nLength2);
+   ::str().copy_chars(pszBuffer + nLength1, psz2, nLength2);
 
    str.release_string_buffer(nNewLength);
 
@@ -3599,7 +3605,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const ansichar * pansichar)
 {
 
-   ::str::assign(*this, pansichar);
+   ::str().assign(*this, pansichar);
 
 }
 
@@ -3608,7 +3614,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd16char * pwd16char)
 {
 
-   ::str::assign(*this, pwd16char);
+   ::str().assign(*this, pwd16char);
 
 }
 
@@ -3617,7 +3623,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd32char * pwd32char)
 {
 
-   ::str::assign(*this, pwd32char);
+   ::str().assign(*this, pwd32char);
 
 }
 
@@ -3626,7 +3632,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const ansichar * pszSrc, strsize nLength)
 {
 
-   ::str::assign(*this, pszSrc, nLength);
+   ::str().assign(*this, pszSrc, nLength);
 
 }
 
@@ -3635,7 +3641,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd16char * pwszSrc, strsize nLength)
 {
 
-   ::str::assign(*this, pwszSrc, nLength);
+   ::str().assign(*this, pwszSrc, nLength);
 
 }
 
@@ -3644,7 +3650,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd32char * pwszSrc, strsize nLength)
 {
 
-   ::str::assign(*this, pwszSrc, nLength);
+   ::str().assign(*this, pwszSrc, nLength);
 
 }
 
@@ -3680,7 +3686,7 @@ template < typename TYPE_CHAR >
 inline strsize string_base < TYPE_CHAR >::unichar_count() const
 {
 
-   return ::str::unichar_count(c_str());
+   return ::str().unichar_count(c_str());
 
 }
 
@@ -3689,7 +3695,7 @@ inline strsize string_base < TYPE_CHAR >::unichar_count() const
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const natural_ansistring & ansistrSrc)
 //{
 //
-//   return ::str::assign(*this, ansistrSrc);
+//   return ::str().assign(*this, ansistrSrc);
 //
 //}
 
@@ -3698,7 +3704,7 @@ inline strsize string_base < TYPE_CHAR >::unichar_count() const
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd16string & wd16strSrc)
 //{
 //
-//   return ::str::assign(*this, wd16strSrc);
+//   return ::str().assign(*this, wd16strSrc);
 //
 //}
 
@@ -3707,7 +3713,7 @@ inline strsize string_base < TYPE_CHAR >::unichar_count() const
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd32string & wd32strSrc)
 //{
 //
-//   return ::str::assign(*this, wd32strSrc.m_pdata);
+//   return ::str().assign(*this, wd32strSrc.m_pdata);
 //
 //}
 
@@ -3727,7 +3733,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16string & wd16str)
 //{
 //
-//   return ::str::assign(*this, wd16str.c_str());
+//   return ::str().assign(*this, wd16str.c_str());
 //
 //}
 
@@ -3736,7 +3742,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32string & wd32str)
 //{
 //
-//   return ::str::assign(*this, wd32str.c_str());
+//   return ::str().assign(*this, wd32str.c_str());
 //
 //}
 
@@ -3745,7 +3751,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const ansichar * pansichar)
 //{
 //
-//   return ::str::assign(*this, pansichar);
+//   return ::str().assign(*this, pansichar);
 //
 //}
 //
@@ -3754,7 +3760,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16char * pwd16char)
 //{
 //
-//   return ::str::assign(*this, pwd16char);
+//   return ::str().assign(*this, pwd16char);
 //
 //}
 //
@@ -3763,7 +3769,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32char * pwd32char)
 //{
 //
-//   return ::str::assign(*this, pwd32char);
+//   return ::str().assign(*this, pwd32char);
 //
 //}
 //
@@ -3772,7 +3778,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(ansichar ansich)
 //{
 //
-//   return ::str::assign(*this, ansich);
+//   return ::str().assign(*this, ansich);
 //
 //}
 //
@@ -3781,7 +3787,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd16char wd16ch)
 //{
 //
-//   return ::str::assign(*this, wd16ch);
+//   return ::str().assign(*this, wd16ch);
 //
 //}
 //
@@ -3790,7 +3796,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd32char wd32ch)
 //{
 //
-//   return ::str::assign(*this, wd32ch);
+//   return ::str().assign(*this, wd32ch);
 //
 //}
 //
@@ -4053,7 +4059,7 @@ inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::assign(const string
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansistring & strSrc)
 //{
 //
-//   return ::str::assign(*this, strSrc.c_str());
+//   return ::str().assign(*this, strSrc.c_str());
 //
 //}
 //
@@ -4062,7 +4068,7 @@ inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::assign(const string
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16string & strSrc)
 //{
 //
-//   return ::str::assign(*this, strSrc.c_str());
+//   return ::str().assign(*this, strSrc.c_str());
 //
 //}
 //
@@ -4071,7 +4077,7 @@ inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::assign(const string
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32string & strSrc)
 //{
 //
-//   return ::str::assign(*this, strSrc.c_str());
+//   return ::str().assign(*this, strSrc.c_str());
 //
 //}
 //
@@ -4080,7 +4086,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansistring & ansistrSrc, strsize pos, strsize count)
 {
 
-   return ::str::assign(*this, ansistrSrc.m_pdata + pos, count);
+   return ::str().assign(*this, ansistrSrc.m_pdata + pos, count);
 
 }
 
@@ -4089,7 +4095,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16string & widestrSrc, strsize pos, strsize count)
 {
 
-   return ::str::assign(*this, widestrSrc.m_pdata + pos, count);
+   return ::str().assign(*this, widestrSrc.m_pdata + pos, count);
 
 }
 
@@ -4098,7 +4104,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32string & widestrSrc, strsize pos, strsize count)
 {
 
-   return ::str::assign(*this, widestrSrc.m_pdata + pos, count);
+   return ::str().assign(*this, widestrSrc.m_pdata + pos, count);
 
 }
 
@@ -4107,7 +4113,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32s
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansichar * pszSrc)
 //{
 //
-//   return ::str::assign(*this, pszSrc);
+//   return ::str().assign(*this, pszSrc);
 //
 //}
 //
@@ -4116,7 +4122,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansichar * pszSrc, strsize len)
 {
 
-   return ::str::assign(*this, pszSrc, len);
+   return ::str().assign(*this, pszSrc, len);
 
 }
 
@@ -4125,7 +4131,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansic
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16char * pwd16sz)
 //{
 //
-//   return ::str::assign(*this, pwd16sz);
+//   return ::str().assign(*this, pwd16sz);
 //
 //}
 //
@@ -4134,7 +4140,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16char * pwd16sz, strsize len)
 {
 
-   return ::str::assign(*this, pwd16sz, len);
+   return ::str().assign(*this, pwd16sz, len);
 
 }
 
@@ -4143,7 +4149,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16c
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32char * pwd32sz)
 //{
 //
-//   return ::str::assign(*this, pwd32sz);
+//   return ::str().assign(*this, pwd32sz);
 //
 //}
 
@@ -4152,7 +4158,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32char * pwd32sz, strsize len)
 {
 
-   return ::str::assign(*this, pwd32sz, len);
+   return ::str().assign(*this, pwd32sz, len);
 
 }
 
@@ -4161,7 +4167,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32c
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(ansichar ansich)
 //{
 //
-//   return ::str::assign(*this, &ansich, 1);
+//   return ::str().assign(*this, &ansich, 1);
 //
 //}
 //
@@ -4170,7 +4176,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32c
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd16char wd16ch)
 //{
 //
-//   return ::str::assign(*this, &wd16ch, 1);
+//   return ::str().assign(*this, &wd16ch, 1);
 //
 //}
 //
@@ -4179,7 +4185,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32c
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd32ch)
 //{
 //
-//   return ::str::assign(*this, &wd32ch, 1);
+//   return ::str().assign(*this, &wd32ch, 1);
 //
 //}
 
@@ -4191,7 +4197,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(ansichar an
    if (repeat > 0)
    {
 
-      auto lenUnit = ::str::utf_to_utf_length(this->m_pdata, &ansich, 1);
+      auto lenUnit = ::str().utf_to_utf_length(this->m_pdata, &ansich, 1);
 
       auto len = lenUnit * repeat;
 
@@ -4199,7 +4205,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(ansichar an
 
       TYPE_CHAR sz[8];
 
-      ::str::utf_to_utf(sz, &ansich, 1);
+      ::str().utf_to_utf(sz, &ansich, 1);
 
       for (index i = 0; i < len; i += lenUnit)
       {
@@ -4232,7 +4238,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd16char wd
    if (repeat > 0)
    {
 
-      auto lenUnit = ::str::utf_to_utf_length(this->m_pdata, &wd16ch, 1);
+      auto lenUnit = ::str().utf_to_utf_length(this->m_pdata, &wd16ch, 1);
 
       auto len = lenUnit * repeat;
 
@@ -4240,7 +4246,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd16char wd
 
       TYPE_CHAR sz[8];
 
-      ::str::utf_to_utf(sz, &wd16ch, 1);
+      ::str().utf_to_utf(sz, &wd16ch, 1);
 
       for (index i = 0; i < len; i += lenUnit)
       {
@@ -4273,7 +4279,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd
    if (repeat > 0)
    {
 
-      auto lenUnit = ::str::utf_to_utf_length(this->m_pdata, &wd32ch, 1);
+      auto lenUnit = ::str().utf_to_utf_length(this->m_pdata, &wd32ch, 1);
 
       auto len = lenUnit * repeat;
 
@@ -4281,7 +4287,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd
 
       TYPE_CHAR sz[8];
 
-      ::str::utf_to_utf(sz, &wd32ch, 1);
+      ::str().utf_to_utf(sz, &wd32ch, 1);
 
       for (index i = 0; i < len; i += lenUnit)
       {
@@ -4348,7 +4354,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const strin
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const ansichar * pszSrc)
 //{
 //
-//   return append(pszSrc, ::str::string_safe_length(pszSrc));
+//   return append(pszSrc, ::str().string_safe_length(pszSrc));
 //
 //}
 //
@@ -4357,7 +4363,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const strin
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16char * pwszSrc)
 //{
 //
-//   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
+//   return append(pwszSrc, ::str().string_safe_length(pwszSrc));
 //
 //}
 //
@@ -4366,7 +4372,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const strin
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32char * pwszSrc)
 //{
 //
-//   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
+//   return append(pwszSrc, ::str().string_safe_length(pwszSrc));
 //
 //}
 
@@ -4384,11 +4390,11 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const ansic
 
    }
 
-   strsize nNewLength = nOldLength + ::str::utf_to_utf_length(this->m_pdata, pszSrc, nLength);
+   strsize nNewLength = nOldLength + ::str().utf_to_utf_length(this->m_pdata, pszSrc, nLength);
 
    auto pszBuffer = get_string_buffer(nNewLength);
 
-   ::str::utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
+   ::str().utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
 
    return *this;
 
@@ -4408,11 +4414,11 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16c
 
    }
 
-   strsize nNewLength = nOldLength + ::str::utf_to_utf_length(this->m_pdata, pszSrc, nLength);
+   strsize nNewLength = nOldLength + ::str().utf_to_utf_length(this->m_pdata, pszSrc, nLength);
 
    auto pszBuffer = get_string_buffer(nNewLength);
 
-   ::str::utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
+   ::str().utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
 
    return *this;
 
@@ -4432,11 +4438,11 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32c
 
    }
 
-   strsize nNewLength = nOldLength + ::str::utf_to_utf_length(this->m_pdata, pszSrc, nLength);
+   strsize nNewLength = nOldLength + ::str().utf_to_utf_length(this->m_pdata, pszSrc, nLength);
 
    auto pszBuffer = get_string_buffer(nNewLength);
 
-   ::str::utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
+   ::str().utf_to_utf(pszBuffer + nOldLength, pszSrc, nLength);
 
    return *this;
 
@@ -4557,7 +4563,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::compare(const CHAR_TYPE * psz) const noexcept
 {
 
-   return ::str::string_compare(this->m_pdata, psz);
+   return ::str().string_compare(this->m_pdata, psz);
 
 }
 
@@ -4566,7 +4572,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::compare_ci(const CHAR_TYPE * psz) const noexcept
 {
 
-   return ::str::string_compare_ci(this->m_pdata, psz);
+   return ::str().string_compare_ci(this->m_pdata, psz);
 
 }
 
@@ -4575,7 +4581,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::collate(const CHAR_TYPE * psz) const noexcept
 {
 
-   return ::str::string_collate(this->m_pdata, psz);
+   return ::str().string_collate(this->m_pdata, psz);
 
 }
 
@@ -4584,7 +4590,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::collate_ci(const CHAR_TYPE * psz) const noexcept
 {
 
-   return ::str::string_collate_ci(this->m_pdata, psz);
+   return ::str().string_collate_ci(this->m_pdata, psz);
 
 }
 
@@ -4593,7 +4599,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::compare(const CHAR_TYPE * psz, strsize len) const noexcept
 {
 
-   return ::str::string_n_compare(this->m_pdata, psz, len);
+   return ::str().string_n_compare(this->m_pdata, psz, len);
 
 }
 
@@ -4602,7 +4608,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::compare_ci(const CHAR_TYPE * psz, strsize len) const noexcept
 {
 
-   return ::str::string_n_compare_ci(this->m_pdata, psz, len);
+   return ::str().string_n_compare_ci(this->m_pdata, psz, len);
 
 }
 
@@ -4611,7 +4617,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::collate(const CHAR_TYPE * psz, strsize len) const noexcept
 {
 
-   return ::str::string_n_collate(this->m_pdata, psz, len);
+   return ::str().string_n_collate(this->m_pdata, psz, len);
 
 }
 
@@ -4620,7 +4626,7 @@ template < typename TYPE_CHAR >
 inline i32 string_base < TYPE_CHAR > ::collate_ci(const CHAR_TYPE * psz, strsize len) const noexcept
 {
 
-   return ::str::string_n_collate_ci(this->m_pdata, psz, len);
+   return ::str().string_n_collate_ci(this->m_pdata, psz, len);
 
 }
 
@@ -5029,7 +5035,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const ansistring & ansistr)
 {
 
-   ::str::assign(*this, ansistr);
+   ::str().assign(*this, ansistr);
 
 }
 
@@ -5038,7 +5044,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd16string & wd16str)
 {
 
-   ::str::assign(*this, wd16str.c_str());
+   ::str().assign(*this, wd16str.c_str());
 
 }
 
@@ -5047,7 +5053,7 @@ template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const wd32string & wd32str)
 {
 
-   ::str::assign(*this, wd32str.c_str());
+   ::str().assign(*this, wd32str.c_str());
 
 }
 
@@ -5226,13 +5232,13 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, s
       const CHAR_TYPE * pszEnd = data() + get_length();
       if (pszPlace < pszEnd)
       {
-         strsize nIncluding = ::str::string_span_including(pszPlace,
+         strsize nIncluding = ::str().string_span_including(pszPlace,
             pszTokens);
 
          if ((pszPlace + nIncluding) < pszEnd)
          {
             pszPlace += nIncluding;
-            strsize nExcluding = ::str::string_span_excluding(pszPlace, pszTokens);
+            strsize nExcluding = ::str().string_span_excluding(pszPlace, pszTokens);
 
             strsize iFrom = iStart + nIncluding;
             strsize nUntil = nExcluding;

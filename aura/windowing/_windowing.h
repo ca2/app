@@ -59,7 +59,7 @@ namespace windowing
 #include "graphics_lock.h"
 
 
-#include "buffer.h"
+//#include "buffer.h"
 
 
 #include "exception.h"

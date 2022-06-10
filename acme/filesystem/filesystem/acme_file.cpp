@@ -924,7 +924,7 @@ void acme_file::put_contents(const char * path, const memory_base & memory)
 void acme_file::put_contents(const char * path, const char * contents)
 {
 
-   put_contents(path, contents, ::str::string_safe_length(contents));
+   put_contents(path, contents, ::str().string_safe_length(contents));
 
   
 }

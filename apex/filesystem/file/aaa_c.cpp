@@ -136,7 +136,7 @@ int_bool is_absolute_path(const char * psz)
 CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 {
 
-   return ::str::is_true(::m_psystem->m_pacmefile->as_string(path));
+   return ::str().is_true(::m_psystem->m_pacmefile->as_string(path));
 
 }
 

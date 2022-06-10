@@ -99,7 +99,7 @@ public:
       float m_icon_extra_scale;
       Cursor m_cursor;
 
-      //::::function < void(NVGcontext *) >    m_callbackSizing;
+      //::function < void(NVGcontext *) >    m_callbackSizing;
       ::function < void(NVGcontext *) >    m_callbackLayout;
 
       //virtual void _nanogui_to_user(::user::interaction * puserinteraction);

@@ -950,8 +950,8 @@ namespace html
             {
 
             }
-            else if(::str::begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
-                    ::str::begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
+            else if(::str().begins(m_pdata->m_pcoredata->m_strPathName,"http://") ||
+                    ::str().begins(m_pdata->m_pcoredata->m_strPathName,"https://"))
             {
 
                auto psystem = m_psystem->m_paurasystem;
@@ -1043,7 +1043,7 @@ namespace html
       string strTag(pszTag, psz - pszTag);
       if (strTag[0] == '/')
          return false;
-      m_atomTagName = (atom) ::str::ansi_lower(strTag);
+      m_atomTagName = (atom) ::str().ansi_lower(strTag);
       if (strTag == "!DOCTYPE")
       {
          // skip white space

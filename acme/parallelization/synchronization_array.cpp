@@ -289,8 +289,13 @@ void synchronization_array::erase(index index)
 
 
 #if !defined(_UWP)
+         
          if (uWakeMask)
          {
+            
+#if !defined(WINDOWS)
+#define QS_ALLEVENTS 0xffffffffu
+#endif
 
             estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 

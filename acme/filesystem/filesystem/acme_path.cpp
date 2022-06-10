@@ -134,7 +134,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
       return true;
 
    }
-   else if (::str::begins_eat_ci(str, strPath))
+   else if (::str().begins_eat_ci(str, strPath))
    {
 
       return true;
@@ -151,7 +151,7 @@ bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
 
       strFullPath = m_psystem->m_pacmepath->final(strPath);
 
-      if (::str::begins_eat_ci(strFull, strFullPath))
+      if (::str().begins_eat_ci(strFull, strFullPath))
       {
 
          str = strFull;

@@ -109,7 +109,7 @@ void dir_system::init_system()
 
    string strRelative = m_psystem->m_pacmedirectory->app_relative();
 
-   m_pathDefaultAppData = m_psystem->m_pacmedirectory->home() / "application";
+   m_pathDefaultAppData = compute_default_app_data_path();
 
    string strAppFolder;
 
@@ -172,6 +172,15 @@ void dir_system::init_system()
    }
 
 }
+
+
+::file::path dir_system::compute_default_app_data_path()
+{
+
+   return m_psystem->m_pacmedirectory->home() / "application";
+
+}
+
 
 
 //bool dir_system::update_module_path()

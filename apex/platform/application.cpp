@@ -742,19 +742,19 @@ void application::call_request(::create* pcreate)
 
    //   }*/
 
-   //   if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+   //   if (::str().begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
    //   {
 
-   //      if (::str::begins_eat_ci(str, ":///"))
+   //      if (::str().begins_eat_ci(str, ":///"))
    //      {
 
-   //         if (::str::begins_eat_ci(str, "send?message="))
+   //         if (::str().begins_eat_ci(str, "send?message="))
    //         {
 
    //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
    //         }
-   //         else if (::str::begins_eat_ci(str, "send?messagebin="))
+   //         else if (::str().begins_eat_ci(str, "send?messagebin="))
    //         {
 
    //            strsize iFind = str.find(',');
@@ -4962,7 +4962,7 @@ string application::get_app_id(string wstr)
 
    wstr.trim();
 
-   ::str::trim_any_quotes(wstr);
+   ::str().trim_any_quotes(wstr);
 
    wstr.trim();
 
@@ -5924,7 +5924,7 @@ void application::on_run()
    //try
    //{
 
-   //   ::apex::::message::application signal(::apex::::message::application_begin);
+   //   ::apex::message::application signal(::apex::message::application_begin);
 
    //   route_message(&signal);
 
@@ -6681,7 +6681,7 @@ void application::update_appmatter(__pointer(::sockets::http_session)& psession,
 
       string strDir = strFile;
 
-      ::str::ends_eat_ci(strDir, ".zip");
+      ::str().ends_eat_ci(strDir, ".zip");
 
       //try
       //{
@@ -9688,7 +9688,7 @@ void application::set_title(const ::string& pszTitle)
 //   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      ::::windowing::window * pwindow = (::oswindow) osdata;
+//      ::windowing::window * pwindow = (::oswindow) osdata;
 //      if (!::IsWindow(__hwnd(oswindow)))
 //         return -1;
 //      COPYDATASTRUCT cds;
@@ -10132,6 +10132,23 @@ string application::get_wm_class() const
 
 
 #endif
+
+
+//void application::interprocess_communication_open(const char * pszPath)
+//{
+//   
+//   if(!m_prx)
+//   {
+//      
+//      throw ::exception(error_wrong_state);
+//      
+//   }
+//   
+//   string strMessage(pszPath);
+//   
+//   m_prx->on_interprocess_receive();
+//   
+//}
 
 
 void application_on_menu_action(void* pApplication, const char* pszCommand)

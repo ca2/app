@@ -95,9 +95,9 @@ namespace prompt
 //         ::ShellExecuteW(
 //         nullptr,
 //         L"open",
-//         ::str::international::utf8_to_unicode(itema[0]->m_filepathFinal),
+//         utf8_to_unicode(itema[0]->m_filepathFinal),
 //         nullptr,
-//         ::str::international::utf8_to_unicode(itema[0]->m_filepathFinal.folder()),
+//         utf8_to_unicode(itema[0]->m_filepathFinal.folder()),
 //         e_display_normal);
 //
 //#else

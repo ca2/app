@@ -143,7 +143,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //   while (srclen != 0 && psz != nullptr && *psz != '\0')
 //   {
 //
-//      *pwsz++ = (wd16char) ::str::ch::uni_index_len(psz, len);
+//      *pwsz++ = (wd16char) ::str::ch().uni_index_len(psz, len);
 //
 //      psz += len;
 //
@@ -296,7 +296,7 @@ extern "C"
 
    char* c_utf8_str(const wchar_t* str)
    {
-      return strdup(::str::international::unicode_to_utf8(str));
+      return strdup(unicode_to_utf8(str));
    }
 
    wchar_t* c_wide_str(const char* str)
@@ -307,7 +307,7 @@ extern "C"
       memory_free(p);
       return point2;
 #else
-      return wcsdup(::str::international::utf8_to_unicode(str));
+      return wcsdup(utf8_to_unicode(str));
 #endif
 
    }
@@ -692,7 +692,7 @@ strsize ansi_to_wd16_len(const char* psz, strsize srclen)
 
       ::i32 len;
 
-      ::i32 iChar = ::str::ch::uni_index_len(psz, len);
+      ::i32 iChar = ::str::ch().uni_index_len(psz, len);
 
       if (iChar < 0)
       {
@@ -935,7 +935,7 @@ strsize utf16_to_utf16(wd16char * p, const wd16char* codepoints, strsize input_s
 //}
 
 
-const wd16char * utf16_inc(const wd16char * psz)
+const wd16char * unicode_next(const wd16char * psz)
 {
 
    auto len = wd16_to_wd32_len(psz, 2);
@@ -976,6 +976,35 @@ string wd16_to_ansi_str(const wd16char * pwsz, strsize srclen)
    str.release_string_buffer(iUtf8Len);
 
    return str;
+
+}
+
+
+const wd16char * unicode_prior(const wd16char * psz, const wd16char * pszBeg)
+{
+
+   if (psz <= pszBeg)
+   {
+      
+      return nullptr;
+
+   }
+
+   if (utf16_is_2nd_surrogate(*(psz - 1)))
+   {
+
+      if (psz - 1 <= pszBeg)
+      {
+
+         return nullptr;
+
+      }
+
+      return psz - 2;
+
+   }
+
+   return psz - 1;
 
 }
 

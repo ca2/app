@@ -18,7 +18,7 @@ namespace regular_expression
       ::count                          m_cMatchData;
       string                           m_str;
       ::regular_expression_pointer     m_pregularexpression;
-      ::str::range_array               m_rangea;
+      ::strsize_range_array               m_rangea;
 
 
       result();
@@ -37,7 +37,7 @@ namespace regular_expression
       virtual string get_match(::index iMatch) const;
 
 
-      virtual ::str::range_array & get_range_array();
+      virtual ::strsize_range_array & get_range_array();
 
 
       virtual void _get_range_array();
@@ -49,11 +49,11 @@ namespace regular_expression
 
       //virtual ::count match_count(const char * psz, strsize len) = 0;
 
-      //virtual __pointer(::str::range_array)
+      //virtual __pointer(::strsize_range_array)
 
       //matches_ranges(const ::string & str) = 0;
 
-      //virtual __pointer(::str::range_array)
+      //virtual __pointer(::strsize_range_array)
 
       //matches_ranges(const char * psz, strsize len) = 0;
 

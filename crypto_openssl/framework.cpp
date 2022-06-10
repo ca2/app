@@ -5,4 +5,7 @@
 #include "framework.h"
 
 
+IMPLEMENT_THIS_TYPE(crypto_openssl_framework);
+
+
 

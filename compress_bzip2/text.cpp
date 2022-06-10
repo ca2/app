@@ -272,7 +272,7 @@ void gdiplus_draw_text(::draw2d::graphics* pgraphicsParam, ::draw2d::path* ppath
 
          //status = ppath->SetTransform(pmNew);
 
-         //wstring text.m_wstr = ::str::international::utf8_to_unicode(str);
+         //wstring text.m_wstr = utf8_to_unicode(str);
 
          //Gdiplus::Font * pfont = gdiplus_font();
 

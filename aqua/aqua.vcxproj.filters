@@ -305,12 +305,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="xml\data.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
@@ -360,9 +354,6 @@
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="xml\xmlite.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\_from.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">

@@ -375,8 +375,8 @@ int_bool file_path_is_equal(const char * psz1,const char * psz2)
 {
 
    const int32_t iBufSize = MAX_PATH * 8;
-   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
-   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+   wstring pwsz1 = utf8_to_unicode(psz1);
+   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
    // unichar * pwszFile2;
    unichar * pwszPath1 = new unichar[iBufSize];
@@ -386,8 +386,8 @@ int_bool file_path_is_equal(const char * psz1,const char * psz2)
    // {
    //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
    //{
-   string p1 = ::str::international::unicode_to_utf8(pwszPath1);
-   string p2 = ::str::international::unicode_to_utf8(pwszPath2);
+   string p1 = unicode_to_utf8(pwszPath1);
+   string p2 = unicode_to_utf8(pwszPath2);
    iCmp = stricmp_dup(p1,p2);
    //}
    //}

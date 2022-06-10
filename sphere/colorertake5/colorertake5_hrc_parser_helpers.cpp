@@ -53,7 +53,7 @@ namespace colorertake5
       matchCase = false;
       minKeywordLength = 0;
       kwList = nullptr;
-      firstChar = new ::str::ch_class();
+      firstChar = new ::str().ch_class();
    };
    KeywordList::~KeywordList()
    {

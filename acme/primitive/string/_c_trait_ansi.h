@@ -80,6 +80,9 @@ CLASS_DECL_ACME i32 __ansitoi32(const ansichar * psz, ansichar ** ppszEnd, i32 i
 CLASS_DECL_ACME u32 __ansitou32(const ansichar * psz, ansichar ** ppszEnd, i32 iBase);
 
 
+inline ansichar lower_char(i32 ch);
+inline ansichar upper_char(i32 ch);
+inline void make_lower(ansichar * psz);
 
 
 

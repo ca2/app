@@ -1,220 +1,218 @@
 #pragma once
 
 
-namespace str
+template < typename CHAR_TYPE >
+inline string_base < CHAR_TYPE > str::repeat(const CHAR_TYPE * psz, strsize c)
 {
 
+   auto itemLen = string_safe_length(psz);
 
-   template < typename CHAR_TYPE >
-   inline string_base < CHAR_TYPE > repeat(const CHAR_TYPE * psz, strsize c)
+   auto itemByteCount = itemLen * sizeof(CHAR_TYPE);
+
+   auto len = itemLen * c;
+
+   string str;
+
+   if (len > 0)
    {
 
-      auto itemLen = string_safe_length(psz);
+      auto p = str.get_string_buffer(len);
 
-      auto itemByteCount = itemLen * sizeof(CHAR_TYPE);
-
-      auto len = itemLen * c;
-
-      string str;
-
-      if (len > 0)
+      while (c > 0)
       {
 
-         auto p = str.get_string_buffer(len);
+         memcpy(p, psz, itemByteCount);
 
-         while (c > 0)
-         {
+         p += itemLen;
 
-            memcpy(p, psz, itemByteCount);
-
-            p += itemLen;
-
-            c--;
-
-         }
-
-         str.release_string_buffer(len);
+         c--;
 
       }
 
-      return str;
+      str.release_string_buffer(len);
 
    }
 
+   return str;
 
-   inline i32 compare_ignore_case(const char * left, const char * right, size_t len)
+}
+
+
+inline i32 compare_ignore_case(const char * left, const char * right, size_t len)
+{
+
+   if (len)
    {
-
-      if (len)
-      {
 
 #if defined(WIN32) || defined(WIN64)
 
-         return _strnicmp(left, right, len);
+      return _strnicmp(left, right, len);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_count_compare_ci(left, right, len);
+      return ansi_count_compare_ci(left, right, len);
 
 #else
 
-         return strncasecmp(left, right, len);
+      return strncasecmp(left, right, len);
 
 #endif
 
-      }
-      else
-      {
+   }
+   else
+   {
 
 #if defined(WIN32) || defined(WIN64)
 
-         return _stricmp(left, right);
+      return _stricmp(left, right);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_compare_ci(left, right);
+      return ansi_compare_ci(left, right);
 
 #else
 
-         return strcasecmp(left, right);
+      return strcasecmp(left, right);
 
 #endif
 
-      }
-
    }
 
+}
 
-   inline bool equal_ignore_case(const char * left, const char * right, size_t len)
+
+inline bool equal_ignore_case(const char * left, const char * right, size_t len)
+{
+
+   return compare_ignore_case(left, right, len) == 0;
+
+}
+
+
+inline bool str::trimmed_is_empty(const ::string & str)
+{
+
+   const char * psz = str.c_str();
+
+   while (true)
    {
 
-      return compare_ignore_case(left, right, len) == 0;
-
-   }
-
-
-   inline CLASS_DECL_ACME bool trimmed_is_empty(const char * psz)
-   {
-
-      while (true)
+      if (*psz == '\0')
       {
 
-         if (*psz == '\0')
-         {
-
-            break;
-
-         }
-
-         if (!isspace(*psz))
-         {
-
-            return false;
-
-         }
-
-         psz++;
+         break;
 
       }
 
-      return true;
+      if (!isspace(*psz))
+      {
+
+         return false;
+
+      }
+
+      psz++;
 
    }
 
+   return true;
+
+}
 
 
-   inline i32 compare_ignore_case(const string & left, const string & right, size_t len)
+
+inline i32 compare_ignore_case(const string & left, const string & right, size_t len)
+{
+
+   if (len)
    {
-
-      if (len)
-      {
 
 #if defined(WIN32) || defined(WIN64)
 
-         return _strnicmp(left.c_str(), right.c_str(), len);
+      return _strnicmp(left.c_str(), right.c_str(), len);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_count_compare_ci(left.c_str(), right.c_str(), len);
+      return ansi_count_compare_ci(left.c_str(), right.c_str(), len);
 
 #else
 
-         return strncasecmp(left.c_str(), right.c_str(), len);
+      return strncasecmp(left.c_str(), right.c_str(), len);
 
 #endif
-
-      }
-      else
-      {
-
-#if defined(WIN32) || defined(WIN64)
-
-         return _stricmp(left.c_str(), right.c_str());
-
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-         return ansi_compare_ci(left.c_str(), right.c_str());
-
-#else
-
-         return strcasecmp(left.c_str(), right.c_str());
-
-#endif
-
-      }
 
    }
-
-
-   inline bool equal_ignore_case(const string & left, const string & right, size_t len)
+   else
    {
 
-      return compare_ignore_case(left, right, len) == 0;
+#if defined(WIN32) || defined(WIN64)
+
+      return _stricmp(left.c_str(), right.c_str());
+
+#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+      return ansi_compare_ci(left.c_str(), right.c_str());
+
+#else
+
+      return strcasecmp(left.c_str(), right.c_str());
+
+#endif
 
    }
 
+}
 
-   inline i32 compare_ignore_case(const char * left, const string & right, size_t len)
+
+inline bool equal_ignore_case(const string & left, const string & right, size_t len)
+{
+
+   return compare_ignore_case(left, right, len) == 0;
+
+}
+
+
+inline i32 compare_ignore_case(const char * left, const string & right, size_t len)
+{
+
+   if (len)
    {
 
-      if (len)
-      {
-
 #if defined(WIN32) || defined(WIN64)
 
-         return _strnicmp(left, right.c_str(), len);
+      return _strnicmp(left, right.c_str(), len);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-         return ansi_count_compare_ci(left, right.c_str(), len);
+      return ansi_count_compare_ci(left, right.c_str(), len);
 
 #else
 
-         return strncasecmp(left, right.c_str(), len);
+      return strncasecmp(left, right.c_str(), len);
 
 #endif
-
-      }
-      else
-      {
-
-#if defined(WIN32) || defined(WIN64)
-
-         return _stricmp(left, right.c_str());
-
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-         return ansi_compare_ci(left, right.c_str());
-
-#else
-
-         return strcasecmp(left, right.c_str());
-
-#endif
-
-      }
 
    }
+   else
+   {
+
+#if defined(WIN32) || defined(WIN64)
+
+      return _stricmp(left, right.c_str());
+
+#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+      return ansi_compare_ci(left, right.c_str());
+
+#else
+
+      return strcasecmp(left, right.c_str());
+
+#endif
+
+   }
+
+}
 
 
    inline bool equal_ignore_case(const char * left, const string & right, size_t len)
@@ -276,7 +274,7 @@ namespace str
    }
 
 
-} // namespace str
+
 
 
 inline void from_string(i8 & i, const ansichar * psz)
@@ -525,7 +523,7 @@ inline void from_string(ansichar & ch, const ansichar* psz)
 inline void from_string(widechar & wch, const ansichar* psz)
 {
 
-   ::str::utf_to_utf(&wch, psz, utf8_inc(psz) - psz);
+   str().utf_to_utf(&wch, psz, unicode_next(psz) - psz);
 
 }
 
@@ -533,7 +531,7 @@ inline void from_string(widechar & wch, const ansichar* psz)
 inline void from_string(wd16char * sz, const ansichar * psz)
 {
 
-   ::str::utf_to_utf(sz, psz);
+   str().utf_to_utf(sz, psz);
 
 }
 
@@ -541,7 +539,7 @@ inline void from_string(wd16char * sz, const ansichar * psz)
 inline void from_string(wd32char * sz, const ansichar * psz)
 {
 
-   ::str::utf_to_utf(sz, psz);
+   str().utf_to_utf(sz, psz);
 
 }
 
@@ -566,14 +564,14 @@ template < size_t n >
 inline void from_string(wd16char sz[n], const ansichar * psz)
 {
 
-   if (::str::utf_to_utf_length(sz, psz) >= n)
+   if (str().utf_to_utf_length(sz, psz) >= n)
    {
 
       throw ::exception(error_would_reach_buffer_limit);
 
    }
 
-   ::str::utf_to_utf(sz, psz);
+   str().utf_to_utf(sz, psz);
 
 }
 
@@ -582,14 +580,14 @@ template < size_t n >
 inline void from_string(wd32char sz[n], const ansichar * psz)
 {
 
-   if (::str::utf_to_utf_length(sz, psz) >= n)
+   if (str().utf_to_utf_length(sz, psz) >= n)
    {
 
       throw ::exception(error_would_reach_buffer_limit);
 
    }
 
-   ::str::utf_to_utf(sz, psz);
+   str().utf_to_utf(sz, psz);
 
 }
 
@@ -1041,7 +1039,7 @@ inline void std_string_assign(string& t, const ansichar* psz)
 template < >
 inline void std_string_assign(string& t, const widechar* psz)
 {
-   t = ::str::international::unicode_to_utf8(psz);
+   t = unicode_to_utf8(psz);
 }
 
 template < >
@@ -1059,7 +1057,7 @@ inline void std_string_assign(string& t, const string* pstr)
 template < >
 inline void std_string_assign(string& t, const wstring* pwstr)
 {
-   t = ::str::international::unicode_to_utf8(*pwstr);
+   t = unicode_to_utf8(*pwstr);
 }
 
 //template < >
@@ -1087,19 +1085,19 @@ inline void std_string_assign(string& t, const wstring* pwstr)
 template < >
 inline void std_string_bassign(wstring& t, const u8* psz, strsize nsize)
 {
-   t = ::str::international::utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
+   t = utf8_to_unicode(string((const ansichar*)psz, minimum(nsize, strlen_s_dup((const ansichar*)psz, nsize))));
 }
 
 template < >
 inline void std_string_assign(wstring& t, const string* pstr)
 {
-   t = ::str::international::utf8_to_unicode(*pstr);
+   t = utf8_to_unicode(*pstr);
 }
 
 //template < >
 //inline void std_string_assign(wstring & t,const string * pstr)
 //{
-//   t = ::str::international::utf8_to_unicode(*pstr);
+//   t = utf8_to_unicode(*pstr);
 //}
 
 template < >
@@ -1111,7 +1109,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //template < >
 //inline void std_string_assign(wstring & t,const bstring * pbstr)
 //{
-//   t = ::str::international::utf8_to_unicode(string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length()))));
+//   t = utf8_to_unicode(string((const ansichar *)pbstr->get_data(),minimum(pbstr->get_length(),strlen_s_dup((const ansichar *)pbstr->get_data(),pbstr->get_length()))));
 //}
 
 
@@ -1124,7 +1122,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //template < >
 //inline void std_string_assign(bstring & t,const widechar * psz)
 //{
-//   t.assign(::str::international::unicode_to_utf8(psz));
+//   t.assign(unicode_to_utf8(psz));
 //}
 //
 //template < >
@@ -1142,7 +1140,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //template < >
 //inline void std_string_assign(bstring & t,const wstring * pwstr)
 //{
-//   t = (const ansichar *) ::str::international::unicode_to_utf8(*pwstr);
+//   t = (const ansichar *) unicode_to_utf8(*pwstr);
 //}
 //
 //template < >
@@ -1179,7 +1177,7 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
    //inline void from(string & str, const wstring & wstr)
    //{
 
-   //   ::str::international::unicode_to_utf8(str, wstr, wstr.get_length());
+   //   unicode_to_utf8(str, wstr, wstr.get_length());
 
    //}
 
@@ -1344,7 +1342,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //      if(!parse(s))
 //      {
 //
-//         ::str::format_type(this, value);
+//         str::format_type(this, value);
 //
 //         m_estate = e_state_initial;
 //
@@ -1379,7 +1377,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 
 //=======
 //>>>>>>> origin/basis
-inline CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
+inline string string_from_strdup(const ansichar* psz)
 {
 
    if (psz == nullptr)
@@ -1417,15 +1415,15 @@ inline CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
 
 }
 
+//
+//namespace str
+//{
+//
 
-namespace str
-{
-
-
-   inline strsize utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
+   inline strsize str::utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)
    {
 
-      const ansichar* pszDec = ::str::uni_dec(pszBeg, psz);
+      const ansichar* pszDec = prior(pszBeg, psz);
 
       if (pszDec == nullptr)
       {
@@ -1438,7 +1436,8 @@ namespace str
 
    }
 
-   inline  strsize utf8_inc_len(const ansichar* psz)
+
+   inline  strsize str::utf8_inc_len(const ansichar* psz)
    {
 
       return get_utf8_char_length(psz);
@@ -1446,7 +1445,7 @@ namespace str
    }
 
 
-   inline bool namespaced(const ansichar* psz, const ansichar* pszNamespace, const ansichar* pszSeparator)
+   inline bool str::namespaced(const ansichar * psz, const ansichar * pszNamespace, const ansichar* pszSeparator)
    {
 
       if (::is_null(psz) || ::is_null(pszNamespace) || *psz == '\0' || *pszNamespace == '\0')
@@ -1463,7 +1462,7 @@ namespace str
 
       }
 
-      if (::str::begins(psz, string(pszNamespace) + pszSeparator))
+      if (str::begins(psz, string(pszNamespace) + pszSeparator))
       {
 
          return true;
@@ -1475,7 +1474,7 @@ namespace str
    }
 
 
-   inline bool begins_ci_skip(const char*& psz, const char* pszPrefix)
+   inline bool str::begins_ci_skip(const char*& psz, const char* pszPrefix)
    {
 
       auto length = strlen(pszPrefix);
@@ -1497,7 +1496,7 @@ namespace str
    /// Returns:
    /// end of line, and;
    /// next line or null if no next line
-   inline struct ::end_of_line_and_next_line end_of_line_and_next_line(const char* psz)
+   inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char* psz)
    {
 
       struct ::end_of_line_and_next_line pair;
@@ -1541,10 +1540,10 @@ namespace str
       return pair;
 
    }
-
-
-} // namespace str
-
+//
+//
+//} // namespace str
+//
 
 template < typename TYPE_CHAR >
 inline bool string_base < TYPE_CHAR >::equals(const CHAR_TYPE* psz) const
@@ -1616,6 +1615,54 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    this->get_data()[strsizeStorage - 1] = (TYPE_CHAR)0;
 
 }
+
+
+
+inline int str::get_utf8_char_length(const char * psz)
+{
+
+   int len = ch_uni_len(*psz);
+   if (len == 0) return 0;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 1) return 1;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 2) return 2;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 3) return 3;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 4) return 4;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 5) return 5;
+   if (*psz++ == 0)
+   {
+      return -1;
+   }
+   if (len == 6) return 6;
+
+   {
+      return -1;
+   }
+   return -1;
+}
+
+
+
+
 
 
 

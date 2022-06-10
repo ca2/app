@@ -1084,7 +1084,7 @@ m_durationHeartBeat.Now();
 
          string strDir = strFile;
 
-         ::str::ends_eat_ci(strDir,".zip");
+         ::str().ends_eat_ci(strDir,".zip");
 
          try
          {

@@ -94,8 +94,8 @@ int_bool file_is_equal_path_dup(const char* psz1, const char* psz2)
 {
    return file_path_is_equal(psz1, psz2);
    //   const i32 iBufSize = MAX_PATH * 8;
-   //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
-   //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+   //   wstring pwsz1 = utf8_to_unicode(psz1);
+   //   wstring pwsz2 = utf8_to_unicode(psz2);
    //   int iCmp = pwsz1.compare_ci(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
@@ -106,8 +106,8 @@ int_bool file_is_equal_path_dup(const char* psz1, const char* psz2)
    //   {
    //      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
    //      {
-   //         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
-   //         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
+   //         string p1 = unicode_to_utf8(pwszPath1);
+   //         string p2 = unicode_to_utf8(pwszPath2);
    //         iCmp = ansi_compare_ci(p1,p2);
    //      }
    //   }
@@ -541,7 +541,7 @@ string file_module_path_dup()
 // //             continue;
 // //          }
 // //          i32 nCmpStart = 4;
-// //          string csFileName(::str::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
+// //          string csFileName(unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
 // //          csFileName.make_lower();
 // //          if(csFileName.find("vs11_dp_ctp") >= 0)
 // //          {
@@ -554,7 +554,7 @@ string file_module_path_dup()
 // //          OF_INFO_t stOFInfo;
 // //          stOFInfo.dwPID = pSysHandleInformation->Handles[g_CurrentIndex - 1].dwProcessId;
 // //          wstring wstrCallback;
-// //          wstrCallback = ::str::international::utf8_to_unicode(csFileName);
+// //          wstrCallback = utf8_to_unicode(csFileName);
 // //          stOFInfo.lpFile = wstrCallback;
 // //          stOFInfo.hFile  = (HANDLE)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue;
 // //          CallBackProc(stOFInfo,pUserContext);
@@ -659,7 +659,7 @@ string file_module_path_dup()
 // //       OF_INFO_t stOFInfo;
 // //       stOFInfo.dwPID = sh.dwProcessId;
 // //       wstring wstrCallback;
-// //       wstrCallback = ::str::international::utf8_to_unicode(csFileName);
+// //       wstrCallback = utf8_to_unicode(csFileName);
 // //       stOFInfo.lpFile = wstrCallback;
 // //       stOFInfo.hFile  = (HANDLE)sh.wValue;
 // //       CallBackProc(stOFInfo,pUserContext);
@@ -765,7 +765,7 @@ string file_module_path_dup()
 // //             stOFInfo.dwPID = pDwId[nIdx];
 // //             wstring wstrCallback;
 
-// //             wstrCallback = ::str::international::utf8_to_unicode(csModule);
+// //             wstrCallback = utf8_to_unicode(csModule);
 
 // //             stOFInfo.lpFile = wstrCallback;
 // //             CallBackProc(stOFInfo,pUserContext);
@@ -933,8 +933,8 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
-//   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
-//   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+//   wstring pwsz1 = utf8_to_unicode(psz1);
+//   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
 //   unichar * pwszPath1 = new unichar[iBufSize];
@@ -944,8 +944,8 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //   {
 //      if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
 //      {
-//         string p1 = ::str::international::unicode_to_utf8(pwszPath1);
-//         string p2 = ::str::international::unicode_to_utf8(pwszPath2);
+//         string p1 = unicode_to_utf8(pwszPath1);
+//         string p2 = unicode_to_utf8(pwszPath2);
 //         iCmp = ansi_compare_ci(p1,p2);
 //      }
 //   }

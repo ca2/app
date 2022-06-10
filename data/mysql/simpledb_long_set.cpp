@@ -239,7 +239,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
          return false;
       }
 
-      *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str().to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_durationTimeout= ::duration::now() + 23 * (5000);
       longitem.m_l = *plValue;

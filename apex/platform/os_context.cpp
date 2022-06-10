@@ -434,7 +434,7 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams)
    {
 
-      if(::str::ends_ci(strSource, ".desktop"))
+      if(::str().ends_ci(strSource, ".desktop"))
       {
 
          string str = m_pcontext->m_papexcontext->file().as_string(strSource);
@@ -846,6 +846,13 @@ void os_context::broadcast_environment_variable_change()
 {
 
    //return ::success_none;
+
+}
+
+
+void os_context::set_this_application_as_default_for_file_extension(const ::string& strExtension)
+{
+
 
 }
 

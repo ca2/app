@@ -253,7 +253,7 @@ namespace aura
 
                iPhase++;
 
-               if (::str::begins_eat(strTitle, "lib"))
+               if (::str().begins_eat(strTitle, "lib"))
                {
 
                   get(pfnNewAuraLibrary, strTitle + "_get_new_library");
@@ -470,16 +470,16 @@ namespace aura
          strLibraryName = "ca2";
 
       }
-      else if(!::str::begins_eat(strLibraryName,"libca2"))
+      else if(!::str().begins_eat(strLibraryName,"libca2"))
       {
 
-         ::str::begins_eat(strLibraryName,"lib");
+         ::str().begins_eat(strLibraryName,"lib");
 
       }
 
 #elif defined(_UWP)
 
-      //      ::str::begins_eat_ci(strLibraryName, "m_");
+      //      ::str().begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -523,16 +523,16 @@ namespace aura
          strLibraryName = "ca2";
 
       }
-      else if(!::str::begins_eat(strLibraryName,"libca2"))
+      else if(!::str().begins_eat(strLibraryName,"libca2"))
       {
 
-         ::str::begins_eat(strLibraryName,"lib");
+         ::str().begins_eat(strLibraryName,"lib");
 
       }
 
 #elif defined(_UWP)
 
-      //      ::str::begins_eat_ci(strLibraryName, "m_");
+      //      ::str().begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -542,7 +542,7 @@ namespace aura
 
       strPrefix += "/";
 
-      ::str::begins_eat(strAppName,strPrefix);
+      ::str().begins_eat(strAppName,strPrefix);
 
       if(!contains_app(strAppName))
       {
@@ -553,7 +553,7 @@ namespace aura
 
          strPrefix += "/";
 
-         ::str::begins_eat(strAppName,strPrefix);
+         ::str().begins_eat(strAppName,strPrefix);
 
          if(!contains_app(strAppName))
             return "";
@@ -702,7 +702,7 @@ namespace aura
 //
 //#if defined(LINUX) || defined(__APPLE__)
 //
-//         ::str::begins_eat(strAppId,"lib");
+//         ::str().begins_eat(strAppId,"lib");
 //
 //#elif defined(_UWP)
 //
@@ -714,9 +714,9 @@ namespace aura
 //
 //         strPrefix += "_";
 //
-//         ::str::begins_eat_ci(strAppId,strPrefix);
+//         ::str().begins_eat_ci(strAppId,strPrefix);
 //
-//         //if(::str::begins_eat_ci(strAppId,strPrefix))
+//         //if(::str().begins_eat_ci(strAppId,strPrefix))
 //         {
 //
 //            stra.add(strAppId);

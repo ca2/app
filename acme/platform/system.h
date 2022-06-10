@@ -5,7 +5,8 @@
 class CLASS_DECL_ACME system :
    virtual public ::app_core,
    virtual public ::acme::context,
-   virtual public ::task
+   virtual public ::task,
+   virtual public ::plane_system
 {
 public:
 
@@ -61,7 +62,7 @@ public:
 
    __composite(::url::department)                                    m_purldepartment;
 
-   __composite(class ::str::base64)                                  m_pbase64;
+   __composite(class ::base64)                                  m_pbase64;
 
    __composite(class ::xml::xml)                                     m_pxml;
 
@@ -102,7 +103,7 @@ public:
 
    inline __pointer(::acme::node) & node() { return m_pnode; }
 
-   inline class ::str::base64* base64() { return m_pbase64; };
+   inline class ::base64* base64() { return m_pbase64; };
 
    inline ::xml::xml* xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
@@ -463,6 +464,8 @@ public:
 
    virtual void windowing_post(const ::procedure & procedure);
 
+   void _main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
+   
 
 };
 

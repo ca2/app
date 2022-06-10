@@ -215,8 +215,12 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       virtual bool keyboard_focus_OnChildKillFocus() override;
 
-      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
-      virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
+//      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
+//      virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
+
+      virtual void on_final_set_keyboard_focus();
+
+      virtual void on_final_kill_keyboard_focus();
 
       virtual bool has_pending_focus();
 

@@ -25,6 +25,7 @@ namespace sandbox_windowing
 
       __pointer(::sandbox_windowing::window)          m_pwindowKeyboardFocus;
       __pointer(::sandbox_windowing::window)          m_pwindowMouseCapture;
+      __pointer(::sandbox_windowing::window)          m_pwindowActive;
 
 
       __pointer(host_interaction)                     m_phostinteraction;
@@ -76,7 +77,7 @@ namespace sandbox_windowing
       void release_mouse_capture() override;
 
 
-      void clear_keyboard_focus(::windowing::window* pwindowGainingFocusIfAny = nullptr) override;
+      void clear_keyboard_focus(::user::element* pelementGainingFocusIfAny = nullptr) override;
 
 
       void windowing_post(const ::procedure& procedure) override;

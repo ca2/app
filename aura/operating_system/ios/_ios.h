@@ -5,22 +5,6 @@
 
 
 
-//#include "aura/node/ansios/_.h"
-////#define CLASS_DECL_AURA
-
-//struct plane_system
-//{
-//
-//   ::plane::system *    m_psystem;
-//
-//   plane_system(const ::string & pszId);
-//
-//   UIWindow * init_part_2ex(CGRect rectangle_i32);
-//
-//   void begin();
-//
-//};
-
 
 string get_error_message(::u32 dwError);
 
@@ -100,12 +84,6 @@ CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const 
 //
 //
 //} // namespace ios
-
-
-///#include "ios_plane_system.h"
-
-
-//#include "interaction_impl.h"
 
 
 

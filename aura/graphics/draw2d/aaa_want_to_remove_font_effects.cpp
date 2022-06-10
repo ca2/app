@@ -468,7 +468,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i
 
    }
 
-   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+   wstring wstr = utf8_to_unicode(pString, ca);
 
 
    bool bRet = ::TextOutW(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
@@ -509,7 +509,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i3
 
    }
 
-   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+   wstring wstr = utf8_to_unicode(pString, ca);
 
 
    bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32) wstr.get_length(), psizl) != false;
@@ -540,7 +540,7 @@ CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, R
 
    }
 
-   wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
+   wstring wstr = utf8_to_unicode(pchText, cchText);
 
 
    bool bRet = ::DrawTextW(hdc, wstr, (i32) wcslen(wstr), prc, format) != false;

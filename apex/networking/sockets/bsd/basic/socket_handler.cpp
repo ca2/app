@@ -1114,25 +1114,14 @@ end_processing_adding:
       if(m_socketlistDetach.has_element())
       {
 
+         retry_next_item_in_detach_list:
+
          auto pos = m_socketlistDetach.begin();
-
-         //socket_map::pair * ppairSocket = nullptr;
-
-         bool bRemove = false;
 
          SOCKET socket = 0;
 
-         for (; pos; pos++)
+         for (; pos != m_socketlistDetach.end(); pos++)
          {
-
-            if (bRemove)
-            {
-
-               m_socketlistDetach.erase(socket);
-
-            }
-
-            bRemove = false;
 
             socket = *pos;
             
@@ -1163,19 +1152,11 @@ end_processing_adding:
 
                      }
 
-                     // Adding the file descriptor to m_socketlistErase will now also erase the
-                     // socket from the detach queue - tnx knightmad
-                     //m_socketlistErase.add_tail(socket);
-
-                     //m_socketlist.erase(socket);
-
-                     //m_socketmap.erase_key(socket);
-
                      erase_socket(socket);
 
-                     bRemove = true;
-
                      check_max_fd = true;
+
+                     goto retry_next_item_in_detach_list;
 
                   }
 

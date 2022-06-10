@@ -5,7 +5,7 @@
 CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
 {
 
-   if (str::begins_eat_ci(strPath, "image://"))
+   if (::str().begins_eat_ci(strPath, "image://"))
    {
 
       strPrefix = "image://";
@@ -13,7 +13,7 @@ CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::PicturesLibrary;
 
    }
-   else if (str::begins_eat_ci(strPath, "music://"))
+   else if (::str().begins_eat_ci(strPath, "music://"))
    {
 
       strPrefix = "music://";
@@ -21,7 +21,7 @@ CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::MusicLibrary;
 
    }
-   else if (str::begins_eat_ci(strPath, "video://"))
+   else if (::str().begins_eat_ci(strPath, "video://"))
    {
 
       strPrefix = "video://";
@@ -29,7 +29,7 @@ CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::VideosLibrary;
 
    }
-   else if (str::begins_eat_ci(strPath, "document://"))
+   else if (::str().begins_eat_ci(strPath, "document://"))
    {
 
       strPrefix = "document://";
@@ -37,7 +37,7 @@ CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 
    }
-   else if (str::begins_eat_ci(strPath, ::dir::sys_temp()))
+   else if (::str().begins_eat_ci(strPath, ::dir::sys_temp()))
    {
 
       strPrefix = ::dir::sys_temp();
@@ -45,7 +45,7 @@ CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string &
       return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder;
 
    }
-   else if (::str::begins_eat_ci(strPath, string(begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
+   else if (::str().begins_eat_ci(strPath, string(begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
    {
 
       strPrefix = begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
@@ -170,7 +170,7 @@ CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(cons
 
    strRelative.trim_right("/\\");
 
-   ::str::begins_eat_ci(strRelative, strPrefix);
+   ::str().begins_eat_ci(strRelative, strPrefix);
 
    strRelative.trim_left("/\\");
 
@@ -189,14 +189,14 @@ namespace universal_windows
       // attempt to fully qualify path first
       wstring wstrFullName;
       wstring wstrnative_bufferName;
-      wstrnative_bufferName = ::str::international::utf8_to_unicode(pszfileName);
+      wstrnative_bufferName = utf8_to_unicode(pszfileName);
 
       if (!windows_full_path(wstrFullName, wstrnative_bufferName))
       {
          rStatus.m_strFullName.Empty();
          return false;
       }
-      ::str::international::unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
+      unicode_to_utf8(rStatus.m_strFullName, wstrFullName);
 
       WIN32_FIND_DATA findnative_bufferData;
       HANDLE hFind = FindFirstnative_buffer((char *)pszfileName, &findnative_bufferData);
@@ -316,7 +316,7 @@ namespace universal_windows
 
       string strRelative = pathFolder;
 
-      ::str::begins_eat_ci(strRelative, strPrefix);
+      ::str().begins_eat_ci(strRelative, strPrefix);
 
       if (strRelative.is_empty())
       {
@@ -345,7 +345,7 @@ namespace universal_windows
       m_strFileName.Empty();
 
       m_strFileName  = path;
-      //      m_wstrnative_bufferName    = ::str::international::utf8_to_unicode(m_strFileName);
+      //      m_wstrnative_bufferName    = utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
       ASSERT(::file::e_open_share_compat == 0);

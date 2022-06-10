@@ -1251,9 +1251,9 @@ namespace draw2d_cairo
 //         //if (strDraw2d.has_char())
 //         //{
 //
-//         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
+//         //   ::str().begins_eat_ci(strDraw2d, "draw2d_");
 //
-//         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
+//         //   ::str().begins_eat_ci(strDraw2d, "draw2d");
 //
 //         //   strLibrary = "draw2d_" + strDraw2d;
 //

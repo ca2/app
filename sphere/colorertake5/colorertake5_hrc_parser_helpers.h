@@ -38,7 +38,7 @@ namespace colorertake5
       i32 num;
       i32 matchCase;
       strsize minKeywordLength;
-      ::str::ch_class *firstChar;
+      ::str().ch_class *firstChar;
       KeywordInfo *kwList;
       KeywordList();
       ~KeywordList();
@@ -95,7 +95,7 @@ namespace colorertake5
 
       VirtualEntryVector virtualEntryVector;
       KeywordList *kwList;
-      ::str::ch_class *worddiv;
+      ::str().ch_class *worddiv;
 
       class region* region;
       class region* regions[REGIONS_NUM];

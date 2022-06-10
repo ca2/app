@@ -51,7 +51,7 @@
 //
 //   ::u32 GetTempPath(string & str)
 //   {
-//      return ::GetTempPathW(MAX_PATH * 8,::str::international::utf8_to_unicode(str,MAX_PATH * 8));
+//      return ::GetTempPathW(MAX_PATH * 8,utf8_to_unicode(str,MAX_PATH * 8));
 //   }
 //
 //} // namespace android

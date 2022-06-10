@@ -5,5 +5,7 @@
 #include "framework.h"
 
 
+IMPLEMENT_THIS_TYPE(database_sqlite3_framework);
+
 
 

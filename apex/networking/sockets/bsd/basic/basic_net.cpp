@@ -217,8 +217,11 @@ namespace sockets
       {
          return false;
       }
-      ::str::parse pa(str,":.");
+      
+      ::parse pa(str, ":.");
+
       string tmp = pa.getword();
+
       while (tmp.get_length())
       {
          if (tmp.get_length() > 4)
@@ -268,7 +271,7 @@ namespace sockets
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
 //      {
-//         ::str::parse pa((const char *)host, ".");
+//         ::str().parse pa((const char *)host, ".");
 //         union
 //         {
 //            struct
@@ -561,7 +564,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::str::parse pa((const char *)host, ".");
+         ::str().parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -1104,8 +1107,8 @@ bool net::u2service(const string & name, i32& service, i32 ai_flags)
 i32 net::service_port(const ::string & str, i32 flags)
 {
 
-   if(::str::is_simple_natural(str))
-      return ::str::to_i32(str);
+   if(::str().is_simple_natural(str))
+      return ::str().to_i32(str);
 
    if(str.compare_ci("http"))
    {

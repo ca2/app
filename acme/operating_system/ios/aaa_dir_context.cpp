@@ -189,7 +189,7 @@ pacmedirectory->is(path))
       if(strPath.get_length() >= MAX_PATH)
       {
 
-         if(::str::begins(strPath, "\\\\"))
+         if(::str().begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -750,7 +750,7 @@ pacmedirectory->is(stra[i]))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str::begins_ci(pszDir, pszPath);
+      return ::str().begins_ci(pszDir, pszPath);
 
    }
 

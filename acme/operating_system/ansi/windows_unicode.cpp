@@ -67,7 +67,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {
@@ -192,7 +192,7 @@ i32      cchWideChar)
      if(pWideCharStr != nullptr)
      {
 
-        ::str::utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
+        ::str().utf_to_utf(pWideCharStr, wstr.c_str(), iLen);
 
         if(cchWideChar > 0 && cbMultiByte < 0)
         {

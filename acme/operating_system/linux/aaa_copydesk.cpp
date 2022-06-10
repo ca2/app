@@ -193,7 +193,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 
       string strItem = stra[i];
 
-      ::str::begins_eat_ci(strItem, "file://");
+      ::str().begins_eat_ci(strItem, "file://");
 
       pdata->m_patha.add(::file::path(strItem));
 

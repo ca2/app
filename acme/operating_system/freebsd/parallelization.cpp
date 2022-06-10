@@ -214,7 +214,7 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 }
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void main_asynchronous(const ::procedure & procedure)

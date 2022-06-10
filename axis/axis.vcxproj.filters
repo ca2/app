@@ -599,9 +599,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="account\account.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="account\authenticator.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
@@ -624,9 +621,6 @@
       <Filter>Source Files\account</Filter>
     </ClCompile>
     <ClCompile Include="account\product_array.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
-    <ClCompile Include="account\storage.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
     <ClCompile Include="account\storage_client.cpp">

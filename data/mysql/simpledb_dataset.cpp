@@ -114,7 +114,7 @@ namespace simpledb
                //else
                //{
                  // string str;
-                  //::str::international::utf8_to_unicode(str, reslt[i]);
+                  //utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }
@@ -197,7 +197,7 @@ namespace simpledb
                //else
                //{
                  // string str;
-                  //::str::international::utf8_to_unicode(str, reslt[i]);
+                  //utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }
@@ -217,11 +217,11 @@ namespace simpledb
       string str;
 
 
-      ::str::consume_spaces(pszSql, 0);
+      ::str().consume_spaces(pszSql, 0);
 
-      if(::str::begins_consume(pszSql, "*"))
+      if(::str().begins_consume(pszSql, "*"))
       {
-         ::str::consume_spaces(pszSql, 0);
+         ::str().consume_spaces(pszSql, 0);
       }
       else
       {
@@ -235,7 +235,7 @@ namespace simpledb
             straField.add(str);
             try
             {
-               ::str::consume(pszSql, ",");
+               ::str().consume(pszSql, ",");
             }
             catch(...)
             {
@@ -258,7 +258,7 @@ namespace simpledb
          straTable.add("table:" + str);
          try
          {
-            ::str::consume(pszSql, ",");
+            ::str().consume(pszSql, ",");
          }
          catch(...)
          {
@@ -313,7 +313,7 @@ namespace simpledb
       if(straTable.get_count() == 1)
       {
          string strTable = straTable[0];
-         if(::str::begins_eat_ci(strTable, "table:"))
+         if(::str().begins_eat_ci(strTable, "table:"))
          {
             ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
             ::simpledb::record_row recrow;
@@ -365,12 +365,12 @@ namespace simpledb
          if(str != "values")
             return false;
 
-         ::str::consume_spaces(pszSql, 0);
+         ::str().consume_spaces(pszSql, 0);
 
-         if(!::str::begins_consume(pszSql, "("))
+         if(!::str().begins_consume(pszSql, "("))
             return false;
 
-         ::str::consume_spaces(pszSql, 0);
+         ::str().consume_spaces(pszSql, 0);
 
          string_array straValue;
          for(;;)
@@ -384,10 +384,10 @@ namespace simpledb
                break;
             }
             straValue.add(str);
-            ::str::consume_spaces(pszSql, 0);
-            if(::str::begins_consume(pszSql, ")"))
+            ::str().consume_spaces(pszSql, 0);
+            if(::str().begins_consume(pszSql, ")"))
                break;
-            if(!::str::begins_consume(pszSql, ","))
+            if(!::str().begins_consume(pszSql, ","))
                return false;
 
          }
@@ -426,7 +426,7 @@ namespace simpledb
    string set::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
-      string qc = ::str::get_utf8_char(psz);
+      string qc = ::str().get_utf8_char(psz);
       if(qc != "\'")
       {
          throw ::exception(::exception("Quote character is required here"));
@@ -434,9 +434,9 @@ namespace simpledb
       string str;
       while(true)
       {
-         psz = ::str::utf8_inc(psz);
-         string qc2 = ::str::get_utf8_char(psz);
-         //string str = ::str::international::utf8_to_unicode(qc2);
+         ::str().increment(psz);
+         string qc2 = ::str().get_utf8_char(psz);
+         //string str = utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
             throw ::exception(::exception("Quote character is required here, premature end"));
@@ -445,14 +445,14 @@ namespace simpledb
             break;
          str += qc2;
       }
-      psz = ::str::utf8_inc(psz);
+      ::str().increment(psz);
       pszXml = psz;
       return str;
    }
 
    string set::sql_consume_value(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
+      ::str().consume_spaces(pszSql, 0);
       string str = consume_quoted_value(pszSql);
       str.make_lower();
       return str;
@@ -460,22 +460,22 @@ namespace simpledb
 
    string set::sql_consume_keyword(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      string str = ::str::consume_nc_name(pszSql);
+      ::str().consume_spaces(pszSql, 0);
+      string str = ::str().consume_nc_name(pszSql);
       str.make_lower();
       return str;
    }
 
    string set::sql_consume_field(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      return ::str::consume_nc_name(pszSql);
+      ::str().consume_spaces(pszSql, 0);
+      return ::str().consume_nc_name(pszSql);
    }
 
    string set::sql_consume_table(const char * & pszSql)
    {
-      ::str::consume_spaces(pszSql, 0);
-      return ::str::consume_nc_name(pszSql);
+      ::str().consume_spaces(pszSql, 0);
+      return ::str().consume_nc_name(pszSql);
    }
 
    string set::sql_consume_join_on(const char * & pszSql)
@@ -996,7 +996,7 @@ namespace simpledb
                //else
                //{
                // string str;
-               //::str::international::utf8_to_unicode(str, reslt[i]);
+               //utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }

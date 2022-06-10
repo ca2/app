@@ -14,7 +14,7 @@
 #pragma push_macro("::aura::get_system()")
 #undef ::aura::get_system()
 using namespace ::winrt::Windows::Foundation;
-using namespace ::winrt::Windows::::aura::get_system()::Threading;
+using namespace ::winrt::Windows::aura::get_system()::Threading;
 #pragma pop_macro("::aura::get_system()")
 
 

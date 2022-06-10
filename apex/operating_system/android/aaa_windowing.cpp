@@ -1056,7 +1056,7 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni);
 void android_mouse(unsigned int message, float x, float y)
 {
 
-   if (::::apex::get_system() == nullptr)
+   if (::apex::get_system() == nullptr)
       return;
 
    if (::apex::get_system()->get_session() == nullptr)
@@ -1124,7 +1124,7 @@ void _android_key(unsigned int message, int keyCode, int iUni);
 void android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   //::fork(::::apex::get_system(), [=]()
+   //::fork(::apex::get_system(), [=]()
    //{
 
       _android_key(message, keyCode, iUni);
@@ -1136,7 +1136,7 @@ void android_key(unsigned int message, int keyCode, int iUni)
 void _android_key(unsigned int message, int keyCode, int iUni)
 {
 
-   if (::::apex::get_system() == nullptr)
+   if (::apex::get_system() == nullptr)
       return;
 
    if (::apex::get_system()->get_session() == nullptr)
@@ -1169,7 +1169,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    __UNREFERENCED_PARAMETER(yDummy);
 
-   if (::::apex::get_system() == nullptr)
+   if (::apex::get_system() == nullptr)
       return;
 
    if (::apex::get_system()->get_session() == nullptr)
@@ -1221,14 +1221,14 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
 
    output_debug_string("android_on_size\n");
 
-   if (::::apex::get_system() == nullptr)
+   if (::apex::get_system() == nullptr)
    {
 
       return;
 
    }
 
-   //::fork(::::apex::get_system(), [=]()
+   //::fork(::apex::get_system(), [=]()
    //{
 
    ::apex::get_system()->get_session()->m_puserinteractionHost->post_predicate([=]()

@@ -824,7 +824,7 @@ namespace write_text
 //
 //   }
 //
-//   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+//   wstring wstr = utf8_to_unicode(pString, ca);
 //
 //
 //   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != FALSE;
@@ -865,7 +865,7 @@ namespace write_text
 //
 //   }
 //
-//   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+//   wstring wstr = utf8_to_unicode(pString, ca);
 //
 //
 //   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != FALSE;
@@ -896,7 +896,7 @@ namespace write_text
 //
 //   }
 //
-//   wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
+//   wstring wstr = utf8_to_unicode(pchText, cchText);
 //
 //
 //   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prect, format) != FALSE;

@@ -1659,112 +1659,100 @@ namespace user
    }
 
 
-   void interaction::on_set_keyboard_focus()
-   {
+//   void interaction::on_set_keyboard_focus()
+//   {
+//
+//      if (get_parent() != nullptr)
+//      {
+//
+//         on_reset_focus_start_tick();
+//
+//         // get_keyboard_focus will return the control with focus
+//
+//         auto psession = get_session();
+//
+//         auto puserinteractionHost = psession->get_user_interaction_host();
+//
+//         if (puserinteractionHost == this)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         __pointer(::aura::application) papp = get_app();
+//
+//         if (papp)
+//         {
+//
+//            // return true to set focus to this control
+//            papp->keyboard_focus_OnSetFocus(this);
+//
+//         }
+//
+//         auto einputtypePreferred = preferred_input_type();
+//
+//         if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
+//         {
+//
+//            if (psession->get_user_interaction_host())
+//            {
+//
+//               auto puserinteractionHost = psession->get_user_interaction_host();
+//
+//               if (puserinteractionHost)
+//               {
+//
+//                  puserinteractionHost->edit_on_set_focus(this);
+//
+//               }
+//
+//            }
+//
+//            show_software_keyboard(this);
+//
+//         }
+//
+//         auto ptopic = create_topic(::id_set_focus);
+//
+//         ptopic->m_puserelement = this;
+//
+//         route(ptopic);
+//
+//         // Finished setting focus, finally... Uff!
+//
+//         // Now notify it is done...
+//
+//         post_message(e_message_set_focus);
+//
+//      }
+//
+//   }
 
-      if (get_parent() != nullptr)
-      {
 
-         on_reset_focus_start_tick();
-
-         // get_keyboard_focus will return the control with focus
-
-         auto psession = get_session();
-
-         auto puserinteractionHost = psession->get_user_interaction_host();
-
-         if (puserinteractionHost == this)
-         {
-
-            return;
-
-         }
-
-         __pointer(::aura::application) papp = get_app();
-
-         if (papp)
-         {
-
-            // return true to set focus to this control
-            papp->keyboard_focus_OnSetFocus(this);
-
-         }
-
-         auto einputtypePreferred = preferred_input_type();
-
-         if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
-         {
-
-            if (psession->get_user_interaction_host())
-            {
-
-               auto puserinteractionHost = psession->get_user_interaction_host();
-
-               if (puserinteractionHost)
-               {
-
-                  puserinteractionHost->edit_on_set_focus(this);
-
-               }
-
-            }
-
-            show_software_keyboard(this);
-
-         }
-
-         auto ptopic = create_topic(::id_set_focus);
-
-         ptopic->m_puserelement = this;
-
-         route(ptopic);
-
-         // Finished setting focus, finally... Uff!
-
-         // Now notify it is done...
-
-         post_message(e_message_set_focus);
-
-      }
-
-   }
-
-
-   void interaction::on_kill_keyboard_focus()
-   {
-
-      auto einputtypePreferred = preferred_input_type();
-
-      if (einputtypePreferred == e_input_type_text)
-      {
-
-         auto psession = get_session();
-
-         if (psession->get_user_interaction_host())
-         {
-
-            auto puserinteractionHost = psession->get_user_interaction_host();
-
-            if (puserinteractionHost)
-            {
-
-               puserinteractionHost->edit_on_kill_focus(this);
-
-            }
-
-         }
-
-         hide_software_keyboard(this);
-
-      }
-
-      auto ptopic = create_topic(::id_kill_focus);
-
-      ptopic->m_puserelement = this;
-
-      route(ptopic);
-
-   }
+//   void interaction::on_kill_keyboard_focus()
+//   {
+//
+//      auto einputtypePreferred = preferred_input_type();
+//
+//      if (einputtypePreferred == e_input_type_text)
+//      {
+//
+//         auto pinteractionHost = get_host_window();
+//
+//         pinteractionHost->edit_on_kill_focus(this);
+//
+////         hide_software_keyboard(this);
+//
+//      }
+//
+//      auto ptopic = create_topic(::id_kill_focus);
+//
+//      ptopic->m_puserelement = this;
+//
+//      route(ptopic);
+//
+//   }
 
 
    ::user::element * interaction::get_keyboard_focus()
@@ -7463,9 +7451,9 @@ namespace user
          while (*psz)
          {
 
-            string strUtf8Character = ::str::get_utf8_char(psz);
+            string strUtf8Character = ::str().get_utf8_char(psz);
 
-            auto iCharacter = ::str::ch::uni_index(strUtf8Character);
+            auto iCharacter = ::str::ch().uni_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -10686,8 +10674,6 @@ namespace user
       if (::is_null(pwindowThis))
       {
 
-         //return false;
-
          return;
 
       }
@@ -10696,8 +10682,6 @@ namespace user
 
       if (::is_null(pprimitiveimpl))
       {
-
-         //return false;
 
          return;
 
@@ -10708,30 +10692,15 @@ namespace user
       if (pwindowThis->has_keyboard_focus())
       {
 
-         pprimitiveimpl->on_final_set_keyboard_focus(nullptr);
+         pprimitiveimpl->on_final_set_keyboard_focus();
 
       }
       else
       {
 
-         //auto estatus = 
-
          pwindowThis->set_keyboard_focus();
 
-         //if (!estatus)
-         //{
-
-         //   pprimitiveimpl->m_puserinteractionFocus1 = nullptr;
-
-         //   pprimitiveimpl->m_puserinteractionFocusRequest = nullptr;
-
-         //   return estatus;
-
-         //}
-
       }
-
-      //return true;
 
    }
 
@@ -15055,29 +15024,63 @@ namespace user
    void interaction::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
    {
 
-      auto puserinteractionHost = get_host_window();
+      auto pwindowThis = get_window();
 
-      if (this == puserinteractionHost)
+      if (::is_null(pwindowThis))
       {
 
-         ::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr;
-
-         if (pelementGainingFocusIfAny)
-         {
-
-            pprimitiveimplGainingFocusIfAny = pelementGainingFocusIfAny->get_primitive_impl();
-
-         }
-
-         return m_pprimitiveimpl->clear_keyboard_focus(pprimitiveimplGainingFocusIfAny);
+         return;
 
       }
-      else
+
+      auto pprimitiveimpl = pwindowThis->m_puserinteractionimpl;
+
+      if (::is_null(pprimitiveimpl))
       {
 
-         return puserinteractionHost->clear_keyboard_focus(pelementGainingFocusIfAny);
+         return;
 
       }
+
+   pprimitiveimpl->m_puserinteractionToKillKeyboardFocus =  pprimitiveimpl->m_puserinteractionKeyboardFocus;
+      
+
+//      if (pwindowThis->has_keyboard_focus())
+//      {
+//
+//         pprimitiveimpl->m_puserinteractionToKillKeyboardFocus->clear_keyboard_focus(pelementGainingFocusIfAny);
+//
+//      }
+//      else
+//      {
+
+         pprimitiveimpl->on_final_kill_keyboard_focus();
+
+      //}
+
+//      auto puserinteractionHost = get_host_window();
+//
+//      if (this == puserinteractionHost)
+//      {
+//
+//         ::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr;
+//
+//         if (pelementGainingFocusIfAny)
+//         {
+//
+//            pprimitiveimplGainingFocusIfAny = pelementGainingFocusIfAny->get_primitive_impl();
+//
+//         }
+//
+//         return m_pprimitiveimpl->clear_keyboard_focus(pprimitiveimplGainingFocusIfAny);
+//
+//      }
+//      else
+//      {
+//
+//         return puserinteractionHost->clear_keyboard_focus(pelementGainingFocusIfAny);
+//
+//      }
 
    }
 
@@ -17919,9 +17922,9 @@ namespace user
       while(*psz)
       {
          
-         string strCharacter = ::str::get_utf8_char(psz);
+         string strCharacter = ::str().get_utf8_char(psz);
          
-         int iCharacter = ::str::ch::uni_index(strCharacter);
+         int iCharacter = ::str::ch().uni_index(strCharacter);
          
          if(m_pappearance)
          {
@@ -19012,13 +19015,13 @@ namespace user
 
    //         string str = argument.get_string();
 
-   //         if (str::begins_eat_ci(str, "class="))
+   //         if (::str().begins_eat_ci(str, "class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (str::begins_eat_ci(str, "style="))
+   //         else if (::str().begins_eat_ci(str, "style="))
    //         {
 
    //            m_strStyle = str;

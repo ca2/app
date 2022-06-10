@@ -221,7 +221,7 @@ string m_psystem->m_pacmefile->as_string(const char * path, strsize iReadAtMostB
 
    str.release_string_buffer(iRead);
 
-   ::str::begins_eat_ci(str, "\xef\xbb\xbf");
+   ::str().begins_eat_ci(str, "\xef\xbb\xbf");
 
    fclose(f);
 
@@ -530,8 +530,8 @@ int_bool file_path_is_equal(const char * psz1, const char * psz2)
 {
 
    const i32 iBufSize = MAX_PATH * 8;
-   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
-   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
+   wstring pwsz1 = utf8_to_unicode(psz1);
+   wstring pwsz2 = utf8_to_unicode(psz2);
    //   unichar * pwszFile1;
       // unichar * pwszFile2;
    widechar * pwszPath1 = new widechar[iBufSize];
@@ -541,8 +541,8 @@ int_bool file_path_is_equal(const char * psz1, const char * psz2)
       // {
       //  if(GetFullPathNameW(pwsz2,iBufSize,pwszPath2,&pwszFile2))
       //{
-   string path1 = ::str::international::unicode_to_utf8(pwszPath1);
-   string path2 = ::str::international::unicode_to_utf8(pwszPath2);
+   string path1 = unicode_to_utf8(pwszPath1);
+   string path2 = unicode_to_utf8(pwszPath2);
    iCmp = ansi_compare_ci(path1, path2);
    //}
    //}

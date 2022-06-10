@@ -117,7 +117,7 @@ bool file_context::exists(const ::file::path &pathParam)
 ::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
+   if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
    {
 
       property_set set;
@@ -143,7 +143,7 @@ bool file_context::exists(const ::file::path &pathParam)
    if (::task_flag().is_set(e_task_flag_compress_is_dir))
    {
 
-      strsize iFind = ::str::find_file_extension("zip:", path);
+      strsize iFind = ::str().find_file_extension("zip:", path);
 
       if (iFind >= 0)
       {
@@ -215,7 +215,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //
 //   WIN32_FILE_ATTRIBUTE_DATA data;
 //
-//   if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
+//   if (!GetFileAttributesExW(utf8_to_unicode(path), GetFileExInfoStandard, &data))
 //   {
 //
 //      varRet.set_type(::e_type_null);
@@ -477,7 +477,7 @@ i32 file_context::filterex_time_square(const char *pszPrefix, ::file::path_array
 
       string str = stra[i].name();
 
-      if (::str::begins_eat_ci(str, pszPrefix))
+      if (::str().begins_eat_ci(str, pszPrefix))
       {
 
          if (str.get_length() < 2)
@@ -1008,7 +1008,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::block & block)
 
       string strContents((const char *) block.get_data(), block.get_size());
 
-      ::str::fix_eol(strContents);
+      ::str().fix_eol(strContents);
 
       return put_memory(payloadFile, strContents);
 
@@ -1099,7 +1099,7 @@ void file_context::put_text_utf8(const ::payload &payloadFile, const ::block & b
 
    string strContents((const char *) block.get_data(), block.get_size());
 
-   ::str::fix_eol(strContents);
+   ::str().fix_eol(strContents);
 
    pfile->write(strContents);
 
@@ -1328,7 +1328,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 {
 
    if (m_pcontext->m_papexcontext->dir().is(varSource.get_file_path()) &&
-       (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(varSource.get_file_path(), ".zip"))))
+       (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.get_file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1342,7 +1342,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       ::file::path strDirSrc(varSource.get_file_path());
       ::file::path strDirDst(varTarget.get_file_path());
 
-      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -1356,7 +1356,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          strDst = strSrc;
 
-         ::str::begins_eat_ci(strDst, strDirSrc);
+         ::str().begins_eat_ci(strDst, strDirSrc);
 
          strDst = strDirDst / strDst;
 
@@ -1364,7 +1364,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
 
             if ((eextract == extract_first || eextract == extract_none) &&
-                (::str::ends_ci(varSource.get_file_path(), ".zip")))
+                (::str().ends_ci(varSource.get_file_path(), ".zip")))
             {
             }
             else
@@ -1594,8 +1594,8 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //#ifdef WINDOWS_DESKTOP
 //
 //   if (!::MoveFileW(
-//      ::str::international::utf8_to_unicode(psz),
-//      ::str::international::utf8_to_unicode(pszNew)))
+//      utf8_to_unicode(psz),
+//      utf8_to_unicode(pszNew)))
 //   {
 //
 //      DWORD dwError = ::GetLastError();
@@ -1604,12 +1604,12 @@ void file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 //      {
 //
 //         if (::CopyFileW(
-//            ::str::international::utf8_to_unicode(psz),
-//            ::str::international::utf8_to_unicode(pszNew),
+//            utf8_to_unicode(psz),
+//            utf8_to_unicode(pszNew),
 //            false))
 //         {
 //
-//            if (!::DeleteFileW(::str::international::utf8_to_unicode(psz)))
+//            if (!::DeleteFileW(utf8_to_unicode(psz)))
 //            {
 //
 //               dwError = ::GetLastError();
@@ -1705,7 +1705,7 @@ void file_context::erase(const ::file::path & path)
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),
+//   HANDLE h = ::CreateFileW(utf8_to_unicode(string("\\\\?\\") + psz),
 //                            GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING,
 //                            FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE, nullptr);
 //
@@ -1734,7 +1734,7 @@ void file_context::erase(const ::file::path & path)
 //      ::CloseHandle(h);
 //   }
 //
-//   /*      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
+//   /*      if(!::DeleteFileW(utf8_to_unicode(string("\\\\?\\") + psz)))
 //   {
 //   u32 dwError = ::get_last_error();
 //   if(dwError == 2) // the file does not exist, so delete "failed"
@@ -2049,7 +2049,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 
    string strTempDir = m_psystem->m_pacmedirectory->sys_temp();
 
-   if (!::str::ends(strTempDir, "\\") && !::str::ends(strTempDir, "/"))
+   if (!::str().ends(strTempDir, "\\") && !::str().ends(strTempDir, "/"))
    {
 
       strTempDir += "\\";
@@ -2145,7 +2145,7 @@ void file_context::set_extension(::file::path & path, const char * pszExtension)
 
    }
 
-   path = path.Left(iEnd) + ::str::has_char(pszExtension, ".");
+   path = path.Left(iEnd) + ::str().has_char(pszExtension, ".");
 
 }
 
@@ -2261,7 +2261,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   for (i32 i = 0; i < stra.get_size(); i++)
 //   {
-//      if (::str::ends_ci(stra[i], ".zip"))
+//      if (::str().ends_ci(stra[i], ".zip"))
 //      {
 //      }
 //      else if (m_pcontext->m_papexcontext->dir().is(stra[i]))
@@ -2406,7 +2406,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      MD5_Update((MD5_CTX *)pctx, &ch, 1);
 //   }
 //
-//   iNumber = ::str::to_i64(str);
+//   iNumber = ::str().to_i64(str);
 //
 //}
 
@@ -2587,7 +2587,7 @@ void file_context::init_context()
 //   while (true)
 //   {
 
-//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__string(iTry), 20);
+//      pathDownloading = pathOut + ".downloading." + ::str().zero_pad(__string(iTry), 20);
 
 //      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2867,7 +2867,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str::begins(purl->get_object(path), astr.MatterUri);
+   bool bSaveCache = domain.m_strRadix != "ca2" || !::str().begins(purl->get_object(path), astr.MatterUri);
 
    ::file::path pathCache;
 
@@ -2876,21 +2876,21 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
       pathCache = path;
 
-      if (::str::ends(pathCache, "en_us_international.xml"))
+      if (::str().ends(pathCache, "en_us_international.xml"))
       {
          
          INFORMATION("Debug Here");
 
       }
 
-      if (::str::ends(pathCache, "text_select.xml"))
+      if (::str().ends(pathCache, "text_select.xml"))
       {
 
          INFORMATION("Debug Here");
 
       }
 
-      if (::str::ends(pathCache, "arialuni.ttf"))
+      if (::str().ends(pathCache, "arialuni.ttf"))
       {
 
          INFORMATION("Debug Here : arialuni.ttf");
@@ -3159,7 +3159,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       }
 
    }
-   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
    {
 
       //auto pfile = get_reader(path);
@@ -3171,25 +3171,25 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       return nullptr;
 
    }
-   else if (::str::begins_eat(path, "file:///") || ::str::begins_eat(path, "file:\\\\\\"))
+   else if (::str().begins_eat(path, "file:///") || ::str().begins_eat(path, "file:\\\\\\"))
    {
 
       return get_file(path, eopen);
 
    }
-   else if (::str::begins_eat(path, "resource://") || ::str::begins_eat(path, "resource:\\\\"))
+   else if (::str().begins_eat(path, "resource://") || ::str().begins_eat(path, "resource:\\\\"))
    {
 
       return resource_get_file(path);
 
    }
-   else if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
+   else if (::str().begins(path, "http://") || ::str().begins(path, "https://"))
    {
 
       return http_get_file(payloadFile, eopen);
 
    }
-   else if (::str::begins_eat(path, "zipresource://"))
+   else if (::str().begins_eat(path, "zipresource://"))
    {
 
       return create_resource_file(path);

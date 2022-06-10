@@ -206,7 +206,7 @@ void prop_id_debug(::matter * pobject);
 void property_parse_network_payload_id(atom & atom, const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    char sz[1024];
 
@@ -214,7 +214,7 @@ void property_parse_network_payload_id(atom & atom, const char *& pszJson, const
 
    strsize iBuffer = sizeof(sz);
 
-   ::str::no_escape_consume_quoted_value(pszJson, pszEnd, &psz, iBuffer);
+   ::str().no_escape_consume_quoted_value(pszJson, pszEnd, &psz, iBuffer);
 
    atom = psz;
 
@@ -230,8 +230,8 @@ void property_parse_network_payload_id(atom & atom, const char *& pszJson, const
 
 void property_parse_network_payload_value(::payload & payload, const char *& pszJson, const char * pszEnd)
 {
-   ::str::consume_spaces(pszJson, 0, pszEnd);
-   ::str::consume(pszJson, ":", 1, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume(pszJson, ":", 1, pszEnd);
    payload.parse_network_payload(pszJson, pszEnd);
 }
 
@@ -239,9 +239,9 @@ void property_parse_network_payload_value(::payload & payload, const char *& psz
 void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::skip_quoted_value_ex2(pszJson, pszEnd);
+   ::str().skip_quoted_value_ex2(pszJson, pszEnd);
 
 }
 
@@ -249,9 +249,9 @@ void property_skip_network_payload_id(const char *& pszJson, const char * pszEnd
 void property_skip_network_payload_value(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::consume(pszJson, ":", 1, pszEnd);
+   ::str().consume(pszJson, ":", 1, pszEnd);
 
    var_skip_network_payload(pszJson, pszEnd);
 

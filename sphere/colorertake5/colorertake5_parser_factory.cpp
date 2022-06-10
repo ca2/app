@@ -183,9 +183,9 @@ namespace colorertake5
          {
             path = catalogPath.sibling(relPath);
             string path2del = path;
-            ::str::begins_eat(path, "file://");
-            ::str::begins_eat(path, "file:/");
-            ::str::begins_eat(path, "file:");
+            ::str().begins_eat(path, "file://");
+            ::str().begins_eat(path, "file:/");
+            ::str().begins_eat(path, "file:");
          }
          else
          {

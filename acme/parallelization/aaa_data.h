@@ -104,7 +104,9 @@
 //
 //
 
-//inline ::payload & thread_property(const ::atom & atom) { return ::get_task()->payload(atom); }
+inline ::payload & thread_property(const ::atom & atom) { return ::get_task()->payload(atom); }
+
+
 //
 //inline bool task_flag().is_set(const ::atom & atom)
 //{

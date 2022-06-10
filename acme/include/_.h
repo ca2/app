@@ -134,6 +134,8 @@ class system; // acme - cam
 class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
 
 
+CLASS_DECL_ACME class system * get_system();
+
 
 namespace acme
 {
@@ -1125,10 +1127,6 @@ enum e_image_type
 
 };
 
-
-
-#include "acme/exception/throw.h"
-
 #include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
@@ -1140,7 +1138,6 @@ enum e_image_type
 #include "acme/filesystem/file/_c.h"
 
 #include "acme/constant/thread.h"
-
 
 #if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 
@@ -1158,13 +1155,7 @@ CLASS_DECL_ACME ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priori
 CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
-//#include "acme/primitive/datetime/mktime.h"
-//#include "acme/primitive/api/api.h"
-
-
-
-
-//#include "acme/multimedia/_c.h"
+#include "acme/platform/this_type.h"
 
 
 #include "acme/operating_system/argcargv.h"
@@ -1470,7 +1461,7 @@ namespace core
 
 
 
-#include "acme/primitive/string/_c_impl.h"
+
 
 
 //#include "acme/platform/acme_main_struct.h"
@@ -2060,6 +2051,10 @@ inline bool is_empty(const ansichar * p) { return is_string_empty(p); }
 inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
 inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
 
+
+inline bool has_char(const ansichar * p) { return !is_empty(p); }
+inline bool has_char(const wd16char * p) { return !is_empty(p); }
+inline bool has_char(const wd32char * p) { return !is_empty(p); }
 
 
 template < a_pointer POINTER >
@@ -2766,12 +2761,6 @@ typedef void *HDWP;
 
 #endif
 
-#ifdef APPLE_IOS
-
-struct plane_system;
-
-#endif
-
 
 namespace factory
 {
@@ -3043,9 +3032,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 class duration;
 
-#include "acme/parallelization/thread_parameter.h"
-
-#include "acme/platform/keep_true.h"
 
 class folder;
 
@@ -3344,6 +3330,7 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/_global.h"
 
 
+#include "acme/platform/keep.h"
 
 
 namespace factory
@@ -3624,23 +3611,13 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/enum_bitset.h"
 
 
-using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
-
-
-CLASS_DECL_ACME task_bitset& task_flag();
-
-
-#include "acme/parallelization/keep_task_flag.h"
+#include "acme/parallelization/task_flag.h"
 
 
 #include "acme/exception/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"
-
-
-
-//#include "acme/exception/extended_pointer.h"
 
 
 #include "acme/user/user/conversation.h"
@@ -3670,11 +3647,39 @@ namespace file
 
 #include "acme/filesystem/filesystem/path.h"
 
+
 #include "acme/filesystem/filesystem/path_object.h"
 
-#include "acme/primitive/collection/_.h"
+
+#include "acme/primitive/collection/_collection.h"
+
+
+#include "acme/graphics/draw2d/_const.h"
+
+
+#include "acme/graphics/draw2d/opacity.h"
+
+
+#include "acme/graphics/draw2d/color.h"
+
+
+#include "acme/primitive/primitive/payload.h"
+
+
+#include "acme/primitive/collection/payload_array.h"
+
+
+#include "acme/primitive/primitive/property.h"
+
+
+#include "acme/primitive/primitive/property_set.h"
+
+
+#include "acme/primitive/primitive/property_set_papaya.h"
+
 
 #include "acme/filesystem/filesystem/path_array.h"
+
 
 #include "acme/filesystem/filesystem/enumerator.h"
 
@@ -3749,7 +3754,7 @@ class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BOD
 class context_image;
 
 
-#include "acme/parallelization/_.h"
+#include "acme/parallelization/_parallelization.h"
 
 
 #include "acme/primitive/data/_.h"
@@ -3758,7 +3763,12 @@ class context_image;
 #include "acme/primitive/text/_.h"
 
 
+#include "acme/primitive/string/_string.h"
+
+
 #include "acme/platform/context.h"
+
+
 
 
 //#include "acme/parallelization/pool.h"
@@ -3835,7 +3845,7 @@ inline bool is_filemanager(const ::atom & atom)
    if(atom.is_text())
    {
 
-      return ::str::begins(atom.m_psz, "file_manager_");
+      return ::str().begins(atom.m_psz, "file_manager_");
 
    }
 
@@ -3867,7 +3877,7 @@ inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
 
    strFileManagerGroup += "_";
 
-   if(::str::begins(atom.m_psz, strFileManagerGroup))
+   if(::str().begins(atom.m_psz, strFileManagerGroup))
    {
 
 
@@ -4097,25 +4107,9 @@ namespace acme
 
 
 #include "acme/platform/timer_callback.h"
-//#include "acme/platform/timer_item.h"
-//#include "acme/platform/timer_array.h"
-//#include "acme/platform/nanosecond_timer.h"
-//#include "acme/platform/timer.h"
-//#include "acme/platform/timer_task.h"
-//#include "acme/platform/timer_event.h"
 
-#include "acme/parallelization/thread_impl.h"
+
 #include "acme/platform/procedure_array.h"
-
-
-///#include "acme/primitive/primitive/job.h"
-
-//#include "acme/user/user/simple/message_box.h"
-
-
-//#include "acme/user/user/impact_data.h"
-
-//#include "acme/platform/log.h"
 
 
 #include "acme/primitive/primitive/memory_base.h"
@@ -4451,17 +4445,10 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
 CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
-//#include "acme/platform/library.h"
-
-
-#include "acme/parallelization/cleanup_task.h"
-
-
 #include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/log.h"
-
 
 
 namespace user
@@ -4500,12 +4487,12 @@ class uncompress;
 //class system_impl;
 
 
-namespace str
-{
-
-   class base64;
-
-} // namespace str
+//namespace str
+//{
+//
+ class base64;
+//
+//} // namespace str
 
 
 namespace acme
@@ -4528,6 +4515,10 @@ class task_tool;
 
 
 #include "acme/platform/app.h"
+
+
+
+#include "acme/platform/plane_system.h"
 
 
 
@@ -4572,6 +4563,7 @@ class task_tool;
 #include "acme/primitive/collection/_papaya_array2d_impl.h"
 
 
+#include "acme/primitive/string/_c_impl.h"
 
 
 #include "acme/primitive/string/_impl.h"

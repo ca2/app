@@ -1226,9 +1226,9 @@ namespace aura
          //if (strDraw2d.has_char())
          //{
 
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
+         //   ::str().begins_eat_ci(strDraw2d, "draw2d_");
 
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
+         //   ::str().begins_eat_ci(strDraw2d, "draw2d");
 
          //   strLibrary = "draw2d_" + strDraw2d;
 
@@ -1377,13 +1377,13 @@ namespace aura
          if (strImaging.has_char())
          {
 
-            ::str::ends_eat_ci(strImaging, "_imaging");
+            ::str().ends_eat_ci(strImaging, "_imaging");
 
-            ::str::ends_eat_ci(strImaging, "imaging");
+            ::str().ends_eat_ci(strImaging, "imaging");
 
-            ::str::begins_eat_ci(strImaging, "imaging_");
+            ::str().begins_eat_ci(strImaging, "imaging_");
 
-            ::str::begins_eat_ci(strImaging, "imaging");
+            ::str().begins_eat_ci(strImaging, "imaging");
 
          }
 
@@ -2361,7 +2361,7 @@ namespace aura
    //}
 
 
-   //class ::str::base64 & system::base64()
+   //class ::base64 & system::base64()
    //{
 
    //   return *m_pbase64;
@@ -2958,13 +2958,13 @@ namespace aura
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str::ends_eat_ci(strLibraryId,".dll")
-////               || ::str::ends_eat_ci(strLibraryId,".so")
-////               || ::str::ends_eat_ci(strLibraryId,".dylib"))
+////         if(::str().ends_eat_ci(strLibraryId,".dll")
+////               || ::str().ends_eat_ci(strLibraryId,".so")
+////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
 ////         {
 ////
-////            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str::begins_ci(strLibraryId,"libbase"))
+////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
+////                  || ::str().begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3078,10 +3078,10 @@ namespace aura
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str::begins_eat(strLibrary,"libbase"))
+//      else if(!::str().begins_eat(strLibrary,"libbase"))
 //      {
 //
-//         ::str::begins_eat(strLibrary,"lib");
+//         ::str().begins_eat(strLibrary,"lib");
 //
 //      }
 //
@@ -3093,7 +3093,7 @@ namespace aura
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str::begins_eat_ci(strLibrary,strPrefix);
+//      ::str().begins_eat_ci(strLibrary,strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3302,7 +3302,7 @@ namespace aura
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
 
    //   }
 
@@ -3368,7 +3368,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
 
    //      }
 
@@ -5278,8 +5278,8 @@ namespace aura
   //
   //      string strId;
   //      //strId = m_strAppName;
-  //      //strId += ::str::has_char(m_XstrAppId, ".");
-  //      //strId += ::str::has_char(m_strBaseSupportId, ".");
+  //      //strId += ::str().has_char(m_XstrAppId, ".");
+  //      //strId += ::str().has_char(m_strBaseSupportId, ".");
   //
   //
   //

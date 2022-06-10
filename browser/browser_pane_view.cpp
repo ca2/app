@@ -433,7 +433,7 @@ namespace browser
             string strCheck = ptopic->user_element_id();
 
 
-            if (::str::begins_eat_ci(strCheck, "slide"))
+            if (::str().begins_eat_ci(strCheck, "slide"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is(::e_source_initialize)
@@ -573,7 +573,7 @@ namespace browser
 
             string strName = path.title();
 
-            strBilbo += "<input type=\"checkbox\" id=\"slide" + str::from(i) + "\" />slide &quot;" + strName + "&quot;<br/>\n<br/>";
+            strBilbo += "<input type=\"checkbox\" id=\"slide" + ::str().from(i) + "\" />slide &quot;" + strName + "&quot;<br/>\n<br/>";
 
             i++;
 

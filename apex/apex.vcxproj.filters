@@ -69,9 +69,6 @@
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{48da4faa-4f0b-434e-9dba-afad51502203}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{8099a888-7e34-4494-9367-f8f06df947d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{256720b0-24fa-42db-8d3e-f10366e15770}</UniqueIdentifier>
     </Filter>
@@ -180,9 +177,6 @@
     <Filter Include="Source Files\networking\oauth2">
       <UniqueIdentifier>{1538148d-fc75-4abd-8efe-fb63727756a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\platform\parallelization">
-      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
@@ -209,6 +203,9 @@
     </Filter>
     <Filter Include="Source Files\progress">
       <UniqueIdentifier>{574c34b0-e44d-40e8-b3fb-f394aeda9cd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parallelization">
+      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1243,26 +1240,14 @@
     <ClCompile Include="message\_.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="message\base.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
     <ClCompile Include="message\channel.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\message.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="message\receiver.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\sender.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
     <ClCompile Include="message\simple_command.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="include\_.cpp">
-      <Filter>Source Files\include</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_launcher.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1291,9 +1276,6 @@
     <ClCompile Include="platform\assert_running_task.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\build_debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\console_application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1312,9 +1294,6 @@
     <ClCompile Include="platform\machine_event_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\net.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\os_history.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1322,12 +1301,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\shell_launcher.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
@@ -1340,9 +1313,6 @@
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\id.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\key.cpp">
@@ -1369,19 +1339,10 @@
     <ClCompile Include="filesystem\file\html_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="user\command.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="message\debug.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="platform\text.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="compress\is_dir.cpp">
-      <Filter>Source Files\compress</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\context.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="platform\history.cpp">
@@ -1411,12 +1372,6 @@
     <ClCompile Include="crypto\crypto.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="crypto\hasher.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hasher_algorithm.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\rsa.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
@@ -1424,19 +1379,16 @@
       <Filter>Source Files\crypto\macos</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\handler_manager.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\thread_os.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1444,25 +1396,19 @@
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="message\handler.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
     <ClCompile Include="user\primitive.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service_handler.cpp">
-      <Filter>Source Files\platform\parallelization</Filter>
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\create.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\command_line.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="user\menu_shared.cpp">
@@ -1564,12 +1510,6 @@
     <ClCompile Include="networking\sockets\http\tunnel.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\_strconv.cpp">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\include.cpp">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\bsd\sockets.cpp">
       <Filter>Source Files\networking\sockets\bsd</Filter>
     </ClCompile>
@@ -1633,9 +1573,6 @@
     <ClCompile Include="networking\sockets\base\socket_thread.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
-    <ClCompile Include="networking\http\_.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
     <ClCompile Include="networking\http\context.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
@@ -1646,9 +1583,6 @@
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\http\get_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\ostream.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\http\request.cpp">
@@ -1741,19 +1675,7 @@
     <ClCompile Include="handler\context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="handler\handler.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
     <ClCompile Include="handler\manager.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\process.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\promise.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\routine.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
     <ClCompile Include="handler\signal.cpp">
@@ -1761,6 +1683,9 @@
     </ClCompile>
     <ClCompile Include="handler\source.cpp">
       <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\networking.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,7 @@ i32 chars_to_i32(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, i32 iBase)
          while (true)
          {
 
-            CHAR_TYPE ch = ::str::tolower(*psz);
+            CHAR_TYPE ch = ::str().tolower(*psz);
 
             if (ch == '\0')
             {
@@ -37,13 +37,13 @@ i32 chars_to_i32(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, i32 iBase)
                break;
 
             }
-            else if(::str::isdigit(ch) && (iDigit = ch - '0') < iBase)
+            else if(::str().isdigit(ch) && (iDigit = ch - '0') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;
 
             }
-            else if(::str::isalpha(ch) && (iDigit = ch - 'a') < iBase)
+            else if(::str().isalpha(ch) && (iDigit = ch - 'a') < iBase)
             {
 
                iResult = iResult * iBase + iDigit;

@@ -95,7 +95,7 @@ namespace apex
       
 #ifdef WINDOWS_DESKTOP
       
-      if (::str::ends_ci(get_executable_path(), "\\app.exe"))
+      if (::str().ends_ci(get_executable_path(), "\\app.exe"))
          
 #endif
          

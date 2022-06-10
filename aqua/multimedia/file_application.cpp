@@ -36,7 +36,7 @@ namespace multimedia
 
 #ifndef _UWP
 
-      if (::str::begins_ci(strPath, "rtp://") || ::str::begins_ci(strPath, "rtprx://"))
+      if (::str().begins_ci(strPath, "rtp://") || ::str().begins_ci(strPath, "rtprx://"))
       {
 
          auto psystem = get_system()->m_paquasystem;

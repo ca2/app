@@ -5509,16 +5509,16 @@ namespace user
 
       __pointer(::message::set_keyboard_focus) psetkeyboardfocus(pmessage);
 
-      on_final_set_keyboard_focus(psetkeyboardfocus);
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
-      {
-
-         return;
-
-      }
-
-      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+//      on_final_set_keyboard_focus();
+//
+//      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
 
    }
    
@@ -5561,34 +5561,46 @@ namespace user
 
 
    
-   void interaction_impl::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
+//   void interaction_impl::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
+   void interaction_impl::on_final_set_keyboard_focus()
    {
-
-      on_final_kill_keyboard_focus(nullptr);
 
       _synchronous_lock synchronouslock(mutex());
 
-      if (m_puserinteractionKeyboardFocusRequest && m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
+      if (m_puserinteractionKeyboardFocusRequest)
       {
+         
+         if(m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
+         {
 
-         m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
+            m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
-         m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+            m_puserinteractionKeyboardFocusRequest = nullptr;
 
-         m_puserinteractionKeyboardFocusRequest = nullptr;
+            auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+            if (puserinteractionKeyboardFocus)
+            {
+
+               synchronouslock.unlock();
+
+               puserinteractionKeyboardFocus->on_set_keyboard_focus();
+
+            }
+            
+         }
 
       }
-
-      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
-
-      if (puserinteractionKeyboardFocus)
-      {
-
-         synchronouslock.unlock();
-
-         puserinteractionKeyboardFocus->on_set_keyboard_focus();
-
-      }
+//      else
+//      {
+//
+//         m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+//
+//         synchronouslock.unlock();
+//
+//         on_final_kill_keyboard_focus();
+//
+//      }
 
    }
 
@@ -5598,16 +5610,32 @@ namespace user
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-      auto pwindowing = m_puserinteraction->windowing();
+//      auto pwindowing = m_puserinteraction->windowing();
+//
+//      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+//
+//      if (::is_set(ptexteditorinterface))
+//      {
+//
+//         ptexteditorinterface->hide_software_keyboard();
+//
+//      }
 
-      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-      if (::is_set(ptexteditorinterface))
-      {
-
-         ptexteditorinterface->hide_software_keyboard();
-
-      }
+//      _synchronous_lock synchronouslock(mutex());
+//
+//      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+//
+//      if (puserinteractionKeyboardFocus)
+//      {
+//
+//         m_puserinteractionKeyboardFocus.release();
+//
+//         synchronouslock.unlock();
+//
+//         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
+//
+//      }
 
       return true;
 
@@ -5649,20 +5677,28 @@ namespace user
 
       m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
-      on_final_kill_keyboard_focus(pkillkeyboardfocus);
+      on_final_kill_keyboard_focus();
 
    }
 
-   
-   void interaction_impl::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
+//void interaction_impl::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
+
+   void interaction_impl::on_final_kill_keyboard_focus()
    {
 
       _synchronous_lock synchronouslock(mutex());
 
       if (m_puserinteractionToKillKeyboardFocus && m_puserinteractionToKillKeyboardFocus != m_puserinteractionKeyboardFocusRequest)
       {
-
+         
          auto pinteraction = m_puserinteractionToKillKeyboardFocus;
+
+         if(m_puserinteractionKeyboardFocus == pinteraction)
+         {
+            
+            m_puserinteractionKeyboardFocus.release();
+            
+         }
 
          m_puserinteractionToKillKeyboardFocus = nullptr;
 
@@ -5945,8 +5981,12 @@ namespace user
          pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
 
       }
+      
+      m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+      
+      on_final_kill_keyboard_focus();
 
-      pwindowing->clear_keyboard_focus(pwindowGainingFocusIfAny);
+      //pwindowing->clear_keyboard_focus(pwindowGainingFocusIfAny);
 
       //auto puserinteraction = m_puserinteraction;
 

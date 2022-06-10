@@ -82,7 +82,7 @@ namespace universal_windows
             // create a combo box item, and copy the voice data into that
             VoiceInformation ^voice = voices->GetAt(index);
             string strL = voice->Language;
-            if (::str::begins_ci(strL, strLang))
+            if (::str().begins_ci(strL, strLang))
             {
                try
                {

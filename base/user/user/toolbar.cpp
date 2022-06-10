@@ -754,7 +754,7 @@ namespace user
 //   //      {
 //   //         dx = m_sizeButton.cx;
 //   //         string str;
-//   //         str = ::str::international::utf8_to_unicode(str);
+//   //         str = utf8_to_unicode(str);
 //   //         //         str = (const unichar *) pData[i].iString;
 //   //         ::size_i32 size;
 //   //         ::GetTextExtentPoint32U(

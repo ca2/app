@@ -19,9 +19,9 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::::acme::get_system();
+using namespace ::winrt::Windows::acme::get_system();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::::acme::get_system()::Threading;
+using namespace ::winrt::Windows::acme::get_system()::Threading;
 
 bool g_bCoreWindowOnceVisible = false;
 
@@ -360,7 +360,7 @@ namespace universal_windows
 
    void directx_framework_view::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::winrt::Windows::::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -430,7 +430,7 @@ namespace universal_windows
       spbase = pkey;
 
 
-      if (args->VirtualKey == ::winrt::Windows::::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }

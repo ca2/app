@@ -66,7 +66,7 @@ namespace userex
    ::file::path image_list_view::get_link_path(string strLink)
    {
 
-      if (::str::begins_eat_ci(strLink, get_link_prefix()))
+      if (::str().begins_eat_ci(strLink, get_link_prefix()))
       {
 
          return m_pathFolder / strLink;

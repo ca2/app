@@ -1,511 +1,1467 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="constant\idpool.cpp" />
-    <ClCompile Include="filesystem\filemanager\callback.cpp" />
-    <ClCompile Include="filesystem\filemanager\item_action.cpp" />
-    <ClCompile Include="framework.cpp" />
-    <ClCompile Include="game\estamira.cpp" />
-    <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="gpu\gpu\approach.cpp" />
-    <ClCompile Include="gpu\gpu\buffer.cpp" />
-    <ClCompile Include="gpu\gpu\context.cpp" />
-    <ClCompile Include="gpu\gpu\program.cpp" />
-    <ClCompile Include="gpu\gpu\shader.cpp" />
-    <ClCompile Include="graphics\draw2d\color_filter.cpp" />
-    <ClCompile Include="graphics\draw2d\device_lock.cpp" />
-    <ClCompile Include="graphics\draw2d\host.cpp" />
-    <ClCompile Include="graphics\draw2d\lock.cpp" />
-    <ClCompile Include="graphics\draw2d\nano_svg.cpp" />
-    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp" />
-    <ClCompile Include="graphics\draw2d\task_tool.cpp" />
-    <ClCompile Include="graphics\graphics\monitor.cpp" />
-    <ClCompile Include="graphics\image\array.cpp" />
-    <ClCompile Include="graphics\image\context_image.cpp" />
-    <ClCompile Include="graphics\image\cursor.cpp" />
-    <ClCompile Include="graphics\image\cursor_set.cpp" />
-    <ClCompile Include="graphics\image\drawer.cpp" />
-    <ClCompile Include="graphics\image\drawing.cpp" />
-    <ClCompile Include="graphics\image\dynamic.cpp" />
-    <ClCompile Include="graphics\image\extension.cpp" />
-    <ClCompile Include="graphics\image\fastblur.cpp" />
-    <ClCompile Include="graphics\image\frame.cpp" />
-    <ClCompile Include="graphics\image\gif_antialias_8bit.cpp" />
-    <ClCompile Include="graphics\image\gif_detect_8bit_borders.cpp" />
-    <ClCompile Include="graphics\image\icon.cpp" />
-    <ClCompile Include="graphics\image\image.cpp" />
-    <ClCompile Include="graphics\image\imaging.cpp" />
-    <ClCompile Include="graphics\image\list.cpp" />
-    <ClCompile Include="graphics\image\load_gif_frame.cpp" />
-    <ClCompile Include="graphics\image\load_image.cpp" />
-    <ClCompile Include="graphics\image\map.cpp" />
-    <ClCompile Include="graphics\image\meta.cpp" />
-    <ClCompile Include="graphics\image\nanosvg.cpp" />
-    <ClCompile Include="graphics\image\object.cpp" />
-    <ClCompile Include="graphics\image\pointer_array.cpp" />
-    <ClCompile Include="graphics\image\source.cpp" />
-    <ClCompile Include="graphics\user\control_box_button.cpp" />
-    <ClCompile Include="graphics\user\control_box_icon.cpp" />
-    <ClCompile Include="graphics\write_text\drawer.cpp" />
-    <ClCompile Include="graphics\write_text\font.cpp" />
-    <ClCompile Include="graphics\write_text\fonts.cpp" />
-    <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
-    <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
-    <ClCompile Include="graphics\write_text\font_list.cpp" />
-    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp" />
-    <ClCompile Include="graphics\write_text\text_box.cpp" />
-    <ClCompile Include="graphics\write_text\text_out.cpp" />
-    <ClCompile Include="graphics\write_text\text_out_array.cpp" />
-    <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />
-    <ClCompile Include="graphics\write_text\write_text.cpp" />
-    <ClCompile Include="include\_.cpp" />
-    <ClCompile Include="message\command.cpp" />
-    <ClCompile Include="message\timer.cpp" />
-    <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\thread.cpp" />
-    <ClCompile Include="operating_system\windowing.cpp" />
-    <ClCompile Include="operating_system\windows\aura.cpp" />
-    <ClCompile Include="operating_system\windows\dpi.cpp" />
-    <ClCompile Include="operating_system\windows\gdi.cpp" />
-    <ClCompile Include="operating_system\windows\graphics.cpp" />
-    <ClCompile Include="operating_system\windows\main.cpp" />
-    <ClCompile Include="operating_system\windows\monitor.cpp" />
-    <ClCompile Include="operating_system\windows\windowing.cpp" />
-    <ClCompile Include="operating_system\_application.cpp" />
-    <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\aura.cpp" />
-    <ClCompile Include="platform\aura_mq.cpp" />
-    <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\drawable.cpp" />
-    <ClCompile Include="platform\draw_context.cpp" />
-    <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\session.cpp" />
-    <ClCompile Include="platform\shell_open.cpp" />
-    <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\theme.cpp" />
-    <ClCompile Include="user\appearance\appearance.cpp" />
-    <ClCompile Include="user\appearance\button.cpp" />
-    <ClCompile Include="user\appearance\still.cpp" />
-    <ClCompile Include="user\menu\menu_command.cpp" />
-    <ClCompile Include="user\user\box.cpp" />
-    <ClCompile Include="user\user\button.cpp" />
-    <ClCompile Include="user\user\call_message_handler_task.cpp" />
-    <ClCompile Include="user\user\check_box.cpp" />
-    <ClCompile Include="user\user\control_descriptor.cpp" />
-    <ClCompile Include="user\user\copydesk.cpp" />
-    <ClCompile Include="user\user\form.cpp" />
-    <ClCompile Include="user\user\form_callback.cpp" />
-    <ClCompile Include="user\user\frame.cpp" />
-    <ClCompile Include="user\user\interaction.cpp" />
-    <ClCompile Include="user\user\interaction_child.cpp" />
-    <ClCompile Include="user\user\interaction_impl.cpp" />
-    <ClCompile Include="user\user\interaction_layout.cpp" />
-    <ClCompile Include="user\user\interaction_prodevian.cpp" />
-    <ClCompile Include="user\user\interaction_scaler.cpp" />
-    <ClCompile Include="user\user\interaction_thread.cpp" />
-    <ClCompile Include="user\user\key.cpp" />
-    <ClCompile Include="user\user\keyboard.cpp" />
-    <ClCompile Include="user\user\main_window.cpp" />
-    <ClCompile Include="user\user\message.cpp" />
-    <ClCompile Include="user\user\message_box.cpp" />
-    <ClCompile Include="user\user\message_window.cpp" />
-    <ClCompile Include="user\user\notify_icon.cpp" />
-    <ClCompile Include="user\user\notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\plain_edit.cpp" />
-    <ClCompile Include="user\user\plain_text_data.cpp" />
-    <ClCompile Include="user\user\primitive_impl.cpp" />
-    <ClCompile Include="user\user\progress.cpp" />
-    <ClCompile Include="user\user\range.cpp" />
-    <ClCompile Include="user\user\scroll.cpp" />
-    <ClCompile Include="user\user\scroll_bar.cpp" />
-    <ClCompile Include="user\user\shell.cpp" />
-    <ClCompile Include="user\user\still.cpp" />
-    <ClCompile Include="user\user\style.cpp" />
-    <ClCompile Include="user\user\style_base.cpp" />
-    <ClCompile Include="user\user\style_control.cpp" />
-    <ClCompile Include="user\user\system.cpp" />
-    <ClCompile Include="user\user\text_composition.cpp" />
-    <ClCompile Include="user\user\tool_window.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\wait_cursor.cpp" />
-    <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_map.cpp" />
-    <ClCompile Include="user\user\window_state.cpp" />
-    <ClCompile Include="user\user\window_util.cpp" />
-    <ClCompile Include="user\user\_.cpp" />
-    <ClCompile Include="user\windows_tsf\context_owner_composition_sink.cpp" />
-    <ClCompile Include="user\windows_tsf\dataobj.cpp" />
-    <ClCompile Include="user\windows_tsf\edit_window.cpp" />
-    <ClCompile Include="user\windows_tsf\function_provider.cpp" />
-    <ClCompile Include="user\windows_tsf\persist.cpp" />
-    <ClCompile Include="user\windows_tsf\propldr.cpp" />
-    <ClCompile Include="user\windows_tsf\test.cpp" />
-    <ClCompile Include="user\windows_tsf\text_store_acp.cpp" />
-    <ClCompile Include="user\windows_tsf\ui_element_sink.cpp" />
-    <ClCompile Include="windowing\buffer.cpp" />
-    <ClCompile Include="windowing\cursor.cpp" />
-    <ClCompile Include="windowing\cursor_manager.cpp" />
-    <ClCompile Include="windowing\debug.cpp" />
-    <ClCompile Include="windowing\display.cpp" />
-    <ClCompile Include="windowing\icon.cpp" />
-    <ClCompile Include="windowing\keyboard.cpp" />
-    <ClCompile Include="windowing\menu.cpp" />
-    <ClCompile Include="windowing\menu_command.cpp" />
-    <ClCompile Include="windowing\menu_item.cpp" />
-    <ClCompile Include="windowing\monitor.cpp" />
-    <ClCompile Include="windowing\text_editor_interface.cpp" />
-    <ClCompile Include="windowing\window.cpp" />
-    <ClCompile Include="windowing\windowing.cpp" />
-    <ClCompile Include="windowing\xrender.cpp" />
-    <ClCompile Include="_.cpp" />
-    <ClCompile Include="_factory.cpp" />
-    <ClCompile Include="__matter_ca2.cpp" />
-    <ClCompile Include="graphics\draw2d\alpha.cpp" />
-    <ClCompile Include="graphics\draw2d\api.cpp" />
-    <ClCompile Include="graphics\draw2d\apple\image.cpp" />
-    <ClCompile Include="graphics\draw2d\apple\image_gif.cpp" />
-    <ClCompile Include="graphics\draw2d\bitmap.cpp" />
-    <ClCompile Include="graphics\draw2d\brush.cpp" />
-    <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
-    <ClCompile Include="graphics\draw2d\debug.cpp" />
-    <ClCompile Include="graphics\draw2d\draw2d.cpp" />
-    <ClCompile Include="graphics\draw2d\glyph.cpp" />
-    <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
-    <ClCompile Include="graphics\draw2d\graphics.cpp" />
-    <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
-    <ClCompile Include="graphics\draw2d\keep.cpp" />
-    <ClCompile Include="graphics\draw2d\matrix.cpp" />
-    <ClCompile Include="graphics\draw2d\object.cpp" />
-    <ClCompile Include="graphics\draw2d\palette.cpp" />
-    <ClCompile Include="graphics\draw2d\path.cpp" />
-    <ClCompile Include="graphics\draw2d\pen.cpp" />
-    <ClCompile Include="graphics\draw2d\printer.cpp" />
-    <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp" />
-    <ClCompile Include="graphics\draw2d\_.cpp" />
-    <ClCompile Include="graphics\draw3d\ortho.cpp" />
-    <ClCompile Include="graphics\graphics\double_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\console.cpp" />
-    <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
-    <ClCompile Include="graphics\graphics\buffer.cpp" />
-    <ClCompile Include="graphics\graphics\device_context.cpp" />
-    <ClCompile Include="graphics\graphics\graphics.cpp" />
-    <ClCompile Include="hardware\device_listener.cpp" />
-    <ClCompile Include="hardware\devices.cpp" />
-    <ClCompile Include="graphics\graphics\target.cpp" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{fb7c4136-1a41-46ca-bd11-725fd9815b5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{972c284f-e77e-4100-9190-eb6f911ab071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{98e90c53-09ec-4933-92cb-7b844fb07fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user">
+      <UniqueIdentifier>{872fa787-2caf-4c13-aad4-f0df206f0448}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{1e44594e-ac79-44a4-9087-4027ae2bdf3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{aaf4b8e0-a45e-4bb4-b003-370b7d2a360d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\apperance">
+      <UniqueIdentifier>{f5ab4838-34cd-4bba-82ef-a2bad5317dbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{dece585b-ddd3-4047-a40b-0cec81db082f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{0aeac56d-81e7-4972-91e2-754238a47ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common">
+      <UniqueIdentifier>{045106eb-83c9-44ea-af42-0167c2d20346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{b6a8a5a4-bc31-48b2-a213-e3cde51f5b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\message">
+      <UniqueIdentifier>{66e22b87-1135-4647-86db-aefd001b4235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\hardware">
+      <UniqueIdentifier>{6fc1c957-cdcb-425c-bbd2-cce7b0177a0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics">
+      <UniqueIdentifier>{b1ef44b8-484c-4543-bb1d-0fbd2947c27b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d">
+      <UniqueIdentifier>{af7c6eb4-abce-4065-9667-72bb182e56d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw3d">
+      <UniqueIdentifier>{ced41dce-f6ae-49c7-8ee5-44c6d21ea595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\image">
+      <UniqueIdentifier>{6e034ff8-6aff-4aa3-86eb-5356d8037293}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\write_text">
+      <UniqueIdentifier>{6f449def-a1ca-448c-9723-864e6cbda03e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\user">
+      <UniqueIdentifier>{2e600134-dbe0-4765-b6a6-129cf0aef041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{9d6e5c5f-63f1-4afc-b31b-43d939c0e22a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu">
+      <UniqueIdentifier>{74f4dc23-bcb3-42f7-8d93-07485a8cc858}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu\gpu">
+      <UniqueIdentifier>{24396014-e7b1-47a0-a151-b37d8bd8b42d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\game">
+      <UniqueIdentifier>{fd5a7588-6dea-4dda-a930-d6bcc2eeecef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filemanager">
+      <UniqueIdentifier>{65208139-0842-4a10-b92b-dbc3e1420b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filemanager\filemanager">
+      <UniqueIdentifier>{3b9a2385-a208-450d-9ef9-359e6b5519ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{b38620b8-502f-46e1-9f2b-2668cff52b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing">
+      <UniqueIdentifier>{2f4dce99-369d-460a-8936-030140b770ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user">
+      <UniqueIdentifier>{f3093091-e839-42ac-ae62-50ea75ee5a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{c17fd4ba-9393-4d16-9f95-cf513d4a9365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\menu">
+      <UniqueIdentifier>{1ba90460-664d-434e-a59e-82b8cdac368c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\appearance">
+      <UniqueIdentifier>{0b9fe4af-27ed-42d2-8b1b-ed9a30c6735c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{1b2f8666-de36-4ad3-bab1-45e5d58dd71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system">
+      <UniqueIdentifier>{08329ce6-0f6f-4ad5-aeb5-aee4319c37de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows">
+      <UniqueIdentifier>{77a47ebe-85e9-4d39-919b-fedd6e00169f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{c1c3ab12-b2b9-4ee4-b2ac-3d0e7612c5c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filemanager">
+      <UniqueIdentifier>{c7ff64c3-03d2-4be8-ba3a-7630e75b1905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\filemanager\filemanager">
+      <UniqueIdentifier>{8a5654cf-89de-4f22-a105-13c13e493ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gpu">
+      <UniqueIdentifier>{22397a78-110d-4851-abec-ab9508b4f8e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gpu\gpu">
+      <UniqueIdentifier>{e6ae16fb-9cd7-496b-90a4-d67561ee46b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\game">
+      <UniqueIdentifier>{efceddd1-7f76-4921-adcf-d020b07134fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{aa4a2a48-97b9-4227-b3cd-6304540c5387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{dfcb47c9-40cc-4a33-9871-54d83715fcbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw3d">
+      <UniqueIdentifier>{fffaf690-e781-4fae-8d14-3c0634791ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\graphics">
+      <UniqueIdentifier>{330b78c7-e72d-43fa-9ab9-6772527925a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{e7ce13a0-202f-45b0-a8ad-5937efe75953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\write_text">
+      <UniqueIdentifier>{28d804f1-aac5-4c44-a291-3c9de44e5672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\user">
+      <UniqueIdentifier>{b722db8c-b31f-4647-bcc4-251e9ec5b0e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="astr.h" />
-    <ClInclude Include="console.h" />
-    <ClInclude Include="console_slim.h" />
-    <ClInclude Include="constant\idpool.h" />
-    <ClInclude Include="filesystem\filemanager\callback.h" />
-    <ClInclude Include="filesystem\filemanager\item_action.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
-    <ClInclude Include="game\estamira.h" />
-    <ClInclude Include="game\game.h" />
-    <ClInclude Include="game\_.h" />
-    <ClInclude Include="game\_game.h" />
-    <ClInclude Include="gpu\gpu\approach.h" />
-    <ClInclude Include="gpu\gpu\buffer.h" />
-    <ClInclude Include="gpu\gpu\context.h" />
-    <ClInclude Include="gpu\gpu\program.h" />
-    <ClInclude Include="gpu\gpu\shader.h" />
-    <ClInclude Include="gpu\gpu\_.h" />
-    <ClInclude Include="graphics\draw2d\color_filter.h" />
-    <ClInclude Include="graphics\draw2d\device_lock.h" />
-    <ClInclude Include="graphics\draw2d\host.h" />
-    <ClInclude Include="graphics\draw2d\lock.h" />
-    <ClInclude Include="graphics\draw2d\_draw2d.h" />
-    <ClInclude Include="graphics\user\control_box_button.h" />
-    <ClInclude Include="graphics\user\control_box_icon.h" />
-    <ClInclude Include="graphics\write_text\bounding_rect.h" />
-    <ClInclude Include="graphics\write_text\contains.h" />
-    <ClInclude Include="graphics\write_text\drawer.h" />
-    <ClInclude Include="graphics\write_text\draw_text.h" />
-    <ClInclude Include="graphics\write_text\font.h" />
-    <ClInclude Include="graphics\write_text\fonts.h" />
-    <ClInclude Include="graphics\write_text\font_enumeration.h" />
-    <ClInclude Include="graphics\write_text\font_enumeration_item.h" />
-    <ClInclude Include="graphics\write_text\font_list.h" />
-    <ClInclude Include="graphics\write_text\font_list_data.h" />
-    <ClInclude Include="graphics\write_text\font_list_item.h" />
-    <ClInclude Include="graphics\write_text\text.h" />
-    <ClInclude Include="graphics\write_text\text_box.h" />
-    <ClInclude Include="graphics\write_text\text_out.h" />
-    <ClInclude Include="graphics\write_text\text_out_array.h" />
-    <ClInclude Include="graphics\write_text\true_type_font_utilities.h" />
-    <ClInclude Include="graphics\write_text\write_text.h" />
-    <ClInclude Include="graphics\write_text\_.h" />
-    <ClInclude Include="user\appearance\appearance.h" />
-    <ClInclude Include="user\appearance\button.h" />
-    <ClInclude Include="user\appearance\still.h" />
-    <ClInclude Include="user\appearance\_.h" />
-    <ClInclude Include="user\appearance\_appearance.h" />
-    <ClInclude Include="user\menu\menu_command.h" />
-    <ClInclude Include="user\menu\_menu.h" />
-    <ClInclude Include="user\user\aaaa_plain_edit_style.h" />
-    <ClInclude Include="user\user\aaa_create.h" />
-    <ClInclude Include="user\user\aaa_interaction_draw2d.h" />
-    <ClInclude Include="user\user\box.h" />
-    <ClInclude Include="user\user\button.h" />
-    <ClInclude Include="user\user\call_message_handler_task.h" />
-    <ClInclude Include="user\user\check_box.h" />
-    <ClInclude Include="user\user\control_descriptor.h" />
-    <ClInclude Include="user\user\control_event_listener.h" />
-    <ClInclude Include="user\user\copydesk.h" />
-    <ClInclude Include="user\user\form.h" />
-    <ClInclude Include="user\user\form_callback.h" />
-    <ClInclude Include="user\user\frame.h" />
-    <ClInclude Include="user\user\graphics_call.h" />
-    <ClInclude Include="user\user\interaction.h" />
-    <ClInclude Include="user\user\interaction_child.h" />
-    <ClInclude Include="user\user\interaction_impl.h" />
-    <ClInclude Include="user\user\interaction_layout.h" />
-    <ClInclude Include="user\user\interaction_prodevian.h" />
-    <ClInclude Include="user\user\interaction_scaler.h" />
-    <ClInclude Include="user\user\interaction_thread.h" />
-    <ClInclude Include="user\user\key.h" />
-    <ClInclude Include="user\user\keyboard.h" />
-    <ClInclude Include="user\user\main_window.h" />
-    <ClInclude Include="user\user\menu_command.h" />
-    <ClInclude Include="user\user\message.h" />
-    <ClInclude Include="user\user\message_box.h" />
-    <ClInclude Include="user\user\message_window.h" />
-    <ClInclude Include="user\user\message_window_listener.h" />
-    <ClInclude Include="user\user\mouse.h" />
-    <ClInclude Include="user\user\notify_icon.h" />
-    <ClInclude Include="user\user\notify_icon_listener.h" />
-    <ClInclude Include="user\user\notify_icon_mm.h" />
-    <ClInclude Include="user\user\plain_edit.h" />
-    <ClInclude Include="user\user\plain_text_data.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
-    <ClInclude Include="user\user\prodevian.h" />
-    <ClInclude Include="user\user\progress.h" />
-    <ClInclude Include="user\user\range.h" />
-    <ClInclude Include="user\user\scroll.h" />
-    <ClInclude Include="user\user\scroll_bar.h" />
-    <ClInclude Include="user\user\scroll_info.h" />
-    <ClInclude Include="user\user\shell.h" />
-    <ClInclude Include="user\user\still.h" />
-    <ClInclude Include="user\user\style.h" />
-    <ClInclude Include="user\user\style_base.h" />
-    <ClInclude Include="user\user\style_control.h" />
-    <ClInclude Include="user\user\system.h" />
-    <ClInclude Include="user\user\text_composition.h" />
-    <ClInclude Include="user\user\tool_window.h" />
-    <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\wait_cursor.h" />
-    <ClInclude Include="user\user\windowing.h" />
-    <ClInclude Include="user\user\window_map.h" />
-    <ClInclude Include="user\user\window_state.h" />
-    <ClInclude Include="user\user\window_util.h" />
-    <ClInclude Include="user\user\_.h" />
-    <ClInclude Include="user\user\_constant.h" />
-    <ClInclude Include="user\user\_data.h" />
-    <ClInclude Include="user\user\_experience_const.h" />
-    <ClInclude Include="user\user\_impl.h" />
-    <ClInclude Include="user\user\_interaction_impl.h" />
-    <ClInclude Include="user\user\_menu.h" />
-    <ClInclude Include="user\user\_prelude.h" />
-    <ClInclude Include="user\user\_user.h" />
-    <ClInclude Include="windowing\text_editor_interface.h" />
-    <ClInclude Include="_factory.h" />
-    <ClInclude Include="id.h" />
-    <ClInclude Include="include\_c.h" />
-    <ClInclude Include="include\_no_templates.h" />
-    <ClInclude Include="include\_setup.h" />
-    <ClInclude Include="inline\application\linux.h" />
-    <ClInclude Include="inline\application\macos.h" />
-    <ClInclude Include="inline\application\universal_windows.h" />
-    <ClInclude Include="inline\application_common.h" />
-    <ClInclude Include="inline\aaa_console.h" />
-    <ClInclude Include="inline\console\aaa_linux.h" />
-    <ClInclude Include="inline\console\aaa_windows.h" />
-    <ClInclude Include="inline\console_common.h" />
-    <ClInclude Include="inline\_application.h" />
-    <ClInclude Include="inline\_app_impl1.h" />
-    <ClInclude Include="inline\_console_old.h" />
-    <ClInclude Include="inline\_new_impl.h" />
-    <ClInclude Include="memory\os_alloc.h" />
-    <ClInclude Include="message.h" />
-    <ClInclude Include="message\command.h" />
-    <ClInclude Include="message\timer.h" />
-    <ClInclude Include="message\user.h" />
-    <ClInclude Include="message\_.h" />
-    <ClInclude Include="message\_impl.h" />
-    <ClInclude Include="message\_message.h" />
-    <ClInclude Include="operating_system.h" />
-    <ClInclude Include="operating_system\chronometer.h" />
-    <ClInclude Include="operating_system\cross.h" />
-    <ClInclude Include="operating_system\file.h" />
-    <ClInclude Include="operating_system\graphics.h" />
-    <ClInclude Include="operating_system\windows\aaa_d2d1_1.h" />
-    <ClInclude Include="operating_system\windows\aaa_imm_client.h" />
-    <ClInclude Include="operating_system\windows\aaa_imm_context.h" />
-    <ClInclude Include="operating_system\windows\aaa_internal.h" />
-    <ClInclude Include="operating_system\windows\aaa_itemidlist.h" />
-    <ClInclude Include="operating_system\windows\gdiplus.h" />
-    <ClInclude Include="operating_system\windows\graphics.h" />
-    <ClInclude Include="operating_system\windows\implementation.h" />
-    <ClInclude Include="operating_system\windows\opengl_buffer.h" />
-    <ClInclude Include="operating_system\windows\port_forward.h" />
-    <ClInclude Include="operating_system\windows\printer.h" />
-    <ClInclude Include="operating_system\windows\print_job.h" />
-    <ClInclude Include="operating_system\windows\top_level_enum.h" />
-    <ClInclude Include="operating_system\windows\windowing.h" />
-    <ClInclude Include="operating_system\windows\window_opengl.h" />
-    <ClInclude Include="operating_system\windows\_.h" />
-    <ClInclude Include="operating_system\windows\_c.h" />
-    <ClInclude Include="operating_system\windows\_user.h" />
-    <ClInclude Include="operating_system\windows\_windows.h" />
-    <ClInclude Include="operating_system\windows\_windows_impl.h" />
-    <ClInclude Include="operating_system\windows_common\bstring.h" />
-    <ClInclude Include="operating_system\windows_common\cotaskptr.h" />
-    <ClInclude Include="operating_system\windows_common\file.h" />
-    <ClInclude Include="operating_system\windows_common\graphics.h" />
-    <ClInclude Include="operating_system\windows_common\multithreading.h" />
-    <ClInclude Include="operating_system\windows_common\new_api.h" />
-    <ClInclude Include="operating_system\windows_common\variant.h" />
-    <ClInclude Include="operating_system\windows_common\_.h" />
-    <ClInclude Include="operating_system\windows_common\_c.h" />
-    <ClInclude Include="operating_system\windows_common\_default_dll_impl.h" />
-    <ClInclude Include="operating_system\windows_common\_file_c.h" />
-    <ClInclude Include="operating_system\windows_common\_unicode_c.h" />
-    <ClInclude Include="operating_system\windows_common\_windows_common.h" />
-    <ClInclude Include="operating_system\_common.h" />
-    <ClInclude Include="operating_system\serial.h" />
-    <ClInclude Include="operating_system\text.h" />
-    <ClInclude Include="operating_system\time.h" />
-    <ClInclude Include="operating_system\windowing.h" />
-    <ClInclude Include="operating_system\_.h" />
-    <ClInclude Include="operating_system\_2.h" />
-    <ClInclude Include="operating_system\_application.h" />
-    <ClInclude Include="operating_system\_c.h" />
-    <ClInclude Include="operating_system\_impl.h" />
-    <ClInclude Include="operating_system\_node.h" />
-    <ClInclude Include="operating_system\_operating_system.h" />
-    <ClInclude Include="operating_system\_user.h" />
-    <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\context.h" />
-    <ClInclude Include="platform\drawable.h" />
-    <ClInclude Include="platform\draw_context2.h" />
-    <ClInclude Include="platform\message_queue.h" />
-    <ClInclude Include="platform\node.h" />
-    <ClInclude Include="platform\progress.h" />
-    <ClInclude Include="platform\session.h" />
-    <ClInclude Include="platform\shell_open.h" />
-    <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\theme.h" />
-    <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="platform\_features.h" />
-    <ClInclude Include="platform\_impl.h" />
-    <ClInclude Include="include\objc.h" />
-    <ClInclude Include="include\objcpp.h" />
-    <ClInclude Include="include\winrt.h" />
-    <ClInclude Include="include\_.h" />
-    <ClInclude Include="include\_c_bridge.h" />
-    <ClInclude Include="include\_include.h" />
-    <ClInclude Include="memory\allocate.h" />
-    <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
-    <ClInclude Include="memory\allocation.h" />
-    <ClInclude Include="memory\heap_.h" />
-    <ClInclude Include="memory\heap_c.h" />
-    <ClInclude Include="memory\heap_item.h" />
-    <ClInclude Include="memory\heap_item_array.h" />
-    <ClInclude Include="memory\heap_memory.h" />
-    <ClInclude Include="memory\malloc.h" />
-    <ClInclude Include="memory\memory.h" />
-    <ClInclude Include="memory\memory_allocator.h" />
-    <ClInclude Include="memory\new.h" />
-    <ClInclude Include="memory\plex.h" />
-    <ClInclude Include="memory\plex_heap1.h" />
-    <ClInclude Include="memory\plex_heap_impl1.h" />
-    <ClInclude Include="update.h" />
-    <ClInclude Include="version\version.h" />
-    <ClInclude Include="graphics\draw2d\api.h" />
-    <ClInclude Include="graphics\draw2d\bitmap.h" />
-    <ClInclude Include="graphics\draw2d\brush.h" />
-    <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
-    <ClInclude Include="graphics\draw2d\color_matrix.h" />
-    <ClInclude Include="graphics\draw2d\common.h" />
-    <ClInclude Include="graphics\draw2d\draw2d.h" />
-    <ClInclude Include="graphics\draw2d\fwd.h" />
-    <ClInclude Include="graphics\draw2d\glyph.h" />
-    <ClInclude Include="graphics\draw2d\glyph_set.h" />
-    <ClInclude Include="graphics\draw2d\graphics.h" />
-    <ClInclude Include="graphics\draw2d\graphics_extension.h" />
-    <ClInclude Include="graphics\draw2d\igui.h" />
-    <ClInclude Include="graphics\draw2d\printer.h" />
-    <ClInclude Include="graphics\draw2d\_image.h" />
-    <ClInclude Include="graphics\draw2d\keep.h" />
-    <ClInclude Include="graphics\draw2d\matrix.h" />
-    <ClInclude Include="graphics\draw2d\object.h" />
-    <ClInclude Include="graphics\draw2d\palette.h" />
-    <ClInclude Include="graphics\draw2d\path.h" />
-    <ClInclude Include="graphics\draw2d\pen.h" />
-    <ClInclude Include="graphics\draw2d\pixmap.h" />
-    <ClInclude Include="graphics\draw2d\region.h" />
-    <ClInclude Include="graphics\draw2d\task_tool.h" />
-    <ClInclude Include="graphics\draw2d\_.h" />
-    <ClInclude Include="graphics\draw2d\_image_impl.h" />
-    <ClInclude Include="graphics\_.h" />
-    <ClInclude Include="graphics\graphics\double_buffer.h" />
-    <ClInclude Include="graphics\graphics\double_pass_scale.h" />
-    <ClInclude Include="graphics\graphics\filters.h" />
-    <ClInclude Include="graphics\graphics\console.h" />
-    <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
-    <ClInclude Include="graphics\graphics\multiple_buffer.h" />
-    <ClInclude Include="graphics\graphics\window.h" />
-    <ClInclude Include="graphics\graphics\buffer.h" />
-    <ClInclude Include="graphics\graphics\device_context.h" />
-    <ClInclude Include="graphics\graphics\graphics.h" />
-    <ClInclude Include="graphics\draw3d\_.h" />
-    <ClInclude Include="graphics\draw3d\ortho.h" />
-    <ClInclude Include="graphics\graphics\_.h" />
-    <ClInclude Include="inline\_acid_app_impl.h" />
-    <ClInclude Include="inline\application.h" />
-    <ClInclude Include="inline\_draw2d_impl.h" />
-    <ClInclude Include="inline\library.h" />
-    <ClInclude Include="inline\__debug_box_clear_impl.h" />
-    <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="windowing\buffer.h" />
-    <ClInclude Include="windowing\button.h" />
-    <ClInclude Include="windowing\cursor.h" />
-    <ClInclude Include="windowing\cursor_manager.h" />
-    <ClInclude Include="windowing\display.h" />
-    <ClInclude Include="windowing\event.h" />
-    <ClInclude Include="windowing\exception.h" />
-    <ClInclude Include="windowing\hook.h" />
-    <ClInclude Include="windowing\icon.h" />
-    <ClInclude Include="windowing\keyboard.h" />
-    <ClInclude Include="windowing\menu.h" />
-    <ClInclude Include="windowing\menu_command.h" />
-    <ClInclude Include="windowing\menu_item.h" />
-    <ClInclude Include="windowing\message_box.h" />
-    <ClInclude Include="windowing\monitor.h" />
-    <ClInclude Include="windowing\simple_ui_display.h" />
-    <ClInclude Include="windowing\window.h" />
-    <ClInclude Include="windowing\windowing.h" />
-    <ClInclude Include="windowing\_.h" />
-    <ClInclude Include="windowing\_impl.h" />
-    <ClInclude Include="windowing\_windowing.h" />
-    <ClInclude Include="_.h" />
-    <ClInclude Include="_defer.h" />
-    <ClInclude Include="hardware\device_listener.h" />
-    <ClInclude Include="hardware\devices.h" />
-    <ClInclude Include="constant\hardware.h" />
-    <ClInclude Include="graphics\graphics\target.h" />
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor_manager.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\debug.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\display.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\graphics_lock.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\icon.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\keyboard.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_command.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_item.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\monitor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\text_editor_interface.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\button.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\call_message_handler_task.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\check_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\copydesk.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\form_callback.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_child.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_layout.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_prodevian.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_scaler.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_thread.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\keyboard.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\main_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\notify_icon.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\notify_icon_listener.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_edit.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_text_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\primitive_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\progress.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\range.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\scroll.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\scroll_bar.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\shell.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\still.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style_control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\system.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_composition.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tool_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\wait_cursor.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\window_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\window_util.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\windowing.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu_command.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appearance\appearance.cpp">
+      <Filter>Source Files\user\apperance</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appearance\button.cpp">
+      <Filter>Source Files\user\apperance</Filter>
+    </ClCompile>
+    <ClCompile Include="user\appearance\still.cpp">
+      <Filter>Source Files\user\apperance</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\aura_mq.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\draw_context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\drawable.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\shell_open.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\theme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\http.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\thread.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windowing.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\aura.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\dpi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\gdi.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\graphics.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\main.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\monitor.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windowing.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="message\_.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\command.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\timer.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\user.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
+    <ClCompile Include="hardware\devices.cpp">
+      <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\alpha.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\api.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\bitmap.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\brush.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\buffered_graphics.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_filter.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_matrix.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\debug.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\device_lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\draw2d.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\glyph.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\glyph_set.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\graphics.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\graphics_extension.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\host.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\matrix.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\object.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\palette.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\pen.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\printer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\region.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\task_tool.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw3d\ortho.cpp">
+      <Filter>Source Files\graphics\draw3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\context_image.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\cursor.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\drawer.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\dynamic.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\extension.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\fastblur.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\frame.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\gif_antialias_8bit.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\icon.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\image.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\imaging.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\list.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\load_gif_frame.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\load_image.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\map.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\meta.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\nanosvg.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\pointer_array.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\image\source.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\_shape.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\drawer.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_enumeration.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_enumeration_item.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_list.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_utf8_bom.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\fonts.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_box.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out_array.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\write_text.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\user\control_box_button.cpp">
+      <Filter>Source Files\graphics\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\user\control_box_icon.cpp">
+      <Filter>Source Files\graphics\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\buffer.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\console.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\device_context.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\double_buffer.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\graphics.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\monitor.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\multiple_buffer.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\target.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\approach.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\buffer.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\context.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\program.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\shader.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="game\estamira.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game.cpp">
+      <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\callback.cpp">
+      <Filter>Source Files\filemanager\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\item_action.cpp">
+      <Filter>Source Files\filemanager\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="hardware\device_listener.cpp">
+      <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\_.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="graphics\draw2d\_impl.h" />
-    <None Include="graphics\_impl.h" />
+    <ClInclude Include="windowing\_.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_impl.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\button.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor_manager.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\event.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\exception.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\graphics_lock.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\hook.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\icon.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\keyboard.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_command.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_item.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\message_box.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\monitor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\simple_ui_display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\text_editor_interface.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\window.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_constant.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_experience_const.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_interaction_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_prelude.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_create.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_interaction_draw2d.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaaa_plain_edit_style.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\button.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\call_message_handler_task.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\check_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control_descriptor.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control_event_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\copydesk.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\form_callback.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\frame.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\graphics_call.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_child.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_layout.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_prodevian.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_scaler.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction_thread.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\keyboard.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\main_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message_window_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_listener.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\notify_icon_mm.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\plain_edit.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\plain_text_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\primitive_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\prodevian.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\progress.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\range.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\scroll.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\scroll_bar.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\scroll_info.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\shell.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\still.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\style.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\style_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\style_control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\system.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\text_composition.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tool_window.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\wait_cursor.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\window_state.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\window_util.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\windowing.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\_menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu_command.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\still.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\button.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\appearance.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\_appearance.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="user\appearance\_.h">
+      <Filter>Header Files\user\appearance</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_features.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_impl.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_platform.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\application.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\aura.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\context.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\draw_context2.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\drawable.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\message_queue.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\session.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\shell_open.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\theme.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\timeout.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\title.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\user_parent.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_application.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_common.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_impl.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_node.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_operating_system.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\_user.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_binreloc.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_c.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_c2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_console.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_os_windowing2.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_process.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_threading.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\aaa_winpr_input.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\chronometer.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\cross.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\file.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\graphics.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\serial.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\text.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\time.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windowing.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_c.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_user.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_windows_impl.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_d2d1_1.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_imm_client.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_imm_context.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_internal.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\aaa_itemidlist.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\gdiplus.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\graphics.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\implementation.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\opengl_buffer.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\port_forward.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\print_job.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\printer.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\top_level_enum.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\window_opengl.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\windowing.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\hardware.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\item_action.h">
+      <Filter>Header Files\filemanager\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filemanager\callback.h">
+      <Filter>Header Files\filemanager\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\shader.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\program.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\context.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\buffer.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\approach.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\_gpu.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\_.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\estamira.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_game.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_.h">
+      <Filter>Header Files\game</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_impl.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_visual_impl.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\api.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\bitmap.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\brush.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\buffered_graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color_filter.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color_matrix.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\common.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\device_lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\draw2d.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\fwd.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\glyph.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\glyph_set.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_call.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_extension.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\host.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\item.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\matrix.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\object.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\palette.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\path.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\pen.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\printer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\region.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\task_tool.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\water_routine.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\write_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\true_type_font_utilities.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out_array.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_metric.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_box.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\fonts.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_item.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_data.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_enumeration_item.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_enumeration.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\drawer.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\draw_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\contains.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\bounding_rect.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_shape.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\user\control_box_button.h">
+      <Filter>Header Files\graphics\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\user\control_box_icon.h">
+      <Filter>Header Files\graphics\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image_impl.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\context_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\cursor.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawer.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawing.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\dynamic.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\extension.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\fastblur.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\header.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\icon.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\imaging.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\list.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\load_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map_ex1.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\meta.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\palette.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\pixmap.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\save_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\source.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\_.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\_graphics.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\_impl.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\bitmap_source_buffer.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\buffer.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\console.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\device_context.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\double_buffer.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\double_pass_scale.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\filters.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\graphics.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\image_console.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\multiple_buffer.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\target.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\window.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\window_buffer.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\window_dc.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw3d\ortho.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw3d\matrix.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw3d\_.h">
+      <Filter>Header Files\graphics\draw3d</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

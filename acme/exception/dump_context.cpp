@@ -581,7 +581,7 @@ void dump_context::write(const unichar * psz)
 
    }
 
-   return write(::str::international::unicode_to_utf8(psz));
+   return write(unicode_to_utf8(psz));
    
 }
 

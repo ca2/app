@@ -78,10 +78,10 @@ string ca2_command_line();
 //
 //   string str = apple_get_bundle_identifier();
 //
-//   if(!::str::begins_eat_ci(str, "com."))
+//   if(!::str().begins_eat_ci(str, "com."))
 //   {
 //
-//      ::str::begins_eat_ci(str, "com.ca2.");
+//      ::str().begins_eat_ci(str, "com.ca2.");
 //
 //   }
 //

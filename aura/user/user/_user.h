@@ -283,7 +283,7 @@ namespace user
 //#include "menu_item.h"
 //#include "menu.h"
 //#include "control_event.h"
-#include "window_map.h"
+//#include "window_map.h"
 
 #include "scroll.h"
 
@@ -331,18 +331,18 @@ namespace user
 
 //#include "keyboard_layout.h"
 #include "keyboard.h"
-
-
-namespace str
-{
-
-
-   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, strsize_array* piaTab = nullptr, ::array < strsize* > iaTab = nullptr);
-   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, ::array < strsize* > iaTab);
-
-
-} // namespace str
-
+//
+//
+//namespace str
+//{
+//
+//
+//   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, strsize_array* piaTab = nullptr, ::array < strsize* > iaTab = nullptr);
+//   CLASS_DECL_AURA void replace_tab(strsize iOffset, string& strParam, int iWidth, ::array < strsize* > iaTab);
+//
+//
+//} // namespace str
+//
 
 struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 

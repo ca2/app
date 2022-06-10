@@ -394,7 +394,7 @@ bool get_memory::get_base64(const ::string & str)
    else
    {
 
-      ::str::base64 base64;
+      ::base64 base64;
 
       return base64.decode(m_block, str);
 

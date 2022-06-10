@@ -178,12 +178,6 @@ void app::add_capability(enum_application_capability ecapability)
 //__main(main);
 
 
-
-
-
-
-
-
 void * application_system(void * pApplication)
 {
    
@@ -192,4 +186,13 @@ void * application_system(void * pApplication)
    return papp->m_psystem;
    
 }
+
+
+void app::open_url(const ::string & strUrl)
+{
+   
+   
+}
+
+
 

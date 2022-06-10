@@ -604,3 +604,21 @@ inline strsize __wd16cspn(const wd16char * psz1, const wd16char * psz2)
 
 
 
+
+
+inline strsize wd16_to_ansi_char_len(wd16char wch) { return ::str().utf_to_utf_length((char *)nullptr, &wch, 1); }
+inline void wd16_to_ansi_char(char * psz, wd16char wch) { ::str().utf_to_utf(psz, &wch, 1); }
+
+
+
+inline void make_upper(wd16char * psz)
+{
+
+   while (*psz)
+   {
+      *psz = upper_char(*psz);
+      psz++;
+   }
+
+}
+

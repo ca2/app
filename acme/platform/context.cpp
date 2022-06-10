@@ -80,7 +80,7 @@ namespace acme
       if (ptextdata->m_atom.is_text())
       {
 
-         if (::str::begins(ptextdata->m_atom.m_psz, "text://"))
+         if (::str().begins(ptextdata->m_atom.m_psz, "text://"))
          {
 
             auto psz = ansi_rchr(ptextdata->m_atom.m_psz + 7, '/');

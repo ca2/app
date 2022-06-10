@@ -14,7 +14,7 @@ string get_error_message(::u32 dwError)
    //   nullptr);
 //   string str = lpBuffer;
    string str = "Error: " + __string(dwError);
-//   string str = ::str::international::unicode_to_utf8(lpBuffer);
+//   string str = unicode_to_utf8(lpBuffer);
 // xxx   LocalFree(lpBuffer);
    return str;
 }

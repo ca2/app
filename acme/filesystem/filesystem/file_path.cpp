@@ -111,14 +111,14 @@ string url_dir_name_for_relative(const char * pszPath)
    
    string strDir(pszPath);
 
-   if (str::ends(strDir, "/"))
+   if (::str().ends(strDir, "/"))
    {
 
       return strDir;
 
    }
 
-   str::ends_eat(strDir, "/");
+   ::str().ends_eat(strDir, "/");
 
    strsize iFind = strDir.reverse_find("/");
 
@@ -533,17 +533,17 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
       return "";
    if (strAbsolute.is_empty())
       return solve_relative(strRelative);
-   if (str::begins_ci(strRelative, "http://"))
+   if (::str().begins_ci(strRelative, "http://"))
       return solve_relative(strRelative);
-   if (str::begins_ci(strRelative, "https://"))
+   if (::str().begins_ci(strRelative, "https://"))
       return solve_relative(strRelative);
-   if (str::begins_ci(strRelative, "ftp://"))
+   if (::str().begins_ci(strRelative, "ftp://"))
       return solve_relative(strRelative);
-   if (str::begins_ci(strRelative, "ext://"))
+   if (::str().begins_ci(strRelative, "ext://"))
       return solve_relative(strRelative);
-   if (str::begins(strRelative, "/"))
+   if (::str().begins(strRelative, "/"))
       return solve_relative(strRelative);
-   if (str::begins(strRelative, "\\\\"))
+   if (::str().begins(strRelative, "\\\\"))
       return solve_relative(strRelative);
 
    index iFind = strRelative.find(":\\");
@@ -564,7 +564,7 @@ CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char
 
    strAbsolute = ::url_dir_name_for_relative(strAbsolute);
 
-   if (!str::ends(strAbsolute, "/"))
+   if (!::str().ends(strAbsolute, "/"))
       strAbsolute += "/";
    strRelative = strAbsolute + strRelative;
 
@@ -867,7 +867,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
    if (strPath.get_length() > 3
       && strPath[2] == ':'
-      && ::str::begins_eat(strPath, "/"))
+      && ::str().begins_eat(strPath, "/"))
    {
 
       //strPath = strPath.Mid(1);

@@ -47,7 +47,7 @@
 block & block::from_base64(const char * psz, strsize iSize) const
 {
 
-   ::str::base64 base64;
+   ::base64 base64;
 
    base64.decode(*this, psz, iSize);
    //get_system()->m_pbase64->decode(*this, psz, iSize);
@@ -60,7 +60,7 @@ block & block::from_base64(const char * psz, strsize iSize) const
 string block::to_base64() const
 {
 
-   ::str::base64 base64;
+   ::base64 base64;
 
    return base64.encode(*this);
 
@@ -76,7 +76,7 @@ string block::to_base64() const
 //
 //   m_pdata = (byte *) memory_allocate(m_iSize);
 //
-//   ::str::base64 base64;
+//   ::base64 base64;
 //
 //   m_iSize = base64.decode(*this, psz, iSize);
 //

@@ -22,7 +22,7 @@ namespace xml
 #include "entity.h"
 #include "disp_option.h"
 #include "parse_info.h"
-#include "attr.h"
+//#include "attr.h"
 #include "node.h"
 #include "exportable.h"
 #include "importable.h"

@@ -176,6 +176,13 @@ public:
       operator = (p.m_p);
    }
 
+   template < class T >
+   payload(const ptr < T > & p)
+   {
+      m_etype = e_type_new;
+      operator = (p.m_p);
+   }
+
    //template < class T >
    //payload(const __pointer(T)& resultpointer)
    //{
@@ -691,6 +698,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
+   template < class T >
+   payload& operator = (const ptr < T > & p)
+   {
+
+      return this->operator = (p.m_p);
+
+   }
    //template < class T >
    //payload & operator = (const __pointer(T) & resultpointer)
    //{
@@ -1106,9 +1120,9 @@ public:
 
 
 
-
-namespace str
-{
+//
+//namespace str
+//{
 
 
    inline CLASS_DECL_ACME void from(::string & str, const payload & payload)
@@ -1118,8 +1132,8 @@ namespace str
 
    }
 
-
-} // namespace str
+//
+//} // namespace str
 
 
 CLASS_DECL_ACME void var_skip_number(const char *& psz);

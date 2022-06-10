@@ -92,3 +92,8 @@ inline u32 wd16_to_u32(const wd16char * psz, const wd16char ** ppszEnd, i32 iBas
 
 
 
+inline strsize wd16_to_ansi_char_len(wd16char wch);
+inline void wd16_to_ansi_char(char * psz, wd16char wch);
+
+
+

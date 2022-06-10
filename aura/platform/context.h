@@ -21,6 +21,12 @@ namespace aura
       void initialize_context_1() override;
 
 
+      virtual ::image_pointer create_image();
+
+
+      virtual ::image_pointer create_image(const ::size_i32 & size, const color32_t * pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+
+
    };
 
 

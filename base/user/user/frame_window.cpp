@@ -494,7 +494,7 @@ namespace user
 
                   get_window_rect(rectangle);
 
-                  pimage1 = m_pcontext->context_image()->create_image(rectangle.size());
+                  pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
                   synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
 

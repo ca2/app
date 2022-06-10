@@ -410,11 +410,11 @@ namespace userex
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::on_message_left_button_up);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::on_message_show_window);
 
-      m_pimageTemplate = m_pcontext->context_image()->create_image({2048,  2048});
+      m_pimageTemplate = m_pcontext->m_pauracontext->create_image({2048,  2048});
 
       ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
-      m_pimageLuminance = m_pcontext->context_image()->create_image({100,  100});
+      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({100,  100});
 
    }
 
@@ -945,7 +945,7 @@ namespace userex
 
       m_rectangleColors = rectangleColors;
 
-      m_pimage = m_pcontext->context_image()->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
+      m_pimage = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
 
       {
 
@@ -959,7 +959,7 @@ namespace userex
 
       }
 
-      m_pimageLuminance = m_pcontext->context_image()->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
+      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
 
       rebuild_luminance();
 

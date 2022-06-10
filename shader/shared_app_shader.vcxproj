@@ -362,7 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="operating-system\windows\_app_shader.cpp" />
+    <ClCompile Include="_main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
@@ -385,7 +385,7 @@
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
     <ProjectReference Include="app_shader.vcxproj">
-      <Project>{1b31139b-7cd2-44d7-9765-6e438ae15d9f}</Project>
+      <Project>{a18176c9-0892-4ff4-9be4-2a7fe6ea3005}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -271,7 +271,7 @@ namespace sockets
 //#ifdef NO_GETADDRINFO
 //      if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
 //      {
-//         ::str().parse pa((const char *)host, ".");
+//         ::parse pa((const char *)host, ".");
 //         union
 //         {
 //            struct
@@ -564,7 +564,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::str().parse pa((const char *)host, ".");
+         ::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;

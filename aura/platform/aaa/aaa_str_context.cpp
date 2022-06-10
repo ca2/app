@@ -642,7 +642,7 @@
 //
 //      char * pszFile = mem.get_psz(len);
 //
-//      ::str().parse parse(pszFile, len);
+//      ::parse parse(pszFile, len);
 //
 //      string str;
 //

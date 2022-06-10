@@ -94,7 +94,7 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::str().parse pa(m_chunk_line, ";");
+                     ::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
                      m_chunk_size = ::hex::to_u32(size_str);
                      if (!m_chunk_size)
@@ -185,7 +185,7 @@ namespace sockets
 
          m_iFirstTime = get_nanos() / 1000;
 
-         ::str().parse pa(line);
+         ::parse pa(line);
          string str = pa.getword();
          if (str.get_length() > 4 &&  ::str().begins_ci(str, "http/")) // response
          {
@@ -231,7 +231,7 @@ namespace sockets
          }
          return;
       }
-      ::str().parse pa(line,":");
+      ::parse pa(line,":");
       string strKey = pa.getword();
       atom key(strKey.make_lower());
       string value = pa.getrest();
@@ -366,7 +366,7 @@ namespace sockets
 
    void sip_base_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
-      ::str().parse pa(url_in,"/");
+      ::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       if (!ansi_compare_ci(protocol, "https:"))
       {
@@ -384,13 +384,13 @@ namespace sockets
       host = pa.getword();
       if (strstr(host,":"))
       {
-         ::str().parse pa(host,":");
+         ::parse pa(host,":");
          pa.getword(host);
          port = static_cast<port_t>(pa.getvalue());
       }
       url = "/" + pa.getrest();
       {
-         ::str().parse pa(url,"/");
+         ::parse pa(url,"/");
          string tmp = pa.getword();
          while (tmp.get_length())
          {

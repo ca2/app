@@ -278,7 +278,7 @@ namespace net
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::str().parse pa((const char*)host, ".");
+         ::parse pa((const char*)host, ".");
          union
          {
             struct
@@ -651,7 +651,7 @@ namespace net
    #ifdef NO_GETADDRINFO
          if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
          {
-            ::str().parse pa((const char *)host, ".");
+            ::parse pa((const char *)host, ".");
             union {
                struct {
                   uchar b1;

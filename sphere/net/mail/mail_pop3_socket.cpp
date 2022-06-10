@@ -322,7 +322,7 @@ namespace mail
                {
                   m_ppop3->m_setHeaders[m_strKey] = m_strValue;
                }
-               ::str().parse pa(strLine,":");
+               ::parse pa(strLine,":");
                m_strKey = pa.getword();
                m_strValue = pa.getrest();
             }

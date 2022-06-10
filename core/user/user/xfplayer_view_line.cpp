@@ -304,7 +304,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                ::image_pointer pimage;
                if (rectangle.area() > 0)
                {
-                  pimage = pcontext->m_pauracontext->create_image(rectangle.size());
+                  pimage = m_pcontext->m_pauracontext->create_image(rectangle.size());
                   pimage->fill(255, 255, 255, 255);
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
@@ -1556,7 +1556,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    size.cy += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
 
 
-   pimageCache = pcontext->m_pauracontext->create_image(size);
+   pimageCache = m_pcontext->m_pauracontext->create_image(size);
 
    if (!pimageCache)
       return;

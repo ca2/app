@@ -649,7 +649,7 @@ void Screen::draw_teardown(NVGcontext * ctx) {
 ::image_pointer Screen::create_image(const ::size_i32 & size)
 {
 
-   return m_puserinteraction->pcontext->m_pauracontext->create_image(size);
+   return m_puserinteraction->m_pcontext->m_pauracontext->create_image(size);
 
 }
 

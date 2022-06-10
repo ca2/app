@@ -176,7 +176,7 @@ namespace gpu
 
       //__construct(m_pbuffer);
 
-      //m_pbuffer->m_pimage = pcontext->m_pauracontext->create_image(size);
+      //m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
 
       //if (!::is_ok(m_pbuffer->m_pimage))
       //{

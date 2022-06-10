@@ -968,7 +968,7 @@ namespace nano2d
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->pcontext->m_pauracontext->create_image_integer(w, h, (const ::color32_t *) data, iScan);
+      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
 
    }
 

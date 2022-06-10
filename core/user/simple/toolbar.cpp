@@ -398,7 +398,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
    
    //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
-   m_pimageDraft = pcontext->m_pauracontext->create_image({20,  20 });
+   m_pimageDraft = m_pcontext->m_pauracontext->create_image({20,  20 });
 
 }
 

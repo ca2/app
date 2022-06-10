@@ -5715,13 +5715,13 @@ namespace user
             size.cy += 4;
 
             ::image_pointer pimage1;
-            pimage1 = pcontext->m_pauracontext->create_image(size);
+            pimage1 = m_pcontext->m_pauracontext->create_image(size);
             pimage1->fill(0,0,0,0);
             auto pbrushText = __create < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image_pointer pimage2;
-            pimage2 = pcontext->m_pauracontext->create_image(size);
+            pimage2 = m_pcontext->m_pauracontext->create_image(size);
             pimage2->fill(0,0,0,0);
 
             ::rectangle_i32 rectangleCache;

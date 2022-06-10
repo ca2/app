@@ -1572,7 +1572,7 @@ namespace draw2d_cairo
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = pcontext->m_pauracontext->create_image(size);
+            ::image_pointer pimage1 = m_pcontext->m_pauracontext->create_image(size);
 
             //if (!pimage1)
             //{
@@ -1601,7 +1601,7 @@ namespace draw2d_cairo
 
             }
 
-            ::image_pointer pimage2 = pcontext->m_pauracontext->create_image(size);
+            ::image_pointer pimage2 = m_pcontext->m_pauracontext->create_image(size);
 
             //if (!pimage2)
             //{

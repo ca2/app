@@ -430,7 +430,7 @@ void channel::command_handler(::message::command * pcommand)
    else
    {
 
-      throw ::not_implemented();
+      //throw ::not_implemented();
 
    }
 

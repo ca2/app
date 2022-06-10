@@ -176,6 +176,9 @@ i32 process_get_scheduling_priority(i32 iOsPriority)
 }
 
 
+i32 process_get_os_priority(i32 nCa2Priority);
+
+
 namespace parallelization
 {
 

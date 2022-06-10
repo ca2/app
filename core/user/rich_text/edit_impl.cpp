@@ -1788,7 +1788,7 @@ namespace user
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 
-                     const char * dec = ::str().uni_dec(psz, end);
+                     const char * dec = ::str().prior(end, psz);
 
                      m_pdata->m_iSelEnd -= end - dec;
 

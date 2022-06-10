@@ -1214,7 +1214,7 @@ namespace html
 
                   }
 
-                  ::str().increment(pszParse);
+                  ::str().increment(pszEnd);
 
                   iChar++;
                }

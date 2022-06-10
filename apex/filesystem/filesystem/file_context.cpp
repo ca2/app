@@ -3195,11 +3195,17 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       return create_resource_file(path);
 
    }
-   else
+   else if(path.begins_eat_ci("file://"))
    {
 
       return create_native_file(path, eopen);
 
+   }
+   else
+   {
+      
+      return create_native_file(path, eopen);
+      
    }
 
    return pfile;

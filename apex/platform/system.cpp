@@ -23,7 +23,7 @@
 //#include "acme/platform/system_impl.h"
 #include "acme/primitive/string/base64.h"
 
-
+int file_put_contents(const char * path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 
 
@@ -1672,6 +1672,9 @@ pacmedirectory->create("/ca2core");
 
    void system::post_initial_request()
    {
+      
+      if(!m_bPostedInitialRequest)
+      {
 
       m_bPostedInitialRequest = true;
 
@@ -1717,6 +1720,8 @@ pacmedirectory->create("/ca2core");
       add_create(pcreate);
 
       post_creation_requests();
+         
+      }
 
    }
 
@@ -3125,6 +3130,7 @@ pacmedirectory->create("/ca2core");
 
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    {
+      
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3331,7 +3337,17 @@ pacmedirectory->create("/ca2core");
    void system::on_open_file(const ::string & pszFile)
    {
       
-      defer_accumulate_on_open_file({pszFile}, "");
+      //file_put_contents("/Users/camilo/debug/on_open_file.txt", pszFile);
+
+      m_bPostedInitialRequest = true;
+
+      __pointer(::create) pcreate(e_create_new, this);
+      
+      pcreate->m_payloadFile = pszFile;
+      
+      m_pappMain->m_papplication->post_element(e_message_system, e_system_message_create, pcreate);
+
+//      defer_accumulate_on_open_file({pszFile}, "");
       
       //return ::success;
       

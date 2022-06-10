@@ -1032,6 +1032,7 @@
     <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
+    <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

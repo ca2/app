@@ -66,7 +66,9 @@ namespace app_shader
 
       rectangle_i32 rectangleWindow;
 
-      m_pmainwindow->_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 });
+      //m_pmainwindow->_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 });
+
+      m_pmainwindow->_001InitialFramePosition();
 
       m_pmainwindow->display(e_display_normal);
 

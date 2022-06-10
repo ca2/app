@@ -13392,7 +13392,9 @@ namespace user
 
       auto zorder = layout().sketch().zorder();
 
-      good_restore(nullptr, nullptr, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+      auto rectangle = layout().normal().parent_client_rect();
+
+      good_restore(nullptr, rectangle, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
    }
 

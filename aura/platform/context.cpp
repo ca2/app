@@ -25,7 +25,7 @@ namespace aura
    {
 
       //auto estatus =
-      
+
       ::apex::context::initialize_context();
 
       //if (!estatus)
@@ -1002,6 +1002,58 @@ namespace aura
 //      return estatus;
 //
 //   }
+
+   ::image_pointer context::create_image()
+   {
+
+      auto pimage = __create < ::image >();
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      return ::move(pimage);
+
+   }
+
+
+   ::image_pointer context::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   {
+
+      auto pimage = m_pcontext->__create < ::image >();
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      //auto estatus =
+      pimage->create(size, eflagCreate);
+
+      if (::is_set(pcolor))
+      {
+
+         pimage->map();
+
+         copy_colorref(pimage->get_data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
+
+      }
+
+      //if (!estatus)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      return ::move(pimage);
+
+   }
 
 
 } // namespace apex

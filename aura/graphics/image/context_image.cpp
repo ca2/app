@@ -93,7 +93,7 @@ i32 context_image::create_image_integer(int w, int h, const color32_t * pcolor, 
 
    }
 
-   auto pimage = create_image({ w, h }, pcolor, iScan);
+   auto pimage = m_pcontext->m_pauracontext->create_image({ w, h }, pcolor, iScan);
 
    string strPath;
 
@@ -1105,57 +1105,6 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-::image_pointer context_image::create_image()
-{
-
-   auto pimage = __create < ::image >();
-
-   if (!pimage)
-   {
-
-      return nullptr;
-
-   }
-
-   return ::move(pimage);
-
-}
-
-
-::image_pointer context_image::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
-{
-
-   auto pimage = m_pcontext->__create < ::image >();
-
-   if (!pimage)
-   {
-
-      return nullptr;
-
-   }
-
-   //auto estatus =
-   pimage->create(size, eflagCreate);
-
-   if (::is_set(pcolor))
-   {
-
-      pimage->map();
-
-      copy_colorref(pimage->get_data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
-
-   }
-
-   //if (!estatus)
-   //{
-
-   //   return nullptr;
-
-   //}
-
-   return ::move(pimage);
-
-}
 
 
 ::image_pointer context_image::matter_cache_image(const ::string & strMatter)

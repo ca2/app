@@ -21,6 +21,8 @@ namespace opengl
 
       m_emode = e_mode_system;
 
+      m_estatus = error_not_initialized;
+
    }
 
 
@@ -214,7 +216,11 @@ namespace opengl
 
       m_itaskGpu = ::get_current_itask();
 
-      //return ::success;
+      m_estatus = ::success;
+
+      set_ok();
+
+      
    }
 
 

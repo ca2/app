@@ -99,11 +99,6 @@ public:
    virtual void _os_load_image(::image * pimage, memory & memory);
 
 
-   virtual ::image_pointer create_image();
-
-
-   virtual ::image_pointer create_image(const ::size_i32 & size, const color32_t * pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
-
    ::image_pointer get_cache_image(const ::payload & payloadFile);
    ::image_pointer matter_cache_image(const ::string & strMatter);
 

@@ -7530,7 +7530,7 @@ namespace user
             {
                ///return true;
 
-               m_plist->m_pimageTime = m_pcontext->context_image()->create_image(m_plist->m_pimageSpot->size());
+               m_plist->m_pimageTime = pcontext->m_pauracontext->create_image(m_plist->m_pimageSpot->size());
 
                ::rectangle_i32 rectangle = rectangleI;
 

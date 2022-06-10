@@ -137,7 +137,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          synchronous_lock lock(get_html_data()->mutex());
 
-         auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
+         auto pimage = pcontext->m_pauracontext->create_image({ 50,  50 });
 
          get_html_data()->delete_implementation();
 
@@ -730,7 +730,7 @@ void html_form::defer_implement()
       
    }
 
-   auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
+   auto pimage = pcontext->m_pauracontext->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 
@@ -754,7 +754,7 @@ void html_form::defer_html_layout()
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
       return;
 
-   auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
+   auto pimage = pcontext->m_pauracontext->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 

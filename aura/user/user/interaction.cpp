@@ -2597,6 +2597,27 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
+      {
+
+         single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
+            || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
+            : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
+            true);
+
+
+         try
+         {
+
+            hide();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       user_interaction_on_hide();
 
       {
@@ -2775,22 +2796,6 @@ namespace user
 
       //task_erase_all();
 
-      single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
-                         || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
-                                                                                                    : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
-                         true);
-
-
-      try
-      {
-
-         hide();
-
-      }
-      catch (...)
-      {
-
-      }
 
       //synchronous_lock synchronouslock(mutex_children());
 
@@ -3593,11 +3598,21 @@ namespace user
             for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
             {
 
+
                try
                {
 
                   if (!pinteraction)
                   {
+
+                     continue;
+
+                  }
+
+                  if (pinteraction->is_destroying() || !pinteraction->is_window())
+                  {
+
+                     ::output_debug_string("trying to draw window being destroyed");
 
                      continue;
 

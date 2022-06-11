@@ -5,30 +5,20 @@
 void source::add_handler(::matter * pmatter, bool bPriority)
 {
 
-   //auto estatus = 
    __defer_construct_new(m_phandlera);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
 
    if (bPriority)
    {
 
-      m_phandlera->insert_at(0, pmatter);
+      m_phandlera->insert_unique_at(0, pmatter);
 
    }
    else
    {
 
-      m_phandlera->add(pmatter);
+      m_phandlera->add_unique(pmatter);
 
    }
-
-   //return estatus;
 
 }
 

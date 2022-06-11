@@ -220,6 +220,50 @@ public:
    }
 
 
+   bool insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   {
+
+      if (i < 0 || i > this->get_size())
+      {
+
+         throw ::exception::exception(error_bad_argument);
+
+      }
+
+      auto iFind = this->find_first(p);
+
+      if (iFind < 0)
+      {
+
+         this->insert_at(i, p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+         return true;
+
+      }
+
+      if (iFind < i)
+      {
+
+         this->erase_at(iFind);
+
+         this->insert_at(i - 1, p);
+
+      }
+      else if(iFind > i)
+      {
+
+         this->erase_at(iFind);
+
+         this->insert_at(i, p);
+
+      }
+
+      return false;
+
+   }
+
+
+
    bool add_unique(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 

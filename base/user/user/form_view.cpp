@@ -108,6 +108,8 @@ namespace user
 
       __pointer(::user::form) pformOld;
 
+      __pointer(::user::form) pformNew;
+
       if (m_pform != this)
       {
 
@@ -130,30 +132,32 @@ namespace user
 
          auto psession = get_session();
 
-         m_pform = create_view(psession->user()->get_html_view_type());
+         pformNew = create_view(psession->user()->get_html_view_type());
 
-         if(m_pform)
+         if(pformNew)
          {
 
-            m_pform->set_parent_form(this);
+            static int s_iFormSerial = 1;
+
+            pformNew->payload("form_serial") = s_iFormSerial;
+
+            s_iFormSerial++;
+
+            pformNew->set_parent_form(this);
 
             if (m_pcallback)
             {
 
-               m_pform->set_form_callback(m_pcallback);
+               pformNew->set_form_callback(m_pcallback);
 
             }
 
             if (strHtml.has_char())
             {
 
-               m_pform->open_html(strHtml);
-               //if ()
-               {
+               pformNew->open_html(strHtml);
 
-                  bOk = true;
-
-               }
+               bOk = true;
 
             }
             else
@@ -162,7 +166,7 @@ namespace user
                try
                {
 
-                  m_pform->open_document(pathHtml);
+                  pformNew->open_document(pathHtml);
 
                   bOk = true;
 
@@ -170,11 +174,25 @@ namespace user
                catch (...)
                {
 
-                  m_pform->start_destroying_window();
+                  pformNew->start_destroying_window();
 
-                  m_pform.release();
+                  pformNew.release();
 
                }
+
+            }
+
+         }
+
+         if (bOk)
+         {
+
+            m_pform = pformNew;
+
+            if (pformOld)
+            {
+
+               pformOld->set_finish();
 
             }
 
@@ -185,28 +203,6 @@ namespace user
       {
 
          m_pform.release();
-
-      }
-
-      if(pformOld)
-      {
-
-//         __pointer(::user::form_view) pimpact = pformOld;
-
-         //if (pimpact)
-         //{
-
-         //   pimpact->set_finish();
-
-         //   //get_document()->erase_view(pimpact);
-
-         //}
-
-         //pformOld->destroy_window();
-
-         //pformOld.release();
-
-         pformOld->set_finish();
 
       }
 

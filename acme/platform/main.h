@@ -126,13 +126,12 @@ class embed_resource
 {
 public:
 
-   inline embed_resource(main & main, char * start, char * end)
-   {
 
-      main.m_pchar_binary__matter_zip_start = start;
-      main.m_pchar_binary__matter_zip_end = end;
+   embed_resource(char * start, char * end);
 
-   }
+   static char * get_start();
+   static char * get_end();
+
 
 };
 
@@ -154,10 +153,17 @@ public:
 #if defined(LINUX) || defined(FREEBSD) //|| defined(ANDROID)
 
 
-#define __embed_resource(app) \
+//#define __embed_resource(app) \
+//extern char _binary__matter_zip_start[]; \
+//extern char _binary__matter_zip_end[];   \
+//embed_resource g_embed_resource(app, _binary__matter_zip_start, _binary__matter_zip_end);
+
+
+#define __embed_resource \
 extern char _binary__matter_zip_start[]; \
 extern char _binary__matter_zip_end[];   \
-embed_resource g_embed_resource(app, _binary__matter_zip_start, _binary__matter_zip_end);
+embed_resource g_embed_resource(_binary__matter_zip_start, _binary__matter_zip_end);
+
 
 #else
 

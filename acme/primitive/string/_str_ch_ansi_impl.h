@@ -50,7 +50,7 @@ inline i32 str::ch::parse_unicode(const ansichar *& pszUtf8)
 inline i32 str::ch::uni_index_len(const ansichar * pszUtf8, ::i32 & len)
 {
 
-   if (*pszUtf8 == '\0')
+   if (is_empty(pszUtf8))
    {
 
       len = 0;

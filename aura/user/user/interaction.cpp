@@ -9818,9 +9818,14 @@ namespace user
 
             puseritem->m_ppath.release();
 
-            auto rectangle = this->rectangle(puseritem->m_eelement);
+            if(puseritem->m_eelement != e_element_item)
+            {
 
-            puseritem->m_rectangle = rectangle;
+               auto rectangle = this->rectangle(puseritem->m_eelement);
+
+               puseritem->m_rectangle = rectangle;
+
+            }
 
          }
 

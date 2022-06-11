@@ -49,7 +49,7 @@ string_array get_c_args_from_string(const char * psz)
 
       ::str().consume_spaces(psz, 0, pszEnd);
 
-      if (psz >= pszEnd)
+      if (is_empty(psz))
       {
 
          break;
@@ -77,7 +77,7 @@ string_array get_c_args_from_string(const char * psz)
 
             ::str().increment(psz);
 
-            if (psz >= pszEnd)
+            if (::is_empty(psz))
             {
 
                break;

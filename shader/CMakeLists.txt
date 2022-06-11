@@ -6,6 +6,7 @@ list(APPEND library_source
    _.cpp
    _.h
    _app_shader.h
+   _factory.cpp
    application.cpp
    application.h
    framework.h

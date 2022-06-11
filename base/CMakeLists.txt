@@ -8,7 +8,7 @@ list(APPEND library_source
         constant/idpool.cpp
         constant/idpool.h
    #    const/procedure.h
-        include/_.cpp
+        #include/_.cpp
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -88,7 +88,7 @@ list(APPEND library_source
         user/simple/main_frame.h
         user/simple/scroll_bar.cpp
         user/simple/scroll_bar.h
-        user/user/_.cpp
+        #user/user/_.cpp
         user/user/_.h
         #user/user/_constant.h
         user/user/_data.h
@@ -96,13 +96,13 @@ list(APPEND library_source
         user/user/_tree.h
         user/user/_user.h
         user/user/composition_imm_client.h
-        user/user/control.cpp
-        user/user/control.h
+        #user/user/control.cpp
+        #user/user/control.h
         user/user/control_bar.cpp
         user/user/control_bar.h
         user/user/control_ddx_dbflags.h
-        user/user/control_descriptor_set.cpp
-        user/user/control_descriptor_set.h
+        #user/user/control_descriptor_set.cpp
+        #user/user/control_descriptor_set.h
         user/user/control_property.cpp
         user/user/control_property.h
         user/user/data_exchange.cpp
@@ -114,8 +114,8 @@ list(APPEND library_source
         user/user/document_manager.h
         user/user/document_manager_container.cpp
         user/user/document_manager_container.h
-        user/user/edit_plain_text_view.cpp
-        user/user/edit_plain_text_view.h
+        #user/user/edit_plain_text_view.cpp
+        #user/user/edit_plain_text_view.h
         user/user/edit_window.h
         user/user/form_control.cpp
         user/user/form_control.h
@@ -162,8 +162,8 @@ list(APPEND library_source
         user/user/multiple_document_template.h
         user/user/network_configuration.cpp
         user/user/network_configuration.h
-        user/user/notification_area.cpp
-        user/user/notification_area.h
+        #user/user/notification_area.cpp
+        #user/user/notification_area.h
         user/user/picture.cpp
         user/user/picture.h
         user/user/picture_interaction.cpp
@@ -209,7 +209,7 @@ list(APPEND library_source
         user/user/toolbar.h
         user/user/user.cpp
         user/user/user.h
-        user/user/validate.cpp
+        #user/user/validate.cpp
         user/_.h
         user/prelude.h
         version/version.config.h

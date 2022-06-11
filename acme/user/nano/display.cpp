@@ -92,6 +92,13 @@ namespace nano
    }
 
 
+   ::size_i32 display::get_main_screen_size()
+   {
+
+      return { 800, 600 };
+
+   }
+
 
 } // namespace nano
 

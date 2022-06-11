@@ -581,6 +581,20 @@ namespace x11
    }
 
 
+   ::size_i32 display::get_main_screen_size()
+   {
+
+      auto snum = DefaultScreen(m_pdisplay);
+
+      auto width = DisplayWidth(m_pdisplay, snum);
+
+      auto height = DisplayHeight(m_pdisplay, snum);
+
+      return { width, height };
+
+   }
+
+
 } // namespace x11
 
 

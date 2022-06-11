@@ -17,6 +17,9 @@ public:
    ~nano_window_implementation() override;
 
 
+   virtual ::nano::display * get_display();
+
+
    void draw(nano_device * pnanodevice) override;
 
    bool get_dark_mode() override;
@@ -28,6 +31,9 @@ public:
 
 
    void handle(::topic * ptopic, ::context * pcontext) override;
+
+
+   virtual ::size_i32 get_main_screen_size();
 
 
 };

@@ -73,7 +73,7 @@ list(APPEND library_source
    graphics/draw2d/host.cpp
    graphics/draw2d/host.h
    graphics/draw2d/item.h
-   graphics/draw2d/keep.cpp
+   #graphics/draw2d/keep.cpp
    #graphics/draw2d/keep.h
    graphics/draw2d/lock.cpp
    graphics/draw2d/lock.h
@@ -146,7 +146,7 @@ list(APPEND library_source
    graphics/image/array.h
    graphics/image/drawer.cpp
    graphics/image/drawer.h
-   graphics/image/drawing.cpp
+   #graphics/image/drawing.cpp
    graphics/image/drawing.h
    graphics/image/dynamic.cpp
    graphics/image/dynamic.h
@@ -158,7 +158,7 @@ list(APPEND library_source
    graphics/image/frame.h
    graphics/image/frame_array.h
    graphics/image/gif_antialias_8bit.cpp
-   graphics/image/gif_detect_8bit_borders.cpp
+   #graphics/image/gif_detect_8bit_borders.cpp
    graphics/image/header.h
    graphics/image/list.cpp
    graphics/image/list.h
@@ -168,7 +168,7 @@ list(APPEND library_source
    graphics/image/meta.cpp
    graphics/image/meta.h
    graphics/image/nanosvg.cpp
-   graphics/image/object.cpp
+   #graphics/image/object.cpp
    graphics/image/palette.h
    graphics/image/pointer_array.cpp
    graphics/image/source.cpp
@@ -216,7 +216,7 @@ list(APPEND library_source
    hardware/device_listener.h
    hardware/devices.cpp
    hardware/devices.h
-   include/_.cpp
+   #include/_.cpp
    include/_.h
    include/_c.h
    include/_c_bridge.h
@@ -264,7 +264,7 @@ list(APPEND library_source
    operating_system/cairo/_.h
    operating_system/cairo/_impl.h
    operating_system/_.h
-   operating_system/_application.cpp
+   #operating_system/_application.cpp
    operating_system/_application.h
    #operating_system/_c.h
    operating_system/_impl.h
@@ -326,7 +326,7 @@ list(APPEND library_source
    user/menu/menu_command.h
    #user/micro/message_box.cpp
    #user/micro/message_box.h
-   user/user/_.cpp
+   #user/user/_.cpp
    user/user/_.h
    #user/_const-.h
    user/user/_constant.h
@@ -344,7 +344,7 @@ list(APPEND library_source
    user/user/call_message_handler_task.h
    user/user/check_box.cpp
    user/user/check_box.h
-   user/user/control_descriptor.cpp
+   #user/user/control_descriptor.cpp
    user/user/control_descriptor.h
    user/user/copydesk.cpp
    user/user/copydesk.h
@@ -424,16 +424,16 @@ list(APPEND library_source
    user/user/user.h
    user/user/wait_cursor.cpp
    user/user/wait_cursor.h
-   user/user/window_map.cpp
-   user/user/window_map.h
+   #user/user/window_map.cpp
+   #user/user/window_map.h
    user/user/window_state.cpp
    user/user/window_state.h
    user/user/window_util.cpp
    user/user/window_util.h
    user/user/windowing.cpp
    user/user/windowing.h
-   windowing/buffer.cpp
-   windowing/buffer.h
+   #windowing/buffer.cpp
+   #windowing/buffer.h
    windowing/cursor.cpp
    windowing/cursor.h
    windowing/cursor_manager.cpp
@@ -676,8 +676,8 @@ endif ()
 list(APPEND windowing_source
    windowing/_.h
    windowing/_windowing.h
-   windowing/buffer.cpp
-   windowing/buffer.h
+   #windowing/buffer.cpp
+   #windowing/buffer.h
    #windowing/button.cpp
    #windowing/button.h
    windowing/debug.cpp
@@ -887,7 +887,7 @@ endif ()
 if (LINUX OR APPLE OR SOLARIS)
    list(APPEND library_source
       operating_system/posix/_posix.h
-      operating_system/posix/application.cpp
+    #  operating_system/posix/application.cpp
       )
 
 endif ()

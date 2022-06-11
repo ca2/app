@@ -52,6 +52,9 @@ namespace x11
       ~nano_window() override;
 
 
+      ::nano::display * get_display() override;
+
+
       void on_initialize_object() override;
 
       void create() override;
@@ -123,6 +126,10 @@ namespace x11
       void release_capture() override;
 
       virtual void _wm_nodecorations(int iMap);
+
+
+      //::size_i32 get_main_screen_size() override;
+
 
    };
 

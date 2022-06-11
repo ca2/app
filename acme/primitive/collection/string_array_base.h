@@ -2265,56 +2265,6 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 }
 
 
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
-{
-
-   if (this->prepare_first_last(iFind, iLast))
-   {
-
-      for (; iFind <= iLast; iFind++)
-      {
-
-         if (::str().ends_ci(pcszTopic, this->element_at(iFind)))
-         {
-
-            return iFind;
-
-         }
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
-{
-
-   if (this->prepare_first_last(iFind, iLast))
-   {
-
-      for (; iFind <= iLast; iFind++)
-      {
-
-         if (::str().ends(pcszTopic, this->element_at(iFind)))
-         {
-
-            return iFind;
-
-         }
-
-      }
-
-   }
-
-   return -1;
-
-}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -2413,48 +2363,6 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    {
 
       return _find_first_suffixed(strSuffix, iFind, iLast);
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
-{
-
-   for (; iFind < iLast; iFind++)
-   {
-
-      if (::str().ends(this->element_at(iFind), strSuffix))
-      {
-
-         return iFind;
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed_ci(const Type & strSuffix, ::index iFind, ::index iLast) const
-{
-
-   for (; iFind < iLast; iFind++)
-   {
-
-      if (::str().ends_ci(this->element_at(iFind), strSuffix))
-      {
-
-         return iFind;
-
-      }
 
    }
 

@@ -81,6 +81,28 @@ namespace x11
    }
 
 
+   ::nano::display * nano_window::get_display()
+   {
+
+      if (!m_pdisplay)
+      {
+
+         m_pdisplay = ::x11::display::get(this);
+
+         if (!m_pdisplay)
+         {
+
+            throw ::exception(error_null_pointer);
+
+         }
+
+      }
+
+      return m_pdisplay;
+
+   }
+
+
    void nano_window::on_initialize_object()
    {
 
@@ -153,14 +175,7 @@ namespace x11
    void nano_window::create()
    {
 
-      m_pdisplay = ::x11::display::get(this);
-
-      if (!m_pdisplay)
-      {
-
-        throw ::exception(error_null_pointer);
-
-      }
+      get_display();
 
       m_pdisplay->display_send([this]()
       {
@@ -797,6 +812,14 @@ namespace x11
    }
 
 
+//   ::size_i32 nano_window::get_main_screen_size()
+//   {
+//
+//      return m_pdisplay->get_main_screen_size();
+//
+//   }
+
+
 } // namespace x11
 
 
@@ -809,7 +832,9 @@ CLASS_DECL_ACME class ::system * get_system();
 void x11_asynchronous(::procedure function)
 {
 
-   auto pdisplay = ::x11::display::get(g_psystem);
+   auto psystem = ::get_system();
+
+   auto pdisplay = ::x11::display::get(psystem);
 
    if (!pdisplay)
    {

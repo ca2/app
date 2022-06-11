@@ -30,6 +30,9 @@ namespace nano
       virtual bool display_posted_routine_step();
 
 
+      virtual ::size_i32 get_main_screen_size();
+
+
    };
 
 

@@ -77,7 +77,7 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessa
 
 int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-void mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 i32 CLASS_DECL_ACME __linux_main(i32 argc, char * argv[]);
 

@@ -18,23 +18,23 @@
    template < int n > class get_char_type < const char[n] > { public: using CHAR_TYPE = char; };
    template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };
 
-//
-//   template < typename TYPE1, typename TYPE2 >
-//   inline i32 str::compare(const TYPE1 & str1, const TYPE2 & str2)
-//   {
-//
-//      return str::string_compare(str1, str2);
-//
-//   }
+
+   template < typename TYPE1, typename TYPE2 >
+   inline i32 str::compare(const TYPE1 & str1, const TYPE2 & str2)
+   {
+
+      return str::string_compare(str1, str2);
+
+   }
 
 
-//   template < typename TYPE1, typename TYPE2 >
-//   inline i32 str::compare_ci(const TYPE1 & str1, const TYPE2 & str2)
-//   {
-//
-//      return str::string_compare_ci(str1, str2);
-//
-//   }
+   template < typename TYPE1, typename TYPE2 >
+   inline i32 str::compare_ci(const TYPE1 & str1, const TYPE2 & str2)
+   {
+
+      return str::string_compare_ci(str1, str2);
+
+   }
 
    template < typename TYPE1, typename TYPE2 >
    inline bool str::equals(const TYPE1 & str1, const TYPE2 & str2)

@@ -518,7 +518,7 @@ namespace aura
          if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
-            auto pfile = __create_new<::linux::desktop_file>();
+            auto pfile = __create_new< ::freedesktop::desktop_file >();
 
             pfile->set_app_id(papp->m_strAppId);
 

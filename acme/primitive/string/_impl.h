@@ -13,7 +13,7 @@
 #include "_str_trait_wd32_impl.h"
 
 
-#include "_compare_impl.h"
+#include "_str_compare_impl.h"
 
 
 #include "_str_trait_impl.h"

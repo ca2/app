@@ -84,6 +84,8 @@ namespace x11
       //void display_send(const ::procedure & procedure);
       //bool display_posted_routine_step();
 
+      ::size_i32 get_main_screen_size() override;
+
 
    };
 

@@ -80,31 +80,31 @@ u32 decode_utf16_pair(u16 * units)
    //}
 
 
-template < >
-i32 str::compare(const ::string & str1, const ::string & str2)
-{
-
-   return strcmp(str1, str2);
-
-}
-
-
-template < >
-i32 str::compare_ci(const ::string & str1, const ::string & str2)
-{
-
-   return ansi_compare_ci(str1, str2);
-
-}
-
-
-template < >
-bool str::equals(const ::string & str1, const ::string & str2)
-{
-
-   return compare(str1, str2) == 0;
-
-}
+////template < >
+//i32 str::compare(const ::string & str1, const ::string & str2)
+//{
+//
+//   return strcmp(str1, str2);
+//
+//}
+//
+//
+////template < >
+//i32 str::compare_ci(const ::string & str1, const ::string & str2)
+//{
+//
+//   return ansi_compare_ci(str1, str2);
+//
+//}
+//
+//
+////template < >
+//bool str::equals(const ::string & str1, const ::string & str2)
+//{
+//
+//   return compare(str1, str2) == 0;
+//
+//}
 
 
 //template < >
@@ -113,20 +113,20 @@ bool str::equals(const ::string & str1, const ::string & str2)
 //   return compare_ci(psz1, psz2) == 0;
 //}
 
-template < >
-string  str::equals_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent)
-{
-   return equals(str1, str2) ? strGetOnEqual : strGetOnDifferent;
-}
-
-
-template < >
-string  str::equals_ci_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent)
-{
-
-   return equals(str1, str2) ? strGetOnEqual : strGetOnDifferent;
-
-}
+////template < >
+//string  str::equals_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent)
+//{
+//   return equals(str1, str2) ? strGetOnEqual : strGetOnDifferent;
+//}
+//
+//
+////template < >
+//string  str::equals_ci_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent)
+//{
+//
+//   return equals(str1, str2) ? strGetOnEqual : strGetOnDifferent;
+//
+//}
 
 
 template < >
@@ -173,12 +173,12 @@ bool str::begins(const ::string & str, const ::string & strPrefix)
 }
 
 
-bool str::begins_with(const ::string & str, const ::string & strPrefix)
-{
-
-   return begins(str, strPrefix);
-
-}
+//bool str::begins_with(const ::string & str, const ::string & strPrefix)
+//{
+//
+//   return begins(str, strPrefix);
+//
+//}
 
 //bool str::begins(const ::string & str, const char * pcszPrefix)
 

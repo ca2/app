@@ -18,14 +18,11 @@
    template < typename TYPE1, typename TYPE2 >
    inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent = nullptr);
 
-
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
    inline bool begins(const TOPIC_STRING & topic, const PREFIX_STRING & prefix);
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
    inline bool begins_ci(const TOPIC_STRING & topic, const PREFIX_STRING & prefix);
-
-//#endif
 
    template < typename TYPE, typename FED, typename PREFIX >
    inline bool begins(const TYPE & str, FED & strFed, const PREFIX & strPrefix);
@@ -58,60 +55,56 @@
    bool  while_begins_with_chars_eat(string & str, const char * pcszChars);
    bool  while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
 
-
-
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
    inline bool ends(const TOPIC_STRING & topic, const SUFFIX_STRING & suffix);
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline  bool ends_ci(const TOPIC_STRING & topic, const SUFFIX_STRING & suffix);
-
-//#endif
+   inline bool ends_ci(const TOPIC_STRING & topic, const SUFFIX_STRING & suffix);
 
    template < typename TYPE, typename SUFFIX >
    inline bool ends_eat(TYPE & str, const SUFFIX & strSuffix);
 
    template < typename TYPE, typename SUFFIX >
-   inline  bool ends_eat_ci(TYPE & str, const SUFFIX & strSuffix);
+   inline bool ends_eat_ci(TYPE & str, const SUFFIX & strSuffix);
 
-   bool  eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
-   bool  eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
-   bool  eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
-   bool  eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
-
-
-   template <  >
-   inline i32 compare(const ::string & str1, const ::string & str2);
-
-   template <  >
-   inline i32 compare_ci(const ::string & str1, const ::string & str2);
-
-   template < >
-   bool equals(const ::string & str1, const ::string & str2);
-
-   template < >
-   bool equals_ci(const ::string & str1, const ::string & str2);
+   bool eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
+   bool eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
 
 
-   template < >
-   string equals_get(const ::string & str1, const ::string & str2, const ::string &strGetOnEqual, const ::string & strGetOnDifferent);
+   //template <  >
+   //inline i32 compare(const ::string & str1, const ::string & str2);
 
+   //template <  >
+   //inline i32 compare_ci(const ::string & str1, const ::string & str2);
 
-   template < >
-   string equals_ci_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent);
+   //template < >
+   //bool equals(const ::string & str1, const ::string & str2);
 
-
-   template < >
-   bool begins(const ::string & str, const ::string & strPrefix);
+   //template < >
+   //bool equals_ci(const ::string & str1, const ::string & str2);
 
 
    //template < >
-   bool begins_with(const ::string & str, const ::string & strPrefix);
+   //string equals_get(const ::string & str1, const ::string & str2, const ::string &strGetOnEqual, const ::string & strGetOnDifferent);
 
-   template < >
-   bool begins_ci(const ::string & str, const ::string & strPrefix);
 
-   template < >
-   bool begins_ci(const widestring & pcwsz, const widestring & pcwszPrefix);
+   //template < >
+   //string equals_ci_get(const ::string & str1, const ::string & str2, const ::string & strGetOnEqual, const ::string & strGetOnDifferent);
+
+
+   //template < >
+   //bool begins(const ::string & str, const ::string & strPrefix);
+
+
+   //template < >
+   //bool begins_with(const ::string & str, const ::string & strPrefix);
+
+   //template < >
+   //bool begins_ci(const ::string & str, const ::string & strPrefix);
+
+   //template < >
+   //bool begins_ci(const widestring & pcwsz, const widestring & pcwszPrefix);
 

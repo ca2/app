@@ -4547,6 +4547,7 @@ class task_tool;
 
 #include "acme/primitive/collection/_array_base_impl.h"
 #include "acme/primitive/collection/_array_impl.h"
+#include "acme/primitive/collection/_array_impl2.h"
 #include "acme/primitive/collection/_raw_array_impl.h"
 #include "acme/primitive/collection/_sort_array_impl.h"
 #include "acme/primitive/collection/_papaya_array_impl.h"

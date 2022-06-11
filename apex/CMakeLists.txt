@@ -22,8 +22,8 @@ list(APPEND apex_source
    axispolicy/policy_objcpp.h
    axispolicy/policy_winrt.h
    compress/_.h
-   compress/context.cpp
-   compress/context.h
+   #compress/context.cpp
+   #compress/context.h
    compress/is_dir.cpp
    compress/is_dir.h
    compress/not_dir.cpp
@@ -56,9 +56,9 @@ list(APPEND apex_source
    crypto/_crypto.h
    crypto/crypto.cpp
    crypto/crypto.h
-   crypto/hasher.cpp
+   #crypto/hasher.cpp
    crypto/hasher.h
-   crypto/hasher_algorithm.cpp
+   #crypto/hasher_algorithm.cpp
    crypto/hasher_algorithm.h
    crypto/initializer.cpp
    crypto/initializer.h
@@ -71,7 +71,7 @@ list(APPEND apex_source
    database/client.h
    database/const.h
    database/event_change.cpp
-   database/id.cpp
+   #database/id.cpp
    database/key.cpp
    database/key.h
    database/selection.cpp
@@ -135,15 +135,15 @@ list(APPEND apex_source
    handler/context.h
    handler/manager.cpp
    handler/manager.h
-   handler/process.cpp
-   handler/promise.cpp
+   #handler/process.cpp
+   #handler/promise.cpp
    handler/promise.h
-   handler/routine.cpp
+   #handler/routine.cpp
    handler/signal.cpp
    handler/signal.h
    handler/source.cpp
    handler/source.h
-   include/_.cpp
+   #include/_.cpp
    include/_.h
    include/_c.h
    include/_c_bridge.h
@@ -181,12 +181,12 @@ list(APPEND apex_source
    message/_message.h
    message/application.cpp
    message/application.h
-   message/base.cpp
+   #message/base.cpp
    message/base.h
    message/channel.cpp
    message/channel.h
-   message/command_target.cpp
-   message/command_ui_probe.cpp
+   #message/command_target.cpp
+   #message/command_ui_probe.cpp
    message/command_ui_probe.h
    message/command.cpp
    message/command.h
@@ -202,13 +202,13 @@ list(APPEND apex_source
    message/listener_smart_pointer_array.h
    message/message.cpp
    message/message.h
-   message/receiver.cpp
+   #message/receiver.cpp
    message/receiver.h
    #message/route.h
-   message/sender.cpp
+   #message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
-   networking/http/_.cpp
+   #networking/http/_.cpp
    networking/http/_.h
    networking/http/context.cpp
    networking/http/context.h
@@ -219,7 +219,7 @@ list(APPEND apex_source
    networking/http/get_socket.cpp
    networking/http/get_socket.h
    networking/http/listener.h
-   networking/http/ostream.cpp
+   #networking/http/ostream.cpp
    networking/http/request.cpp
    networking/http/request.h
    networking/http/response.cpp
@@ -275,10 +275,10 @@ list(APPEND apex_source
    networking/sockets/bsd/webserver/httpd_socket.cpp
    networking/sockets/bsd/webserver/httpd_socket.h
    networking/sockets/bsd/_.h
-   networking/sockets/bsd/_strconv.cpp
+   #networking/sockets/bsd/_strconv.cpp
    networking/sockets/bsd/_strconv.h
    networking/sockets/bsd/config.h
-   networking/sockets/bsd/include.cpp
+   #networking/sockets/bsd/include.cpp
    networking/sockets/bsd/socket_id_list.h
    networking/sockets/bsd/sockets.cpp
    networking/sockets/bsd/sockets.h
@@ -347,7 +347,7 @@ list(APPEND apex_source
    operating_system/ansi/_ansi.h
    #operating_system/ansios/_c.h
    operating_system/ansi/ansi_file.h
-   operating_system/ansi/base.cpp
+   #operating_system/ansi/base.cpp
    # operating_system/ansios/callstack.h
    #operating_system/ansios/datetime.cpp
    #operating_system/ansios/datetime_c.h
@@ -356,10 +356,10 @@ list(APPEND apex_source
    operating_system/ansi/file.cpp
    operating_system/ansi/file.h
    #operating_system/ansios/file_c.h
-   operating_system/ansi/language.cpp
+   #operating_system/ansi/language.cpp
    operating_system/ansi/parallelization.h
    #operating_system/ansios/process.cpp
-   operating_system/ansi/win.cpp
+   #operating_system/ansi/win.cpp
    operating_system/_.h
    operating_system/_application.cpp
    operating_system/_application.h
@@ -401,8 +401,8 @@ list(APPEND apex_source
    parallelization/thread.cpp
    parallelization/thread.h
    parallelization/thread_impl.h
-   parallelization/thread_os.cpp
-   parallelization/thread_os.h
+   #parallelization/thread_os.cpp
+   #parallelization/thread_os.h
    parallelization/threading.cpp
    parallelization/threading.h
    platform/_.cpp
@@ -447,14 +447,14 @@ list(APPEND apex_source
    platform/assert_running_task.h
    platform/async.h
    platform/aura_regex.h
-   platform/build_debug.cpp
-   platform/command_line.cpp
-   platform/command_line.h
+   #platform/build_debug.cpp
+   #platform/command_line.cpp
+   #platform/command_line.h
    platform/console_application.cpp
    platform/console_application.h
    platform/context.cpp
    platform/context.h
-   platform/context_thread.cpp
+   #platform/context_thread.cpp
    #platform/context_thread.h
    platform/create.cpp
    platform/create.h
@@ -488,7 +488,7 @@ list(APPEND apex_source
    platform/machine_event_data.h
    #platform/main.cpp
    platform/message_box.h
-   platform/net.cpp
+   #platform/net.cpp
    #platform/net.h
    platform/node.cpp
    platform/node.h
@@ -510,8 +510,8 @@ list(APPEND apex_source
    #platform/static_start_apex.cpp
    platform/system.cpp
    platform/system.h
-   platform/text.cpp
-   platform/thread_set.h
+   #platform/text.cpp
+   #platform/thread_set.h
    process/_.h
    process/department.cpp
    process/department.h
@@ -529,7 +529,7 @@ list(APPEND apex_source
    template/list.h
    user/_.h
    user/_const_key.h
-   user/command.cpp
+   #user/command.cpp
    user/command.h
    #user/control_event.cpp
    #user/control_event.h
@@ -546,7 +546,7 @@ list(APPEND apex_source
    user/primitive.h
    version/version.config.h
    version/version.h
-   _.cpp
+   #_.cpp
    _.h
    _defer.h
    aaa_want_to_move_xml.h
@@ -554,7 +554,7 @@ list(APPEND apex_source
    astr.h
    console.h
    console_slim.h
-   context_glx.cpp
+#   context_glx.cpp
    framework.cpp
    framework.h
    framework_c.h
@@ -839,7 +839,7 @@ if (LINUX)
       operating_system/linux/graphics.h
       operating_system/linux/graphics2.h
       operating_system/linux/internal.h
-      operating_system/linux/language.cpp
+      #operating_system/linux/language.cpp
       operating_system/linux/linux.cpp
       operating_system/linux/linux_linux.h
       operating_system/linux/menu.cpp

@@ -1,6 +1,46 @@
 #pragma once
 
 
+template < typename TYPE_CHAR >
+class single_char
+{
+public:
+
+   TYPE_CHAR cha[8];
+
+};
+
+
+template < >
+class single_char < ansichar >
+{
+public:
+
+   ansichar cha[6];
+
+};
+
+
+template < >
+class single_char < wd16char >
+{
+public:
+
+   wd16char cha[2];
+
+};
+
+
+template < >
+class single_char < wd32char >
+{
+public:
+
+   wd32char cha[1];
+
+};
+
+
 class CLASS_DECL_ACME str
 {
 public:

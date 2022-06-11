@@ -1867,6 +1867,21 @@ namespace xcb
    }
 
 
+   ::size_i32 display::get_main_screen_size()
+   {
+
+      auto snum = DefaultScreen((Display *) m_pX11Display);
+
+      auto width = DisplayWidth((Display *) m_pX11Display, snum);
+
+      auto height = DisplayHeight((Display *) m_pX11Display, snum);
+
+      return { width, height };
+
+   }
+
+
+
 } // namespace xcb
 
 

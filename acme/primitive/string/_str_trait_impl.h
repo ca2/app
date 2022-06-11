@@ -5,18 +5,18 @@
 //{
 //
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
-   {
+//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+//   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
 
-      throw ::interface_only();
 
-      return 0;
-
-   }
-
-
-   template <  >
+//   template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen)
    {
 
@@ -25,7 +25,7 @@
    }
 
 
-   template <  >
+  // template <  >
    inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen)
    {
 
@@ -34,7 +34,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen)
    {
 
@@ -42,7 +42,7 @@
 
    }
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen)
    {
 
@@ -51,7 +51,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen)
    {
 
@@ -60,7 +60,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen)
    {
 
@@ -69,7 +69,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen)
    {
 
@@ -79,7 +79,7 @@
 
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen)
    {
 
@@ -88,7 +88,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen)
    {
 
@@ -96,18 +96,19 @@
 
    }
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
-   {
 
-      throw ::interface_only();
+//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+//   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
 
-      return 0;
 
-   }
-
-
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource)
    {
 
@@ -116,7 +117,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource)
    {
 
@@ -125,7 +126,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd16char*, const wd32char* psource)
    {
 
@@ -134,7 +135,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource)
    {
 
@@ -143,7 +144,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource)
    {
 
@@ -151,7 +152,8 @@
 
    }
 
-   template <  >
+
+   //template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource)
    {
 
@@ -160,7 +162,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource)
    {
 
@@ -169,7 +171,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource)
    {
 
@@ -178,7 +180,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource)
    {
 
@@ -187,32 +189,32 @@
    }
 
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   inline void str::utf_to_utf(::string & str, const wd16char * psource, strsize srclen)
-   {
-
-      char * psz = nullptr;
-
-      auto dstlen = utf_to_utf_length(psz, psource, srclen);
-
-      psz = str.get_string_buffer(dstlen);
-
-      utf_to_utf(psz, psource, srclen);
-
-      psz[dstlen]='\0';
-
-   }
+//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+//   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
 
-   template <  >
+//   inline void str::utf_to_utf(::string & str, const wd16char * psource, strsize srclen)
+//   {
+//
+//      char * psz = nullptr;
+//
+//      auto dstlen = utf_to_utf_length(psz, psource, srclen);
+//
+//      psz = str.get_string_buffer(dstlen);
+//
+//      utf_to_utf(psz, psource, srclen);
+//
+//      psz[dstlen]='\0';
+//
+//   }
+
+
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen)
    {
 
@@ -221,7 +223,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen)
    {
 
@@ -230,7 +232,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char* ptarget, const wd32char* psource, strsize srclen)
    {
 
@@ -239,7 +241,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen)
    {
 
@@ -248,7 +250,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen)
    {
 
@@ -257,7 +259,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen)
    {
 
@@ -266,7 +268,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen)
    {
 
@@ -275,7 +277,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen)
    {
 
@@ -284,7 +286,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen)
    {
 
@@ -293,16 +295,16 @@
    }
 
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
-   {
+//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+//   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
+//   {
+//
+//      throw ::interface_only();
+//
+//   }
 
-      throw ::interface_only();
 
-   }
-
-
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource)
    {
 
@@ -311,7 +313,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource)
    {
 
@@ -320,7 +322,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource)
    {
 
@@ -329,7 +331,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource)
    {
 
@@ -338,7 +340,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char* ptarget, const wd32char* psource)
    {
 
@@ -347,7 +349,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource)
    {
 
@@ -356,7 +358,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource)
    {
 
@@ -365,7 +367,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource)
    {
 
@@ -374,7 +376,7 @@
    }
 
 
-   template <  >
+   //template <  >
    inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource)
    {
 

@@ -9,167 +9,120 @@
 //{
 
 
-   template < typename TYPE_CHAR >
-   class single_char
-   {
-   public:
-
-      TYPE_CHAR cha[8];
-
-   };
 
 
-   template < >
-   class single_char < ansichar >
-   {
-   public:
+   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   //inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen);
 
-      ansichar cha[6];
-
-   };
-
-
-   template < >
-   class single_char < wd16char >
-   {
-   public:
-
-      wd16char cha[2];
-
-   };
-
-
-   template < >
-   class single_char < wd32char >
-   {
-   public:
-
-      wd32char cha[1];
-
-   };
-
-
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen);
-
-   template <  >
    inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen);
 
-   template <  >
    inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen);
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen);
+   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   //inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const wd32char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen);
 
-   inline void utf_to_utf(::string & str, const wd16char * psource, strsize srclen);
+   //inline void utf_to_utf(::string & str, const wd16char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen);
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource);
+   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   //inline strsize utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const ansichar *, const ansichar * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd16char *, const wd16char * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd16char *, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd32char *, const wd16char * psource);
 
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const ansichar *, const wd16char * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const ansichar *, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd16char *, const ansichar * psource);
 
-   template <  >
+   //template <  >
    inline strsize utf_to_utf_length(const wd32char *, const ansichar * psource);
 
-   template < typename TYPE_TARGET, typename TYPE_SOURCE >
-   inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource);
+   //template < typename TYPE_TARGET, typename TYPE_SOURCE >
+   //inline void utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const ansichar * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const wd16char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const wd16char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd16char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(ansichar * ptarget, const wd32char * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd16char * ptarget, const ansichar * psource);
 
-   template <  >
+   //template <  >
    inline void utf_to_utf(wd32char * ptarget, const ansichar * psource);
 
 

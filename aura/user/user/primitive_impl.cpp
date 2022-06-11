@@ -761,6 +761,13 @@ namespace user
    }
 
 
+   void primitive_impl::on_end_layout_experience(enum_layout_experience elayoutexperience)
+   {
+
+
+   }
+
+
    void primitive_impl::on_configuration_change(::user::primitive* pprimitiveSource)
    {
 
@@ -784,6 +791,13 @@ namespace user
 
 
    void primitive_impl::_001OnExitFullScreen()
+   {
+
+
+   }
+
+
+   void primitive_impl::_001OnExitZoomed()
    {
 
 
@@ -2353,6 +2367,23 @@ namespace user
       return false;
 
    }
+
+
+#ifdef LINUX
+
+
+   lresult primitive_impl::send_x11_event(void * pevent)
+   {
+
+      throw interface_only();
+
+      return 0;
+
+   }
+
+
+#endif
+
 
 } // namespace user
 

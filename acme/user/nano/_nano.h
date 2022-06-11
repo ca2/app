@@ -4,6 +4,16 @@
 #pragma once
 
 
+namespace nano
+{
+
+
+   class display;
+
+
+} // namespace nano
+
+
 class nano_device;
 class nano_window;
 
@@ -52,7 +62,7 @@ namespace nano
 
 } // namespace nano
 
-CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy);
+//CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy);
 
 CLASS_DECL_ACME void initialize_nano();
 

@@ -5,7 +5,7 @@ project(axis CXX)
 list(APPEND library_source
         account/_.h
         account/_account.h
-        account/account.cpp
+        #account/account.cpp
         account/authenticator.cpp
         account/authenticator.h
         account/const.h
@@ -24,7 +24,7 @@ list(APPEND library_source
         account/product.h
         account/product_array.cpp
         account/product_array.h
-        account/storage.cpp
+        #account/storage.cpp
         account/storage.h
         account/storage_client.cpp
         account/storage_client.h
@@ -130,7 +130,7 @@ list(APPEND library_source
         html/html_lite/reader.h
         html/html_lite/tag.cpp
         html/html_lite/tag.h
-        include/_.cpp
+        #include/_.cpp
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -221,7 +221,7 @@ list(APPEND library_source
         networking/networking_application_handler.h
         networking/networking_application_socket.cpp
         networking/networking_application_socket.h
-        platform/_.cpp
+        #platform/_.cpp
         platform/_features.h
         platform/_generic_object_constructor_impl.h
         platform/_impl.h
@@ -231,8 +231,8 @@ list(APPEND library_source
         platform/application.cpp
         platform/application.h
         platform/checked.cpp
-        platform/cregexp.cpp
-        platform/cregexp_util.cpp
+        #platform/cregexp.cpp
+        #platform/cregexp_util.cpp
         platform/geo_department.cpp
         platform/geo_department.h
         platform/muldiv64.cpp
@@ -269,14 +269,14 @@ list(APPEND library_source
         _.h
         #__matter_ca2.cpp
         _defer.h
-        _to.cpp
+        #_to.cpp
         aaa_want_to_move_xml.h
         application.h
         astr.h
         callback.h
         console.h
         console_slim.h
-        context_glx.cpp
+        #context_glx.cpp
         framework.cpp
         framework.h
         framework_c.h

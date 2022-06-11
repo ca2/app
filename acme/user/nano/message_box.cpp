@@ -107,10 +107,16 @@ void nano_message_box::calculate_size()
 
 #if !defined(_UWP) && !defined(ANDROID)
 
-   int wScreen = 1280;
-   int hScreen = 768;
+   //int wScreen = 1280;
+   //int hScreen = 768;
 
-   operating_system_get_main_screen_size(wScreen, hScreen);
+   auto sizeScreen = m_pimplementation->get_main_screen_size();
+
+   //operating_system_get_main_screen_size(wScreen, hScreen);
+
+   auto wScreen = sizeScreen.cx;
+
+   auto hScreen = sizeScreen.cy;
 
    //printf("nano_message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

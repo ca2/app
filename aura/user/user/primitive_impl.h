@@ -194,6 +194,7 @@ namespace user
 
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
 
       virtual void on_configuration_change(::user::primitive* pprimitiveSource);
@@ -204,6 +205,7 @@ namespace user
 
       virtual void _001OnExitIconic();
       virtual void _001OnExitFullScreen();
+      virtual void _001OnExitZoomed();
 
 
       virtual void _001OnTriggerMouseInside();
@@ -431,26 +433,19 @@ namespace user
       virtual void user_interaction_on_hide();
 
 
+#ifdef LINUX
+
+
+      virtual lresult send_x11_event(void * pevent);
+
+
+#endif
+
+
    };
 
 
 } // namespace user
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -57,8 +57,6 @@ namespace xcb
 
       m_psurface = nullptr;
 
-
-
    }
 
 
@@ -87,6 +85,28 @@ namespace xcb
 //      m_hfont = nullptr;
 //
 //   }
+
+   }
+
+
+   ::nano::display * nano_window::get_display()
+   {
+
+      if (!m_pdisplay)
+      {
+
+         m_pdisplay = ::xcb::display::get(this);
+
+         if (!m_pdisplay)
+         {
+
+            throw ::exception(error_null_pointer);
+
+         }
+
+      }
+
+      return m_pdisplay;
 
    }
 
@@ -164,14 +184,7 @@ namespace xcb
    void nano_window::create()
    {
 
-      m_pdisplay = ::xcb::display::get(this);
-
-      if (!m_pdisplay)
-      {
-
-        throw ::exception(error_null_pointer);
-
-      }
+      get_display();
 
       ::u32 uEventMask =       XCB_EVENT_MASK_PROPERTY_CHANGE
                              | XCB_EVENT_MASK_EXPOSURE
@@ -1124,6 +1137,14 @@ void nano_window::redraw()
 
 
    }
+
+
+//   ::size_i32 nano_window::get_main_screen_size()
+//   {
+//
+//      return m_pdisplay->get_main_screen_size();
+//
+//   }
 
 
 } // namespace xcb

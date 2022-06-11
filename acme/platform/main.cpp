@@ -7,6 +7,7 @@
 #endif
 #include "acme/platform/acme.h"
 #include "acme/platform/set_app_id.h"
+#include "acme/platform/system_setup.h"
 
 
 namespace acme
@@ -228,6 +229,11 @@ void __main(main& main)
 
    }
 
+
+   auto psetupAudio = ::system_setup::get_first(::system_setup::flag_factory, "audio");
+
+   main.m_bAudio = ::is_set(psetupAudio);
+
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<class::system>();
 
    __pointer(class ::system) psystem = pfactoryitem->create_element();
@@ -295,6 +301,38 @@ app_flag::app_flag(::main & main, const char * pszFlag)
       }
 
    }
+
+}
+
+
+static char * g_pchar_binary__matter_zip_start = nullptr;
+
+
+static char * g_pchar_binary__matter_zip_end = nullptr;
+
+
+embed_resource::embed_resource(char * start, char * end)
+{
+
+   g_pchar_binary__matter_zip_start = start;
+
+   g_pchar_binary__matter_zip_end = end;
+
+}
+
+
+char * embed_resource::get_start()
+{
+
+   return g_pchar_binary__matter_zip_start;
+
+}
+
+
+char * embed_resource::get_end()
+{
+
+   return g_pchar_binary__matter_zip_end;
 
 }
 

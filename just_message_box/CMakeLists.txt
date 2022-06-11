@@ -5,6 +5,7 @@ project(app_just_message_box CXX)
 list(APPEND library_source
         _.cpp
         _.h
+   _factory.cpp
         _user.h
         application.cpp
         application.h

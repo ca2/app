@@ -812,8 +812,6 @@
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\controller.cpp" />
-    <ClCompile Include="xml\attr.cpp" />
-    <ClCompile Include="xml\base_array.cpp" />
     <ClCompile Include="xml\data.cpp" />
     <ClCompile Include="xml\disp_option.cpp" />
     <ClCompile Include="xml\document.cpp" />
@@ -831,7 +829,6 @@
     <ClCompile Include="xml\var_exchange.cpp" />
     <ClCompile Include="xml\xml.cpp" />
     <ClCompile Include="xml\xmlite.cpp" />
-    <ClCompile Include="xml\_from.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

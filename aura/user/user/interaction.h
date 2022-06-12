@@ -163,6 +163,9 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
+
+      bool                                         m_bSketchToDesignLayout;
+
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
 
@@ -699,7 +702,8 @@ namespace user
       inline void order_bottom() { order(e_zorder_bottom); }
 
 
-      virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateWindow() override;
       //virtual void window_apply_visual(const class window_state& windowstate) override;
 

@@ -129,49 +129,49 @@ u32 decode_utf16_pair(u16 * units)
 //}
 
 
-template < >
-bool str::begins(const ::string & str, const ::string & strPrefix)
-{
-
-   if (str.is_empty())
-   {
-
-      if (strPrefix.is_empty())
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-   const char * pcsz = str;
-   const char * pcszPrefix = strPrefix;
-   while (*pcsz == *pcszPrefix)
-
-   {
-      pcsz++;
-
-      pcszPrefix++;
-
-      if (*pcsz == '\0')
-
-      {
-         if (*pcszPrefix == '\0')
-
-            return true;
-         else
-            return false;
-      }
-      else if (*pcszPrefix == '\0')
-
-      {
-         return true;
-      }
-   }
-   return false;
-}
-
+//template < >
+//bool str::begins(const ::string & str, const ::string & strPrefix)
+//{
+//
+//   if (str.is_empty())
+//   {
+//
+//      if (strPrefix.is_empty())
+//      {
+//         return true;
+//      }
+//      else
+//      {
+//         return false;
+//      }
+//   }
+//   const char * pcsz = str;
+//   const char * pcszPrefix = strPrefix;
+//   while (*pcsz == *pcszPrefix)
+//
+//   {
+//      pcsz++;
+//
+//      pcszPrefix++;
+//
+//      if (*pcsz == '\0')
+//
+//      {
+//         if (*pcszPrefix == '\0')
+//
+//            return true;
+//         else
+//            return false;
+//      }
+//      else if (*pcszPrefix == '\0')
+//
+//      {
+//         return true;
+//      }
+//   }
+//   return false;
+//}
+//
 
 //bool str::begins_with(const ::string & str, const ::string & strPrefix)
 //{
@@ -229,113 +229,113 @@ bool str::begins(const ::string & str, const ::string & strPrefix)
 
 //}
 
-template < >
-bool str::begins_ci(const ::string & str, const ::string & strPrefix)
+//template < >
+//bool str::begins_ci(const ::string & str, const ::string & strPrefix)
+//
+//{
+//   if (str.is_empty())
+//
+//   {
+//      if (strPrefix.is_empty())
+//
+//      {
+//         return true;
+//      }
+//      else
+//      {
+//         return false;
+//      }
+//   }
+//   auto pcsz = str.c_str();
+//   auto pcszPrefix = strPrefix.c_str();
+//   while (tolower((ansichar)*pcsz) == tolower((ansichar)*pcszPrefix))
+//
+//   {
+//      pcsz++;
+//
+//      pcszPrefix++;
+//
+//      if (*pcsz == '\0')
+//
+//      {
+//         if (*pcszPrefix == '\0')
+//
+//            return true;
+//         else
+//            return false;
+//      }
+//      else if (*pcszPrefix == '\0')
+//
+//      {
+//         return true;
+//      }
+//   }
+//   return false;
+//}
+//
 
-{
-   if (str.is_empty())
-
-   {
-      if (strPrefix.is_empty())
-
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-   auto pcsz = str.c_str();
-   auto pcszPrefix = strPrefix.c_str();
-   while (tolower((ansichar)*pcsz) == tolower((ansichar)*pcszPrefix))
-
-   {
-      pcsz++;
-
-      pcszPrefix++;
-
-      if (*pcsz == '\0')
-
-      {
-         if (*pcszPrefix == '\0')
-
-            return true;
-         else
-            return false;
-      }
-      else if (*pcszPrefix == '\0')
-
-      {
-         return true;
-      }
-   }
-   return false;
-}
-
-
-template < >
-bool str::begins_ci(const widestring & wstr, const widestring & wstrPrefix)
-{
-
-   if (wstr.is_empty())
-   {
-
-      if (wstrPrefix.is_empty())
-      {
-
-         return true;
-
-      }
-      else
-      {
-
-         return false;
-
-      }
-
-   }
-
-   auto pcsz = wstr.c_str();
-
-   auto pcszPrefix = wstrPrefix.c_str();
-
-   while (tolower(*pcsz) == tolower(*pcszPrefix))
-   {
-
-      pcsz++;
-
-      pcszPrefix++;
-
-      if (*pcsz == '\0')
-      {
-
-         if (*pcszPrefix == '\0')
-         {
-
-            return true;
-
-         }
-         else
-         {
-
-            return false;
-
-         }
-
-      }
-      else if (*pcszPrefix == '\0')
-      {
-
-         return true;
-
-      }
-
-   }
-
-   return false;
-
-}
+//template < >
+//bool str::begins_ci(const widestring & wstr, const widestring & wstrPrefix)
+//{
+//
+//   if (wstr.is_empty())
+//   {
+//
+//      if (wstrPrefix.is_empty())
+//      {
+//
+//         return true;
+//
+//      }
+//      else
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//
+//   auto pcsz = wstr.c_str();
+//
+//   auto pcszPrefix = wstrPrefix.c_str();
+//
+//   while (tolower(*pcsz) == tolower(*pcszPrefix))
+//   {
+//
+//      pcsz++;
+//
+//      pcszPrefix++;
+//
+//      if (*pcsz == '\0')
+//      {
+//
+//         if (*pcszPrefix == '\0')
+//         {
+//
+//            return true;
+//
+//         }
+//         else
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      else if (*pcszPrefix == '\0')
+//      {
+//
+//         return true;
+//
+//      }
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
 // case insensitive, ignore white space - only in searched string

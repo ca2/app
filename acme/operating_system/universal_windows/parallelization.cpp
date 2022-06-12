@@ -264,8 +264,6 @@ void system::windowing_post(const ::procedure& procedure)
 }
 
 
-extern class system* g_psystem;
-
 
 void main_asynchronous(const ::procedure& procedure)
 {
@@ -279,7 +277,9 @@ void main_asynchronous(const ::procedure& procedure)
 
    }
 
-   g_psystem->windowing_post(procedure);
+   auto psystem = ::get_system();
+
+   psystem->windowing_post(procedure);
 
 }
 

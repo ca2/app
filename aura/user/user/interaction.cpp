@@ -63,6 +63,8 @@ namespace user
 
       //m_pinteractiondraw2d = nullptr;
 
+      m_bSketchToDesignLayout = false;
+
       m_uUserInteractionFlags = 0;
 
       m_bEnableDragClient = false;
@@ -4051,7 +4053,16 @@ namespace user
       if (!is_sketch_to_design_locked())
       {
 
-         sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+         sketch_to_design(bUpdateBuffer, bUpdateWindow);
+
+      }
+
+      if (m_bSketchToDesignLayout)
+      {
+
+         m_bSketchToDesignLayout = false;
+
+         design_layout(pgraphics);
 
       }
 
@@ -11136,8 +11147,7 @@ namespace user
    static i64 g_i_prodevian_update_visual = 0;
 
 
-   void
-   interaction::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void interaction::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -11401,7 +11411,9 @@ namespace user
 
             //}
 
-            design_layout(pgraphics);
+            m_bSketchToDesignLayout = true;
+
+            //design_layout(pgraphics);
 
          }
 

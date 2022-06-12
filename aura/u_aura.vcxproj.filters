@@ -1095,9 +1095,6 @@
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\keep.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\matrix.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1224,9 +1221,6 @@
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\buffer.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\cursor.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
@@ -1263,9 +1257,6 @@
     <ClCompile Include="windowing\windowing.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\xrender.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\user\platform</Filter>
     </ClCompile>
@@ -1299,9 +1290,6 @@
     <ClCompile Include="graphics\image\drawer.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\drawing.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\dynamic.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -1312,9 +1300,6 @@
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\gif_antialias_8bit.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\gif_detect_8bit_borders.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\image.cpp">
@@ -1335,9 +1320,6 @@
     <ClCompile Include="graphics\image\nanosvg.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\object.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\pointer_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -1354,9 +1336,6 @@
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\cursor.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\cursor_set.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\icon.cpp">
@@ -1384,9 +1363,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\window_state.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\window_map.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\wait_cursor.cpp">
@@ -1497,9 +1473,6 @@
     <ClCompile Include="user\user\copydesk.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\control_descriptor.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\check_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1510,9 +1483,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\box.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\menu_command.cpp">

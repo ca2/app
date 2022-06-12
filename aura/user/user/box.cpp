@@ -126,6 +126,9 @@ namespace user
 
       ::user::interaction::on_visual_applied();
 
+
+#if !defined(_UWP)
+
       auto edisplay = layout().design().display();
 
       get_window_rect(m_windowrectangle.m_rectangleWindow, e_layout_design);
@@ -174,6 +177,8 @@ namespace user
          }
 
       }
+
+#endif
 
    }
 

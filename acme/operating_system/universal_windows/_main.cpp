@@ -1,12 +1,13 @@
 // Created by camilo on 2022-03-11 22:54 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/platform/system_setup.h"
 
 
 
 i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR * pCmdLine, int nCmdShow)
 {
 
-   ::app * papp = ::app::g_p;
+   auto papp = ::app_factory::new_app();
 
    papp->m_argc = __argc;
 

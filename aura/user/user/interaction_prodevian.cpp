@@ -1028,17 +1028,15 @@ namespace user
 
          }
 
-
          {
 
-            synchronouslock.unlock();
 
-            ::draw2d::graphics_pointer pgraphics;
+            synchronouslock.unlock();
 
             if (!m_puserinteraction->is_sketch_to_design_locked())
             {
 
-               m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+               m_puserinteraction->sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
             }
 

@@ -2552,7 +2552,7 @@ namespace user
    }
 
 
-   void primitive::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void primitive::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
    }

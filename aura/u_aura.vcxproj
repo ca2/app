@@ -438,7 +438,6 @@
     <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
-    <ClCompile Include="graphics\draw2d\keep.cpp" />
     <ClCompile Include="graphics\draw2d\matrix.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">NotUsing</PrecompiledHeader>
@@ -477,15 +476,12 @@
     <ClCompile Include="graphics\image\array.cpp" />
     <ClCompile Include="graphics\image\context_image.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
-    <ClCompile Include="graphics\image\cursor_set.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
-    <ClCompile Include="graphics\image\drawing.cpp" />
     <ClCompile Include="graphics\image\dynamic.cpp" />
     <ClCompile Include="graphics\image\extension.cpp" />
     <ClCompile Include="graphics\image\fastblur.cpp" />
     <ClCompile Include="graphics\image\frame.cpp" />
     <ClCompile Include="graphics\image\gif_antialias_8bit.cpp" />
-    <ClCompile Include="graphics\image\gif_detect_8bit_borders.cpp" />
     <ClCompile Include="graphics\image\icon.cpp" />
     <ClCompile Include="graphics\image\image.cpp" />
     <ClCompile Include="graphics\image\imaging.cpp" />
@@ -495,7 +491,6 @@
     <ClCompile Include="graphics\image\map.cpp" />
     <ClCompile Include="graphics\image\meta.cpp" />
     <ClCompile Include="graphics\image\nanosvg.cpp" />
-    <ClCompile Include="graphics\image\object.cpp" />
     <ClCompile Include="graphics\image\pointer_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
     <ClCompile Include="graphics\user\control_box_button.cpp" />
@@ -536,7 +531,6 @@
     <ClCompile Include="user\user\button.cpp" />
     <ClCompile Include="user\user\call_message_handler_task.cpp" />
     <ClCompile Include="user\user\check_box.cpp" />
-    <ClCompile Include="user\user\control_descriptor.cpp" />
     <ClCompile Include="user\user\copydesk.cpp" />
     <ClCompile Include="user\user\form.cpp" />
     <ClCompile Include="user\user\form_callback.cpp" />
@@ -574,11 +568,8 @@
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_map.cpp" />
     <ClCompile Include="user\user\window_state.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
-    <ClCompile Include="user\user\_.cpp" />
-    <ClCompile Include="windowing\buffer.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\debug.cpp" />
@@ -596,7 +587,6 @@
     <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
-    <ClCompile Include="windowing\xrender.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -305,6 +305,10 @@ app_flag::app_flag(::main & main, const char * pszFlag)
 }
 
 
+
+#if defined(LINUX) || defined(FREEBSD)
+
+
 static char * g_pchar_binary__matter_zip_start = nullptr;
 
 
@@ -335,6 +339,9 @@ char * embed_resource::get_end()
    return g_pchar_binary__matter_zip_end;
 
 }
+
+
+#endif
 
 
 

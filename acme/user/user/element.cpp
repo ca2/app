@@ -2425,7 +2425,7 @@ namespace user
    }
 
 
-   void element::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void element::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
    }

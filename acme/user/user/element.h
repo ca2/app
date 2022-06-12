@@ -234,7 +234,7 @@ namespace user
       //virtual void window_apply_visual(const window_state & windowstate);
 
 
-      virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow);
+      virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow);
 
       virtual void design_down();
       virtual void design_up();

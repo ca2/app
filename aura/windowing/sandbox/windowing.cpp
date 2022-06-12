@@ -41,7 +41,20 @@ namespace sandbox_windowing
    ::windowing::window* windowing::new_window(::user::interaction_impl* pimpl)
    {
 
-      __pointer(::sandbox_windowing::window) pwindow = pimpl->__create < ::windowing::window >();
+      __pointer(::sandbox_windowing::window) pwindow;
+
+      if (::is_null(m_psystem->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+      {
+
+         pwindow = m_psystem->m_paurasystem->m_pwindowMain;
+
+      }
+      else
+      {
+
+         pwindow = pimpl->__create < ::windowing::window >();
+
+      }
 
       if (!pwindow)
       {

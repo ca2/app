@@ -666,7 +666,7 @@ namespace user
          //      auto puser = psession->user();
 
          //      auto pwindowing = puser->windowing();
-         
+
          m_pwindow = pwindowing->new_window(this);
 
          if (m_pwindow)

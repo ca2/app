@@ -802,6 +802,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="_app_net.cpp" />
+    <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\node_universal_windows\u_node_universal_windows.vcxproj">

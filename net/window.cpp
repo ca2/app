@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/draw2d/_draw2d.h"
-#include "aura/graphics/user/close_button.h"
+#include "aura/graphics/user/control_box_button.h"
 
 
 namespace app_net
@@ -106,7 +106,7 @@ namespace app_net
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem, const ::user::e_state & estate)
    {
 
       if (::is_null(pitem))
@@ -119,7 +119,7 @@ namespace app_net
       if (pitem->m_eelement == ::e_element_close_button)
       {
 
-         ::user::draw_close_button(pgraphics, this, pitem);
+         ::user::draw_close_button(pgraphics, this, pitem, estate);
 
       }
 

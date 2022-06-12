@@ -1014,12 +1014,21 @@ namespace user
 
       bool bUpdateWindow = false;
 
-      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+      sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
       if (!is_this_visible())
       {
 
          return;
+
+      }
+
+      if (m_bSketchToDesignLayout)
+      {
+
+         m_bSketchToDesignLayout = false;
+
+         design_layout(pgraphics);
 
       }
 

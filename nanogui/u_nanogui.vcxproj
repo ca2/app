@@ -144,7 +144,9 @@
     <ClCompile Include="MessageDialog.cpp" />
     <ClCompile Include="nano2d\context.cpp" />
     <ClCompile Include="nano2d\draw2d_context.cpp" />
+    <ClCompile Include="nano2d\font_sink.cpp" />
     <ClCompile Include="nano2d\nano2d.cpp" />
+    <ClCompile Include="platform.cpp" />
     <ClCompile Include="Popup.cpp" />
     <ClCompile Include="PopupButton.cpp" />
     <ClCompile Include="ProgressBar.cpp" />
@@ -157,6 +159,7 @@
     <ClCompile Include="Widget.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\app\acme\u_acme.vcxproj">
@@ -190,8 +193,8 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

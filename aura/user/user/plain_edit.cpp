@@ -6113,8 +6113,34 @@ finished_update:
                      {
                         iCode |= 0x80000000;
                      }
-                     //str = psession->keyboard().process_key(pkey);
-                     throw ::exception(todo, "keyboard");
+
+                     if (pkey->m_ekey >= ::user::e_key_a && pkey->m_ekey <= ::user::e_key_z)
+                     {
+                        str = (char)((pkey->m_ekey - ::user::e_key_a) + 'a');
+                        if (psession->is_key_pressed(::user::e_key_shift))
+                        {
+                           str.make_upper();
+                        }
+                     }
+                     else if (pkey->m_ekey == ::user::e_key_space)
+                     {
+                        str = "";
+                     }
+                     else if (pkey->m_ekey == ::user::e_key_comma)
+                     {
+                        str = ",";
+                     }
+                     else if (pkey->m_ekey == ::user::e_key_1 && psession->is_key_pressed(::user::e_key_shift))
+                     {
+                        str = "!";
+                     }
+                     else
+                     {
+                        str = "(x)";
+                     }
+
+                     //str = psession->m_paurasession->()->keyboard()->process_key(pkey);
+                     //throw ::exception(todo, "keyboard");
                   }
 
                   insert_text(str, false, e_source_user);

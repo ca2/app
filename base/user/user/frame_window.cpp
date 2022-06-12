@@ -2548,12 +2548,21 @@ namespace user
 
       }
 
-      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+      sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
       if (!is_window_visible() || layout().is_iconic())
       {
 
          return;
+
+      }
+
+      if (m_bSketchToDesignLayout)
+      {
+
+         m_bSketchToDesignLayout = false;
+
+         design_layout(pgraphics);
 
       }
 

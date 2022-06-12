@@ -52,9 +52,6 @@
     <Filter Include="Source Files\user\menu">
       <UniqueIdentifier>{49da306f-8b20-43fd-97bf-70de452e1fba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{d009f767-8ed5-452c-87c3-f9cfc2f1afeb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0b3f946e-721f-4f91-8603-c298751c5449}</UniqueIdentifier>
     </Filter>
@@ -505,9 +502,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\control_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -524,9 +518,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\document_manager_container.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\edit_plain_text_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\form_control.cpp">
@@ -569,9 +560,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\network_configuration.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\notification_area.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\picture.cpp">
@@ -619,9 +607,6 @@
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\_.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\form_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -643,13 +628,7 @@
     <ClCompile Include="user\user\style.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\control_descriptor_set.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\menu.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\validate.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\experience\button.cpp">
@@ -711,9 +690,6 @@
     </ClCompile>
     <ClCompile Include="user\menu\menu_view.cpp">
       <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="include\_.cpp">
-      <Filter>Source Files\include</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>

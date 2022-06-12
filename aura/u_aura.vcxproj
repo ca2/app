@@ -290,9 +290,6 @@
     <ClInclude Include="user\user\main_window.h" />
     <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\message_box.h" />
-    <ClInclude Include="user\user\message_window.h" />
-    <ClInclude Include="user\user\message_window_listener.h" />
-    <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\notify_icon.h" />
     <ClInclude Include="user\user\notify_icon_listener.h" />
     <ClInclude Include="user\user\notify_icon_mm.h" />
@@ -547,7 +544,6 @@
     <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
-    <ClCompile Include="user\user\message_window.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\plain_edit.cpp" />

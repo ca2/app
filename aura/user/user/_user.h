@@ -305,7 +305,7 @@ namespace user
 #include "form_callback.h"
 
 
-#include "message_window.h"
+//#include "message_window.h"
 
 
 

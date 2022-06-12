@@ -898,15 +898,6 @@
     <ClInclude Include="user\user\message_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\message_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\message_window_listener.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\mouse.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\notify_icon.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1422,12 +1413,6 @@
     <ClCompile Include="user\user\notify_icon.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\message_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\message_box.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\message.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1517,6 +1502,9 @@
     </ClCompile>
     <ClCompile Include="windowing\sandbox\windowing.cpp">
       <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message_box.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

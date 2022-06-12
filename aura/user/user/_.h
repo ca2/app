@@ -106,7 +106,10 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 #include "range.h"
 
 
-#include "message_window_listener.h"
+
+
+
+//#include "message_window_listener.h"
 
 
 

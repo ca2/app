@@ -35,8 +35,8 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 
@@ -66,7 +66,7 @@ namespace user
 
 
 		text_composition_client();
-		virtual ~text_composition_client();
+		~text_composition_client() override;
 
 
 		virtual void initialize_text_composition_client(::channel * pchannel, ::user::interaction * puserinteraction);
@@ -75,22 +75,24 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 
-		virtual void on_text_composition_done() override;
+		void on_text_composition_done() override;
 
-		virtual void on_text_composition(string strMessage) override;
+		void on_text_composition(string strMessage) override;
 
-		virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+		void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
-		virtual bool is_text_composition_active() const override;
+		bool is_text_composition_active() const override;
 
-		virtual string get_ime_composition() const override;
+		virtual void set_text_composition_active(bool bActive = true);
+
+		string get_ime_composition() const override;
 			
-		virtual void clear_ime_composition() override;
+		void clear_ime_composition() override;
 
 
 	};
@@ -117,8 +119,8 @@ namespace user
 		//DECLARE_MESSAGE_HANDLER(on_message_key_down);
 		//DECLARE_MESSAGE_HANDLER(_011OnChar);
 		//DECLARE_MESSAGE_HANDLER(_001OnIme);
-		//DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-		//DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+		//DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+		//DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
 		//virtual int on_text_composition_message(int iMessage) override;
 

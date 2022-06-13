@@ -51,7 +51,7 @@ namespace regular_expression
    }
 
 
-   ::str::range_array & result::get_range_array()
+   ::strsize_range_array & result::get_range_array()
    {
 
       _get_range_array();

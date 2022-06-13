@@ -526,7 +526,7 @@ namespace account
 
       }
 
-      get_wnd()->show_keyboard(false);
+      get_wnd()->show_software_keyboard(this);
 
       m_bLButtonDown = true;
 

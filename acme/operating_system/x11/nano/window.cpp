@@ -13,12 +13,6 @@
 ::user::enum_desktop _get_edesktop();
 
 
-//unsigned long x11_get_long_property(Display *d, Window w, char *property_name);
-
-
-//Window _x11_get_active_window(Display * pdisplay);
-
-
 struct MWMHints
 {
 
@@ -60,6 +54,10 @@ namespace x11
    {
 
       m_psurface = nullptr;
+      m_iDepth = -1;
+      m_pvisual = nullptr;
+      __zero(m_visualinfo);
+      m_colormap = 0;
 
    }
 
@@ -83,6 +81,28 @@ namespace x11
    }
 
 
+   ::nano::display * nano_window::get_display()
+   {
+
+      if (!m_pdisplay)
+      {
+
+         m_pdisplay = ::x11::display::get(this);
+
+         if (!m_pdisplay)
+         {
+
+            throw ::exception(error_null_pointer);
+
+         }
+
+      }
+
+      return m_pdisplay;
+
+   }
+
+
    void nano_window::on_initialize_object()
    {
 
@@ -100,7 +120,6 @@ namespace x11
          m_pinterface->on_char(iChar);
 
       });
-
 
    }
 
@@ -156,69 +175,107 @@ namespace x11
    void nano_window::create()
    {
 
-
-      m_pdisplay = ::x11::display::get(this);
-
-      if (!m_pdisplay)
-      {
-
-        throw ::exception(error_null_pointer);
-
-      }
-
+      get_display();
 
       m_pdisplay->display_send([this]()
       {
 
-         auto screen = DefaultScreen(m_pdisplay->m_pdisplay);
+         auto display = m_pdisplay->m_pdisplay;
 
-         auto windowRoot = RootWindow(m_pdisplay->m_pdisplay, screen);
+         m_pvisual = DefaultVisual(display, DefaultScreen(display));
 
-         m_window = XCreateSimpleWindow(m_pdisplay->m_pdisplay, windowRoot,
-                            m_pinterface->m_rectangle.left,
-                            m_pinterface->m_rectangle.top,
-                            m_pinterface->m_rectangle.width(),
-                            m_pinterface->m_rectangle.height(), 1,
-                           BlackPixel(m_pdisplay->m_pdisplay, screen), WhitePixel(m_pdisplay->m_pdisplay, screen));
+         __zero(m_visualinfo);
 
-         if(!m_window)
+         if (XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_visualinfo))
          {
 
-            throw exception(error_failed);
+            m_pvisual = m_visualinfo.visual;
 
          }
+         else
+         {
+
+            __zero(m_visualinfo);
+
+         }
+
+         m_iDepth = m_visualinfo.depth;
+
+         auto screen = DefaultScreen(display);
+
+         m_windowRoot = RootWindow(display, screen);
+
+         if(m_colormap)
+         {
+
+            XFreeColormap(display, m_colormap);
+
+         }
+
+         m_colormap = XCreateColormap(display, m_windowRoot, m_pvisual, AllocNone);
 
          m_pdisplay->add_listener(this);
 
          m_pdisplay->add_window(this);
 
-//#if 0
+         XSetWindowAttributes attr{};
 
-         // _NET_WM_WINDOW_TYPE_SPLASH
-         // KDE seems to close this type of window when it is clicked
+         attr.colormap = m_colormap;
+
+         attr.event_mask =
+            PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask
+            | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask
+            | FocusChangeMask | LeaveWindowMask | EnterWindowMask;
+
+         attr.background_pixmap = None;
+
+         attr.border_pixmap = None;
+
+         attr.border_pixel = 0;
+
+         attr.override_redirect = False;
+
+         int x = m_pinterface->m_rectangle.left;
+         int y = m_pinterface->m_rectangle.top;
+         int w = m_pinterface->m_rectangle.width();
+         int h = m_pinterface->m_rectangle.height();
+
+         m_window = XCreateWindow(display, m_windowRoot,
+            x, y, w, h,
+            0,
+            m_iDepth,
+            InputOutput,
+            m_pvisual,
+            CWColormap | CWEventMask | CWBackPixmap | CWBorderPixel | CWOverrideRedirect,
+            &attr
+         );
+
+         if(!m_window)
+         {
+
+            m_pdisplay->erase_listener(this);
+
+            m_pdisplay->erase_window(this);
+
+            throw exception(error_failed);
+
+         }
 
          if(m_pinterface->m_bStartCentered)
          {
 
-            auto atomWindowType = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE", true);
+            auto atomWindowType = XInternAtom(display, "_NET_WM_WINDOW_TYPE", true);
 
-            auto atomWindowTypeSplash = XInternAtom(m_pdisplay->m_pdisplay, "_NET_WM_WINDOW_TYPE_DIALOG", true);
+            auto atomWindowTypeDialog = XInternAtom(display, "_NET_WM_WINDOW_TYPE_DIALOG", true);
 
-            if (atomWindowType != None && atomWindowTypeSplash != None)
+            if (atomWindowType != None && atomWindowTypeDialog != None)
             {
 
-               XChangeProperty(m_pdisplay->m_pdisplay, m_window,
+               XChangeProperty(display, m_window,
                                atomWindowType, XA_ATOM, 32, PropModeReplace,
-                               (unsigned char *) &atomWindowTypeSplash, 1);
+                               (unsigned char *) &atomWindowTypeDialog, 1);
 
             }
-
-  //       }
-
-//#endif
-
-    //     if(m_pinterface->m_bStartCentered)
-      //   {
 
             auto atomNormalHints = m_pdisplay->intern_atom("WM_NORMAL_HINTS", false);
 
@@ -228,7 +285,7 @@ namespace x11
 
             hints.win_gravity = CenterGravity;
 
-            XSetWMSizeHints(m_pdisplay->m_pdisplay, m_window, &hints, atomNormalHints);
+            XSetWMSizeHints(display, m_window, &hints, atomNormalHints);
 
          }
 
@@ -239,610 +296,335 @@ namespace x11
 
             attributes.override_redirect = True;
 
-            XChangeWindowAttributes(m_pdisplay->m_pdisplay, m_window,
+            XChangeWindowAttributes(display, m_window,
                              CWOverrideRedirect,
                              &attributes);
 
-   //      MWMHints mwm_hints;
-   //
-   //      Atom MotifHints = XInternAtom(m_pdisplay->m_pdisplay, "_MOTIF_WM_HINTS", 0);
-   //
-   //      mwm_hints.flags = MWM_HINTS_FUNCTIONS;
-   //      mwm_hints.functions=  MWM_FUNC_MOVE;
-   //
-   //      XMapWindow(m_pdisplay->m_pdisplay, m_window);
-   //      XChangeProperty(m_pdisplay->m_pdisplay, m_window, MotifHints, MotifHints, 32, PropModeReplace, (unsigned char *)&mwm_hints, 5);
-
          }
-
-         XSelectInput(m_pdisplay->m_pdisplay, m_window, ExposureMask | KeyPressMask | VisibilityChangeMask | StructureNotifyMask | ButtonPressMask | PointerMotionMask | ButtonMotionMask | ButtonReleaseMask | LeaveWindowMask);
-
-         XSelectInput(m_pdisplay->m_pdisplay, windowRoot, PropertyChangeMask);
 
          nano_window_on_create();
 
       });
 
-      //XMapWindow(m_pdisplay->m_pdisplay, m_window);
+   }
+
+
+   void nano_window::on_left_button_down(::user::mouse * pmouse)
+   {
+
+      m_pinterface->on_left_button_down(pmouse);
 
    }
 
-//::atom nano_window::hit_test(int x, int y)
-//{
-//
-//   for (int i = 0; i < m_iButtonCount; i++)
-//   {
-//      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
-//      {
-//
-//         return m_buttona[i].m_edialogresult;
-//
-//      }
-//
-//   }
-//
-//   return e_dialog_result_none;
-//
-//}
-//
 
-void nano_window::on_left_button_down(::user::mouse * pmouse)
-{
-
-   m_pinterface->on_left_button_down(pmouse);
-
-}
-
-
-void nano_window::on_left_button_up(::user::mouse * pmouse)
-{
-
-   m_pinterface->on_left_button_up(pmouse);
-}
-
-
-
-void nano_window::on_right_button_down(::user::mouse * pmouse)
-{
-
-   m_pinterface->on_right_button_down(pmouse);
-
-}
-
-
-void nano_window::on_right_button_up(::user::mouse * pmouse)
-{
-
-   m_pinterface->on_right_button_up(pmouse);
-}
-
-
-void nano_window::on_mouse_move(::user::mouse * pmouse)
-{
-
-   m_pinterface->on_mouse_move(pmouse);
-
-}
-
-
-::atom nano_window::get_result()
-{
-
-   return m_pinterface->get_result();
-
-}
-
-
-nano_child * nano_window::hit_test(::user::mouse * pmouse)
-{
-
-   return m_pinterface->hit_test(pmouse);
-
-}
-
-
-//LRESULT CALLBACK nano_message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-//{
-//if (msg == WM_NCCREATE)
-//{
-//
-//   CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
-//   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
-//
-//}
-//nano_message_box * pwindow = (nano_message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-//
-//if (!pwindow)
-//{
-//   return DefWindowProc(hwnd, msg, wParam, lParam);
-//}
-//return pwindow->window_procedure(msg, wParam, lParam);
-//
-//}
-
-//#ifndef GET_X_LPARAM
-//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-//#endif
-//
-//
-//#ifndef GET_Y_LPARAM
-//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-//#endif
-//
-////LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-//{
-//   switch (message)
-//   {
-//      case WM_CLOSE:
-//         DestroyWindow(m_hwnd);
-//         break;
-//      case WM_DESTROY:
-//         PostQuitMessage(0);
-//         break;
-//      case WM_CREATE:
-//      {
-//         update_drawing_objects();
-//      }
-//         break;
-//      case WM_CHAR:
-//      {
-//         on_char((int) wparam);
-//         return 0;
-//      }
-//         break;
-//      case WM_LBUTTONDOWN:
-//         on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-//         break;
-//      case WM_MOUSEMOVE:
-//         on_mouse_move(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-//         break;
-//      case WM_LBUTTONUP:
-//      {
-//         on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-//
-//      }
-//
-//         break;
-//      case WM_PAINT:
-//      {
-//         PAINTSTRUCT paintstruct{};
-//         HDC hdc = BeginPaint(m_hwnd, &paintstruct);
-//         draw(hdc);
-//         EndPaint(m_hwnd, &paintstruct);
-//      }
-//         break;
-//      case WM_NCACTIVATE:
-//      {
-//         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-//         m_bNcActive = wparam != 0;
-//         redraw();
-//
-//         return lresult;
-//
-//      }
-//      case WM_ACTIVATE:
-//      {
-//         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-//
-//
-//         return lresult;
-//
-//      }
-//      default:
-//         return DefWindowProc(m_hwnd, message, wparam, lparam);
-//   }
-//   return 0;
-//}
-//
-//
-//HINSTANCE nano_message_box_hinstance()
-//{
-//
-//   HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
-//
-//   if (hinstanceWndProc == nullptr)
-//   {
-//
-//      hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
-//
-//   }
-//
-//   return hinstanceWndProc;
-//
-//}
-
-//
-//void register_nano_window_class()
-//{
-//
-//   if (g_bNanoWindowClassRegistered)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   auto hinstanceWndProc = nano_message_box_hinstance();
-//
-//   WNDCLASSEX wndclassex;
-//
-//   //Step 1: Registering the Window Class
-//   wndclassex.cbSize = sizeof(WNDCLASSEX);
-//   wndclassex.style = 0;
-//   wndclassex.lpfnWndProc = &message_box_window_procedure;
-//   wndclassex.cbClsExtra = 0;
-//   wndclassex.cbWndExtra = 0;
-//   wndclassex.hInstance = hinstanceWndProc;
-//   wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-//   wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
-//   wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-//   wndclassex.lpszMenuName = NULL;
-//   wndclassex.lpszClassName = _T(NANO_MESSAGE_BOX_WINDOW_CLASS);
-//   wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-//
-//   if (!RegisterClassEx(&wndclassex))
-//   {
-//
-//      throw ::exception(error_failed, "Failed to register nano message box window class.");
-//
-//   }
-//
-//   g_bNanoWindowClassRegistered = true;
-//
-//}
-//
-
-void nano_window::display()
-{
-
-//   if(is_main_thread())
-//   {
-//
-//      // Cannot display synchronously in user/main thread.
-//
-//      // Cannot show user interface on break of user/main thread.
-//
-//      debug_break();
-//
-//      return;
-//
-//   }
-
-   _wm_nodecorations(false);
-
-   XMapWindow(m_pdisplay->m_pdisplay, m_window);
-
-   XRaiseWindow(m_pdisplay->m_pdisplay, m_window);
-
-   set_active();
-
-//   m_eventEnd.wait();
-
-}
-
-
-void nano_window::set_active()
-{
-
-   XEvent xev;
-
-   __zero(xev);
-
-   Window windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
-
-   Atom atomActiveWindow = XInternAtom(m_pdisplay->m_pdisplay, "_NET_ACTIVE_WINDOW", False);
-
-   xev.xclient.type = ClientMessage;
-   xev.xclient.send_event = True;
-   xev.xclient.display = m_pdisplay->m_pdisplay;
-   xev.xclient.window = m_window;
-   xev.xclient.message_type = atomActiveWindow;
-   xev.xclient.format = 32;
-   xev.xclient.data.l[0] = 1;
-   xev.xclient.data.l[1] = 0;
-   xev.xclient.data.l[2] = 0;
-   xev.xclient.data.l[3] = 0;
-   xev.xclient.data.l[4] = 0;
-
-   XSendEvent(m_pdisplay->m_pdisplay, windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, &xev);
-
-}
-
-
-bool nano_window::_on_event(XEvent *pevent)
-{
-
-   if(m_window == None)
+   void nano_window::on_left_button_up(::user::mouse * pmouse)
    {
 
-      return false;
+      m_pinterface->on_left_button_up(pmouse);
 
    }
 
-   if (pevent->xany.window != m_window)
+
+   void nano_window::on_right_button_down(::user::mouse * pmouse)
    {
 
-      return false;
+      m_pinterface->on_right_button_down(pmouse);
 
    }
 
-   auto event_type = pevent->type;
 
-   if (event_type == ConfigureNotify)
+   void nano_window::on_right_button_up(::user::mouse * pmouse)
    {
 
-      m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+      m_pinterface->on_right_button_up(pmouse);
 
-      m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+   }
 
-      m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
 
-      m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+   void nano_window::on_mouse_move(::user::mouse * pmouse)
+   {
 
-      if (m_psurface)
+      m_pinterface->on_mouse_move(pmouse);
+
+   }
+
+
+   ::atom nano_window::get_result()
+   {
+
+      return m_pinterface->get_result();
+
+   }
+
+
+   nano_child * nano_window::hit_test(::user::mouse * pmouse)
+   {
+
+      return m_pinterface->hit_test(pmouse);
+
+   }
+
+
+
+   void nano_window::display()
+   {
+
+      _wm_nodecorations(false);
+
+      XMapWindow(m_pdisplay->m_pdisplay, m_window);
+
+      XRaiseWindow(m_pdisplay->m_pdisplay, m_window);
+
+      set_active();
+
+   }
+
+
+   void nano_window::set_active()
+   {
+
+      XEvent xev;
+
+      __zero(xev);
+
+      Window windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
+
+      Atom atomActiveWindow = XInternAtom(m_pdisplay->m_pdisplay, "_NET_ACTIVE_WINDOW", False);
+
+      xev.xclient.type = ClientMessage;
+      xev.xclient.send_event = True;
+      xev.xclient.display = m_pdisplay->m_pdisplay;
+      xev.xclient.window = m_window;
+      xev.xclient.message_type = atomActiveWindow;
+      xev.xclient.format = 32;
+      xev.xclient.data.l[0] = 1;
+      xev.xclient.data.l[1] = 0;
+      xev.xclient.data.l[2] = 0;
+      xev.xclient.data.l[3] = 0;
+      xev.xclient.data.l[4] = 0;
+
+      XSendEvent(m_pdisplay->m_pdisplay, windowRoot, False, SubstructureRedirectMask | SubstructureNotifyMask, &xev);
+
+   }
+
+
+   bool nano_window::_on_event(XEvent *pevent)
+   {
+
+      if(m_window == None)
       {
 
-         cairo_xlib_surface_set_size(m_psurface, m_pinterface->m_rectangle.width(),
-                                     m_pinterface->m_rectangle.height());
+         return false;
+
+      }
+
+      if (pevent->xany.window != m_window)
+      {
+
+         return false;
+
+      }
+
+      auto event_type = pevent->type;
+
+      if (event_type == ConfigureNotify)
+      {
+
+         m_pinterface->m_rectangle.left = pevent->xconfigure.x;
+
+         m_pinterface->m_rectangle.top = pevent->xconfigure.y;
+
+         m_pinterface->m_rectangle.right = pevent->xconfigure.x + pevent->xconfigure.width;
+
+         m_pinterface->m_rectangle.bottom = pevent->xconfigure.y + pevent->xconfigure.height;
+
+         if (m_psurface)
+         {
+
+            cairo_xlib_surface_set_size(m_psurface, m_pinterface->m_rectangle.width(),
+                                        m_pinterface->m_rectangle.height());
+
+         }
+
+      }
+      else if (pevent->type == UnmapNotify)
+      {
+
+         output_debug_string("UnmapNotify");
+
+      }
+      else if (pevent->type == MapNotify)
+      {
+
+         if (!m_psurface)
+         {
+
+            rectangle_i32 r;
+
+            get_client_rectangle(r);
+
+            auto display = m_pdisplay->m_pdisplay;
+
+            auto window = m_window;
+
+            auto w = m_pinterface->m_rectangle.width();
+
+            auto h = m_pinterface->m_rectangle.height();
+
+            m_psurface = cairo_xlib_surface_create(
+                    display,
+                    window,
+                    m_pvisual,
+                    w, h);
+
+            auto pdc = cairo_create(m_psurface);
+
+            m_pnanodevice = __new(::cairo::nano_device(pdc));
+
+         }
+
+         _update_window();
+
+      }
+      else if (pevent->type == Expose)
+      {
+
+         _update_window();
+
+      }
+      else if (pevent->type == PropertyNotify)
+      {
+
+         output_debug_string("PropertyNotify");
+
+      }
+      else if (pevent->type == KeyPress)
+      {
+
+         auto keysym = XkbKeycodeToKeysym(m_pdisplay->m_pdisplay, pevent->xkey.keycode, 0, pevent->xkey.state & ShiftMask ? 1 : 0);
+
+         int iChar = xkb_keysym_to_utf32(keysym);
+
+         on_char(iChar);
+
+      }
+      else if (pevent->type == KeyRelease)
+      {
+
+      }
+      else if (pevent->type == ButtonPress)
+      {
+
+         if (pevent->xbutton.button == Button1)
+         {
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+            on_left_button_down(pmouse);
+
+         }
+         else if (pevent->xbutton.button == Button3)
+         {
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+            on_right_button_down(pmouse);
+
+         }
+
+      }
+      else if (pevent->type == ButtonRelease)
+      {
+
+         if (pevent->xbutton.button == Button1)
+         {
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+            on_left_button_up(pmouse);
+
+         }
+         else if (pevent->xbutton.button == Button3)
+         {
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
+
+            on_right_button_up(pmouse);
+
+         }
+
+      }
+      else if (pevent->type == MotionNotify)
+      {
+
+         auto pmouse = __create_new < ::user::mouse >();
+
+         pmouse->m_point = {pevent->xmotion.x_root, pevent->xmotion.y_root};
+
+         on_mouse_move(pmouse);
+
+      }
+      else if (pevent->type == LeaveNotify)
+      {
+
+         if (m_pinterface->m_pchildHover)
+         {
+
+            auto pmouse = __create_new < ::user::mouse >();
+
+            pmouse->m_point = {-100'000, -100'000};
+
+            m_pinterface->m_pchildHover->on_mouse_move(pmouse);
+
+            m_pinterface->m_pchildHover = nullptr;
+
+            m_pinterface->redraw();
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   void nano_window::_update_window()
+   {
+
+      if(m_pnanodevice && m_psurface)
+      {
+
+         m_pnanodevice->on_begin_draw();
+
+         draw(m_pnanodevice);
+
+         m_pnanodevice->on_end_draw();
+
+         cairo_surface_flush(m_psurface);
 
       }
 
    }
-   else if (pevent->type == UnmapNotify)
+
+
+   void nano_window::redraw()
    {
 
-      output_debug_string("UnmapNotify");
-
-   }
-   else if (pevent->type == MapNotify)
-   {
-
-      if (!m_psurface)
-      {
-
-         rectangle_i32 r;
-
-         get_client_rectangle(r);
-
-         m_psurface = cairo_xlib_surface_create(
-            m_pdisplay->m_pdisplay,
-            m_window,
-            DefaultVisual(m_pdisplay->m_pdisplay, DefaultScreen(m_pdisplay->m_pdisplay)),
-            m_pinterface->m_rectangle.width(),
-            m_pinterface->m_rectangle.height());
-
-         auto pdc = cairo_create(m_psurface);
-
-         m_pnanodevice = __new(::cairo::nano_device(pdc));
-
-      }
+      //::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
 
       _update_window();
 
    }
-   else if (pevent->type == Expose)
-   {
 
-      _update_window();
-
-   }
-   else if (pevent->type == PropertyNotify)
-   {
-
-      output_debug_string("PropertyNotify");
-
-   }
-   else if (pevent->type == KeyPress)
-   {
-
-      auto keysym = XkbKeycodeToKeysym(m_pdisplay->m_pdisplay, pevent->xkey.keycode, 0, pevent->xkey.state & ShiftMask ? 1 : 0);
-
-      int iChar = xkb_keysym_to_utf32(keysym);
-
-      on_char(iChar);
-
-   }
-   else if (pevent->type == KeyRelease)
-   {
-
-   }
-   else if (pevent->type == ButtonPress)
-   {
-
-      if (pevent->xbutton.button == Button1)
-      {
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
-
-         on_left_button_down(pmouse);
-
-      }
-      else if (pevent->xbutton.button == Button3)
-      {
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
-
-         on_right_button_down(pmouse);
-
-      }
-
-   }
-   else if (pevent->type == ButtonRelease)
-   {
-
-      if (pevent->xbutton.button == Button1)
-      {
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
-
-         on_left_button_up(pmouse);
-
-      }
-      else if (pevent->xbutton.button == Button3)
-      {
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = {pevent->xbutton.x_root, pevent->xbutton.y_root};
-
-         on_right_button_up(pmouse);
-
-      }
-
-   }
-   else if (pevent->type == MotionNotify)
-   {
-
-      auto pmouse = __create_new < ::user::mouse >();
-
-      pmouse->m_point = {pevent->xmotion.x_root, pevent->xmotion.y_root};
-
-      on_mouse_move(pmouse);
-
-   }
-   else if (pevent->type == LeaveNotify)
-   {
-
-      if (m_pinterface->m_pchildHover)
-      {
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_point = {-100'000, -100'000};
-
-         m_pinterface->m_pchildHover->on_mouse_move(pmouse);
-
-         m_pinterface->m_pchildHover = nullptr;
-
-         m_pinterface->redraw();
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-void nano_window::_update_window()
-{
-
-   if(m_pnanodevice && m_psurface)
-   {
-
-      m_pnanodevice->on_begin_draw();
-
-      draw(m_pnanodevice);
-
-      m_pnanodevice->on_end_draw();
-
-      cairo_surface_flush(m_psurface);
-
-   }
-
-}
-
-
-
-
-//void nano_window::message_loop()
-//{
-//
-//   while(message_loop_step())
-//   {
-//
-//      m_psystem->m_pnode->run_posted_routines();
-//
-//   }
-//
-//   output_debug_string("nano_window::message_loop exit");
-//
-//}
-
-
-//
-//
-//
-
-
-//   MSG msg;
-//
-//   while (::task_get_run() && GetMessage(&msg, NULL, 0, 0) > 0)
-//   {
-//
-//      TranslateMessage(&msg);
-//
-//      DispatchMessage(&msg);
-//
-//   }
-//
-//}
-
-//void nano_window::add_child(nano_child * pchild)
-//{
-//
-//   pchild->m_pwindow = m_pinterfacethis;
-//
-//   m_childa.add(pchild);
-//
-//}
-
-
-void nano_window::redraw()
-{
-
-   //::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
-
-   _update_window();
-
-}
-
-
-//
-//LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-//{
-//   switch (message)
-//   {
-//   case WM_CLOSE:
-//      DestroyWindow(m_hwnd);
-//      break;
-//   case WM_DESTROY:
-//      PostQuitMessage(0);
-//      break;
-//   case WM_CREATE:
-//   {
-//      update_drawing_objects();
-//   }
-//   break;
-//   case WM_LBUTTONDOWN:
-//      on_left_button_down(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-//      break;
-//   case WM_LBUTTONUP:
-//   {
-//      on_left_button_up(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-//   }
-//
-//   break;
-//   case WM_PAINT:
-//   {
-//      PAINTSTRUCT paintstruct{};
-//      HDC hdc = BeginPaint(m_hwnd, &paintstruct);
-//      draw(hdc);
-//      EndPaint(m_hwnd, &paintstruct);
-//   }
-//   break;
-//   default:
-//      return DefWindowProc(m_hwnd, message, wparam, lparam);
-//   }
-//   return 0;
-//}
 
    void nano_window::destroy()
    {
@@ -850,6 +632,13 @@ void nano_window::redraw()
       XUnmapWindow(m_pdisplay->m_pdisplay, m_window);
 
       XDestroyWindow(m_pdisplay->m_pdisplay, m_window);
+
+      if(m_colormap)
+      {
+
+         XFreeColormap(m_pdisplay->m_pdisplay, m_colormap);
+
+      }
 
       m_pdisplay->erase_listener(this);
 
@@ -1023,48 +812,29 @@ void nano_window::redraw()
    }
 
 
+//   ::size_i32 nano_window::get_main_screen_size()
+//   {
+//
+//      return m_pdisplay->get_main_screen_size();
+//
+//   }
+
+
 } // namespace x11
-
-
-//void x11_check_status(int status, unsigned long window)
-//{
-//
-//   if (status == BadWindow)
-//   {
-//
-//      printf("window atom # 0x%lx does not exists!", window);
-//
-//      throw ::exception(error_exception);
-//
-//   }
-//
-//   if (status != Success)
-//   {
-//
-//      printf("XGetWindowProperty failed!");
-//
-//      throw ::exception(error_exception);
-//
-//   }
-//
-//}
 
 
 #define MAXSTR 1000
 
 
-
-
-
-
-
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void x11_asynchronous(::procedure function)
 {
 
-   auto pdisplay = ::x11::display::get(g_psystem);
+   auto psystem = ::get_system();
+
+   auto pdisplay = ::x11::display::get(psystem);
 
    if (!pdisplay)
    {

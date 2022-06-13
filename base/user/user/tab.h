@@ -60,6 +60,8 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       ::item_pointer                   m_pitemClick;
+      bool                             m_bTabScrollingActive;
+      ::point_i32                      m_pointLeftButtonDown;
       ::write_text::font_pointer           m_pfontTab;
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;

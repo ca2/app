@@ -7,16 +7,15 @@
 #include "framework.h"
 
 
-extern class ::system * g_psystem;
-
-
 CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
 {
 
    if (::is_null(pmatter))
    {
+      
+      auto psystem = ::get_system();
 
-      auto ptopic = g_psystem->create_topic(atom);
+      auto ptopic = psystem->create_topic(atom);
 
       if(wParam != 0 || lParam != 0)
       {

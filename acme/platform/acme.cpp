@@ -1656,23 +1656,23 @@ namespace acme
 //
 //#endif
 
-
+#include "acme/platform/system_setup.h"
 
 
 int main(int argc, char * argv[], char * envp[])
 {
 
-   ::app * papp = ::app::g_p;
+   auto papp = ::app_factory::new_app();
 
    papp->set_args(argc, argv, envp);
 
-//#ifdef LINUX
-//
-//   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
-//
-//   papp->m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
-//
-//#endif
+#if defined(LINUX) || defined(FREEBSD)
+
+   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
+
+   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+
+#endif
 
    int iExitCode = papp->main_loop();
 

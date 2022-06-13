@@ -136,7 +136,7 @@ namespace universal_windows
    shell::e_folder shell::get_folder_type(::object * pobject, const char * lpcsz)
    {
 
-      return get_folder_type(pobject, ::str::international::utf8_to_unicode(lpcsz));
+      return get_folder_type(pobject, utf8_to_unicode(lpcsz));
 
    }
 
@@ -146,7 +146,7 @@ namespace universal_windows
 
       string strPath;
 
-      ::str::international::unicode_to_utf8(strPath, lpcszPath);
+      unicode_to_utf8(strPath, lpcszPath);
 
       if (         auto psystem = m_psystem;
 
@@ -186,7 +186,7 @@ pacmedirectory->is(strPath))
 
       i32 iImage = 0x80000000;
 
-      if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
+      if (::str().begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
@@ -207,7 +207,7 @@ pacmedirectory->is(strPath))
          return iImage;
 
       }
-      else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
+      else if (::str().begins_ci(imagekey.m_strPath, "fs:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
@@ -229,7 +229,7 @@ pacmedirectory->is(strPath))
          return iImage;
 
       }
-      else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
+      else if (::str().begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
          ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
@@ -252,12 +252,12 @@ pacmedirectory->is(strPath))
 
       }
 
-      if (::str::ends_ci(imagekey.m_strPath, ".apex"))
+      if (::str().ends_ci(imagekey.m_strPath, ".apex"))
       {
             
          string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
 
-         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         if (::str().begins_eat_ci(str, "ca2prompt\r\n"))
          {
 
             str.trim();
@@ -290,9 +290,9 @@ pacmedirectory->is(strPath))
 
       // try to find "uifs:// http:// ftp:// like addresses"
       // then should show icon by extension or if is folder
-      strsize iFind = imagekey.m_strPath.is_empty() ? -1 : ::str::find_ci("://", imagekey.m_strPath);
+      strsize iFind = imagekey.m_strPath.is_empty() ? -1 : ::str().find_ci("://", imagekey.m_strPath);
 
-      strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str::find_ci(":", imagekey.m_strPath);
+      strsize iFind2 = imagekey.m_strPath.is_empty() ? -1 : ::str().find_ci(":", imagekey.m_strPath);
 
       if (iFind >= 0 || iFind2 >= 2)
       {
@@ -327,7 +327,7 @@ pacmedirectory->is(strPath))
 
       string strExtension;
 
-      if (::str::ends_ci(imagekey.m_strPath, ".sln"))
+      if (::str().ends_ci(imagekey.m_strPath, ".sln"))
       {
             
          output_debug_string("test");

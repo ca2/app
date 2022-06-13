@@ -768,7 +768,7 @@ namespace user
       set_title(pathFull.title());
 
       //string strPathName;
-      //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);
+      //Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
       guserbase::get(this)->AddToRecentFileList(pszPathName);*/
@@ -1820,10 +1820,10 @@ namespace user
    void document::on_request(::create * pcreate)
    {
 
-      if(!on_open_document(pcreate->m_pcommandline->m_payloadFile))
+      if(!on_open_document(pcreate->m_payloadFile))
          return;
 
-      pcreate->m_pcommandline->payload("document") = this;
+      pcreate->payload("document") = this;
 
    }
 
@@ -1833,7 +1833,7 @@ namespace user
 
    //   __UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
-   //   if(::str::begins_eat(strUrl,"ext://"))
+   //   if(::str().begins_eat(strUrl,"ext://"))
    //   {
    //      papp->open_link(strUrl,"", pszTargetFrameName);
 
@@ -1843,7 +1843,7 @@ namespace user
    //      *pbCancel = true;
    //      return;
    //   }
-   //   if(::str::begins_eat(strUrl,"hist://"))
+   //   if(::str().begins_eat(strUrl,"hist://"))
    //   {
    //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;
@@ -1891,16 +1891,7 @@ namespace user
 
       }
 
-      if (pcreate->m_pcommandline.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-
-      return pcreate->m_pcommandline->payload("document").cast < ::user::document >();
-
+      return pcreate->payload("document").cast < ::user::document >();
 
    }
 

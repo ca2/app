@@ -2,8 +2,8 @@
 #include <stdio.h>
 
 
-namespace str
-{
+//namespace str
+//{
 
 
    tokenizer::tokenizer()
@@ -343,7 +343,7 @@ namespace str
       while(psz < pszEnd)
       {
 
-         if(::str::ch::is_whitespace(psz))
+         if(::str::ch().is_whitespace(psz))
          {
 
             if(pszStart != nullptr)
@@ -405,7 +405,7 @@ namespace str
             
          }
 
-         psz = ::str::utf8_inc(psz);
+         ::str().increment(psz);
 
       }
 
@@ -451,9 +451,9 @@ namespace str
 
    }
 
-
-} // namespace str
-
-
-
-
+//
+//} // namespace str
+//
+//
+//
+//

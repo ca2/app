@@ -2,6 +2,17 @@
 #pragma once
 
 
+template < typename DURATION >
+inline DURATION now()
+{
+
+   throw "interface_only";
+
+   return e_now;
+
+}
+
+
 #include "integral/_.h"
 
 
@@ -52,6 +63,24 @@ FLOATING_DURATION_SETUP1(FLOATING_SECOND        , floating_second       )
 FLOATING_DURATION_SETUP1(FLOATING_MINUTE        , floating_minute       )
 FLOATING_DURATION_SETUP1(FLOATING_HOUR          , floating_hour         )
 FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
+
+
+__DURATION_SETUP__(integral_nanosecond    , m_i)
+__DURATION_SETUP__(integral_microsecond   , m_i)
+__DURATION_SETUP__(integral_millisecond   , m_i)
+__DURATION_SETUP__(integral_second        , m_i)
+__DURATION_SETUP__(integral_minute        , m_i)
+__DURATION_SETUP__(integral_hour          , m_i)
+__DURATION_SETUP__(integral_day           , m_i)
+
+
+__DURATION_SETUP__(floating_nanosecond    , m_d)
+__DURATION_SETUP__(floating_microsecond   , m_d)
+__DURATION_SETUP__(floating_millisecond   , m_d)
+__DURATION_SETUP__(floating_second        , m_d)
+__DURATION_SETUP__(floating_minute        , m_d)
+__DURATION_SETUP__(floating_hour          , m_d)
+__DURATION_SETUP__(floating_day           , m_d)
 
 
 

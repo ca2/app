@@ -195,6 +195,8 @@ namespace user
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
+      m_bUserImplCreated = true;
+
       m_puserinteraction->set(e_flag_task_started);
 
       //return true;
@@ -653,12 +655,12 @@ namespace user
    bool interaction_child::_is_window() const
    {
 
-      if (!m_bUserElementOk)
-      {
+      //if (!m_bUserElementOk)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       if (!m_bCreate)
       {

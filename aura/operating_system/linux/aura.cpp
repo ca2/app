@@ -88,7 +88,7 @@ CLASS_DECL_AURA void __node_aura_pos_term()
 
 //    stra.add_lines(str);
 
-//    return stra.predicate_get_count([](auto str) { return ::str::begins(str, "cpu"); });
+//    return stra.predicate_get_count([](auto str) { return ::str().begins(str, "cpu"); });
 
 // }
 

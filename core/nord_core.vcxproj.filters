@@ -274,30 +274,6 @@
     <ClCompile Include="user\simple\tree_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple_ui\edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\top.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
     <ClCompile Include="html\html\core_data.cpp">
       <Filter>Source Files\html\html</Filter>
     </ClCompile>
@@ -457,9 +433,6 @@
     <ClCompile Include="user\user\mesh_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\shell.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\statusbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -592,11 +565,8 @@
     <ClCompile Include="user\rich_text\format_tool.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="node\android\shell.cpp">
-      <Filter>Source Files\node\android</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\shell.cpp">
-      <Filter>Source Files\node\windows</Filter>
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
@@ -609,6 +579,19 @@
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact_base.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\dialog_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_column.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\main_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1269,33 +1252,6 @@
     <ClInclude Include="user\simple\_.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple_ui\_.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\edit_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\interaction.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\label.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\message_box.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\password.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\style.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\tap.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui\top.h">
-      <Filter>Header Files\user\simple_ui</Filter>
-    </ClInclude>
     <ClInclude Include="user\menu\_.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
@@ -1677,6 +1633,7 @@
     <ClInclude Include="user\userex\calculator_edit_view.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filemanager\impact.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1775,12 +1732,6 @@
     <Filter Include="Source Files\html\user">
       <UniqueIdentifier>{1ead309b-79a9-46b6-923e-e1e460574bb8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{3b2c7785-2dbb-43f8-ae98-896f099e1e09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\user\simple_ui">
-      <UniqueIdentifier>{5ef9d692-8dae-4bee-835d-d7de792f1b77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html\html">
       <UniqueIdentifier>{91a0500c-07a4-46a4-8146-507edc155d67}</UniqueIdentifier>
     </Filter>
@@ -1817,20 +1768,11 @@
     <Filter Include="Source Files\user\userpresence">
       <UniqueIdentifier>{607820e2-3a53-4e44-9f70-ab9fc7a5501c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{ed4d7f3c-0729-4578-bd20-ab48dad973d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\android">
-      <UniqueIdentifier>{949f13ea-ab95-466d-96f5-2f7cbff679bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node">
       <UniqueIdentifier>{abbaa03b-b439-439d-bd13-f638bd0aa90d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\node\android">
       <UniqueIdentifier>{1f913882-ee56-411f-b15f-c956a0857f05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{5da3aa3c-f94f-437a-a921-f44c38a6d54a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{45dc04e7-0ede-4ebb-b7eb-191e2b083d9d}</UniqueIdentifier>
@@ -1841,10 +1783,11 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{83efbd7b-ac2d-4f30-8c6f-6dab94dcc8da}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="aura.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <Filter Include="Source Files\operating_system">
+      <UniqueIdentifier>{ed4d7f3c-0729-4578-bd20-ab48dad973d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows">
+      <UniqueIdentifier>{5da3aa3c-f94f-437a-a921-f44c38a6d54a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

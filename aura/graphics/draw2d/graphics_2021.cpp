@@ -1141,7 +1141,7 @@ namespace draw2d
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
+            ::image_pointer pimage1 = m_pcontext->m_pauracontext->create_image(size);
 
             image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
 
@@ -1577,7 +1577,7 @@ namespace draw2d
 //            g_pimagea.add(pimage1);
 //#endif
 
-         pimage1 = m_pcontext->context_image()->create_image(rectangleText.size());
+         pimage1 = m_pcontext->m_pauracontext->create_image(rectangleText.size());
 
          pimage1->get_graphics()->set(get_current_font());
 
@@ -3447,7 +3447,7 @@ namespace draw2d
       while (*psz && iRange < iStart + iCount)
       {
 
-         const char * pszNext = ::str::utf8_inc(psz);
+         const char * pszNext = ::str().next(psz);
 
          if (pszNext == nullptr)
          {
@@ -4185,7 +4185,7 @@ namespace draw2d
 
       string strParam(strArg);
 
-      strParam = ::str::q_valid(strParam);
+      strParam = ::str().q_valid(strParam);
 
       if (strParam.is_empty())
       {
@@ -4209,7 +4209,7 @@ namespace draw2d
 
       ::draw2d::graphics * pgraphics = this;
 
-      wstring wstr = ::str::international::utf8_to_unicode(strParam);
+      wstring wstr = utf8_to_unicode(strParam);
 
       string str(strParam);
 
@@ -4270,7 +4270,7 @@ namespace draw2d
             while (true)
             {
 
-               psz = ::str::utf8_inc(psz);
+               ::str().increment(psz);
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
@@ -4319,7 +4319,7 @@ namespace draw2d
                if ((int) sz.cx > rectangleClip.width())
                {
 
-                  i = ::str::uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
+                  i = ::str().uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
 
                   if (i <= 0)
                   {
@@ -4503,7 +4503,7 @@ namespace draw2d
 
       const char * pszEnd = pszSource + len;
 
-      const char * pszStart = ::str::utf8_inc(pszSource);
+      const char * pszStart = ::str().next(pszSource);
 
       size_i32 sz;
 
@@ -4579,23 +4579,26 @@ namespace draw2d
 
          }
 
-         if(::str::ch::is_space_char(pszPrevious))
+         if(::str::ch().is_space_char(pszPrevious))
 
          {
             pszSpaceStart       = pszPrevious;
 
             do
             {
+
                pszSpaceEnd      = psz;
 
-               if(!::str::ch::is_space_char(psz))
-
+               if(!::str::ch().is_space_char(psz))
                {
+
                   break;
+
                }
+
                pszPrevious      = psz;
 
-               psz              = ::str::utf8_inc(psz);
+               ::str().increment(psz);
 
             }
             while(psz != nullptr);
@@ -4624,7 +4627,7 @@ namespace draw2d
                break;
             }
 
-            psz = ::str::uni_dec(pszSource, psz);
+            psz = ::str().uni_dec(pszSource, psz);
 
             pszEnd = psz;
 
@@ -4635,19 +4638,24 @@ namespace draw2d
 
          pszPrevious = psz;
 
-         psz = ::str::utf8_inc(psz);
-
+         ::str().increment(psz);
 
          if(bEnd)
+         {
+            
             break;
+
+         }
          else
+         {
+
             bEnd = psz >= pszEnd;
 
+         }
 
       }
 
       str1 = string(pszSource, psz - pszSource);
-
 
       str2 = string(pszEnd);
 

@@ -96,7 +96,7 @@ namespace userstack
       ::userex::pane_tab_impact::on_change_cur_sel();
 //      __pointer(frame) pframe =  (get_parent_frame());
       string strId = get_view_id();
-      if(::str::begins_eat(strId, "app:"))
+      if(::str().begins_eat(strId, "app:"))
       {
 
          __pointer(::aura::application) pappTab;
@@ -169,7 +169,7 @@ namespace userstack
 
       string strId = pimpactdata->m_atom;
 
-      if(::str::begins_eat(strId, "app:"))
+      if(::str().begins_eat(strId, "app:"))
       {
 
          __pointer(::aura::application) pappTab;
@@ -182,7 +182,7 @@ namespace userstack
 
             __pointer(::create) pcreate(e_create);
             pcreate->m_pappbias = pappbias;
-            pcreate->m_pcommandline->_001ParseCommandFork(strId);
+            pcreate->_001ParseCommandFork(strId);
 
 
             string str;
@@ -190,12 +190,12 @@ namespace userstack
             if(papp->has_property(strId))
             {
 
-               pcreate->m_pcommandline->).merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
+               pcreate->).merge(papp->m_varTopicQuery[(const ::string &) strId].propset());
 
                if(papp->m_varTopicQuery[(const ::string &) strId].has_property("file"))
                {
 
-                  pcreate->m_pcommandline->m_payloadFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
+                  pcreate->m_payloadFile = papp->m_varTopicQuery[(const ::string &) strId]["file"];
 
                }
 
@@ -203,11 +203,11 @@ namespace userstack
 
             str = __string((iptr) pcreate->m_pappbias->m_puserinteractionParent);
 
-            pcreate->m_pcommandline->m_eventReady.ResetEvent();
+            pcreate->m_eventReady.ResetEvent();
 
             psession->on_request(pcreate);
 
-            pcreate->m_pcommandline->m_eventReady.wait();
+            pcreate->m_eventReady.wait();
 
          }
 
@@ -276,9 +276,9 @@ namespace userstack
          i32 i = (i32) ::ShellExecuteW(
             get_top_level()->get_handle(),
             nullptr,
-            L"\"" + ::str::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
+            L"\"" + utf8_to_unicode(itema[0].m_strPath) + L"\"",
             nullptr,
-            L"\"" + ::str::international::utf8_to_unicode(pcontext->m_papexcontext->dir().name(itema[0].m_strPath)) + L"\"",
+            L"\"" + utf8_to_unicode(pcontext->m_papexcontext->dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.format("%d", i);
@@ -351,7 +351,7 @@ namespace userstack
 
          psystem->m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
 
-         if(::str::begins_eat(strApp, "application:"))
+         if(::str().begins_eat(strApp, "application:"))
          {
 
             pcontext->m_papexcontext->file().put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);

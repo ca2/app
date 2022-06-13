@@ -105,8 +105,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_move);
 

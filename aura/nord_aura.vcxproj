@@ -97,7 +97,6 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -128,7 +127,6 @@
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
@@ -148,7 +146,6 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_LIBRARY;CUBE</PreprocessorDefinitions>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CLanguageStandard>c11</CLanguageStandard>
@@ -176,7 +173,6 @@
       <CLanguageStandard>c11</CLanguageStandard>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)local/include;$(__operating_system)third-android/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-android/include;$(__operating_system)third-android/third/include;$(__operating_system)third-android/third/include/include;$(SolutionDir)../../../operating-system/operating-system-android/_include;$(SolutionDir)../../../operating-system/operating-system-android;$(SolutionDir)../../../operating-system/operating-system-posix;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_AURA_LIBRARY;CUBE</PreprocessorDefinitions>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -194,21 +190,8 @@
     <ClInclude Include="astr.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
-    <ClInclude Include="const\aaa_callback.h" />
-    <ClInclude Include="const\aaa_check.h" />
-    <ClInclude Include="const\aaa_context.h" />
-    <ClInclude Include="const\aaa_GLOBAL_ID.h" />
-    <ClInclude Include="const\aaa_id.h" />
-    <ClInclude Include="const\aaa_impact.h" />
-    <ClInclude Include="const\aaa_procedure.h" />
-    <ClInclude Include="const\aaa_source.h" />
-    <ClInclude Include="const\aaa_status.h" />
-    <ClInclude Include="const\aaa_status_range_authentication.h" />
-    <ClInclude Include="const\aaa_thread.h" />
-    <ClInclude Include="const\aaa_timer.h" />
-    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="constant\hardware.h" />
     <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="const\_const.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="framework.h" />
@@ -285,8 +268,36 @@
     <ClInclude Include="graphics\graphics\filters.h" />
     <ClInclude Include="graphics\graphics\graphics.h" />
     <ClInclude Include="graphics\graphics\multiple_buffer.h" />
+    <ClInclude Include="graphics\graphics\target.h" />
     <ClInclude Include="graphics\graphics\window.h" />
     <ClInclude Include="graphics\graphics\_.h" />
+    <ClInclude Include="graphics\image\array.h" />
+    <ClInclude Include="graphics\image\context_image.h" />
+    <ClInclude Include="graphics\image\cursor.h" />
+    <ClInclude Include="graphics\image\cursor_set.h" />
+    <ClInclude Include="graphics\image\drawer.h" />
+    <ClInclude Include="graphics\image\drawing.h" />
+    <ClInclude Include="graphics\image\dynamic.h" />
+    <ClInclude Include="graphics\image\extension.h" />
+    <ClInclude Include="graphics\image\fastblur.h" />
+    <ClInclude Include="graphics\image\frame.h" />
+    <ClInclude Include="graphics\image\frame_array.h" />
+    <ClInclude Include="graphics\image\header.h" />
+    <ClInclude Include="graphics\image\icon.h" />
+    <ClInclude Include="graphics\image\image.h" />
+    <ClInclude Include="graphics\image\imaging.h" />
+    <ClInclude Include="graphics\image\list.h" />
+    <ClInclude Include="graphics\image\load_image.h" />
+    <ClInclude Include="graphics\image\map.h" />
+    <ClInclude Include="graphics\image\map_ex1.h" />
+    <ClInclude Include="graphics\image\meta.h" />
+    <ClInclude Include="graphics\image\palette.h" />
+    <ClInclude Include="graphics\image\pixmap.h" />
+    <ClInclude Include="graphics\image\save_image.h" />
+    <ClInclude Include="graphics\image\source.h" />
+    <ClInclude Include="graphics\image\_.h" />
+    <ClInclude Include="graphics\image\_image.h" />
+    <ClInclude Include="graphics\image\_image_impl.h" />
     <ClInclude Include="graphics\user\close_button.h" />
     <ClInclude Include="graphics\user\close_icon.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />
@@ -305,6 +316,8 @@
     <ClInclude Include="graphics\write_text\true_type_font_utilities.h" />
     <ClInclude Include="graphics\write_text\write_text.h" />
     <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="hardware\devices.h" />
+    <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -362,7 +375,6 @@
     <ClInclude Include="platform\_features.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="user\micro\message_box.h" />
     <ClInclude Include="user\user\aaaa_plain_edit_style.h" />
     <ClInclude Include="user\user\aaa_create.h" />
     <ClInclude Include="user\user\aaa_interaction_draw2d.h" />
@@ -435,6 +447,10 @@
     <ClInclude Include="windowing\exception.h" />
     <ClInclude Include="windowing\hook.h" />
     <ClInclude Include="windowing\icon.h" />
+    <ClInclude Include="windowing\sandbox\host_interaction.h" />
+    <ClInclude Include="windowing\sandbox\window.h" />
+    <ClInclude Include="windowing\sandbox\windowing.h" />
+    <ClInclude Include="windowing\sandbox\_sandbox.h" />
     <ClInclude Include="windowing\text_editor_interface.h" />
     <ClInclude Include="windowing\keyboard.h" />
     <ClInclude Include="windowing\menu.h" />
@@ -508,6 +524,7 @@
     <ClCompile Include="graphics\graphics\graphics.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\target.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
     <ClCompile Include="graphics\image\context_image.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
@@ -547,6 +564,8 @@
     <ClCompile Include="graphics\write_text\true_type_font_utilities.cpp" />
     <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="graphics\write_text\_shape.cpp" />
+    <ClCompile Include="hardware\devices.cpp" />
+    <ClCompile Include="hardware\device_listener.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -567,7 +586,6 @@
     <ClCompile Include="user\appearance\button.cpp" />
     <ClCompile Include="user\appearance\still.cpp" />
     <ClCompile Include="user\menu\menu_command.cpp" />
-    <ClCompile Include="user\micro\message_box.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />
     <ClCompile Include="user\user\call_message_handler_task.cpp" />
@@ -625,6 +643,9 @@
     <ClCompile Include="windowing\menu_command.cpp" />
     <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp" />
+    <ClCompile Include="windowing\sandbox\window.cpp" />
+    <ClCompile Include="windowing\sandbox\windowing.cpp" />
     <ClCompile Include="windowing\text_editor_interface.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />

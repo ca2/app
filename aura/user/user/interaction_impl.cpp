@@ -11,6 +11,7 @@
 #include "aura/graphics/graphics/_graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/text_editor_interface.h"
 //#ifdef _UWP
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
@@ -200,7 +201,7 @@ namespace user
 
       //}
 
-      return ::user::primitive::has_pending_redraw_flags();
+      return ::user::primitive_impl::has_pending_redraw_flags();
 
    }
 
@@ -1206,6 +1207,7 @@ namespace user
       ::user::primitive_impl::prio_install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::_001OnPrioCreate);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_prio_message_set_focus);
 
    }
 
@@ -1231,8 +1233,8 @@ namespace user
 
 
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
-         MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
 
       }
 
@@ -1593,7 +1595,7 @@ namespace user
 
          auto pinteraction = m_userinteractionaMouseHover[i];
 
-         if(pinteraction == m_puserinteractionCapture)
+         if(pinteraction == m_puserinteractionMouseCapture)
          {
 
             i++;
@@ -1713,7 +1715,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_puserinteractionCapture.release();
+      m_puserinteractionMouseCapture.release();
       
    }
 
@@ -1731,7 +1733,7 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      ::user::primitive::install_message_routing(pchannel);
+      ::user::primitive_impl::install_message_routing(pchannel);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -1816,7 +1818,7 @@ namespace user
 
       ::user::primitive_impl::post_non_client_destroy();
 
-      detach();
+      detach_window();
 
       m_puserinteraction.release();
 
@@ -1840,7 +1842,7 @@ namespace user
    void interaction_impl::assert_ok() const
    {
 
-      ::user::primitive::assert_ok();
+      ::user::primitive_impl::assert_ok();
 
    }
 
@@ -1848,7 +1850,7 @@ namespace user
    void interaction_impl::dump(dump_context & dumpcontext) const
    {
 
-      ::user::primitive::dump(dumpcontext);
+      ::user::primitive_impl::dump(dumpcontext);
 
    }
 
@@ -1885,7 +1887,7 @@ namespace user
          //return true;
 
       }
-      else if(m_bUserElementOk)
+      else if(m_bUserImplCreated)
       {
 
          if (m_puserinteraction)
@@ -1895,7 +1897,7 @@ namespace user
 
          }
 
-         m_bUserElementOk = false;
+         m_bUserImplCreated = false;
 
          //return ::DestroyWindow((HWND)get_handle());
          //return false;
@@ -1946,7 +1948,7 @@ namespace user
       }
 
       //bool bResult = 
-      ::user::primitive::start_destroying_window();
+      ::user::primitive_impl::start_destroying_window();
 
       //return bResult;
 
@@ -2394,7 +2396,7 @@ namespace user
 
          ::user::interaction* puserinteractionMouse = nullptr;
 
-         if (m_puserinteractionCapture)
+         if (m_puserinteractionMouseCapture)
          {
 
             //            if(g_puserinteractionMouseCapture123 == nullptr)
@@ -2410,7 +2412,7 @@ namespace user
             //
             //            }
 
-            puserinteractionMouse = m_puserinteractionCapture;
+            puserinteractionMouse = m_puserinteractionMouseCapture;
 
          }
 
@@ -2522,12 +2524,12 @@ namespace user
          if (::is_set(pkey))
          {
 
-            __pointer(::user::interaction) puiFocus = m_puserinteractionFocus1;
+            __pointer(::user::interaction) puiKeyboardFocus = m_puserinteractionKeyboardFocus;
 
-            if (puiFocus)
+            if (puiKeyboardFocus)
             {
 
-               puiFocus->route_message(pkey);
+               puiKeyboardFocus->route_message(pkey);
 
             }
             else
@@ -2728,12 +2730,12 @@ namespace user
 
       _on_mouse_move_step(pmouse->m_point);
 
-      auto puserinteractionCapture = m_puserinteractionCapture;
+      auto puserinteractionMouseCapture = m_puserinteractionMouseCapture;
 
-      if (::is_set(puserinteractionCapture))
+      if (::is_set(puserinteractionMouseCapture))
       {
 
-         puserinteractionCapture->route_message(pmouse);
+         puserinteractionMouseCapture->route_message(pmouse);
 
          return true;
 
@@ -5441,7 +5443,7 @@ namespace user
    void interaction_impl::destroy()
    {
 
-      return ::user::primitive::destroy();
+      return ::user::primitive_impl::destroy();
 
    }
 
@@ -5465,6 +5467,13 @@ namespace user
 
    oswindow interaction_impl::get_oswindow() const
    {
+       
+      if(!m_pwindow)
+      {
+         
+         return nullptr;
+         
+      }
 
       return (oswindow) m_pwindow->get_oswindow();
 
@@ -5490,64 +5499,171 @@ namespace user
    ::user::element * interaction_impl::get_keyboard_focus()
    {
 
-      return m_puserinteractionFocus1;
+      return m_puserinteractionKeyboardFocus;
 
    }
 
 
-   void interaction_impl::_001OnSetFocus(::message::message * pmessage)
+   void interaction_impl::on_prio_message_set_focus(::message::message * pmessage)
    {
 
       __pointer(::message::set_keyboard_focus) psetkeyboardfocus(pmessage);
 
-      on_final_set_keyboard_focus(psetkeyboardfocus);
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
-      {
-
-         return;
-
-      }
-
-      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
+//      on_final_set_keyboard_focus();
+//
+//      if (m_puserinteraction->m_ewindowflag & e_window_flag_focus)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      m_puserinteraction->m_ewindowflag |= e_window_flag_focus;
 
    }
    
-   
-   void interaction_impl::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
+
+   bool interaction_impl::on_keyboard_focus(::user::primitive* pfocus)
    {
 
-      on_final_kill_keyboard_focus(nullptr);
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         strsize iBeg = 0;
+
+         strsize iEnd = 0;
+
+         pfocus->_001GetSel(iBeg, iEnd);
+
+         string strText;
+
+         pfocus->_001GetText(strText);
+
+         auto pwindowing = m_puserinteraction->windowing();
+
+         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+         ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+         ptexteditorinterface->set_editor_text(strText);
+
+         ptexteditorinterface->show_software_keyboard();
+
+      }
+
+      return true;
+
+   }
+
+
+   
+//   void interaction_impl::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
+   void interaction_impl::on_final_set_keyboard_focus()
+   {
 
       _synchronous_lock synchronouslock(mutex());
 
-      if (m_puserinteractionFocusRequest && m_puserinteractionFocusRequest != m_puserinteractionFocus1)
+      if (m_puserinteractionKeyboardFocusRequest)
       {
+         
+         if(m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
+         {
 
-         m_puserinteractionFocus1 = m_puserinteractionFocusRequest;
+            m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
 
-         m_puserinteractionToKillFocus = m_puserinteractionFocus1;
+            m_puserinteractionKeyboardFocusRequest = nullptr;
 
-         m_puserinteractionFocusRequest = nullptr;
+            auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+
+            if (puserinteractionKeyboardFocus)
+            {
+
+               synchronouslock.unlock();
+
+               puserinteractionKeyboardFocus->on_set_keyboard_focus();
+
+            }
+            
+         }
 
       }
-
-      auto puserinteraction = m_puserinteractionFocus1;
-
-      if (puserinteraction)
-      {
-
-         synchronouslock.unlock();
-
-         puserinteraction->on_set_keyboard_focus();
-
-      }
-
+//      else
+//      {
+//
+//         m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+//
+//         synchronouslock.unlock();
+//
+//         on_final_kill_keyboard_focus();
+//
+//      }
 
    }
 
 
-   void interaction_impl::_001OnKillFocus(::message::message * pmessage)
+   bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   {
+
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
+
+//      auto pwindowing = m_puserinteraction->windowing();
+//
+//      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+//
+//      if (::is_set(ptexteditorinterface))
+//      {
+//
+//         ptexteditorinterface->hide_software_keyboard();
+//
+//      }
+
+
+//      _synchronous_lock synchronouslock(mutex());
+//
+//      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+//
+//      if (puserinteractionKeyboardFocus)
+//      {
+//
+//         m_puserinteractionKeyboardFocus.release();
+//
+//         synchronouslock.unlock();
+//
+//         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
+//
+//      }
+
+      return true;
+
+   }
+
+   bool interaction_impl::keyboard_focus_OnChildKillFocus()
+   {
+
+      output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
+
+      auto pwindowing = m_puserinteraction->windowing();
+
+      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+      if (::is_set(ptexteditorinterface))
+      {
+
+         ptexteditorinterface->hide_software_keyboard();
+
+      }
+
+      return true;
+
+   }
+
+
+
+   void interaction_impl::on_message_kill_focus(::message::message * pmessage)
    {
 
       __pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);
@@ -5561,22 +5677,30 @@ namespace user
 
       m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
 
-      on_final_kill_keyboard_focus(pkillkeyboardfocus);
+      on_final_kill_keyboard_focus();
 
    }
 
-   
-   void interaction_impl::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
+//void interaction_impl::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
+
+   void interaction_impl::on_final_kill_keyboard_focus()
    {
 
       _synchronous_lock synchronouslock(mutex());
 
-      if (m_puserinteractionToKillFocus && m_puserinteractionToKillFocus != m_puserinteractionFocusRequest)
+      if (m_puserinteractionToKillKeyboardFocus && m_puserinteractionToKillKeyboardFocus != m_puserinteractionKeyboardFocusRequest)
       {
+         
+         auto pinteraction = m_puserinteractionToKillKeyboardFocus;
 
-         auto pinteraction = m_puserinteractionToKillFocus;
+         if(m_puserinteractionKeyboardFocus == pinteraction)
+         {
+            
+            m_puserinteractionKeyboardFocus.release();
+            
+         }
 
-         m_puserinteractionToKillFocus = nullptr;
+         m_puserinteractionToKillKeyboardFocus = nullptr;
 
          synchronouslock.unlock();
 
@@ -5819,41 +5943,83 @@ namespace user
    //}
 
 
-   //void interaction_impl::clear_keyboard_focus()
-   //{
+   void interaction_impl::clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny)
+   {
 
-   //   auto puserinteraction = m_puserinteraction;
+      auto puserinteraction = m_puserinteraction;
 
-   //   if (::is_null(puserinteraction))
-   //   {
+      if (!puserinteraction)
+      {
 
-   //      return false;
+         throw ::exception(error_failed);
 
-   //   }
+      }
 
-   //   ::user::interaction * pinteractionHost = puserinteraction->get_host_window();
+      auto pwindow = puserinteraction->window();
 
-   //   if (::is_null(pinteractionHost))
-   //   {
+      if (!pwindow)
+      {
 
-   //      return false;
+         throw ::exception(error_failed);
 
-   //   }
+      }
 
-   //   auto pimplHost = pinteractionHost->m_pimpl;
+      auto pwindowing = pwindow->windowing();
 
-   //   if (::is_null(pimplHost))
-   //   {
+      if (!pwindowing)
+      {
 
-   //      return false;
+         throw ::exception(error_failed);
 
-   //   }
+      }
 
-   //   pimplHost->impl_clear_keyboard_focus();
+      ::windowing::window* pwindowGainingFocusIfAny = nullptr;
+      
+      if (pprimitiveimplGainingFocusIfAny)
+      {
 
-   //   return false;
+         pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
 
-   //}
+      }
+      
+      m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+      
+      on_final_kill_keyboard_focus();
+
+      //pwindowing->clear_keyboard_focus(pwindowGainingFocusIfAny);
+
+      //auto puserinteraction = m_puserinteraction;
+
+      //if (::is_null(puserinteraction))
+      //{
+
+      //   return false;
+
+      //}
+
+      //::user::interaction * pinteractionHost = puserinteraction->get_host_window();
+
+      //if (::is_null(pinteractionHost))
+      //{
+
+      //   return false;
+
+      //}
+
+      //auto pimplHost = pinteractionHost->m_pimpl;
+
+      //if (::is_null(pimplHost))
+      //{
+
+      //   return false;
+
+      //}
+
+      //pimplHost->impl_clear_keyboard_focus();
+
+      //return false;
+
+   }
 
 
    void interaction_impl::post(::message::message * pmessage)
@@ -6161,12 +6327,18 @@ namespace user
          if (edisplayOutput != e_display_zoomed)
          {
 
-            _001OnExitZoomed();
+            auto puserinteraction = m_puserinteraction;
+
+            if (puserinteraction)
+            {
+
+               puserinteraction->_001OnExitZoomed();
+
+            }
 
          }
 
       }
-
 
       bool bHasSetWindowPosition = false;
 
@@ -6534,12 +6706,12 @@ namespace user
 
       }
 
-      if (m_puserinteraction->layout().m_eflag)
-      {
-
-         return;
-
-      }
+//      if (m_puserinteraction->layout().m_eflag)
+//      {
+//
+//         return;
+//
+//      }
 
       __pointer(::message::move) pmove(pmessage);
 
@@ -6689,7 +6861,21 @@ namespace user
       {
 
          m_puserinteraction->layout().sketch().size() = m_puserinteraction->layout().window().size();
-         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+         
+         int cx = m_puserinteraction->layout().sketch().size().width();
+         
+         int cy = m_puserinteraction->layout().sketch().size().height();
+//         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
+         
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+         
+         m_puserinteraction->post_redraw();
+
+         //
+         //         m_puserinteraction->post_redraw();
+
 
          //if (m_puserinteraction->layout().is_moving())
          //{
@@ -6746,7 +6932,7 @@ namespace user
    }
 
 
-   void interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction_impl::show_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();
@@ -6754,7 +6940,7 @@ namespace user
    }
 
 
-   void interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction_impl::hide_software_keyboard(::user::element * pelement)
    {
 
       throw ::interface_only();

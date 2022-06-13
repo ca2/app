@@ -43,8 +43,8 @@ namespace filemanager
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &file_list::_001OnVScroll);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &file_list::on_message_show_window);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::on_message_set_focus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::on_message_kill_focus);
 
       add_command_prober("edit_copy", this, &file_list::_001OnUpdateEditCopy);
       add_command_handler("edit_copy", this, &file_list::_001OnEditCopy);
@@ -1057,7 +1057,6 @@ namespace filemanager
 
       }
 
-
       m_pointScroll = {0,0};
 
       string_array straStrictOrder;
@@ -1967,18 +1966,18 @@ namespace filemanager
    //}
 
 
-   void file_list::_001OnSetFocus(::message::message * pmessage)
+   void file_list::on_message_set_focus(::message::message * pmessage)
    {
 
-      TRACE("filemanager::file_list::_001OnSetFocus");
+      TRACE("filemanager::file_list::on_message_set_focus");
 
    }
 
 
-   void file_list::_001OnKillFocus(::message::message * pmessage)
+   void file_list::on_message_kill_focus(::message::message * pmessage)
    {
 
-      TRACE("filemanager::file_list::_001OnKillFocus");
+      TRACE("filemanager::file_list::on_message_kill_focus");
 
    }
 

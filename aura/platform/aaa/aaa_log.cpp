@@ -357,9 +357,9 @@ pacmedirectory->system() / "log.txt"))
                if (strTopicText.has_char())
                {
 
-                  ::str::begins_eat_ci(strTopicText, "class ");
+                  ::str().begins_eat_ci(strTopicText, "class ");
 
-                  ::str::begins_eat_ci(strTopicText, "struct ");
+                  ::str().begins_eat_ci(strTopicText, "struct ");
 
                   str += strTopicText;
 

@@ -74,7 +74,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 }
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 void main_asynchronous(const ::procedure & procedure)
@@ -96,7 +96,9 @@ void main_asynchronous(const ::procedure & procedure)
 
                             };
 
-   g_psystem->windowing_post(predicate);
+   auto psystem = ::get_system();
+
+   psystem->windowing_post(predicate);
 
 }
 

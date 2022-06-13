@@ -327,7 +327,7 @@ namespace file
 
       }
 
-      bool bWin1 = ::str::begins_eat_ci(strPath, "\\\\?\\");
+      bool bWin1 = ::str().begins_eat_ci(strPath, "\\\\?\\");
 
       index iFind = 0;
       while (true)
@@ -579,15 +579,15 @@ namespace file
 
    //   string strNewExtension(pszNewExtension);
 
-   //   ::str::begins_eat_ci(strNewExtension, ".");
+   //   ::str().begins_eat_ci(strNewExtension, ".");
 
    //   string strOldExtension(pszOldExtension);
 
-   //   ::str::begins_eat_ci(strOldExtension, ".");
+   //   ::str().begins_eat_ci(strOldExtension, ".");
 
    //   ::file::path path(*this);
 
-   //   ::str::ends_eat_ci(path, strOldExtension);
+   //   ::str().ends_eat_ci(path, strOldExtension);
 
    //   path += strNewExtension;
 

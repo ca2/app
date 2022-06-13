@@ -15,6 +15,7 @@ namespace acme
       string                                          m_strName;
       void *                                          m_plibrary;
       string                                          m_strMessage;
+      PFN_factory                                     m_pfnFactory;
 
 
       //static ::mutex *                                s_pmutexLoading;

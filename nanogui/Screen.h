@@ -224,7 +224,7 @@ public:
 //   }
 //
    /// Default keyboard event handler
-   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
+   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;
 
    /// Text input event handler: codepoint is native endian UTF-32 format
    bool keyboard_character_event(unsigned int codepoint) override;
@@ -355,7 +355,7 @@ public:
    bool on_mouse_move(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
    bool on_mouse_drag(const ::point_i32 & point, const ::user::e_key & ekeyModifiers) override;
 
-   bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers) override;
+   bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const string & strText) override;
    bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers) override;
 
    bool on_scroll_event(const ::point_i32 & point, double x, double y) override;

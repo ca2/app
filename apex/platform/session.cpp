@@ -513,6 +513,8 @@ namespace apex
 
       //return ::success;
 
+      initialize_context();
+
    }
 
 
@@ -658,7 +660,7 @@ namespace apex
 
       auto psystem = get_system()->m_papexsystem;
 
-      if (pcreate->m_ecommand == command_protocol)
+      if (pcreate->m_ecommand == e_command_protocol)
       {
 
          m_pappCurrent->do_request(pcreate);
@@ -691,7 +693,7 @@ namespace apex
 
       INFORMATION("m_strAppId Is Empty!!");
 
-      string strApp = pcreate->m_pcommandline->m_strApp;
+      string strApp = pcreate->m_strApp;
 
       if (strApp == "app/sphere/userstack")
       {
@@ -700,21 +702,21 @@ namespace apex
 
       }
 
-      m_varCurrentImpactFile = pcreate->m_pcommandline->m_payloadFile;
+      m_varCurrentImpactFile = pcreate->m_payloadFile;
 
       //string strApp;
 
-      //if ((pcreate->m_pcommandline->payload("app").array_get_count() > 1
-      //      || pcreate->m_pcommandline->payload("show_platform"] == 1 || m_varTopicQuery["show_platform") == 1)
-      //      && (!(bool)pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !(bool)m_bExperienceMainFrame)
-      //      && (!pcreate->m_pcommandline->m_varQuery.m_bExperienceMainFrame && !m_bExperienceMainFrame))
+      //if ((pcreate->payload("app").array_get_count() > 1
+      //      || pcreate->payload("show_platform"] == 1 || m_varTopicQuery["show_platform") == 1)
+      //      && (!(bool)pcreate->m_varQuery.m_bExperienceMainFrame && !(bool)m_bExperienceMainFrame)
+      //      && (!pcreate->m_varQuery.m_bExperienceMainFrame && !m_bExperienceMainFrame))
       //{
       //   m_bShowPlatform = true;
       //}
 
       bool bCreate = true;
 
-      if (pcreate->m_pcommandline->m_strApp.is_empty())
+      if (pcreate->m_strApp.is_empty())
       {
 
          if (pcreate->has_file())
@@ -742,22 +744,22 @@ namespace apex
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
-            //      pframe->InitialFramePosition();
+            //      pframe->_001InitialFramePlacement();
             //   }
             //}
          }
-         if (pcreate->m_pcommandline->payload("app").array_get_count() <= 0)
+         if (pcreate->payload("app").array_get_count() <= 0)
          {
             bCreate = false;
          }
       }
       if (bCreate)
       {
-         if (pcreate->m_pcommandline->m_strApp == "bergedge")
+         if (pcreate->m_strApp == "bergedge")
          {
-            if (pcreate->m_pcommandline->has_property("session_start"))
+            if (pcreate->has_property("session_start"))
             {
-               strApp = pcreate->m_pcommandline->payload("session_start");
+               strApp = pcreate->payload("session_start");
             }
             else
             {
@@ -766,21 +768,21 @@ namespace apex
          }
          else
          {
-            strApp = pcreate->m_pcommandline->m_strApp;
+            strApp = pcreate->m_strApp;
          }
 
 
-         if (pcreate->m_pcommandline->payload("app").stra().find_first_ci(strApp) < 0)
+         if (pcreate->payload("app").stra().find_first_ci(strApp) < 0)
          {
 
-            pcreate->m_pcommandline->payload("app").stra().insert_at(0, strApp);
+            pcreate->payload("app").stra().insert_at(0, strApp);
 
          }
 
-         for (i32 i = 0; i < pcreate->m_pcommandline->payload("app").stra().get_count(); i++)
+         for (i32 i = 0; i < pcreate->payload("app").stra().get_count(); i++)
          {
 
-            strApp = pcreate->m_pcommandline->payload("app").stra()[i];
+            strApp = pcreate->payload("app").stra()[i];
 
             if (strApp.is_empty() || strApp == "bergedge")
             {
@@ -829,7 +831,7 @@ namespace apex
 
             }
 
-            pcreate->m_pcommandline->m_eventReady.ResetEvent();
+            pcreate->m_eventReady.ResetEvent();
 
             if (strApp != "bergedge")
             {
@@ -853,12 +855,12 @@ namespace apex
                else
                {
 
-                  if (!papp->is_system() && !papp->is_session())
+            /*      if (!papp->is_system() && !papp->is_session())
                   {
 
                      psystem->merge_accumulated_on_open_file(pcreate);
 
-                  }
+                  }*/
 
                   papp->request(pcreate);
 
@@ -890,7 +892,7 @@ namespace apex
 
       auto pcreateNew = __create_new < ::create >();
 
-      pcreateNew->m_pcommandline->m_payloadFile = pszPathName;
+      pcreateNew->m_payloadFile = pszPathName;
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
@@ -908,7 +910,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_payloadFile.get_string());
+      string strOriginalPathName(pcreate->m_payloadFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -921,7 +923,7 @@ namespace apex
 
       }
 
-      if (::str::ends_ci(strPathName, ".ca2"))
+      if (::str().ends_ci(strPathName, ".ca2"))
       {
 
       }
@@ -939,9 +941,9 @@ namespace apex
 
          string str = purl->get_object(strPathName);
 
-         ::str::begins_eat(str, "/");
+         ::str().begins_eat(str, "/");
 
-         pcreate->m_pcommandline->m_payloadFile = str;
+         pcreate->m_payloadFile = str;
 
       }
       else
@@ -1244,7 +1246,11 @@ namespace apex
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::e_key_command)
+      else if (ekey == ::user::e_key_command
+#ifdef __APPLE__
+         || ekey == ::user::e_key_system_command
+#endif
+         )
       {
          m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
          if (bPressed)
@@ -1256,7 +1262,11 @@ namespace apex
          if (bPressed)
             goto ret;
       }
-      else if (ekey == ::user::e_key_control)
+      else if (ekey == ::user::e_key_control
+#ifndef __APPLE__
+         || ekey == ::user::e_key_system_command
+#endif
+         )
       {
          m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
          if (bPressed)
@@ -1315,7 +1325,9 @@ ret:
    {
 
       //auto estatus = 
-      initialize_context();
+      
+
+      initialize_context_1();
 
       //if (!estatus)
       //{
@@ -2006,7 +2018,7 @@ namespace apex
    //}
 
 
-   void     session::main()
+   void session::main()
    {
 
       //return ::apex::session::main();
@@ -2197,7 +2209,7 @@ namespace apex
       //for (string str : straSource)
       //{
 
-      //   if (::str::begins_eat_ci(str, "file://"))
+      //   if (::str().begins_eat_ci(str, "file://"))
       //   {
 
       //      str = purl->url_decode(str);

@@ -327,7 +327,7 @@ int get_current_process_affinity_order()
 //
 //   auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
 //
-//   ::winrt::Windows::::acme::get_system()::Launcher::LaunchUriAsync(uri);
+//   ::winrt::Windows::acme::get_system()::Launcher::LaunchUriAsync(uri);
 //
 //   return 0;
 //

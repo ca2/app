@@ -693,7 +693,7 @@ namespace tts_sapi
 
          strT.trim();
 
-         //if (::str::begins_eat_ci(strT, "xml:"))
+         //if (::str().begins_eat_ci(strT, "xml:"))
          {
 
             uFlag |= SPF_IS_XML;
@@ -896,7 +896,7 @@ namespace tts_sapi
 
          strT.trim();
 
-         //if (::str::begins_eat_ci(strT, "xml:"))
+         //if (::str().begins_eat_ci(strT, "xml:"))
          {
 
             uFlag |= SPF_IS_XML;

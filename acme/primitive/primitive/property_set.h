@@ -275,10 +275,13 @@ public:
    void _008ParseCommandLine(const char * pszCmdLine, ::payload & payloadFile);
    void _008ParseCommandFork(const char * pszCmdLine, ::payload & payloadFile, string & strApp);
    void _008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp);
+   void _008AddArgumentPairs(::string_array & straArguments);
+   void _008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument);
+   void _008AddArgument(const ::string & strArgument);
    void _008Add(const char * pszKey, const char * pszValue);
 
-   void _008ParseCommandArguments(const string_array & straArguments, ::payload & payloadFile, string & strApp);
-   void _008ParseArguments(bool bApp, const string_array & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp);
+   void _008ParseArguments(bool bApp, string_array & straArguments, ::payload & payloadFile, string & strApp);
 
 
    void clear();

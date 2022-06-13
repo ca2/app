@@ -109,7 +109,7 @@ void dir_system::init_system()
 
    string strRelative = m_psystem->m_pacmedirectory->app_relative();
 
-   m_pathDefaultAppData = m_psystem->m_pacmedirectory->home() / "application";
+   m_pathDefaultAppData = compute_default_app_data_path();
 
    string strAppFolder;
 
@@ -139,7 +139,7 @@ void dir_system::init_system()
 
    //}
 
-   m_pathDefaultAppData /= strAppFolder;
+   //m_pathDefaultAppData /= strAppFolder;
 
    //m_strCa2DefaultAppData /= psystem->get_system_platform();
 
@@ -168,13 +168,19 @@ void dir_system::init_system()
    {
 
       m_pathAppData = m_pathDefaultAppData;
+      
    }
 
+}
 
 
-   //return ::success;
+::file::path dir_system::compute_default_app_data_path()
+{
+
+   return m_psystem->m_pacmedirectory->home() / "application";
 
 }
+
 
 
 //bool dir_system::update_module_path()

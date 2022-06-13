@@ -63,7 +63,7 @@ namespace windowing
       m_ecursorDefault = e_cursor_arrow;
 
       m_ecursor = e_cursor_default;
-
+      
       m_bDrawCursor = false;
 
 //      return ::success;
@@ -489,8 +489,15 @@ namespace windowing
    }
 
 
+   /// pwindowGainingFocusIfAny
+   /// handlers of this notification should NOT...
+   /// NOT... set focus to pwindowGainingFocusIfAny
+   void windowing::clear_keyboard_focus(::user::element* pelementGainingFocusIfAny)
+   {
 
+      throw ::interface_only();
 
+   }
 
 
    //::extended::transport < ::windowing::icon > window::load_icon(const ::payload & payloadFile)
@@ -666,7 +673,7 @@ namespace windowing
 
       string str(path);
 
-      if (!::str::ends_eat_ci(str, ".png"))
+      if (!::str().ends_eat_ci(str, ".png"))
       {
 
          //return false;

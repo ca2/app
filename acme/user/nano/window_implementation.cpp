@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "_nano.h"
 #include "acme/id.h"
+#include "display.h"
 
 
 nano_window_implementation::nano_window_implementation()
@@ -16,6 +17,14 @@ nano_window_implementation::nano_window_implementation()
 nano_window_implementation::~nano_window_implementation()
 {
 
+
+}
+
+
+::nano::display * nano_window_implementation::get_display()
+{
+
+   return nullptr;
 
 }
 
@@ -77,6 +86,23 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
       redraw();
 
    }
+
+}
+
+
+::size_i32 nano_window_implementation::get_main_screen_size()
+{
+
+   auto pdisplay = get_display();
+
+   if(::is_null(pdisplay))
+   {
+
+      return {800, 600};
+
+   }
+
+   return pdisplay->get_main_screen_size();
 
 }
 

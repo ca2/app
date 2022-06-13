@@ -54,6 +54,8 @@ namespace acme
 
       virtual void initialize_context();
 
+      virtual void initialize_context_1();
+
       virtual void translate_text_data(::text::data * ptextdata);
       virtual ::text::text __text(const ::atom& atom) override;
 

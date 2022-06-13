@@ -52,26 +52,24 @@ namespace experience_tranquillum
                //::point_i32 pointCenter = rectangleEvent.center();
                enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
+               
+               ::rectangle_i32 rectangleOuter(rectangleEvent);
+               
+               ::rectangle_i32 rectangleInner(rectangleEvent);
+               
+               rectangleInner.deflate(15);
+               
                ::point_i32 pointHitTest = pointCursor;
 
-               if(rectangleEvent.left < 0)
-                  pointHitTest.x -= rectangleEvent.left;
-               if(rectangleEvent.top < 0)
-                  pointHitTest.y -= rectangleEvent.top;
+//               if(rectangleEvent.left < 0)
+//                  pointHitTest.x -= rectangleEvent.left;
+//               if(rectangleEvent.top < 0)
+//                  pointHitTest.y -= rectangleEvent.top;
 
                if(egrip & e_grip_top_left)
                {
-                  rectangle = rectangleEvent;
-                  rectangle.right = rectangle.left + 16;
-                  rectangle.bottom = rectangle.top + 5;
-                  if(rectangle.contains(pointHitTest))
-                  {
-                     etest =  ::experience::e_frame_sizing_top_left;
-                     goto SizingSuccess;
-                  }
-                  rectangle = rectangleEvent;
-                  rectangle.right = rectangle.left + 5;
-                  rectangle.bottom = rectangle.top + 16;
+                  rectangle.top_left() = rectangleOuter.top_left();
+                  rectangle.bottom_right() = rectangleInner.top_left();
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_top_left;
@@ -80,17 +78,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_top_right)
                {
-                  rectangle = rectangleEvent;
-                  rectangle.left = rectangle.right - 16;
-                  rectangle.bottom = rectangle.top + 5;
-                  if(rectangle.contains(pointHitTest))
-                  {
-                     etest =  ::experience::e_frame_sizing_top_right;
-                     goto SizingSuccess;
-                  }
-                  rectangle = rectangleEvent;
-                  rectangle.left = rectangle.right - 5;
-                  rectangle.bottom = rectangle.top + 16;
+                  rectangle.top = rectangleOuter.top;
+                  rectangle.left = rectangleInner.right;
+                  rectangle.bottom = rectangleInner.top;
+                  rectangle.right = rectangleOuter.right;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_top_right;
@@ -99,17 +90,8 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_bottom_right)
                {
-                  rectangle = rectangleEvent;
-                  rectangle.left = rectangle.right - 16;
-                  rectangle.top = rectangle.bottom - 5;
-                  if(rectangle.contains(pointHitTest))
-                  {
-                     etest =  ::experience::e_frame_sizing_bottom_right;
-                     goto SizingSuccess;
-                  }
-                  rectangle = rectangleEvent;
-                  rectangle.left = rectangle.right - 5;
-                  rectangle.top = rectangle.bottom - 16;
+                  rectangle.top_left() = rectangleInner.bottom_right();
+                  rectangle.bottom_right() = rectangleOuter.bottom_right();
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_bottom_right;
@@ -118,17 +100,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_bottom_left)
                {
-                  rectangle = rectangleEvent;
-                  rectangle.right = rectangle.left + 16;
-                  rectangle.top = rectangle.bottom - 5;
-                  if(rectangle.contains(pointHitTest))
-                  {
-                     etest =  ::experience::e_frame_sizing_bottom_left;
-                     goto SizingSuccess;
-                  }
-                  rectangle = rectangleEvent;
-                  rectangle.right = rectangle.left + 5;
-                  rectangle.top = rectangle.bottom - 16;
+                  rectangle.top = rectangleInner.bottom;
+                  rectangle.left = rectangleOuter.left;
+                  rectangle.bottom = rectangleOuter.bottom;
+                  rectangle.right = rectangleInner.left;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_bottom_left;
@@ -137,10 +112,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_top)
                {
-                  rectangle.top = rectangleEvent.top;
-                  rectangle.left = rectangleEvent.left;
-                  rectangle.right = rectangleEvent.right;
-                  rectangle.bottom = rectangleEvent.top + 5;
+                  rectangle.top = rectangleOuter.top;
+                  rectangle.left = rectangleInner.left;
+                  rectangle.right = rectangleInner.right;
+                  rectangle.bottom = rectangleInner.top;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_top;
@@ -149,10 +124,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_bottom)
                {
-                  rectangle.top = rectangleEvent.bottom - 5;
-                  rectangle.left = rectangleEvent.left;
-                  rectangle.right = rectangleEvent.right;
-                  rectangle.bottom = rectangleEvent.bottom;
+                  rectangle.top = rectangleInner.bottom;
+                  rectangle.left = rectangleInner.left;
+                  rectangle.right = rectangleInner.right;
+                  rectangle.bottom = rectangleOuter.bottom;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_bottom;
@@ -161,10 +136,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_left)
                {
-                  rectangle.top = rectangleEvent.top;
-                  rectangle.left = rectangleEvent.left;
-                  rectangle.right = rectangleEvent.left + 5;
-                  rectangle.bottom = rectangleEvent.bottom;
+                  rectangle.top = rectangleInner.top;
+                  rectangle.left = rectangleOuter.left;
+                  rectangle.right = rectangleInner.left;
+                  rectangle.bottom = rectangleInner.bottom;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_left;
@@ -173,10 +148,10 @@ namespace experience_tranquillum
                }
                if(egrip & e_grip_right)
                {
-                  rectangle.top = rectangleEvent.top;
-                  rectangle.left = rectangleEvent.right - 5;
-                  rectangle.right = rectangleEvent.right;
-                  rectangle.bottom = rectangleEvent.bottom;
+                  rectangle.top = rectangleInner.top;
+                  rectangle.left = rectangleInner.right;
+                  rectangle.right = rectangleOuter.right;
+                  rectangle.bottom = rectangleInner.bottom;
                   if(rectangle.contains(pointHitTest))
                   {
                      etest =  ::experience::e_frame_sizing_right;

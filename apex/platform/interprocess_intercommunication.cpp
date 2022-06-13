@@ -285,7 +285,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
 #else
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
    strKey = m_psystem->m_pacmedirectory->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
@@ -338,16 +338,16 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    INFORMATION("::interprocess_intercommunication::on_receive " << strMessage);
 
-   if(!::str::begins_eat(strMessage, "call "))
+   if(!::str().begins_eat(strMessage, "call "))
    {
 
       return;
 
    }
 
-   ::i64 iCall = ::str::consume_natural(strMessage);
+   ::i64 iCall = ::str().consume_natural(strMessage);
 
-   if(!::str::begins_eat(strMessage, " from "))
+   if(!::str().begins_eat(strMessage, " from "))
    {
 
       return;
@@ -525,7 +525,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
    if(strObject == "application")
    {
 
-      if(::str::begins_ci(strMember, "reply."))
+      if(::str().begins_ci(strMember, "reply."))
       {
 
          ::i64 iTask = payloada[0].i64();
@@ -586,7 +586,7 @@ id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    id_array idaPid;
 
-#if defined(LINUX) || defined(MACOS)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 
    auto psystem = m_psystem;
    
@@ -700,7 +700,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    
    auto pnode = psystem->node();
 
-#ifndef _UWP
+#if !defined(_UWP) && !defined(APPLE_IOS)
 
    ::file::path pathModule;
 

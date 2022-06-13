@@ -92,13 +92,35 @@ namespace graphics
 //            printf("cx!=1");
 //
 //         }
-
-         auto sizeMonitor = ::size_i32(1920, 1080);
+          
+          auto sizeImage = ::is_ok(pimage)?pimage->get_size() : ::size_i32(0,0);
+         auto sizeReserved = ::size_i32(1920, 1080);
+          
+          if(sizeWindow.cx > sizeImage.cx)
+          {
+              sizeImage.cx = sizeWindow.cx;
+              
+          }
+          if(sizeWindow.cy > sizeImage.cy)
+          {
+              sizeImage.cy = sizeWindow.cy;
+              
+          }
+          if(sizeReserved.cx > sizeImage.cx)
+          {
+              sizeImage.cx = sizeReserved.cx;
+              
+          }
+          if(sizeReserved.cy > sizeImage.cy)
+          {
+              sizeImage.cy = sizeReserved.cy;
+              
+          }
 
 
           //pimage->create(sizeWindow);
           // 
-           pimage->create(sizeMonitor);
+           pimage->create(sizeImage);
             //if (!pimage->create(sizeWindow))
             //{
 

@@ -33,7 +33,7 @@ NAMESPACE_BEGIN(nanogui)
       MessageDialog(Widget * parent, Type type, const std::string & title = "Untitled",
          const std::string & message = "Message",
          const std::string & button_text = "OK",
-         const std::string & alt_button_text = "Cancel", bool alt_button = false);
+         const std::string & alt_button_text = "Cancel", bool alt_button = false, const ::function < void(nanogui::Widget * p) > functionExtras = nullptr);
 
       Label * message_label() { return m_message_label; }
       const Label * message_label() const { return m_message_label; }

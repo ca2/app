@@ -2,4 +2,13 @@
 #pragma once
 
 
+template < typename DURATION >
+integral_duration < DURATION >::operator class ::wait ()  const
+{ 
+
+   return ::duration(*this).integral_microsecond().m_i / 1'000'000.0;
+
+}
+
+
 

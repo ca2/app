@@ -304,6 +304,21 @@ namespace aura
    }
 
 
+   void system::defer_initialize_hardware_devices()
+   {
+
+      if (::is_set(m_phardwaredevices))
+      {
+
+         return;
+
+      }
+
+      __construct(m_phardwaredevices);
+
+   }
+
+
 //   void system::run_system()
 //   {
 //
@@ -1145,26 +1160,6 @@ namespace aura
 
       //estatus = 
       
-      m_pdraw2d->init1();
-
-      //if(!estatus)
-      //{
-
-      //   INFORMATION("Couldn't initialize draw2d (init1).");
-
-      //   return estatus;
-
-      //}
-
-      //if (::succeeded(estatus))
-      //{
-
-         ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
-
-      //}
-
-      //return estatus;
-
    }
 
 
@@ -1231,9 +1226,9 @@ namespace aura
          //if (strDraw2d.has_char())
          //{
 
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d_");
+         //   ::str().begins_eat_ci(strDraw2d, "draw2d_");
 
-         //   ::str::begins_eat_ci(strDraw2d, "draw2d");
+         //   ::str().begins_eat_ci(strDraw2d, "draw2d");
 
          //   strLibrary = "draw2d_" + strDraw2d;
 
@@ -1382,13 +1377,13 @@ namespace aura
          if (strImaging.has_char())
          {
 
-            ::str::ends_eat_ci(strImaging, "_imaging");
+            ::str().ends_eat_ci(strImaging, "_imaging");
 
-            ::str::ends_eat_ci(strImaging, "imaging");
+            ::str().ends_eat_ci(strImaging, "imaging");
 
-            ::str::begins_eat_ci(strImaging, "imaging_");
+            ::str().begins_eat_ci(strImaging, "imaging_");
 
-            ::str::begins_eat_ci(strImaging, "imaging");
+            ::str().begins_eat_ci(strImaging, "imaging");
 
          }
 
@@ -1616,6 +1611,33 @@ namespace aura
 
    void system::init1()
    {
+
+      if (m_pdraw2d)
+      {
+
+         m_pdraw2d->init1();
+
+      }
+
+      //if(!estatus)
+      //{
+
+      //   INFORMATION("Couldn't initialize draw2d (init1).");
+
+      //   return estatus;
+
+      //}
+
+      //if (::succeeded(estatus))
+      //{
+
+      ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+
+      //}
+
+      //return estatus;
+
+
 //
 //#ifdef _DEBUG
 //
@@ -2339,7 +2361,7 @@ namespace aura
    //}
 
 
-   //class ::str::base64 & system::base64()
+   //class ::base64 & system::base64()
    //{
 
    //   return *m_pbase64;
@@ -2936,13 +2958,13 @@ namespace aura
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str::ends_eat_ci(strLibraryId,".dll")
-////               || ::str::ends_eat_ci(strLibraryId,".so")
-////               || ::str::ends_eat_ci(strLibraryId,".dylib"))
+////         if(::str().ends_eat_ci(strLibraryId,".dll")
+////               || ::str().ends_eat_ci(strLibraryId,".so")
+////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
 ////         {
 ////
-////            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str::begins_ci(strLibraryId,"libbase"))
+////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
+////                  || ::str().begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3056,10 +3078,10 @@ namespace aura
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str::begins_eat(strLibrary,"libbase"))
+//      else if(!::str().begins_eat(strLibrary,"libbase"))
 //      {
 //
-//         ::str::begins_eat(strLibrary,"lib");
+//         ::str().begins_eat(strLibrary,"lib");
 //
 //      }
 //
@@ -3071,7 +3093,7 @@ namespace aura
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str::begins_eat_ci(strLibrary,strPrefix);
+//      ::str().begins_eat_ci(strLibrary,strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3280,7 +3302,7 @@ namespace aura
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
 
    //   }
 
@@ -3293,17 +3315,17 @@ namespace aura
    //   else if(line->m_ecommand == command_line::command_file_open)
    //   {
 
-   //      pcreate->m_pcommandline->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
 
-   //      pcreate->m_pcommandline->m_ecommand = command_line::command_file_open;
+   //      pcreate->m_ecommand = command_line::command_file_open;
 
    //   }
    //   else if(line->m_ecommand == command_line::command_application_start)
    //   {
 
-   //      pcreate->m_pcommandline->m_payloadFile.stra().add(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add(line->m_payloadFile.stra());
 
-   //      pcreate->m_pcommandline->m_ecommand = command_line::command_application_start;
+   //      pcreate->m_ecommand = command_line::command_application_start;
 
    //   }
 
@@ -3346,7 +3368,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
 
    //      }
 
@@ -5256,8 +5278,8 @@ namespace aura
   //
   //      string strId;
   //      //strId = m_strAppName;
-  //      //strId += ::str::has_char(m_XstrAppId, ".");
-  //      //strId += ::str::has_char(m_strBaseSupportId, ".");
+  //      //strId += ::str().has_char(m_XstrAppId, ".");
+  //      //strId += ::str().has_char(m_strBaseSupportId, ".");
   //
   //
   //
@@ -5415,6 +5437,7 @@ namespace aura
    void system::initialize_context()
    {
 
+
       if (m_bDraw2d)
       {
 
@@ -5430,9 +5453,13 @@ namespace aura
       }
 
       //auto estatus =
-      
-      __compose_new(m_pimaging);
 
+      if (m_bImaging)
+      {
+
+         __compose_new(m_pimaging);
+
+      }
       /*/if (!estatus)
       {*/
 
@@ -5448,6 +5475,7 @@ namespace aura
       //estatus =
       
       ::aura::context::initialize_context();
+
 
       //if(!estatus)
       //{
@@ -5954,7 +5982,7 @@ namespace aura
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
+   //   //get_platform(pcreate->m_iEdge,pcreate->m_pappbias);
 
    //   ::aura::system::on_request(pcreate);
 

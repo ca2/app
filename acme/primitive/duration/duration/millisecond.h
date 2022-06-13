@@ -18,7 +18,7 @@ public:
    millisecond(FLOATING floating) : duration(::floating_millisecond(floating)) { }
 
 
-   bool done() const { return integral_millisecond() >= 1_ms; }
+   bool done() const { return integral_millisecond().m_i >= 1; }
 
 
 };

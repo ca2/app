@@ -23,7 +23,7 @@ class html_document;
 #include "form.h"
 #include "form_view.h" // html_form_view does not require a ::user::document
 
-#include "frame.h"
+//#include "frame.h"
 #include "child_frame.h"
 #include "document.h"
 #include "impact.h"

@@ -161,11 +161,11 @@ namespace android
       //   const char * pszRequest;
       //   if(::url::is_url(lpcszSource, &pszRequest))
       //   {
-      //      if(::str::begins(lpcszRelative, "/"))
+      //      if(::str().begins(lpcszRelative, "/"))
       //      {
       //         return path((const ::string &) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
       //      }
-      //      else if(*pszRequest == '\0' || ::str::ends(lpcszSource, "/"))
+      //      else if(*pszRequest == '\0' || ::str().ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }
@@ -176,7 +176,7 @@ namespace android
       //   }
       //   else
       //   {
-      //      if(::str::ends(lpcszSource, "\\") || ::str::ends(lpcszSource, "/"))
+      //      if(::str().ends(lpcszSource, "\\") || ::str().ends(lpcszSource, "/"))
       //      {
       //         return path(lpcszSource, lpcszRelative, psz2);
       //      }
@@ -447,7 +447,7 @@ pacmedirectory->is(const ::string & strPath, ::aura::application * papp)
 
          }
 
-         strsize iFind = ::str::find_ci(".zip:", str);
+         strsize iFind = ::str().find_ci(".zip:", str);
 
          if (thread_set(e_task_flag_compress_is_dir) && iFind >= 0 && iFind < iLast)
          {

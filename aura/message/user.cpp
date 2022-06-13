@@ -344,6 +344,13 @@ namespace message
 
       m_nFlags   = wparam;
 
+      if((m_nFlags & 0x80000000) == (0x80000000))
+      {
+
+         output_debug_string("(m_nFlags & 0x80000000) == (0x80000000)");
+
+      }
+
       m_point    = __point(lparam);
 
 #if defined(LINUX) || defined(FREEBSD)

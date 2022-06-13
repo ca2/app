@@ -13,17 +13,11 @@ index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
       return 0;
 }
 
-namespace str
-{
-
-
-   template < >
-   inline i64 from_string(const char * psz)
-   {
-      return to_i64(string(psz));
-   }
-
-} // namespace ::text::table
+//template < >
+//inline i64 from_string(const char * psz)
+//{
+//   return to_i64(string(psz));
+//}
 
 
 template < typename TYPE, enum_type t_etypePayload >

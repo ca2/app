@@ -715,7 +715,7 @@ namespace user
       rectangleClient.left += 3;
       rectangleClient.top += 3;
       ::rectangle rectangleText = m_rectangleText;
-      //      string str = ::str::international::utf8_to_unicode(str);
+      //      string str = utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
          ::rectangle rectangleDib;

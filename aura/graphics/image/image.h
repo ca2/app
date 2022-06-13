@@ -316,6 +316,7 @@ public:
    virtual void white_fill_channel(i32 C, ::color::enum_channel echannel);
    virtual void fill_byte(uchar uch);
    virtual void fill(::color32_t level);
+   virtual void clear(const ::color::color & colorFill);
    virtual void fill(i32 A, i32 R, i32 G, i32 B);
    //      virtual void Fill(i32 R, i32 G, i32 B);
    //virtual void set_rgb(i32 R, i32 G, i32 B);

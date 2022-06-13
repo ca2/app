@@ -196,7 +196,7 @@ namespace draw2d
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
       string str;
-      str = ::str::international::utf8_to_unicode(psz);
+      str = utf8_to_unicode(psz);
 
 //#ifdef WINDOWS_DESKTOP
 //      ::SetTextColor((HDC)pgraphics->get_os_data(), crOutline);
@@ -248,7 +248,7 @@ namespace draw2d
       return;
 
 //      string str;
-//      str = ::str::international::utf8_to_unicode(psz);
+//      str = utf8_to_unicode(psz);
 //      ::TextOutU((HDC)pgraphics->get_os_data(), pcrect.left, pcrect.top, str, (i32)str.get_length());
 
    }

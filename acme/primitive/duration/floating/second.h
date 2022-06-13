@@ -12,7 +12,7 @@ public:
    using BASE_TYPE = FLOATING_SECOND;
 
 
-   floating_second_t(FLOATING_SECOND second = {}) : FLOATING_SECOND(second) {}
+   constexpr floating_second_t(FLOATING_SECOND second = {}) : FLOATING_SECOND(second) {}
 
 
    INTEGRAL_SECOND integral_seconds() const { return (INTEGRAL_SECOND)((::i64) m_d); }
@@ -24,8 +24,8 @@ public:
 
 using floating_second = floating_duration < floating_second_t >; 
 
-
-constexpr FLOATING_SECOND operator "" _s(long double d) { return (FLOATING_SECOND)d; }
+//
+//constexpr floating_second operator "" _s(long double d) { return (FLOATING_SECOND)d; }
 
 
 inline floating_second get_floating_second() { return FLOATING_SECOND(get_floating_nanosecond().m_d / 1'000'000'000.0); }

@@ -81,9 +81,9 @@ namespace experience_anthill
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->context_image()->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->context_image()->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
+      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
       ::rectangle_i32 rectangleWindow = rectangleClient;
       pframewindow->client_to_screen(rectangleWindow);
       //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});

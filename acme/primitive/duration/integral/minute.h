@@ -12,7 +12,7 @@ public:
    using BASE_TYPE = INTEGRAL_MINUTE;
 
 
-   integral_minute_t(INTEGRAL_MINUTE minute = {}) : INTEGRAL_MINUTE(minute) {}
+   constexpr integral_minute_t(INTEGRAL_MINUTE minute = {}) : INTEGRAL_MINUTE(minute) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i * 60); }

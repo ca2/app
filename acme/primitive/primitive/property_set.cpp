@@ -500,10 +500,159 @@ void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload 
 }
 
 
-void property_set::_008ParseCommandArguments(const string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set::_008ParseCommandArguments(string_array & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    _008ParseArguments(true, straArguments, payloadFile, strApp);
+
+}
+
+
+void property_set::_008AddArgumentPairs(::string_array & straArguments)
+{
+   
+   for (::index i = 0; i < straArguments.get_size() - 1; i++)
+   {
+
+      string strThisArgument = straArguments[i];
+      
+      string strNextArgument = straArguments[i + 1];
+      
+      if(strThisArgument.begins_eat("-"))
+      {
+         
+         if(strThisArgument.has_char())
+         {
+         
+            if(strNextArgument.compare_ci("YES") == 0)
+            {
+       
+               _008Add(strThisArgument, "true");
+               
+               straArguments.erase(i, 2);
+               
+               i--;
+               
+            }
+            else if(strNextArgument.compare_ci("NO") == 0)
+            {
+       
+               _008Add(strThisArgument, "false");
+               
+               straArguments.erase(i, 2);
+               
+               i--;
+
+            }
+            else if(strNextArgument.compare_ci("TRUE") == 0)
+            {
+       
+               _008Add(strThisArgument, "true");
+               
+               straArguments.erase(i, 2);
+               
+               i--;
+               
+            }
+            else if(strNextArgument.compare_ci("FALSE") == 0)
+            {
+       
+               _008Add(strThisArgument, "false");
+               
+               straArguments.erase(i, 2);
+               
+               i--;
+
+            }
+
+         }
+
+      }
+
+   }
+
+}
+
+
+void property_set::_008AddArgumentOrFile(bool & bColon, ::payload & payloadFile, const ::string & strArgument)
+{
+   
+   if (strArgument == ":")
+   {
+
+      bColon = true;
+
+      return;
+
+   }
+
+   if(strArgument.begins_ci("-"))
+   {
+
+      _008AddArgument(strArgument.Mid(1));
+
+   }
+   else if (bColon)
+   {
+
+      _008AddArgument(strArgument);
+
+   }
+   else
+   {
+      
+      if (payloadFile.is_empty())
+      {
+
+         payloadFile = strArgument;
+
+      }
+      else
+      {
+
+         payloadFile.stra().add(strArgument);
+
+      }
+
+   }
+   
+}
+
+
+      void property_set::_008AddArgument(const ::string & strArg)
+{
+
+   index iFindEqual = strArg.find('=');
+
+   index iFindQuote = strArg.find('\"');
+
+   if(iFindEqual >= 0)
+   {
+
+      string strValue;
+
+      strValue = strArg.Mid(iFindEqual + 1);
+
+      if(iFindEqual + 1 == iFindQuote)
+      {
+
+         const char * pszValue = strValue;
+
+         strValue = ::str().consume_quoted_value(pszValue);
+
+      }
+
+      string strKey = strArg.Left(iFindEqual);
+
+      _008Add(strKey, strValue);
+
+   }
+   else
+   {
+
+      _008Add(strArg, nullptr);
+
+   }
 
 }
 
@@ -569,98 +718,36 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & pay
 
    //string_array stra = get_c_args_for_c(pszCmdLine);
    //string_array stra = get_c_args_from_c(pszCmdLine);
-   auto stra = get_c_args_from_string(pszCmdLine);
+   auto straArguments = get_c_args_from_string(pszCmdLine);
 
    int i = 0;
 
-   if(bApp && stra.get_count() > 0)
+   if(bApp && straArguments.get_count() > 0)
    {
 
-      strApp = stra[0];
+      strApp = straArguments[0];
 
       i++;
 
    }
+   
+   _008AddArgumentPairs(straArguments);
+   
+   bool bColon = false;
 
-   index iFindColon = stra.find_first(":");
-
-   if(iFindColon < 0)
+   for(; i < straArguments.get_size(); i++)
    {
-
-      iFindColon = stra.get_size();
-
-   }
-
-   if(iFindColon > i)
-   {
-
-      if(iFindColon - i > 1)
-      {
-
-         for(; i < iFindColon; i++)
-         {
-
-            payloadFile.stra().add(stra[i]);
-
-         }
-
-      }
-      else
-      {
-
-         payloadFile = stra[i];
-
-         i++;
-
-      }
-
-      i++;
-
-   }
-
-   for(; i < stra.get_size(); i++)
-   {
-
-      string str = stra[i];
-
-      index iFindEqual = str.find('=');
-
-      index iFindQuote = str.find('\"');
-
-      if(iFindEqual >= 0)
-      {
-
-         string strValue;
-
-         strValue = str.Mid(iFindEqual + 1);
-
-         if(iFindEqual + 1 == iFindQuote)
-         {
-
-            const char * pszValue = strValue;
-
-            strValue = ::str::consume_quoted_value(pszValue);
-
-         }
-
-         string strKey = str.Left(iFindEqual);
-
-         _008Add(strKey, strValue);
-
-      }
-      else
-      {
-
-         _008Add(str, nullptr);
-
-      }
+         
+      string strArgument = straArguments[i];
+      
+      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
 
    }
 
 }
 
 
-void property_set::_008ParseArguments(bool bApp, const ::string_array & straArguments, ::payload & payloadFile, string & strApp)
+void property_set::_008ParseArguments(bool bApp, ::string_array & straArguments, ::payload & payloadFile, string & strApp)
 {
 
    int i = 0;
@@ -673,6 +760,8 @@ void property_set::_008ParseArguments(bool bApp, const ::string_array & straArgu
       i++;
 
    }
+      
+   _008AddArgumentPairs(straArguments);
 
    bool bColon = false;
 
@@ -680,71 +769,8 @@ void property_set::_008ParseArguments(bool bApp, const ::string_array & straArgu
    {
 
       string strArgument = straArguments[i];
-
-     
-
-      if (strArgument == ":")
-      {
-
-         bColon = true;
-
-         continue;
-
-      }
-
-      if (!bColon)
-      {
-
-         if (payloadFile.is_empty())
-         {
-
-            payloadFile = strArgument;
-
-         }
-         else
-         {
-
-            payloadFile.stra().add(strArgument);
-
-         }
-
-      }
-      else
-      {
-
-         index iFindEqual = strArgument.find('=');
-
-         index iFindQuote = strArgument.find('\"');
-
-         if (iFindEqual >= 0)
-         {
-
-            string strValue;
-
-            strValue = strArgument.Mid(iFindEqual + 1);
-
-            if (iFindEqual + 1 == iFindQuote)
-            {
-
-               const char * pszValue = strValue;
-
-               strValue = ::str::consume_quoted_value(pszValue);
-
-            }
-
-            string strKey = strArgument.Left(iFindEqual);
-
-            _008Add(strKey, strValue);
-
-         }
-         else
-         {
-
-            _008Add(strArgument, nullptr);
-
-         }
-
-      }
+      
+      _008AddArgumentOrFile(bColon, payloadFile, strArgument);
 
    }
 
@@ -762,7 +788,7 @@ void property_set_skip_network_payload(const char *& pszJson)
 void property_set_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '\0')
    {
@@ -771,9 +797,9 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
 
    }
 
-   ::str::consume(pszJson, "{", 1, pszEnd);
+   ::str().consume(pszJson, "{", 1, pszEnd);
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == '}')
    {
@@ -793,7 +819,7 @@ void property_set_skip_network_payload(const char *& pszJson, const char * pszEn
 
       property_skip_network_payload_value(pszJson, pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == ',')
       {
@@ -848,7 +874,7 @@ void property_set::parse_ini(const ::string & strIni)
 
       }
 
-      if(::str::begins_eat(strLine, "["))
+      if(::str().begins_eat(strLine, "["))
       {
 
          strLine.trim_right("]");
@@ -861,7 +887,7 @@ void property_set::parse_ini(const ::string & strIni)
 
          string strKey;
 
-         strKey = ::str::token(strLine, "=");
+         strKey = ::str().token(strLine, "=");
 
          if(strKey.has_char())
          {
@@ -911,13 +937,13 @@ void property_set::parse_network_payload(const char * & pszJson)
 
 void property_set::parse_network_payload(const char * & pszJson, const char * pszEnd)
 {
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '\0')
    {
       return;
    }
-   ::str::consume(pszJson, "{", 1, pszEnd);
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume(pszJson, "{", 1, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
    if (*pszJson == '}')
    {
       pszJson++;
@@ -934,7 +960,7 @@ void property_set::parse_network_payload(const char * & pszJson, const char * ps
 
       ::property_parse_network_payload_value(property,pszJson,pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if(*pszJson == ',')
       {

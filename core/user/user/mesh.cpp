@@ -24,9 +24,9 @@ namespace user
    mesh::mesh()
    {
 
-      m_sizeMaximumItem.cx = 16;
-      m_sizeMaximumItem.cy = 16;
-      m_dItemHeight = 16.0;
+      m_sizeMaximumImage.cx = 16;
+      m_sizeMaximumImage.cy = 16;
+      m_dItemHeight = 0.;
       m_plist = nullptr;
       m_piaFilterIcon = new index_biunique();
       m_piaFilterMesh = new index_array();
@@ -841,7 +841,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      m_dItemHeight = m_sizeMaximumItem.cy + 1;
+      _001CalculateItemHeight(pgraphics);
+
+      //m_dItemHeight = m_sizeMaximumItem.cy + 1;
 
       if(m_bTopText)
       {
@@ -3941,6 +3943,20 @@ namespace user
    //}
 
 
+   void mesh::_001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto dFontHeight = _001GetDefaultFontHeight(pgraphics);
+
+      auto pstyle = get_style(pgraphics);
+
+      double dItemHeight = maximum(m_sizeMaximumImage.cy, dFontHeight);
+
+      m_dItemHeight = dItemHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0);
+
+   }
+
+
    i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,index iItem,index iSubItem)
    {
 
@@ -5699,13 +5715,13 @@ namespace user
             size.cy += 4;
 
             ::image_pointer pimage1;
-            pimage1 = m_pcontext->context_image()->create_image(size);
+            pimage1 = m_pcontext->m_pauracontext->create_image(size);
             pimage1->fill(0,0,0,0);
             auto pbrushText = __create < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image_pointer pimage2;
-            pimage2 = m_pcontext->context_image()->create_image(size);
+            pimage2 = m_pcontext->m_pauracontext->create_image(size);
             pimage2->fill(0,0,0,0);
 
             ::rectangle_i32 rectangleCache;

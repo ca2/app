@@ -548,11 +548,11 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
    }
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
-   ::str::consume(pszJson, "[", 1, pszEnd);
+   ::str().consume(pszJson, "[", 1, pszEnd);
 
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
 
    if (*pszJson == ']')
    {
@@ -594,7 +594,7 @@ void payload_array::parse_network_payload(const char * & pszJson, const char * p
 
       payload.parse_network_payload(pszJson, pszEnd);
 
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if(*pszJson == ',')
       {
@@ -639,16 +639,16 @@ void var_array_skip_network_payload(const char *& pszJson)
 void var_array_skip_network_payload(const char *& pszJson, const char * pszEnd)
 {
    
-   ::str::consume_spaces(pszJson, 0, pszEnd);
+   ::str().consume_spaces(pszJson, 0, pszEnd);
    
-   ::str::consume(pszJson, "[", 1, pszEnd);
+   ::str().consume(pszJson, "[", 1, pszEnd);
 
    while (true)
    {
       
       var_skip_network_payload(pszJson, pszEnd);
       
-      ::str::consume_spaces(pszJson, 0, pszEnd);
+      ::str().consume_spaces(pszJson, 0, pszEnd);
 
       if (*pszJson == ',')
       {

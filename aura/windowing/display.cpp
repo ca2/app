@@ -283,6 +283,43 @@ namespace windowing
    }
 
 
+   ::index  display::get_main_monitor_of_rectangle(const RECTANGLE_I32* prectangle)
+   {
+
+      ::rectangle_i32 rectangleMonitor;
+
+      ::i32 iMaximumArea = -1;
+
+      ::index iMainMonitor = -1;
+
+      for (::index i = 0; i < get_monitor_count(); i++)
+      {
+
+         get_monitor_rectangle(i, &rectangleMonitor);
+
+         ::rectangle_i32 rectangleIntersection;
+
+         if (rectangleIntersection.intersect(rectangleMonitor, *prectangle))
+         {
+
+            if (rectangleIntersection.area() > iMaximumArea)
+            {
+
+               iMaximumArea = rectangleIntersection.area();
+
+               iMainMonitor = i;
+
+            }
+
+         }
+
+      }
+
+      return iMainMonitor;
+
+   }
+
+
    ::count display::get_desk_monitor_count()
    {
 
@@ -1134,10 +1171,10 @@ namespace windowing
 
       ::size_i32 sizeCompact;
 
-      ::rectangle_i32 rectangleNormal;
+      ::size_i32 sizeNormal;
 
       index iMatchingWorkspace;
-
+      
       if (pinteraction != nullptr)
       {
 
@@ -1153,17 +1190,27 @@ namespace windowing
          sizeMin = pinteraction->get_window_minimum_size();
 
          iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleHint);
+         
+         if(rectangleHint.left < (rectangleWorkspace.left + rectangleWorkspace.width() / 48)
+            || rectangleHint.top < (rectangleWorkspace.top + rectangleWorkspace.height() / 48))
+         {
+            
+            rectangleHint.left = rectangleWorkspace.left + rectangleWorkspace.width() / 12;
+            
+            rectangleHint.top = rectangleWorkspace.top + rectangleWorkspace.height() / 12;
+            
+         }
 
          sizeBroad = pinteraction->m_sizeRestoreBroad;
 
          sizeCompact = pinteraction->m_sizeRestoreCompact;
 
-         rectangleNormal.set(pinteraction->layout().normal().m_point, pinteraction->layout().normal().m_size);
+         sizeNormal = rectangleHint.size();
 
-         if(rectangleNormal.is_empty())
+         if(sizeNormal < sizeMin)
          {
 
-            rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
+            sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
 
          }
 
@@ -1174,12 +1221,22 @@ namespace windowing
          sizeMin = m_pwindowing->get_window_minimum_size();
 
          iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleHint);
+         
+         if(rectangleHint.left < (rectangleWorkspace.left + rectangleWorkspace.width() / 48)
+            || rectangleHint.top < (rectangleWorkspace.top + rectangleWorkspace.height() / 48))
+         {
+            
+            rectangleHint.left = rectangleWorkspace.left + rectangleWorkspace.width() / 12;
+            
+            rectangleHint.top = rectangleWorkspace.top + rectangleWorkspace.height() / 12;
+            
+         }
 
          sizeBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
 
          sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
 
-         rectangleNormal.set_size(sizeMin.maximum(rectangleWorkspace.size() * 3 / 5));
+         sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
 
       }
 
@@ -1198,15 +1255,15 @@ namespace windowing
 
          rectangleRestore.set_size(sizeCompact);
 
-         rectangleRestore.move_to(rectangleHint.top_left());
-
       }
       else
       {
 
-         rectangleRestore = rectangleNormal;
+         rectangleRestore.set_size(sizeNormal);
 
       }
+
+      rectangleRestore.move_to(rectangleHint.top_left());
 
       ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
 

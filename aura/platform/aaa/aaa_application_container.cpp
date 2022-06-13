@@ -371,8 +371,8 @@ __pointer(::aura::application) application_container::start_application(const ::
 
    }
 
-   if (pcreate->m_pcommandline->has_property("install")
-      || pcreate->m_pcommandline->has_property("uninstall"))
+   if (pcreate->has_property("install")
+      || pcreate->has_property("uninstall"))
    {
 
       m_applicationa.erase(papp);
@@ -422,7 +422,7 @@ __pointer(::aura::application) application_container::start_application(const ::
    if (pcreate->m_pcommandline)
    {
 
-      pcreate->m_pcommandline->m_eventReady.ResetEvent();
+      pcreate->m_eventReady.ResetEvent();
 
    }
 
@@ -448,7 +448,7 @@ __pointer(::aura::application) application_container::start_application(const ::
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_pcommandline->m_eventReady.wait(::duration(84)).signaled())
+   //            if (pcreate->m_eventReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }

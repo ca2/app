@@ -5,9 +5,10 @@
 //  Created by Camilo Sasuke Tsumanuma on 09/07/15.
 //
 //
+#include "framework.h"
+#include "acme/primitive/primitive/function.h"
 
-
-int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType )
+int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, ::function < void (enum_dialog_result) > function)
 {
    
    NSString * strMessage = [NSString stringWithUTF8String:pszMessageParam];
@@ -97,7 +98,39 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    {
    
       a1 = [UIAlertAction actionWithTitle:str1 style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action) {  b1 = TRUE;}];
+                                  handler:^(UIAlertAction * action)
+            {
+         
+         b1 = TRUE;
+         enum_dialog_result eresult = e_dialog_result_cancel;
+             switch(uType)
+             {
+                case e_message_box_ok_cancel:
+                       eresult= e_dialog_result_ok;
+                   break;
+                case e_message_box_abort_retry_ignore:
+                       eresult= e_dialog_result_abort;
+                   break;
+                case e_message_box_yes_no_cancel:
+                       eresult= e_dialog_result_yes;
+                   break;
+                case e_message_box_yes_no:
+                       eresult= e_dialog_result_yes;
+                   break;
+                case e_message_box_retry_cancel:
+                       eresult= e_dialog_result_retry;
+                   break;
+                case e_message_box_cancel_try_continue:
+                       eresult= e_dialog_result_cancel;
+                   break;
+                default:
+                       eresult= e_dialog_result_ok;
+                   break;
+             }
+
+         function(eresult);
+         
+      }];
 
       [alert addAction:a1];
       
@@ -108,7 +141,36 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    {
       
       a2 = [UIAlertAction actionWithTitle:str2 style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action) { b2 = TRUE;}];
+                                  handler:^(UIAlertAction * action) {
+         b2 = TRUE;
+
+         enum_dialog_result eresult = e_dialog_result_cancel;
+             switch(uType)
+             {
+                case e_message_box_ok_cancel:
+                       eresult= e_dialog_result_cancel;
+                   break;
+                case e_message_box_abort_retry_ignore:
+                       eresult= e_dialog_result_retry;
+                   break;
+                case e_message_box_yes_no_cancel:
+                       eresult= e_dialog_result_no;
+                   break;
+                case e_message_box_yes_no:
+                       eresult= e_dialog_result_no;
+                   break;
+                case e_message_box_retry_cancel:
+                       eresult= e_dialog_result_cancel;
+                   break;
+                case e_message_box_cancel_try_continue:
+                       eresult= e_dialog_result_try_again;
+                   break;
+                default:
+                   break;
+             }
+
+         function(eresult);
+      }];
       
       [alert addAction:a2];
       
@@ -118,7 +180,35 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    {
       
       a3 = [UIAlertAction actionWithTitle:str3 style:UIAlertActionStyleDefault
-                                  handler:^(UIAlertAction * action) { b3 = TRUE;}];
+                                  handler:^(UIAlertAction * action) {
+         
+         b3 = TRUE;
+         
+         enum_dialog_result eresult = e_dialog_result_cancel;
+
+             switch(uType)
+             {
+                case e_message_box_ok_cancel:
+                   break;
+                case e_message_box_abort_retry_ignore:
+                       eresult= e_dialog_result_ignore;
+                   break;
+                case e_message_box_yes_no_cancel:
+                       eresult= e_dialog_result_cancel;
+                   break;
+                case e_message_box_yes_no:
+                   break;
+                case e_message_box_retry_cancel:
+                   break;
+                case e_message_box_cancel_try_continue:
+                       eresult= e_dialog_result_continue;
+                   break;
+                default:
+                   break;
+             }
+
+         function(eresult);
+      }];
       
       [alert addAction:a3];
       
@@ -129,67 +219,71 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    UIWindow *window = [UIApplication sharedApplication].keyWindow;
    
   // Get its rootViewController:
-   
-   UIViewController *rootViewController = window.rootViewController;
-[rootViewController presentViewController:alert animated:YES completion:^{
-   dispatch_semaphore_signal(semaphore);
-}];
+    
+   ns_main_async(^{
 
-dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//dispatch_release(semaphore);
-   
-   switch(uType)
-   {
-      case e_message_box_ok_cancel:
-         if(b1)
-            return e_dialog_result_ok;
-         else if(b2)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_abort_retry_ignore:
-         if(b1)
-            return e_dialog_result_abort;
-         else if(b2)
-            return e_dialog_result_retry;
-         else if(b3)
-            return e_dialog_result_ignore;
-         break;
-      case e_message_box_yes_no_cancel:
-         if(b1)
-            return e_dialog_result_yes;
-         else if(b2)
-            return e_dialog_result_no;
-         else if(b3)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_yes_no:
-         if(b1)
-            return e_dialog_result_yes;
-         else if(b2)
-            return e_dialog_result_no;
-         break;
-      case e_message_box_retry_cancel:
-         if(b1)
-            return e_dialog_result_retry;
-         else if(b2)
-            return e_dialog_result_cancel;
-         break;
-      case e_message_box_cancel_try_continue:
-         if(b1)
-            return e_dialog_result_cancel;
-         else if(b2)
-            return e_dialog_result_try_again;
-         else if(b3)
-            return e_dialog_result_continue;
-         break;
-      default:
-         if(b1)
-            return e_dialog_result_ok;
-         break;
-   }
-   
-   
-   return e_dialog_result_cancel;
+      UIViewController *rootViewController = window.rootViewController;
+[rootViewController presentViewController:alert animated:YES completion:^{
+//    enum_dialog_result eresult =e_dialog_result_ok;
+//    switch(uType)
+//    {
+//       case e_message_box_ok_cancel:
+//          if(b1)
+//              eresult= e_dialog_result_ok;
+//          else if(b2)
+//              eresult= e_dialog_result_cancel;
+//          break;
+//       case e_message_box_abort_retry_ignore:
+//          if(b1)
+//              eresult= e_dialog_result_abort;
+//          else if(b2)
+//              eresult= e_dialog_result_retry;
+//          else if(b3)
+//              eresult= e_dialog_result_ignore;
+//          break;
+//       case e_message_box_yes_no_cancel:
+//          if(b1)
+//              eresult= e_dialog_result_yes;
+//          else if(b2)
+//              eresult= e_dialog_result_no;
+//          else if(b3)
+//              eresult= e_dialog_result_cancel;
+//          break;
+//       case e_message_box_yes_no:
+//          if(b1)
+//              eresult= e_dialog_result_yes;
+//          else if(b2)
+//              eresult= e_dialog_result_no;
+//          break;
+//       case e_message_box_retry_cancel:
+//          if(b1)
+//              eresult= e_dialog_result_retry;
+//          else if(b2)
+//              eresult= e_dialog_result_cancel;
+//          break;
+//       case e_message_box_cancel_try_continue:
+//          if(b1)
+//              eresult= e_dialog_result_cancel;
+//          else if(b2)
+//              eresult= e_dialog_result_try_again;
+//          else if(b3)
+//              eresult= e_dialog_result_continue;
+//          break;
+//       default:
+//          if(b1)
+//              eresult= e_dialog_result_ok;
+//          break;
+//    }
+//
+//
+//    function(eresult);
+//
+    
+    
+}];
+      
+   });
+
 
 }
 

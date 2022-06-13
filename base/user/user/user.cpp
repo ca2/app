@@ -210,7 +210,7 @@ namespace base
    void user::init2()
    {
 
-      ::acme::department::init2();
+      ::user::user::init2();
       //if (!::acme::department::init2())
       //{
 
@@ -711,7 +711,7 @@ namespace base
 //         //      }
 //         //      else
 //         //      {
-//         //         pframe->InitialFramePosition();
+//         //         pframe->_001InitialFramePlacement();
 //         //      }
 //         //   }
 //         //}
@@ -825,8 +825,8 @@ namespace base
 //
 //      ::user::interaction * puiParent = nullptr;
 //
-//      if (pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >() != nullptr)
-//         puiParent = pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >();
+//      if (pcreate->payload("uicontainer").cast < ::user::interaction >() != nullptr)
+//         puiParent = pcreate->payload("uicontainer").cast < ::user::interaction >();
 //
 //      if (puiParent == nullptr && pcreate->m_puserinteractionParent != nullptr)
 //      {

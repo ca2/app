@@ -72,7 +72,7 @@
 //#define APP_TYPE ::axis::application
 //
 //#undef Sys
-//#define Sys(pobject) (*(::::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
+//#define Sys(pobject) (*(::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
 //
 //#undef Sess
 //#define Sess(pobject) (*(::get_session(pobject))->cast < SESSION_TYPE >())

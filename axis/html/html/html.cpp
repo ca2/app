@@ -251,7 +251,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str::ch::uni_index(psz);
+         i32 iChar = (i32) ::str::ch().uni_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -281,7 +281,7 @@ namespace html
             strChar.format("&#%d;", iChar);
             str += strChar;
          }
-         psz = ::str::utf8_inc(psz);
+         ::str().increment(psz);
       }
       return str;
    }
@@ -303,7 +303,7 @@ namespace html
       string strChar;
       while (*psz != '\0')
       {
-         i32 iChar = (i32) ::str::ch::uni_index(psz);
+         i32 iChar = (i32) ::str::ch().uni_index(psz);
          if (iChar == '&')
          {
             str += "&amp;";
@@ -334,7 +334,7 @@ namespace html
             str += strChar;
          }
          
-         psz = ::str::utf8_inc(psz);
+         ::str().increment(psz);
 
       }
       return str;

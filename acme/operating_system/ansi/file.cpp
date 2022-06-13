@@ -10,6 +10,9 @@
 
 #endif
 
+#if defined(FREEBSD)
+#include <unistd.h>
+#endif
 
 //
 //

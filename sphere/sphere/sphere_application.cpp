@@ -663,15 +663,15 @@ namespace sphere
       {
 
          if(m_pappCurrent != nullptr && m_pappCurrent != this
-            && (pcreate->m_pcommandline->m_strApp.is_empty()
-            ||App(m_pappCurrent).m_strAppName == pcreate->m_pcommandline->m_strApp))
+            && (pcreate->m_strApp.is_empty()
+            ||App(m_pappCurrent).m_strAppName == pcreate->m_strApp))
          {
             if(get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr)
             {
                get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).do_request(pcreate);
-            if(pcreate->m_pcommandline->payload("document").cast < ::user::document > () == nullptr)
+            if(pcreate->payload("document").cast < ::user::document > () == nullptr)
             {
                goto alt1;
             }
@@ -680,13 +680,13 @@ namespace sphere
          else
          {
             alt1:
-            if(pcreate->m_pcommandline->m_payloadFile.get_type() == ::e_type_string)
+            if(pcreate->m_payloadFile.get_type() == ::e_type_string)
             {
-               if(::str::ends_ci(pcreate->m_pcommandline->m_payloadFile, ".ca2"))
+               if(::str().ends_ci(pcreate->m_payloadFile, ".ca2"))
                {
-                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_pcommandline->m_payloadFile);
-                  if(::str::begins_eat(strCommand, "ca2prompt\r")
-                  || ::str::begins_eat(strCommand, "ca2prompt\n"))
+                  string strCommand = pcontext->m_papexcontext->file().as_string(pcreate->m_payloadFile);
+                  if(::str().begins_eat(strCommand, "ca2prompt\r")
+                  || ::str().begins_eat(strCommand, "ca2prompt\n"))
                   {
                      strCommand.trim();
                      add_fork_uri(strCommand);
@@ -698,12 +698,12 @@ namespace sphere
                   on_request(pcreate);
                }
             }
-            else if(pcreate->m_pcommandline->m_strApp.has_char() &&
+            else if(pcreate->m_strApp.has_char() &&
                get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
-               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
+               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_strApp);
                App(m_pappCurrent).do_request(pcreate);
             }
             else

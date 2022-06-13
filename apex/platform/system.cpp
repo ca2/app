@@ -23,7 +23,7 @@
 //#include "acme/platform/system_impl.h"
 #include "acme/primitive/string/base64.h"
 
-
+int file_put_contents(const char * path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exception, const ::string & strMoreDetails);
 
 
@@ -266,7 +266,7 @@ namespace apex
 
       //estatus =
       __compose_new(m_pprocess);
-
+      
       //if (!estatus)
       //{
 
@@ -559,7 +559,6 @@ namespace apex
 
       
       ::factory::add_factory_item<::create>();
-      ::factory::add_factory_item<command_line>();
       ::factory::add_factory_item<http::context>();
 
       //auto estatus = 
@@ -620,31 +619,6 @@ namespace apex
 
       //return estatus;
 
-   }
-
-
-   void system::init1()
-   {
-
-      //auto estatus = 
-      ::system::init1();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      system_init();
-
-      /*if (!estatus)
-      {
-
-         return estatus;
-
-      }*/
 
       if (m_bConsole.undefined())
       {
@@ -898,7 +872,7 @@ pacmedirectory->create("/ca2core");
 
 #if 0
 
-         // Create authorization object
+                  // Create authorization object
          OSStatus status;
 
          AuthorizationRef authorizationRef;
@@ -980,7 +954,7 @@ pacmedirectory->create("/ca2core");
       }
 
       //estatus = 
-      
+
       __compose(m_pfilesystem);
 
       //if(!estatus)
@@ -1123,28 +1097,56 @@ pacmedirectory->create("/ca2core");
 
       }
 
-//      {
-//
-//         string strCurrentWorkingDirectory;
-//
-//         strCurrentWorkingDirectory = get_current_directory_name();
-//
-//         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
-//
-//      }
+      //      {
+      //
+      //         string strCurrentWorkingDirectory;
+      //
+      //         strCurrentWorkingDirectory = get_current_directory_name();
+      //
+      //         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //
+      //      }
 
-      //estatus = m_ptracelog->process_init();
+            //estatus = m_ptracelog->process_init();
 
-      //if(!estatus)
+            //if(!estatus)
+            //{
+
+               //WARNING("failed to process_init ::apex::log trace");
+
+            //}
+
+            //estatus = 
+
+      initialize_context();
+
+
+   }
+
+
+   void system::init1()
+   {
+
+      //auto estatus = 
+      ::system::init1();
+
+      //if (!estatus)
       //{
 
-         //WARNING("failed to process_init ::apex::log trace");
+      //   return estatus;
 
       //}
 
       //estatus = 
-      
-      initialize_context();
+      system_init();
+
+      /*if (!estatus)
+      {
+
+         return estatus;
+
+      }*/
+
 
       //if (!estatus)
       //{
@@ -1670,6 +1672,9 @@ pacmedirectory->create("/ca2core");
 
    void system::post_initial_request()
    {
+      
+      if(!m_bPostedInitialRequest)
+      {
 
       m_bPostedInitialRequest = true;
 
@@ -1691,14 +1696,14 @@ pacmedirectory->create("/ca2core");
 
       pcreate->m_strAppId = strAppId;
 
-      pcreate->m_pcommandline = __create_new < command_line >();
+      //pcreate->m_pcommandline = __create_new < command_line >();
 
       auto straArguments = get_arguments();
 
       if (straArguments.has_element())
       {
 
-         pcreate->m_pcommandline->initialize_arguments(straArguments);
+         pcreate->initialize_arguments(straArguments);
 
       }
       else
@@ -1706,7 +1711,7 @@ pacmedirectory->create("/ca2core");
 
          string strCommandLine = m_strCommandLine;
 
-         pcreate->m_pcommandline->initialize_command_line2(strCommandLine);
+         pcreate->initialize_command_line2(strCommandLine);
 
       }
 
@@ -1715,6 +1720,8 @@ pacmedirectory->create("/ca2core");
       add_create(pcreate);
 
       post_creation_requests();
+         
+      }
 
    }
 
@@ -2295,7 +2302,7 @@ pacmedirectory->create("/ca2core");
 
 
 
-   //class ::str::base64 & system::base64()
+   //class ::base64 & system::base64()
    //{
 
    //   return *m_pbase64;
@@ -2886,13 +2893,13 @@ pacmedirectory->create("/ca2core");
 ////         strLibraryId = straTitle[i];
 ////
 ////
-////         if(::str::ends_eat_ci(strLibraryId,".dll")
-////               || ::str::ends_eat_ci(strLibraryId,".so")
-////               || ::str::ends_eat_ci(strLibraryId,".dylib"))
+////         if(::str().ends_eat_ci(strLibraryId,".dll")
+////               || ::str().ends_eat_ci(strLibraryId,".so")
+////               || ::str().ends_eat_ci(strLibraryId,".dylib"))
 ////         {
 ////
-////            if(::str::begins_ci(strLibraryId,"libdraw2d_")
-////                  || ::str::begins_ci(strLibraryId,"libbase"))
+////            if(::str().begins_ci(strLibraryId,"libdraw2d_")
+////                  || ::str().begins_ci(strLibraryId,"libbase"))
 ////            {
 ////               continue;
 ////            }
@@ -3006,10 +3013,10 @@ pacmedirectory->create("/ca2core");
 //         strLibrary = "base";
 //
 //      }
-//      else if(!::str::begins_eat(strLibrary,"libbase"))
+//      else if(!::str().begins_eat(strLibrary,"libbase"))
 //      {
 //
-//         ::str::begins_eat(strLibrary,"lib");
+//         ::str().begins_eat(strLibrary,"lib");
 //
 //      }
 //
@@ -3021,7 +3028,7 @@ pacmedirectory->create("/ca2core");
 //
 //      strPrefix.replace("/","_");
 //
-//      ::str::begins_eat_ci(strLibrary,strPrefix);
+//      ::str().begins_eat_ci(strLibrary,strPrefix);
 //
 //      strRoot += strLibrary;
 //
@@ -3123,6 +3130,7 @@ pacmedirectory->create("/ca2core");
 
    bool system::defer_accumulate_on_open_file(string_array stra, string strExtra)
    {
+      
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3201,7 +3209,7 @@ pacmedirectory->create("/ca2core");
 
          __pointer(::create) pcreate(e_create_new, this);
 
-         merge_accumulated_on_open_file(pcreate)
+         //merge_accumulated_on_open_file(pcreate)
 ;
          papp->post_element(e_message_system, e_system_message_create, pcreate);
 
@@ -3214,69 +3222,69 @@ pacmedirectory->create("/ca2core");
 
 
 
-   bool system::merge_accumulated_on_open_file(::create * pcreate)
-   {
+   //bool system::merge_accumulated_on_open_file(::create * pcreate)
+   //{
 
-      if(m_straCommandLineAccumul.is_empty())
-      {
+   //   if(m_straCommandLineAccumul.is_empty())
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      string_array straAccumul = m_straCommandLineAccumul;
+   //   string_array straAccumul = m_straCommandLineAccumul;
 
-      string_array straExtra = m_straCommandLineExtra;
+   //   string_array straExtra = m_straCommandLineExtra;
 
-      m_straCommandLineAccumul.erase_all();
+   //   m_straCommandLineAccumul.erase_all();
 
-      m_straCommandLineExtra.erase_all();
+   //   m_straCommandLineExtra.erase_all();
 
-      command_line_pointer line(e_create_new, this);
+   //   //auto pcreate = __create_new < ::create >();
 
-      string strExtra = straExtra.implode(" ");
+   //   string strExtra = straExtra.implode(" ");
 
-      if(straAccumul.is_empty())
-      {
+   //   if(straAccumul.is_empty())
+   //   {
 
-         line->_001ParseCommandFork("app.exe : open_default " + strExtra);
+   //      pcreate->_001ParseCommandFork("app.exe : open_default " + strExtra);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
+   //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-         line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str().has_char(strExtra, " : "));
 
-      }
+   //   }
 
-      if(pcreate->m_pcommandline.is_null())
-      {
+   //   if(pcreate->m_pcommandline.is_null())
+   //   {
 
-         pcreate->m_pcommandline = line;
+   //      pcreate->m_pcommandline = line;
 
-      }
-      else if(line->m_ecommand == command_line::command_file_open)
-      {
+   //   }
+   //   else if(line->m_ecommand == command_line::command_file_open)
+   //   {
 
-         pcreate->m_pcommandline->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add_unique_ci(line->m_payloadFile.stra());
 
-         pcreate->m_pcommandline->m_ecommand = command_line::command_file_open;
+   //      pcreate->m_ecommand = command_line::command_file_open;
 
-      }
-      else if(line->m_ecommand == command_line::command_application_start)
-      {
+   //   }
+   //   else if(line->m_ecommand == command_line::command_application_start)
+   //   {
 
-         pcreate->m_pcommandline->m_payloadFile.stra().add(line->m_payloadFile.stra());
+   //      pcreate->m_payloadFile.stra().add(line->m_payloadFile.stra());
 
-         pcreate->m_pcommandline->m_ecommand = command_line::command_application_start;
+   //      pcreate->m_ecommand = command_line::command_application_start;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool system::on_open_file(::payload payloadFile, string strExtra)
@@ -3313,7 +3321,7 @@ pacmedirectory->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str().has_char(strExtra, " : ")});
 
       //   }
 
@@ -3329,7 +3337,17 @@ pacmedirectory->create("/ca2core");
    void system::on_open_file(const ::string & pszFile)
    {
       
-      defer_accumulate_on_open_file({pszFile}, "");
+      //file_put_contents("/Users/camilo/debug/on_open_file.txt", pszFile);
+
+      m_bPostedInitialRequest = true;
+
+      __pointer(::create) pcreate(e_create_new, this);
+      
+      pcreate->m_payloadFile = pszFile;
+      
+      m_pappMain->m_papplication->post_element(e_message_system, e_system_message_create, pcreate);
+
+//      defer_accumulate_on_open_file({pszFile}, "");
       
       //return ::success;
       
@@ -3477,7 +3495,7 @@ pacmedirectory->create("/ca2core");
 
          string strAppId = purl->get_script(str);
 
-         ::str::begins_eat(strAppId, "/");
+         ::str().begins_eat(strAppId, "/");
 
          string strQuery = purl->get_query(str);
 
@@ -3518,7 +3536,7 @@ pacmedirectory->create("/ca2core");
 
          string strScheme = purl->get_script(str);
 
-         ::str::begins_eat(strScheme, "/");
+         ::str().begins_eat(strScheme, "/");
 
          if(strBase == "scheme")
          {
@@ -3833,7 +3851,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
          }
 
 
-         //strOpenUrl = strUrl + str::has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + ::str().has_char(strOpenUrl, ";");
 
          //if (strOpenUrl.has_char())
          {
@@ -4630,7 +4648,7 @@ namespace apex
    //void system::on_request(::create* pcreate)
    //{
 
-   //   //get_platform(pcreate->m_pcommandline->m_iEdge,pcreate->m_pcommandline->m_pappbias);
+   //   //get_platform(pcreate->m_iEdge,pcreate->m_pappbias);
 
    //   ::apex::system::on_request(pcreate);
 

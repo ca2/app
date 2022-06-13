@@ -148,15 +148,6 @@
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{8672b0f1-095c-4f98-ab37-4ced78d34e6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\inline">
-      <UniqueIdentifier>{9cacec42-50ac-4712-b2a1-0ac83c76befc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{be486e04-a87d-4da5-8dc1-f9a9d6354058}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\asset">
-      <UniqueIdentifier>{65aef251-9c52-476d-b93c-33579a7b0c62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{062c77e9-de3c-472e-b0b3-04717fc151ef}</UniqueIdentifier>
     </Filter>
@@ -1192,9 +1183,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="__matter_ca2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\child_frame.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -1246,12 +1234,6 @@
     <ClCompile Include="user\simple\tree_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\_.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\message_box.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\color_combo_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1292,9 +1274,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\mesh_cache.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh_cache_interface.cpp">
@@ -1340,9 +1319,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\xfplayer_view_line_selection.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1471,9 +1447,6 @@
     <ClCompile Include="user\databaseuser\mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account.cpp">
-      <Filter>Source Files\user\account</Filter>
-    </ClCompile>
     <ClCompile Include="user\account\account_dialog.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
@@ -1537,9 +1510,6 @@
     <ClCompile Include="filesystem\filemanager\form_child_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\form_document.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -1601,9 +1571,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tree.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\impact.cpp">
@@ -1708,9 +1675,6 @@
     <ClCompile Include="html\graphics\font.cpp">
       <Filter>Source Files\html\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="html\graphics\form.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="html\graphics\message.cpp">
       <Filter>Source Files\html\graphics</Filter>
     </ClCompile>
@@ -1732,9 +1696,6 @@
     <ClCompile Include="html\graphics\value.cpp">
       <Filter>Source Files\html\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\child_frame.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
     <ClCompile Include="html\user\document.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
@@ -1742,9 +1703,6 @@
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\form_view.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\frame.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\user.cpp">
@@ -1755,12 +1713,6 @@
     </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
-    </ClCompile>
-    <ClCompile Include="include\_.cpp">
-      <Filter>Source Files\include</Filter>
-    </ClCompile>
-    <ClCompile Include="asset\cube_new.cpp">
-      <Filter>Source Files\asset</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1809,6 +1761,9 @@
     </ClCompile>
     <ClCompile Include="networking\ftp\output_stream.cpp">
       <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="user\userex\dialog_frame.cpp">
+      <Filter>Source Files\user\userex</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

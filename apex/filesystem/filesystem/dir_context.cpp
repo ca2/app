@@ -143,8 +143,8 @@ inline bool myspace(char ch)
 //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str::ends_eat(strFolder, "\\");
-//      //::str::ends_eat(strFolder, "/");
+//      //::str().ends_eat(strFolder, "\\");
+//      //::str().ends_eat(strFolder, "/");
 //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
 //         iFolderEnd--;
 //   }
@@ -163,8 +163,8 @@ inline bool myspace(char ch)
 //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str::ends_eat(strFolder, "\\");
-//      //::str::ends_eat(strFolder, "/");
+//      //::str().ends_eat(strFolder, "\\");
+//      //::str().ends_eat(strFolder, "/");
 //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
 //         iRelativeBeg++;
 //   }
@@ -241,8 +241,8 @@ inline bool myspace(char ch)
 //      while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str::ends_eat(strFolder, "\\");
-//      //::str::ends_eat(strFolder, "/");
+//      //::str().ends_eat(strFolder, "\\");
+//      //::str().ends_eat(strFolder, "/");
 //      while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
 //         iFolderEnd--;
 //   }
@@ -261,8 +261,8 @@ inline bool myspace(char ch)
 //      while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
 //         iFolderEnd--;
 //      //better than following 2 together
-//      //::str::ends_eat(strFolder, "\\");
-//      //::str::ends_eat(strFolder, "/");
+//      //::str().ends_eat(strFolder, "\\");
+//      //::str().ends_eat(strFolder, "/");
 //      while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
 //         iRelativeBeg++;
 //   }
@@ -282,8 +282,8 @@ inline bool myspace(char ch)
 //      while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
 //         iEnd2--;
 //      //better than following 2 together
-//      //::str::ends_eat(strFolder, "\\");
-//      //::str::ends_eat(strFolder, "/");
+//      //::str().ends_eat(strFolder, "\\");
+//      //::str().ends_eat(strFolder, "/");
 //      while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
 //         iBeg2++;
 //   }
@@ -422,16 +422,32 @@ inline bool myspace(char ch)
 //}
 
 
-
 bool dir_context::enumerate(::file::listing& listing)
 {
+
+   if(_enumerate(listing))
+   {
+
+      return true;
+
+   }
+
+   return m_psystem->m_pacmedirectory->enumerate(listing);
+
+}
+
+
+bool dir_context::_enumerate(::file::listing& listing)
+{
+
+   m_psystem->m_pacmedirectory->defer_enumerate_media_library(listing);
 
    listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
 
    if (listing.m_pathFinal.begins_ci("matter://"))
    {
 
-      ::str::begins_eat_ci(listing.m_pathFinal, "matter://");
+      ::str().begins_eat_ci(listing.m_pathFinal, "matter://");
 
       if (matter_enumerate(listing.m_pathFinal, listing))
       {
@@ -444,7 +460,7 @@ bool dir_context::enumerate(::file::listing& listing)
    else if (listing.m_pathFinal.begins_ci("zipresource://"))
    {
 
-      ::str::begins_eat_ci(listing.m_pathFinal, "zipresource://");
+      ::str().begins_eat_ci(listing.m_pathFinal, "zipresource://");
 
       auto pfolder = m_pcontext->m_papexcontext->file().resource_folder();
 
@@ -473,7 +489,7 @@ bool dir_context::enumerate(::file::listing& listing)
 
    }
 
-   if (::str::begins_ci(listing.m_pathFinal, "http://") || ::str::begins_ci(listing.m_pathFinal, "https://"))
+   if (::str().begins_ci(listing.m_pathFinal, "http://") || ::str().begins_ci(listing.m_pathFinal, "https://"))
    {
 
       property_set set;
@@ -485,7 +501,7 @@ bool dir_context::enumerate(::file::listing& listing)
       return true;
 
    }
-   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", listing.m_pathFinal) >= 0))
+   else if (task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(listing.m_pathFinal, ".zip") || ::str().find_file_extension("zip:", listing.m_pathFinal) >= 0))
    {
 
       auto& pfactory = m_psystem->folder_factory();
@@ -551,7 +567,7 @@ bool dir_context::enumerate(::file::listing& listing)
 //
 //   }
 //
-//   if (::str::begins_ci(listing.m_pathUser, "http://") || ::str::begins_ci(listing.m_pathUser, "https://"))
+//   if (::str().begins_ci(listing.m_pathUser, "http://") || ::str().begins_ci(listing.m_pathUser, "https://"))
 //   {
 //
 //      property_set set;
@@ -563,7 +579,7 @@ bool dir_context::enumerate(::file::listing& listing)
 //      return true;
 //
 //   }
-//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(listing.m_pathUser, ".zip") || ::str().find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
 //      auto & pfactory = m_psystem->folder_factory();
@@ -805,7 +821,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
 #ifdef WINDOWS_DESKTOP
 #ifdef WINDOWS_DESKTOP
-   if (::str::ends_ci(path, ".lnk"))
+   if (::str().ends_ci(path, ".lnk"))
    {
 #endif
 
@@ -827,7 +843,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //bIs = false;
 
-   //if (::str::begins_ci(pcszPath, "http://") || ::str::begins_ci(lpcszPath, "https://"))
+   //if (::str().begins_ci(pcszPath, "http://") || ::str().begins_ci(lpcszPath, "https://"))
 
    //{
 
@@ -840,7 +856,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //}
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(path, ".zip")))
    {
 
       bIs = true;
@@ -848,7 +864,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
       return true;
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -925,7 +941,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //#ifdef WINDOWS_DESKTOP
    //#ifdef WINDOWS_DESKTOP
-   //         if (::str::ends_ci(pcszPath, ".lnk"))
+   //         if (::str().ends_ci(pcszPath, ".lnk"))
 
    //         {
    //#endif
@@ -1029,7 +1045,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::str::begins_ci(path, "http://") || ::str::begins_ci(path, "https://"))
+   if (::str().begins_ci(path, "http://") || ::str().begins_ci(path, "https://"))
    {
 
       property_set set;
@@ -1047,7 +1063,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(path, ".zip")))
    {
 
       bDir = true;
@@ -1056,7 +1072,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -1126,12 +1142,12 @@ bool dir_context::name_is(const ::file::path& strPath)
 {
 
    //output_debug_string(strPath);
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
    }
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", strPath) >= 0))
    {
       bool bHasSubFolder;
 
@@ -1818,7 +1834,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strMatter = strDir;
 
-      if (::str::begins_eat_ci(strMatter, "appmatter://"))
+      if (::str().begins_eat_ci(strMatter, "appmatter://"))
       {
 
          strMatter = "/matter/" + strMatter;
@@ -2003,7 +2019,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //      for (index i = 0; i < straLocaleSchema.get_count(); i++)
 //      {
 //
-//         if (!::str::ends(straLocaleSchema[i], "/"))
+//         if (!::str().ends(straLocaleSchema[i], "/"))
 //         {
 //            ::file::path strPath = strDir / straLocaleSchema[i];
 //            stra.add(strPath);
@@ -2072,7 +2088,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = m_pcontext->m_papexcontext->file().as_string(pathCache);
 
-         if (::str::begins_eat_ci(path, "itdoesntexist."))
+         if (::str().begins_eat_ci(path, "itdoesntexist."))
          {
 
             ::duration t = INTEGRAL_MILLISECOND(ansi_to_i64(path));
@@ -2357,7 +2373,7 @@ ret:
 
       string strMatter(path);
 
-      ::str::begins_eat_ci(strMatter, "appmatter://");
+      ::str().begins_eat_ci(strMatter, "appmatter://");
 
       auto psystem = get_system()->m_papexsystem;
 
@@ -2464,25 +2480,25 @@ ret:
 
       strApp.replace_with("_", "\\");
 
-      if (::str::begins_eat_ci(strApp, "app_veriwell_"))
+      if (::str().begins_eat_ci(strApp, "app_veriwell_"))
       {
 
          strRepo = "app-veriwell";
 
       }
-      else if (::str::begins_eat_ci(strApp, "app_core_"))
+      else if (::str().begins_eat_ci(strApp, "app_core_"))
       {
 
          strRepo = "app-core";
 
       }
-      else if (::str::begins_eat_ci(strApp, "app_cidadedecuritiba_"))
+      else if (::str().begins_eat_ci(strApp, "app_cidadedecuritiba_"))
       {
 
          strRepo = "app-cidadedecuritiba";
 
       }
-      else if (::str::begins_eat_ci(strApp, "app_"))
+      else if (::str().begins_eat_ci(strApp, "app_"))
       {
 
          strRepo = "app";
@@ -2988,7 +3004,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    strLibrary = set["library"];
 
-   ::str::tokenizer token(strLibrary);
+   ::tokenizer token(strLibrary);
 
    token.skip_word(7);
 

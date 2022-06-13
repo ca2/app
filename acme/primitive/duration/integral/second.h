@@ -14,7 +14,7 @@ public:
    using BASE_TYPE = INTEGRAL_SECOND;
 
    
-   integral_second_t(INTEGRAL_SECOND second = {}) : INTEGRAL_SECOND(second) {}
+   constexpr integral_second_t(INTEGRAL_SECOND second = {}) : INTEGRAL_SECOND(second) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i); }

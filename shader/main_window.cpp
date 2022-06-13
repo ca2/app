@@ -199,7 +199,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->context_image()->create_image(rectangleClient);
+            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleClient);
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 

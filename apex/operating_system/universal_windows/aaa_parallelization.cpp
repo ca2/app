@@ -15,7 +15,7 @@
 #pragma push_macro("::apex::get_system()")
 #undef ::apex::get_system()
 using namespace ::winrt::Windows::Foundation;
-using namespace ::winrt::Windows::::apex::get_system()::Threading;
+using namespace ::winrt::Windows::apex::get_system()::Threading;
 #pragma pop_macro("::apex::get_system()")
 
 

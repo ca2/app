@@ -11,9 +11,7 @@
 #include "acme/user/nano/_nano.h"
 
 
-
 CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
-
 
 
 namespace acme
@@ -497,6 +495,10 @@ namespace acme
 
       ::file::path pathFile = m_psystem->m_pacmedirectory->local() / "appdata" / strAppId / "last_run_path.txt";
 
+      const char * pszPathFile = pathFile;
+
+      INFORMATION("node::get_last_run_application_path_file pathFile:" << pathFile);
+
       return pathFile;
 
    }
@@ -524,6 +526,10 @@ namespace acme
       ::file::path path = m_psystem->m_pacmefile->module();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
+
+      const char * pszPath = path;
+
+      INFORMATION("node::set_last_run_application_path_file path:" << path);
 
       return m_psystem->m_pacmefile->put_contents(pathFile, path);
 
@@ -1708,6 +1714,46 @@ namespace acme
 
 
    //}
+
+
+    void node::shell_launch(const ::string & strAppId)
+    {
+
+       throw interface_only();
+
+    }
+
+
+    bool node::has_application_capability(::enum_application_capability ecapability) const
+    {
+
+       return m_eapplicationcapabilitya.contains(ecapability);
+
+    }
+
+
+    void node::add_application_capability(const ::enum_application_capability_array& ecapabilitya)
+    {
+
+       m_eapplicationcapabilitya.add_unique(ecapabilitya);
+
+       on_change_application_capability();
+
+    }
+
+
+    void node::on_change_application_capability()
+    {
+
+
+    }
+
+
+    void node::windowing_post(const ::procedure& procedure)
+    {
+
+
+    }
 
 
 } // namespace acme

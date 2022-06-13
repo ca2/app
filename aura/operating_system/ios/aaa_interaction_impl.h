@@ -532,8 +532,8 @@ namespace ios
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 
       //virtual void prodevian_task() override;
 

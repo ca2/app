@@ -12,9 +12,9 @@ using namespace ::winrt::Windows::UI::Core;
 using namespace ::winrt::Windows::ApplicationModel;
 using namespace ::winrt::Windows::ApplicationModel::Core;
 using namespace ::winrt::Windows::ApplicationModel::Activation;
-using namespace ::winrt::Windows::::acme::get_system();
+using namespace ::winrt::Windows::acme::get_system();
 using namespace ::winrt::Windows::Graphics::Display;
-using namespace ::winrt::Windows::::acme::get_system()::Threading;
+using namespace ::winrt::Windows::acme::get_system()::Threading;
 using namespace ::winrt::Windows::UI::Text::Core;
 using namespace ::winrt::Windows::UI::ViewManagement;
 

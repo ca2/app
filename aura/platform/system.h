@@ -34,6 +34,10 @@ namespace aura
 
       string_map < __reference(image) >                  m_mapImage;
 
+      __pointer(::hardware::devices)                     m_phardwaredevices;
+
+
+
 
 
       system();
@@ -82,6 +86,11 @@ namespace aura
       //void unset_thread(itask_t itask, ::thread * pthread);
 
       ::aura::estamira * estamira();
+
+      inline ::hardware::devices* hardware_devices() { return m_phardwaredevices; }
+
+      virtual void defer_initialize_hardware_devices();
+
 
 
       inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
@@ -224,7 +233,7 @@ namespace aura
 
 
       //::xml::department                            &  xml();
-      //class ::str::base64                          &  base64();
+      //class ::base64                          &  base64();
       //class ::aura::log                            &  log();
       //class ::machine_event_central                &  machine_event_central();
       //inline ::parallelization::threading           *  threading() { return m_pthreading; }

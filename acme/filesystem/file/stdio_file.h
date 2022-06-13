@@ -1,8 +1,11 @@
 #pragma once
 
 
+#include "text_file.h"
+
+
 class CLASS_DECL_ACME stdio_file:
-   virtual public ::file::file
+   virtual public ::file::text_file
 {
 public:
 

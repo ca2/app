@@ -228,7 +228,7 @@
 //
 //         strPrefix.replace("/", "\\");
 //
-//         ::str::begins_eat_ci(strRelative, strPrefix);
+//         ::str().begins_eat_ci(strRelative, strPrefix);
 //
 //         strRelative.trim("/\\");
 //

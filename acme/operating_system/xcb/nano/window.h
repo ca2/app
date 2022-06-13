@@ -45,6 +45,9 @@ namespace xcb
       ~nano_window() override;
 
 
+      ::nano::display * get_display() override;
+
+
       void on_initialize_object() override;
 
       void create() override;
@@ -123,6 +126,9 @@ namespace xcb
       virtual void _wm_nodecorations(int iMap);
 
       virtual void _get_geometry(xcb_get_geometry_reply_t * pgeometry);
+
+
+      //::size_i32 get_main_screen_size() override;
 
 
    };

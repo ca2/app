@@ -20,7 +20,7 @@ public:
    template < primitive_floating FLOATING >
    second(FLOATING floating) : duration(::floating_second(floating)) { }
 
-   bool done() const { return integral_second() >= 1_s; }
+   bool done() const { return integral_second().m_i >= 1; }
 
 
 };

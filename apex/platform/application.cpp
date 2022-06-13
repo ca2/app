@@ -471,11 +471,11 @@ string application::__get_text(string str)
 }
 
 
-void application::process_command_line(command_line* pcommandline)
-{
-
-
-}
+//void application::process_command_line(command_line* pcommandline)
+//{
+//
+//
+//}
 
 
 //::user::style* application::get_user_style() const
@@ -742,19 +742,19 @@ void application::call_request(::create* pcreate)
 
    //   }*/
 
-   //   if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+   //   if (::str().begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
    //   {
 
-   //      if (::str::begins_eat_ci(str, ":///"))
+   //      if (::str().begins_eat_ci(str, ":///"))
    //      {
 
-   //         if (::str::begins_eat_ci(str, "send?message="))
+   //         if (::str().begins_eat_ci(str, "send?message="))
    //         {
 
    //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
    //         }
-   //         else if (::str::begins_eat_ci(str, "send?messagebin="))
+   //         else if (::str().begins_eat_ci(str, "send?messagebin="))
    //         {
 
    //            strsize iFind = str.find(',');
@@ -858,7 +858,7 @@ void application::on_request(::create* pcreate)
       try
       {
 
-         pcreate->m_pcommandline->get_property_set().unset("document");
+         pcreate->get_property_set().unset("document");
 
       }
       catch (...)
@@ -866,13 +866,13 @@ void application::on_request(::create* pcreate)
 
       }
 
-      //__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::apex::session >();
+      //__pointer(::apex::session) pbergedge = pcreate->payload("bergedge_callback").cast < ::apex::session >();
       // todobergedge
       /*if(pbergedge != nullptr)
       {
       pbergedge->on_app_request_bergedge_callback(this);
       }*/
-      pcreate->m_pcommandline->m_eventReady.SetEvent();
+      pcreate->m_eventReady.SetEvent();
 
    }
 
@@ -1728,6 +1728,8 @@ void application::pos_run()
 void application::init_instance()
 {
 
+   ::app::init_instance();
+
    //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
 
    if (m_bInterprocessIntercommunication)
@@ -1819,9 +1821,11 @@ void application::init_instance()
    if (m_pinterprocessintercommunication)
    {
 
-      m_pinterprocessintercommunication->on_new_instance(
-         m_pcontext->m_papexcontext->file().module(),
-         m_pcontext->m_papexcontext->os_context()->get_pid());
+      auto pathModule = m_pcontext->m_papexcontext->file().module();
+
+      auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
+
+      m_pinterprocessintercommunication->on_new_instance(pathModule, processId);
 
    }
 
@@ -3121,6 +3125,9 @@ void application::process_init()
 
    //return true;
 
+   initialize_context();
+
+
 }
 
 
@@ -3313,8 +3320,10 @@ __pointer(::interprocess_intercommunication) application::create_interprocess_in
 void application::init1()
 {
 
+
+   initialize_context_1();
+
    //auto estatus = 
-   initialize_context();
 
    //if (!estatus)
    //{
@@ -4152,11 +4161,11 @@ void application::on_exclusive_instance_local_conflict_id(bool& bHandled, string
 void application::on_additional_local_instance(bool& bHandled, string strModule, int iPid, string strCommandLine)
 {
 
-   auto pcommandline = __create_new < command_line >();
+   auto pcreate = __create_new < create >();
 
-   pcommandline->initialize_command_line2(strCommandLine);
+   pcreate->initialize_command_line2(strCommandLine);
 
-   process_command_line(pcommandline);
+   do_request(pcreate);
 
    bHandled = true;
 
@@ -4953,7 +4962,7 @@ string application::get_app_id(string wstr)
 
    wstr.trim();
 
-   ::str::trim_any_quotes(wstr);
+   ::str().trim_any_quotes(wstr);
 
    wstr.trim();
 
@@ -5915,7 +5924,7 @@ void application::on_run()
    //try
    //{
 
-   //   ::apex::::message::application signal(::apex::::message::application_begin);
+   //   ::apex::message::application signal(::apex::message::application_begin);
 
    //   route_message(&signal);
 
@@ -6672,7 +6681,7 @@ void application::update_appmatter(__pointer(::sockets::http_session)& psession,
 
       string strDir = strFile;
 
-      ::str::ends_eat_ci(strDir, ".zip");
+      ::str().ends_eat_ci(strDir, ".zip");
 
       //try
       //{
@@ -9679,7 +9688,7 @@ void application::set_title(const ::string& pszTitle)
 //   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      ::::windowing::window * pwindow = (::oswindow) osdata;
+//      ::windowing::window * pwindow = (::oswindow) osdata;
 //      if (!::IsWindow(__hwnd(oswindow)))
 //         return -1;
 //      COPYDATASTRUCT cds;
@@ -9859,12 +9868,12 @@ void application::data_on_after_change(::database::client* pclient, const ::data
 }
 
 
-__pointer(::application) application::create_platform(::apex::session* psession)
-{
-
-   return __new(::apex::session);
-
-}
+//__pointer(::application) application::create_platform(::apex::session* psession)
+//{
+//
+//   return __new(::apex::session);
+//
+//}
 
 
 void application::report_error(const ::exception& e, int iMessageFlags, const ::string& pszTopic)
@@ -10123,6 +10132,23 @@ string application::get_wm_class() const
 
 
 #endif
+
+
+//void application::interprocess_communication_open(const char * pszPath)
+//{
+//   
+//   if(!m_prx)
+//   {
+//      
+//      throw ::exception(error_wrong_state);
+//      
+//   }
+//   
+//   string strMessage(pszPath);
+//   
+//   m_prx->on_interprocess_receive();
+//   
+//}
 
 
 void application_on_menu_action(void* pApplication, const char* pszCommand)

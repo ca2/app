@@ -318,7 +318,7 @@ CLASS_DECL_AURA int ui_open_url(const ::string & pszUrl)
 
    auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
 
-   ::winrt::Windows::::aura::get_system()::Launcher::LaunchUriAsync(uri);
+   ::winrt::Windows::aura::get_system()::Launcher::LaunchUriAsync(uri);
 
    return 0;
 

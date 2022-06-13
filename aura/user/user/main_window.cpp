@@ -67,7 +67,7 @@ namespace user
 
       ::rectangle_i32 rectangleWindow;
 
-      bool bInitialFramePosition = _001InitialFramePosition(rectangleWindow, m_rectangleInitialRateOrSize);
+      bool bInitialFramePosition = _001InitialFramePlacement(rectangleWindow, m_rectangleInitialRateOrSize);
 
       place(rectangleWindow);
 

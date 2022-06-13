@@ -3,7 +3,7 @@ project(core CXX)
 
 
 list(APPEND library_source
-   asset/cube_new.cpp
+   #asset/cube_new.cpp
    #asset/new.cpp
    axispolicy/_.h
    axispolicy/_c.h
@@ -72,8 +72,8 @@ list(APPEND library_source
    filesystem/filemanager/form.h
    filesystem/filemanager/form_child_frame.cpp
    filesystem/filemanager/form_child_frame.h
-   filesystem/filemanager/form_document.cpp
-   filesystem/filemanager/form_document.h
+   #filesystem/filemanager/form_document.cpp
+   #filesystem/filemanager/form_document.h
    filesystem/filemanager/frame.cpp
    filesystem/filemanager/frame.h
    filesystem/filemanager/fs_simple_list_view.cpp
@@ -120,8 +120,8 @@ list(APPEND library_source
    filesystem/filemanager/tab_view.h
    filesystem/filemanager/tree.cpp
    filesystem/filemanager/tree.h
-   filesystem/filemanager/update_hint.cpp
-   filesystem/filemanager/update_hint.h
+   #filesystem/filemanager/update_hint.cpp
+   #filesystem/filemanager/update_hint.h
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
    filesystem/fs/_.h
@@ -171,8 +171,8 @@ list(APPEND library_source
    html/graphics/box.h
    html/graphics/font.cpp
    html/graphics/font.h
-   html/graphics/form.cpp
-   html/graphics/form.h
+   #html/graphics/form.cpp
+   #html/graphics/form.h
    html/graphics/message.cpp
    html/graphics/message.h
    html/graphics/point.h
@@ -226,7 +226,7 @@ list(APPEND library_source
    html/impl/text.h
    html/user/_.h
    html/user/_user.h
-   html/user/child_frame.cpp
+   #html/user/child_frame.cpp
    html/user/child_frame.h
    html/user/document.cpp
    html/user/document.h
@@ -234,12 +234,12 @@ list(APPEND library_source
    html/user/form.h
    html/user/form_view.cpp
    html/user/form_view.h
-   html/user/frame.cpp
-   html/user/frame.h
+   #html/user/frame.cpp
+   #html/user/frame.h
    html/user/user.cpp
    html/user/impact.cpp
    html/user/impact.h
-   include/_.cpp
+   #include/_.cpp
    include/_.h
    include/_c.h
    include/_c_bridge.h
@@ -314,7 +314,7 @@ list(APPEND library_source
    template/list.h
    user/account/_.h
    user/account/_account.h
-   user/account/account.cpp
+   #user/account/account.cpp
    user/account/account_dialog.cpp
    user/account/account_login.cpp
    user/account/account_simple_ui.cpp
@@ -375,7 +375,7 @@ list(APPEND library_source
    user/rich_text/text_format.h
    user/rich_text/text_format_object.cpp
    user/rich_text/text_format_object.h
-   user/simple/_.cpp
+   #user/simple/_.cpp
    user/simple/_.h
    user/simple/_impl.h
    user/simple/_simple.h
@@ -398,7 +398,7 @@ list(APPEND library_source
    user/simple/menu_bar.h
    user/simple/mesh_data.cpp
    user/simple/mesh_data.h
-   user/simple/message_box.cpp
+   #user/simple/message_box.cpp
    user/simple/message_box.h
    user/simple/pane_document.cpp
    user/simple/pane_document.h
@@ -418,7 +418,7 @@ list(APPEND library_source
    user/simple/tree_view.cpp
    user/simple/tree_view.h
    user/user/00.h
-   user/user/_.cpp
+   #user/user/_.cpp
    user/user/_.h
    user/user/_const.h
    user/user/_data.h
@@ -463,7 +463,7 @@ list(APPEND library_source
    user/user/main_frame.h
    user/user/mesh.cpp
    user/user/mesh.h
-   user/user/mesh_cache.cpp
+   #user/user/mesh_cache.cpp
    user/user/mesh_cache.h
    user/user/mesh_cache_interface.cpp
    user/user/mesh_cache_interface.h
@@ -571,13 +571,13 @@ list(APPEND library_source
    version/version.h
    _.cpp
    _.h
-   __matter_ca2.cpp
+   #__matter_ca2.cpp
    _defer.h
    application.h
    #astr.h
    callback.h
    console.h
-   context_glx.cpp
+   #context_glx.cpp
    framework.cpp
    framework.h
    framework_c.h

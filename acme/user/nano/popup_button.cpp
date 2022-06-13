@@ -26,12 +26,18 @@ popup_button::~popup_button()
 void popup_button::calculate_size_and_position(int x, int y)
 {
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
+   //int wScreen = 1280;
+   //int hScreen = 768;
 
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   auto sizeScreen = m_pimplementation->get_main_screen_size();
+
+   //operating_system_get_main_screen_size(wScreen, hScreen);
+
+   auto wScreen = sizeScreen.cx;
+
+   auto hScreen = sizeScreen.cy;
 
    //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 

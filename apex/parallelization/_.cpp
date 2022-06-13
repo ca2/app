@@ -2,6 +2,10 @@
 #include "acme/operating_system.h"
 
 
+void __node_init_multitasking();
+void __node_term_multitasking();
+
+
 namespace parallelization
 {
 

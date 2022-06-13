@@ -230,5 +230,14 @@
     <ClCompile Include="nano2d\nano2d.cpp">
       <Filter>Source Files\nano2d</Filter>
     </ClCompile>
+    <ClCompile Include="_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nano2d\font_sink.cpp">
+      <Filter>Source Files\nano2d</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

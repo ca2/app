@@ -237,12 +237,12 @@ namespace user
             if(get_wnd()->m_pinteractionimpl)
             {
 
-               __pointer(::user::interaction) puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionFocus1;
+               __pointer(::user::interaction) puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {
 
-                  get_wnd()->m_pinteractionimpl->m_puserinteractionFocus1 = this;
+                  get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus = this;
 
                }
 

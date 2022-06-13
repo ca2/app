@@ -20,7 +20,7 @@ public:
    nanosecond(FLOATING floating) : duration(::floating_nanosecond(floating)) { }
 
 
-   bool done() const { return integral_nanosecond() >= 1_ns; }
+   bool done() const { return integral_nanosecond().m_i >= 1; }
 
 
 };

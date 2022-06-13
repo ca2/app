@@ -12,6 +12,86 @@ inline bool __enum_is_failed(const ::e_status & e)
 }
 
 
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > ::___pointer(const ptr < T2 > & t) :
+   m_p(t.m_p),
+   m_pelement(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > ::___pointer(ptr < T2 > && t) :
+   m_p(t.m_p),
+   m_pelement(t.m_p)
+{
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > & ___pointer < T > ::operator = (const ptr < T2 >  & t)
+{
+
+   auto pold = m_pelement;
+
+   m_p = t.m_p;
+
+   m_pelement = t.m_p;
+
+   if (::is_set(m_p))
+   {
+
+      m_pelement->increment_reference_count();
+
+   }
+
+   ::release(pold REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
+template < class T >
+template < typename T2 >
+inline ___pointer < T > & ___pointer < T > ::operator = (ptr < T2 > && t)
+{
+
+   auto pOld         = m_pelement;
+
+   m_p           = t.m_p;
+
+   m_pelement        = t.m_p;
+
+   t.m_p         = nullptr;
+
+   ::release(pOld REF_DBG_COMMA_POINTER);
+
+   return *this;
+
+}
+
+
 //template < class T >
 //inline const char * ___pointer < T >::__type_name(this)
 //{
@@ -1389,7 +1469,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 template < typename T >
-inline __pointer(T) move_transfer(T* p) { return { e_move_transfer, p }; }
+inline ptr < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 template < typename TYPE >
@@ -2115,7 +2195,7 @@ inline ::payload operator + (::payload payload, const ::procedure & procedure)
 
    }
 
-   payload["routine"] = procedure.m_pelement;
+   payload["routine"] = procedure.m_p;
 
    return payload;
 
@@ -2516,6 +2596,15 @@ inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const SO
 
 template < typename BASE_TYPE, typename SOURCE >
 inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+{
+
+   /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+
+}
+
+
+template < typename BASE_TYPE, typename SOURCE >
+inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -3116,61 +3205,38 @@ inline __pointer(task) object::fork(const ::procedure & procedure, const ::eleme
 }
 
 
-
-
-
-
-
-template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-bool material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
+bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
 {
 
-   auto psynchronization = __new(::promise::synchronization);
-
-   auto proutine = __routine([pobject, method, &payload, psynchronization]()
-                             {
-
-                                auto statuspayload = (pobject->*method)();
-
-                                synchronous_lock synchronizationlock(psynchronization->mutex());
-
-                                psynchronization->m_evGoingToWrite.SetEvent();
-
-                                psynchronization->m_evResponse.wait();
-
-                                if(!psynchronization->m_bTimeout)
-                                {
-
-                                   payload = statuspayload;
-
-                                   psynchronization->m_estatus = statuspayload;
-
-                                }
-
-                                psynchronization->m_evReady.SetEvent();
-
-                                ::release((::element * &)psynchronization.m_p);
-
-                             });
-
-   (pposting->*posting_method)(proutine);
-
-   if (psynchronization->m_evGoingToWrite.wait(proutine->timeout()).failed())
+   if(pposting->is_branch_current())
    {
 
-      psynchronization->m_bTimeout = true;
+      payload = (preturning->*returning_method)();
 
-      psynchronization->m_evResponse.SetEvent();
-
-      return false;
+      return true;
 
    }
 
-   psynchronization->m_evResponse.SetEvent();
+   auto posting = [pposting, posting_method](const ::procedure & procedure)
+   {
 
-   psynchronization->m_evReady.wait();
+      (pposting->*posting_method)(procedure);
 
-   return true;
+   };
+
+   ::function < void(const ::procedure &) > functionPost(posting);
+
+   ::function < ::payload() > functionReturn([preturning, returning_method]()
+   {
+
+      return (preturning->*returning_method)();
+
+   });
+
+   functionReturn.m_waitTimeout = wait;
+
+   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
 
 }
 
@@ -3186,52 +3252,14 @@ void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD p
 
    }
 
-   auto psignalization = __new(::promise::signalization);
-
-   auto function = [procedure, psignalization]()
-                             {
-
-                                try
-                                {
-
-                                   procedure();
-
-                                   psignalization->m_estatus = ::success;
-
-                                }
-                                catch (const ::exception& exception)
-                                {
-
-                                   psignalization->m_estatus = exception.m_estatus;
-
-                                }
-                                catch(...)
-                                {
-
-                                   psignalization->m_estatus = ::error_exception;
-
-                                }
-
-                                psignalization->m_evReady.SetEvent();
-
-                                psignalization->m_pelementHold.release();
-
-                             };
-
-   auto procedurePost = ::procedure(function);
-
-   psignalization->m_pelementHold = procedurePost;
-
-   (pposting->*posting_method)(procedurePost);
-
-   auto estatus = psignalization->m_evReady.wait(procedurePost->timeout());
-
-   if(estatus == error_wait_timeout)
+   auto posting = [pposting, posting_method](const ::procedure & procedure)
    {
 
-      procedurePost->set_timed_out();
+      (pposting->*posting_method)(procedure);
 
-   }
+   };
+
+   __send_procedure(posting, procedure);
 
 }
 
@@ -3242,6 +3270,7 @@ inline void assign(bool & b, const payload & payload)
    b = payload.get_bool(); 
 
 }
+
 
 inline void assign(::block & block, const ::payload & r)
 {
@@ -3443,6 +3472,8 @@ inline ::topic_pointer matter::create_topic(const ::atom & atom)
    return ::move(ptopic);
 
 }
+
+
 
 
 

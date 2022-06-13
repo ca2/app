@@ -189,7 +189,7 @@ pacmedirectory->is(path))
       if(strPath.get_length() >= MAX_PATH)
       {
 
-         if(::str::begins(strPath, "\\\\"))
+         if(::str().begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -591,7 +591,10 @@ pacmedirectory->is(stra[i]))
 
       psystem->m_strIosHome = pathHome;
 
-      m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
+      //m_pdirsystem->m_pathHome = m_pdirsystem->m_strCa2/"Documents";
+
+      m_pdirsystem->m_pathHome = m_psystem->m_pacmedirectory->m_pplatformdir->m_pathDocument;
+
 
       //nodeos_set_home(psystem->m_strIosHome);
 
@@ -750,7 +753,7 @@ pacmedirectory->is(stra[i]))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str::begins_ci(pszDir, pszPath);
+      return ::str().begins_ci(pszDir, pszPath);
 
    }
 

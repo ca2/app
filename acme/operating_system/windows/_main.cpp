@@ -1,24 +1,17 @@
-// Created by camilo on 2022-03-11 10:54 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-11 10:54 PM <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 
 
 #include "acme/operating_system.h"
 
 
-#ifndef __APP_ID
+#include "acme/platform/system_setup.h"
 
 
-#define __APP_ID ""
-
-
-#endif
-
-
-
-i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR * pCmdLine, int nCmdShow)
+i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 {
 
-   ::app * papp = ::app::g_p;
+   auto papp = ::app_factory::new_app();
 
    papp->m_argc = __argc;
 
@@ -45,3 +38,6 @@ i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR * pCmd
    return iExitCode;
 
 }
+
+
+

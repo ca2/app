@@ -160,7 +160,7 @@ public:
       virtual string __get_text(string str);
 
 
-      virtual void process_command_line(command_line* pcommandline);
+      //virtual void process_command_line(command_line* pcommandline);
 
 
       //virtual ::user::style* get_user_style() const;
@@ -211,7 +211,7 @@ public:
 
       virtual void init_application();
 
-      virtual void init1();
+      void init1() override;
       virtual void init2();
       virtual void init3();
 
@@ -219,7 +219,7 @@ public:
       virtual void init();
 
 
-      virtual void init_instance();
+      void init_instance() override;
 
 
       virtual void     run() override;
@@ -1023,7 +1023,7 @@ public:
 
 
 
-      virtual __pointer(::application) create_platform(::apex::session* psession);
+//      virtual __pointer(::application) create_platform(::apex::session* psession);
 
 
 

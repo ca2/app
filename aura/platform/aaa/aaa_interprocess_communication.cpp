@@ -550,25 +550,25 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
 
       FORMATTED_INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
 
-      if(!::str::begins_eat(str, "call "))
+      if(!::str().begins_eat(str, "call "))
       {
 
          return;
 
       }
 
-      ::i64 iCall = ::str::consume_natural(str);
+      ::i64 iCall = ::str().consume_natural(str);
 
-      if(!::str::begins_eat(str, " from "))
+      if(!::str().begins_eat(str, " from "))
       {
 
          return;
 
       }
 
-      string strFrom = ::str::consume_non_spaces(str);
+      string strFrom = ::str().consume_non_spaces(str);
 
-      string strAppFrom = ::str::token(strFrom, ":");
+      string strAppFrom = ::str().token(strFrom, ":");
 
       if(strAppFrom.is_empty())
       {
@@ -722,7 +722,7 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
       if(strObject == "application")
       {
 
-         if(::str::begins_ci(strMember, "reply."))
+         if(::str().begins_ci(strMember, "reply."))
          {
 
             ::i64 iTask = payloada[0].i64();

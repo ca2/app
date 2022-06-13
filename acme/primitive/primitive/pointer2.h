@@ -105,6 +105,7 @@ m_pelement(t.m_pelement)
 }
 
 
+
 //template < class T >
 //template < typename T2 >
 //inline ___pointer < T > ::___pointer(const T2 * p) :
@@ -523,6 +524,92 @@ inline bool is_null(const __pointer(TYPE) & p)
 
    return ::is_null(p.m_p);
 
+}
+
+
+template < typename TYPE >
+inline __pointer(TYPE) clone(const __pointer(TYPE) & p)
+{
+
+   if (!p)
+   {
+
+      return p;
+
+   }
+   
+   auto pelement = p->clone();
+   
+   if(__pointer_is_null(pelement))
+   {
+      
+      throw ::exception(error_failed);
+      
+   }
+   
+   auto pNew = dynamic_cast < TYPE * > (pelement);
+   
+   if(__pointer_is_null(pNew))
+   {
+      
+      throw ::exception(error_wrong_type);
+      
+   }
+
+   return ::move_transfer(pNew);
+   
+}
+
+
+template < typename TYPE >
+inline __pointer(TYPE) & clone(__pointer(TYPE) & p)
+{
+
+   return p = ::clone((const __pointer(TYPE) &) p);
+
+}
+
+
+template < typename TYPE >
+inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
+{
+
+   if (!p || p->reference_count() <= 1)
+   {
+
+      return p;
+
+   }
+
+   return p = ::clone(p);
+
+}
+
+
+template < typename TYPE >
+ptr < TYPE > clone(TYPE * p)
+{
+   
+   if(__pointer_is_null(p))
+   {
+      
+      throw ::exception(error_null_pointer);
+      
+   }
+   
+   auto pelement = p->clone();
+   
+   auto pNew = dynamic_cast < TYPE * > (pelement);
+   
+   if(__pointer_is_null(pNew))
+   {
+      
+      throw ::exception(error_wrong_type);
+   
+   }
+   
+   return ::move_transfer(pNew);
+   
 }
 
 

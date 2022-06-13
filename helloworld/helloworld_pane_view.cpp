@@ -389,7 +389,7 @@ namespace helloworld
             string strCheck = ptopic->user_element_id();
 
 
-            if (::str::begins_eat_ci(strCheck, "bilbo"))
+            if (::str().begins_eat_ci(strCheck, "bilbo"))
             {
 
                if (ptopic->user_interaction() != nullptr && !ptopic->m_context.is_source(::e_source_initialize)
@@ -472,7 +472,7 @@ namespace helloworld
 
             string strName = path.name();
 
-            strBilbo += "<input type=\"checkbox\" id=\"bilbo" + str::from(i) + "\" />bilbo &quot;" + strName + "&quot;<br/>\n<br/>";
+            strBilbo += "<input type=\"checkbox\" id=\"bilbo" + ::str().from(i) + "\" />bilbo &quot;" + strName + "&quot;<br/>\n<br/>";
 
             i++;
 

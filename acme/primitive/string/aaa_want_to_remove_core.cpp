@@ -4,7 +4,7 @@
 //
 //CLASS_DECL_ACME i64 strtoi(const char * psz)
 //{
-//   return ::str::to_i64(psz);
+//   return ::str().to_i64(psz);
 //}
 //
 //CLASS_DECL_ACME i64 strtoi(const unichar * psz)

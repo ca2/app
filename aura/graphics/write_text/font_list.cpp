@@ -961,7 +961,9 @@ namespace write_text
 
       auto iFontCount = pfontlistdata->get_count();
 
-      auto pcounter = fork_count(this, pfontlistdata->get_count(), [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
+      
+
+      auto procedure1 = [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
       {
 
          auto psystem = m_psystem->m_paurasystem;
@@ -1078,27 +1080,12 @@ namespace write_text
 
          }
 
-      });
+      };
 
-      if (pcounter->lock(30_s))
+      auto procedure2 = [this, pfontlistdata]()
       {
 
-         //{
-
-         //   synchronous_lock synchronouslock(mutex());
-
-         //   if (pfontlistdata != m_pfontlistdata)
-         //   {
-
-         //      return;
-
-         //   }
-
-         //   set_modified(id_font_list_layout);
-
-         //}
-
-         pcounter = fork_count(this, pfontlistdata->get_count(), [this, pfontlistdata](index iOrder, index iStart, index iCount, index iScan)
+         auto procedure3 = [this, pfontlistdata](index iOrder, index iStart, index iCount, index iScan)
          {
 
             auto iSerial = pfontlistdata->m_iSerial;
@@ -1136,16 +1123,20 @@ namespace write_text
 
             }
 
-         });
+         };
 
-         if (pcounter->lock(30_s))
+         auto procedure4 = [this]()
          {
 
             layout();
 
-         }
+         };
 
-      }
+         fork_count(this, pfontlistdata->get_count(), procedure3, procedure4);
+
+      };
+
+      fork_count(this, pfontlistdata->get_count(), procedure1, procedure2);
 
    }
 

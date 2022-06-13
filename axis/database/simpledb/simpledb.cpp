@@ -239,9 +239,9 @@ namespace simpledb
 
             }
 
-            string strFirstLine = ::str::line(strValue);
+            string strFirstLine = ::str().line(strValue);
 
-            if (!str::begins_eat_ci(strFirstLine, strApi + ":"))
+            if (!::str().begins_eat_ci(strFirstLine, strApi + ":"))
             {
 
                return false;

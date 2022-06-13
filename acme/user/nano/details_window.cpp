@@ -27,12 +27,18 @@ void nano_details_window::calculate_size()
 {
 
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
+   //int wScreen = 1280;
+   //int hScreen = 768;
 
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   auto sizeScreen = m_pimplementation->get_main_screen_size();
+
+   //operating_system_get_main_screen_size(wScreen, hScreen);
+
+   auto wScreen = sizeScreen.cx;
+
+   auto hScreen = sizeScreen.cy;
 
    int w = wScreen / 2;
    int h = (w /8) * 5;

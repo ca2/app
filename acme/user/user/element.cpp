@@ -24,26 +24,9 @@ namespace user
    }
 
 
-   //::handler* element::get_user_callback()
-   //{
-
-   //   return nullptr;
-
-   //}
-
-
-   //void element::install_message_routing(::channel * pchannel)
-   //{
-
-   //   channel::install_message_routing(pchannel);
-
-   //}
-
-
-   void element::show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void element::show_software_keyboard(::user::element* pprimitive)
    {
 
-      //throw ::interface_only();
 
    }
 
@@ -51,90 +34,8 @@ namespace user
    void element::hide_software_keyboard(::user::element * pprimitive)
    {
 
-      //throw ::interface_only();
-
 
    }
-
-
-   //void element::TwfGetWndArray(::user::interaction_pointer_array & wndpa)
-   //{
-
-   //   wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(this);
-
-   //}
-
-
-//   void element::TwfGetWndArray(::user::oswindow_array & oswindowa)
-//   {
-//
-//      ::user::interaction_pointer_array & wndpa = *dynamic_cast < ::user::interaction_pointer_array * >(this);
-//
-//      oswindowa = wndpa.get_hwnda();
-//
-//   }
-//
-//
-//   void element::RedrawOptimize(rectangle_i32_array &array)
-//   {
-//
-//      ::rectangle_i32 rectangle;
-//
-//Restart:
-//
-//      for(i32 i = 0; i < array.get_size(); i++)
-//      {
-//         for(i32 j = i + 1; j < array.get_size(); j++)
-//         {
-//            if(RedrawOptimize(
-//                  rectangle,
-//                  array[i],
-//                  array[j]))
-//            {
-//               array[i] = rectangle;
-//               array.erase_at(j);
-//               goto Restart;
-//
-//            }
-//
-//         }
-//
-//      }
-//
-//   }
-//
-//
-//   bool element::RedrawOptimize(RECTANGLE_I32 * prectOut, const rectangle_i32 & rect1Param, const rectangle_i32 & rect2Param)
-//   {
-//
-//      ::rectangle_i32 rect1(rect1Param);
-//
-//      ::rectangle_i32 rect2(rect2Param);
-//
-//      ::rectangle_i32 rect3;
-//
-//      i32 iArea1 = rect1.width() * rect1.height();
-//      i32 iArea2 = rect2.width() * rect2.height();
-//      rect3.unite(rect1, rect2);
-//      i32 iArea3 = rect3.width() * rect3.height();
-//
-//      if(iArea3 < (110 * (iArea1 + iArea2) / 100))
-//      {
-//
-//         *prectOut = rect3;
-//
-//
-//         return true;
-//
-//      }
-//      else
-//      {
-//
-//         return false;
-//
-//      }
-//
-//   }
 
 
    void element::PreSubClassWindow()
@@ -143,14 +44,6 @@ namespace user
       //_001BaseWndInterfaceMap();
 
    }
-
-
-
-
-   //void element::_001BaseWndInterfaceMap()
-   //{
-
-   //}
 
 
    ::user::interaction * element::get_wnd() const
@@ -2371,7 +2264,7 @@ namespace user
    //}
 
 
-   oswindow element::detach()
+   oswindow element::detach_window()
    {
 
       return nullptr;
@@ -2532,7 +2425,7 @@ namespace user
    }
 
 
-   void element::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void element::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
    }
@@ -3382,12 +3275,12 @@ namespace user
    //}
 
 
-   void element::show_keyboard(bool bShow)
-   {
+   //void element::show_keyboard(bool bShow)
+   //{
 
-      __UNREFERENCED_PARAMETER(bShow);
+   //   __UNREFERENCED_PARAMETER(bShow);
 
-   }
+   //}
 
 
 
@@ -3953,6 +3846,13 @@ namespace user
    }
 
 
+   void element::_001GetSel(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd) const
+   {
+
+
+   }
+
+
    index element::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
@@ -4273,7 +4173,7 @@ namespace user
    }
 
 
-   void element::clear_keyboard_focus()
+   void element::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
    {
 
       throw ::interface_only();
@@ -4281,10 +4181,10 @@ namespace user
    }
 
 
-   // mouse focus
-
    void element::mouse_focus_OnLButtonUp(::message::message * pmessage)
    {
+
+
    }
 
 
@@ -4355,6 +4255,14 @@ namespace user
 
 
    ::user::element* element::get_parent_primitive() const
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::primitive_impl* element::get_primitive_impl()
    {
 
       return nullptr;
@@ -4545,6 +4453,13 @@ namespace user
 
 
    void element::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
+   {
+
+
+   }
+
+
+   void element::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
    {
 
 

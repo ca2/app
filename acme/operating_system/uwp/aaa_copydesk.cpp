@@ -148,7 +148,7 @@ namespace universal_windows
 
       for(int i = 0; i < stra.get_size(); i++)
       {
-         iLen += ::str::international::utf8_to_unicode_count(stra[i]) + 1;
+         iLen += utf8_to_unicode_count(stra[i]) + 1;
       }
 
 
@@ -166,7 +166,7 @@ namespace universal_windows
       for(int i = 0; i < stra.get_size(); i++)
       {
          ASSERT(m_p->is_window());
-         ::str::international::utf8_to_unicode(lpwstrCopy, ::str::international::utf8_to_unicode_count(stra[i]) + 1, stra[i]);
+         utf8_to_unicode(lpwstrCopy, utf8_to_unicode_count(stra[i]) + 1, stra[i]);
          ASSERT(m_p->is_window());
          lpwstrCopy += (stra[i].get_length() + 1);
       }

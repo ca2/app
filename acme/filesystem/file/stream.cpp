@@ -521,7 +521,7 @@ void stream::write(const property & property)
 void stream::write(const ansichar * psz)
 {
 
-   auto len = ::str::string_safe_length(psz);
+   auto len = ::str().string_safe_length(psz);
 
    write_buffer_length(len);
 

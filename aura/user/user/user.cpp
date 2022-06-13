@@ -61,8 +61,8 @@ namespace user
 
       //}
 
-      //estatus = 
-      
+      //estatus =
+
       create_windowing();
 
       //if (!estatus)
@@ -222,7 +222,7 @@ namespace user
 
       }
 
-      return puserinteractionimpl->m_puserinteractionCapture;
+      return puserinteractionimpl->m_puserinteractionMouseCapture;
 
    }
 
@@ -257,7 +257,7 @@ namespace user
 
       }
 
-      return puserinteractionimpl->m_puserinteractionFocus1;
+      return puserinteractionimpl->m_puserinteractionKeyboardFocus;
 
    }
 
@@ -1049,7 +1049,7 @@ namespace aura
 //         //      }
 //         //      else
 //         //      {
-//         //         pframe->InitialFramePosition();
+//         //         pframe->_001InitialFramePlacement();
 //         //      }
 //         //   }
 //         //}
@@ -1187,10 +1187,10 @@ namespace aura
 
       __pointer(::user::interaction) puserinteractionParent;
 
-      if (pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >() != nullptr)
+      if (pcreate->payload("uicontainer").cast < ::user::interaction >() != nullptr)
       {
 
-         puserinteractionParent = pcreate->m_pcommandline->payload("uicontainer").cast < ::user::interaction >();
+         puserinteractionParent = pcreate->payload("uicontainer").cast < ::user::interaction >();
 
       }
 

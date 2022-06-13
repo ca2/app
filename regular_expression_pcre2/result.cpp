@@ -76,7 +76,7 @@ namespace regular_expression_pcre2
       for (strsize i = 0; i < m_cMatchCount; i++)
       {
 
-         m_rangea[i] = ::str::range(ovector[2 * i], ovector[2 * i + 1]);
+         m_rangea[i] = ::strsize_range(ovector[2 * i], ovector[2 * i + 1]);
 
       }
 
@@ -122,7 +122,7 @@ namespace regular_expression_pcre2
 //   }
 
 
-//   __pointer(::str::range_array) result::matches_ranges(const string& str)
+//   __pointer(::strsize_range_array) result::matches_ranges(const string& str)
 //   {
 //
 //      return matches_ranges(str.c_str(), str.get_length());
@@ -130,7 +130,7 @@ namespace regular_expression_pcre2
 //   }
 //
 //
-//   __pointer(::str::range_array) result::matches_ranges(const ::string & psz, strsize len)
+//   __pointer(::strsize_range_array) result::matches_ranges(const ::string & psz, strsize len)
 //   {
 //
 //      auto c = match_count(psz, len);
@@ -144,12 +144,12 @@ namespace regular_expression_pcre2
 //
 //      PCRE2_SIZE* ovector = pcre2_get_ovector_pointer(m_pcreContext->m_pimpl->m_pmd);
 //
-//      auto prangeaMatches = __new(::str::range_array);
+//      auto prangeaMatches = __new(::strsize_range_array);
 //
 //      for (strsize i = 0; i < c; i++)
 //      {
 //
-//         prangeaMatches->add(::str::range(ovector[2 * i], ovector[2 * i + 1]));
+//         prangeaMatches->add(::strsize_range(ovector[2 * i], ovector[2 * i + 1]));
 //
 //      }
 //

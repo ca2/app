@@ -22,7 +22,7 @@ namespace sockets
    void smtp_socket::OnLine(const string & line)
    {
       SetNonblocking(false);
-      ::str::parse pa(line);
+      ::parse pa(line);
       string code = pa.getword();
 
       code.make_upper();
@@ -64,12 +64,12 @@ namespace sockets
             string strWord = pa.getword();
             string strRequest = ::apex::get_system()->base64().decode(strWord);
             string strResponse;
-            if(::str::find_ci("username", strRequest) >= 0)
+            if(::str().find_ci("username", strRequest) >= 0)
             {
                strResponse = ::apex::get_system()->base64().encode(m_psystem->m_pacmefile->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_user.txt"));
                write(strResponse + "\r\n");
             }
-            else if(::str::find_ci("password", strRequest) >= 0)
+            else if(::str().find_ci("password", strRequest) >= 0)
             {
                strResponse = ::apex::get_system()->base64().encode(m_psystem->m_pacmefile->as_string("C:\\archive\\root\\x\\sensitive\\sensitive\\seed\\sendmail_pass.txt"));
                write(strResponse + "\r\n");

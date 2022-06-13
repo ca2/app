@@ -17,17 +17,15 @@ namespace audio
 } // namespace audio
 
 
-
-
-CLASS_DECL_AURA bool __node_aura_pre_init()
+CLASS_DECL_AURA void __node_aura_pre_init()
 {
 
-   return true;
+   //return true;
 
 }
 
 
-CLASS_DECL_AURA bool __node_aura_pos_init()
+CLASS_DECL_AURA void __node_aura_pos_init()
 {
 
 //   t_htask = new htask();
@@ -36,37 +34,29 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 //
 //   t_htask->m_bRun = true;
 
-   return true;
+   //return true;
 
 }
 
 //void __clear_mq(const ::string & pszDebug, itask_t atom, bool bClose);
 //void __clear_mq(const ::string & pszDebug, bool bClose);
 
-CLASS_DECL_AURA bool __node_aura_pre_term()
+CLASS_DECL_AURA void __node_aura_pre_term()
 {
 
    //__node_term_cross_windows_threading();
 
-   return true;
+   //return true;
 
 }
 
 
-
-
-
-CLASS_DECL_AURA bool __node_aura_pos_term()
+CLASS_DECL_AURA void __node_aura_pos_term()
 {
 
-   return true;
+   //return true;
 
 }
-
-
-
-
-
 
 
 //::file::path dir::sys_temp()
@@ -88,7 +78,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 
 //    stra.add_lines(str);
 
-//    return stra.predicate_get_count([](auto str) { return ::str::begins(str, "cpu"); });
+//    return stra.predicate_get_count([](auto str) { return ::str().begins(str, "cpu"); });
 
 // }
 

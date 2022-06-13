@@ -148,11 +148,20 @@
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{3550cd31-758f-4d06-bd3e-ef3a190757b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\micro">
-      <UniqueIdentifier>{72c962c1-dea5-4221-88a1-57d9e5971b91}</UniqueIdentifier>
+    <Filter Include="Source Files\hardware">
+      <UniqueIdentifier>{9fc7ada1-fa4c-4003-aa8b-497c50ef5e2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\micro">
-      <UniqueIdentifier>{4e2db1aa-2921-40a1-8540-160a0538ee13}</UniqueIdentifier>
+    <Filter Include="Header Files\hardware">
+      <UniqueIdentifier>{86d9eac5-78af-4858-84f4-412d2d004dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing\sandbox">
+      <UniqueIdentifier>{b061d7c7-d018-40f8-a8d6-27da3b4a89d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing\sandbox">
+      <UniqueIdentifier>{d000fa82-9faa-476f-a405-d66450486dd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\image">
+      <UniqueIdentifier>{11727c76-a534-45ac-840a-ee8e54afe59a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -492,49 +501,7 @@
     <ClInclude Include="inline\console\aaa_windows.h">
       <Filter>Header Files\inline\console</Filter>
     </ClInclude>
-    <ClInclude Include="const\aaa_callback.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_impact.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_GLOBAL_ID.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_procedure.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_thread.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_check.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_context.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_id.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
     <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_source.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_status.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_status_range_authentication.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_timer.h">
-      <Filter>Header Files\constant</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="include\_c.h">
@@ -948,8 +915,110 @@
     <ClInclude Include="windowing\text_editor_interface.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
-    <ClInclude Include="user\micro\message_box.h">
-      <Filter>Header Files\user\micro</Filter>
+    <ClInclude Include="hardware\device_listener.h">
+      <Filter>Header Files\hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="hardware\devices.h">
+      <Filter>Header Files\hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\hardware.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\target.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\windowing.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\window.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\_sandbox.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\host_interaction.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\source.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\save_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\pixmap.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\palette.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\meta.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map_ex1.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\map.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\load_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\list.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\imaging.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\icon.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\header.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame_array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\frame.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\fastblur.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\extension.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\dynamic.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawing.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\drawer.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\cursor_set.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\cursor.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\context_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\array.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image_impl.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_image.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\_.h">
+      <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1471,8 +1540,23 @@
     <ClCompile Include="windowing\text_editor_interface.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="user\micro\message_box.cpp">
-      <Filter>Source Files\user\micro</Filter>
+    <ClCompile Include="hardware\device_listener.cpp">
+      <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="hardware\devices.cpp">
+      <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\target.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\windowing.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\window.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

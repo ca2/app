@@ -29,8 +29,8 @@ namespace primitive
       TYPE* operator ->() const { return m_p; }
       TYPE* operator ->() { return m_p; }
 
-      bool is_null() const { return ::is_null(m_p); }
-      bool is_set() const { return ::is_set(m_p); }
+      bool is_null() const { return __pointer_is_null(m_p); }
+      bool is_set() const { return __pointer_is_set(m_p); }
       bool operator !() const { return is_null(); }
 
       template < typename OBJECT >
@@ -51,6 +51,9 @@ namespace primitive
 
       template < typename OBJECT >
       member& operator = (const ::___pointer < OBJECT >& p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p.m_p); return *this; }
+
+      template < typename OBJECT >
+      member& operator = (const ::ptr< OBJECT >& p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p.m_p); return *this; }
 
       template < typename OBJECT >
       member& operator = (const OBJECT* p) { m_p = dynamic_cast <TYPE*> ((OBJECT*)p); return *this; }

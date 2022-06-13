@@ -63,6 +63,8 @@ namespace user
 
       //m_pinteractiondraw2d = nullptr;
 
+      m_bSketchToDesignLayout = false;
+
       m_uUserInteractionFlags = 0;
 
       m_bEnableDragClient = false;
@@ -1213,7 +1215,7 @@ namespace user
    }
 
 
-   ::user::element * interaction::get_parent_primitive() const
+   ::user::element* interaction::get_parent_primitive() const
    {
 
       return get_parent();
@@ -1221,7 +1223,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_parent() const
+   interaction* interaction::get_parent() const
    {
 
       if (!m_puserinteractionParent)
@@ -1235,6 +1237,20 @@ namespace user
       {
 
          return nullptr;
+
+      }
+
+      auto pwindowApplicationHost = windowing()->get_application_host_window();
+
+      if (pwindowApplicationHost)
+      {
+
+         if (m_puserinteractionParent == pwindowApplicationHost->m_puserinteractionimpl->m_puserinteraction)
+         {
+
+            return nullptr;
+
+         }
 
       }
       //if (!m_pdescriptor)
@@ -1645,111 +1661,100 @@ namespace user
    }
 
 
-   void interaction::on_set_keyboard_focus()
-   {
+//   void interaction::on_set_keyboard_focus()
+//   {
+//
+//      if (get_parent() != nullptr)
+//      {
+//
+//         on_reset_focus_start_tick();
+//
+//         // get_keyboard_focus will return the control with focus
+//
+//         auto psession = get_session();
+//
+//         auto puserinteractionHost = psession->get_user_interaction_host();
+//
+//         if (puserinteractionHost == this)
+//         {
+//
+//            return;
+//
+//         }
+//
+//         __pointer(::aura::application) papp = get_app();
+//
+//         if (papp)
+//         {
+//
+//            // return true to set focus to this control
+//            papp->keyboard_focus_OnSetFocus(this);
+//
+//         }
+//
+//         auto einputtypePreferred = preferred_input_type();
+//
+//         if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
+//         {
+//
+//            if (psession->get_user_interaction_host())
+//            {
+//
+//               auto puserinteractionHost = psession->get_user_interaction_host();
+//
+//               if (puserinteractionHost)
+//               {
+//
+//                  puserinteractionHost->edit_on_set_focus(this);
+//
+//               }
+//
+//            }
+//
+//            show_software_keyboard(this);
+//
+//         }
+//
+//         auto ptopic = create_topic(::id_set_focus);
+//
+//         ptopic->m_puserelement = this;
+//
+//         route(ptopic);
+//
+//         // Finished setting focus, finally... Uff!
+//
+//         // Now notify it is done...
+//
+//         post_message(e_message_set_focus);
+//
+//      }
+//
+//   }
 
-      on_reset_focus_start_tick();
 
-      // get_keyboard_focus will return the control with focus
-
-      auto psession = get_session();
-
-      auto puserinteractionHost = psession->get_user_interaction_host();
-
-      if (puserinteractionHost == this)
-      {
-
-         return;
-
-      }
-
-      __pointer(::aura::application) papp = get_app();
-
-      if (papp)
-      {
-
-         // return true to set focus to this control
-         papp->keyboard_focus_OnSetFocus(this);
-
-      }
-
-      auto einputtypePreferred = preferred_input_type();
-
-      if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
-      {
-
-         if (psession->get_user_interaction_host())
-         {
-
-            auto puserinteractionHost = psession->get_user_interaction_host();
-
-            if (puserinteractionHost)
-            {
-
-               puserinteractionHost->edit_on_set_focus(this);
-
-            }
-
-         }
-
-         string strText;
-
-         _001GetText(strText);
-
-         strsize iBeg;
-
-         strsize iEnd;
-
-         _001GetSel(iBeg, iEnd);
-
-         show_software_keyboard(this, strText, iBeg, iEnd);
-
-      }
-
-      auto ptopic = create_topic(::id_set_focus);
-
-      ptopic->m_puserelement = this;
-
-      route(ptopic);
-
-   }
-
-
-   void interaction::on_kill_keyboard_focus()
-   {
-
-      auto einputtypePreferred = preferred_input_type();
-
-      if (einputtypePreferred == e_input_type_text)
-      {
-
-         auto psession = get_session();
-
-         if (psession->get_user_interaction_host())
-         {
-
-            auto puserinteractionHost = psession->get_user_interaction_host();
-
-            if (puserinteractionHost)
-            {
-
-               puserinteractionHost->edit_on_kill_focus(this);
-
-            }
-
-         }
-
-         hide_software_keyboard(this);
-
-      }
-
-      auto ptopic = create_topic(::id_kill_focus);
-
-      ptopic->m_puserelement = this;
-
-      route(ptopic);
-
-   }
+//   void interaction::on_kill_keyboard_focus()
+//   {
+//
+//      auto einputtypePreferred = preferred_input_type();
+//
+//      if (einputtypePreferred == e_input_type_text)
+//      {
+//
+//         auto pinteractionHost = get_host_window();
+//
+//         pinteractionHost->edit_on_kill_focus(this);
+//
+////         hide_software_keyboard(this);
+//
+//      }
+//
+//      auto ptopic = create_topic(::id_kill_focus);
+//
+//      ptopic->m_puserelement = this;
+//
+//      route(ptopic);
+//
+//   }
 
 
    ::user::element * interaction::get_keyboard_focus()
@@ -1821,6 +1826,7 @@ namespace user
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_subject, pchannel, this, &interaction::on_message_subject);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::on_message_set_focus);
 
          if (m_bDataUpdateDefaultHandling)
          {
@@ -2593,6 +2599,27 @@ namespace user
    void interaction::user_interaction_on_destroy()
    {
 
+      {
+
+         single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
+            || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
+            : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
+            true);
+
+
+         try
+         {
+
+            hide();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
       user_interaction_on_hide();
 
       {
@@ -2771,22 +2798,6 @@ namespace user
 
       //task_erase_all();
 
-      single_lock slDraw(get_wnd() == nullptr || get_wnd()->m_pprimitiveimpl.is_null()
-                         || get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>() == nullptr ? nullptr
-                                                                                                    : get_wnd()->m_pprimitiveimpl.cast<::user::interaction_impl>()->draw_mutex(),
-                         true);
-
-
-      try
-      {
-
-         hide();
-
-      }
-      catch (...)
-      {
-
-      }
 
       //synchronous_lock synchronouslock(mutex_children());
 
@@ -2881,6 +2892,35 @@ namespace user
 
          }
 
+      }
+      
+      if(is_host_window())
+      {
+         
+         if(m_puserinteractionpointeraChild)
+         {
+            
+            if(m_puserinteractionpointeraChild->has_interaction())
+            {
+             
+               for(auto & puserinteraction :
+               m_puserinteractionpointeraChild->interactiona())
+               {
+               
+                  puserinteraction->set_size(psize->m_size);
+                  
+//                  puserinteraction->set_need_layout();
+//                  
+//                  puserinteraction->set_need_redraw();
+//                  
+//                  puserinteraction->post_redraw();
+                  
+               }
+               
+            }
+            
+         }
+         
       }
 
    }
@@ -3560,11 +3600,21 @@ namespace user
             for (auto & pinteraction: puserinteractionpointeraChild->interactiona())
             {
 
+
                try
                {
 
                   if (!pinteraction)
                   {
+
+                     continue;
+
+                  }
+
+                  if (pinteraction->is_destroying() || !pinteraction->is_window())
+                  {
+
+                     ::output_debug_string("trying to draw window being destroyed");
 
                      continue;
 
@@ -4003,7 +4053,16 @@ namespace user
       if (!is_sketch_to_design_locked())
       {
 
-         sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+         sketch_to_design(bUpdateBuffer, bUpdateWindow);
+
+      }
+
+      if (m_bSketchToDesignLayout)
+      {
+
+         m_bSketchToDesignLayout = false;
+
+         design_layout(pgraphics);
 
       }
 
@@ -4687,7 +4746,7 @@ namespace user
    void interaction::on_message_display_change(::message::message * pmessage)
    {
 
-      _001InitialFramePosition();
+      _001InitialFramePlacement();
 
    }
 
@@ -5477,7 +5536,8 @@ namespace user
 
          auto ekeyModifiers = psession->key_modifiers();
 
-         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers))
+         if (m_pappearance->on_key_down(pmessage->m_union.m_pkey->m_ekey, pmessage->m_wparam, ekeyModifiers,
+                                        pmessage->m_union.m_pkey->m_strText))
          {
 
             pmessage->m_bRet = true;
@@ -5608,7 +5668,7 @@ namespace user
    ::point_i32 interaction::on_drag_start(::user::drag * pdrag)
    {
 
-      get_wnd()->show_keyboard(false);
+      get_wnd()->hide_software_keyboard(this);
 
       if (pdrag->m_eelement == e_element_client)
       {
@@ -7417,9 +7477,9 @@ namespace user
          while (*psz)
          {
 
-            string strUtf8Character = ::str::get_utf8_char(psz);
+            string strUtf8Character = ::str().get_utf8_char(psz);
 
-            auto iCharacter = ::str::ch::uni_index(strUtf8Character);
+            auto iCharacter = ::str::ch().uni_index(strUtf8Character);
 
             m_pappearance->on_character(iCharacter);
 
@@ -8148,19 +8208,146 @@ namespace user
    }
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag,
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
                                     RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
-      if (m_pprimitiveimpl == nullptr)
+      //if (m_pprimitiveimpl == nullptr)
+      //{
+
+      //   return;
+
+      //}
+
+      //return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient,
+//                                              bStretch);
+
+
+      if (!_is_window())
       {
 
          return;
 
       }
 
-      return m_pprimitiveimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient,
-                                              bStretch);
+      __UNREFERENCED_PARAMETER(nIDFirst);
+
+      __UNREFERENCED_PARAMETER(nIDLast);
+
+      ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
+
+      SIZEPARENTPARAMS sizeparentparams;
+
+      __pointer(::user::interaction) puiLeft;
+
+      sizeparentparams.bStretch = bStretch;
+
+      sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
+
+      if (rectangleClient != nullptr)
+      {
+
+         sizeparentparams.rectangle = rectangleClient;
+
+      }
+      else
+      {
+
+         m_puserinteraction->get_client_rect(&sizeparentparams.rectangle);
+
+      }
+
+      if (::is_empty(sizeparentparams.rectangle))
+      {
+
+         return;
+
+      }
+
+      __pointer(::user::interaction) pinteraction;
+
+      while (m_puserinteraction->get_child(pinteraction))
+      {
+
+         atom atom = pinteraction->GetDlgCtrlId();
+
+         if (atom == idLeft)
+         {
+
+            puiLeft = pinteraction;
+
+         }
+         else
+         {
+
+            pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
+
+         }
+
+      }
+
+      if ((nFlags & ~reposNoPosLeftOver) == reposQuery)
+      {
+
+         ASSERT(prectParam != nullptr);
+
+         if (bStretch)
+         {
+
+            ::copy(prectParam, &sizeparentparams.rectangle);
+
+         }
+         else
+         {
+
+            prectParam->left = prectParam->top = 0;
+
+            prectParam->right = sizeparentparams.sizeTotal.cx;
+
+            prectParam->bottom = sizeparentparams.sizeTotal.cy;
+
+
+         }
+
+         return;
+
+      }
+
+
+      if (!idLeft.is_empty() && puiLeft != nullptr)
+      {
+
+         if ((nFlags & ~reposNoPosLeftOver) == reposExtra)
+         {
+
+            ASSERT(prectParam != nullptr);
+
+
+            sizeparentparams.rectangle.left += prectParam->left;
+
+            sizeparentparams.rectangle.top += prectParam->top;
+
+            sizeparentparams.rectangle.right -= prectParam->right;
+
+            sizeparentparams.rectangle.bottom -= prectParam->bottom;
+
+
+         }
+
+         if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
+         {
+
+            //puiLeft->CalcWindowRect(&sizeparentparams.rectangle);
+
+            puiLeft->place(sizeparentparams.rectangle);
+
+            puiLeft->display();
+
+            puiLeft->set_need_layout();
+
+         }
+
+      }
 
    }
 
@@ -8628,7 +8815,7 @@ namespace user
          else
          {
 
-            design_window_full_screen(this->screen_rect());
+            design_window_full_screen(layout().sketch().parent_client_rect());
 
          }
 
@@ -8982,16 +9169,7 @@ namespace user
 
       }
 
-      if (!pgraphics)
-      {
-
-         auto psystem = m_psystem->m_paurasystem;
-
-         auto pdraw2d = psystem->draw2d();
-
-         pgraphics = pdraw2d->create_memory_graphics(this);
-
-      }
+      defer_graphics(pgraphics);
 
       m_pprimitiveimpl->on_layout(pgraphics);
 
@@ -9319,14 +9497,14 @@ namespace user
    void interaction::update_dialog_controls(channel * pTarget)
    {
 
-      if (m_pprimitiveimpl.is_null())
-      {
+      //if (m_pprimitiveimpl.is_null())
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_pprimitiveimpl->update_dialog_controls(pTarget);
+      //m_pprimitiveimpl->update_dialog_controls(pTarget);
 
    }
 
@@ -9379,14 +9557,16 @@ namespace user
    bool interaction::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
    {
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+      //if (m_pprimitiveimpl == nullptr)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      return m_pprimitiveimpl->GetUpdateRect(prectangle, bErase);
+      //return m_pprimitiveimpl->GetUpdateRect(prectangle, bErase);
+
+      return false;
 
    }
 
@@ -9512,7 +9692,7 @@ namespace user
 
       }
 
-      m_pprimitiveimpl->on_end_layout_experience(elayoutexperience);
+      //m_pprimitiveimpl->on_end_layout_experience(elayoutexperience);
 
    }
 
@@ -9649,9 +9829,14 @@ namespace user
 
             puseritem->m_ppath.release();
 
-            auto rectangle = this->rectangle(puseritem->m_eelement);
+            if(puseritem->m_eelement != e_element_item)
+            {
 
-            puseritem->m_rectangle = rectangle;
+               auto rectangle = this->rectangle(puseritem->m_eelement);
+
+               puseritem->m_rectangle = rectangle;
+
+            }
 
          }
 
@@ -9723,6 +9908,12 @@ namespace user
 
       //}
 
+      if (is_host_window())
+      {
+
+         m_puserinteraction->set_size(get_size());
+
+      }
 
    }
 
@@ -10003,12 +10194,30 @@ namespace user
 
    //}
 
-   oswindow interaction::detach()
+   
+   oswindow interaction::detach_window()
    {
-      if (m_pprimitiveimpl == nullptr)
+
+      auto pprimitiveimpl = m_pprimitiveimpl;
+
+      if (!pprimitiveimpl)
+      {
+
          return nullptr;
-      else
-         return m_pprimitiveimpl->detach();
+
+      }
+
+      auto oswindow = pprimitiveimpl->detach_window();
+
+      if (!oswindow)
+      {
+
+         return nullptr;
+
+      }
+
+      return oswindow;
+
    }
 
 
@@ -10476,7 +10685,7 @@ namespace user
 
       }
 
-      if (pprimitiveimplFocus->m_puserinteractionFocus1 != this)
+      if (pprimitiveimplFocus->m_puserinteractionKeyboardFocus != this)
       {
 
          return false;
@@ -10496,8 +10705,6 @@ namespace user
       if (::is_null(pwindowThis))
       {
 
-         //return false;
-
          return;
 
       }
@@ -10507,41 +10714,24 @@ namespace user
       if (::is_null(pprimitiveimpl))
       {
 
-         //return false;
-
          return;
 
       }
 
-      pprimitiveimpl->m_puserinteractionFocusRequest = this;
+      pprimitiveimpl->m_puserinteractionKeyboardFocusRequest = this;
 
       if (pwindowThis->has_keyboard_focus())
       {
 
-         pprimitiveimpl->on_final_set_keyboard_focus(nullptr);
+         pprimitiveimpl->on_final_set_keyboard_focus();
 
       }
       else
       {
 
-         //auto estatus = 
-
          pwindowThis->set_keyboard_focus();
 
-         //if (!estatus)
-         //{
-
-         //   pprimitiveimpl->m_puserinteractionFocus1 = nullptr;
-
-         //   pprimitiveimpl->m_puserinteractionFocusRequest = nullptr;
-
-         //   return estatus;
-
-         //}
-
       }
-
-      //return true;
 
    }
 
@@ -10592,7 +10782,7 @@ namespace user
 
       }
 
-      if (pprimitiveimpl->m_puserinteractionCapture != this)
+      if (pprimitiveimpl->m_puserinteractionMouseCapture != this)
       {
 
          return false;
@@ -10805,7 +10995,7 @@ namespace user
 
       //}
 
-      pprimitiveimpl->m_puserinteractionCapture = this;
+      pprimitiveimpl->m_puserinteractionMouseCapture = this;
 
       g_i134++;
 
@@ -10957,8 +11147,7 @@ namespace user
    static i64 g_i_prodevian_update_visual = 0;
 
 
-   void
-   interaction::sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)
+   void interaction::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -11222,7 +11411,9 @@ namespace user
 
             //}
 
-            design_layout(pgraphics);
+            m_bSketchToDesignLayout = true;
+
+            //design_layout(pgraphics);
 
          }
 
@@ -11788,28 +11979,56 @@ namespace user
    }
 
 
+   ::draw2d::graphics_pointer interaction::create_memory_graphics()
+   {
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      return pgraphics;
+
+   }
+
+
+   double interaction::_001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      defer_graphics(pgraphics);
+
+      pgraphics->set_font(this, ::e_element_none);
+
+      ::size_f64 size;
+
+      pgraphics->get_text_extent(size, unitext("Ág"));
+
+      return size.cy;
+
+   }
+
+
    void interaction::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      //if (!m_pprimitiveimpl)
-      //{
-
-      //   return false;
-
-      //}
-
-      //auto estatus = m_pprimitiveimpl->set_mouse_cursor(pcursor);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
+//      if (!m_pprimitiveimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto estatus = m_pprimitiveimpl->set_mouse_cursor(pcursor);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       m_pcursor = pcursor;
-
-      //return ::success;
 
    }
 
@@ -12655,12 +12874,12 @@ namespace user
    bool interaction::OnCommand(::message::message * pmessage)
    {
 
-      if (m_pprimitiveimpl != nullptr)
-      {
+      //if (m_pprimitiveimpl != nullptr)
+      //{
 
-         return m_pprimitiveimpl->OnCommand(pmessage);
+      //   return m_pprimitiveimpl->OnCommand(pmessage);
 
-      }
+      //}
 
       return false;
 
@@ -12670,12 +12889,12 @@ namespace user
    bool interaction::OnNotify(::message::message * pmessage)
    {
 
-      if (m_pprimitiveimpl != nullptr)
-      {
+      //if (m_pprimitiveimpl != nullptr)
+      //{
 
-         return m_pprimitiveimpl->OnNotify(pmessage);
+      //   return m_pprimitiveimpl->OnNotify(pmessage);
 
-      }
+      //}
 
       return false;
 
@@ -12994,20 +13213,19 @@ namespace user
    }
 
 
-   void interaction::show_keyboard(bool bShow)
-   {
+   //void interaction::show_keyboard(bool bShow)
+   //{
 
-      if (m_pprimitiveimpl == nullptr)
-      {
+   //   if (m_pprimitiveimpl == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_pprimitiveimpl->show_keyboard(bShow);
+   //   m_pprimitiveimpl->show_keyboard(bShow);
 
-   }
-
+   //}
 
 
    void interaction::keep_alive(::object * pliveobject)
@@ -13206,7 +13424,9 @@ namespace user
 
       auto zorder = layout().sketch().zorder();
 
-      good_restore(nullptr, nullptr, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+      auto rectangle = layout().normal().parent_client_rect();
+
+      good_restore(nullptr, rectangle, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
    }
 
@@ -14835,25 +15055,69 @@ namespace user
    //}
 
 
-   //void interaction::clear_keyboard_focus()
-   //{
+   void interaction::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+   {
 
-   //   auto puserinteractionHost = get_host_window();
+      auto pwindowThis = get_window();
 
-   //   if (this == puserinteractionHost)
-   //   {
+      if (::is_null(pwindowThis))
+      {
 
-   //      return m_pprimitiveimpl->clear_keyboard_focus();
+         return;
 
-   //   }
-   //   else
-   //   {
+      }
 
-   //      return puserinteractionHost->clear_keyboard_focus();
+      auto pprimitiveimpl = pwindowThis->m_puserinteractionimpl;
 
-   //   }
+      if (::is_null(pprimitiveimpl))
+      {
 
-   //}
+         return;
+
+      }
+
+   pprimitiveimpl->m_puserinteractionToKillKeyboardFocus =  pprimitiveimpl->m_puserinteractionKeyboardFocus;
+      
+
+//      if (pwindowThis->has_keyboard_focus())
+//      {
+//
+//         pprimitiveimpl->m_puserinteractionToKillKeyboardFocus->clear_keyboard_focus(pelementGainingFocusIfAny);
+//
+//      }
+//      else
+//      {
+
+         pprimitiveimpl->on_final_kill_keyboard_focus();
+
+      //}
+
+//      auto puserinteractionHost = get_host_window();
+//
+//      if (this == puserinteractionHost)
+//      {
+//
+//         ::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr;
+//
+//         if (pelementGainingFocusIfAny)
+//         {
+//
+//            pprimitiveimplGainingFocusIfAny = pelementGainingFocusIfAny->get_primitive_impl();
+//
+//         }
+//
+//         return m_pprimitiveimpl->clear_keyboard_focus(pprimitiveimplGainingFocusIfAny);
+//
+//      }
+//      else
+//      {
+//
+//         return puserinteractionHost->clear_keyboard_focus(pelementGainingFocusIfAny);
+//
+//      }
+
+   }
+
 
    bool interaction::is_ascendant_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
    {
@@ -15907,7 +16171,7 @@ namespace user
    }
 
 
-   void interaction::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
+   void interaction::show_software_keyboard(::user::element * pelement)
    {
 
       if (get_host_window() == this)
@@ -15920,7 +16184,7 @@ namespace user
 
          }
 
-         return m_pprimitiveimpl->show_software_keyboard(pprimitive, str, iBeg, iEnd);
+         return m_pprimitiveimpl->show_software_keyboard(pelement);
 
       }
       else
@@ -15935,14 +16199,14 @@ namespace user
 
          }
 
-         return pwindow->show_software_keyboard(pprimitive, str, iBeg, iEnd);
+         return pwindow->show_software_keyboard(pelement);
 
       }
 
    }
 
 
-   void interaction::hide_software_keyboard(::user::primitive * pprimitive)
+   void interaction::hide_software_keyboard(::user::element * pelement)
    {
 
       if (get_host_window() == this)
@@ -15955,7 +16219,7 @@ namespace user
 
          }
 
-         return m_pprimitiveimpl->hide_software_keyboard(pprimitive);
+         return m_pprimitiveimpl->hide_software_keyboard(pelement);
 
       }
       else
@@ -15970,7 +16234,7 @@ namespace user
 
          }
 
-         return pwindow->hide_software_keyboard(pprimitive);
+         return pwindow->hide_software_keyboard(pelement);
 
       }
 
@@ -16341,8 +16605,6 @@ namespace user
 
       }
 
-
-
       {
 
          auto pappearance = get_appearance();
@@ -16511,6 +16773,12 @@ namespace user
       //      }
 
    }
+
+
+   //void interaction::on_message_set_focus(::message::message* pmessage)
+   //{
+
+   //}
 
 
    void interaction::on_message_left_button_up(::message::message * pmessage)
@@ -17300,12 +17568,7 @@ namespace user
 
             auto & pgraphics = pitem->m_pgraphics;
 
-            if (!pgraphics)
-            {
-
-               pgraphics = m_psystem->m_paurasystem->draw2d()->create_memory_graphics(this);
-
-            }
+            defer_graphics(pgraphics);
 
             if (ppath->contains(pgraphics, pointScroll))
             {
@@ -17691,9 +17954,9 @@ namespace user
       while(*psz)
       {
          
-         string strCharacter = ::str::get_utf8_char(psz);
+         string strCharacter = ::str().get_utf8_char(psz);
          
-         int iCharacter = ::str::ch::uni_index(strCharacter);
+         int iCharacter = ::str::ch().uni_index(strCharacter);
          
          if(m_pappearance)
          {
@@ -17822,7 +18085,7 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePosition()
+   bool interaction::_001InitialFramePlacement(bool bForceRestore)
    {
 
       ::rectangle_i32 rectangleWindow;
@@ -17851,7 +18114,7 @@ namespace user
       if (!bSet)
       {
 
-         if (!_001InitialFramePosition(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
+         if (!_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
          {
 
             return false;
@@ -17875,7 +18138,7 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
+   bool interaction::_001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
    {
 
       return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
@@ -18784,13 +19047,13 @@ namespace user
 
    //         string str = argument.get_string();
 
-   //         if (str::begins_eat_ci(str, "class="))
+   //         if (::str().begins_eat_ci(str, "class="))
    //         {
 
    //            m_strClass = str;
 
    //         }
-   //         else if (str::begins_eat_ci(str, "style="))
+   //         else if (::str().begins_eat_ci(str, "style="))
    //         {
 
    //            m_strStyle = str;

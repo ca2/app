@@ -59,7 +59,10 @@ namespace apex
       //virtual ::task_pool* taskpool() override;
 
 
-      virtual void initialize_context() override;
+      void initialize_context() override;
+
+
+      void initialize_context_1() override;
 
 
       void clear_cache();
@@ -96,6 +99,10 @@ namespace apex
 
       virtual ::file::path defer_make_file_system_url(string str);
       virtual string defer_get_file_title(string str);
+
+
+      virtual bool defer_process_media_library_path(::file::path& path);
+
 
       ::file::path defer_process_path(::file::path path) override;
       virtual ::file::path _defer_process_path(::file::path path);

@@ -17,7 +17,7 @@ wtostring::~wtostring()
    if(m_pstringUtf8 != nullptr)
    {
 
-      *m_pstringUtf8 = ::str::international::unicode_to_utf8(m_pdata);
+      *m_pstringUtf8 = unicode_to_utf8(m_pdata);
 
    }
 

@@ -26,7 +26,7 @@ void utc_timespec(timespec * ptimespec);
 #endif
 
 
-#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__)
+#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__) || defined(FREEBSD)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
@@ -41,6 +41,12 @@ void utc_timespec(timespec * ptimespec);
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
 
+#if defined(FREEBSD)
+
+#include	<sys/types.h>
+#include	<sys/stat.h>
+#include    <unistd.h>
+#endif
 
 
 static int g_iMutex = 0;
@@ -145,7 +151,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
       if(pstrName != nullptr)
       {
 
-         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,::str::international::utf8_to_unicode(pstrName));
+         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,utf8_to_unicode(pstrName));
 
       }
 
@@ -179,7 +185,7 @@ mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_S
       strName.replace(":", "_");
       strName.replace("/", "_");
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
 #ifdef ANDROID
@@ -262,7 +268,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
       ::file::path path;
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
 #ifdef ANDROID
@@ -343,7 +349,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
       ::file::path path;
 
-      if(str::begins_ci(pstrName, "Global"))
+      if(::str().begins_ci(pstrName, "Global"))
       {
 
          path = "/::payload/lock/ca2/mutex/named";
@@ -962,9 +968,9 @@ bool mutex::_wait(const class ::wait & wait)
 
             ::duration d;
 
-            d.m_iSecond = abs_time.tv_sec + wait.m_i / 1'000;
+            d.m_iSecond = abs_time.tv_sec + wait.m_d;
 
-            d.m_iNanosecond = abs_time.tv_nsec + (wait.m_i%1000) * 1'000'000;
+            d.m_iNanosecond = abs_time.tv_nsec + fmod(wait.m_d, 1.0) * 1'000'000'000;
 
             d.normalize();
 
@@ -1550,7 +1556,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, ::str::international::utf8_to_unicode(lpszName));
+   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, utf8_to_unicode(lpszName));
 
    if (h == nullptr || h == INVALID_HANDLE_VALUE)
    {
@@ -1609,7 +1615,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 
    ::file::path path;
 
-   if (str::begins_ci(lpszName, "Global"))
+   if (::str().begins_ci(lpszName, "Global"))
    {
 
       path = "/payload/tmp/ca2/lock/mutex/named";

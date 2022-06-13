@@ -99,7 +99,7 @@ public:
       float m_icon_extra_scale;
       Cursor m_cursor;
 
-      //::::function < void(NVGcontext *) >    m_callbackSizing;
+      //::function < void(NVGcontext *) >    m_callbackSizing;
       ::function < void(NVGcontext *) >    m_callbackLayout;
 
       //virtual void _nanogui_to_user(::user::interaction * puserinteraction);
@@ -314,7 +314,7 @@ public:
    virtual bool focus_event(bool focused);
 
    /// Handle a keyboard event (default implementation: do nothing)
-   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers);
+   virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText);
 
    /// Handle text input (UTF-32 format) (default implementation: do nothing)
    virtual bool keyboard_character_event(unsigned int codepoint);

@@ -105,12 +105,18 @@ void nano_message_box::calculate_size()
 {
 
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(ANDROID)
 
-   auto sizeScreen = operating_system_get_main_screen_size();
+   //int wScreen = 1280;
+   //int hScreen = 768;
 
-   int wScreen = sizeScreen.cx;
-   int hScreen = sizeScreen.cy;
+   auto sizeScreen = m_pimplementation->get_main_screen_size();
+
+   //operating_system_get_main_screen_size(wScreen, hScreen);
+
+   auto wScreen = sizeScreen.cx;
+
+   auto hScreen = sizeScreen.cy;
 
    //printf("nano_message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
@@ -301,7 +307,7 @@ void nano_message_box::on_create()
 //}
 
 
-extern class ::system * g_psystem;
+CLASS_DECL_ACME class ::system * get_system();
 
 
 CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * pszMessage, const char * pszTitle, enum_message_box emessagebox, const char * pszDetails)
@@ -312,7 +318,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    if (::is_null(pobject))
    {
 
-      pobject = g_psystem;
+      pobject = ::get_system();
       
    }
 
@@ -332,39 +338,58 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    }
    
 #endif
-
-   auto pmessagebox = pobject->__create_new < nano_message_box >();
    
-   atom idResult;
+   auto psequence = pobject->message_box(pszMessage, pszTitle, emessagebox);
    
-   manual_reset_event event;
-
-   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
-
-   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+   auto pmanualresetevent = __new(manual_reset_event);
+   
+   atom atomResult;
+   
+   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
    {
       
-      idResult = pwindow->m_atomResult;
+      pmanualresetevent->SetEvent();
       
-      event.SetEvent();
-      
-   };
+      atomResult = psequence->m_atomResult;
    
-   if(is_single_main_user_thread() && is_main_thread())
-   {
-   
-      pmessagebox->_run_modal_loop();
-      
-   }
-   else
-   {
-      event.wait();
-      
-   }
-   
-   //auto idResult = pmessagebox->get_result();
+   });
 
-   return idResult;
+   pmanualresetevent->wait();
+
+//   auto pmessagebox = pobject->__create_new < nano_message_box >();
+//
+//   atom idResult;
+//
+//   manual_reset_event event;
+//
+//   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+//
+//   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+//   {
+//
+//      idResult = pwindow->m_atomResult;
+//
+//      event.SetEvent();
+//
+//   };
+//
+//   if(is_single_main_user_thread() && is_main_thread())
+//   {
+//
+//      pmessagebox->_run_modal_loop();
+//
+//   }
+//   else
+//   {
+//      event.wait();
+//
+//   }
+//
+//   //auto idResult = pmessagebox->get_result();
+//
+//   return idResult;
+   
+   return atomResult;
 
 }
 
@@ -404,7 +429,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    if (::is_null(pobject))
    {
 
-      pobject = g_psystem;
+      pobject = ::get_system();
       
    }
 
@@ -413,7 +438,9 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    if(pobject->m_psystem->m_bConsole || !is_ui_possible())
    {
 
-      return message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+      auto result = message_box_for_console(pszMessage, pszTitle, emessagebox, pszDetails);
+
+      function(result);
 
    }
    else

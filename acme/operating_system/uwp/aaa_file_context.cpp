@@ -25,14 +25,14 @@ namespace universal_windows
       /*      if(::file::system::FullPath(str, pszFileIn))
 
       return true;*/
-      if (::str::begins_ci(pszFileIn, "http://"))
+      if (::str().begins_ci(pszFileIn, "http://"))
 
       {
          str = pszFileIn;
 
          return true;
       }
-      else if (::str::begins_ci(pszFileIn, "https://"))
+      else if (::str().begins_ci(pszFileIn, "https://"))
 
       {
          str = pszFileIn;
@@ -40,13 +40,13 @@ namespace universal_windows
          return true;
       }
       wstring wstrFileIn;
-      wstrFileIn = ::str::international::utf8_to_unicode(pszFileIn);
+      wstrFileIn = utf8_to_unicode(pszFileIn);
 
       wstring wstrFileOut;
       //      bool b = windows_full_path(wstrFileOut.alloc(MAX_PATH * 8), wstrFileIn) != false;
       /*      if(b)
       {
-      ::str::international::unicode_to_utf8(str, wstrFileOut);
+      unicode_to_utf8(str, wstrFileOut);
       }
       return b;*/
 
@@ -59,12 +59,12 @@ namespace universal_windows
       //if(::file::system::FullPath(wstrFullPath, wstrPath))
       // return true;
 
-      if (::str::begins_ci(wstrPath, L"http://"))
+      if (::str().begins_ci(wstrPath, L"http://"))
       {
          wstrFullPath = wstrPath;
          return true;
       }
-      else if (::str::begins_ci(wstrPath, L"https://"))
+      else if (::str().begins_ci(wstrPath, L"https://"))
       {
          wstrFullPath = wstrPath;
          return true;
@@ -81,11 +81,11 @@ namespace universal_windows
    {
       int nMax = MAX_PATH * 8;
       wstring wstrPathName;
-      wstrPathName = ::str::international::utf8_to_unicode(pszPathName);
+      wstrPathName = utf8_to_unicode(pszPathName);
 
       wstring wstrTitle;
       //::u32 user = vfxGetFileName(wstrPathName, wstrTitle.alloc(nMax), nMax);
-      str = ::str::international::unicode_to_utf8(wstrTitle);
+      str = unicode_to_utf8(wstrTitle);
       //return user;
       return 0;
    }
@@ -103,7 +103,7 @@ namespace universal_windows
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
-      if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
+      if (!GetFileAttributesExW(utf8_to_unicode(path), GetFileExInfoStandard, &data))
       {
 
          varRet.set_type(::e_type_null);

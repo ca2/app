@@ -35,8 +35,8 @@ void html_form_view::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form_view::on_message_left_button_up);
    //MESSAGE_LINK(e_message_key_down, pchannel, this, &html_form_view::on_message_key_down);
-   MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::_001OnSetFocus);
-   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &html_form_view::_001OnKillFocus);
+   MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::on_message_set_focus);
+   MESSAGE_LINK(e_message_kill_focus, pchannel, this, &html_form_view::on_message_kill_focus);
    //MESSAGE_LINK(e_message_create, pchannel, this, &html_form_view::on_message_create);
 
 }
@@ -115,7 +115,7 @@ void html_form_view::on_document_complete(const ::string & strUrl)
 }
 
 
-void html_form_view::_001OnSetFocus(::message::message * pmessage)
+void html_form_view::on_message_set_focus(::message::message * pmessage)
 {
 
    __UNREFERENCED_PARAMETER(pmessage);
@@ -130,7 +130,7 @@ void html_form_view::_001OnSetFocus(::message::message * pmessage)
 }
 
 
-void html_form_view::_001OnKillFocus(::message::message * pmessage)
+void html_form_view::on_message_kill_focus(::message::message * pmessage)
 {
 
    __UNREFERENCED_PARAMETER(pmessage);

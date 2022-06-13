@@ -206,7 +206,7 @@ void object::process_exit_status(const ::e_status & estatus)
       //if (!psystem)
       //{
 
-      //   set_context_system(::::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      //   set_context_system(::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //}
 

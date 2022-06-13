@@ -162,7 +162,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      if(pcontext->m_papexcontext->dir().is(pszSrc) && !::str::ends_ci(pszSrc,".zip"))
+      if(pcontext->m_papexcontext->dir().is(pszSrc) && !::str().ends_ci(pszSrc,".zip"))
       {
 
          pcontext->m_papexcontext->dir().create(strDst.folder());
@@ -409,7 +409,7 @@ namespace filemanager
 
             }
             m_iFile++;
-            while(m_iFile < m_stra.get_size() && pcontext->m_papexcontext->dir().is(m_stra[m_iFile]) && !::str::ends_ci(m_stra[m_iFile],".zip"))
+            while(m_iFile < m_stra.get_size() && pcontext->m_papexcontext->dir().is(m_stra[m_iFile]) && !::str().ends_ci(m_stra[m_iFile],".zip"))
             {
                m_iFile++;
             }
@@ -543,7 +543,7 @@ namespace filemanager
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir().is(m_stra[i]) && !::str::ends_ci(m_stra[i],".zip"))
+         if(pcontext->m_papexcontext->dir().is(m_stra[i]) && !::str().ends_ci(m_stra[i],".zip"))
          {
 
             m_daSize.add(0.0);
@@ -799,7 +799,7 @@ namespace filemanager
       for(i32 i = 0; i < pathaExpand.get_size(); i++)
       {
 
-         if(pcontext->m_papexcontext->dir().is(pathaExpand[i]) && !::str::ends_ci(pathaExpand[i],".zip"))
+         if(pcontext->m_papexcontext->dir().is(pathaExpand[i]) && !::str().ends_ci(pathaExpand[i],".zip"))
          {
 
             listingExpanded.set_listing(pathaExpand[i]);

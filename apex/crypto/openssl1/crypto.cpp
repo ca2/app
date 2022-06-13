@@ -1040,7 +1040,7 @@ namespace crypto
       string str(pszPassword);
       if (str.get_length() < 6)
          return false;
-      return ::str::has_all_v1(pszPassword);
+      return ::str().has_all_v1(pszPassword);
    }
 
    string crypto::v5_get_password_hash(const char* pszPassword, i32 iOrder)

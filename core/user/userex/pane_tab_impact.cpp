@@ -273,11 +273,15 @@ namespace userex
 
             auto strOptionsImpact = get_app()->preparimpact_options();
 
-#if defined(_DEBUG) && !defined(_UWP)
+#if defined(_DEBUG) && !defined(_UWP) && !defined(APPLE_IOS)
 
             auto pcontext = m_pcontext->m_papexcontext;
 
-            pcontext->file().put_memory(pcontext->dir().home() / "debug_ca2/menu_view" / get_app()->m_strAppId + ".html", strOptionsImpact);
+            ::file::path path;
+            
+            path = pcontext->dir().appdata() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+
+            pcontext->file().put_memory(path, strOptionsImpact);
 
 #endif
 
@@ -740,7 +744,7 @@ namespace userex
       else if (pimpactdata->m_atom.is_text())
       {
 
-         if (::str::begins_ci(pimpactdata->m_atom.m_psz, "form_"))
+         if (::str().begins_ci(pimpactdata->m_atom.m_psz, "form_"))
          {
 
             auto pcontext = m_pcontext;

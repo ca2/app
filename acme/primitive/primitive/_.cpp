@@ -9,8 +9,8 @@ void _debug_debug_string_string()
 
    ::atom atom("a-ha");
 
-   auto bEndsInHa1 = ::str::ends(atom, "ha");
-   auto bEndsInHa2 = ::str::ends_ci(atom, "Ha");
+   auto bEndsInHa1 = ::str().ends(atom, "ha");
+   auto bEndsInHa2 = ::str().ends_ci(atom, "Ha");
 
 
 }

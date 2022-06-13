@@ -173,57 +173,57 @@ int get_current_process_affinity_order()
 //#endif
 
 
-CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
-{
+//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
+//{
+//
+//   __pointer(object) prunnable = pobjectRunnable;
+//
+//   auto pevent = __new(manual_reset_event);
+//
+//   auto psystem = pobjectRunnable->m_psystem;
+//
+//   auto pnode = psystem->node();
+//
+//   pnode->node_fork([prunnable, pevent]()
+//   {
+//
+//      try
+//      {
+//
+//         prunnable->call_run();
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      pevent->SetEvent();
+//
+//   });
+//
+//   pevent->wait(durationTimeout);
+//
+//}
 
-   __pointer(object) prunnable = pobjectRunnable;
 
-   auto pevent = __new(manual_reset_event);
-
-   auto psystem = pobjectRunnable->m_psystem;
-
-   auto pnode = psystem->node();
-
-   pnode->node_fork([prunnable, pevent]()
-   {
-
-      try
-      {
-
-         prunnable->operator()();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      pevent->SetEvent();
-
-   });
-
-   pevent->wait(durationTimeout);
-
-}
-
-
-CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
-{
-
-   __pointer(object) prunnable = prunnableParam;
-
-   auto psystem = prunnableParam->m_psystem;
-
-   auto pnode = psystem->node();
-
-   pnode->node_fork([prunnable]()
-   {
-
-      prunnable->operator()();
-
-   });
-
-}
+//CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
+//{
+//
+//   __pointer(object) prunnable = prunnableParam;
+//
+//   auto psystem = prunnableParam->m_psystem;
+//
+//   auto pnode = psystem->node();
+//
+//   pnode->node_fork([prunnable]()
+//   {
+//
+//      prunnable->operator()();
+//
+//   });
+//
+//}
 
 
 void task_set_name(const ::string & psz)
@@ -233,7 +233,12 @@ void task_set_name(const ::string & psz)
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np(pthread_self(), strName);
+   if(pthread_setname_np(pthread_self(), strName))
+   {
+
+      throw exception(error_failed);
+
+   }
 
 }
 

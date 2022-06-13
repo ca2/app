@@ -120,7 +120,7 @@ void stringl::explode(const char * pcszSeparator, const char * psz)
 void stringl::add_tail_tokens(const char * pcsz, const char * pcszSeparator, bool bAddEmpty)
 
 {
-   ::str::tokenizer strTokenizer(pcsz);
+   ::tokenizer strTokenizer(pcsz);
 
    string strToken;
    if(bAddEmpty)

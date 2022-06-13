@@ -392,12 +392,6 @@ namespace install
 } // namespace install
 
 
-class command_line;
-
-
-using command_line_pointer = __pointer(command_line);
-
-
 namespace message
 {
 
@@ -644,12 +638,6 @@ namespace html
 #ifndef WINDOWS_DESKTOP
 
 typedef void * HDWP;
-
-#endif
-
-#ifdef APPLE_IOS
-
-struct plane_system;
 
 #endif
 
@@ -913,7 +901,7 @@ namespace core
 #include "apex/message/message.h"
 
 
-#include "apex/platform/thread_set.h"
+//#include "apex/platform/thread_set.h"
 
 
 //#include "apex/platform/simple_log.h"
@@ -1020,7 +1008,7 @@ namespace file
 
 //#include "apex/platform/net.h"
 
-#include "apex/platform/command_line.h"
+//#include "apex/platform/command_line.h"
 
 #include "apex/platform/create.h"
 

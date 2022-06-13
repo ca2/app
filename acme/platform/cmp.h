@@ -61,343 +61,343 @@ void __swap(TYPE & t1,TYPE & t2)
    t2 = t;
 
 }
-
-
-template<class... TYPES>
-class tuple;
-
-template<>
-class tuple<>
-{
-public:
-   typedef tuple<> TUPLE_TYPE;
-
-   tuple()
-   {
-   }
-
-   tuple(const tuple&) noexcept
-   {
-   }
-
-   void swap(TUPLE_TYPE&) noexcept
-   {
-   }
-
-   bool equals(const TUPLE_TYPE&) noexcept
-   {
-      return true;
-   }
-
-   bool less(const TUPLE_TYPE&)noexcept
-   {
-      return false;
-   }
-
-
-
-   template< class... TYPES2>
-   inline bool operator==(const tuple<TYPES2...>& right)
-   {
-      return equals(right);
-   }
-
-   template< class... TYPES2>
-   inline bool operator!=( const tuple<TYPES2...>& right)
-   {
-      return !(*this == right);
-   }
-
-   template< class... TYPES2>
-   inline bool operator<( const tuple<TYPES2...>& right)
-   {
-      return less(right);
-   }
-
-   template< class... TYPES2>
-   inline bool operator>=( const tuple<TYPES2...>& right)
-   {
-      return !(less(right));
-   }
-
-   template< class... TYPES2>
-   inline bool operator>( const tuple<TYPES2...>& right)
-   {
-      return right.less(*this);
-   }
-
-   template< class... TYPES2>
-   inline bool operator<=(const tuple<TYPES2...>& right)
-   {
-      return !(right.less(*this));
-   }
-
-};
-
-
-
-template<class TYPE,
-         class... REST>
-class tuple<TYPE,REST...>
-   : public tuple<REST...>
-{
-public:
-   typedef TYPE THIS_TYPE;
-   typedef tuple<TYPE,REST...> TUPLE_TYPE;
-   typedef tuple<REST...> BASE_TYPE;
-   static const size_t TYPE_SIZE = 1 + sizeof...(REST);
-
-   TYPE     m_val;
-
-
-   tuple()
-   {
-   }
-
-   template < class... OTHER >
-   tuple(const tuple<OTHER...>& right)
-      : BASE_TYPE(right.get_rest()),m_val(right.m_val)
-   {
-   }
-
-   template < class... OTHER >
-   tuple(tuple<OTHER...>&& right)
-      : BASE_TYPE(::move(right.get_rest())),m_val(::move(right.m_val))
-   {
-   }
-
-   explicit tuple(const TYPE& val,const REST&... rest)
-      : BASE_TYPE(rest...),
-        m_val(val)
-   {
-   }
-
-   explicit tuple(TYPE && val,const REST &&... rest)
-      : BASE_TYPE(::move(rest...)),m_val(::move(val))
-   {
-   }
-
-
-   template<class... OTHER>
-   TUPLE_TYPE& operator=(const tuple<OTHER...>& right)
-   {
-      m_val = right.m_val;
-      (BASE_TYPE&)*this = right.get_rest();
-      return (*this);
-   }
-
-   template<class... OTHER>
-   TUPLE_TYPE& operator=(tuple<OTHER...>&& right)
-   {
-      m_val = ::move(right.m_val);
-      BASE_TYPE::operator = (::move(right.get_rest()));
-      return *this;
-   }
-
-   template<class... OTHER>
-   bool equals(const tuple<OTHER...>& right) const
-   {
-      return m_val == right.m_val && BASE_TYPE::equals(right.get_rest());
-   }
-
-   template<class... OTHER>
-   bool less(const tuple<OTHER...>& right) const
-   {
-      return m_val < right.m_val || (!(right.m_val < m_val) && BASE_TYPE::less(right.get_rest()));
-   }
-
-   template < class TYPE1, class TYPE2>
-   tuple(const pair < TYPE1, TYPE2 > & right) :
-      BASE_TYPE( tuple < TYPE2 > ( right.element2() ) ),
-      m_val(right.element1())
-   {
-
-   }
-
-
-   TUPLE_TYPE & operator=(const TUPLE_TYPE & right)
-   {
-
-      m_val = right.m_val;
-
-      BASE_TYPE::operator =(right.get_rest());
-
-      return *this;
-
-   }
-
-
-   template < class TYPE1, class TYPE2>
-   TUPLE_TYPE & operator=(const pair < TYPE1, TYPE2 >& right)
-   {
-
-      m_val = right.first;
-
-      BASE_TYPE::operator =(tuple<TYPE2>(right.element2()));
-
-      return *this;
-
-   }
-
-
-   template < class TYPE1, class TYPE2 >
-   tuple(pair < TYPE1, TYPE2 > && right) :
-      BASE_TYPE(tuple<TYPE2>(::move(right.second))),
-      m_val(::move(right.first))
-   {
-
-   }
-
-
-   TUPLE_TYPE & operator=(TUPLE_TYPE&& right)
-   {
-
-      m_val = ::move(right.m_val);
-
-      BASE_TYPE::operator = (::move(right.get_rest()));
-
-      return (*this);
-
-   }
-
-
-   template < class TYPE1, class TYPE2>
-   TUPLE_TYPE& operator=(pair<TYPE1,TYPE2>&& right)
-   {
-
-      m_val = ::move(right.element1());
-
-      BASE_TYPE::operator = (tuple<TYPE2>(::move(right.second)));
-
-      return *this;
-
-   }
-
-
-   BASE_TYPE & get_rest()
-   {
-
-      return *this;
-
-   }
-
-   const BASE_TYPE & get_rest() const
-   {
-
-      return *this;
-
-   }
-
-
-   void swap(tuple& right)
-   {
-
-      swap(m_val,right.m_val);
-
-      BASE_TYPE::swap((BASE_TYPE&)right);
-
-   }
-
-};
-
-template<class... TYPES>
-inline void swap(tuple<TYPES...>& left, tuple<TYPES...>& right)
-{
-   return left.swap(right);
-}
-
-
-template<size_t m_iIndex, class TUPLE>
-struct tuple_element;
-
-template<class TYPE1, class... REST1>
-struct tuple_element<0,tuple<TYPE1,REST1...> >
-{
-   typedef TYPE1 type;
-   typedef typename add_lvalue_reference<const TYPE1>::type _Ctype;
-   typedef typename add_lvalue_reference<TYPE1>::type _Rtype;
-   //typedef typename add_rvalue_reference<TYPE1>::type _RRtype;
-   typedef tuple<TYPE1,REST1...> TUPLE_TYPE;
-};
-
-template<size_t m_iIndex, class TYPE1, class... REST1>
-struct tuple_element<m_iIndex,tuple<TYPE1,REST1...> >
-   : public tuple_element<m_iIndex - 1,tuple<REST1...> >
-{
-};
-
-
-template<size_t m_iIndex, class TUPLE>
-struct tuple_element<m_iIndex,const TUPLE>
-      : public tuple_element<m_iIndex,TUPLE>
-{
-   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-   typedef typename add_const<typename BASE_TYPE::type>::type type;
-};
-
-template<size_t m_iIndex, class TUPLE>
-struct tuple_element<m_iIndex,volatile TUPLE>
-      : public tuple_element<m_iIndex,TUPLE>
-{
-   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-   typedef typename add_volatile<typename BASE_TYPE::type>::type type;
-};
-
-template<size_t m_iIndex,
-         class TUPLE>
-struct tuple_element<m_iIndex,const volatile TUPLE>
-      : public tuple_element<m_iIndex,TUPLE>
-{
-   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-   typedef typename add_cv<typename BASE_TYPE::type>::type type;
-};
-
-
-template<size_t m_iIndex, class... TYPES>
-inline typename tuple_element<m_iIndex,tuple<TYPES...> >::_Rtype  get(tuple<TYPES...>& TUPLE)
-{
-   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE     TUPLE_TYPE;
-   return (((TUPLE_TYPE&)TUPLE).m_val);
-}
-
-template<size_t m_iIndex, class... TYPES>
-inline typename tuple_element<m_iIndex,tuple<TYPES...> >::_Ctype get(const tuple<TYPES...>& TUPLE)
-{
-   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
-   return (((TUPLE_TYPE&)TUPLE).m_val);
-}
-
-
-template<size_t m_iIndex, class... TYPES>
-inline  typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  get(tuple<TYPES...>&& TUPLE)
-{
-
-   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
-   //typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  _RRtype;
-   return (::move(((TUPLE_TYPE&)TUPLE).m_val));
-
-}
-
-
-template<class... TYPES> inline
-tuple < TYPES&&... > make_tuple(TYPES&&... args)
-{
-
-   return ::move(args...);
-
-}
-
-
-template<class... TYPES> inline
-tuple<TYPES&...>
-tie(TYPES&... args) noexcept
-{
-
-   typedef tuple<TYPES&...> TUPLE_TYPE;
-
-   return (TUPLE_TYPE(args...));
-
-}
+//
+//
+//template<class... TYPES>
+//class tuple;
+//
+//template<>
+//class tuple<>
+//{
+//public:
+//   typedef tuple<> TUPLE_TYPE;
+//
+//   tuple()
+//   {
+//   }
+//
+//   tuple(const tuple&) noexcept
+//   {
+//   }
+//
+//   void swap(TUPLE_TYPE&) noexcept
+//   {
+//   }
+//
+//   bool equals(const TUPLE_TYPE&) noexcept
+//   {
+//      return true;
+//   }
+//
+//   bool less(const TUPLE_TYPE&)noexcept
+//   {
+//      return false;
+//   }
+//
+//
+//
+//   template< class... TYPES2>
+//   inline bool operator==(const tuple<TYPES2...>& right)
+//   {
+//      return equals(right);
+//   }
+//
+//   template< class... TYPES2>
+//   inline bool operator!=( const tuple<TYPES2...>& right)
+//   {
+//      return !(*this == right);
+//   }
+//
+//   template< class... TYPES2>
+//   inline bool operator<( const tuple<TYPES2...>& right)
+//   {
+//      return less(right);
+//   }
+//
+//   template< class... TYPES2>
+//   inline bool operator>=( const tuple<TYPES2...>& right)
+//   {
+//      return !(less(right));
+//   }
+//
+//   template< class... TYPES2>
+//   inline bool operator>( const tuple<TYPES2...>& right)
+//   {
+//      return right.less(*this);
+//   }
+//
+//   template< class... TYPES2>
+//   inline bool operator<=(const tuple<TYPES2...>& right)
+//   {
+//      return !(right.less(*this));
+//   }
+//
+//};
+//
+//
+//
+//template<class TYPE,
+//         class... REST>
+//class tuple<TYPE,REST...>
+//   : public tuple<REST...>
+//{
+//public:
+//   typedef TYPE THIS_TYPE;
+//   typedef tuple<TYPE,REST...> TUPLE_TYPE;
+//   typedef tuple<REST...> BASE_TYPE;
+//   static const size_t TYPE_SIZE = 1 + sizeof...(REST);
+//
+//   TYPE     m_val;
+//
+//
+//   tuple()
+//   {
+//   }
+//
+//   template < class... OTHER >
+//   tuple(const tuple<OTHER...>& right)
+//      : BASE_TYPE(right.get_rest()),m_val(right.m_val)
+//   {
+//   }
+//
+//   template < class... OTHER >
+//   tuple(tuple<OTHER...>&& right)
+//      : BASE_TYPE(::move(right.get_rest())),m_val(::move(right.m_val))
+//   {
+//   }
+//
+//   explicit tuple(const TYPE& val,const REST&... rest)
+//      : BASE_TYPE(rest...),
+//        m_val(val)
+//   {
+//   }
+//
+//   explicit tuple(TYPE && val,const REST &&... rest)
+//      : BASE_TYPE(::move(rest...)),m_val(::move(val))
+//   {
+//   }
+//
+//
+//   template<class... OTHER>
+//   TUPLE_TYPE& operator=(const tuple<OTHER...>& right)
+//   {
+//      m_val = right.m_val;
+//      (BASE_TYPE&)*this = right.get_rest();
+//      return (*this);
+//   }
+//
+//   template<class... OTHER>
+//   TUPLE_TYPE& operator=(tuple<OTHER...>&& right)
+//   {
+//      m_val = ::move(right.m_val);
+//      BASE_TYPE::operator = (::move(right.get_rest()));
+//      return *this;
+//   }
+//
+//   template<class... OTHER>
+//   bool equals(const tuple<OTHER...>& right) const
+//   {
+//      return m_val == right.m_val && BASE_TYPE::equals(right.get_rest());
+//   }
+//
+//   template<class... OTHER>
+//   bool less(const tuple<OTHER...>& right) const
+//   {
+//      return m_val < right.m_val || (!(right.m_val < m_val) && BASE_TYPE::less(right.get_rest()));
+//   }
+//
+//   template < class TYPE1, class TYPE2>
+//   tuple(const pair < TYPE1, TYPE2 > & right) :
+//      BASE_TYPE( tuple < TYPE2 > ( right.element2() ) ),
+//      m_val(right.element1())
+//   {
+//
+//   }
+//
+//
+//   TUPLE_TYPE & operator=(const TUPLE_TYPE & right)
+//   {
+//
+//      m_val = right.m_val;
+//
+//      BASE_TYPE::operator =(right.get_rest());
+//
+//      return *this;
+//
+//   }
+//
+//
+//   template < class TYPE1, class TYPE2>
+//   TUPLE_TYPE & operator=(const pair < TYPE1, TYPE2 >& right)
+//   {
+//
+//      m_val = right.first;
+//
+//      BASE_TYPE::operator =(tuple<TYPE2>(right.element2()));
+//
+//      return *this;
+//
+//   }
+//
+//
+//   template < class TYPE1, class TYPE2 >
+//   tuple(pair < TYPE1, TYPE2 > && right) :
+//      BASE_TYPE(tuple<TYPE2>(::move(right.second))),
+//      m_val(::move(right.first))
+//   {
+//
+//   }
+//
+//
+//   TUPLE_TYPE & operator=(TUPLE_TYPE&& right)
+//   {
+//
+//      m_val = ::move(right.m_val);
+//
+//      BASE_TYPE::operator = (::move(right.get_rest()));
+//
+//      return (*this);
+//
+//   }
+//
+//
+//   template < class TYPE1, class TYPE2>
+//   TUPLE_TYPE& operator=(pair<TYPE1,TYPE2>&& right)
+//   {
+//
+//      m_val = ::move(right.element1());
+//
+//      BASE_TYPE::operator = (tuple<TYPE2>(::move(right.second)));
+//
+//      return *this;
+//
+//   }
+//
+//
+//   BASE_TYPE & get_rest()
+//   {
+//
+//      return *this;
+//
+//   }
+//
+//   const BASE_TYPE & get_rest() const
+//   {
+//
+//      return *this;
+//
+//   }
+//
+//
+//   void swap(tuple& right)
+//   {
+//
+//      swap(m_val,right.m_val);
+//
+//      BASE_TYPE::swap((BASE_TYPE&)right);
+//
+//   }
+//
+//};
+//
+//template<class... TYPES>
+//inline void swap(tuple<TYPES...>& left, tuple<TYPES...>& right)
+//{
+//   return left.swap(right);
+//}
+//
+//
+//template<size_t m_iIndex, class TUPLE>
+//struct tuple_element;
+//
+//template<class TYPE1, class... REST1>
+//struct tuple_element<0,tuple<TYPE1,REST1...> >
+//{
+//   typedef TYPE1 type;
+//   typedef typename add_lvalue_reference<const TYPE1>::type _Ctype;
+//   typedef typename add_lvalue_reference<TYPE1>::type _Rtype;
+//   //typedef typename add_rvalue_reference<TYPE1>::type _RRtype;
+//   typedef tuple<TYPE1,REST1...> TUPLE_TYPE;
+//};
+//
+//template<size_t m_iIndex, class TYPE1, class... REST1>
+//struct tuple_element<m_iIndex,tuple<TYPE1,REST1...> >
+//   : public tuple_element<m_iIndex - 1,tuple<REST1...> >
+//{
+//};
+//
+//
+//template<size_t m_iIndex, class TUPLE>
+//struct tuple_element<m_iIndex,const TUPLE>
+//      : public tuple_element<m_iIndex,TUPLE>
+//{
+//   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
+//   typedef typename add_const<typename BASE_TYPE::type>::type type;
+//};
+//
+//template<size_t m_iIndex, class TUPLE>
+//struct tuple_element<m_iIndex,volatile TUPLE>
+//      : public tuple_element<m_iIndex,TUPLE>
+//{
+//   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
+//   typedef typename add_volatile<typename BASE_TYPE::type>::type type;
+//};
+//
+//template<size_t m_iIndex,
+//         class TUPLE>
+//struct tuple_element<m_iIndex,const volatile TUPLE>
+//      : public tuple_element<m_iIndex,TUPLE>
+//{
+//   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
+//   typedef typename add_cv<typename BASE_TYPE::type>::type type;
+//};
+//
+//
+//template<size_t m_iIndex, class... TYPES>
+//inline typename tuple_element<m_iIndex,tuple<TYPES...> >::_Rtype  get(tuple<TYPES...>& TUPLE)
+//{
+//   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE     TUPLE_TYPE;
+//   return (((TUPLE_TYPE&)TUPLE).m_val);
+//}
+//
+//template<size_t m_iIndex, class... TYPES>
+//inline typename tuple_element<m_iIndex,tuple<TYPES...> >::_Ctype get(const tuple<TYPES...>& TUPLE)
+//{
+//   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
+//   return (((TUPLE_TYPE&)TUPLE).m_val);
+//}
+//
+//
+//template<size_t m_iIndex, class... TYPES>
+//inline  typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  get(tuple<TYPES...>&& TUPLE)
+//{
+//
+//   typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::TUPLE_TYPE TUPLE_TYPE;
+//   //typedef typename tuple_element<m_iIndex,tuple<TYPES...> >::_RRtype  _RRtype;
+//   return (::move(((TUPLE_TYPE&)TUPLE).m_val));
+//
+//}
+//
+//
+//template<class... TYPES> inline
+//tuple < TYPES&&... > make_tuple(TYPES&&... args)
+//{
+//
+//   return ::move(args...);
+//
+//}
+//
+//
+//template<class... TYPES> inline
+//tuple<TYPES&...>
+//tie(TYPES&... args) noexcept
+//{
+//
+//   typedef tuple<TYPES&...> TUPLE_TYPE;
+//
+//   return (TUPLE_TYPE(args...));
+//
+//}
 
 
 

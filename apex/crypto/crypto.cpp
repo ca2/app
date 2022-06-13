@@ -699,7 +699,7 @@ namespace crypto
 
          }
 
-         return ::str::has_all_v1(pszPassword);
+         return ::str().has_all_v1(pszPassword);
 
       }
 

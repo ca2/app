@@ -4,7 +4,6 @@
 #endif
 
 
-
 namespace html
 {
 
@@ -142,7 +141,9 @@ namespace html
       bool input_checkbox::layout_phase1(html_data * pdata)
       {
 
-         m_box.set_size(26, 26);
+         auto preferredDensity = m_pcheckbox->preferred_density();
+
+         m_box.set_size(26 * preferredDensity, 26 * preferredDensity);
 
          return true;
 

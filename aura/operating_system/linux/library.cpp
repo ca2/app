@@ -36,14 +36,14 @@ string __node_library_is_loaded(const ::string & pszPath)
 
    q.m_strPathIn = pszPath;
 
-   if(!::str::ends_ci(q.m_strPathIn, ".so"))
+   if(!::str().ends_ci(q.m_strPathIn, ".so"))
    {
 
       q.m_strPathIn += ".so";
 
    }
 
-   if(!::str::begins_ci(q.m_strPathIn, "/") && !::str::begins_ci(q.m_strPathIn, "lib"))
+   if(!::str().begins_ci(q.m_strPathIn, "/") && !::str().begins_ci(q.m_strPathIn, "lib"))
    {
 
       q.m_strPathIn = "lib" + q.m_strPathIn;

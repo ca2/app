@@ -2,7 +2,7 @@
 //#include "_linux.h"
 ////#include "acme/platform/app_core.h"
 //#include <sys/types.h>
-//#include <unistd.h>
+#include <unistd.h>
 //#include <signal.h>
 //#undef USE_MISC
 //
@@ -567,7 +567,7 @@
 //
 //               string strTitle = path.title();
 //
-//               ::str::ends_eat_ci(strTitle, " (deleted)");
+//               ::str().ends_eat_ci(strTitle, " (deleted)");
 //
 //               if (strTitle == strApp ||
 //                   strTitle == strApp2)

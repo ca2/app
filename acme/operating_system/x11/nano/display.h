@@ -53,6 +53,9 @@ namespace x11
       virtual Window _get_active_window();
 
 
+      static Window window_from_name_search(Display *display, Window current, char const *needle, int iOffset = 0, int depth = 1);
+
+      Window window_from_name(char const *name, int iOffset, int depth = 1);
 
 
       static display * get(::object * pobject, bool bBranch = true, Display * pdisplay = nullptr);
@@ -80,6 +83,8 @@ namespace x11
       //void display_post(const ::procedure & procedure) override;
       //void display_send(const ::procedure & procedure);
       //bool display_posted_routine_step();
+
+      ::size_i32 get_main_screen_size() override;
 
 
    };

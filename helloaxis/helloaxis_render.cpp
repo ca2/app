@@ -718,7 +718,7 @@ namespace helloaxis
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = ::str::ch::uni_index(::str::international::unicode_to_utf8(L"愛"));
+//               i64 iChar = ::str::ch().uni_index(unicode_to_utf8(L"愛"));
 //
 //               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
 //
@@ -769,7 +769,7 @@ namespace helloaxis
 //            if (error == 0)
 //            {
 //
-//               i64 iChar = ::str::ch::uni_index(::str::international::unicode_to_utf8(L"愛"));
+//               i64 iChar = ::str::ch().uni_index(unicode_to_utf8(L"愛"));
 //
 //               i32 glyph_index = FT_Get_Char_Index(face, (i32)iChar);
 //

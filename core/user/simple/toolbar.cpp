@@ -398,7 +398,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
    
    //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
-   m_pimageDraft = m_pcontext->context_image()->create_image({20,  20 });
+   m_pimageDraft = m_pcontext->m_pauracontext->create_image({20,  20 });
 
 }
 
@@ -2398,7 +2398,7 @@ void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
 }
 
 
-size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 dwMode)
+size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 dwMode)
 {
 
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&

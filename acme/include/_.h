@@ -134,6 +134,8 @@ class system; // acme - cam
 class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
 
 
+CLASS_DECL_ACME class system * get_system();
+
 
 namespace acme
 {
@@ -1125,10 +1127,6 @@ enum e_image_type
 
 };
 
-
-
-#include "acme/exception/throw.h"
-
 #include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
@@ -1140,7 +1138,6 @@ enum e_image_type
 #include "acme/filesystem/file/_c.h"
 
 #include "acme/constant/thread.h"
-
 
 #if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 
@@ -1158,13 +1155,7 @@ CLASS_DECL_ACME ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priori
 CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
-//#include "acme/primitive/datetime/mktime.h"
-//#include "acme/primitive/api/api.h"
-
-
-
-
-//#include "acme/multimedia/_c.h"
+#include "acme/platform/this_type.h"
 
 
 #include "acme/operating_system/argcargv.h"
@@ -1470,7 +1461,7 @@ namespace core
 
 
 
-#include "acme/primitive/string/_c_impl.h"
+
 
 
 //#include "acme/platform/acme_main_struct.h"
@@ -1805,13 +1796,18 @@ class synchronization_object;
 enum enum_command
 {
 
-   command_none,
-   command_default,
-   command_request_exit,
-   //command_on_agree_exit,
-   //command_france_exit,
-   //command_check_exit,
-   command_protocol
+   e_command_file_nothing = -1,
+   e_command_none = 0,
+   e_command_default,
+   e_command_application_start,
+   e_command_file_new,
+   e_command_file_open,
+   e_command_file_print,
+   e_command_file_print_to,
+   e_command_file_dde,
+   e_command_app_unregister,
+   e_command_request_exit,
+   e_command_protocol
 
 };
 
@@ -1837,35 +1833,7 @@ namespace install
 
 } // namespace install
 
-
-template<class T>
-struct erase_reference
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct erase_reference<T &>
-{
-   typedef T TYPE;
-};
-
-template<class T>
-struct erase_reference<T &&>
-{
-   typedef T TYPE;
-};
-
-
-template<class T>
-inline
-typename erase_reference<T>::TYPE &&move(T &&t)
-{
-
-   return (static_cast<typename erase_reference<T>::TYPE &&>(t));
-
-}
-
+#include "acme/primitive/primitive/move.h"
 
 class task;
 
@@ -2084,6 +2052,10 @@ inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
 inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
 
 
+inline bool has_char(const ansichar * p) { return !is_empty(p); }
+inline bool has_char(const wd16char * p) { return !is_empty(p); }
+inline bool has_char(const wd32char * p) { return !is_empty(p); }
+
 
 template < a_pointer POINTER >
 inline bool is_set(POINTER p)
@@ -2168,6 +2140,8 @@ typedef FN_TIMER *PFN_TIMER;
 
 //#include "acme/constant/_constant.h"
 
+#include "acme/primitive/primitive/tuple.h"
+
 
 #include "acme/primitive/primitive/_memory.h"
 
@@ -2178,10 +2152,10 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-class command_line;
+//class command_line;
 
 
-using command_line_pointer = __pointer(command_line);
+//using command_line_pointer = __pointer(command_line);
 
 
 namespace message
@@ -2472,7 +2446,29 @@ namespace audio
 #include "acme/primitive/primitive/papaya.h"
 
 
+#include "acme/primitive/primitive/logic.h"
+
+
+#include "acme/primitive/mathematics/static_numeric_info.h"
+#include "acme/primitive/mathematics/numeric_info.h"
+
+
+#include "acme/primitive/mathematics/c_number.h"
+
+
+#include "acme/primitive/duration/time.h"
+
+
+#include "acme/parallelization/wait.h"
+
+
+#include "acme/primitive/duration/_.h"
+
+
 #include "acme/primitive/duration/_unit.h"
+
+
+#include "acme/primitive/duration/time_operator.h"
 
 
 template<class t>
@@ -2765,12 +2761,6 @@ typedef void *HDWP;
 
 #endif
 
-#ifdef APPLE_IOS
-
-struct plane_system;
-
-#endif
-
 
 namespace factory
 {
@@ -2922,7 +2912,7 @@ namespace primitive
 
 
 } // namespace primitive
-
+#include "acme/primitive/primitive/ptr.h"
 
 
 #include "acme/primitive/primitive/member.h"
@@ -2984,7 +2974,7 @@ inline ::i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_
 
 
 template<typename T>
-inline __pointer(T) move_transfer(T * p);
+inline ptr < T > move_transfer(T * p);
 
 
 template < typename T >
@@ -3042,11 +3032,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 class duration;
 
-#include "acme/parallelization/wait.h"
-
-#include "acme/parallelization/thread_parameter.h"
-
-#include "acme/platform/keep_true.h"
 
 class folder;
 
@@ -3079,14 +3064,6 @@ inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 }
 
 
-#include "acme/primitive/primitive/logic.h"
-
-
-#include "acme/primitive/mathematics/static_numeric_info.h"
-#include "acme/primitive/mathematics/numeric_info.h"
-
-
-#include "acme/primitive/mathematics/c_number.h"
 
 using wparam = c_number<iptr>;
 
@@ -3353,6 +3330,7 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/_global.h"
 
 
+#include "acme/platform/keep.h"
 
 
 namespace factory
@@ -3445,7 +3423,7 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 //#include "acme/primitive/primitive/function.h"
 
 
-#include "acme/primitive/primitive/member.h"
+//#include "acme/primitive/primitive/member.h"
 
 
 #include "acme/primitive/primitive/trait.h"
@@ -3633,23 +3611,13 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/enum_bitset.h"
 
 
-using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
-
-
-CLASS_DECL_ACME task_bitset& task_flag();
-
-
-#include "acme/parallelization/keep_task_flag.h"
+#include "acme/parallelization/task_flag.h"
 
 
 #include "acme/exception/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"
-
-
-
-//#include "acme/exception/extended_pointer.h"
 
 
 #include "acme/user/user/conversation.h"
@@ -3679,11 +3647,39 @@ namespace file
 
 #include "acme/filesystem/filesystem/path.h"
 
+
 #include "acme/filesystem/filesystem/path_object.h"
 
-#include "acme/primitive/collection/_.h"
+
+#include "acme/primitive/collection/_collection.h"
+
+
+#include "acme/graphics/draw2d/_const.h"
+
+
+#include "acme/graphics/draw2d/opacity.h"
+
+
+#include "acme/graphics/draw2d/color.h"
+
+
+#include "acme/primitive/primitive/payload.h"
+
+
+#include "acme/primitive/collection/payload_array.h"
+
+
+#include "acme/primitive/primitive/property.h"
+
+
+#include "acme/primitive/primitive/property_set.h"
+
+
+#include "acme/primitive/primitive/property_set_papaya.h"
+
 
 #include "acme/filesystem/filesystem/path_array.h"
+
 
 #include "acme/filesystem/filesystem/enumerator.h"
 
@@ -3758,7 +3754,7 @@ class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BOD
 class context_image;
 
 
-#include "acme/parallelization/_.h"
+#include "acme/parallelization/_parallelization.h"
 
 
 #include "acme/primitive/data/_.h"
@@ -3767,7 +3763,12 @@ class context_image;
 #include "acme/primitive/text/_.h"
 
 
+#include "acme/primitive/string/_string.h"
+
+
 #include "acme/platform/context.h"
+
+
 
 
 //#include "acme/parallelization/pool.h"
@@ -3844,7 +3845,7 @@ inline bool is_filemanager(const ::atom & atom)
    if(atom.is_text())
    {
 
-      return ::str::begins(atom.m_psz, "file_manager_");
+      return ::str().begins(atom.m_psz, "file_manager_");
 
    }
 
@@ -3876,7 +3877,7 @@ inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
 
    strFileManagerGroup += "_";
 
-   if(::str::begins(atom.m_psz, strFileManagerGroup))
+   if(::str().begins(atom.m_psz, strFileManagerGroup))
    {
 
 
@@ -4106,25 +4107,9 @@ namespace acme
 
 
 #include "acme/platform/timer_callback.h"
-//#include "acme/platform/timer_item.h"
-//#include "acme/platform/timer_array.h"
-//#include "acme/platform/nanosecond_timer.h"
-//#include "acme/platform/timer.h"
-//#include "acme/platform/timer_task.h"
-//#include "acme/platform/timer_event.h"
 
-#include "acme/parallelization/thread_impl.h"
+
 #include "acme/platform/procedure_array.h"
-
-
-///#include "acme/primitive/primitive/job.h"
-
-//#include "acme/user/user/simple/message_box.h"
-
-
-//#include "acme/user/user/impact_data.h"
-
-//#include "acme/platform/log.h"
 
 
 #include "acme/primitive/primitive/memory_base.h"
@@ -4424,6 +4409,12 @@ DECLARE_ENUMERATION(e_element, enum_element);
 #include "acme/user/user/ewindowflag.h"
 
 
+#include "acme/constant/application_capability.h"
+
+
+using enum_application_capability_array = ::comparable_array < enum_application_capability >;
+
+
 #include "acme/platform/node.h"
 
 
@@ -4454,17 +4445,10 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
 CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
-//#include "acme/platform/library.h"
-
-
-#include "acme/parallelization/cleanup_task.h"
-
-
 #include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/log.h"
-
 
 
 namespace user
@@ -4473,6 +4457,7 @@ namespace user
 
    class primitive;
    class element;
+   class primitive_impl;
 
 
    DECLARE_ENUMERATION(e_flag, enum_flag);
@@ -4502,12 +4487,12 @@ class uncompress;
 //class system_impl;
 
 
-namespace str
-{
-
-   class base64;
-
-} // namespace str
+//namespace str
+//{
+//
+ class base64;
+//
+//} // namespace str
 
 
 namespace acme
@@ -4530,6 +4515,10 @@ class task_tool;
 
 
 #include "acme/platform/app.h"
+
+
+
+#include "acme/platform/plane_system.h"
 
 
 
@@ -4558,6 +4547,7 @@ class task_tool;
 
 #include "acme/primitive/collection/_array_base_impl.h"
 #include "acme/primitive/collection/_array_impl.h"
+#include "acme/primitive/collection/_array_impl2.h"
 #include "acme/primitive/collection/_raw_array_impl.h"
 #include "acme/primitive/collection/_sort_array_impl.h"
 #include "acme/primitive/collection/_papaya_array_impl.h"
@@ -4574,6 +4564,7 @@ class task_tool;
 #include "acme/primitive/collection/_papaya_array2d_impl.h"
 
 
+#include "acme/primitive/string/_c_impl.h"
 
 
 #include "acme/primitive/string/_impl.h"
@@ -4598,6 +4589,9 @@ class task_tool;
 
 
 #include "acme/primitive/duration/integral/_impl.h"
+
+
+#include "acme/primitive/duration/duration/_impl.h"
 
 
 #include "acme/primitive/datetime/_impl.h"

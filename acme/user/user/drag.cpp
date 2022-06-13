@@ -284,7 +284,6 @@ namespace user
    }
 
 
-
    bool drag_client::drag_on_button_up(::user::mouse * pmouse)
    {
 

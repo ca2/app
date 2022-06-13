@@ -11,12 +11,6 @@ CLASS_DECL_ACME string wd16_to_ansi_str(const wd16char * pwsz, strsize srclen = 
 CLASS_DECL_ACME string wd32_to_ansi_str(const wd32char * pwsz, strsize srclen = -1);
 
 
-inline const ansichar * uni_inc(const ansichar * psz) { return utf8_inc(psz); }
-inline const wd16char * uni_inc(const wd16char * pwsz) { return utf16_inc(pwsz); }
-inline const wd32char * uni_inc(const wd32char * pwsz) { return utf32_inc(pwsz); }
-
-
-
 inline i32 __uni_index(const ansichar *& input, strsize * psrclen)
 {
 

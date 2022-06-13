@@ -95,7 +95,7 @@ namespace apex
       
 #ifdef WINDOWS_DESKTOP
       
-      if (::str::ends_ci(get_executable_path(), "\\app.exe"))
+      if (::str().ends_ci(get_executable_path(), "\\app.exe"))
          
 #endif
          
@@ -202,17 +202,19 @@ namespace apex
 
       }
 
-      string strPath = get_executable_path();
-
-      string strDir = ::file_path_folder(strPath);
-
-      string strParams = get_params();
+//      string strPath = get_executable_path();
+//
+//      string strDir = ::file_path_folder(strPath);
+//
+//      string strParams = get_params();
 
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
 
-      pnode->call_async(strPath, strParams, strDir, e_display_none, false);
+      pnode->shell_launch(m_strApp);
+
+      //pnode->call_async(strPath, strParams, strDir, e_display_none, false);
 
 //      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
 //      {

@@ -12,7 +12,7 @@
 
 
 
-int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType );
+int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, ::function < void (enum_dialog_result) > function);
 
 
 
@@ -26,11 +26,22 @@ void message_box_synchronous(oswindow oswindow, const char * pszMessage, const c
 
    string strHeader(pszTitle); // string "absorbs" nullptr pointers into ""
 
-   auto eresult = (::enum_dialog_result) ui_MessageBoxA((void *) oswindow, strMessage, strHeader, emessagebox);
+   auto pevent = __new(manual_reset_event);
+   
+   auto eresult = (::enum_dialog_result) ui_MessageBoxA(strMessage, strHeader, emessagebox, [function, pevent](enum_dialog_result eresult)
+                                                        {
+      
+      function(eresult);
+      
+      pevent->SetEvent();
+   
+   });
    
    //string strResult = message_box_result_to_string(iResult);
 
-   function(eresult);
+   //function(eresult);
+   
+   pevent->wait();
 
    return ::success;
    

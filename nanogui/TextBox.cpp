@@ -88,13 +88,13 @@ void TextBox::draw(NVGcontext * ctx) {
 
    NVGpaint bg = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(255, 32), Color(32, 32));
+      3.f, 4.f, Color(255, 32), m_colorBackground);
    NVGpaint fg1 = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, Color(150, 32), Color(32, 32));
+      3.f, 4.f, Color(150, 32), m_colorBackground);
    NVGpaint fg2 = nvgBoxGradient(ctx,
       m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f, m_size.y() - 2.f,
-      3.f, 4.f, nvgRGBA(255, 0, 0, 100), nvgRGBA(255, 0, 0, 50));
+      3.f, 4.f, nvgRGBA(255, 0, 0, 100), m_colorBackground);
 
    nvgBeginPath(ctx);
    nvgRoundedRect(ctx, m_pos.x() + 1.f, m_pos.y() + 1.f + 1.0f, m_size.x() - 2.f,
@@ -434,8 +434,11 @@ bool TextBox::focus_event(bool focused) {
    return true;
 }
 
-bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers) {
+bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) {
    if (m_editable && focused()) {
+
+      auto psession = screen()->m_puserinteraction->get_session();
+
       //if (action == ::e_message_key_down || action == GLFW_REPEAT) {
       if (action == ::e_message_key_down) {
          if (ekey == ::user::e_key_left) {
@@ -502,18 +505,18 @@ bool TextBox::keyboard_event(::user::enum_key ekey, int /* scancode */, int acti
             if (!m_committed)
                focus_event(false);
          }
-         else if (ekey == ::user::e_key_a && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_a && psession->is_key_pressed(::user::e_key_system_command)) {
             m_cursor_pos = (int)m_value_temp.length();
             m_selection_pos = 0;
          }
-         else if (ekey == ::user::e_key_x && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_x && psession->is_key_pressed(::user::e_key_system_command)) {
             copy_selection();
             delete_selection();
          }
-         else if (ekey == ::user::e_key_c && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_c && psession->is_key_pressed(::user::e_key_system_command)) {
             copy_selection();
          }
-         else if (ekey == ::user::e_key_v && ekeyModifiers == ::user::e_key_system_command) {
+         else if (ekey == ::user::e_key_v && psession->is_key_pressed(::user::e_key_system_command)) {
             delete_selection();
             paste_from_clipboard();
          }
@@ -538,6 +541,12 @@ bool TextBox::keyboard_character_event(unsigned int codepoint) {
       {
 
          return false;
+      }
+      if (codepoint == 22)
+      {
+
+         return false;
+
       }
       std::ostringstream convert;
       convert << (char)codepoint;

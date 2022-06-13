@@ -164,7 +164,7 @@ namespace android
 
             ::file::path strPath = stra[i];
 
-            if (!::str::begins(strPath, listing.m_pathFinal))
+            if (!::str().begins(strPath, listing.m_pathFinal))
                continue;
 
             bool bIsDir;
@@ -268,7 +268,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str::ends(strDir, "/"))
+   //   if(!::str().ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -286,7 +286,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str::begins_eat(strName, strDir))
+   //      if(!::str().begins_eat(strName, strDir))
    //         continue;
 
    //      if(!matches_wildcard_criteria(pszPattern, strName))
@@ -370,7 +370,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str::ends(strDir, "/"))
+   //   if(!::str().ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -385,7 +385,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str::begins_eat(strName, strDir))
+   //      if(!::str().begins_eat(strName, strDir))
    //         continue;
 
    //      if(!pcontext->m_papexcontext->dir_context().is(strPath))
@@ -458,7 +458,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str::ends(strDir, "/"))
+   //   if(!::str().ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -473,7 +473,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str::begins_eat(strName, strDir))
+   //      if(!::str().begins_eat(strName, strDir))
    //         continue;
 
    //      if(!pcontext->m_papexcontext->dir_context().is(strPath))
@@ -516,7 +516,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str::ends(strDir, "/"))
+   //   if(!::str().ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -531,7 +531,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str::begins_eat(strName, strDir))
+   //      if(!::str().begins_eat(strName, strDir))
    //         continue;
 
    //      if(pcontext->m_papexcontext->dir_context().is(strPath))
@@ -577,7 +577,7 @@ namespace android
 
    //   string strDir(lpcsz);
 
-   //   if(!::str::ends(strDir, "/"))
+   //   if(!::str().ends(strDir, "/"))
    //   {
 
    //      strDir += "/";
@@ -592,7 +592,7 @@ namespace android
 
    //      string strName = strPath;
 
-   //      if(!::str::begins_eat(strName, strDir))
+   //      if(!::str().begins_eat(strName, strDir))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -666,7 +666,7 @@ namespace android
       if (strPath.get_length() >= MAX_PATH)
       {
 
-         if (::str::begins(strPath, "\\\\"))
+         if (::str().begins(strPath, "\\\\"))
          {
 
             strPath = "\\\\?\\UNC" + strPath.Mid(1);
@@ -715,22 +715,22 @@ namespace android
 
    //   wstring wstrPath;
 
-   //   //strsize iLen = ::str::international::utf8_to_unicode_count(strPath);
+   //   //strsize iLen = utf8_to_unicode_count(strPath);
    //   //wstrPath.alloc(iLen + 32);
-   //   wstrPath = ::str::international::utf8_to_unicode(strPath);
+   //   wstrPath = utf8_to_unicode(strPath);
    //   if(wstrPath.get_length() >= MAX_PATH)
    //   {
-   //      if(::str::begins(wstrPath, L"\\\\"))
+   //      if(::str().begins(wstrPath, L"\\\\"))
    //      {
-   //         ::str::begin(wstrPath, L"\\\\?\\UNC");
+   //         ::str().begin(wstrPath, L"\\\\?\\UNC");
    //      }
    //      else
    //      {
-   //         ::str::begin(wstrPath, L"\\\\?\\");
+   //         ::str().begin(wstrPath, L"\\\\?\\");
    //      }
    //   }
 
-   //   bIsDir = ::dir_context::is(::str::international::unicode_to_utf8(wstrPath));
+   //   bIsDir = ::dir_context::is(unicode_to_utf8(wstrPath));
 
    //   m_isdirmap.set(strPath, bIsDir, bIsDir ? 0 : ::get_last_error());
 
@@ -785,9 +785,9 @@ namespace android
 
       wstring wstrPath;
 
-      wstrPath = ::str::international::utf8_to_unicode(str, iLast + 1);
+      wstrPath = utf8_to_unicode(str, iLast + 1);
 
-      bool bIsDir = ::dir_context::is(::str::international::unicode_to_utf8(wstrPath));
+      bool bIsDir = ::dir_context::is(unicode_to_utf8(wstrPath));
 
       return bIsDir;
 
@@ -909,7 +909,7 @@ namespace android
                   {
                   }
 
-                  //if(::CreateDirectory(::str::international::utf8_to_unicode("\\\\?\\" + stra[i]), nullptr))
+                  //if(::CreateDirectory(utf8_to_unicode("\\\\?\\" + stra[i]), nullptr))
                   if (::dir_context::mk("\\\\?\\" + stra[i]))
                   {
 
@@ -1223,7 +1223,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    //         __memset(buf, 0, sizeof(buf));
    //      }
    //   }*/
-   //   /*return ::str::international::unicode_to_utf8(buf);*/
+   //   /*return unicode_to_utf8(buf);*/
    //   return ::getlogin();
 
    //}
@@ -1297,7 +1297,7 @@ pacmedirectory->system() / ".ca2/app/appdata";
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str::begins_ci(pszDir, pszPath);
+      return ::str().begins_ci(pszDir, pszPath);
 
    }
 

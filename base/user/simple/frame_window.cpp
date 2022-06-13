@@ -446,12 +446,8 @@ void simple_frame_window::_thread_save_window_placement()
          m_bPendingSaveWindowRect = false;
 
          WindowDataSaveWindowRect();
-         
 
          break;
-
-         
-
 
       }
       catch (...)
@@ -939,10 +935,10 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
+#if !defined(_UWP) && !defined(ANDROID) && !defined(APPLE_IOS)
+
    if (!(m_ewindowflag & e_window_flag_window_created))
    {
-
-#if !defined(_UWP)
 
       if (m_bDefaultNotifyIcon)
       {
@@ -994,9 +990,9 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
       }
 
-#endif
-
    }
+
+#endif
 
    set_window_text(get_frame_title());
 
@@ -1651,7 +1647,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto papp = get_app();
 
-      if (::str::ends_eat_ci(strImpact, "::frame"))
+      if (::str().ends_eat_ci(strImpact, "::frame"))
       {
 
          papp->data_set("frame::" + strImpact + ".visible", bShow);
@@ -2193,7 +2189,7 @@ void simple_frame_window::on_frame_position()
 }
 
 
-void simple_frame_window::InitialFramePosition(bool bForceRestore)
+bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
 {
 
    //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
@@ -2292,6 +2288,8 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
    m_bLockSketchToDesign = false;
 
    post_redraw();
+
+   return true;
 
 }
 
@@ -3997,7 +3995,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 
       //OnUpdateToolWindow(bMakeVisible);
 
-      InitialFramePosition();
+      _001InitialFramePlacement();
 
    }
 

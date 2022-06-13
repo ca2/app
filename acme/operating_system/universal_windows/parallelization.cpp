@@ -15,7 +15,7 @@
 //#pragma push_macro("::acme::get_system()")
 //#undef ::acme::get_system()
 //using namespace ::winrt::Windows::Foundation;
-//using namespace ::winrt::Windows::::acme::get_system()::Threading;
+//using namespace ::winrt::Windows::acme::get_system()::Threading;
 //#pragma pop_macro("::acme::get_system()")
 
 
@@ -255,6 +255,33 @@ itask_t get_main_user_itask()
 
 }
 
+
+void system::windowing_post(const ::procedure& procedure)
+{
+
+   m_pnode->windowing_post(procedure);
+
+}
+
+
+
+void main_asynchronous(const ::procedure& procedure)
+{
+
+   if (is_main_thread())
+   {
+
+      procedure();
+
+      return;
+
+   }
+
+   auto psystem = ::get_system();
+
+   psystem->windowing_post(procedure);
+
+}
 
 
 

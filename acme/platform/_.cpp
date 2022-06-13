@@ -323,3 +323,18 @@ void safe_free(void * pfree)
 
 
 
+void this_type_init(const char * psz)
+{
+
+
+}
+
+
+void this_type_term(const char * psz)
+{
+   
+   
+}
+
+
+

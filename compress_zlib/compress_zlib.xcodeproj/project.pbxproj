@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
+		9A1EAA8D284B05B0000F05A8 /* _compress_zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4C1275010A4003F38EC /* _compress_zlib.h */; };
+		9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
+		9A1EAA8F284B05B0000F05A8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
+		9A1EAA90284B05B0000F05A8 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
+		9A1EAA92284B05B0000F05A8 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
+		9A1EAA93284B05B0000F05A8 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
+		9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
+		9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
+		9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
 		9A81F512275010A6003F38EC /* _compress_zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4C1275010A4003F38EC /* _compress_zlib.h */; };
 		9A81F513275010A6003F38EC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
 		9A81F514275010A6003F38EC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
@@ -46,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F4B227501077003F38EC /* libcompress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcompress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F4C1275010A4003F38EC /* _compress_zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _compress_zlib.h; sourceTree = "<group>"; };
 		9A81F4C5275010A4003F38EC /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -88,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F4B227501077003F38EC /* libcompress_zlib.dylib */,
+				9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +141,18 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9A1EAA8B284B05B0000F05A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */,
+				9A1EAA8D284B05B0000F05A8 /* _compress_zlib.h in Headers */,
+				9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */,
+				9A1EAA8F284B05B0000F05A8 /* _.h in Headers */,
+				9A1EAA90284B05B0000F05A8 /* framework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A81F4AE27501077003F38EC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,6 +168,22 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9A1EAA88284B05B0000F05A8 /* ios_compress_zlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_compress_zlib" */;
+			buildPhases = (
+				9A1EAA8B284B05B0000F05A8 /* Headers */,
+				9A1EAA91284B05B0000F05A8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ios_compress_zlib;
+			productName = compress_zlib;
+			productReference = 9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9A81F4B127501077003F38EC /* compress_zlib */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A81F4B627501077003F38EC /* Build configuration list for PBXNativeTarget "compress_zlib" */;
@@ -196,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				9A81F4B127501077003F38EC /* compress_zlib */,
+				9A1EAA88284B05B0000F05A8 /* ios_compress_zlib */,
 			);
 		};
 /* End PBXProject section */
@@ -218,6 +259,18 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9A1EAA91284B05B0000F05A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1EAA92284B05B0000F05A8 /* compress.cpp in Sources */,
+				9A1EAA93284B05B0000F05A8 /* _factory.cpp in Sources */,
+				9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */,
+				9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */,
+				9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A81F4AF27501077003F38EC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +294,42 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9A1EAA9B284B05B0000F05A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A1EAA9C284B05B0000F05A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = a;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		9A81F4B427501077003F38EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -301,7 +390,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -315,7 +403,8 @@
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -327,7 +416,8 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
@@ -393,7 +483,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -406,7 +495,8 @@
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/source/app",
 				);
 				USER_HEADER_SEARCH_PATHS = (
@@ -418,7 +508,8 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
@@ -460,6 +551,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_compress_zlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A1EAA9B284B05B0000F05A8 /* Debug */,
+				9A1EAA9C284B05B0000F05A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A81F4AD27501076003F38EC /* Build configuration list for PBXProject "compress_zlib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

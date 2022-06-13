@@ -122,7 +122,7 @@ namespace draw2d
 
          ::draw2d::object* pthis = (::draw2d::object*) this;
 
-         ::draw2d::lock draw2dlock;
+         //::draw2d::lock draw2dlock;
 
          ::draw2d::device_lock devicelock(pthis);
 

@@ -123,11 +123,11 @@ void scStringSubstring(CScriptVar *ca, void *) {
 
 
 void scStringToLowerCase(CScriptVar *ca,void *) {
-   ca->getReturnVar()->setString(::str::ansi_lower(ca->getParameter("this")->getString()));
+   ca->getReturnVar()->setString(::str().ansi_lower(ca->getParameter("this")->getString()));
 }
 
 void scStringToUpperCase(CScriptVar *ca,void *) {
-   ca->getReturnVar()->setString(::str::ansi_upper(ca->getParameter("this")->getString()));
+   ca->getReturnVar()->setString(::str().ansi_upper(ca->getParameter("this")->getString()));
 }
 
 void scStringCharAt(CScriptVar *ca, void *) {

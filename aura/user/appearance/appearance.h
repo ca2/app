@@ -44,7 +44,7 @@ namespace appearance
 
       virtual bool on_scroll_event(const ::point_i32 & point, double x, double y);
 
-      virtual bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers);
+      virtual bool on_key_down(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers, const ::string & strText);
       virtual bool on_key_up(::user::enum_key ekey, ::i64 scancode, const ::user::e_key & ekeyModifiers);
 
       virtual void on_character(int iCharacter);

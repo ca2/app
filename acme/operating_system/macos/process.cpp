@@ -39,49 +39,49 @@ int create_process2(const char * _cmd_line, int * pprocessId);
 
 
 
-string apple_app_module_path()
-{
-
-   string str;
-
-   char * psz = str.get_string_buffer(1024);
-
-
-   u32 size = 1024;
-
-   if(_NSGetExecutablePath(psz, &size) == 0)
-
-   {
-
-      str.release_string_buffer();
-
-   }
-   else
-   {
-
-      psz = str.get_string_buffer(size);
-
-
-      if(_NSGetExecutablePath(psz, &size) == 0)
-
-      {
-
-         str.release_string_buffer();
-
-      }
-      else
-      {
-
-         return "";
-
-      }
-
-   }
-
-
-   return str;
-
-}
+//string apple_app_module_path()
+//{
+//
+//   string str;
+//
+//   char * psz = str.get_string_buffer(1024);
+//
+//
+//   u32 size = 1024;
+//
+//   if(_NSGetExecutablePath(psz, &size) == 0)
+//
+//   {
+//
+//      str.release_string_buffer();
+//
+//   }
+//   else
+//   {
+//
+//      psz = str.get_string_buffer(size);
+//
+//
+//      if(_NSGetExecutablePath(psz, &size) == 0)
+//
+//      {
+//
+//         str.release_string_buffer();
+//
+//      }
+//      else
+//      {
+//
+//         return "";
+//
+//      }
+//
+//   }
+//
+//
+//   return str;
+//
+//}
 
 CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra)
 {

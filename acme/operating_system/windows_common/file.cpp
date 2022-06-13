@@ -8,23 +8,23 @@
 CLASS_DECL_ACME bool windows_get_alternate_path(wstring& wstr)
 {
 
-   if (wstr.begins_ci(str::windows_bbqb(wstr)))
+   if (wstr.begins_ci(::str().windows_bbqb(wstr)))
    {
 
       return false;
 
    }
 
-   if (wstr.begins_ci(str::windows_bb(wstr)))
+   if (wstr.begins_ci(::str().windows_bb(wstr)))
    {
 
-      wstr = str::windows_bbqbunc(wstr) + wstr.Mid(1);
+      wstr = ::str().windows_bbqbunc(wstr) + wstr.Mid(1);
 
    }
    else
    {
 
-      wstr = str::windows_bbqb(wstr) + wstr;
+      wstr = ::str().windows_bbqb(wstr) + wstr;
 
    }
 
@@ -147,7 +147,7 @@ bool is_directory(const char* path)
    //
    //               strPrefix.replace("/", "\\");
    //
-   //               ::str::begins_eat_ci(strRelative, strPrefix);
+   //               ::str().begins_eat_ci(strRelative, strPrefix);
    //
    //               strRelative.trim("/\\");
    //

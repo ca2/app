@@ -175,7 +175,7 @@ namespace user
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_window::on_message_destroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &frame_window::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::on_message_set_focus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
@@ -494,7 +494,7 @@ namespace user
 
                   get_window_rect(rectangle);
 
-                  pimage1 = m_pcontext->context_image()->create_image(rectangle.size());
+                  pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
 
                   synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
 
@@ -1024,7 +1024,7 @@ namespace user
          if (get_parent() == nullptr || !get_parent()->is_place_holder())
          {
 
-            InitialFramePosition();
+            _001InitialFramePlacement();
 
          }
 
@@ -1265,7 +1265,7 @@ namespace user
    }
 
 
-   void frame_window::InitialFramePosition(bool bForceRestore)
+   bool frame_window::_001InitialFramePlacement(bool bForceRestore)
    {
 
       __UNREFERENCED_PARAMETER(bForceRestore);
@@ -1288,6 +1288,8 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+      return true;
 
    }
 
@@ -2463,7 +2465,7 @@ namespace user
    }
 
 
-   void frame_window::_001OnSetFocus(::message::message * pmessage)
+   void frame_window::on_message_set_focus(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -2546,12 +2548,21 @@ namespace user
 
       }
 
-      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+      sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
       if (!is_window_visible() || layout().is_iconic())
       {
 
          return;
+
+      }
+
+      if (m_bSketchToDesignLayout)
+      {
+
+         m_bSketchToDesignLayout = false;
+
+         design_layout(pgraphics);
 
       }
 

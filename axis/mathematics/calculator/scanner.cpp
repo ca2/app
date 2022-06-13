@@ -75,10 +75,10 @@ namespace calculator
 
       }
 
-      while (::str::ch::is_space_char(input))
+      while (::str::ch().is_space_char(input))
       {
 
-         input = ::str::utf8_inc(input);
+         ::str().increment(input);
 
       }
 
@@ -91,9 +91,9 @@ namespace calculator
 
       }
 
-      const char * nextinput = ::str::utf8_inc(input);
+      const char * nextinput = ::str().next(input);
 
-      if((*input == 'j' || *input == 'i') && ::str::ch::is_digit(nextinput))
+      if((*input == 'j' || *input == 'i') && ::str::ch().is_digit(nextinput))
       {
 
          m_ptoken->m_etype = token::type_imaginary;
@@ -109,7 +109,7 @@ namespace calculator
          return m_ptoken;
 
       }
-      else if(::str::ch::is_digit(input))
+      else if(::str::ch().is_digit(input))
       {
 
          m_ptoken->m_etype = token::type_number;
@@ -179,12 +179,12 @@ namespace calculator
       else
       {
 
-         m_ptoken->m_str = ::str::consume_nc_name(input);
+         m_ptoken->m_str = ::str().consume_nc_name(input);
 
-         while (::str::ch::is_space_char(input))
+         while (::str::ch().is_space_char(input))
          {
 
-            input = ::str::utf8_inc(input);
+            ::str().increment(input);
 
          }
          if(*input == '(')

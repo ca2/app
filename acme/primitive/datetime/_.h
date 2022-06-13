@@ -122,7 +122,7 @@ namespace earth
 #include "date_span.h"
 
 
-#include "time.h"
+#include "earth_time.h"
 
 
 #include "system_time.h"

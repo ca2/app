@@ -133,6 +133,41 @@ int app::main_loop()
 
 }
 
+
+void app::init1()
+{
+
+   
+   initialize_context_1();
+
+
+}
+
+
+void app::init_instance()
+{
+
+   m_psystem->node()->add_application_capability(m_eapplicationcapabilitya);
+
+}
+
+
+bool app::has_capability(enum_application_capability ecapability) const
+{
+
+   return m_eapplicationcapabilitya.contains(ecapability);
+
+}
+
+
+void app::add_capability(enum_application_capability ecapability)
+{
+
+   m_eapplicationcapabilitya.add_unique(ecapability);
+
+}
+
+
 //
 //class ::main main(argc, argv, envp);
 //
@@ -141,12 +176,6 @@ int app::main_loop()
 //class ::main main(argc, argv, envp);
 //
 //__main(main);
-
-
-
-
-
-
 
 
 void * application_system(void * pApplication)
@@ -157,4 +186,13 @@ void * application_system(void * pApplication)
    return papp->m_psystem;
    
 }
+
+
+void app::open_url(const ::string & strUrl)
+{
+   
+   
+}
+
+
 

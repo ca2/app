@@ -2163,7 +2163,7 @@ break_click:;
       if (pinteraction.is_null())
       {
 
-         pinteraction = move_transfer(pinteractionTemplate->clone());
+         pinteraction = ::clone(pinteractionTemplate);
 
          if (::is_set(pinteraction))
          {

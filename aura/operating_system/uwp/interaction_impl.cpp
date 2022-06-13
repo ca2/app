@@ -377,8 +377,8 @@ namespace universal_windows
       //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::on_message_move);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
       //MESSAGE_LINK(e_message_show_window, pchannel, this,&interaction_impl::on_message_show_window);
 //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
       prio_install_message_routing(pchannel);
@@ -395,7 +395,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::_001OnSetFocus(::message::message* pmessage)
+   void interaction_impl::on_message_set_focus(::message::message* pmessage)
    {
 
       __pointer(::message::set_focus) psetfocus(pmessage);
@@ -410,7 +410,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::_001OnKillFocus(::message::message* pmessage)
+   void interaction_impl::on_message_kill_focus(::message::message* pmessage)
    {
 
       __pointer(::message::kill_focus) pkillfocus(pmessage);

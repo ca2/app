@@ -687,7 +687,7 @@ namespace nano2d
    float draw2d_context::text(float x, float y, const char * string, const char * end)
    {
       
-      ::string strText(string, end ? end - string : str::length(string));
+      ::string strText(string, end ? end - string : ::str().length(string));
 
       m_pgraphics->set(_get_current_font());
 
@@ -738,7 +738,7 @@ namespace nano2d
       double_array daLeft;
       double_array daRight;
 
-      ::string strText(stringParam, end ? end - stringParam : str::length(stringParam));
+      ::string strText(stringParam, end ? end - stringParam : ::str().length(stringParam));
 
       m_pgraphics->set(_get_current_font());
 
@@ -785,7 +785,7 @@ namespace nano2d
       while (*psz && iChar < maxPositions)
       {
 
-         int iLen = ::str::get_utf8_char_length(psz);
+         int iLen = ::str().get_utf8_char_length(psz);
 
          positions[iChar].str = psz;
 
@@ -810,7 +810,7 @@ namespace nano2d
    float draw2d_context::text_bounds(float x, float y, const char * string, const char * end, float * bounds)
    {
 
-      ::string strText(string, end ? end - string : str::length(string));
+      ::string strText(string, end ? end - string : ::str().length(string));
       
       auto pfont = _get_current_font();
 
@@ -968,7 +968,7 @@ namespace nano2d
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *) data, iScan);
+      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
 
    }
 

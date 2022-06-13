@@ -168,7 +168,7 @@ inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringabl
 //
 //   wstring wstr;
 //
-//   return string_concatenate < wstring >(wstr, pwsz1, str::string_safe_length(pwsz1), wstr2, wstr2.get_length());
+//   return string_concatenate < wstring >(wstr, pwsz1, ::str().string_safe_length(pwsz1), wstr2, wstr2.get_length());
 //
 //}
 

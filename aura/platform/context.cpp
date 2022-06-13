@@ -25,7 +25,7 @@ namespace aura
    {
 
       //auto estatus =
-      
+
       ::apex::context::initialize_context();
 
       //if (!estatus)
@@ -35,11 +35,21 @@ namespace aura
 
       //}
 
+      //return ::success;
+
+   }
+
+
+   void context::initialize_context_1()
+   {
+
+      ::apex::context::initialize_context_1();
+
       if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
       {
 
          //estatus = 
-         
+
          __compose(m_pcontextimage);
 
          //if (!estatus)
@@ -53,9 +63,8 @@ namespace aura
 
       }
 
-      //return ::success;
-
    }
+
 
 
    //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
@@ -257,67 +266,67 @@ namespace aura
 //
 //      path = defer_process_matter_path(path);
 //
-//      if (::str::begins_eat_ci(path, "music://"))
+//      if (::str().begins_eat_ci(path, "music://"))
 //      {
 //
 //         path = dir().music() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "video://"))
+//      else if (::str().begins_eat_ci(path, "video://"))
 //      {
 //
 //         path = dir().video() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "image://"))
+//      else if (::str().begins_eat_ci(path, "image://"))
 //      {
 //
 //         path = dir().image() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "document://"))
+//      else if (::str().begins_eat_ci(path, "document://"))
 //      {
 //
 //         path = dir().document() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "dropbox://"))
+//      else if (::str().begins_eat_ci(path, "dropbox://"))
 //      {
 //
 //         path = dir().dropbox() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "onedrive://"))
+//      else if (::str().begins_eat_ci(path, "onedrive://"))
 //      {
 //
 //         path = dir().onedrive() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "appconfig://"))
+//      else if (::str().begins_eat_ci(path, "appconfig://"))
 //      {
 //
 //         path = get_app()->appconfig_folder() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "download://"))
+//      else if (::str().begins_eat_ci(path, "download://"))
 //      {
 //
 //         path = dir().download() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "usersystem://"))
+//      else if (::str().begins_eat_ci(path, "usersystem://"))
 //      {
 //
 //         path = m_psystem->m_pacmedirectory->system() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "desktop://"))
+//      else if (::str().begins_eat_ci(path, "desktop://"))
 //      {
 //
 //         path = dir().desktop() / path;
 //
 //      }
-//      else if (::str::begins_eat_ci(path, "bookmark://"))
+//      else if (::str().begins_eat_ci(path, "bookmark://"))
 //      {
 //
 //         path = dir().bookmark() / path;
@@ -347,7 +356,7 @@ namespace aura
 //   ::file::path context::defer_process_matter_path(::file::path path)
 //   {
 //
-//      if (::str::begins_ci(path, "matter://"))
+//      if (::str().begins_ci(path, "matter://"))
 //      {
 //
 //         path = dir().matter(path, false);
@@ -368,7 +377,7 @@ namespace aura
 //   ::file::path context::get_matter_path(string strMatter)
 //   {
 //
-//      if (::str::begins_eat_ci(strMatter, "appmatter://"))
+//      if (::str().begins_eat_ci(strMatter, "appmatter://"))
 //      {
 //
 //         return dir().install() / strMatter;
@@ -403,7 +412,7 @@ namespace aura
 //   ::file::path context::get_matter_cache_path(::file::path path)
 //   {
 //
-//      if (::str::begins_eat_ci((string&)path, "appmatter://"))
+//      if (::str().begins_eat_ci((string&)path, "appmatter://"))
 //      {
 //
 //         auto psystem = get_system()->m_papexsystem;
@@ -485,7 +494,7 @@ namespace aura
 //
 //         }
 //
-//         ::str::begins_eat_ci(path, "appmatter://");
+//         ::str().begins_eat_ci(path, "appmatter://");
 //
 //         path = string(get_server_ca2_cc()) + "matter" / path;
 //
@@ -993,6 +1002,58 @@ namespace aura
 //      return estatus;
 //
 //   }
+
+   ::image_pointer context::create_image()
+   {
+
+      auto pimage = __create < ::image >();
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      return ::move(pimage);
+
+   }
+
+
+   ::image_pointer context::create_image(const ::size_i32 & size, const color32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   {
+
+      auto pimage = m_pcontext->__create < ::image >();
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      //auto estatus =
+      pimage->create(size, eflagCreate);
+
+      if (::is_set(pcolor))
+      {
+
+         pimage->map();
+
+         copy_colorref(pimage->get_data(), size.cx, size.cy, pimage->m_iScan, pcolor, iScan);
+
+      }
+
+      //if (!estatus)
+      //{
+
+      //   return nullptr;
+
+      //}
+
+      return ::move(pimage);
+
+   }
 
 
 } // namespace apex

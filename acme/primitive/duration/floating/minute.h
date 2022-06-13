@@ -11,7 +11,7 @@ public:
    using BASE_TYPE = FLOATING_MINUTE;
 
 
-   floating_minute_t(FLOATING_MINUTE minute = {}) : FLOATING_MINUTE(minute) {}
+   constexpr floating_minute_t(FLOATING_MINUTE minute = {}) : FLOATING_MINUTE(minute) {}
 
 
    INTEGRAL_SECOND integral_seconds() const { return INTEGRAL_SECOND((::i64)(m_d * 60.0)); }
@@ -24,9 +24,9 @@ public:
 using floating_minute = floating_duration < floating_minute_t >;
 
 
-constexpr FLOATING_MINUTE operator "" _min(long double d) { return (FLOATING_MINUTE)d; }
-constexpr FLOATING_MINUTE operator "" _minute(long double d) { return (FLOATING_MINUTE)d; }
-constexpr FLOATING_MINUTE operator "" _minutes(long double d) { return (FLOATING_MINUTE)d; }
+//constexpr FLOATING_MINUTE operator "" _min(long double d) { return (FLOATING_MINUTE)d; }
+//constexpr FLOATING_MINUTE operator "" _minute(long double d) { return (FLOATING_MINUTE)d; }
+//constexpr FLOATING_MINUTE operator "" _minutes(long double d) { return (FLOATING_MINUTE)d; }
 
 
 inline floating_minute get_floating_minute() { return FLOATING_MINUTE(get_floating_nanosecond().m_d / 60'000'000'000.0); }

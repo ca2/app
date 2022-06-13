@@ -13,6 +13,9 @@ string apple_app_module_folder();
 string apple_app_module_path();
 
 
+char * ns_get_executable_path();
+
+
 string get_exe_path()
 {
    
@@ -46,6 +49,14 @@ string apple_app_module_folder()
    auto strPath = apple_app_module_path();
 
    return file_path_folder(strPath);
+
+}
+
+
+string apple_app_module_path()
+{
+
+   return ::string_from_strdup(ns_get_executable_path());
 
 }
 

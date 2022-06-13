@@ -814,7 +814,7 @@ namespace html
       string strEm = str;
       if(string(idName).compare_ci("font-size") == 0)
       {
-         if(::str::find_awwci("em", str) > 0)
+         if(::str().find_awwci("em", str) > 0)
          {
             if(pelement->m_pparent != nullptr)
             {
@@ -1024,12 +1024,12 @@ namespace html
       string str(pszParam);
 
       str.trim();
-      if(::str::ends_eat_ci(str, "px"))
+      if(::str().ends_eat_ci(str, "px"))
       {
          str.trim();
          return (float) strtod(str, nullptr);
       }
-      else if(::str::ends_eat_ci(str, "::point_f32"))
+      else if(::str().ends_eat_ci(str, "::point_f32"))
       {
          str.trim();
          return (float) (strtod(str, nullptr) * 96.0 / 72.0);
@@ -1063,7 +1063,7 @@ namespace html
 
       }
 
-      // todo ::str::find_cssci would find thick between spaces but not concatenated
+      // todo ::str().find_cssci would find thick between spaces but not concatenated
       if(str.find_ci("thick") >= 0)
       {
          f = 5.0;
@@ -1099,20 +1099,20 @@ namespace html
          {
             try
             {
-               ::str::consume_spaces(psz, 0);
-               ::str::consume(psz, "(");
-               ::str::consume_spaces(psz, 0);
-               ::str::consume_natural(psz, 255);
-               ::str::consume_spaces(psz, 0);
-               ::str::consume(psz, ",");
-               ::str::consume_spaces(psz, 0);
-               ::str::consume_natural(psz, 255);
-               ::str::consume_spaces(psz, 0);
-               ::str::consume(psz, ",");
-               ::str::consume_spaces(psz, 0);
-               ::str::consume_natural(psz, 255);
-               ::str::consume_spaces(psz, 0);
-               ::str::consume(psz, ")");
+               ::str().consume_spaces(psz, 0);
+               ::str().consume(psz, "(");
+               ::str().consume_spaces(psz, 0);
+               ::str().consume_natural(psz, 255);
+               ::str().consume_spaces(psz, 0);
+               ::str().consume(psz, ",");
+               ::str().consume_spaces(psz, 0);
+               ::str().consume_natural(psz, 255);
+               ::str().consume_spaces(psz, 0);
+               ::str().consume(psz, ",");
+               ::str().consume_spaces(psz, 0);
+               ::str().consume_natural(psz, 255);
+               ::str().consume_spaces(psz, 0);
+               ::str().consume(psz, ")");
             }
             catch(...)
             {
@@ -1123,7 +1123,7 @@ namespace html
          {
             try
             {
-               ::str::consume_hex(psz);
+               ::str().consume_hex(psz);
             }
             catch(...)
             {
@@ -1184,7 +1184,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
       str = str.Mid(i);
-      if(::str::begins_ci(str, "::point_f32"))
+      if(::str().begins_ci(str, "::point_f32"))
       {
          str.trim();
          if(str.get_length() == 2 || isspace(str[3]))
@@ -1208,7 +1208,7 @@ namespace html
       if(str.is_empty())
          return false;
 
-      // todo ::str::find_cssci would find red between spaces but not concatenated
+      // todo ::str().find_cssci would find red between spaces but not concatenated
       if(str.find_ci("magenta") >= 0)
       {
          color32 = argb(255, 255, 0, 255);
@@ -1245,20 +1245,20 @@ namespace html
       {
          try
          {
-            ::str::consume_spaces(psz, 0);
-            ::str::consume(psz, "(");
-            ::str::consume_spaces(psz, 0);
-            i32 R = (i32) ::str::consume_natural(psz, 255);
-            ::str::consume_spaces(psz, 0);
-            ::str::consume(psz, ",");
-            ::str::consume_spaces(psz, 0);
-            i32 G = (i32) ::str::consume_natural(psz, 255);
-            ::str::consume_spaces(psz, 0);
-            ::str::consume(psz, ",");
-            ::str::consume_spaces(psz, 0);
-            i32 B = (i32) ::str::consume_natural(psz, 255);
-            ::str::consume_spaces(psz, 0);
-            ::str::consume(psz, ")");
+            ::str().consume_spaces(psz, 0);
+            ::str().consume(psz, "(");
+            ::str().consume_spaces(psz, 0);
+            i32 R = (i32) ::str().consume_natural(psz, 255);
+            ::str().consume_spaces(psz, 0);
+            ::str().consume(psz, ",");
+            ::str().consume_spaces(psz, 0);
+            i32 G = (i32) ::str().consume_natural(psz, 255);
+            ::str().consume_spaces(psz, 0);
+            ::str().consume(psz, ",");
+            ::str().consume_spaces(psz, 0);
+            i32 B = (i32) ::str().consume_natural(psz, 255);
+            ::str().consume_spaces(psz, 0);
+            ::str().consume(psz, ")");
             color32 = argb(255, R, G, B);
             return true;
          }
@@ -1271,7 +1271,7 @@ namespace html
       {
          try
          {
-            ::str::consume_hex(psz);
+            ::str().consume_hex(psz);
             color32 = parse_color(pszStart - 1);
             return true;
          }

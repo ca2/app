@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
 
+#include "acme/user/nano/display.h"
+
 #define bitset freebsd_bitset
 #include <sys/_cpuset.h>
 #include <sys/cpuset.h>
@@ -12,14 +14,21 @@
 #define ITIMER_REAL      0
 #define ITIMER_VIRTUAL   1
 #define ITIMER_PROF      2
-bool task_set_name(htask_t htask, const char * psz)
+
+
+void task_set_name(htask_t htask, const char * psz)
 {
 
    string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np((pthread_t) htask, strName);
+   if(!pthread_setname_np((pthread_t) htask, strName))
+   {
+
+       output_debug_string("pthread_setname_np Failed\n");
+
+   }
 
 }
 
@@ -203,3 +212,59 @@ _semtimedop(int semid, struct sembuf *array, size_t nops, struct
 
    return 0;
 }
+
+
+CLASS_DECL_ACME class ::system * get_system();
+
+
+void main_asynchronous(const ::procedure & procedure)
+{
+
+    if(is_main_thread())
+    {
+
+        procedure();
+
+        return;
+
+    }
+
+    auto predicate = [procedure]()
+    {
+
+        procedure();
+
+    };
+
+    g_psystem->windowing_post(predicate);
+
+}
+
+
+void system::windowing_post(const ::procedure & procedure)
+{
+
+    ::nano::display::g_p->display_post(procedure);
+
+}
+
+
+bool __os_init_thread()
+{
+
+    return true;
+
+}
+
+
+bool __os_term_thread()
+{
+
+    //thread_shutdown();
+
+    return true;
+
+}
+
+
+

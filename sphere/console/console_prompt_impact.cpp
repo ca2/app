@@ -151,7 +151,7 @@ namespace console
 
          const char * lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszDec = ::str::utf8_dec(m_strCommand, lpsz);
+         const char * lpszDec = ::str().utf8_dec(m_strCommand, lpsz);
 
          if(lpsz - lpszDec > 0)
          {
@@ -173,7 +173,7 @@ namespace console
 
          const char * lpsz = &m_strCommand[m_iCursor];
 
-         const char * lpszInc = ::str::utf8_inc(lpsz);
+         const char * lpszInc = ::str().next(lpsz);
 
          if(lpszInc - lpsz > 0)
          {

@@ -134,7 +134,12 @@ void nano_window::destroy()
       
    }
 
-   m_pimplementation->destroy();
+   if (m_pimplementation)
+   {
+
+      m_pimplementation->destroy();
+
+   }
    
 }
 

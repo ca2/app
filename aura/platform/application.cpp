@@ -249,7 +249,7 @@ namespace aura
    }
 
 
-   //::message::application::::message::application(e_::message::application esignal)
+   //::message::application::message::application(e_::message::application esignal)
    //{
 
    //   m_atom = ::message::type_application;
@@ -436,7 +436,7 @@ namespace aura
 
       auto purl = psystem->url();
 
-      if (pcreate->m_ecommand == ::command_protocol)
+      if (pcreate->m_ecommand == ::e_command_protocol)
       {
 
          string str;
@@ -475,19 +475,19 @@ namespace aura
 
          }
 
-         if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+         if (::str().begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
          {
 
-            if (::str::begins_eat_ci(str, ":///"))
+            if (::str().begins_eat_ci(str, ":///"))
             {
 
-               if (::str::begins_eat_ci(str, "send?message="))
+               if (::str().begins_eat_ci(str, "send?message="))
                {
 
                   m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
                }
-               else if (::str::begins_eat_ci(str, "send?messagebin="))
+               else if (::str().begins_eat_ci(str, "send?messagebin="))
                {
 
                   strsize iFind = str.find(',');
@@ -527,7 +527,7 @@ namespace aura
       //   return;
 
       //}
-      else if (pcreate->m_ecommand == ::command_request_exit)
+      else if (pcreate->m_ecommand == ::e_command_request_exit)
       {
 
          request_exit_application();
@@ -598,7 +598,7 @@ namespace aura
          try
          {
 
-            pcreate->m_pcommandline->get_property_set().unset("document");
+            pcreate->get_property_set().unset("document");
 
          }
          catch (...)
@@ -606,13 +606,13 @@ namespace aura
 
          }
 
-         //__pointer(::aura::session) pbergedge = pcreate->m_pcommandline->payload("bergedge_callback").cast < ::aura::session >();
+         //__pointer(::aura::session) pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
          // todobergedge
          /*if(pbergedge != nullptr)
          {
          pbergedge->on_app_request_bergedge_callback(this);
          }*/
-         pcreate->m_pcommandline->m_eventReady.SetEvent();
+         pcreate->m_eventReady.SetEvent();
 
       }
 
@@ -1028,9 +1028,9 @@ namespace aura
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str::ends_ci(str, penum->m_strWindowEnd))
+//      if (::str().ends_ci(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -1049,9 +1049,9 @@ namespace aura
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
-//      string str = ::str::get_window_text_timeout(hwnd);
+//      string str = ::str().get_window_text_timeout(hwnd);
 //
-//      if (::str::ends_ci(str, penum->m_strTopic))
+//      if (::str().ends_ci(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -1069,9 +1069,9 @@ namespace aura
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
 //
 //
-//      string str = ::str::get_window_text_timeout(hwnd, 1000);
+//      string str = ::str().get_window_text_timeout(hwnd, 1000);
 //
-//      if (::str::ends_ci(str, penum->m_strCounterTopic))
+//      if (::str().ends_ci(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);
@@ -1644,7 +1644,7 @@ namespace aura
 
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+      //m_atomApp            = ::GlobalAddAtomW(utf8_to_unicode(m_strAppName));
 
       //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
@@ -2106,25 +2106,27 @@ retry_license:
       //else
       //{
 
-      if (!m_pcontextimage)
-      {
-
-         //estatus = 
          
-         __compose_new(m_pcontextimage);
 
-         //if (!estatus)
-         //{
+      // if (!m_pcontextimage)
+      // {
 
-         //   INFORMATION("ERROR: context_image required but missing.");
+      //    //estatus = 
+         
+      //    __compose_new(m_pcontextimage);
 
-         //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //    //if (!estatus)
+      //    //{
 
-         //   return estatus;
+      //    //   INFORMATION("ERROR: context_image required but missing.");
 
-         //}
+      //    //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
-      }
+      //    //   return estatus;
+
+      //    //}
+
+      // }
 
 
       INFORMATION("start");
@@ -3061,7 +3063,7 @@ retry_license:
    //string application::get_locale_schema_dir()
    //{
 
-   //   return ::str::_001Concat(get_locale(), "/", get_schema());
+   //   return ::str()._001Concat(get_locale(), "/", get_schema());
 
    //}
 
@@ -3069,7 +3071,7 @@ retry_license:
    //string application::get_locale_schema_dir(const ::string & strLocale)
    //{
 
-   //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   //   return ::str()._001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
 
    //}
 
@@ -3138,7 +3140,7 @@ retry_license:
    //string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
    //{
 
-   //  return ::str::_001Concat(strLocale, "/", strSchema);
+   //  return ::str()._001Concat(strLocale, "/", strSchema);
 
    //}
 
@@ -3710,7 +3712,7 @@ retry_license:
 //
 //      wstr.trim();
 //
-//      ::str::trim_any_quotes(wstr);
+//      ::str().trim_any_quotes(wstr);
 //
 //      wstr.trim();
 //
@@ -4185,12 +4187,12 @@ retry_license:
 
         }
 
-        if (pinteraction == nullptr)
-        {
+        //if (pinteraction == nullptr)
+        //{
 
-           pinteraction = puserinteractionimpl;
+        //   pinteraction = puserinteractionimpl;
 
-        }
+        //}
 
       }
 
@@ -4896,7 +4898,7 @@ retry_license:
    //   //try
    //   //{
 
-   //   //   ::aura::::message::application signal(::aura::::message::application_begin);
+   //   //   ::aura::message::application signal(::aura::message::application_begin);
 
    //   //   route_message(&signal);
 
@@ -5294,7 +5296,7 @@ retry_license:
 
          string strDir = strFile;
 
-         ::str::ends_eat_ci(strDir, ".zip");
+         ::str().ends_eat_ci(strDir, ".zip");
 
          //try
          //{
@@ -8376,7 +8378,7 @@ namespace aura
 //   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      ::::windowing::window * pwindow = (::oswindow) osdata;
+//      ::windowing::window * pwindow = (::oswindow) osdata;
 //      if (!::IsWindow(oswindow))
 //         return -1;
 //      COPYDATASTRUCT cds;
@@ -8516,12 +8518,12 @@ namespace aura
    //}
 
 
-   __pointer(::application) application::create_platform(::apex::session* psession)
-   {
-
-      return __new(::aura::session);
-
-   }
+//   __pointer(::application) application::create_platform(::apex::session* psession)
+//   {
+//
+//      return __new(::aura::session);
+//
+//   }
 
 
    //void application::on_change_cur_sel(::user::tab* ptab)
@@ -9021,7 +9023,7 @@ namespace aura
 
          string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedirectory->system() / "config\\system\\ignition_server.txt");
 
-         if(::str::ends_ci(strIgnitionServer,".ca2.software"))
+         if(::str().ends_ci(strIgnitionServer,".ca2.software"))
          {
 
             strRequestUrl = "https://" + strIgnitionServer + "/";

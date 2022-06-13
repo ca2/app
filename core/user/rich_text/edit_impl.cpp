@@ -130,8 +130,8 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::on_message_key_down);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::on_message_key_up);
-         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
-         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
+         //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::on_message_set_focus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::on_message_kill_focus);
 
 
          text_composition_composite::initialize_text_composition_client(pchannel, this);
@@ -1370,7 +1370,7 @@ namespace user
 
                _001GetLayoutText(str);
 
-               strsize iIncLen = ::str::utf8_inc_len(&str[i1]);
+               strsize iIncLen = ::str().utf8_inc_len(&str[i1]);
 
                m_pdata->_001Delete(i1, i1 + iIncLen);
 
@@ -1590,7 +1590,7 @@ namespace user
 
                               _001GetLayoutText(str);
 
-                              strsize iDecLen = ::str::utf8_dec_len(str, &str[i1]);
+                              strsize iDecLen = ::str().utf8_dec_len(str, &str[i1]);
 
                               m_pdata->_001Delete(i1, i1 - iDecLen);
 
@@ -1732,7 +1732,7 @@ namespace user
 
                         const char * end = &psz[m_pdata->m_iSelEnd];
 
-                        const char * inc = ::str::utf8_inc(end);
+                        const char * inc = ::str().next(end);
 
                         m_pdata->m_iSelEnd += inc - end;
 
@@ -1788,7 +1788,7 @@ namespace user
 
                      const char * end = &psz[m_pdata->m_iSelEnd];
 
-                     const char * dec = ::str::uni_dec(psz, end);
+                     const char * dec = ::str().prior(end, psz);
 
                      m_pdata->m_iSelEnd -= end - dec;
 

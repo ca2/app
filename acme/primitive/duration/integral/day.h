@@ -12,7 +12,7 @@ public:
    using BASE_TYPE = INTEGRAL_DAY;
 
 
-   integral_day_t(INTEGRAL_DAY day = {}) : INTEGRAL_DAY(day) {}
+   constexpr integral_day_t(INTEGRAL_DAY day = {}) : INTEGRAL_DAY(day) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i * 86'400); }

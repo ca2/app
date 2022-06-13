@@ -220,6 +220,10 @@ public:
    }
 
 
+   bool insert_unique_at(::index i, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+
+
    bool add_unique(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 

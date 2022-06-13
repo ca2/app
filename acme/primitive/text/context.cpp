@@ -630,7 +630,7 @@ namespace text
 
       char * pszFile = mem.get_psz(len);
 
-      ::str::parse parse(pszFile, len);
+      ::parse parse(pszFile, len);
 
       string table;
 
@@ -686,11 +686,18 @@ namespace text
 
          pszEnd = psz + rstr.m_iSize;
 
-         while(::str::ch::is_whitespace(psz))
+         while(::str::ch().is_whitespace(psz))
          {
+            
             psz += str_uni_len(psz);
-            if(psz >= pszEnd)
+
+            if (psz >= pszEnd)
+            {
+
                goto cont;
+
+            }
+
          }
 
          // going to consume a quoted value
@@ -714,7 +721,7 @@ namespace text
          strRoot.assign(s, psz - s);
          psz++;
 
-         while(::str::ch::is_whitespace(psz))
+         while(::str::ch().is_whitespace(psz))
          {
             psz += str_uni_len(psz);
             if(psz >= pszEnd)
@@ -726,7 +733,7 @@ namespace text
 
          psz++;
 
-         while(::str::ch::is_whitespace(psz))
+         while(::str::ch().is_whitespace(psz))
          {
             psz += str_uni_len(psz);
             if(psz >= pszEnd)
@@ -905,7 +912,7 @@ end:
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_char() && ::str::begins_ci(pszTopic, table))
+            if(table.has_char() && ::str().begins_ci(pszTopic, table))
                return true;
 
          }
@@ -913,7 +920,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && ::str::begins_ci(pszTopic, table))
+            if(table.has_char() && ::str().begins_ci(pszTopic, table))
                return true;
          }
 
@@ -921,7 +928,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && ::str::begins_ci(pszTopic, table))
+            if(table.has_char() && ::str().begins_ci(pszTopic, table))
                return true;
 
          }
@@ -932,20 +939,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str::begins_ci(pszTopic, table))
+         if(table.has_char() && ::str().begins_ci(pszTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && ::str::begins_ci(pszTopic, table))
+      if(table.has_char() && ::str().begins_ci(pszTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str::begins_ci(pszTopic, table))
+         if(table.has_char() && ::str().begins_ci(pszTopic, table))
             return true;
 
       }
@@ -982,7 +989,7 @@ end:
          if(pcontext->m_pschemaLocale != nullptr)
          {
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
+            if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
                return true;
          }
 
@@ -990,7 +997,7 @@ end:
          {
 
             table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
+            if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
                return true;
 
          }
@@ -1001,20 +1008,20 @@ end:
       {
 
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
+         if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
             return true;
 
       }
 
       table = (*m_pschemaEn)[atom]; // lang=en style=en
-      if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
+      if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
          return true;
 
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
 
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-         if(table.has_char() && ::str::begins_eat_ci(strTopic, table))
+         if(table.has_char() && ::str().begins_eat_ci(strTopic, table))
             return true;
 
       }

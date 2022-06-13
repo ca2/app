@@ -66,7 +66,7 @@ namespace userex
    ::file::path image_list_view::get_link_path(string strLink)
    {
 
-      if (::str::begins_eat_ci(strLink, get_link_prefix()))
+      if (::str().begins_eat_ci(strLink, get_link_prefix()))
       {
 
          return m_pathFolder / strLink;
@@ -157,7 +157,7 @@ namespace userex
 
                   ::image_pointer pimageSmall;
 
-                  pimageSmall = m_pcontext->context_image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = m_pcontext->m_pauracontext->create_image({256,  256 * pimage1->height() / pimage1->width()});
 
                   image_source imagesource(pimage1);
 

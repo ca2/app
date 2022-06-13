@@ -351,7 +351,7 @@ namespace aura
 
       auto pcreateNew = __create_new < ::create >();
 
-      pcreateNew->m_pcommandline->m_payloadFile = pszPathName;
+      pcreateNew->m_payloadFile = pszPathName;
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
@@ -369,7 +369,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_payloadFile.get_string());
+      string strOriginalPathName(pcreate->m_payloadFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -382,7 +382,7 @@ namespace aura
 
       }
 
-      if (::str::ends_ci(strPathName, ".ca2"))
+      if (::str().ends_ci(strPathName, ".ca2"))
       {
 
       }
@@ -400,9 +400,9 @@ namespace aura
 
          string str = purl->get_object(strPathName);
 
-         ::str::begins_eat(str, "/");
+         ::str().begins_eat(str, "/");
 
-         pcreate->m_pcommandline->m_payloadFile = str;
+         pcreate->m_payloadFile = str;
 
       }
       else
@@ -2482,7 +2482,7 @@ namespace aura
    //   for (string str : straSource)
    //   {
 
-   //      if (::str::begins_eat_ci(str, "file://"))
+   //      if (::str().begins_eat_ci(str, "file://"))
    //      {
 
    //         str = purl->url_decode(str);

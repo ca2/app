@@ -1,15 +1,15 @@
 #pragma once
 
 
-namespace str
-{
+//namespace str
+//{
 
-   class CLASS_DECL_ACME range
+   class CLASS_DECL_ACME strsize_range
    {
    public:
 
 
-      range(strsize iBegin = -1, strsize iEnd = -1) : m_iBegin(iBegin), m_iEnd(iEnd) { }
+      strsize_range(strsize iBegin = -1, strsize iEnd = -1) : m_iBegin(iBegin), m_iEnd(iEnd) { }
 
 
       strsize     m_iBegin;
@@ -22,9 +22,9 @@ namespace str
 
    };
 
-   using range_array = ::array < range >;
+   using strsize_range_array = ::array < strsize_range >;
 
-}
+//}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -126,7 +126,7 @@ public:
    using BASE_ARRAY::copy;
 
 
-   ::index add(::str::range_array & rangea, const RawString & str)
+   ::index add(::strsize_range_array & rangea, const RawString & str)
    {
 
       ::index i = -1;
@@ -1563,7 +1563,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload > ::add_tokens(const Type& pcsz,const Type& strSeparator,bool bAddEmpty)
 
 {
-   ::str::tokenizer strTokenizer(pcsz);
+   ::tokenizer strTokenizer(pcsz);
 
    Type strToken;
    if(bAddEmpty)
@@ -1592,7 +1592,7 @@ void string_array_base < Type, RawType, t_etypePayload > ::_001AddTokens(const T
 
 {
 
-   ::str::tokenizer strTokenizer(pcsz);
+   ::tokenizer strTokenizer(pcsz);
 
 
    Type strToken;
@@ -1611,7 +1611,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload > ::add_smallest_tokens(const Type & pcsz, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
-   ::str::tokenizer strTokenizer(pcsz);
+   ::tokenizer strTokenizer(pcsz);
 
    Type strToken;
 
@@ -2223,7 +2223,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str::begins_ci(pcszTopic, this->element_at(iFind)))
+         if (::str().begins_ci(pcszTopic, this->element_at(iFind)))
          {
 
             return iFind;
@@ -2249,7 +2249,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
       for (; iFind <= iLast; iFind++)
       {
 
-         if (::str::begins(pcszTopic, this->element_at(iFind)))
+         if (::str().begins(pcszTopic, this->element_at(iFind)))
          {
 
             return iFind;
@@ -2265,56 +2265,6 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 }
 
 
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
-{
-
-   if (this->prepare_first_last(iFind, iLast))
-   {
-
-      for (; iFind <= iLast; iFind++)
-      {
-
-         if (::str::ends_ci(pcszTopic, this->element_at(iFind)))
-         {
-
-            return iFind;
-
-         }
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
-{
-
-   if (this->prepare_first_last(iFind, iLast))
-   {
-
-      for (; iFind <= iLast; iFind++)
-      {
-
-         if (::str::ends(pcszTopic, this->element_at(iFind)))
-         {
-
-            return iFind;
-
-         }
-
-      }
-
-   }
-
-   return -1;
-
-}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -2413,48 +2363,6 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    {
 
       return _find_first_suffixed(strSuffix, iFind, iLast);
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
-{
-
-   for (; iFind < iLast; iFind++)
-   {
-
-      if (::str::ends(this->element_at(iFind), strSuffix))
-      {
-
-         return iFind;
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed_ci(const Type & strSuffix, ::index iFind, ::index iLast) const
-{
-
-   for (; iFind < iLast; iFind++)
-   {
-
-      if (::str::ends_ci(this->element_at(iFind), strSuffix))
-      {
-
-         return iFind;
-
-      }
 
    }
 
@@ -2639,7 +2547,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    for (; iFind <= iLast; iFind++)
    {
 
-      if (::str::begins(this->element_at(iFind), strPrefix))
+      if (::str().begins(this->element_at(iFind), strPrefix))
       {
 
          return iFind;
@@ -2660,7 +2568,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    for (; iFind <= iLast; iFind++)
    {
 
-      if (::str::begins_ci(this->element_at(iFind), strPrefix))
+      if (::str().begins_ci(this->element_at(iFind), strPrefix))
       {
 
          return iFind;
@@ -3355,12 +3263,12 @@ string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type,
       switch(status)
       {
       case 1:
-         if(istring[i] == sep && !::str::simple_escaped(istring,i))
+         if(istring[i] == sep && !::str().simple_escaped(istring,i))
          {
             ++num;
             add("");
          }
-         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str::simple_escaped(istring,i))
+         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !::str().simple_escaped(istring,i))
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];
@@ -3373,7 +3281,7 @@ string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type,
          break;
 
       case 2:
-         if(istring[i] == to && !::str::simple_escaped(istring,i))
+         if(istring[i] == to && !::str().simple_escaped(istring,i))
          {
             status = 1;
          }
@@ -3448,7 +3356,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    while(strParse.has_char())
    {
 
-      add((Type)::str::consume_command_line_argument(strParse));
+      add((Type)::str().consume_command_line_argument(strParse));
 
    }
 

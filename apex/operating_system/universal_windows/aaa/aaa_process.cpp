@@ -308,7 +308,7 @@ CLASS_DECL_APEX int ui_open_url(const char * pszUrl)
 
    auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
 
-   ::winrt::Windows::::apex::get_system()::Launcher::LaunchUriAsync(uri);
+   ::winrt::Windows::apex::get_system()::Launcher::LaunchUriAsync(uri);
 
    return 0;
 

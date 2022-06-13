@@ -201,7 +201,7 @@ namespace user
 //
 //            for(; i < 8; i++)
 //            {
-//               if(!::str::ch::is_digit(wsz[i]) && !(wsz[i] >= 'A' && wsz[i] <= 'F') && !(wsz[i] >= 'a' && wsz[i] <= 'f'))
+//               if(!::str::ch().is_digit(wsz[i]) && !(wsz[i] >= 'A' && wsz[i] <= 'F') && !(wsz[i] >= 'a' && wsz[i] <= 'f'))
 //                  break;
 //            }
 //
@@ -692,7 +692,7 @@ namespace user
 ////         string strHkl = straHkl[i];
 ////         HKL hkl;
 ////         strHkl.trim();
-////         if(::str::begins_eat_ci(strHkl, "0x"))
+////         if(::str().begins_eat_ci(strHkl, "0x"))
 ////         {
 ////            hkl = (HKL) ::hex::to_uptr(strHkl);
 ////         }
@@ -717,85 +717,6 @@ namespace user
 //   }
 
 
-   void keyboard::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
-   {
-
-      synchronous_lock synchronouslock(mutex());
-
-      m_iSoftwareKeyboardEventId++;
-
-      index iEventId = m_iSoftwareKeyboardEventId;
-
-      m_pprimitiveSoftwareKeyboard = pprimitive;
-
-      fork([=,this]
-         {
-
-            sleep(400_ms);
-
-            synchronous_lock synchronouslock(mutex());
-
-            if (iEventId == m_iSoftwareKeyboardEventId)
-            {
-
-               ASSERT(pprimitive == m_pprimitiveSoftwareKeyboard);
-
-               synchronouslock.unlock();
-
-               m_pprimitiveSoftwareKeyboard->show_software_keyboard(pprimitive, str, iBeg, iEnd);
-
-            }
-
-         });
-
-      //return ::success;
-
-   }
-
-
-   void keyboard::hide_software_keyboard(::user::primitive * pprimitive)
-   {
-
-      if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
-      {
-
-         //return error_bad_argument;
-
-         throw ::exception(error_bad_argument);
-
-      }
-
-      synchronous_lock synchronouslock(mutex());
-
-      m_iSoftwareKeyboardEventId++;
-
-      index iEventId = m_iSoftwareKeyboardEventId;
-
-      m_pprimitiveSoftwareKeyboard = nullptr;
-
-      fork([this,iEventId,pprimitive]
-         {
-
-            sleep(400_ms);
-
-            synchronous_lock synchronouslock(mutex());
-
-            if (iEventId == m_iSoftwareKeyboardEventId)
-            {
-
-               synchronouslock.unlock();
-
-               m_pprimitiveSoftwareKeyboard->hide_software_keyboard(pprimitive);
-
-            }
-
-         });
-
-      //return ::success;
-
-   }
-
-
 
    void keyboard::translate_os_key_message(key * pkey)
    {
@@ -810,70 +731,6 @@ namespace user
 
       }
 
-   #if defined(MACOS)
-
-//      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
-//
-//      if(ekey != ::user::e_key_none)
-//      {
-//
-//          pkey->m_ekey = ekey;
-//
-//          return;
-//
-//      }
-
-   #elif !defined(LINUX)
-
-
-   #else
-//
-//     auto ekey = keysym_to_userkey(pkey->m_lparam);
-//
-//     if(ekey != ::user::e_key_none)
-//     {
-//
-//         pkey->m_ekey = ekey;
-//
-//         return;
-//
-//     }
-
-   #endif
-
-
-#if defined(WINDOWS_DESKTOP) || defined(MACOS)
-
-      if(pkey->m_bExt)
-      {
-
-         pkey->m_ekey = m_mapExt[(i32)pkey->m_nScanCode];
-
-         if(pkey->m_ekey != ::user::e_key_none)
-            return;
-
-      }
-
-      pkey->m_ekey = m_mapScan[(i32)pkey->m_nScanCode];
-
-      if(pkey->m_ekey != ::user::e_key_none)
-         return;
-
-#endif
-
-      if(pkey->m_ekey == ::user::e_key_none)
-      {
-
-         pkey->m_ekey = m_mapKey[(i32) pkey->m_iVirtualKey];
-
-      }
-      
-      if(pkey->m_ekey == ::user::e_key_none)
-      {
-
-         pkey->m_ekey = wparam_to_userkey(pkey->m_wparam);
-
-      }
 
    }
 

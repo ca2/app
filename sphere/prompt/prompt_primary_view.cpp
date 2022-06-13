@@ -196,7 +196,7 @@ namespace prompt
                   if(::ShellExecuteW(
                         nullptr,
                         nullptr,
-                        ::str::international::utf8_to_unicode(strLine),
+                        utf8_to_unicode(strLine),
                         nullptr,
                         nullptr,
                         e_display_normal))

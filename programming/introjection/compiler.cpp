@@ -506,7 +506,7 @@ namespace introjection
 //      ::file::path strFolder;
 //
 //      strFolder = pcontext->m_papexcontext->dir().install();
-//      if(!::str::ends(strFolder,"/") && !::str::ends(strFolder,"\\"))
+//      if(!::str().ends(strFolder,"/") && !::str().ends(strFolder,"\\"))
 //         strFolder += "/";
 //      string strTemplate;
 //      string strSource = "platform/time/dynamic_source/";
@@ -534,7 +534,7 @@ namespace introjection
 //
 //      string strV(pcontext->m_papexcontext->dir().install());
 //      strV.find_replace("\\","/");
-//      if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
+//      if(!::str().ends(strV,"/") && !::str().ends(strV,"\\"))
 //         strV += "/";
 //      str.find_replace("%CA2_ROOT%",strV);
 //      str.find_replace("%PROJECT_DIR%", m_pathProjectDir);
@@ -640,7 +640,7 @@ namespace introjection
 
          strTransformName.find_replace(":","");
 
-         ::str::ends_eat_ci(strTransformName,".cpp");
+         ::str().ends_eat_ci(strTransformName,".cpp");
 
       }
       else
@@ -1029,7 +1029,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       string strBuildCmd;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
       strBuildCmd = pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bash");
 #elif defined(__APPLE__)
       strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_strPlat1 + ".bat"));
@@ -1038,10 +1038,10 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #endif
 
       str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
-      str.find_replace("%SOURCE%",::str::find_replace("\\","/",string(strName)));
-      str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
+      str.find_replace("%SOURCE%",::str().find_replace("\\","/",string(strName)));
+      str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
-      str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
+      str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
       str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
       str.find_replace("%VS_VARS%",m_strEnv);
       str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1096,14 +1096,14 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #ifdef LINUX
 
       string strTargetPath =  pcontext->m_papexcontext->dir().install() /"time" / m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
-      ::str::ends_eat_ci(strTargetPath,".cpp");
-      ::str::ends_eat_ci(strTargetPath,".so");
+      ::str().ends_eat_ci(strTargetPath,".cpp");
+      ::str().ends_eat_ci(strTargetPath,".so");
 
 #else
 
       string strTargetPath = pcontext->m_papexcontext->dir().install() / "time-windows" / m_strPlatform / m_strDynamicSourceConfiguration / strT2 ;
-      ::str::ends_eat_ci(strTargetPath, ".cpp");
-      ::str::ends_eat_ci(strTargetPath,".dll");
+      ::str().ends_eat_ci(strTargetPath, ".cpp");
+      ::str().ends_eat_ci(strTargetPath,".dll");
 
 #endif
 
@@ -1182,7 +1182,7 @@ auto tickStart = ::duration::now();
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 15_min)
          {
 
             bTimeout = true;
@@ -1247,7 +1247,7 @@ auto tickStart = ::duration::now();
 
 #ifndef MACOS
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
          strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bash"));
 #else
          strBuildCmd.format(pcontext->m_papexcontext->dir().install() / "operating-system/operating-system-windows/_stage/introjection" / m_strApp / m_strVsTools / (m_strDynamicSourceConfiguration + "_l" + m_strPlat1 + ".bat"));
@@ -1256,9 +1256,9 @@ auto tickStart = ::duration::now();
          str = pcontext->m_papexcontext->file().as_string(strBuildCmd);
 
 
-         str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
+         str.find_replace("%ITEM_NAME%",::str().find_replace("\\","/",string(strTransformName)));
          str.find_replace("%ITEM_TITLE%",strTransformName.name());
-         str.find_replace("%ITEM_DIR%",::str::find_replace("\\","/",string(strTransformName.folder())) + "/");
+         str.find_replace("%ITEM_DIR%",::str().find_replace("\\","/",string(strTransformName.folder())) + "/");
          str.find_replace("%LIBS_LIBS%",m_strLibsLibs);
          str.find_replace("%VS_VARS%",m_strEnv);
          str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -1275,11 +1275,11 @@ auto tickStart = ::duration::now();
          //string strTargetPath = lib->m_pathScript;
          //strTargetPath.find_replace("\\",".");
          //strTargetPath.find_replace("/",".");
-         //::str::ends_eat_ci(strTargetPath,".cpp");
+         //::str().ends_eat_ci(strTargetPath,".cpp");
          //#ifdef LINUX
-         //         ::str::ends_eat_ci(strTargetPath,".so");
+         //         ::str().ends_eat_ci(strTargetPath,".so");
          //#else
-         //         ::str::ends_eat_ci(strTargetPath,".dll");
+         //         ::str().ends_eat_ci(strTargetPath,".dll");
          //#endif
          //         strTargetPath = pcontext->m_papexcontext->dir().install() /
          str.find_replace("%TARGET_PATH%",strTargetPath);
@@ -1350,7 +1350,7 @@ auto tickStart = ::duration::now();
             //::system(strLCmd + "2");
             ::system(str2);
 
-            if(!::str::begins_ci(pcontext->m_papexcontext->dir().module(), "/Applications/"))
+            if(!::str().begins_ci(pcontext->m_papexcontext->dir().module(), "/Applications/"))
             {
                string str2 = pcontext->m_papexcontext->file().as_string(strDCmd);
                str2.find_replace("%TARGET_PATH%", strTargetPath);
@@ -1388,7 +1388,7 @@ auto tickStart = ::duration::now();
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 15_min)
             {
 
                bTimeout = true;

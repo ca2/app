@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "aura/operating_system/linux/_linux.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "apex/operating_system/linux/desktop_file.h"
+#include "app/apex/operating_system/freedesktop/desktop_file.h"
 
 
 //#include <X11/cursorfont.h>
@@ -54,7 +54,7 @@ namespace aura
 //    {
 // // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-// // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+// // xxx       m_atomApp            = ::GlobalAddAtomW(utf8_to_unicode(m_strAppName));
 // // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 
 //       return ::success;
@@ -518,7 +518,7 @@ namespace aura
          if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
-            auto pfile = __create_new<::linux::desktop_file>();
+            auto pfile = __create_new< ::freedesktop::desktop_file >();
 
             pfile->set_app_id(papp->m_strAppId);
 

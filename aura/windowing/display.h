@@ -16,7 +16,7 @@ namespace windowing
 
       void *                        m_pDisplay;
       void *                        m_pDisplay2;
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
       void *                        _m_pX11Display;
 #endif
 
@@ -98,6 +98,8 @@ namespace windowing
 
       virtual ::count get_monitor_count() ;
       virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) ;
+
+      virtual ::index  get_main_monitor_of_rectangle(const RECTANGLE_I32* prectangle);
 
       virtual ::count get_desk_monitor_count() ;
       virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;

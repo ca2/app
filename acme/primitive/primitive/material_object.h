@@ -63,12 +63,16 @@ public:
 
    virtual void send_procedure(const ::procedure & procedure);
 
-
-   template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-   bool __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
+   template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
+   bool __get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait);
 
    template < typename POSTING_OBJECT, typename POSTING_METHOD >
    void __send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
+
+   bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload);
+
+   void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure);
+
 
 
    ::procedure_array * procedure_array(const ::atom & atom, bool bCreate = false);

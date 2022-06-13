@@ -33,7 +33,7 @@ namespace user
       void create_message_queue(const ::string & lpszName) override;
 
 
-      ::user::interaction * get_host_window() const override;
+      ::user::interaction * get_host_window() const;
 
       ::user::form * get_form() override;
 
@@ -73,9 +73,10 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
 
-      virtual void hide_software_keyboard(::user::primitive * pprimitive);
+      void show_software_keyboard(::user::element* pelement) override;
+
+      void hide_software_keyboard(::user::element* pelement) override;
 
       void UpdateWindow() override;
       
@@ -167,7 +168,7 @@ namespace user
       //virtual void window_apply_visual(const window_state & windowstate);
 
 
-      void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)override;
+      void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)override;
 
       void design_down() override;
       void design_up() override;
@@ -418,7 +419,7 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      oswindow detach() override;
+      oswindow detach_window() override;
 
 
       windowing::window * get_window() const override;
@@ -522,7 +523,7 @@ namespace user
       //virtual bool set_previous_display(edisplay edisplay);
 
 
-      void show_keyboard(bool bShow = true) override;
+      //void show_keyboard(bool bShow = true) override;
 
       void keep_alive(::object * pliveobject = nullptr) override;
 
@@ -605,7 +606,7 @@ namespace user
       //virtual primitive * get_keyboard_focus() const;
       void set_keyboard_focus() override;
       void erase_keyboard_focus() override;
-      void clear_keyboard_focus() override;
+      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
       ::user::element * get_keyboard_focus() override;
       ::user::element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual bool has_keyboard_focus();
@@ -664,13 +665,13 @@ namespace user
       rectangle_i32 get_input_content_rect() override;
       rectangle_i32 get_input_selection_rect() override;
 
-      void InputConnectionBeginBatchEdit() override;
-      void InputConnectionEndBatchEdit() override;
-      void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
-      void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
-      void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
-      void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
-      void InputConnectionFinishComposingText() override;
+      //void InputConnectionBeginBatchEdit() override;
+      //void InputConnectionEndBatchEdit() override;
+      //void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
+      //void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
+      //void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
+      //void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
+      //void InputConnectionFinishComposingText() override;
 
       //virtual void _001OnTimer(::timer * ptimer);
 

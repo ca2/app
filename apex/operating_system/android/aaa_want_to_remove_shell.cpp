@@ -334,21 +334,21 @@ namespace android
       char pszPathA[MAX_PATH * 2];
       if(!::SHGetPathFromIDListA(pidl, pszPathA))
          return false;
-      return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? true : false;
+      return ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? true : false;
    }
 
    int_bool shell::_MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
    {
       string str1, str2;
-      ::str::international::UnicodeToACP(str1, lpExistingFileName);
-      ::str::international::UnicodeToACP(str2, lpNewFileName);
+      UnicodeToACP(str1, lpExistingFileName);
+      UnicodeToACP(str2, lpNewFileName);
       return ::MoveFileA(str1, str2);
    }
 
    HANDLE shell::_FindFirstFile(const unichar * lpcsz, WIN32_FIND_DATAW * lpdata)
    {
       char pszPathA[MAX_PATH * 2];
-      ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
+      UnicodeToACP(pszPathA, MAX_PATH * 2, lpcsz);
       WIN32_FIND_DATAA data;
       HANDLE handle = ::FindFirstFileA(pszPathA, &data);
       if(handle == INVALID_HANDLE_VALUE)
@@ -362,8 +362,8 @@ namespace android
       lpdata->nFileSizeLow = data.nFileSizeLow;
       lpdata->dwReserved0 = data.dwReserved0;
       lpdata->dwReserved1 = data.dwReserved1;
-      ::str::international::ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
-      ::str::international::ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
+      ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
+      ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
 
       return handle;
    }
@@ -383,8 +383,8 @@ namespace android
       lpdata->nFileSizeLow = data.nFileSizeLow;
       lpdata->dwReserved0 = data.dwReserved0;
       lpdata->dwReserved1 = data.dwReserved1;
-      ::str::international::ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
-      ::str::international::ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
+      ACPToUnicode(lpdata->cFileName, MAX_PATH, data.cFileName);
+      ACPToUnicode(lpdata->calternateFileName, MAX_PATH, data.calternateFileName);
 
       return b;
    }
@@ -446,13 +446,13 @@ namespace android
    unichar ** lpFilePart)
    {
    char pszPathA[MAX_PATH * 2];
-   ::str::international::UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
+   UnicodeToACP(pszPathA, MAX_PATH * 2, lpFileName);
    string str;
    char * lpsz = str.GetBuffer(nBufferLength * 2);
    char * lpszFilePart;
    ::u32 dw = ::GetFullPathName(pszPathA, nBufferLength, lpsz, &lpszFilePart);
    str.ReleaseBuffer();
-   ::str::international::ACPToUnicode(lpBuffer, nBufferLength, str);
+   ACPToUnicode(lpBuffer, nBufferLength, str);
    *lpFilePart = lpBuffer + ((i32) (lpszFilePart - lpsz));
    return dw;
    }
@@ -470,7 +470,7 @@ namespace android
    string strRootPathName;
    string strVolumeNameBuffer;
    string strFileSystemNameBuffer;
-   ::str::international::UnicodeToACP(strRootPathName, lpRootPathName);
+   UnicodeToACP(strRootPathName, lpRootPathName);
    int_bool b = ::GetVolumeInformation(
      strRootPathName,
      strVolumeNameBuffer.GetBuffer(nVolumeNameSize),
@@ -483,11 +483,11 @@ namespace android
 
    strVolumeNameBuffer.ReleaseBuffer();
    strFileSystemNameBuffer.ReleaseBuffer();
-   ::str::international::ACPToUnicode(
+   ACPToUnicode(
      lpVolumeNameBuffer,
      nVolumeNameSize,
      strVolumeNameBuffer);
-   ::str::international::ACPToUnicode(
+   ACPToUnicode(
      lpFileSystemNameBuffer,
      nFileSystemNameSize,
      strFileSystemNameBuffer);
@@ -503,18 +503,18 @@ namespace android
    {
    __UNREFERENCED_PARAMETER(cbFileInfo);
    string strPath;
-   ::str::international::UnicodeToACP(strPath, pszPath);
+   UnicodeToACP(strPath, pszPath);
    SHFILEINFOA shia;
    if(!::SHGetFileInfoA(strPath, dwFileAttributes,
      &shia,
      sizeof(shia),
      uFlags))
      return false;
-   ::str::international::ACPToUnicode(
+   ACPToUnicode(
      psfi->szDisplayName,
      sizeof(psfi->szDisplayName) / sizeof(WCHAR),
      shia.szDisplayName);
-   ::str::international::ACPToUnicode(
+   ACPToUnicode(
      psfi->szTypeName,
      sizeof(psfi->szTypeName) / sizeof(WCHAR),
      shia.szTypeName);
@@ -531,10 +531,10 @@ namespace android
    {
    i32 iCount = cchSrc;
    if(iCount < 0)
-     iCount = ::str::international::UnicodeToMultiByteCount(uCodePage, lpSrcStr);
+     iCount = unicode_to_multibyte_count(uCodePage, lpSrcStr);
    string str;
    char * lpsz = str.GetBuffer(iCount);
-   if(::str::international::UnicodeToMultiByte(uCodePage, lpsz, iCount, lpSrcStr))
+   if(unicode_to_multibyte(uCodePage, lpsz, iCount, lpSrcStr))
    {
      //str.ReleaseBuffer();
      //return true;
@@ -558,7 +558,7 @@ namespace android
    string str;
    ::u32 dw = ::GetTempPathA(nBufferLength, str.GetBuffer(nBufferLength * 2));
    str.ReleaseBuffer();
-   ::str::international::ACPToUnicode(lpBuffer, nBufferLength, str);
+   ACPToUnicode(lpBuffer, nBufferLength, str);
    return dw;
    }
 
@@ -571,8 +571,8 @@ namespace android
    string strPathName;
    string strPrefixString;
    string strTempFileName;
-   ::str::international::UnicodeToACP(strPathName, lpPathName);
-   ::str::international::UnicodeToACP(strPrefixString, lpPrefixString);
+   UnicodeToACP(strPathName, lpPathName);
+   UnicodeToACP(strPrefixString, lpPrefixString);
    ::u32 user = ::GetTempFileNameA(
      strPathName,
      strPrefixString,
@@ -583,7 +583,7 @@ namespace android
      return 0;
    }
    strTempFileName.ReleaseBuffer();
-   ::str::international::ACPToUnicode(
+   ACPToUnicode(
      lpTempFileName,
      MAX_PATH,
      strTempFileName);
@@ -602,7 +602,7 @@ namespace android
    )
    {
    string strFileName;
-   ::str::international::UnicodeToACP(strFileName, lpFileName);
+   UnicodeToACP(strFileName, lpFileName);
    HANDLE handle = ::CreateFileA(
      strFileName,
      dwDesiredAccess,
@@ -624,7 +624,7 @@ namespace android
    string str;
    ::u32 dw = ::GetModuleFileNameA(hModule, str.GetBuffer(nSize * 2), nSize * 2);
    str.ReleaseBuffer();
-   ::str::international::ACPToUnicode(lpFilename, nSize, str);
+   ACPToUnicode(lpFilename, nSize, str);
    return dw;
    }
 

@@ -754,7 +754,7 @@ namespace user
 //   //      {
 //   //         dx = m_sizeButton.cx;
 //   //         string str;
-//   //         str = ::str::international::utf8_to_unicode(str);
+//   //         str = utf8_to_unicode(str);
 //   //         //         str = (const unichar *) pData[i].iString;
 //   //         ::size_i32 size;
 //   //         ::GetTextExtentPoint32U(
@@ -1148,7 +1148,7 @@ return { 0,0 };
    }
 
 
-   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 dwMode)
+   size_i32 toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32 nLength, u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&

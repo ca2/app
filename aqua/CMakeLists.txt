@@ -61,11 +61,12 @@ list(APPEND library_source
         user/controller.cpp
         user/controller.h
         xml/_.h
-        xml/_from.cpp
+        #xml/_from.cpp
+        xml/_geometry2d_impl.h
         xml/_impl.h
-        xml/attr.cpp
-        xml/attr.h
-        xml/base_array.cpp
+        #xml/attr.cpp
+        #xml/attr.h
+        #xml/base_array.cpp
         xml/base_array.h
         xml/data.cpp
         xml/data.h
@@ -130,7 +131,7 @@ else()
 endif()
 
 
-add_library(aqua SHARED ${library_source} xml/_geometry2d_impl.h)
+add_library(aqua SHARED ${library_source} )
 
 target_precompile_headers(aqua PRIVATE framework.h)
 

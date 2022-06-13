@@ -31,7 +31,13 @@ public:
    /// posting/sending element
    template < typename T >
    inline lparam(const __pointer(T) & p) : lparam((const ::element *) p.m_p) { }
+   template < typename T >
+   inline lparam(const ptr < T > & p) : lparam((const ::element *) p.m_p) { }
 
+   template < typename T >
+   inline lparam(__pointer(T) && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; p.m_pelement = nullptr; }
+   template < typename T >
+   inline lparam(ptr < T > && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; }
 
 
    lparam(const lparam & lparam)

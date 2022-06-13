@@ -143,7 +143,9 @@ namespace userex
 
       SetSplitOrientation(e_orientation_horizontal);
 
-      set_position(0, 24);
+      auto preferredDensity = preferred_density();
+
+      set_position(0, (int) (24.f * preferredDensity));
 
       initialize_split_layout();
 

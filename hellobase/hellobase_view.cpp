@@ -243,7 +243,7 @@ namespace hellobase
 
       string str = get_hellobase();
 
-      if(::str::begins_eat_ci(str,"image:"))
+      if(::str().begins_eat_ci(str,"image:"))
       {
 
          string strImage = str;
@@ -267,10 +267,10 @@ namespace hellobase
             {
 
 
-               if(::str::ends_ci(strImage,".png"))
+               if(::str().ends_ci(strImage,".png"))
                {
                }
-               else if(::str::ends_ci(strImage,".jpg"))
+               else if(::str().ends_ci(strImage,".jpg"))
                {
                }
                else
@@ -310,16 +310,16 @@ namespace hellobase
          if(m_prender->m_pimageImage->is_set() && m_prender->m_pimageImage->area() > 0)
          {
 
-            if(::str::begins_eat_ci(str,m_strImage))
+            if(::str().begins_eat_ci(str,m_strImage))
             {
-               ::str::begins_eat_ci(str,",");
+               ::str().begins_eat_ci(str,",");
             }
 
          }
 
       }
 
-      if(::str::begins_eat_ci(str, "crt:"))
+      if(::str().begins_eat_ci(str, "crt:"))
       {
 
          m_eeffect = effect_crt;

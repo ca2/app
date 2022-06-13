@@ -162,7 +162,7 @@ string strNow)
 
    iSelEnd = iBeg + strInsert.get_length();
 
-   const char * psz = ::str::utf8_inc(strInsert);
+   const char * psz = ::str().next(strInsert);
 
    if(psz == nullptr || *psz == '\0')
    {
@@ -642,8 +642,8 @@ namespace ios
                //         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
                //         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
                //         MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
-               //         MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::_001OnSetFocus);
-               //         MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::_001OnKillFocus);
+               //         MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
+               //         MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
                //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
             }
             prio_install_message_routing(pchannel);
@@ -687,8 +687,8 @@ namespace ios
 //      MESSAGE_LINK(e_message_erase_background, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
 //      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
 //      MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
-//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
-//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
+//      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::on_message_set_focus);
+//      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::on_message_kill_focus);
 ////      MESSAGE_LINK(e_message_show_window        , pchannel, this, &interaction_impl::on_message_show_window);
 ////      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
 //      //      //MESSAGE_LINK(e_message_timer             , pchannel, this, &interaction_impl::_001OnTimer);
@@ -5424,13 +5424,13 @@ namespace ios
    }
 
 
-   void interaction_impl::_001OnSetFocus(::message::message * pmessage)
+   void interaction_impl::on_message_set_focus(::message::message * pmessage)
    {
 
    }
 
 
-   void interaction_impl::_001OnKillFocus(::message::message * pmessage)
+   void interaction_impl::on_message_kill_focus(::message::message * pmessage)
    {
 
    }

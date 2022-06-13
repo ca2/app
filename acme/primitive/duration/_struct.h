@@ -18,7 +18,7 @@ struct unit                                           \
                                                       \
    constexpr unit():member{} {}                       \
    constexpr unit(enum_zero):member{} {}              \
-   explicit constexpr unit(type t):member(t){}        \
+   constexpr unit(type t):member(t){}                 \
                                                       \
 };
 
@@ -55,22 +55,22 @@ DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER)  \
 inline bool operator ! (const TYPE & t1) { return t1.MEMBER <= 0; }
 
 
-__DURATION_SETUP__(INTEGRAL_NANOSECOND    , m_i)
-__DURATION_SETUP__(INTEGRAL_MICROSECOND   , m_i)
-__DURATION_SETUP__(INTEGRAL_MILLISECOND   , m_i)
-__DURATION_SETUP__(INTEGRAL_SECOND        , m_i)
-__DURATION_SETUP__(INTEGRAL_MINUTE        , m_i)
-__DURATION_SETUP__(INTEGRAL_HOUR          , m_i)
-__DURATION_SETUP__(INTEGRAL_DAY           , m_i)
+//__DURATION_SETUP__(INTEGRAL_NANOSECOND    , m_i)
+//__DURATION_SETUP__(INTEGRAL_MICROSECOND   , m_i)
+//__DURATION_SETUP__(INTEGRAL_MILLISECOND   , m_i)
+//__DURATION_SETUP__(INTEGRAL_SECOND        , m_i)
+//__DURATION_SETUP__(INTEGRAL_MINUTE        , m_i)
+//__DURATION_SETUP__(INTEGRAL_HOUR          , m_i)
+//__DURATION_SETUP__(INTEGRAL_DAY           , m_i)
 
 
-__DURATION_SETUP__(FLOATING_NANOSECOND    , m_d)
-__DURATION_SETUP__(FLOATING_MICROSECOND   , m_d)
-__DURATION_SETUP__(FLOATING_MILLISECOND   , m_d)
-__DURATION_SETUP__(FLOATING_SECOND        , m_d)
-__DURATION_SETUP__(FLOATING_MINUTE        , m_d)
-__DURATION_SETUP__(FLOATING_HOUR          , m_d)
-__DURATION_SETUP__(FLOATING_DAY           , m_d)
+//__DURATION_SETUP__(FLOATING_NANOSECOND    , m_d)
+//__DURATION_SETUP__(FLOATING_MICROSECOND   , m_d)
+//__DURATION_SETUP__(FLOATING_MILLISECOND   , m_d)
+//__DURATION_SETUP__(FLOATING_SECOND        , m_d)
+//__DURATION_SETUP__(FLOATING_MINUTE        , m_d)
+//__DURATION_SETUP__(FLOATING_HOUR          , m_d)
+//__DURATION_SETUP__(FLOATING_DAY           , m_d)
 
 
 inline timespec & normalize(timespec & timespec)
@@ -97,6 +97,8 @@ inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLI
    return timespec;
 
 }
+
+
 
 
 

@@ -168,7 +168,7 @@
 //   }
 //
 //
-//   str::str()
+//   ::str().str()
 //   {
 //
 //      m_map.InitHashTable(97);
@@ -181,14 +181,14 @@
 //   }
 //
 //
-//   str::~str()
+//   ::str().~str()
 //   {
 //
 //
 //   }
 //
 //
-//   void str::initialize(::object * pobject)
+//   void ::str().initialize(::object * pobject)
 //   {
 //
 //      auto estatus = ::object::initialize(pobject);
@@ -220,7 +220,7 @@
 //   }
 //
 //
-//   bool str::load(const ::string & pszBaseDir)
+//   bool ::str().load(const ::string & pszBaseDir)
 //   {
 //
 //      return true;
@@ -263,7 +263,7 @@
 //   }
 //
 //
-//   void str::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz)
+//   void ::str().set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::string & psz)
 //   {
 //
 //      (*this)[idLocale][idSchema][atom] = psz;
@@ -271,7 +271,7 @@
 //   }
 //
 //
-//   string str::get(const str_context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
+//   string ::str().get(const str_context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -356,7 +356,7 @@
 //
 //   }
 //
-//   string str::get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
+//   string ::str().get(const str_context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
 //   {
 //
 //      if(!idLocale.is_empty())
@@ -390,7 +390,7 @@
 //   }
 //
 //
-//   void str::get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str().get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      _get(stra, pcontext, atom);
@@ -421,7 +421,7 @@
 //   }
 //
 //
-//   void str::_get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
+//   void ::str()._get(string_array & stra, const str_context * pcontext, const ::atom & atom) const
 //   {
 //
 //      if (pcontext == nullptr)
@@ -630,7 +630,7 @@
 //   };
 //
 //
-//   bool str::load_uistr_file(const ::atom & pszLang, const ::atom & pszStyle, const ::string & pszFilePath)
+//   bool ::str().load_uistr_file(const ::atom & pszLang, const ::atom & pszStyle, const ::string & pszFilePath)
 //   {
 //
 //      memory mem;
@@ -642,7 +642,7 @@
 //
 //      char * pszFile = mem.get_psz(len);
 //
-//      ::str::parse parse(pszFile, len);
+//      ::parse parse(pszFile, len);
 //
 //      string str;
 //
@@ -654,7 +654,7 @@
 //
 //      char q;
 //
-////      ::str::utf8_char c;
+////      ::str().utf8_char c;
 //
 //      bool bFinal;
 //
@@ -698,7 +698,7 @@
 //
 //         pszEnd = psz + rstr.m_iSize;
 //
-//         while(::str::ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)
@@ -726,7 +726,7 @@
 //         strRoot.assign(s, psz - s);
 //         psz++;
 //
-//         while(::str::ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)
@@ -738,7 +738,7 @@
 //
 //         psz++;
 //
-//         while(::str::ch::is_whitespace(psz))
+//         while(::str::ch().is_whitespace(psz))
 //         {
 //            psz += str_uni_len(psz);
 //            if(psz >= pszEnd)
@@ -823,7 +823,7 @@
 //      return true;
 //   }
 //
-//   string str::body(const ::string & psz)
+//   string ::str().body(const ::string & psz)
 //   {
 //      string str(psz);
 //      str.replace("\\r", "\r");
@@ -832,7 +832,7 @@
 //   }
 //
 //
-//   bool str::matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const
+//   bool ::str().matches(const str_context * pcontext, const ::atom & atom, const ::string & psz) const
 //   {
 //
 //      static ::atom idEn("en");
@@ -901,7 +901,7 @@
 //   }
 //
 //
-//   bool str::begins(const str_context * pcontext, const ::string & pszTopic, const ::atom & atom) const
+//   bool ::str().begins(const str_context * pcontext, const ::string & pszTopic, const ::atom & atom) const
 //   {
 //
 //      static ::atom idEn("en");
@@ -917,7 +917,7 @@
 //         {
 //
 //            str = (*pcontext->m_papexcontext->m_pschema)[atom];
-//            if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//            if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //               return true;
 //
 //         }
@@ -925,7 +925,7 @@
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
 //            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
-//            if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//            if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //               return true;
 //         }
 //
@@ -933,7 +933,7 @@
 //         {
 //
 //            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
-//            if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//            if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //               return true;
 //
 //         }
@@ -944,20 +944,20 @@
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//         if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //            return true;
 //
 //      }
 //
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
-//      if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//      if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && ::str::begins_ci(pszTopic, str))
+//         if(str.has_char() && ::str().begins_ci(pszTopic, str))
 //            return true;
 //
 //      }
@@ -970,7 +970,7 @@
 //   }
 //
 //
-//   bool str::begins_eat(const str_context * pcontext, string & strTopic, const ::atom & atom) const
+//   bool ::str().begins_eat(const str_context * pcontext, string & strTopic, const ::atom & atom) const
 //   {
 //
 //      static ::atom idEn("en");
@@ -994,7 +994,7 @@
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
 //            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
-//            if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
+//            if(str.has_char() && ::str().begins_eat_ci(strTopic, str))
 //               return true;
 //         }
 //
@@ -1002,7 +1002,7 @@
 //         {
 //
 //            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
-//            if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
+//            if(str.has_char() && ::str().begins_eat_ci(strTopic, str))
 //               return true;
 //
 //         }
@@ -1013,20 +1013,20 @@
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
+//         if(str.has_char() && ::str().begins_eat_ci(strTopic, str))
 //            return true;
 //
 //      }
 //
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
-//      if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
+//      if(str.has_char() && ::str().begins_eat_ci(strTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && ::str::begins_eat_ci(strTopic, str))
+//         if(str.has_char() && ::str().begins_eat_ci(strTopic, str))
 //            return true;
 //
 //      }

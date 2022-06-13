@@ -7,6 +7,8 @@
 #include "acme/user/nano/_nano.h"
 
 
+#include <X11/Xutil.h>
+
 
 namespace x11
 {
@@ -19,10 +21,15 @@ namespace x11
    public:
 
 
-      __pointer(class display)        m_pdisplay;
-      Window                          m_window;
-      cairo_surface_t *               m_psurface;
-      __pointer(nano_device)          m_pnanodevice;
+      __pointer(class display)         m_pdisplay;
+      Window                           m_window;
+      Window                           m_windowRoot;
+      cairo_surface_t *                m_psurface;
+      __pointer(nano_device)           m_pnanodevice;
+      int                              m_iDepth;
+      XVisualInfo                      m_visualinfo;
+      Visual *                         m_pvisual;
+      Colormap                         m_colormap;
       //__pointer(nano_font)          m_pfont;
       //color32_t                     m_colorText;
       //color32_t                     m_colorFocus;
@@ -45,6 +52,9 @@ namespace x11
       ~nano_window() override;
 
 
+      ::nano::display * get_display() override;
+
+
       void on_initialize_object() override;
 
       void create() override;
@@ -53,7 +63,7 @@ namespace x11
 
       void display() override;
 
-      virtual bool _on_event(XEvent *pevent);
+      bool _on_event(XEvent *pevent) override;
 
       virtual void _update_window();
 
@@ -116,6 +126,10 @@ namespace x11
       void release_capture() override;
 
       virtual void _wm_nodecorations(int iMap);
+
+
+      //::size_i32 get_main_screen_size() override;
+
 
    };
 

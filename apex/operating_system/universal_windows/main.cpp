@@ -52,7 +52,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //   //pinitmaindata->m_hInstance             = hInstance;
 //   //pinitmaindata->m_hPrevInstance         = hPrevInstance;
-//   //pinitmaindata->m_strCommandLine        = ::str::international::unicode_to_utf8(::GetCommandLineW());
+//   //pinitmaindata->m_strCommandLine        = unicode_to_utf8(::GetCommandLineW());
 //   //pinitmaindata->m_nCmdShow              = nCmdShow;
 //
 //
@@ -257,10 +257,10 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 
 //    }
 
-//    if (!::str::begins_eat_ci(strAppId, "com."))
+//    if (!::str().begins_eat_ci(strAppId, "com."))
 //    {
 
-//       ::str::begins_eat_ci(strAppId, "com.ca2.");
+//       ::str().begins_eat_ci(strAppId, "com.ca2.");
 
 //    }
 

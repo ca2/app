@@ -1,24 +1,24 @@
 #pragma once
 
-
-namespace str
-{
-
-
-   namespace international
-   {
-
+//
+//namespace str
+//{
+//
+//
+//   namespace international
+//   {
+//
 
 //      void CLASS_DECL_ACME unicode_to_utf8(string_array & stra, string_array & stra);
   //    void CLASS_DECL_ACME utf8_to_unicode(string_array & stra, string_array & stra);
 
 
-      bool CLASS_DECL_ACME UnicodeToMultiByte(::u32 uCodePage, memory & str, const widechar * pcsz);
+      bool CLASS_DECL_ACME unicode_to_multibyte(::u32 uCodePage, memory & str, const widechar * pcsz);
 
 
-      bool CLASS_DECL_ACME MultiByteToMultiByte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz);
+      bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz);
 
-      bool CLASS_DECL_ACME MultiByteToMultiByte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount);
+      bool CLASS_DECL_ACME multibyte_to_multibyte(::u32 uCodePageDest, memory & str, ::u32 uCodePageSrc, const char * pcsz, strsize nCount);
 
 
       bool CLASS_DECL_ACME multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz);
@@ -67,7 +67,7 @@ namespace str
 
 #ifdef WINDOWS
 
-         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
+         return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz);
 
 #else
 
@@ -83,7 +83,7 @@ namespace str
 
 #ifdef WINDOWS
 
-         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+         return multibyte_to_multibyte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
 
 #else
 
@@ -97,36 +97,36 @@ namespace str
       //inline bool OemToUtf8(memory & str, const char * pcsz)
 
       //{
-      //   return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, pcsz);
+      //   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz);
 
       //}
 
       //inline bool OemToUtf8(memory & str, const char * pcsz, strsize nCount)
 
       //{
-      //   return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, pcsz, nCount);
+      //   return multibyte_to_multibyte(CP_UTF8, str, CP_OEMCP, pcsz, nCount);
 
       //}
 
       inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz);
+         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz);
 
       }
 
       inline bool utf8_to_multibyte(::u32 uCodePage, memory & str, const char * pcsz, strsize nCount)
 
       {
-         return MultiByteToMultiByte(CodePageUtf8, str, uCodePage, pcsz, nCount);
+         return multibyte_to_multibyte(CodePageUtf8, str, uCodePage, pcsz, nCount);
 
       }
 
-
-   } // namespace international
-
-
-} // namespace str
-
+//
+//   } // namespace international
+//
+//
+//} // namespace str
+//
 
 

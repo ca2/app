@@ -15,6 +15,8 @@ public:
    using DURATION::DURATION;
 
 
+   constexpr integral_duration(DURATION duration) : DURATION(duration) {}
+
    integral_duration(const integral_duration & type)
    {
 
@@ -103,8 +105,24 @@ public:
    }
 
 
-   operator class ::wait const () { return this->total_milliseconds(); }
+   inline operator class ::wait ()const;
 
+
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator %(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i % integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator /(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i / integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator *(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i * integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator +(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i + integral); }
+
+   template < primitive_integral INTEGRAL >
+   integral_duration operator -(INTEGRAL integral) const { return typename DURATION::BASE_TYPE(this->m_i - integral); }
 
 
 
@@ -142,7 +160,7 @@ template < primitive_floating FLOATING, typename DURATION >
 integral_duration < DURATION > operator * (FLOATING floating, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE) (DURATION::BASE_TYPE::BASE_TYPE)(floating * integralduration.m_i);
+   return (typename DURATION::BASE_TYPE) (typename DURATION::BASE_TYPE::BASE_TYPE)(floating * integralduration.m_i);
 
 }
 
@@ -151,7 +169,7 @@ template < primitive_integral INTEGRAL, typename DURATION >
 integral_duration < DURATION > operator * (INTEGRAL integral, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE)(DURATION::BASE_TYPE::BASE_TYPE)(integral * integralduration.m_i);
+   return (typename DURATION::BASE_TYPE) (typename DURATION::BASE_TYPE::BASE_TYPE)(integral * integralduration.m_i);
 
 }
 

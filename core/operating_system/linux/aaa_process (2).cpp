@@ -543,7 +543,7 @@ id_array app_get_pid(const ::string & psz)
 
          string strTitle = path.title();
 
-         ::str::ends_eat_ci(strTitle, " (deleted)");
+         ::str().ends_eat_ci(strTitle, " (deleted)");
 
          if(strTitle == strApp)
          {

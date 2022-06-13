@@ -39,6 +39,8 @@ NAMESPACE_BEGIN(nanogui)
          Center,
          Right
       };
+
+      Color                         m_colorBackground = Color(32, 32);
       
       ::write_text::font_pointer       m_pfontSpin;
 
@@ -108,7 +110,7 @@ NAMESPACE_BEGIN(nanogui)
       bool mouse_motion_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool mouse_drag_event(const Vector2i & p, const Vector2i & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
-      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers) override;
+      bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;
       bool keyboard_character_event(unsigned int codepoint) override;
 
       Vector2i preferred_size(NVGcontext * ctx, bool bRecalcTextSize = true) override;

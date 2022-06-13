@@ -20,7 +20,7 @@ public:
    template < primitive_floating FLOATING >
    minute(FLOATING floating) : duration(::floating_minute(floating)) { }
 
-   bool done() const { return integral_minute() >= 1_min; }
+   bool done() const { return integral_minute().m_i >= 1; }
 
 };
 

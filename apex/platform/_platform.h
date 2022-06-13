@@ -168,7 +168,7 @@ namespace dynamic_source
 //#define APP_TYPE ::base::application
 
 //#undef Sys
-//#define Sys(pobject) (*(::::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
+//#define Sys(pobject) (*(::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
 //
 //#undef Sess
 //#define Sess(pcontextsession) (pcontextsession->cast < SESSION_TYPE >())

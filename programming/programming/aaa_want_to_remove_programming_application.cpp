@@ -43,7 +43,7 @@ namespace programming
    {
 
 
-      if (pcreate->m_pcommandline->has_property("introj"))
+      if (pcreate->has_property("introj"))
       {
 
          auto pcompiler  = __create_new < ::introjection::compiler >();

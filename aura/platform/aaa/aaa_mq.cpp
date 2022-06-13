@@ -237,7 +237,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //
 //      string strType = __type_name(pthread);
 //
-//      if(::str::begins(strType, "multimedia::"))
+//      if(::str().begins(strType, "multimedia::"))
 //      {
 //
 //         if(strType.contains("wave_player"))
@@ -283,7 +283,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //
 //      string strType = __type_name(pthread);
 //
-//      if(::str::begins(strType, "multimedia::"))
+//      if(::str().begins(strType, "multimedia::"))
 //      {
 //
 //         if(strType.contains("wave_player"))

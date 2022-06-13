@@ -207,33 +207,38 @@ namespace user
 
          m_pfontlist->m_iHover = iItemHover;
 
-         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
-
-         if(pfontenumerationitema->contains_index(iItemHover))
+         if (m_pfontlist && m_pfontlist->m_pfontenumeration && m_pfontlist->m_pfontenumeration->m_pfontenumerationitema)
          {
 
-            auto pfontenumerationitem = pfontenumerationitema->element_at(iItemHover);
+            auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 
-            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
+            if (pfontenumerationitema->contains_index(iItemHover))
+            {
+
+               auto pfontenumerationitem = pfontenumerationitema->element_at(iItemHover);
+
+               m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
+
+            }
+
+            if (has_handler())
+            {
+
+               auto ptopic = create_topic(::id_after_change_cur_hover);
+
+               ptopic->m_puserelement = this;
+
+               ptopic->m_actioncontext = ::e_source_user;
+
+               ptopic->m_pitem = pitem;
+
+               route(ptopic);
+
+            }
+
+            set_need_redraw();
 
          }
-         
-         if(has_handler())
-         {
-
-            auto ptopic = create_topic(::id_after_change_cur_hover);
-
-            ptopic->m_puserelement = this;
-
-            ptopic->m_actioncontext = ::e_source_user;
-
-            ptopic->m_pitem = pitem;
-
-            route(ptopic);
-               
-         }
-
-         set_need_redraw();
 
       }
 

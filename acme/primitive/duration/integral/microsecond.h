@@ -15,7 +15,7 @@ public:
    using BASE_TYPE = INTEGRAL_MICROSECOND;
 
 
-   integral_microsecond_t(INTEGRAL_MICROSECOND microsecond = {}) : INTEGRAL_MICROSECOND(microsecond) {}
+   constexpr integral_microsecond_t(INTEGRAL_MICROSECOND microsecond = {}) : INTEGRAL_MICROSECOND(microsecond) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i / 1'000'000); }
@@ -23,7 +23,7 @@ public:
    INTEGRAL_MILLISECOND total_milliseconds() const { return INTEGRAL_MILLISECOND(m_i / 1'000); }
 
 
-   operator class ::wait const () { return total_milliseconds(); }
+   operator class ::wait const () { return total_milliseconds().m_i / 1'000.0; }
 
 
 };

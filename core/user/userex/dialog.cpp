@@ -68,7 +68,7 @@ bool dialog::show(const ::string & pszMatter)
 
    string strMatter(pszMatter);
 
-   if(!::str::begins_ci(strMatter, "matter://"))
+   if(!::str().begins_ci(strMatter, "matter://"))
    {
 
       strMatter = "matter://" + strMatter;
@@ -120,7 +120,7 @@ bool dialog::show(const ::string & pszMatter)
 
    on_show(m_strMatter);
 
-   m_pframe->InitialFramePosition();
+   m_pframe->_001InitialFramePlacement();
 
    //m_pframe->RunModalLoop();
 

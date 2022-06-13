@@ -86,7 +86,7 @@ namespace file
    void watch::add_listener(const listener & listenerParam)
    {
 
-      auto & listener = m_listenera.insert_unique(listenerParam);
+      auto & listener = m_listenera.insert_unique(::move(listenerParam));
 
       listener.m_watcha.add_unique(this);
 
@@ -185,6 +185,10 @@ namespace file
    watch_id watcher::add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
+#ifdef ANDROID
+      return -1;
+#endif
+
       if (pathFolder.is_empty())
       {
 
@@ -204,17 +208,17 @@ namespace file
 
       m_watchmap[pwatch->m_atom] = pwatch;
 
-      if (m_bCreateWatchThread)
-      {
+      //if (m_bCreateWatchThread)
+      //{
 
-         if (m_htask == nullptr)
-         {
-               
-            branch();
+      //   if (m_htask == nullptr)
+      //   {
 
-         }
+      //      branch();
 
-      }
+      //   }
+
+      //}
 
       if (!pwatch->open(pathFolder, bRecursive))
       {
@@ -222,6 +226,18 @@ namespace file
          m_watchmap.erase_key(pwatch->m_atom);
 
          return -1;
+
+      }
+
+      if (m_bCreateWatchThread)
+      {
+
+         if (m_htask == nullptr)
+         {
+
+            branch();
+
+         }
 
       }
 
@@ -320,22 +336,27 @@ restart:
       for (auto & pair : m_watchmap)
       {
 
-         if (pair.element2()->m_pwatchRelease.is_set())
+         if (::is_set(pair.element2()))
          {
+            
+            if(::is_set(pair.element2()->m_pwatchRelease))
+            {
 
-            pair.element2()->m_bStop = true;
+               pair.element2()->m_bStop = true;
 
-            pair.element2()->m_pwatchRelease.release();
+               pair.element2()->m_pwatchRelease.release();
 
-            pair.element2()->m_listenera.clear();
+               pair.element2()->m_listenera.clear();
 
-            m_watchmap.erase_key(pair.element1());
+               m_watchmap.erase_key(pair.element1());
 
-            goto restart;
+               goto restart;
 
+            }
+
+            pair.element2()->step();
+            
          }
-
-         pair.element2()->step();
 
       }
 

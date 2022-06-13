@@ -163,6 +163,9 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
+
+      bool                                         m_bSketchToDesignLayout;
+
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
 
@@ -398,13 +401,13 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      virtual ::windowing::window * window() const;
+      ::windowing::window * window() const;
 
-      virtual ::windowing::windowing * windowing() const;
+      ::windowing::windowing * windowing() const;
 
-      virtual ::windowing::display * get_display() const;
+      ::windowing::display * get_display() const;
 
-      ::user::interaction * get_host_window() const override;
+      ::user::interaction * get_host_window() const;
 
       ::item_pointer get_user_item(const ::item & item);
 
@@ -699,7 +702,8 @@ namespace user
       inline void order_bottom() { order(e_zorder_bottom); }
 
 
-      virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      //virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
+      virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateWindow() override;
       //virtual void window_apply_visual(const class window_state& windowstate) override;
 
@@ -766,6 +770,19 @@ namespace user
       
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
+
+
+      inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         if (!pgraphics) pgraphics = create_memory_graphics();
+
+      }
+
+      virtual ::draw2d::graphics_pointer create_memory_graphics();
+
+
+      virtual double _001GetDefaultFontHeight(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
@@ -970,8 +987,8 @@ namespace user
       virtual bool pre_message_handler(::message::key*& puserkey, bool& bKeyMessage, ::message::message* pmessage);
 
 
-      virtual void on_set_keyboard_focus() override;
-      virtual void on_kill_keyboard_focus() override;
+      //virtual void on_set_keyboard_focus() override;
+      //virtual void on_kill_keyboard_focus() override;
 
 
       ::user::element * get_keyboard_focus() override;
@@ -1166,6 +1183,7 @@ namespace user
 
       virtual bool has_keyboard_focus() const;
       void set_keyboard_focus() override;
+      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
       virtual void set_foreground_window();
       virtual void set_active_window();
@@ -1458,7 +1476,7 @@ namespace user
 
       //inline oswindow get_oswindow() const { return m_oswindow; }
       //virtual bool attach(::windowing::window * pwindow_New) override;
-      virtual oswindow detach() override;
+      oswindow detach_window() override;
 
 
       virtual windowing::window * get_window() const override;
@@ -1548,7 +1566,7 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
 
-      virtual void show_keyboard(bool bShow = true) override;
+      //virtual void show_keyboard(bool bShow = true) override;
 
 
       virtual void keep_alive(::object* pliveobject = nullptr) override;
@@ -1703,9 +1721,7 @@ namespace user
       //virtual void set_keyboard_focus(::user::primitive* pprimitive);
       //virtual void erase_keyboard_focus(::user::primitive * pprimitive);
 
-      //virtual void set_keyboard_focus() override;
       //virtual void erase_keyboard_focus() override;
-      //virtual void clear_keyboard_focus() override;
 
 
       virtual bool is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
@@ -1800,6 +1816,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_middle_button_up);
 
 
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+
+
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
       virtual void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
@@ -1887,8 +1906,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEnable);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
-      //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
-      //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
+      //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
@@ -1923,8 +1942,8 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual void show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
-      virtual void hide_software_keyboard(::user::primitive * pprimitive) override;
+      virtual void show_software_keyboard(::user::element* pelement) override;
+      virtual void hide_software_keyboard(::user::element* pelement) override;
 
 
       virtual void set_stock_icon(enum_stock_icon eicon);
@@ -1935,7 +1954,7 @@ namespace user
       virtual void prodevian_post_procedure(const ::procedure & procedure);
 
 
-      virtual void send_procedure(const ::procedure & procedure) override;
+      void send_procedure(const ::procedure & procedure) override;
 
 
    /*   template < typename PRED >
@@ -1973,9 +1992,9 @@ namespace user
 
       }*/
 
-      bool _001InitialFramePosition();
+      virtual bool _001InitialFramePlacement(bool bForceRestore = false);
 
-      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
+      virtual bool _001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 

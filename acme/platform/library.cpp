@@ -22,6 +22,8 @@ namespace acme
    library::library()
    {
 
+      m_pfnFactory = nullptr;
+
    }
 
 
@@ -304,7 +306,7 @@ namespace acme
 
    //   //         iPhase++;
 
-   //   //         if (::str::begins_eat(strTitle, "lib"))
+   //   //         if (::str().begins_eat(strTitle, "lib"))
    //   //         {
 
    //   //            get(pfnNewAuraLibrary, strTitle + "_get_new_library");
@@ -545,16 +547,16 @@ namespace acme
 //         strLibraryName = "ca2";
 //
 //      }
-//      else if(!::str::begins_eat(strLibraryName,"libca2"))
+//      else if(!::str().begins_eat(strLibraryName,"libca2"))
 //      {
 //
-//         ::str::begins_eat(strLibraryName,"lib");
+//         ::str().begins_eat(strLibraryName,"lib");
 //
 //      }
 //
 //#elif defined(_UWP)
 //
-//      //      ::str::begins_eat_ci(strLibraryName, "m_");
+//      //      ::str().begins_eat_ci(strLibraryName, "m_");
 //
 //#endif
 //
@@ -600,16 +602,16 @@ namespace acme
 //         strLibraryName = "ca2";
 //
 //      }
-//      else if(!::str::begins_eat(strLibraryName,"libca2"))
+//      else if(!::str().begins_eat(strLibraryName,"libca2"))
 //      {
 //
-//         ::str::begins_eat(strLibraryName,"lib");
+//         ::str().begins_eat(strLibraryName,"lib");
 //
 //      }
 //
 //#elif defined(_UWP)
 //
-//      //      ::str::begins_eat_ci(strLibraryName, "m_");
+//      //      ::str().begins_eat_ci(strLibraryName, "m_");
 //
 //#endif
 //
@@ -619,7 +621,7 @@ namespace acme
 //
 //      strPrefix += "/";
 //
-//      ::str::begins_eat(strAppName,strPrefix);
+//      ::str().begins_eat(strAppName,strPrefix);
 //
 //      if(!contains_app(strAppName))
 //      {
@@ -630,7 +632,7 @@ namespace acme
 //
 //         strPrefix += "/";
 //
-//         ::str::begins_eat(strAppName,strPrefix);
+//         ::str().begins_eat(strAppName,strPrefix);
 //
 //         if(!contains_app(strAppName))
 //            return "";
@@ -766,7 +768,7 @@ namespace acme
 ////
 ////#if defined(LINUX) || defined(__APPLE__)
 ////
-////         ::str::begins_eat(strAppId,"lib");
+////         ::str().begins_eat(strAppId,"lib");
 ////
 ////#elif defined(_UWP)
 ////
@@ -778,9 +780,9 @@ namespace acme
 ////
 ////         strPrefix += "_";
 ////
-////         ::str::begins_eat_ci(strAppId,strPrefix);
+////         ::str().begins_eat_ci(strAppId,strPrefix);
 ////
-////         //if(::str::begins_eat_ci(strAppId,strPrefix))
+////         //if(::str().begins_eat_ci(strAppId,strPrefix))
 ////         {
 ////
 ////            stra.add(strAppId);
@@ -1117,24 +1119,31 @@ namespace acme
 
       }
 
-      string strFactoryFunction;
-
-      strFactoryFunction = strName + "_factory";
-
-      auto pfnFactory = get < PFN_factory >(strFactoryFunction);
-
-      if (::is_null(pfnFactory))
+      if (!m_pfnFactory)
       {
 
-         string strDetails;
+         string strFactoryFunction;
 
-         strDetails = "Function \"" + strFactoryFunction + "\" wasn't found";
-      
-         throw ::exception(error_function_entry_not_found, "Function \""+strFactoryFunction + "\" not found", strDetails);
-      
+         strFactoryFunction = strName + "_factory";
+
+         auto pfnFactory = get < PFN_factory >(strFactoryFunction);
+
+         if (::is_null(pfnFactory))
+         {
+
+            string strDetails;
+
+            strDetails = "Function \"" + strFactoryFunction + "\" wasn't found";
+
+            throw ::exception(error_function_entry_not_found, "Function \"" + strFactoryFunction + "\" not found", strDetails);
+
+         }
+
+         m_pfnFactory = pfnFactory;
+
       }
 
-      pfnFactory(pfactory);
+      m_pfnFactory(pfactory);
 
       return pfactory;
 

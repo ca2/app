@@ -99,3 +99,40 @@ bool ishexdigit(char ch)
    return false;
 }
 
+
+
+
+
+namespace hex
+{
+
+
+   u16 parse_u16_exc(const char *& psz, const char * pszEnd)
+   {
+      string strUni;
+      const char * pszNext = psz;
+      for (index i = 0; i < 4; i++)
+      {
+         psz = pszNext;
+         pszNext = ::str().next(psz);
+         if (pszNext > pszEnd)
+         {
+            throw ::exception(error_parsing, "hexadecimal digit expected, premature end");
+            return -1;
+         }
+         if ((pszNext - psz == 1) && ((*psz >= '0' && *psz <= '9') || (*psz >= 'A' && *psz <= 'F') || (*psz >= 'a' && *psz <= 'f')))
+         {
+            strUni += *psz;
+         }
+         else
+         {
+            throw ::exception(error_parsing, "hexadecimal digit expect expected here");
+            return -1;
+         }
+      }
+      psz = pszNext;
+      return ::hex::to_u32(strUni);
+
+   }
+
+}

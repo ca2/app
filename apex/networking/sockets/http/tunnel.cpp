@@ -116,7 +116,7 @@ namespace sockets
 
             }
 
-            if (::str::begins(strStatus, astr.s200Space))
+            if (::str().begins(strStatus, astr.s200Space))
             {
 
                m_estate = state_proxy_ok;

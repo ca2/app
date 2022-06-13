@@ -175,3 +175,18 @@ public:
 
 
 
+class CLASS_DECL_ACME app_factory
+{
+public:
+
+    
+   app_factory(PFN_factory pfnFactory);
+
+
+   static __pointer(::app) new_app();
+    
+
+};
+
+
+

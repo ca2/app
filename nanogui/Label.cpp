@@ -45,17 +45,18 @@ Vector2i Label::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
       {
          nvgFontFace(ctx, m_font.c_str());
          nvgFontSize(ctx, font_size());
+         float bounds[4];
          if (m_fixed_size.x() > 0) {
-            float bounds[4];
             nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_TOP);
             nvgTextBoxBounds(ctx, (float)m_pos.x(), (float)m_pos.y(), (float)m_fixed_size.x(), m_caption.c_str(), nullptr, bounds);
             m_sizePreferred = Vector2i(m_fixed_size.x(), (int)(bounds[3] - bounds[1]));
          }
          else {
             nvgTextAlign(ctx, NVG_ALIGN_LEFT | NVG_ALIGN_MIDDLE);
+            int iSize = (int) nvgTextBounds(ctx, 0.f, 0.f, m_caption.c_str(), nullptr, bounds);
             m_sizePreferred = Vector2i(
-               (int)nvgTextBounds(ctx, 0.f, 0.f, m_caption.c_str(), nullptr, nullptr) + 2,
-               (int)font_size()
+                iSize +2 ,
+               (int)(int)(bounds[3] - bounds[1])
             );
          }
       }

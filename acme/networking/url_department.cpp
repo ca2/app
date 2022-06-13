@@ -224,7 +224,7 @@ namespace url
 
       string strQuery = object_get_query(strObject);
 
-      return object_get_script(strObject) + ::str::has_char(query_set(strQuery, strKeyParam, payload), "?");
+      return object_get_script(strObject) + ::str().has_char(query_set(strQuery, strKeyParam, payload), "?");
 
    }
 
@@ -679,7 +679,7 @@ namespace url
       if(iPos < 0)
          return strUrl;
 
-      return strUrl.Left(iPos) + ::str::has_char(query_erase(strUrl.Mid(iPos + 1), strKeyParam), "?");
+      return strUrl.Left(iPos) + ::str().has_char(query_erase(strUrl.Mid(iPos + 1), strKeyParam), "?");
 
    }
 
@@ -790,7 +790,7 @@ namespace url
 
       string strValue = url_encode(payload.string());
 
-      if(::str::begins(strQuery, strKeyEqual))
+      if(::str().begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -802,7 +802,7 @@ namespace url
             strQuery = strKeyEqual2 + strValue + __query_erase(strQuery.Mid(iPos), strAndKeyEqual);
          }
       }
-      else if(::str::begins(strQuery, strKeyEqual2))
+      else if(::str().begins(strQuery, strKeyEqual2))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -866,7 +866,7 @@ namespace url
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      if(::str::begins(strQuery, strKeyEqual))
+      if(::str().begins(strQuery, strKeyEqual))
       {
          strsize iPos = strQuery.find("&");
          if(iPos < 0)
@@ -978,7 +978,7 @@ namespace url
 
       strsize iPos = 0;
 
-      if(::str::begins(strQuery, strKeyEqual))
+      if(::str().begins(strQuery, strKeyEqual))
       {
          iPos = strQuery.find('&');
          if(iPos < 0)
@@ -1527,7 +1527,7 @@ namespace url
 
       }
 
-      if(::str::ends_ci(strServer, "." + strRoot))
+      if(::str().ends_ci(strServer, "." + strRoot))
       {
 
          return true;
@@ -1543,7 +1543,7 @@ namespace url
    string department::set_script(const ::string & strUrl, const ::string & strScript)
    {
 
-      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str::has_char(get_query(strUrl), "?");
+      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str().has_char(get_query(strUrl), "?");
 
    }
 
@@ -1572,10 +1572,10 @@ namespace url
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
 
-      if(!::str::begins(strScript,astr.Slash))
+      if(!::str().begins(strScript,astr.Slash))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
 
    }
 
@@ -1604,10 +1604,10 @@ namespace url
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
 
-      if(!::str::begins(strScript, astr.Slash))
+      if(!::str().begins(strScript, astr.Slash))
          strScript = "/" + strScript;
 
-      return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
+      return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
    }
 
 

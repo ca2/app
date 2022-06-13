@@ -12,7 +12,7 @@ public:
    using BASE_TYPE = INTEGRAL_HOUR;
 
 
-   integral_hour_t(INTEGRAL_HOUR hour = {}) : INTEGRAL_HOUR(hour) {}
+   constexpr integral_hour_t(INTEGRAL_HOUR hour = {}) : INTEGRAL_HOUR(hour) {}
 
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i * 3'600); }

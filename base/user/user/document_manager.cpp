@@ -701,7 +701,7 @@ namespace user
 
       __pointer(::create) pcreate(e_create, this);
 
-      if (!do_prompt_file_name(pcreate->m_pcommandline->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
+      if (!do_prompt_file_name(pcreate->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
       auto psession = get_session();
@@ -754,7 +754,7 @@ namespace user
    void document_manager::request(::create * pcreate)
    {
 
-      if(pcreate->m_pcommandline->m_payloadFile.is_empty())
+      if(pcreate->m_payloadFile.is_empty())
       {
 
          throw ::exception(error_bad_argument);
@@ -804,7 +804,7 @@ namespace user
 
          ::user::impact_system::Confidence match;
          ASSERT(pOpenDocument == nullptr);
-         match = ptemplate->MatchDocType(pcreate->m_pcommandline->m_payloadFile, pOpenDocument);
+         match = ptemplate->MatchDocType(pcreate->m_payloadFile, pOpenDocument);
          if (match > bestMatch)
          {
             bestMatch = match;
@@ -843,7 +843,7 @@ namespace user
          else
             CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
 
-         pcreate->m_pcommandline->payload("document") = pOpenDocument;
+         pcreate->payload("document") = pOpenDocument;
       }
 
       if (pBestTemplate == nullptr)

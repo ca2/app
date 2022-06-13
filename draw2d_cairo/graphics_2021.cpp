@@ -1572,7 +1572,7 @@ namespace draw2d_cairo
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
+            ::image_pointer pimage1 = m_pcontext->m_pauracontext->create_image(size);
 
             //if (!pimage1)
             //{
@@ -1601,7 +1601,7 @@ namespace draw2d_cairo
 
             }
 
-            ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
+            ::image_pointer pimage2 = m_pcontext->m_pauracontext->create_image(size);
 
             //if (!pimage2)
             //{
@@ -3777,7 +3777,7 @@ namespace draw2d_cairo
 
       string str((const char *)block.get_data(), block.get_size());
 
-      str = ::str::q_valid(str);
+      str = ::str().q_valid(str);
 
       if (str.is_empty())
       {
@@ -4134,7 +4134,7 @@ namespace draw2d_cairo
 
    //    string str((const char *) block.get_data(), block.get_size());
 
-   //    str = ::str::q_valid(str);
+   //    str = ::str().q_valid(str);
 
    //    if (str.is_empty())
    //    {
@@ -4364,7 +4364,7 @@ namespace draw2d_cairo
 
       string str(lpszString, minimum_non_negative(iIndex, nCount));
 
-      str = ::str::q_valid(str);
+      str = ::str().q_valid(str);
 
       if (str.is_empty())
       {
@@ -4510,7 +4510,7 @@ namespace draw2d_cairo
 
       string str(lpszString, minimum(iIndex, nCount));
 
-      str = ::str::q_valid(str);
+      str = ::str().q_valid(str);
 
       if (str.is_empty())
       {
@@ -4581,7 +4581,7 @@ namespace draw2d_cairo
 
          cairo_font_extents_t e;
 
-         if (::str::begins(str, unitext("バーチャルマシン")))
+         if (::str().begins(str, unitext("バーチャルマシン")))
          {
 
             TRACE("Likely to fail in certain circumstances");

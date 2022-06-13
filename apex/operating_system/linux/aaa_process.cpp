@@ -543,7 +543,7 @@ int_array module_path_get_pid(const char * pszPath)
 //
 //         string strTitle = path.title();
 //
-//         ::str::ends_eat_ci(strTitle, " (deleted)");
+//         ::str().ends_eat_ci(strTitle, " (deleted)");
 //
 //         if(strTitle == strApp)
 //         {

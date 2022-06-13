@@ -57,6 +57,8 @@ namespace nano
    void display::display_send(const ::procedure & procedure)
    {
 
+      auto bIsCurrentBranch = is_branch_current();
+
       __send_procedure(this, &display::display_post, procedure);
 
    }
@@ -90,27 +92,19 @@ namespace nano
    }
 
 
+   ::size_i32 display::get_main_screen_size()
+   {
+
+      return { 800, 600 };
+
+   }
+
 
 } // namespace nano
 
 
-::rectangle_i32 g_rectangleMainScreen;
 
 
-::size_i32 operating_system_get_main_screen_size()
-{
-
-   return g_rectangleMainScreen.size();
-
-}
-
-
-void operating_system_set_main_screen_rectangle(const ::rectangle_i32 & rectangle)
-{
-
-   g_rectangleMainScreen = rectangle;
-
-}
 
 
 

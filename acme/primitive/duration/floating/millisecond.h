@@ -11,20 +11,19 @@ public:
    using BASE_TYPE = FLOATING_MILLISECOND;
 
 
-   floating_millisecond_t(FLOATING_MILLISECOND millisecond = {}) : FLOATING_MILLISECOND(millisecond) {}
+   constexpr floating_millisecond_t(FLOATING_MILLISECOND millisecond = {}) : FLOATING_MILLISECOND(millisecond) {}
 
 
-   INTEGRAL_SECOND integral_seconds() const { return INTEGRAL_SECOND((::i64)(m_d / 1'000.0)); }
-   INTEGRAL_NANOSECOND integral_nanoseconds() const { return INTEGRAL_NANOSECOND((::i64)(fmod(m_d, 1'000.0) * 1'000'000.0)); }
+   constexpr operator INTEGRAL_SECOND() const { return { (::i64)(m_d / 1'000.0) }; }
+   constexpr operator INTEGRAL_NANOSECOND() const { return { (::i64)(fmod(m_d, 1'000.0) * 1'000'000.0) }; }
 
+
+   constexpr operator FLOATING_SECOND() const { return { m_d / 1'000.0 }; }
 
 };
 
 
 using floating_millisecond = floating_duration < floating_millisecond_t >; 
-
-
-constexpr FLOATING_MILLISECOND operator "" _ms(long double d) { return (FLOATING_MILLISECOND)d; }
 
 
 inline floating_millisecond get_floating_millisecond() { return FLOATING_MILLISECOND(get_floating_nanosecond().m_d / 1'000'000.0); }

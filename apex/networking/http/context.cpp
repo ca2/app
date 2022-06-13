@@ -227,7 +227,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      if (::str::find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).find_ci("/matter/") < 0)
+      if (::str().find_wwci("ca2", purl->get_server(pszUrl)) < 0 && purl->get_object(pszUrl).find_ci("/matter/") < 0)
       {
 
          set["raw_http"] = true;
@@ -312,7 +312,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_i64(strCache);
+               return ::str().to_i64(strCache);
 
             }
 
@@ -740,7 +740,7 @@ namespace http
 
       string strUrl(pszScriptUrl);
 
-      if (::str::begins(pszUrl, strUrl))
+      if (::str().begins(pszUrl, strUrl))
       {
          pproxy->m_bDirect = true;
          return true;
@@ -782,7 +782,7 @@ namespace http
          pproxy->m_bDirect = true;
 
       }
-      else if (::str::begins_eat_ci(payload, "PROXY"))
+      else if (::str().begins_eat_ci(payload, "PROXY"))
       {
          payload.trim();
          string_array stra;
@@ -1606,7 +1606,7 @@ namespace http
                
                strCa2Realm = psession->outheader("ca2realm-x");
 
-               if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
+               if (::str().begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
                   INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
@@ -1874,7 +1874,7 @@ namespace http
 
             string strCookie = set[__id(cookie)];
 
-            set[__id(cookie)] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+            set[__id(cookie)] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 
@@ -2417,7 +2417,7 @@ namespace http
          
          strCa2Realm = psocket->outheader("ca2realm-x");
 
-         if (::str::begins_ci(strCa2Realm, "not licensed: "))
+         if (::str().begins_ci(strCa2Realm, "not licensed: "))
          {
 
             auto tick2 = ::duration::now();
@@ -2569,7 +2569,7 @@ namespace http
 
       domain.create(purl->get_server(pmessageMessage->m_strUrl));
 
-      if (domain.m_strRadix == "ca2" && ::str::begins(purl->get_object(pmessageMessage->m_strUrl), astr.MatterUri))
+      if (domain.m_strRadix == "ca2" && ::str().begins(purl->get_object(pmessageMessage->m_strUrl), astr.MatterUri))
       {
 
          string strUrl(pmessageMessage->m_strUrl);
@@ -2760,7 +2760,7 @@ namespace http
 
          domain.create(purl->get_server(pszUrl));
 
-         if (::str::begins(purl->get_object(pszUrl), astr.MatterUri))
+         if (::str().begins(purl->get_object(pszUrl), astr.MatterUri))
          {
 
             set["raw_http"] = true;
@@ -2814,7 +2814,7 @@ namespace http
 
       domain.create(purl->get_server(pszUrl));
 
-      if (::str::begins(purl->get_object(pszUrl), astr.MatterUri))
+      if (::str().begins(purl->get_object(pszUrl), astr.MatterUri))
       {
 
          set["disable_ca2_sessid"] = true;

@@ -259,7 +259,7 @@ namespace xml
 
       }
 
-      ::str::consume(pszXml, "&");
+      ::str().consume(pszXml, "&");
 
       strName.Empty();
 
@@ -283,7 +283,7 @@ namespace xml
 
          strName += *pszXml;
 
-         pszXml = ::str::utf8_inc(pszXml);
+         ::str().increment(pszXml);
 
       }
 
@@ -331,7 +331,7 @@ namespace xml
 
       string strEntityReference(pszXmlParam, pszXml - pszXmlParam);
 
-      if(::str::begins_eat_ci(strEntityReference, "&#"))
+      if(::str().begins_eat_ci(strEntityReference, "&#"))
       {
 
          int i = atoi(strEntityReference);

@@ -12,7 +12,7 @@ namespace str
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         if(::str::begins_eat_ci(str,stra[i]))
+         if(::str().begins_eat_ci(str,stra[i]))
             return i;
 
       }
@@ -28,7 +28,7 @@ namespace str
       for(index i = 0; i < stra.get_count(); i++)
       {
 
-         if(::str::begins_eat(str,stra[i]))
+         if(::str().begins_eat(str,stra[i]))
             return i;
 
       }
@@ -69,7 +69,7 @@ namespace str
 
       string strLastZip;
 
-      if(::str::ends_ci(listing.m_pathUser, ".zip"))
+      if(::str().ends_ci(listing.m_pathUser, ".zip"))
       {
 
          listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -81,7 +81,7 @@ namespace str
          strZip += ":";
 
       }
-      else if(::str::find_file_extension("zip:", listing.m_pathUser) >= 0)
+      else if(::str().find_file_extension("zip:", listing.m_pathUser) >= 0)
       {
 
          listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -143,12 +143,12 @@ namespace str
 
       strRemain.replace("\\", "/");
 
-      ::str::begins_eat(strRemain, "/");
+      ::str().begins_eat(strRemain, "/");
 
       if(strRemain.has_char())
       {
 
-         if(!::str::ends(strRemain,"/"))
+         if(!::str().ends(strRemain,"/"))
          {
 
             strRemain += "/";
@@ -185,7 +185,7 @@ namespace str
 
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                                           (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
-                                         || (strRemain.has_char() && ::str::begins_eat_ci(strTitle, strRemain))))
+                                         || (strRemain.has_char() && ::str().begins_eat_ci(strTitle, strRemain))))
             {
 
                if(listing.m_bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
@@ -193,7 +193,7 @@ namespace str
 
                   listing.add(::file::path(strLastZip + ":" + strRemain + strTitle));
                   listing.last().m_iRelative = iLastZip;
-                  listing.last().m_iDir = ::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\") || ::str::ends(szTitle, ".zip");
+                  listing.last().m_iDir = ::str().ends(szTitle, "/") || ::str().ends(szTitle, "\\") || ::str().ends(szTitle, ".zip");
                   listing.last().m_iSize = fi.uncompressed_size;
 
                }
@@ -229,7 +229,7 @@ namespace str
 
       ::file::path pathFinal;
 
-      if (::str::ends_ci(strPath, ".zip"))
+      if (::str().ends_ci(strPath, ".zip"))
       {
 
          pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);
@@ -241,7 +241,7 @@ namespace str
          strZip += ":";
 
       }
-      else if (::str::find_file_extension("zip:", strPath) >= 0)
+      else if (::str().find_file_extension("zip:", strPath) >= 0)
       {
 
          pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);
@@ -387,11 +387,11 @@ namespace str
             nullptr, // comment
             0);
             string strTitle(szTitle);
-            if(::str::ends(szTitle, "/") || ::str::ends(szTitle, "\\"))
+            if(::str().ends(szTitle, "/") || ::str().ends(szTitle, "\\"))
             {
 
             }
-            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || ::str::begins_eat_ci(strTitle, *pstraFilter) >= 0))
+            else if(pinfile->locate(strTitle) && (pstraFilter == nullptr || ::str().begins_eat_ci(strTitle, *pstraFilter) >= 0))
             {
 
                string strRelative(strTitle);

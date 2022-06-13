@@ -834,6 +834,7 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filemanager\callback.cpp" />
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
@@ -995,7 +996,6 @@
     <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
-    <ClCompile Include="user\user\message_window.cpp" />
     <ClCompile Include="user\user\notify_icon.cpp" />
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\plain_edit.cpp" />
@@ -1046,6 +1046,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window.h" />
+    <ClInclude Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window_listener.h" />
     <ClInclude Include="constant\hardware.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />

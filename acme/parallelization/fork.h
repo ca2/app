@@ -517,7 +517,7 @@ public:
 
 
 template < typename PRED >
-auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStart = 0)
+void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::procedure & procedureCompletion, index iStart = 0)
 {
 
    int iAffinityOrder = get_current_process_affinity_order();
@@ -531,7 +531,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-   auto pcounter = __new(::counter(cScan));
+   auto pcounter = __new(::counter(cScan, procedureCompletion));
 
    auto ptask = ::get_task();
 
@@ -553,43 +553,43 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    }
 
-   return pcounter;
+   //return pcounter;
 
 }
 
 
-template < typename PRED, typename PRED_END >
-::count fork_count_end_predicate(::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
-{
-
-   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
-
-   int iAffinityOrder = get_current_process_affinity_order();
-
-   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iAffinityOrder = 1;
-
-   }
-
-   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
-
-   auto pobjectTaskEnd = create_task(predEnd);
-
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
-   {
-
-      auto ppredtask = __new(forking_count_task < PRED >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
-
-      ppredtask->begin();
-
-   }
-
-   return iScan;
-
-}
-
+//template < typename PRED, typename PRED_END >
+//::count fork_count_end_predicate(::count iCount, PRED pred, PRED_END predEnd, ::duration duration = ::duration::infinite(), index iStart = 0)
+//{
+//
+//   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
+//
+//   int iAffinityOrder = get_current_process_affinity_order();
+//
+//   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
+//   {
+//
+//      iAffinityOrder = 1;
+//
+//   }
+//
+//   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//
+//   auto pobjectTaskEnd = create_task(predEnd);
+//
+//   for (index iOrder = 0; iOrder < iScan; iOrder++)
+//   {
+//
+//      auto ppredtask = __new(forking_count_task < PRED >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
+//
+//      ppredtask->begin();
+//
+//   }
+//
+//   return iScan;
+//
+//}
+//
 
 //template < typename PRED >
 //class forking_for_task :

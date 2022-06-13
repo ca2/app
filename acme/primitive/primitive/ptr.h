@@ -78,6 +78,7 @@ class ptr
 
       if(m_p)
       {
+
          m_p->release();
          
       }

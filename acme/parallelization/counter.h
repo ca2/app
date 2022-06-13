@@ -2,15 +2,27 @@
 
 
 class counter :
-   public manual_reset_event
+   virtual public ::element
 {
+protected:
+
+   
+   ::procedure             m_procedureCompleted;
+
+
 public:
 
 
-   interlocked_count      m_interlocked;
+   interlocked_count       m_interlocked;
 
 
-   counter(::count c) : m_interlocked(c) {}
+   counter(::count c, const ::procedure & procedureCompleted) : 
+      m_interlocked(c),
+      m_procedureCompleted(procedureCompleted)
+   {
+   
+   
+   }
 
 
    ::count operator ++()
@@ -18,10 +30,10 @@ public:
 
       ::count c = --m_interlocked;
 
-      if (c <= 0)
+      if (has_completed())
       {
 
-         SetEvent();
+         m_procedureCompleted();
 
       }
 
@@ -40,6 +52,15 @@ public:
       return c;
 
    }
+
+
+   bool has_completed() const
+   {
+
+      return m_interlocked <= 0;
+
+   }
+
 
 };
 

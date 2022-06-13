@@ -119,24 +119,18 @@ namespace acme
 } // namespace acme
 
 
-#if defined(LINUX) || defined(FREEBSD) //|| defined(ANDROID)
-
-
 class embed_resource
 {
 public:
 
 
-   embed_resource(char * start, char * end);
+   embed_resource(char * start = nullptr, char * end = nullptr);
 
    static char * get_start();
    static char * get_end();
 
 
 };
-
-
-#endif
 
 
 class CLASS_DECL_ACME app_flag
@@ -162,12 +156,13 @@ public:
 #define __embed_resource \
 extern char _binary__matter_zip_start[]; \
 extern char _binary__matter_zip_end[];   \
-embed_resource g_embed_resource(_binary__matter_zip_start, _binary__matter_zip_end);
+embed_resource g_embed_resource(_binary__matter_zip_start, _binary__matter_zip_end)
 
 
 #else
 
-#define __embed_resource(app)
+#define __embed_resource \
+embed_resource g_embed_resource()
 
 #endif
 

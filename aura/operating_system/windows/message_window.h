@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef WINDOWS_DESKTOP
+#include "message_window_listener.h"
 
 
 namespace user
@@ -49,10 +49,6 @@ namespace user
 
 
 } // namespace aura
-
-
-#endif
-
 
 
 

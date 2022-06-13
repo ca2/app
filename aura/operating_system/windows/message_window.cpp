@@ -1,8 +1,5 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
-
-
-#ifdef WINDOWS_DESKTOP
+#include "message_window.h"
 
 
 namespace user
@@ -142,10 +139,6 @@ namespace user
 
 
 } // namespace user
-
-
-#endif
-
 
 
 

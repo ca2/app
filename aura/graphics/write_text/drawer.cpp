@@ -232,13 +232,13 @@ namespace write_text
 
          auto extent = get_text_extent(strNow).cx;
 
-         if (extent > w || *pszEnd == '\0')
+         if (extent > w || is_empty(pszEnd))
          {
 
             if (extent <= w)
             {
 
-               strNow = string(pszStart, pszEnd - pszStart);
+               strNow = string(pszStart, is_null(pszEnd) ? -1:pszEnd - pszStart);
 
                pszStart = pszEnd;
 
@@ -283,10 +283,10 @@ namespace write_text
 
          }
 
-         if (*pszEnd == '\0')
+         if (is_empty(pszEnd) && !is_empty(pszStart))
          {
 
-            strNow = string(pszStart, pszEnd - pszStart);
+            strNow = string(pszStart, is_null(pszEnd) ? -1 : pszEnd - pszStart);
 
             if (strNow.has_char())
             {

@@ -431,7 +431,15 @@
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams)
+   void os_context::edit_link_icon(const ::file::path& path, int iIcon, const ::file::path& pathLink)
+   {
+
+      throw ::exception(error_interface_only);
+
+   }
+
+
+   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, string * pstrIcon, int * piIcon)
    {
 
       if(::str().ends_ci(strSource, ".desktop"))

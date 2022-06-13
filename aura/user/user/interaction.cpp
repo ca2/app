@@ -9644,7 +9644,7 @@ namespace user
       for (auto & puseritem: m_useritema)
       {
 
-         if (puseritem)
+         if (puseritem && puseritem->m_eelement != ::e_element_item)
          {
 
             puseritem->m_ppath.release();

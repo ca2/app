@@ -27,7 +27,7 @@
 		9A81F534275010A6003F38EC /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
 		9A81F535275010A6003F38EC /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
 		9A81F536275010A6003F38EC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
-		9A81F547275012E9003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* libacme.dylib */; };
+		9A81F547275012E9003F38EC /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* acme.dylib */; };
 		9A81F5492750142E003F38EC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5482750142E003F38EC /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A81F5492750142E003F38EC /* libz.tbd in Frameworks */,
-				9A81F547275012E9003F38EC /* libacme.dylib in Frameworks */,
+				9A81F547275012E9003F38EC /* acme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +124,7 @@
 		9A81F538275010ED003F38EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A81F53D275010ED003F38EC /* libacme.dylib */,
+				9A81F53D275010ED003F38EC /* acme.dylib */,
 				9A81F53F275010ED003F38EC /* libios_acme.a */,
 			);
 			name = Products;
@@ -242,9 +242,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A81F53D275010ED003F38EC /* libacme.dylib */ = {
+		9A81F53D275010ED003F38EC /* acme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A81F53C275010ED003F38EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -252,6 +253,7 @@
 		9A81F53F275010ED003F38EC /* libios_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = ios_acme.a;
 			path = libios_acme.a;
 			remoteRef = 9A81F53E275010ED003F38EC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -386,6 +388,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -479,6 +482,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

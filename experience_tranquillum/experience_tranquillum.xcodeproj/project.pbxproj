@@ -61,7 +61,7 @@
 		9AE24E6B1904CFE2001AEFFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E6A1904CFE2001AEFFB /* XCTest.framework */; };
 		9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5C1904CFE2001AEFFB /* Foundation.framework */; };
 		9AE24E6E1904CFE2001AEFFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E6D1904CFE2001AEFFB /* UIKit.framework */; };
-		9AE24E711904CFE2001AEFFB /* libios_experience_tranquillum.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.dylib */; };
+		9AE24E711904CFE2001AEFFB /* libios_experience_tranquillum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,19 +93,14 @@
 			remoteGlobalIDString = 9AE24E591904CFE2001AEFFB;
 			remoteInfo = app_core_uinteraction_ios;
 		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AE24E581904CFE2001AEFFB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
+		9AE878402858BF8400F88364 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A389A6924F5414A00185630 /* base.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B6992846EB33005ACD11;
+			remoteInfo = ios_base;
 		};
-/* End PBXCopyFilesBuildPhase section */
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9A389A6924F5414A00185630 /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
@@ -144,7 +139,7 @@
 		9A927DD627F10EFB002BCA3C /* style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		9A927DD727F10EFB002BCA3C /* style.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A927DD827F10EFB002BCA3C /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
-		9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_tranquillum.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_tranquillum.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -167,7 +162,7 @@
 				9AE24E6B1904CFE2001AEFFB /* XCTest.framework in Frameworks */,
 				9AE24E6E1904CFE2001AEFFB /* UIKit.framework in Frameworks */,
 				9AE24E6C1904CFE2001AEFFB /* Foundation.framework in Frameworks */,
-				9AE24E711904CFE2001AEFFB /* libios_experience_tranquillum.dylib in Frameworks */,
+				9AE24E711904CFE2001AEFFB /* libios_experience_tranquillum.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */,
-				9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.dylib */,
+				9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */,
 				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
 			);
 			name = Products;
@@ -320,15 +315,15 @@
 			buildPhases = (
 				9AE24E561904CFE2001AEFFB /* Sources */,
 				9AE24E571904CFE2001AEFFB /* Frameworks */,
-				9AE24E581904CFE2001AEFFB /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9AE878412858BF8400F88364 /* PBXTargetDependency */,
 			);
 			name = ios_experience_tranquillum;
 			productName = app_core_uinteraction_ios;
-			productReference = 9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.dylib */;
+			productReference = 9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */ = {
@@ -497,13 +492,18 @@
 			target = 9AE24E591904CFE2001AEFFB /* ios_experience_tranquillum */;
 			targetProxy = 9AE24E6F1904CFE2001AEFFB /* PBXContainerItemProxy */;
 		};
+		9AE878412858BF8400F88364 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_base;
+			targetProxy = 9AE878402858BF8400F88364 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9AE24E7A1904CFE2001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;
@@ -513,7 +513,7 @@
 		9AE24E7B1904CFE2001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
 				SDKROOT = iphoneos;

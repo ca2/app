@@ -12,8 +12,6 @@
 		9A2F609E2474F53900D392E8 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2F609D2474F53900D392E8 /* CoreServices.framework */; };
 		9A4972262001905400B9C9B2 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4972092001905400B9C9B2 /* ImageIO.framework */; };
 		9A4BE107200018A200DED594 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5752BB16AAE1D2000CC4EF /* Foundation.framework */; };
-		9A6716F81D15D8C10069A961 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A6716F41D15D8C10069A961 /* InfoPlist.strings */; };
-		9A6716F91D15D8C10069A961 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6716F61D15D8C10069A961 /* Images.xcassets */; };
 		9A882E8C28449EE9004113D1 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8A28449EE9004113D1 /* libcrypto.a */; };
 		9A882E8D28449EE9004113D1 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8B28449EE9004113D1 /* libssl.a */; };
 		9A882E8F2844A0CF004113D1 /* libios_acme_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8E2844A0CF004113D1 /* libios_acme_apple.a */; };
@@ -32,17 +30,20 @@
 		9A882EB02844A5FD004113D1 /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EAF2844A5FD004113D1 /* libios_acme.a */; };
 		9A882EB22844A616004113D1 /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB12844A616004113D1 /* libios_aura_posix.a */; };
 		9A882EB42844A632004113D1 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB32844A632004113D1 /* libios_aura.a */; };
-		9A882EB72844A6F6004113D1 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A882EB62844A6F6004113D1 /* _main.cpp */; };
 		9A882EBB2844A82C004113D1 /* libios_idn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EBA2844A82C004113D1 /* libios_idn.a */; };
 		9A882EBC2844A87E004113D1 /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E5828449D5A004113D1 /* libnode_ios.a */; };
 		9A882EBD2844A8EE004113D1 /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E5228449D5A004113D1 /* libios_draw2d_quartz2d.a */; };
 		9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EBF2844A9B0004113D1 /* libwindowing_ios.a */; };
-		9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */; };
+		9A882EE72844AA9D004113D1 /* ios_write_text_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EE62844AA9D004113D1 /* ios_write_text_quartz2d.a */; };
 		9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EED2844ACAD004113D1 /* libaura_ios.a */; };
 		9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4028449D59004113D1 /* libios_folder_zip.a */; };
 		9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4928449D59004113D1 /* libios_crypto_openssl.a */; };
 		9AAC2145247571180013AB72 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC2144247571180013AB72 /* libbz2.tbd */; };
 		9AAC214B247571E10013AB72 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB6A0B1F81DD0400F40B32 /* libiconv.tbd */; };
+		9AE8692D28588CF400F88364 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9AE867E428588B4B00F88364 /* _matter.zip */; };
+		9AE8692E28588CF800F88364 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AE867EF28588B4C00F88364 /* Images.xcassets */; };
+		9AE8692F28588CFB00F88364 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE8692C28588BC700F88364 /* Launch Screen.storyboard */; };
+		9AE8693028588D5200F88364 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE867F228588B4C00F88364 /* _main.cpp */; };
 		9AF7614E1F8437C000FDE7CC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B5903518866047002C6FEC /* CoreFoundation.framework */; };
 		9AF761561F84385800FDE7CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 077A02081B4D5758001C85FF /* UIKit.framework */; };
 		9AF7615C1F84387F00FDE7CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE24EC31904E95E001AEFFB /* CoreGraphics.framework */; };
@@ -112,13 +113,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
 			remoteInfo = app_message_box;
-		};
-		9A882E7D28449DF7004113D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A882E5928449D74004113D1 /* app_message_box.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A882E6328449DBC004113D1;
-			remoteInfo = ios_app_message_box;
 		};
 		9A882E8028449DF8004113D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -200,8 +194,6 @@
 		9A4972272001907B00B9C9B2 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9A5752BA16AAE1D2000CC4EF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9A5752BB16AAE1D2000CC4EF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9A6716F51D15D8C10069A961 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9A6716F61D15D8C10069A961 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8181BE1F21C2F000FDAF74 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9A8181C21F21C33500FDAF74 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A8181C61F21C35100FDAF74 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -227,14 +219,19 @@
 		9A882EAF2844A5FD004113D1 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A882EB12844A616004113D1 /* libios_aura_posix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_aura_posix.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A882EB32844A632004113D1 /* libios_aura.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_aura.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A882EB62844A6F6004113D1 /* _main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main.cpp; sourceTree = SOURCE_ROOT; };
 		9A882EBA2844A82C004113D1 /* libios_idn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_idn.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A882EBF2844A9B0004113D1 /* libwindowing_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A882EC22844AA50004113D1 /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../operating-system/operating-system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9A882EED2844ACAD004113D1 /* libaura_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAC2144247571180013AB72 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		9AAC21D12475D7260013AB72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AE24EC31904E95E001AEFFB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9AE867E428588B4B00F88364 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
+		9AE867ED28588B4C00F88364 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9AE867EE28588B4C00F88364 /* wiosapp_core_beatmapper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wiosapp_core_beatmapper-Info.plist"; sourceTree = "<group>"; };
+		9AE867EF28588B4C00F88364 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9AE867F128588B4C00F88364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AE867F228588B4C00F88364 /* _main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _main.cpp; sourceTree = "<group>"; };
+		9AE8692C28588BC700F88364 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9AEB6A0B1F81DD0400F40B32 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -246,7 +243,7 @@
 				9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */,
 				9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */,
 				9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */,
-				9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */,
+				9A882EE72844AA9D004113D1 /* ios_write_text_quartz2d.a in Frameworks */,
 				9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */,
 				9A882EBD2844A8EE004113D1 /* libios_draw2d_quartz2d.a in Frameworks */,
 				9A882EBC2844A87E004113D1 /* libnode_ios.a in Frameworks */,
@@ -302,7 +299,7 @@
 				9A882E3428449D58004113D1 /* folder_zip.xcodeproj */,
 				9A882E5328449D5A004113D1 /* node_ios.xcodeproj */,
 				9A882EC22844AA50004113D1 /* write_text_quartz2d.xcodeproj */,
-				9A6716F31D15D8C10069A961 /* ios */,
+				9AE8673828588B4A00F88364 /* message_box */,
 				9A5752B516AAE1D2000CC4EF /* Frameworks */,
 				9A5752B316AAE1D2000CC4EF /* Products */,
 			);
@@ -365,17 +362,6 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		9A6716F31D15D8C10069A961 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				9A882EB62844A6F6004113D1 /* _main.cpp */,
-				9A6716F41D15D8C10069A961 /* InfoPlist.strings */,
-				9A6716F61D15D8C10069A961 /* Images.xcassets */,
-				9AAC21D12475D7260013AB72 /* Info.plist */,
-			);
-			path = ios;
-			sourceTree = "<group>";
-		};
 		9A882E3528449D58004113D1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,9 +410,31 @@
 			isa = PBXGroup;
 			children = (
 				9A882EC72844AA51004113D1 /* libwrite_text_quartz2d.dylib */,
-				9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */,
+				9A882EE62844AA9D004113D1 /* ios_write_text_quartz2d.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE8673828588B4A00F88364 /* message_box */ = {
+			isa = PBXGroup;
+			children = (
+				9AE867EB28588B4C00F88364 /* ios */,
+				9AE867E428588B4B00F88364 /* _matter.zip */,
+				9AE867F228588B4C00F88364 /* _main.cpp */,
+			);
+			name = message_box;
+			sourceTree = "<group>";
+		};
+		9AE867EB28588B4C00F88364 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				9AE867EC28588B4C00F88364 /* InfoPlist.strings */,
+				9AE867EE28588B4C00F88364 /* wiosapp_core_beatmapper-Info.plist */,
+				9AE867EF28588B4C00F88364 /* Images.xcassets */,
+				9AE867F128588B4C00F88364 /* Info.plist */,
+				9AE8692C28588BC700F88364 /* Launch Screen.storyboard */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,7 +457,6 @@
 				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
 				9A882E8528449E06004113D1 /* PBXTargetDependency */,
 				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
-				9A882E7E28449DF7004113D1 /* PBXTargetDependency */,
 			);
 			name = _ios_app_message_box;
 			productName = wiossimple_drawing_simple_drawing;
@@ -618,9 +625,10 @@
 			remoteRef = 9A882EC62844AA51004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A882EE62844AA9D004113D1 /* libios_write_text_quartz2d.a */ = {
+		9A882EE62844AA9D004113D1 /* ios_write_text_quartz2d.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = ios_write_text_quartz2d.a;
 			path = libios_write_text_quartz2d.a;
 			remoteRef = 9A882EE52844AA9D004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -632,8 +640,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A6716F81D15D8C10069A961 /* InfoPlist.strings in Resources */,
-				9A6716F91D15D8C10069A961 /* Images.xcassets in Resources */,
+				9AE8692D28588CF400F88364 /* _matter.zip in Resources */,
+				9AE8692E28588CF800F88364 /* Images.xcassets in Resources */,
+				9AE8692F28588CFB00F88364 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,7 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A882EB72844A6F6004113D1 /* _main.cpp in Sources */,
+				9AE8693028588D5200F88364 /* _main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,11 +678,6 @@
 			isa = PBXTargetDependency;
 			target = 078C352E1921758500354453 /* _ios_app_message_box */;
 			targetProxy = 078C35491921758600354453 /* PBXContainerItemProxy */;
-		};
-		9A882E7E28449DF7004113D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_app_message_box;
-			targetProxy = 9A882E7D28449DF7004113D1 /* PBXContainerItemProxy */;
 		};
 		9A882E8328449DFF004113D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -703,10 +707,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9A6716F41D15D8C10069A961 /* InfoPlist.strings */ = {
+		9AE867EC28588B4C00F88364 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9A6716F51D15D8C10069A961 /* en */,
+				9AE867ED28588B4C00F88364 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -718,7 +722,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Camilo Tsumanuma (665TC58ZA4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -732,7 +735,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
@@ -743,7 +746,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Camilo Tsumanuma (665TC58ZA4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -754,7 +756,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app-simple.app-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
@@ -873,7 +875,6 @@
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -933,7 +934,6 @@
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)",
 				);
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

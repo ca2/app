@@ -308,11 +308,11 @@
 		9A8E99CF282A2B85005FF778 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				9A8E9AA0282A2B89005FF778 /* ios */,
 				9A94DE75282C0E7000F5C1CA /* _static_factory.inl */,
 				9A94DE73282C0CB300F5C1CA /* _main.inl */,
 				9A8E9D84282A2C09005FF778 /* _matter.zip */,
 				9A8E9AA8282A2B89005FF778 /* _main.cpp */,
-				9A8E9AA0282A2B89005FF778 /* ios */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
@@ -815,7 +815,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system",
@@ -872,10 +872,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				MARKETING_VERSION = 1.0;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_BUNDLE_IDENTIFIER = "software.ca2.-ios-app-app";
@@ -902,10 +898,6 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
 				MARKETING_VERSION = 1.0;
 				PLATFORM_MODIFIER = ios;
 				PRODUCT_BUNDLE_IDENTIFIER = "software.ca2.-ios-app-app";

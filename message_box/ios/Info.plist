@@ -32,5 +32,7 @@
 	<string>Copyright © 2015 ca2 Desenvolvimento de Software Ltdal. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>UIApplication</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
 </dict>
 </plist>

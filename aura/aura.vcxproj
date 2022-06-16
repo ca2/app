@@ -834,7 +834,6 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filemanager\callback.cpp" />
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
@@ -959,6 +958,7 @@
     <ClCompile Include="operating_system\windows\gdi.cpp" />
     <ClCompile Include="operating_system\windows\graphics.cpp" />
     <ClCompile Include="operating_system\windows\main.cpp" />
+    <ClCompile Include="operating_system\windows\message_window.cpp" />
     <ClCompile Include="operating_system\windows\monitor.cpp" />
     <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />

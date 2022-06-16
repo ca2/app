@@ -19,7 +19,10 @@ struct main_hold
    ::static_application_factory < ::APPLICATION::application > m_factoryApplication{ __APP_ID };
 #endif
 #if defined(HAS_AUDIO) && HAS_AUDIO
-   ::system_setup m_factoryAudi{ &::audio_factory, "audio" };
+   ::system_setup m_factoryAudio{ &::audio_factory, "audio" };
+#endif
+#if defined(USES_ESTAMIRA) && USES_ESTAMIRA
+   ::system_setup m_factoryEstamira{ &::estamira_factory, "estamira" };
 #endif
 #ifdef CLASS_DECL_VERIWELL_MULTIMEDIA
    ::static_object_factory < ::veriwell::multimedia::multimedia > m_systemsetupMultimedia{::system_setup::flag_multimedia, "veriwell_multimedia"

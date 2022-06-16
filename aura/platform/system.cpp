@@ -6381,10 +6381,12 @@ namespace aura
          return;
 
       }
+      
+      auto pfactory = factory("estamira");
 
       //auto estatus = 
       
-      __compose(m_pestamira);
+      __compose(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{

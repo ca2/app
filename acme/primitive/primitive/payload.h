@@ -542,6 +542,15 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
+    inline payload & operator = (const ::procedure & procedure)
+    {
+
+       _set_element(procedure.m_p);
+
+       return *this;
+
+    }
+
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
    inline payload & operator = (::element * pelement)

@@ -82,7 +82,6 @@ i32 _c_unlock(void ** pdata)
 
 }
 
-extern class system * g_psystem;
 
 string _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd)
 {
@@ -92,7 +91,7 @@ string _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd)
    str.find_replace("\\", "/");
    str.find_replace("::", "_");
 
-   auto psystem = g_psystem;
+   auto psystem = ::get_system();
 
    auto pacmedirectory = psystem->m_pacmedirectory;
 

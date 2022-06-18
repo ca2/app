@@ -49,9 +49,6 @@
     <ClCompile Include="account\product_array.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
-    <ClCompile Include="account\storage.cpp">
-      <Filter>Source Files\account</Filter>
-    </ClCompile>
     <ClCompile Include="account\storage_client.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
@@ -119,12 +116,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\checked.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\cregexp.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\cregexp_util.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\geo_department.cpp">

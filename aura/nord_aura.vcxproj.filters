@@ -91,9 +91,6 @@
     <Filter Include="Source Files\message">
       <UniqueIdentifier>{a167a007-b589-4440-864c-b136d19ac718}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\include">
-      <UniqueIdentifier>{c670afcd-ebb8-4b3f-ad64-2521d8fe3bb9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{f71a8c0e-47f3-461e-8b0b-e38eb0f26ca5}</UniqueIdentifier>
     </Filter>
@@ -1102,9 +1099,6 @@
     <ClCompile Include="message\user.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="include\_.cpp">
-      <Filter>Source Files\include</Filter>
-    </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1213,9 +1207,6 @@
     <ClCompile Include="graphics\draw2d\host.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\keep.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1249,9 +1240,6 @@
     <ClCompile Include="graphics\image\pointer_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\object.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\nanosvg.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -1279,9 +1267,6 @@
     <ClCompile Include="graphics\image\icon.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\gif_detect_8bit_borders.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\gif_antialias_8bit.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -1297,13 +1282,7 @@
     <ClCompile Include="graphics\image\dynamic.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\drawing.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\drawer.cpp">
-      <Filter>Source Files\graphics\image</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\image\cursor_set.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\cursor.cpp">
@@ -1369,12 +1348,6 @@
     <ClCompile Include="windowing\windowing.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\xrender.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\_.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1385,9 +1358,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\check_box.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\control_descriptor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\copydesk.cpp">
@@ -1436,9 +1406,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\message_box.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\message_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\notify_icon.cpp">
@@ -1496,9 +1463,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\wait_cursor.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\window_map.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\window_state.cpp">

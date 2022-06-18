@@ -13,15 +13,6 @@
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
     </ClCompile>
-    <ClCompile Include="xml\_from.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\attr.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="xml\base_array.cpp">
-      <Filter>Source Files\xml</Filter>
-    </ClCompile>
     <ClCompile Include="xml\data.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
@@ -3385,9 +3376,6 @@
     </Filter>
     <Filter Include="Source Files\multimedia\audio">
       <UniqueIdentifier>{e49c893f-cf20-4d4b-98a6-b8f121977acb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{6e087c37-ec7d-4b7b-b56b-ab709e9e8c28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>

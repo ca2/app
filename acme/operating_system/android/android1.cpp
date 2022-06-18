@@ -3,15 +3,12 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 
 
-extern class system * g_psystem;
-
-
 ::file::path dir_ca2_module()
 {
 
+   auto psystem = ::get_system();
 
-   return g_psystem->m_pacmedirectory->module();
-
+   return psystem->m_pacmedirectory->module();
 
 }
 

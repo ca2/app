@@ -19,19 +19,10 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="message\base.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
     <ClCompile Include="message\channel.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\message.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\receiver.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\sender.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\simple_command.cpp">
@@ -47,9 +38,6 @@
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\event_change.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\id.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\key.cpp">
@@ -68,12 +56,6 @@
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hasher.cpp">
-      <Filter>Source Files\crypto</Filter>
-    </ClCompile>
-    <ClCompile Include="crypto\hasher_algorithm.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\rsa.cpp">
@@ -115,9 +97,6 @@
     <ClCompile Include="filesystem\fs\set.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="user\command.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\language.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -138,9 +117,6 @@
     </ClCompile>
     <ClCompile Include="message\application.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="compress\context.cpp">
-      <Filter>Source Files\compress</Filter>
     </ClCompile>
     <ClCompile Include="compress\is_dir.cpp">
       <Filter>Source Files\compress</Filter>
@@ -256,12 +232,6 @@
     <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp">
       <Filter>Source Files\networking\sockets\bsd\webserver</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\_strconv.cpp">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\include.cpp">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\bsd\sockets.cpp">
       <Filter>Source Files\networking\sockets\bsd</Filter>
     </ClCompile>
@@ -328,9 +298,6 @@
     <ClCompile Include="parallelization\thread.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\thread_os.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -370,19 +337,10 @@
     <ClCompile Include="platform\assert_running_task.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\build_debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\command_line.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\console_application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\create.cpp">
@@ -418,9 +376,6 @@
     <ClCompile Include="platform\machine_event_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\net.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -442,28 +397,13 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\text.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\initializer.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
     <ClCompile Include="handler\context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="handler\handler.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
     <ClCompile Include="handler\manager.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\process.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\promise.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
-    <ClCompile Include="handler\routine.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
     <ClCompile Include="handler\signal.cpp">
@@ -484,9 +424,6 @@
     <ClCompile Include="progress\real.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="networking\http\_.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
     <ClCompile Include="networking\http\context.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
@@ -497,9 +434,6 @@
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\http\get_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\ostream.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\http\request.cpp">
@@ -520,9 +454,6 @@
     <ClCompile Include="operating_system\posix\thread.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\posix\time.cpp">
-      <Filter>Source Files\operating_system\posix</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\posix\timer.cpp">
       <Filter>Source Files\operating_system\posix</Filter>
     </ClCompile>
@@ -532,19 +463,10 @@
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="message\command_target.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\command_ui_probe.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
     <ClCompile Include="message\debug.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\dispatcher.cpp">
-      <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\android\util.cpp">
@@ -1588,9 +1510,6 @@
     </Filter>
     <Filter Include="Header Files\operating_system\posix">
       <UniqueIdentifier>{bfc1853b-19fb-4f0d-84e4-43241af04a57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\crypto\openssl">
-      <UniqueIdentifier>{8d4c560b-f865-476d-87e3-8ff92bed9400}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\handler">
       <UniqueIdentifier>{4a3113e8-e67e-4f2c-96d9-b6f5f6709c13}</UniqueIdentifier>

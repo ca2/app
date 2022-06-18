@@ -43,9 +43,6 @@ int get_processor_count()
 }
 
 
-
-extern class system * g_psystem;
-
 void main_asynchronous(const ::procedure & procedure)
 {
 
@@ -65,7 +62,9 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   g_psystem->windowing_post(predicate);
+   auto psystem = ::get_system();
+
+   psystem->windowing_post(predicate);
 
 }
 

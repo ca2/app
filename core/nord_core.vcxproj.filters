@@ -7,9 +7,6 @@
     <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\update_hint.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\tree.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\frame.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\form_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\form_child_frame.cpp">
@@ -151,9 +145,6 @@
     <ClCompile Include="filesystem\userfs\userfs.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account.cpp">
-      <Filter>Source Files\user\account</Filter>
-    </ClCompile>
     <ClCompile Include="user\account\account_dialog.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
@@ -173,9 +164,6 @@
       <Filter>Source Files\html\graphics</Filter>
     </ClCompile>
     <ClCompile Include="html\graphics\font.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\form.cpp">
       <Filter>Source Files\html\graphics</Filter>
     </ClCompile>
     <ClCompile Include="html\graphics\message.cpp">
@@ -202,9 +190,6 @@
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\child_frame.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
     <ClCompile Include="html\user\document.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
@@ -212,9 +197,6 @@
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\form_view.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\frame.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\user.cpp">
@@ -319,9 +301,6 @@
     <ClCompile Include="user\rich_text\text_format_object.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\_.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filehandler\handler.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
@@ -379,9 +358,6 @@
     <ClCompile Include="html\impl\text.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\_.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\color_combo_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -422,9 +398,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\mesh_cache.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh_cache_interface.cpp">

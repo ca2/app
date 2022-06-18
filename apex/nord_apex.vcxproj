@@ -187,18 +187,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="compress\context.cpp" />
     <ClCompile Include="compress\is_dir.cpp" />
     <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
-    <ClCompile Include="crypto\hasher.cpp" />
-    <ClCompile Include="crypto\hasher_algorithm.cpp" />
     <ClCompile Include="crypto\initializer.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
-    <ClCompile Include="database\id.cpp" />
     <ClCompile Include="database\key.cpp" />
     <ClCompile Include="database\selection.cpp" />
     <ClCompile Include="database\selection_item.cpp" />
@@ -223,25 +219,15 @@
     <ClCompile Include="filesystem\fs\set.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="handler\context.cpp" />
-    <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\manager.cpp" />
-    <ClCompile Include="handler\process.cpp" />
-    <ClCompile Include="handler\promise.cpp" />
-    <ClCompile Include="handler\routine.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="message\application.cpp" />
-    <ClCompile Include="message\base.cpp" />
     <ClCompile Include="message\channel.cpp" />
     <ClCompile Include="message\command.cpp" />
-    <ClCompile Include="message\command_target.cpp" />
-    <ClCompile Include="message\command_ui_probe.cpp" />
     <ClCompile Include="message\debug.cpp" />
     <ClCompile Include="message\dispatcher.cpp" />
-    <ClCompile Include="message\handler.cpp" />
     <ClCompile Include="message\message.cpp" />
-    <ClCompile Include="message\receiver.cpp" />
-    <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
     <ClCompile Include="networking\address.cpp" />
@@ -252,13 +238,11 @@
     <ClCompile Include="networking\http\cookie.cpp" />
     <ClCompile Include="networking\http\form.cpp" />
     <ClCompile Include="networking\http\get_socket.cpp" />
-    <ClCompile Include="networking\http\ostream.cpp" />
     <ClCompile Include="networking\http\request.cpp" />
     <ClCompile Include="networking\http\response.cpp" />
     <ClCompile Include="networking\http\signal.cpp" />
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
-    <ClCompile Include="networking\http\_.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
@@ -277,14 +261,12 @@
     <ClCompile Include="networking\sockets\bsd\basic\udp_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\dns\resolv_server.cpp" />
     <ClCompile Include="networking\sockets\bsd\dns\resolv_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\include.cpp" />
     <ClCompile Include="networking\sockets\bsd\sockets.cpp" />
     <ClCompile Include="networking\sockets\bsd\ssl\client_context.cpp" />
     <ClCompile Include="networking\sockets\bsd\ssl\client_context_map.cpp" />
     <ClCompile Include="networking\sockets\bsd\ssl\context.cpp" />
     <ClCompile Include="networking\sockets\bsd\ssl\initializer.cpp" />
     <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\_strconv.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
@@ -318,7 +300,6 @@
     <ClCompile Include="operating_system\openssl_crypt.cpp" />
     <ClCompile Include="operating_system\operating_system.cpp" />
     <ClCompile Include="operating_system\posix\thread.cpp" />
-    <ClCompile Include="operating_system\posix\time.cpp" />
     <ClCompile Include="operating_system\posix\timer.cpp" />
     <ClCompile Include="operating_system\thread.cpp" />
     <ClCompile Include="operating_system\_application.cpp" />
@@ -327,7 +308,6 @@
     <ClCompile Include="parallelization\service_handler.cpp" />
     <ClCompile Include="parallelization\thread.cpp" />
     <ClCompile Include="parallelization\threading.cpp" />
-    <ClCompile Include="parallelization\thread_os.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\apex.cpp" />
     <ClCompile Include="platform\api.cpp" />
@@ -339,11 +319,8 @@
     <ClCompile Include="platform\app_container.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
-    <ClCompile Include="platform\build_debug.cpp" />
-    <ClCompile Include="platform\command_line.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
     <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\context_thread.cpp" />
     <ClCompile Include="platform\create.cpp" />
     <ClCompile Include="platform\history.cpp" />
     <ClCompile Include="platform\interprocess_call.cpp" />
@@ -355,7 +332,6 @@
     <ClCompile Include="platform\machine_event.cpp" />
     <ClCompile Include="platform\machine_event_central.cpp" />
     <ClCompile Include="platform\machine_event_data.cpp" />
-    <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\os_context.cpp" />
     <ClCompile Include="platform\os_history.cpp" />
@@ -363,7 +339,6 @@
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_launcher.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_application_service.cpp" />
     <ClCompile Include="process\department.cpp" />
@@ -372,7 +347,6 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\command.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
     <ClCompile Include="user\menu_shared.cpp" />

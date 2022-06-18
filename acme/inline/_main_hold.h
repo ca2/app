@@ -10,6 +10,7 @@ DO_FACTORY(DECLARE_FACTORY)
 struct main_hold
 {
 
+
 #ifdef SYSTEM_NAMESPACE
    ::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
 #else
@@ -18,10 +19,10 @@ struct main_hold
 #ifdef APPLICATION
    ::static_application_factory < ::APPLICATION::application > m_factoryApplication{ __APP_ID };
 #endif
-#if defined(HAS_AUDIO) && HAS_AUDIO
+#if defined(CUBE) && defined(HAS_AUDIO) && HAS_AUDIO
    ::system_setup m_factoryAudio{ &::audio_factory, "audio" };
 #endif
-#if defined(USES_ESTAMIRA) && USES_ESTAMIRA
+#if defined(CUBE) && defined(USES_ESTAMIRA) && USES_ESTAMIRA
    ::system_setup m_factoryEstamira{ &::estamira_factory, "estamira" };
 #endif
 #ifdef CLASS_DECL_VERIWELL_MULTIMEDIA
@@ -45,6 +46,7 @@ struct main_hold
    DO_FACTORY(SETUP_FACTORY)
 
 #endif
+
 
 };
 

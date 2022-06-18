@@ -381,9 +381,9 @@ list(APPEND library_source
    user/user/message.h
    user/user/message_box.cpp
    user/user/message_box.h
-   user/user/message_window.cpp
-   user/user/message_window.h
-   user/user/message_window_listener.h
+   #user/user/message_window.cpp
+   #user/user/message_window.h
+   #user/user/message_window_listener.h
    #user/user/mouse.cpp
    #user/user/mouse.h
    user/user/notify_icon.cpp

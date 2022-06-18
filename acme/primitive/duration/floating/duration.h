@@ -16,11 +16,11 @@ public:
    using DURATION::DURATION;
 
 
-   floating_duration(const floating_duration & type) :
-      DURATION(type)
-   {
-
-   }
+//   floating_duration(const floating_duration & type) :
+//      DURATION(type)
+//   {
+//
+//   }
 
    floating_duration(enum_now)
    {

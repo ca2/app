@@ -229,10 +229,13 @@ void __main(main& main)
 
    }
 
+#ifdef CUBE
 
    auto psetupAudio = ::system_setup::get_first(::system_setup::flag_factory, "audio");
 
    main.m_bAudio = ::is_set(psetupAudio);
+
+#endif
 
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<class::system>();
 

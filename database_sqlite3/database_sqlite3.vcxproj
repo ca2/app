@@ -38,7 +38,7 @@
     <ProjectGuid>{F85061D8-22DC-4A8B-85EA-76D330BE52CC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>draw2d_direct2d</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -131,7 +131,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -145,7 +144,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -159,8 +157,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
@@ -173,7 +169,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
@@ -218,7 +213,6 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
@@ -341,7 +335,6 @@
       <OmitFramePointers>true</OmitFramePointers>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <SDLCheck>false</SDLCheck>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <OpenMPSupport>false</OpenMPSupport>
@@ -450,7 +443,6 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -596,7 +588,6 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>

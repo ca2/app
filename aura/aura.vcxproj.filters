@@ -657,7 +657,7 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window.cpp">
+    <ClCompile Include="operating_system\windows\message_window.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>

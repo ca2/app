@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A601888285B281700151842 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; };
 		9A6543BE2666B05100F8A254 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543972666B05100F8A254 /* framework.cpp */; };
 		9A6543BF2666B05100F8A254 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A65439D2666B05100F8A254 /* context.cpp */; };
 		9A6543C12666B05100F8A254 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543A02666B05100F8A254 /* factory_exchange.h */; };
@@ -130,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A601888285B281700151842 /* libpcre.dylib in Frameworks */,
 				9A6543E02666B21C00F8A254 /* acme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

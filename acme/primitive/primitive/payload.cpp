@@ -7427,6 +7427,12 @@ void payload::run()
       return m_pproperty->run();
 
    }
+   else if (get_type() == e_type_element)
+   {
+
+      return m_p->run();
+
+   }
    //else if (get_type() == e_type_routine)
    //{
 

@@ -175,7 +175,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -270,7 +270,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">
@@ -280,7 +279,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">
@@ -290,8 +288,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -300,7 +296,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">
@@ -316,7 +311,6 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -327,6 +321,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -383,7 +378,6 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -404,7 +398,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Mfplat.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -464,7 +458,6 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -475,6 +468,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -531,7 +525,6 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -552,7 +545,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Mfplat.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>

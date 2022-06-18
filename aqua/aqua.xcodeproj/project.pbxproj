@@ -108,6 +108,16 @@
 		9A2E6258252588430001CC7E /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6251252588430001CC7E /* game.cpp */; };
 		9A2E6259252588430001CC7E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E6252252588430001CC7E /* _.h */; };
 		9A41243A266C3F3500C3FF0E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7864982650A3CF0034A0E1 /* libacme.dylib */; };
+		9A601E96285B629900151842 /* _audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E95285B629900151842 /* _audio.h */; };
+		9A601E97285B629900151842 /* _audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E95285B629900151842 /* _audio.h */; };
+		9A601E99285B62B500151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E98285B62B500151842 /* _estamira.h */; };
+		9A601E9A285B62B500151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E98285B62B500151842 /* _estamira.h */; };
+		9A601E9E285B62F200151842 /* _audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9C285B62F200151842 /* _audio.h */; };
+		9A601E9F285B62F200151842 /* _audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9C285B62F200151842 /* _audio.h */; };
+		9A601EA0285B62F200151842 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9D285B62F200151842 /* _.h */; };
+		9A601EA1285B62F200151842 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601E9D285B62F200151842 /* _.h */; };
+		9A601EA3285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
+		9A601EA4285B631700151842 /* _estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A601EA2285B631700151842 /* _estamira.h */; };
 		9A81F8CE2750744E003F38EC /* text_to_speech_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */; };
 		9A8E9E3B282A3210005FF778 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A625242523009FA9CB /* _.h */; };
 		9A8E9E3C282A3210005FF778 /* property_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28194725242523009FA9CB /* property_exchange.h */; };
@@ -351,6 +361,11 @@
 		9A2E6250252588430001CC7E /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		9A2E6251252588430001CC7E /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		9A2E6252252588430001CC7E /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A601E95285B629900151842 /* _audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _audio.h; sourceTree = "<group>"; };
+		9A601E98285B62B500151842 /* _estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _estamira.h; sourceTree = "<group>"; };
+		9A601E9C285B62F200151842 /* _audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _audio.h; sourceTree = "<group>"; };
+		9A601E9D285B62F200151842 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A601EA2285B631700151842 /* _estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _estamira.h; sourceTree = "<group>"; };
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
 		9A8E9EB9282A3210005FF778 /* libios_aqua.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aqua.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -409,6 +424,8 @@
 		9A28192625242523009FA9CB /* aqua */ = {
 			isa = PBXGroup;
 			children = (
+				9A601E9B285B62F200151842 /* include */,
+				9A601E95285B629900151842 /* _audio.h */,
 				9A97C7BD28236AFA00755A0A /* constant */,
 				9A2E624C252588430001CC7E /* game */,
 				9A28196E25242523009FA9CB /* inline */,
@@ -420,6 +437,7 @@
 				9A28198D25242523009FA9CB /* _.cpp */,
 				9A2819AC25242523009FA9CB /* _.h */,
 				9A28192925242523009FA9CB /* _defer.h */,
+				9A601E98285B62B500151842 /* _estamira.h */,
 				9A28192825242523009FA9CB /* console.h */,
 				9A28192E25242523009FA9CB /* framework.cpp */,
 				9A2819A825242523009FA9CB /* framework.h */,
@@ -588,6 +606,16 @@
 			path = game;
 			sourceTree = "<group>";
 		};
+		9A601E9B285B62F200151842 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				9A601E9C285B62F200151842 /* _audio.h */,
+				9A601EA2285B631700151842 /* _estamira.h */,
+				9A601E9D285B62F200151842 /* _.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		9A97C7BD28236AFA00755A0A /* constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +645,7 @@
 				9A2819E125242523009FA9CB /* parse_info.h in Headers */,
 				9A2819EB25242523009FA9CB /* _application.h in Headers */,
 				9A2819D425242523009FA9CB /* input_tree.h in Headers */,
+				9A601E9E285B62F200151842 /* _audio.h in Headers */,
 				9A2E6259252588430001CC7E /* _.h in Headers */,
 				9A281A1325242524009FA9CB /* out.h in Headers */,
 				9A2819FE25242523009FA9CB /* application_common.h in Headers */,
@@ -636,9 +665,12 @@
 				9A281A2B25242870009FA9CB /* _platform.h in Headers */,
 				9A2273B627CF04470042BAC2 /* _.h in Headers */,
 				9A2819E925242523009FA9CB /* console.h in Headers */,
+				9A601EA0285B62F200151842 /* _.h in Headers */,
 				9A281A1925242524009FA9CB /* multimedia.h in Headers */,
 				9A281A0925242524009FA9CB /* decoder_plugin.h in Headers */,
+				9A601E99285B62B500151842 /* _estamira.h in Headers */,
 				9A2819FF25242523009FA9CB /* _app_impl1.h in Headers */,
+				9A601E96285B629900151842 /* _audio.h in Headers */,
 				9A2E6257252588430001CC7E /* game.h in Headers */,
 				9A2819BE25242523009FA9CB /* _impl.h in Headers */,
 				9A2819DA25242523009FA9CB /* entity.h in Headers */,
@@ -670,6 +702,7 @@
 				9A281A0525242524009FA9CB /* file_application.h in Headers */,
 				9A281A1225242524009FA9CB /* audio_c.h in Headers */,
 				9A2819CA25242523009FA9CB /* data.h in Headers */,
+				9A601EA3285B631700151842 /* _estamira.h in Headers */,
 				9A2819BD25242523009FA9CB /* output_tree.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,6 +724,7 @@
 				9A8E9E46282A3210005FF778 /* parse_info.h in Headers */,
 				9A8E9E47282A3210005FF778 /* _application.h in Headers */,
 				9A8E9E49282A3210005FF778 /* input_tree.h in Headers */,
+				9A601E9F285B62F200151842 /* _audio.h in Headers */,
 				9A8E9E4A282A3210005FF778 /* _.h in Headers */,
 				9A8E9E4B282A3210005FF778 /* out.h in Headers */,
 				9A8E9E4C282A3210005FF778 /* application_common.h in Headers */,
@@ -710,9 +744,12 @@
 				9A8E9E5A282A3210005FF778 /* _platform.h in Headers */,
 				9A8E9E5B282A3210005FF778 /* _.h in Headers */,
 				9A8E9E5D282A3210005FF778 /* console.h in Headers */,
+				9A601EA1285B62F200151842 /* _.h in Headers */,
 				9A8E9E5E282A3210005FF778 /* multimedia.h in Headers */,
 				9A8E9E5F282A3210005FF778 /* decoder_plugin.h in Headers */,
+				9A601E9A285B62B500151842 /* _estamira.h in Headers */,
 				9A8E9E60282A3210005FF778 /* _app_impl1.h in Headers */,
+				9A601E97285B629900151842 /* _audio.h in Headers */,
 				9A8E9E62282A3210005FF778 /* game.h in Headers */,
 				9A8E9E64282A3210005FF778 /* _impl.h in Headers */,
 				9A8E9E65282A3210005FF778 /* entity.h in Headers */,
@@ -744,6 +781,7 @@
 				9A8E9E85282A3210005FF778 /* file_application.h in Headers */,
 				9A8E9E86282A3210005FF778 /* audio_c.h in Headers */,
 				9A8E9E88282A3210005FF778 /* data.h in Headers */,
+				9A601EA4285B631700151842 /* _estamira.h in Headers */,
 				9A8E9E89282A3210005FF778 /* output_tree.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

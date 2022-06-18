@@ -38,7 +38,7 @@
     <ProjectGuid>{149AA9B9-9E1A-4612-AD64-A71EE357BCAA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>programming</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -136,7 +136,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -150,7 +149,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -164,8 +162,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
@@ -178,7 +174,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -219,7 +214,6 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
@@ -353,7 +347,6 @@
       <OmitFramePointers>true</OmitFramePointers>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -488,7 +481,6 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
@@ -640,7 +632,6 @@
       <SDLCheck>false</SDLCheck>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>

@@ -106,6 +106,9 @@ namespace windows
       static bool _is_light_theme();
 
 
+      ::size_i32 get_main_screen_size() override;
+
+
    };
 
 

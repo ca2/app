@@ -1027,7 +1027,29 @@ namespace windows
    }
 
 
-   __pointer(nano_device) create_device();
+
+   ::size_i32 nano_window::get_main_screen_size()
+   {
+
+      HWND hwndDesktop = ::GetDesktopWindow();
+
+      if (!hwndDesktop)
+      {
+
+         return nano_window_implementation::get_main_screen_size();
+
+      }
+
+      RECT r;
+
+      ::GetWindowRect(hwndDesktop, &r);
+
+      return { r.right -r.left, r.bottom - r.top };
+
+
+   }
+
+   
 
 
 } // namespace windows

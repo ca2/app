@@ -464,7 +464,7 @@ namespace account
 
       get_client_rect(rectangleClient);
 
-      m_plogin->layout().sketch() = rectangleClient;
+      m_plogin->place(rectangleClient);
 
       //m_plogin->on_layout(pgraphics);
 

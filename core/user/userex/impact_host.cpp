@@ -111,7 +111,7 @@ namespace userex
 
       pframewindow->order_front();
 
-      pframewindow->set_dim(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5);
+      pframewindow->place(::rectangle_i32_dimension(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5));
 
       pframewindow->display();
 

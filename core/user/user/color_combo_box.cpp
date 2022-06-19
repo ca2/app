@@ -149,7 +149,7 @@ namespace user
 
                pframe->order(e_zorder_top_most);
                
-               pframe->set_dim(rectangleWindow.left, rectangleWindow.bottom, 400, 200);
+               pframe->set_placement(rectangleWindow.left, rectangleWindow.bottom, 400, 200);
                
                pframe->display();
 

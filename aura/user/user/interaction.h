@@ -1598,7 +1598,12 @@ namespace user
       //virtual void set_size(i32 cx, i32 cy);
       //virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
       virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch);
-      //virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
+      inline void set_placement(i32 x, i32 y, i32 cx, i32 cy, enum_layout elayout = e_layout_sketch)
+      {
+         
+         place(::rectangle_i32_dimension(x, y, cx, cy));
+         
+      }
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
 
 

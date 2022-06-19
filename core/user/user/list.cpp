@@ -3213,7 +3213,7 @@ namespace user
 
          m_plistheader->order_bottom();
 
-         m_plistheader->set_dim(0, 0, (int)maximum(m_iItemWidth + 10, rectangleFocus.width()), (int)m_dItemHeight);
+         m_plistheader->place(::rectangle_i32_dimension(0, 0, (int)maximum(m_iItemWidth + 10, rectangleFocus.width()), (int)m_dItemHeight));
 
          m_plistheader->display();;
 

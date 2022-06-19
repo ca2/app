@@ -595,7 +595,7 @@ namespace account
 
             point.y = pointNow.y - m_pointLButtonDownPos.y;
 
-            move_to(point);
+            set_position(point);
 
             m_bDrag = false;
 

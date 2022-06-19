@@ -196,18 +196,18 @@ namespace account
       i32 pad = (int)(5 * ry);
 
       i32 y = (int)((49 + 86) * ry);
-      m_pstillUser->set_dim(x1, y, w2, h1);
+      m_pstillUser->set_placement(x1, y, w2, h1);
       y += h1 + pad;
-      m_peditUser->set_dim(x1, y, w2, h1);
+      m_peditUser->set_placement(x1, y, w2, h1);
       y += h1 + pad;
-      m_pstillPassword->set_dim(x1, y, w2, h1);
+      m_pstillPassword->set_placement(x1, y, w2, h1);
       y += h1 + pad;
-      m_peditPassword->set_dim(x1, y, w2, h1);
+      m_peditPassword->set_placement(x1, y, w2, h1);
       y += h1 + pad;
       y += pad + h1 + pad;
-      m_pbutton->set_dim(x1, y, w2, h1 * 3);;
+      m_pbutton->set_placement(x1, y, w2, h1 * 3);;
 
-      m_pbuttonClose->set_dim(w - 36, 12, 24, 24);
+      m_pbuttonClose->set_placement(w - 36, 12, 24, 24);
 
    }
 
@@ -444,7 +444,7 @@ namespace account
       m_pstillPassword->set_window_text("");
       m_pbutton->set_window_text("");
 
-      set_dim(0, 0, 800, 450);
+      set_placement(0, 0, 800, 450);
 
       m_peditUser->set_keyboard_focus();
 

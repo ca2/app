@@ -164,32 +164,32 @@ namespace account
 
       i32 y = (int) ((49 + 86) * ry);
 
-      m_pstillUser->set_dim(x1,y,w2,h1);
+      m_pstillUser->place(::rectangle_i32_dimension(x1,y,w2,h1));
       m_pstillUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_peditUser->set_dim(x1,y,w2, h1);
+      m_peditUser->place(::rectangle_i32_dimension(x1,y,w2, h1));
       m_peditUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_pstillPassword->set_dim(x1,y,w2, h1);
+      m_pstillPassword->place(::rectangle_i32_dimension(x1,y,w2, h1));
       m_pstillPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_peditPassword->set_dim(x1,y,w2,h1);
+      m_peditPassword->set_placement(x1,y,w2,h1);
       m_peditPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       y += pad + h1 + pad;
 
-      m_pbutton->set_dim(x1,y,w2,h1 * 3);
+      m_pbutton->set_placement(x1,y,w2,h1 * 3);
       m_pbutton->display(::e_display_normal, e_activation_no_activate);
 
-      m_pbuttonClose->set_dim(w - 36,12,24,24);
+      m_pbuttonClose->set_placement(w - 36,12,24,24);
       m_pbuttonClose->display(::e_display_normal, e_activation_no_activate);
 
    }
@@ -508,7 +508,7 @@ namespace account
       int stdw = 800;
       int stdh = 177 + 23 + 1140;
 
-      set_dim(0,0,stdw,stdh);
+      set_placement(0,0,stdw,stdh);
 
       m_peditUser->set_keyboard_focus();
 

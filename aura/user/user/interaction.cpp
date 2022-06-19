@@ -302,7 +302,71 @@ namespace user
    }
 
 
+   void interaction::set_position(const ::point_i32 & point, enum_layout elayout)
+   {
+      
+      if(on_set_position(point, elayout))
+      {
+      
+         m_layout.m_statea[elayout].m_point = point;
+         
+      }
+      
+   }
 
+
+   void interaction::set_size(const ::size_i32 & size, enum_layout elayout)
+   {
+      
+      if(on_set_size(size, elayout))
+      {
+      
+         m_layout.m_statea[elayout].m_size = size;
+         
+      }
+      
+   }
+
+
+   bool interaction::on_set_position(const ::point_i32 & point, enum_layout elayout)
+   {
+      
+      return true;
+      
+   }
+
+
+   bool interaction::on_set_size(const ::size_i32 & size, enum_layout elayout)
+   {
+      
+      string strType = typeid(*this).name();
+      
+      if(strType.contains_ci("control_box"))
+      {
+         
+         if(strType.contains_ci("button"))
+         {
+            
+         }
+         else
+         {
+         
+            output_debug_string("control_box::on_set_size(" + __string(size) + ")");
+            
+            if(size.cx > 500)
+            {
+               
+               output_debug_string("size.cx > 500");
+               
+            }
+         
+         }
+         
+      }
+      
+      return true;
+   
+   }
 
 
    //interaction_draw2d * interaction::get_draw2d()
@@ -1148,71 +1212,71 @@ namespace user
    }
 
 
-   bool interaction::is_host_window() const
-   {
-
-      auto pprimitiveimpl = m_pprimitiveimpl;
-
-      if (!pprimitiveimpl)
-      {
-
-         return false;
-
-      }
-
-      auto pinteractionimpl = pprimitiveimpl.cast<::user::interaction_impl>();
-
-      if (!pinteractionimpl)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   bool interaction::is_host_top_level() const
-   {
-
-      auto psession = get_session();
-
-      if (::is_null(psession))
-      {
-
-         return false;
-
-      }
-
-      __pointer(::user::interaction) puserinteractionHost = psession->m_puserprimitiveHost;
-
-      if (::is_null(puserinteractionHost))
-      {
-
-         return false;
-
-      }
-
-      if (m_puserinteractionParent != puserinteractionHost)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   bool interaction::is_os_host() const
-   {
-
-      return false;
-
-   }
+//   bool interaction::is_host_window() const
+//   {
+//
+//      auto pprimitiveimpl = m_pprimitiveimpl;
+//
+//      if (!pprimitiveimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto pinteractionimpl = pprimitiveimpl.cast<::user::interaction_impl>();
+//
+//      if (!pinteractionimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool interaction::is_host_top_level() const
+//   {
+//
+//      auto psession = get_session();
+//
+//      if (::is_null(psession))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      __pointer(::user::interaction) puserinteractionHost = psession->m_puserprimitiveHost;
+//
+//      if (::is_null(puserinteractionHost))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (m_puserinteractionParent != puserinteractionHost)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//   bool interaction::is_os_host() const
+//   {
+//
+//      return false;
+//
+//   }
 
 
    ::user::element* interaction::get_parent_primitive() const
@@ -1233,44 +1297,12 @@ namespace user
 
       }
 
-      if (m_puserinteractionParent->is_os_host())
+      if (m_puserinteractionParent->is_top_level())
       {
 
          return nullptr;
 
       }
-
-      auto pwindowApplicationHost = windowing()->get_application_host_window();
-
-      if (pwindowApplicationHost)
-      {
-
-         if (m_puserinteractionParent == pwindowApplicationHost->m_puserinteractionimpl->m_puserinteraction)
-         {
-
-            return nullptr;
-
-         }
-
-      }
-      //if (!m_pdescriptor)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      //if (::is_set(get_session()))
-      //{
-
-      //   if (m_puserinteractionParent == get_session()->m_puserinteractionHost)
-      //   {
-
-      //      return nullptr;
-
-      //   }
-
-      //}
 
       return m_puserinteractionParent;
 
@@ -1945,6 +1977,38 @@ namespace user
 
       return pparent->is_sketch_to_design_locked();
 
+   }
+
+
+   void interaction::clear_activation(enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].clear_activation();
+      
+   }
+
+
+   void interaction::set_display(::e_display edisplay, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].m_edisplay = edisplay;
+      
+   }
+
+
+   void interaction::set_layout_state(const layout_state & state, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout] = state;
+      
+   }
+
+
+   void interaction::set_activation(::e_activation eactivation, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].m_eactivation = eactivation;
+      
    }
 
 
@@ -2894,7 +2958,7 @@ namespace user
 
       }
       
-      if(is_host_window())
+      if(is_root())
       {
          
          if(m_puserinteractionpointeraChild)
@@ -5503,6 +5567,33 @@ namespace user
    }
 
 
+
+   bool interaction::_001IsPointInsideInline(const ::point_i32 & point)
+   {
+   
+      return screen_rect().contains(point);
+      
+   }
+
+
+   bool interaction::_001IsClientPointInsideInline(const ::point_i32 & point)
+   {
+      
+      return layout().sketch().client_rect().contains(point);
+      
+      
+   }
+
+
+   bool interaction::_001IsParentClientPointInsideInline(const ::point_i32 & point)
+   {
+      
+      return layout().sketch().parent_client_rect().contains(point);
+      
+      
+   }
+
+
    void interaction::on_message_key_down(::message::message * pmessage)
    {
 
@@ -5696,7 +5787,7 @@ namespace user
 
          pdrag->m_ecursor = e_cursor_move;
 
-         move_to(pdrag->point());
+         set_position(pdrag->point());
 
          set_reposition();
 
@@ -7987,7 +8078,7 @@ namespace user
 
       //}
       if (m_pusersystem) m_pusersystem->destroy();
-      if (m_playout) m_playout->destroy();
+//      if (m_playout) m_playout->destroy();
       if (m_pgraphicscalla) m_pgraphicscalla->destroy();
       if (m_puserinteractionCustomWindowProc) m_puserinteractionCustomWindowProc->destroy();
       if (m_puiLabel) m_puiLabel->destroy();
@@ -8704,7 +8795,7 @@ namespace user
    zorder interaction::zorder(enum_layout elayout) const
    {
 
-      return layout().state(elayout).zorder();
+      return const_layout().state(elayout).zorder();
 
    }
 
@@ -8979,7 +9070,7 @@ namespace user
       auto predZ = [](auto & pui1, auto & pui2)
       {
 
-         return pui1->layout().sketch().zorder() < pui2->layout().sketch().zorder();
+         return pui1->const_layout().sketch().zorder() < pui2->const_layout().sketch().zorder();
 
       };
 
@@ -9908,7 +9999,7 @@ namespace user
 
       //}
 
-      if (is_host_window())
+      if (is_root())
       {
 
          m_puserinteraction->set_size(get_size());
@@ -10024,7 +10115,7 @@ namespace user
 
       }
 
-      if (get_parent() == nullptr || is_host_top_level())
+      if (get_parent() == nullptr || is_top_level())
       {
 
          window_show_change_visibility();
@@ -11317,7 +11408,7 @@ namespace user
 
       }
 
-      if (is_host_window())
+      if (is_top_level())
       {
 
          if (layout().sketch().zorder().is_change_request())
@@ -11549,7 +11640,30 @@ namespace user
    }
 
 
-   // void interaction::window_apply_visual(const struct window_state & windowstate)
+   void interaction::add_appearance(eappearance eappearance, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].m_eappearance += eappearance;
+      
+   }
+
+
+   void interaction::erase_appearance(eappearance eappearance, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].m_eappearance -= eappearance;
+      
+   }
+
+
+   void interaction::toggle_appearance(eappearance eappearance, enum_layout elayout)
+   {
+      
+      m_layout.m_statea[elayout].m_eappearance.toggle(eappearance);
+      
+   }
+
+   // void interaction::window_apply_visual(const struct layout_state & windowstate)
    // {
 
    //    m_pprimitiveimpl->window_apply_visual(windowstate);
@@ -13250,60 +13364,69 @@ namespace user
    }
 
 
-   void interaction::move_to(const ::point_i32 & point)
-   {
+//   void interaction::move_to(const ::point_i32 & point)
+//   {
+//
+//      layout().sketch().origin() = point;
+//
+//   }
 
-      layout().sketch().origin() = point;
+
+//   void interaction::set_size(const ::size_i32 & size)
+//   {
+//
+//      layout().sketch().size() = size;
+//
+//   }
+
+
+//   void interaction::move_to(i32 x, i32 y)
+//   {
+//
+//      move_to({ x, y });
+//
+//   }
+
+
+//   void interaction::set_size(i32 cx, i32 cy)
+//   {
+//
+//      set_size({ cx, cy });
+//
+//   }
+
+
+//   void interaction::set_dim(const ::point_i32 & point, const ::size_i32 & size)
+//   {
+//
+//      place(::rectangle_i32(point, size));
+//
+//   }
+
+
+   void interaction::place(const ::rectangle_i32 & rectangle, enum_layout elayout)
+   {
+      
+      bool bOnSetSize = on_set_size(rectangle.size(), elayout);
+      
+      bool bOnSetPosition = on_set_position(rectangle.origin(), elayout);
+      
+      if(bOnSetSize && bOnSetPosition)
+      {
+
+         layout().m_statea[elayout] = rectangle;
+         
+      }
 
    }
 
 
-   void interaction::set_size(const ::size_i32 & size)
-   {
-
-      layout().sketch().size() = size;
-
-   }
-
-
-   void interaction::move_to(i32 x, i32 y)
-   {
-
-      move_to({ x, y });
-
-   }
-
-
-   void interaction::set_size(i32 cx, i32 cy)
-   {
-
-      set_size({ cx, cy });
-
-   }
-
-
-   void interaction::set_dim(const ::point_i32 & point, const ::size_i32 & size)
-   {
-
-      place(::rectangle_i32(point, size));
-
-   }
-
-
-   void interaction::place(const ::rectangle_i32 & rectangle)
-   {
-
-      layout().sketch() = rectangle;
-
-   }
-
-
-   void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
-   {
-
-      place(rectangle_i32_dimension(x, y, cx, cy));
-
-   }
+//   void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
+//   {
+//
+//      place(rectangle_i32_dimension(x, y, cx, cy));
+//
+//   }
 
 
    interaction & interaction::operator =(const ::rectangle_i32 & rectangle)
@@ -13560,8 +13683,21 @@ namespace user
    void interaction::get_client_rect(RECTANGLE_I32 * lprect, enum_layout elayout) const
    {
 
-      layout().state(elayout).client_rect(lprect);
+      const_layout().state(elayout).client_rect(lprect);
 
+   }
+
+
+   ::rectangle_i32 interaction::get_client_rect(enum_layout elayout) const
+   {
+   
+      ::rectangle_i32 r;
+      
+      get_client_rect(&r, elayout);
+      
+      return r;
+      
+      
    }
 
 
@@ -18044,7 +18180,7 @@ namespace user
       while (puserinteraction)
       {
 
-         point += puserinteraction->layout().origin(elayout);
+         point += puserinteraction->const_layout().origin(elayout);
 
          puserinteraction = puserinteraction->get_parent();
 
@@ -18074,7 +18210,7 @@ namespace user
 
          }
 
-         point += puserinteraction->layout().origin(elayout);
+         point += puserinteraction->const_layout().origin(elayout);
 
          puserinteraction = pparent;
 

@@ -209,7 +209,7 @@ namespace user
 
 #include "aura/graphics/write_text/text_box.h"
 #include "aura/graphics/write_text/font_list.h"
-#include "window_state.h"
+#include "layout_state.h"
 #include "primitive_impl.h"
 
 

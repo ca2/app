@@ -92,7 +92,7 @@ namespace graphics
 
       }
 
-      auto & d = m_pimpl->m_puserinteraction->layout().design();
+      auto & d = m_pimpl->m_puserinteraction->const_layout().design();
 
 //      if(d.m_size.cx == 1)
 //      {

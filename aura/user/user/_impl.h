@@ -111,7 +111,7 @@ namespace user
    inline bool interaction::is_this_visible(enum_layout elayout) const
    {
 
-      return layout().is_this_visible(elayout);
+      return m_layout.is_this_visible(elayout);
 
    }
 
@@ -119,7 +119,7 @@ namespace user
    inline bool interaction::is_this_screen_visible(enum_layout elayout) const
    {
 
-      return layout().is_this_screen_visible(elayout);
+      return m_layout.is_this_screen_visible(elayout);
 
    }
 
@@ -127,7 +127,7 @@ namespace user
    inline bool interaction::is_window_visible(enum_layout elayout) const
    {
 
-      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(elayout).is_visible();
 
    }
 
@@ -135,7 +135,7 @@ namespace user
    inline bool interaction::is_window_screen_visible(enum_layout elayout) const
    {
 
-      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(m_layout.state(elayout).display());
 
    }
 

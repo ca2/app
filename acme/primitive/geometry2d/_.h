@@ -1412,9 +1412,12 @@ inline void collapse_rect(RECT1 * prectangle, const RECT2 & r)
 #include "ellipse.h"
 
 
+template < primitive_point POINT >
+inline void to_string(string & str, const POINT & point);
 
 
-
+template < primitive_size SIZE >
+inline void to_string(string & str, const SIZE & size);
 
 
 

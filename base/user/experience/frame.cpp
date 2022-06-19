@@ -724,7 +724,7 @@ namespace experience
 
       rectangleClient.deflate(rectangleMargin);
 
-      auto eappearance = m_pframewindow->layout().design().appearance();
+      auto eappearance = m_pframewindow->const_layout().design().appearance();
 
       if (!m_pframewindow->layout().is_full_screen() &&
          !(eappearance & ::e_appearance_transparent_frame))
@@ -758,7 +758,7 @@ namespace experience
       rectangleControlBox.top = m_rectangleCaption.top;
       rectangleControlBox.bottom = m_rectangleCaption.bottom;
 
-      if (m_pframewindow->layout().is_this_screen_visible() && !is_iconic(m_pframewindow->layout().design().display()))
+      if (m_pframewindow->const_layout().is_this_screen_visible() && !is_iconic(m_pframewindow->const_layout().design().display()))
       {
 
          get_control_box()->place(rectangleControlBox);
@@ -1047,8 +1047,8 @@ namespace experience
                //&& !m_pframewindow->layout().is_sizing()
                && !m_pframewindow->layout().is_docking()
                //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
-               && m_pframewindow->layout().sketch().display() != e_display_zoomed
-               && m_pframewindow->layout().sketch().display() != e_display_full_screen)
+               && m_pframewindow->const_layout().sketch().display() != e_display_zoomed
+               && m_pframewindow->const_layout().sketch().display() != e_display_full_screen)
             {
 
                defer_frame_placement_snapping();
@@ -1078,7 +1078,7 @@ namespace experience
 
       }
 
-      auto edisplay = m_pframewindow->layout().sketch().display();
+      auto edisplay = m_pframewindow->const_layout().sketch().display();
 
       ::rectangle_i32 rectangle;
 
@@ -1128,17 +1128,17 @@ namespace experience
 
       auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectangleRequest, bPreserveSize);
 
-      if(edisplay != m_pframewindow->layout().sketch().display() ||
+      if(edisplay != m_pframewindow->const_layout().sketch().display() ||
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
-         if (m_pframewindow->layout().m_durationLastSketchToDesign.elapsed() < 800_ms)
+         if (m_pframewindow->const_layout().m_durationLastSketchToDesign.elapsed() < 800_ms)
          {
 
-            if (edisplay != m_pframewindow->layout().design().display())
+            if (edisplay != m_pframewindow->const_layout().design().display())
             {
 
-               edisplay = m_pframewindow->layout().design().display();
+               edisplay = m_pframewindow->const_layout().design().display();
 
             }
 
@@ -1165,19 +1165,19 @@ namespace experience
                if (m_pframewindow->move_manager()->consider_move())
                {
 
-                  m_pframewindow->layout().sketch().origin() = m_pframewindow->move_manager()->m_pointMove;
+                  m_pframewindow->set_position(m_pframewindow->move_manager()->m_pointMove);
 
                }
 
             }
 
-            m_pframewindow->layout().sketch().size() = rectangle.size();
+            m_pframewindow->set_size(rectangle.size());
 
          }
          else
          {
 
-            m_pframewindow->layout().sketch() = rectangle;
+            m_pframewindow->place(rectangle);
 
          }
 
@@ -1190,7 +1190,7 @@ namespace experience
 
          m_pframewindow->m_windowrectangle.m_iWorkspace = iWorkspace;
 
-         m_pframewindow->layout().sketch().display() = edisplay;
+         m_pframewindow->const_layout().sketch().display() = edisplay;
 
       }
       else if (is_docking_appearance(edisplay))
@@ -1203,7 +1203,7 @@ namespace experience
 
             m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 
-            m_pframewindow->layout().sketch() = rectangle;
+            m_pframewindow->place(rectangle);
 
          }
          else if (m_pframewindow->move_manager()->window_is_moving())
@@ -1211,7 +1211,7 @@ namespace experience
 
             m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 
-            m_pframewindow->layout().sketch() = rectangle;
+            m_pframewindow->place(rectangle);
 
             m_pframewindow->set_reposition();
 
@@ -1221,11 +1221,11 @@ namespace experience
 
       auto sizeMin = m_pframewindow->get_window_minimum_size();
 
-      auto size = m_pframewindow->layout().sketch().size();
+      auto size = m_pframewindow->const_layout().sketch().size();
 
       size.ensure_at_least(sizeMin);
 
-      m_pframewindow->layout().sketch().size() = size;
+      m_pframewindow->set_size(size);
 
    }
 
@@ -1233,7 +1233,7 @@ namespace experience
    void frame::sync_dock_grip_border()
    {
 
-      edisplay edisplay = m_pframewindow->layout().sketch().display();
+      edisplay edisplay = m_pframewindow->const_layout().sketch().display();
 
       auto rectangleMargin = m_rectangleMarginNormal;
 

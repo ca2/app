@@ -1,25 +1,9 @@
 #pragma once
 
 
-//inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const lines* plines)
-//{
-//
-//   plines->get_bounding_rectangle(prectangleBounding);
-//
-//   return true;
-//}
-
-
-
 inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const lines* plines)
 {
 
-//   ::RECTANGLE_I32 r;
-
-  // plines->get_bounding_rectangle(&r);
-
-   //copy(prectangleBounding, &r);
-   
    plines->get_bounding_rectangle(prectangleBounding);
 
    return true;
@@ -40,16 +24,6 @@ inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const line
 
 }
 
-
-//inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const lines* plines)
-//{
-//
-//   plines->get_bounding_rectangle(prectangleBounding);
-//
-//   return true;
-//
-//}
-//
 
 inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const polygon_i32* ppolygon)
 {

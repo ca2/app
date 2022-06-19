@@ -542,7 +542,11 @@ namespace experience
 
          rectangle.right = rectangle.left - rectangleMargin.right;
          rectangle.left = rectangle.right - sizeButton.cx;
-
+if(rectangle.left > 400)
+{
+   output_debug_string("rectangle.left > 400");
+   
+}
          if (pbutton)
          {
 
@@ -1153,77 +1157,79 @@ namespace experience
    void control_box::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
       
-#ifdef MACOS
+      return ::user::box::_001OnClip(pgraphics);
       
-      // clip
-      //return;
-      
-#endif
-
-      try
-      {
-
-         ::rectangle_i32 rectangleClip;
-
-         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
-
-         ::rectangle_i32 rectangleClient;
-
-         bool bFirst = true;
-
-         if (pdrawcontext != nullptr)
-         {
-
-            get_client_rect(rectangleClient);
-
-            rectangleClient.bottom++;
-            rectangleClient.right++;
-
-            rectangleClip = rectangleClient;
-
-            bFirst = false;
-
-         }
-
-         //auto pinterationdraw2d = get_draw2d();
-         
-         if(!m_pshapeaClip)
-         {
-            
-            __construct_new(m_pshapeaClip);
-
-            ::user::interaction * pinteraction = this;
-
-            ::rectangle_i32 rectangleFocus;
-
-            while (pinteraction != nullptr)
-            {
-
-               pinteraction->get_window_rect(rectangleFocus);
-
-               screen_to_client(rectangleFocus);
-
-               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
-
-               m_pshapeaClip->add_item(__new(intersect_clip_shape));
-
-               pinteraction = pinteraction->get_parent();
-               
-            }
-
-         }
-         
-         pgraphics->reset_clip();
-
-         pgraphics->add_shapes(*m_pshapeaClip);
-
-      }
-      catch (...)
-      {
-
-         throw ::exception(error_failed, "no more a u");
-
-      }
+//#ifdef MACOS
+//
+//      // clip
+//      //return;
+//
+//#endif
+//
+//      try
+//      {
+//
+//         ::rectangle_i32 rectangleClip;
+//
+//         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+//
+//         ::rectangle_i32 rectangleClient;
+//
+//         bool bFirst = true;
+//
+//         if (pdrawcontext != nullptr)
+//         {
+//
+//            get_client_rect(rectangleClient);
+//
+//            rectangleClient.bottom++;
+//            rectangleClient.right++;
+//
+//            rectangleClip = rectangleClient;
+//
+//            bFirst = false;
+//
+//         }
+//
+//         //auto pinterationdraw2d = get_draw2d();
+//
+//         if(!m_pshapeaClip)
+//         {
+//
+//            __construct_new(m_pshapeaClip);
+//
+//            ::user::interaction * pinteraction = this;
+//
+//            ::rectangle_i32 rectangleFocus;
+//
+//            while (pinteraction != nullptr)
+//            {
+//
+//               pinteraction->get_window_rect(rectangleFocus);
+//
+//               screen_to_client(rectangleFocus);
+//
+//               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
+//
+//               m_pshapeaClip->add_item(__new(intersect_clip_shape));
+//
+//               pinteraction = pinteraction->get_parent();
+//
+//            }
+//
+//         }
+//
+//         pgraphics->reset_clip();
+//
+//         pgraphics->add_shapes(*m_pshapeaClip);
+//
+//      }
+//      catch (...)
+//      {
+//
+//         throw ::exception(error_failed, "no more a u");
+//
+//      }
 
    }
 

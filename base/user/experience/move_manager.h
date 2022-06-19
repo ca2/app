@@ -18,7 +18,7 @@ namespace experience
       point_i32                            m_pointMove;
       bool                             m_bMoving;
       //::u32                             m_uiSWPFlags;
-      ::user::window_state             m_stateBefore;
+      ::user::layout_state             m_stateBefore;
       int                              m_iConsiderMove;
 
 

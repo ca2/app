@@ -41,7 +41,7 @@ namespace user
 
 
 #include "aura/platform/drawable.h"
-#include "aura/user/user/window_state.h"
+#include "aura/user/user/layout_state.h"
 //#include "aura/user/callback.h"
 
 

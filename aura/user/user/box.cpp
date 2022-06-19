@@ -129,7 +129,7 @@ namespace user
 
 #if !defined(_UWP)
 
-      auto edisplay = layout().design().display();
+      auto edisplay = const_layout().design().display();
 
       get_window_rect(m_windowrectangle.m_rectangleWindow, e_layout_design);
 
@@ -188,7 +188,7 @@ namespace user
 
       ::user::interaction::window_show_change_visibility();
 
-      m_windowrectangle.m_edisplay = layout().window().display();
+      m_windowrectangle.m_edisplay = const_layout().window().display();
 
    }
 
@@ -217,7 +217,7 @@ namespace user
       if (should_save_window_rect())
       {
 
-         if (layout().sketch().display() == ::e_display_none)
+         if (const_layout().sketch().display() == ::e_display_none)
          {
 
             return;
@@ -327,7 +327,7 @@ namespace user
 
       enum_display edisplay = windowrectangle.m_edisplay;
 
-      layout().sketch().appearance() = windowrectangle.m_eappearance;
+      const_layout().sketch().appearance() = windowrectangle.m_eappearance;
 
       if (edisplay == e_display_iconic && bInitialFramePosition)
       {
@@ -356,31 +356,24 @@ namespace user
          || (edisplay == e_display_iconic && !bInitialFramePosition)))
       {
 
-         if(bInitialFramePosition)
-         {
+//         if(bInitialFramePosition)
+//         {
+//
+//            display( edisplay);
+//
+//         }
 
-            layout().sketch().display() = edisplay;
+         place(windowrectangle.m_rectangleWindow);
 
-         }
-
-         layout().sketch() = windowrectangle.m_rectangleWindow;
-
-         layout().sketch() = edisplay;
+         display(edisplay);
 
       }
       else if (!bForceRestore && is_docking_appearance(edisplay))
       {
 
-         if(bInitialFramePosition)
-         {
+         place(windowrectangle.m_rectangleSnapped);
 
-            layout().sketch() = edisplay;
-
-         }
-
-         layout().sketch() = windowrectangle.m_rectangleSnapped;
-
-         layout().sketch() = edisplay;
+         display(edisplay);
 
       }
       else
@@ -423,7 +416,7 @@ namespace user
 
       }
 
-      if (layout().sketch().display() == ::e_display_none)
+      if (const_layout().sketch().display() == ::e_display_none)
       {
 
          return;
@@ -443,9 +436,9 @@ namespace user
 
       bool bGot = m_windowrectangleStore.m_edisplay != e_display_undefined;
 
-      windowrect.m_edisplay = layout().sketch().display();
+      windowrect.m_edisplay = const_layout().sketch().display();
 
-      windowrect.m_eappearance = layout().sketch().appearance();
+      windowrect.m_eappearance = const_layout().sketch().appearance();
 
       get_window_rect(windowrect.m_rectangleWindow, e_layout_sketch);
 

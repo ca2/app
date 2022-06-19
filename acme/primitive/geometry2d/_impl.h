@@ -298,4 +298,19 @@ namespace geometry
 } // namespace geometry
 
 
+template < primitive_point POINT >
+inline void to_string(string & str, const POINT & point)
+{
 
+   str = __string(point.x) + ", " + __string(point.y);
+
+}
+
+
+template < primitive_size SIZE >
+inline void to_string(string & str, const SIZE & size)
+{
+
+   str = __string(size.cx) + ", " + __string(size.cy);
+
+}

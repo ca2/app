@@ -446,7 +446,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_add(ppt, m_puserinteraction->layout().design().origin());
+         ::point_add(ppt, m_puserinteraction->const_layout().design().origin());
 
       }
 
@@ -459,7 +459,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_sub(ppt, m_puserinteraction->layout().design().origin());
+         ::point_sub(ppt, m_puserinteraction->const_layout().design().origin());
 
       }
 

@@ -267,7 +267,7 @@ namespace user
       if (pcreate->m_bMakeVisible)
       {
 
-         if (!::is_screen_visible(pframe->layout().sketch().display()))
+         if (!::is_screen_visible(pframe->const_layout().sketch().display()))
          {
 
             pframe->display(e_display_default);

@@ -1185,8 +1185,8 @@ namespace user
 
       prectangle->left = 0;
       prectangle->top = 0;
-      prectangle->right = layout().sketch().size().cx;
-      prectangle->bottom = layout().sketch().size().cy;
+      prectangle->right = const_layout().sketch().size().cx;
+      prectangle->bottom = const_layout().sketch().size().cy;
 
       return true;
 
@@ -1239,8 +1239,8 @@ namespace user
 
          rectangle.top = rectangleClient.bottom;
          rectangle.left = rectangleClient.right;
-         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->layout().design().size().cx);
-         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->layout().design().size().cy);
+         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->const_layout().design().size().cx);
+         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->const_layout().design().size().cy);
 
          pgraphics->fill_rectangle(rectangle, argb(127, 127, 127, 127));
 

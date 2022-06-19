@@ -5,8 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA interaction_layout :
-      virtual public ::object
+   class CLASS_DECL_AURA interaction_layout
    {
    public:
 
@@ -35,13 +34,14 @@ namespace user
       bool                                      m_bRequestReady;
 
 
-      //class window_state *                      m_pstate;
-      class window_state                        m_statea[5];
-      //struct window_state                     m_stateRequest2;
-      //struct window_state                     m_stateProcess2;
-      //struct window_state                     m_stateOffScreen;
-      //struct window_state                     m_stateScreenBuffer;
-      //struct window_state                     m_stateEventScreen;
+      //class layout_state *                      m_pstate;
+      //class layout_state                        m_statea[5];
+      class layout_state                        m_statea[5];
+      //struct layout_state                     m_stateRequest2;
+      //struct layout_state                     m_stateProcess2;
+      //struct layout_state                     m_stateOffScreen;
+      //struct layout_state                     m_stateScreenBuffer;
+      //struct layout_state                     m_stateEventScreen;
 
 
       enumeration < enum_flag >                          m_eflag;
@@ -109,7 +109,7 @@ namespace user
 
 
       interaction_layout();
-      ~interaction_layout() override;
+      ~interaction_layout();
 
 
       bool is_top_level() const { return m_iStateCount == e_layout_count_owner; }
@@ -139,7 +139,7 @@ namespace user
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       //virtual bool get_window_rect(RECTANGLE_I32 * prectangle);
-      
+
 
 
       //inline ::point_i32 window_parent_top_left() { return m_pointParentWindow; }
@@ -170,34 +170,47 @@ namespace user
       inline bool is_minimal(enum_layout elayout = e_layout_design) const { return ::window_is_minimal(state(elayout).display()); }
 
 
+      friend class interaction;
+      
+   protected:
+
+      inline class layout_state& state(enum_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+      inline class layout_state& sketch() { return state(e_layout_sketch); }
+      inline class layout_state& design() { return state(e_layout_design); }
+      inline class layout_state& normal() { return state(e_layout_normal); }
+      inline class layout_state& output() { return state(e_layout_output); }
+      inline class layout_state & window() { return state(e_layout_window); }
+      virtual void set_initial_dim(const ::point_i32 & p, const ::size_i32 & s);
+
+      inline void set_appearance(eappearance eappearance) { sketch() = eappearance; }
+      inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; }
+      inline void erase_appearance(eappearance eappearance) { sketch() -= eappearance; }
+      inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; }
+      inline void clear_appearance() { sketch() = e_appearance_none; }
+      virtual void post_redraw(bool bAscendants = true);
+      virtual void set_reposition(bool bSetThis = true);
+      virtual void _set_reposition(bool bSetThis = true);
+
+   public:
+      
+      inline const class layout_state& state(enum_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+
+      inline const class layout_state& sketch() const { return state(e_layout_sketch); }
 
 
-
-      inline const class window_state& state(enum_layout elayout) const { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
-      inline class window_state& state(enum_layout elayout) { ASSERT(elayout >= 0 && elayout < m_iStateCount); return m_statea[elayout]; }
+      inline const class layout_state& design() const { return state(e_layout_design); }
 
 
-      inline const class window_state& sketch() const { return state(e_layout_sketch); }
-      inline class window_state& sketch() { return state(e_layout_sketch); }
+      inline const class layout_state& normal() const { return state(e_layout_normal); }
+
+      //inline const class layout_state& bitmap() const { return state(e_layout_bitmap); }
+      //inline class layout_state& bitmap() { return state(e_layout_bitmap); }
 
 
-      inline const class window_state& design() const { return state(e_layout_design); }
-      inline class window_state& design() { return state(e_layout_design); }
+      inline const class layout_state& output() const { return state(e_layout_output); }
 
 
-      inline const class window_state& normal() const { return state(e_layout_normal); }
-      inline class window_state& normal() { return state(e_layout_normal); }
-
-      //inline const class window_state& bitmap() const { return state(e_layout_bitmap); }
-      //inline class window_state& bitmap() { return state(e_layout_bitmap); }
-
-
-      inline const class window_state& output() const { return state(e_layout_output); }
-      inline class window_state& output() { return state(e_layout_output); }
-
-
-      inline const class window_state & window() const { return state(e_layout_window); }
-      inline class window_state & window() { return state(e_layout_window); }
+      inline const class layout_state & window() const { return state(e_layout_window); }
 
 
       inline enum_layout_experience layout_experience() const { return m_elayoutexperience; }
@@ -221,7 +234,6 @@ namespace user
 
 
 
-      virtual void set_initial_dim(const ::point_i32 & p, const ::size_i32 & s);
 
 //      virtual zorder order(enum_layout elayout) const;
 
@@ -231,19 +243,9 @@ namespace user
       //inline bool pending_request() const { return request() != process(); }
 
 
-
-
       inline bool has_appearance(eappearance eappearance) const { return design().appearance() & eappearance; }
-      inline void set_appearance(eappearance eappearance) { sketch() = eappearance; }
-      inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; }
-      inline void erase_appearance(eappearance eappearance) { sketch() -= eappearance; }
-      inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; }
-      inline void clear_appearance() { sketch() = e_appearance_none; }
 
 
-      virtual void post_redraw(bool bAscendants = true);
-      virtual void set_reposition(bool bSetThis = true);
-      virtual void _set_reposition(bool bSetThis = true);
 
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
 

@@ -1257,7 +1257,7 @@ namespace user
 
          display(e_display_normal);
 
-         auto & window_state = layout().sketch();
+         auto & window_state = const_layout().sketch();
 
          string str;
 
@@ -1354,7 +1354,7 @@ namespace user
       if (m_pcombo)
       {
 
-         if (is_screen_visible(layout().sketch().display()))
+         if (is_screen_visible(const_layout().sketch().display()))
          {
 
             {

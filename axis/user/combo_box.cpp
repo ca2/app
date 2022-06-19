@@ -669,7 +669,7 @@ namespace user
                _001ToggleDropDown();
 
             }
-            else if (!m_plistbox->layout().sketch().is_screen_visible())
+            else if (!m_plistbox->const_layout().sketch().is_screen_visible())
             {
 
                //output_debug_string("test");

@@ -68,7 +68,7 @@ namespace user
    ::size_f64 picture_interaction::get_request_size()
    {
 
-      return layout().sketch().size();
+      return const_layout().sketch().size();
 
    }
 

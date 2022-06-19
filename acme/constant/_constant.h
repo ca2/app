@@ -596,7 +596,7 @@ enum enum_border
 };
 
 
-enum enum_window_flag
+enum enum_window_flag : i64
 {
 
 
@@ -631,7 +631,9 @@ enum enum_window_flag
    e_window_flag_satellite_window_if_child = 1 << 28,
    e_window_flag_embedded_prodevian_if_child = 1 << 29,
    e_window_flag_composite = 1 << 30,
-
+   e_window_flag_hosted = 1 << 31,
+   e_window_flag_top_level = 1ll << 32,
+   e_window_flag_root = 1ll << 33,
 
 };
 

@@ -448,7 +448,7 @@ namespace user
          rectangle.right = ::i32(size.cx * 1.6);
          rectangle.bottom = ::i32(size.cy * 1.4);
 
-         layout().sketch().size() = rectangle.size();
+         const_layout().sketch().size() = rectangle.size();
 
       }
       else if (m_estyle == style_image)
@@ -456,7 +456,7 @@ namespace user
 
          auto size = m_pimage->size();
 
-         layout().sketch().size() = size;
+         set_size(size);
 
       }
       else
@@ -464,7 +464,7 @@ namespace user
 
          auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
-         layout().sketch().size() = sizeTotal;
+         set_size(sizeTotal);
 
       }
 

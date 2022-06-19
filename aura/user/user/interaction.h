@@ -171,7 +171,9 @@ namespace user
 
       ::user::interaction::e_updown                m_eupdown;
 
+   protected:
       ::user::interaction_layout                   m_layout;
+   public:
 
       index                                        m_iItem;
       index                                        m_iSubItem;
@@ -389,6 +391,12 @@ namespace user
 
       //void enable_drag_move();
 
+      
+      virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);
+      virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);
+      
+      virtual bool on_set_position(const ::point_i32 & point, enum_layout elayout);
+      virtual bool on_set_size(const ::size_i32 & size, enum_layout elayout);
 
       //virtual interaction_draw2d * get_draw2d();
       double point_dpi(double d) override;
@@ -421,7 +429,7 @@ namespace user
       inline iterator proper_children() { return {this, e_next_proper, this}; }
 
 
-      const class ::user::interaction_layout& layout() const { return m_layout; }
+      const class ::user::interaction_layout& const_layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
       inline double screen_scaler() const;
@@ -675,6 +683,11 @@ namespace user
       float preferred_dpi_y() override;
       float preferred_density() override;
 
+      
+      virtual void add_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
+      virtual void erase_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
+      virtual void toggle_appearance(eappearance eappearance, enum_layout elayout = e_layout_sketch);
+
 
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
@@ -690,6 +703,14 @@ namespace user
 
       virtual bool is_sketch_to_design_locked() const;
 
+      
+      virtual void clear_activation(enum_layout elayout = e_layout_design);
+      
+      virtual void set_display(::e_display edisplay = e_display_default, enum_layout elayout = e_layout_design);
+      
+      virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_design);
+
+      virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
 
@@ -705,7 +726,7 @@ namespace user
       //virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow) override;
       virtual void _001UpdateWindow() override;
-      //virtual void window_apply_visual(const class window_state& windowstate) override;
+      //virtual void window_apply_visual(const class layout_state& windowstate) override;
 
 
 
@@ -720,7 +741,7 @@ namespace user
       virtual void display_previous_restore();
 
       virtual void get_client_rect(RECTANGLE_I32* lprect, enum_layout elayout = e_layout_design) const;
-      inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
+      virtual ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const;
 
 
       virtual void get_window_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { *lprect = get_window_rect(elayout); }
@@ -1359,9 +1380,9 @@ namespace user
 
       virtual rectangle_i32 screen_rect() const;
 
-      inline bool _001IsPointInsideInline(const ::point_i32 & point) { return screen_rect().contains(point); }
-      inline bool _001IsClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().client_rect().contains(point); }
-      inline bool _001IsParentClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().parent_client_rect().contains(point); }
+      virtual bool _001IsPointInsideInline(const ::point_i32 & point);
+      virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);
+      virtual  bool _001IsParentClientPointInsideInline(const ::point_i32 & point);
 
       virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
@@ -1400,9 +1421,9 @@ namespace user
       virtual ::user::interaction * get_first_child_window() const override;
 
 
-      virtual bool is_host_window() const;
-      virtual bool is_host_top_level() const;
-      virtual bool is_os_host() const;
+      inline bool is_hosted() const { return m_ewindowflag & e_window_flag_hosted; }
+      inline bool is_top_level() const { return m_ewindowflag & e_window_flag_top_level; }
+      inline bool is_root() const  { return m_ewindowflag & e_window_flag_root; }
 
       ::user::element * get_parent_primitive() const override;
 
@@ -1571,13 +1592,13 @@ namespace user
 
       virtual void keep_alive(::object* pliveobject = nullptr) override;
 
-      virtual void move_to(const ::point_i32& point);
-      virtual void set_size(const ::size_i32& size);
-      virtual void move_to(i32 x, i32 y);
-      virtual void set_size(i32 cx, i32 cy);
-      virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
-      virtual void place(const ::rectangle_i32& rectangle);
-      virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
+      //virtual void move_to(const ::point_i32& point);
+      //virtual void set_size(const ::size_i32& size);
+      //virtual void move_to(i32 x, i32 y);
+      //virtual void set_size(i32 cx, i32 cy);
+      //virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
+      virtual void place(const ::rectangle_i32& rectangle, enum_layout elayout = e_layout_sketch);
+      //virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
 
 
@@ -2011,11 +2032,11 @@ namespace user
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _parent_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s - ::size_i32(layout().origin(elayout)); }
+      inline void _parent_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s - ::size_i32(m_layout.origin(elayout)); }
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _client_to_parent(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(layout().origin(elayout)); }
+      inline void _client_to_parent(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(m_layout.origin(elayout)); }
 
 
       template < typename OFFSETABLE, typename SOURCE >

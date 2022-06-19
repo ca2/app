@@ -454,7 +454,7 @@ namespace user
 
             }
 
-            m_edisplayParentFrameAutoHide = top_level_frame()->layout().design().display();
+            m_edisplayParentFrameAutoHide = top_level_frame()->const_layout().design().display();
 
             return bNeedLayout;
 
@@ -481,7 +481,7 @@ namespace user
 
          }
 
-         m_edisplayParentFrameAutoHide = top_level_frame()->layout().design().display();
+         m_edisplayParentFrameAutoHide = top_level_frame()->const_layout().design().display();
 
          return bNeedLayout;
 
@@ -597,7 +597,7 @@ namespace user
       if (get_parent_frame() != nullptr && (bNeedLayout || !get_parent_frame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = get_parent_frame()->layout().design().display();
+         m_edisplayParentFrameAutoHide = get_parent_frame()->const_layout().design().display();
 
       }
 

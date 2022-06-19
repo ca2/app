@@ -824,9 +824,9 @@ namespace user
 
       bool bWindowsApplyVisual = true;
 
-      auto & edisplayOutput = m_puserinteraction->layout().output().m_edisplay;
+      auto & edisplayOutput = m_puserinteraction->const_layout().output().m_edisplay;
 
-      auto & edisplayDesign = m_puserinteraction->layout().design().m_edisplay;
+      auto & edisplayDesign = m_puserinteraction->const_layout().design().m_edisplay;
 
       if (edisplayOutput != edisplayDesign)
       {
@@ -842,7 +842,7 @@ namespace user
 
       }
 
-      edisplayOutput = edisplayDesign;
+      m_puserinteraction->set_display(edisplayDesign, e_layout_output);
 
       if (!m_puserinteraction)
       {
@@ -1063,7 +1063,7 @@ namespace user
 
             }
 
-            bool bIsThisScreenVisible = m_puserinteraction->layout().design().is_screen_visible();
+            bool bIsThisScreenVisible = m_puserinteraction->const_layout().design().is_screen_visible();
 
             if(!m_pimpl)
             {

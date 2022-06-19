@@ -586,7 +586,7 @@ namespace user
 
          puserinteraction->place(rectangleClient);
 
-         if (puserinteraction->layout().sketch().is_visible())
+         if (puserinteraction->const_layout().sketch().is_visible())
          {
 
             puserinteraction->display();
@@ -754,7 +754,7 @@ namespace user
 
       }
 
-      if (!puserinteractionpointeraChild->first_interaction()->layout().sketch().is_visible())
+      if (!puserinteractionpointeraChild->first_interaction()->const_layout().sketch().is_visible())
       {
 
          return false;

@@ -54,7 +54,7 @@ namespace experience
 
       }
 
-      m_stateBefore = m_pframewindow->layout().sketch();
+      m_stateBefore = m_pframewindow->const_layout().sketch();
 
       auto pointCursor = pmouse->m_point;
 
@@ -140,7 +140,7 @@ namespace experience
 
          ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
-         if (::is_docking_appearance(pframewindow->layout().sketch().display()))
+         if (::is_docking_appearance(pframewindow->const_layout().sketch().display()))
          {
 
             pframewindow->m_pframe->defer_frame_placement_snapping();
@@ -149,7 +149,7 @@ namespace experience
          else
          {
 
-            pframewindow->move_to(pointMove.x, pointMove.y);
+            pframewindow->set_position(pointMove);
 
          }
 
@@ -183,7 +183,7 @@ namespace experience
 
       }
 
-      bool bApply = !is_docking_appearance(m_pframewindow->layout().sketch().display());
+      bool bApply = !is_docking_appearance(m_pframewindow->const_layout().sketch().display());
 
       window_stop_moving(bApply, pmouse);
 
@@ -241,7 +241,7 @@ namespace experience
 
             ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
 
-            m_pframewindow->layout().sketch() = m_stateBefore;
+            m_pframewindow->set_layout_state(m_stateBefore, ::user::e_layout_sketch);
 
          }
 

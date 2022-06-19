@@ -211,7 +211,7 @@ namespace user
 
          puiClose->resize_to_fit(pgraphics);
 
-         puiClose->move_to(m_size.cx - puiClose->width() - 2, 2);
+         puiClose->set_position({m_size.cx - puiClose->width() - 2, 2});
 
       }
 
@@ -256,11 +256,11 @@ namespace user
          if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
          {
 
-            pitem->m_puserinteraction->set_dim(
+            pitem->m_puserinteraction->place(::rectangle_i32_dimension(
             prectangle->left + pitem->m_iLevel * g_base_menu_indent,
             prectangle->top,
             iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-            prectangle->bottom - prectangle->top);
+            prectangle->bottom - prectangle->top));
 
             pitem->m_puserinteraction->display();
 

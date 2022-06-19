@@ -868,7 +868,7 @@ namespace user
 
       }
 
-      layout().sketch() = e_zorder_top_most;
+      order(e_zorder_top_most);
 
       place(rectangleWindow);
 

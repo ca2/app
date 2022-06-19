@@ -1069,7 +1069,7 @@ namespace user
 
       m_bLockSketchToDesign = true;
 
-      layout().sketch().display() = e_display_none;
+      set_display(e_display_none);
 
       output_debug_string("\nm_bLayoutEnable false");
 
@@ -2337,7 +2337,7 @@ namespace user
       if (edisplay == e_display_default)
       {
 
-         if (!::is_visible(layout().sketch().display()))
+         if (!::is_visible(const_layout().sketch().display()))
          {
 
             edisplay = e_display_normal;
@@ -2352,13 +2352,13 @@ namespace user
          else
          {
 
-            edisplay = layout().sketch().display();
+            edisplay = const_layout().sketch().display();
 
          }
 
       }
 
-      if(!layout().sketch().zorder().is_change_request() || layout().sketch().zorder() != e_zorder_top)
+      if(!const_layout().sketch().zorder().is_change_request() || const_layout().sketch().zorder() != e_zorder_top)
       {
 
          order_top();

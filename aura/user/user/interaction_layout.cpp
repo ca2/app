@@ -43,8 +43,6 @@ namespace user
    void interaction_layout::create_state(int iStateCount)
    {
 
-      synchronous_lock synchronouslock(mutex());
-
       if (iStateCount == m_iStateCount)
       {
 

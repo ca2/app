@@ -311,7 +311,7 @@ namespace experience_core
 
       case e_element_move_grip_minimal:
 
-         if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
+         if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
          {
                    
             return false;

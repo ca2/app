@@ -126,7 +126,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_EXPORT window_state :
+   class CLASS_DECL_EXPORT layout_state :
       public visual_state
    {
    public:
@@ -148,20 +148,20 @@ namespace user
 
       using visual_state::operator =;
 
-      window_state& operator = (const ::zorder& zorder) { m_zorder = zorder; return *this; }
+      layout_state& operator = (const ::zorder& zorder) { m_zorder = zorder; return *this; }
 
       class ::zorder zorder() const { return m_zorder; }
 
       void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
 
       ::e_activation activation() const { return m_eactivation; }
-      window_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
-      window_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
+      layout_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
+      layout_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
 
-      bool operator == (const window_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(window_state)); }
-      bool operator != (const window_state & windowstate) const { return !operator == (windowstate); }
+      bool operator == (const layout_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(layout_state)); }
+      bool operator != (const layout_state & windowstate) const { return !operator == (windowstate); }
 
-      window_state & copy_size(window_state & windowstate)
+      layout_state & copy_size(layout_state & windowstate)
       {
 
          m_size = windowstate.m_size;
@@ -170,7 +170,7 @@ namespace user
 
       }
 
-      window_state & copy_position(window_state & windowstate)
+      layout_state & copy_position(layout_state & windowstate)
       {
 
          m_point = windowstate.m_point;
@@ -179,7 +179,7 @@ namespace user
 
       }
 
-      window_state & copy_zorder(window_state & windowstate)
+      layout_state & copy_zorder(layout_state & windowstate)
       {
 
          m_zorder = windowstate.m_zorder;
@@ -188,7 +188,7 @@ namespace user
 
       }
 
-      window_state & copy_display(window_state & windowstate)
+      layout_state & copy_display(layout_state & windowstate)
       {
 
          m_edisplay = windowstate.m_edisplay;

@@ -131,12 +131,12 @@ namespace user
    }
 
 
-   bool frame::is_os_host() const
-   {
-
-      return false;
-
-   }
+//   bool frame::is_os_host() const
+//   {
+//
+//      return false;
+//
+//   }
 
 
    style * frame::get_style() const
@@ -554,7 +554,7 @@ namespace user
          return m_sizeMinimum;
 
       }
-      else if (layout().sketch().display() == ::e_display_minimal)
+      else if (const_layout().sketch().display() == ::e_display_minimal)
       {
 
          return ::size_i32(8, 8);

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1CEBD8285EAFC4001ED6E1 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CEBD7285EAFC4001ED6E1 /* libaura.dylib */; };
 		9A64C1172660BBEF0074030F /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9A64C11A2660BBF60074030F /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFE2651A84D00C0D8A1 /* main_window.cpp */; };
 		9A64C11B2660BC130074030F /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1CEBD7285EAFC4001ED6E1 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C11D2660BC5C0074030F /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C11F2660BC5C0074030F /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1CEBD8285EAFC4001ED6E1 /* libaura.dylib in Frameworks */,
 				9A64C1222660BCC10074030F /* libaqua.dylib in Frameworks */,
 				9AC01D7E2748C548006BEBCC /* libapp_app.dylib in Frameworks */,
 				9A64C11E2660BC5C0074030F /* libacme.dylib in Frameworks */,
@@ -117,6 +120,7 @@
 		9A488A5124EB4BAF00119EC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A1CEBD7285EAFC4001ED6E1 /* libaura.dylib */,
 				9A64C1212660BCC10074030F /* libaqua.dylib */,
 				9A64C11D2660BC5C0074030F /* libacme.dylib */,
 				9A64C11F2660BC5C0074030F /* libapex.dylib */,

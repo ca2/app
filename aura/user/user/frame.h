@@ -120,7 +120,7 @@ namespace user
 
       virtual ::task_pool  * taskpool() override;
 
-      virtual bool is_os_host() const override;
+      //virtual bool is_os_host() const override;
 
       using box::get_style;
       virtual style * get_style() const override;

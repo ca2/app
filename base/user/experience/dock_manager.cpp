@@ -114,7 +114,7 @@ namespace experience
 
       rectangleCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
 
-      if (m_pframewindow->layout().design().display() & e_display_bottom)
+      if (m_pframewindow->const_layout().design().display() & e_display_bottom)
       {
 
          rectangleCenter.bottom -= cyCenterArea / 4;
@@ -129,7 +129,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & e_display_top)
+      if (m_pframewindow->const_layout().design().display() & e_display_top)
       {
 
          rectangleCenter.top += cyCenterArea / 4;
@@ -144,7 +144,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & e_display_right)
+      if (m_pframewindow->const_layout().design().display() & e_display_right)
       {
 
          rectangleCenter.right -= cxCenterArea / 4;
@@ -159,7 +159,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->layout().design().display() & e_display_left)
+      if (m_pframewindow->const_layout().design().display() & e_display_left)
       {
 
          rectangleCenter.left += cxCenterArea / 4;
@@ -178,7 +178,7 @@ namespace experience
 
       enum_display edisplayDock = e_display_none;
 
-      enum_display edisplayOld = m_pframewindow->layout().sketch().display();
+      enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
 
       ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
 
@@ -296,7 +296,7 @@ namespace experience
             if(rectangleNew != rectangleScreenOld)
             {
 
-               m_pframewindow->move_to(pointMove);
+               m_pframewindow->set_position(pointMove);
 
                bChange = true;
 
@@ -386,7 +386,7 @@ namespace experience
 
       m_sizeOrigin = rectangleWindow.size();
 
-      m_edisplayOrigin = m_pframewindow->layout().design().display();
+      m_edisplayOrigin = m_pframewindow->const_layout().design().display();
 
       m_mapWorkspaceRect.erase_all();
 

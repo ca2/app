@@ -375,7 +375,7 @@ void simple_frame_window::WindowDataSaveWindowRect()
 bool simple_frame_window::_001OnBeforeAppearance()
 {
 
-   edisplay edisplay = layout().sketch().display();
+   edisplay edisplay = const_layout().sketch().display();
 
    if (edisplay == ::e_display_up || edisplay == ::e_display_down)
    {
@@ -866,7 +866,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_ebuttonaHide.contains(::experience::e_button_transparent_frame))
       {
 
-         layout().erase_appearance(e_appearance_transparent_frame);
+         erase_appearance(e_appearance_transparent_frame);
 
       }
 
@@ -1063,10 +1063,10 @@ void simple_frame_window::on_message_display_change(::message::message * pmessag
 
    __pointer(::user::message) pusermessage(pmessage);
 
-   if (is_host_top_level())
+   if (is_top_level())
    {
 
-      ::e_display edisplay = layout().sketch().display();
+      ::e_display edisplay = const_layout().sketch().display();
 
       display(edisplay, e_activation_display_change);
 
@@ -1204,7 +1204,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
       auto rectangle = get_host_window()->get_client_rect();
 
-      set_dim(rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+      place(rectangle);
 
    }
 
@@ -1368,7 +1368,7 @@ bool simple_frame_window::frame_is_transparent()
       
    }
    
-   auto eappearance = layout().design().appearance();
+   auto eappearance = const_layout().design().appearance();
 
    if(eappearance & ::e_appearance_transparent_frame)
    {
@@ -1500,7 +1500,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pme
 void simple_frame_window::_001OnToggleTransparentFrame(::message::message * pmessage)
 {
 
-   layout().toggle_appearance(e_appearance_transparent_frame);
+   toggle_appearance(e_appearance_transparent_frame);
 
    display();
 
@@ -1996,7 +1996,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          rectangleFrame = screen_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
+         FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2027,7 +2027,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       }
 
-      if(is_host_top_level())
+      if(is_top_level())
       {
 
          if(m_ewindowflag & e_window_flag_main_frame)
@@ -2046,12 +2046,12 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       //pusersystem->set_rect(rectangleFrame);
 
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(layout().sketch().display().eflag()));
+      FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {
 
-         layout().sketch() = e_activation_set_foreground;
+         set_activation(e_activation_set_foreground);
 
          //dwDefaultStyle |= WS_VISIBLE;
 
@@ -2061,7 +2061,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          set_need_layout();
 
-         layout().sketch().display() = e_display_none;
+         set_display(e_display_none);
 
          INFORMATION("simple_frame_window::LoadFrame DISPLAY_NONE");
 
@@ -2166,7 +2166,7 @@ void simple_frame_window::on_frame_position()
    if (is_frame_experience_enabled())
    {
 
-      if (layout().design().display() == ::e_display_iconic)
+      if (const_layout().design().display() == ::e_display_iconic)
       {
 
          display(e_display_normal);
@@ -2219,7 +2219,7 @@ bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
       else if (m_bFrameMoveEnable)
       {
 
-         bool bHostTopLevel = is_host_top_level();
+         bool bHostTopLevel = is_top_level();
 
          if (bHostTopLevel)
          {

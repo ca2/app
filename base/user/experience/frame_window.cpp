@@ -486,7 +486,7 @@ namespace experience
    bool frame_window::is_sizing_enabled()
    {
 
-      return is_frame_experience_enabled() && m_bSizeEnable && layout().design().display() != e_display_fixed_size;
+      return is_frame_experience_enabled() && m_bSizeEnable && const_layout().design().display() != e_display_fixed_size;
 
    }
 
@@ -770,7 +770,7 @@ namespace experience
 
             TRACE("button_clicked : button_transparent_frame");
 
-            layout().toggle_appearance(e_appearance_transparent_frame);
+            toggle_appearance(e_appearance_transparent_frame);
 
             display();
 
@@ -887,7 +887,7 @@ namespace experience
 
          case e_button_transparent_frame:
 
-            layout().toggle_appearance(e_appearance_transparent_frame);
+            toggle_appearance(e_appearance_transparent_frame);
 
             display();
 
@@ -1684,7 +1684,7 @@ namespace experience
       if (!_001OnBeforeAppearance())
       {
 
-         layout().sketch().display() = layout().design().display();
+         display(const_layout().design().display());
 
          return false;
 
@@ -1705,7 +1705,7 @@ namespace experience
 
          }
 
-         auto edisplay = layout().sketch().display();
+         auto edisplay = const_layout().sketch().display();
 
          //auto eactivation = layout().sketch().activation();
 
@@ -1715,7 +1715,7 @@ namespace experience
             if (m_bitMinimizeToTray)
             {
 
-               layout().sketch() = e_display_notify_icon;
+               display(e_display_notify_icon);
 
             }
 
@@ -1726,7 +1726,7 @@ namespace experience
             if (m_bFullScreenOnMaximize)
             {
 
-               layout().sketch() = e_display_full_screen;
+               display(e_display_full_screen);
 
             }
 
@@ -1744,10 +1744,10 @@ namespace experience
 
          }
 
-         if (layout().sketch().display() != e_display_iconic)
+         if (const_layout().sketch().display() != e_display_iconic)
          {
 
-            m_windowrectangle.m_edisplayPrevious = layout().sketch().display();
+            m_windowrectangle.m_edisplayPrevious = const_layout().sketch().display();
 
          }
 
@@ -1838,7 +1838,7 @@ namespace experience
 
          }
 
-         ::e_display edisplayPrevious = edisplay != e_display_none ? edisplay : layout().design().display();
+         ::e_display edisplayPrevious = edisplay != e_display_none ? edisplay : const_layout().design().display();
 
          bool bCursorPosition = layout().is_moving();
 
@@ -2042,7 +2042,7 @@ namespace experience
          else if (bTopAndBottom && bLeftAndRight && !bPreserveSize)
          {
 
-            if (layout().sketch().display() == e_display_full_screen)
+            if (const_layout().sketch().display() == e_display_full_screen)
             {
 
                edisplay = e_display_full_screen;
@@ -2123,7 +2123,7 @@ namespace experience
       bool frame_window::_001OnBeforeAppearance()
       {
 
-         auto edisplay = layout().sketch().display();
+         auto edisplay = const_layout().sketch().display();
 
          if (edisplay == e_display_notify_icon)
          {
@@ -2277,7 +2277,7 @@ namespace experience
 
       auto rectangleRequest = screen_rect();
 
-      edisplay edisplay = layout().sketch().display();
+      edisplay edisplay = const_layout().sketch().display();
 
       if (!::is_equivalent(edisplay, e_display_normal))
       {

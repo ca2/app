@@ -137,10 +137,10 @@ namespace user
 
          string strType = __type_name(m_puserinteraction);
 
-         if(m_puserinteraction->is_host_top_level())
+         if(m_puserinteraction->is_top_level())
          {
 
-            INFORMATION("host_top_level");
+            INFORMATION("top_level");
 
          }
          else
@@ -608,7 +608,7 @@ namespace user
 
       //}
 
-      if (!m_puserinteraction->layout().state(elayout).is_visible())
+      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
       {
 
          return false;
@@ -870,20 +870,20 @@ namespace user
 
       }
 
-      if (m_puserinteraction->layout().window().visual() == m_puserinteraction->layout().sketch().visual())
+      if (m_puserinteraction->const_layout().window().visual() == m_puserinteraction->const_layout().sketch().visual())
       {
 
          return;
 
       }
 
-      auto& edisplayOld = m_puserinteraction->layout().window().m_edisplay;
+      auto& edisplayOld = m_puserinteraction->const_layout().window().m_edisplay;
 
-      bool bWasVisible = m_puserinteraction->layout().window().is_visible();
+      bool bWasVisible = m_puserinteraction->const_layout().window().is_visible();
 
-      auto& edisplayNew = m_puserinteraction->layout().sketch().m_edisplay;
+      auto& edisplayNew = m_puserinteraction->const_layout().sketch().m_edisplay;
 
-      bool bNewVisible = m_puserinteraction->layout().sketch().is_visible();
+      bool bNewVisible = m_puserinteraction->const_layout().sketch().is_visible();
 
       bool bChangeVisibility = is_different(bWasVisible, bNewVisible);
 

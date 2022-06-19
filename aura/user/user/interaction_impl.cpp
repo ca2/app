@@ -1142,7 +1142,7 @@ namespace user
    ::color::color interaction_impl::screen_pixel(int x, int y) const
    {
 
-      auto origin = m_puserinteraction->layout().window().origin();
+      auto origin = m_puserinteraction->const_layout().window().origin();
 
       if(::is_null(m_pgraphics))
       {
@@ -3702,7 +3702,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::e_display_iconic;
+      return m_puserinteraction->const_layout().sketch().display() == ::e_display_iconic;
 
    }
 
@@ -3717,7 +3717,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::e_display_zoomed;
+      return m_puserinteraction->const_layout().sketch().display() == ::e_display_zoomed;
 
    }
 
@@ -4544,7 +4544,7 @@ namespace user
 
          INFORMATION("user::interaction_impl::on_message_show_window bShow = true");
 
-         if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
+         if (m_puserinteraction->const_layout().design().display() != ::e_display_iconic)
          {
 
             if (m_puserinteraction->get_parent() == nullptr)
@@ -5056,7 +5056,7 @@ namespace user
       if(strType.contains_ci("list_box"))
       {
 
-         auto edisplay = m_puserinteraction->layout().state(e_layout_design).display();
+         auto edisplay = m_puserinteraction->const_layout().state(e_layout_design).display();
 
          bool bGraphicsSet = m_pgraphics.is_set();
 
@@ -5085,8 +5085,8 @@ namespace user
             monitor_pointer(&iStateCount);
 
             m_pgraphics->update_screen();
-
-            m_puserinteraction->layout().output() = m_puserinteraction->layout().design();
+            
+            m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design());
 
          }
 
@@ -6149,10 +6149,10 @@ namespace user
       }
 
       // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = m_puserinteraction->layout().design();
+      auto & stateOutput = m_puserinteraction->const_layout().design();
 
       // Current/Previous Window State
-      auto & stateWindow = m_puserinteraction->layout().window();
+      auto & stateWindow = m_puserinteraction->const_layout().window();
 
       if (stateOutput == stateWindow)
       {
@@ -6477,11 +6477,11 @@ namespace user
 
       }
 
-      m_puserinteraction->layout().window() = m_puserinteraction->layout().design();
+      m_puserinteraction->set_layout_state(m_puserinteraction->const_layout().design(), e_layout_window);
 
-      m_puserinteraction->layout().design().clear_activation();
+      m_puserinteraction->clear_activation(e_layout_design);
 
-      m_puserinteraction->layout().design().display() = edisplayOutput;
+      m_puserinteraction->set_display(edisplayOutput, e_layout_design);
 
       ::windowing::window * pwindowFocus = nullptr;
 
@@ -6624,7 +6624,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            m_puserinteraction->layout().design() = e_activation_default;
+            m_puserinteraction->set_activation(e_activation_default, e_layout_design);
 
          }
 
@@ -6741,18 +6741,18 @@ namespace user
 
          //m_pwindow->m_point = pmove->m_point;
 
-         auto & layout = m_puserinteraction->layout();
+         auto & layout = m_puserinteraction->const_layout();
 
-         auto & sketch_origin = layout.sketch().origin();
+         auto sketch_origin = layout.sketch().origin();
 
-         auto & window_origin = layout.window().origin();
+         auto window_origin = layout.window().origin();
 
-         window_origin = pmove->m_point;
+         m_puserinteraction->set_position(pmove->m_point, e_layout_window);
 
          if(window_origin != sketch_origin)
          {
 
-            sketch_origin = window_origin;
+            m_puserinteraction->set_position(pmove->m_point, e_layout_sketch);
 
             m_puserinteraction->set_reposition();
 
@@ -6854,17 +6854,17 @@ namespace user
 
       //m_pwindow->m_size = psize->m_size;
 
-      m_puserinteraction->layout().window().size() = psize->m_size;
+      m_puserinteraction->set_size(psize->m_size, e_layout_window);
 
-      if ((m_puserinteraction->layout().sketch().size()
-           != m_puserinteraction->layout().window().size()))
+      if ((m_puserinteraction->const_layout().sketch().size()
+           != m_puserinteraction->const_layout().window().size()))
       {
 
-         m_puserinteraction->layout().sketch().size() = m_puserinteraction->layout().window().size();
+         m_puserinteraction->set_size(m_puserinteraction->const_layout().window().size(), e_layout_sketch);
          
-         int cx = m_puserinteraction->layout().sketch().size().width();
+         int cx = m_puserinteraction->const_layout().sketch().size().width();
          
-         int cy = m_puserinteraction->layout().sketch().size().height();
+         int cy = m_puserinteraction->const_layout().sketch().size().height();
 //         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
          
          m_puserinteraction->set_need_layout();
@@ -7295,7 +7295,7 @@ namespace user
 
       }
 
-      if (!m_puserinteraction->layout().state(elayout).is_visible())
+      if (!m_puserinteraction->const_layout().state(elayout).is_visible())
       {
 
          return false;

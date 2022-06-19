@@ -117,6 +117,13 @@ namespace macos
       //virtual void _wm_nodecorations(int iMap);
       
       void _run_modal_loop() override;
+      
+      
+      ::size_i32 get_main_screen_size() override;
+      
+      
+      ::atom do_synchronously() override;
+      
 
    };
 

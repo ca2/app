@@ -84,6 +84,15 @@ public:
 
    auto operator ->() { return m_p.operator ->(); }
    auto operator ->() const { return m_p.operator ->(); }
+   
+   
+   virtual ::atom do_synchronously()
+   {
+      
+      return m_p->do_synchronously();
+      
+   }
+   
 
 };
 

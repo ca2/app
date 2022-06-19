@@ -18,6 +18,9 @@ public:
    virtual ::string get_message_box_message();
    virtual ::string get_message_box_title();
    virtual ::e_message_box get_message_box_flags();
+   
+   
+   virtual ::atom do_synchronously();
 
 
 };

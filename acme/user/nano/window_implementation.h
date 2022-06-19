@@ -35,6 +35,9 @@ public:
 
    virtual ::size_i32 get_main_screen_size();
 
+   
+   virtual ::atom do_synchronously();
+   
 
 };
 

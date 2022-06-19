@@ -759,3 +759,14 @@ void nano_window::_run_modal_loop()
    m_pimplementation->_run_modal_loop();
    
 }
+
+
+::atom nano_window::do_synchronously()
+{
+   
+   return m_pimplementation->do_synchronously();
+
+}
+
+
+

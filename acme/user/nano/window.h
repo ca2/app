@@ -146,6 +146,9 @@ public:
    
    void _run_modal_loop() override;
    
+   
+   ::atom do_synchronously() override;
+   
 
 };
 

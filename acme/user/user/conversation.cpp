@@ -33,4 +33,12 @@ void conversation::do_message_box(const ::string& strMessage, const string& strT
 }
 
 
+::atom conversation::do_synchronously()
+{
+   
+   return e_message_box_ok;
+   
+}
+
+
 

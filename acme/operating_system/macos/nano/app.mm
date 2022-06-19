@@ -1059,7 +1059,7 @@ void acme_macos_application_main(void * pApplication, int argc, char *argv[])
 //} // namespace user
 
 
-CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy)
+CLASS_DECL_ACME void ns_get_main_screen_size(int & cx, int & cy)
 {
    
    auto frame = [[NSScreen mainScreen] frame];
@@ -1068,6 +1068,55 @@ CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy)
    
    cy = frame.size.height;
    
+}
+
+
+bool g_bNsAppRunning = false;
+
+
+void ns_app_set_running(bool bRunning)
+{
+   
+   g_bNsAppRunning = bRunning;
+   
+}
+
+
+bool ns_app_is_running()
+{
+   
+   return g_bNsAppRunning;
+   
+}
+
+
+void ns_app_run()
+{
+   
+   ns_app_set_running(true);
+   
+   [ [ NSApplication sharedApplication ] run ];
+   
+   ns_app_set_running(false);
+   
+   
+}
+
+
+void ns_app_stop()
+{
+   
+   [ [ NSApplication sharedApplication ] stop:nil ];
+   NSEvent* event = [NSEvent otherEventWithType: NSApplicationDefined
+                                                        location: NSMakePoint(0,0)
+                                                  modifierFlags: 0
+                                                      timestamp: 0.0
+                                                   windowNumber: 0
+                                                        context: nil
+                                                        subtype: 0
+                                                          data1: 0
+                                                          data2: 0];
+                   [[ NSApplication sharedApplication ] postEvent: event atStart: FALSE];
 }
 
 

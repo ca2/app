@@ -4,6 +4,13 @@
 #include "framework.h"
 #include "_nano.h"
 
+bool ns_app_is_running();
+
+void ns_app_run();
+
+void ns_app_stop();
+
+CLASS_DECL_ACME void ns_get_main_screen_size(int & cx, int & cy);
 
 void ns_screen_copy(CGRect & rect, const RECTANGLE_I32 & rectangle);
 
@@ -296,6 +303,81 @@ namespace macos
    }
 
 
+   ::size_i32 nano_window::get_main_screen_size()
+   {
+      
+      ::i32 cx = 800;
+      
+      ::i32 cy = 600;
+      
+      ns_get_main_screen_size(cx, cy);
+      
+      return { cx, cy };
+      
+   }
+
+
+   ::atom nano_window::do_synchronously()
+   {
+      
+      if(ns_app_is_running())
+      {
+         
+         return nano_window_implementation::do_synchronously();
+         
+      }
+
+      atom atomResult;
+
+      m_pinterface->m_psequence->then([ &atomResult ](auto psequence)
+      {
+
+         atomResult = psequence->m_atomResult;
+         
+         ns_app_stop();
+
+      });
+
+      ns_app_run();
+
+      //   auto pmessagebox = pobject->__create_new < nano_message_box >();
+      //
+      //   atom idResult;
+      //
+      //   manual_reset_event event;
+      //
+      //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+      //
+      //   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+      //   {
+      //
+      //      idResult = pwindow->m_atomResult;
+      //
+      //      event.SetEvent();
+      //
+      //   };
+      //
+      //   if(is_single_main_user_thread() && is_main_thread())
+      //   {
+      //
+      //      pmessagebox->_run_modal_loop();
+      //
+      //   }
+      //   else
+      //   {
+      //      event.wait();
+      //
+      //   }
+      //
+      //   //auto idResult = pmessagebox->get_result();
+      //
+      //   return idResult;
+
+      return atomResult;
+
+   }
+
+
 } // namespace macos
 
 
@@ -406,7 +488,6 @@ bool nano_window_bridge::_is_popup_window() const
    return m_pwindow->m_pinterface->is_popup_window();
    
 }
-
 
 
 

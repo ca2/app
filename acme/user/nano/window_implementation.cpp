@@ -107,4 +107,60 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
+::atom nano_window_implementation::do_synchronously()
+{
+
+   auto pmanualresetevent = __new(manual_reset_event);
+
+   atom atomResult;
+
+   m_pinterface->m_psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+   {
+
+      atomResult = psequence->m_atomResult;
+
+      pmanualresetevent->SetEvent();
+      
+   });
+
+   pmanualresetevent->wait();
+
+   //   auto pmessagebox = pobject->__create_new < nano_message_box >();
+   //
+   //   atom idResult;
+   //
+   //   manual_reset_event event;
+   //
+   //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+   //
+   //   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+   //   {
+   //
+   //      idResult = pwindow->m_atomResult;
+   //
+   //      event.SetEvent();
+   //
+   //   };
+   //
+   //   if(is_single_main_user_thread() && is_main_thread())
+   //   {
+   //
+   //      pmessagebox->_run_modal_loop();
+   //
+   //   }
+   //   else
+   //   {
+   //      event.wait();
+   //
+   //   }
+   //
+   //   //auto idResult = pmessagebox->get_result();
+   //
+   //   return idResult;
+
+   return atomResult;
+
+}
+
+
 

@@ -861,15 +861,11 @@ namespace user
       if (!on_open_document(payloadFile))
       {
 
-         m_bNew = true;
+         return false;
 
       }
-      else
-      {
 
-         m_bNew = false;
-
-      }
+      m_bNew = false;
 
       m_bModified = false;
 

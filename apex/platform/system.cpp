@@ -3345,7 +3345,17 @@ pacmedirectory->create("/ca2core");
       
       pcreate->m_payloadFile = pszFile;
       
-      m_pappMain->m_papplication->post_element(e_message_system, e_system_message_create, pcreate);
+      
+      auto papp = m_pappMain;
+      
+      if(!papp)
+      {
+         
+         papp = m_pappStartup;
+         
+      }
+      
+      papp->m_papplication->post_element(e_message_system, e_system_message_create, pcreate);
 
 //      defer_accumulate_on_open_file({pszFile}, "");
       

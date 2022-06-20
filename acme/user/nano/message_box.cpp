@@ -340,8 +340,10 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
 #endif
    
    auto psequence = pobject->message_box(pszMessage, pszTitle, emessagebox);
+   
+   auto & sequence = *psequence;
     
-   auto atomResult = psequence->do_synchronously();
+   auto atomResult = sequence->do_synchronously();
    
 //   auto pmanualresetevent = __new(manual_reset_event);
 //   

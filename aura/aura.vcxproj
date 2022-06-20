@@ -984,6 +984,7 @@
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
+    <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
@@ -1007,7 +1008,6 @@
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_state.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
@@ -1247,6 +1247,7 @@
     <ClInclude Include="user\user\interaction_thread.h" />
     <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard.h" />
+    <ClInclude Include="user\user\layout_state.h" />
     <ClInclude Include="user\user\main_window.h" />
     <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\message_box.h" />
@@ -1275,7 +1276,6 @@
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\wait_cursor.h" />
     <ClInclude Include="user\user\windowing.h" />
-    <ClInclude Include="user\user\window_state.h" />
     <ClInclude Include="user\user\window_util.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_constant.h" />

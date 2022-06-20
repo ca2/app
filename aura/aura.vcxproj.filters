@@ -306,9 +306,6 @@
     <ClCompile Include="user\user\wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\window_state.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\window_util.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -660,6 +657,9 @@
     <ClCompile Include="operating_system\windows\message_window.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\layout_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -900,9 +900,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\wait_cursor.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\window_state.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\window_util.h">
@@ -1471,6 +1468,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window_listener.h">
       <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\layout_state.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

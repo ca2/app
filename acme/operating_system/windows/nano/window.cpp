@@ -66,11 +66,11 @@ namespace windows
 
       auto hinstanceWndProc = nano_message_box_hinstance();
 
-      WNDCLASSEX wndclassex;
+      WNDCLASSEX wndclassex{};
 
       //Step 1: Registering the Window Class
       wndclassex.cbSize = sizeof(WNDCLASSEX);
-      wndclassex.style = 0;
+      wndclassex.style = CS_DBLCLKS;
       wndclassex.lpfnWndProc = &nano_window_procedure;
       wndclassex.cbClsExtra = 0;
       wndclassex.cbWndExtra = 0;

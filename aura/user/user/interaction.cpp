@@ -2178,8 +2178,6 @@ namespace user
 
       }
 
-      set_need_redraw();
-
    }
 
 

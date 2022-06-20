@@ -287,6 +287,53 @@ namespace experience
    }
 
 
+   bool frame::on_message_left_button_double_click(::message::mouse* pmouse)
+   {
+
+      auto ehittest = experience_frame_hit_test(pmouse->m_point);
+
+      if (ehittest == ::experience::e_frame_client)
+      {
+
+         if (m_pframewindow->layout().is_zoomed())
+         {
+
+            m_pframewindow->display(::e_display_restore);
+
+         }
+         else
+         {
+
+            m_pframewindow->display(::e_display_zoomed);
+
+         }
+
+         m_pframewindow->set_need_redraw();
+
+         m_pframewindow->post_redraw();
+
+      }
+
+
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         //         if(m_pframewindow->dock_manager()->on_message_left_button_up(pmouse))
+           //          return true;
+
+         if (m_pframewindow->size_manager()->on_message_left_button_up(pmouse))
+            return true;
+
+         if (m_pframewindow->move_manager()->on_message_left_button_up(pmouse))
+            return true;
+
+      }
+
+      return false;
+   }
+
+
    bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 

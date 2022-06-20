@@ -56,7 +56,7 @@ namespace experience_tranquillum
          if(egrip & e_grip_top_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
+            rectangle.right = rectangle.left + 5;
             rectangle.bottom = rectangle.top + 5;
             if(rectangle.contains(pointCursor))
             {
@@ -65,7 +65,7 @@ namespace experience_tranquillum
             }
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.bottom = rectangle.top + 5;
             if(rectangle.contains(pointCursor))
             {
                etest =  ::experience::e_frame_sizing_top_left;
@@ -75,7 +75,7 @@ namespace experience_tranquillum
          if(egrip & e_grip_top_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
+            rectangle.left = rectangle.right - 5;
             rectangle.bottom = rectangle.top + 5;
             if(rectangle.contains(pointCursor))
             {
@@ -84,7 +84,7 @@ namespace experience_tranquillum
             }
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
-            rectangle.bottom = rectangle.top + 16;
+            rectangle.bottom = rectangle.top + 5;
             if(rectangle.contains(pointCursor))
             {
                etest =  ::experience::e_frame_sizing_top_right;
@@ -94,7 +94,7 @@ namespace experience_tranquillum
          if(egrip & e_grip_bottom_right)
          {
             rectangle = rectangleEvent;
-            rectangle.left = rectangle.right - 16;
+            rectangle.left = rectangle.right - 5;
             rectangle.top = rectangle.bottom - 5;
             if(rectangle.contains(pointCursor))
             {
@@ -103,7 +103,7 @@ namespace experience_tranquillum
             }
             rectangle = rectangleEvent;
             rectangle.left = rectangle.right - 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.top = rectangle.bottom - 5;
             if(rectangle.contains(pointCursor))
             {
                etest =  ::experience::e_frame_sizing_bottom_right;
@@ -113,7 +113,7 @@ namespace experience_tranquillum
          if(egrip & e_grip_bottom_left)
          {
             rectangle = rectangleEvent;
-            rectangle.right = rectangle.left + 16;
+            rectangle.right = rectangle.left + 5;
             rectangle.top = rectangle.bottom - 5;
             if(rectangle.contains(pointCursor))
             {
@@ -122,7 +122,7 @@ namespace experience_tranquillum
             }
             rectangle = rectangleEvent;
             rectangle.right = rectangle.left + 5;
-            rectangle.top = rectangle.bottom - 16;
+            rectangle.top = rectangle.bottom - 5;
             if(rectangle.contains(pointCursor))
             {
                etest =  ::experience::e_frame_sizing_bottom_left;

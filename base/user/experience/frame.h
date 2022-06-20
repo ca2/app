@@ -164,6 +164,7 @@ namespace experience
 
       virtual bool on_message_left_button_down(::message::mouse * pmouse);
       virtual bool on_message_left_button_up(::message::mouse * pmouse);
+      virtual bool on_message_left_button_double_click(::message::mouse* pmouse);
       virtual bool on_message_mouse_move(::message::mouse * pmouse);
       //virtual bool on_message_set_cursor(::message::set_cursor * psetcursor);
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);

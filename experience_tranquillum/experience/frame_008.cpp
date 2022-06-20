@@ -57,7 +57,7 @@ namespace experience_tranquillum
                
                ::rectangle_i32 rectangleInner(rectangleEvent);
                
-               rectangleInner.deflate(15);
+               rectangleInner.deflate(4);
                
                ::point_i32 pointHitTest = pointCursor;
 

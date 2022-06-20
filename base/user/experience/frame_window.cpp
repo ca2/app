@@ -1253,6 +1253,7 @@ namespace experience
 
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &frame_window::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::on_message_mouse_move);
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
@@ -1397,6 +1398,34 @@ namespace experience
       m_pframe->on_message_left_button_up(pmouse);
 
       if(pmouse->m_bRet)
+      {
+
+         pmouse->m_lresult = 1;
+
+      }
+
+   }
+
+
+   void frame_window::on_message_left_button_double_click(::message::message* pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      if (!is_frame_experience_enabled())
+      {
+
+         pmouse->m_bRet = false;
+
+         return;
+
+      }
+
+      ASSERT(m_pframe != nullptr);
+
+      m_pframe->on_message_left_button_double_click(pmouse);
+
+      if (pmouse->m_bRet)
       {
 
          pmouse->m_lresult = 1;

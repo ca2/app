@@ -28,7 +28,7 @@ public:
 
    virtual void display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr);
 
-   void do_message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box & emessagebox) override;
+   void do_message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box & emessagebox, const ::string & strDetails) override;
 
    void on_draw(nano_device * pnanodevice) override;
 

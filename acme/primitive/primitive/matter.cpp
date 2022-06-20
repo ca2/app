@@ -934,10 +934,10 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 }
 
 
-__pointer(::sequence < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+__pointer(::sequence < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
-   auto psequence = m_psystem->message_box(strMessage, strTitle, emessagebox);
+   auto psequence = m_psystem->message_box(strMessage, strTitle, emessagebox, strDetails);
 
    return psequence;
 

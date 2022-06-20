@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-void conversation::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox)
+void conversation::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
 {
 
 
@@ -29,6 +29,14 @@ void conversation::do_message_box(const ::string& strMessage, const string& strT
 {
 
    return e_message_box_ok;
+
+}
+
+
+::string conversation::get_message_box_details()
+{
+
+   return "";
 
 }
 

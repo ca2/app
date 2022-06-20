@@ -2166,10 +2166,10 @@ __pointer(class ::system) platform_create_system(const char* pszAppId)
 
 
 
-__pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+__pointer(::sequence < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
-   auto psequence = m_pnode->message_box(strMessage, strTitle, emessagebox);
+   auto psequence = m_pnode->message_box(strMessage, strTitle, emessagebox, strDetails);
 
    return psequence;
 

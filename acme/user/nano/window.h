@@ -64,6 +64,7 @@ public:
 
    ::string get_message_box_message() override;
    ::string get_message_box_title() override;
+   ::string get_message_box_details() override;
 
 
    void on_initialize_object() override;

@@ -1691,7 +1691,7 @@ namespace acme
    }
 
 
-   __pointer(::sequence < ::conversation >) node::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::sequence < ::conversation >) node::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
    {
 
       auto psequence = __new(::sequence < ::conversation >());
@@ -1702,7 +1702,7 @@ namespace acme
 
       pmessagebox->m_psequence = psequence;
 
-      pmessagebox->do_message_box(strMessage, strTitle, emessagebox);
+      pmessagebox->do_message_box(strMessage, strTitle, emessagebox, strDetails);
 
       return psequence;
 

@@ -241,7 +241,7 @@ void nano_message_box::display(const ::string & strMessage, const ::string & str
 }
 
 
-void nano_message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox)
+void nano_message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
 {
 
    m_functionClose = [this](nano_window* pwindow)
@@ -251,10 +251,10 @@ void nano_message_box::do_message_box(const ::string& strMessage, const string& 
 
    };
 
-   main_asynchronous([this, strMessage, strTitle, emessagebox]()
+   main_asynchronous([this, strMessage, strTitle, emessagebox, strDetails]()
       {
 
-         display(strMessage, strTitle, emessagebox);
+         display(strMessage, strTitle, emessagebox, strDetails);
 
       });
 
@@ -339,7 +339,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    
 #endif
    
-   auto psequence = pobject->message_box(pszMessage, pszTitle, emessagebox);
+   auto psequence = pobject->message_box(pszMessage, pszTitle, emessagebox, pszDetails);
    
    auto & sequence = *psequence;
     

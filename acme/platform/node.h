@@ -426,7 +426,7 @@ namespace acme
       virtual __pointer(::conversation) create_new_message_box_conversation();
 
 
-      virtual __pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+      virtual __pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails);
 
 
       //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);

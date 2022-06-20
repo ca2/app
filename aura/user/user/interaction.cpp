@@ -3179,10 +3179,10 @@ namespace user
 
          string strType = __type_name(this);
 
-                  if(strType.contains_ci("app_simple_application::impact"))
+                  if(strType.contains_ci("scroll_bar"))
                   {
          
-                     output_debug_string("app_simple_application::impact");
+                     output_debug_string("scroll_bar");
          
                  }
          //         else if (strType.contains_ci("combo_box"))

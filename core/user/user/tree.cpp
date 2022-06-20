@@ -801,14 +801,14 @@ namespace user
 
       index iItem = -1;
 
-      index iItemHeight = (::index) _001GetItemHeight();
+      auto item_height = _001GetItemHeight();
 
       auto pointOffset = get_viewport_offset();
 
-      if(iItemHeight != 0)
+      if(item_height != 0)
       {
 
-         iItem = (i32) ((iy + pointOffset.y) / iItemHeight);
+         iItem = (i32) ((iy + pointOffset.y) / item_height);
 
       }
 

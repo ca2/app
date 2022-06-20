@@ -2262,6 +2262,7 @@ namespace user
          pmessage->m_atom == e_message_middle_button_up ||
          pmessage->m_atom == e_message_right_button_down ||
          pmessage->m_atom == e_message_right_button_up ||
+         pmessage->m_atom == e_message_left_button_double_click ||
          pmessage->m_atom == e_message_mouse_move ||
          pmessage->m_atom == e_message_mouse_move ||
          pmessage->m_atom == e_message_mouse_wheel)

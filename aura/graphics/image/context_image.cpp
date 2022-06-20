@@ -1027,7 +1027,15 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    }
 
+   auto t1 = ::duration::now();
+
    m_pcontext->m_papexcontext->file().as_memory(payload, memory);
+
+   auto t2 = ::duration::now();
+
+   auto dt = t2 - t1;
+
+   output_debug_string("file_as_memory time "+__string(dt.floating_millisecond().m_d) + "ms");
 
    const char * psz = (const char *)memory.get_data();
 

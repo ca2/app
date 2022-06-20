@@ -8,15 +8,15 @@
 #include "toolbar.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "acme/timer.h"
-
-#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
-
-struct __COLORMAP
-{
-   // use u32 instead of RGBQUAD so we can compare two RGBQUADs easily
-   u32 rgbqFrom;
-   index iSysColorTo;
-};
+//
+//#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
+//
+//struct __COLORMAP
+//{
+//   // use u32 instead of RGBQUAD so we can compare two RGBQUADs easily
+//   u32 rgbqFrom;
+//   index iSysColorTo;
+//};
 
 //static const __COLORMAP gen_SysColorMap[] =
 //{
@@ -90,7 +90,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &toolbar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &toolbar::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
-//#ifdef WINDOWS_DESKTOP
+      //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
 //      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel, this, &toolbar::_001OnPreserveZeroBorderHelper);

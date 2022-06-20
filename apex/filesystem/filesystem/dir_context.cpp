@@ -985,6 +985,13 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 bool dir_context::is(const ::file::path& pathParam)
 {
 
+   if (::is_empty(pathParam))
+   {
+
+      return false;
+
+   }
+
    ::file::path path;
 
    auto psystem = get_system()->m_papexsystem;

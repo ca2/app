@@ -32,7 +32,7 @@ CLASS_DECL_ACME bool file_path_is_equal(const char * pszPath1, const char * pszP
 
 CLASS_DECL_ACME string url_dir_name_for_relative(const char * pszPath);
 
-CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount);
+CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize_array & iaSlash);
 CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl = nullptr);
 CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative, const char * pszAbsolute);
 

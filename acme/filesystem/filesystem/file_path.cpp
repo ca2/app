@@ -155,8 +155,7 @@ string url_dir_name_for_relative(const char * pszPath)
 #endif
 
 
-
-CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount)
+CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize_array & iaSlash)
 {
 
    bOnlyNativeFileSep = true;
@@ -179,11 +178,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    //strsize * iaSlash = *iaSlash;
 
-   int & iSlashCount = *piSlashCount;
-
-   iSlashCount = 0;
-
-   iaSlash[0] = 0;
+   iaSlash.set_size(0);
 
    strsize iPos = 0;
 
@@ -199,11 +194,9 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
 #endif
 
-         iaSlash[0] = 1;
+         iaSlash.add(1);
 
          iPos = 2;
-
-         iSlashCount = 1;
 
       }
 
@@ -217,9 +210,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
          CHECK_NATIVE_FILE_SEP(psz[iPos]);
 
-         iaSlash[iSlashCount] = iPos;
-
-         iSlashCount++;
+         iaSlash.add(iPos);
 
          iPos++;
 
@@ -231,7 +222,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
             if (iPos > 2)
             {
 
-               iSlashCount--;
+               iaSlash.erase_at(iaSlash.get_upper_bound());
 
                iPos--; // erase trailing slash
 
@@ -252,7 +243,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                // the end of string has been reached
 
-               if (iSlashCount >= 2)
+               if (iaSlash.size() >= 2)
                {
 
                   iPos -= 2; // erase the dot and and trailing slash
@@ -280,16 +271,9 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   // the end of string has been reached
 
-                  iPos = iaSlash[maximum(0, iSlashCount - 2)]; // go back to position of previous slash
+                  iPos = iaSlash[maximum(0, iaSlash.size() - 2)]; // go back to position of previous slash
 
-                  iSlashCount -= 2;
-
-                  if (iSlashCount <= 0)
-                  {
-
-                     iSlashCount = 1;
-
-                  }
+                  iaSlash.set_size(maximum(1, iaSlash.size() - 2));
 
                   if (iPos > 2)
                   {
@@ -317,20 +301,22 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                   }
 
-                  iSlashCount -= 2;
+                  auto iSlashCount = iaSlash.size() - 2;
 
                   if (iSlashCount <= 0)
                   {
 
                      iNewPosition = iaSlash[0];
 
-                     iSlashCount = 1;
+                     iaSlash.set_size(1);
 
                   }
                   else
                   {
 
                      iNewPosition = iaSlash[iSlashCount];
+
+                     iaSlash.set_size(iSlashCount);
 
                   }
 
@@ -372,20 +358,22 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
                }
 
-               iSlashCount--;
+               auto iSlashCount = iaSlash.size() - 1;
 
                if (iSlashCount <= 0)
                {
 
                   iNewPosition = iaSlash[0];
 
-                  iSlashCount = 1;
+                  iaSlash.set_size(1);
 
                }
                else
                {
 
                   iNewPosition = iaSlash[iSlashCount];
+
+                  iaSlash.set_size(iSlashCount);
 
                }
 
@@ -420,9 +408,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
             CHECK_NATIVE_FILE_SEP(psz[iPos]);
 
-            iaSlash[iSlashCount] = iPos;
-
-            iSlashCount++;
+            iaSlash.add(iPos);
 
             iPos++;
 
@@ -507,11 +493,9 @@ CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl)
 
    bool bOnlyNativeFileSep;
 
-   strsize iaSlash[512];
+   strsize_array iaSlash;
 
-   int iSlashCount = 512;
-
-   solve_relative_inplace(str, bUrl, bOnlyNativeFileSep, iaSlash, &iSlashCount);
+   solve_relative_inplace(str, bUrl, bOnlyNativeFileSep, iaSlash);
 
    if (pbUrl)
    {
@@ -848,20 +832,18 @@ string file_path_normalize(string strPath, enum_path epath)
 bool file_path_normalize_inline(string & strPath, enum_path & epath)
 {
 
-   bool bUrl;
-
-   bool bOnlyNativeFileSep;
-
-   strsize iaSlash[512];
-
-   int iSlashCount;
-
    if (epath == e_path_data)
    {
 
       return true;
 
    }
+
+   bool bUrl;
+
+   bool bOnlyNativeFileSep;
+
+   strsize_array iaSlash;
 
 #ifdef WINDOWS
 
@@ -876,7 +858,7 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
 #endif
 
-   bool bCertainlySyntathicallyDir = solve_relative_inplace(strPath, bUrl, bOnlyNativeFileSep, iaSlash, &iSlashCount);
+   bool bCertainlySyntathicallyDir = solve_relative_inplace(strPath, bUrl, bOnlyNativeFileSep, iaSlash);
 
    if (bUrl && strPath.begins_ci("file:///"))
    {
@@ -926,10 +908,10 @@ bool file_path_normalize_inline(string & strPath, enum_path & epath)
 
             char chSep = file_path_separator(epath);
 
-            for (int i = 0; i < iSlashCount; i++)
+            for (auto & iSlash: iaSlash)
             {
 
-               psz[iaSlash[i]] = chSep;
+               psz[iSlash] = chSep;
 
             }
 

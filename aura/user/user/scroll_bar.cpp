@@ -213,71 +213,73 @@ namespace user
    void scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      try
-      {
-         
-         ::rectangle_i32 rectangleClip;
+      ::user::interaction::_001OnClip(pgraphics);
 
-         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      //try
+      //{
+      //   
+      //   ::rectangle_i32 rectangleClip;
 
-         ::rectangle_i32 rectangleClient;
+      //   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         bool bFirst = true;
+      //   ::rectangle_i32 rectangleClient;
 
-         if (pdrawcontext != nullptr)
-         {
+      //   bool bFirst = true;
 
-            get_client_rect(rectangleClient);
+      //   if (pdrawcontext != nullptr)
+      //   {
 
-            rectangleClient.bottom++;
-            rectangleClient.right++;
+      //      get_client_rect(rectangleClient);
 
-            rectangleClip = rectangleClient;
+      //      rectangleClient.bottom++;
+      //      rectangleClient.right++;
 
-            bFirst = false;
+      //      rectangleClip = rectangleClient;
 
-         }
+      //      bFirst = false;
 
-         ::user::interaction * pinteraction = this;
+      //   }
 
-         ::rectangle_i32 rectangleFocus;
+      //   ::user::interaction * pinteraction = this;
 
-         index i = 0;
+      //   ::rectangle_i32 rectangleFocus;
 
-         while (pinteraction != nullptr)
-         {
+      //   index i = 0;
 
-            if (i != 1)
-            {
+      //   while (pinteraction != nullptr)
+      //   {
 
-               pinteraction->get_window_rect(rectangleClient, e_layout_design);
+      //      if (i != 1)
+      //      {
 
-               pinteraction->get_client_rect(rectangleFocus);
+      //         pinteraction->get_window_rect(rectangleClient, e_layout_design);
 
-               rectangleFocus.offset(rectangleClient.top_left());
+      //         pinteraction->get_client_rect(rectangleFocus);
 
-               screen_to_client(rectangleFocus, e_layout_design);
+      //         rectangleFocus.offset(rectangleClient.top_left());
 
-               rectangleFocus.bottom++;
-               rectangleFocus.right++;
+      //         screen_to_client(rectangleFocus, e_layout_design);
 
-               pgraphics->intersect_clip(rectangleFocus);
+      //         rectangleFocus.bottom++;
+      //         rectangleFocus.right++;
 
-            }
+      //         pgraphics->intersect_clip(rectangleFocus);
 
-            i++;
+      //      }
 
-            pinteraction = pinteraction->get_parent();
+      //      i++;
 
-         }
+      //      pinteraction = pinteraction->get_parent();
 
-      }
-      catch (...)
-      {
+      //   }
 
-         throw ::exception(error_exception, "no more a window");
+      //}
+      //catch (...)
+      //{
 
-      }
+      //   throw ::exception(error_exception, "no more a window");
+
+      //}
 
    }
 

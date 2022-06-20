@@ -2763,10 +2763,14 @@ namespace user
 
          auto puserinteraction = pchild;
 
+         ::user::interaction_array interactionaHandled;
+
          while (::is_set(puserinteraction))
          {
 
             puserinteraction->route_message(pmouse);
+
+            interactionaHandled.add_interaction(puserinteraction);
 
             if (pmouse->m_bRet)
             {
@@ -2776,6 +2780,27 @@ namespace user
             }
 
             puserinteraction = puserinteraction->get_parent();
+
+            if (is_set(puserinteraction))
+            {
+
+               auto pchild = puserinteraction->child_from_point(pmouse->m_point, interactionaHandled);
+
+               if (::is_set(pchild))
+               {
+
+                  pchild->route_message(pmouse);
+
+                  if (pmouse->m_bRet)
+                  {
+
+                     break;
+
+                  }
+
+               }
+
+            }
 
          }
 

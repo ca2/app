@@ -1395,7 +1395,7 @@ namespace user
       ::user::interaction * get_child_by_id(const atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel) override;
 
-      ::user::interaction * child_from_point(const ::point_i32 & point);
+      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array& interactionaExclude = {});
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;

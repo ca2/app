@@ -6102,7 +6102,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point)
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array& interactionaExclude)
    {
 
       auto pointClient = point;
@@ -6142,20 +6142,24 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            //if (puserinteractionChild->is_this_visible()
-            //&& (!puserinteractionChild->is_place_holder()
-            //   || (puserinteractionChild->m_puserinteractionpointeraChild
-            //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
-            //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
-            if (puserinteractionChild->is_this_visible())
+            if (!interactionaExclude.contains_interaction(puserinteractionChild))
             {
-
-               if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
+               //if (puserinteractionChild->is_this_visible()
+               //&& (!puserinteractionChild->is_place_holder()
+               //   || (puserinteractionChild->m_puserinteractionpointeraChild
+               //      && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
+               //      && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
+               if (puserinteractionChild->is_this_visible())
                {
 
-                  puserinteractionSearchChildren = puserinteractionChild;
+                  if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
+                  {
 
-                  break;
+                     puserinteractionSearchChildren = puserinteractionChild;
+
+                     break;
+
+                  }
 
                }
 

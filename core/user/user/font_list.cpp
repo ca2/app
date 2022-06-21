@@ -605,16 +605,23 @@ namespace user
       else
       {
 
-         auto iItem = current_item()->m_iItem;
+         auto pitem = current_item();
 
-         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
-
-         if (pfontenumerationitema->contains_index(iItem))
+         if (pitem)
          {
 
-            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+            auto iItem = pitem->m_iItem;
 
-            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
+            auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+            if (pfontenumerationitema->contains_index(iItem))
+            {
+
+               auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+               m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
+
+            }
 
          }
 
@@ -626,7 +633,8 @@ namespace user
    void font_list::_001EnsureVisible(index iItem)
    {
 
-      if (m_pfontlist.is_set()
+      if (m_pfontlist
+         && m_pfontlist->m_pfontlistdata
          && iItem >= 0
          && iItem < m_pfontlist->m_pfontlistdata->get_size())
       {

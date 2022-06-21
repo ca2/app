@@ -794,12 +794,12 @@ namespace experience_tranquillum
       ::rectangle_i32 r1;
       ptab->get_client_rect(r1);
 
-      if (!ptab->get_data()->m_bNoClient)
-      {
+      //if (!ptab->get_data()->m_bNoClient)
+      //{
 
-         pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
 
-      }
+      //}
 
       ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 

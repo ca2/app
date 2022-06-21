@@ -622,7 +622,7 @@ namespace user
 
       {
 
-         return true;
+         return false;
 
       }
 
@@ -704,6 +704,8 @@ namespace user
       void edit_impl::draw_control_background(::draw2d::graphics_pointer & pgraphics)
       {
 
+         //return;
+
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
          //::rectangle_i32 rectangleClient;
@@ -780,14 +782,16 @@ namespace user
       void edit_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         if (!is_picture_enabled())
-         {
+         //return;
 
-       /*     picture::_001OnDraw(pgraphics);
+       //  if (!is_picture_enabled())
+       //  {
 
-         }
-         else
-         {*/
+       /////     picture::_001OnDraw(pgraphics);
+
+       //  }
+       //  else
+       //  {
 
             ::rectangle_i32 rectangleClient;
 
@@ -796,8 +800,8 @@ namespace user
             pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
-
-         }
+//
+  //       }
 
       }
 
@@ -930,10 +934,6 @@ namespace user
 
       void edit_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
-
-         ::draw2d::graphics_pointer graphics(e_create, this);
-
-         pgraphics->CreateCompatibleDC(NULL);
 
          m_pdata->do_layout(pgraphics);
 

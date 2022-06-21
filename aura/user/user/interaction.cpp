@@ -14985,32 +14985,32 @@ namespace user
    void interaction::UpDownTargetAttach(::user::interaction * pupdown)
    {
 
-      //bool bAttached = false;
+      bool bAttached = false;
 
-      //pupdown->m_eupdown = updown_down;
+      pupdown->m_eupdown = updown_down;
 
-      //try
-      //{
+      try
+      {
 
-      //   if (OnUpDownTargetAttach(pupdown))
-      //   {
+         if (OnUpDownTargetAttach(pupdown))
+         {
 
-      //      bAttached = true;
+            bAttached = true;
 
-      //   }
+         }
 
-      //}
-      //catch (...)
-      //{
+      }
+      catch (...)
+      {
 
-      //}
+      }
 
-      //if (!bAttached)
-      //{
+      if (!bAttached)
+      {
 
-      //   pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = updown_none;
 
-      //}
+      }
 
    }
 
@@ -15018,32 +15018,32 @@ namespace user
    void interaction::UpDownTargetDetach(::user::interaction * pupdown)
    {
 
-      //bool bDetached = false;
+      bool bDetached = false;
 
-      //pupdown->m_eupdown = updown_up;
+      pupdown->m_eupdown = updown_up;
 
-      //try
-      //{
+      try
+      {
 
-      //   if (OnUpDownTargetDetach(pupdown))
-      //   {
+         if (OnUpDownTargetDetach(pupdown))
+         {
 
-      //      bDetached = true;
+            bDetached = true;
 
-      //   }
+         }
 
-      //}
-      //catch (...)
-      //{
+      }
+      catch (...)
+      {
 
-      //}
+      }
 
-      //if (!bDetached)
-      //{
+      if (!bDetached)
+      {
 
-      //   pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = updown_none;
 
-      //}
+      }
 
    }
 

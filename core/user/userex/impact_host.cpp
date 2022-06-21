@@ -192,11 +192,13 @@ namespace userex
       if (m_ptemplateTab == nullptr)
       {
 
-         m_ptemplateTab = new user::single_document_template(
+         m_ptemplateTab = __new(user::single_document_template(
             "main",
             __type(::user::document),
             __type(simple_child_frame),
-            __type(::userex::pane_tab_impact));
+            __type(::userex::pane_tab_impact)));
+
+         m_ptemplateTab->initialize(this);
 
       }
 

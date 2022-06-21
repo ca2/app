@@ -188,7 +188,7 @@ application::application()
 
    m_bLicense = false;
 
-   m_bInterprocessIntercommunication = false;
+   m_bInterprocessIntercommunication = true;
 
    //m_pimaging = nullptr;
 
@@ -1730,41 +1730,12 @@ void application::init_instance()
 
    ::app::init_instance();
 
-   //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
-
    if (m_bInterprocessIntercommunication)
    {
 
-      //try
-      //{
-      //
       __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
 
-      //}
-      //catch (...)
-      //{
-      //
-      //}
-
-      //if (!m_pinterprocessintercommunication)
-      //{
-      //
-      //   throw ::exception()
-      //
-      ////return ::error_failed;
-      //
-      //}
-
-      //auto estatus = 
-
       m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
-
-      //if (!estatus)
-      //{
-      //
-      //return estatus;
-      //
-      //}
 
    }
 
@@ -2448,17 +2419,6 @@ void application::application_pre_run()
    }
    catch (const ::exit_exception& exception)
    {
-
-      if (exception.m_strMessage == "moved")
-      {
-
-         throw exception;
-
-      }
-
-      handle_exception(exception);
-
-      message_box_synchronous(this, "Application failed to initialize (3). ", m_strAppName, e_message_box_ok, exception.m_strMessage + "\n" + exception.m_strDetails);
 
       throw exception;
 
@@ -3810,20 +3770,11 @@ bool application::check_exclusive(bool& bHandled)
       if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
       {
 
-         try
-         {
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
 
-            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+         on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
 
-            on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
-
-         }
-         catch (...)
-         {
-
-            return false;
-
-         }
+         return false;
 
       }
 
@@ -3993,32 +3944,34 @@ void application::notify_process_term()
 
 string application::get_local_mutex_name()
 {
-   auto psystem = get_system()->m_papexsystem;
-   return psystem->get_local_mutex_name(get_mutex_name_gen());
+   
+   return m_psystem->m_pnode->get_local_mutex_name(get_mutex_name_gen());
+
 }
 
 
 string application::get_local_id_mutex_name()
 {
-   auto psystem = get_system()->m_papexsystem;
-   return psystem->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+   
+   return m_psystem->m_pnode->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
 }
 
 
 string application::get_global_mutex_name()
 {
-   auto psystem = get_system()->m_papexsystem;
-   return psystem->get_global_mutex_name(get_mutex_name_gen());
+   
+   return m_psystem->m_pnode->get_global_mutex_name(get_mutex_name_gen());
+
 }
+
 
 string application::get_global_id_mutex_name()
 {
-   auto psystem = get_system()->m_papexsystem;
-   return psystem->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+
+   return m_psystem->m_pnode->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+
 }
-
-
 
 
 void application::on_exclusive_instance_conflict(bool& bHandled, EExclusiveInstance eexclusive, string strId)
@@ -7019,7 +6972,17 @@ string application::dialog_box(const ::string& pszMatter, property_set& property
 
 string application::get_mutex_name_gen()
 {
-   return m_strAppName;
+
+   string str = m_strAppId;
+
+   str.find_replace("/", "_");
+
+   str.find_replace("-", "_");
+
+   str.find_replace(".", "_");
+   
+   return str;
+
 }
 
 

@@ -150,9 +150,9 @@ namespace aura
       //m_bAgreeExitOk = true;
       //m_bFranceExit = true;
 
-      m_bLicense = false;
+      //m_bLicense = false;
 
-      m_bInterprocessIntercommunication = false;
+      //m_bInterprocessIntercommunication = false;
 
       //m_pimaging = nullptr;
 
@@ -2672,137 +2672,7 @@ retry_license:
    //}
 
 
-   //bool application::on_exclusive_instance_local_conflict(bool & bHandled)
-   //{
 
-   //   bool bContinue = false;
-
-   //   try
-   //   {
-
-   //      if (m_pinterprocessintercommunication)
-   //      {
-
-   //         auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-   //         pcall->add_arg(file().module());
-
-   //         pcall->add_arg(os().get_pid());
-
-   //         pcall->add_arg(psystem->command_line_text());
-
-   //         string strId;
-
-   //         pcall->add_arg(strId);
-
-   //         pcall->announce();
-
-   //         pcall->wait();
-
-   //         for(auto & pair : pcall->m_mapTask)
-   //         {
-
-   //            auto & pobjectTask = pair.element2();
-
-   //            if(bContinue && pobjectTask->has_property("continue"))
-   //            {
-
-   //               bContinue = pobjectTask->m_var["continue"];
-
-   //            }
-
-   //            if(!bHandled && pobjectTask->has_property("handled"))
-   //            {
-
-   //               bHandled = pobjectTask->m_var["handled"];
-
-   //            }
-
-   //         }
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   return bContinue;
-
-   //}
-
-
-   //bool application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
-   //{
-
-   //   bool bContinue = false;
-
-   //   try
-   //   {
-
-   //      if (m_pinterprocessintercommunication)
-   //      {
-
-   //         auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-   //         pcall->add_arg(file().module());
-
-   //         pcall->add_arg(os().get_pid());
-
-   //         pcall->add_arg(psystem->command_line_text());
-
-   //         pcall->add_arg(strId);
-
-   //         for(auto & ptask : pcall->m_mapTask.values())
-   //         {
-
-   //            if(!bHandled)
-   //            {
-
-   //               bHandled = ptask->is_true("handled");
-
-   //               if(bHandled)
-   //               {
-
-   //                  bContinue = ptask->is_true("continue");
-
-   //               }
-
-   //            }
-
-   //         }
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   return bContinue;
-
-   //}
-
-
-   //bool application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
-   //{
-
-   //   __pointer(::command_line) pcommandline;
-
-   //   auto estatus = __construct_new(pcommandline);
-
-
-   //   auto pcommandline = __new(command_line(this, strCommandLine));
-
-   //   request({pcommandline});
-
-   //   bHandled = true;
-
-   //   return false;
-
-   //}
 
 
    //void application::on_new_instance(string strModule, const ::atom & iPid)
@@ -5628,9 +5498,10 @@ retry_license:
 
    string application::get_mutex_name_gen()
    {
-      return m_strAppName;
-   }
+      
+      return ::application::get_mutex_name_gen();
 
+   }
 
 
    string application::get_license_id()

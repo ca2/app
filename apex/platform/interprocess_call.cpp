@@ -115,10 +115,15 @@ __pointer(synchronization_array) interprocess_call::synca()
 ::e_status interprocess_call::wait()
 {
 
-   if(!_wait(::duration::infinite()))
+   if (!this->m_mapTask.is_empty())
    {
 
-      return error_wait_timeout;
+      if (!_wait(::duration::infinite()))
+      {
+
+         return error_wait_timeout;
+
+      }
 
    }
 

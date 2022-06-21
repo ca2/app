@@ -2,148 +2,77 @@
 
 
 
-   //class CLASS_DECL_APEX ipi_call :
-   //   virtual public ::object
-   //{
-   //public:
-
-
-   //   __pointer(interprocess_intercommunication)                m_pinterprocessintercommunication;
-   //   string                        m_strApp;
-   //   ::duration                    m_duration;
-   //   id_array                      m_iaExclude;
-   //   bool                          m_bAutoLaunch;
-
-   //   // idPid - Task
-   //   pid_task                      m_mapTask;
-
-
-   //   string                        m_strObject;
-   //   string                        m_strMember;
-   //   payload_array                     m_varaArgs;
-
-
-   //   interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
-   //   virtual ~interprocess_call();
-
-   //   auto tasks() { return typename pid_task::dereferenced_value_iterator(nullptr, &m_mapTask); }
-
-   //   void add_arg(const ::payload & payload);
-   //   void add_args(const payload_array& payloada);
-   //   void set_timeout(const duration& duration);
-   //   void set_auto_launch(bool bSet = true);
-
-   //   bool is_auto_launch() const;
-
-   //   void exclude_this_app();
-
-   //   virtual void post(const ::atom& idPid);
-
-   //   __pointer(synchronization_array) synca();
-
-   //   ::synchronization_result wait();
-
-   //   void announce();
-
-
-   //};
-
-
-   //class CLASS_DECL_APEX task :
-   //   virtual public ::object
-   //{
-   //public:
-
-
-   //   ::atom                                m_atomPid;
-   //   ::i64                               m_iTask;
-   //   __pointer(interprocess_call)               m_pcall;
-   //   ::payload                                 m_var;
-   //   __pointer(manual_reset_event)       m_pevReady;
-
-
-   //   task(interprocess_call* pcall, const ::atom& idPid, i64 iTask);
-   //   virtual ~task();
-
-
-   //   virtual void do_task(const string& strObject, const string& strMember, const payload_array& payloada);
-
-
-   //};
+class CLASS_DECL_APEX interprocess_intercommunication :
+   virtual public object,
+   virtual public ::interprocess_communication::rx::receiver
+{
+public:
 
 
 
-   class CLASS_DECL_APEX interprocess_intercommunication :
-      virtual public object,
-      virtual public ::interprocess_communication::rx::receiver
-   {
-   public:
-
-
-
-      using interprocess_map = id_map < __pointer(interprocess_task) >;
+   using interprocess_map = id_map < __pointer(interprocess_task) >;
 
 
 
 
-      interlocked_count                                           m_iTaskSeed;
-      string                                                      m_strApp;
-      ::atom                                                      m_atomApp;
-      string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
-      string_map < __pointer(::mutex) >                           m_mapAppMutex;
-      __pointer(::interprocess_communication::rx)                 m_prx;
-      string_array                                                m_straModule;
+   interlocked_count                                           m_iTaskSeed;
+   string                                                      m_strApp;
+   ::atom                                                      m_atomApp;
+   string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
+   string_map < __pointer(::mutex) >                           m_mapAppMutex;
+   __pointer(::interprocess_communication::rx)                 m_prx;
+   string_array                                                m_straModule;
 
-      // strTask - Task
-      interprocess_map                                            m_mapTask;
+   // strTask - Task
+   interprocess_map                                            m_mapTask;
 
-   protected:
+protected:
 
-      using object::initialize;
+   using object::initialize;
 
-   public:
+public:
 
-      interprocess_intercommunication();
-      ~interprocess_intercommunication() override;
+   interprocess_intercommunication();
+   ~interprocess_intercommunication() override;
 
 
-      virtual void initialize_interprocess_communication(::object * pobject, const ::string & strApp);
+   virtual void initialize_interprocess_communication(::object* pobject, const ::string& strApp);
 
-      void destroy() override;
+   void destroy() override;
 
-      virtual void defer_add_module(const ::string & strModule, const ::atom & idPid);
+   virtual void defer_add_module(const ::string& strModule, const ::atom& idPid);
 
-      virtual __pointer(interprocess_task) create_task(interprocess_call * pcall, const ::atom & idPid);
+   virtual __pointer(interprocess_task) create_task(interprocess_call* pcall, const ::atom& idPid);
 
-      virtual __pointer(interprocess_task) get_task(i64 iTask);
+   virtual __pointer(interprocess_task) get_task(i64 iTask);
 
-      virtual __pointer(interprocess_call) create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember);
+   virtual __pointer(interprocess_call) create_call(const ::string& strApp, const ::string& strObject, const ::string& strMember);
 
-      virtual __pointer(interprocess_call) create_call(const ::string & strObject, const ::string & strMember);
+   virtual __pointer(interprocess_call) create_call(const ::string& strObject, const ::string& strMember);
 
-      virtual ::interprocess_communication::tx & tx(const ::string & strApp, const ::atom & idPid);
+   virtual ::interprocess_communication::tx& tx(const ::string& strApp, const ::atom& idPid);
 
-      virtual id_array get_pid(const ::string & strApp);
+   virtual id_array get_pid(const ::string& strApp);
 
-      virtual string key(const string &strApp, const ::atom & idPid);
+   virtual string key(const string& strApp, const ::atom& idPid);
 
-      virtual string str_from_va(const payload_array & va);
+   virtual string str_from_va(const payload_array& va);
 
-      virtual void on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada);
+   virtual void on_interprocess_call(::payload& payload, const ::string& strObject, const ::string& strMember, payload_array& payloada);
 
-      using ::interprocess_communication::rx::receiver::on_interprocess_receive;
+   using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 
-      void on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage) override;
+   void on_interprocess_receive(::interprocess_communication::rx* prx, ::string&& strMessage) override;
 
-      virtual void start(const ::string & strApp);
+   virtual void start(const ::string& strApp);
 
-      virtual void connect(const ::string & strApp, const ::atom & idPid);
+   virtual void connect(const ::string& strApp, const ::atom& idPid);
 
-      virtual void on_new_instance(const ::string & strModule, const ::atom & idPid);
+   virtual void on_new_instance(const ::string& strModule, const ::atom& idPid);
 
-      void interprocess_communication_open(const char * pszPath);
+   void interprocess_communication_open(const char* pszPath);
 
-   };
+};
 
 
 //} // namespace apex

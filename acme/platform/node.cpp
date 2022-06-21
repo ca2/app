@@ -1756,6 +1756,38 @@ namespace acme
     }
 
 
+    string node::get_local_mutex_name(const ::string& strAppId)
+    {
+
+       return "";
+
+    }
+
+
+    string node::get_local_id_mutex_name(const ::string& strAppId, const ::string& strId)
+    {
+
+       return "";
+
+    }
+
+
+    string node::get_global_mutex_name(const ::string& strAppId)
+    {
+
+       return "";
+
+    }
+
+
+    string node::get_global_id_mutex_name(const ::string& strAppId, const ::string& strId)
+    {
+
+       return "";
+
+    }
+
+
 } // namespace acme
 
 

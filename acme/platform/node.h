@@ -443,6 +443,12 @@ namespace acme
       virtual void windowing_post(const ::procedure& procedure);
 
 
+      virtual string get_local_mutex_name(const ::string & strAppId);
+      virtual string get_local_id_mutex_name(const ::string & strAppId, const ::string & strId);
+      virtual string get_global_mutex_name(const ::string & strAppId);
+      virtual string get_global_id_mutex_name(const ::string & strAppId, const ::string & strId);
+
+
    };
 
 

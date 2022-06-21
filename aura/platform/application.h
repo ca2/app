@@ -65,14 +65,6 @@ namespace aura
 
       reference_addressa                              m_objectptraEventHook;
 
-      //bool                                            m_bAgreeExit;
-      //bool                                            m_bAgreeExitOk;
-      //bool                                            m_bFranceExit;
-
-      //bool                                            m_bIpi;
-      //__pointer(::interprocess_intercommunication)    m_pinterprocessintercommunication;
-      //__pointer(service_base)                         m_pservice;
-
       ::mutex                                           m_mutexFrame;
       __composite(::user::interaction_array)            m_puserinteractiona;
       __composite(::user::interaction_array)            m_puserinteractionaFrame;

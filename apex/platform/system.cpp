@@ -2465,7 +2465,7 @@ pacmedirectory->create("/ca2core");
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         auto pmutex = ::open_mutex(this, get_global_id_mutex_name(pszAppName,pszId));
+         auto pmutex = ::open_mutex(this, m_pnode->get_global_id_mutex_name(pszAppName,pszId));
 
          if(pmutex == nullptr)
          {
@@ -2501,7 +2501,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         auto pmutex = ::open_mutex(this, get_global_mutex_name(pszAppName));
+         auto pmutex = ::open_mutex(this, m_pnode->get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp = pszAppName;
@@ -2539,7 +2539,7 @@ pacmedirectory->create("/ca2core");
       if(strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         auto pmutex = ::open_mutex(this, get_local_id_mutex_name(pszAppName,strId));
+         auto pmutex = ::open_mutex(this, m_pnode->get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -2573,7 +2573,7 @@ pacmedirectory->create("/ca2core");
       else
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         auto pmutex = ::open_mutex(this, get_local_mutex_name(pszAppName));
+         auto pmutex = ::open_mutex(this, m_pnode->get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -4278,35 +4278,56 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    }
 
 
-   string system::get_local_mutex_name(const ::string & pszAppName)
-   {
-      string strMutex;
-      strMutex.format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
-      return strMutex;
-   }
+   //string system::get_local_mutex_name(const ::string & pszAppName)
+   //{
 
-   string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
-   {
-      string strId(pszId);
-      string strMutex;
-      strMutex.format("Local\\ca2_application_local_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
-      return strMutex;
-   }
+   //   string strMutex;
 
-   string system::get_global_mutex_name(const ::string & pszAppName)
-   {
-      string strMutex;
-      strMutex.format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
-      return strMutex;
-   }
+   //   strMutex.format("Local\\%s", pszAppName.c_str());
 
-   string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
-   {
-      string strId(pszId);
-      string strMutex;
-      strMutex.format("Global\\ca2_application_global_mutex:%s, atom:%s", pszAppName.c_str(), strId.c_str());
-      return strMutex;
-   }
+   //   return strMutex;
+
+   //}
+
+   //
+   //string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
+   //{
+   //   
+   //   string strId(pszId);
+   //   
+   //   string strMutex;
+   //   
+   //   strMutex.format("Local\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
+   //   
+   //   return strMutex;
+
+   //}
+
+   //
+   //string system::get_global_mutex_name(const ::string & pszAppName)
+   //{
+   //   
+   //   string strMutex;
+   //   
+   //   strMutex.format("Global\\%s", pszAppName.c_str());
+   //   
+   //   return strMutex;
+
+   //}
+
+   //
+   //string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
+   //{
+   //   
+   //   string strId(pszId);
+   //   
+   //   string strMutex;
+
+   //   strMutex.format("Global\\%s, atom:%s", pszAppName.c_str(), strId.c_str());
+
+   //   return strMutex;
+
+   //}
 
    
    //::task_group * system::task_group(::enum_priority epriority)

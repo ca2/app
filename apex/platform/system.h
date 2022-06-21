@@ -205,10 +205,10 @@ namespace apex
 
       virtual void __set_thread_on() override;
 
-      virtual string get_local_mutex_name(const ::string & pszAppName);
-      virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
-      virtual string get_global_mutex_name(const ::string & pszAppName);
-      virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+      //virtual string get_local_mutex_name(const ::string & pszAppName);
+      //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+      //virtual string get_global_mutex_name(const ::string & pszAppName);
+      //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
 
 
       virtual void initialize_sockets();

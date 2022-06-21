@@ -1431,38 +1431,6 @@ namespace axis
       try
       {
 
-         //if(::is_set(m_pappParent))
-         //{
-
-         //   m_pappParent->app_erase(this);
-
-         //}
-
-         //if(::is_set(get_session()))
-         //{
-
-         //   get_session()->app_erase(this);
-
-         //}
-
-         //if(::is_set(get_context_system()))
-         //{
-
-         //   psystem->app_erase(this);
-
-         //}
-
-         //try
-         //{
-
-         //   m_pinterprocessintercommunication.release();
-
-         //}
-         //catch (...)
-         //{
-
-         //}
-
          try
          {
 

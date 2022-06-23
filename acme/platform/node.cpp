@@ -1759,7 +1759,19 @@ namespace acme
     string node::get_local_mutex_name(const ::string& strAppId)
     {
 
-       return "";
+       string strApp(strAppId);
+
+       strApp.find_replace(".", "_");
+
+       strApp.find_replace("-", "_");
+
+       strApp.find_replace("/", "_");
+
+       string strMutex;
+
+       strMutex.format("Local\\%s", strApp.c_str());
+
+       return strMutex;
 
     }
 
@@ -1767,7 +1779,19 @@ namespace acme
     string node::get_local_id_mutex_name(const ::string& strAppId, const ::string& strId)
     {
 
-       return "";
+       string strApp(strAppId);
+
+       strApp.find_replace(".", "_");
+
+       strApp.find_replace("-", "_");
+
+       strApp.find_replace("/", "_");
+
+       string strMutex;
+
+       strMutex.format("Local\\%s, atom:%s", strApp.c_str(), strId.c_str());
+
+       return strMutex;
 
     }
 
@@ -1775,7 +1799,19 @@ namespace acme
     string node::get_global_mutex_name(const ::string& strAppId)
     {
 
-       return "";
+       string strApp(strAppId);
+
+       strApp.find_replace(".", "_");
+
+       strApp.find_replace("-", "_");
+
+       strApp.find_replace("/", "_");
+
+       string strMutex;
+
+       strMutex.format("Global\\%s", strApp.c_str());
+
+       return strMutex;
 
     }
 
@@ -1783,7 +1819,19 @@ namespace acme
     string node::get_global_id_mutex_name(const ::string& strAppId, const ::string& strId)
     {
 
-       return "";
+       string strApp(strAppId);
+
+       strApp.find_replace(".", "_");
+
+       strApp.find_replace("-", "_");
+
+       strApp.find_replace("/", "_");
+
+       string strMutex;
+
+       strMutex.format("Global\\%s, atom:%s", strApp.c_str(), strId.c_str());
+
+       return strMutex;
 
     }
 

@@ -68,7 +68,18 @@ namespace acme
 
       ::file::path path;
 
-      path = "/var/tmp";
+      if(strId.begins_ci("Local\\"))
+      {
+
+         path = pobject->m_psystem->m_pacmedirectory->home() / ".config/acme";
+
+      }
+      else
+      {
+
+         path = "/var/tmp/acme";
+
+      }
 
       path /= strId;
 

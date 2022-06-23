@@ -375,6 +375,8 @@ list(APPEND library_source
    user/user/key.h
    user/user/keyboard.cpp
    user/user/keyboard.h
+   user/user/layout_state.cpp
+   user/user/layout_state.h
    user/user/main_window.cpp
    user/user/main_window.h
    user/user/message.cpp
@@ -426,8 +428,6 @@ list(APPEND library_source
    user/user/wait_cursor.h
    #user/user/window_map.cpp
    #user/user/window_map.h
-   user/user/window_state.cpp
-   user/user/window_state.h
    user/user/window_util.cpp
    user/user/window_util.h
    user/user/windowing.cpp

@@ -12,14 +12,14 @@
 
 
 
-int ui_MessageBoxA(const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType, ::function < void (enum_dialog_result) > function);
+int ui_MessageBoxA(const ::string & pszMessageParam, const ::string & pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function);
 
 
 
 CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 
 
-void message_box_synchronous(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback )
+void message_box_synchronous(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::callback callback )
 {
 
    string strMessage(pszMessage); // string "absorbs" nullptr pointers into ""

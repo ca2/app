@@ -8,7 +8,7 @@
 #include "framework.h"
 #include "acme/primitive/primitive/function.h"
 
-int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, ::function < void (enum_dialog_result) > function)
+int ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, unsigned int uType, const char * pszDetails, ::function < void (enum_dialog_result) > function)
 {
    
    NSString * strMessage = [NSString stringWithUTF8String:pszMessageParam];

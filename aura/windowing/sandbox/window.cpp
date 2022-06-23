@@ -53,15 +53,15 @@ namespace sandbox_windowing
 
       auto pwindowingdisplay = pwindowing->display();
 
-      int x = m_puserinteractionimpl->m_puserinteraction->layout().sketch().origin().x;
+      int x = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().x;
 
-      int y = m_puserinteractionimpl->m_puserinteraction->layout().sketch().origin().y;
+      int y = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().y;
 
-      int cx = m_puserinteractionimpl->m_puserinteraction->layout().sketch().width();
+      int cx = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().width();
 
-      int cy = m_puserinteractionimpl->m_puserinteraction->layout().sketch().height();
+      int cy = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().height();
 
-      bool bVisible = m_puserinteractionimpl->m_puserinteraction->layout().sketch().is_screen_visible();
+      bool bVisible = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().is_screen_visible();
 
       if (cx <= 0)
       {
@@ -286,16 +286,16 @@ namespace sandbox_windowing
                // (Hinting for monitor placement, if no stored information
                // available).
 
-               if (pimpl->m_puserinteraction->layout().sketch().display() == e_display_undefined)
+               if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
                   auto pwindowing = windowing();
 
                   auto pointCursor = pwindowing->get_cursor_position();
 
-                  pimpl->m_puserinteraction->move_to(pointCursor);
+                  pimpl->m_puserinteraction->set_position(pointCursor);
 
-                  pimpl->m_puserinteraction->set_size(0, 0);
+                  pimpl->m_puserinteraction->set_size({0, 0});
 
                }
 

@@ -404,6 +404,8 @@ public:
 
       virtual bool exclusive_fails(string str ARG_SEC_ATTRS_DEF);
 
+      virtual bool exclusive_erase(string str ARG_SEC_ATTRS_DEF);
+
 
       virtual bool start_application(bool bSynch, ::create * pcreate);
 
@@ -613,6 +615,8 @@ public:
       virtual string get_global_id_mutex_name();
 
       virtual bool check_exclusive(bool & bHandled);
+      virtual bool erase_exclusive(const ::string & strId);
+
       virtual bool release_exclusive();
 
       virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;

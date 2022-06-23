@@ -10,10 +10,12 @@ class application_impl :
 public:
 
 
-   string_map < __composite(::acme::exclusive) >   m_mapExclusive;
+   string_map < __pointer(::acme::exclusive) >   m_mapExclusive;
 
 
    virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
+
+   virtual bool erase_exclusive(string str ARG_SEC_ATTRS_DEF);
 
 
 };

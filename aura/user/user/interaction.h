@@ -738,6 +738,10 @@ namespace user
       virtual ::user::notify_icon * notify_icon();
       
       virtual void on_app_activated();
+
+      virtual void frame_restore();
+
+      virtual void frame_occlude();
       
       virtual void frame_toggle_restore();
       

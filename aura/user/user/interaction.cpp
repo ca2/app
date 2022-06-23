@@ -13619,6 +13619,55 @@ namespace user
    }
 
 
+   void interaction::frame_restore()
+   {
+
+      if (notify_icon())
+      {
+
+         set_tool_window(false);
+
+      }
+
+      if (!is_window_screen_visible())
+      {
+
+         frame_experience_restore();
+
+      }
+      else
+      {
+
+         order_top();
+
+         display(e_display_normal, e_activation_set_foreground);
+
+      }
+
+   }
+
+
+   void interaction::frame_occlude()
+   {
+
+      if (notify_icon())
+      {
+
+         set_tool_window();
+
+         hide();
+
+      }
+      else
+      {
+
+         display(e_display_iconic);
+
+      }
+
+   }
+
+
    void interaction::frame_toggle_restore()
    {
 
@@ -13631,46 +13680,13 @@ namespace user
       if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
       {
 
-         if (notify_icon())
-         {
-
-            set_tool_window(false);
-
-         }
-
-         if (!is_window_screen_visible())
-         {
-
-            frame_experience_restore();
-
-         }
-         else
-         {
-
-            order_top();
-
-            display(e_display_normal, e_activation_set_foreground);
-
-         }
+         frame_restore();
 
       }
       else
       {
 
-         if (notify_icon())
-         {
-
-            set_tool_window();
-
-            hide();
-
-         }
-         else
-         {
-
-            display(e_display_iconic);
-
-         }
+         frame_occlude();
 
       }
 

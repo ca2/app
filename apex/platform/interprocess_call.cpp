@@ -71,6 +71,25 @@ void interprocess_call::exclude_this_app()
 }
 
 
+void interprocess_call::send(const ::atom& idPid)
+{
+
+   __pointer(interprocess_call) pcall = this;
+
+   auto& pobjectTask = pcall->m_mapTask[idPid];
+
+   if (!pobjectTask)
+   {
+
+      pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
+
+   }
+
+   pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_payloadaArgs);
+
+}
+
+
 void interprocess_call::post(const ::atom& idPid)
 {
 
@@ -79,16 +98,7 @@ void interprocess_call::post(const ::atom& idPid)
    fork([pcall, idPid]()
       {
 
-         auto& pobjectTask = pcall->m_mapTask[idPid];
-
-         if (!pobjectTask)
-         {
-
-            pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
-
-         }
-
-         pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_payloadaArgs);
+         pcall->send(idPid);
 
       });
 
@@ -144,7 +154,7 @@ bool interprocess_call::_wait(const class ::wait & wait)
 }
 
 
-void interprocess_call::announce()
+id_array interprocess_call::prepare_call()
 {
 
    exclude_this_app();
@@ -157,7 +167,7 @@ void interprocess_call::announce()
       if (!is_auto_launch())
       {
 
-         return;
+         return {};
 
       }
 
@@ -169,10 +179,35 @@ void interprocess_call::announce()
 
    iaPid -= m_iaExclude;
 
+   return iaPid;
+
+}
+
+
+void interprocess_call::send_call()
+{
+
+   auto iaPid = prepare_call();
+
    for (auto& idPid : iaPid)
    {
 
-      post(idPid);
+      send(idPid);
+
+   }
+
+}
+
+
+void interprocess_call::post_call()
+{
+
+   auto iaPid = prepare_call();
+
+   for (auto& idPid : iaPid)
+   {
+
+      send(idPid);
 
    }
 

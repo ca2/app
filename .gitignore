@@ -11,7 +11,7 @@ cmake-time-*/
 **/.link_object
 **/VisualGDB
 **/CVS
-*.xcuserdata
+**/xcuserdata
 .DS_Store
 ._.DS_Store
 *.suo

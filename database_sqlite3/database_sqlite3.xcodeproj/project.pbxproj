@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A0DB3CA286430CD00D061F7 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3A2286430CC00D061F7 /* framework.cpp */; };
+		9A0DB3CC286430CD00D061F7 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3A9286430CC00D061F7 /* factory_exchange.h */; };
+		9A0DB3CD286430CD00D061F7 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B0286430CD00D061F7 /* dataset.h */; };
+		9A0DB3CE286430CD00D061F7 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3B1286430CD00D061F7 /* database.cpp */; };
+		9A0DB3CF286430CD00D061F7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3B2286430CD00D061F7 /* _.cpp */; };
+		9A0DB3D0286430CD00D061F7 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B3286430CD00D061F7 /* database.h */; };
+		9A0DB3D1286430CD00D061F7 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B4286430CD00D061F7 /* _2.h */; };
+		9A0DB3D2286430CD00D061F7 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */; };
+		9A0DB3D3286430CD00D061F7 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B8286430CD00D061F7 /* framework.h */; };
+		9A0DB3D4286430CD00D061F7 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3C1286430CD00D061F7 /* _factory.cpp */; };
+		9A0DB3D5286430CD00D061F7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3C3286430CD00D061F7 /* _.h */; };
+		9A0DB3D82864314500D061F7 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */; };
+		9A0DB3D92864314500D061F7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3C3286430CD00D061F7 /* _.h */; };
+		9A0DB3DA2864314500D061F7 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B3286430CD00D061F7 /* database.h */; };
+		9A0DB3DB2864314500D061F7 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3A9286430CC00D061F7 /* factory_exchange.h */; };
+		9A0DB3DC2864314500D061F7 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B8286430CD00D061F7 /* framework.h */; };
+		9A0DB3DD2864314500D061F7 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B0286430CD00D061F7 /* dataset.h */; };
+		9A0DB3DE2864314500D061F7 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B4286430CD00D061F7 /* _2.h */; };
+		9A0DB3E02864314500D061F7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3B2286430CD00D061F7 /* _.cpp */; };
+		9A0DB3E12864314500D061F7 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3A2286430CC00D061F7 /* framework.cpp */; };
+		9A0DB3E22864314500D061F7 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3C1286430CD00D061F7 /* _factory.cpp */; };
+		9A0DB3E32864314500D061F7 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3B1286430CD00D061F7 /* database.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9A0DB3902864309200D061F7 /* libdatabase_sqlite3.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdatabase_sqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0DB3A2286430CC00D061F7 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A0DB3A9286430CC00D061F7 /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
+		9A0DB3B0286430CD00D061F7 /* dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataset.h; sourceTree = "<group>"; };
+		9A0DB3B1286430CD00D061F7 /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
+		9A0DB3B2286430CD00D061F7 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A0DB3B3286430CD00D061F7 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		9A0DB3B4286430CD00D061F7 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
+		9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _database_sqlite3.h; sourceTree = "<group>"; };
+		9A0DB3B8286430CD00D061F7 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9A0DB3C1286430CD00D061F7 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
+		9A0DB3C3286430CD00D061F7 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A0DB3E82864314500D061F7 /* libios_database_sqlite3.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_database_sqlite3.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A0DB38E2864309200D061F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A0DB3E42864314500D061F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A0DB3872864309200D061F7 = {
+			isa = PBXGroup;
+			children = (
+				9A0DB397286430CC00D061F7 /* database_sqlite3 */,
+				9A0DB3912864309200D061F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A0DB3912864309200D061F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A0DB3902864309200D061F7 /* libdatabase_sqlite3.dylib */,
+				9A0DB3E82864314500D061F7 /* libios_database_sqlite3.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A0DB397286430CC00D061F7 /* database_sqlite3 */ = {
+			isa = PBXGroup;
+			children = (
+				9A0DB3B2286430CD00D061F7 /* _.cpp */,
+				9A0DB3C3286430CD00D061F7 /* _.h */,
+				9A0DB3B4286430CD00D061F7 /* _2.h */,
+				9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */,
+				9A0DB3C1286430CD00D061F7 /* _factory.cpp */,
+				9A0DB3B1286430CD00D061F7 /* database.cpp */,
+				9A0DB3B3286430CD00D061F7 /* database.h */,
+				9A0DB3B0286430CD00D061F7 /* dataset.h */,
+				9A0DB3A9286430CC00D061F7 /* factory_exchange.h */,
+				9A0DB3A2286430CC00D061F7 /* framework.cpp */,
+				9A0DB3B8286430CD00D061F7 /* framework.h */,
+			);
+			name = database_sqlite3;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9A0DB38C2864309200D061F7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A0DB3D2286430CD00D061F7 /* _database_sqlite3.h in Headers */,
+				9A0DB3D5286430CD00D061F7 /* _.h in Headers */,
+				9A0DB3D0286430CD00D061F7 /* database.h in Headers */,
+				9A0DB3CC286430CD00D061F7 /* factory_exchange.h in Headers */,
+				9A0DB3D3286430CD00D061F7 /* framework.h in Headers */,
+				9A0DB3CD286430CD00D061F7 /* dataset.h in Headers */,
+				9A0DB3D1286430CD00D061F7 /* _2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A0DB3D72864314500D061F7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A0DB3D82864314500D061F7 /* _database_sqlite3.h in Headers */,
+				9A0DB3D92864314500D061F7 /* _.h in Headers */,
+				9A0DB3DA2864314500D061F7 /* database.h in Headers */,
+				9A0DB3DB2864314500D061F7 /* factory_exchange.h in Headers */,
+				9A0DB3DC2864314500D061F7 /* framework.h in Headers */,
+				9A0DB3DD2864314500D061F7 /* dataset.h in Headers */,
+				9A0DB3DE2864314500D061F7 /* _2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9A0DB38F2864309200D061F7 /* database_sqlite3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A0DB3942864309200D061F7 /* Build configuration list for PBXNativeTarget "database_sqlite3" */;
+			buildPhases = (
+				9A0DB38C2864309200D061F7 /* Headers */,
+				9A0DB38D2864309200D061F7 /* Sources */,
+				9A0DB38E2864309200D061F7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = database_sqlite3;
+			productName = database_sqlite3;
+			productReference = 9A0DB3902864309200D061F7 /* libdatabase_sqlite3.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9A0DB3D62864314500D061F7 /* ios_database_sqlite3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A0DB3E52864314500D061F7 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */;
+			buildPhases = (
+				9A0DB3D72864314500D061F7 /* Headers */,
+				9A0DB3DF2864314500D061F7 /* Sources */,
+				9A0DB3E42864314500D061F7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ios_database_sqlite3;
+			productName = database_sqlite3;
+			productReference = 9A0DB3E82864314500D061F7 /* libios_database_sqlite3.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A0DB3882864309200D061F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					9A0DB38F2864309200D061F7 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 9A0DB38B2864309200D061F7 /* Build configuration list for PBXProject "database_sqlite3" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A0DB3872864309200D061F7;
+			productRefGroup = 9A0DB3912864309200D061F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A0DB38F2864309200D061F7 /* database_sqlite3 */,
+				9A0DB3D62864314500D061F7 /* ios_database_sqlite3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A0DB38D2864309200D061F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A0DB3CF286430CD00D061F7 /* _.cpp in Sources */,
+				9A0DB3CA286430CD00D061F7 /* framework.cpp in Sources */,
+				9A0DB3D4286430CD00D061F7 /* _factory.cpp in Sources */,
+				9A0DB3CE286430CD00D061F7 /* database.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A0DB3DF2864314500D061F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A0DB3E02864314500D061F7 /* _.cpp in Sources */,
+				9A0DB3E12864314500D061F7 /* framework.cpp in Sources */,
+				9A0DB3E22864314500D061F7 /* _factory.cpp in Sources */,
+				9A0DB3E32864314500D061F7 /* database.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9A0DB3922864309200D061F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		9A0DB3932864309200D061F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		9A0DB3952864309200D061F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				PLATFORM_MODIFIER = macos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A0DB3962864309200D061F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				PLATFORM_MODIFIER = macos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		9A0DB3E62864314500D061F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A0DB3E72864314500D061F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A0DB38B2864309200D061F7 /* Build configuration list for PBXProject "database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A0DB3922864309200D061F7 /* Debug */,
+				9A0DB3932864309200D061F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A0DB3942864309200D061F7 /* Build configuration list for PBXNativeTarget "database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A0DB3952864309200D061F7 /* Debug */,
+				9A0DB3962864309200D061F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A0DB3E52864314500D061F7 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A0DB3E62864314500D061F7 /* Debug */,
+				9A0DB3E72864314500D061F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A0DB3882864309200D061F7 /* Project object */;
+}

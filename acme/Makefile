@@ -171,33 +171,6 @@ _.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/_.cpp.s
 .PHONY : _.cpp.s
 
-__matter_ca2.o: __matter_ca2.cpp.o
-
-.PHONY : __matter_ca2.o
-
-# target to build an object file
-__matter_ca2.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/__matter_ca2.cpp.o
-.PHONY : __matter_ca2.cpp.o
-
-__matter_ca2.i: __matter_ca2.cpp.i
-
-.PHONY : __matter_ca2.i
-
-# target to preprocess a source file
-__matter_ca2.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/__matter_ca2.cpp.i
-.PHONY : __matter_ca2.cpp.i
-
-__matter_ca2.s: __matter_ca2.cpp.s
-
-.PHONY : __matter_ca2.s
-
-# target to generate assembly for a file
-__matter_ca2.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/__matter_ca2.cpp.s
-.PHONY : __matter_ca2.cpp.s
-
 # target to build an object file
 cmake_pch.hxx.gch:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/cmake_pch.hxx.gch
@@ -294,60 +267,6 @@ constant/idpool.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
 
-context_glx.o: context_glx.cpp.o
-
-.PHONY : context_glx.o
-
-# target to build an object file
-context_glx.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/context_glx.cpp.o
-.PHONY : context_glx.cpp.o
-
-context_glx.i: context_glx.cpp.i
-
-.PHONY : context_glx.i
-
-# target to preprocess a source file
-context_glx.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/context_glx.cpp.i
-.PHONY : context_glx.cpp.i
-
-context_glx.s: context_glx.cpp.s
-
-.PHONY : context_glx.s
-
-# target to generate assembly for a file
-context_glx.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/context_glx.cpp.s
-.PHONY : context_glx.cpp.s
-
-exception/callstack.o: exception/callstack.cpp.o
-
-.PHONY : exception/callstack.o
-
-# target to build an object file
-exception/callstack.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/callstack.cpp.o
-.PHONY : exception/callstack.cpp.o
-
-exception/callstack.i: exception/callstack.cpp.i
-
-.PHONY : exception/callstack.i
-
-# target to preprocess a source file
-exception/callstack.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/callstack.cpp.i
-.PHONY : exception/callstack.cpp.i
-
-exception/callstack.s: exception/callstack.cpp.s
-
-.PHONY : exception/callstack.s
-
-# target to generate assembly for a file
-exception/callstack.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/callstack.cpp.s
-.PHONY : exception/callstack.cpp.s
-
 exception/cancel.o: exception/cancel.cpp.o
 
 .PHONY : exception/cancel.o
@@ -375,33 +294,6 @@ exception/cancel.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/cancel.cpp.s
 .PHONY : exception/cancel.cpp.s
 
-exception/const.o: exception/const.cpp.o
-
-.PHONY : exception/const.o
-
-# target to build an object file
-exception/const.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/const.cpp.o
-.PHONY : exception/const.cpp.o
-
-exception/const.i: exception/const.cpp.i
-
-.PHONY : exception/const.i
-
-# target to preprocess a source file
-exception/const.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/const.cpp.i
-.PHONY : exception/const.cpp.i
-
-exception/const.s: exception/const.cpp.s
-
-.PHONY : exception/const.s
-
-# target to generate assembly for a file
-exception/const.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/const.cpp.s
-.PHONY : exception/const.cpp.s
-
 exception/debug.o: exception/debug.cpp.o
 
 .PHONY : exception/debug.o
@@ -428,33 +320,6 @@ exception/debug.s: exception/debug.cpp.s
 exception/debug.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/debug.cpp.s
 .PHONY : exception/debug.cpp.s
-
-exception/dump.o: exception/dump.cpp.o
-
-.PHONY : exception/dump.o
-
-# target to build an object file
-exception/dump.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump.cpp.o
-.PHONY : exception/dump.cpp.o
-
-exception/dump.i: exception/dump.cpp.i
-
-.PHONY : exception/dump.i
-
-# target to preprocess a source file
-exception/dump.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump.cpp.i
-.PHONY : exception/dump.cpp.i
-
-exception/dump.s: exception/dump.cpp.s
-
-.PHONY : exception/dump.s
-
-# target to generate assembly for a file
-exception/dump.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump.cpp.s
-.PHONY : exception/dump.cpp.s
 
 exception/dump_context.o: exception/dump_context.cpp.o
 
@@ -509,33 +374,6 @@ exception/dump_floating_point.s: exception/dump_floating_point.cpp.s
 exception/dump_floating_point.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump_floating_point.cpp.s
 .PHONY : exception/dump_floating_point.cpp.s
-
-exception/dump_output.o: exception/dump_output.cpp.o
-
-.PHONY : exception/dump_output.o
-
-# target to build an object file
-exception/dump_output.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump_output.cpp.o
-.PHONY : exception/dump_output.cpp.o
-
-exception/dump_output.i: exception/dump_output.cpp.i
-
-.PHONY : exception/dump_output.i
-
-# target to preprocess a source file
-exception/dump_output.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump_output.cpp.i
-.PHONY : exception/dump_output.cpp.i
-
-exception/dump_output.s: exception/dump_output.cpp.s
-
-.PHONY : exception/dump_output.s
-
-# target to generate assembly for a file
-exception/dump_output.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/dump_output.cpp.s
-.PHONY : exception/dump_output.cpp.s
 
 exception/exception.o: exception/exception.cpp.o
 
@@ -888,33 +726,6 @@ exception/standard.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/standard.cpp.s
 .PHONY : exception/standard.cpp.s
 
-exception/throw.o: exception/throw.cpp.o
-
-.PHONY : exception/throw.o
-
-# target to build an object file
-exception/throw.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/throw.cpp.o
-.PHONY : exception/throw.cpp.o
-
-exception/throw.i: exception/throw.cpp.i
-
-.PHONY : exception/throw.i
-
-# target to preprocess a source file
-exception/throw.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/throw.cpp.i
-.PHONY : exception/throw.cpp.i
-
-exception/throw.s: exception/throw.cpp.s
-
-.PHONY : exception/throw.s
-
-# target to generate assembly for a file
-exception/throw.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/exception/throw.cpp.s
-.PHONY : exception/throw.cpp.s
-
 exception/translator.o: exception/translator.cpp.o
 
 .PHONY : exception/translator.o
@@ -996,33 +807,6 @@ filesystem/file/buffered_buffer.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/buffered_buffer.cpp.s
 .PHONY : filesystem/file/buffered_buffer.cpp.s
 
-filesystem/file/c.o: filesystem/file/c.cpp.o
-
-.PHONY : filesystem/file/c.o
-
-# target to build an object file
-filesystem/file/c.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/c.cpp.o
-.PHONY : filesystem/file/c.cpp.o
-
-filesystem/file/c.i: filesystem/file/c.cpp.i
-
-.PHONY : filesystem/file/c.i
-
-# target to preprocess a source file
-filesystem/file/c.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/c.cpp.i
-.PHONY : filesystem/file/c.cpp.i
-
-filesystem/file/c.s: filesystem/file/c.cpp.s
-
-.PHONY : filesystem/file/c.s
-
-# target to generate assembly for a file
-filesystem/file/c.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/c.cpp.s
-.PHONY : filesystem/file/c.cpp.s
-
 filesystem/file/circular_buffer.o: filesystem/file/circular_buffer.cpp.o
 
 .PHONY : filesystem/file/circular_buffer.o
@@ -1103,33 +887,6 @@ filesystem/file/cpp.s: filesystem/file/cpp.cpp.s
 filesystem/file/cpp.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/cpp.cpp.s
 .PHONY : filesystem/file/cpp.cpp.s
-
-filesystem/file/dir2.o: filesystem/file/dir2.cpp.o
-
-.PHONY : filesystem/file/dir2.o
-
-# target to build an object file
-filesystem/file/dir2.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/dir2.cpp.o
-.PHONY : filesystem/file/dir2.cpp.o
-
-filesystem/file/dir2.i: filesystem/file/dir2.cpp.i
-
-.PHONY : filesystem/file/dir2.i
-
-# target to preprocess a source file
-filesystem/file/dir2.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/dir2.cpp.i
-.PHONY : filesystem/file/dir2.cpp.i
-
-filesystem/file/dir2.s: filesystem/file/dir2.cpp.s
-
-.PHONY : filesystem/file/dir2.s
-
-# target to generate assembly for a file
-filesystem/file/dir2.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/dir2.cpp.s
-.PHONY : filesystem/file/dir2.cpp.s
 
 filesystem/file/exception.o: filesystem/file/exception.cpp.o
 
@@ -1320,33 +1077,6 @@ filesystem/file/memory_map.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/memory_map.cpp.s
 .PHONY : filesystem/file/memory_map.cpp.s
 
-filesystem/file/path.o: filesystem/file/path.cpp.o
-
-.PHONY : filesystem/file/path.o
-
-# target to build an object file
-filesystem/file/path.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/path.cpp.o
-.PHONY : filesystem/file/path.cpp.o
-
-filesystem/file/path.i: filesystem/file/path.cpp.i
-
-.PHONY : filesystem/file/path.i
-
-# target to preprocess a source file
-filesystem/file/path.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/path.cpp.i
-.PHONY : filesystem/file/path.cpp.i
-
-filesystem/file/path.s: filesystem/file/path.cpp.s
-
-.PHONY : filesystem/file/path.s
-
-# target to generate assembly for a file
-filesystem/file/path.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/path.cpp.s
-.PHONY : filesystem/file/path.cpp.s
-
 filesystem/file/payload_stream.o: filesystem/file/payload_stream.cpp.o
 
 .PHONY : filesystem/file/payload_stream.o
@@ -1373,87 +1103,6 @@ filesystem/file/payload_stream.s: filesystem/file/payload_stream.cpp.s
 filesystem/file/payload_stream.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/payload_stream.cpp.s
 .PHONY : filesystem/file/payload_stream.cpp.s
-
-filesystem/file/seekable.o: filesystem/file/seekable.cpp.o
-
-.PHONY : filesystem/file/seekable.o
-
-# target to build an object file
-filesystem/file/seekable.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/seekable.cpp.o
-.PHONY : filesystem/file/seekable.cpp.o
-
-filesystem/file/seekable.i: filesystem/file/seekable.cpp.i
-
-.PHONY : filesystem/file/seekable.i
-
-# target to preprocess a source file
-filesystem/file/seekable.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/seekable.cpp.i
-.PHONY : filesystem/file/seekable.cpp.i
-
-filesystem/file/seekable.s: filesystem/file/seekable.cpp.s
-
-.PHONY : filesystem/file/seekable.s
-
-# target to generate assembly for a file
-filesystem/file/seekable.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/seekable.cpp.s
-.PHONY : filesystem/file/seekable.cpp.s
-
-filesystem/file/serializable.o: filesystem/file/serializable.cpp.o
-
-.PHONY : filesystem/file/serializable.o
-
-# target to build an object file
-filesystem/file/serializable.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serializable.cpp.o
-.PHONY : filesystem/file/serializable.cpp.o
-
-filesystem/file/serializable.i: filesystem/file/serializable.cpp.i
-
-.PHONY : filesystem/file/serializable.i
-
-# target to preprocess a source file
-filesystem/file/serializable.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serializable.cpp.i
-.PHONY : filesystem/file/serializable.cpp.i
-
-filesystem/file/serializable.s: filesystem/file/serializable.cpp.s
-
-.PHONY : filesystem/file/serializable.s
-
-# target to generate assembly for a file
-filesystem/file/serializable.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serializable.cpp.s
-.PHONY : filesystem/file/serializable.cpp.s
-
-filesystem/file/serialize.o: filesystem/file/serialize.cpp.o
-
-.PHONY : filesystem/file/serialize.o
-
-# target to build an object file
-filesystem/file/serialize.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serialize.cpp.o
-.PHONY : filesystem/file/serialize.cpp.o
-
-filesystem/file/serialize.i: filesystem/file/serialize.cpp.i
-
-.PHONY : filesystem/file/serialize.i
-
-# target to preprocess a source file
-filesystem/file/serialize.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serialize.cpp.i
-.PHONY : filesystem/file/serialize.cpp.i
-
-filesystem/file/serialize.s: filesystem/file/serialize.cpp.s
-
-.PHONY : filesystem/file/serialize.s
-
-# target to generate assembly for a file
-filesystem/file/serialize.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/filesystem/file/serialize.cpp.s
-.PHONY : filesystem/file/serialize.cpp.s
 
 filesystem/file/stdio_file.o: filesystem/file/stdio_file.cpp.o
 
@@ -2157,33 +1806,6 @@ handler/topic.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/handler/topic.cpp.s
 .PHONY : handler/topic.cpp.s
 
-include/_.o: include/_.cpp.o
-
-.PHONY : include/_.o
-
-# target to build an object file
-include/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/include/_.cpp.o
-.PHONY : include/_.cpp.o
-
-include/_.i: include/_.cpp.i
-
-.PHONY : include/_.i
-
-# target to preprocess a source file
-include/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/include/_.cpp.i
-.PHONY : include/_.cpp.i
-
-include/_.s: include/_.cpp.s
-
-.PHONY : include/_.s
-
-# target to generate assembly for a file
-include/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/include/_.cpp.s
-.PHONY : include/_.cpp.s
-
 memory/alloc.o: memory/alloc.cpp.o
 
 .PHONY : memory/alloc.o
@@ -2724,33 +2346,6 @@ operating_system/_.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/_.cpp.s
 .PHONY : operating_system/_.cpp.s
 
-operating_system/ansi/base.o: operating_system/ansi/base.cpp.o
-
-.PHONY : operating_system/ansi/base.o
-
-# target to build an object file
-operating_system/ansi/base.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/base.cpp.o
-.PHONY : operating_system/ansi/base.cpp.o
-
-operating_system/ansi/base.i: operating_system/ansi/base.cpp.i
-
-.PHONY : operating_system/ansi/base.i
-
-# target to preprocess a source file
-operating_system/ansi/base.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/base.cpp.i
-.PHONY : operating_system/ansi/base.cpp.i
-
-operating_system/ansi/base.s: operating_system/ansi/base.cpp.s
-
-.PHONY : operating_system/ansi/base.s
-
-# target to generate assembly for a file
-operating_system/ansi/base.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/base.cpp.s
-.PHONY : operating_system/ansi/base.cpp.s
-
 operating_system/ansi/binreloc.o: operating_system/ansi/binreloc.cpp.o
 
 .PHONY : operating_system/ansi/binreloc.o
@@ -2940,87 +2535,6 @@ operating_system/ansi/file_std.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/file_std.cpp.s
 .PHONY : operating_system/ansi/file_std.cpp.s
 
-operating_system/ansi/language.o: operating_system/ansi/language.cpp.o
-
-.PHONY : operating_system/ansi/language.o
-
-# target to build an object file
-operating_system/ansi/language.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/language.cpp.o
-.PHONY : operating_system/ansi/language.cpp.o
-
-operating_system/ansi/language.i: operating_system/ansi/language.cpp.i
-
-.PHONY : operating_system/ansi/language.i
-
-# target to preprocess a source file
-operating_system/ansi/language.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/language.cpp.i
-.PHONY : operating_system/ansi/language.cpp.i
-
-operating_system/ansi/language.s: operating_system/ansi/language.cpp.s
-
-.PHONY : operating_system/ansi/language.s
-
-# target to generate assembly for a file
-operating_system/ansi/language.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/language.cpp.s
-.PHONY : operating_system/ansi/language.cpp.s
-
-operating_system/ansi/memory.o: operating_system/ansi/memory.cpp.o
-
-.PHONY : operating_system/ansi/memory.o
-
-# target to build an object file
-operating_system/ansi/memory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/memory.cpp.o
-.PHONY : operating_system/ansi/memory.cpp.o
-
-operating_system/ansi/memory.i: operating_system/ansi/memory.cpp.i
-
-.PHONY : operating_system/ansi/memory.i
-
-# target to preprocess a source file
-operating_system/ansi/memory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/memory.cpp.i
-.PHONY : operating_system/ansi/memory.cpp.i
-
-operating_system/ansi/memory.s: operating_system/ansi/memory.cpp.s
-
-.PHONY : operating_system/ansi/memory.s
-
-# target to generate assembly for a file
-operating_system/ansi/memory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/memory.cpp.s
-.PHONY : operating_system/ansi/memory.cpp.s
-
-operating_system/ansi/parallelization.o: operating_system/ansi/parallelization.cpp.o
-
-.PHONY : operating_system/ansi/parallelization.o
-
-# target to build an object file
-operating_system/ansi/parallelization.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.o
-.PHONY : operating_system/ansi/parallelization.cpp.o
-
-operating_system/ansi/parallelization.i: operating_system/ansi/parallelization.cpp.i
-
-.PHONY : operating_system/ansi/parallelization.i
-
-# target to preprocess a source file
-operating_system/ansi/parallelization.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.i
-.PHONY : operating_system/ansi/parallelization.cpp.i
-
-operating_system/ansi/parallelization.s: operating_system/ansi/parallelization.cpp.s
-
-.PHONY : operating_system/ansi/parallelization.s
-
-# target to generate assembly for a file
-operating_system/ansi/parallelization.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/parallelization.cpp.s
-.PHONY : operating_system/ansi/parallelization.cpp.s
-
 operating_system/ansi/process.o: operating_system/ansi/process.cpp.o
 
 .PHONY : operating_system/ansi/process.o
@@ -3048,33 +2562,6 @@ operating_system/ansi/process.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/process.cpp.s
 .PHONY : operating_system/ansi/process.cpp.s
 
-operating_system/ansi/pthread.o: operating_system/ansi/pthread.cpp.o
-
-.PHONY : operating_system/ansi/pthread.o
-
-# target to build an object file
-operating_system/ansi/pthread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.o
-.PHONY : operating_system/ansi/pthread.cpp.o
-
-operating_system/ansi/pthread.i: operating_system/ansi/pthread.cpp.i
-
-.PHONY : operating_system/ansi/pthread.i
-
-# target to preprocess a source file
-operating_system/ansi/pthread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.i
-.PHONY : operating_system/ansi/pthread.cpp.i
-
-operating_system/ansi/pthread.s: operating_system/ansi/pthread.cpp.s
-
-.PHONY : operating_system/ansi/pthread.s
-
-# target to generate assembly for a file
-operating_system/ansi/pthread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/pthread.cpp.s
-.PHONY : operating_system/ansi/pthread.cpp.s
-
 operating_system/ansi/time.o: operating_system/ansi/time.cpp.o
 
 .PHONY : operating_system/ansi/time.o
@@ -3101,33 +2588,6 @@ operating_system/ansi/time.s: operating_system/ansi/time.cpp.s
 operating_system/ansi/time.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/time.cpp.s
 .PHONY : operating_system/ansi/time.cpp.s
-
-operating_system/ansi/user.o: operating_system/ansi/user.cpp.o
-
-.PHONY : operating_system/ansi/user.o
-
-# target to build an object file
-operating_system/ansi/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/user.cpp.o
-.PHONY : operating_system/ansi/user.cpp.o
-
-operating_system/ansi/user.i: operating_system/ansi/user.cpp.i
-
-.PHONY : operating_system/ansi/user.i
-
-# target to preprocess a source file
-operating_system/ansi/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/user.cpp.i
-.PHONY : operating_system/ansi/user.cpp.i
-
-operating_system/ansi/user.s: operating_system/ansi/user.cpp.s
-
-.PHONY : operating_system/ansi/user.s
-
-# target to generate assembly for a file
-operating_system/ansi/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/ansi/user.cpp.s
-.PHONY : operating_system/ansi/user.cpp.s
 
 operating_system/ansi/windows_time.o: operating_system/ansi/windows_time.cpp.o
 
@@ -3371,33 +2831,6 @@ operating_system/file.s: operating_system/file.cpp.s
 operating_system/file.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/file.cpp.s
 .PHONY : operating_system/file.cpp.s
-
-operating_system/http.o: operating_system/http.cpp.o
-
-.PHONY : operating_system/http.o
-
-# target to build an object file
-operating_system/http.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/http.cpp.o
-.PHONY : operating_system/http.cpp.o
-
-operating_system/http.i: operating_system/http.cpp.i
-
-.PHONY : operating_system/http.i
-
-# target to preprocess a source file
-operating_system/http.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/http.cpp.i
-.PHONY : operating_system/http.cpp.i
-
-operating_system/http.s: operating_system/http.cpp.s
-
-.PHONY : operating_system/http.s
-
-# target to generate assembly for a file
-operating_system/http.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/http.cpp.s
-.PHONY : operating_system/http.cpp.s
 
 operating_system/linux/_.o: operating_system/linux/_.cpp.o
 
@@ -4236,6 +3669,60 @@ operating_system/posix/base_file.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/base_file.cpp.s
 .PHONY : operating_system/posix/base_file.cpp.s
 
+operating_system/posix/callstack.o: operating_system/posix/callstack.cpp.o
+
+.PHONY : operating_system/posix/callstack.o
+
+# target to build an object file
+operating_system/posix/callstack.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/callstack.cpp.o
+.PHONY : operating_system/posix/callstack.cpp.o
+
+operating_system/posix/callstack.i: operating_system/posix/callstack.cpp.i
+
+.PHONY : operating_system/posix/callstack.i
+
+# target to preprocess a source file
+operating_system/posix/callstack.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/callstack.cpp.i
+.PHONY : operating_system/posix/callstack.cpp.i
+
+operating_system/posix/callstack.s: operating_system/posix/callstack.cpp.s
+
+.PHONY : operating_system/posix/callstack.s
+
+# target to generate assembly for a file
+operating_system/posix/callstack.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/callstack.cpp.s
+.PHONY : operating_system/posix/callstack.cpp.s
+
+operating_system/posix/chldstatus.o: operating_system/posix/chldstatus.cpp.o
+
+.PHONY : operating_system/posix/chldstatus.o
+
+# target to build an object file
+operating_system/posix/chldstatus.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/chldstatus.cpp.o
+.PHONY : operating_system/posix/chldstatus.cpp.o
+
+operating_system/posix/chldstatus.i: operating_system/posix/chldstatus.cpp.i
+
+.PHONY : operating_system/posix/chldstatus.i
+
+# target to preprocess a source file
+operating_system/posix/chldstatus.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/chldstatus.cpp.i
+.PHONY : operating_system/posix/chldstatus.cpp.i
+
+operating_system/posix/chldstatus.s: operating_system/posix/chldstatus.cpp.s
+
+.PHONY : operating_system/posix/chldstatus.s
+
+# target to generate assembly for a file
+operating_system/posix/chldstatus.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/chldstatus.cpp.s
+.PHONY : operating_system/posix/chldstatus.cpp.s
+
 operating_system/posix/desktop.o: operating_system/posix/desktop.cpp.o
 
 .PHONY : operating_system/posix/desktop.o
@@ -4289,33 +3776,6 @@ operating_system/posix/file_lock.s: operating_system/posix/file_lock.cpp.s
 operating_system/posix/file_lock.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/file_lock.cpp.s
 .PHONY : operating_system/posix/file_lock.cpp.s
-
-operating_system/posix/local_memory_map.o: operating_system/posix/local_memory_map.cpp.o
-
-.PHONY : operating_system/posix/local_memory_map.o
-
-# target to build an object file
-operating_system/posix/local_memory_map.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.o
-.PHONY : operating_system/posix/local_memory_map.cpp.o
-
-operating_system/posix/local_memory_map.i: operating_system/posix/local_memory_map.cpp.i
-
-.PHONY : operating_system/posix/local_memory_map.i
-
-# target to preprocess a source file
-operating_system/posix/local_memory_map.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.i
-.PHONY : operating_system/posix/local_memory_map.cpp.i
-
-operating_system/posix/local_memory_map.s: operating_system/posix/local_memory_map.cpp.s
-
-.PHONY : operating_system/posix/local_memory_map.s
-
-# target to generate assembly for a file
-operating_system/posix/local_memory_map.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/local_memory_map.cpp.s
-.PHONY : operating_system/posix/local_memory_map.cpp.s
 
 operating_system/posix/parallelization.o: operating_system/posix/parallelization.cpp.o
 
@@ -4424,33 +3884,6 @@ operating_system/posix/time.s: operating_system/posix/time.cpp.s
 operating_system/posix/time.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/time.cpp.s
 .PHONY : operating_system/posix/time.cpp.s
-
-operating_system/posix/timer.o: operating_system/posix/timer.cpp.o
-
-.PHONY : operating_system/posix/timer.o
-
-# target to build an object file
-operating_system/posix/timer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.o
-.PHONY : operating_system/posix/timer.cpp.o
-
-operating_system/posix/timer.i: operating_system/posix/timer.cpp.i
-
-.PHONY : operating_system/posix/timer.i
-
-# target to preprocess a source file
-operating_system/posix/timer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.i
-.PHONY : operating_system/posix/timer.cpp.i
-
-operating_system/posix/timer.s: operating_system/posix/timer.cpp.s
-
-.PHONY : operating_system/posix/timer.s
-
-# target to generate assembly for a file
-operating_system/posix/timer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/operating_system/posix/timer.cpp.s
-.PHONY : operating_system/posix/timer.cpp.s
 
 operating_system/time.o: operating_system/time.cpp.o
 
@@ -5262,87 +4695,6 @@ parallelization/synchronization_object.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_object.cpp.s
 .PHONY : parallelization/synchronization_object.cpp.s
 
-parallelization/synchronization_result.o: parallelization/synchronization_result.cpp.o
-
-.PHONY : parallelization/synchronization_result.o
-
-# target to build an object file
-parallelization/synchronization_result.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.o
-.PHONY : parallelization/synchronization_result.cpp.o
-
-parallelization/synchronization_result.i: parallelization/synchronization_result.cpp.i
-
-.PHONY : parallelization/synchronization_result.i
-
-# target to preprocess a source file
-parallelization/synchronization_result.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.i
-.PHONY : parallelization/synchronization_result.cpp.i
-
-parallelization/synchronization_result.s: parallelization/synchronization_result.cpp.s
-
-.PHONY : parallelization/synchronization_result.s
-
-# target to generate assembly for a file
-parallelization/synchronization_result.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronization_result.cpp.s
-.PHONY : parallelization/synchronization_result.cpp.s
-
-parallelization/synchronized_process.o: parallelization/synchronized_process.cpp.o
-
-.PHONY : parallelization/synchronized_process.o
-
-# target to build an object file
-parallelization/synchronized_process.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.o
-.PHONY : parallelization/synchronized_process.cpp.o
-
-parallelization/synchronized_process.i: parallelization/synchronized_process.cpp.i
-
-.PHONY : parallelization/synchronized_process.i
-
-# target to preprocess a source file
-parallelization/synchronized_process.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.i
-.PHONY : parallelization/synchronized_process.cpp.i
-
-parallelization/synchronized_process.s: parallelization/synchronized_process.cpp.s
-
-.PHONY : parallelization/synchronized_process.s
-
-# target to generate assembly for a file
-parallelization/synchronized_process.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_process.cpp.s
-.PHONY : parallelization/synchronized_process.cpp.s
-
-parallelization/synchronized_task.o: parallelization/synchronized_task.cpp.o
-
-.PHONY : parallelization/synchronized_task.o
-
-# target to build an object file
-parallelization/synchronized_task.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.o
-.PHONY : parallelization/synchronized_task.cpp.o
-
-parallelization/synchronized_task.i: parallelization/synchronized_task.cpp.i
-
-.PHONY : parallelization/synchronized_task.i
-
-# target to preprocess a source file
-parallelization/synchronized_task.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.i
-.PHONY : parallelization/synchronized_task.cpp.i
-
-parallelization/synchronized_task.s: parallelization/synchronized_task.cpp.s
-
-.PHONY : parallelization/synchronized_task.s
-
-# target to generate assembly for a file
-parallelization/synchronized_task.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/synchronized_task.cpp.s
-.PHONY : parallelization/synchronized_task.cpp.s
-
 parallelization/task.o: parallelization/task.cpp.o
 
 .PHONY : parallelization/task.o
@@ -5370,60 +4722,6 @@ parallelization/task.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/task.cpp.s
 .PHONY : parallelization/task.cpp.s
 
-parallelization/thread.o: parallelization/thread.cpp.o
-
-.PHONY : parallelization/thread.o
-
-# target to build an object file
-parallelization/thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread.cpp.o
-.PHONY : parallelization/thread.cpp.o
-
-parallelization/thread.i: parallelization/thread.cpp.i
-
-.PHONY : parallelization/thread.i
-
-# target to preprocess a source file
-parallelization/thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread.cpp.i
-.PHONY : parallelization/thread.cpp.i
-
-parallelization/thread.s: parallelization/thread.cpp.s
-
-.PHONY : parallelization/thread.s
-
-# target to generate assembly for a file
-parallelization/thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread.cpp.s
-.PHONY : parallelization/thread.cpp.s
-
-parallelization/thread_os.o: parallelization/thread_os.cpp.o
-
-.PHONY : parallelization/thread_os.o
-
-# target to build an object file
-parallelization/thread_os.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread_os.cpp.o
-.PHONY : parallelization/thread_os.cpp.o
-
-parallelization/thread_os.i: parallelization/thread_os.cpp.i
-
-.PHONY : parallelization/thread_os.i
-
-# target to preprocess a source file
-parallelization/thread_os.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread_os.cpp.i
-.PHONY : parallelization/thread_os.cpp.i
-
-parallelization/thread_os.s: parallelization/thread_os.cpp.s
-
-.PHONY : parallelization/thread_os.s
-
-# target to generate assembly for a file
-parallelization/thread_os.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/thread_os.cpp.s
-.PHONY : parallelization/thread_os.cpp.s
-
 parallelization/tools.o: parallelization/tools.cpp.o
 
 .PHONY : parallelization/tools.o
@@ -5450,33 +4748,6 @@ parallelization/tools.s: parallelization/tools.cpp.s
 parallelization/tools.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/tools.cpp.s
 .PHONY : parallelization/tools.cpp.s
-
-parallelization/waitable.o: parallelization/waitable.cpp.o
-
-.PHONY : parallelization/waitable.o
-
-# target to build an object file
-parallelization/waitable.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/waitable.cpp.o
-.PHONY : parallelization/waitable.cpp.o
-
-parallelization/waitable.i: parallelization/waitable.cpp.i
-
-.PHONY : parallelization/waitable.i
-
-# target to preprocess a source file
-parallelization/waitable.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/waitable.cpp.i
-.PHONY : parallelization/waitable.cpp.i
-
-parallelization/waitable.s: parallelization/waitable.cpp.s
-
-.PHONY : parallelization/waitable.s
-
-# target to generate assembly for a file
-parallelization/waitable.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/parallelization/waitable.cpp.s
-.PHONY : parallelization/waitable.cpp.s
 
 platform/_.o: platform/_.cpp.o
 
@@ -5531,33 +4802,6 @@ platform/acme.s: platform/acme.cpp.s
 platform/acme.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/acme.cpp.s
 .PHONY : platform/acme.cpp.s
-
-platform/acme_main_struct.o: platform/acme_main_struct.cpp.o
-
-.PHONY : platform/acme_main_struct.o
-
-# target to build an object file
-platform/acme_main_struct.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/acme_main_struct.cpp.o
-.PHONY : platform/acme_main_struct.cpp.o
-
-platform/acme_main_struct.i: platform/acme_main_struct.cpp.i
-
-.PHONY : platform/acme_main_struct.i
-
-# target to preprocess a source file
-platform/acme_main_struct.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/acme_main_struct.cpp.i
-.PHONY : platform/acme_main_struct.cpp.i
-
-platform/acme_main_struct.s: platform/acme_main_struct.cpp.s
-
-.PHONY : platform/acme_main_struct.s
-
-# target to generate assembly for a file
-platform/acme_main_struct.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/acme_main_struct.cpp.s
-.PHONY : platform/acme_main_struct.cpp.s
 
 platform/apex_main_data.o: platform/apex_main_data.cpp.o
 
@@ -6099,33 +5343,6 @@ platform/log.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/log.cpp.s
 .PHONY : platform/log.cpp.s
 
-platform/logic.o: platform/logic.cpp.o
-
-.PHONY : platform/logic.o
-
-# target to build an object file
-platform/logic.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/logic.cpp.o
-.PHONY : platform/logic.cpp.o
-
-platform/logic.i: platform/logic.cpp.i
-
-.PHONY : platform/logic.i
-
-# target to preprocess a source file
-platform/logic.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/logic.cpp.i
-.PHONY : platform/logic.cpp.i
-
-platform/logic.s: platform/logic.cpp.s
-
-.PHONY : platform/logic.s
-
-# target to generate assembly for a file
-platform/logic.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/logic.cpp.s
-.PHONY : platform/logic.cpp.s
-
 platform/lparam.o: platform/lparam.cpp.o
 
 .PHONY : platform/lparam.o
@@ -6206,60 +5423,6 @@ platform/math.s: platform/math.cpp.s
 platform/math.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/math.cpp.s
 .PHONY : platform/math.cpp.s
-
-platform/message_box.o: platform/message_box.cpp.o
-
-.PHONY : platform/message_box.o
-
-# target to build an object file
-platform/message_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/message_box.cpp.o
-.PHONY : platform/message_box.cpp.o
-
-platform/message_box.i: platform/message_box.cpp.i
-
-.PHONY : platform/message_box.i
-
-# target to preprocess a source file
-platform/message_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/message_box.cpp.i
-.PHONY : platform/message_box.cpp.i
-
-platform/message_box.s: platform/message_box.cpp.s
-
-.PHONY : platform/message_box.s
-
-# target to generate assembly for a file
-platform/message_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/message_box.cpp.s
-.PHONY : platform/message_box.cpp.s
-
-platform/muldiv64.o: platform/muldiv64.cpp.o
-
-.PHONY : platform/muldiv64.o
-
-# target to build an object file
-platform/muldiv64.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/muldiv64.cpp.o
-.PHONY : platform/muldiv64.cpp.o
-
-platform/muldiv64.i: platform/muldiv64.cpp.i
-
-.PHONY : platform/muldiv64.i
-
-# target to preprocess a source file
-platform/muldiv64.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/muldiv64.cpp.i
-.PHONY : platform/muldiv64.cpp.i
-
-platform/muldiv64.s: platform/muldiv64.cpp.s
-
-.PHONY : platform/muldiv64.s
-
-# target to generate assembly for a file
-platform/muldiv64.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/muldiv64.cpp.s
-.PHONY : platform/muldiv64.cpp.s
 
 platform/nanosecond_timer.o: platform/nanosecond_timer.cpp.o
 
@@ -6774,33 +5937,6 @@ platform/timer_event.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/timer_event.cpp.s
 .PHONY : platform/timer_event.cpp.s
 
-platform/timer_item.o: platform/timer_item.cpp.o
-
-.PHONY : platform/timer_item.o
-
-# target to build an object file
-platform/timer_item.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/timer_item.cpp.o
-.PHONY : platform/timer_item.cpp.o
-
-platform/timer_item.i: platform/timer_item.cpp.i
-
-.PHONY : platform/timer_item.i
-
-# target to preprocess a source file
-platform/timer_item.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/timer_item.cpp.i
-.PHONY : platform/timer_item.cpp.i
-
-platform/timer_item.s: platform/timer_item.cpp.s
-
-.PHONY : platform/timer_item.s
-
-# target to generate assembly for a file
-platform/timer_item.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/timer_item.cpp.s
-.PHONY : platform/timer_item.cpp.s
-
 platform/timer_task.o: platform/timer_task.cpp.o
 
 .PHONY : platform/timer_task.o
@@ -6909,33 +6045,6 @@ platform/version.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/platform/version.cpp.s
 .PHONY : platform/version.cpp.s
 
-primitive/collection/2d_array.o: primitive/collection/2d_array.cpp.o
-
-.PHONY : primitive/collection/2d_array.o
-
-# target to build an object file
-primitive/collection/2d_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/2d_array.cpp.o
-.PHONY : primitive/collection/2d_array.cpp.o
-
-primitive/collection/2d_array.i: primitive/collection/2d_array.cpp.i
-
-.PHONY : primitive/collection/2d_array.i
-
-# target to preprocess a source file
-primitive/collection/2d_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/2d_array.cpp.i
-.PHONY : primitive/collection/2d_array.cpp.i
-
-primitive/collection/2d_array.s: primitive/collection/2d_array.cpp.s
-
-.PHONY : primitive/collection/2d_array.s
-
-# target to generate assembly for a file
-primitive/collection/2d_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/2d_array.cpp.s
-.PHONY : primitive/collection/2d_array.cpp.s
-
 primitive/collection/array.o: primitive/collection/array.cpp.o
 
 .PHONY : primitive/collection/array.o
@@ -6990,168 +6099,6 @@ primitive/collection/bit_array.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/bit_array.cpp.s
 .PHONY : primitive/collection/bit_array.cpp.s
 
-primitive/collection/class_sort_array.o: primitive/collection/class_sort_array.cpp.o
-
-.PHONY : primitive/collection/class_sort_array.o
-
-# target to build an object file
-primitive/collection/class_sort_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/class_sort_array.cpp.o
-.PHONY : primitive/collection/class_sort_array.cpp.o
-
-primitive/collection/class_sort_array.i: primitive/collection/class_sort_array.cpp.i
-
-.PHONY : primitive/collection/class_sort_array.i
-
-# target to preprocess a source file
-primitive/collection/class_sort_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/class_sort_array.cpp.i
-.PHONY : primitive/collection/class_sort_array.cpp.i
-
-primitive/collection/class_sort_array.s: primitive/collection/class_sort_array.cpp.s
-
-.PHONY : primitive/collection/class_sort_array.s
-
-# target to generate assembly for a file
-primitive/collection/class_sort_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/class_sort_array.cpp.s
-.PHONY : primitive/collection/class_sort_array.cpp.s
-
-primitive/collection/comparable_array.o: primitive/collection/comparable_array.cpp.o
-
-.PHONY : primitive/collection/comparable_array.o
-
-# target to build an object file
-primitive/collection/comparable_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/comparable_array.cpp.o
-.PHONY : primitive/collection/comparable_array.cpp.o
-
-primitive/collection/comparable_array.i: primitive/collection/comparable_array.cpp.i
-
-.PHONY : primitive/collection/comparable_array.i
-
-# target to preprocess a source file
-primitive/collection/comparable_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/comparable_array.cpp.i
-.PHONY : primitive/collection/comparable_array.cpp.i
-
-primitive/collection/comparable_array.s: primitive/collection/comparable_array.cpp.s
-
-.PHONY : primitive/collection/comparable_array.s
-
-# target to generate assembly for a file
-primitive/collection/comparable_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/comparable_array.cpp.s
-.PHONY : primitive/collection/comparable_array.cpp.s
-
-primitive/collection/event_map.o: primitive/collection/event_map.cpp.o
-
-.PHONY : primitive/collection/event_map.o
-
-# target to build an object file
-primitive/collection/event_map.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/event_map.cpp.o
-.PHONY : primitive/collection/event_map.cpp.o
-
-primitive/collection/event_map.i: primitive/collection/event_map.cpp.i
-
-.PHONY : primitive/collection/event_map.i
-
-# target to preprocess a source file
-primitive/collection/event_map.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/event_map.cpp.i
-.PHONY : primitive/collection/event_map.cpp.i
-
-primitive/collection/event_map.s: primitive/collection/event_map.cpp.s
-
-.PHONY : primitive/collection/event_map.s
-
-# target to generate assembly for a file
-primitive/collection/event_map.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/event_map.cpp.s
-.PHONY : primitive/collection/event_map.cpp.s
-
-primitive/collection/id_array.o: primitive/collection/id_array.cpp.o
-
-.PHONY : primitive/collection/id_array.o
-
-# target to build an object file
-primitive/collection/id_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/id_array.cpp.o
-.PHONY : primitive/collection/id_array.cpp.o
-
-primitive/collection/id_array.i: primitive/collection/id_array.cpp.i
-
-.PHONY : primitive/collection/id_array.i
-
-# target to preprocess a source file
-primitive/collection/id_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/id_array.cpp.i
-.PHONY : primitive/collection/id_array.cpp.i
-
-primitive/collection/id_array.s: primitive/collection/id_array.cpp.s
-
-.PHONY : primitive/collection/id_array.s
-
-# target to generate assembly for a file
-primitive/collection/id_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/id_array.cpp.s
-.PHONY : primitive/collection/id_array.cpp.s
-
-primitive/collection/key_sort_array.o: primitive/collection/key_sort_array.cpp.o
-
-.PHONY : primitive/collection/key_sort_array.o
-
-# target to build an object file
-primitive/collection/key_sort_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/key_sort_array.cpp.o
-.PHONY : primitive/collection/key_sort_array.cpp.o
-
-primitive/collection/key_sort_array.i: primitive/collection/key_sort_array.cpp.i
-
-.PHONY : primitive/collection/key_sort_array.i
-
-# target to preprocess a source file
-primitive/collection/key_sort_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/key_sort_array.cpp.i
-.PHONY : primitive/collection/key_sort_array.cpp.i
-
-primitive/collection/key_sort_array.s: primitive/collection/key_sort_array.cpp.s
-
-.PHONY : primitive/collection/key_sort_array.s
-
-# target to generate assembly for a file
-primitive/collection/key_sort_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/key_sort_array.cpp.s
-.PHONY : primitive/collection/key_sort_array.cpp.s
-
-primitive/collection/map_misc.o: primitive/collection/map_misc.cpp.o
-
-.PHONY : primitive/collection/map_misc.o
-
-# target to build an object file
-primitive/collection/map_misc.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/map_misc.cpp.o
-.PHONY : primitive/collection/map_misc.cpp.o
-
-primitive/collection/map_misc.i: primitive/collection/map_misc.cpp.i
-
-.PHONY : primitive/collection/map_misc.i
-
-# target to preprocess a source file
-primitive/collection/map_misc.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/map_misc.cpp.i
-.PHONY : primitive/collection/map_misc.cpp.i
-
-primitive/collection/map_misc.s: primitive/collection/map_misc.cpp.s
-
-.PHONY : primitive/collection/map_misc.s
-
-# target to generate assembly for a file
-primitive/collection/map_misc.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/map_misc.cpp.s
-.PHONY : primitive/collection/map_misc.cpp.s
-
 primitive/collection/map_test_51778915.o: primitive/collection/map_test_51778915.cpp.o
 
 .PHONY : primitive/collection/map_test_51778915.o
@@ -7179,33 +6126,6 @@ primitive/collection/map_test_51778915.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/map_test_51778915.cpp.s
 .PHONY : primitive/collection/map_test_51778915.cpp.s
 
-primitive/collection/numeric_array.o: primitive/collection/numeric_array.cpp.o
-
-.PHONY : primitive/collection/numeric_array.o
-
-# target to build an object file
-primitive/collection/numeric_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/numeric_array.cpp.o
-.PHONY : primitive/collection/numeric_array.cpp.o
-
-primitive/collection/numeric_array.i: primitive/collection/numeric_array.cpp.i
-
-.PHONY : primitive/collection/numeric_array.i
-
-# target to preprocess a source file
-primitive/collection/numeric_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/numeric_array.cpp.i
-.PHONY : primitive/collection/numeric_array.cpp.i
-
-primitive/collection/numeric_array.s: primitive/collection/numeric_array.cpp.s
-
-.PHONY : primitive/collection/numeric_array.s
-
-# target to generate assembly for a file
-primitive/collection/numeric_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/numeric_array.cpp.s
-.PHONY : primitive/collection/numeric_array.cpp.s
-
 primitive/collection/payload_array.o: primitive/collection/payload_array.cpp.o
 
 .PHONY : primitive/collection/payload_array.o
@@ -7232,60 +6152,6 @@ primitive/collection/payload_array.s: primitive/collection/payload_array.cpp.s
 primitive/collection/payload_array.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/payload_array.cpp.s
 .PHONY : primitive/collection/payload_array.cpp.s
-
-primitive/collection/point_array.o: primitive/collection/point_array.cpp.o
-
-.PHONY : primitive/collection/point_array.o
-
-# target to build an object file
-primitive/collection/point_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/point_array.cpp.o
-.PHONY : primitive/collection/point_array.cpp.o
-
-primitive/collection/point_array.i: primitive/collection/point_array.cpp.i
-
-.PHONY : primitive/collection/point_array.i
-
-# target to preprocess a source file
-primitive/collection/point_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/point_array.cpp.i
-.PHONY : primitive/collection/point_array.cpp.i
-
-primitive/collection/point_array.s: primitive/collection/point_array.cpp.s
-
-.PHONY : primitive/collection/point_array.s
-
-# target to generate assembly for a file
-primitive/collection/point_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/point_array.cpp.s
-.PHONY : primitive/collection/point_array.cpp.s
-
-primitive/collection/rectangle_array.o: primitive/collection/rectangle_array.cpp.o
-
-.PHONY : primitive/collection/rectangle_array.o
-
-# target to build an object file
-primitive/collection/rectangle_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/rectangle_array.cpp.o
-.PHONY : primitive/collection/rectangle_array.cpp.o
-
-primitive/collection/rectangle_array.i: primitive/collection/rectangle_array.cpp.i
-
-.PHONY : primitive/collection/rectangle_array.i
-
-# target to preprocess a source file
-primitive/collection/rectangle_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/rectangle_array.cpp.i
-.PHONY : primitive/collection/rectangle_array.cpp.i
-
-primitive/collection/rectangle_array.s: primitive/collection/rectangle_array.cpp.s
-
-.PHONY : primitive/collection/rectangle_array.s
-
-# target to generate assembly for a file
-primitive/collection/rectangle_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/rectangle_array.cpp.s
-.PHONY : primitive/collection/rectangle_array.cpp.s
 
 primitive/collection/sort.o: primitive/collection/sort.cpp.o
 
@@ -7367,60 +6233,6 @@ primitive/collection/string_array_base.s: primitive/collection/string_array_base
 primitive/collection/string_array_base.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_array_base.cpp.s
 .PHONY : primitive/collection/string_array_base.cpp.s
-
-primitive/collection/string_list.o: primitive/collection/string_list.cpp.o
-
-.PHONY : primitive/collection/string_list.o
-
-# target to build an object file
-primitive/collection/string_list.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_list.cpp.o
-.PHONY : primitive/collection/string_list.cpp.o
-
-primitive/collection/string_list.i: primitive/collection/string_list.cpp.i
-
-.PHONY : primitive/collection/string_list.i
-
-# target to preprocess a source file
-primitive/collection/string_list.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_list.cpp.i
-.PHONY : primitive/collection/string_list.cpp.i
-
-primitive/collection/string_list.s: primitive/collection/string_list.cpp.s
-
-.PHONY : primitive/collection/string_list.s
-
-# target to generate assembly for a file
-primitive/collection/string_list.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_list.cpp.s
-.PHONY : primitive/collection/string_list.cpp.s
-
-primitive/collection/string_to_string_map.o: primitive/collection/string_to_string_map.cpp.o
-
-.PHONY : primitive/collection/string_to_string_map.o
-
-# target to build an object file
-primitive/collection/string_to_string_map.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_to_string_map.cpp.o
-.PHONY : primitive/collection/string_to_string_map.cpp.o
-
-primitive/collection/string_to_string_map.i: primitive/collection/string_to_string_map.cpp.i
-
-.PHONY : primitive/collection/string_to_string_map.i
-
-# target to preprocess a source file
-primitive/collection/string_to_string_map.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_to_string_map.cpp.i
-.PHONY : primitive/collection/string_to_string_map.cpp.i
-
-primitive/collection/string_to_string_map.s: primitive/collection/string_to_string_map.cpp.s
-
-.PHONY : primitive/collection/string_to_string_map.s
-
-# target to generate assembly for a file
-primitive/collection/string_to_string_map.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/collection/string_to_string_map.cpp.s
-.PHONY : primitive/collection/string_to_string_map.cpp.s
 
 primitive/collection/stringl.o: primitive/collection/stringl.cpp.o
 
@@ -7691,60 +6503,6 @@ primitive/data/tree_item.s: primitive/data/tree_item.cpp.s
 primitive/data/tree_item.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/data/tree_item.cpp.s
 .PHONY : primitive/data/tree_item.cpp.s
-
-primitive/datetime/_.o: primitive/datetime/_.cpp.o
-
-.PHONY : primitive/datetime/_.o
-
-# target to build an object file
-primitive/datetime/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_.cpp.o
-.PHONY : primitive/datetime/_.cpp.o
-
-primitive/datetime/_.i: primitive/datetime/_.cpp.i
-
-.PHONY : primitive/datetime/_.i
-
-# target to preprocess a source file
-primitive/datetime/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_.cpp.i
-.PHONY : primitive/datetime/_.cpp.i
-
-primitive/datetime/_.s: primitive/datetime/_.cpp.s
-
-.PHONY : primitive/datetime/_.s
-
-# target to generate assembly for a file
-primitive/datetime/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_.cpp.s
-.PHONY : primitive/datetime/_.cpp.s
-
-primitive/datetime/_c.o: primitive/datetime/_c.cpp.o
-
-.PHONY : primitive/datetime/_c.o
-
-# target to build an object file
-primitive/datetime/_c.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_c.cpp.o
-.PHONY : primitive/datetime/_c.cpp.o
-
-primitive/datetime/_c.i: primitive/datetime/_c.cpp.i
-
-.PHONY : primitive/datetime/_c.i
-
-# target to preprocess a source file
-primitive/datetime/_c.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_c.cpp.i
-.PHONY : primitive/datetime/_c.cpp.i
-
-primitive/datetime/_c.s: primitive/datetime/_c.cpp.s
-
-.PHONY : primitive/datetime/_c.s
-
-# target to generate assembly for a file
-primitive/datetime/_c.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/datetime/_c.cpp.s
-.PHONY : primitive/datetime/_c.cpp.s
 
 primitive/datetime/date_span.o: primitive/datetime/date_span.cpp.o
 
@@ -8097,6 +6855,33 @@ primitive/duration/duration/duration.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/duration/duration/duration.cpp.s
 .PHONY : primitive/duration/duration/duration.cpp.s
 
+primitive/duration/time.o: primitive/duration/time.cpp.o
+
+.PHONY : primitive/duration/time.o
+
+# target to build an object file
+primitive/duration/time.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/duration/time.cpp.o
+.PHONY : primitive/duration/time.cpp.o
+
+primitive/duration/time.i: primitive/duration/time.cpp.i
+
+.PHONY : primitive/duration/time.i
+
+# target to preprocess a source file
+primitive/duration/time.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/duration/time.cpp.i
+.PHONY : primitive/duration/time.cpp.i
+
+primitive/duration/time.s: primitive/duration/time.cpp.s
+
+.PHONY : primitive/duration/time.s
+
+# target to generate assembly for a file
+primitive/duration/time.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/duration/time.cpp.s
+.PHONY : primitive/duration/time.cpp.s
+
 primitive/geometry2d/_.o: primitive/geometry2d/_.cpp.o
 
 .PHONY : primitive/geometry2d/_.o
@@ -8178,60 +6963,6 @@ primitive/geometry2d/geometry.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/geometry.cpp.s
 .PHONY : primitive/geometry2d/geometry.cpp.s
 
-primitive/geometry2d/point.o: primitive/geometry2d/point.cpp.o
-
-.PHONY : primitive/geometry2d/point.o
-
-# target to build an object file
-primitive/geometry2d/point.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/point.cpp.o
-.PHONY : primitive/geometry2d/point.cpp.o
-
-primitive/geometry2d/point.i: primitive/geometry2d/point.cpp.i
-
-.PHONY : primitive/geometry2d/point.i
-
-# target to preprocess a source file
-primitive/geometry2d/point.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/point.cpp.i
-.PHONY : primitive/geometry2d/point.cpp.i
-
-primitive/geometry2d/point.s: primitive/geometry2d/point.cpp.s
-
-.PHONY : primitive/geometry2d/point.s
-
-# target to generate assembly for a file
-primitive/geometry2d/point.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/point.cpp.s
-.PHONY : primitive/geometry2d/point.cpp.s
-
-primitive/geometry2d/rectangle.o: primitive/geometry2d/rectangle.cpp.o
-
-.PHONY : primitive/geometry2d/rectangle.o
-
-# target to build an object file
-primitive/geometry2d/rectangle.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/rectangle.cpp.o
-.PHONY : primitive/geometry2d/rectangle.cpp.o
-
-primitive/geometry2d/rectangle.i: primitive/geometry2d/rectangle.cpp.i
-
-.PHONY : primitive/geometry2d/rectangle.i
-
-# target to preprocess a source file
-primitive/geometry2d/rectangle.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/rectangle.cpp.i
-.PHONY : primitive/geometry2d/rectangle.cpp.i
-
-primitive/geometry2d/rectangle.s: primitive/geometry2d/rectangle.cpp.s
-
-.PHONY : primitive/geometry2d/rectangle.s
-
-# target to generate assembly for a file
-primitive/geometry2d/rectangle.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/rectangle.cpp.s
-.PHONY : primitive/geometry2d/rectangle.cpp.s
-
 primitive/geometry2d/shape.o: primitive/geometry2d/shape.cpp.o
 
 .PHONY : primitive/geometry2d/shape.o
@@ -8258,60 +6989,6 @@ primitive/geometry2d/shape.s: primitive/geometry2d/shape.cpp.s
 primitive/geometry2d/shape.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/shape.cpp.s
 .PHONY : primitive/geometry2d/shape.cpp.s
-
-primitive/geometry2d/size.o: primitive/geometry2d/size.cpp.o
-
-.PHONY : primitive/geometry2d/size.o
-
-# target to build an object file
-primitive/geometry2d/size.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/size.cpp.o
-.PHONY : primitive/geometry2d/size.cpp.o
-
-primitive/geometry2d/size.i: primitive/geometry2d/size.cpp.i
-
-.PHONY : primitive/geometry2d/size.i
-
-# target to preprocess a source file
-primitive/geometry2d/size.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/size.cpp.i
-.PHONY : primitive/geometry2d/size.cpp.i
-
-primitive/geometry2d/size.s: primitive/geometry2d/size.cpp.s
-
-.PHONY : primitive/geometry2d/size.s
-
-# target to generate assembly for a file
-primitive/geometry2d/size.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/size.cpp.s
-.PHONY : primitive/geometry2d/size.cpp.s
-
-primitive/geometry2d/types.o: primitive/geometry2d/types.cpp.o
-
-.PHONY : primitive/geometry2d/types.o
-
-# target to build an object file
-primitive/geometry2d/types.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/types.cpp.o
-.PHONY : primitive/geometry2d/types.cpp.o
-
-primitive/geometry2d/types.i: primitive/geometry2d/types.cpp.i
-
-.PHONY : primitive/geometry2d/types.i
-
-# target to preprocess a source file
-primitive/geometry2d/types.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/types.cpp.i
-.PHONY : primitive/geometry2d/types.cpp.i
-
-primitive/geometry2d/types.s: primitive/geometry2d/types.cpp.s
-
-.PHONY : primitive/geometry2d/types.s
-
-# target to generate assembly for a file
-primitive/geometry2d/types.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/geometry2d/types.cpp.s
-.PHONY : primitive/geometry2d/types.cpp.s
 
 primitive/geometry3d/box.o: primitive/geometry3d/box.cpp.o
 
@@ -8772,6 +7449,33 @@ primitive/mathematics/value.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/mathematics/value.cpp.s
 .PHONY : primitive/mathematics/value.cpp.s
 
+primitive/media_library/item.o: primitive/media_library/item.cpp.o
+
+.PHONY : primitive/media_library/item.o
+
+# target to build an object file
+primitive/media_library/item.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/media_library/item.cpp.o
+.PHONY : primitive/media_library/item.cpp.o
+
+primitive/media_library/item.i: primitive/media_library/item.cpp.i
+
+.PHONY : primitive/media_library/item.i
+
+# target to preprocess a source file
+primitive/media_library/item.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/media_library/item.cpp.i
+.PHONY : primitive/media_library/item.cpp.i
+
+primitive/media_library/item.s: primitive/media_library/item.cpp.s
+
+.PHONY : primitive/media_library/item.s
+
+# target to generate assembly for a file
+primitive/media_library/item.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/media_library/item.cpp.s
+.PHONY : primitive/media_library/item.cpp.s
+
 primitive/primitive/_.o: primitive/primitive/_.cpp.o
 
 .PHONY : primitive/primitive/_.o
@@ -8798,60 +7502,6 @@ primitive/primitive/_.s: primitive/primitive/_.cpp.s
 primitive/primitive/_.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/_.cpp.s
 .PHONY : primitive/primitive/_.cpp.s
-
-primitive/primitive/application_bias.o: primitive/primitive/application_bias.cpp.o
-
-.PHONY : primitive/primitive/application_bias.o
-
-# target to build an object file
-primitive/primitive/application_bias.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/application_bias.cpp.o
-.PHONY : primitive/primitive/application_bias.cpp.o
-
-primitive/primitive/application_bias.i: primitive/primitive/application_bias.cpp.i
-
-.PHONY : primitive/primitive/application_bias.i
-
-# target to preprocess a source file
-primitive/primitive/application_bias.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/application_bias.cpp.i
-.PHONY : primitive/primitive/application_bias.cpp.i
-
-primitive/primitive/application_bias.s: primitive/primitive/application_bias.cpp.s
-
-.PHONY : primitive/primitive/application_bias.s
-
-# target to generate assembly for a file
-primitive/primitive/application_bias.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/application_bias.cpp.s
-.PHONY : primitive/primitive/application_bias.cpp.s
-
-primitive/primitive/atom.o: primitive/primitive/atom.cpp.o
-
-.PHONY : primitive/primitive/atom.o
-
-# target to build an object file
-primitive/primitive/atom.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/atom.cpp.o
-.PHONY : primitive/primitive/atom.cpp.o
-
-primitive/primitive/atom.i: primitive/primitive/atom.cpp.i
-
-.PHONY : primitive/primitive/atom.i
-
-# target to preprocess a source file
-primitive/primitive/atom.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/atom.cpp.i
-.PHONY : primitive/primitive/atom.cpp.i
-
-primitive/primitive/atom.s: primitive/primitive/atom.cpp.s
-
-.PHONY : primitive/primitive/atom.s
-
-# target to generate assembly for a file
-primitive/primitive/atom.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/atom.cpp.s
-.PHONY : primitive/primitive/atom.cpp.s
 
 primitive/primitive/atom_space.o: primitive/primitive/atom_space.cpp.o
 
@@ -8934,87 +7584,6 @@ primitive/primitive/block.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/block.cpp.s
 .PHONY : primitive/primitive/block.cpp.s
 
-primitive/primitive/command.o: primitive/primitive/command.cpp.o
-
-.PHONY : primitive/primitive/command.o
-
-# target to build an object file
-primitive/primitive/command.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/command.cpp.o
-.PHONY : primitive/primitive/command.cpp.o
-
-primitive/primitive/command.i: primitive/primitive/command.cpp.i
-
-.PHONY : primitive/primitive/command.i
-
-# target to preprocess a source file
-primitive/primitive/command.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/command.cpp.i
-.PHONY : primitive/primitive/command.cpp.i
-
-primitive/primitive/command.s: primitive/primitive/command.cpp.s
-
-.PHONY : primitive/primitive/command.s
-
-# target to generate assembly for a file
-primitive/primitive/command.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/command.cpp.s
-.PHONY : primitive/primitive/command.cpp.s
-
-primitive/primitive/context_object_traits.o: primitive/primitive/context_object_traits.cpp.o
-
-.PHONY : primitive/primitive/context_object_traits.o
-
-# target to build an object file
-primitive/primitive/context_object_traits.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/context_object_traits.cpp.o
-.PHONY : primitive/primitive/context_object_traits.cpp.o
-
-primitive/primitive/context_object_traits.i: primitive/primitive/context_object_traits.cpp.i
-
-.PHONY : primitive/primitive/context_object_traits.i
-
-# target to preprocess a source file
-primitive/primitive/context_object_traits.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/context_object_traits.cpp.i
-.PHONY : primitive/primitive/context_object_traits.cpp.i
-
-primitive/primitive/context_object_traits.s: primitive/primitive/context_object_traits.cpp.s
-
-.PHONY : primitive/primitive/context_object_traits.s
-
-# target to generate assembly for a file
-primitive/primitive/context_object_traits.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/context_object_traits.cpp.s
-.PHONY : primitive/primitive/context_object_traits.cpp.s
-
-primitive/primitive/edit.o: primitive/primitive/edit.cpp.o
-
-.PHONY : primitive/primitive/edit.o
-
-# target to build an object file
-primitive/primitive/edit.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/edit.cpp.o
-.PHONY : primitive/primitive/edit.cpp.o
-
-primitive/primitive/edit.i: primitive/primitive/edit.cpp.i
-
-.PHONY : primitive/primitive/edit.i
-
-# target to preprocess a source file
-primitive/primitive/edit.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/edit.cpp.i
-.PHONY : primitive/primitive/edit.cpp.i
-
-primitive/primitive/edit.s: primitive/primitive/edit.cpp.s
-
-.PHONY : primitive/primitive/edit.s
-
-# target to generate assembly for a file
-primitive/primitive/edit.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/edit.cpp.s
-.PHONY : primitive/primitive/edit.cpp.s
-
 primitive/primitive/element.o: primitive/primitive/element.cpp.o
 
 .PHONY : primitive/primitive/element.o
@@ -9041,33 +7610,6 @@ primitive/primitive/element.s: primitive/primitive/element.cpp.s
 primitive/primitive/element.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/element.cpp.s
 .PHONY : primitive/primitive/element.cpp.s
-
-primitive/primitive/element_array.o: primitive/primitive/element_array.cpp.o
-
-.PHONY : primitive/primitive/element_array.o
-
-# target to build an object file
-primitive/primitive/element_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/element_array.cpp.o
-.PHONY : primitive/primitive/element_array.cpp.o
-
-primitive/primitive/element_array.i: primitive/primitive/element_array.cpp.i
-
-.PHONY : primitive/primitive/element_array.i
-
-# target to preprocess a source file
-primitive/primitive/element_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/element_array.cpp.i
-.PHONY : primitive/primitive/element_array.cpp.i
-
-primitive/primitive/element_array.s: primitive/primitive/element_array.cpp.s
-
-.PHONY : primitive/primitive/element_array.s
-
-# target to generate assembly for a file
-primitive/primitive/element_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/element_array.cpp.s
-.PHONY : primitive/primitive/element_array.cpp.s
 
 primitive/primitive/estatus.o: primitive/primitive/estatus.cpp.o
 
@@ -9122,87 +7664,6 @@ primitive/primitive/factory.s: primitive/primitive/factory.cpp.s
 primitive/primitive/factory.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/factory.cpp.s
 .PHONY : primitive/primitive/factory.cpp.s
-
-primitive/primitive/handler.o: primitive/primitive/handler.cpp.o
-
-.PHONY : primitive/primitive/handler.o
-
-# target to build an object file
-primitive/primitive/handler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/handler.cpp.o
-.PHONY : primitive/primitive/handler.cpp.o
-
-primitive/primitive/handler.i: primitive/primitive/handler.cpp.i
-
-.PHONY : primitive/primitive/handler.i
-
-# target to preprocess a source file
-primitive/primitive/handler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/handler.cpp.i
-.PHONY : primitive/primitive/handler.cpp.i
-
-primitive/primitive/handler.s: primitive/primitive/handler.cpp.s
-
-.PHONY : primitive/primitive/handler.s
-
-# target to generate assembly for a file
-primitive/primitive/handler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/handler.cpp.s
-.PHONY : primitive/primitive/handler.cpp.s
-
-primitive/primitive/id_array.o: primitive/primitive/id_array.cpp.o
-
-.PHONY : primitive/primitive/id_array.o
-
-# target to build an object file
-primitive/primitive/id_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/id_array.cpp.o
-.PHONY : primitive/primitive/id_array.cpp.o
-
-primitive/primitive/id_array.i: primitive/primitive/id_array.cpp.i
-
-.PHONY : primitive/primitive/id_array.i
-
-# target to preprocess a source file
-primitive/primitive/id_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/id_array.cpp.i
-.PHONY : primitive/primitive/id_array.cpp.i
-
-primitive/primitive/id_array.s: primitive/primitive/id_array.cpp.s
-
-.PHONY : primitive/primitive/id_array.s
-
-# target to generate assembly for a file
-primitive/primitive/id_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/id_array.cpp.s
-.PHONY : primitive/primitive/id_array.cpp.s
-
-primitive/primitive/interlocked_long_pulse.o: primitive/primitive/interlocked_long_pulse.cpp.o
-
-.PHONY : primitive/primitive/interlocked_long_pulse.o
-
-# target to build an object file
-primitive/primitive/interlocked_long_pulse.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/interlocked_long_pulse.cpp.o
-.PHONY : primitive/primitive/interlocked_long_pulse.cpp.o
-
-primitive/primitive/interlocked_long_pulse.i: primitive/primitive/interlocked_long_pulse.cpp.i
-
-.PHONY : primitive/primitive/interlocked_long_pulse.i
-
-# target to preprocess a source file
-primitive/primitive/interlocked_long_pulse.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/interlocked_long_pulse.cpp.i
-.PHONY : primitive/primitive/interlocked_long_pulse.cpp.i
-
-primitive/primitive/interlocked_long_pulse.s: primitive/primitive/interlocked_long_pulse.cpp.s
-
-.PHONY : primitive/primitive/interlocked_long_pulse.s
-
-# target to generate assembly for a file
-primitive/primitive/interlocked_long_pulse.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/interlocked_long_pulse.cpp.s
-.PHONY : primitive/primitive/interlocked_long_pulse.cpp.s
 
 primitive/primitive/linked_property.o: primitive/primitive/linked_property.cpp.o
 
@@ -9555,114 +8016,6 @@ primitive/primitive/property_set.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set.cpp.s
 .PHONY : primitive/primitive/property_set.cpp.s
 
-primitive/primitive/property_set_composite.o: primitive/primitive/property_set_composite.cpp.o
-
-.PHONY : primitive/primitive/property_set_composite.o
-
-# target to build an object file
-primitive/primitive/property_set_composite.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_composite.cpp.o
-.PHONY : primitive/primitive/property_set_composite.cpp.o
-
-primitive/primitive/property_set_composite.i: primitive/primitive/property_set_composite.cpp.i
-
-.PHONY : primitive/primitive/property_set_composite.i
-
-# target to preprocess a source file
-primitive/primitive/property_set_composite.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_composite.cpp.i
-.PHONY : primitive/primitive/property_set_composite.cpp.i
-
-primitive/primitive/property_set_composite.s: primitive/primitive/property_set_composite.cpp.s
-
-.PHONY : primitive/primitive/property_set_composite.s
-
-# target to generate assembly for a file
-primitive/primitive/property_set_composite.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_composite.cpp.s
-.PHONY : primitive/primitive/property_set_composite.cpp.s
-
-primitive/primitive/property_set_papaya.o: primitive/primitive/property_set_papaya.cpp.o
-
-.PHONY : primitive/primitive/property_set_papaya.o
-
-# target to build an object file
-primitive/primitive/property_set_papaya.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_papaya.cpp.o
-.PHONY : primitive/primitive/property_set_papaya.cpp.o
-
-primitive/primitive/property_set_papaya.i: primitive/primitive/property_set_papaya.cpp.i
-
-.PHONY : primitive/primitive/property_set_papaya.i
-
-# target to preprocess a source file
-primitive/primitive/property_set_papaya.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_papaya.cpp.i
-.PHONY : primitive/primitive/property_set_papaya.cpp.i
-
-primitive/primitive/property_set_papaya.s: primitive/primitive/property_set_papaya.cpp.s
-
-.PHONY : primitive/primitive/property_set_papaya.s
-
-# target to generate assembly for a file
-primitive/primitive/property_set_papaya.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/property_set_papaya.cpp.s
-.PHONY : primitive/primitive/property_set_papaya.cpp.s
-
-primitive/primitive/runnable.o: primitive/primitive/runnable.cpp.o
-
-.PHONY : primitive/primitive/runnable.o
-
-# target to build an object file
-primitive/primitive/runnable.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/runnable.cpp.o
-.PHONY : primitive/primitive/runnable.cpp.o
-
-primitive/primitive/runnable.i: primitive/primitive/runnable.cpp.i
-
-.PHONY : primitive/primitive/runnable.i
-
-# target to preprocess a source file
-primitive/primitive/runnable.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/runnable.cpp.i
-.PHONY : primitive/primitive/runnable.cpp.i
-
-primitive/primitive/runnable.s: primitive/primitive/runnable.cpp.s
-
-.PHONY : primitive/primitive/runnable.s
-
-# target to generate assembly for a file
-primitive/primitive/runnable.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/runnable.cpp.s
-.PHONY : primitive/primitive/runnable.cpp.s
-
-primitive/primitive/shared_memory.o: primitive/primitive/shared_memory.cpp.o
-
-.PHONY : primitive/primitive/shared_memory.o
-
-# target to build an object file
-primitive/primitive/shared_memory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/shared_memory.cpp.o
-.PHONY : primitive/primitive/shared_memory.cpp.o
-
-primitive/primitive/shared_memory.i: primitive/primitive/shared_memory.cpp.i
-
-.PHONY : primitive/primitive/shared_memory.i
-
-# target to preprocess a source file
-primitive/primitive/shared_memory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/shared_memory.cpp.i
-.PHONY : primitive/primitive/shared_memory.cpp.i
-
-primitive/primitive/shared_memory.s: primitive/primitive/shared_memory.cpp.s
-
-.PHONY : primitive/primitive/shared_memory.s
-
-# target to generate assembly for a file
-primitive/primitive/shared_memory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/shared_memory.cpp.s
-.PHONY : primitive/primitive/shared_memory.cpp.s
-
 primitive/primitive/tracer.o: primitive/primitive/tracer.cpp.o
 
 .PHONY : primitive/primitive/tracer.o
@@ -9689,33 +8042,6 @@ primitive/primitive/tracer.s: primitive/primitive/tracer.cpp.s
 primitive/primitive/tracer.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/tracer.cpp.s
 .PHONY : primitive/primitive/tracer.cpp.s
-
-primitive/primitive/traits.o: primitive/primitive/traits.cpp.o
-
-.PHONY : primitive/primitive/traits.o
-
-# target to build an object file
-primitive/primitive/traits.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/traits.cpp.o
-.PHONY : primitive/primitive/traits.cpp.o
-
-primitive/primitive/traits.i: primitive/primitive/traits.cpp.i
-
-.PHONY : primitive/primitive/traits.i
-
-# target to preprocess a source file
-primitive/primitive/traits.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/traits.cpp.i
-.PHONY : primitive/primitive/traits.cpp.i
-
-primitive/primitive/traits.s: primitive/primitive/traits.cpp.s
-
-.PHONY : primitive/primitive/traits.s
-
-# target to generate assembly for a file
-primitive/primitive/traits.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/primitive/traits.cpp.s
-.PHONY : primitive/primitive/traits.cpp.s
 
 primitive/primitive/type.o: primitive/primitive/type.cpp.o
 
@@ -9933,6 +8259,33 @@ primitive/string/_c_trait_wide.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_c_trait_wide.cpp.s
 .PHONY : primitive/string/_c_trait_wide.cpp.s
 
+primitive/string/_string.o: primitive/string/_string.cpp.o
+
+.PHONY : primitive/string/_string.o
+
+# target to build an object file
+primitive/string/_string.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_string.cpp.o
+.PHONY : primitive/string/_string.cpp.o
+
+primitive/string/_string.i: primitive/string/_string.cpp.i
+
+.PHONY : primitive/string/_string.i
+
+# target to preprocess a source file
+primitive/string/_string.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_string.cpp.i
+.PHONY : primitive/string/_string.cpp.i
+
+primitive/string/_string.s: primitive/string/_string.cpp.s
+
+.PHONY : primitive/string/_string.s
+
+# target to generate assembly for a file
+primitive/string/_string.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/_string.cpp.s
+.PHONY : primitive/string/_string.cpp.s
+
 primitive/string/base64.o: primitive/string/base64.cpp.o
 
 .PHONY : primitive/string/base64.o
@@ -9959,33 +8312,6 @@ primitive/string/base64.s: primitive/string/base64.cpp.s
 primitive/string/base64.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/base64.cpp.s
 .PHONY : primitive/string/base64.cpp.s
-
-primitive/string/bstring.o: primitive/string/bstring.cpp.o
-
-.PHONY : primitive/string/bstring.o
-
-# target to build an object file
-primitive/string/bstring.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.o
-.PHONY : primitive/string/bstring.cpp.o
-
-primitive/string/bstring.i: primitive/string/bstring.cpp.i
-
-.PHONY : primitive/string/bstring.i
-
-# target to preprocess a source file
-primitive/string/bstring.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.i
-.PHONY : primitive/string/bstring.cpp.i
-
-primitive/string/bstring.s: primitive/string/bstring.cpp.s
-
-.PHONY : primitive/string/bstring.s
-
-# target to generate assembly for a file
-primitive/string/bstring.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/bstring.cpp.s
-.PHONY : primitive/string/bstring.cpp.s
 
 primitive/string/ch.o: primitive/string/ch.cpp.o
 
@@ -10068,33 +8394,6 @@ primitive/string/command_line.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/command_line.cpp.s
 .PHONY : primitive/string/command_line.cpp.s
 
-primitive/string/dup.o: primitive/string/dup.cpp.o
-
-.PHONY : primitive/string/dup.o
-
-# target to build an object file
-primitive/string/dup.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.o
-.PHONY : primitive/string/dup.cpp.o
-
-primitive/string/dup.i: primitive/string/dup.cpp.i
-
-.PHONY : primitive/string/dup.i
-
-# target to preprocess a source file
-primitive/string/dup.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.i
-.PHONY : primitive/string/dup.cpp.i
-
-primitive/string/dup.s: primitive/string/dup.cpp.s
-
-.PHONY : primitive/string/dup.s
-
-# target to generate assembly for a file
-primitive/string/dup.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/dup.cpp.s
-.PHONY : primitive/string/dup.cpp.s
-
 primitive/string/from_integer.o: primitive/string/from_integer.cpp.o
 
 .PHONY : primitive/string/from_integer.o
@@ -10176,33 +8475,6 @@ primitive/string/international.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/international.cpp.s
 .PHONY : primitive/string/international.cpp.s
 
-primitive/string/manager.o: primitive/string/manager.cpp.o
-
-.PHONY : primitive/string/manager.o
-
-# target to build an object file
-primitive/string/manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.o
-.PHONY : primitive/string/manager.cpp.o
-
-primitive/string/manager.i: primitive/string/manager.cpp.i
-
-.PHONY : primitive/string/manager.i
-
-# target to preprocess a source file
-primitive/string/manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.i
-.PHONY : primitive/string/manager.cpp.i
-
-primitive/string/manager.s: primitive/string/manager.cpp.s
-
-.PHONY : primitive/string/manager.s
-
-# target to generate assembly for a file
-primitive/string/manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/manager.cpp.s
-.PHONY : primitive/string/manager.cpp.s
-
 primitive/string/parse.o: primitive/string/parse.cpp.o
 
 .PHONY : primitive/string/parse.o
@@ -10229,33 +8501,6 @@ primitive/string/parse.s: primitive/string/parse.cpp.s
 primitive/string/parse.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/parse.cpp.s
 .PHONY : primitive/string/parse.cpp.s
-
-primitive/string/simple.o: primitive/string/simple.cpp.o
-
-.PHONY : primitive/string/simple.o
-
-# target to build an object file
-primitive/string/simple.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.o
-.PHONY : primitive/string/simple.cpp.o
-
-primitive/string/simple.i: primitive/string/simple.cpp.i
-
-.PHONY : primitive/string/simple.i
-
-# target to preprocess a source file
-primitive/string/simple.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.i
-.PHONY : primitive/string/simple.cpp.i
-
-primitive/string/simple.s: primitive/string/simple.cpp.s
-
-.PHONY : primitive/string/simple.s
-
-# target to generate assembly for a file
-primitive/string/simple.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/simple.cpp.s
-.PHONY : primitive/string/simple.cpp.s
 
 primitive/string/str.o: primitive/string/str.cpp.o
 
@@ -10662,6 +8907,33 @@ primitive/string/unicode32.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/unicode32.cpp.s
 .PHONY : primitive/string/unicode32.cpp.s
 
+primitive/string/utf8_char.o: primitive/string/utf8_char.cpp.o
+
+.PHONY : primitive/string/utf8_char.o
+
+# target to build an object file
+primitive/string/utf8_char.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/utf8_char.cpp.o
+.PHONY : primitive/string/utf8_char.cpp.o
+
+primitive/string/utf8_char.i: primitive/string/utf8_char.cpp.i
+
+.PHONY : primitive/string/utf8_char.i
+
+# target to preprocess a source file
+primitive/string/utf8_char.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/utf8_char.cpp.i
+.PHONY : primitive/string/utf8_char.cpp.i
+
+primitive/string/utf8_char.s: primitive/string/utf8_char.cpp.s
+
+.PHONY : primitive/string/utf8_char.s
+
+# target to generate assembly for a file
+primitive/string/utf8_char.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/utf8_char.cpp.s
+.PHONY : primitive/string/utf8_char.cpp.s
+
 primitive/string/wildcard.o: primitive/string/wildcard.cpp.o
 
 .PHONY : primitive/string/wildcard.o
@@ -10688,33 +8960,6 @@ primitive/string/wildcard.s: primitive/string/wildcard.cpp.s
 primitive/string/wildcard.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/wildcard.cpp.s
 .PHONY : primitive/string/wildcard.cpp.s
-
-primitive/string/x.o: primitive/string/x.cpp.o
-
-.PHONY : primitive/string/x.o
-
-# target to build an object file
-primitive/string/x.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.o
-.PHONY : primitive/string/x.cpp.o
-
-primitive/string/x.i: primitive/string/x.cpp.i
-
-.PHONY : primitive/string/x.i
-
-# target to preprocess a source file
-primitive/string/x.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.i
-.PHONY : primitive/string/x.cpp.i
-
-primitive/string/x.s: primitive/string/x.cpp.s
-
-.PHONY : primitive/string/x.s
-
-# target to generate assembly for a file
-primitive/string/x.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/primitive/string/x.cpp.s
-.PHONY : primitive/string/x.cpp.s
 
 primitive/text/context.o: primitive/text/context.cpp.o
 
@@ -11553,6 +9798,33 @@ user/user/check.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/check.cpp.s
 .PHONY : user/user/check.cpp.s
 
+user/user/conversation.o: user/user/conversation.cpp.o
+
+.PHONY : user/user/conversation.o
+
+# target to build an object file
+user/user/conversation.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/conversation.cpp.o
+.PHONY : user/user/conversation.cpp.o
+
+user/user/conversation.i: user/user/conversation.cpp.i
+
+.PHONY : user/user/conversation.i
+
+# target to preprocess a source file
+user/user/conversation.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/conversation.cpp.i
+.PHONY : user/user/conversation.cpp.i
+
+user/user/conversation.s: user/user/conversation.cpp.s
+
+.PHONY : user/user/conversation.s
+
+# target to generate assembly for a file
+user/user/conversation.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/conversation.cpp.s
+.PHONY : user/user/conversation.cpp.s
+
 user/user/drag.o: user/user/drag.cpp.o
 
 .PHONY : user/user/drag.o
@@ -11606,33 +9878,6 @@ user/user/element.s: user/user/element.cpp.s
 user/user/element.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/element.cpp.s
 .PHONY : user/user/element.cpp.s
-
-user/user/mouse.o: user/user/mouse.cpp.o
-
-.PHONY : user/user/mouse.o
-
-# target to build an object file
-user/user/mouse.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.o
-.PHONY : user/user/mouse.cpp.o
-
-user/user/mouse.i: user/user/mouse.cpp.i
-
-.PHONY : user/user/mouse.i
-
-# target to preprocess a source file
-user/user/mouse.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.i
-.PHONY : user/user/mouse.cpp.i
-
-user/user/mouse.s: user/user/mouse.cpp.s
-
-.PHONY : user/user/mouse.s
-
-# target to generate assembly for a file
-user/user/mouse.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/acme/CMakeFiles/acme.dir/build.make source/app/acme/CMakeFiles/acme.dir/user/user/mouse.cpp.s
-.PHONY : user/user/mouse.cpp.s
 
 user/user/os_colors.o: user/user/os_colors.cpp.o
 
@@ -11727,9 +9972,6 @@ help:
 	@echo "... _.o"
 	@echo "... _.i"
 	@echo "... _.s"
-	@echo "... __matter_ca2.o"
-	@echo "... __matter_ca2.i"
-	@echo "... __matter_ca2.s"
 	@echo "... cmake_pch.hxx.gch"
 	@echo "... cmake_pch.hxx.i"
 	@echo "... cmake_pch.hxx.s"
@@ -11742,33 +9984,18 @@ help:
 	@echo "... constant/idpool.o"
 	@echo "... constant/idpool.i"
 	@echo "... constant/idpool.s"
-	@echo "... context_glx.o"
-	@echo "... context_glx.i"
-	@echo "... context_glx.s"
-	@echo "... exception/callstack.o"
-	@echo "... exception/callstack.i"
-	@echo "... exception/callstack.s"
 	@echo "... exception/cancel.o"
 	@echo "... exception/cancel.i"
 	@echo "... exception/cancel.s"
-	@echo "... exception/const.o"
-	@echo "... exception/const.i"
-	@echo "... exception/const.s"
 	@echo "... exception/debug.o"
 	@echo "... exception/debug.i"
 	@echo "... exception/debug.s"
-	@echo "... exception/dump.o"
-	@echo "... exception/dump.i"
-	@echo "... exception/dump.s"
 	@echo "... exception/dump_context.o"
 	@echo "... exception/dump_context.i"
 	@echo "... exception/dump_context.s"
 	@echo "... exception/dump_floating_point.o"
 	@echo "... exception/dump_floating_point.i"
 	@echo "... exception/dump_floating_point.s"
-	@echo "... exception/dump_output.o"
-	@echo "... exception/dump_output.i"
-	@echo "... exception/dump_output.s"
 	@echo "... exception/exception.o"
 	@echo "... exception/exception.i"
 	@echo "... exception/exception.s"
@@ -11808,9 +10035,6 @@ help:
 	@echo "... exception/standard.o"
 	@echo "... exception/standard.i"
 	@echo "... exception/standard.s"
-	@echo "... exception/throw.o"
-	@echo "... exception/throw.i"
-	@echo "... exception/throw.s"
 	@echo "... exception/translator.o"
 	@echo "... exception/translator.i"
 	@echo "... exception/translator.s"
@@ -11820,9 +10044,6 @@ help:
 	@echo "... filesystem/file/buffered_buffer.o"
 	@echo "... filesystem/file/buffered_buffer.i"
 	@echo "... filesystem/file/buffered_buffer.s"
-	@echo "... filesystem/file/c.o"
-	@echo "... filesystem/file/c.i"
-	@echo "... filesystem/file/c.s"
 	@echo "... filesystem/file/circular_buffer.o"
 	@echo "... filesystem/file/circular_buffer.i"
 	@echo "... filesystem/file/circular_buffer.s"
@@ -11832,9 +10053,6 @@ help:
 	@echo "... filesystem/file/cpp.o"
 	@echo "... filesystem/file/cpp.i"
 	@echo "... filesystem/file/cpp.s"
-	@echo "... filesystem/file/dir2.o"
-	@echo "... filesystem/file/dir2.i"
-	@echo "... filesystem/file/dir2.s"
 	@echo "... filesystem/file/exception.o"
 	@echo "... filesystem/file/exception.i"
 	@echo "... filesystem/file/exception.s"
@@ -11856,21 +10074,9 @@ help:
 	@echo "... filesystem/file/memory_map.o"
 	@echo "... filesystem/file/memory_map.i"
 	@echo "... filesystem/file/memory_map.s"
-	@echo "... filesystem/file/path.o"
-	@echo "... filesystem/file/path.i"
-	@echo "... filesystem/file/path.s"
 	@echo "... filesystem/file/payload_stream.o"
 	@echo "... filesystem/file/payload_stream.i"
 	@echo "... filesystem/file/payload_stream.s"
-	@echo "... filesystem/file/seekable.o"
-	@echo "... filesystem/file/seekable.i"
-	@echo "... filesystem/file/seekable.s"
-	@echo "... filesystem/file/serializable.o"
-	@echo "... filesystem/file/serializable.i"
-	@echo "... filesystem/file/serializable.s"
-	@echo "... filesystem/file/serialize.o"
-	@echo "... filesystem/file/serialize.i"
-	@echo "... filesystem/file/serialize.s"
 	@echo "... filesystem/file/stdio_file.o"
 	@echo "... filesystem/file/stdio_file.i"
 	@echo "... filesystem/file/stdio_file.s"
@@ -11949,9 +10155,6 @@ help:
 	@echo "... handler/topic.o"
 	@echo "... handler/topic.i"
 	@echo "... handler/topic.s"
-	@echo "... include/_.o"
-	@echo "... include/_.i"
-	@echo "... include/_.s"
 	@echo "... memory/alloc.o"
 	@echo "... memory/alloc.i"
 	@echo "... memory/alloc.s"
@@ -12012,9 +10215,6 @@ help:
 	@echo "... operating_system/_.o"
 	@echo "... operating_system/_.i"
 	@echo "... operating_system/_.s"
-	@echo "... operating_system/ansi/base.o"
-	@echo "... operating_system/ansi/base.i"
-	@echo "... operating_system/ansi/base.s"
 	@echo "... operating_system/ansi/binreloc.o"
 	@echo "... operating_system/ansi/binreloc.i"
 	@echo "... operating_system/ansi/binreloc.s"
@@ -12036,27 +10236,12 @@ help:
 	@echo "... operating_system/ansi/file_std.o"
 	@echo "... operating_system/ansi/file_std.i"
 	@echo "... operating_system/ansi/file_std.s"
-	@echo "... operating_system/ansi/language.o"
-	@echo "... operating_system/ansi/language.i"
-	@echo "... operating_system/ansi/language.s"
-	@echo "... operating_system/ansi/memory.o"
-	@echo "... operating_system/ansi/memory.i"
-	@echo "... operating_system/ansi/memory.s"
-	@echo "... operating_system/ansi/parallelization.o"
-	@echo "... operating_system/ansi/parallelization.i"
-	@echo "... operating_system/ansi/parallelization.s"
 	@echo "... operating_system/ansi/process.o"
 	@echo "... operating_system/ansi/process.i"
 	@echo "... operating_system/ansi/process.s"
-	@echo "... operating_system/ansi/pthread.o"
-	@echo "... operating_system/ansi/pthread.i"
-	@echo "... operating_system/ansi/pthread.s"
 	@echo "... operating_system/ansi/time.o"
 	@echo "... operating_system/ansi/time.i"
 	@echo "... operating_system/ansi/time.s"
-	@echo "... operating_system/ansi/user.o"
-	@echo "... operating_system/ansi/user.i"
-	@echo "... operating_system/ansi/user.s"
 	@echo "... operating_system/ansi/windows_time.o"
 	@echo "... operating_system/ansi/windows_time.i"
 	@echo "... operating_system/ansi/windows_time.s"
@@ -12084,9 +10269,6 @@ help:
 	@echo "... operating_system/file.o"
 	@echo "... operating_system/file.i"
 	@echo "... operating_system/file.s"
-	@echo "... operating_system/http.o"
-	@echo "... operating_system/http.i"
-	@echo "... operating_system/http.s"
 	@echo "... operating_system/linux/_.o"
 	@echo "... operating_system/linux/_.i"
 	@echo "... operating_system/linux/_.s"
@@ -12180,15 +10362,18 @@ help:
 	@echo "... operating_system/posix/base_file.o"
 	@echo "... operating_system/posix/base_file.i"
 	@echo "... operating_system/posix/base_file.s"
+	@echo "... operating_system/posix/callstack.o"
+	@echo "... operating_system/posix/callstack.i"
+	@echo "... operating_system/posix/callstack.s"
+	@echo "... operating_system/posix/chldstatus.o"
+	@echo "... operating_system/posix/chldstatus.i"
+	@echo "... operating_system/posix/chldstatus.s"
 	@echo "... operating_system/posix/desktop.o"
 	@echo "... operating_system/posix/desktop.i"
 	@echo "... operating_system/posix/desktop.s"
 	@echo "... operating_system/posix/file_lock.o"
 	@echo "... operating_system/posix/file_lock.i"
 	@echo "... operating_system/posix/file_lock.s"
-	@echo "... operating_system/posix/local_memory_map.o"
-	@echo "... operating_system/posix/local_memory_map.i"
-	@echo "... operating_system/posix/local_memory_map.s"
 	@echo "... operating_system/posix/parallelization.o"
 	@echo "... operating_system/posix/parallelization.i"
 	@echo "... operating_system/posix/parallelization.s"
@@ -12201,9 +10386,6 @@ help:
 	@echo "... operating_system/posix/time.o"
 	@echo "... operating_system/posix/time.i"
 	@echo "... operating_system/posix/time.s"
-	@echo "... operating_system/posix/timer.o"
-	@echo "... operating_system/posix/timer.i"
-	@echo "... operating_system/posix/timer.s"
 	@echo "... operating_system/time.o"
 	@echo "... operating_system/time.i"
 	@echo "... operating_system/time.s"
@@ -12294,39 +10476,18 @@ help:
 	@echo "... parallelization/synchronization_object.o"
 	@echo "... parallelization/synchronization_object.i"
 	@echo "... parallelization/synchronization_object.s"
-	@echo "... parallelization/synchronization_result.o"
-	@echo "... parallelization/synchronization_result.i"
-	@echo "... parallelization/synchronization_result.s"
-	@echo "... parallelization/synchronized_process.o"
-	@echo "... parallelization/synchronized_process.i"
-	@echo "... parallelization/synchronized_process.s"
-	@echo "... parallelization/synchronized_task.o"
-	@echo "... parallelization/synchronized_task.i"
-	@echo "... parallelization/synchronized_task.s"
 	@echo "... parallelization/task.o"
 	@echo "... parallelization/task.i"
 	@echo "... parallelization/task.s"
-	@echo "... parallelization/thread.o"
-	@echo "... parallelization/thread.i"
-	@echo "... parallelization/thread.s"
-	@echo "... parallelization/thread_os.o"
-	@echo "... parallelization/thread_os.i"
-	@echo "... parallelization/thread_os.s"
 	@echo "... parallelization/tools.o"
 	@echo "... parallelization/tools.i"
 	@echo "... parallelization/tools.s"
-	@echo "... parallelization/waitable.o"
-	@echo "... parallelization/waitable.i"
-	@echo "... parallelization/waitable.s"
 	@echo "... platform/_.o"
 	@echo "... platform/_.i"
 	@echo "... platform/_.s"
 	@echo "... platform/acme.o"
 	@echo "... platform/acme.i"
 	@echo "... platform/acme.s"
-	@echo "... platform/acme_main_struct.o"
-	@echo "... platform/acme_main_struct.i"
-	@echo "... platform/acme_main_struct.s"
 	@echo "... platform/apex_main_data.o"
 	@echo "... platform/apex_main_data.i"
 	@echo "... platform/apex_main_data.s"
@@ -12387,9 +10548,6 @@ help:
 	@echo "... platform/log.o"
 	@echo "... platform/log.i"
 	@echo "... platform/log.s"
-	@echo "... platform/logic.o"
-	@echo "... platform/logic.i"
-	@echo "... platform/logic.s"
 	@echo "... platform/lparam.o"
 	@echo "... platform/lparam.i"
 	@echo "... platform/lparam.s"
@@ -12399,12 +10557,6 @@ help:
 	@echo "... platform/math.o"
 	@echo "... platform/math.i"
 	@echo "... platform/math.s"
-	@echo "... platform/message_box.o"
-	@echo "... platform/message_box.i"
-	@echo "... platform/message_box.s"
-	@echo "... platform/muldiv64.o"
-	@echo "... platform/muldiv64.i"
-	@echo "... platform/muldiv64.s"
 	@echo "... platform/nanosecond_timer.o"
 	@echo "... platform/nanosecond_timer.i"
 	@echo "... platform/nanosecond_timer.s"
@@ -12462,9 +10614,6 @@ help:
 	@echo "... platform/timer_event.o"
 	@echo "... platform/timer_event.i"
 	@echo "... platform/timer_event.s"
-	@echo "... platform/timer_item.o"
-	@echo "... platform/timer_item.i"
-	@echo "... platform/timer_item.s"
 	@echo "... platform/timer_task.o"
 	@echo "... platform/timer_task.i"
 	@echo "... platform/timer_task.s"
@@ -12477,48 +10626,18 @@ help:
 	@echo "... platform/version.o"
 	@echo "... platform/version.i"
 	@echo "... platform/version.s"
-	@echo "... primitive/collection/2d_array.o"
-	@echo "... primitive/collection/2d_array.i"
-	@echo "... primitive/collection/2d_array.s"
 	@echo "... primitive/collection/array.o"
 	@echo "... primitive/collection/array.i"
 	@echo "... primitive/collection/array.s"
 	@echo "... primitive/collection/bit_array.o"
 	@echo "... primitive/collection/bit_array.i"
 	@echo "... primitive/collection/bit_array.s"
-	@echo "... primitive/collection/class_sort_array.o"
-	@echo "... primitive/collection/class_sort_array.i"
-	@echo "... primitive/collection/class_sort_array.s"
-	@echo "... primitive/collection/comparable_array.o"
-	@echo "... primitive/collection/comparable_array.i"
-	@echo "... primitive/collection/comparable_array.s"
-	@echo "... primitive/collection/event_map.o"
-	@echo "... primitive/collection/event_map.i"
-	@echo "... primitive/collection/event_map.s"
-	@echo "... primitive/collection/id_array.o"
-	@echo "... primitive/collection/id_array.i"
-	@echo "... primitive/collection/id_array.s"
-	@echo "... primitive/collection/key_sort_array.o"
-	@echo "... primitive/collection/key_sort_array.i"
-	@echo "... primitive/collection/key_sort_array.s"
-	@echo "... primitive/collection/map_misc.o"
-	@echo "... primitive/collection/map_misc.i"
-	@echo "... primitive/collection/map_misc.s"
 	@echo "... primitive/collection/map_test_51778915.o"
 	@echo "... primitive/collection/map_test_51778915.i"
 	@echo "... primitive/collection/map_test_51778915.s"
-	@echo "... primitive/collection/numeric_array.o"
-	@echo "... primitive/collection/numeric_array.i"
-	@echo "... primitive/collection/numeric_array.s"
 	@echo "... primitive/collection/payload_array.o"
 	@echo "... primitive/collection/payload_array.i"
 	@echo "... primitive/collection/payload_array.s"
-	@echo "... primitive/collection/point_array.o"
-	@echo "... primitive/collection/point_array.i"
-	@echo "... primitive/collection/point_array.s"
-	@echo "... primitive/collection/rectangle_array.o"
-	@echo "... primitive/collection/rectangle_array.i"
-	@echo "... primitive/collection/rectangle_array.s"
 	@echo "... primitive/collection/sort.o"
 	@echo "... primitive/collection/sort.i"
 	@echo "... primitive/collection/sort.s"
@@ -12528,12 +10647,6 @@ help:
 	@echo "... primitive/collection/string_array_base.o"
 	@echo "... primitive/collection/string_array_base.i"
 	@echo "... primitive/collection/string_array_base.s"
-	@echo "... primitive/collection/string_list.o"
-	@echo "... primitive/collection/string_list.i"
-	@echo "... primitive/collection/string_list.s"
-	@echo "... primitive/collection/string_to_string_map.o"
-	@echo "... primitive/collection/string_to_string_map.i"
-	@echo "... primitive/collection/string_to_string_map.s"
 	@echo "... primitive/collection/stringl.o"
 	@echo "... primitive/collection/stringl.i"
 	@echo "... primitive/collection/stringl.s"
@@ -12564,12 +10677,6 @@ help:
 	@echo "... primitive/data/tree_item.o"
 	@echo "... primitive/data/tree_item.i"
 	@echo "... primitive/data/tree_item.s"
-	@echo "... primitive/datetime/_.o"
-	@echo "... primitive/datetime/_.i"
-	@echo "... primitive/datetime/_.s"
-	@echo "... primitive/datetime/_c.o"
-	@echo "... primitive/datetime/_c.i"
-	@echo "... primitive/datetime/_c.s"
 	@echo "... primitive/datetime/date_span.o"
 	@echo "... primitive/datetime/date_span.i"
 	@echo "... primitive/datetime/date_span.s"
@@ -12609,6 +10716,9 @@ help:
 	@echo "... primitive/duration/duration/duration.o"
 	@echo "... primitive/duration/duration/duration.i"
 	@echo "... primitive/duration/duration/duration.s"
+	@echo "... primitive/duration/time.o"
+	@echo "... primitive/duration/time.i"
+	@echo "... primitive/duration/time.s"
 	@echo "... primitive/geometry2d/_.o"
 	@echo "... primitive/geometry2d/_.i"
 	@echo "... primitive/geometry2d/_.s"
@@ -12618,21 +10728,9 @@ help:
 	@echo "... primitive/geometry2d/geometry.o"
 	@echo "... primitive/geometry2d/geometry.i"
 	@echo "... primitive/geometry2d/geometry.s"
-	@echo "... primitive/geometry2d/point.o"
-	@echo "... primitive/geometry2d/point.i"
-	@echo "... primitive/geometry2d/point.s"
-	@echo "... primitive/geometry2d/rectangle.o"
-	@echo "... primitive/geometry2d/rectangle.i"
-	@echo "... primitive/geometry2d/rectangle.s"
 	@echo "... primitive/geometry2d/shape.o"
 	@echo "... primitive/geometry2d/shape.i"
 	@echo "... primitive/geometry2d/shape.s"
-	@echo "... primitive/geometry2d/size.o"
-	@echo "... primitive/geometry2d/size.i"
-	@echo "... primitive/geometry2d/size.s"
-	@echo "... primitive/geometry2d/types.o"
-	@echo "... primitive/geometry2d/types.i"
-	@echo "... primitive/geometry2d/types.s"
 	@echo "... primitive/geometry3d/box.o"
 	@echo "... primitive/geometry3d/box.i"
 	@echo "... primitive/geometry3d/box.s"
@@ -12684,15 +10782,12 @@ help:
 	@echo "... primitive/mathematics/value.o"
 	@echo "... primitive/mathematics/value.i"
 	@echo "... primitive/mathematics/value.s"
+	@echo "... primitive/media_library/item.o"
+	@echo "... primitive/media_library/item.i"
+	@echo "... primitive/media_library/item.s"
 	@echo "... primitive/primitive/_.o"
 	@echo "... primitive/primitive/_.i"
 	@echo "... primitive/primitive/_.s"
-	@echo "... primitive/primitive/application_bias.o"
-	@echo "... primitive/primitive/application_bias.i"
-	@echo "... primitive/primitive/application_bias.s"
-	@echo "... primitive/primitive/atom.o"
-	@echo "... primitive/primitive/atom.i"
-	@echo "... primitive/primitive/atom.s"
 	@echo "... primitive/primitive/atom_space.o"
 	@echo "... primitive/primitive/atom_space.i"
 	@echo "... primitive/primitive/atom_space.s"
@@ -12702,36 +10797,15 @@ help:
 	@echo "... primitive/primitive/block.o"
 	@echo "... primitive/primitive/block.i"
 	@echo "... primitive/primitive/block.s"
-	@echo "... primitive/primitive/command.o"
-	@echo "... primitive/primitive/command.i"
-	@echo "... primitive/primitive/command.s"
-	@echo "... primitive/primitive/context_object_traits.o"
-	@echo "... primitive/primitive/context_object_traits.i"
-	@echo "... primitive/primitive/context_object_traits.s"
-	@echo "... primitive/primitive/edit.o"
-	@echo "... primitive/primitive/edit.i"
-	@echo "... primitive/primitive/edit.s"
 	@echo "... primitive/primitive/element.o"
 	@echo "... primitive/primitive/element.i"
 	@echo "... primitive/primitive/element.s"
-	@echo "... primitive/primitive/element_array.o"
-	@echo "... primitive/primitive/element_array.i"
-	@echo "... primitive/primitive/element_array.s"
 	@echo "... primitive/primitive/estatus.o"
 	@echo "... primitive/primitive/estatus.i"
 	@echo "... primitive/primitive/estatus.s"
 	@echo "... primitive/primitive/factory.o"
 	@echo "... primitive/primitive/factory.i"
 	@echo "... primitive/primitive/factory.s"
-	@echo "... primitive/primitive/handler.o"
-	@echo "... primitive/primitive/handler.i"
-	@echo "... primitive/primitive/handler.s"
-	@echo "... primitive/primitive/id_array.o"
-	@echo "... primitive/primitive/id_array.i"
-	@echo "... primitive/primitive/id_array.s"
-	@echo "... primitive/primitive/interlocked_long_pulse.o"
-	@echo "... primitive/primitive/interlocked_long_pulse.i"
-	@echo "... primitive/primitive/interlocked_long_pulse.s"
 	@echo "... primitive/primitive/linked_property.o"
 	@echo "... primitive/primitive/linked_property.i"
 	@echo "... primitive/primitive/linked_property.s"
@@ -12771,24 +10845,9 @@ help:
 	@echo "... primitive/primitive/property_set.o"
 	@echo "... primitive/primitive/property_set.i"
 	@echo "... primitive/primitive/property_set.s"
-	@echo "... primitive/primitive/property_set_composite.o"
-	@echo "... primitive/primitive/property_set_composite.i"
-	@echo "... primitive/primitive/property_set_composite.s"
-	@echo "... primitive/primitive/property_set_papaya.o"
-	@echo "... primitive/primitive/property_set_papaya.i"
-	@echo "... primitive/primitive/property_set_papaya.s"
-	@echo "... primitive/primitive/runnable.o"
-	@echo "... primitive/primitive/runnable.i"
-	@echo "... primitive/primitive/runnable.s"
-	@echo "... primitive/primitive/shared_memory.o"
-	@echo "... primitive/primitive/shared_memory.i"
-	@echo "... primitive/primitive/shared_memory.s"
 	@echo "... primitive/primitive/tracer.o"
 	@echo "... primitive/primitive/tracer.i"
 	@echo "... primitive/primitive/tracer.s"
-	@echo "... primitive/primitive/traits.o"
-	@echo "... primitive/primitive/traits.i"
-	@echo "... primitive/primitive/traits.s"
 	@echo "... primitive/primitive/type.o"
 	@echo "... primitive/primitive/type.i"
 	@echo "... primitive/primitive/type.s"
@@ -12813,12 +10872,12 @@ help:
 	@echo "... primitive/string/_c_trait_wide.o"
 	@echo "... primitive/string/_c_trait_wide.i"
 	@echo "... primitive/string/_c_trait_wide.s"
+	@echo "... primitive/string/_string.o"
+	@echo "... primitive/string/_string.i"
+	@echo "... primitive/string/_string.s"
 	@echo "... primitive/string/base64.o"
 	@echo "... primitive/string/base64.i"
 	@echo "... primitive/string/base64.s"
-	@echo "... primitive/string/bstring.o"
-	@echo "... primitive/string/bstring.i"
-	@echo "... primitive/string/bstring.s"
 	@echo "... primitive/string/ch.o"
 	@echo "... primitive/string/ch.i"
 	@echo "... primitive/string/ch.s"
@@ -12828,9 +10887,6 @@ help:
 	@echo "... primitive/string/command_line.o"
 	@echo "... primitive/string/command_line.i"
 	@echo "... primitive/string/command_line.s"
-	@echo "... primitive/string/dup.o"
-	@echo "... primitive/string/dup.i"
-	@echo "... primitive/string/dup.s"
 	@echo "... primitive/string/from_integer.o"
 	@echo "... primitive/string/from_integer.i"
 	@echo "... primitive/string/from_integer.s"
@@ -12840,15 +10896,9 @@ help:
 	@echo "... primitive/string/international.o"
 	@echo "... primitive/string/international.i"
 	@echo "... primitive/string/international.s"
-	@echo "... primitive/string/manager.o"
-	@echo "... primitive/string/manager.i"
-	@echo "... primitive/string/manager.s"
 	@echo "... primitive/string/parse.o"
 	@echo "... primitive/string/parse.i"
 	@echo "... primitive/string/parse.s"
-	@echo "... primitive/string/simple.o"
-	@echo "... primitive/string/simple.i"
-	@echo "... primitive/string/simple.s"
 	@echo "... primitive/string/str.o"
 	@echo "... primitive/string/str.i"
 	@echo "... primitive/string/str.s"
@@ -12894,12 +10944,12 @@ help:
 	@echo "... primitive/string/unicode32.o"
 	@echo "... primitive/string/unicode32.i"
 	@echo "... primitive/string/unicode32.s"
+	@echo "... primitive/string/utf8_char.o"
+	@echo "... primitive/string/utf8_char.i"
+	@echo "... primitive/string/utf8_char.s"
 	@echo "... primitive/string/wildcard.o"
 	@echo "... primitive/string/wildcard.i"
 	@echo "... primitive/string/wildcard.s"
-	@echo "... primitive/string/x.o"
-	@echo "... primitive/string/x.i"
-	@echo "... primitive/string/x.s"
 	@echo "... primitive/text/context.o"
 	@echo "... primitive/text/context.i"
 	@echo "... primitive/text/context.s"
@@ -12993,15 +11043,15 @@ help:
 	@echo "... user/user/check.o"
 	@echo "... user/user/check.i"
 	@echo "... user/user/check.s"
+	@echo "... user/user/conversation.o"
+	@echo "... user/user/conversation.i"
+	@echo "... user/user/conversation.s"
 	@echo "... user/user/drag.o"
 	@echo "... user/user/drag.i"
 	@echo "... user/user/drag.s"
 	@echo "... user/user/element.o"
 	@echo "... user/user/element.i"
 	@echo "... user/user/element.s"
-	@echo "... user/user/mouse.o"
-	@echo "... user/user/mouse.i"
-	@echo "... user/user/mouse.s"
 	@echo "... user/user/os_colors.o"
 	@echo "... user/user/os_colors.i"
 	@echo "... user/user/os_colors.s"

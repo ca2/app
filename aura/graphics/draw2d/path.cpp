@@ -4,6 +4,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/shape_array.h"
 #include "aura/graphics/write_text/_shape.h"
 #include "path_shape.h"
 #include "acme/primitive/geometry2d/_impl.h"
@@ -1775,6 +1776,7 @@ namespace draw2d
 
    }
 
+
    path & path::operator = (const path & path)
    {
 
@@ -1784,7 +1786,7 @@ namespace draw2d
          if(!m_pshapea)
          {
 
-            m_pshapea = __new(shape_array < path>());
+            m_pshapea = __new(shape_array <class path>());
 
          }
 

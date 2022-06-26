@@ -4261,7 +4261,7 @@ namespace user
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       if (m_pgraphicscalla)
       {
@@ -11256,44 +11256,42 @@ namespace user
    void interaction::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      //synchronous_lock synchronouslock(mutex());
-
       bUpdateBuffer = false;
 
       bUpdateWindow = false;
 
-      string strType = __type_name(this);
+      //string strType = __type_name(this);
 
-      if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
-      {
+      //if (strType.contains("app_veriwell_keyboard") && strType.contains("main_frame"))
+      //{
 
-         //output_debug_string("app_veriwell_keyboard::main_frame");
+      //   //output_debug_string("app_veriwell_keyboard::main_frame");
 
-      }
-      //      else if (strType.contains("main_frame"))
-      //      {
-      //
-      //         output_debug_string("main_frame");
-      //
-      //      }
-      //      else if (strType.contains("place_holder"))
-      //      {
-      //
-      //         output_debug_string("place_holder");
-      //
-      //      }
-      //   else if (strType.contains("combo_box"))
-      //   {
-      //
-      //      output_debug_string("combo_box");
-      //
-      //   }
-      //   else if (strType.contains("list_box"))
-      //   {
-      //
-      //      output_debug_string("list_box");
-      //
-      //   }
+      //}
+      ////      else if (strType.contains("main_frame"))
+      ////      {
+      ////
+      ////         output_debug_string("main_frame");
+      ////
+      ////      }
+      ////      else if (strType.contains("place_holder"))
+      ////      {
+      ////
+      ////         output_debug_string("place_holder");
+      ////
+      ////      }
+      ////   else if (strType.contains("combo_box"))
+      ////   {
+      ////
+      ////      output_debug_string("combo_box");
+      ////
+      ////   }
+      ////   else if (strType.contains("list_box"))
+      ////   {
+      ////
+      ////      output_debug_string("list_box");
+      ////
+      ////   }
 
       __keep(m_bUpdatingVisual);
 

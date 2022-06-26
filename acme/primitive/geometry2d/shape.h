@@ -11,7 +11,7 @@
 
 template < typename HOLDEE >
 class ___shape :
-   virtual public matter
+   virtual public element
 {
 protected:
 

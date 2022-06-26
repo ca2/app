@@ -967,9 +967,6 @@
     <ClInclude Include="user\user\window_map.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\window_state.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\window_util.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1008,6 +1005,27 @@
     </ClInclude>
     <ClInclude Include="windowing\text_editor_interface.h">
       <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holder.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\holdee.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_shape.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_metric.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\region_shape.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\path_shape.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\path_simple_optimization.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1353,9 +1371,6 @@
     <ClCompile Include="user\user\window_util.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\window_state.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1505,6 +1520,21 @@
     </ClCompile>
     <ClCompile Include="user\user\message_box.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\layout_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holdee.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\region_item.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

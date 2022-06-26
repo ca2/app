@@ -2977,14 +2977,14 @@ template<typename T>
 inline ptr < T > move_transfer(T * p);
 
 
-template < typename T >
-inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
+//template < typename T >
+//inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 
-#define ___new(...) ::set_heap_allocated( new __VA_ARGS__ )
+//#define ___new(...) ::set_heap_allocated( new __VA_ARGS__ )
 
 
-#define __new(...) ::move_transfer( ___new(__VA_ARGS__ ) )
+#define __new(...) ::move_transfer( new __VA_ARGS__ )
 
 
 #include "acme/primitive/primitive/pointer.h"

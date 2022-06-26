@@ -2,12 +2,16 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/holder.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_BASE tab_pane :
-      virtual public ::property_object
+      virtual public ::property_object,
+      virtual public ::draw2d::holder
    {
    public:
 

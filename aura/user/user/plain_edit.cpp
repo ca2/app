@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/operating_system.h"
 #include "_data.h"
 #include "aura/update.h"
@@ -485,7 +487,7 @@ namespace user
 
       double y = rectangleClient.top + m_iCurrentPageLineStart * m_dLineHeight;
 
-      _001GetImpactSel(iSelBegOriginal, iSelEndOriginal);
+      _001_get_impact_sel(iSelBegOriginal, iSelEndOriginal);
 
       iSelBeg = iSelBegOriginal;
 
@@ -1503,6 +1505,15 @@ namespace user
    {
 
       synchronous_lock synchronouslock(mutex());
+
+      return _001_get_text_length();
+
+
+   }
+
+
+   strsize plain_edit::_001_get_text_length() const
+   {
 
       auto ptree = m_ptree;
 
@@ -3914,7 +3925,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       if (iLine >= m_iaLineLength.get_size())
       {
@@ -3965,7 +3976,7 @@ for (i32 i = 0; i < m_straLines.get_size(); i++)
    index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectangleClient;
 
@@ -4376,14 +4387,19 @@ end:
 
 
 
-
    void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd) const
    {
 
       synchronous_lock synchronouslock(mutex());
 
+      _001_get_impact_sel(iSelBeg, iSelEnd);
+
+   }
 
 
+
+   void plain_edit::_001_get_impact_sel(strsize & iSelBeg, strsize & iSelEnd) const
+   {
 
       if (m_ptree == nullptr)
       {

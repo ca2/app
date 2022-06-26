@@ -179,6 +179,16 @@ void element::call_run()
 }
 
 
+::element * element::clone() const
+{
+
+   throw interface_only();
+
+   return nullptr;
+
+}
+
+
 void element::set_generic_object_name(const char* pszName)
 {
 
@@ -301,12 +311,18 @@ void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG
 void element::initialize(::object* pobject)
 {
 
-   /*auto estatus = */ initialize_matter(pobject);
+   initialize_matter(pobject);
 
-   //return estatus;
+   on_initialize_object();
 
 }
 
+
+void element::on_initialize_object()
+{
+
+
+}
 
 
 void element::initialize_matter(::matter* pmatter)
@@ -409,6 +425,21 @@ void element::destroy()
 
 
 }
+
+
+void element::destroy_impl_data()
+{
+
+
+}
+
+
+void element::destroy_os_data()
+{
+
+
+}
+
 
 
 void element::on_sequence()

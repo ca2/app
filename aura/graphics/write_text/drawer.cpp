@@ -228,6 +228,13 @@ namespace write_text
 
          ::str().increment(pszEnd);
 
+         if (::is_null(pszEnd))
+         {
+
+            break;
+
+         }
+
          string strNow = string(pszStart, pszEnd - pszStart);
 
          auto extent = get_text_extent(strNow).cx;

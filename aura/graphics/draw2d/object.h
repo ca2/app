@@ -27,9 +27,10 @@ namespace draw2d
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
+
+      void on_initialize_object() override;
       
-      //inline ::aura::application* get_app();
-      //inline ::aura::session* get_session();
+      
       inline ::aura::system* get_system();
 
 

@@ -209,7 +209,7 @@ namespace user
       bool                                      m_bEatsDoubleClick;
 
 
-      __pointer(shape_array)                    m_pshapeaClip;
+      __pointer(shape_array<::draw2d::region >) m_pshapeaClip;
       __pointer(::aura::draw_context)           m_pdrawcontext;
 
       ::draw2d::path_pointer                    m_pathFocusRect1;

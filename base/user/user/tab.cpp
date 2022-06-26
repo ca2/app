@@ -414,12 +414,12 @@ namespace user
    bool tab::defer_handle_auto_hide_tabs(bool bLayout)
    {
 
-      if (!get_wnd()->is_ok())
-      {
+      //if (!get_wnd()->is_ok())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       //__pointer(::experience::frame_window) pchannel = top_level_frame();
       //
@@ -2014,12 +2014,12 @@ namespace user
    }
 
 
-   bool tab::has_tab_scrolling() const
-   {
+   //bool tab::has_tab_scrolling() const
+   //{
 
-      return m_iTabScrollMax > 0;
+   //   return m_iTabScrollMax > 0;
 
-   }
+   //}
 
 
    bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 * prectangle, enum_element eelement)
@@ -2027,7 +2027,9 @@ namespace user
 
       point_i32 ptOffset(0,0);
 
-      if(has_tab_scrolling())
+      auto ptabdata = get_data();
+
+      if(_001HasTabScrolling())
       {
 
          float fDensity = 1.0f;
@@ -2038,10 +2040,10 @@ namespace user
             if (eelement == e_element_tab_near_scroll)
             {
 
-               if (get_data()->m_bVertical)
+               if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2057,7 +2059,7 @@ namespace user
                else
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2077,10 +2079,10 @@ namespace user
             else if (eelement == e_element_tab_far_scroll)
             {
 
-               if (get_data()->m_bVertical)
+               if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2096,7 +2098,7 @@ namespace user
                else
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   fDensity = window()->get_density_for_window();
 
@@ -2155,7 +2157,7 @@ namespace user
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleMargin);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleMargin);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2173,7 +2175,7 @@ namespace user
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleBorder);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleBorder);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2184,7 +2186,7 @@ namespace user
       if(eelement == e_element_icon)
       {
 
-         if (::not_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
+         if (::not_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
             return false;
@@ -2198,9 +2200,9 @@ namespace user
 
          }
 
-         prectangle->right = prectangle->left + get_data()->m_tabpanecompositea[iIndex]->m_pimage->width();
+         prectangle->right = prectangle->left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         prectangle->bottom = prectangle->top + get_data()->m_tabpanecompositea[iIndex]->m_pimage->height();
+         prectangle->bottom = prectangle->top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2217,22 +2219,21 @@ namespace user
 
          }
 
-         if(::is_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
+         if(::is_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
-            prectangle->left += get_data()->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
-
+            prectangle->left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
          }
 
-         if(!get_data()->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if(!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
             prectangle->right -= 2 + 16 + 2;
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleTextMargin);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleTextMargin);
 
          //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2436,7 +2437,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = has_tab_scrolling();
+      bool bScroll = _001HasTabScrolling();
 
       if(bScroll)
       {
@@ -3787,12 +3788,12 @@ namespace user
    //}
 
 
-   tab_data * tab::get_data()
-   {
+   //tab_data * tab::get_data()
+   //{
 
-      return m_pdata;
+   //   return m_pdata;
 
-   }
+   //}
 
 
    ::user::tab_pane *tab::get_tab_by_id(const ::atom & atom)

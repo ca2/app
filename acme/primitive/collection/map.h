@@ -250,11 +250,11 @@ public:
 
    //Operations
    //lookup and add if not there
-   VALUE & operator[](ARG_KEY key);
-   const VALUE & operator[](ARG_KEY key) const;
+   inline VALUE & operator[](ARG_KEY key);
+   inline const VALUE & operator[](ARG_KEY key) const;
 
-   association * get_association(ARG_KEY key);
-   association * get_association(ARG_KEY key) const
+   inline association * get_association(ARG_KEY key);
+   inline association * get_association(ARG_KEY key) const
    {
       return ((map *) this)->get_association(key);
    }
@@ -375,12 +375,12 @@ public:
 
 
    association * new_association(ARG_KEY key, ::u32 nHashBucket, ::u32 nHashValue);
-   void hash(association *, ::u32 nHashBucket, ::u32 nHashValue);
+   inline void hash(association *, ::u32 nHashBucket, ::u32 nHashValue);
    void attach(association * passociation, ::u32 nHashBucket, ::u32 nHashValue);
    bool erase(association * passociation);
    void detach(association* passociation);
    void hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY) const;
-   association * get_association_at(ARG_KEY, ::u32& nHashBucket, ::u32& nHashValue) const;
+   inline association * get_association_at(ARG_KEY, ::u32& nHashBucket, ::u32& nHashValue) const;
 
    void move(association* passociation, map * pmap = nullptr);
    void move(map* pmap, ARG_KEY key);
@@ -658,7 +658,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::erase_all()
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if(this->m_passociationHead != nullptr)
    {
@@ -752,7 +752,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::attach(association * passocia
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(association* passociation, ::u32 nHashBucket, ::u32 nHashValue)
+inline void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(association* passociation, ::u32 nHashBucket, ::u32 nHashValue)
 {
 
    // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -762,8 +762,6 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(association* passociatio
       InitHashTable(this->m_hashtable.GetHashTableSize());
 
    }
-
-   ENSURE(this->m_hashtable.m_ppassociationHash);
 
    if (this->m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
    {
@@ -892,7 +890,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(::u32& nHashBucket, ::u3
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
+inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
 map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
 // find association (or return nullptr)
 {
@@ -1030,7 +1028,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::find_association(ARG_KEY key) const
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
@@ -1040,10 +1038,10 @@ inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map 
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association(ARG_KEY key)
+inline typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association(ARG_KEY key)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket,nHashValue;
 
@@ -1062,7 +1060,7 @@ typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, 
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-VALUE& map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
+inline VALUE& map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
 {
 
    return get_association(key)->element2();  // return new matter
@@ -1070,7 +1068,7 @@ VALUE& map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
+inline const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
 {
 
    return get_association(key)->element2();  // return new matter

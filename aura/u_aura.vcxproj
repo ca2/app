@@ -98,16 +98,21 @@
     <ClInclude Include="graphics\draw2d\graphics.h" />
     <ClInclude Include="graphics\draw2d\graphics_call.h" />
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\holdee.h" />
+    <ClInclude Include="graphics\draw2d\holder.h" />
     <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\matrix.h" />
     <ClInclude Include="graphics\draw2d\object.h" />
     <ClInclude Include="graphics\draw2d\palette.h" />
     <ClInclude Include="graphics\draw2d\path.h" />
+    <ClInclude Include="graphics\draw2d\path_shape.h" />
+    <ClInclude Include="graphics\draw2d\path_simple_optimization.h" />
     <ClInclude Include="graphics\draw2d\pen.h" />
     <ClInclude Include="graphics\draw2d\pixmap.h" />
     <ClInclude Include="graphics\draw2d\printer.h" />
     <ClInclude Include="graphics\draw2d\region.h" />
+    <ClInclude Include="graphics\draw2d\region_shape.h" />
     <ClInclude Include="graphics\draw2d\text_box.h" />
     <ClInclude Include="graphics\draw2d\thread_tool.h" />
     <ClInclude Include="graphics\draw2d\water_routine.h" />
@@ -174,11 +179,13 @@
     <ClInclude Include="graphics\write_text\font_list_item.h" />
     <ClInclude Include="graphics\write_text\text.h" />
     <ClInclude Include="graphics\write_text\text_box.h" />
+    <ClInclude Include="graphics\write_text\text_metric.h" />
     <ClInclude Include="graphics\write_text\text_out.h" />
     <ClInclude Include="graphics\write_text\text_out_array.h" />
     <ClInclude Include="graphics\write_text\true_type_font_utilities.h" />
     <ClInclude Include="graphics\write_text\write_text.h" />
     <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="graphics\write_text\_shape.h" />
     <ClInclude Include="graphics\_.h" />
     <ClInclude Include="hardware\devices.h" />
     <ClInclude Include="hardware\device_listener.h" />
@@ -314,7 +321,6 @@
     <ClInclude Include="user\user\wait_cursor.h" />
     <ClInclude Include="user\user\windowing.h" />
     <ClInclude Include="user\user\window_map.h" />
-    <ClInclude Include="user\user\window_state.h" />
     <ClInclude Include="user\user\window_util.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_constant.h" />
@@ -411,6 +417,8 @@
     <ClCompile Include="graphics\draw2d\debug.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
+    <ClCompile Include="graphics\draw2d\holdee.cpp" />
+    <ClCompile Include="graphics\draw2d\holder.cpp" />
     <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
@@ -457,9 +465,11 @@
     <ClCompile Include="graphics\draw2d\object.cpp" />
     <ClCompile Include="graphics\draw2d\palette.cpp" />
     <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp" />
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
+    <ClCompile Include="graphics\draw2d\region_item.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
@@ -541,6 +551,7 @@
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
+    <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
@@ -564,7 +575,6 @@
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
-    <ClCompile Include="user\user\window_state.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
@@ -894,6 +904,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -1016,6 +1027,7 @@
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -1077,6 +1089,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -1238,6 +1251,7 @@
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>

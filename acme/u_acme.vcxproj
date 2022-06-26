@@ -361,6 +361,7 @@
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -488,6 +489,7 @@
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -613,6 +615,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -728,6 +731,7 @@
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -855,6 +859,7 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\geometry2d.h" />
     <ClInclude Include="constant\GLOBAL_ID.h" />
     <ClInclude Include="constant\id.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -1039,6 +1044,8 @@
     <ClInclude Include="primitive\datetime\file_time.h" />
     <ClInclude Include="primitive\datetime\file_time_span.h" />
     <ClInclude Include="primitive\datetime\system_time.h" />
+    <ClInclude Include="primitive\geometry2d\shape.h" />
+    <ClInclude Include="primitive\geometry2d\_defer.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
     <ClInclude Include="primitive\media_library\item.h" />
     <ClInclude Include="primitive\primitive\atom.h" />

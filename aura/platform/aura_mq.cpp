@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 
 CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)

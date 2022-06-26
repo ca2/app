@@ -68,20 +68,20 @@ namespace text
    }
 
 
-   string text::get_text() const
+   ::string text::defer_update_text() const
    {
 
       if (::is_null(m_pdata))
       {
 
-         return "";
+         return {};
 
       }
 
-      synchronous_lock lock(m_pdata->m_ptranslator->mutex());
-
       if (m_pdata->m_bPendingUpdate)
       {
+
+         synchronous_lock lock(m_pdata->m_ptranslator->mutex());
 
          m_pdata->m_bPendingUpdate = false;
 

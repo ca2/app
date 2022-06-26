@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/graphics/write_text/text_out_array.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"

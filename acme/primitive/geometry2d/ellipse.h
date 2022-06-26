@@ -24,4 +24,6 @@ using ellipse_f32 = ellipse_base < rectangle_f32 >;
 using ellipse_f64 = ellipse_base < rectangle_f64 >;
 
 
+using ellipse = ::ellipse_f64;
+
 

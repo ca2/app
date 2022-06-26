@@ -1,19 +1,17 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/shape_array.h"
-#include "acme/primitive/geometry2d/lines.h"
 #include "object.h"
 
 
-#include "acme/primitive/geometry2d/shape_array.h"
+template < typename HOLDEE >
+class shape_array;
+template < typename HOLDEE >
+class ___shape;
 
 
 namespace draw2d
 {
-
-
 
    class CLASS_DECL_AURA path :
       virtual public ::draw2d::object
@@ -21,35 +19,39 @@ namespace draw2d
    public:
 
 
-      class simple_optimization :
+      class optimization :
          virtual public ::element
       {
       public:
-         
-         int m_iTopic = 0;
-         int m_iTopicLines = 0;
-         int m_iClose = 0;
-         ::point_f64_array m_pointa;
-         __pointer(___shape) m_pshapeTopic;
-
-         simple_optimization(::draw2d::path * ppath);
-         
-         bool draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen);
-
-         bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush);
 
          
+         virtual bool draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen)
+         {
+
+            return false;
+
+         }
+
+
+         virtual bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
+         {
+
+            return false;
+
+         }
+
+
       };
 
 
       bool                                m_bPersistent;
-      shape_array                         m_shapea;
+      __pointer(shape_array < path >)     m_pshapea;
       bool                                m_bHasPoint;
       point_f64                           m_pointBegin;
       point_f64                           m_pointEnd;
       ::draw2d::enum_fill_mode            m_efillmode;
       point_f64                           m_pointOffset;
-      __pointer(simple_optimization)      m_psimpleoptimization;
+      __pointer(optimization)             m_poptimization;
 
       path();
       ~path() override;
@@ -57,6 +59,9 @@ namespace draw2d
 
       virtual bool has_current_point();
       virtual point_f64 get_current_point();
+
+
+      virtual bool is_empty();
 
 
       inline bool set_current_point(double x, double y) { return set_current_point({ x, y }); }
@@ -75,22 +80,22 @@ namespace draw2d
       virtual bool add_arc_label(const ::rectangle_f64 & rectangle);
 
 
-      virtual bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point);
+      virtual bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64 & point);
 
 
-      virtual bool add_rectangle(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotation);
+      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::point_f64 & point, const ::angle & angleRotation);
 
-      virtual bool add_rectangle(const ::rectangle_f64& rectangle, const ::angle& angleCenterRotation);
+      virtual bool add_rectangle(const ::rectangle_f64 & rectangle, const ::angle & angleCenterRotation);
 
-      virtual bool add_rectangle(const ::rectangle_f64& rectangle);
+      virtual bool add_rectangle(const ::rectangle_f64 & rectangle);
 
       virtual bool add_ellipse(const ::ellipse_f64 & ellipse);
 
-      virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle& angleBeg, const ::angle& angleSweep);
+      virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle & angleBeg, const ::angle & angleSweep);
       virtual bool varc(const ::point_f64 & point, double h, const ::angle & angle);
       virtual bool harc(const ::point_f64 & point, double w, const ::angle & angle);
 
-      
+
       //virtual bool add_lines(const POINT_I32 * ppoint, ::count nCount);
       virtual bool add_lines(const ::point_f64 * ppoint, ::count nCount);
 
@@ -98,17 +103,17 @@ namespace draw2d
       //virtual bool add_polygon(const POINT_I32* ppoint, ::count nCount);
       virtual bool add_polygon(const ::point_f64 * ppoint, ::count nCount);
 
-      
+
       inline bool add_line(double x, double y) { return add_line({ x, y }); }
-      virtual bool add_line(const point_f64& point);
+      virtual bool add_line(const point_f64 & point);
 
 
       inline bool add_line(double m, double n, double p, double q) { return add_line({ m, n }, { p, q }); }
       virtual bool add_line(const point_f64 & point1, const point_f64 & point2);
 
 
-      virtual bool add_text_out(const ::point_f64& point, const string& strText, ::write_text::font_pointer spfont);
-      virtual bool add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
+      virtual bool add_text_out(const ::point_f64 & point, const string & strText, ::write_text::font_pointer spfont);
+      virtual bool add_draw_text(const string & strText, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::write_text::font_pointer pfont);
 
 
       virtual void * detach();
@@ -135,7 +140,7 @@ namespace draw2d
       //
 
       //bool do_round_rect_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
-      bool do_round_rectangle_corner(const ::rectangle_f64& rectangleCorner, const ::rectangle_f64& rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn);
+      bool do_round_rectangle_corner(const ::rectangle_f64 & rectangleCorner, const ::rectangle_f64 & rectangleRect, double dDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
 
       bool add_round_top_left(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
       bool add_round_bottom_right(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
@@ -150,9 +155,9 @@ namespace draw2d
       bool clock_corner(const ::rectangle_f64 & rectangleCorner, double dRadius, const ::e_border & eborder);
 
 
-      virtual bool _set_create(::draw2d::graphics* pgraphics);
+      virtual bool _set_create(::draw2d::graphics * pgraphics);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, ::___shape * pshape);
+      virtual bool _set(::draw2d::graphics * pgraphics, ::___shape<path> * pshape);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const enum_shape & eshape);
 
@@ -187,10 +192,9 @@ namespace draw2d
 
    using path_pointer = __pointer(path);
 
-
+   
+   __pointer(::draw2d::path::optimization) create_path_simple_optimization(::draw2d::path * ppath);
 
 
 } // namespace draw2d
-
-
 

@@ -3,7 +3,9 @@
 //
 #include "framework.h"
 #include "node.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #ifdef LINUX
 #include "aura/operating_system/linux/x11.h"
 #endif

@@ -9,6 +9,7 @@
 #include "contains.h"
 
 
+#include "shape_array.h"
 
 
 #include "_impl.h"

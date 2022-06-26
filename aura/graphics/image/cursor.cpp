@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "cursor.h"
 #include "image.h"
 

@@ -3,7 +3,7 @@
 #include "_gpu.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/image/_image.h"
-
+#include "_defer.h"
 
 namespace gpu
 {

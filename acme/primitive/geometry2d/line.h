@@ -30,4 +30,5 @@ using line_f32 = line_base < ::point_f32 >;
 using line_f64 = line_base < ::point_f64 >;
 
 
+using line = ::line_f64;
 

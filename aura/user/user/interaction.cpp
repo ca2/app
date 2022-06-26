@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/message/timer.h"
@@ -17,6 +19,8 @@
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/_defer.h"
 
 
 #define MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG 0
@@ -3226,18 +3230,18 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         synchronous_lock synchronouslock(mutex());
+         //synchronous_lock synchronouslock(mutex());
 
          //auto pinteractiondraw2d = get_draw2d();
 
-         m_pshapeaClip.release();
+         //m_pshapeaClip.release();
 
          if (!m_pshapeaClip)
          {
 
-            synchronouslock.unlock();
+            ///synchronouslock.unlock();
 
-            auto pshapeaClip = __create_new<shape_array>();
+            auto pshapeaClip = __create_new<shape_array<::draw2d::region>>();
 
             ::rectangle_i32 rectangleIntersect;
 
@@ -3252,11 +3256,11 @@ namespace user
 
                host_to_client(rectangleClient);
 
-               pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
+               pshapeaClip->add_item(__new(rectangle_shape< ::draw2d::region >(::rectangle_f64(rectangleClient))));
 
                i++;
 
-               pshapeaClip->add_item(__new(intersect_clip_shape()));
+               pshapeaClip->add_item(__new(intersect_clip_shape< ::draw2d::region>()));
 
                i++;
 
@@ -3264,7 +3268,7 @@ namespace user
 
             }
 
-            synchronouslock.lock();
+            //synchronouslock.lock();
 
             m_pshapeaClip = pshapeaClip;
 
@@ -3274,7 +3278,7 @@ namespace user
 
          pgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
-         pgraphics->add_shapes(*m_pshapeaClip);
+         pgraphics->add_clipping_shapes(*m_pshapeaClip);
 
       }
       catch (...)
@@ -3308,7 +3312,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(mutex());
+            //synchronous_lock synchronouslock(mutex());
 
             {
 
@@ -3318,7 +3322,7 @@ namespace user
 
 #endif //__DEBUG
 
-               auto pstyle = get_style(pgraphics);
+               //auto pstyle = get_style(pgraphics);
 
                _001OnNcDraw(pgraphics);
 
@@ -3471,7 +3475,7 @@ namespace user
 
 #endif
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       {
 
@@ -11252,7 +11256,7 @@ namespace user
    void interaction::sketch_to_design(bool & bUpdateBuffer, bool & bUpdateWindow)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       bUpdateBuffer = false;
 

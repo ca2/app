@@ -52,7 +52,7 @@ namespace draw2d
    {
 
       //auto estatus = 
-      
+
       ::acme::department::initialize(pobject);
 
       //if (!estatus)
@@ -63,7 +63,7 @@ namespace draw2d
       //}
 
       //estatus = 
-      
+
       __construct_new(m_papi);
 
       //if (!estatus)
@@ -73,9 +73,148 @@ namespace draw2d
 
       //}
 
-      lock::__s_initialize();
+      //lock::__s_initialize();
 
       //return estatus;
+
+   }
+
+
+   void draw2d::add_object(::draw2d::object * pobject)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+      m_objecta.add(pobject);
+
+   }
+
+
+   void draw2d::erase_object(::draw2d::object * pobject)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+      m_objecta.erase(pobject);
+
+   }
+
+
+   void draw2d::add_image(::image * pimage)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+      m_imagea.add(pimage);
+
+   }
+
+
+   void draw2d::erase_image(::image * pimage)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+      m_imagea.erase(pimage);
+
+   }
+
+
+   void draw2d::add_graphics(graphics * pgraphics)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
+
+      m_graphicsa.add(pgraphics);
+
+   }
+
+
+   void draw2d::erase_graphics(graphics * pgraphics)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
+
+      m_graphicsa.erase(pgraphics);
+
+   }
+
+
+   //::mutex * draw2d::get_object_list_mutex()
+   //{
+
+   //   return m_pmutexObjectList;
+
+   //}
+
+
+   //::mutex * draw2d::get_image_list_mutex()
+   //{
+
+   //   return m_pmutexImageList;
+
+   //}
+
+
+   //::mutex * draw2d::get_graphics_context_list_mutex()
+   //{
+
+   //   return m_pmutexGraphicsContextList;
+
+   //}
+
+
+   void draw2d::clear_all_objects_os_data()
+   {
+
+      clear_object_list_os_data();
+      clear_image_list_os_data();
+      clear_graphics_context_list_os_data();
+
+   }
+
+
+   void draw2d::clear_object_list_os_data()
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+      for (auto & pobject : m_objecta)
+      {
+
+         pobject->destroy_os_data();
+
+      }
+
+   }
+
+
+   void draw2d::clear_image_list_os_data()
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
+
+      for (auto & pimage : m_imagea)
+      {
+
+         pimage->destroy_os_data();
+
+      }
+
+   }
+
+
+   void draw2d::clear_graphics_context_list_os_data()
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
+
+      for (auto & pgraphics : m_graphicsa)
+      {
+
+         pgraphics->destroy_os_data();
+
+      }
 
    }
 
@@ -233,7 +372,7 @@ namespace draw2d
 
       m_papi.release();
 
-      lock::__s_finalize();
+      //lock::__s_finalize();
 
       //auto estatus = 
       ::acme::department::destroy();
@@ -243,7 +382,7 @@ namespace draw2d
    }
 
 
-   __pointer(save_image) draw2d::new_save_image(const ::payload& payloadFile, const ::payload& varOptions)
+   __pointer(save_image) draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
    {
 
       auto psaveimage = __new(save_image);
@@ -353,21 +492,21 @@ namespace draw2d
 
 
    void draw2d::embossed_text_out(
-   ::draw2d::graphics_pointer & pgraphics,
-   const ::rectangle_i32 & rectangle,
-   string strText,
-   ::draw2d::fastblur & blur,
-   ::image_pointer & imageBlur,
-   ::write_text::font * pfont,
-   const ::e_align & ealign,
-   const ::e_draw_text & edrawtext,
-   const ::color::color & colorText,
-   const ::color::color & colorGlow,
-   int iSpreadRadius,
-   int iBlurRadius,
-   int iBlur,
-   bool bUpdate,
-   const ::color_filter & colorfilter)
+      ::draw2d::graphics_pointer & pgraphics,
+      const ::rectangle_i32 & rectangle,
+      string strText,
+      ::draw2d::fastblur & blur,
+      ::image_pointer & imageBlur,
+      ::write_text::font * pfont,
+      const ::e_align & ealign,
+      const ::e_draw_text & edrawtext,
+      const ::color::color & colorText,
+      const ::color::color & colorGlow,
+      int iSpreadRadius,
+      int iBlurRadius,
+      int iBlur,
+      bool bUpdate,
+      const ::color_filter & colorfilter)
    {
 
       if (strText.is_empty())
@@ -386,21 +525,21 @@ namespace draw2d
       };
 
       emboss_predicate(
-      pgraphics,
-      rectangle,
-      pred,
-      blur,
-      imageBlur,
-      colorGlow,
-      iSpreadRadius,
-      iBlurRadius,
-      iBlur,
-      bUpdate,
-      colorfilter);
+         pgraphics,
+         rectangle,
+         pred,
+         blur,
+         imageBlur,
+         colorGlow,
+         iSpreadRadius,
+         iBlurRadius,
+         iBlur,
+         bUpdate,
+         colorfilter);
 
       auto bA = colorfilter.opacity().get_alpha();
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __create < ::draw2d::brush >();
 
       pbrushText->create_solid(colorText & ::opacity(bA));
 
@@ -414,9 +553,9 @@ namespace draw2d
    }
 
    void draw2d::alpha_spread__24CC(
-   byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
-   byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
-   byte bMin, i32 iRadius)
+      byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,
+      byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
+      byte bMin, i32 iRadius)
    {
       __UNREFERENCED_PARAMETER(xDest);
       __UNREFERENCED_PARAMETER(yDest);
@@ -428,12 +567,12 @@ namespace draw2d
       i32 iFilterHalfH = iFilterH / 2;
       i32 iFilterArea = iFilterW * iFilterH;
       i32 divisor;
-      byte *lpbSource;
-      byte *lpbSource_1;
-      byte *lpbSource_2;
-      byte *lpwDestination;
-      byte *lpFilter;
-      byte *pFilter;
+      byte * lpbSource;
+      byte * lpbSource_1;
+      byte * lpbSource_2;
+      byte * lpwDestination;
+      byte * lpFilter;
+      byte * pFilter;
 
 
       i32 i;
@@ -592,7 +731,7 @@ namespace draw2d
 
             x1 = xL;
             x2 = (x1 - iFilterHalfW) * 3;
-            lpwDestination = lpbDst + (wDest  * y1) + x1 * 3;
+            lpwDestination = lpbDst + (wDest * y1) + x1 * 3;
             for (; x1 <= xU;)
             {
                if (x1 < iFilterHalfH)
@@ -641,7 +780,7 @@ namespace draw2d
                      lpbSource_2 += 3;
                   }
                }
-breakFilter:
+            breakFilter:
                lpwDestination += 3;
                x1++;
                x2 += 3;
@@ -678,7 +817,7 @@ breakFilter:
 
          x1 = xL;
          x2 = xL - iFilterHalfWidthBytes;
-         lpwDestination = lpbDst + (wDest  * y1) + x1;
+         lpwDestination = lpbDst + (wDest * y1) + x1;
          for (; x1 < xU;)
          {
             lpbSource_1 = lpbSource + x2;
@@ -743,11 +882,11 @@ breakFilter:
       i32 iFilterHalfH = iRadius;
       i32 iFilterArea = iFilterW * iFilterH;
       i32 divisor = iFilterW * iFilterH;
-      byte *lpbSource;
-      byte *lpbSource_1;
-      byte *lpbSource_2;
-      byte *lpwDestination;
-      byte *lpFilter;
+      byte * lpbSource;
+      byte * lpbSource_1;
+      byte * lpbSource_2;
+      byte * lpwDestination;
+      byte * lpFilter;
       byte * pFilter;
 
       i32 i;
@@ -902,7 +1041,7 @@ breakFilter:
 
             x1 = xL;
             x2 = (x1 - iFilterHalfW) * 4;
-            lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
+            lpwDestination = lpbDst + (wDst * y1) + x1 * 4;
             if (*((u32 *)lpwDestination) != 0xffffffff)
             {
                for (; x1 <= xU; x1++)
@@ -945,7 +1084,7 @@ breakFilter:
                         lpbSource_2 += 4;
                      }
                   }
-breakFilter:
+               breakFilter:
                   lpwDestination += 4;
                   x2 += 4;
                }
@@ -982,7 +1121,7 @@ breakFilter:
 
          x1 = xL;
          x2 = xL - iFilterHalfWidthBytes;
-         lpwDestination = lpbDst + (wDst  * y1) + x1;
+         lpwDestination = lpbDst + (wDst * y1) + x1;
          for (; x1 < xU;)
          {
             lpbSource_1 = lpbSource + x2;
@@ -1009,7 +1148,7 @@ breakFilter:
                   }
                }
             }
-breakFilter2:
+         breakFilter2:
             lpwDestination += 4;
             x1 += 4;
             x2 += 4;
@@ -1067,7 +1206,7 @@ breakFilter2:
       auto psystem = get_system();
 
       //estatus = 
-      
+
       __construct(m_pwritetext);
 
       //if (!estatus)
@@ -1080,7 +1219,7 @@ breakFilter2:
       //}
 
       //estatus =
-      
+
       m_pwritetext->init1();
 
       //if (!estatus)
@@ -1095,7 +1234,7 @@ breakFilter2:
       //if (::succeeded(estatus))
       //{
 
-        ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      ::factory::add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 
@@ -1138,7 +1277,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
-         if(pfactoryWriteText)
+         if (pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1185,7 +1324,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
-         if(pfactoryWriteText)
+         if (pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1202,7 +1341,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 
-         if(pfactoryWriteText)
+         if (pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1221,7 +1360,7 @@ breakFilter2:
 
          auto & pfactoryWriteText = psystem->factory("write_text", "pango");
 
-         if(pfactoryWriteText)
+         if (pfactoryWriteText)
          {
 
             return pfactoryWriteText;
@@ -1330,7 +1469,7 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
    default:
       return e_rotate_none_flip_none;
    }
-   
+
 
 }
 

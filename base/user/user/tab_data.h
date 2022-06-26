@@ -3,6 +3,7 @@
 
 
 #include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/holder.h"
 
 
 namespace user
@@ -10,7 +11,8 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_data :
-      virtual public ::data::data
+      virtual public ::data::data,
+      virtual public ::draw2d::holder
    {
    public:
 

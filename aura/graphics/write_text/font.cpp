@@ -48,6 +48,13 @@ namespace write_text
    }
 
 
+   void font::create_text_metrics(::draw2d::graphics * pgraphics)
+   {
+
+
+   }
+
+
    bool font::create_pixel_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
 

@@ -5,7 +5,9 @@
 //  Created by Camilo Sasuke Tsumanuma on 19/06/18.
 //
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 
 namespace user

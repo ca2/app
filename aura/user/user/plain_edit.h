@@ -397,12 +397,14 @@ namespace user
       //colorertake5::file_type * colorer_select_type();
 
       virtual strsize _001GetTextLength() const override;
+      virtual strsize _001_get_text_length() const;
       virtual void plain_edit_get_text(string & str) const;
       virtual void _001GetText(string & str) const override;
       virtual void _001GetSelText(string & str) const override;
       virtual void _001GetText(string & str, index iBeg, index iEnd) const override;
 
       void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const override;
+      void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd) const;
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;

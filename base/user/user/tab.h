@@ -99,7 +99,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
 
-      tab_data * get_data();
+      inline tab_data * get_data() { return m_pdata; }
 
 
       virtual void on_change_cur_sel();
@@ -261,7 +261,7 @@ namespace user
 
       virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
 
-      virtual bool has_tab_scrolling() const;
+      inline bool _001HasTabScrolling() const { return m_iTabScrollMax > 0; }
 
 
    };

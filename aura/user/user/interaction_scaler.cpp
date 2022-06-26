@@ -2,7 +2,9 @@
 // Created by camilo on 8/18/21. 06:19 BRT <3TBS_!!
 //
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 
 namespace user

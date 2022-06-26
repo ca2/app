@@ -84,7 +84,8 @@ namespace write_text
 
 
       void dump(dump_context & dumpcontext) const override;
-
+      
+      virtual void create_text_metrics(::draw2d::graphics * pgraphics);
 
       virtual bool create_pixel_font(
       const ::string & strFacename,

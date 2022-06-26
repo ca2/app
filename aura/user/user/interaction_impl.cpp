@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#include "acme/operating_system/cross.h"
 #include "aura/platform/message_queue.h"
 #include "aura/message.h"
@@ -12,6 +14,8 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/text_editor_interface.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/lock.h"
 //#ifdef _UWP
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
@@ -4807,15 +4811,41 @@ namespace user
 
       {
 
+         ::draw2d::lock draw2dlock(this);
+
          ::size_i32 sizeDrawn;
 
+         //single_lock synchronouslockObjects(m_psystem->m_paurasystem->draw2d()->get_object_list_mutex());
+
+         //if (!synchronouslockObjects.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
+         //single_lock synchronouslockImages(m_psystem->m_paurasystem->draw2d()->get_image_list_mutex());
+
+         //if (!synchronouslockImages.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
+         //single_lock synchronouslockGraphicsContext(m_psystem->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+
+         //if (!synchronouslockGraphicsContext.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
          _synchronous_lock slGraphics(m_pgraphics->mutex());
 
          ::synchronization_object * psync = m_pgraphics->get_buffer_sync();
 
          _synchronous_lock synchronouslock(psync);
 
-         windowing::graphics_lock graphicslock(m_pwindow);
+         //windowing::graphics_lock graphicslock(m_pwindow);
 
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 

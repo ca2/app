@@ -2,6 +2,7 @@
 #include "list.h"
 #include "image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/lock.h"
 #include "context_image.h"
 
 /*
@@ -273,6 +274,8 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
 i32 image_list::reserve_image(int iItem)
 {
+
+   ::draw2d::lock draw2dlock(this);
 
    synchronous_lock synchronouslock(mutex());
 

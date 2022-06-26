@@ -3474,6 +3474,15 @@
     <ClInclude Include="primitive\string\utf8_char.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\geometry2d\shape.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_defer.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\geometry2d.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h">

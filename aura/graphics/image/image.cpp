@@ -12,6 +12,7 @@
 #include "aura/graphics/draw2d/task_tool.h"
 #include "save_image.h"
 #include "context_image.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 double get_default_screen_dpi()
@@ -70,8 +71,24 @@ image::image()
 image::~image()
 {
 
+   if (m_psystem)
+   {
+
+      m_psystem->m_paurasystem->draw2d()->erase_image(this);
+
+   }
+
 }
 
+
+void image::on_initialize_object()
+{
+
+   m_psystem->m_paurasystem->draw2d()->add_image(this);
+
+   ::object::on_initialize_object();
+
+}
 
 
 ::size_i32 image::get_image_drawer_size() const
@@ -431,6 +448,12 @@ void image::destroy()
    clear(e_flag_failure);
 
    //return ::success;
+
+}
+
+
+void image::destroy_os_data()
+{
 
 }
 

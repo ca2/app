@@ -29,6 +29,9 @@ using hdc = void *;
 
 
 struct NSVGimage;
+
+
+template < typename HOLDEE >
 class shape_array;
 
 
@@ -122,7 +125,7 @@ namespace draw2d
       
       
       void destroy() override;
-      virtual void destroy_os_data();
+      void destroy_os_data() override;
       
       
 
@@ -440,7 +443,7 @@ namespace draw2d
       
 
       
-      virtual void add_shapes(const shape_array & shapea);
+      virtual void add_clipping_shapes(const shape_array < ::draw2d::region > & shapea);
       virtual void reset_clip();
       virtual void intersect_clip(const ::rectangle_f64& rectangle_f64);
       virtual void intersect_clip(const ::ellipse& ellipse);
@@ -452,12 +455,10 @@ namespace draw2d
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
       virtual void _intersect_clip();
-      virtual void _add_shape(___shape* pshape);
-      virtual void _add_shape(const ::rectangle & rectangle);
-      virtual void _add_shape(const ::ellipse & ellipse);
-      virtual void _add_shape(const ::polygon & polygon);
-
-      
+      virtual void _add_clipping_shape(___shape<::draw2d::region> * pshape);
+      virtual void _add_clipping_shape(const ::rectangle & rectangle, __pointer(::draw2d::region) & pregion);
+      virtual void _add_clipping_shape(const ::ellipse & ellipse, __pointer(::draw2d::region) & pregion);
+      virtual void _add_clipping_shape(const ::polygon & polygon, __pointer(::draw2d::region) & pregion);
 
       
       //virtual void IntersectClipregion(::draw2d::region * pregion);

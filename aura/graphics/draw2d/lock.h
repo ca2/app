@@ -11,6 +11,7 @@
 //#endif
 //
 
+#include "draw2d.h"
 
 namespace draw2d
 {
@@ -35,22 +36,28 @@ namespace draw2d
 //   };
 
 
-   class CLASS_DECL_AURA lock :
-      public synchronous_lock
+   class CLASS_DECL_AURA lock
    {
    public:
 
-      static ::mutex *              s_pmutex;
-      static interlocked_count      s_countReference;
 
+      ::draw2d::draw2d * m_pdraw2d;
 
-      lock() : synchronous_lock(s_pmutex) {}
-      ~lock() override{}
+      lock(::object * pobject)
+      {
 
+         m_pdraw2d = pobject->m_psystem->m_paurasystem->draw2d();
 
-      static void __s_initialize();
-      static void __s_finalize();
+         m_pdraw2d->lock_device();
 
+      }
+
+      ~lock()
+      {
+
+         m_pdraw2d->unlock_device();
+
+      }
 
    };
 

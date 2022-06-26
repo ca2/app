@@ -4271,7 +4271,7 @@ namespace user
 
             auto pcall = m_pgraphicscalla->pick_first();
 
-            synchronouslock.unlock();
+            //synchronouslock.unlock();
 
             try
             {
@@ -4284,7 +4284,7 @@ namespace user
 
             }
 
-            synchronouslock.lock();
+            //synchronouslock.lock();
 
          }
 
@@ -9126,6 +9126,8 @@ namespace user
          {
 
             pinteraction->layout().sketch()._patch_order(iZOrder);
+
+            pinteraction->layout().sketch().zorder().clear_request();
 
             iZOrder += 1024;
 

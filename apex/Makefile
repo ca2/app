@@ -144,33 +144,6 @@ apex/fast:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/build
 .PHONY : apex/fast
 
-_.o: _.cpp.o
-
-.PHONY : _.o
-
-# target to build an object file
-_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/_.cpp.o
-.PHONY : _.cpp.o
-
-_.i: _.cpp.i
-
-.PHONY : _.i
-
-# target to preprocess a source file
-_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/_.cpp.i
-.PHONY : _.cpp.i
-
-_.s: _.cpp.s
-
-.PHONY : _.s
-
-# target to generate assembly for a file
-_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/_.cpp.s
-.PHONY : _.cpp.s
-
 # target to build an object file
 cmake_pch.hxx.gch:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/cmake_pch.hxx.gch
@@ -185,33 +158,6 @@ cmake_pch.hxx.i:
 cmake_pch.hxx.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
-
-compress/context.o: compress/context.cpp.o
-
-.PHONY : compress/context.o
-
-# target to build an object file
-compress/context.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/compress/context.cpp.o
-.PHONY : compress/context.cpp.o
-
-compress/context.i: compress/context.cpp.i
-
-.PHONY : compress/context.i
-
-# target to preprocess a source file
-compress/context.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/compress/context.cpp.i
-.PHONY : compress/context.cpp.i
-
-compress/context.s: compress/context.cpp.s
-
-.PHONY : compress/context.s
-
-# target to generate assembly for a file
-compress/context.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/compress/context.cpp.s
-.PHONY : compress/context.cpp.s
 
 compress/is_dir.o: compress/is_dir.cpp.o
 
@@ -294,33 +240,6 @@ constant/idpool.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
 
-context_glx.o: context_glx.cpp.o
-
-.PHONY : context_glx.o
-
-# target to build an object file
-context_glx.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/context_glx.cpp.o
-.PHONY : context_glx.cpp.o
-
-context_glx.i: context_glx.cpp.i
-
-.PHONY : context_glx.i
-
-# target to preprocess a source file
-context_glx.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/context_glx.cpp.i
-.PHONY : context_glx.cpp.i
-
-context_glx.s: context_glx.cpp.s
-
-.PHONY : context_glx.s
-
-# target to generate assembly for a file
-context_glx.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/context_glx.cpp.s
-.PHONY : context_glx.cpp.s
-
 crypto/crypto.o: crypto/crypto.cpp.o
 
 .PHONY : crypto/crypto.o
@@ -347,60 +266,6 @@ crypto/crypto.s: crypto/crypto.cpp.s
 crypto/crypto.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/crypto.cpp.s
 .PHONY : crypto/crypto.cpp.s
-
-crypto/hasher.o: crypto/hasher.cpp.o
-
-.PHONY : crypto/hasher.o
-
-# target to build an object file
-crypto/hasher.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher.cpp.o
-.PHONY : crypto/hasher.cpp.o
-
-crypto/hasher.i: crypto/hasher.cpp.i
-
-.PHONY : crypto/hasher.i
-
-# target to preprocess a source file
-crypto/hasher.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher.cpp.i
-.PHONY : crypto/hasher.cpp.i
-
-crypto/hasher.s: crypto/hasher.cpp.s
-
-.PHONY : crypto/hasher.s
-
-# target to generate assembly for a file
-crypto/hasher.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher.cpp.s
-.PHONY : crypto/hasher.cpp.s
-
-crypto/hasher_algorithm.o: crypto/hasher_algorithm.cpp.o
-
-.PHONY : crypto/hasher_algorithm.o
-
-# target to build an object file
-crypto/hasher_algorithm.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher_algorithm.cpp.o
-.PHONY : crypto/hasher_algorithm.cpp.o
-
-crypto/hasher_algorithm.i: crypto/hasher_algorithm.cpp.i
-
-.PHONY : crypto/hasher_algorithm.i
-
-# target to preprocess a source file
-crypto/hasher_algorithm.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher_algorithm.cpp.i
-.PHONY : crypto/hasher_algorithm.cpp.i
-
-crypto/hasher_algorithm.s: crypto/hasher_algorithm.cpp.s
-
-.PHONY : crypto/hasher_algorithm.s
-
-# target to generate assembly for a file
-crypto/hasher_algorithm.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/crypto/hasher_algorithm.cpp.s
-.PHONY : crypto/hasher_algorithm.cpp.s
 
 crypto/initializer.o: crypto/initializer.cpp.o
 
@@ -509,33 +374,6 @@ database/event_change.s: database/event_change.cpp.s
 database/event_change.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/database/event_change.cpp.s
 .PHONY : database/event_change.cpp.s
-
-database/id.o: database/id.cpp.o
-
-.PHONY : database/id.o
-
-# target to build an object file
-database/id.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/database/id.cpp.o
-.PHONY : database/id.cpp.o
-
-database/id.i: database/id.cpp.i
-
-.PHONY : database/id.i
-
-# target to preprocess a source file
-database/id.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/database/id.cpp.i
-.PHONY : database/id.cpp.i
-
-database/id.s: database/id.cpp.s
-
-.PHONY : database/id.s
-
-# target to generate assembly for a file
-database/id.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/database/id.cpp.s
-.PHONY : database/id.cpp.s
 
 database/key.o: database/key.cpp.o
 
@@ -1212,87 +1050,6 @@ handler/manager.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/manager.cpp.s
 .PHONY : handler/manager.cpp.s
 
-handler/process.o: handler/process.cpp.o
-
-.PHONY : handler/process.o
-
-# target to build an object file
-handler/process.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/process.cpp.o
-.PHONY : handler/process.cpp.o
-
-handler/process.i: handler/process.cpp.i
-
-.PHONY : handler/process.i
-
-# target to preprocess a source file
-handler/process.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/process.cpp.i
-.PHONY : handler/process.cpp.i
-
-handler/process.s: handler/process.cpp.s
-
-.PHONY : handler/process.s
-
-# target to generate assembly for a file
-handler/process.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/process.cpp.s
-.PHONY : handler/process.cpp.s
-
-handler/promise.o: handler/promise.cpp.o
-
-.PHONY : handler/promise.o
-
-# target to build an object file
-handler/promise.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/promise.cpp.o
-.PHONY : handler/promise.cpp.o
-
-handler/promise.i: handler/promise.cpp.i
-
-.PHONY : handler/promise.i
-
-# target to preprocess a source file
-handler/promise.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/promise.cpp.i
-.PHONY : handler/promise.cpp.i
-
-handler/promise.s: handler/promise.cpp.s
-
-.PHONY : handler/promise.s
-
-# target to generate assembly for a file
-handler/promise.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/promise.cpp.s
-.PHONY : handler/promise.cpp.s
-
-handler/routine.o: handler/routine.cpp.o
-
-.PHONY : handler/routine.o
-
-# target to build an object file
-handler/routine.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/routine.cpp.o
-.PHONY : handler/routine.cpp.o
-
-handler/routine.i: handler/routine.cpp.i
-
-.PHONY : handler/routine.i
-
-# target to preprocess a source file
-handler/routine.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/routine.cpp.i
-.PHONY : handler/routine.cpp.i
-
-handler/routine.s: handler/routine.cpp.s
-
-.PHONY : handler/routine.s
-
-# target to generate assembly for a file
-handler/routine.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/routine.cpp.s
-.PHONY : handler/routine.cpp.s
-
 handler/signal.o: handler/signal.cpp.o
 
 .PHONY : handler/signal.o
@@ -1346,33 +1103,6 @@ handler/source.s: handler/source.cpp.s
 handler/source.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/handler/source.cpp.s
 .PHONY : handler/source.cpp.s
-
-include/_.o: include/_.cpp.o
-
-.PHONY : include/_.o
-
-# target to build an object file
-include/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/include/_.cpp.o
-.PHONY : include/_.cpp.o
-
-include/_.i: include/_.cpp.i
-
-.PHONY : include/_.i
-
-# target to preprocess a source file
-include/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/include/_.cpp.i
-.PHONY : include/_.cpp.i
-
-include/_.s: include/_.cpp.s
-
-.PHONY : include/_.s
-
-# target to generate assembly for a file
-include/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/include/_.cpp.s
-.PHONY : include/_.cpp.s
 
 message/_.o: message/_.cpp.o
 
@@ -1428,33 +1158,6 @@ message/application.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/application.cpp.s
 .PHONY : message/application.cpp.s
 
-message/base.o: message/base.cpp.o
-
-.PHONY : message/base.o
-
-# target to build an object file
-message/base.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/base.cpp.o
-.PHONY : message/base.cpp.o
-
-message/base.i: message/base.cpp.i
-
-.PHONY : message/base.i
-
-# target to preprocess a source file
-message/base.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/base.cpp.i
-.PHONY : message/base.cpp.i
-
-message/base.s: message/base.cpp.s
-
-.PHONY : message/base.s
-
-# target to generate assembly for a file
-message/base.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/base.cpp.s
-.PHONY : message/base.cpp.s
-
 message/channel.o: message/channel.cpp.o
 
 .PHONY : message/channel.o
@@ -1508,60 +1211,6 @@ message/command.s: message/command.cpp.s
 message/command.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command.cpp.s
 .PHONY : message/command.cpp.s
-
-message/command_target.o: message/command_target.cpp.o
-
-.PHONY : message/command_target.o
-
-# target to build an object file
-message/command_target.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_target.cpp.o
-.PHONY : message/command_target.cpp.o
-
-message/command_target.i: message/command_target.cpp.i
-
-.PHONY : message/command_target.i
-
-# target to preprocess a source file
-message/command_target.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_target.cpp.i
-.PHONY : message/command_target.cpp.i
-
-message/command_target.s: message/command_target.cpp.s
-
-.PHONY : message/command_target.s
-
-# target to generate assembly for a file
-message/command_target.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_target.cpp.s
-.PHONY : message/command_target.cpp.s
-
-message/command_ui_probe.o: message/command_ui_probe.cpp.o
-
-.PHONY : message/command_ui_probe.o
-
-# target to build an object file
-message/command_ui_probe.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_ui_probe.cpp.o
-.PHONY : message/command_ui_probe.cpp.o
-
-message/command_ui_probe.i: message/command_ui_probe.cpp.i
-
-.PHONY : message/command_ui_probe.i
-
-# target to preprocess a source file
-message/command_ui_probe.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_ui_probe.cpp.i
-.PHONY : message/command_ui_probe.cpp.i
-
-message/command_ui_probe.s: message/command_ui_probe.cpp.s
-
-.PHONY : message/command_ui_probe.s
-
-# target to generate assembly for a file
-message/command_ui_probe.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/command_ui_probe.cpp.s
-.PHONY : message/command_ui_probe.cpp.s
 
 message/debug.o: message/debug.cpp.o
 
@@ -1643,60 +1292,6 @@ message/message.s: message/message.cpp.s
 message/message.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/message.cpp.s
 .PHONY : message/message.cpp.s
-
-message/receiver.o: message/receiver.cpp.o
-
-.PHONY : message/receiver.o
-
-# target to build an object file
-message/receiver.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/receiver.cpp.o
-.PHONY : message/receiver.cpp.o
-
-message/receiver.i: message/receiver.cpp.i
-
-.PHONY : message/receiver.i
-
-# target to preprocess a source file
-message/receiver.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/receiver.cpp.i
-.PHONY : message/receiver.cpp.i
-
-message/receiver.s: message/receiver.cpp.s
-
-.PHONY : message/receiver.s
-
-# target to generate assembly for a file
-message/receiver.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/receiver.cpp.s
-.PHONY : message/receiver.cpp.s
-
-message/sender.o: message/sender.cpp.o
-
-.PHONY : message/sender.o
-
-# target to build an object file
-message/sender.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/sender.cpp.o
-.PHONY : message/sender.cpp.o
-
-message/sender.i: message/sender.cpp.i
-
-.PHONY : message/sender.i
-
-# target to preprocess a source file
-message/sender.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/sender.cpp.i
-.PHONY : message/sender.cpp.i
-
-message/sender.s: message/sender.cpp.s
-
-.PHONY : message/sender.s
-
-# target to generate assembly for a file
-message/sender.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/message/sender.cpp.s
-.PHONY : message/sender.cpp.s
 
 message/simple_command.o: message/simple_command.cpp.o
 
@@ -1860,33 +1455,6 @@ networking/email_address.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/email_address.cpp.s
 .PHONY : networking/email_address.cpp.s
 
-networking/http/_.o: networking/http/_.cpp.o
-
-.PHONY : networking/http/_.o
-
-# target to build an object file
-networking/http/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/_.cpp.o
-.PHONY : networking/http/_.cpp.o
-
-networking/http/_.i: networking/http/_.cpp.i
-
-.PHONY : networking/http/_.i
-
-# target to preprocess a source file
-networking/http/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/_.cpp.i
-.PHONY : networking/http/_.cpp.i
-
-networking/http/_.s: networking/http/_.cpp.s
-
-.PHONY : networking/http/_.s
-
-# target to generate assembly for a file
-networking/http/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/_.cpp.s
-.PHONY : networking/http/_.cpp.s
-
 networking/http/context.o: networking/http/context.cpp.o
 
 .PHONY : networking/http/context.o
@@ -1994,33 +1562,6 @@ networking/http/get_socket.s: networking/http/get_socket.cpp.s
 networking/http/get_socket.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/get_socket.cpp.s
 .PHONY : networking/http/get_socket.cpp.s
-
-networking/http/ostream.o: networking/http/ostream.cpp.o
-
-.PHONY : networking/http/ostream.o
-
-# target to build an object file
-networking/http/ostream.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/ostream.cpp.o
-.PHONY : networking/http/ostream.cpp.o
-
-networking/http/ostream.i: networking/http/ostream.cpp.i
-
-.PHONY : networking/http/ostream.i
-
-# target to preprocess a source file
-networking/http/ostream.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/ostream.cpp.i
-.PHONY : networking/http/ostream.cpp.i
-
-networking/http/ostream.s: networking/http/ostream.cpp.s
-
-.PHONY : networking/http/ostream.s
-
-# target to generate assembly for a file
-networking/http/ostream.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/http/ostream.cpp.s
-.PHONY : networking/http/ostream.cpp.s
 
 networking/http/request.o: networking/http/request.cpp.o
 
@@ -2346,33 +1887,6 @@ networking/sockets/base/socket_thread.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/base/socket_thread.cpp.s
 .PHONY : networking/sockets/base/socket_thread.cpp.s
 
-networking/sockets/bsd/_strconv.o: networking/sockets/bsd/_strconv.cpp.o
-
-.PHONY : networking/sockets/bsd/_strconv.o
-
-# target to build an object file
-networking/sockets/bsd/_strconv.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/_strconv.cpp.o
-.PHONY : networking/sockets/bsd/_strconv.cpp.o
-
-networking/sockets/bsd/_strconv.i: networking/sockets/bsd/_strconv.cpp.i
-
-.PHONY : networking/sockets/bsd/_strconv.i
-
-# target to preprocess a source file
-networking/sockets/bsd/_strconv.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/_strconv.cpp.i
-.PHONY : networking/sockets/bsd/_strconv.cpp.i
-
-networking/sockets/bsd/_strconv.s: networking/sockets/bsd/_strconv.cpp.s
-
-.PHONY : networking/sockets/bsd/_strconv.s
-
-# target to generate assembly for a file
-networking/sockets/bsd/_strconv.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/_strconv.cpp.s
-.PHONY : networking/sockets/bsd/_strconv.cpp.s
-
 networking/sockets/bsd/basic/basic_net.o: networking/sockets/bsd/basic/basic_net.cpp.o
 
 .PHONY : networking/sockets/bsd/basic/basic_net.o
@@ -2696,33 +2210,6 @@ networking/sockets/bsd/dns/resolv_socket.s: networking/sockets/bsd/dns/resolv_so
 networking/sockets/bsd/dns/resolv_socket.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/dns/resolv_socket.cpp.s
 .PHONY : networking/sockets/bsd/dns/resolv_socket.cpp.s
-
-networking/sockets/bsd/include.o: networking/sockets/bsd/include.cpp.o
-
-.PHONY : networking/sockets/bsd/include.o
-
-# target to build an object file
-networking/sockets/bsd/include.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/include.cpp.o
-.PHONY : networking/sockets/bsd/include.cpp.o
-
-networking/sockets/bsd/include.i: networking/sockets/bsd/include.cpp.i
-
-.PHONY : networking/sockets/bsd/include.i
-
-# target to preprocess a source file
-networking/sockets/bsd/include.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/include.cpp.i
-.PHONY : networking/sockets/bsd/include.cpp.i
-
-networking/sockets/bsd/include.s: networking/sockets/bsd/include.cpp.s
-
-.PHONY : networking/sockets/bsd/include.s
-
-# target to generate assembly for a file
-networking/sockets/bsd/include.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/networking/sockets/bsd/include.cpp.s
-.PHONY : networking/sockets/bsd/include.cpp.s
 
 networking/sockets/bsd/sockets.o: networking/sockets/bsd/sockets.cpp.o
 
@@ -3345,33 +2832,6 @@ operating_system/_application.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/_application.cpp.s
 .PHONY : operating_system/_application.cpp.s
 
-operating_system/ansi/base.o: operating_system/ansi/base.cpp.o
-
-.PHONY : operating_system/ansi/base.o
-
-# target to build an object file
-operating_system/ansi/base.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/base.cpp.o
-.PHONY : operating_system/ansi/base.cpp.o
-
-operating_system/ansi/base.i: operating_system/ansi/base.cpp.i
-
-.PHONY : operating_system/ansi/base.i
-
-# target to preprocess a source file
-operating_system/ansi/base.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/base.cpp.i
-.PHONY : operating_system/ansi/base.cpp.i
-
-operating_system/ansi/base.s: operating_system/ansi/base.cpp.s
-
-.PHONY : operating_system/ansi/base.s
-
-# target to generate assembly for a file
-operating_system/ansi/base.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/base.cpp.s
-.PHONY : operating_system/ansi/base.cpp.s
-
 operating_system/ansi/file.o: operating_system/ansi/file.cpp.o
 
 .PHONY : operating_system/ansi/file.o
@@ -3399,60 +2859,6 @@ operating_system/ansi/file.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/file.cpp.s
 .PHONY : operating_system/ansi/file.cpp.s
 
-operating_system/ansi/language.o: operating_system/ansi/language.cpp.o
-
-.PHONY : operating_system/ansi/language.o
-
-# target to build an object file
-operating_system/ansi/language.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/language.cpp.o
-.PHONY : operating_system/ansi/language.cpp.o
-
-operating_system/ansi/language.i: operating_system/ansi/language.cpp.i
-
-.PHONY : operating_system/ansi/language.i
-
-# target to preprocess a source file
-operating_system/ansi/language.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/language.cpp.i
-.PHONY : operating_system/ansi/language.cpp.i
-
-operating_system/ansi/language.s: operating_system/ansi/language.cpp.s
-
-.PHONY : operating_system/ansi/language.s
-
-# target to generate assembly for a file
-operating_system/ansi/language.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/language.cpp.s
-.PHONY : operating_system/ansi/language.cpp.s
-
-operating_system/ansi/win.o: operating_system/ansi/win.cpp.o
-
-.PHONY : operating_system/ansi/win.o
-
-# target to build an object file
-operating_system/ansi/win.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/win.cpp.o
-.PHONY : operating_system/ansi/win.cpp.o
-
-operating_system/ansi/win.i: operating_system/ansi/win.cpp.i
-
-.PHONY : operating_system/ansi/win.i
-
-# target to preprocess a source file
-operating_system/ansi/win.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/win.cpp.i
-.PHONY : operating_system/ansi/win.cpp.i
-
-operating_system/ansi/win.s: operating_system/ansi/win.cpp.s
-
-.PHONY : operating_system/ansi/win.s
-
-# target to generate assembly for a file
-operating_system/ansi/win.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/ansi/win.cpp.s
-.PHONY : operating_system/ansi/win.cpp.s
-
 operating_system/debug.o: operating_system/debug.cpp.o
 
 .PHONY : operating_system/debug.o
@@ -3479,6 +2885,33 @@ operating_system/debug.s: operating_system/debug.cpp.s
 operating_system/debug.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/debug.cpp.s
 .PHONY : operating_system/debug.cpp.s
+
+operating_system/freedesktop/desktop_file.o: operating_system/freedesktop/desktop_file.cpp.o
+
+.PHONY : operating_system/freedesktop/desktop_file.o
+
+# target to build an object file
+operating_system/freedesktop/desktop_file.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/freedesktop/desktop_file.cpp.o
+.PHONY : operating_system/freedesktop/desktop_file.cpp.o
+
+operating_system/freedesktop/desktop_file.i: operating_system/freedesktop/desktop_file.cpp.i
+
+.PHONY : operating_system/freedesktop/desktop_file.i
+
+# target to preprocess a source file
+operating_system/freedesktop/desktop_file.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/freedesktop/desktop_file.cpp.i
+.PHONY : operating_system/freedesktop/desktop_file.cpp.i
+
+operating_system/freedesktop/desktop_file.s: operating_system/freedesktop/desktop_file.cpp.s
+
+.PHONY : operating_system/freedesktop/desktop_file.s
+
+# target to generate assembly for a file
+operating_system/freedesktop/desktop_file.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/freedesktop/desktop_file.cpp.s
+.PHONY : operating_system/freedesktop/desktop_file.cpp.s
 
 operating_system/http.o: operating_system/http.cpp.o
 
@@ -3723,33 +3156,6 @@ operating_system/linux/debug.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/debug.cpp.s
 .PHONY : operating_system/linux/debug.cpp.s
 
-operating_system/linux/desktop_file.o: operating_system/linux/desktop_file.cpp.o
-
-.PHONY : operating_system/linux/desktop_file.o
-
-# target to build an object file
-operating_system/linux/desktop_file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/desktop_file.cpp.o
-.PHONY : operating_system/linux/desktop_file.cpp.o
-
-operating_system/linux/desktop_file.i: operating_system/linux/desktop_file.cpp.i
-
-.PHONY : operating_system/linux/desktop_file.i
-
-# target to preprocess a source file
-operating_system/linux/desktop_file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/desktop_file.cpp.i
-.PHONY : operating_system/linux/desktop_file.cpp.i
-
-operating_system/linux/desktop_file.s: operating_system/linux/desktop_file.cpp.s
-
-.PHONY : operating_system/linux/desktop_file.s
-
-# target to generate assembly for a file
-operating_system/linux/desktop_file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/desktop_file.cpp.s
-.PHONY : operating_system/linux/desktop_file.cpp.s
-
 operating_system/linux/dumpinit.o: operating_system/linux/dumpinit.cpp.o
 
 .PHONY : operating_system/linux/dumpinit.o
@@ -3884,33 +3290,6 @@ operating_system/linux/graphics.s: operating_system/linux/graphics.cpp.s
 operating_system/linux/graphics.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/graphics.cpp.s
 .PHONY : operating_system/linux/graphics.cpp.s
-
-operating_system/linux/language.o: operating_system/linux/language.cpp.o
-
-.PHONY : operating_system/linux/language.o
-
-# target to build an object file
-operating_system/linux/language.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/language.cpp.o
-.PHONY : operating_system/linux/language.cpp.o
-
-operating_system/linux/language.i: operating_system/linux/language.cpp.i
-
-.PHONY : operating_system/linux/language.i
-
-# target to preprocess a source file
-operating_system/linux/language.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/language.cpp.i
-.PHONY : operating_system/linux/language.cpp.i
-
-operating_system/linux/language.s: operating_system/linux/language.cpp.s
-
-.PHONY : operating_system/linux/language.s
-
-# target to generate assembly for a file
-operating_system/linux/language.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/linux/language.cpp.s
-.PHONY : operating_system/linux/language.cpp.s
 
 operating_system/linux/linux.o: operating_system/linux/linux.cpp.o
 
@@ -4371,33 +3750,6 @@ operating_system/operating_system.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/operating_system.cpp.s
 .PHONY : operating_system/operating_system.cpp.s
 
-operating_system/posix/pthread.o: operating_system/posix/pthread.cpp.o
-
-.PHONY : operating_system/posix/pthread.o
-
-# target to build an object file
-operating_system/posix/pthread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/posix/pthread.cpp.o
-.PHONY : operating_system/posix/pthread.cpp.o
-
-operating_system/posix/pthread.i: operating_system/posix/pthread.cpp.i
-
-.PHONY : operating_system/posix/pthread.i
-
-# target to preprocess a source file
-operating_system/posix/pthread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/posix/pthread.cpp.i
-.PHONY : operating_system/posix/pthread.cpp.i
-
-operating_system/posix/pthread.s: operating_system/posix/pthread.cpp.s
-
-.PHONY : operating_system/posix/pthread.s
-
-# target to generate assembly for a file
-operating_system/posix/pthread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/operating_system/posix/pthread.cpp.s
-.PHONY : operating_system/posix/pthread.cpp.s
-
 operating_system/thread.o: operating_system/thread.cpp.o
 
 .PHONY : operating_system/thread.o
@@ -4559,33 +3911,6 @@ parallelization/thread.s: parallelization/thread.cpp.s
 parallelization/thread.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/parallelization/thread.cpp.s
 .PHONY : parallelization/thread.cpp.s
-
-parallelization/thread_os.o: parallelization/thread_os.cpp.o
-
-.PHONY : parallelization/thread_os.o
-
-# target to build an object file
-parallelization/thread_os.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/parallelization/thread_os.cpp.o
-.PHONY : parallelization/thread_os.cpp.o
-
-parallelization/thread_os.i: parallelization/thread_os.cpp.i
-
-.PHONY : parallelization/thread_os.i
-
-# target to preprocess a source file
-parallelization/thread_os.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/parallelization/thread_os.cpp.i
-.PHONY : parallelization/thread_os.cpp.i
-
-parallelization/thread_os.s: parallelization/thread_os.cpp.s
-
-.PHONY : parallelization/thread_os.s
-
-# target to generate assembly for a file
-parallelization/thread_os.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/parallelization/thread_os.cpp.s
-.PHONY : parallelization/thread_os.cpp.s
 
 parallelization/threading.o: parallelization/threading.cpp.o
 
@@ -4938,60 +4263,6 @@ platform/assert_running_task.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/assert_running_task.cpp.s
 .PHONY : platform/assert_running_task.cpp.s
 
-platform/build_debug.o: platform/build_debug.cpp.o
-
-.PHONY : platform/build_debug.o
-
-# target to build an object file
-platform/build_debug.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/build_debug.cpp.o
-.PHONY : platform/build_debug.cpp.o
-
-platform/build_debug.i: platform/build_debug.cpp.i
-
-.PHONY : platform/build_debug.i
-
-# target to preprocess a source file
-platform/build_debug.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/build_debug.cpp.i
-.PHONY : platform/build_debug.cpp.i
-
-platform/build_debug.s: platform/build_debug.cpp.s
-
-.PHONY : platform/build_debug.s
-
-# target to generate assembly for a file
-platform/build_debug.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/build_debug.cpp.s
-.PHONY : platform/build_debug.cpp.s
-
-platform/command_line.o: platform/command_line.cpp.o
-
-.PHONY : platform/command_line.o
-
-# target to build an object file
-platform/command_line.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/command_line.cpp.o
-.PHONY : platform/command_line.cpp.o
-
-platform/command_line.i: platform/command_line.cpp.i
-
-.PHONY : platform/command_line.i
-
-# target to preprocess a source file
-platform/command_line.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/command_line.cpp.i
-.PHONY : platform/command_line.cpp.i
-
-platform/command_line.s: platform/command_line.cpp.s
-
-.PHONY : platform/command_line.s
-
-# target to generate assembly for a file
-platform/command_line.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/command_line.cpp.s
-.PHONY : platform/command_line.cpp.s
-
 platform/console_application.o: platform/console_application.cpp.o
 
 .PHONY : platform/console_application.o
@@ -5045,33 +4316,6 @@ platform/context.s: platform/context.cpp.s
 platform/context.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/context.cpp.s
 .PHONY : platform/context.cpp.s
-
-platform/context_thread.o: platform/context_thread.cpp.o
-
-.PHONY : platform/context_thread.o
-
-# target to build an object file
-platform/context_thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/context_thread.cpp.o
-.PHONY : platform/context_thread.cpp.o
-
-platform/context_thread.i: platform/context_thread.cpp.i
-
-.PHONY : platform/context_thread.i
-
-# target to preprocess a source file
-platform/context_thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/context_thread.cpp.i
-.PHONY : platform/context_thread.cpp.i
-
-platform/context_thread.s: platform/context_thread.cpp.s
-
-.PHONY : platform/context_thread.s
-
-# target to generate assembly for a file
-platform/context_thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/context_thread.cpp.s
-.PHONY : platform/context_thread.cpp.s
 
 platform/create.o: platform/create.cpp.o
 
@@ -5370,33 +4614,6 @@ platform/machine_event_data.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/machine_event_data.cpp.s
 .PHONY : platform/machine_event_data.cpp.s
 
-platform/net.o: platform/net.cpp.o
-
-.PHONY : platform/net.o
-
-# target to build an object file
-platform/net.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/net.cpp.o
-.PHONY : platform/net.cpp.o
-
-platform/net.i: platform/net.cpp.i
-
-.PHONY : platform/net.i
-
-# target to preprocess a source file
-platform/net.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/net.cpp.i
-.PHONY : platform/net.cpp.i
-
-platform/net.s: platform/net.cpp.s
-
-.PHONY : platform/net.s
-
-# target to generate assembly for a file
-platform/net.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/net.cpp.s
-.PHONY : platform/net.cpp.s
-
 platform/node.o: platform/node.cpp.o
 
 .PHONY : platform/node.o
@@ -5586,33 +4803,6 @@ platform/system.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/system.cpp.s
 .PHONY : platform/system.cpp.s
 
-platform/text.o: platform/text.cpp.o
-
-.PHONY : platform/text.o
-
-# target to build an object file
-platform/text.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/text.cpp.o
-.PHONY : platform/text.cpp.o
-
-platform/text.i: platform/text.cpp.i
-
-.PHONY : platform/text.i
-
-# target to preprocess a source file
-platform/text.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/text.cpp.i
-.PHONY : platform/text.cpp.i
-
-platform/text.s: platform/text.cpp.s
-
-.PHONY : platform/text.s
-
-# target to generate assembly for a file
-platform/text.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/platform/text.cpp.s
-.PHONY : platform/text.cpp.s
-
 process/department.o: process/department.cpp.o
 
 .PHONY : process/department.o
@@ -5775,33 +4965,6 @@ progress/real.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/progress/real.cpp.s
 .PHONY : progress/real.cpp.s
 
-user/command.o: user/command.cpp.o
-
-.PHONY : user/command.o
-
-# target to build an object file
-user/command.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/user/command.cpp.o
-.PHONY : user/command.cpp.o
-
-user/command.i: user/command.cpp.i
-
-.PHONY : user/command.i
-
-# target to preprocess a source file
-user/command.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/user/command.cpp.i
-.PHONY : user/command.cpp.i
-
-user/command.s: user/command.cpp.s
-
-.PHONY : user/command.s
-
-# target to generate assembly for a file
-user/command.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/apex/CMakeFiles/apex.dir/build.make source/app/apex/CMakeFiles/apex.dir/user/command.cpp.s
-.PHONY : user/command.cpp.s
-
 user/language.o: user/language.cpp.o
 
 .PHONY : user/language.o
@@ -5946,15 +5109,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... apex"
-	@echo "... _.o"
-	@echo "... _.i"
-	@echo "... _.s"
 	@echo "... cmake_pch.hxx.gch"
 	@echo "... cmake_pch.hxx.i"
 	@echo "... cmake_pch.hxx.s"
-	@echo "... compress/context.o"
-	@echo "... compress/context.i"
-	@echo "... compress/context.s"
 	@echo "... compress/is_dir.o"
 	@echo "... compress/is_dir.i"
 	@echo "... compress/is_dir.s"
@@ -5964,18 +5121,9 @@ help:
 	@echo "... constant/idpool.o"
 	@echo "... constant/idpool.i"
 	@echo "... constant/idpool.s"
-	@echo "... context_glx.o"
-	@echo "... context_glx.i"
-	@echo "... context_glx.s"
 	@echo "... crypto/crypto.o"
 	@echo "... crypto/crypto.i"
 	@echo "... crypto/crypto.s"
-	@echo "... crypto/hasher.o"
-	@echo "... crypto/hasher.i"
-	@echo "... crypto/hasher.s"
-	@echo "... crypto/hasher_algorithm.o"
-	@echo "... crypto/hasher_algorithm.i"
-	@echo "... crypto/hasher_algorithm.s"
 	@echo "... crypto/initializer.o"
 	@echo "... crypto/initializer.i"
 	@echo "... crypto/initializer.s"
@@ -5988,9 +5136,6 @@ help:
 	@echo "... database/event_change.o"
 	@echo "... database/event_change.i"
 	@echo "... database/event_change.s"
-	@echo "... database/id.o"
-	@echo "... database/id.i"
-	@echo "... database/id.s"
 	@echo "... database/key.o"
 	@echo "... database/key.i"
 	@echo "... database/key.s"
@@ -6066,45 +5211,24 @@ help:
 	@echo "... handler/manager.o"
 	@echo "... handler/manager.i"
 	@echo "... handler/manager.s"
-	@echo "... handler/process.o"
-	@echo "... handler/process.i"
-	@echo "... handler/process.s"
-	@echo "... handler/promise.o"
-	@echo "... handler/promise.i"
-	@echo "... handler/promise.s"
-	@echo "... handler/routine.o"
-	@echo "... handler/routine.i"
-	@echo "... handler/routine.s"
 	@echo "... handler/signal.o"
 	@echo "... handler/signal.i"
 	@echo "... handler/signal.s"
 	@echo "... handler/source.o"
 	@echo "... handler/source.i"
 	@echo "... handler/source.s"
-	@echo "... include/_.o"
-	@echo "... include/_.i"
-	@echo "... include/_.s"
 	@echo "... message/_.o"
 	@echo "... message/_.i"
 	@echo "... message/_.s"
 	@echo "... message/application.o"
 	@echo "... message/application.i"
 	@echo "... message/application.s"
-	@echo "... message/base.o"
-	@echo "... message/base.i"
-	@echo "... message/base.s"
 	@echo "... message/channel.o"
 	@echo "... message/channel.i"
 	@echo "... message/channel.s"
 	@echo "... message/command.o"
 	@echo "... message/command.i"
 	@echo "... message/command.s"
-	@echo "... message/command_target.o"
-	@echo "... message/command_target.i"
-	@echo "... message/command_target.s"
-	@echo "... message/command_ui_probe.o"
-	@echo "... message/command_ui_probe.i"
-	@echo "... message/command_ui_probe.s"
 	@echo "... message/debug.o"
 	@echo "... message/debug.i"
 	@echo "... message/debug.s"
@@ -6114,12 +5238,6 @@ help:
 	@echo "... message/message.o"
 	@echo "... message/message.i"
 	@echo "... message/message.s"
-	@echo "... message/receiver.o"
-	@echo "... message/receiver.i"
-	@echo "... message/receiver.s"
-	@echo "... message/sender.o"
-	@echo "... message/sender.i"
-	@echo "... message/sender.s"
 	@echo "... message/simple_command.o"
 	@echo "... message/simple_command.i"
 	@echo "... message/simple_command.s"
@@ -6138,9 +5256,6 @@ help:
 	@echo "... networking/email_address.o"
 	@echo "... networking/email_address.i"
 	@echo "... networking/email_address.s"
-	@echo "... networking/http/_.o"
-	@echo "... networking/http/_.i"
-	@echo "... networking/http/_.s"
 	@echo "... networking/http/context.o"
 	@echo "... networking/http/context.i"
 	@echo "... networking/http/context.s"
@@ -6153,9 +5268,6 @@ help:
 	@echo "... networking/http/get_socket.o"
 	@echo "... networking/http/get_socket.i"
 	@echo "... networking/http/get_socket.s"
-	@echo "... networking/http/ostream.o"
-	@echo "... networking/http/ostream.i"
-	@echo "... networking/http/ostream.s"
 	@echo "... networking/http/request.o"
 	@echo "... networking/http/request.i"
 	@echo "... networking/http/request.s"
@@ -6192,9 +5304,6 @@ help:
 	@echo "... networking/sockets/base/socket_thread.o"
 	@echo "... networking/sockets/base/socket_thread.i"
 	@echo "... networking/sockets/base/socket_thread.s"
-	@echo "... networking/sockets/bsd/_strconv.o"
-	@echo "... networking/sockets/bsd/_strconv.i"
-	@echo "... networking/sockets/bsd/_strconv.s"
 	@echo "... networking/sockets/bsd/basic/basic_net.o"
 	@echo "... networking/sockets/bsd/basic/basic_net.i"
 	@echo "... networking/sockets/bsd/basic/basic_net.s"
@@ -6231,9 +5340,6 @@ help:
 	@echo "... networking/sockets/bsd/dns/resolv_socket.o"
 	@echo "... networking/sockets/bsd/dns/resolv_socket.i"
 	@echo "... networking/sockets/bsd/dns/resolv_socket.s"
-	@echo "... networking/sockets/bsd/include.o"
-	@echo "... networking/sockets/bsd/include.i"
-	@echo "... networking/sockets/bsd/include.s"
 	@echo "... networking/sockets/bsd/sockets.o"
 	@echo "... networking/sockets/bsd/sockets.i"
 	@echo "... networking/sockets/bsd/sockets.s"
@@ -6303,21 +5409,15 @@ help:
 	@echo "... operating_system/_application.o"
 	@echo "... operating_system/_application.i"
 	@echo "... operating_system/_application.s"
-	@echo "... operating_system/ansi/base.o"
-	@echo "... operating_system/ansi/base.i"
-	@echo "... operating_system/ansi/base.s"
 	@echo "... operating_system/ansi/file.o"
 	@echo "... operating_system/ansi/file.i"
 	@echo "... operating_system/ansi/file.s"
-	@echo "... operating_system/ansi/language.o"
-	@echo "... operating_system/ansi/language.i"
-	@echo "... operating_system/ansi/language.s"
-	@echo "... operating_system/ansi/win.o"
-	@echo "... operating_system/ansi/win.i"
-	@echo "... operating_system/ansi/win.s"
 	@echo "... operating_system/debug.o"
 	@echo "... operating_system/debug.i"
 	@echo "... operating_system/debug.s"
+	@echo "... operating_system/freedesktop/desktop_file.o"
+	@echo "... operating_system/freedesktop/desktop_file.i"
+	@echo "... operating_system/freedesktop/desktop_file.s"
 	@echo "... operating_system/http.o"
 	@echo "... operating_system/http.i"
 	@echo "... operating_system/http.s"
@@ -6345,9 +5445,6 @@ help:
 	@echo "... operating_system/linux/debug.o"
 	@echo "... operating_system/linux/debug.i"
 	@echo "... operating_system/linux/debug.s"
-	@echo "... operating_system/linux/desktop_file.o"
-	@echo "... operating_system/linux/desktop_file.i"
-	@echo "... operating_system/linux/desktop_file.s"
 	@echo "... operating_system/linux/dumpinit.o"
 	@echo "... operating_system/linux/dumpinit.i"
 	@echo "... operating_system/linux/dumpinit.s"
@@ -6363,9 +5460,6 @@ help:
 	@echo "... operating_system/linux/graphics.o"
 	@echo "... operating_system/linux/graphics.i"
 	@echo "... operating_system/linux/graphics.s"
-	@echo "... operating_system/linux/language.o"
-	@echo "... operating_system/linux/language.i"
-	@echo "... operating_system/linux/language.s"
 	@echo "... operating_system/linux/linux.o"
 	@echo "... operating_system/linux/linux.i"
 	@echo "... operating_system/linux/linux.s"
@@ -6417,9 +5511,6 @@ help:
 	@echo "... operating_system/operating_system.o"
 	@echo "... operating_system/operating_system.i"
 	@echo "... operating_system/operating_system.s"
-	@echo "... operating_system/posix/pthread.o"
-	@echo "... operating_system/posix/pthread.i"
-	@echo "... operating_system/posix/pthread.s"
 	@echo "... operating_system/thread.o"
 	@echo "... operating_system/thread.i"
 	@echo "... operating_system/thread.s"
@@ -6438,9 +5529,6 @@ help:
 	@echo "... parallelization/thread.o"
 	@echo "... parallelization/thread.i"
 	@echo "... parallelization/thread.s"
-	@echo "... parallelization/thread_os.o"
-	@echo "... parallelization/thread_os.i"
-	@echo "... parallelization/thread_os.s"
 	@echo "... parallelization/threading.o"
 	@echo "... parallelization/threading.i"
 	@echo "... parallelization/threading.s"
@@ -6480,21 +5568,12 @@ help:
 	@echo "... platform/assert_running_task.o"
 	@echo "... platform/assert_running_task.i"
 	@echo "... platform/assert_running_task.s"
-	@echo "... platform/build_debug.o"
-	@echo "... platform/build_debug.i"
-	@echo "... platform/build_debug.s"
-	@echo "... platform/command_line.o"
-	@echo "... platform/command_line.i"
-	@echo "... platform/command_line.s"
 	@echo "... platform/console_application.o"
 	@echo "... platform/console_application.i"
 	@echo "... platform/console_application.s"
 	@echo "... platform/context.o"
 	@echo "... platform/context.i"
 	@echo "... platform/context.s"
-	@echo "... platform/context_thread.o"
-	@echo "... platform/context_thread.i"
-	@echo "... platform/context_thread.s"
 	@echo "... platform/create.o"
 	@echo "... platform/create.i"
 	@echo "... platform/create.s"
@@ -6528,9 +5607,6 @@ help:
 	@echo "... platform/machine_event_data.o"
 	@echo "... platform/machine_event_data.i"
 	@echo "... platform/machine_event_data.s"
-	@echo "... platform/net.o"
-	@echo "... platform/net.i"
-	@echo "... platform/net.s"
 	@echo "... platform/node.o"
 	@echo "... platform/node.i"
 	@echo "... platform/node.s"
@@ -6552,9 +5628,6 @@ help:
 	@echo "... platform/system.o"
 	@echo "... platform/system.i"
 	@echo "... platform/system.s"
-	@echo "... platform/text.o"
-	@echo "... platform/text.i"
-	@echo "... platform/text.s"
 	@echo "... process/department.o"
 	@echo "... process/department.i"
 	@echo "... process/department.s"
@@ -6573,9 +5646,6 @@ help:
 	@echo "... progress/real.o"
 	@echo "... progress/real.i"
 	@echo "... progress/real.s"
-	@echo "... user/command.o"
-	@echo "... user/command.i"
-	@echo "... user/command.s"
 	@echo "... user/language.o"
 	@echo "... user/language.i"
 	@echo "... user/language.s"

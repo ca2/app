@@ -240,33 +240,6 @@ framework.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
-include/_.o: include/_.cpp.o
-
-.PHONY : include/_.o
-
-# target to build an object file
-include/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/include/_.cpp.o
-.PHONY : include/_.cpp.o
-
-include/_.i: include/_.cpp.i
-
-.PHONY : include/_.i
-
-# target to preprocess a source file
-include/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/include/_.cpp.i
-.PHONY : include/_.cpp.i
-
-include/_.s: include/_.cpp.s
-
-.PHONY : include/_.s
-
-# target to generate assembly for a file
-include/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/include/_.cpp.s
-.PHONY : include/_.cpp.s
-
 operating_system/linux/frame_window.o: operating_system/linux/frame_window.cpp.o
 
 .PHONY : operating_system/linux/frame_window.o
@@ -915,60 +888,6 @@ user/simple/scroll_bar.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.s
 .PHONY : user/simple/scroll_bar.cpp.s
 
-user/user/_.o: user/user/_.cpp.o
-
-.PHONY : user/user/_.o
-
-# target to build an object file
-user/user/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/_.cpp.o
-.PHONY : user/user/_.cpp.o
-
-user/user/_.i: user/user/_.cpp.i
-
-.PHONY : user/user/_.i
-
-# target to preprocess a source file
-user/user/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/_.cpp.i
-.PHONY : user/user/_.cpp.i
-
-user/user/_.s: user/user/_.cpp.s
-
-.PHONY : user/user/_.s
-
-# target to generate assembly for a file
-user/user/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/_.cpp.s
-.PHONY : user/user/_.cpp.s
-
-user/user/control.o: user/user/control.cpp.o
-
-.PHONY : user/user/control.o
-
-# target to build an object file
-user/user/control.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control.cpp.o
-.PHONY : user/user/control.cpp.o
-
-user/user/control.i: user/user/control.cpp.i
-
-.PHONY : user/user/control.i
-
-# target to preprocess a source file
-user/user/control.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control.cpp.i
-.PHONY : user/user/control.cpp.i
-
-user/user/control.s: user/user/control.cpp.s
-
-.PHONY : user/user/control.s
-
-# target to generate assembly for a file
-user/user/control.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control.cpp.s
-.PHONY : user/user/control.cpp.s
-
 user/user/control_bar.o: user/user/control_bar.cpp.o
 
 .PHONY : user/user/control_bar.o
@@ -995,33 +914,6 @@ user/user/control_bar.s: user/user/control_bar.cpp.s
 user/user/control_bar.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.s
 .PHONY : user/user/control_bar.cpp.s
-
-user/user/control_descriptor_set.o: user/user/control_descriptor_set.cpp.o
-
-.PHONY : user/user/control_descriptor_set.o
-
-# target to build an object file
-user/user/control_descriptor_set.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_descriptor_set.cpp.o
-.PHONY : user/user/control_descriptor_set.cpp.o
-
-user/user/control_descriptor_set.i: user/user/control_descriptor_set.cpp.i
-
-.PHONY : user/user/control_descriptor_set.i
-
-# target to preprocess a source file
-user/user/control_descriptor_set.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_descriptor_set.cpp.i
-.PHONY : user/user/control_descriptor_set.cpp.i
-
-user/user/control_descriptor_set.s: user/user/control_descriptor_set.cpp.s
-
-.PHONY : user/user/control_descriptor_set.s
-
-# target to generate assembly for a file
-user/user/control_descriptor_set.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_descriptor_set.cpp.s
-.PHONY : user/user/control_descriptor_set.cpp.s
 
 user/user/control_property.o: user/user/control_property.cpp.o
 
@@ -1157,33 +1049,6 @@ user/user/document_manager_container.s: user/user/document_manager_container.cpp
 user/user/document_manager_container.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.s
 .PHONY : user/user/document_manager_container.cpp.s
-
-user/user/edit_plain_text_view.o: user/user/edit_plain_text_view.cpp.o
-
-.PHONY : user/user/edit_plain_text_view.o
-
-# target to build an object file
-user/user/edit_plain_text_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/edit_plain_text_view.cpp.o
-.PHONY : user/user/edit_plain_text_view.cpp.o
-
-user/user/edit_plain_text_view.i: user/user/edit_plain_text_view.cpp.i
-
-.PHONY : user/user/edit_plain_text_view.i
-
-# target to preprocess a source file
-user/user/edit_plain_text_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/edit_plain_text_view.cpp.i
-.PHONY : user/user/edit_plain_text_view.cpp.i
-
-user/user/edit_plain_text_view.s: user/user/edit_plain_text_view.cpp.s
-
-.PHONY : user/user/edit_plain_text_view.s
-
-# target to generate assembly for a file
-user/user/edit_plain_text_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/edit_plain_text_view.cpp.s
-.PHONY : user/user/edit_plain_text_view.cpp.s
 
 user/user/form_control.o: user/user/form_control.cpp.o
 
@@ -1724,33 +1589,6 @@ user/user/network_configuration.s: user/user/network_configuration.cpp.s
 user/user/network_configuration.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.s
 .PHONY : user/user/network_configuration.cpp.s
-
-user/user/notification_area.o: user/user/notification_area.cpp.o
-
-.PHONY : user/user/notification_area.o
-
-# target to build an object file
-user/user/notification_area.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/notification_area.cpp.o
-.PHONY : user/user/notification_area.cpp.o
-
-user/user/notification_area.i: user/user/notification_area.cpp.i
-
-.PHONY : user/user/notification_area.i
-
-# target to preprocess a source file
-user/user/notification_area.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/notification_area.cpp.i
-.PHONY : user/user/notification_area.cpp.i
-
-user/user/notification_area.s: user/user/notification_area.cpp.s
-
-.PHONY : user/user/notification_area.s
-
-# target to generate assembly for a file
-user/user/notification_area.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/notification_area.cpp.s
-.PHONY : user/user/notification_area.cpp.s
 
 user/user/picture.o: user/user/picture.cpp.o
 
@@ -2346,33 +2184,6 @@ user/user/user.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.s
 .PHONY : user/user/user.cpp.s
 
-user/user/validate.o: user/user/validate.cpp.o
-
-.PHONY : user/user/validate.o
-
-# target to build an object file
-user/user/validate.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/validate.cpp.o
-.PHONY : user/user/validate.cpp.o
-
-user/user/validate.i: user/user/validate.cpp.i
-
-.PHONY : user/user/validate.i
-
-# target to preprocess a source file
-user/user/validate.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/validate.cpp.i
-.PHONY : user/user/validate.cpp.i
-
-user/user/validate.s: user/user/validate.cpp.s
-
-.PHONY : user/user/validate.s
-
-# target to generate assembly for a file
-user/user/validate.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/validate.cpp.s
-.PHONY : user/user/validate.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -2394,9 +2205,6 @@ help:
 	@echo "... framework.o"
 	@echo "... framework.i"
 	@echo "... framework.s"
-	@echo "... include/_.o"
-	@echo "... include/_.i"
-	@echo "... include/_.s"
 	@echo "... operating_system/linux/frame_window.o"
 	@echo "... operating_system/linux/frame_window.i"
 	@echo "... operating_system/linux/frame_window.s"
@@ -2469,18 +2277,9 @@ help:
 	@echo "... user/simple/scroll_bar.o"
 	@echo "... user/simple/scroll_bar.i"
 	@echo "... user/simple/scroll_bar.s"
-	@echo "... user/user/_.o"
-	@echo "... user/user/_.i"
-	@echo "... user/user/_.s"
-	@echo "... user/user/control.o"
-	@echo "... user/user/control.i"
-	@echo "... user/user/control.s"
 	@echo "... user/user/control_bar.o"
 	@echo "... user/user/control_bar.i"
 	@echo "... user/user/control_bar.s"
-	@echo "... user/user/control_descriptor_set.o"
-	@echo "... user/user/control_descriptor_set.i"
-	@echo "... user/user/control_descriptor_set.s"
 	@echo "... user/user/control_property.o"
 	@echo "... user/user/control_property.i"
 	@echo "... user/user/control_property.s"
@@ -2496,9 +2295,6 @@ help:
 	@echo "... user/user/document_manager_container.o"
 	@echo "... user/user/document_manager_container.i"
 	@echo "... user/user/document_manager_container.s"
-	@echo "... user/user/edit_plain_text_view.o"
-	@echo "... user/user/edit_plain_text_view.i"
-	@echo "... user/user/edit_plain_text_view.s"
 	@echo "... user/user/form_control.o"
 	@echo "... user/user/form_control.i"
 	@echo "... user/user/form_control.s"
@@ -2559,9 +2355,6 @@ help:
 	@echo "... user/user/network_configuration.o"
 	@echo "... user/user/network_configuration.i"
 	@echo "... user/user/network_configuration.s"
-	@echo "... user/user/notification_area.o"
-	@echo "... user/user/notification_area.i"
-	@echo "... user/user/notification_area.s"
 	@echo "... user/user/picture.o"
 	@echo "... user/user/picture.i"
 	@echo "... user/user/picture.s"
@@ -2628,9 +2421,6 @@ help:
 	@echo "... user/user/user.o"
 	@echo "... user/user/user.i"
 	@echo "... user/user/user.s"
-	@echo "... user/user/validate.o"
-	@echo "... user/user/validate.i"
-	@echo "... user/user/validate.s"
 .PHONY : help
 
 

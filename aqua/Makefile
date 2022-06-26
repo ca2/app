@@ -186,32 +186,32 @@ cmake_pch.hxx.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
-const/idpool.o: const/idpool.cpp.o
+constant/idpool.o: constant/idpool.cpp.o
 
-.PHONY : const/idpool.o
+.PHONY : constant/idpool.o
 
 # target to build an object file
-const/idpool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/const/idpool.cpp.o
-.PHONY : const/idpool.cpp.o
+constant/idpool.cpp.o:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/constant/idpool.cpp.o
+.PHONY : constant/idpool.cpp.o
 
-const/idpool.i: const/idpool.cpp.i
+constant/idpool.i: constant/idpool.cpp.i
 
-.PHONY : const/idpool.i
+.PHONY : constant/idpool.i
 
 # target to preprocess a source file
-const/idpool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/const/idpool.cpp.i
-.PHONY : const/idpool.cpp.i
+constant/idpool.cpp.i:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/constant/idpool.cpp.i
+.PHONY : constant/idpool.cpp.i
 
-const/idpool.s: const/idpool.cpp.s
+constant/idpool.s: constant/idpool.cpp.s
 
-.PHONY : const/idpool.s
+.PHONY : constant/idpool.s
 
 # target to generate assembly for a file
-const/idpool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/const/idpool.cpp.s
-.PHONY : const/idpool.cpp.s
+constant/idpool.cpp.s:
+	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/constant/idpool.cpp.s
+.PHONY : constant/idpool.cpp.s
 
 framework.o: framework.cpp.o
 
@@ -699,87 +699,6 @@ user/controller.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/user/controller.cpp.s
 .PHONY : user/controller.cpp.s
 
-xml/_from.o: xml/_from.cpp.o
-
-.PHONY : xml/_from.o
-
-# target to build an object file
-xml/_from.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/_from.cpp.o
-.PHONY : xml/_from.cpp.o
-
-xml/_from.i: xml/_from.cpp.i
-
-.PHONY : xml/_from.i
-
-# target to preprocess a source file
-xml/_from.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/_from.cpp.i
-.PHONY : xml/_from.cpp.i
-
-xml/_from.s: xml/_from.cpp.s
-
-.PHONY : xml/_from.s
-
-# target to generate assembly for a file
-xml/_from.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/_from.cpp.s
-.PHONY : xml/_from.cpp.s
-
-xml/attr.o: xml/attr.cpp.o
-
-.PHONY : xml/attr.o
-
-# target to build an object file
-xml/attr.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/attr.cpp.o
-.PHONY : xml/attr.cpp.o
-
-xml/attr.i: xml/attr.cpp.i
-
-.PHONY : xml/attr.i
-
-# target to preprocess a source file
-xml/attr.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/attr.cpp.i
-.PHONY : xml/attr.cpp.i
-
-xml/attr.s: xml/attr.cpp.s
-
-.PHONY : xml/attr.s
-
-# target to generate assembly for a file
-xml/attr.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/attr.cpp.s
-.PHONY : xml/attr.cpp.s
-
-xml/base_array.o: xml/base_array.cpp.o
-
-.PHONY : xml/base_array.o
-
-# target to build an object file
-xml/base_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/base_array.cpp.o
-.PHONY : xml/base_array.cpp.o
-
-xml/base_array.i: xml/base_array.cpp.i
-
-.PHONY : xml/base_array.i
-
-# target to preprocess a source file
-xml/base_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/base_array.cpp.i
-.PHONY : xml/base_array.cpp.i
-
-xml/base_array.s: xml/base_array.cpp.s
-
-.PHONY : xml/base_array.s
-
-# target to generate assembly for a file
-xml/base_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aqua/CMakeFiles/aqua.dir/build.make source/app/aqua/CMakeFiles/aqua.dir/xml/base_array.cpp.s
-.PHONY : xml/base_array.cpp.s
-
 xml/data.o: xml/data.cpp.o
 
 .PHONY : xml/data.o
@@ -1254,9 +1173,9 @@ help:
 	@echo "... cmake_pch.hxx.gch"
 	@echo "... cmake_pch.hxx.i"
 	@echo "... cmake_pch.hxx.s"
-	@echo "... const/idpool.o"
-	@echo "... const/idpool.i"
-	@echo "... const/idpool.s"
+	@echo "... constant/idpool.o"
+	@echo "... constant/idpool.i"
+	@echo "... constant/idpool.s"
 	@echo "... framework.o"
 	@echo "... framework.i"
 	@echo "... framework.s"
@@ -1311,15 +1230,6 @@ help:
 	@echo "... user/controller.o"
 	@echo "... user/controller.i"
 	@echo "... user/controller.s"
-	@echo "... xml/_from.o"
-	@echo "... xml/_from.i"
-	@echo "... xml/_from.s"
-	@echo "... xml/attr.o"
-	@echo "... xml/attr.i"
-	@echo "... xml/attr.s"
-	@echo "... xml/base_array.o"
-	@echo "... xml/base_array.i"
-	@echo "... xml/base_array.s"
 	@echo "... xml/data.o"
 	@echo "... xml/data.i"
 	@echo "... xml/data.s"

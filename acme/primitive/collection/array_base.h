@@ -502,6 +502,8 @@ public:
    inline void set_at_grow(::index nIndex, ARG_TYPE newElement, ::count nGrowBy = -1);
    inline TYPE & element_at_grow(::index nIndex, ::count nGrowBy = -1);
 
+   inline void set_each(ARG_TYPE element, ::index iStart = 0, ::count c = -1);
+
    template < ::std::size_t N >
    TYPE& get() { return element_at(N); }
 

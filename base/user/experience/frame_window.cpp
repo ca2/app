@@ -425,7 +425,7 @@ namespace experience
    void frame_window::on_defer_display()
    {
 
-      if (m_pframe.is_set())
+      if (m_bWindowFrame && m_pframe.is_set())
       {
 
          m_pframe->on_defer_display();

@@ -13,17 +13,8 @@ class CLASS_DECL_ACME wait :
 public:
 
 
-   constexpr wait() : wait(5.0, 1800.0) {}
-   constexpr wait(double dWait) : wait(dWait, dWait * 60.0) {}
-   constexpr wait(
-#ifdef DEBUG
-      double,
-      double dWait
-#else
-      double dWait,
-      double
-#endif
-   ) :time(dWait) {}
+   wait() : wait(infinite()) {}
+   wait(double dWait): time(dWait) {}
    wait(const class time& timeWait) : time(timeWait.m_d) {}
    wait(const class wait& waitTime) : time(waitTime.m_d) {}
 

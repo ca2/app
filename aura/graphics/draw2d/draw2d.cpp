@@ -340,29 +340,55 @@ namespace draw2d
    void draw2d::term()
    {
 
-      synchronous_lock synchronouslock(mutex());
-
-      try
       {
 
-         if (m_papi)
+         synchronous_lock synchronouslock(mutex());
+
+         try
          {
 
-            m_papi->destroy();
+            if (m_papi)
+            {
+
+               m_papi->destroy();
+
+            }
+
+         }
+         catch (...)
+         {
 
          }
 
+         m_alpha_spread__24CC_filterMap.erase_all();
+
+         m_alpha_spread__32CC_filterMap.erase_all();
+
       }
-      catch (...)
+
       {
 
+         critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
+
+         m_objecta.clear();
+
       }
 
-      m_alpha_spread__24CC_filterMap.erase_all();
+      {
 
-      m_alpha_spread__32CC_filterMap.erase_all();
+         critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-      // return ::success;
+         m_imagea.clear();
+
+      }
+
+      {
+
+         critical_section_lock criticalsectionlock(&m_criticalsectionGraphicsContextList);
+
+            m_graphicsa.clear();
+
+      }
 
    }
 
@@ -1422,7 +1448,7 @@ namespace draw2d
 
 #endif
 
-   }
+}
 
 
    void draw2d::lock_device()

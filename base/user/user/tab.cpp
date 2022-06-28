@@ -1582,9 +1582,6 @@ namespace user
 
          }
 
-
-
-
          get_data()->m_rectangleTab.left       = rectangleClient.left;
          get_data()->m_rectangleTab.top        = rectangleClient.top;
          get_data()->m_rectangleTab.right      = rectangleClient.right;
@@ -1701,7 +1698,14 @@ namespace user
 
          pholder->display(::e_display_normal);
 
-         pholder->set_need_layout();
+         if (ppane->m_bNeedLayout)
+         {
+
+            ppane->m_bNeedLayout = false;
+
+            pholder->set_need_layout();
+
+         }
 
          pholder->set_need_redraw();
 

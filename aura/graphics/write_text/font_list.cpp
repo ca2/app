@@ -477,6 +477,19 @@ namespace write_text
 
          pbox->m_pfont->create_pixel_font(str, pfontlistdata->m_iaSize[iBox]);
 
+         ::draw2d::lock draw2dlock(this);
+
+         if (!pgraphics)
+         {
+
+            auto psystem = m_psystem->m_paurasystem;
+
+            auto pdraw2d = psystem->draw2d();
+
+            pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
+
+         }
+
          pgraphics->set(pbox->m_pfont);
 
          pbox->m_pfont->m_echaracterseta = pitem->m_echaracterseta;
@@ -1091,11 +1104,7 @@ namespace write_text
 
             auto iSerial = pfontlistdata->m_iSerial;
 
-            auto psystem = m_psystem->m_paurasystem;
-
-            auto pdraw2d = psystem->draw2d();
-
-            auto pgraphics = pdraw2d->create_memory_graphics(m_puserinteraction);
+            ::draw2d::graphics_pointer pgraphics;
 
             string strText = m_strTextLayout;
 

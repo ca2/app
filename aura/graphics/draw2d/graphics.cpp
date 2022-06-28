@@ -1854,9 +1854,16 @@ namespace draw2d
    void graphics::get_text_metrics(::write_text::text_metric * pMetrics)
    {
 
-      __UNREFERENCED_PARAMETER(pMetrics);
+      if (!m_pfont)
+      {
 
-      //return false;
+         return;
+
+      }
+
+      m_pfont->get_os_data(this);
+
+      memcpy(pMetrics, &m_pfont->m_textmetric2, sizeof(*pMetrics));
 
    }
 
@@ -4492,7 +4499,7 @@ namespace draw2d
 
       }
 
-      double dLineSpacing = m_pfont->m_textmetric2.get_line_spacing();
+      //double dLineSpacing = m_pfont->m_textmetric2.get_line_spacing();
 
       //::draw2d::graphics * pgraphics = this;
 
@@ -4502,8 +4509,9 @@ namespace draw2d
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = (::i32) sz.cx;
-      rectangle.bottom = (::i32) (dLineSpacing);
+      rectangle.right =  sz.cx;
+      rectangle.bottom = sz.cy;
+      //rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -4614,7 +4622,7 @@ namespace draw2d
       if (!bLastLine && str2.get_length() > 0)
       {
 
-         rectangleClip.top = (::i32) (rectangleClip.top+dLineSpacing);
+         rectangleClip.top = rectangleClip.top+sz.cy;
 
          _DrawText(str2, rectangleClip, ealign, edrawtext);
 

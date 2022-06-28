@@ -310,7 +310,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
-      DECLARE_MESSAGE_HANDLER(on_message_character);
+      DECLARE_MESSAGE_HANDLER(on_message_char);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageKey);
       DECLARE_MESSAGE_HANDLER(_001OnUniChar);
 
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
@@ -360,7 +361,7 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      void key_to_char(::message::key * pkey);
+      //void key_to_char(::message::key * pkey);
 
       void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact

@@ -9,19 +9,19 @@
 
 
 template < >
-CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::text_out& textout)
+CLASS_DECL_AURA __pointer(___shape<::draw2d::path>) __create_shape(const ::write_text::text_out& textout, holdee<::draw2d::path>)
 {
 
-   return __new(::write_text::text_out_shape(textout));
+   return __new(::draw2d::text_out_shape<::draw2d::path>(textout));
 
 }
 
 
 template < >
-CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::draw_text& drawtext)
+CLASS_DECL_AURA __pointer(___shape<::draw2d::path>) __create_shape(const ::write_text::draw_text& drawtext, holdee<::draw2d::path>)
 {
 
-   return __new(::write_text::draw_text_shape(drawtext));
+   return __new(::draw2d::draw_text_shape<::draw2d::path>(drawtext));
 
 }
 

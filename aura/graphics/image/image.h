@@ -339,6 +339,7 @@ public:
 
    virtual void channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc);
    virtual void channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage);
+   virtual void all_channels_copy(::color::enum_channel echannelSrc, ::image * pimage);
 
    virtual void Map(i32 ToRgb, i32 FromRgb);
 

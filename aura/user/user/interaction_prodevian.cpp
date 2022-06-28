@@ -31,6 +31,7 @@
 namespace user
 {
 
+   ::duration g_durationBetweenUpdateBufferAndUpdateScreen;
 
    prodevian::prodevian()
    {
@@ -837,12 +838,18 @@ namespace user
 
       }
 
+      auto e1 = g_durationBetweenUpdateBufferAndUpdateScreen.elapsed();
+      ::duration durationUpdateScreenPost;
+      durationUpdateScreenPost.Now();
+      output_debug_string("durationBetweenUpdateBufferAndUpdateScreen "+__string(e1.floating_millisecond().m_d) +"ms\n");
       if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
       {
 
          prodevian_update_screen();
 
       }
+      auto e2 = durationUpdateScreenPost.elapsed();
+      output_debug_string("durationUpdateScreenPost " + __string(e2.floating_millisecond().m_d) + "ms\n");
 
       m_puserinteraction->set_display(edisplayDesign, e_layout_output);
 
@@ -959,6 +966,7 @@ namespace user
       return true;
 
    }
+
 
 
    void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
@@ -1155,7 +1163,15 @@ namespace user
 
             i64 i2 = get_integral_nanosecond().m_i;
 
+            static ::duration durationLast;
+
+            output_debug_string("time outside updatebuffer " +__string(durationLast.elapsed().floating_millisecond().m_d) + "ms\n");
+
             m_pimpl->_001UpdateBuffer();
+
+
+            durationLast.Now();
+            g_durationBetweenUpdateBufferAndUpdateScreen.Now();
 
             bUpdateBuffer = true;
 

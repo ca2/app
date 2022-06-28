@@ -4794,6 +4794,10 @@ namespace user
 
       }
 
+      ::duration durationStart;
+
+      durationStart.Now();
+
       ::rectangle_i32 rectangleWindow;
 
       m_puserinteraction->get_window_rect(rectangleWindow);
@@ -4963,6 +4967,10 @@ namespace user
          }
 
       }
+
+      auto elapsed = durationStart.elapsed();
+
+      output_debug_string("_001UpdateBuffer "+__string(elapsed.floating_millisecond().m_d) + "ms\n");
 
    }
 

@@ -19,6 +19,7 @@ namespace user
 
       m_bTabPaneVisible = true;
       m_bPermanent = false;
+      m_bNeedLayout = false;
 
    }
 
@@ -35,7 +36,6 @@ namespace user
    {
 
    }
-
 
 
    void tab_pane::initialize_tab_pane(class tab* ptab)
@@ -63,19 +63,21 @@ namespace user
    }
 
 
-   tab_pane & tab_pane::operator = (const tab_pane & tab_pane)
+   tab_pane & tab_pane::operator = (const tab_pane & pane)
    {
 
-      if (this != &tab_pane)
+      if (this != &pane)
       {
 
-         m_ptab = tab_pane.m_ptab;
-         m_atom = tab_pane.m_atom;
-         m_textTitle = tab_pane.m_textTitle;
-         m_pimage = tab_pane.m_pimage;
-         m_pplaceholder = tab_pane.m_pplaceholder;
-         m_bTabPaneVisible = tab_pane.m_bTabPaneVisible;
-         m_bPermanent = tab_pane.m_bPermanent;
+         m_ptab = pane.m_ptab;
+         m_atom = pane.m_atom;
+         m_textTitle = pane.m_textTitle;
+         m_pimage = pane.m_pimage;
+         m_pplaceholder = pane.m_pplaceholder;
+         m_bTabPaneVisible = pane.m_bTabPaneVisible;
+         m_bPermanent = pane.m_bPermanent;
+         m_bNeedLayout = pane.m_bNeedLayout;
+
       }
 
       return *this;

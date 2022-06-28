@@ -2467,7 +2467,9 @@ namespace user
 
          auto pinteraction = get_wnd();
 
-         if (::is_null(pinteraction) || get_wnd()->m_pprimitiveimpl->is_destroying())
+         if (::is_null(pinteraction) 
+            || ::is_null(get_wnd()->m_pprimitiveimpl)
+            || get_wnd()->m_pprimitiveimpl->is_destroying())
          {
 
             output_debug_string("destroying os window");
@@ -7759,7 +7761,7 @@ namespace user
    ::user::frame * interaction::top_level_frame() const
    {
 
-      __pointer(::user::frame) pframe = frame();
+      auto pframe = frame();
 
       if (!pframe)
       {
@@ -7768,7 +7770,7 @@ namespace user
 
       }
 
-      __pointer(::user::frame) pframeTopLevel;
+      ::user::frame * pframeTopLevel;
 
       do
       {
@@ -7777,144 +7779,11 @@ namespace user
 
          pframe = pframeTopLevel->get_parent_frame();
 
-      } while (pframe.is_set());
+      } while (::is_set(pframe));
 
       return pframeTopLevel;
 
    }
-
-
-   //::user::frame * interaction::GetParentTopLevelFrame() const
-   //{
-
-   //   __pointer(::user::frame) pframe = get_parent_frame();
-
-   //   if (pframe.is_null())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pframe->top_level_frame();
-
-   //}
-
-
-   //::user::frame * interaction::EnsureParentFrame()
-   //{
-
-   //   ::user::frame * pFrameWnd = get_parent_frame();
-
-   //   ENSURE_VALID(pFrameWnd);
-
-   //   return pFrameWnd;
-
-   //}
-
-
-   //lresult interaction::default_window_procedure()
-   //{
-
-   //   if (m_pprimitiveimpl == nullptr)
-   //   {
-
-   //      return 0;
-
-   //   }
-
-   //   return m_pprimitiveimpl->default_window_procedure();
-
-   //}
-
-
-   //u32 interaction::GetStyle() const
-   //{
-
-   //   if (m_pprimitiveimpl == nullptr)
-   //   {
-
-   //      return 0;
-
-   //   }
-
-   //   return m_pprimitiveimpl->GetStyle();
-
-   //}
-
-
-   //u32 interaction::GetExStyle() const
-   //{
-
-   //   if (m_pprimitiveimpl == nullptr)
-   //   {
-
-   //      return 0;
-
-   //   }
-
-   //   return m_pprimitiveimpl->GetExStyle();
-
-   //}
-
-
-   //bool interaction::ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   //{
-
-   //   if (m_pprimitiveimpl == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return m_pprimitiveimpl->ModifyStyle(dwRemove, dwAdd, nFlags);
-
-   //}
-
-
-   //bool interaction::ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags)
-   //{
-
-   //   if (m_pprimitiveimpl == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-
-   //   return m_pprimitiveimpl->ModifyStyleEx(dwRemove, dwAdd, nFlags);
-
-   //}
-
-
-   //void interaction::on_finish()
-   //{
-
-   //   if (m_ewindowflag & e_window_flag_is_window)
-   //   {
-
-   //      start_destroying_window();
-
-   //      return error_pending;
-
-   //   }
-
-   //   if (m_pthreadUserInteraction && m_pthreadUserInteraction->is_running())
-   //   {
-
-   //      return error_pending;
-
-   //   }
-
-   //   auto estatus = ::object::on_finish();
-
-   //   return estatus;
-
-   //}
-
-
 
 
    void interaction::destroy_composites()
@@ -7927,85 +7796,6 @@ namespace user
       //return estatus;
 
    }
-
-
-
-   //void interaction::set_finish_composites(::property_object* pcontextobjectFinish)
-   //{
-
-   //   bool bStillFinishing = false;
-
-   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-   //   if(puserinteractionpointeraChild)
-   //   {
-
-   //      for (auto & pui : puserinteractionpointeraChild->interactiona())
-   //      {
-
-   //         auto estatus = pui->finish(pcontextobjectFinish);
-
-   //         if (estatus == ::error_pending)
-   //         {
-
-   //            bStillFinishing = true;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //   if (m_pprimitiveimpl && !m_pprimitiveimpl->m_bSetFinish)
-   //   {
-
-   //      auto estatus = m_pprimitiveimpl->finish(pcontextobjectFinish);
-
-   //      if (estatus == ::error_pending)
-   //      {
-
-   //         bStillFinishing = true;
-
-   //      }
-
-   //   }
-
-   //   auto estatus = ::user::primitive::set_finish_composites(pcontextobjectFinish);
-
-   //   if (estatus == ::error_pending)
-   //   {
-
-   //      bStillFinishing = true;
-
-   //   }
-
-   //   if (bStillFinishing)
-   //   {
-
-   //      return ::error_pending;
-
-   //   }
-
-   //   return ::success;
-
-   //}
-
-
-   //void interaction::on_finish()
-   //{
-
-   //   auto estatus = destroy();
-
-   //   if (estatus == error_pending)
-   //   {
-
-   //      estatus = error_failed;
-
-   //   }
-
-   //   return estatus;
-
-   //}
 
 
    void interaction::start_destroying_window()

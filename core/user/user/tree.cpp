@@ -495,7 +495,7 @@ namespace user
 
          i32 iImage = (i32) data.m_pitem->get_image();
 
-         if(iImage >= 0)
+         if(iImage >= 0 && pimagelistItem && ::is_ok(pimagelistItem->m_pimage.get()))
          {
 
             if (_001GetItemElementRect(rectangle, data, e_tree_element_image))

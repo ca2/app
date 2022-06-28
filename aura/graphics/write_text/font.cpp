@@ -67,6 +67,9 @@ namespace write_text
       m_bItalic = bItalic;
       m_bUnderline = bUnderline;
       m_bStrikeout = bStrikeOut;
+
+      m_mapText.clear();
+
       set_modified();
 
       return true;

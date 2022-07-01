@@ -12,7 +12,6 @@ namespace user
       virtual public ::user::primitive,
       virtual public ::aura::drawable,
       virtual public ::timer_callback,
-      //,
       virtual public ::conversation,
       virtual public ::user::drag_client
    {
@@ -140,7 +139,7 @@ namespace user
             bool                                         m_bEditDefaultHandling : 1;
             bool                                         m_bKeyboardMultipleSelectionDefaultHandling : 1;
             bool                                         m_bDataUpdateDefaultHandling : 1;
-            bool                                         m_bLockSketchToDesign : 1;
+            //bool                                         m_bLockSketchToDesign : 1;
             bool                                         m_bParentScrollX : 1;
             bool                                         m_bParentScrollY : 1;
             bool                                         m_bUserInteractionHost : 1;
@@ -205,11 +204,18 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
+      ::user::interaction *                     m_puserinteractionTopLevel;
+      ::user::frame *                           m_puserframeTopLevel;
+      ::user::frame *                           m_puserframeParent;
+      ::windowing::window *                     m_pwindow;
+
 
       bool                                      m_bEatsDoubleClick;
 
 
-      __pointer(shape_array<::draw2d::region >) m_pshapeaClip;
+      //__pointer(shape_array<::draw2d::region >) m_pshapeaClip;
+      bool                                      m_bClipRectangle;
+      ::rectangle                               m_rectangleClip;
       __pointer(::aura::draw_context)           m_pdrawcontext;
 
       ::draw2d::path_pointer                    m_pathFocusRect1;
@@ -355,6 +361,7 @@ namespace user
       __pointer(::object)                          m_pmenuitem;
       __pointer_array(interaction)                 m_menua;
       __pointer(::appearance::appearance)          m_pappearance;
+      bool                                         m_bFullScreen;
 
 
       interaction();
@@ -412,9 +419,9 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      ::windowing::window * window() const;
+      //::windowing::window * window() const;
 
-      ::windowing::windowing * windowing() const;
+      inline ::windowing::windowing * windowing() const { return m_pwindow->m_pwindowing; }
 
       ::windowing::display * get_display() const;
 
@@ -522,6 +529,8 @@ namespace user
 
 
       virtual bool is_full_screen_enabled() const;
+      inline bool is_full_screen() const { return m_bFullScreen; }
+      virtual bool _is_full_screen() const;
 
       virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
 
@@ -704,7 +713,7 @@ namespace user
       virtual void show_window();
 
 
-      virtual bool is_sketch_to_design_locked() const;
+      ///virtual bool is_sketch_to_design_locked() const;
 
       
       virtual void clear_activation(enum_layout elayout = e_layout_design);
@@ -1256,9 +1265,14 @@ namespace user
       virtual strsize get_window_text_length() override;
 
       virtual ::user::frame* frame() const;
-      virtual ::user::frame* top_level_frame() const;
-      virtual ::user::frame* get_parent_frame() const;
+      inline ::user::interaction * top_level() const { return m_puserinteractionTopLevel; }
+      inline ::user::frame * top_level_frame() const { return m_puserframeTopLevel; }
+      inline ::user::frame * parent_frame() const { return m_puserframeParent; }
       virtual ::user::frame* get_owner_frame() const;
+
+      virtual ::user::interaction * _top_level() const;
+      virtual ::user::frame * _top_level_frame() const;
+      virtual ::user::frame * _parent_frame() const;
 
 
       //virtual ::handler* get_user_callback();
@@ -1288,8 +1302,8 @@ namespace user
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
-      oswindow get_safe_oswindow() const;
-      virtual oswindow get_oswindow() const override;
+      ::oswindow get_safe_oswindow() const;
+      inline ::oswindow oswindow() const { return m_oswindow; }
 
       //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
@@ -1437,7 +1451,6 @@ namespace user
       ::user::element * get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
-      virtual ::user::interaction* get_top_level() const override;
       virtual ::user::interaction* get_owner() const override;
       virtual ::user::interaction* get_parent_owner() const override;
       virtual ::user::interaction* get_parent_or_owner() const override;
@@ -1465,7 +1478,7 @@ namespace user
 
       //virtual bool is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf = false) const override;
 
-      virtual oswindow GetParentHandle() const;
+      virtual ::oswindow GetParentHandle() const;
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
@@ -1506,10 +1519,11 @@ namespace user
 
       //inline oswindow get_oswindow() const { return m_oswindow; }
       //virtual bool attach(::windowing::window * pwindow_New) override;
-      oswindow detach_window() override;
+      ::oswindow detach_window() override;
 
 
-      virtual windowing::window * get_window() const override;
+      inline ::windowing::window * window() const { return m_pwindow; }
+      virtual ::windowing::window * _window() const override;
 
 
       virtual void* get_os_data() const;
@@ -2176,26 +2190,26 @@ namespace user
    }
 
 
-   class lock_sketch_to_design
-   {
-   public:
+   //class lock_sketch_to_design
+   //{
+   //public:
 
-      ::user::interaction * m_puserinteraction;
+   //   ::user::interaction * m_puserinteraction;
 
-      lock_sketch_to_design(::user::interaction * puserinteraction) :
-      m_puserinteraction(puserinteraction)
-      {
-         m_puserinteraction->m_bLockSketchToDesign = true;
+   //   lock_sketch_to_design(::user::interaction * puserinteraction) :
+   //   m_puserinteraction(puserinteraction)
+   //   {
+   //      m_puserinteraction->m_bLockSketchToDesign = true;
 
-      }
-      ~lock_sketch_to_design()
-      {
+   //   }
+   //   ~lock_sketch_to_design()
+   //   {
 
-         m_puserinteraction->m_bLockSketchToDesign = false;
+   //      m_puserinteraction->m_bLockSketchToDesign = false;
 
-      }
+   //   }
 
-   };
+   //};
 
 
 } // namespace user

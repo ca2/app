@@ -816,11 +816,15 @@ namespace user
 
       if (pOpenDocument != nullptr)
       {
-         __pointer(::user::impact) pimpact = pOpenDocument->get_view(0); // get first one
+         
+         auto pimpact = pOpenDocument->get_view(0); // get first one
+
          if(pimpact != nullptr)
          {
+            
             ASSERT_VALID(pimpact);
-            __pointer(::user::frame_window) pFrame = pimpact->get_parent_frame();
+
+            auto pFrame = pimpact->parent_frame();
 
             if (pFrame == nullptr)
             {
@@ -830,18 +834,29 @@ namespace user
             }
             else
             {
+
                pFrame->ActivateFrame();
 
                if (pFrame->get_parent() != nullptr)
                {
+
                   __pointer(::user::frame_window) pAppFrame;
+
                   ASSERT_KINDOF(frame_window, pAppFrame);
+
                   pAppFrame->ActivateFrame();
+
                }
+
             }
+
          }
          else
+         {
+
             CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
+
+         }
 
          pcreate->payload("document") = pOpenDocument;
       }

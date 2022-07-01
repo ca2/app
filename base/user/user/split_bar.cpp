@@ -162,11 +162,7 @@ namespace user
 
          m_pparent->m_iState = split_layout::stateInitial;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -191,11 +187,7 @@ namespace user
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)
          {

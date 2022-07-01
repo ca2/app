@@ -27,14 +27,24 @@ namespace databaseuser
    }
 
 
-   void data_key_mesh_data::_001GetItemText(::user::mesh_item * pitem)
+   void data_key_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
+
       string_array stra;
-      if(!data_get(::atom(), stra))
-         return_(pitem->m_bOk, false)
-         pitem->m_strText = stra[pitem->m_iItem];
-      pitem->m_bOk = true;
+
+      if (!data_get(::atom(), stra))
+      {
+
+         return_(psubitem->m_bOk, false)
+
+      }
+
+      psubitem->m_strText = stra[psubitem->m_pitem->m_iItem];
+
+      psubitem->m_bOk = true;
+
    }
+
 
    void data_key_mesh_data::GetSel(::user::list * plist, string_array & stra)
    {

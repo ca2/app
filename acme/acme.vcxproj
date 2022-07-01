@@ -1222,6 +1222,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
+    <ClCompile Include="platform\_main_hold_base.cpp" />
     <ClCompile Include="primitive\collection\strdup_array.cpp" />
     <ClCompile Include="primitive\collection\string_array.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />

@@ -610,11 +610,7 @@ namespace user
          if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_eelement == e_element_drop_down))
          {
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 

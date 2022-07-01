@@ -89,19 +89,21 @@ bool simple_printer_list_view::on_click(::item * pitem)
       return false;
 
    }
-   ::user::list_item item(this);
-   item.m_plist = this;
-   item.m_iItem = pitem->m_iItem;
-   item.m_iSubItem = 0;
-   item.m_iListItem = -1;
-   m_psimplemeshdata->_001GetItemText(&item);
+
+   auto & psubitem = get_subitem(pitem->m_iItem, 0);
+
+   m_psimplemeshdata->_001GetSubItemText(psubitem);
+
    __pointer(::user::print_task) pprinttask;
+
    pprinttask.create(this);
+
    pprinttask->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    auto papp = get_app();
 
-   pprinttask->m_pprinter = papp->get_printer(item.m_strText);
+   pprinttask->m_pprinter = papp->get_printer(psubitem->m_strText);
+
    pprinttask->m_pinteraction = m_pimpact;
 
    pprinttask->branch();
@@ -109,4 +111,6 @@ bool simple_printer_list_view::on_click(::item * pitem)
    return true;
 
 }
+
+
 

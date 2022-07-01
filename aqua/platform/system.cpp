@@ -302,7 +302,7 @@ namespace aqua
    void system::defer_audio()
    {
 
-      if(m_bAudio.undefined() || m_bAudio.is_true())
+      if(m_bAudio.is_true())
       {
 
          if (!m_paudio)

@@ -23,7 +23,7 @@ namespace databaseuser
       virtual void dump(dump_context& dumpcontext) const override;
 
 
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+      void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
       virtual count _001GetItemCount() override;
 

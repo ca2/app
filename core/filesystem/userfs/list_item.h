@@ -11,6 +11,10 @@ namespace userfs
    public:
 
 
+      int      m_iImage;
+      int      m_iImageSelected;
+
+
       list_item();
       list_item(const list_item & item);
 

@@ -48,8 +48,9 @@ namespace axis
       //::draw2d::pen_pointer                  m_ppenFocusRect8;
       //::draw2d::pen_pointer                  m_ppenFocusRect9;
 
+      ::draw2d::brush_pointer                   m_pbrush001;
+
       style();
-      style(::object * pobject);
       ~style() override;
 
       void default_style_construct();

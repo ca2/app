@@ -8,12 +8,26 @@ filemanager_impact_base::filemanager_impact_base()
 {
 
    m_bEditConnectInit = false;
+   m_pfsdata = nullptr;
+   m_pfilemanagerdocument = nullptr;
 
 }
 
 
 filemanager_impact_base::~filemanager_impact_base()
 {
+
+}
+
+
+void filemanager_impact_base::initialize_view(::user::document * pdocument)
+{
+
+   ::user::impact::initialize_view(pdocument);
+
+   m_pfilemanagerdocument = dynamic_cast <::filemanager::document *>(pdocument);
+
+   m_pfsdata = m_pfilemanagerdocument->fs_data();
 
 }
 
@@ -30,15 +44,6 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
 
 }
-
-
-
-//::filemanager_impact_base * filemanager_impact_base::this_view()
-//{
-//
-//   return dynamic_cast <::filemanager_impact_base *> (this);
-//
-//}
 
 
 ::file::item * filemanager_impact_base::filemanager_item()
@@ -58,28 +63,28 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 }
 
 
-__pointer(::fs::data) filemanager_impact_base::fs_data()
-{
-
-   return filemanager_document()->fs_data();
-
-}
+//__pointer(::fs::data) filemanager_impact_base::fs_data()
+//{
+//
+//   return filemanager_document()->fs_data();
+//
+//}
 
 
 ::file::path filemanager_impact_base::filemanager_path()
 {
 
-   return filemanager_item()->m_filepathUser;
+   return filemanager_item()->user_path();
 
 }
 
-
-::filemanager::document * filemanager_impact_base::filemanager_document()
-{
-
-   return dynamic_cast <::filemanager::document * > (get_document());
-
-}
+//
+//::filemanager::document * filemanager_impact_base::filemanager_document()
+//{
+//
+//   return dynamic_cast <::filemanager::document * > (get_document());
+//
+//}
 
 
 ::filemanager::data * filemanager_impact_base::filemanager_data()
@@ -159,7 +164,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    string strDir;
 
-   strDir = filemanager_item()->m_filepathUser;
+   strDir = filemanager_item()->user_path();
 
    auto pimpact  = this;
 
@@ -222,7 +227,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
-         __pointer(::database::client) pclient = get_parent_frame();
+         __pointer(::database::client) pclient = parent_frame();
 
          if (pclient != nullptr && !pclient->m_atom.to_string().contains("::frame"))
          {
@@ -247,7 +252,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
       auto bFileManagerItemSet = ::is_set(filemanager_item());
 
-      bool bEqualFilePath = bFileManagerItemSet && papp->is_equal_file_path(ptopic->_extended_topic()->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
+      bool bEqualFilePath = bFileManagerItemSet && papp->is_equal_file_path(ptopic->_extended_topic()->m_pfileitem->final_path(), filemanager_item()->final_path());
 
       if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
       {
@@ -264,7 +269,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       else
       {
 
-         knowledge(ptopic->_extended_topic()->m_pfileitem->m_filepathUser, ptopic->m_actioncontext + ::e_source_sync);
+         knowledge(ptopic->_extended_topic()->m_pfileitem->user_path(), ptopic->m_actioncontext + ::e_source_sync);
 
       }
 

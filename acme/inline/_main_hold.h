@@ -7,7 +7,11 @@ DO_FACTORY(DECLARE_FACTORY)
 #endif
 
 
-struct main_hold
+#include "acme/platform/_main_hold_base.h"
+
+
+struct main_hold :
+   public main_hold_base
 {
 
 
@@ -46,6 +50,15 @@ struct main_hold
    DO_FACTORY(SETUP_FACTORY)
 
 #endif
+
+      main_hold()
+   {
+
+#if defined(HAS_AUDIO)
+      enable_audio(HAS_AUDIO);
+#endif
+
+   }
 
 
 };

@@ -205,27 +205,27 @@ namespace filemanager
          else if (ptopic->m_atom == id_pop)
          {
 
-            OnActivateFrame(e_activate_inactive, ((get_parent_frame())));
+            OnActivateFrame(e_activate_inactive, parent_frame());
 
-            get_parent_frame()->ActivateFrame(e_display_normal);
+            parent_frame()->ActivateFrame(e_display_normal);
 
             OnActivateImpact(true, this, this);
 
             set_need_redraw();
 
-            __pointer(::user::frame) pframe = get_parent_frame();
+            //auto pframe = parent_frame();
 
-            if (pframe != nullptr)
-            {
-               //xxx               pframe->WindowDataLoadWindowRect();
-               //xxx          pframe->WindowDataEnableSaveWindowRect(true);
-            }
+            //if (pframe != nullptr)
+            //{
+            //   //xxx               pframe->WindowDataLoadWindowRect();
+            //   //xxx          pframe->WindowDataEnableSaveWindowRect(true);
+            //}
 
          }
          else if (ptopic->m_atom == id_create_bars)
          {
 
-            __pointer(simple_frame_window) pframe = get_parent_frame();
+            //auto pframe = parent_frame();
 
             //if(pframe != nullptr)
             {

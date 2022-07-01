@@ -83,7 +83,7 @@ namespace filemanager
 
       ptabimpact->set_current_tab_by_id(1);
 
-      return ptabimpact->get_parent_frame();
+      return ptabimpact->parent_frame();
 
    }
 
@@ -117,7 +117,7 @@ namespace filemanager
 
       auto pinteraction = m_pviewGeneral->get_child_by_name("name");
 
-      string strName = m_itema[0]->m_filepathFinal.name();
+      string strName = m_itema[0]->final_path().name();
 
       pinteraction->_001SetText(strName, ::e_source_none);
 
@@ -156,7 +156,7 @@ namespace filemanager
             m_pviewGeneral = m_pdocGeneral->get_type_impact < ::user::form > ();
             m_pviewGeneral->set_form_callback(this);
             pimpactdata->m_pdocument = m_pdocGeneral;
-            pimpactdata->m_puserinteraction = m_pviewGeneral->get_parent_frame();
+            pimpactdata->m_puserinteraction = m_pviewGeneral->parent_frame();
          }
       }
       break;

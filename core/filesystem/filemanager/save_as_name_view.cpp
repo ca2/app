@@ -82,7 +82,7 @@ namespace filemanager
             if (pcontext->m_papexcontext->dir().is(strName))
             {
 
-               if (filemanager_item()->m_filepathUser != strName)
+               if (filemanager_item()->user_path() != strName)
                {
 
                   filemanager_document()->browse(strName, context + ::e_source_sync);
@@ -194,22 +194,22 @@ namespace filemanager
          strPath = strTitle;
 
       }
-      else if (filemanager_document()->fs_data()->is_dir(filemanager_item()->m_filepathFinal))
+      else if (filemanager_document()->fs_data()->is_dir(filemanager_item()->final_path()))
       {
 
-         strPath = filemanager_item()->m_filepathUser / strTitle;
+         strPath = filemanager_item()->user_path() / strTitle;
 
       }
       else if (strTitle.has_char())
       {
 
-         strPath = filemanager_item()->m_filepathUser / strTitle;
+         strPath = filemanager_item()->user_path() / strTitle;
 
       }
       else
       {
 
-         strPath = filemanager_item()->m_filepathUser;
+         strPath = filemanager_item()->final_path();
 
       }
 

@@ -46,7 +46,7 @@ namespace filemanager
 
       _001GetText(strOld);
 
-      string strPath = filemanager_item()->get_user_path();
+      string strPath = filemanager_item()->user_path();
 
       if (strOld == strPath)
       {
@@ -55,7 +55,7 @@ namespace filemanager
 
       }
 
-      _001SetText(filemanager_item()->get_user_path(), ::e_source_sync);
+      _001SetText(filemanager_item()->user_path(), ::e_source_sync);
 
    }
 
@@ -268,7 +268,7 @@ namespace filemanager
             if (bIsDir)
             {
 
-               if (filemanager_item()->m_filepathFinal != path)
+               if (filemanager_item()->final_path() != path)
                {
 
                   __keep(m_bVoidSync);

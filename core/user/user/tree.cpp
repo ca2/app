@@ -218,13 +218,9 @@ namespace user
          //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
+         auto pointCursor = _001ScreenToClient(pwindow->get_cursor_position());
 
          auto dwHoverIn = 300_ms;
 
@@ -382,12 +378,17 @@ namespace user
 
       __pointer(::image_list) pimagelistItem = pitem->get_image_list();
 
-      if (pimagelistItem->m_size > m_sizeItemMaximum)
+      if (pimagelistItem)
       {
 
-         m_sizeItemMaximum = pimagelistItem->m_size;
+         if (pimagelistItem->m_size > m_sizeItemMaximum)
+         {
 
-         set_need_layout();
+            m_sizeItemMaximum = pimagelistItem->m_size;
+
+            set_need_layout();
+
+         }
 
       }
 
@@ -1306,13 +1307,9 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       update_tree_hover(pointCursor);
 

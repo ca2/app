@@ -15,14 +15,20 @@ namespace userfs
 
 
       list_item_array();
-      virtual ~list_item_array();
+      ~list_item_array() override;
 
 
       void add_fs_item(list_item & item);
 
       //__pointer(list_item) get_item(index i, const ::atom & atom);
 
-      __pointer(list_item) get_item(index i);
+      inline list_item * get_item(index iItem)  
+      {
+
+         return operator[](iItem);
+
+      }
+
 
       index find_item_by_path(const ::file::path & pszPath);
 

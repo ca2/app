@@ -142,9 +142,9 @@ namespace filemanager
 
          }
 
-         __pointer(::user::impact) pimpact = pdocument->get_view(0);
+         auto pimpact = pdocument->get_view(0);
 
-         pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
+         pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -211,7 +211,7 @@ namespace filemanager
 
             __pointer(::user::impact) pimpact = pdocument->get_view(0);
 
-            __pointer(simple_frame_window) puserinteraction = (pimpact->get_parent_frame());
+            auto pframe = (pimpact->parent_frame());
 
             bool bPathIsDir = false;
 
@@ -323,12 +323,12 @@ namespace filemanager
          else if (ptopic->m_atom == id_pop)
          {
 
-            __pointer(::user::frame_window) pframe = get_parent_frame();
+            auto pframe = parent_frame();
 
-            if (pframe.is_set())
+            if (::is_null(pframe))
             {
 
-               pframe->InitialUpdateFrame(nullptr, true);
+               pframe->m_puserframewindow->InitialUpdateFrame(nullptr, true);
 
                pframe->display(e_display_normal);
 

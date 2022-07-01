@@ -3,7 +3,8 @@
 #include "core/user/user/_user.h"
 
 
-XfplayerImpactLineSelection::XfplayerImpactLineSelection()
+XfplayerImpactLineSelection::XfplayerImpactLineSelection(::user::interaction * puserinteraction) :
+   m_puserinteraction(puserinteraction)
 {
 
    m_estate = e_state_initial;
@@ -138,13 +139,9 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
 
                   string str;
 
-                  __pointer(::core::session) psession = get_session();
+                  auto pwindow = m_puserinteraction->window();
 
-                  auto puser = psession->user();
-
-                  auto pwindowing = puser->windowing();
-
-                  auto pointCursor = pwindowing->get_cursor_position();
+                  auto pointCursor = pwindow->get_cursor_position();
 
                   if(viewline.get_link(str, pointCursor))
                   {
@@ -159,13 +156,9 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
          else if(message == e_message_mouse_move)
          {
 
-            __pointer(::core::session) psession = get_session();
+            auto pwindow = m_puserinteraction->window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             viewline.update_hover(pointCursor);
 
@@ -180,13 +173,9 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
       if(uEvent == ::e_timer_hover)
       {
 
-         __pointer(::core::session) psession = get_session();
+         auto pwindow = m_puserinteraction->window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          viewline.update_hover(pointCursor);
 
@@ -681,13 +670,9 @@ bool XfplayerImpactLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 u
       if(viewline.is_hover())
       {
          
-         __pointer(::core::session) psession = get_session();
+         auto pwindow = m_puserinteraction->window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          viewline.get_interaction()->screen_to_client(pointCursor);
 

@@ -265,7 +265,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       m_pwindowing = pwindowing;
 
@@ -319,7 +319,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      m_oswindow = m_pimpl->m_pwindow->get_oswindow();
+      m_oswindow = m_pimpl->m_pwindow->oswindow();
 
       //delete m_pusersystem;
 

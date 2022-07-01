@@ -68,7 +68,7 @@ namespace draw2d
       bool                                   m_bBeginDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
-      __pointer(::user::interaction)         m_puserinteraction;
+      ::user::interaction *                  m_puserinteraction;
       __pointer(::draw2d::host)              m_phost;
 
       bool                                   m_bPat;

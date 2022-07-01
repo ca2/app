@@ -261,7 +261,7 @@ namespace user
 
       auto pcontextimage = pcontext->context_image();
 
-      ppane->m_pimage = pcontextimage->load_image(strIcon, { .cache = false });
+      ppane->m_pimage = pcontextimage->load_image(strIcon, { .sync = false, .cache = false, });
 
       on_change_tab_count({ ppane });
 
@@ -430,7 +430,7 @@ namespace user
 
       bool bNeedLayout = false;
 
-      ::user::interaction * puiTopLevel = get_top_level();
+      auto puiTopLevel = top_level();
 
       if (puiTopLevel != nullptr)
       {
@@ -490,20 +490,16 @@ namespace user
       if(m_bShowTabs)
       {
 
-         if(top_level_frame()!= nullptr && top_level_frame()->layout().is_full_screen())
+         if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
          {
 
             ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
 
             client_to_screen(rectangleTab);
 
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             bool bShowTabs = rectangleTab.contains(pointCursor);
 
@@ -529,7 +525,7 @@ namespace user
       else
       {
 
-         auto pframe = get_parent_frame();
+         auto pframe = parent_frame();
 
          if(::is_set(pframe) && !pframe->layout().is_full_screen())
          {
@@ -555,13 +551,9 @@ namespace user
 
             bool bShowTabs;
 
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             if(get_data()->m_bVertical)
             {
@@ -594,10 +586,10 @@ namespace user
 
       }
 
-      if (get_parent_frame() != nullptr && (bNeedLayout || !get_parent_frame()->is_this_screen_visible()))
+      if (parent_frame() != nullptr && (bNeedLayout || !parent_frame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = get_parent_frame()->const_layout().design().display();
+         m_edisplayParentFrameAutoHide = parent_frame()->const_layout().design().display();
 
       }
 
@@ -622,7 +614,7 @@ namespace user
 
       }
 
-      if (get_top_level()->frame_is_transparent())
+      if (top_level()->frame_is_transparent())
       {
 
          return;
@@ -1833,11 +1825,7 @@ namespace user
 
          m_bMouseDown = false;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -1865,11 +1853,7 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -2437,7 +2421,7 @@ namespace user
    ::item_pointer tab::on_hit_test(const ::point_i32 &point)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectangleScroll;
 
@@ -2603,11 +2587,7 @@ namespace user
       if(pmessage->previous())
          return;
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -3637,15 +3617,13 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pwindow = window();
+
+         auto pointCursor = pwindow->get_cursor_position();
 
          auto pitem = hit_test(pointCursor);
 

@@ -230,13 +230,9 @@ namespace user
    void step_slider::update_hover()
    {
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       m_pitemHover = hit_test(pointCursor);
 

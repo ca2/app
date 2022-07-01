@@ -3,6 +3,10 @@
 
 CLASS_DECL_ACME string demangle(const char * psz);
 
+
+#define __c_type_name(t) (c_demangle(typeid(t).name()))
+
+
 #ifdef WINDOWS
 inline const char * c_demangle(const char * psz)
 {

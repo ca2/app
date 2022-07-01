@@ -79,11 +79,7 @@ namespace experience
 
          m_bDrag = false;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -204,7 +200,7 @@ namespace experience
       if (ptimer->m_uEvent == e_timer_check_hover)
       {
 
-         if (get_top_level()->layout().is_moving())
+         if (top_level()->layout().is_moving())
          {
 
             //TRACE("experience control_box : top level is moving : ignoring e_message_timer");
@@ -212,7 +208,7 @@ namespace experience
             return;
 
          }
-         else if (get_top_level()->layout().is_sizing())
+         else if (top_level()->layout().is_sizing())
          {
 
             //TRACE("experience control_box : top level is sizing : ignoring e_message_timer");
@@ -223,13 +219,11 @@ namespace experience
 
          ::point_i32 pointCursor;
 
-         auto psession = get_session();
+         auto pwindowing = windowing();
 
-         auto puser = psession->user();
+         auto pwindow = window();
 
-         auto pwindowing = puser->windowing();
-
-         pointCursor = pwindowing->get_cursor_position();
+         pointCursor = pwindow->get_cursor_position();
 
          if (is_window_visible())
          {
@@ -331,7 +325,7 @@ namespace experience
                try
                {
 
-                  point = psession->m_pointCursor;
+                  point = window()->get_cursor_position();
 
                }
                catch (...)

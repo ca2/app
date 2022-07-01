@@ -1246,6 +1246,9 @@
     <ClCompile Include="primitive\string\_string.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
+    <ClCompile Include="platform\_main_hold_base.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3482,6 +3485,12 @@
     </ClInclude>
     <ClInclude Include="constant\geometry2d.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_main_hold_base.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_defer_shape.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

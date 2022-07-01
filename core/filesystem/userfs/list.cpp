@@ -23,6 +23,8 @@ namespace userfs
       m_rectangleMargin.bottom = 0;
       m_rectangleMargin.right = 0;
 
+      m_pfsdata = nullptr;
+
       //create_int(::user::int_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
 
    }
@@ -48,6 +50,18 @@ namespace userfs
    }
 
 
+   void list::initialize_view(::user::document * pdocument)
+   {
+
+      ::user::form_list_view::initialize_view(pdocument);
+
+      m_pdocument = dynamic_cast <document *>(pdocument);
+
+      m_pfsdata = m_pdocument->fs_data();
+
+   }
+
+
    void list::on_message_create(::message::message * pmessage)
    {
 
@@ -61,8 +75,8 @@ namespace userfs
       }
 
       set_impact_title("File Manager");
-      
-      auto pframe = get_parent_frame();
+
+      auto pframe = parent_frame();
 
       pframe->set_frame_title("File Manager");
 
@@ -78,7 +92,7 @@ namespace userfs
 
    void list::_001OnTimer(::timer * ptimer)
    {
-//      __UNREFERENCED_PARAMETER(pmessage);
+      //      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::form_list_view::_001OnTimer(ptimer);
 
@@ -92,28 +106,28 @@ namespace userfs
 
       _001GetSelection(range);
 
-      if(range.get_item_count() > 0)
+      if (range.get_item_count() > 0)
       {
          list_data * pdata = fs_list();
          auto & itemrange = range.ItemAt(0);
          index iLItem = itemrange.get_lower_bound();
          index iUItem = itemrange.get_upper_bound();
-         if(iUItem < iLItem)
+         if (iUItem < iLItem)
          {
             iUItem = pdata->m_itema.get_upper_bound();
          }
-         if(iLItem < 0)
+         if (iLItem < 0)
             return false;
-         if(iLItem >= pdata->m_itema.get_size())
+         if (iLItem >= pdata->m_itema.get_size())
             return false;
-         if(iUItem >= pdata->m_itema.get_size())
+         if (iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
          ::payload payloadFile;
          ::payload varQuery;
-         if(iUItem == iLItem)
+         if (iUItem == iLItem)
          {
 
-            payloadFile = fs_list_item(iLItem)->get_user_path();
+            payloadFile = fs_list_item(iLItem)->user_path();
 
          }
          else
@@ -121,10 +135,10 @@ namespace userfs
 
             string_array stra;
 
-            for(index iItem = iLItem; iItem < iLItem; iItem++)
+            for (index iItem = iLItem; iItem < iLItem; iItem++)
             {
 
-               stra.add(pdata->item(iItem)->get_user_path());
+               stra.add(pdata->item(iItem)->user_path());
 
             }
 
@@ -166,15 +180,15 @@ namespace userfs
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_union.m_pmouse;
-      /*         index iItem;
-            list_data * pdata = fslist();
-            if(_001HitTest_(pmouse->m_point, iItem))
-            {
-               ::file::item item;
-               item.m_strPath         = pdata->m_foldera.GetFolder(iItem).m_strPath;
-               get_filemanager_template()->get_filemanager_data()->OnFileManagerOpenFolder(item);
-            }*/
+      //      auto pmouse = pmessage->m_union.m_pmouse;
+            /*         index iItem;
+                  list_data * pdata = fslist();
+                  if(_001HitTest_(pmouse->m_point, iItem))
+                  {
+                     ::file::item item;
+                     item.m_strPath         = pdata->m_foldera.GetFolder(iItem).m_strPath;
+                     get_filemanager_template()->get_filemanager_data()->OnFileManagerOpenFolder(item);
+                  }*/
    }
 
    void list::_001OnCancelMode(::message::message * pmessage)
@@ -186,7 +200,7 @@ namespace userfs
 
    }
 
-   
+
    bool list::pre_create_window(::user::system * pusersystem)
    {
 
@@ -210,7 +224,7 @@ namespace userfs
          pcolumn->m_iWidth = 200;
          pcolumn->m_iSubItem = 0;
 
-         
+
 
       }
 
@@ -221,7 +235,7 @@ namespace userfs
          pcolumn->m_iWidth = 300;
          pcolumn->m_iSubItem = 1;
 
-         
+
 
       }
 
@@ -232,7 +246,7 @@ namespace userfs
          pcolumn->m_iWidth = 100;
          pcolumn->m_iSubItem = 2;
 
-         
+
 
       }
 
@@ -255,7 +269,7 @@ namespace userfs
       for (auto & item : itema.ptra())
       {
 
-         patha.add(item->m_filepathUser);
+         patha.add(item->user_path());
 
       }
 
@@ -272,7 +286,7 @@ namespace userfs
       for (auto & pitem : itema.ptra())
       {
 
-         patha.add(pitem->m_filepathFinal);
+         patha.add(pitem->final_path());
 
       }
 
@@ -345,7 +359,7 @@ namespace userfs
    }
 
 
-   __pointer(::file::item) list::get_first_selected_item()
+   ::file::item * list::get_first_selected_item()
    {
 
       auto itema = get_selected_items();
@@ -375,7 +389,7 @@ namespace userfs
    //   //         m_iAnimate = 1;
    //}
 
-   
+
    void list::_017OpenItem(__pointer(::file::item) pitem, bool bOpenFile, const ::action_context & action_context)
    {
 
@@ -441,13 +455,13 @@ namespace userfs
       ::user::range range;
       _001GetSelection(range);
       for (iItemRange = 0;
-            iItemRange < range.get_item_count();
-            iItemRange++)
+         iItemRange < range.get_item_count();
+         iItemRange++)
       {
          auto & itemrange = range.ItemAt(iItemRange);
          for (iItem = itemrange.get_lower_bound();
-               iItem <= itemrange.get_upper_bound();
-               iItem++)
+            iItem <= itemrange.get_upper_bound();
+            iItem++)
          {
             if (iItem < 0)
                continue;
@@ -504,7 +518,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & context)
+   void list::_017OpenContextMenuFile(const ::file::item_array & itema, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(itema);
@@ -540,7 +554,7 @@ namespace userfs
 
    //}
 
-   void list::_017OpenFile(const ::file::item_array &itema, const ::action_context & context)
+   void list::_017OpenFile(const ::file::item_array & itema, const ::action_context & context)
    {
       __UNREFERENCED_PARAMETER(itema);
       __UNREFERENCED_PARAMETER(context);
@@ -653,13 +667,13 @@ namespace userfs
 
       list_item item;
 
-      item.m_filepathUser = pathUser;
+      item.set_user_path(pathUser);
 
-      item.m_filepathFinal = pathFinal;
+      item.set_final_path(pathFinal);
 
       item.m_strName = strName;
 
-      if (fs_data()->is_dir(item.get_final_path()))
+      if (fs_data()->is_dir(item.final_path()))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -673,16 +687,16 @@ namespace userfs
    }
 
 
-   __pointer(::image_list) list::GetActionButtonImageList(index i)
+   ::image_list * list::GetActionButtonImageList(index i)
    {
 
       if (i == 0)
       {
 
          auto pcontext = m_pcontext;
-         
+
          auto psession = pcontext->m_pcoresession;
-         
+
          auto puser = psession->m_puser->m_pcoreuser;
 
          return puser->shell()->GetImageList(16);
@@ -723,8 +737,8 @@ namespace userfs
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
-      range.get_item_count() == 1
-      && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
+         range.get_item_count() == 1
+         && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound());
       pmessage->m_bRet = true;
    }
 
@@ -827,11 +841,11 @@ namespace userfs
       if (iStrictDrop >= 0 && pdata->item(iStrictDrop)->IsFolder())
       {
 
-         ::file::path strPath = pdata->item(iStrictDrag)->m_filepathFinal;
+         ::file::path strPath = pdata->item(iStrictDrag)->final_path();
 
          string strName = strPath.name();
 
-         fs_data()->file_move(pdata->item(iStrictDrop)->m_filepathFinal, strPath);
+         fs_data()->file_move(pdata->item(iStrictDrop)->final_path(), strPath);
 
       }
       else
@@ -857,7 +871,7 @@ namespace userfs
    list_data * list::fs_list()
    {
 
-      return m_pmeshdata.cast < list_data > ();
+      return m_pmeshdata.cast < list_data >();
 
    }
 
@@ -870,95 +884,122 @@ namespace userfs
    }
 
 
-   __pointer(::fs::data) list::fs_data()
+   //::fs::data * list::fs_data()
+   //{
+
+   //   return get_document()->fs_data();
+
+   //}
+
+
+   //::file::item * list::fs_list_item(index iIndex)
+   //{
+
+   //   return fs_list()->m_itema[iIndex];
+
+   //}
+
+
+   //__pointer(::userfs::document) list::get_document()
+   //{
+
+   //   return ::user::form_list_view::get_document();
+
+   //}
+
+
+   void list::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      return get_document()->fs_data();
+      return ::user::form_list_view::_001GetSubItemText(psubitem);
 
    }
 
 
-   __pointer(::file::item) list::fs_list_item(index iIndex)
+   void list::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      return fs_list()->m_itema[iIndex];
-
-   }
-
-
-   __pointer(::userfs::document) list::get_document()
-   {
-
-      return ::user::form_list_view::get_document();
-
-   }
-
-
-   void list::_001GetItemText(::user::mesh_item * pitem)
-   {
-
-      return ::user::form_list_view::_001GetItemText(pitem);
-
-   }
-
-
-   void list::_001GetItemImage(::user::mesh_item * pitem)
-   {
-
-      if (pitem->m_iSubItem == m_iSelectionSubItem || pitem->m_iSubItem == m_iNameSubItem)
+      if (psubitem->m_iSubItem == m_iSelectionSubItem || psubitem->m_iSubItem == m_iNameSubItem)
       {
 
-         if (pitem->m_iSubItem == m_iIconSubItem)
+         if (psubitem->m_iSubItem == m_iIconSubItem)
          {
 
             list_data * pdata = fs_list();
 
-            if (::is_null(pdata))
+            //if (::is_null(pdata))
+            //{
+
+            //   return;
+
+            //}
+
+            //if (!get_document())
+            //{
+
+            //   return;
+
+            //}
+
+            //auto pset = fs_data();
+
+            //if (::is_null(pset))
+            //{
+
+            //   return;
+
+            //}
+
+            if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= pdata->m_itema.get_count())
             {
 
                return;
 
             }
 
-            if (get_document().is_null())
+            auto pfsitem = pdata->item((::index)psubitem->m_pitem->m_iItem);
+
+            if (pfsitem->m_iImage >= 0)
             {
+
+               psubitem->m_iImage = pfsitem->m_iImage;
+
+               psubitem->m_bOk = true;
 
                return;
 
             }
-
-            __pointer(::fs::set) pset = fs_data();
-
-            if (pset.is_null())
-            {
-
-               return;
-
-            }
-
-            if (pitem->m_iItem < 0 || pitem->m_iItem >= pdata->m_itema.get_count())
-            {
-
-               return;
-
-            }
-
-            auto pfsitem = pdata->item((::index) pitem->m_iItem);
 
             __pointer(::core::session) psession = get_session();
 
             auto puser = psession->user();
 
-            ::file::path pathUser = pfsitem->m_filepathUser;
+            ::file::path pathUser = pfsitem->user_path();
 
             auto pcontext = m_pcontext->m_papexcontext;
 
-            ::file::path pathProcessed = pcontext->defer_process_path(pathUser);
+            ::file::path pathProcessed = pfsitem->final_path();
+
+            if (!pathProcessed.is(::file::e_flag_final_path))
+            {
+
+               pfsitem->set_final_path(pathProcessed = pcontext->defer_process_path(pathUser));
+
+            }
+
+            auto pset = fs_data();
+
+            if (::is_null(pset))
+            {
+
+               return;
+
+            }
 
             auto iImage = puser->shell()->get_file_image(
-                            pathProcessed,
-                            pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
-                              ::user::shell::e_icon_normal);
+               pathProcessed,
+               pset->is_dir(pfsitem->final_path()) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+               ::user::shell::e_icon_normal);
 
             if (iImage < 0)
             {
@@ -966,25 +1007,27 @@ namespace userfs
                puser->shell()->warn_when_ok(pathProcessed, { this });
 
                iImage = puser->shell()->get_file_image(
-                  pfsitem->m_filepathFinal,
-                  pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  pfsitem->final_path(),
+                  pset->is_dir(pfsitem->final_path()) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                   ::user::shell::e_icon_normal);
 
-               if(iImage < 0)
+               if (iImage < 0)
                {
 
-                  puser->shell()->warn_when_ok(pfsitem->m_filepathFinal, {this});
+                  puser->shell()->warn_when_ok(pfsitem->final_path(), { this });
 
                }
 
             }
 
-            pitem->m_iImage = iImage;
+            pfsitem->m_iImage = iImage;
 
-            if (pitem->m_iImage >= 0)
+            psubitem->m_iImage = iImage;
+
+            if (psubitem->m_iImage >= 0)
             {
 
-               pitem->m_bOk = true;
+               psubitem->m_bOk = true;
 
             }
 
@@ -992,9 +1035,7 @@ namespace userfs
          else
          {
 
-            pitem->m_iImage = -1;
-
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
          }
 
@@ -1002,7 +1043,7 @@ namespace userfs
 
       }
 
-      return ::user::form_list_view::_001GetItemImage(pitem);
+      return ::user::form_list_view::_001GetSubItemImage(psubitem);
 
    }
 

@@ -15,23 +15,31 @@ namespace userfs
       
 
 
-      string_array              m_straFileSize;
-      ::file::path_array        m_pathaStrictOrder;
-      index                m_iSelectionSubItem;
-      index                m_iNameSubItem;
-      index                m_iNameSubItemText;
-      index                m_iIconSubItem;
-
+      string_array               m_straFileSize;
+      ::file::path_array         m_pathaStrictOrder;
+      index                      m_iSelectionSubItem;
+      index                      m_iNameSubItem;
+      index                      m_iNameSubItemText;
+      index                      m_iIconSubItem;
+      document *                 m_pdocument;
+      ::fs::data *               m_pfsdata;
 
 
       list();
-      virtual ~list();
+      ~list() override;
 
-      virtual void _001InsertColumns() override;
 
-      virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      void initialize_view(::user::document * pdocument) override;
 
-      __pointer(::userfs::document) get_document();
+
+      inline ::fs::data * fs_data() { return m_pfsdata; }
+
+      
+      void _001InsertColumns() override;
+
+      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+
+      inline ::userfs::document * get_document() { return m_pdocument; }
 
       virtual list_data * fs_list();
 
@@ -39,7 +47,7 @@ namespace userfs
 
       void install_message_routing(::channel * pchannel) override;
 
-      __pointer(::image_list) GetActionButtonImageList(index i);
+      ::image_list * GetActionButtonImageList(index i);
 
 
       virtual void get_selected_user_path(::file::path_array & stra);
@@ -50,7 +58,7 @@ namespace userfs
       virtual ::file::path_array get_selected_user_path();
       virtual ::file::path_array get_selected_final_path();
       virtual ::file::item_array get_selected_items();
-      virtual __pointer(::file::item) get_first_selected_item();
+      virtual ::file::item * get_first_selected_item();
 
 
       void _001OnInitializeForm(::user::interaction * pinteraction) override;
@@ -66,25 +74,25 @@ namespace userfs
       virtual void _017OpenContextMenu(const ::action_context & action_context);
       //void TakeAnimationSnapshot();
       //virtual void StartAnimation();
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       //void GetSelectedFilePath(string_array & array);
-      virtual void _001GetItemImage(::user::mesh_item * pitem) override;
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
-      virtual count _001GetItemCount() override;
+      void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
+      count _001GetItemCount() override;
 
 
-      virtual void _001InitializeFormPreData() override;
+      void _001InitializeFormPreData() override;
 
-      virtual bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      virtual bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
-
-
-
-      virtual bool on_click(::item * pitem) override;
+      bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
 
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+
+      bool on_click(::item * pitem) override;
+
+
+      void handle(::topic * ptopic, ::context * pcontext) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
@@ -96,7 +104,7 @@ namespace userfs
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
 
 
       void assert_ok() const override;
@@ -104,8 +112,8 @@ namespace userfs
 
       __pointer(::user::mesh_data) create_mesh_data() override;
 
-      virtual __pointer(::fs::data) fs_data();
-      virtual __pointer(::file::item) fs_list_item(index iIndex);
+      //virtual ::fs::data * fs_data();
+      inline ::file::item * fs_list_item(index iIndex) { return fs_list()->m_itema[iIndex]; }
 
 
    };

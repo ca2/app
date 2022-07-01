@@ -52,6 +52,8 @@ namespace draw2d
       ::draw2d::enum_fill_mode            m_efillmode;
       point_f64                           m_pointOffset;
       __pointer(optimization)             m_poptimization;
+      bool                                m_bUseGeometryRealization;
+
 
       path();
       ~path() override;

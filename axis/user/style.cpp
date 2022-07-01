@@ -61,7 +61,7 @@ namespace axis
 
          int h = rectangle.height();
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __create < ::draw2d::pen >();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
@@ -200,12 +200,19 @@ namespace axis
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
-         auto pbrush = __create < ::draw2d::brush >();
-
          if (!pinteraction->m_flagNonClient.has(::user::interaction::non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
+            auto & pbrush = m_pbrush001;
+
+            if (!pbrush)
+            {
+
+               pbrush = __create < ::draw2d::brush >();
+
+               pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
+
+            }
 
             pgraphics->set(pbrush);
 
@@ -253,15 +260,11 @@ namespace axis
 
             }
 
-            __pointer(::axis::session) psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = pinteraction->windowing();
 
             auto pwindowFocus = pwindowing->get_keyboard_focus(pinteraction->m_pthreadUserInteraction);
 
-            auto pwindowThis = pinteraction->get_window();
+            auto pwindowThis = pinteraction->window();
 
             if (pinteraction->has_keyboard_focus())
             {
@@ -367,9 +370,16 @@ namespace axis
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect5;
 
-                  ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+
+                  }
 
                   pgraphics->set(ppen);
 
@@ -394,9 +404,16 @@ namespace axis
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect6;
 
-                  ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+
+                  }
 
                   pgraphics->set(ppen);
 
@@ -422,9 +439,16 @@ namespace axis
                   //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  auto ppen = __create < ::draw2d::pen > ();
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect7;
 
-                  ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+                  if (!ppen)
+                  {
+
+                     ppen.create(this);
+
+                     ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+
+                  }
 
                   pgraphics->set(ppen);
 
@@ -441,9 +465,16 @@ namespace axis
          else
          {
 
-            auto ppen = __create < ::draw2d::pen > ();
+            ::draw2d::pen_pointer & ppen = m_ppenFocusRect8;
 
-            ppen->create_solid(3.0, argb(255, 90, 80, 255));
+            if (!ppen)
+            {
+
+               ppen.create(this);
+
+               ppen->create_solid(3.0, argb(255, 90, 80, 255));
+
+            }
 
             pgraphics->draw_rectangle(rectangleClient, ppen);
 
@@ -453,9 +484,16 @@ namespace axis
       else
       {
 
-         auto ppen = __create < ::draw2d::pen >();
+         ::draw2d::pen_pointer & ppen = m_ppenFocusRect;
 
-         ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
+         if (!ppen)
+         {
+
+            ppen = __create < ::draw2d::pen >();
+
+            ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
+
+         }
 
          pgraphics->draw_rectangle(rectangleClient, ppen);
 
@@ -841,7 +879,7 @@ namespace axis
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction * pinteraction, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -871,574 +909,7 @@ namespace axis
 
 
 
-//void style::nextstyle(style_context * pcontext)
-   //{
-
-   //   if (::is_set(m_pgraphics) && ::is_set(m_pgraphics->m_puserinteraction))
-   //   {
-
-   //      m_pgraphics->m_puserinteraction->nextstyle(pcontext);
-
-   //   }
-   //   else
-   //   {
-
-   //      pcontext->m_papexcontext->pstyle.release();
-
-   //   }
-
-   //}
-
-
-   //void style::defer_create_user_schema(::user::e_schema eschema)
-   //{
-
-   //   ::user::style * puserstyle = pstyle;
-
-   //   if (puserstyle == nullptr)
-   //   {
-
-   //      puserstyle = this;
-
-   //   }
-
-   //   if (eschema == schema_default)
-   //   {
-
-   //      m_puserstyleSelect = puserstyle;
-
-   //   }
-   //   else
-   //   {
-
-   //      auto & spuserstyle = puserstyle->m_map[eschema];
-
-   //      if (spuserstyle.is_null())
-   //      {
-
-   //         spuserstyle = __new(style(this));
-
-   //      }
-
-   //      m_puserstyleSelect = spuserstyle;
-
-   //   }
-
-   //}
-
-
-   //void style::select_user_schema()
-   //{
-
-   //   auto eschema = m_eschema;
-
-   //   ::user::style * puserstyle = pstyle;
-
-   //   if (puserstyle == nullptr)
-   //   {
-
-   //      puserstyle = this;
-
-   //   }
-
-   //   if (eschema == schema_default)
-   //   {
-
-   //      m_puserstyleSelect = puserstyle;
-
-   //   }
-   //   else
-   //   {
-
-   //      auto & spuserstyle = puserstyle->m_map[eschema];
-
-   //      if (spuserstyle.is_set())
-   //      {
-
-   //         m_puserstyleSelect = spuserstyle;
-
-   //      }
-   //      else
-   //      {
-
-   //         m_puserstyleSelect = puserstyle;
-
-   //      }
-
-   //   }
-
-   //}
-
-
-   //void style::set_user_schema(::user::e_schema eschema)
-   //{
-
-   //   m_eschema = eschema;
-
-   //}
-
-
-   //style * style::style_get(::user::e_schema eschema)
-   //{
-
-   //   if (eschema == schema_default)
-   //   {
-
-   //      return this;
-
-   //   }
-
-   //   style_pointer pstyle;
-
-   //   if (m_map.lookup(eschema, pstyle))
-   //   {
-
-   //      return pstyle;
-
-   //   }
-
-   //   return this;
-
-   //}
-
-
-   void style::select(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      m_pgraphics = pgraphics;
-
-   }
-
-
-   ::draw2d::graphics * style::style_get_graphics()
-   {
-
-      return m_pgraphics;
-
-   }
-
-
-   //style * style::userstyle()
-   //{
-
-   //   return m_pstyle;
-
-   //}
-
-
-   //style_context::style_context()
-   //{
-
-
-   //}
-
-
-   //style_context::~style_context()
-   //{
-
-
-   //}
-
-
-      style::~style()
-      {
-
-      }
-
-
-
-      //void style::select_default()
-      //{
-
-      //   if (pstyle.is_set())
-      //   {
-
-      //      m_puserstyleSelect = pstyle;
-
-      //   }
-      //   else
-      //   {
-
-      //      m_puserstyleSelect = this;
-
-      //   }
-
-      //}
-
-
-
-
-
-
-
-
-      //void style::initialize_style()
-      //{
-
-      //   ::user::style::initialize_style();
-
-      //   ::color::color color;
-      //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
-
-      //   class ::color::color colorHover(color);
-      //   colorHover.hls_rate(0.0, 0.3, 0.0);
-
-      //   class ::color::color colorPress(color);
-      //   colorPress.hls_rate(0.0, 0.7, 0.0);
-
-      //   m_eschema = schema_default;
-
-      //   create_opaque_color(color_text, ::color_black);
-
-      //}
-
-
-
-      //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
-      //{
-
-      //   return false;
-
-      //}
-
-
-      //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
-      //{
-
-      //   return false;
-
-      //}
-
-
-      //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
-      //{
-
-      //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
-
-      //}
-
-
-      //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
-      //{
-
-      //   return false;
-
-      //}
-
-
-      //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
-      //   {
-      //
-      //      return false;
-      //
-      //   }
-
-
-      //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_window * pframe)
-      //   {
-      //
-      //      return false;
-      //
-      //   }
-
-
-      //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
-      //{
-
-      //   return false;
-
-      //}
-
-
-      //__pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
-      //{
-
-      //   return psession->create_menu_button(pstyle, pitem);
-
-      //}
-
-
-      //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
-      //{
-
-      //   if (!prepare_menu_button(pgraphics,pitem))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   return true;
-
-      //}
-
-
-      //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
-      //{
-
-      //   pgraphics->m_puserstyle = this;
-
-      //   psession->prepare_menu_button(pgraphics, pitem);
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_color(e_color ecolor, ::color32_t color32)
-      //{
-
-      //   if (userstyle()->m_mapColor.is_null())
-      //   {
-
-      //      userstyle()->m_mapColor = __new(color_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapColor)[ecolor] = color32;
-
-      //   return true;
-
-      //}
-
-
-     // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
-     // {
-
-     //    if (userstyle()->m_mapFont.is_null())
-     //    {
-
-     //       userstyle()->m_mapFont = __new(font_map);
-
-     //    }
-
-     //    auto & font = (*userstyle()->m_mapFont)[efont];
-
-     ///*    if (font.is_null())
-     //    {*/
-
-     //    __defer_construct(font);
-
-     //  //  }
-
-     //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
-
-     //    return font;
-
-     // }
-
-
-      //bool style::create_opaque_color(e_color ecolor, ::color32_t color32)
-      //{
-
-      //   if (!create_color(ecolor, opaque_color(color32)))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_opaque_color(e_color eusercolor, ::e_color ecolor)
-      //{
-
-      //   if (!create_color(eusercolor, opaque_color(ecolor)))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_session_default_opaque_color(e_color eusercolor, u64 u)
-      //{
-
-      //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
-      //{
-
-      //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
-      //   {
-
-      //      return false;
-
-      //   }
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
-      //{
-
-      //   if (userstyle()->m_mapTranslucency.is_null())
-      //   {
-
-      //      userstyle()->m_mapTranslucency = __new(translucency_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapTranslucency)[eelement] = etranslucency;
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_flag(enum_flag eflag, bool bFlag)
-      //{
-
-      //   if (userstyle()->m_mapFlag.is_null())
-      //   {
-
-      //      userstyle()->m_mapFlag = __new(translucency_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapFlag)[eflag] = bFlag;
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
-      //{
-
-      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
-
-      //}
-
-
-      //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
-      //{
-
-      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
-
-      //}
-
-
-      //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
-      //{
-
-      //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
-
-      //}
-
-
-      //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
-      //{
-
-      //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
-
-      //}
-
-
-      //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
-      //{
-
-      //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
-
-      //}
-
-
-      //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
-      //{
-
-      //   return create_rect(erect, r, ::draw2d::e_unit_point);
-
-      //}
-
-
-      //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
-      //{
-
-      //   if (userstyle()->m_mapRect.is_null())
-      //   {
-
-      //      userstyle()->m_mapRect = __new(rect_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapRect)[erect].set_rect_coord(l, t, r, b, eunit);
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
-      //{
-
-      //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
-
-      //}
-
-
-      //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
-      //{
-
-      //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
-
-      //}
-
-
-      //bool style::create_int(e_int eint, int i)
-      //{
-
-      //   if (userstyle()->m_mapInt.is_null())
-      //   {
-
-      //      userstyle()->m_mapInt = __new(::user::i32_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapInt)[eint] = i;
-
-      //   return true;
-
-      //}
-
-
-      //bool style::create_double(e_double edouble, double d)
-      //{
-
-      //   if (userstyle()->m_mapDouble.is_null())
-      //   {
-
-      //      userstyle()->m_mapDouble = __new(::user::double_map);
-
-      //   }
-
-      //   (*userstyle()->m_mapDouble)[edouble] = d;
-
-      //   return true;
-
-      //}
-
-
-
-      //void style::nextstyle(style_context * pcontext)
+   //void style::nextstyle(style_context * pcontext)
       //{
 
       //   if (::is_set(m_pgraphics) && ::is_set(m_pgraphics->m_puserinteraction))
@@ -1567,6 +1038,573 @@ namespace axis
       //   return this;
 
       //}
+
+
+   void style::select(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      m_pgraphics = pgraphics;
+
+   }
+
+
+   ::draw2d::graphics * style::style_get_graphics()
+   {
+
+      return m_pgraphics;
+
+   }
+
+
+   //style * style::userstyle()
+   //{
+
+   //   return m_pstyle;
+
+   //}
+
+
+   //style_context::style_context()
+   //{
+
+
+   //}
+
+
+   //style_context::~style_context()
+   //{
+
+
+   //}
+
+
+   style::~style()
+   {
+
+   }
+
+
+
+   //void style::select_default()
+   //{
+
+   //   if (pstyle.is_set())
+   //   {
+
+   //      m_puserstyleSelect = pstyle;
+
+   //   }
+   //   else
+   //   {
+
+   //      m_puserstyleSelect = this;
+
+   //   }
+
+   //}
+
+
+
+
+
+
+
+
+   //void style::initialize_style()
+   //{
+
+   //   ::user::style::initialize_style();
+
+   //   ::color::color color;
+   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
+
+   //   class ::color::color colorHover(color);
+   //   colorHover.hls_rate(0.0, 0.3, 0.0);
+
+   //   class ::color::color colorPress(color);
+   //   colorPress.hls_rate(0.0, 0.7, 0.0);
+
+   //   m_eschema = schema_default;
+
+   //   create_opaque_color(color_text, ::color_black);
+
+   //}
+
+
+
+   //bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //bool style::_001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pinteraction)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
+   //{
+
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
+
+   //}
+
+
+   //bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
+   //   {
+   //
+   //      return false;
+   //
+   //   }
+
+
+   //   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_window * pframe)
+   //   {
+   //
+   //      return false;
+   //
+   //   }
+
+
+   //bool style::_001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox)
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //__pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //{
+
+   //   return psession->create_menu_button(pstyle, pitem);
+
+   //}
+
+
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //{
+
+   //   if (!prepare_menu_button(pgraphics,pitem))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //{
+
+   //   pgraphics->m_puserstyle = this;
+
+   //   psession->prepare_menu_button(pgraphics, pitem);
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_color(e_color ecolor, ::color32_t color32)
+   //{
+
+   //   if (userstyle()->m_mapColor.is_null())
+   //   {
+
+   //      userstyle()->m_mapColor = __new(color_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapColor)[ecolor] = color32;
+
+   //   return true;
+
+   //}
+
+
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
+  // {
+
+  //    if (userstyle()->m_mapFont.is_null())
+  //    {
+
+  //       userstyle()->m_mapFont = __new(font_map);
+
+  //    }
+
+  //    auto & font = (*userstyle()->m_mapFont)[efont];
+
+  ///*    if (font.is_null())
+  //    {*/
+
+  //    __defer_construct(font);
+
+  //  //  }
+
+  //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+
+  //    return font;
+
+  // }
+
+
+   //bool style::create_opaque_color(e_color ecolor, ::color32_t color32)
+   //{
+
+   //   if (!create_color(ecolor, opaque_color(color32)))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_opaque_color(e_color eusercolor, ::e_color ecolor)
+   //{
+
+   //   if (!create_color(eusercolor, opaque_color(ecolor)))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_session_default_opaque_color(e_color eusercolor, u64 u)
+   //{
+
+   //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_session_default_color(e_color eusercolor, byte bAlpha, u64 u)
+   //{
+
+   //   if (!create_color(eusercolor, alpha_color(bAlpha, psession->get_default_color(u))))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
+   //{
+
+   //   if (userstyle()->m_mapTranslucency.is_null())
+   //   {
+
+   //      userstyle()->m_mapTranslucency = __new(translucency_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapTranslucency)[eelement] = etranslucency;
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_flag(enum_flag eflag, bool bFlag)
+   //{
+
+   //   if (userstyle()->m_mapFlag.is_null())
+   //   {
+
+   //      userstyle()->m_mapFlag = __new(translucency_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapFlag)[eflag] = bFlag;
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_pixel_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //{
+
+   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_pixel);
+
+   //}
+
+
+   //bool style::create_pixel_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //{
+
+   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_pixel);
+
+   //}
+
+
+   //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
+   //{
+
+   //   return create_rect(erect, r, ::draw2d::e_unit_pixel);
+
+   //}
+
+
+   //bool style::create_point_rect_coord(e_rect erect, double l, double t, double r, double b)
+   //{
+
+   //   return create_rect_coord(erect, l, t, r, b, ::draw2d::e_unit_point);
+
+   //}
+
+
+   //bool style::create_point_rect_dim(e_rect erect, double l, double t, double w, double h)
+   //{
+
+   //   return create_rect_dim(erect, l, t, w, h, ::draw2d::e_unit_point);
+
+   //}
+
+
+   //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
+   //{
+
+   //   return create_rect(erect, r, ::draw2d::e_unit_point);
+
+   //}
+
+
+   //bool style::create_rect_coord(e_rect erect, double l, double t, double r, double b, ::draw2d::enum_unit eunit)
+   //{
+
+   //   if (userstyle()->m_mapRect.is_null())
+   //   {
+
+   //      userstyle()->m_mapRect = __new(rect_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapRect)[erect].set_rect_coord(l, t, r, b, eunit);
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_rect_dim(e_rect erect, double l, double t, double w, double h, ::draw2d::enum_unit eunit)
+   //{
+
+   //   return create_rect_coord(erect, l, t, l + w, t + h, eunit);
+
+   //}
+
+
+   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
+   //{
+
+   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
+
+   //}
+
+
+   //bool style::create_int(e_int eint, int i)
+   //{
+
+   //   if (userstyle()->m_mapInt.is_null())
+   //   {
+
+   //      userstyle()->m_mapInt = __new(::user::i32_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapInt)[eint] = i;
+
+   //   return true;
+
+   //}
+
+
+   //bool style::create_double(e_double edouble, double d)
+   //{
+
+   //   if (userstyle()->m_mapDouble.is_null())
+   //   {
+
+   //      userstyle()->m_mapDouble = __new(::user::double_map);
+
+   //   }
+
+   //   (*userstyle()->m_mapDouble)[edouble] = d;
+
+   //   return true;
+
+   //}
+
+
+
+   //void style::nextstyle(style_context * pcontext)
+   //{
+
+   //   if (::is_set(m_pgraphics) && ::is_set(m_pgraphics->m_puserinteraction))
+   //   {
+
+   //      m_pgraphics->m_puserinteraction->nextstyle(pcontext);
+
+   //   }
+   //   else
+   //   {
+
+   //      pcontext->m_papexcontext->pstyle.release();
+
+   //   }
+
+   //}
+
+
+   //void style::defer_create_user_schema(::user::e_schema eschema)
+   //{
+
+   //   ::user::style * puserstyle = pstyle;
+
+   //   if (puserstyle == nullptr)
+   //   {
+
+   //      puserstyle = this;
+
+   //   }
+
+   //   if (eschema == schema_default)
+   //   {
+
+   //      m_puserstyleSelect = puserstyle;
+
+   //   }
+   //   else
+   //   {
+
+   //      auto & spuserstyle = puserstyle->m_map[eschema];
+
+   //      if (spuserstyle.is_null())
+   //      {
+
+   //         spuserstyle = __new(style(this));
+
+   //      }
+
+   //      m_puserstyleSelect = spuserstyle;
+
+   //   }
+
+   //}
+
+
+   //void style::select_user_schema()
+   //{
+
+   //   auto eschema = m_eschema;
+
+   //   ::user::style * puserstyle = pstyle;
+
+   //   if (puserstyle == nullptr)
+   //   {
+
+   //      puserstyle = this;
+
+   //   }
+
+   //   if (eschema == schema_default)
+   //   {
+
+   //      m_puserstyleSelect = puserstyle;
+
+   //   }
+   //   else
+   //   {
+
+   //      auto & spuserstyle = puserstyle->m_map[eschema];
+
+   //      if (spuserstyle.is_set())
+   //      {
+
+   //         m_puserstyleSelect = spuserstyle;
+
+   //      }
+   //      else
+   //      {
+
+   //         m_puserstyleSelect = puserstyle;
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //void style::set_user_schema(::user::e_schema eschema)
+   //{
+
+   //   m_eschema = eschema;
+
+   //}
+
+
+   //style * style::style_get(::user::e_schema eschema)
+   //{
+
+   //   if (eschema == schema_default)
+   //   {
+
+   //      return this;
+
+   //   }
+
+   //   style_pointer pstyle;
+
+   //   if (m_map.lookup(eschema, pstyle))
+   //   {
+
+   //      return pstyle;
+
+   //   }
+
+   //   return this;
+
+   //}
 
 
 

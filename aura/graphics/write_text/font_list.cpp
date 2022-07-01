@@ -299,13 +299,11 @@ namespace write_text
 
       rectangleClient += m_puserinteraction->get_viewport_offset();
 
-      __pointer(::aura::session) psession = get_session();
+      auto pwindowing = m_puserinteraction->windowing();
 
-      auto puser = psession->user();
+      auto pwindow = m_puserinteraction->window();
 
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       m_puserinteraction->screen_to_client(pointCursor);
 

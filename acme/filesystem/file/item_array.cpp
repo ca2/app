@@ -43,18 +43,7 @@ namespace file
       else if (this->get_count() == 1)
       {
 
-         if (this->element_at(0)->m_filepathUser.has_char())
-         {
-
-            return this->element_at(0)->m_filepathUser;
-
-         }
-         else
-         {
-
-            return this->element_at(0)->m_filepathFinal;
-
-         }
+         return this->element_at(0)->user_path();
 
       }
       else
@@ -65,18 +54,7 @@ namespace file
          for (index i = 0; i < this->get_count(); i++)
          {
 
-            if (this->element_at(i)->m_filepathUser.has_char())
-            {
-
-               payload.stra().add(this->element_at(i)->m_filepathUser);
-
-            }
-            else
-            {
-
-               payload.stra().add(this->element_at(i)->m_filepathFinal);
-
-            }
+            payload.stra().add(this->element_at(i)->user_path());
 
          }
 
@@ -99,18 +77,7 @@ namespace file
       else if (this->get_count() == 1)
       {
 
-         if (this->element_at(0)->m_filepathFinal.has_char())
-         {
-
-            return this->element_at(0)->m_filepathFinal;
-
-         }
-         else
-         {
-
-            return this->element_at(0)->m_filepathUser;
-
-         }
+         return this->element_at(0)->final_path();
 
       }
       else
@@ -121,18 +88,7 @@ namespace file
          for (index i = 0; i < this->get_count(); i++)
          {
 
-            if (this->element_at(i)->m_filepathFinal.has_char())
-            {
-
-               payload.stra().add(this->element_at(i)->m_filepathFinal);
-
-            }
-            else
-            {
-
-               payload.stra().add(this->element_at(i)->m_filepathUser);
-
-            }
+            payload.stra().add(this->element_at(i)->final_path());
 
          }
 

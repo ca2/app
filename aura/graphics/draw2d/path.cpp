@@ -8,7 +8,7 @@
 #include "aura/graphics/write_text/_shape.h"
 #include "path_shape.h"
 #include "acme/primitive/geometry2d/_impl.h"
-#include "acme/primitive/geometry2d/_defer.h"
+#include "acme/primitive/geometry2d/_defer_shape.h"
 
 
 point_f64 arc_point(double dAngle, size_f64 sizeRadius)
@@ -56,10 +56,11 @@ namespace draw2d
 
    path::path()
    {
-      m_bPersistent = false;
-      //m_bFill        = false;
-      m_efillmode    = ::draw2d::e_fill_mode_winding;
-      m_bHasPoint    = false;
+      
+      m_bPersistent              = false;
+      m_efillmode                = ::draw2d::e_fill_mode_winding;
+      m_bHasPoint                = false;
+      m_bUseGeometryRealization  = true;
 
    }
 

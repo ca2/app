@@ -64,7 +64,7 @@ namespace userex
 
       set_impact_title("Font");
 
-      get_parent_frame()->set_frame_title("Font");
+      parent_frame()->set_frame_title("Font");
 
    }
 

@@ -33,30 +33,46 @@ namespace user
 
    }
 
-   void mesh_data::_001GetItemText(::user::mesh_item* pitem)
+   
+   void mesh_data::_001GetSubItemText(::user::mesh_subitem* psubitem)
    {
-      pitem->m_bOk = false;
+
+      psubitem->m_bOk = false;
+
    }
 
-   void mesh_data::_001GetItemImage(::user::mesh_item * pitem)
+
+   void mesh_data::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
-      pitem->m_bOk = false;
+      
+      psubitem->m_bOk = false;
+
    }
 
-   void mesh_data::_001GetItemColor(::user::mesh_item * pitem)
+
+   void mesh_data::_001GetSubItemColor(::user::mesh_subitem * psubitem)
    {
-      pitem->m_bOk = false;
+      
+      psubitem->m_bOk = false;
+
    }
 
-   void mesh_data::_001GetGroupText(::user::mesh_item * pitem)
+
+   void mesh_data::_001GetGroupItemText(::user::mesh_group * pgroup)
    {
-      pitem->m_bOk = false;
+
+      pgroup->m_bOk = false;
+
    }
 
-   void mesh_data::_001GetGroupImage(::user::mesh_item * pitem)
+
+   void mesh_data::_001GetGroupImage(::user::mesh_group * pgroup)
    {
-      pitem->m_bOk = false;
+
+      pgroup->m_bOk = false;
+
    }
+
 
    ::count mesh_data::_001GetGroupCount()
    {

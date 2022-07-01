@@ -206,7 +206,7 @@ namespace hi5
 
          ::rectangle_i32 rectangleOpen;
 
-         m_ptabimpact->get_parent_frame()->best_top_level_parent(rectangleOpen);
+         m_ptabimpact->parent_frame()->best_top_level_parent(rectangleOpen);
 
          i32 iWidth = rectangleOpen.width();
 
@@ -225,11 +225,11 @@ namespace hi5
 
          //}
 
-         m_ptabimpact->get_parent_frame()->order_front();
+         m_ptabimpact->parent_frame()->order_front();
 
-         m_ptabimpact->get_parent_frame()->place(rectangleOpen);
+         m_ptabimpact->parent_frame()->place(rectangleOpen);
 
-         m_pviewAuth->get_parent_frame()->set_foreground_window();
+         m_pviewAuth->parent_frame()->set_foreground_window();
 
          m_ptabimpact->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
 
@@ -276,7 +276,7 @@ namespace hi5
                m_pviewAuth = m_pdocAuth->get_type_impact < ::user::form >();
                m_pviewAuth->set_form_callback(this);
                pimpactdata->m_pdocument = m_pdocAuth;
-               pimpactdata->m_puserinteraction = m_pviewAuth->get_parent_frame();
+               pimpactdata->m_puserinteraction = m_pviewAuth->parent_frame();
 
             }
 
@@ -316,7 +316,7 @@ namespace hi5
 
                m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
-               m_ptabimpact->get_parent_frame()->display(e_display_none);
+               m_ptabimpact->parent_frame()->display(e_display_none);
 
             }
 

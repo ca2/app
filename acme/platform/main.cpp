@@ -8,6 +8,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/set_app_id.h"
 #include "acme/platform/system_setup.h"
+#include "_main_hold_base.h"
 
 
 namespace acme
@@ -229,13 +230,7 @@ void __main(main& main)
 
    }
 
-#ifdef CUBE
-
-   auto psetupAudio = ::system_setup::get_first(::system_setup::flag_factory, "audio");
-
-   main.m_bAudio = ::is_set(psetupAudio);
-
-#endif
+   main.m_bAudio = main_hold_base::is_audio_enabled();
 
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<class::system>();
 

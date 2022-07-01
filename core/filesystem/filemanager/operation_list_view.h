@@ -33,7 +33,7 @@ namespace filemanager
       void _001OnTimer(::timer * ptimer) override;
 
       virtual count _001GetItemCount() override;
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+      virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
       void OnFileOperationStep(i32 iOperation,bool bFinal);
 

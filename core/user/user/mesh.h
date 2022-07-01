@@ -4,6 +4,15 @@
 namespace user
 {
 
+   enum enum_cache_hinting
+   {
+
+      e_cache_hinting_none,
+      e_cache_hinting_subitem_color_per_theme_and_state = 1 << 0,
+
+   };
+
+   DECLARE_ENUMERATION(e_cache_hinting, enum_cache_hinting);
 
    class CLASS_DECL_CORE mesh :
       virtual public ::user::scroll_base
@@ -17,6 +26,7 @@ namespace user
 
 
    public:
+
 
       enum EImpact
       {
@@ -43,11 +53,18 @@ namespace user
       {
 
          e_element_item,
-         element_image,
+         e_element_image,
          e_element_text,
-         element_sub_item,
-         element_group_image,
-         element_group_item_text,
+         e_element_sub_item
+
+      };
+
+
+      enum enum_group_element
+      {
+
+         e_group_element_image,
+         e_group_element_item_text,
 
       };
 
@@ -115,133 +132,141 @@ namespace user
 
       };
 
-      //size_i32                       m_sizeTotal;
-      ::size_i32                       m_sizePage;
-      ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
+      //size_i32                                   m_sizeTotal;
+      ::size_i32                                   m_sizePage;
+      ::user::list *                               m_plist; // should be set to this ::user::list if this is a list
 
-      int                              m_iDefaultColumnWidth;
-      index_map < int >                m_mapColumnWidth;
+      int                                          m_iDefaultColumnWidth;
+      index_map < int >                            m_mapColumnWidth;
 
-      CSortInfo                        m_sortinfo;
-      ::size_i32                       m_sizeMaximumImage;
+      CSortInfo                                    m_sortinfo;
+      ::size_i32                                   m_sizeMaximumImage;
 
-      EFilterState                     m_efilterstate;
-      index_biunique *                 m_piaFilterIcon;
-      index_array *                    m_piaFilterMesh;
+      EFilterState                                 m_efilterstate;
+      index_biunique *                             m_piaFilterIcon;
+      index_array *                                m_piaFilterMesh;
 
       /// Are items selectable?
-      bool                             m_bSelect;
+      bool                                         m_bSelect;
 
 
       /// Is multiple selection of items enabled?
-      bool                             m_bMultiSelect;
+      bool                                         m_bMultiSelect;
 
-      bool                             m_bDrag;
-      index                            m_iItemLButtonDown;
+      bool                                         m_bDrag;
+      index                                        m_iItemLButtonDown;
 
       // Sort
-      bool                             m_bSort;
-      bool                             m_bEmboss;
+      bool                                         m_bSort;
+      bool                                         m_bEmboss;
 
 
-      bool                             m_bSortEnable;
-      __pointer(mesh_cache_interface)  m_pmeshcache;
+      bool                                         m_bSortEnable;
+      __pointer(mesh_cache_interface)              m_pmeshcache;
+      e_cache_hinting                              m_ecachehinting;
 
-      draw2d::graphics_extension       m_dcextension;
+      draw2d::graphics_extension                   m_dcextension;
 
-      index                            m_iClick;
-      bool                             m_bLButtonDown;
-      point_i32                        m_pointLButtonDown1;
-      point_i32                        m_pointLButtonDown2;
-      ::duration                           m_durationLButtonDownStart1;
-      ::duration                           m_durationLButtonDownStart2;
-      index                            m_iDisplayItemLButtonDown1;
-      index                            m_iDisplayItemLButtonDown2;
+      index                                        m_iClick;
+      bool                                         m_bLButtonDown;
+      point_i32                                    m_pointLButtonDown1;
+      point_i32                                    m_pointLButtonDown2;
+      ::duration                                   m_durationLButtonDownStart1;
+      ::duration                                   m_durationLButtonDownStart2;
+      index                                        m_iDisplayItemLButtonDown1;
+      index                                        m_iDisplayItemLButtonDown2;
 
-      index                            m_iDisplayItemFocus;
+      index                                        m_iDisplayItemFocus;
 
-      bool                             m_bLockImpactUpdate;
-      i32                              m_iItemWidth;
+      bool                                         m_bLockImpactUpdate;
+      i32                                          m_iItemWidth;
 
-      index                            m_iDisplayItemHover;
-      index                            m_iSubItemHover;
+      index                                        m_iDisplayItemHover;
+      index                                        m_iSubItemHover;
 
-      index                            m_iLastItemSel;
-      index                            m_iLastSubItemSel;
-      index                            m_iItemEnter;
-      index                            m_iSubItemEnter;
-      index                            m_iMouseFlagEnter;
-      index                            m_iItemSel;
-      index                            m_iSubItemSel;
+      index                                        m_iLastItemSel;
+      index                                        m_iLastSubItemSel;
+      index                                        m_iItemEnter;
+      index                                        m_iSubItemEnter;
+      index                                        m_iMouseFlagEnter;
+      index                                        m_iItemSel;
+      index                                        m_iSubItemSel;
 
-      range                            m_rangeSelection;
-      range                            m_rangeHighlight;
+      range                                        m_rangeSelection;
+      range                                        m_rangeHighlight;
 
-      index                            m_iShiftFirstSelection;
-      uptr                             m_uiLButtonDownFlags;
-      uptr                             m_uiLButtonUpFlags;
-      point_i32                        m_pointLButtonUp;
-      ::u32                            m_uiRButtonUpFlags;
-      point_i32                        m_pointRButtonUp;
-      ::regular_expression_pointer     m_pregexFilter1;
-      i32                              m_iFilter1Step;
-      bool                             m_bFilter1;
+      index                                        m_iShiftFirstSelection;
+      uptr                                         m_uiLButtonDownFlags;
+      uptr                                         m_uiLButtonUpFlags;
+      point_i32                                    m_pointLButtonUp;
+      ::u32                                        m_uiRButtonUpFlags;
+      point_i32                                    m_pointRButtonUp;
+      ::regular_expression_pointer                 m_pregexFilter1;
+      i32                                          m_iFilter1Step;
+      bool                                         m_bFilter1;
 
-      bool                             m_bTopText;
-      string                           m_strTopText;
-      ::rectangle_i32                           m_rectangleTopText;
-      __pointer(mesh_data)                    m_pmeshdata;
-//      ::write_text::font_pointer                m_pfont;
-      //    ::write_text::font_pointer                m_pfontHover;
-      ::draw2d::pen_pointer                 m_ppenFocused;
-      ::draw2d::pen_pointer                 m_ppenHighlight;
-      EImpact                            m_eview;
-      flags < enum_flag >                 m_flags;
-      __pointer(icon_layout)           m_piconlayout;
-      __pointer(mesh_layout)           m_pmeshlayout;
+      bool                                         m_bTopText;
+      string                                       m_strTopText;
+      ::rectangle_i32                              m_rectangleTopText;
+      __pointer(mesh_data)                         m_pmeshdata;
+//      ::write_text::font_pointer                 m_pfont;
+      //    ::write_text::font_pointer             m_pfontHover;
+      ::draw2d::pen_pointer                        m_ppenFocused;
+      ::draw2d::pen_pointer                        m_ppenHighlight;
+      EImpact                                      m_eview;
+      flags < enum_flag >                          m_flags;
+      __pointer(icon_layout)                       m_piconlayout;
+      __pointer(mesh_layout)                       m_pmeshlayout;
       //::mutex                            m_mutex;
 
 
-      index                    m_iTopDisplayIndex;
-      index                    m_iTopGroup;
-      ::count                  m_nDisplayCount;
-      ::count                  m_nItemCount;
-      ::count                  m_nGroupCount;
-      ::count                  m_nColumnCount;
+      index                                        m_iTopDisplayIndex;
+      index                                        m_iTopGroup;
+      ::count                                      m_nDisplayCount;
+      ::count                                      m_nItemCount;
+      ::count                                      m_nGroupCount;
+      ::count                                      m_nColumnCount;
 
 
-      ::count                  m_nGridItemCount;
-      ::count                  m_nGridColumnCount;
+      ::count                                      m_nGridItemCount;
+      ::count                                      m_nGridColumnCount;
 
-      __pointer(::image_list)            m_pilGroup;
-      __pointer(::image_list)            m_pilGroupHover;
-      bool                             m_bGroup;
-      bool                             m_bLateralGroup;
-      i32                              m_iLateralGroupWidth;
-      i32                              m_iGroupMinHeight;
-      index                    m_iGroupHover;
+      __pointer(::image_list)                      m_pilGroup;
+      __pointer(::image_list)                      m_pilGroupHover;
+      bool                                         m_bGroup;
+      bool                                         m_bLateralGroup;
+      i32                                          m_iLateralGroupWidth;
+      i32                                          m_iGroupMinHeight;
+      index                                        m_iGroupHover;
 
-      draw_mesh_item *                 m_pdrawmeshitem;
+      //draw_mesh_item *                 m_pdrawmeshitem;
 
-      ::mutex                          m_mutexData;
+      ::mutex                                      m_mutexData;
 
-      bool                             m_bAutoCreateMeshHeader;
-      bool                             m_bAutoCreateMeshData;
+      bool                                         m_bAutoCreateMeshHeader;
+      bool                                         m_bAutoCreateMeshData;
 
       // This member is only valid if m_pmeshdata is simple_mesh_data object
       // (i.e. a simple_mesh_data class object or a simple_mesh_data based class object)
       // It should match the pointer of m_pmeshdata and yes, may kind
       // of memory waste and dangling appendix in some (or many cases).
-      __reference(simple_mesh_data)    m_psimplemeshdata;
+      __reference(simple_mesh_data)                m_psimplemeshdata;
 
 
-      i32                              m_iLeftMargin;
-      i32                              m_iTopMargin;
+      i32                                          m_iLeftMargin;
+      i32                                          m_iTopMargin;
 
+      index_map < __pointer(mesh_item) >           m_mapItem;
+      index_map < __pointer(mesh_group) >          m_mapGroup;
+      ::task_pointer                               m_ptaskHoverSelect;
+      ::duration                                   m_durationLastHoverSelect;
+      bool                                         m_bPendingHoverSelect;
 
 
       mesh();
-      virtual ~mesh();
+      ~mesh() override;
+
+
 
 
 
@@ -290,6 +315,10 @@ namespace user
 
 
       virtual void on_hover_select_timer();
+
+      virtual void _task_hover_select();
+
+
 
 
       virtual ::size_i32 get_item_size();
@@ -351,33 +380,41 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void  _001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
+      //virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
+      virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast);
 
-      virtual void  _001DrawGroup(draw_mesh_item * pdrawitem);
+      virtual void  _001DrawGroup(draw_mesh_group * pdrawgroup);
 
-      virtual void  _001DrawItems(draw_mesh_item * pdrawitem,index iItemFirst,index iItemLast);
+      virtual void  _001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst,index iItemLast);
 
       virtual void  _001DrawItem(draw_mesh_item * pdrawitem);
 
-      virtual void  _001DrawSubItem(draw_mesh_item * pdrawitem);
+      virtual void  _001DrawSubItem(draw_mesh_subitem * pdrawsubitem);
 
-      virtual void  _001GetItemImage(mesh_item * pitem);
 
-      virtual void  _001GetItemText(mesh_item * pitem);
 
-      virtual void  _001SetItemText(mesh_item * pitem);
+      virtual __pointer(mesh_item) & get_item(::index iItem);
+      virtual __pointer(mesh_subitem) & get_subitem(::index iItem, ::index iSubItem);
+      virtual __pointer(mesh_subitem) & get_subitem(mesh_item * pitem, ::index iSubItem);
 
-      virtual void  _001GetItemColor(mesh_item * pitem);
 
-      virtual void  _001SearchGetItemText(mesh_item * pitem);
+      virtual void  _001GetSubItemImage(mesh_subitem * psubitem);
+
+      virtual void  _001GetSubItemText(mesh_subitem * psubitem);
+
+      virtual void  _001SetSubItemText(mesh_subitem * psubitem);
+
+      virtual void  _001GetSubItemColor(mesh_subitem * psubitem);
+
+      virtual void  _001SearchGetSubItemText(mesh_subitem * psubitem);
 
       virtual ::count  _001GetGroupItemCount(index iGroup);
 
       virtual ::count  _001GetGroupMetaItemCount(index iGroup);
 
-      virtual void  _001GetGroupText(mesh_item * pitem);
+      virtual void  _001GetGroupItemText(mesh_group * pgroup);
 
-      virtual void  _001GetGroupImage(mesh_item * pitem);
+      virtual void  _001GetGroupImage(mesh_group * pgroup);
 
       virtual ::count  _001GetColumnCount();
 
@@ -396,14 +433,15 @@ namespace user
       virtual void  _001OnInitialize();
 
 
-      virtual void  _001GetGroupRect(draw_mesh_item * pitem);
+      virtual void  _001GetGroupRect(draw_mesh_group * pgroup);
       virtual void  _001GetItemRect(draw_mesh_item * pitem);
-      virtual void  _001GetSubItemRect(draw_mesh_item * pitem);
-      virtual void  _001GetElementRect(draw_mesh_item * pitem,::user::mesh::enum_element eelement);
+      virtual void  _001GetSubItemRect(draw_mesh_subitem * psubitem);
+      virtual void  _001GetElementRect(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
+      virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
       virtual bool  _001SetColumnWidth(index iColumn,i32 iWidth);
 
-      virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
+      //virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
       virtual index  _001MapSubItemToOrder(index iSubItem);
 
@@ -441,7 +479,7 @@ namespace user
       virtual bool  get_auto_arrange();
 
 
-      virtual void  on_create_draw_item();
+      //virtual void  on_create_draw_item();
 
 
       DECLARE_MESSAGE_HANDLER(on_message_size);

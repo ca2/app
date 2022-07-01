@@ -335,7 +335,7 @@ namespace user
 
       //virtual ::user::interaction * GetTopWindow() const;
       virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * get_top_level() const;
+      inline ::user::interaction * top_level() const;
       //virtual ::user::interaction * GetParentTopLevel() const;
       //virtual ::user::interaction * EnsureTopLevel();
       //virtual ::user::interaction * EnsureParentTopLevel();
@@ -343,7 +343,7 @@ namespace user
       virtual ::user::interaction * get_parent_owner() const;
       virtual ::user::interaction * get_parent_or_owner() const;
       virtual ::user::interaction * get_top_level_owner() const;
-      virtual ::user::frame * get_parent_frame() const;
+      inline ::user::frame * parent_frame() const;
       //virtual ::user::frame * GetParentTopLevelFrame() const;
       //virtual ::user::frame * EnsureParentFrame();
 

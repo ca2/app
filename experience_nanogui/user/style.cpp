@@ -442,7 +442,7 @@ namespace experience_nanogui
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->has_tab_scrolling();
+      bool bScroll = ptab->_001HasTabScrolling();
 
       if(bScroll)
       {

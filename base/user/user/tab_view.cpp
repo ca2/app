@@ -705,7 +705,7 @@ namespace user
 
       }
 
-      auto pframe = get_parent_frame();
+      auto pframe = parent_frame();
 
       if (::is_set(pframe))
       {
@@ -717,8 +717,6 @@ namespace user
       auto papp = get_app();
 
       papp->on_change_cur_sel(this);
-
-
 
    }
 
@@ -1236,13 +1234,9 @@ namespace user
 
       ::color::color crBk;
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
+      auto pointCursor = _001ScreenToClient(pwindow->get_cursor_position());
 
       enum_position epositionDrag = m_ptab->DragHitTest(pointCursor);
 
@@ -1293,11 +1287,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       pwindowing->release_mouse_capture();
 

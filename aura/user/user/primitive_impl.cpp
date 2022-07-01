@@ -1374,19 +1374,19 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::get_parent_frame() const
-   {
+   //::user::frame * primitive_impl::get_parent_frame() const
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puserinteraction->get_parent_frame();
+   //   return m_puserinteraction->parent_frame();
 
-   }
+   //}
 
 
    ::user::interaction * primitive_impl::get_parent_owner() const
@@ -1449,19 +1449,19 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_top_level() const
-   {
+   //::user::interaction * primitive_impl::get_top_level() const
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puserinteraction->get_top_level();
+   //   return m_puserinteraction->top_level();
 
-   }
+   //}
 
 
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)

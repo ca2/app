@@ -289,9 +289,7 @@ namespace sandbox_windowing
                if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
-                  auto pwindowing = windowing();
-
-                  auto pointCursor = pwindowing->get_cursor_position();
+                  auto pointCursor = get_cursor_position();
 
                   pimpl->m_puserinteraction->set_position(pointCursor);
 
@@ -3625,19 +3623,20 @@ namespace sandbox_windowing
 
    pwindowing->m_pwindowKeyboardFocus = this;
 
+   SetInternalFocus();
      
       if (puserinteractionimpl)
    {
 
       puserinteractionimpl->on_final_set_keyboard_focus();
-//         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-//
-//         if (puserinteraction)
-//         {
-//
-//            puserinteraction->post_message(e_message_set_focus);
-//
-//         }
+         //auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+         //if (puserinteraction)
+         //{
+
+         //   puserinteraction->post_message(e_message_set_focus);
+
+         //}
 
    }
 

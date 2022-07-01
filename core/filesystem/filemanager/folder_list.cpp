@@ -113,12 +113,12 @@ namespace filemanager
    }
 
 
-   void folder_list::_001GetItemText(::user::mesh_item * pitem)
+   void folder_list::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      pitem->m_strText = m_foldera.GetFolder((::index) pitem->m_iItem).m_strName;
+      psubitem->m_strText = m_foldera.GetFolder((::index)psubitem->m_pitem->m_iItem).m_strName;
 
-      pitem->m_bOk = true;
+      psubitem->m_bOk = true;
 
    }
 
@@ -126,7 +126,7 @@ namespace filemanager
    void folder_list::browse_sync(const ::action_context & context)
    {
 
-      string strParent = filemanager_item()->m_filepathUser;
+      string strParent = filemanager_item()->user_path();
 
       m_foldera.clear();
 
@@ -315,22 +315,33 @@ namespace filemanager
       return this->get_size();
    }
 
+   
    void folder_list::FolderArray::AddFolder(Folder &folder)
    {
+      
       add(folder);
+
    }
 
-   void folder_list::_001GetItemImage(::user::mesh_item * pitem)
+
+   void folder_list::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
-      if (pitem->m_iSubItem == 1)
+
+      if (psubitem->m_iSubItem == 1)
       {
-         pitem->m_iImage = m_foldera.GetFolder((::index) pitem->m_iItem).m_iImage;
-         pitem->m_bOk = true;
+
+         psubitem->m_iImage = m_foldera.GetFolder((::index)psubitem->m_pitem->m_iItem).m_iImage;
+
+         psubitem->m_bOk = true;
+
       }
       else
       {
-         ::user::list::_001GetItemImage(pitem);
+
+         ::user::list::_001GetSubItemImage(psubitem);
+
       }
+
    }
 
 
@@ -344,7 +355,9 @@ namespace filemanager
 
    ::count folder_list::_001GetItemCount()
    {
+
       return m_foldera.GetFolderCount();
+
    }
 
 

@@ -108,6 +108,7 @@ namespace apex
       virtual ::file::path _defer_process_path(::file::path path);
       virtual ::file::path __defer_process_path(::file::path path);
 
+      virtual bool defer_process_known_folder_path(::file::path & path);
       virtual ::file::path full_process_path(::file::path path);
 
       virtual ::file::path defer_process_matter_path(::file::path path);

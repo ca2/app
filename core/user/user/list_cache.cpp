@@ -41,8 +41,6 @@ namespace user
 
       index iItemEnd = iItemStart + iItemCount - 1;
 
-      draw_list_item item(plist);
-
       for(iItem = iItemStart; iItem <= iItemEnd; iItem++)
       {
 
@@ -51,35 +49,35 @@ namespace user
          for(iColumn = 0; iColumn < plist->m_columna.get_count(); iColumn++)
          {
 
-            item.m_iItem = iColumn;
+            auto iSubItem = plist->m_columna.get_by_index(iColumn)->m_iSubItem;
 
-            item.m_iSubItem = plist->m_columna.get_by_index(iColumn)->m_iSubItem;
+            auto & psubitem = plist->get_subitem(iItem, iSubItem);
 
-            item.m_iListItem = -1;
+            //psubitem->m_iListItem = -1;
 
-            item.m_strText.Empty();
+            psubitem->m_strText.Empty();
 
-            item.m_bOk = false;
+            psubitem->m_bOk = false;
 
             try
             {
 
-               plist->_001GetItemText(&item);
+               plist->_001GetSubItemText(psubitem);
 
             }
             catch(...)
             {
 
-               item.m_bOk = false;
+               psubitem->m_bOk = false;
 
             }
 
-            if(item.m_bOk)
+            if(psubitem->m_bOk)
             {
 
                synchronouslock.lock();
 
-               m.set_at(item.m_iSubItem,item.m_strText);
+               m.set_at(psubitem->m_iSubItem, psubitem->m_strText);
 
                synchronouslock.unlock();
 
@@ -92,35 +90,39 @@ namespace user
    }
 
 
-   void list_cache::_001GetItemText(::user::mesh_item * pitem)
+   void list_cache::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      if(pitem->m_iItem < 0)
-         return_(pitem->m_bOk,false);
+      if (psubitem->m_pitem->m_iItem < 0)
+      {
+
+         return_(psubitem->m_bOk, false);
+
+      }
 
       synchronous_lock synchronouslock(mutex());
 
-      auto pmap = m_map.plookup(pitem->m_iItem);
+      auto pmap = m_map.plookup(psubitem->m_pitem->m_iItem);
 
       if(pmap == nullptr)
       {
 
-         return_(pitem->m_bOk,false);
+         return_(psubitem->m_bOk,false);
 
       }
 
-      auto passoc = pmap->element2().plookup(pitem->m_iItem);
+      auto passoc = pmap->element2().plookup(psubitem->m_pitem->m_iItem);
 
       if(passoc == nullptr)
       {
 
-         return_(pitem->m_bOk,false);
+         return_(psubitem->m_bOk,false);
 
       }
 
-      pitem->m_strText = passoc->element2();
+      psubitem->m_strText = passoc->element2();
 
-      pitem->m_bOk = true;
+      psubitem->m_bOk = true;
 
    }
 

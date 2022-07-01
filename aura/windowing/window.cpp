@@ -10,9 +10,6 @@
 namespace windowing
 {
 
-
-
-
    window::window()
    {
 
@@ -170,6 +167,22 @@ namespace windowing
    }
 
 
+   void window::set_cursor_position(const ::point_i32 & pointCursor)
+   {
+
+      m_pointCursor = pointCursor;
+
+   }
+
+
+   void window::get_cursor_position(POINT_I32 * ppointCursor)
+   {
+
+      *ppointCursor = m_pointCursor;
+
+   }
+
+
    //void * window::get_os_data() const
    //{
 
@@ -193,12 +206,21 @@ namespace windowing
 
    }
 
+   
    ::color::color window::screen_pixel(int x, int y) const
-{
+   {
 
-   return m_puserinteractionimpl->screen_pixel(x, y);
+      return m_puserinteractionimpl->screen_pixel(x, y);
 
-}
+   }
+
+
+   bool window::is_full_screen() const
+   {
+
+      return false;
+
+   }
 
 
    ::windowing::display * window::display()
@@ -469,32 +491,34 @@ namespace windowing
    }
 
 
-   oswindow window::get_oswindow() const
-   {
+   //oswindow window::get_oswindow() const
+   //{
 
-      auto puserinteractionimpl = m_puserinteractionimpl;
+   //   auto puserinteractionimpl = m_puserinteractionimpl;
 
-      if (puserinteractionimpl)
-      {
+   //   if (puserinteractionimpl)
+   //   {
 
-         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+   //      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
 
-         if (puserinteraction)
-         {
+   //      if (puserinteraction)
+   //      {
 
-            return puserinteraction->m_oswindow;
+   //         return puserinteraction->m_oswindow;
 
-         }
+   //      }
 
-      }
-      
-      return nullptr;
+   //   }
+   //   
+   //   return nullptr;
 
-   }
+   //}
 
 
-   void window::set_oswindow(oswindow oswindow)
+   void window::set_oswindow(::oswindow oswindow)
    { 
+
+      m_oswindow = oswindow;
 
       auto puserinteractionimpl = m_puserinteractionimpl;
    

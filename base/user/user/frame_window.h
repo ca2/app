@@ -90,6 +90,8 @@ namespace user
       void assert_ok() const override;
       virtual void dump(dump_context & dc) const override;
 
+      
+      virtual bool create_bars();
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -111,6 +113,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
       DECLARE_MESSAGE_HANDLER(_001OnNcActivate);
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
+
+
+      virtual void enable_frame_experience(bool bEnable = true);
 
 
       virtual void OnInitialFrameUpdate(bool bMakeVisible);
@@ -270,7 +275,7 @@ namespace user
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, u32 * pContext);
-      oswindow SetHelpCapture(const ::point_i32 & point, bool * pbDescendant);
+      ::oswindow SetHelpCapture(const ::point_i32 & point, bool * pbDescendant);
 
       // frame_window list management
       void AddFrameWnd();

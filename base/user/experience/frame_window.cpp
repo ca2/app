@@ -1876,13 +1876,9 @@ namespace experience
          if (bCursorPosition)
          {
 
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            pointCursor = pwindowing->get_cursor_position();
+            pointCursor = pwindow->get_cursor_position();
 
          }
 

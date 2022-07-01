@@ -341,7 +341,7 @@ namespace user
 
          //auto puiChild = puserinteractionpointeraChild->first_interaction();
 
-         lock_sketch_to_design lockSketchToDesign(puiChild);
+         //lock_sketch_to_design lockSketchToDesign(puiChild);
 
          puiChild->place(rectangleClient);
 

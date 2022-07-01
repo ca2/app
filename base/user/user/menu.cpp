@@ -302,16 +302,16 @@ namespace user
             post_procedure([this]()
             {
 
-               get_window()->set_foreground_window();
+               window()->set_foreground_window();
 
                post_procedure([this]()
                   {
 
-                     get_window()->set_active_window();
+                     window()->set_active_window();
 
-                     get_window()->bring_to_front();
+                     window()->bring_to_front();
 
-                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                     window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
                   });
 
@@ -613,13 +613,9 @@ namespace user
       if (!m_bPositionHint)
       {
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
          
          m_pointPositionHint = pointCursor;
 
@@ -827,15 +823,11 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();
 
-      if (pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow) >= 0)
+      if (pdisplay->get_best_monitor(nullptr, rectangleMonitor, rectangleWindow) >= 0)
       {
 
          rectangleMonitor.deflate(16, 16);

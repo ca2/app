@@ -26,9 +26,9 @@ public:
 
 
 
-   virtual void _001GetItemText(::user::mesh_item * pitem) override;
+   void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
-   virtual void _001OnDeleteRange(::user::range & range) override;
+   void _001OnDeleteRange(::user::range & range) override;
 
 
    virtual ::count _001GetItemCount() override;

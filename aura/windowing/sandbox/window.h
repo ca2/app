@@ -55,7 +55,7 @@ namespace sandbox_windowing
 
       ::windowing::window* get_parent() const override;
       //virtual ::Window get_parent_handle();
-      oswindow get_parent_oswindow() const override;
+      ::oswindow get_parent_oswindow() const override;
 
       ::point_i32 get_mouse_cursor_position() override;
 

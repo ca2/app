@@ -169,6 +169,9 @@
     <Filter Include="Source Files\user\platform">
       <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\windowing\sandbox">
+      <UniqueIdentifier>{a5180dfc-089d-4317-be61-0e59d451a951}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -1026,6 +1029,9 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\path_simple_optimization.h">
       <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\window.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

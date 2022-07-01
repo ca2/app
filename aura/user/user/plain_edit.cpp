@@ -903,11 +903,7 @@ namespace user
 
 #endif
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
@@ -1088,13 +1084,11 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            auto psession = get_session();
+            auto pwindowing = windowing();
 
-            auto puser = psession->user();
+            auto pwindow = window();
 
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             screen_to_client(pointCursor);
 
@@ -1811,11 +1805,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
@@ -1950,11 +1940,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -7440,7 +7426,7 @@ namespace user
 
       string str;
 
-      auto pwindow = get_window();
+      auto pwindow = window();
 
       auto pcopydesk = pwindow->copydesk();
 

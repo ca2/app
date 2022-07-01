@@ -55,28 +55,20 @@ namespace userfs
    }
 
 
-   __pointer(list_item) list_item_array::get_item(index iItem)
-   {
-
-      return operator[](iItem);
-
-   }
-
-
    index list_item_array::find_item_by_path(const ::file::path & path)
    {
 
       for(i32 i = 0; i < this->get_count(); i++)
       {
 
-         if(operator[](i)->m_filepathFinal == path)
+         if(operator[](i)->final_path() == path)
          {
 
             return i;
 
          }
 
-         if (operator[](i)->m_filepathUser == path)
+         if (operator[](i)->user_path() == path)
          {
 
             return i;

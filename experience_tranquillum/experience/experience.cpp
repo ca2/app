@@ -42,7 +42,7 @@ namespace experience_tranquillum
 
             auto psession = get_session();
 
-            psession->user()->windowing()->set_cursor_set_from_matter(this, "cursor/tranquillum");
+            psession->user()->windowing1()->set_cursor_set_from_matter(this, "cursor/tranquillum");
 
          });
 

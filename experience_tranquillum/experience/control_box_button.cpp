@@ -33,7 +33,7 @@ namespace experience_tranquillum
    void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
+      if ((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
       {
 
          return;

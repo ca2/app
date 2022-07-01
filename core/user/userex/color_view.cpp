@@ -465,7 +465,7 @@ namespace userex
 
       //set_impact_title("__CoLoR_");
 
-      get_parent_frame()->set_frame_title("__CoLoR_");
+      parent_frame()->set_frame_title("__CoLoR_");
 
    }
 
@@ -866,11 +866,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       pwindowing->release_mouse_capture();
 

@@ -9,7 +9,7 @@ namespace user
 
    list_header::list_header()
    {
-      m_plistctrlinterface = nullptr;
+      m_plist = nullptr;
       m_bTrack = false;
       m_bLButtonDown = false;
       m_bHover = false;
@@ -27,7 +27,7 @@ namespace user
 
    void list_header::SetBaseListCtrlInterface(list *pinterface)
    {
-      m_plistctrlinterface = pinterface;
+      m_plist = pinterface;
    }
 
    void list_header::DrawItem(::draw2d::item * pdrawitem)
@@ -39,7 +39,7 @@ namespace user
 
       i32 iColumn = pdrawitem->itemID;
 
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
 
       if (plist->m_columna.get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_columna.get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
@@ -138,148 +138,209 @@ namespace user
 
 
    bool list_header::GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelement, index iItem)
-
    {
 
-      if(iItem < 0)
+      if (iItem < 0)
+      {
+
          return false;
 
-      list * plist = m_plistctrlinterface;
-      if(iItem >= plist->_001GetColumnCount())
+      }
+
+      list * plist = m_plist;
+
+      if (iItem >= plist->_001GetColumnCount())
+      {
+
          return false;
+
+      }
 
       i32 x;
+
       if(plist->m_bGroup && plist->m_bLateralGroup)
       {
+
          x = plist->m_iLateralGroupWidth;
+
       }
       else
       {
+
          x = 0;
+
       }
+      
       i32 xLast = x;
-      draw_list_item item(plist);
+      
       for(i32 i = 0; i <= iItem; i++)
       {
+         
          xLast = x;
-         item.m_iColumn = ItemToColumnKey(i);
-         plist->_001GetColumnWidth(&item);
-         if(item.m_bOk)
-         {
-            x += item.m_iColumnWidth;
-         }
+         
+         auto pcolumn = plist->m_columna.get_visible(iItem);
+         
+         x += pcolumn->m_iWidth;
+
       }
 
       ::rectangle_i32 rectangle;
 
       get_client_rect(rectangle);
+
       rectangle.left = xLast;
+
       rectangle.right = x;
 
       if(eelement == e_element_item)
       {
+
          *prectangle = rectangle;
 
          return true;
+
       }
 
       if(eelement == element_item_Box)
       {
+
          rectangle.right -= GetDividerWidth();
+
          *prectangle = rectangle;
 
          return true;
+
       }
 
       if(eelement == ElementDivider)
       {
+
          rectangle.left = rectangle.right - GetDividerWidth();
+
          *prectangle = rectangle;
 
          return true;
+
       }
+
       return true;
+
    }
 
-   bool list_header::GetItemRect(
-   RECTANGLE_I32 * prectangle,
 
-   enum_element eelementLButtonDown,
-   index iItemLButtonDown,
-   enum_element eelement,
-   index iItem)
+   bool list_header::GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element eelement, index iItem)
    {
-      if(iItem < 0)
-         return false;
-      list * plist = m_plistctrlinterface;
-      if(iItem >= plist->_001GetColumnCount())
-         return false;
 
-
-      if(eelementLButtonDown == element_item_Box
-            && eelement == element_item_Box)
+      if (iItem < 0)
       {
+
+         return false;
+
+      }
+
+      list * plist = m_plist;
+
+      if (iItem >= plist->_001GetColumnCount())
+      {
+
+         return false;
+
+      }
+
+      if(eelementLButtonDown == element_item_Box && eelement == element_item_Box)
+      {
+
          if(iItem == iItemLButtonDown)
          {
+
             ::rectangle_i32 rectangleA;
+
             if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
             {
+
                GetItemRect(rectangleA, element_item_Box, iItem);
+
             }
 
             ::rectangle_i32 rectangle;
+
             GetItemRect(rectangle, element_item_Box, iItem);
 
             ::rectangle_i32 rectangleB;
+
             if(!GetItemRect(rectangleA, element_item_Box, iItem + 1))
             {
+
                GetItemRect(rectangleA, element_item_Box, iItem);
+
             }
 
             rectangle.left = rectangleA.left + rectangleA.width() / 2;
+
             rectangle.right = rectangleB.left + rectangleB.width() / 2;
+
             *prectangle = rectangle;
 
             return true;
+
          }
          else if(iItem <= iItemLButtonDown - 1)
          {
+            
             ::rectangle_i32 rectangleA;
+
             if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
             {
+
                GetItemRect(rectangleA, element_item_Box, iItem);
+
             }
 
             ::rectangle_i32 rectangle;
+
             GetItemRect(rectangle, element_item_Box, iItem);
 
             rectangle.left = rectangleA.left + rectangleA.width() / 2;
+
             rectangle.right = rectangle.left + rectangle.width() / 2;
+
             *prectangle = rectangle;
 
             return true;
+
          }
          else if(iItem >= iItemLButtonDown + 1)
          {
+            
             ::rectangle_i32 rectangleB;
+
             if(!GetItemRect(rectangleB, element_item_Box, iItem + 1))
             {
+
                GetItemRect(rectangleB, element_item_Box, iItem);
+
             }
 
             ::rectangle_i32 rectangle;
+
             GetItemRect(rectangle, element_item_Box, iItem);
 
             rectangle.left = rectangle.left + rectangle.width() / 2;
+
             rectangle.right = rectangleB.left + rectangleB.width() / 2;
+
             *prectangle = rectangle;
 
             return true;
+
          }
+
          return false;
+
       }
       else
       {
+
          return GetItemRect(prectangle, eelement, iItem);
 
       }
@@ -288,7 +349,7 @@ namespace user
 
    bool list_header::hit_test(const ::point_i32 & point, enum_element & eelement, index & iItemParam)
    {
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
       ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -316,7 +377,7 @@ namespace user
 
    bool list_header::hit_test(const ::point_i32 & point, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element & eelement, index & iItemParam)
    {
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
       ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -346,7 +407,7 @@ namespace user
    index list_header::ItemToColumnKey(index iItem)
    {
 
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
 
       return plist->_001MapColumnToOrder(iItem);
 
@@ -371,32 +432,17 @@ namespace user
 
       ::database::key datakey({ true, "::user::list_column_width" });
 
-      draw_list_item item(m_plistctrlinterface);
-
       int_array iaWidth;
 
       if (bSave)
       {
 
-         for (index iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
+         for (index iColumn = 0; iColumn < m_plist->_001GetColumnCount(); iColumn++)
          {
 
-            item.m_iColumn = iColumn;
+            auto pcolumn = m_plist->m_columna.get_visible(iColumn);
 
-            m_plistctrlinterface->_001GetColumnWidth(&item);
-
-            if (item.m_bOk)
-            {
-
-               iaWidth.add(item.m_iColumnWidth);
-
-            }
-            else
-            {
-
-               iaWidth.add(-1);
-
-            }
+            iaWidth.add(pcolumn->m_iWidth);
 
          }
 
@@ -420,12 +466,14 @@ namespace user
          if (papp->data_get(datakey, iaWidth))
          {
 
-            ::count c = minimum(iaWidth.get_count(), m_plistctrlinterface->_001GetColumnCount());
+            ::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());
 
             for (index iColumn = 0; iColumn < c; iColumn++)
             {
 
-               m_plistctrlinterface->_001SetColumnWidth(iColumn, maximum(iaWidth[iColumn], 50));
+               auto pcolumn = m_plist->m_columna.get_visible(iColumn);
+
+               pcolumn->m_iWidth= iaWidth[iColumn];
 
             }
 
@@ -471,7 +519,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
@@ -541,13 +589,11 @@ namespace user
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
 
       enum_element eelement;
 
       index iItem;
-
-      auto psession = get_session();
 
       if(hit_test(pointCursor, eelement, iItem))
       {
@@ -567,19 +613,19 @@ namespace user
 
             m_bTrack = false;
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             pwindowing->release_mouse_capture();
 
          }
+
          if(m_bHover)
          {
+
             m_bHover = false;
+
          }
+
       }
 
       if(m_bLButtonDown)
@@ -596,9 +642,7 @@ namespace user
          }
       }
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       ::windowing::cursor* pcursor = nullptr;
 
@@ -629,7 +673,7 @@ namespace user
 
       auto pointCursor = _001ScreenToClient(pmouse->m_point);
 
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
 
       enum_element eelement;
 
@@ -852,7 +896,7 @@ namespace user
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
-      list * plist = m_plistctrlinterface;
+      list * plist = m_plist;
       ::rectangle_i32 rectangleDivider;
       auto ppen = __create < ::draw2d::pen > ();
 

@@ -8,10 +8,15 @@ public:
 
 
    bool                          m_bEditConnectInit;
+   ::fs::data *                  m_pfsdata;
+   ::filemanager::document *     m_pfilemanagerdocument;
 
 
    filemanager_impact_base();
-   virtual ~filemanager_impact_base();
+   ~filemanager_impact_base() override;
+
+
+   void initialize_view(::user::document * pdocument) override;
 
 
    void install_message_routing(::channel * pchannel) override;
@@ -21,9 +26,10 @@ public:
    ::file::path filemanager_path();
 
    
-   virtual ::filemanager::document *               filemanager_document();
+   virtual ::filemanager::document * filemanager_document() { return m_pfilemanagerdocument; }
    virtual ::filemanager::data *                   filemanager_data();
-   virtual __pointer(::fs::data)                   fs_data();
+   inline ::fs::data * fs_data() { return m_pfsdata; }
+   inline ::filemanager::document * get_document() { return m_pfilemanagerdocument; }
 
 
    void handle(::topic * ptopic, ::context * pcontext) override;
@@ -58,10 +64,21 @@ public:
    using IMPACT::IMPACT;
 
 
+   void initialize_view(::user::document * pdocument) override
+   {
+
+      IMPACT::initialize_view(pdocument);
+
+      ::filemanager_impact_base::initialize_view(pdocument);
+
+   }
+
+
    inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
    inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
    inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
+   inline ::filemanager::document * get_document() { return ::filemanager_impact_base::get_document(); }
 
    virtual void install_message_routing(::channel* pchannel) override
    {
@@ -79,6 +96,8 @@ public:
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
    }
+
+   inline ::fs::data * fs_data() { return ::filemanager_impact_base::fs_data(); }
 
 
 };

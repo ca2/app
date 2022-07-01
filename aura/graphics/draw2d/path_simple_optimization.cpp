@@ -7,7 +7,7 @@
 #include "acme/primitive/geometry2d/_shape.h"
 #include "aura/graphics/write_text/_shape.h"
 #include "acme/primitive/geometry2d/_impl.h"
-#include "acme/primitive/geometry2d/_defer.h"
+#include "acme/primitive/geometry2d/_defer_shape.h"
 
 
 namespace draw2d

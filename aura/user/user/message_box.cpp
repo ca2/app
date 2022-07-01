@@ -398,7 +398,7 @@ namespace user
 
       auto puser = psession->user();
 
-      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
+      puser->windowing1()->display()->get_main_monitor(rectangleMonitor);
 
       int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 

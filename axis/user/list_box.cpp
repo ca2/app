@@ -420,13 +420,9 @@ namespace user
 
       }
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       screen_to_client(pointCursor, ::user::e_layout_design);
 
@@ -715,7 +711,7 @@ namespace user
    }
 
 
-   bool list_box::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool list_box::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
    {
 
       if (is_window_visible(::user::e_layout_sketch))
@@ -863,13 +859,9 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          m_pcombo->screen_to_client(pointCursor, ::user::e_layout_sketch);
 
@@ -1135,7 +1127,7 @@ namespace user
 
       {
 
-         lock_sketch_to_design lockSketchToDesign(this);
+         //lock_sketch_to_design lockSketchToDesign(this);
 
          ::rectangle_i32 rectangleMonitor;
 
@@ -1143,11 +1135,11 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+         auto pwindowing = puser->windowing1();
 
          auto pdisplay = pwindowing->display();
 
-         ::index i = pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow);
+         ::index i = pdisplay->get_best_monitor(nullptr, rectangleMonitor, rectangleWindow);
 
          ::rectangle_i32 rectangleList;
 

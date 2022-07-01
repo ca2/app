@@ -1970,7 +1970,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   m_bLockSketchToDesign = true;
+   //m_bLockSketchToDesign = true;
 
    if(puiParent == nullptr || wfi_is_up_down())
    {
@@ -2285,7 +2285,7 @@ bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
 
    set_need_redraw();
 
-   m_bLockSketchToDesign = false;
+   //m_bLockSketchToDesign = false;
 
    post_redraw();
 
@@ -3200,15 +3200,15 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
+         auto pwindow = window();
+
+         auto pointCursor = pwindow->get_cursor_position();
+
+         string strXml = notification_area_get_xml_menu();
+
          auto psession = get_session();
 
          auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
-
-         string strXml = notification_area_get_xml_menu();
 
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 

@@ -1765,5 +1765,11 @@
     <ClCompile Include="user\userex\dialog_frame.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\mesh_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

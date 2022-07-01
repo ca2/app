@@ -2,13 +2,14 @@
 #include "core/user/user/_user.h"
 
 
-xfplayer_view_linea::xfplayer_view_linea()
+xfplayer_view_linea::xfplayer_view_linea(::user::interaction * puserinteraction) :
+   m_selection(puserinteraction),
+   m_puserinteraction(puserinteraction)
 {
 
    defer_create_mutex();
    m_iFirstVisible = -1;
    m_iLastVisible = -1;
-   m_pinteraction = nullptr;
 
 }
 
@@ -22,8 +23,11 @@ xfplayer_view_linea::~xfplayer_view_linea()
 
 void xfplayer_view_linea::OnChildSetVisible(xfplayer_view_line * pline, bool bVisible)
 {
+
    synchronous_lock synchronouslock(mutex());
+
    index iLineIndex = FindLine(pline);
+
    index iIndex;
 
    if (bVisible)
@@ -89,12 +93,12 @@ void xfplayer_view_linea::Prepare(xfplayer_view_line *pImpactLine)
 
 }
 
-void xfplayer_view_linea::set_user_interaction(__pointer(::user::interaction) pinteraction)
-{
-   
-   m_pinteraction = pinteraction;
-
-}
+//void xfplayer_view_linea::set_user_interaction(__pointer(::user::interaction) pinteraction)
+//{
+//   
+//   m_pinteraction = pinteraction;
+//
+//}
 
 
 void xfplayer_view_linea::SetEffect(i32 iEffect)
@@ -106,10 +110,10 @@ void xfplayer_view_linea::SetEffect(i32 iEffect)
    }
 }
 
-void xfplayer_view_linea::SetRenderWindow(::user::interaction_impl * pwindow)
-{
-   __UNREFERENCED_PARAMETER(pwindow);
-}
+//void xfplayer_view_linea::SetRenderWindow(::user::interaction_impl * pwindow)
+//{
+//   __UNREFERENCED_PARAMETER(pwindow);
+//}
 
 index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
 {

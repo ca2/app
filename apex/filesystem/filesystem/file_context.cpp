@@ -732,7 +732,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
 
    }
 
-   memsize sizeToRead = minimum(size, pfile->get_size() - position);
+   memsize sizeToRead = (memsize) minimum(size, pfile->get_size() - position);
 
    if (position > 0)
    {

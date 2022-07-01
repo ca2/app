@@ -31,7 +31,7 @@ namespace core
 
                pfilemanagerdocument->FileManagerSaveAs(pdocument);
 
-               if (ppanetabview->get_parent_frame()->RunModalLoop() != "yes")
+               if (ppanetabview->parent_frame()->RunModalLoop() != "yes")
                {
 
                   return false;

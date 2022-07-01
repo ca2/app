@@ -32,36 +32,32 @@ namespace databaseuser
    }
 
 
-   void mesh_data::_001GetItemText(::user::mesh_item * pitem)
+   void mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
       ::database::key key1;
 
       ::database::key key2;
 
-      if(Map(pitem->m_pmesh, key1, key2, pitem->m_iItem, pitem->m_iSubItem, pitem->m_iListItem))
+      //if(Map(psubitem->m_pitem->m_pmesh, key1, key2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, pitem->m_iListItem))
+      if (Map(psubitem->m_pitem->m_pmesh, key1, key2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, -1))
       {
 
-         if(data_get(key1 + key2, pitem->m_strText))
+         if(data_get(key1 + key2, psubitem->m_strText))
          {
 
-            return_(pitem->m_bOk, true);
+            return_(psubitem->m_bOk, true);
 
          }
 
       }
 
-      return_(pitem->m_bOk, false);
+      return_(psubitem->m_bOk, false);
 
    }
 
-   bool mesh_data::Map(
-   ::user::mesh * pmesh,
-   ::database::key & key1,
-   ::database::key & key2,
-   index iItem,
-   index iSubItem,
-   index iListItem)
+
+   bool mesh_data::Map(::user::mesh * pmesh, ::database::key & key1, ::database::key & key2, index iItem, index iSubItem, index iListItem)
    {
 
       __UNREFERENCED_PARAMETER(pmesh);

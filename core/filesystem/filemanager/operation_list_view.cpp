@@ -46,25 +46,39 @@ namespace filemanager
       return  (::user::impact::get_document());
    }
 
-   void operation_list_view::_001GetItemText(::user::mesh_item * pitem)
+   
+   void operation_list_view::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
-      if(pitem->m_iSubItem == 0)
+
+      if(psubitem->m_iSubItem == 0)
       {
-         pitem->m_strText = get_document()->m_thread.get_item_message((i32)pitem->m_iItem);
-         pitem->m_bOk = true;
+
+         psubitem->m_strText = get_document()->m_thread.get_item_message((i32)psubitem->m_pitem->m_iItem);
+         
+         psubitem->m_bOk = true;
+
       }
       else
       {
+         
          double d;
-         d = get_document()->m_thread.get_item_progress((i32)pitem->m_iItem);
-         pitem->m_strText.format("%0.1f%%",d * 100.0);
-         pitem->m_bOk = true;
+         
+         d = get_document()->m_thread.get_item_progress((i32)psubitem->m_pitem->m_iItem);
+
+         psubitem->m_strText.format("%0.1f%%",d * 100.0);
+
+         psubitem->m_bOk = true;
+
       }
+
    }
+
 
    void operation_list_view::_001InsertColumns()
    {
+
       {
+
          auto pcolumn = new_list_column();
          pcolumn->m_iWidth = 500;
          pcolumn->m_iSubItem = 0;
@@ -81,12 +95,9 @@ namespace filemanager
          pcolumn->m_sizeIcon.cx = 16;
          pcolumn->m_sizeIcon.cy = 16;
 
-
       }
 
    }
-
-
 
 
    void operation_list_view::on_message_create(::message::message * pmessage)

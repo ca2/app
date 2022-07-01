@@ -95,11 +95,7 @@ namespace experience
 
       ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -138,7 +134,7 @@ namespace experience
 
       {
 
-         ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+         //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
          if (::is_docking_appearance(pframewindow->const_layout().sketch().display()))
          {
@@ -226,11 +222,7 @@ namespace experience
 
       m_bMoving = false;
 
-      __pointer(::base::session) psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -239,7 +231,7 @@ namespace experience
 
          {
 
-            ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
+//            ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
 
             m_pframewindow->set_layout_state(m_stateBefore, ::user::e_layout_sketch);
 

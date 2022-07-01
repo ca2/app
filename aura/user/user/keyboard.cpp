@@ -272,7 +272,7 @@ namespace user
       
       auto puser = psession->user();
       
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
       
       auto pkeyboard = pwindowing->keyboard();
       

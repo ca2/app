@@ -128,7 +128,7 @@ namespace apex
    {
 
       //auto estatus =
-      
+
       __compose(m_phttp);
 
       //if(!estatus)
@@ -148,7 +148,7 @@ namespace apex
       //}
 
       //estatus =
-         __compose(m_pdir);
+      __compose(m_pdir);
 
       //if (!estatus)
       //{
@@ -163,7 +163,7 @@ namespace apex
       m_pbredsystem = m_psystem->m_pbredsystem;
       m_pcoresystem = m_psystem->m_pcoresystem;
 
-      if(is_system())
+      if (is_system())
       {
 
          auto psystem = m_psystem->m_papexsystem;
@@ -224,16 +224,16 @@ namespace apex
       //estatus = 
       __compose(m_poscontext);
 
-  /*    if (!estatus)
-      {
+      /*    if (!estatus)
+          {
 
-         return estatus;
+             return estatus;
 
-      }*/
+          }*/
 
-      //on_update_matter_locator();
+          //on_update_matter_locator();
 
-      //return ::success;
+          //return ::success;
 
    }
 
@@ -382,6 +382,13 @@ namespace apex
    ::file::path context::defer_process_path(::file::path path)
    {
 
+      if (path & ::file::e_flag_final_path)
+      {
+
+         return path;
+
+      }
+
       path = _defer_process_path(path);
 
       if (path & ::file::e_flag_resolve_alias)
@@ -415,6 +422,8 @@ namespace apex
 
       }
 
+      path += ::file::e_flag_final_path;
+
       return path;
 
    }
@@ -441,7 +450,7 @@ namespace apex
    }
 
 
-   bool context::defer_process_media_library_path(::file::path& path)
+   bool context::defer_process_media_library_path(::file::path & path)
    {
 
       return m_psystem->m_pacmedirectory->defer_process_media_library_path(path);
@@ -462,7 +471,22 @@ namespace apex
          return path;
 
       }
-      else if (::str().begins_eat_ci(path, "music://"))
+      else
+      {
+
+         defer_process_known_folder_path(path);
+
+      }
+
+      return path;
+
+   }
+
+
+   bool context::defer_process_known_folder_path(::file::path & path)
+   {
+
+      if (::str().begins_eat_ci(path, "music://"))
       {
 
          path = dir().music() / path;
@@ -534,8 +558,14 @@ namespace apex
          path = dir().bookmark() / path;
 
       }
+      else
+      {
 
-      return path;
+         return false;
+
+      }
+
+      return true;
 
    }
 
@@ -585,7 +615,7 @@ namespace apex
 
    }
 
-   
+
 
 
 
@@ -613,21 +643,21 @@ namespace apex
 
       ::file::path pathResource = pdirsystem->m_pathInstall;
 
-   #ifdef __APPLE__
+#ifdef __APPLE__
 
       pathResource = pathResource / "Contents/Resources/appmatter";
 
-   #endif
+#endif
 
       return pathResource / strMatter;
 
-   }
+}
 
 
    ::file::path context::get_matter_cache_path(::file::path path)
    {
 
-      if (::str().begins_eat_ci((string &) path, "appmatter://"))
+      if (::str().begins_eat_ci((string &)path, "appmatter://"))
       {
 
          auto psystem = get_system()->m_papexsystem;
@@ -635,7 +665,7 @@ namespace apex
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
          if ((path & ::file::e_flag_get_local_path)
-            || (!(path & ::file::e_flag_bypass_cache) 
+            || (!(path & ::file::e_flag_bypass_cache)
                && ::is_file_or_folder(m_psystem->m_pacmepath->get_type(pathCache))))
          {
 
@@ -738,19 +768,51 @@ namespace apex
 
             }
 
-            string strFsType;
-            
-            strFsType = set["get_headers"]["x-fstype"];
+               string strFsType;
 
-            if (strFsType.has_char())
-            {
-               if (strFsType == "directory")
+               strFsType = set["get_headers"]["x-fstype"];
+
+               if (strFsType.has_char())
                {
+                  if (strFsType == "directory")
+                  {
+
+                     if (!retry([&]()
+                        {
+
+                           return dir().create(pathCache);
+
+                        }))
+                     {
+
+                        return "";
+
+                     }
+
+
+                  }
+                  else
+                  {
+                     pfile->seek_to_begin();
+
+                     if (!retry([&]()
+                        {
+
+                           return file().copy(pathCache, pfile, false);
+
+                        }))
+                     {
+
+                        return "";
+
+                     }
+
+                  }
 
                   if (!retry([&]()
                      {
 
-                        return dir().create(pathCache);
+                        return m_psystem->m_pacmefile->set_line(pathMeta, 0, strFsType);
 
                      }))
                   {
@@ -758,50 +820,18 @@ namespace apex
                      return "";
 
                   }
-
 
                }
                else
                {
-                  pfile->seek_to_begin();
-
-                  if (!retry([&]()
+                  retry([&]()
                      {
 
-                        return file().copy(pathCache, pfile, false);
+                        return m_psystem->m_pacmefile->set_line(pathMeta, 0, "itdoesntexist");
 
-                     }))
-                  {
-
-                     return "";
-
-                  }
-
-               }
-
-               if (!retry([&]()
-                  {
-
-                     return m_psystem->m_pacmefile->set_line(pathMeta, 0, strFsType);
-
-                  }))
-               {
-
+                     });
                   return "";
-
                }
-
-            }
-            else
-            {
-               retry([&]()
-                  {
-
-                     return m_psystem->m_pacmefile->set_line(pathMeta, 0, "itdoesntexist");
-
-                  });
-               return "";
-            }
 
 
 
@@ -849,7 +879,7 @@ namespace apex
          return file().get_file(payloadFile, eopen);
 
       }
-      catch (::file::exception& e)
+      catch (::file::exception & e)
       {
 
          string strMessage = e.get_message();
@@ -953,7 +983,7 @@ namespace apex
 
 
 #ifdef WINDOWS
-   
+
    bool context::os_is_alias(const char * psz)
    {
 
@@ -1020,7 +1050,7 @@ namespace apex
 
       }
 
-      if(pfile)
+      if (pfile)
       {
 
          string str;
@@ -1276,7 +1306,7 @@ namespace apex
 
 
 
-   void context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
+   void context::_load_from_file(::matter * pobject, const ::payload & payloadFile, const ::payload & varOptions)
    {
 
       binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
@@ -1288,7 +1318,7 @@ namespace apex
    }
 
 
-   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
+   void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::matter * pobject)
    {
 
       binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
@@ -1300,17 +1330,17 @@ namespace apex
    }
 
 
-//   void context::destroy()
-//   {
-//
-//      auto estatus = ::object::destroy();
-//
-//      return estatus;
-//
-//   }
+   //   void context::destroy()
+   //   {
+   //
+   //      auto estatus = ::object::destroy();
+   //
+   //      return estatus;
+   //
+   //   }
 
 
-   file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
+   file_pointer context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
    {
 
       auto pfile = m_papexcontext->file().get_file(payloadFile, eopen);
@@ -1320,7 +1350,7 @@ namespace apex
    }
 
 
-   void context::on_command_create(::create* pcreate)
+   void context::on_command_create(::create * pcreate)
    {
 
       if (m_payloadFile.is_empty())
@@ -1342,7 +1372,7 @@ namespace apex
    }
 
 
-   bool context::contains(::create* pcreate) const
+   bool context::contains(::create * pcreate) const
    {
 
       if (::is_null(pcreate))
@@ -1354,9 +1384,9 @@ namespace apex
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
-             || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
-             || m_pcreate.get() == pcreate;
+      return m_createaPending.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
+         || m_createaHistory.predicate_contains([&pcreate](auto & p) {return p.get() == pcreate; })
+         || m_pcreate.get() == pcreate;
 
    }
 
@@ -1426,7 +1456,7 @@ namespace apex
    //}
 
 
-   void context::add_create(::create* pcreate)
+   void context::add_create(::create * pcreate)
    {
 
       synchronous_lock synchronouslock(mutex());

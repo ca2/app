@@ -28,6 +28,9 @@ point_i32 g_pointLastBottomRight;
 //#include <mutex>
 
 
+#define TIME_REPORTING 0
+
+
 #ifdef WINDOWS_DESKTOP
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #endif
@@ -660,8 +663,7 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = puser->windowing1();
          //pwindowing->windowing_send([&]()
          //   {
 
@@ -813,20 +815,11 @@ namespace user
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          pwindowing->windowing_send([&]()
                                     {
 
-                                       auto psession = get_session();
-
-                                       auto puser = psession->user();
-
-                                       auto pwindowing = puser->windowing();
+                                       auto pwindowing = windowing();
 
                                        m_pwindow = pwindowing->new_window(this);
 
@@ -2327,9 +2320,7 @@ namespace user
                   m_puserinteraction->get_window_rect(rectWindow);
                }
 
-               auto puser = psession->user();
-
-               auto pwindowing = puser->windowing();
+               auto pwindowing = windowing();
 
                auto pdisplay = pwindowing->display();
 
@@ -2378,11 +2369,9 @@ namespace user
 
          }
 
-         auto puser = psession->user();
+         auto pwindowing = windowing();
 
-         auto pwindowing = puser->windowing();
-
-         pwindowing->set(pmouse, get_oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
+         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
          if (pmessage->m_atom == e_message_mouse_move)
          {
@@ -2685,12 +2674,7 @@ namespace user
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          auto pcursor = pwindowing->get_cursor(e_cursor_default);
 
          pmouse->m_pcursor = pcursor;
@@ -2721,12 +2705,7 @@ namespace user
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          auto pcursor = pwindowing->get_cursor(e_cursor_default);
 
          pmouse->m_pcursor = pcursor;
@@ -3618,7 +3597,7 @@ namespace user
 
       }
 
-      auto oswindow = pwindow->get_oswindow();
+      auto oswindow = pwindow->oswindow();
 
       if(!oswindow)
       {
@@ -3998,12 +3977,12 @@ namespace user
    }
 
 
-   ::windowing::window * interaction_impl::get_window() const
-   {
+   //::windowing::window * interaction_impl::get_window() const
+   //{
 
-      return m_pwindow;
+   //   return m_pwindow;
 
-   }
+   //}
 
 
    //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
@@ -4490,11 +4469,7 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      m_pwindowing = puser->windowing();
+      m_pwindowing = m_puserinteraction->windowing();
 
       if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
       {
@@ -4794,9 +4769,13 @@ namespace user
 
       }
 
+#if TIME_REPORTING
+
       ::duration durationStart;
 
       durationStart.Now();
+
+#endif
 
       ::rectangle_i32 rectangleWindow;
 
@@ -4968,9 +4947,13 @@ namespace user
 
       }
 
+#if TIME_REPORTING
+
       auto elapsed = durationStart.elapsed();
 
       output_debug_string("_001UpdateBuffer "+__string(elapsed.floating_millisecond().m_d) + "ms\n");
+
+#endif
 
    }
 
@@ -5529,19 +5512,19 @@ namespace user
    //}
 
 
-   oswindow interaction_impl::get_oswindow() const
-   {
-       
-      if(!m_pwindow)
-      {
-         
-         return nullptr;
-         
-      }
+   //oswindow interaction_impl::get_oswindow() const
+   //{
+   //    
+   //   if(!m_pwindow)
+   //   {
+   //      
+   //      return nullptr;
+   //      
+   //   }
 
-      return (oswindow) m_pwindow->get_oswindow();
+   //   return (oswindow) m_pwindow->oswindow();
 
-   }
+   //}
 
 
    bool interaction_impl::is_composite()
@@ -5590,7 +5573,7 @@ namespace user
    bool interaction_impl::on_keyboard_focus(::user::primitive* pfocus)
    {
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = windowing();
 
       auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -5607,7 +5590,7 @@ namespace user
 
          pfocus->_001GetText(strText);
 
-         auto pwindowing = m_puserinteraction->windowing();
+         auto pwindowing = windowing();
 
          auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -5669,12 +5652,12 @@ namespace user
    }
 
 
-   bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool interaction_impl::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
    {
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-//      auto pwindowing = m_puserinteraction->windowing();
+//      auto pwindowing = windowing();
 //
 //      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 //
@@ -5710,7 +5693,7 @@ namespace user
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = windowing();
 
       auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -6562,11 +6545,9 @@ namespace user
 
          psession->m_pimplPendingFocus2 = nullptr;
 
-         auto puser = psession->user();
+         auto pwindowing = windowing();
 
-         auto pwindowing = puser->windowing();
-
-         oswindow oswindow = pimplFocus->get_oswindow();
+         ::oswindow oswindow = pimplFocus->oswindow();
 
          if (pimplFocus == this)
          {

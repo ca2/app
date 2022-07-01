@@ -84,7 +84,7 @@ namespace userfs
 
          synchronous_lock synchronouslock(fs_data()->mutex());
 
-         m_pathFolder = pitem->m_filepathUser;
+         m_pathFolder = pitem->user_path();
 
       }
 
@@ -115,7 +115,7 @@ namespace userfs
 
       listingUser.m_straTitle.clear();
 
-      if(strlen(pitem->m_filepathUser) == 0)
+      if(pitem->user_path().is_empty())
       {
 
          listingUser = m_listingRoot;
@@ -132,11 +132,11 @@ namespace userfs
       else
       {
 
-         listingUser.set_listing(pitem->m_filepathUser);
+         listingUser.set_listing(pitem->user_path());
 
          pcontext->m_papexcontext->dir().enumerate(listingUser);
 
-         listingUser.m_pathUser = pitem->m_filepathUser;
+         listingUser.m_pathUser = pitem->user_path();
 
          {
 
@@ -146,7 +146,7 @@ namespace userfs
 
             listingUserFormatted.m_straIgnoreName = listingUser.m_straIgnoreName;
 
-            listingUserFormatted.m_pathUser = pitem->m_filepathUser;
+            listingUserFormatted.m_pathUser = pitem->user_path();
 
             listingUserFormatted.m_pathFinal = listingUser.m_pathFinal;
 
@@ -157,16 +157,16 @@ namespace userfs
 
                ::file::path pathUser;
 
-               if (pitem->m_filepathUser.ends_ci("://"))
+               if (pitem->user_path().ends_ci("://"))
                {
 
-                  pathUser = string(pitem->m_filepathUser) + item.name();
+                  pathUser = string(pitem->user_path()) + item.name();
 
                }
                else
                {
 
-                  pathUser = pitem->m_filepathUser / item.name();
+                  pathUser = pitem->user_path() / item.name();
 
                }
 
@@ -188,9 +188,9 @@ namespace userfs
 
       listingFinal.m_straIgnoreName = listingUser.m_straIgnoreName;
 
-      listingFinal.m_pathUser = pitem->m_filepathUser;
+      listingFinal.m_pathUser = pitem->user_path();
 
-      listingFinal.m_pathFinal = pitem->m_filepathFinal;
+      listingFinal.m_pathFinal = pitem->final_path();
 
       listingFinal.m_eflag = ::file::e_flag_file_or_folder;
 

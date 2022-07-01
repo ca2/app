@@ -10,7 +10,7 @@ namespace progress
    progress::progress(::user::primitive * pprimitiveParent, const ::string & strTitle, ::count iStepCount)
    {
 
-      auto puserinteractionTopLevel = pprimitiveParent->get_top_level();
+      auto puserinteractionTopLevel = pprimitiveParent->_top_level();
 
       auto papp = pprimitiveParent->get_app();
 

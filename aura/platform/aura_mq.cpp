@@ -35,7 +35,7 @@ CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::a
 
    //if (!
    
-   pmq->post_message(pwindow->get_oswindow(), atom, wparam, lparam);
+   pmq->post_message(pwindow->oswindow(), atom, wparam, lparam);
    //{
 
    //   return false;
@@ -91,7 +91,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
    pmq->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
-      return message.oswindow == pwindow->get_oswindow();
+      return message.oswindow == pwindow->oswindow();
 
    });
 

@@ -94,6 +94,7 @@ public:
    virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
    virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity& opacity);
    virtual void draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
+   virtual void _draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
    virtual i32 get_image_count() const;
 
    virtual void copy_from(const image_list * plist);

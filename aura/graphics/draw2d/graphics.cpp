@@ -34,7 +34,7 @@ namespace draw2d
    graphics::graphics()
    {
 
-
+      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
       //m_estatus = success;

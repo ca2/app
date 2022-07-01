@@ -126,7 +126,7 @@ namespace userfs
 
       auto pshell = puser->shell();
 
-      auto iImage = pshell->get_file_image(m_filepathUser, efileattribute, eicon);
+      auto iImage = pshell->get_file_image(user_path(), efileattribute, eicon);
 
       if (iImage >= 0)
       {
@@ -135,14 +135,14 @@ namespace userfs
 
       }
 
-      pshell->warn_when_ok(m_filepathUser, m_ptree->m_usertreea);
+      pshell->warn_when_ok(user_path(), m_ptree->m_usertreea);
 
-      iImage = pshell->get_file_image(m_filepathFinal, efileattribute, eicon);
+      iImage = pshell->get_file_image(final_path(), efileattribute, eicon);
 
       if(iImage < 0)
       {
 
-         pshell->warn_when_ok(m_filepathFinal, m_ptree->m_usertreea);
+         pshell->warn_when_ok(final_path(), m_ptree->m_usertreea);
 
       }
 

@@ -210,9 +210,7 @@ namespace account
       else if (is_empty(&rectangleParam))
       {
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pdisplay = pwindowing->display();
 

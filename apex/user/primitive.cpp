@@ -1212,7 +1212,7 @@ namespace user
    }
 
 
-   ::windowing::window * primitive::get_window() const
+   ::windowing::window * primitive::_window() const
    {
 
       return nullptr;
@@ -1784,16 +1784,6 @@ namespace user
    //}
 
 
-   ::user::interaction * primitive::get_top_level() const
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-
    //::user::interaction * primitive::GetParentTopLevel() const
    //{
 
@@ -2031,6 +2021,16 @@ namespace user
 
 
    ::user::interaction * primitive::get_top_level_owner() const
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction * primitive::_top_level() const
    {
 
       throw ::interface_only();

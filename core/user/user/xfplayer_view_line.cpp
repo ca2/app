@@ -9,7 +9,8 @@ const i32 xfplayer_view_line::AlignLeft = 1;
 const i32 xfplayer_view_line::AlignRight = 2;
 
 
-xfplayer_view_line::xfplayer_view_line()
+xfplayer_view_line::xfplayer_view_line(::user::interaction * puserinteraction) :
+   m_selection(puserinteraction)
 {
 
    m_bColonPrefix = false;
@@ -1789,11 +1790,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
       if (CharHasLink(iChar))
       {
 
-         auto psession = get_session()->m_paurasession;
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = m_puserinteraction->windowing();
 
          auto pcursor = pwindowing->get_cursor(e_cursor_hand);
 
@@ -1946,7 +1943,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 
          str = m_straLink[GetCharLink(iChar)];
 
-         ASSERT(m_oswindow->is_window());
+         ASSERT(m_puserinteraction->is_window());
 
          auto phyperlink = __create_new < ::hyperlink >();
 
@@ -2121,7 +2118,7 @@ bool xfplayer_view_line::has_link()
 ::user::interaction * xfplayer_view_line::get_interaction()
 {
 
-   return m_pContainer->m_pinteraction;
+   return m_pContainer->m_puserinteraction;
 
 }
 
@@ -2132,7 +2129,15 @@ inline XfplayerImpactLineSelection & xfplayer_view_line::GetSelection()
    single_lock synchronouslock(m_pContainer->mutex());
 
    if (m_pContainer == nullptr)
+   {
+
       return m_selection;
-   else
-      return m_pContainer->GetSelection();
+
+   }
+
+   return m_pContainer->GetSelection();
+
 }
+
+
+

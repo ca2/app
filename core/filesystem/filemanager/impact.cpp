@@ -140,14 +140,14 @@ namespace filemanager
          if (ptopic->m_atom == id_pop)
          {
 
-            OnActivateFrame(e_activate_inactive, get_parent_frame());
+            OnActivateFrame(e_activate_inactive, parent_frame());
 
-            __pointer(::user::frame_window) spframewindow = get_parent_frame();
+            auto pframe = parent_frame();
 
-            if (spframewindow.is_set())
+            if (::is_set(pframe))
             {
 
-               spframewindow->ActivateFrame(e_display_normal);
+               pframe->ActivateFrame(e_display_normal);
 
             }
 
@@ -159,12 +159,12 @@ namespace filemanager
          else if (ptopic->m_atom == id_create_bars)
          {
 
-            __pointer(simple_frame_window) pframe = get_parent_frame();
+            auto pframe = parent_frame();
 
             if (pframe != nullptr)
             {
 
-               pframe->create_bars();
+               pframe->m_puserframewindow->create_bars();
 
             }
 
@@ -175,12 +175,12 @@ namespace filemanager
             if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
             {
 
-               __pointer(simple_frame_window) pframe = get_parent_frame();
+               auto pframe = parent_frame();
 
                if (pframe != nullptr)
                {
 
-                  pframe->create_bars();
+                  pframe->m_puserframewindow->create_bars();
 
                }
 
@@ -280,7 +280,7 @@ namespace filemanager
             if (filemanager_document()->m_emode == ::userfs::mode_import)
             {
 
-               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->_extended_topic()->m_pfileitem->m_filepathUser);
+               ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->_extended_topic()->m_pfileitem->user_path());
 
             }
 

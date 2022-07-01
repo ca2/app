@@ -99,7 +99,6 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
-      virtual void set_cursor_position(const ::point_i32 & point);
 
 
 
@@ -168,10 +167,6 @@ namespace windowing
       bool route_message(::user::message * pusermessage);
 
       void on_idle(class display *pdisplay);
-
-      virtual void get_cursor_position(POINT_I32 * ppoint);
-
-      inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 

@@ -35,16 +35,12 @@ namespace user
       case e_message_mouse_move:
       {
          
-         if(ptool->BaseToolTipGetWnd()->get_top_level() == pusermessage->userinteraction())
+         if(ptool->BaseToolTipGetWnd()->top_level() == pusermessage->userinteraction())
          {
             
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || pointCursor != m_point)
@@ -86,13 +82,9 @@ namespace user
       if(!bForce)
       {
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          if (pointCursor != m_point)
          {
@@ -155,11 +147,7 @@ namespace user
 
          ::rectangle_i32 rectangleScreen;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pdisplay = pwindowing->display();
 

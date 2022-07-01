@@ -20,11 +20,11 @@ namespace user
    }
 
 
-   void mesh_cache_interface::_001GetGroupText(::user::mesh_item * pitem)
+   void mesh_cache_interface::_001GetGroupItemText(::user::mesh_group * pgroup)
    {
 
 
-      pitem->m_bOk = false;
+      pgroup->m_bOk = false;
 
 
    }

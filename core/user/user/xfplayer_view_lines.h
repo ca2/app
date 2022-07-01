@@ -7,22 +7,22 @@ class CLASS_DECL_CORE xfplayer_view_linea :
 public:
 
 
-   XfplayerImpactLineSelection        m_selection;
-   ::user::interaction *            m_pinteraction;
-   index                            m_iFirstVisible;
-   index                            m_iLastVisible;
+   XfplayerImpactLineSelection         m_selection;
+   ::user::interaction *               m_puserinteraction;
+   index                               m_iFirstVisible;
+   index                               m_iLastVisible;
 
    HAVE_ARRAY_OF(line, m_linea, xfplayer_view_line);
 
 
-   xfplayer_view_linea();
+   xfplayer_view_linea(::user::interaction * puserinteraction);
 
 
    void set_blend(double dBlend);
    index FindLine(xfplayer_view_line * pline);
-   void SetRenderWindow(::user::interaction_impl * pwindow);
+   //void SetRenderWindow(::user::interaction_impl * pwindow);
    void SetEffect(i32 iEffect);
-   void set_user_interaction(__pointer(::user::interaction) pinteraction);
+   //void set_user_interaction(__pointer(::user::interaction) pinteraction);
    void Prepare(xfplayer_view_line * pImpactLine);
 
    void Prepare();

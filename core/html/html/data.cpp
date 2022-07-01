@@ -251,7 +251,7 @@ bool html_data::open_html(const ::string & str)
 
 __pointer(::user::interaction) html_data::get_frame()
 {
-   return  (get_form()->get_parent_frame());
+   return  (get_form()->parent_frame());
 }
 
 

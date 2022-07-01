@@ -366,6 +366,8 @@ namespace user
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
+      inline ::windowing::window * window() const { return m_pwindow; }
+      inline ::windowing::windowing * windowing() const { return m_pwindowing; }
 
 
 
@@ -718,7 +720,9 @@ namespace user
 
       //virtual void set_handle(::windowing::window * pwindow);
       
-      virtual oswindow get_oswindow() const;
+      
+      inline ::oswindow oswindow() const;
+
 
       ::graphics::graphics * get_window_graphics() override;
 
@@ -801,8 +805,6 @@ namespace user
       /// from top to bottom
       virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta);
 
-
-      ::windowing::window * get_window() const override;
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 

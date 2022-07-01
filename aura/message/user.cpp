@@ -314,7 +314,7 @@ namespace message
          if(puserinteraction)
          {
 
-            auto pwindow = puserinteraction->get_window();
+            auto pwindow = puserinteraction->window();
 
             if (pwindow)
             {

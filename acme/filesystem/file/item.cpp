@@ -5,76 +5,58 @@ namespace file
 {
 
 
-   item::item()
-   {
+   //item::item()
+   //{
 
-   }
-
-
-   item::item(const item & item) :
-      matter(item),
-      m_filepathUser(item.m_filepathUser),
-      m_filepathFinal(item.m_filepathFinal),
-      m_flags(item.m_flags),
-      m_strName(item.m_strName)
-   {
-
-   }
+   //}
 
 
-   item::item(const ::file::path & filepathUser, const ::file::path & filepathFinal)
-   {
+   //item::item(const item & item) :
+   //   element(item),
+   //   m_pathUser(item.m_pathUser),
+   //   m_pathFinal(item.m_pathFinal),
+   //   m_flags(item.m_flags),
+   //   m_strName(item.m_strName)
+   //{
 
-      m_filepathUser = filepathUser;
-      m_filepathFinal = filepathFinal;
-
-   }
-
-
-   item::item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const enumeration < enum_flag > & flags)
-   {
-
-      m_filepathUser = filepathUser;
-      m_filepathFinal = filepathFinal;
-      m_flags = flags;
-
-   }
+   //}
 
 
-   item::~item()
-   {
+   //item::item(const ::file::path & pathUser, const ::file::path & pathFinal)
+   //{
 
-   }
+   //   ASSERT()
 
+   //   m_pathUser = pathUser;
+   //   m_pathFinal = pathFinal;
+   //   m_flags += e_flag_final_path;
 
-   ::file::path item::get_user_path() const
-   {
-
-      if (m_filepathUser.is_empty())
-      {
-
-         return m_filepathFinal;
-
-      }
-
-      return m_filepathUser;
-
-   }
+   //}
 
 
-   ::file::path item::get_final_path() const
-   {
+   //item::item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const enumeration < enum_flag > & flags)
+   //{
 
-      if (m_filepathFinal.is_empty())
-      {
+   //   m_pathUser = filepathUser;
+   //   m_pathFinal = filepathFinal;
+   //   m_flags = flags;
 
-         return m_filepathUser;
+   //}
 
-      }
 
-      return m_filepathFinal;
+   //item::~item()
+   //{
 
-   }
+   //}
+
+
+
+   //void item::set_final_path_dir(int iDir)
+   //{
+
+   //   m_pathFinal.m_iDir = iDir;
+
+   //}
 
 
    bool item::IsFolder() const

@@ -81,7 +81,7 @@ public:
    void initialize_matter(::matter* pmatter) override;
 
 
-   virtual void on_initialize_object();
+   void on_initialize_object() override;
 
 
    //using element::operator();
@@ -174,7 +174,7 @@ public:
 
 
    virtual const char* debug_note() const;
-   virtual ::element * clone() const;
+   ::element * clone() const override;
 
 
    using element::has;

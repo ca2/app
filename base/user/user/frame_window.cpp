@@ -2546,15 +2546,15 @@ namespace user
 
       bool bUpdateWindow;
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "app_veriwell_keyboard") && strstr(pszTypeName, "main_frame"))
+      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
       {
 
          //::output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
-      else if(strstr(pszTypeName, "simple_child_frame"))
+      else if(type.name_contains("simple_child_frame"))
       {
 
          //::output_debug_string("simple_child_frame");

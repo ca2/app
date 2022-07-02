@@ -359,6 +359,17 @@ namespace draw2d_cairo
    }
 
 
+   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   {
+
+      cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
+                      rectangle.width(), rectangle.height());
+
+      cairo_clip(m_pdc);
+
+   }
+
+
    //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
    void graphics::_add_clipping_shape(const ::rectangle & rectangle, __pointer(::draw2d::region) & pregion)
    {
@@ -5592,19 +5603,10 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(::draw2d::path * ppathParam)
+   bool graphics::_set(::draw2d::path * ppath)
    {
 
-      if (ppathParam == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ::draw2d_cairo::path * ppath = dynamic_cast <::draw2d_cairo::path *> ((::draw2d::path *) ppathParam);
-
-      if (ppath == nullptr)
+      if (::is_null(ppath) || ::is_null(ppath->m_pshapea) || ppath->m_pshapea->is_empty())
       {
 
          return false;

@@ -14,12 +14,13 @@ struct main_hold :
    public main_hold_base
 {
 
+//#ifdef SYSTEM_NAMESPACE
+//   ::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
+//#else
+//   ::static_object_factory < class ::system > m_factorySystem{ ::system_setup::flag_system };
+//#endif
 
-#ifdef SYSTEM_NAMESPACE
-   ::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
-#else
-   ::static_object_factory < class ::system > m_factorySystem{ ::system_setup::flag_system };
-#endif
+
 #ifdef APPLICATION
    ::static_application_factory < ::APPLICATION::application > m_factoryApplication{ __APP_ID };
 #endif
@@ -54,6 +55,13 @@ struct main_hold :
       main_hold()
    {
 
+#ifdef SYSTEM_NAMESPACE
+         //::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
+      ::factory::add_factory_item< ::SYSTEM_NAMESPACE::system, class ::system >();
+#else
+      ::factory::add_factory_item< class ::system >();
+#endif
+
 #if defined(HAS_AUDIO)
       enable_audio(HAS_AUDIO);
 #endif
@@ -64,4 +72,4 @@ struct main_hold :
 };
 
 
-static main_hold g_mainhold;
+

@@ -2285,9 +2285,9 @@ namespace user
 
       }
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "main_frame"))
+      if (type.name_contains("main_frame"))
       {
 
          output_debug_string("main_frame on_message_destroy");
@@ -2896,9 +2896,9 @@ namespace user
 
       m_ewindowflag -= e_window_flag_is_window;
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "simple_scroll_bar"))
+      if (type.name_contains("simple_scroll_bar"))
       {
 
          output_debug_string("simple_scroll_bar::user_interaction_on_destroy");
@@ -2921,9 +2921,9 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            auto pszTypeName = __c_type_name(*this);
+            auto type = __object_type(*this);
 
-            if (strstr(pszTypeName, "auraclick::impact"))
+            if (type.name_contains("auraclick::impact"))
             {
 
                output_debug_string("auraclick::impact");
@@ -3219,9 +3219,9 @@ namespace user
 
          bool bFirst = true;
 
-         auto pszTypeName = __c_type_name(*this);
+         auto type = __object_type(*this);
 
-         if (strstr(pszTypeName, "scroll_bar"))
+         if (type.name_contains("scroll_bar"))
          {
 
             output_debug_string("scroll_bar");
@@ -3413,16 +3413,16 @@ namespace user
             if (durationElapsed > 50_ms)
             {
 
-               auto pszTypeName = __c_type_name(*this);
+               auto type = __object_type(*this);
 
-               if (strstr(pszTypeName, "font_list"))
+               if (type.name_contains("font_list"))
                {
 
-                  output_debug_string(string(pszTypeName) + "\n");
+                  output_debug_string(type.m_strName + "\n");
 
                }
 
-               CATEGORY_INFORMATION(prodevian, pszTypeName << " drawing took more than 50ms to complete ("
+               CATEGORY_INFORMATION(prodevian, type.m_strName << " drawing took more than 50ms to complete ("
                   << durationElapsed.integral_millisecond() << ")!!\n");
 
                   // let's trye to see what happened?
@@ -3439,7 +3439,7 @@ namespace user
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __c_type_name(this));
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __object_type(*this).m_strName);
 
       }
 
@@ -4113,15 +4113,15 @@ namespace user
 
       bool bUpdateWindow = false;
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "app_veriwell_keyboard") && strstr(pszTypeName, "main_frame"))
+      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
       {
 
          // output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
-      else if (strstr(pszTypeName, "plain_edit"))
+      else if (type.name_contains("plain_edit"))
       {
 
          //output_debug_string("plain_edit");
@@ -4133,13 +4133,13 @@ namespace user
       //         output_debug_string("font_list");
       //
       //      }
-      else if (strstr(pszTypeName, "combo_box"))
+      else if (type.name_contains("combo_box"))
       {
 
          //output_debug_string("combo_box");
 
       }
-      else if (strstr(pszTypeName, "list_box"))
+      else if (type.name_contains("list_box"))
       {
 
          output_debug_string("list_box");
@@ -4167,10 +4167,10 @@ namespace user
       if (!is_this_visible(e_layout_design))
       {
 
-         if (strstr(pszTypeName, "experience"))
+         if (type.name_contains("experience"))
          {
 
-            if (strstr(pszTypeName, "button"))
+            if (type.name_contains("button"))
             {
 
                string strTag = m_strInteractionTag;
@@ -4222,7 +4222,7 @@ namespace user
 
       }
 
-      if (strstr(pszTypeName, "list_box"))
+      if (type.name_contains("list_box"))
       {
 
          output_debug_string("list_box");
@@ -4322,9 +4322,9 @@ namespace user
       try
       {
 
-         auto pszTypeName = __c_type_name(*this);
+         auto type = __object_type(*this);
 
-         if (strstr(pszTypeName, "waven::impact"))
+         if (type.name_contains("waven::impact"))
          {
 
             output_debug_string("waven::impact");
@@ -4356,7 +4356,7 @@ namespace user
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __c_type_name(this));
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).m_strName);
 
          }
 
@@ -4381,7 +4381,7 @@ namespace user
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __c_type_name(this));
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).m_strName);
 
             }
 
@@ -4410,9 +4410,9 @@ namespace user
                if (d1 > 50_ms)
                {
 
-                  auto pszTypeName = __c_type_name(this);
+                  auto type = __object_type(*this);
 
-                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << pszTypeName << "::_008CallOnDraw took " <<
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms)(E) " << type.m_strName << "::_008CallOnDraw took " <<
                      d1.integral_millisecond() << "::duration.\n");
 
                }
@@ -7817,9 +7817,9 @@ namespace user
    void interaction::start_destroying_window()
    {
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "main_frame"))
+      if (type.name_contains("main_frame"))
       {
 
          output_debug_string("main_frame start_destroying_window\n");
@@ -8014,9 +8014,9 @@ namespace user
 
       }
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "main_frame"))
+      if (type.name_contains("main_frame"))
       {
 
          output_debug_string("main_frame post_non_client_destroy");
@@ -8685,9 +8685,9 @@ namespace user
    bool interaction::display_sketch_to_design()
    {
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "page_home"))
+      if (type.name_contains("page_home"))
       {
 
          INFORMATION("page_home");
@@ -8720,9 +8720,9 @@ namespace user
    void interaction::design_display()
    {
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "page_home"))
+      if (type.name_contains("page_home"))
       {
 
          INFORMATION("page_home");
@@ -8862,9 +8862,9 @@ namespace user
       else
       {
 
-         auto pszTypeName = __c_type_name(*this);
+         auto type = __object_type(*this);
 
-         if (strstr(pszTypeName, "page_home"))
+         if (type.name_contains("page_home"))
          {
 
             INFORMATION("page_home");
@@ -8987,9 +8987,9 @@ namespace user
       }
 
 #ifdef EXTRA_DESIGN_REPOSITION_LOG
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "control_box"))
+      if (type.name_contains("control_box"))
       {
 
          output_debug_string("control_box design_reposition");
@@ -9004,15 +9004,15 @@ namespace user
 
       ::point_i32 pointHost;
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "list_box"))
+      if (type.name_contains("list_box"))
       {
 
          output_debug_string("list_box reposition");
 
       }
-      else if (strstr(pszTypeName, "_001"))
+      else if (type.name_contains("_001"))
       {
 
          output_debug_string("_001 reposition");
@@ -9041,9 +9041,9 @@ namespace user
       //
       //      }
 
-//      auto pszTypeName = __c_type_name(*this);
+//      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "tap"))
+      if (type.name_contains("tap"))
       {
 
          INFORMATION("tap prodevian_reposition (" << this->screen_origin().x << ", " << this->screen_origin().y << ")");
@@ -9302,9 +9302,9 @@ namespace user
    void interaction::message_handler(::message::message * pmessage)
    {
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "list_box"))
+      if (type.name_contains("list_box"))
       {
 
          ::output_debug_string("list_box");
@@ -10470,9 +10470,9 @@ namespace user
 
       }
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "list_box"))
+      if (type.name_contains("list_box"))
       {
 
          ::output_debug_string("list_box");
@@ -11701,7 +11701,7 @@ namespace user
 
       puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
 
-      //      auto pszTypeName = __c_type_name(*this);
+      //      auto type = __object_type(*this);
 
       m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -16366,9 +16366,9 @@ namespace user
    void interaction::prodevian_redraw(bool bUpdateBuffer)
    {
 
-      auto pszTypeName = __c_type_name(*this);
+      auto type = __object_type(*this);
 
-      if (strstr(pszTypeName, "list_box"))
+      if (type.name_contains("list_box"))
       {
 
          output_debug_string("prodevian_redraw list_box");
@@ -17288,9 +17288,9 @@ namespace user
 
       //if (m_bHoverDefaultMouseHandling)
       {
-         auto pszTypeName = __c_type_name(*this);
+         auto type = __object_type(*this);
 
-         if (strstr(pszTypeName, "button"))
+         if (type.name_contains("button"))
          {
 
             //output_debug_string("button");

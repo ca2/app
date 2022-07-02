@@ -1785,7 +1785,7 @@ namespace user
 
          m_puserinteraction.release();
 
-         auto pwindow = get_window();
+         auto pwindow = window();
 
          message_queue_post(pwindow, e_message_destroy_window, 0, 0);
 

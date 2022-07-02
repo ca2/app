@@ -422,6 +422,14 @@ namespace user
    }
 
 
+   inline ::windowing::window* primitive_impl::window()
+   {
+
+      return m_puserinteraction->m_pwindow;
+
+   }
+
+
 } // namespace user
 
 

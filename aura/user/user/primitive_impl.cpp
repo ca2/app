@@ -859,12 +859,12 @@ namespace user
    }
 
 
-   ::windowing::window* primitive_impl::get_window() const
-   {
-
-      return nullptr;
-
-   }
+//   ::windowing::window* primitive_impl::get_window() const
+//   {
+//
+//      return nullptr;
+//
+//   }
 
 
    bool primitive_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
@@ -1852,30 +1852,30 @@ namespace user
    }
 
 
-   ::windowing::window* primitive_impl::window()
-   {
-
-      auto puserinteraction = m_puserinteraction;
-
-      if (!puserinteraction)
-      {
-
-         return nullptr;
-
-      }
-
-      auto pwindow = puserinteraction->window();
-
-      if (!pwindow)
-      {
-
-         return nullptr;
-
-      }
-
-      return pwindow;
-
-   }
+//   ::windowing::window* primitive_impl::window()
+//   {
+//
+//      auto puserinteraction = m_puserinteraction;
+//
+//      if (!puserinteraction)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      auto pwindow = puserinteraction->window();
+//
+//      if (!pwindow)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return pwindow;
+//
+//   }
 
 
    ::user::element * primitive_impl::get_keyboard_focus()

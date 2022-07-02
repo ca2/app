@@ -50,7 +50,7 @@ namespace graphics
 
       m_pimpl = pimpl;
 
-      m_pwindow = pimpl->get_window();
+      m_pwindow = pimpl->window();
 
       //return estatus;
 

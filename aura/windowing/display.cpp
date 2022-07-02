@@ -965,7 +965,8 @@ namespace windowing
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      //if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      if (eactivation & e_activation_under_mouse_cursor)
       {
 
          ::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();

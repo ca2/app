@@ -256,6 +256,7 @@ list(APPEND library_source
    #parallelization/thread_os.cpp
    #parallelization/waitable.cpp
    platform/_.cpp
+   platform/_main_hold_base.cpp
    platform/acme.cpp
    platform/acme.h
    #platform/acme_main_struct.cpp

@@ -35,6 +35,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
+   main_hold mainhold;
+
    __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
 
 #ifdef WINDOWS

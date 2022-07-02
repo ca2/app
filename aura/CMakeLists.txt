@@ -70,6 +70,10 @@ list(APPEND library_source
    graphics/draw2d/graphics.h
    graphics/draw2d/graphics_extension.cpp
    graphics/draw2d/graphics_extension.h
+   graphics/draw2d/holdee.cpp
+   graphics/draw2d/holdee.h
+   graphics/draw2d/holder.cpp
+   graphics/draw2d/holder.h
    graphics/draw2d/host.cpp
    graphics/draw2d/host.h
    graphics/draw2d/item.h
@@ -87,12 +91,17 @@ list(APPEND library_source
    graphics/draw2d/palette.h
    graphics/draw2d/path.cpp
    graphics/draw2d/path.h
+   graphics/draw2d/path_shape.h
+   graphics/draw2d/path_simple_optimization.cpp
+   graphics/draw2d/path_simple_optimization.h
    graphics/draw2d/pen.cpp
    graphics/draw2d/pen.h
    graphics/draw2d/printer.cpp
    graphics/draw2d/printer.h
    graphics/draw2d/region.cpp
    graphics/draw2d/region.h
+   graphics/draw2d/region_item.cpp
+   graphics/draw2d/region_shape.h
    graphics/draw2d/task_tool.cpp
    graphics/draw2d/task_tool.h
    #graphics/draw2d/ttf_util.cpp

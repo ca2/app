@@ -226,7 +226,7 @@ namespace user
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
 
-      virtual ::windowing::window* get_window() const;
+      //virtual ::windowing::window* get_window() const;
 
 
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
@@ -400,7 +400,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::windowing::window* window();
+      inline ::windowing::window* window();
 
 
       virtual ::user::element * get_keyboard_focus();

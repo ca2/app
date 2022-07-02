@@ -32,7 +32,7 @@ namespace windowing
       __pointer(::windowing::windowing)         m_pwindowing;
       __composite(::user::copydesk)             m_pcopydesk;
       ::point_i32                               m_pointCursor;
-      oswindow                                  m_oswindow;
+      ::oswindow                                m_oswindow;
 
 
       window();
@@ -92,7 +92,7 @@ namespace windowing
 
       virtual ::user::copydesk * copydesk();
 
-      inline oswindow oswindow() const { return m_oswindow; }
+      inline ::oswindow oswindow() const { return m_oswindow; }
       void set_oswindow(::oswindow oswindow);
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }

@@ -158,7 +158,7 @@ namespace user
 
 
 
-      oswindow                                     m_oswindow;
+      ::oswindow                                   m_oswindow;
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
@@ -2179,7 +2179,7 @@ namespace user
    };
 
 
-   inline oswindow interaction::get_safe_oswindow() const
+   inline ::oswindow interaction::get_safe_oswindow() const
    {
 
       if (::is_null(this))

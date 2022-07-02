@@ -84,8 +84,32 @@ public:
 //#define __run() __main(main)
 //#define __end return main.m_iExitCode
 
-APPLICATION_CLASS g_app;
+//APPLICATION_CLASS g_app;
 
+
+int main(int argc, char * argv[], char * envp[])
+{
+
+   auto papp = __new(APPLICATION_CLASS);
+
+   papp->set_args(argc, argv, envp);
+
+#if defined(LINUX) || defined(FREEBSD)
+
+   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
+
+   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+
+#endif
+
+   int iExitCode = papp->main_loop();
+
+   return iExitCode;
+
+}
+
+
+#endif
 
 
 //app_runner < APPLICATION_CLASS > apprunner(argc, argv, envp, _binary__matter_zip_start, _binary__matter_zip_end);

@@ -281,9 +281,16 @@ namespace factory
 
       pszTypename = c_demangle(pszTypename);
 
-#endif
-
       return pszTypename;
+
+#else
+
+      auto strTypename = ::move(demangle(pszTypename));
+
+      return strTypename;
+
+
+#endif
 
    }
 

@@ -9,11 +9,11 @@
 CLASS_DECL_ACME void set_main_user_thread();
 
 
-#ifdef __APP_ID
-
-static set_app_id g_setappid(__APP_ID);
-
-#endif
+//#ifdef __APP_ID
+//
+//static set_app_id g_setappid(__APP_ID);
+//
+//#endif
 
 
 //#ifndef NO_DRAW2D

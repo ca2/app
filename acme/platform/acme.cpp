@@ -1642,10 +1642,10 @@ namespace acme
 // _ACME_LINKER_FORCE_INCLUDE(g_acme);
 
 
-#ifdef WINDOWS
-
-
-#else
+//#ifdef WINDOWS
+//
+//
+//#else
 
 
 //#ifdef CLASS_DECL_APEX
@@ -1656,32 +1656,32 @@ namespace acme
 //
 //#endif
 
-#include "acme/platform/system_setup.h"
+//#include "acme/platform/system_setup.h"
 
 
-int main(int argc, char * argv[], char * envp[])
-{
-
-   auto papp = ::app_factory::new_app();
-
-   papp->set_args(argc, argv, envp);
-
-#if defined(LINUX) || defined(FREEBSD)
-
-   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
-
-   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
-
-#endif
-
-   int iExitCode = papp->main_loop();
-
-   return iExitCode;
-
-}
-
-
-#endif
+//int main(int argc, char * argv[], char * envp[])
+//{
+//
+//   auto papp = ::app_factory::new_app();
+//
+//   papp->set_args(argc, argv, envp);
+//
+//#if defined(LINUX) || defined(FREEBSD)
+//
+//   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
+//
+//   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+//
+//#endif
+//
+//   int iExitCode = papp->main_loop();
+//
+//   return iExitCode;
+//
+//}
+//
+//
+//#endif
 
 
 iptr g_iMonitor = 0;

@@ -193,6 +193,10 @@ namespace draw2d_cairo
 
       // Clipping Functions
       i32 get_clip_box(::rectangle_f64 * prectangle) override;
+
+
+      void intersect_clip(const ::rectangle_f64 & rectangle) override;
+
       //virtual bool PtVisible(double x, double y) override;
       //bool PtVisible(const ::point_f64 & point_f64) override;
       //virtual bool RectVisible(const ::rectangle_f64 & rectangle_f64) override;

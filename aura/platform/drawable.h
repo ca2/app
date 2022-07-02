@@ -32,7 +32,7 @@ namespace aura
       virtual ::graphics::graphics * get_window_graphics();
 
       
-      virtual oswindow get_oswindow() const;
+      virtual oswindow _oswindow() const;
 
 
       virtual bool is_composite();

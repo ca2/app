@@ -28,8 +28,8 @@ namespace windowing
    public:
 
 
-      void *                                    m_pWindowing;
-      void *                                    m_pWindowing2;
+      ::sandbox_windowing::windowing *          m_psandboxwindowing;
+      void *                                    m_pWindowing4;
 
       ::point_i32                               m_pointCursor;
 

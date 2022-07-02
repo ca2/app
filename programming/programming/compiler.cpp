@@ -193,7 +193,7 @@ namespace programming
          else if (m_strVs == "2015")
          {
 
-            m_strEnv = strVars.up(2);
+            m_strEnv = strVars.ascend(2);
 
             m_strEnv = m_strEnv / "vc\\vcvarsall.bat";
 

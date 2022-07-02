@@ -13,48 +13,13 @@ namespace windowing
    window::window()
    {
 
-      m_pWindow = nullptr;
+      m_psandboxwindowingwindow = nullptr;
 
-      m_pWindow2 = nullptr;
+      m_pWindow4 = nullptr;
 
       set_oswindow(nullptr);
 
-      //set_oswindow(oswindow);
-
-      //m_plongmap  = new iptr_to_iptr;
-
-//      m_iXic = 0;
-//
-//      m_xic = nullptr;
-//
-//      for (auto &i : m_iaNetWmState)
-//      {
-//
-//         i = -1;
-//
-//      }
-//
-//      m_hcursorLast = 0;
-//
-//      m_htask = 0;
-//
-//      m_window = None;
-
-      //m_puserinteractionimpl = nullptr;
-
       m_bMessageOnlyWindow = false;
-
-//      m_osdisplay = nullptr;
-//
-//      __zero(m_visual);
-//
-//      m_iDepth = -1;
-//
-//      m_iScreen = -1;
-//
-//      m_colormap = None;
-//
-//      m_iXic = 0;
 
    }
 
@@ -62,32 +27,19 @@ namespace windowing
    window::~window()
    {
 
-      //::acme::del(m_plongmap);
-
    }
 
 
    void window::on_initialize_object()
    {
 
-      //auto estatus = 
-      
       ::channel::on_initialize_object();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
       puser->on_initialize_window_object();
-
-      //return estatus;
 
    }
 
@@ -101,7 +53,6 @@ namespace windowing
 
    void window::dump(dump_context & dumpcontext) const
    {
-
 
 
    }
@@ -161,8 +112,6 @@ namespace windowing
       __UNREFERENCED_PARAMETER(puserinteractionimpl);
 
       throw ::interface_only();
-
-      //throw ::interface_only();
       
    }
 
@@ -181,14 +130,6 @@ namespace windowing
       *ppointCursor = m_pointCursor;
 
    }
-
-
-   //void * window::get_os_data() const
-   //{
-
-   //   return nullptr;
-
-   //}
 
 
    bool window::has_mouse_capture() const
@@ -241,17 +182,8 @@ namespace windowing
 
          if (m_pcopydesk)
          {
-
-            //auto estatus = 
             
             m_pcopydesk->initialize_copydesk(this);
-
-            //if (!estatus)
-            //{
-
-            //   __release(m_pcopydesk);
-
-            //}
 
          }
 
@@ -267,38 +199,13 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
-
-
-   //void window::get_capture()
-   //{
-
-   //   throw ::interface_only();
-
-   //   return m_pcapture;;
-
-   //}
-
-
-
-   //void window::set_capture()
-   //{
-
-   //   throw ::interface_only();
-
-   //   throw ::interface_only();
-
-   //}
 
 
    void window::destroy_window()
    {
 
       throw ::interface_only();
-
-      //throw ::interface_only();
 
    }
 
@@ -324,8 +231,6 @@ namespace windowing
 
       }
 
-      //return ::success;
-
    }
 
    
@@ -341,7 +246,6 @@ namespace windowing
 
 
    }
-
 
 
    void window::on_visual_applied()
@@ -376,8 +280,6 @@ namespace windowing
    }
 
 
-
-
    void window::set_window_text(const ::string & pszString)
    {
 
@@ -395,13 +297,13 @@ namespace windowing
 
    }
 
+
    void window::get_window_text(string & rectangleString)
    {
 
       throw ::interface_only();
 
    }
-
 
 
    strsize window::get_window_text_length()
@@ -422,17 +324,6 @@ namespace windowing
    }
 
 
-
-   //bool window::window_is_iconic()
-   //{
-   //
-   //   throw ::interface_only();
-   //
-   //   return false;
-   //
-   //}
-
-
    bool window::is_zoomed()
    {
 
@@ -451,6 +342,7 @@ namespace windowing
       return 0;
 
    }
+
 
    void window::rects_from_os()
    {
@@ -489,30 +381,6 @@ namespace windowing
       throw ::interface_only();
 
    }
-
-
-   //oswindow window::get_oswindow() const
-   //{
-
-   //   auto puserinteractionimpl = m_puserinteractionimpl;
-
-   //   if (puserinteractionimpl)
-   //   {
-
-   //      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-
-   //      if (puserinteraction)
-   //      {
-
-   //         return puserinteraction->m_oswindow;
-
-   //      }
-
-   //   }
-   //   
-   //   return nullptr;
-
-   //}
 
 
    void window::set_oswindow(::oswindow oswindow)
@@ -686,8 +554,6 @@ namespace windowing
 
       throw ::interface_only();
 
-      //return false;
-
    }
 
 
@@ -724,6 +590,7 @@ namespace windowing
       return nullptr;
 
    }
+
 
    ::windowing::window * window::get_next_window(::u32 nFlag)
    {
@@ -790,8 +657,6 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
 
 
@@ -819,8 +684,6 @@ namespace windowing
    {
 
       throw ::interface_only();
-
-      //throw ::interface_only();
 
    }
 
@@ -879,16 +742,7 @@ namespace windowing
 
       }
 
-      //auto estatus = 
-      
       picon->load_file(payloadFile);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       return picon;
 
@@ -900,17 +754,11 @@ namespace windowing
 
       m_picon = picon;
 
-      //return ::success;
-
    }
     
     
    __pointer(::windowing::icon) window::get_icon() const
    {
-
-      //throw ::interface_only();
-
-      ///return nullptr;
 
       return m_picon;
 
@@ -921,8 +769,6 @@ namespace windowing
    {
 
       throw ::interface_only();
-
-      //throw ::interface_only();
 
    }
 
@@ -939,8 +785,6 @@ namespace windowing
    {
 
       throw ::interface_only();
-
-      //throw ::interface_only();
 
    }
 
@@ -1096,15 +940,11 @@ namespace windowing
 
       windowing_output_debug_string("\n::window::show_window 1");
 
-      //return ::success;
-
    }
 
 
    void window::full_screen(const ::rectangle_i32 &rectangle)
    {
-
-      //return ::success_none;
 
    }
 
@@ -1112,23 +952,17 @@ namespace windowing
    void window::exit_iconify()
    {
 
-      //return ::success_none;
-
    }
 
 
    void window::exit_full_screen()
    {
 
-      //return ::success_none;
-
    }
 
 
    void window::exit_zoomed()
    {
-
-      //return ::success_none;
 
    }
 
@@ -1138,8 +972,6 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
 
 
@@ -1148,8 +980,6 @@ namespace windowing
 
       throw ::interface_only();
 
-      //throw ::interface_only();
-
    }
 
 
@@ -1157,8 +987,6 @@ namespace windowing
    {
 
       throw ::interface_only();
-
-      //throw ::interface_only();
 
    }
 
@@ -1494,3 +1322,6 @@ CLASS_DECL_AURA ::user::interaction* __user_interaction(::windowing::window* pwi
    return puserinteraction;
 
 }
+
+
+

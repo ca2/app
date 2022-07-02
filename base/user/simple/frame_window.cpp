@@ -2703,8 +2703,9 @@ bool simple_frame_window::on_set_parent(::user::primitive * puiParent)
 void simple_frame_window::on_after_set_parent()
 {
 
-   auto puiParent = get_parent();
+   ::experience::frame_window::on_after_set_parent();
 
+   auto puiParent = get_parent();
 
    if (puiParent == nullptr)
    {

@@ -1695,11 +1695,16 @@ namespace user
 
       if(pusermessage->m_wparam == 0x80000001)
       {
-         if(get_top_level() != nullptr)
+      
+         if(top_level() != nullptr)
          {
-            get_top_level()->EndModalLoop(e_dialog_result_ok);
+
+            top_level()->EndModalLoop(e_dialog_result_ok);
+
          }
+
          return;
+
       }
 
 #endif

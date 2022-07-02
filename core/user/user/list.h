@@ -58,8 +58,8 @@ namespace user
 
 
 
-      i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
-      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
+      i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(EImpact eview);
       virtual ::e_draw_text get_draw_text_flags(EImpact eview);

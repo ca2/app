@@ -4,6 +4,122 @@
 #include "aura/message.h"
 
 
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_left(R1 & r1, const R2 & r2)
+{
+
+   {
+
+      auto diff = r2.left - r1.right;
+
+      if (diff > 0)
+      {
+
+         x_offset_rect(&r1, diff);
+
+      }
+
+   }
+
+}
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_right(R1 & r1, const R2 & r2)
+{
+
+   {
+
+      auto diff = r2.right - r1.left;
+
+      if (diff < 0)
+      {
+
+         x_offset_rect(&r1, diff);
+
+      }
+
+   }
+
+}
+
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_top(R1 & r1, const R2 & r2)
+{
+
+   {
+
+      auto diff = r2.top - r1.bottom;
+
+      if (diff > 0)
+      {
+
+         y_offset_rect(&r1, diff);
+
+      }
+
+   }
+
+}
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_bottom(R1 & r1, const R2 & r2)
+{
+
+   {
+
+      auto diff = r2.bottom - r1.top;
+
+      if (diff < 0)
+      {
+
+         y_offset_rect(&r1, diff);
+
+      }
+
+   }
+
+
+
+}
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_x(R1 & r1, const R2 & r2)
+{
+
+   constrain_vertex_left(r1, r2);
+
+   constrain_vertex_right(r1, r2);
+
+}
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex_y(R1 & r1, const R2 & r2)
+{
+
+   constrain_vertex_top(r1, r2);
+
+   constrain_vertex_bottom(r1, r2);
+
+}
+
+
+template < primitive_rectangle R1, primitive_rectangle R2 >
+void constrain_vertex(R1 & r1, const R2 & r2)
+{
+
+   constrain_vertex_x(r1, r2);
+
+   constrain_vertex_y(r1, r2);
+
+}
+
+
 namespace experience
 {
 
@@ -1856,7 +1972,13 @@ namespace experience
          if (iBestWorkspace >= 0)
          {
 
-            rectangle._001Constrain(rectangleWorkspace);
+            ::rectangle rectangleOld(rectangle);
+
+            auto pwindowing = windowing();
+
+            auto pdisplay = pwindowing->display();
+
+            pdisplay->get_good_move(rectangle, rectangleOld, this);
 
          }
 

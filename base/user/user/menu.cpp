@@ -827,7 +827,7 @@ auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();
 
-      if (pdisplay->get_best_monitor(nullptr, rectangleMonitor, rectangleWindow) >= 0)
+      if (pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow) >= 0)
       {
 
          rectangleMonitor.deflate(16, 16);

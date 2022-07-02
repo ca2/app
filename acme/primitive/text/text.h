@@ -25,7 +25,7 @@ namespace text
 
       inline string get_text() const { return ::is_set(m_pdata) ? ((m_pdata->m_bPendingUpdate) ? defer_update_text() : m_pdata->m_str) : ::string(); }
 
-      inline string defer_update_text() const;
+      string defer_update_text() const;
 
       void destroy();
 

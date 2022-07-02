@@ -292,7 +292,7 @@ namespace user
       virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem,index iSubItem);
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem,index iSubItem);
       virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn);
       virtual i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();

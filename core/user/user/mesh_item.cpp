@@ -35,6 +35,7 @@ namespace user
    {
 
       m_pdrawmeshsubitem = this;
+      m_iRectangleOrder = -1;
 
    }
 

@@ -1139,7 +1139,7 @@ namespace user
 
          auto pdisplay = pwindowing->display();
 
-         ::index i = pdisplay->get_best_monitor(nullptr, rectangleMonitor, rectangleWindow);
+         ::index i = pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow);
 
          ::rectangle_i32 rectangleList;
 

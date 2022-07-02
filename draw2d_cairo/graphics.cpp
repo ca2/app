@@ -359,13 +359,44 @@ namespace draw2d_cairo
    }
 
 
+   //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
+   void graphics::_add_clipping_shape(const ::rectangle & rectangle, __pointer(::draw2d::region) & pregion)
+   {
+
+      _add_shape(rectangle);
+
+      _intersect_clip();
+
+   }
+
+
+   //virtual void _add_shape(const ::ellipse & ellipse) override;
+   void graphics::_add_clipping_shape(const ::ellipse & ellipse, __pointer(::draw2d::region) & pregion)
+   {
+
+      _add_shape(ellipse);
+
+      _intersect_clip();
+
+   }
+
+
+   //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
+   void graphics::_add_clipping_shape(const ::polygon & polygon, __pointer(::draw2d::region) & pregion)
+   {
+
+      _add_shape(polygon);
+
+      _intersect_clip();
+
+   }
+
+
    void graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
 
       cairo_rectangle(m_pdc, rectangle.left + m_pointAddShapeTranslate.x, rectangle.top + m_pointAddShapeTranslate.y,
                       rectangle.width(), rectangle.height());
-
-      //return ::success;
 
    }
 
@@ -384,8 +415,6 @@ namespace draw2d_cairo
 
       cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
-      //return ::success;
-
    }
 
 
@@ -394,8 +423,6 @@ namespace draw2d_cairo
 
       if (polygon.is_empty())
       {
-
-         //return ::success;
 
          return;
 
@@ -413,8 +440,6 @@ namespace draw2d_cairo
       }
 
       cairo_close_path(m_pdc);
-
-      //return ::success;
 
    }
 
@@ -5610,10 +5635,10 @@ namespace draw2d_cairo
 
       }
 
-      for (i32 i = 0; i < ppath->m_shapea.get_count(); i++)
+      for (i32 i = 0; i < ppath->m_pshapea->get_count(); i++)
       {
 
-         _set(ppath->m_shapea[i]);
+         _set(ppath->m_pshapea->element_at(i));
 
       }
 
@@ -5622,7 +5647,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(___shape * pshape)
+   bool graphics::_set(___shape < ::draw2d::region > * pshape)
    {
 
       _synchronous_lock ml(cairo_mutex());
@@ -5670,6 +5695,54 @@ namespace draw2d_cairo
    }
 
 
+   bool graphics::_set(___shape < ::draw2d::path > * pshape)
+   {
+
+      _synchronous_lock ml(cairo_mutex());
+
+      auto eshape = pshape->eshape();
+
+      switch (eshape)
+      {
+      case ::e_shape_begin_figure:
+         return _set(e_shape_begin_figure);
+      case ::e_shape_close_figure:
+         return _set(e_shape_close_figure);
+      case ::e_shape_end_figure:
+         return _set(e_shape_end_figure);
+      case ::e_shape_arc:
+         return _set(pshape->shape<::arc>());
+         //case ::e_shape_line:
+         //   return _set(pshape->shape < ::line > ());
+      case ::e_shape_line:
+         return _set(pshape->shape<::line>());
+         //case ::e_shape_lines:
+         //   return _set(pshape->shape < ::lines > ());
+      case ::e_shape_lines:
+         return _set(pshape->shape<::lines>());
+         //case ::e_shape_rect:
+         //   return _set(pshape->shape < ::rectangle_i32 > ());
+      case ::e_shape_rectangle:
+         return _set(pshape->shape<::rectangle>());
+         //case ::e_shape_polygon:
+         //   return _set(pshape->shape < ::polygon_i32 > ());
+      case ::e_shape_ellipse:
+         return _set(pshape->shape<::ellipse>());
+      case ::e_shape_polygon:
+         return _set(pshape->shape<::polygon>());
+      case ::e_shape_text_out:
+         return _set(pshape->shape<::write_text::text_out>());
+      case ::e_shape_draw_text:
+         return _set(pshape->shape<::write_text::draw_text>());
+      default:
+         throw "unexpected simple os graphics matter type";
+      }
+
+      return false;
+
+   }
+
+
    bool graphics::_set(const ::enum_shape & eshape)
    {
 
@@ -5710,6 +5783,120 @@ namespace draw2d_cairo
          return false;
 
       }
+
+   }
+
+
+   bool graphics::_set(const ::arc & arc, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(arc);
+
+   }
+
+
+   //bool _set(const ::line & line);
+   //bool _set(const ::lines & lines);
+   bool graphics::_set(const ::rectangle & rectangle, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(rectangle);
+
+   }
+
+
+   bool graphics::_set(const ::ellipse & ellipse, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(ellipse);
+
+   }
+
+
+   bool graphics::_set(const ::polygon & polygon, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(polygon);
+
+   }
+
+
+   bool graphics::_set(const ::write_text::text_out & textout, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(textout);
+
+   }
+
+
+   bool graphics::_set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::region) & pregion)
+   {
+
+      return _set(drawtext);
+
+   }
+
+
+   bool graphics::_set(const ::arc & arc, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(arc);
+
+   }
+
+
+   bool graphics::_set(const ::line & line, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(line);
+
+   }
+
+
+   bool graphics::_set(const ::lines & lines, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(lines);
+
+   }
+
+
+   bool graphics::_set(const ::rectangle & rectangle, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(rectangle);
+
+   }
+
+
+   bool graphics::_set(const ::ellipse & ellipse, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(ellipse);
+
+   }
+
+
+   bool graphics::_set(const ::polygon & polygon, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(polygon);
+
+   }
+
+
+   bool graphics::_set(const ::write_text::text_out & textout, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(textout);
+
+   }
+
+
+   bool graphics::_set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::path) & ppath)
+   {
+
+      return _set(drawtext);
 
    }
 

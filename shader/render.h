@@ -30,13 +30,14 @@ namespace app_shader
       ::color::color                      m_colorLastLabelBackground;
       ::image_pointer                     m_pimageError;
       string                              m_strLastError;
+      __pointer(::user::interaction)      m_puserinteraction;
 
 
       render();
       ~render() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      virtual void initialize_render(::user::interaction * puserinteraction);
 
 #ifdef _DEBUG
       virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;

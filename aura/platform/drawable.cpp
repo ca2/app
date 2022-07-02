@@ -109,7 +109,7 @@ namespace aura
    }
 
 
-   oswindow drawable::get_oswindow() const
+   oswindow drawable::_oswindow() const
    {
 
       return nullptr;

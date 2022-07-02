@@ -270,7 +270,11 @@ namespace user
 
          m_ewindowflag |= e_window_flag_loading_window_rect;
 
-         auto pwindowing = windowing();
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing1();
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -525,7 +529,11 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
-      auto pwindowing = windowing();
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing1();
 
       auto pdisplay = pwindowing->display();
 

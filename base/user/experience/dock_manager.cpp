@@ -85,7 +85,7 @@ namespace experience
 
       auto pdisplay = pwindowing->display();
 
-      int iMonitor = (int)pdisplay->get_best_monitor(pwindow, screen, rectangleCursor);
+      int iMonitor = (int)pdisplay->get_best_monitor(screen, rectangleCursor);
 
       pdisplay->get_workspace_rectangle(iMonitor, rectangleWork);
 

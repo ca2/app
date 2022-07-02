@@ -100,6 +100,8 @@ namespace user
 
          m_puserinteraction->on_set_parent(pprimitiveParent);
 
+         m_puserinteraction->on_after_set_parent();
+
          install_message_routing(m_puserinteraction);
 
          if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)

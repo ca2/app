@@ -69,16 +69,7 @@ namespace user
    void thread::initialize_user_thread(interaction_impl * pimpl)
    {
 
-      //auto estatus = 
-      
       initialize(pimpl);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       m_pimpl = pimpl;
 

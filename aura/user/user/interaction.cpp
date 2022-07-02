@@ -421,14 +421,14 @@ namespace user
          else
          {
 
-            output_debug_string("control_box::on_set_size(" + __string(size) + ")");
+            //output_debug_string("control_box::on_set_size(" + __string(size) + ")");
 
-            if (size.cx > 500)
-            {
+            //if (size.cx > 500)
+            //{
 
-               output_debug_string("size.cx > 500");
+            //   output_debug_string("size.cx > 500");
 
-            }
+            //}
 
          }
 
@@ -1469,18 +1469,7 @@ namespace user
 
          pprimitiveimplNew->create_host(this);
 
-         ////if (!)
-         //{
-
-         //   throw ::exception(error_failed, "could not impl interaction");
-
-         //}
-         //else
-         {
-
-            on_after_set_parent();
-
-         }
+         on_after_set_parent();
 
       }
       else // puserinteractionParent != nullptr
@@ -3089,11 +3078,7 @@ namespace user
 
          ::file::path strMatter = get_window_default_matter();
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pcontext = m_pcontext->m_papexcontext;
 
@@ -4733,7 +4718,7 @@ namespace user
 
       //}
 
-      pmessage->set(get_oswindow(), window(), atom, wparam, lparam);
+      pmessage->set(oswindow(), window(), atom, wparam, lparam);
 
       return pmessage;
 
@@ -6778,7 +6763,7 @@ namespace user
 
       __pointer(interaction_impl) pprimitiveimplNew;
 
-      auto rectangle_i32(this->screen_rect());
+      auto rectangle(this->screen_rect());
 
       /* auto psession = get_session();
 
@@ -9128,6 +9113,8 @@ namespace user
 
       }
 
+      m_bClipRectangle = false;
+
       defer_graphics(pgraphics);
 
       m_pprimitiveimpl->on_layout(pgraphics);
@@ -11032,7 +11019,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iBestWorkspace = pdisplay->get_best_monitor(window(), rectangleWorkspace, rectangleRequest);
+      index iBestWorkspace = pdisplay->get_best_monitor(rectangleWorkspace, rectangleRequest);
 
       bool bWindowCrossesWorkspaceBoundaries = !rectangleWorkspace.contains(rectangleRequest);
 
@@ -11547,6 +11534,14 @@ namespace user
    }
 
 
+   ::oswindow interaction::_oswindow() const
+   {
+
+      return oswindow();
+
+   }
+
+
    void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
    {
 
@@ -11672,21 +11667,6 @@ namespace user
 
       }
 
-      if (puserinteractionParent != nullptr)
-      {
-
-         m_oswindow = puserinteractionParent->m_oswindow;
-
-         m_puserinteractionTopLevel = _top_level();
-
-         m_puserframeParent = _parent_frame();
-
-         m_puserframeTopLevel = _top_level_frame();
-
-         m_pwindow = _window();
-
-      }
-
       return true;
 
    }
@@ -11733,6 +11713,15 @@ namespace user
    void interaction::on_after_set_parent()
    {
 
+      m_puserinteractionTopLevel = _top_level();
+
+      m_puserframeParent = _parent_frame();
+
+      m_puserframeTopLevel = _top_level_frame();
+
+      m_pwindow = _window();
+
+      m_oswindow = m_pwindow->oswindow();
 
    }
 
@@ -13630,7 +13619,7 @@ namespace user
 
             auto pdisplay = pwindowing->display();
 
-            iMatchingMonitor = pdisplay->get_best_monitor(window(), rectangleNew, rectangleSample);
+            iMatchingMonitor = pdisplay->get_best_monitor(rectangleNew, rectangleSample);
 
          }
 
@@ -13685,7 +13674,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      index iMatchingMonitor = pdisplay->get_best_monitor(window(), rectangleNew, rectangleWindow, eactivation);
+      index iMatchingMonitor = pdisplay->get_best_monitor(rectangleNew, rectangleWindow, eactivation, window());
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -13934,9 +13923,15 @@ namespace user
 
       ::rectangle_i32 rectangleWorkspace;
 
-      auto pdisplay = get_display();
+      auto psession = get_session();
 
-      index iMatchingWorkspace = pdisplay->get_best_workspace(window(), &rectangleWorkspace, rectangleHint);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing1();
+
+      auto pdisplay = pwindowing->display();
+
+      index iMatchingWorkspace = pdisplay->get_best_workspace(& rectangleWorkspace, rectangleHint);
 
       if (iMatchingWorkspace >= 0)
       {
@@ -14060,7 +14055,7 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_workspace(window(), prectangle, rectangle, eactivation);
+      return pdisplay->get_best_workspace(prectangle, rectangle, eactivation, window());
 
    }
 
@@ -14150,7 +14145,11 @@ namespace user
 
       ::rectangle_i32 rectangleNew;
 
-      auto pwindowing = windowing();
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing1();
 
       auto pdisplay = pwindowing->display();
 
@@ -17077,7 +17076,7 @@ namespace user
 
       auto pcontextmenu = __new(::message::context_menu);
 
-      pcontextmenu->set(get_oswindow(), window(), e_message_context_menu, (wparam)(iptr)get_oswindow(), pmouse->m_point.lparam());
+      pcontextmenu->set(oswindow(), window(), e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 

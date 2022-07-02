@@ -1017,7 +1017,7 @@ namespace user
          for (index i = 0; i < iCount; i++)
          {
 
-            iWidth = _001CalcItemWidth(pgraphics, i, 0);
+            iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
 
             if (iWidth > iMaxWidth)
             {
@@ -2828,7 +2828,7 @@ namespace user
 
          _001GetItemRect(*pdrawlistsubitem->m_pitem);
 
-         if (!pdrawlistsubitem->m_bOk)
+         if (!pdrawlistsubitem->m_pitem->m_bOk)
          {
 
             return;
@@ -2844,7 +2844,7 @@ namespace user
 
       }
 
-      if (m_eview == impact_icon)
+      if (m_eview == impact_icon || m_eview == impact_list)
       {
 
          pdrawlistsubitem->m_rectangleSubItem = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem;
@@ -5693,17 +5693,17 @@ auto pwindowing = windowing();
    //}
 
 
-   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
    {
 
       pgraphics->set(pfont);
 
-      return _001CalcItemWidth(pgraphics, iItem, iSubItem);
+      return _001CalcSubItemWidth(pgraphics, iItem, iSubItem);
 
    }
 
 
-   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
    {
 
       ::image_list::info ii;
@@ -5713,8 +5713,6 @@ auto pwindowing = windowing();
       ::size_i32 size;
 
       index cx = 0;
-
-      list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
       auto psubitem = get_subitem(iItem, iSubItem);
 
@@ -5732,7 +5730,7 @@ auto pwindowing = windowing();
          if (psubitem->m_bOk && psubitem->m_iImage >= 0)
          {
 
-            pcolumn->m_pil->get_image_info((i32)psubitem->m_iImage, &ii);
+            psubitem->m_pcolumn->m_pil->get_image_info((i32)psubitem->m_iImage, &ii);
 
             rectangle = ii.m_rectangle;
 
@@ -6586,7 +6584,7 @@ auto pwindowing = windowing();
       for (index i = 0; i < iCount; i++)
       {
 
-         iWidth = _001CalcItemWidth(pgraphics, i, 0);
+         iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
 
          if (iWidth > iMaxWidth)
          {

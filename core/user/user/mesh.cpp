@@ -4259,22 +4259,20 @@ auto pwindowing = windowing();
    }
 
 
-   i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,index iItem,index iSubItem)
+   i32 mesh::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics,index iItem,index iSubItem)
    {
-
-#ifdef WINDOWS_DESKTOP
 
       pgraphics->set_font(this, ::e_element_none);
 
-      ::image_list::info ii;
-      ::rectangle_i32 rectangle;
-      ::size_i32 size;
-      index cx = 0;
+      //::image_list::info ii;
+      //::rectangle_i32 rectangle;
+      //::size_i32 size;
+      int cx = 0;
       //mesh_column * pcolumn = m_columna._001GetByKey(iSubItem);
-      draw_mesh_item item(this);
-      item.m_iItem = iItem;
-      item.m_iSubItem = iSubItem;
-      item.m_iListItem = -1;
+      auto psubitem = get_subitem(iItem, iSubItem);
+      //item.m_iItem = iItem;
+      //item.m_iSubItem = iSubItem;
+      //item.m_iListItem = -1;
       //if(pcolumn->m_pil != nullptr)
       //{
       //   _001GetItemImage(&item);
@@ -4286,17 +4284,22 @@ auto pwindowing = windowing();
       //      cx += 2;
       //   }
       //}
-      _001GetItemText(&item);
-      if(item.m_bOk)
+
+      _001GetSubItemText(psubitem);
+
+      if(psubitem->m_bOk)
       {
-         m_dcextension.get_text_extent(pgraphics,item.m_strText, size);
+
+         ::size_i32 size{};
+         
+         m_dcextension.get_text_extent(pgraphics, psubitem->m_strText, size);
+
          cx += size.cx;
+
       }
 
       return (i32)cx;
-#else
-      throw ::exception(todo);
-#endif
+
    }
 
 
@@ -5075,7 +5078,7 @@ auto pwindowing = windowing();
       for(index i = 0; i < iCount; i++)
       {
 
-         iWidth = _001CalcItemWidth(pgraphics,i,0);
+         iWidth = _001CalcSubItemWidth(pgraphics,i,0);
 
          if(iWidth > iMaxWidth)
          {

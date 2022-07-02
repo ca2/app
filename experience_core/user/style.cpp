@@ -319,9 +319,39 @@ namespace experience_core
 
                   }
 
-                  pgraphics->set_font(ptab, ::e_element_none);
+                  {
 
-                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
+                     auto & pfont = groupTabTheme.m_fonta[__e_none];
+
+                     if (!pfont)
+                     {
+
+                        pfont = ptab->get_font(pstyle, e_element_none);
+
+                     }
+
+                     pgraphics->set(pfont);
+
+                  }
+
+                  {
+
+                     auto & pbrush = groupTabTheme.m_brusha[__e_none];
+
+                     if (!pbrush)
+                     {
+
+                        __defer_construct(pbrush);
+
+                        auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
+
+                        pbrush->create_solid(colorText);
+
+                     }
+
+                     pbrushText = pbrush;
+
+                  }
 
                }
 

@@ -1302,7 +1302,11 @@ namespace user
       virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
-      ::oswindow get_safe_oswindow() const;
+      
+      ::oswindow _oswindow() const override;
+
+
+      inline ::oswindow get_safe_oswindow() const;
       inline ::oswindow oswindow() const { return m_oswindow; }
 
       //virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
@@ -2185,7 +2189,7 @@ namespace user
 
       }
 
-      return get_oswindow();
+      return _oswindow();
 
    }
 

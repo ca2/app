@@ -3276,6 +3276,7 @@ namespace draw2d
    }
 
 
+
    //void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
    //{
    //

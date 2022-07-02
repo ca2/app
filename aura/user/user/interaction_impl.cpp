@@ -49,9 +49,8 @@ CLASS_DECL_ACME void monitor_pointer(void * p);
 
 
 #define HARD_DEBUG 0
-//#define REDRAW_HINTING
 #undef REDRAW_HINTING
-//
+
 
 namespace user
 {
@@ -94,7 +93,6 @@ namespace user
 
       m_bOkToUpdateScreen = true;
       m_bUpdatingBuffer = false;
-      //m_bFocus = false;
       m_bCursorRedraw = false;
 
       defer_create_mutex();
@@ -103,8 +101,6 @@ namespace user
       m_bTranslateMouseMessageCursor         = true;
       m_bComposite                           = true;
       m_bUpdateGraphics                      = false;
-      //m_pwindow                              = nullptr;
-      //m_pprimitiveFocus                      = nullptr;
       m_bPendingRedraw                       = false;
       m_bTransparentMouseEvents              = false;
 
@@ -128,33 +124,7 @@ namespace user
    void interaction_impl::on_tsf_activate(bool bActivate)
    {
 
-      if (bActivate)
-      {
-
-         //get_wnd()->pred([this]()
-         //   {
-
-         //      //ImmSetOpenStatus(m_puserthread->m_himc, true);
-
-
-
-         ////      if (m_puserthread->m_peditwnd == nullptr)
-         ////      {
-
-         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(psystem->m_hinstance, m_puserinteraction->get_handle());
-
-         ////         m_puserthread->m_peditwnd->_Initialize(m_puserthread->m_pthreadmgr, m_puserthread->m_tfClientID);
-
-         ////      }
-
-         ////      m_puserthread->m_peditwnd->on_edit_set_focus(dynamic_cast <::user::interaction * > (get_keyboard_focus()));
-
-         //   });
-
-      }
-
    }
-
 
 
    ::mutex * interaction_impl::draw_mutex()
@@ -183,31 +153,6 @@ namespace user
    bool interaction_impl::has_pending_redraw_flags()
    {
 
-      //if (m_bCursorRedraw)
-      //{
-
-      //   auto psession = get_session();
-
-      //   auto puser = psession->user();
-
-      //   auto pwindowing = puser->windowing();
-
-      //   auto pointCursor = pwindowing->get_cursor_position();
-
-      //   if (m_pointMouseMove != pointCursor)
-      //   {
-
-      //      if (_001IsPointInside(pointCursor))
-      //      {
-
-      //         return true;
-
-      //      }
-
-      //   }
-
-      //}
-
       return ::user::primitive_impl::has_pending_redraw_flags();
 
    }
@@ -219,22 +164,6 @@ namespace user
       m_puserinteraction->set_need_layout();
 
    }
-
-
-   //void interaction_impl::window_move(i32 x, i32 y)
-   //{
-
-   //   auto & stateRequest = m_puserinteraction->request_state();
-
-   //   stateRequest.m_point.x = x;
-
-   //   stateRequest.m_point.y = y;
-
-   //   m_puserinteraction->set_reposition();
-
-   //   return true;
-
-   //}
 
 
    bool interaction_impl::has_pending_focus()
@@ -301,14 +230,6 @@ namespace user
    }
 
 
-   //void interaction_impl::set_destroying()
-   //{
-
-   //   m_bDestroying = true;
-
-   //}
-
-
    bool interaction_impl::set_pending_focus()
    {
 
@@ -340,22 +261,11 @@ namespace user
       else
       {
 
-         //auto pusersystem=__new(::user::system(0, nullptr, lpszName, WS_CHILD, nullptr));
-
-         //pusersystem->m_createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
-
          pinteraction->m_bMessageWindow = true;
 
          create_host(pinteraction);
-         //{
-
-         //   return false;
-
-         //}
 
       }
-
-      //return true;
 
    }
 
@@ -1750,8 +1660,6 @@ namespace user
       prio_install_message_routing(pchannel);
 
    }
-
-
 
 
    void interaction_impl::default_message_handler(::message::message * pmessage)

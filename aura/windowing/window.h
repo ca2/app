@@ -17,8 +17,8 @@ namespace windowing
       bool                                      m_bMessageOnlyWindow : 1;
 
 
-      void *                                    m_pWindow;
-      void *                                    m_pWindow2;
+      ::sandbox_windowing::window *             m_psandboxwindowingwindow;
+      void *                                    m_pWindow4;
 
       __pointer(::windowing::display)           m_pdisplay;
       __pointer(::user::interaction_impl)       m_puserinteractionimpl;

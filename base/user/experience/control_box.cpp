@@ -219,7 +219,7 @@ namespace experience
 
          ::point_i32 pointCursor;
 
-         auto pwindowing = windowing();
+         //auto pwindowing = windowing();
 
          auto pwindow = window();
 

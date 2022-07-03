@@ -315,14 +315,6 @@ namespace user
    }
 
 
-   //bool button::create_interaction(::user::interaction * pinteractionParent, const ::atom & atom)
-   //{
-
-   //   return interaction::create_interaction(pinteractionParent, atom);
-
-   //}
-
-
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -520,41 +512,6 @@ namespace user
       }
 
    }
-
-
-   //::color::color button::get_button_text_color()
-   //{
-
-   //   ::color::color crText;
-
-   //   if (!is_window_enabled())
-   //   {
-
-   //      crText = argb(255, 0, 0, 0);
-
-   //   }
-   //   else if (is_left_button_pressed() || get_echeck() == ::e_check_checked)
-   //   {
-
-   //      crText = argb(255, 0, 0, 0);
-
-   //   }
-   //   else if (::is_set(m_pitemHover))
-   //   {
-
-   //      crText = argb(255, 80, 80, 80);
-
-   //   }
-   //   else
-   //   {
-
-   //      crText = argb(255, 0, 0, 0);
-
-   //   }
-
-   //   return crText;
-
-   //}
 
 
    ::color::color button::_001GetButtonBackgroundColor()

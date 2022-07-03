@@ -243,7 +243,8 @@ namespace experience
 
          //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
 
-         index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest);
+         //index iMatchingMonitor =
+         m_pframewindow->good_move(rectangleRequest);
 
          //if (iMatchingMonitor >= 0)
          //{

@@ -171,7 +171,7 @@ namespace experience
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      void enable_frame_experience(bool bEnable = true);
+      void enable_frame_experience(bool bEnable = true) override;
       void enable_dock(bool bEnable = true);
       void enable_move(bool bEnable = true);
       void enable_size(bool bEnable = true);

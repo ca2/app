@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
+#include "aura/graphics/draw2d/path.h"
 #include "_shape.h"
 #include "font.h"
 #include "acme/primitive/geometry2d/_defer.h"

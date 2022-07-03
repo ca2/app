@@ -58,7 +58,7 @@ public:
 
    bool keyboard_focus_is_focusable() const override;
 
-   virtual bool create_bars();
+   bool create_bars() override;
    void on_create_bars() override;
 
    void on_visual_applied() override;

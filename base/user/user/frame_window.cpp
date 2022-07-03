@@ -746,7 +746,7 @@ namespace user
 
       // determine top-level parent, since that is the true parent of any
       //  modeless windows anyway...
-      auto pparent = top_level();
+      //auto pparent = top_level();
 
       m_uiptraDisable.erase_all();
 

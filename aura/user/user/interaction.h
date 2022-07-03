@@ -1270,7 +1270,7 @@ namespace user
       inline ::user::frame * parent_frame() const { return m_puserframeParent; }
       virtual ::user::frame* get_owner_frame() const;
 
-      virtual ::user::interaction * _top_level() const;
+      ::user::interaction * _top_level() const override;
       virtual ::user::frame * _top_level_frame() const;
       virtual ::user::frame * _parent_frame() const;
 

@@ -12,8 +12,11 @@
 #include "path.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/_collection.h"
 #include "_defer.h"
-//#include <math.h>
+#include "acme/primitive/geometry2d/_defer_shape.h"
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
@@ -3158,15 +3161,15 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_clipping_shape(pshape->shape < ::rectangle >(), pshape->holdee());
+         _add_clipping_shape(pshape->shape < ::rectangle >(), pshape);
          break;
       case e_shape_ellipse:
-         _add_clipping_shape(pshape->shape < ::ellipse >(), pshape->holdee());
+         _add_clipping_shape(pshape->shape < ::ellipse >(), pshape);
          break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
       case e_shape_polygon:
-         _add_clipping_shape(pshape->shape < ::polygon >(), pshape->holdee());
+         _add_clipping_shape(pshape->shape < ::polygon >(), pshape);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3186,7 +3189,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, __pointer(::draw2d::region) & pregion)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > * pshape)
    {
    
       throw ::interface_only();
@@ -3216,7 +3219,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse & ellipse, __pointer(::draw2d::region) & pregion)
+   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > * pshape)
    {
    
       throw ::interface_only();
@@ -3236,7 +3239,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon_i32, __pointer(::draw2d::region) & pregion)
+   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > * pshape)
    {
 
       throw ::interface_only();
@@ -3246,119 +3249,67 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   void graphics::intersect_clip(const ::rectangle & rectangle)
    {
-   
-      __pointer(::draw2d::region) pregion;
+      
+      _shape < ::rectangle, e_shape_rectangle, ::draw2d::region > regionshape;
 
-      //auto estatus = 
-      _add_clipping_shape(rectangle, pregion);
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      
-      //estatus = 
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
-   
+      _add_clipping_shape(rectangle, &regionshape);
+
    }
-
-
-
-   //void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
-   //{
-   //
-   //   auto estatus = _add_shape(rectangle);
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   estatus = _intersect_clip();
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   return estatus;
-   //
-   //}
-
-
-   //void graphics::intersect_clip(const ::ellipse & ellipse)
-   //{
-   //
-   //   auto estatus = _add_shape(ellipse);
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   estatus = _intersect_clip();
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   return estatus;
-   //
-   //}
 
 
    void graphics::intersect_clip(const ::ellipse & ellipse)
    {
    
-      //auto estatus =
+      _shape < ::ellipse, e_shape_ellipse, ::draw2d::region > regionshape;
 
-      __pointer(::draw2d::region) pregion;
-      
-      _add_clipping_shape(ellipse, pregion);
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      
-      //estatus = 
-      
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
+      _add_clipping_shape(ellipse, &regionshape);
    
    }
+
+
+   void graphics::intersect_clip(const ::polygon & polygon)
+   {
+
+      _shape < ::polygon, e_shape_polygon, ::draw2d::region > regionshape;
+
+      _add_clipping_shape(polygon, &regionshape);
+
+   }
+
+
+//   void graphics::intersect_clip(const ::ellipse & ellipse)
+//   {
+//
+//      throw interface_only();
+////      //auto estatus =
+////
+////      __pointer(::draw2d::region) pregion;
+////
+////      _add_clipping_shape(ellipse, pregion);
+////
+////      //if(!estatus)
+////      //{
+////      //
+////      //   return estatus;
+////      //
+////      //}
+////
+////      //estatus =
+////
+////      _intersect_clip();
+////
+////      //if(!estatus)
+////      //{
+////      //
+////      //   return estatus;
+////      //
+////      //}
+////      //
+////      //return estatus;
+//
+//   }
 
 
    //void graphics::intersect_clip(const ::polygon_i32 & polygon_i32)
@@ -3387,34 +3338,34 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::polygon_f64 & polygon)
-   {
-
-      __pointer(::draw2d::region) pregion;
-
-      //auto estatus = 
-      _add_clipping_shape(polygon, pregion);
-      //
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //estatus =
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
-
-   }
+//   void graphics::intersect_clip(const ::polygon_f64 & polygon)
+//   {
+//
+//      __pointer(::draw2d::region) pregion;
+//
+//      //auto estatus = 
+//      _add_clipping_shape(polygon, pregion);
+//      //
+//      //if(!estatus)
+//      //{
+//      // 
+//      //   return estatus;
+//      //   
+//      //}
+//      //
+//      //estatus =
+//      _intersect_clip();
+//      
+//      //if(!estatus)
+//      //{
+//      // 
+//      //   return estatus;
+//      //   
+//      //}
+//      //
+//      //return estatus;
+//
+//   }
 
 
 

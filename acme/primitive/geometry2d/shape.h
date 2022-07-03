@@ -29,9 +29,9 @@ public:
    virtual void * raw_type() const {return nullptr;}
 
 
-   virtual __pointer(HOLDEE) & holdee() { return *((__pointer(HOLDEE) *)nullptr); }
-   virtual const __pointer(HOLDEE) & holdee() const { return *((__pointer(HOLDEE) *)nullptr); }
-
+   virtual HOLDEE * holdee() { return nullptr; }
+   virtual const HOLDEE * holdee() const { return nullptr; }
+   virtual void holdee(HOLDEE *) {}
 
    template < typename SHAPE >
    SHAPE & shape() { return *(SHAPE *)raw_type(); }
@@ -165,8 +165,9 @@ public:
    ~_shape() override {}
 
 
-   __pointer(HOLDEE) & holdee() override { return m_pholdee; }
-   const __pointer(HOLDEE) & holdee() const override { return m_pholdee; }
+   HOLDEE * holdee() override { return m_pholdee; }
+   const HOLDEE * holdee() const override { return m_pholdee; }
+   void holdee(HOLDEE * pholdee) override { m_pholdee = pholdee; }
 
 
    virtual void * raw_type() const override { return (void*) &m_shape; }

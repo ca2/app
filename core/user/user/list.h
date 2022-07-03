@@ -186,11 +186,11 @@ namespace user
 
       //virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 
-      virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast);
+      void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast) override;
 
       virtual void _001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast);
+      void _001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast) override;
 
       virtual void _001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem);
 

@@ -538,7 +538,7 @@ namespace user
 
       ::index iDisplayIndex = 0;
 
-      for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex)
+      for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
 
          auto iItem = _001DisplayToStrict(iDisplayItem);

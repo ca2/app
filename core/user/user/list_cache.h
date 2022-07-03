@@ -18,7 +18,7 @@ namespace user
       ~list_cache() override;
 
 
-      void _001Invalidate(mesh * pmesh);
+      void _001Invalidate(mesh * pmesh) override;
 
       void _001CacheHint(mesh * pmesh, index iItemStart, index iItemCount) override;
 

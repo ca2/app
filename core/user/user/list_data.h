@@ -15,7 +15,7 @@ namespace user
       ~list_data() override;
 
    
-      virtual count _001GetColumnCount(mesh * pmesh);
+      count _001GetColumnCount(mesh * pmesh) override;
 
 
    };

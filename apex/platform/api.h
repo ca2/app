@@ -18,6 +18,7 @@ public:
 
 
    bool                             m_bAuthenticated;
+   bool                             m_bAuthenticating;
    string                           m_strConfig;
    string                           m_strProfile;
    string                           m_strToken;

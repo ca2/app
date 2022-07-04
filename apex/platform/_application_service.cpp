@@ -113,8 +113,7 @@ void application::on_service_request(::create * pcreate)
    else if (has_property("run"))
    {
 
-      __compose(m_pservicehanlder)
-         ;
+      __compose(m_pservicehandler);
 
       service_handler()->defer_service();
 

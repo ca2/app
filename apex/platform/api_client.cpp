@@ -17,73 +17,62 @@ api_client::~api_client()
 }
 
 
-
 void api_client::defer_api()
 {
 
    if (!m_papi || !m_papi->m_bAuthenticated)
    {
-
-      //auto estatus = 
       
-      create_api();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      ::file::path pathProfile;
-
-      pathProfile = m_pcontext->m_papexcontext->dir().appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
-
-      //estatus = 
-
-      try
+      if(m_papi && m_papi->m_bAuthenticating)
       {
-         m_papi->initialize_api(this, pathProfile);
-
+      
+         m_papi->m_eventResponse.wait();
+      
       }
-      catch (...)
+      else
       {
 
-         m_papi.release();
+         create_api();
+         
+         m_papi->m_bAuthenticating = true;
 
-         throw ::exception(error_failed);
+         ::file::path pathProfile;
 
-      }
+         pathProfile = m_pcontext->m_papexcontext->dir().appdata() / "api" / m_strImplementation / (m_strProfileStore + ".network_payload");
 
-      //if (!estatus)
-      //{
+         try
+         {
+            
+            m_papi->initialize_api(this, pathProfile);
 
-      //   m_papi.release();
+         }
+         catch (...)
+         {
 
-      //   return false;
+            m_papi.release();
 
-      //}
+            throw ::exception(error_failed);
 
-      //estatus = m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+         }
 
-      try
-      {
+         try
+         {
 
-         m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
+            m_papi->api_login(m_strApiClientConfig, m_strBrowserProfile);
 
-      }
-      catch (...)
-      {
+         }
+         catch (...)
+         {
 
-         m_papi.release();
+            m_papi.release();
 
-         return;
+            return;
 
+         }
+         
       }
 
    }
-
-   //return true;
 
 }
 
@@ -132,8 +121,7 @@ void api_client::create_api(const ::string& strImplementation)
 void api_client::api_get(::string & str, const string& strUrl, property_set& set)
 {
 
-   //auto estatus = 
-      defer_api();
+   defer_api();
 
    if (!m_papi)
    {
@@ -142,18 +130,7 @@ void api_client::api_get(::string & str, const string& strUrl, property_set& set
 
    }
 
-   //estatus = 
-   
    m_papi->api_get(str, strUrl, set);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
 
 }
 
@@ -161,7 +138,6 @@ void api_client::api_get(::string & str, const string& strUrl, property_set& set
 void api_client::api_get(::payload& payload, const string& strUrl, property_set& set)
 {
 
-   //auto estatus =
    defer_api();
 
    if (!m_papi)
@@ -173,23 +149,12 @@ void api_client::api_get(::payload& payload, const string& strUrl, property_set&
 
    m_papi->api_get(payload, strUrl, set);
 
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
 }
 
 
 void api_client::api_download(string strGet, const ::file::path& path, property_set& set)
 {
 
-   //auto estatus =
-   
    defer_api();
 
    if (!m_papi)
@@ -199,17 +164,7 @@ void api_client::api_download(string strGet, const ::file::path& path, property_
 
    }
 
-   //estatus = 
    m_papi->api_download(strGet, path, set);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
 
 }
 

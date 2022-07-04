@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1FB95F287253E90042849A /* _netserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB957287253E90042849A /* _netserver.h */; };
+		9A1FB960287253E90042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
+		9A1FB961287253E90042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
+		9A1FB962287253E90042849A /* socket_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB95A287253E90042849A /* socket_thread.h */; };
+		9A1FB963287253E90042849A /* socket_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB95B287253E90042849A /* socket_handler.h */; };
+		9A1FB964287253E90042849A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB95C287253E90042849A /* socket_handler.cpp */; };
+		9A1FB965287253E90042849A /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB95D287253E90042849A /* socket.h */; };
+		9A1FB966287253E90042849A /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB95E287253E90042849A /* _.h */; };
+		9A1FB96D2872540A0042849A /* networking_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB967287254080042849A /* networking_application.cpp */; };
+		9A1FB96E2872540A0042849A /* networking_application_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB968287254090042849A /* networking_application_handler.cpp */; };
+		9A1FB96F2872540A0042849A /* networking_application_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB969287254090042849A /* networking_application_socket.h */; };
+		9A1FB9702872540A0042849A /* networking_application_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB96A287254090042849A /* networking_application_handler.h */; };
+		9A1FB9712872540A0042849A /* networking_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB96B287254090042849A /* networking_application.h */; };
+		9A1FB9722872540A0042849A /* networking_application_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB96C2872540A0042849A /* networking_application_socket.cpp */; };
 		9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998E2760FFE2001E14CC /* libssl.3.dylib */; };
 		9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */; };
 		9A2269EB27CE8DB90042BAC2 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673627CE8DB70042BAC2 /* _apple.h */; };
@@ -857,6 +871,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1FB957287253E90042849A /* _netserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _netserver.h; sourceTree = "<group>"; };
+		9A1FB958287253E90042849A /* socket_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_thread.cpp; sourceTree = "<group>"; };
+		9A1FB959287253E90042849A /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
+		9A1FB95A287253E90042849A /* socket_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_thread.h; sourceTree = "<group>"; };
+		9A1FB95B287253E90042849A /* socket_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_handler.h; sourceTree = "<group>"; };
+		9A1FB95C287253E90042849A /* socket_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_handler.cpp; sourceTree = "<group>"; };
+		9A1FB95D287253E90042849A /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		9A1FB95E287253E90042849A /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A1FB967287254080042849A /* networking_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application.cpp; sourceTree = "<group>"; };
+		9A1FB968287254090042849A /* networking_application_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application_handler.cpp; sourceTree = "<group>"; };
+		9A1FB969287254090042849A /* networking_application_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application_socket.h; sourceTree = "<group>"; };
+		9A1FB96A287254090042849A /* networking_application_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application_handler.h; sourceTree = "<group>"; };
+		9A1FB96B287254090042849A /* networking_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application.h; sourceTree = "<group>"; };
+		9A1FB96C2872540A0042849A /* networking_application_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application_socket.cpp; sourceTree = "<group>"; };
 		9A21998E2760FFE2001E14CC /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../operating-system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
 		9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../operating-system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A22673627CE8DB70042BAC2 /* _apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _apple.h; sourceTree = "<group>"; };
@@ -1385,6 +1413,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1FB956287253E90042849A /* netserver */ = {
+			isa = PBXGroup;
+			children = (
+				9A1FB957287253E90042849A /* _netserver.h */,
+				9A1FB958287253E90042849A /* socket_thread.cpp */,
+				9A1FB959287253E90042849A /* socket.cpp */,
+				9A1FB95A287253E90042849A /* socket_thread.h */,
+				9A1FB95B287253E90042849A /* socket_handler.h */,
+				9A1FB95C287253E90042849A /* socket_handler.cpp */,
+				9A1FB95D287253E90042849A /* socket.h */,
+				9A1FB95E287253E90042849A /* _.h */,
+			);
+			path = netserver;
+			sourceTree = "<group>";
+		};
 		9A22673227CE8DB70042BAC2 /* operating_system */ = {
 			isa = PBXGroup;
 			children = (
@@ -1516,28 +1559,35 @@
 			isa = PBXGroup;
 			children = (
 				9A239D8026CDF9AE00F98012 /* http */,
+				9A1FB956287253E90042849A /* netserver */,
 				9A239CC026CDF9AE00F98012 /* sockets */,
 				9A239D7C26CDF9AE00F98012 /* _.cpp */,
-				9A239D7B26CDF9AE00F98012 /* address_department.cpp */,
-				9A239D7F26CDF9AE00F98012 /* address.cpp */,
-				9A239D9D26CDF9AE00F98012 /* email_address.cpp */,
-				9A239D9C26CDF9AE00F98012 /* email.cpp */,
-				9A239D7826CDF9AE00F98012 /* ip_enum.cpp */,
-				9A239CBB26CDF9AE00F98012 /* port_forward.cpp */,
-				9A239D7926CDF9AE00F98012 /* sockets.cpp */,
 				9A239D9E26CDF9AE00F98012 /* _.h */,
 				9A239CBE26CDF9AE00F98012 /* _impl.h */,
 				9A239D7D26CDF9AE00F98012 /* _networking_impl.h */,
 				9A239D7A26CDF9AE00F98012 /* _networking.h */,
+				9A239D7B26CDF9AE00F98012 /* address_department.cpp */,
 				9A239CBD26CDF9AE00F98012 /* address_department.h */,
+				9A239D7F26CDF9AE00F98012 /* address.cpp */,
 				9A239D7426CDF9AE00F98012 /* address.h */,
 				9A239D7E26CDF9AE00F98012 /* byte_order.h */,
+				9A239D9D26CDF9AE00F98012 /* email_address.cpp */,
 				9A239D7726CDF9AE00F98012 /* email_address.h */,
+				9A239D9C26CDF9AE00F98012 /* email.cpp */,
 				9A239CBC26CDF9AE00F98012 /* email.h */,
+				9A239D7826CDF9AE00F98012 /* ip_enum.cpp */,
 				9A239CBA26CDF9AE00F98012 /* ip_enum.h */,
 				9A239CBF26CDF9AE00F98012 /* net.h */,
+				9A1FB968287254090042849A /* networking_application_handler.cpp */,
+				9A1FB96A287254090042849A /* networking_application_handler.h */,
+				9A1FB96C2872540A0042849A /* networking_application_socket.cpp */,
+				9A1FB969287254090042849A /* networking_application_socket.h */,
+				9A1FB967287254080042849A /* networking_application.cpp */,
+				9A1FB96B287254090042849A /* networking_application.h */,
 				9A239D7526CDF9AE00F98012 /* open_weather_city.h */,
+				9A239CBB26CDF9AE00F98012 /* port_forward.cpp */,
 				9A239D7626CDF9AE00F98012 /* port_forward.h */,
+				9A239D7926CDF9AE00F98012 /* sockets.cpp */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -2369,6 +2419,7 @@
 				9AC01924274896EB006BEBCC /* is_dir.h in Headers */,
 				9AC0192927489AFE006BEBCC /* initializer.h in Headers */,
 				9A68BE092511444F008DABD2 /* macos.h in Headers */,
+				9A1FB966287253E90042849A /* _.h in Headers */,
 				9A68BD762511444F008DABD2 /* simple_command.h in Headers */,
 				9A239DB826CDF9AE00F98012 /* net.h in Headers */,
 				9A239DB926CDF9AE00F98012 /* tcp_socket.h in Headers */,
@@ -2391,6 +2442,7 @@
 				9A239DDC26CDF9AF00F98012 /* websocket_client.h in Headers */,
 				9A239DA326CDF9AE00F98012 /* _impl.h in Headers */,
 				9A226B1327CE8DBB0042BAC2 /* shell_launcher.h in Headers */,
+				9A1FB9712872540A0042849A /* networking_application.h in Headers */,
 				9A226B1427CE8DBB0042BAC2 /* apex.h in Headers */,
 				9A68BE112511444F008DABD2 /* linux.h in Headers */,
 				9A787DA5264C960F003DF8A0 /* retry.h in Headers */,
@@ -2405,6 +2457,7 @@
 				9A68BD752511444F008DABD2 /* cross_windows.h in Headers */,
 				9A4F4E1525311DA400733584 /* _crypto.h in Headers */,
 				9A68BCA22511444E008DABD2 /* app_launcher.h in Headers */,
+				9A1FB962287253E90042849A /* socket_thread.h in Headers */,
 				9A68BE0F2511444F008DABD2 /* _app_impl1.h in Headers */,
 				9A239E6E26CDF9AF00F98012 /* _.h in Headers */,
 				9A68BD812511444F008DABD2 /* command_ui_probe.h in Headers */,
@@ -2424,6 +2477,7 @@
 				9A239DBB26CDF9AE00F98012 /* sync_socket_handler.h in Headers */,
 				9A68BD912511444F008DABD2 /* command.h in Headers */,
 				9A226A6427CE8DBA0042BAC2 /* os.h in Headers */,
+				9A1FB96F2872540A0042849A /* networking_application_socket.h in Headers */,
 				9A226A4A27CE8DBA0042BAC2 /* _c.h in Headers */,
 				9A68BD842511444F008DABD2 /* listener_smart_pointer_array.h in Headers */,
 				9A787D89264C960F003DF8A0 /* thread_impl.h in Headers */,
@@ -2512,6 +2566,7 @@
 				9A2269F727CE8DB90042BAC2 /* graphics.h in Headers */,
 				9A226C6E27CE8DBD0042BAC2 /* _.h in Headers */,
 				9A68BE252511444F008DABD2 /* version.h in Headers */,
+				9A1FB95F287253E90042849A /* _netserver.h in Headers */,
 				9A787D87264C960F003DF8A0 /* delay_thread.h in Headers */,
 				9A68C17E25114451008DABD2 /* department.h in Headers */,
 				9A239DA226CDF9AE00F98012 /* address_department.h in Headers */,
@@ -2522,6 +2577,7 @@
 				9A68BD962511444F008DABD2 /* edit_file.h in Headers */,
 				9A68BCF52511444E008DABD2 /* log.h in Headers */,
 				9A9230D227EACE8000B5A78D /* predicate.h in Headers */,
+				9A1FB965287253E90042849A /* socket.h in Headers */,
 				9A239DF326CDF9AF00F98012 /* _.h in Headers */,
 				9A68C18125114451008DABD2 /* policy_objc.h in Headers */,
 				9A787DF4264CA9F2003DF8A0 /* command.h in Headers */,
@@ -2558,9 +2614,11 @@
 				9A68C18325114451008DABD2 /* _c.h in Headers */,
 				9A68BC9C2511444E008DABD2 /* _include.h in Headers */,
 				9A68BB3A2511444D008DABD2 /* procedure.h in Headers */,
+				9A1FB9702872540A0042849A /* networking_application_handler.h in Headers */,
 				9A68BDED2511444F008DABD2 /* remote_native_file.h in Headers */,
 				9A239E4626CDF9AF00F98012 /* _.h in Headers */,
 				9AC2CB4826533B3800CC8096 /* notify_icon_bridge.h in Headers */,
+				9A1FB963287253E90042849A /* socket_handler.h in Headers */,
 				9A68BD872511444F008DABD2 /* language_map.h in Headers */,
 				9A68BD702511444F008DABD2 /* global.h in Headers */,
 				9A239E5F26CDF9AF00F98012 /* stream.h in Headers */,
@@ -2874,6 +2932,7 @@
 				9A787D73264C960F003DF8A0 /* thread.cpp in Sources */,
 				9A226D0127CE8FAB0042BAC2 /* apex.cpp in Sources */,
 				9A68BB4A2511444D008DABD2 /* event_change.cpp in Sources */,
+				9A1FB96D2872540A0042849A /* networking_application.cpp in Sources */,
 				9A787D8D264C960F003DF8A0 /* _.cpp in Sources */,
 				9A239DE826CDF9AF00F98012 /* tunnel.cpp in Sources */,
 				9A68BD0C2511444E008DABD2 /* application.cpp in Sources */,
@@ -2898,6 +2957,7 @@
 				9A9230CF27EACE8000B5A78D /* manager.cpp in Sources */,
 				9A787DD4264CA98C003DF8A0 /* launcher.cpp in Sources */,
 				9A68BCD52511444E008DABD2 /* assert_running_task.cpp in Sources */,
+				9A1FB961287253E90042849A /* socket.cpp in Sources */,
 				9A4F4E1D25311DA400733584 /* rsa.cpp in Sources */,
 				9A239DD726CDF9AF00F98012 /* link_out_socket.cpp in Sources */,
 				9A239E5426CDF9AF00F98012 /* form.cpp in Sources */,
@@ -2930,6 +2990,7 @@
 				9A226A8D27CE8DBA0042BAC2 /* file.cpp in Sources */,
 				9A239DC926CDF9AF00F98012 /* basic_net.cpp in Sources */,
 				9A23A28A26CDFF1A00F98012 /* integer.cpp in Sources */,
+				9A1FB960287253E90042849A /* socket_thread.cpp in Sources */,
 				9A2269F127CE8DB90042BAC2 /* ns_exception.cpp in Sources */,
 				9A68C17D25114451008DABD2 /* department.cpp in Sources */,
 				9AC0191E274896BF006BEBCC /* idpool.cpp in Sources */,
@@ -2994,6 +3055,7 @@
 				9A239DD226CDF9AF00F98012 /* resolv_server.cpp in Sources */,
 				9A68BD802511444F008DABD2 /* application.cpp in Sources */,
 				9A239DE026CDF9AF00F98012 /* debug_socket.cpp in Sources */,
+				9A1FB9722872540A0042849A /* networking_application_socket.cpp in Sources */,
 				9A239DF126CDF9AF00F98012 /* get_socket.cpp in Sources */,
 				9A68BCCE2511444E008DABD2 /* history.cpp in Sources */,
 				9A9230C627EACE8000B5A78D /* source.cpp in Sources */,
@@ -3016,7 +3078,9 @@
 				9A239DEC26CDF9AF00F98012 /* session.cpp in Sources */,
 				9A68BDEB2511444F008DABD2 /* data.cpp in Sources */,
 				9A68BCEC2511444E008DABD2 /* session.cpp in Sources */,
+				9A1FB96E2872540A0042849A /* networking_application_handler.cpp in Sources */,
 				9A239E6326CDF9AF00F98012 /* cookie.cpp in Sources */,
+				9A1FB964287253E90042849A /* socket_handler.cpp in Sources */,
 				9A239DC026CDF9AF00F98012 /* socket_handler.cpp in Sources */,
 				9A787D95264C960F003DF8A0 /* service.cpp in Sources */,
 				9A68BD7D2511444F008DABD2 /* debug.cpp in Sources */,

@@ -3,7 +3,7 @@
 
 
 // Thomas loves handler!!s
-class CLASS_DECL_AXIS networking_application_handler :
+class CLASS_DECL_APEX networking_application_handler :
    virtual public ::object
 {
 public:

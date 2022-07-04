@@ -48,7 +48,7 @@ public:
    
    
    class CharEntityRefs :
-      public string_map < char, char >
+      public string_map < char >
    {
    public:
       

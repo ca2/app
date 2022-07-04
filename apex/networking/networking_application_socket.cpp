@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "netserver/_netserver.h"
 #include "_networking.h"
+#include "networking_application_socket.h"
 
 
 networking_application_socket::networking_application_socket()
@@ -19,7 +20,7 @@ networking_application_socket::~networking_application_socket()
 void networking_application_socket::on_send_response()
 {
 
-   auto papp = get_app()->m_paxisapplication;
+   auto papp = get_app()->m_papplication;
 
    string strUrl;
 

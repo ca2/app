@@ -8,7 +8,7 @@ namespace netserver
 {
 
 
-   class CLASS_DECL_AXIS socket :
+   class CLASS_DECL_APEX socket :
       virtual public ::sockets::httpd_socket
    {
    public:

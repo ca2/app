@@ -15,6 +15,7 @@
 #include "acme/platform/node.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
+#include "apex/networking/networking_application.h"
 
 
 
@@ -10149,6 +10150,61 @@ string application::get_wm_class() const
 
 
 #endif
+
+
+class networking_application* application::networking_application()
+{
+
+   if (!m_pnetworkingapplication)
+   {
+
+      create_networking_application();
+
+   }
+
+   return m_pnetworkingapplication;
+
+}
+
+
+void application::create_networking_application()
+{
+
+   //auto estatus =
+   
+   __defer_construct(m_pnetworkingapplication);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //estatus =
+   
+   m_pnetworkingapplication->create_networking_application();
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //return estatus;
+
+}
+
+
+::e_status application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+{
+
+   auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+
+   return estatus;
+
+}
 
 
 //void application::interprocess_communication_open(const char * pszPath)

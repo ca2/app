@@ -2,18 +2,6 @@
 #pragma once
 
 
-class networking_application_socket;
-
-
-#include "axis/networking/netserver/_.h"
-
-
-#include "networking_application_handler.h"
-
-
-#include "networking_application.h"
-
-
 #include "email_department.h"
 
 

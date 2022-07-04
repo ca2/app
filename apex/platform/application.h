@@ -1,17 +1,14 @@
 #pragma once
 
 
-//namespace apex
-//{
-
-
 class CLASS_DECL_APEX application :
    virtual public ::app,
    //virtual public ::apex_main_struct,
    virtual public ::apex::context,
    virtual public int_scalar_source,
    virtual public ::database::client,
-   virtual public ::application_exit
+   virtual public ::application_exit,
+   virtual public ::networking_application_handler
 {
 public:
 
@@ -143,7 +140,10 @@ public:
 
       string_array                                    m_straAppInterest;
 
-      __composite(::service_handler) m_pservicehanlder;
+      __composite(::service_handler)                  m_pservicehandler;
+   
+      __pointer(::networking_application)             m_pnetworkingapplication;
+
 
 
       application();
@@ -577,7 +577,7 @@ public:
 
       virtual void get_temp_file_name(string & str,const ::string & lpszName,const ::string & pszExtension);
 
-      inline ::service_handler* service_handler() const { return m_pservicehanlder; }
+      inline ::service_handler* service_handler() const { return m_pservicehandler; }
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -1075,6 +1075,15 @@ public:
 
       virtual void on_create_app_shortcut();
       virtual void create_app_shortcut();
+
+   
+      virtual class networking_application* networking_application();
+   
+   
+      virtual void create_networking_application();
+
+
+   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
 };

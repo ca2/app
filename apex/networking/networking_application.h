@@ -3,7 +3,7 @@
 
 
 
-class CLASS_DECL_AXIS networking_application :
+class CLASS_DECL_APEX networking_application :
    virtual public ::networking_application_handler
 {
 protected:

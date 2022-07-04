@@ -481,6 +481,8 @@ namespace file
    {
    case 0:
       return ::success;
+      case EEXIST:
+         return ::error_already_exists;
    case EPERM:
    case EACCES:
       return error_file_access_denied;

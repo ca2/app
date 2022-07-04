@@ -118,9 +118,6 @@
     <Filter Include="Source Files\networking\sockets\bsd\smtp">
       <UniqueIdentifier>{40bbdd11-9476-4f26-9aee-d8462b0f27b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\netserver">
-      <UniqueIdentifier>{4f0d0e3f-570b-4d67-a5d9-7dadef149528}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\mathematics">
       <UniqueIdentifier>{ad13cd40-dc53-493e-97d9-b9150e528515}</UniqueIdentifier>
     </Filter>
@@ -147,9 +144,6 @@
     </Filter>
     <Filter Include="Header Files\networking">
       <UniqueIdentifier>{0d64a29e-0c32-4055-af8d-1577316d6aad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\networking\netserver">
-      <UniqueIdentifier>{2de40e4d-2763-437d-a527-0ce2dd7b9c4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -555,34 +549,10 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="networking\netserver\socket_thread.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\socket_handler.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\socket.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\_netserver.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\_.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\networking_application_socket.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="networking\_networking.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="networking\networking_application.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="networking\_.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\networking_application_handler.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
   </ItemGroup>
@@ -752,15 +722,6 @@
     <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp">
       <Filter>Source Files\networking\sockets\bsd\smtp</Filter>
     </ClCompile>
-    <ClCompile Include="networking\netserver\socket.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_handler.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_thread.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
     <ClCompile Include="mathematics\calculator\calculator.cpp">
       <Filter>Source Files\mathematics\calculator</Filter>
     </ClCompile>
@@ -796,15 +757,6 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_socket.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_handler.cpp">
-      <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -49,9 +49,9 @@ inline const char * c_demangle(const char * psz)
 //   return psz;
 //
 //}
-#define __object_type(t) ::type(e_data_structure_type, t)
-#endif
 
+#endif
+#define __object_type(t) ::type(e_data_structure_type, t)
 
 enum enum_data_structure_type
 {

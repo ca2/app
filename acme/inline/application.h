@@ -33,7 +33,8 @@
 
 #include "acme/_defer.h"
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
+int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 #else
 int main(int argc, char * argv[], char * envp[])
 #endif
@@ -43,7 +44,40 @@ int main(int argc, char * argv[], char * envp[])
 
    auto papp = __new(APPLICATION::application);
 
+#ifdef WINDOWS_DESKTOP
+   //{
+
+   //   auto papp = ::app_factory::new_app();
+
+      papp->m_argc = __argc;
+
+      papp->m_argv = __argv;
+
+      papp->m_wargv = __wargv;
+
+      papp->m_envp = *__p__environ();
+
+      papp->m_wenvp = *__p__wenviron();
+
+      papp->m_hinstanceThis = hinstanceThis;
+
+      papp->m_hinstancePrev = hinstancePrev;
+
+      papp->m_strCommandLine = ::GetCommandLineW();
+
+      papp->m_nCmdShow = nCmdShow;
+
+      //papp->m_bConsole = false;
+
+      //int iExitCode = papp->main_loop();
+
+      //return iExitCode;
+
+#else
+
    papp->set_args(argc, argv, envp);
+
+#endif
 
 #if defined(LINUX) || defined(FREEBSD)
 

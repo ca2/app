@@ -2697,6 +2697,10 @@ namespace user
       }
 
       on_change_cur_sel();
+      
+      set_need_redraw();
+      
+      post_redraw();
 
    }
 

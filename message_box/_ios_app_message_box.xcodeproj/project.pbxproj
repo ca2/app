@@ -26,7 +26,7 @@
 		9A882EA12844A0FF004113D1 /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA02844A0FF004113D1 /* libios_aqua.a */; };
 		9A882EA32844A0FF004113D1 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA22844A0FF004113D1 /* libios_aura.a */; };
 		9A882EA52844A0FF004113D1 /* libios_aura_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA42844A0FF004113D1 /* libios_aura_apple.a */; };
-		9A882EA62844A0FF004113D1 /* libios_app_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */; };
+		9A882EA62844A0FF004113D1 /* libios_app_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8128449DF8004113D1 /* libios_app_message_box.a */; };
 		9A882EB02844A5FD004113D1 /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EAF2844A5FD004113D1 /* libios_acme.a */; };
 		9A882EB22844A616004113D1 /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB12844A616004113D1 /* libios_aura_posix.a */; };
 		9A882EB42844A632004113D1 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB32844A632004113D1 /* libios_aura.a */; };
@@ -252,7 +252,7 @@
 				9A882E9B2844A0FF004113D1 /* libapex_ios.a in Frameworks */,
 				9A882E9D2844A0FF004113D1 /* libios_apex_posix.a in Frameworks */,
 				9A882E9F2844A0FF004113D1 /* libios_app_app.a in Frameworks */,
-				9A882EA62844A0FF004113D1 /* libios_app_message_box.dylib in Frameworks */,
+				9A882EA62844A0FF004113D1 /* libios_app_message_box.a in Frameworks */,
 				9A882EA12844A0FF004113D1 /* libios_aqua.a in Frameworks */,
 				9A882EA32844A0FF004113D1 /* libios_aura.a in Frameworks */,
 				9A882EA52844A0FF004113D1 /* libios_aura_apple.a in Frameworks */,
@@ -396,7 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				9A882E5E28449D74004113D1 /* libapp_message_box.dylib */,
-				9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */,
+				9A882E8128449DF8004113D1 /* libios_app_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,10 +606,10 @@
 			remoteRef = 9A882E5D28449D74004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */ = {
+		9A882E8128449DF8004113D1 /* libios_app_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_app_message_box.dylib;
+			path = libios_app_message_box.a;
 			remoteRef = 9A882E8028449DF8004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -735,7 +735,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "sofware.ca2.app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
@@ -756,7 +756,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "sofware.ca2.app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;

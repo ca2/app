@@ -3,10 +3,8 @@
 #include "holder.h"
 
 
-
 namespace draw2d
 {
-
 
 
    holder::holder()

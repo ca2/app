@@ -444,6 +444,8 @@
 		9A8EB3862449821B0056E362 /* item_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB30E2449821B0056E362 /* item_action.cpp */; };
 		9A8EB3942449821C0056E362 /* callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB31C2449821B0056E362 /* callback.h */; };
 		9A8EB3972449821C0056E362 /* item_action.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB31F2449821B0056E362 /* item_action.h */; };
+		9A8FC2F62872B84800B8D570 /* holdee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB50928712FAB0042849A /* holdee.cpp */; };
+		9A8FC2F72872B85500B8D570 /* holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB50B28712FAB0042849A /* holder.cpp */; };
 		9A8FCD822651AFAB00C0D8A1 /* write_text.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD702651AFAB00C0D8A1 /* write_text.h */; };
 		9A8FCD832651AFAB00C0D8A1 /* bounding_rect.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD712651AFAB00C0D8A1 /* bounding_rect.h */; };
 		9A8FCD842651AFAB00C0D8A1 /* text_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD722651AFAB00C0D8A1 /* text_box.cpp */; };
@@ -2542,6 +2544,7 @@
 				9A750FCC282B929E00C4861B /* pointer_array.cpp in Sources */,
 				9A750FD0282B929E00C4861B /* imaging.cpp in Sources */,
 				9A750FB0282B913F00C4861B /* interaction.cpp in Sources */,
+				9A8FC2F72872B85500B8D570 /* holder.cpp in Sources */,
 				9A201A6A247733D800A31CBF /* item_action.cpp in Sources */,
 				9A750FAB282B912800C4861B /* interaction_impl.cpp in Sources */,
 				9A5253D624A820EE0088E35A /* _.cpp in Sources */,
@@ -2662,6 +2665,7 @@
 				9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */,
 				9A750FDE282B929E00C4861B /* extension.cpp in Sources */,
 				9A94DE65282C0ADA00F5C1CA /* debug.cpp in Sources */,
+				9A8FC2F62872B84800B8D570 /* holdee.cpp in Sources */,
 				9A750FBD282B916D00C4861B /* progress.cpp in Sources */,
 				9A75C6AB283D6E6400EC37F2 /* device_listener.cpp in Sources */,
 				9A750FC1282B927200C4861B /* lock.cpp in Sources */,

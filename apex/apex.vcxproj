@@ -821,6 +821,12 @@
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
+    <ClCompile Include="networking\netserver\socket.cpp" />
+    <ClCompile Include="networking\netserver\socket_handler.cpp" />
+    <ClCompile Include="networking\netserver\socket_thread.cpp" />
+    <ClCompile Include="networking\networking_application.cpp" />
+    <ClCompile Include="networking\networking_application_handler.cpp" />
+    <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
     <ClCompile Include="networking\sockets\base\base_socket.cpp" />

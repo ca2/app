@@ -239,7 +239,24 @@ namespace experience_core
 
                }
 
-               pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+               {
+
+                  auto & pbrush = groupTabTheme.m_brusha[__e_selected];
+
+                  if (!pbrush)
+                  {
+
+                     __defer_construct(pbrush);
+
+                     auto colorText = ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected);
+
+                     pbrush->create_solid(colorText);
+
+                  }
+
+                  pbrushText = pbrush;
+
+               }
 
             }
             else

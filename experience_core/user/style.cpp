@@ -83,6 +83,17 @@ namespace experience_core
       ::rectangle_i32 rcClient;
 
       ptab->get_client_rect(rcClient);
+      
+      if(rcClient.is_empty())
+      {
+         
+         output_debug_string("style::_001TabOnDrawSchema01 Tab Client Rect is empty\n");
+         
+         return true;
+         
+      }
+      
+      output_debug_string("style::_001TabOnDrawSchema01\n");
 
       auto pstyle = ptab->get_style(pgraphics);
 

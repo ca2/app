@@ -1167,10 +1167,15 @@ namespace experience
             m_pframe->OnActivate();
 
          }
+         
+         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         {
 
-         set_need_redraw();
+            set_need_redraw();
 
-         post_redraw();
+            post_redraw();
+            
+         }
 
       }
 

@@ -1029,7 +1029,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true " + __type_name(this));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
 
       //defer_set_icon();
 
@@ -1037,7 +1037,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false " + __type_name(this));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
 
    }
 
@@ -2281,13 +2281,13 @@ bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
 
    }
 
-   set_need_layout();
+   //set_need_layout();
 
-   set_need_redraw();
+   //set_need_redraw();
 
    //m_bLockSketchToDesign = false;
 
-   post_redraw();
+   //post_redraw();
 
    return true;
 

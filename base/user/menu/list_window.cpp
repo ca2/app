@@ -255,12 +255,14 @@ namespace user
 
          if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
          {
+            
+            auto rPlacement = ::rectangle_i32_dimension(
+                                                        prectangle->left + pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->top,
+                                                        iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->bottom - prectangle->top);
 
-            pitem->m_puserinteraction->place(::rectangle_i32_dimension(
-            prectangle->left + pitem->m_iLevel * g_base_menu_indent,
-            prectangle->top,
-            iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-            prectangle->bottom - prectangle->top));
+            pitem->m_puserinteraction->place(rPlacement);
 
             pitem->m_puserinteraction->display();
 

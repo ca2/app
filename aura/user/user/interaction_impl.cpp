@@ -2242,14 +2242,15 @@ namespace user
                   if (rectWindow.left >= rcMonitor.left)
                   {
 
-                     pmouse->m_point.x += (::i32)rectWindow.left;
+                     pmouse->m_point.x += (::i32)rcMonitor.left;
 
                   }
 
                   if (rectWindow.top >= rcMonitor.top)
                   {
 
-                     pmouse->m_point.y += (::i32)rectWindow.top;
+                     //pmouse->m_point.y += (::i32)rectWindow.top;
+                     pmouse->m_point.y += (::i32)rcMonitor.top;
 
                   }
 
@@ -7341,7 +7342,6 @@ namespace user
       auto pdataSource = pimageSource->get_data();
 
       auto scanSource = pimageSource->m_iScan;
-
 
 #ifdef __i386__
 

@@ -230,12 +230,15 @@ namespace graphics
    {
 
       synchronous_lock slBuffer(get_buffer_sync());
+      
       synchronous_lock slScreen(get_screen_sync());
 
       if (m_iCurrentBuffer == 0)
       {
 
          m_iCurrentBuffer = 1;
+         
+         output_debug_string("buffer_lock_round_swap_key_buffers (1)\n");
 
       }
       else
@@ -243,7 +246,11 @@ namespace graphics
 
          m_iCurrentBuffer = 0;
 
+         output_debug_string("buffer_lock_round_swap_key_buffers (0)\n");
+
       }
+      
+      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
 
       //if (get_buffer_image()->is_ok())
       //{
@@ -252,37 +259,37 @@ namespace graphics
 
       //}
 
-      int debug = 1;
-
-      if (debug)
-      {
-
-         auto pimageScreen = get_screen_image();
-
-         if(::is_null(pimageScreen))
-         {
-
-            return false;
-
-         }
-
-         pimageScreen->map();
-
-         auto pdata = pimageScreen->get_data();
-
-         byte * p = (byte *)pdata;
-
-         byte r = p[0];
-
-         byte g = p[1];
-
-         byte b = p[2];
-
-         byte a = p[3];
-
-         //::output_debug_string("argb " +__string(r) + "," + __string(g) + "," +__string(b) + "," + __string(a));
-
-      }
+//      int debug = 1;
+//
+//      if (debug)
+//      {
+//
+//         auto pimageScreen = get_screen_image();
+//
+//         if(::is_null(pimageScreen))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         pimageScreen->map();
+//
+//         auto pdata = pimageScreen->get_data();
+//
+//         byte * p = (byte *)pdata;
+//
+//         byte r = p[0];
+//
+//         byte g = p[1];
+//
+//         byte b = p[2];
+//
+//         byte a = p[3];
+//
+//         //::output_debug_string("argb " +__string(r) + "," + __string(g) + "," +__string(b) + "," + __string(a));
+//
+//      }
 
       return true;
 

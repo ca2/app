@@ -641,7 +641,6 @@ namespace user
 
       }
 
-
       if(pstyle == nullptr)
       {
 
@@ -1690,18 +1689,18 @@ namespace user
 
          pholder->display(::e_display_normal);
 
-         if (ppane->m_bNeedLayout)
-         {
-
-            ppane->m_bNeedLayout = false;
-
-            pholder->set_need_layout();
-
-         }
-
-         pholder->set_need_redraw();
-
-         pholder->post_redraw();
+//         if (ppane->m_bNeedLayout)
+//         {
+//
+//            ppane->m_bNeedLayout = false;
+//
+//            pholder->set_need_layout();
+//
+//         }
+//
+//         pholder->set_need_redraw();
+//
+//         pholder->post_redraw();
 
       }
       else if(::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
@@ -1880,9 +1879,9 @@ namespace user
 
             }
 
-            set_need_redraw();
-
-            post_redraw();
+//            set_need_redraw();
+//
+//            post_redraw();
 
             pmouse->m_bRet = true;
 
@@ -2682,6 +2681,8 @@ namespace user
 
    void tab::set_current_tab_by_index(::index iIndex)
    {
+      
+      output_debug_string("tab::set_current_tab_by_index start\n");
 
       synchronous_lock lock(get_data()->mutex());
 
@@ -2698,10 +2699,17 @@ namespace user
 
       on_change_cur_sel();
       
-      set_need_redraw();
+      if (m_ewindowflag & ::e_window_flag_window_created)
+      {
       
-      post_redraw();
-
+         set_need_redraw();
+      
+         post_redraw();
+         
+      }
+      
+      output_debug_string("tab::set_current_tab_by_index end\n");
+      
    }
 
 
@@ -3054,9 +3062,9 @@ namespace user
 
       pplaceholder->hide();
 
-      pplaceholder->set_need_redraw();
-
-      pplaceholder->post_redraw();
+//      pplaceholder->set_need_redraw();
+//
+//      pplaceholder->post_redraw();
 
       return true;
 

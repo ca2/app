@@ -845,7 +845,7 @@ namespace user
       if (edisplayOutput != edisplayDesign)
       {
 
-         m_puserinteraction->post_message(e_message_show_window);
+         m_puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
 
       }
 

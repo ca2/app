@@ -23,6 +23,9 @@
 #include "acme/primitive/geometry2d/_defer_shape.h"
 
 
+#define INFO_LAYOUT_DISPLAY
+
+
 //template < typename R >
 //inline int contained_vertex_count(const R & rContains, const R & rContained)
 //{
@@ -1114,7 +1117,7 @@ namespace user
 
    void interaction::post_redraw(bool bAscendants)
    {
-
+      
       auto * pinteraction = get_host_window();
 
       if (::is_null(pinteraction))
@@ -1135,6 +1138,15 @@ namespace user
             || edisplaySketch != edisplayWindow
             || pinteraction == psession->get_user_interaction_host()))
       {
+
+         if(payload("bQueuedPostRedraw").is_true())
+         {
+            
+            return;
+            
+         }
+
+         payload("bQueuedPostRedraw") = true;
 
          pinteraction->m_pprimitiveimpl->post_redraw();
 
@@ -6742,6 +6754,12 @@ namespace user
       {
 
          create_child(pwindowHost->m_puserinteractionimpl->m_puserinteraction);
+         
+//         pwindowHost->m_puserinteractionimpl->m_puserinteraction->set_need_layout();
+//
+//         pwindowHost->m_puserinteractionimpl->m_puserinteraction->set_need_redraw();
+//
+//         pwindowHost->m_puserinteractionimpl->m_puserinteraction->post_redraw();
 
          return;
 
@@ -11675,12 +11693,7 @@ namespace user
    bool interaction::on_add_child(::user::interaction * puserinteractionChild)
    {
 
-      INFORMATION("-------------------------------------------------------------------");
-      INFORMATION("");
-      INFORMATION("");
-      INFORMATION("interaction::on_add_child (3)");
-      INFORMATION("");
-      INFORMATION("");
+      INFORMATION("interaction::on_add_child start\n");
 
       puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
@@ -11700,8 +11713,6 @@ namespace user
       }
 
       puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
-
-      //      auto type = __object_type(*this);
 
       m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -15303,17 +15314,27 @@ namespace user
       if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
       {
 
-         set_need_redraw();
+         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         {
+            
+            set_need_redraw();
 
-         post_redraw();
+            post_redraw();
+            
+         }
 
       }
       else if (ptopic->m_atom == id_user_style_change)
       {
+         
+         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         {
 
-         set_need_redraw();
+            set_need_redraw();
 
-         post_redraw();
+            post_redraw();
+            
+         }
 
       }
 
@@ -16540,7 +16561,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      //string strType = __type_name(this);
+      auto pszType = typeid(*this).name();
+      
+      ::output_debug_string("interaction::on_message_left_button_down " + __string(pszType));
 
       if (!is_window_enabled())
       {
@@ -16786,6 +16809,10 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
+      auto pszType = typeid(*this).name();
+      
+      ::output_debug_string("interaction::on_message_left_button_up " + __string(pszType));
+      
       auto pappearance = get_appearance();
 
       if (::is_set(pappearance))
@@ -18750,7 +18777,7 @@ namespace user
 
       __pointer(::user::interaction) puserinteractionParent = get_parent();
 
-      if (puserinteractionParent)
+      if (puserinteractionParent && puserinteractionParent != windowing()->get_application_host_window()->m_puserinteractionimpl->m_puserinteraction)
       {
 
          puserinteractionParent->route_command(pcommand, false);

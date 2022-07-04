@@ -866,22 +866,27 @@ namespace experience
 
    void frame::on_initialize_appearance()
    {
-
-      if (!m_pcontrolbox)
+      
+      if(m_pframewindow->m_bWindowFrame)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
+         if (!m_pcontrolbox)
+         {
 
-         m_pcontrolbox->initialize(this);
+            __compose(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
 
-         m_pcontrolbox->m_pframewindow = m_pframewindow;
+            m_pcontrolbox->initialize(this);
 
-         auto pframewindow = m_pframewindow;
+            m_pcontrolbox->m_pframewindow = m_pframewindow;
 
-         m_pcontrolbox->create_child(pframewindow);
+            auto pframewindow = m_pframewindow;
 
-         m_pcontrolbox->update_control_box_buttons();
+            m_pcontrolbox->create_child(pframewindow);
 
+            m_pcontrolbox->update_control_box_buttons();
+
+         }
+            
       }
 
       on_style_change();

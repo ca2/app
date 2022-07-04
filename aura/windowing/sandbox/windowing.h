@@ -56,6 +56,8 @@ namespace sandbox_windowing
       ::windowing::window* get_application_host_window() override;
 
 
+
+
       //::windowing::display* display() override;
 
 
@@ -93,6 +95,8 @@ namespace sandbox_windowing
 
       __pointer(::windowing::cursor) get_cursor(enum_cursor ecursor) override;
 
+      
+      
 
    };
 

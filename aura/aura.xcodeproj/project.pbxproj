@@ -37,6 +37,8 @@
 		9A1FB51728712FAC0042849A /* path_simple_optimization.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB50E28712FAC0042849A /* path_simple_optimization.h */; };
 		9A1FB51828712FAC0042849A /* region_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB50F28712FAC0042849A /* region_item.cpp */; };
 		9A1FB51928712FAC0042849A /* holdee.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB51028712FAC0042849A /* holdee.h */; };
+		9A1FBB7F2872A99D0042849A /* path_simple_optimization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB50828712FAB0042849A /* path_simple_optimization.cpp */; };
+		9A1FBB802872A9A30042849A /* region_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB50F28712FAC0042849A /* region_item.cpp */; };
 		9A201A56247733D800A31CBF /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB2DE2449821A0056E362 /* callback.cpp */; };
 		9A201A6A247733D800A31CBF /* item_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EB30E2449821B0056E362 /* item_action.cpp */; };
 		9A201AB1247733D900A31CBF /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764112409BEFA002D15D3 /* _.cpp */; };
@@ -2639,11 +2641,13 @@
 				9A750F4F282B8FC800C4861B /* text_out_array.cpp in Sources */,
 				9ACFE56B28497F9E00911485 /* windowing.cpp in Sources */,
 				9A750F4D282B8FB800C4861B /* drawer.cpp in Sources */,
+				9A1FBB802872A9A30042849A /* region_item.cpp in Sources */,
 				9A750FC0282B924600C4861B /* game.cpp in Sources */,
 				9A750F5C282B908800C4861B /* system.cpp in Sources */,
 				9A750FF1282B932100C4861B /* aura_mq.cpp in Sources */,
 				9A750FC2282B927200C4861B /* task_tool.cpp in Sources */,
 				9A750FF0282B932100C4861B /* theme.cpp in Sources */,
+				9A1FBB7F2872A99D0042849A /* path_simple_optimization.cpp in Sources */,
 				9A201B2F247733DA00A31CBF /* _.cpp in Sources */,
 				9A201B39247733DA00A31CBF /* user.cpp in Sources */,
 				9A750F50282B8FDF00C4861B /* _shape.cpp in Sources */,

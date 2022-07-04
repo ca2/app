@@ -21,6 +21,12 @@
 		9A1FB9702872540A0042849A /* networking_application_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB96A287254090042849A /* networking_application_handler.h */; };
 		9A1FB9712872540A0042849A /* networking_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB96B287254090042849A /* networking_application.h */; };
 		9A1FB9722872540A0042849A /* networking_application_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB96C2872540A0042849A /* networking_application_socket.cpp */; };
+		9A1FBB812872A9D90042849A /* networking_application_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB968287254090042849A /* networking_application_handler.cpp */; };
+		9A1FBB822872A9DC0042849A /* networking_application_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB96C2872540A0042849A /* networking_application_socket.cpp */; };
+		9A1FBB832872A9E00042849A /* networking_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB967287254080042849A /* networking_application.cpp */; };
+		9A1FBB842872A9E80042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
+		9A1FBB852872A9EC0042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
+		9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB95C287253E90042849A /* socket_handler.cpp */; };
 		9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998E2760FFE2001E14CC /* libssl.3.dylib */; };
 		9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */; };
 		9A2269EB27CE8DB90042BAC2 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673627CE8DB70042BAC2 /* _apple.h */; };
@@ -3157,6 +3163,7 @@
 				9A75101D282B943500C4861B /* socket.cpp in Sources */,
 				9A75101B282B943500C4861B /* post_socket.cpp in Sources */,
 				9AD694FD251A754800C0EBD7 /* shell_launcher.cpp in Sources */,
+				9A1FBB832872A9E00042849A /* networking_application.cpp in Sources */,
 				9A751005282B942600C4861B /* address_department.cpp in Sources */,
 				9AD69508251A754800C0EBD7 /* html_file.cpp in Sources */,
 				9A787D74264C960F003DF8A0 /* thread.cpp in Sources */,
@@ -3164,6 +3171,7 @@
 				9AD6950D251A754800C0EBD7 /* remote_native_file.cpp in Sources */,
 				9ADD656D26B5E58900D11298 /* application_exit.cpp in Sources */,
 				9AD69512251A754800C0EBD7 /* log.cpp in Sources */,
+				9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */,
 				9A751016282B943500C4861B /* client_socket.cpp in Sources */,
 				9AD69513251A754800C0EBD7 /* savings.cpp in Sources */,
 				9A787D96264C960F003DF8A0 /* service.cpp in Sources */,
@@ -3194,6 +3202,7 @@
 				9A750FFF282B940A00C4861B /* app_container.cpp in Sources */,
 				9A751015282B943500C4861B /* get_socket.cpp in Sources */,
 				9A751041282B94EA00C4861B /* manager.cpp in Sources */,
+				9A1FBB852872A9EC0042849A /* socket.cpp in Sources */,
 				9AD69548251A754800C0EBD7 /* stringhelper.cpp in Sources */,
 				9A751013282B942D00C4861B /* websocket_client.cpp in Sources */,
 				9AD69550251A754800C0EBD7 /* dir_system.cpp in Sources */,
@@ -3224,6 +3233,7 @@
 				9A751004282B941900C4861B /* initializer.cpp in Sources */,
 				9A751024282B945800C4861B /* initializer.cpp in Sources */,
 				9AD6958B251A754800C0EBD7 /* data.cpp in Sources */,
+				9A1FBB842872A9E80042849A /* socket_thread.cpp in Sources */,
 				9A75103F282B948800C4861B /* signal.cpp in Sources */,
 				9A750FFE282B940A00C4861B /* _application_service.cpp in Sources */,
 				9A751018282B943500C4861B /* listener.cpp in Sources */,
@@ -3238,6 +3248,7 @@
 				9A750FFC282B93F600C4861B /* dispatcher.cpp in Sources */,
 				9A751039282B948800C4861B /* get_socket.cpp in Sources */,
 				9A75100D282B942D00C4861B /* link_out_socket.cpp in Sources */,
+				9A1FBB812872A9D90042849A /* networking_application_handler.cpp in Sources */,
 				9A751006282B942600C4861B /* email_address.cpp in Sources */,
 				9AD6959B251A754800C0EBD7 /* application_menu.cpp in Sources */,
 				9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */,
@@ -3245,6 +3256,7 @@
 				9A75100C282B942600C4861B /* sockets.cpp in Sources */,
 				9A751033282B947100C4861B /* base_socket_handler.cpp in Sources */,
 				9A751021282B944400C4861B /* httpd_socket.cpp in Sources */,
+				9A1FBB822872A9DC0042849A /* networking_application_socket.cpp in Sources */,
 				9AD6959E251A754800C0EBD7 /* key.cpp in Sources */,
 				9A751000282B941900C4861B /* crypto.cpp in Sources */,
 				9AD695A5251A754800C0EBD7 /* remote_native_fs.cpp in Sources */,

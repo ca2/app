@@ -16,7 +16,7 @@ namespace sandbox_windowing
    window::window()
    {
 
-      m_pWindow = this;
+      m_psandboxwindowingwindow = this;
 
       //m_iXic = 0;
 
@@ -334,23 +334,6 @@ namespace sandbox_windowing
          throw ::exception(error_failed);
 
       }
-
-   }
-
-
-   ::sandbox_windowing::windowing* window::windowing()
-   {
-
-      auto pwindowing = ::windowing::window::windowing();
-
-      if (!pwindowing)
-      {
-
-         return nullptr;
-
-      }
-
-      return (::sandbox_windowing::windowing*)pwindowing->m_pWindowing;
 
    }
 
@@ -3516,9 +3499,7 @@ namespace sandbox_windowing
    void window::set_mouse_capture()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
-
-      auto pwindowing = (::sandbox_windowing::windowing*)m_pwindowing->m_pWindowing;
+      auto pwindowing = windowing();
 
       if (!pwindowing)
       {

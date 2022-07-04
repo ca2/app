@@ -58,6 +58,13 @@
 			remoteGlobalIDString = 078C352E1921758500354453;
 			remoteInfo = wiossimple_drawing_simple_drawing;
 		};
+		9A1FBB8D2872ADDC0042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A882E5928449D74004113D1 /* app_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A882E6328449DBC004113D1;
+			remoteInfo = ios_app_message_box;
+		};
 		9A882E3D28449D59004113D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A882E3428449D58004113D1 /* folder_zip.xcodeproj */;
@@ -171,18 +178,6 @@
 			remoteInfo = ios_write_text_quartz2d;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9A8087681DE1175E00F70A07 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		077A02081B4D5758001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -447,16 +442,16 @@
 				078C352B1921758500354453 /* Sources */,
 				078C352C1921758500354453 /* Frameworks */,
 				078C352D1921758500354453 /* Resources */,
-				9A8087681DE1175E00F70A07 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
+				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
+				9A1FBB8E2872ADDC0042849A /* PBXTargetDependency */,
 				9A882EEC2844AB5C004113D1 /* PBXTargetDependency */,
 				9A882E8928449E18004113D1 /* PBXTargetDependency */,
-				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
 				9A882E8528449E06004113D1 /* PBXTargetDependency */,
-				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
 			);
 			name = _ios_app_message_box;
 			productName = wiossimple_drawing_simple_drawing;
@@ -678,6 +673,11 @@
 			isa = PBXTargetDependency;
 			target = 078C352E1921758500354453 /* _ios_app_message_box */;
 			targetProxy = 078C35491921758600354453 /* PBXContainerItemProxy */;
+		};
+		9A1FBB8E2872ADDC0042849A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_app_message_box;
+			targetProxy = 9A1FBB8D2872ADDC0042849A /* PBXContainerItemProxy */;
 		};
 		9A882E8328449DFF004113D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

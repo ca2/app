@@ -34,7 +34,10 @@ namespace sandbox_windowing
 
 
 
-      ::sandbox_windowing::windowing* windowing();
+      //::sandbox_windowing::windowing* windowing();
+
+      inline ::sandbox_windowing::windowing * windowing()
+      { return m_pwindowing->m_psandboxwindowing; }
 
 
       void exit_iconify() override;

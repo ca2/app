@@ -1727,6 +1727,8 @@ namespace user
       get_data()->m_iClickTab = -1;
 
       m_pointLeftButtonDown = pmouse->m_point;
+      
+      m_iTabScrollStart = m_iTabScroll;
 
       m_bMouseDown = true;
 
@@ -1913,7 +1915,7 @@ namespace user
 
             int iOffset = m_pointLeftButtonDown.x - pmouse->m_point.x;
 
-            auto iTabScroll = minimum_maximum(m_iTabScroll + iOffset, 0, m_iTabScrollMax);
+            auto iTabScroll = minimum_maximum(m_iTabScrollStart + iOffset, 0, m_iTabScrollMax);
 
             if (iTabScroll != m_iTabScroll)
             {
@@ -1934,6 +1936,7 @@ namespace user
          }
          else
          {
+            
             if (::is_element(m_pitemClick, e_element_tab_far_scroll))
             {
 
@@ -2110,7 +2113,7 @@ namespace user
 
             ptOffset.y += 4;
 
-            ptOffset.y -= m_iTabScroll;
+            //ptOffset.y -= m_iTabScroll;
 
          }
          else
@@ -2118,7 +2121,7 @@ namespace user
 
             ptOffset.x += 4;
 
-            ptOffset.x -= m_iTabScroll;
+            //ptOffset.x -= m_iTabScroll;
 
          }
 
@@ -2417,8 +2420,10 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::point_i32 &point)
+   ::item_pointer tab::on_hit_test(const ::point_i32 &pointParam)
    {
+      
+      auto point = pointParam;
 
       //synchronous_lock synchronouslock(mutex());
 
@@ -2462,6 +2467,19 @@ namespace user
 
          }
 
+      }
+      
+      if(get_data()->m_bVertical)
+      {
+         
+         point.y += m_iTabScroll;
+         
+      }
+      else
+      {
+         
+         point.x += m_iTabScroll;
+         
       }
 
       ::rectangle_i32 rectangle;

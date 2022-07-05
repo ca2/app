@@ -756,12 +756,13 @@ namespace user
       
       virtual void display_previous_restore();
 
-      virtual void get_client_rect(RECTANGLE_I32* lprect, enum_layout elayout = e_layout_design) const;
-      virtual ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const;
+      // Client Rect : e_layout_design : Design/_001OnDraw time
+      virtual void get_client_rect(RECTANGLE_I32* lprect);
+      virtual ::rectangle_i32 get_client_rect();
 
 
-      virtual void get_window_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { *lprect = get_window_rect(elayout); }
-      virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design) const;
+      virtual void get_window_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) { *lprect = get_window_rect(elayout); }
+      virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design);
 
 
       inline void set_prodevian() { return add_prodevian(this); }
@@ -1405,7 +1406,7 @@ namespace user
 
       virtual bool _001IsPointInside(const ::point_i32 & point) override;
 
-      virtual rectangle_i32 screen_rect() const;
+      virtual rectangle_i32 screen_rect();
 
       virtual bool _001IsPointInsideInline(const ::point_i32 & point);
       virtual bool _001IsClientPointInsideInline(const ::point_i32 & point);

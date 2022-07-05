@@ -210,7 +210,7 @@ namespace user
       //if (m_atom != "separator")
       {
 
-         //::user::button::_001OnNcDraw(pgraphics);
+         ::user::button::_001OnNcDraw(pgraphics);
 
       }
 

@@ -5754,6 +5754,7 @@ namespace draw2d
             m_pgraphics->RestoreDC(m_iSavedDC);
             m_pgraphics->m_matrixViewport = m_matrixViewport;
             m_pgraphics->m_matrixTransform = m_matrixTransform;
+            m_pgraphics->update_matrix();
          }
       }
       catch (...)

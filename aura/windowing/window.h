@@ -67,6 +67,8 @@ namespace windowing
       inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
 
+      virtual double get_top_margin();
+      
 
       virtual void set_keyboard_focus();
 

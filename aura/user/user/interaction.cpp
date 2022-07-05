@@ -1139,14 +1139,14 @@ namespace user
             || pinteraction == psession->get_user_interaction_host()))
       {
 
-         if(payload("bQueuedPostRedraw").is_true())
-         {
-            
-            return;
-            
-         }
-
-         payload("bQueuedPostRedraw") = true;
+//         if(payload("bQueuedPostRedraw").is_true())
+//         {
+//
+//            return;
+//
+//         }
+//
+//         payload("bQueuedPostRedraw") = true;
 
          pinteraction->m_pprimitiveimpl->post_redraw();
 
@@ -3895,7 +3895,7 @@ namespace user
       {
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
+         
          if (m_pinteractionimpl->is_composite())
          {
 
@@ -5595,7 +5595,7 @@ namespace user
    }
 
 
-   rectangle_i32 interaction::screen_rect() const
+   rectangle_i32 interaction::screen_rect()
    {
 
       ::rectangle_i32 rectangle;
@@ -6749,6 +6749,8 @@ namespace user
       auto pwindowing = puser->windowing1();
 
       auto pwindowHost = pwindowing->get_application_host_window();
+      
+      m_ewindowflag += e_window_flag_top_level;
 
       if (::is_set(pwindowHost))
       {
@@ -13335,17 +13337,12 @@ namespace user
    }
 
 
-   ::rectangle_i32 interaction::get_window_rect(enum_layout elayout) const
+   ::rectangle_i32 interaction::get_window_rect(enum_layout elayout)
    {
 
-      auto rectangle = get_client_rect(elayout);
-
+      auto rectangle = get_client_rect();
 
       client_to_screen(rectangle);
-
-      //::point_i32 pointParentOffset = get_parent_viewport_offset();
-
-      //::offset(rectangle, -pointParentOffset.x, -pointParentOffset.y);
 
       return rectangle;
 
@@ -13551,23 +13548,22 @@ namespace user
    }
 
 
-   void interaction::get_client_rect(RECTANGLE_I32 * lprect, enum_layout elayout) const
+   void interaction::get_client_rect(RECTANGLE_I32 * lprect)
    {
 
-      const_layout().state(elayout).client_rect(lprect);
+      const_layout().state(e_layout_design).client_rect(lprect);
 
    }
 
 
-   ::rectangle_i32 interaction::get_client_rect(enum_layout elayout) const
+   ::rectangle_i32 interaction::get_client_rect()
    {
 
       ::rectangle_i32 r;
 
-      get_client_rect(&r, elayout);
+      get_client_rect(&r);
 
       return r;
-
 
    }
 

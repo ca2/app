@@ -250,7 +250,7 @@ namespace graphics
 
       }
       
-      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
+//      m_pimpl->m_puserinteraction->payload("bQueuedPostRedraw") = false;
 
       //if (get_buffer_image()->is_ok())
       //{

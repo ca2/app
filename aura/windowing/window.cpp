@@ -132,6 +132,14 @@ namespace windowing
    }
 
 
+   double window::get_top_margin()
+   {
+      
+      return 0.;
+      
+   }
+   
+
    bool window::has_mouse_capture() const
    {
 

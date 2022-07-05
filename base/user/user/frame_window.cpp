@@ -2391,6 +2391,12 @@ namespace user
 
       }
 
+      set_reposition();
+
+      set_need_layout();
+
+      set_need_redraw();
+
       post_redraw();
 
    }

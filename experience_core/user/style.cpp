@@ -71,6 +71,21 @@ namespace experience_core
       ::rectangle_i32 rectangleClose;
 
       //return true;
+      
+      ::draw2d::savedc savedc(pgraphics);
+      
+      if (ptab->get_data()->m_bVertical)
+      {
+         
+         pgraphics->OffsetViewportOrg(0., -ptab->m_iTabScroll);
+         
+      }
+      else
+      {
+         
+         pgraphics->OffsetViewportOrg(-ptab->m_iTabScroll, 0.);
+         
+      }
 
       ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 

@@ -132,6 +132,8 @@ namespace user
       //::windowing::icon* get_windowing_icon() override;
       ::draw2d::icon* get_draw_icon() override;
 
+      
+      void get_client_rect(RECTANGLE_I32 * prectangle) override;
 
       
       virtual bool is_translucid_user_style(enum_style estyle);

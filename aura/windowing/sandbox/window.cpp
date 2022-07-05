@@ -8,7 +8,6 @@
 #include "aura/user/user/interaction_prodevian.h"
 
 
-
 namespace sandbox_windowing
 {
 
@@ -17,18 +16,6 @@ namespace sandbox_windowing
    {
 
       m_psandboxwindowingwindow = this;
-
-      //m_iXic = 0;
-
-      //m_xic = nullptr;
-
-      //      for (auto & i : m_iaNetWmState)
-      //      {
-      //
-      //         i = -1;
-      //
-      //      }
-
 
    }
 

@@ -2728,23 +2728,21 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-bool simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
+void simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
    if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
    {
 
-      return m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rect(prectangle);
 
    }
    else
    {
 
-      ::user::interaction::get_client_rect(prectangle);
+      ::experience::frame_window::get_client_rect(prectangle);
 
    }
-
-   return true;
 
 }
 

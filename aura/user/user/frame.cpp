@@ -289,8 +289,6 @@ namespace user
    }
 
 
-
-
    ::draw2d::icon* frame::get_draw_icon()
    {
 
@@ -337,7 +335,21 @@ namespace user
    }
 
 
-   
+   void frame::get_client_rect(RECTANGLE_I32* lprect)
+   {
+      
+      ::user::interaction::get_client_rect(lprect);
+      
+      if((m_ewindowflag & e_window_flag_top_level) && window())
+      {
+      
+         lprect->top += window()->get_top_margin();
+         
+      }
+      
+   }
+
+
    ::color::color frame::get_moveable_border_color()
    {
 

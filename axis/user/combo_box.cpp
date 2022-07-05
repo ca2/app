@@ -506,7 +506,7 @@ namespace user
 
       }
 
-      auto rectangleClient = get_client_rect(::user::e_layout_sketch);
+      auto rectangleClient = get_client_rect();
 
       if (rectangleClient.contains(point))
       {
@@ -821,7 +821,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient, ::user::e_layout_sketch);
+      get_client_rect(rectangleClient);
 
       m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
 

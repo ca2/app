@@ -139,12 +139,6 @@ namespace sandbox_windowing
 
       pinteraction->place(r);
 
-      pinteraction->set_need_layout();
-
-      pinteraction->set_need_redraw();
-
-      pinteraction->post_redraw();
-
    }
 
 

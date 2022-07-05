@@ -296,7 +296,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient, ::user::e_layout_design);
+      get_client_rect(rectangleClient);
 
       auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
@@ -557,6 +557,59 @@ namespace user
    }
 
 
+   void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      
+      ::rectangle_i32 rectangleClient;
+
+      get_client_rect(rectangleClient);
+
+      auto pstyle = get_style(pgraphics);
+
+      auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
+
+      auto & propertyCheck = m_propertyCheck;
+
+      auto echeck = get_echeck();
+
+      if(echeck == ::e_check_checked)
+      {
+         
+         if(windowing()->is_sandboxed())
+         {
+
+            ::rectangle_i32 rectanglePush(rectangleClient);
+            
+            rectanglePush.inflate(2);
+
+            ::color::color colorBack(colorBackground);
+
+            colorBack.hls_rate(0.0, -0.2, 0.0);
+
+            rectanglePush.deflate(0, 0, 1, 1);
+
+            ::color::color colorTopLeft(colorBack);
+
+            ::color::color colorBottomRight(colorBack);
+
+            colorTopLeft = argb(1.0, 0.2, 0.5, 0.8);
+
+            colorBottomRight = argb(1.0, 0.2, 0.5, 0.8);
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+
+            rectanglePush.deflate(1, 1, 0, 1);
+
+            pgraphics->fill_rectangle(rectanglePush, colorBack);
+
+         }
+         
+      }
+   }
+
+
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -576,38 +629,49 @@ namespace user
 
       if(echeck == ::e_check_checked)
       {
+         
+         if(windowing()->is_sandboxed())
+         {
+            
 
-         ::rectangle_i32 rectanglePush(rectangleClient);
+            
+         }
+         else
+         {
+            
+            ::rectangle_i32 rectanglePush(rectangleClient);
 
-         ::color::color colorBack(colorBackground);
+            ::color::color colorBack(colorBackground);
 
-         colorBack.hls_rate(0.0, -0.2, 0.0);
+            colorBack.hls_rate(0.0, -0.2, 0.0);
 
-         rectanglePush.deflate(0, 0, 1, 1);
+            rectanglePush.deflate(0, 0, 1, 1);
 
-         ::color::color colorTopLeft(colorBack);
+            ::color::color colorTopLeft(colorBack);
 
-         ::color::color colorBottomRight(colorBack);
+            ::color::color colorBottomRight(colorBack);
 
-         colorTopLeft.hls_rate(0.0, -0.65, 0.0);
+            colorTopLeft.hls_rate(0.0, -0.65, 0.0);
 
-         colorBottomRight.hls_rate(0.0, 0.75, 0.0);
+            colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
-         rectanglePush.deflate(1, 1);
+            rectanglePush.deflate(1, 1);
 
-         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
-         rectanglePush.deflate(1, 1);
+            rectanglePush.deflate(1, 1);
 
-         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
+            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
-         rectanglePush.deflate(1, 1, 0, 1);
+            rectanglePush.deflate(1, 1, 0, 1);
 
-         pgraphics->fill_rectangle(rectanglePush, colorBack);
+            pgraphics->fill_rectangle(rectanglePush, colorBack);
+               
+         }
 
       }
       else

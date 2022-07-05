@@ -69,6 +69,7 @@ namespace user
       ::boolean                     m_bitLastShowTabs;
       enum_display                        m_edisplayParentFrameAutoHide;
       int                              m_iTabScroll;
+      int                              m_iTabScrollStart;
       int                              m_iTabScrollMax;
       int                              m_iTabSize;
       bool                             m_bMouseDown;

@@ -240,7 +240,7 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
+         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight * 1.2 - 2);
 
          if(prectangle->bottom > rectangleBound.bottom)
          {
@@ -270,7 +270,7 @@ namespace user
 
          }
 
-         prectangle->top = prectangle->bottom + 2;
+         prectangle->top = prectangle->bottom + 5;
 
       }
 

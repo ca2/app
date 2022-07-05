@@ -304,14 +304,6 @@ namespace user
 
       pFrame->InitialUpdateFrame(pdocument, bMakeVisible);
 
-      pFrame->set_reposition();
-
-      pFrame->set_need_layout();
-
-      pFrame->set_need_redraw();
-
-      pFrame->post_redraw();
-
    }
 
 

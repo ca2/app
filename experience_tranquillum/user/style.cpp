@@ -206,6 +206,12 @@ namespace experience_tranquillum
                return argb(255, 116, 160, 220);
 
             }
+            else if (eelement == ::e_element_text)
+            {
+
+               return argb(255, 255, 255, 255);
+
+            }
 
          }
          else if (econtroltype == ::user::e_control_type_list)
@@ -499,7 +505,9 @@ namespace experience_tranquillum
 
       }
 
-      auto rectangleClient = pframe->get_client_rect();
+      ::rectangle_i32 rectangleClient;
+      
+      pframe->get_client_rect(rectangleClient);
 
       auto pstyle = pframe->get_style(pgraphics);
 

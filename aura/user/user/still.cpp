@@ -699,9 +699,9 @@ namespace user
 
       }
 
-      rectangleClient.left += 3;
-
-      rectangleClient.top += 3;
+//      rectangleClient.left += 3;
+//
+//      rectangleClient.top += 3;
 
       ::rectangle_i32 rectangleText = m_rectangleText;
 

@@ -455,7 +455,8 @@ namespace user
    bool button::keyboard_focus_is_focusable() const
    {
 
-      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch)
+      && !windowing()->is_sandboxed();
 
    }
 

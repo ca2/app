@@ -334,23 +334,30 @@ namespace write_text
          ::str().increment(pszEnd);
 
          string strNow = string(pszStart, pszEnd - pszStart);
+         
+         auto extentx = get_text_extent(strNow).cx;
 
-         if (get_text_extent(strNow).cx > w || *pszEnd == '\0')
+         if (extentx > w || *pszEnd == '\0')
          {
-
-            if (pszLast > pszStart)
+            
+            if(extentx > w)
             {
+               
+               if (pszLast > pszStart)
+               {
 
-               strNow = string(pszStart, pszLast - pszStart);
+                  strNow = string(pszStart, pszLast - pszStart);
 
-               pszStart = pszLast;
+                  pszStart = pszLast;
 
-            }
-            else
-            {
+               }
+               else
+               {
 
-               pszStart = pszEnd;
+                  pszStart = pszEnd;
 
+               }
+               
             }
 
             if (c == 0)
@@ -399,8 +406,12 @@ namespace write_text
       double y = 0.;
 
       double w = rectangle.width();
+      
+      w++;
 
       double h = rectangle.height();
+      
+      h++;
 
       double cx = 0.;
 

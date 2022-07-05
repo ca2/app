@@ -301,9 +301,9 @@ namespace user
 
       i32 iStyle = 1;
 
-      rectangleClient.left--;
+      //rectangleClient.left--;
 
-      rectangleClient.top--;
+      //rectangleClient.top--;
 
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {

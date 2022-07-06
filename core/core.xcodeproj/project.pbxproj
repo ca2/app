@@ -27,6 +27,8 @@
 		9A42DA09266679A30011645D /* list_column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42DA08266679A30011645D /* list_column.cpp */; };
 		9A83B5BB2808110E00A1A2B6 /* dialog_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A83B5B92808110E00A1A2B6 /* dialog_frame.cpp */; };
 		9ABC54EF26DB15C900718C0D /* impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC54ED26DB15C900718C0D /* impact_base.cpp */; };
+		9AC88CA828750964005EABFD /* list_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C5287161920042849A /* list_item.cpp */; };
+		9AC88CA928750978005EABFD /* mesh_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C6287161920042849A /* mesh_item.cpp */; };
 		9AE63FD0284AA62D0079EBA0 /* core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF202627CFE05700D96CB7 /* core.h */; };
 		9AE63FD1284AA62D0079EBA0 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF1FF727CFE05600D96CB7 /* time.h */; };
 		9AE63FD2284AA62D0079EBA0 /* table_row.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64AB5252A681900BED5B8 /* table_row.h */; };
@@ -3163,6 +3165,7 @@
 				9AE641D7284AA62D0079EBA0 /* value.cpp in Sources */,
 				9AE641D8284AA62D0079EBA0 /* frame.cpp in Sources */,
 				9AE641D9284AA62D0079EBA0 /* font_combo_box.cpp in Sources */,
+				9AC88CA828750964005EABFD /* list_item.cpp in Sources */,
 				9AE641DB284AA62D0079EBA0 /* xfplayer_view_lines.cpp in Sources */,
 				9AE641DC284AA62D0079EBA0 /* operation_child_frame.cpp in Sources */,
 				9AE641DD284AA62D0079EBA0 /* wait_message_dialog.cpp in Sources */,
@@ -3179,6 +3182,7 @@
 				9AE641E8284AA62D0079EBA0 /* progress.cpp in Sources */,
 				9AE641E9284AA62D0079EBA0 /* calculator_edit_view.cpp in Sources */,
 				9AE641EA284AA62D0079EBA0 /* tool_command.cpp in Sources */,
+				9AC88CA928750978005EABFD /* mesh_item.cpp in Sources */,
 				9AE641EB284AA62D0079EBA0 /* tool_tip_tool.cpp in Sources */,
 				9AE641EC284AA62D0079EBA0 /* style.cpp in Sources */,
 				9AE641ED284AA62D0079EBA0 /* tree_interface.cpp in Sources */,

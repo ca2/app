@@ -1367,7 +1367,7 @@ namespace user
 
       }
 
-      if (m_puserinteractionParent->is_top_level())
+      if (is_top_level())
       {
 
          return nullptr;

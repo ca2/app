@@ -1525,5 +1525,14 @@
     <ClCompile Include="graphics\draw2d\region_item.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\layout_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holdee.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

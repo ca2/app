@@ -501,6 +501,8 @@
     <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\holdee.cpp" />
+    <ClCompile Include="graphics\draw2d\holder.cpp" />
     <ClCompile Include="graphics\draw2d\host.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\matrix.cpp" />
@@ -599,6 +601,7 @@
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
+    <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />
     <ClCompile Include="user\user\message.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />

@@ -136,24 +136,6 @@
     <ClCompile Include="networking\email_department.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
-    <ClCompile Include="networking\networking_application.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_handler.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_socket.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_handler.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_thread.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\bsd\timer\Event.cpp">
       <Filter>Source Files\networking\sockets\bsd\timer</Filter>
     </ClCompile>
@@ -2379,30 +2361,6 @@
     <ClInclude Include="networking\sockets\_sockets.h">
       <Filter>Header Files\networking\sockets</Filter>
     </ClInclude>
-    <ClInclude Include="networking\netserver\socket_thread.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\socket_handler.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\socket.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\_netserver.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\netserver\_.h">
-      <Filter>Header Files\networking\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\networking_application_socket.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\networking_application_handler.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\networking_application.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="networking\email_department.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
@@ -2618,9 +2576,6 @@
     <Filter Include="Header Files\networking\sockets">
       <UniqueIdentifier>{68599de8-0fe4-43a9-8bb2-338e6887fd06}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\networking\netserver">
-      <UniqueIdentifier>{0c557ced-aeb7-4138-a1ac-110b252af0c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\networking\sockets\bsd">
       <UniqueIdentifier>{24efd964-43b0-4e1a-9fcb-37fcec65b197}</UniqueIdentifier>
     </Filter>
@@ -2635,9 +2590,6 @@
     </Filter>
     <Filter Include="Source Files\networking">
       <UniqueIdentifier>{ef0ad70c-7c4d-4778-89dd-63fae2a367fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\netserver">
-      <UniqueIdentifier>{38c4e220-16bc-4e11-b035-c3f9ea8c3e54}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\networking\sockets">
       <UniqueIdentifier>{aaf08d22-97f9-477e-a0b1-322faa704a4a}</UniqueIdentifier>

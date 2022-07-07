@@ -413,6 +413,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
@@ -501,6 +502,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",

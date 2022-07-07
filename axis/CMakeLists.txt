@@ -180,13 +180,6 @@ list(APPEND library_source
    mathematics/kissfft/ifftd.cpp
    mathematics/kissfft/ifftd.h
    mathematics/_.h
-        networking/netserver/_.h
-        networking/netserver/socket.cpp
-        networking/netserver/socket.h
-        networking/netserver/socket_handler.cpp
-        networking/netserver/socket_handler.h
-        networking/netserver/socket_thread.cpp
-        networking/netserver/socket_thread.h
         networking/sockets/bsd/smtp/smtp_socket.cpp
         networking/sockets/bsd/smtp/smtp_socket.h
         networking/sockets/bsd/smtp/smtpd_socket.cpp
@@ -215,12 +208,6 @@ list(APPEND library_source
         networking/_networking.h
         networking/email_department.cpp
         networking/email_department.h
-        networking/networking_application.cpp
-        networking/networking_application.h
-        networking/networking_application_handler.cpp
-        networking/networking_application_handler.h
-        networking/networking_application_socket.cpp
-        networking/networking_application_socket.h
         #platform/_.cpp
         platform/_features.h
         platform/_generic_object_constructor_impl.h

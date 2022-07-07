@@ -231,6 +231,13 @@ list(APPEND apex_source
    networking/http/stream.h
    networking/http/transaction.cpp
    networking/http/transaction.h
+   networking/netserver/_.h
+   networking/netserver/socket.cpp
+   networking/netserver/socket.h
+   networking/netserver/socket_handler.cpp
+   networking/netserver/socket_handler.h
+   networking/netserver/socket_thread.cpp
+   networking/netserver/socket_thread.h
    networking/sockets/base/base_socket.cpp
    networking/sockets/base/base_socket.h
    networking/sockets/base/base_socket_handler.cpp
@@ -337,6 +344,12 @@ list(APPEND apex_source
    networking/ip_enum.cpp
    networking/ip_enum.h
    networking/net.h
+   networking/networking_application.cpp
+   networking/networking_application.h
+   networking/networking_application_handler.cpp
+   networking/networking_application_handler.h
+   networking/networking_application_socket.cpp
+   networking/networking_application_socket.h
    networking/open_weather_city.h
    networking/port_forward.cpp
    networking/port_forward.h

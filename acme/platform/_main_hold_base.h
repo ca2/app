@@ -2,8 +2,13 @@
 #pragma once
 
 
-struct CLASS_DECL_ACME main_hold_base
+class CLASS_DECL_ACME main_hold_base :
+   virtual public ::element
 {
+public:
+
+
+   __pointer(::app)        m_papp;
 
 
    static boolean is_audio_enabled();

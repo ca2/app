@@ -4,6 +4,9 @@
 #pragma once
 
 
+class main_hold_base;
+
+
 class CLASS_DECL_ACME app :
    virtual public ::app_core,
    virtual public ::acme::context,
@@ -14,6 +17,10 @@ public:
 
 
    static app *                                    g_p;
+
+
+   __pointer(main_hold_base)                       m_pmainholdbase;
+
 
    string                                          m_strAppName;
    string                                          m_strRoot;

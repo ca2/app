@@ -11,7 +11,7 @@ class CLASS_DECL_ACME system :
 public:
 
 
-
+   //__pointer(main_hold_base)                                         m_pmainholdbase;
    enum_windowing                                                    m_ewindowing;
    //__pointer(system_impl) *                                        m_psystemimpl;
 

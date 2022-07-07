@@ -499,6 +499,24 @@
     <ClCompile Include="user\primitive.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_handler.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_socket.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_handler.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1567,6 +1585,9 @@
     </Filter>
     <Filter Include="Header Files\handler">
       <UniqueIdentifier>{74ee6faf-23e9-4150-a419-c4907aad825d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\netserver">
+      <UniqueIdentifier>{7affdc43-ae34-4b09-804c-ffc244961891}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

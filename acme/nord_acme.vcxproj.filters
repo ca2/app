@@ -1087,6 +1087,9 @@
     <ClCompile Include="primitive\string\_string.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
+    <ClCompile Include="platform\_main_hold_base.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

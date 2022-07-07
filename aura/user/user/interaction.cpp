@@ -8925,6 +8925,9 @@ namespace user
    }
 
 
+#undef false
+
+
    CLASS_DECL_AURA void zorder_sort(::user::interaction_array & uia)
    {
 
@@ -8938,7 +8941,7 @@ namespace user
 
          }
 
-         return pui1->const_layout().sketch().zorder() < pui2->const_layout().sketch().zorder();
+         return (bool) (pui1->const_layout().sketch().zorder() < pui2->const_layout().sketch().zorder());
 
       };
 

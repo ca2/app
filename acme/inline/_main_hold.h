@@ -10,9 +10,10 @@ DO_FACTORY(DECLARE_FACTORY)
 #include "acme/platform/_main_hold_base.h"
 
 
-struct main_hold :
-   public main_hold_base
+class main_hold :
+   virtual public main_hold_base
 {
+public:
 
 //#ifdef SYSTEM_NAMESPACE
 //   ::static_object_factory < ::SYSTEM_NAMESPACE::system > m_factorySystem{ ::system_setup::flag_system };
@@ -52,7 +53,7 @@ struct main_hold :
 
 #endif
 
-      main_hold()
+   main_hold()
    {
 
 #ifdef SYSTEM_NAMESPACE

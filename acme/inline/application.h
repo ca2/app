@@ -33,16 +33,22 @@
 
 #include "acme/_defer.h"
 
+
+
 #ifdef WINDOWS_DESKTOP
 int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
+#elif defined(ANDROID)
+extern "C" int IDENTIFIER_CONCATENATE(main_, APPLICATION)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   main_hold mainhold;
+   auto pmainhold = __new(main_hold);
 
    auto papp = __new(APPLICATION::application);
+
+   pmainhold->m_papp = papp;
 
 #ifdef WINDOWS_DESKTOP
    //{
@@ -84,6 +90,12 @@ int main(int argc, char * argv[], char * envp[])
    papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
 
    papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+
+#elif defined(ANDROID)
+
+   papp->m_pchar_binary__matter_zip_start = p1;
+
+   papp->m_pchar_binary__matter_zip_end = p2;
 
 #endif
 

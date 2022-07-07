@@ -31,7 +31,8 @@ namespace file
       e_flag_get_local_path = 1 << 8,
       e_flag_in_zip = 1 << 9,
       e_flag_has_subfolder = 1 << 10,
-      e_flag_has_subfolder_unknown = 1 << 11
+      e_flag_has_subfolder_unknown = 1 << 11,
+      e_flag_final_path = 1 << 12
 
    };
 

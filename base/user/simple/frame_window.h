@@ -58,7 +58,7 @@ public:
 
    bool keyboard_focus_is_focusable() const override;
 
-   virtual bool create_bars();
+   bool create_bars() override;
    void on_create_bars() override;
 
    void on_visual_applied() override;
@@ -69,7 +69,8 @@ public:
    bool on_set_parent(::user::primitive * puiParent) override;
    void on_after_set_parent() override;
 
-   virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
+   
+   void get_client_rect(RECTANGLE_I32 * prectangle) override;
 
 
    virtual bool is_application_main_window();

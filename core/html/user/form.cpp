@@ -849,7 +849,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
 
          on_document_complete(ptopic->payload(id_url));
 
-         get_parent_frame()->set_active_view(this);
+         parent_frame()->set_active_view(this);
 
          set_keyboard_focus();
 

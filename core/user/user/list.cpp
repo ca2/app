@@ -58,7 +58,7 @@ namespace user
       m_bHeaderCtrl = true;
       m_bSingleColumnMode = false;
 
-      m_pdrawlistitem = nullptr;
+      //m_pdrawlistitem = nullptr;
 
 
       m_bAutoCreateListHeader = true;
@@ -74,7 +74,7 @@ namespace user
    list::~list()
    {
 
-      ::acme::del(m_pdrawlistitem);
+      //::acme::del(m_pdrawlistitem);
 
    }
 
@@ -261,21 +261,13 @@ namespace user
 
       }
 
-      if (m_pdrawlistitem == nullptr)
-      {
+      //if (m_pdrawlistitem == nullptr)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_pdrawlistitem->m_pgraphics = pgraphics;
-      m_pdrawlistitem->m_iItemRectItem = -1;
-      m_pdrawlistitem->m_iSubItemRectOrder = -1;
-      m_pdrawlistitem->m_iSubItemRectSubItem = -1;
-      m_pdrawlistitem->m_iSubItemRectItem = -1;
-      m_pdrawlistitem->m_iSubItemRectColumn = -1;
-      m_pdrawlistitem->m_iColumn = -1;
-      m_pdrawlistitem->m_iColumnWidth = 0;
 
       ::rectangle_i32 rectangleItem;
       ::rectangle_i32 rectangleIntersect;
@@ -306,7 +298,36 @@ namespace user
 
       }
 
-      _001DrawItems(m_pdrawlistitem, (::index) iItemFirst, (::index) iItemLast);
+      {
+
+         __pointer_array(synchronous_lock) slaImageList;
+
+         for (auto & pcolumn : m_columna)
+         {
+
+            if (pcolumn)
+            {
+
+               if (pcolumn->m_pil)
+               {
+
+                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pil)));
+
+               }
+               if (pcolumn->m_pilHover)
+               {
+
+                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pil)));
+
+               }
+
+            }
+
+         }
+
+         _001DrawItems(pgraphics, (::index)iItemFirst, (::index)iItemLast);
+
+      }
 
       if (m_bGroup && m_bLateralGroup)
       {
@@ -326,7 +347,9 @@ namespace user
                break;
          }
 
-         _001DrawGroups(m_pdrawlistitem, (::index) iGroupFirst, (::index) iGroupLast, (::index) iItemFirst, (::index) iItemLast);
+         //_001DrawGroups(m_pdrawlistitem, (::index) iGroupFirst, (::index) iGroupLast, (::index) iItemFirst, (::index) iItemLast);
+         //_001DrawGroups(pgraphics, (::index)iGroupFirst, (::index)iGroupLast, (::index)iItemFirst, (::index)iItemLast);
+         _001DrawGroups(pgraphics, (::index)iGroupFirst, (::index)iGroupLast);
 
       }
 
@@ -378,11 +401,12 @@ namespace user
 
 
 
-   void list::_001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast)
+   //void list::_001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast)
+      void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast)
    {
 
-      __UNREFERENCED_PARAMETER(iItemFirst);
-      __UNREFERENCED_PARAMETER(iItemLast);
+      //__UNREFERENCED_PARAMETER(iItemFirst);
+      //__UNREFERENCED_PARAMETER(iItemLast);
 
       index iGroup;
 
@@ -394,67 +418,70 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
-      //pdrawitem->m_pgraphics->set(pfont);
-
-      m_pdrawlistitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
-
       for (iGroup = iGroupFirst; iGroup <= iGroupLast; iGroup++)
       {
 
-         m_pdrawlistitem->m_iGroup = iGroup;
+         auto & pgroup = m_mapGroup[iGroup];
 
-         _001GetGroupRect(m_pdrawlistitem);
+         if (!pgroup)
+         {
 
-         if (!m_pdrawlistitem->m_bOk)
+            auto pdrawgroup = __new(draw_list_group);
+
+            pdrawgroup->initialize_draw_list_group(this);
+
+            pdrawgroup->m_iGroup = iGroup;
+
+            pgroup = pdrawgroup;
+
+         }
+
+         pgroup->m_pdrawlistgroup->m_pgraphics = pgraphics;
+
+         pgroup->m_pdrawlistgroup->m_pgraphics->set_font(this, ::e_element_none);
+         //pdrawitem->m_pgraphics->set(pfont);
+
+         pgroup->m_pdrawlistgroup->m_pfont = pgroup->m_pdrawlistgroup->m_pgraphics->m_pfont;
+
+         _001GetGroupRect(*pgroup);
+
+         if (!pgroup->m_bOk)
             continue;
 
-         if (!rectangleIntersect.intersect(m_pdrawlistitem->m_rectangleItem, rectangleClient))
+         if (!rectangleIntersect.intersect(pgroup->m_pdrawlistgroup->m_rectangleGroup, rectangleClient))
             continue;
 
          if (iGroup == m_iGroupHover)
          {
+
             if (!bHoverFont)
             {
-               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, e_state_hover);
-               //pdrawitem->m_pgraphics->set(m_pdrawlistitem->m_pfont);
+
+               pgroup->m_pdrawlistgroup->m_pgraphics->set_font(this, ::e_element_none, e_state_hover);
+
             }
+
          }
          else
          {
+
             if (bHoverFont)
             {
-               //m_pdrawlistitem->m_pfont = pfont;
-               //pdrawitem->m_pgraphics->set(pfont);
-               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
+
+               pgroup->m_pdrawlistgroup->m_pgraphics->set_font(this, ::e_element_none);
+
             }
+
          }
 
-         _001DrawGroup(m_pdrawlistitem);
+         _001DrawGroup(pgraphics, *pgroup);
 
       }
 
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   void list::_001DrawGroup(draw_list_item * pdrawitem)
+   void list::_001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup)
    {
 
       /*if(m_bGroupCustomDraw)
@@ -464,30 +491,37 @@ namespace user
          return;
       }*/
 
-      _001GetElementRect(pdrawitem, ::user::list::element_group_image);
-      if (pdrawitem->m_bOk)
+      _001GetGroupElementRect(pdrawgroup, ::user::list::e_group_element_image);
+
+      if (pdrawgroup->m_bOk)
       {
-         pdrawitem->draw_group_image();
+
+         pdrawgroup->draw_group_image(pgraphics);
+
       }
 
-      ::count nItem = _001GetGroupMetaItemCount(pdrawitem->m_iGroup);
+      ::count nItem = _001GetGroupMetaItemCount(pdrawgroup->m_iGroup);
 
-      for (pdrawitem->m_iItem = 0; pdrawitem->m_iItem < nItem; pdrawitem->m_iItem++)
+      for (pdrawgroup->m_iItem = 0; pdrawgroup->m_iItem < nItem; pdrawgroup->m_iItem++)
       {
-         _001GetElementRect(pdrawitem, ::user::list::element_group_item_text);
-         if (pdrawitem->m_bOk)
+
+         _001GetGroupElementRect(pdrawgroup, ::user::list::e_group_element_item_text);
+
+         if (pdrawgroup->m_bOk)
          {
-            _001GetGroupText(pdrawitem);
-            pdrawitem->draw_text();
+
+            _001GetGroupItemText(pdrawgroup);
+
+            pdrawgroup->draw_text();
+
          }
+
       }
-
-
 
    }
 
 
-   void list::_001DrawItems(draw_list_item * pdrawitem, index iItemFirst, index iItemLast)
+   void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -498,57 +532,59 @@ namespace user
 
       rectangleClient.offset(get_viewport_offset());
 
-      m_pdrawlistitem->m_ealign = get_draw_text_align(m_eview);
-
-      m_pdrawlistitem->m_edrawtext = get_draw_text_flags(m_eview);
-
       bool bHoverFont = false;
-
-      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
-
-      pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
       index iDisplayItem;
 
-      for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++)
+      ::index iDisplayIndex = 0;
+
+      for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
 
-         m_pdrawlistitem->m_iItem = _001DisplayToStrict(iDisplayItem);
+         auto iItem = _001DisplayToStrict(iDisplayItem);
 
-         m_pdrawlistitem->m_iDisplayItem = iDisplayItem;
+         auto & pitem = get_item(iItem);
 
-         if (m_bGroup)
-         {
+         pitem->m_pdrawlistitem->m_pgraphics = pgraphics;
 
-            m_pdrawlistitem->m_iGroupTopDisplayIndex = 0;
+         pitem->m_pdrawlistitem->m_pgraphics->set_font(this, ::e_element_none);
 
-            for (m_pdrawlistitem->m_iGroup = 0; m_pdrawlistitem->m_iGroup < m_nGroupCount; m_pdrawlistitem->m_iGroup++)
-            {
+         pitem->m_pdrawlistitem->m_pfont = pitem->m_pdrawlistitem->m_pgraphics->m_pfont;
 
-               m_pdrawlistitem->m_iGroupCount = _001GetGroupItemCount(m_pdrawlistitem->m_iGroup);
+         pitem->m_iDisplayItem = iDisplayItem;
 
-               if (iDisplayItem >= m_pdrawlistitem->m_iGroupTopDisplayIndex
-                     && iDisplayItem < (m_pdrawlistitem->m_iGroupTopDisplayIndex + m_pdrawlistitem->m_iGroupCount))
-               {
+         //if (m_bGroup)
+         //{
 
-                  break;
+         //   pdrawlistitem->m_iGroupTopDisplayIndex = 0;
 
-               }
+         //   for (pdrawlistitem->m_iGroup = 0; pdrawlistitem->m_iGroup < m_nGroupCount; pdrawlistitem->m_iGroup++)
+         //   {
 
-            }
+         //      pdrawlistitem->m_iGroupCount = _001GetGroupItemCount(pdrawlistitem->m_iGroup);
 
-         }
+         //      if (iDisplayItem >= pdrawlistitem->m_iGroupTopDisplayIndex
+         //            && iDisplayItem < (pdrawlistitem->m_iGroupTopDisplayIndex + pdrawlistitem->m_iGroupCount))
+         //      {
 
-         _001GetItemRect(m_pdrawlistitem);
+         //         break;
 
-         if (!m_pdrawlistitem->m_bOk)
+         //      }
+
+         //   }
+
+         //}
+
+         _001GetItemRect(*pitem);
+
+         if (!pitem->m_bOk)
          {
 
             continue;
 
          }
 
-         if (!rectangleIntersect.intersect(m_pdrawlistitem->m_rectangleItem, rectangleClient))
+         if (!rectangleIntersect.intersect(pitem->m_pdrawlistitem->m_rectangleItem, rectangleClient))
          {
 
             continue;
@@ -563,7 +599,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
+               pitem->m_pdrawlistitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -576,7 +612,7 @@ namespace user
 
                bHoverFont = false;
 
-               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
+               pitem->m_pdrawlistitem->m_pgraphics->set_font(this, ::e_element_none);
 
             }
 
@@ -590,7 +626,7 @@ namespace user
 
 #endif
 
-            _001DrawItem(m_pdrawlistitem);
+            _001DrawItem(pgraphics, *pitem);
 
 #ifdef _DEBUG
 
@@ -614,13 +650,12 @@ namespace user
 
          }
 
-
       }
 
    }
 
 
-   void list::_001DrawItem(draw_list_item * pdrawitem)
+   void list::_001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem)
    {
 
       pdrawitem->m_iState = 0;
@@ -643,7 +678,7 @@ namespace user
       if (pdrawitem->m_bListItemHover)
       {
 
-         if (!pdrawitem->m_plist->m_bMorePlain)
+         if (!pdrawitem->m_pmesh->m_plist->m_bMorePlain)
          {
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -674,20 +709,20 @@ namespace user
 
       auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-      pdrawitem->m_colorText = get_color(pstyle, ::e_element_item_text);
+//      pdrawitem->m_colorText = get_color(pstyle, ::e_element_item_text);
 
-      pdrawitem->m_colorTextBackground = ::color::transparent;
+  //    pdrawitem->m_colorTextBackground = ::color::transparent;
 
       pdrawitem->m_colorItemBackground = ::color::transparent;
 
-      pdrawitem->update_item_color();
+      pdrawitem->update_item_color(pgraphics);
 
       if (pdrawitem->m_bListItemSelected)
       {
 
          auto psession = get_session();
 
-         if (pdrawitem->m_plist->m_bMorePlain)
+         if (pdrawitem->m_pmesh->m_plist->m_bMorePlain)
          {
 
          }
@@ -724,49 +759,42 @@ namespace user
       else
       {
 
-         iColumnCount = m_columna.VisibleGetCount();
+         iColumnCount = m_columna.get_visible_count();
 
       }
 
-      pdrawitem->m_iSubItemRectOrder = -1;
+      //pdrawitem->m_iSubItemRectOrder = -1;
 
-      pdrawitem->m_iSubItemRectSubItem = -1;
+      //pdrawitem->m_iSubItemRectSubItem = -1;
 
-      pdrawitem->m_iSubItemRectColumn = -1;
+      //pdrawitem->m_iSubItemRectColumn = -1;
 
       for (index iVisible = 0; iVisible < iColumnCount; iVisible++)
       {
 
-         pdrawitem->m_iColumn = iVisible;
+         auto iSubItem = _001MapOrderToSubItem(iVisible);
 
-         pdrawitem->m_iOrder = _001MapColumnToOrder(iVisible);
+         auto psubitem = get_subitem(pdrawitem, iSubItem);
 
-         if (pdrawitem->m_iOrder < 0)
+         psubitem->m_iOrder = _001MapColumnToOrder(psubitem->m_pcolumn->m_iColumn);
+
+         if (psubitem->m_iOrder < 0)
          {
 
             continue;
 
          }
 
-         pdrawitem->m_pcolumn = m_columna.get_visible(pdrawitem->m_iColumn);
+         _001GetSubItemRect(*psubitem);
 
-         if (pdrawitem->m_pcolumn != nullptr)
-         {
-
-            pdrawitem->m_iSubItem = pdrawitem->m_pcolumn->subitem_index();
-
-         }
-
-         _001GetSubItemRect(pdrawitem);
-
-         if (!pdrawitem->m_bOk)
+         if (!psubitem->m_bOk)
          {
 
             continue;
 
          }
 
-         _001DrawSubItem(pdrawitem);
+         _001DrawSubItem(pgraphics, *psubitem);
 
       }
 
@@ -788,7 +816,7 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
       {
 
-         if (pdrawitem->m_plist->m_bMorePlain)
+         if (pdrawitem->m_pmesh->m_plist->m_bMorePlain)
          {
 
             auto color = get_color(pstyle, ::e_element_item_text);
@@ -813,83 +841,83 @@ namespace user
    }
 
 
-   void list::_001DrawSubItem(draw_list_item * pdrawitem)
+   void list::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
    {
 
-      if (pdrawitem->m_pcolumn->m_bCustomDraw)
+      if (pdrawlistsubitem->m_pcolumn->m_bCustomDraw)
       {
 
-         pdrawitem->m_bListSubItemHover = pdrawitem->m_bListItemHover && (pdrawitem->m_iSubItem == m_iSubItemHover);
+         //pdrawlistsubitem->m_bListSubItemHover = pdrawlistsubitem->m_bListItemHover && (pdrawlistsubitem->m_iSubItem == m_iSubItemHover);
 
-         pdrawitem->m_bFocus = false;
+         //pdrawlistsubitem->m_bFocus = false;
 
          return;
 
       }
 
-      if (pdrawitem->m_bListItemHover)
-      {
+      //if (pdrawlistsubitem->m_bListItemHover)
+      //{
 
-         pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
+      //   pdrawlistsubitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
+      //   pdrawlistsubitem->m_pgraphics->set_font(this, ::e_element_none);
 
-      }
+      //}
 
-      pdrawitem->m_iListItem = -1;
+      ////pdrawitem->m_iListItem = -1;
 
-      pdrawitem->m_bOk = false;
+      pdrawlistsubitem->m_bOk = false;
 
-      _001GetElementRect(pdrawitem, ::user::list::element_image);
+      _001GetElementRect(pdrawlistsubitem, ::user::list::e_element_image);
 
-      if (pdrawitem->m_bOk)
-      {
-
-         try
-         {
-
-            _001GetItemImage(pdrawitem);
-
-         }
-         catch (...)
-         {
-
-            pdrawitem->m_bOk = false;
-
-         }
-
-         pdrawitem->draw_image();
-
-      }
-
-      pdrawitem->m_iListItem = -1;
-
-      _001GetElementRect(pdrawitem, ::user::mesh::e_element_text);
-
-      if (pdrawitem->m_bOk)
+      if (pdrawlistsubitem->m_bOk)
       {
 
          try
          {
 
-            _001GetItemText(pdrawitem);
+            _001GetSubItemImage(pdrawlistsubitem);
 
          }
          catch (...)
          {
 
-            pdrawitem->m_bOk = false;
+            pdrawlistsubitem->m_bOk = false;
 
          }
 
-         if (pdrawitem->m_bOk)
+         pdrawlistsubitem->draw_image(pgraphics);
+
+      }
+
+      //pdrawlistsubitem->m_iListItem = -1;
+
+      _001GetElementRect(pdrawlistsubitem, ::user::mesh::e_element_text);
+
+      if (pdrawlistsubitem->m_bOk)
+      {
+
+         try
          {
 
-            pdrawitem->draw_text();
+            _001GetSubItemText(pdrawlistsubitem);
+
+         }
+         catch (...)
+         {
+
+            pdrawlistsubitem->m_bOk = false;
+
+         }
+
+         if (pdrawlistsubitem->m_bOk)
+         {
+
+            pdrawlistsubitem->draw_text(pgraphics);
 
          }
 
@@ -901,7 +929,7 @@ namespace user
    ::count list::_001GetColumnCount()
    {
 
-      return m_columna.VisibleGetCount();
+      return m_columna.get_visible_count();
 
    }
 
@@ -989,7 +1017,7 @@ namespace user
          for (index i = 0; i < iCount; i++)
          {
 
-            iWidth = _001CalcItemWidth(pgraphics, i, 0);
+            iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
 
             if (iWidth > iMaxWidth)
             {
@@ -1154,13 +1182,15 @@ namespace user
 
             get_client_rect(&rectangleClient);
 
-            draw_list_item itemFirst(this);
+            auto pitem = get_item(0);
 
-            itemFirst.m_iItem = 0;
+            //draw_list_item itemFirst(this);
 
-            itemFirst.m_iDisplayItem = 0;
+            //itemFirst.m_iItem = 0;
 
-            _001GetItemRect(&itemFirst);
+            //itemFirst.m_iDisplayItem = 0;
+
+            _001GetItemRect(*pitem);
 
             rectangle.top = rectangleClient.top;
 
@@ -1179,9 +1209,9 @@ namespace user
 
                rectangle.right = (::i32)minimum(
                             rectangleClient.left +
-                            m_nItemCount * itemFirst.m_rectangleItem.width() * m_dItemHeight /
+                            m_nItemCount * pitem->m_pdrawlistitem->m_rectangleItem.width() * m_dItemHeight /
                             rectangleClient.height()
-                            + itemFirst.m_rectangleItem.width(), MAXI32);
+                            + pitem->m_pdrawlistitem->m_rectangleItem.width(), MAXI32);
 
             }
 
@@ -1200,17 +1230,17 @@ namespace user
          else
          {
 
-            draw_list_item itemFirst(this);
+            auto pitem = get_item(0);
 
-            itemFirst.m_iItem = 0;
+            //draw_list_item itemFirst(this);
 
-            itemFirst.m_iDisplayItem = 0;
+            //itemFirst.m_iItem = 0;
 
-            itemFirst.m_iGroup = 0;
+            //itemFirst.m_iDisplayItem = 0;
 
-            _001GetItemRect(&itemFirst);
+            _001GetItemRect(*pitem);
 
-            rectangle = itemFirst.m_rectangleItem;
+            rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
 
             m_scrolldataVertical.m_iLine = (::i32) m_dItemHeight;
 
@@ -1226,62 +1256,44 @@ namespace user
 
          rectangle = ::rectangle_i32(0, 0, 0, 0);
 
-         draw_list_item itemFirst(this);
+         auto pitemFirst = get_item(0);
 
-         itemFirst.m_iItem = 0;
+         //draw_list_item itemFirst(this);
 
-         itemFirst.m_iDisplayItem = 0;
+         //itemFirst.m_iItem = 0;
 
-         _001GetItemRect(&itemFirst);
+         //itemFirst.m_iDisplayItem = 0;
 
-         if (itemFirst.m_bOk)
+         _001GetItemRect(*pitemFirst);
+
+         if (pitemFirst->m_bOk)
          {
 
-            draw_list_item itemLast(this);
+            auto pitemLast = get_item(0);
 
             if (m_nItemCount <= 0)
             {
 
-               itemLast.m_iDisplayItem = 0;
+               pitemLast->m_iDisplayItem = 0;
 
-               itemLast.m_iItem = 0;
+               pitemLast->m_iItem = 0;
 
             }
             else
             {
 
-               itemLast.m_iDisplayItem = m_nItemCount - 1;
+               pitemLast->m_iDisplayItem = m_nItemCount - 1;
 
-               itemLast.m_iItem = m_nItemCount - 1;
+               pitemLast->m_iItem = m_nItemCount - 1;
 
             }
 
+            _001GetItemRect(*pitemLast);
 
-            _001GetItemRect(&itemLast);
-
-            if (itemLast.m_bOk)
+            if (pitemLast->m_bOk)
             {
 
-               draw_list_item itemTopRight(this);
-
-               ::rectangle_i32 rectangleClient;
-
-               get_client_rect(&rectangleClient);
-
-               itemTopRight.m_iItem = (index)maximum(1, rectangleClient.width() / get_item_size().cx) - 1;
-
-               itemTopRight.m_iDisplayItem = itemTopRight.m_iItem;
-
-               _001GetItemRect(&itemTopRight);
-
-               if (itemTopRight.m_bOk)
-               {
-
-                  rectangle.unite(itemFirst.m_rectangleItem, itemLast.m_rectangleItem);
-
-                  rectangle.unite(rectangle, itemTopRight.m_rectangleItem);
-
-               }
+               rectangle.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
 
             }
 
@@ -1298,6 +1310,66 @@ namespace user
 
    void list::_001OnInitialize()
    {
+
+   }
+
+
+   __pointer(mesh_item) & list::get_item(::index iItem)
+   {
+
+      auto & pitem = m_mapItem[iItem];
+
+      if (!pitem)
+      {
+
+         auto pdrawlistitem = __new(draw_list_item);
+
+         pdrawlistitem->initialize_draw_list_item(this);
+
+         pdrawlistitem->m_iItem = iItem;
+
+         //pdrawlistitem->m_iItemRectItem = -1;
+         //pdrawlistitem->m_iSubItemRectOrder = -1;
+         //pdrawlistitem->m_iSubItemRectSubItem = -1;
+         //pdrawlistitem->m_iSubItemRectItem = -1;
+         //pdrawlistitem->m_iSubItemRectColumn = -1;
+         //pdrawlistitem->m_iColumn = -1;
+         pdrawlistitem->m_iColumnWidth = 0;
+         pdrawlistitem->m_ealign = get_draw_text_align(m_eview);
+         pdrawlistitem->m_edrawtext = get_draw_text_flags(m_eview);
+
+         pitem = pdrawlistitem;
+
+      }
+
+      return pitem;
+
+   }
+
+
+   __pointer(mesh_subitem) & list::get_subitem(mesh_item * pitem, ::index iSubItem)
+   {
+      
+      auto & psubitem = pitem->m_mapSubItem[iSubItem];
+
+      if (!psubitem)
+      {
+
+         auto pdrawlistsubitem = __new(draw_list_subitem);
+
+         pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
+
+         pdrawlistsubitem->m_pitem = pitem;
+
+         pdrawlistsubitem->m_pcolumn = m_columna.get_by_subitem(iSubItem);
+
+         pdrawlistsubitem->m_iSubItem = iSubItem;
+
+         psubitem = pdrawlistsubitem;
+
+      }
+
+      return psubitem;
 
    }
 
@@ -1404,9 +1476,25 @@ namespace user
 
       //});
 
+      auto iVisibleColumnCount = m_columna.get_visible_count();
+
+      ::i32 iPosition = 0;
+
+      for (::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
+      {
+
+         auto pcolumn = m_columna.get_visible(iColumn);
+
+         pcolumn->m_iPosition = iPosition;
+
+         iPosition += pcolumn->m_iWidth;
+
+      }
+
+
       ::image_list::info ii;
 
-      for (iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
+      for (iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
 
          list_column * pcolumn = m_columna.get_visible(iColumn);
@@ -1490,7 +1578,7 @@ namespace user
 
          ::user::list_header::item hditem;
 
-         for (index iOrder = 0; iOrder < m_columna.VisibleGetCount(); iOrder++)
+         for (index iOrder = 0; iOrder < m_columna.get_visible_count(); iOrder++)
          {
             iColumn = _001MapOrderToColumn(iOrder);
 
@@ -1534,7 +1622,7 @@ namespace user
 
       }
 
-      if (iColumn >= m_columna.VisibleGetCount())
+      if (iColumn >= m_columna.get_visible_count())
       {
 
          return false;
@@ -1552,31 +1640,25 @@ namespace user
    }
 
 
-   void list::_001GetColumnWidth(draw_list_item * pitem)
-   {
+   //int list::_001GetColumnWidth(::index iColumn)
+   //{
 
-      auto  * pcolumn = m_columna.get_visible(pitem->m_iColumn);
+   //   auto  * pcolumn = m_columna.get_visible(pitem->m_iColumn);
 
-      if (pcolumn == nullptr)
-      {
+   //   if (pcolumn == nullptr)
+   //   {
 
-         pitem->m_iColumnWidth = 0;
+   //      return-1;
 
-         pitem->m_bOk = false;
+   //   }
+   //   else
+   //   {
 
-      }
-      else
-      {
+   //      return pcolumn->m_iWidth;
 
-         pitem->m_iSubItem = pcolumn->subitem_index();
+   //   }
 
-         pitem->m_iColumnWidth = pcolumn->m_iWidth;
-
-         pitem->m_bOk = true;
-
-      }
-
-   }
+   //}
 
 
    index list::_001MapSubItemToOrder(index iSubItem)
@@ -1600,6 +1682,7 @@ namespace user
 
       for (index iColumn = 0; iColumn < m_columna.get_size(); iColumn++)
       {
+
          list_column * pcolumn = m_columna.element_at(iColumn);
 
          if (pcolumn->m_bVisible)
@@ -1631,7 +1714,7 @@ namespace user
 
       }
 
-      if (iColumn >= m_columna.VisibleGetCount())
+      if (iColumn >= m_columna.get_visible_count())
       {
 
          return -1;
@@ -1664,7 +1747,7 @@ namespace user
    {
 
       ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_columna.VisibleGetCount());
+      ASSERT(iColumn < m_columna.get_visible_count());
 
       return m_columna.get_visible(iColumn)->subitem_index();
 
@@ -1675,7 +1758,7 @@ namespace user
    {
 
       ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_columna.VisibleGetCount());
+      ASSERT(iColumn < m_columna.get_visible_count());
 
       m_columna.erase(iColumn);
 
@@ -1868,7 +1951,7 @@ namespace user
 
       get_client_rect(&rectangleUpdate);
 
-      draw_list_item item(this);
+      auto pitem = get_item(iItemFirst);
 
       if (iItemFirst >= 0)
       {
@@ -1878,37 +1961,35 @@ namespace user
          for (index i = iItemFirst + 1; i < iItemCount; i++)
          {
 
-            item.m_iItem = i;
+            pitem->m_iDisplayItem = i;
 
-            item.m_iDisplayItem = i;
+            //if (m_bGroup)
+            //{
 
-            if (m_bGroup)
+            //   item.m_iGroupTopDisplayIndex = 0;
+
+            //   for (item.m_iGroup = 0; item.m_iGroup < m_nGroupCount; item.m_iGroup++)
+            //   {
+
+            //      item.m_iGroupCount = _001GetGroupItemCount(item.m_iGroup);
+
+            //      if (i >= item.m_iGroupTopDisplayIndex && i < (item.m_iGroupTopDisplayIndex + item.m_iGroupCount))
+            //      {
+
+            //         break;
+
+            //      }
+
+            //   }
+
+            //}
+
+            _001GetItemRect(*pitem);
+
+            if (pitem->m_bOk)
             {
 
-               item.m_iGroupTopDisplayIndex = 0;
-
-               for (item.m_iGroup = 0; item.m_iGroup < m_nGroupCount; item.m_iGroup++)
-               {
-
-                  item.m_iGroupCount = _001GetGroupItemCount(item.m_iGroup);
-
-                  if (i >= item.m_iGroupTopDisplayIndex && i < (item.m_iGroupTopDisplayIndex + item.m_iGroupCount))
-                  {
-
-                     break;
-
-                  }
-
-               }
-
-            }
-
-            _001GetItemRect(&item);
-
-            if (item.m_bOk)
-            {
-
-               if (!rectangleIntersect.intersect(item.m_rectangleItem, rectangleUpdate))
+               if (!rectangleIntersect.intersect(pitem->m_pdrawlistitem->m_rectangleItem, rectangleUpdate))
                {
 
                   iItemLast = i - 1;
@@ -2064,7 +2145,7 @@ namespace user
 
       index iRight;
 
-      draw_list_item item(this);
+      //draw_list_item item(this);
 
       if (point.x < 0)
       {
@@ -2073,26 +2154,28 @@ namespace user
 
       }
 
-      for (item.m_iColumn = 0; item.m_iColumn < iColumnCount; item.m_iColumn++)
+      for (::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       {
 
-         _001GetColumnWidth(&item);
+         //_001GetColumnWidth(&item);
 
-         if (!item.m_bOk)
-         {
+         //if (!item.m_bOk)
+         //{
 
-            continue;
+           // continue;
 
-         }
+         //}
 
-         iRight = iLeft + item.m_iColumnWidth;
+         auto pcolumn = m_columna.get_visible(iColumn);
+
+         iRight = iLeft + pcolumn->m_iWidth;
 
          if (iLeft <= point.x && point.x < iRight)
          {
 
             iItemParam = iItem;
 
-            iSubItemParam = item.m_iSubItem;
+            iSubItemParam = pcolumn->m_iSubItem;
 
             return true;
 
@@ -2354,69 +2437,68 @@ namespace user
    }
 
 
-   void list::_001GetGroupRect(::user::draw_list_item * pdrawitem)
+   void list::_001GetGroupRect(::user::draw_list_group * pdrawlistgroup)
    {
 
-      if (pdrawitem->m_iGroup < 0)
+      if (pdrawlistgroup->m_iGroup < 0)
       {
 
-         return_(pdrawitem->m_bOk, false);
+         return_(pdrawlistgroup->m_bOk, false);
 
       }
 
-      if (pdrawitem->m_iGroup >= m_nGroupCount)
+      if (pdrawlistgroup->m_iGroup >= m_nGroupCount)
       {
 
-         return_(pdrawitem->m_bOk, false);
+         return_(pdrawlistgroup->m_bOk, false);
 
       }
 
-      index iItemFirst = 0;
+      index iDisplayItemFirst = 0;
 
-      index iItemLast = _001GetGroupItemCount(0) - 1;
+      index iDisplayItemLast = _001GetGroupItemCount(0) - 1;
 
-      pdrawitem->m_iGroupRectGroup = 0;
+      pdrawlistgroup->m_iGroupRectGroup = 0;
 
-      while (pdrawitem->m_iGroupRectGroup < pdrawitem->m_iGroup)
+      while (pdrawlistgroup->m_iGroupRectGroup < pdrawlistgroup->m_iGroup)
       {
 
-         pdrawitem->m_iGroupRectGroup++;
+         pdrawlistgroup->m_iGroupRectGroup++;
 
-         iItemFirst = iItemLast + 1;
+         iDisplayItemFirst = iDisplayItemLast + 1;
 
-         iItemLast = iItemFirst + _001GetGroupItemCount(pdrawitem->m_iGroupRectGroup) - 1;
+         iDisplayItemLast = iDisplayItemFirst + _001GetGroupItemCount(pdrawlistgroup->m_iGroupRectGroup) - 1;
 
       }
 
-      draw_list_item itemFirst(this);
 
-      itemFirst.m_iItem = _001DisplayToStrict(iItemFirst);
+      auto iItemFirst = _001DisplayToStrict(iDisplayItemFirst);
 
-      itemFirst.m_iDisplayItem = iItemFirst;
+      auto pitemFirst = get_item(iItemFirst);
 
-      itemFirst.m_iGroup = pdrawitem->m_iGroupRectGroup;
+      pitemFirst->m_iDisplayItem = iDisplayItemFirst;
 
-      _001GetItemRect(&itemFirst);
+      //itemFirst.m_iGroup = pdrawitem->m_iGroupRectGroup;
 
-      draw_list_item itemLast(this);
+      _001GetItemRect(*pitemFirst);
 
-      itemLast.m_iDisplayItem = _001DisplayToStrict(iItemLast);
+      auto iItemLast = _001DisplayToStrict(iDisplayItemLast);
 
-      itemLast.m_iItem = iItemLast;
+      auto pitemLast = get_item(iItemLast);
 
-      itemLast.m_iGroup = pdrawitem->m_iGroupRectGroup;
+      pitemLast->m_iDisplayItem = iDisplayItemLast;
 
-      _001GetItemRect(&itemLast);
+      _001GetItemRect(*pitemLast);
 
-      pdrawitem->m_rectangleGroup.unite(itemFirst.m_rectangleItem, itemLast.m_rectangleItem);
+      pdrawlistgroup->m_rectangleGroup.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
 
-      pdrawitem->m_rectangleGroup.bottom = maximum(itemLast.m_rectangleItem.bottom, itemFirst.m_rectangleItem.top + m_iGroupMinHeight);
+      pdrawlistgroup->m_rectangleGroup.bottom = maximum(pitemLast->m_pdrawlistitem->m_rectangleItem.bottom, pitemFirst->m_pdrawlistitem->m_rectangleItem.top + m_iGroupMinHeight);
 
-      pdrawitem->m_rectangleGroup.left = 0;
+      pdrawlistgroup->m_rectangleGroup.left = 0;
 
-      pdrawitem->m_rectangleGroup.right = m_iLateralGroupWidth;
+      pdrawlistgroup->m_rectangleGroup.right = m_iLateralGroupWidth;
 
-      pdrawitem->m_bOk = true;
+      pdrawlistgroup->m_bOk = true;
 
    }
 
@@ -2424,49 +2506,22 @@ namespace user
    void list::_001GetItemRect(::user::draw_list_item * pdrawitem)
    {
 
-      if (pdrawitem->m_iDisplayItem == (-1 - pdrawitem->m_iItemRectItem) && pdrawitem->m_iItemRectItem >= 0)
+      if (pdrawitem->m_iDisplayItem < 0)
       {
 
          return_(pdrawitem->m_bOk, false);
 
       }
 
-      if (pdrawitem->m_iDisplayItem == pdrawitem->m_iItemRectItem)
+      if (pdrawitem->m_iDisplayItem == pdrawitem->m_iRectangleDisplayItem)
       {
 
          return_(pdrawitem->m_bOk, true);
 
       }
 
-      if (pdrawitem->m_iDisplayItem < 0)
-      {
-
-         pdrawitem->m_rectangleItem.left = 0;
-
-         pdrawitem->m_rectangleItem.top = 0;
-
-         pdrawitem->m_rectangleItem.right = 0;
-
-         pdrawitem->m_rectangleItem.bottom = 0;
-
-         pdrawitem->m_iItemRectItem = (-1 - pdrawitem->m_iDisplayItem);
-
-         return_(pdrawitem->m_bOk, false);
-
-      }
-
       if (m_eview == impact_icon && pdrawitem->m_iDisplayItem >= m_nDisplayCount)
       {
-
-         pdrawitem->m_rectangleItem.left = 0;
-
-         pdrawitem->m_rectangleItem.top = 0;
-
-         pdrawitem->m_rectangleItem.right = 0;
-
-         pdrawitem->m_rectangleItem.bottom = 0;
-
-         pdrawitem->m_iItemRectItem = (-1 - pdrawitem->m_iDisplayItem);
 
          return_(pdrawitem->m_bOk, false);
 
@@ -2483,14 +2538,14 @@ namespace user
             if (m_bLateralGroup)
             {
 
-               if (pdrawitem->m_iItemRectItem < 0)
+               if (pdrawitem->m_iRectangleDisplayItem < 0)
                {
 
                   pdrawitem->m_rectangleItem.left = m_iLateralGroupWidth;
 
                   pdrawitem->m_rectangleItem.right = (::i32)(pdrawitem->m_rectangleItem.left + m_iItemWidth);
 
-                  pdrawitem->m_iItemRectItem = 0;
+                  pdrawitem->m_iRectangleDisplayItem = 0;
 
                   pdrawitem->m_rectangleItem.top = 0;
 
@@ -2514,87 +2569,87 @@ namespace user
 
                }
 
-               if (pdrawitem->m_iDisplayItem > pdrawitem->m_iItemRectItem)
-               {
+               //if (pdrawitem->m_iDisplayItem > pdrawitem->m_iRectangleDisplayItem)
+               //{
 
-                  i32 iOffset = (i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   i32 iOffset = (i32)((pdrawitem->m_iRectangleDisplayItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-                  pdrawitem->m_rectangleItem.top -= iOffset;
+               //   pdrawitem->m_rectangleItem.top -= iOffset;
 
-                  pdrawitem->m_rectangleItem.bottom = (::i32) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (::i32) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-                  while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount < pdrawitem->m_iDisplayItem)
-                  {
+               //   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount < pdrawitem->m_iDisplayItem)
+               //   {
 
-                     pdrawitem->m_rectangleItem.top += iOffset;
+               //      pdrawitem->m_rectangleItem.top += iOffset;
 
-                     pdrawitem->m_rectangleItem.bottom = (::i32) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
+               //      pdrawitem->m_rectangleItem.bottom = (::i32) (pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-                     if ((pdrawitem->m_iGroup + 1) >= m_nGroupCount)
-                     {
+               //      if ((pdrawitem->m_iGroup + 1) >= m_nGroupCount)
+               //      {
 
-                        break;
+               //         break;
 
-                     }
+               //      }
 
-                     pdrawitem->m_iGroup++;
+               //      pdrawitem->m_iGroup++;
 
-                     pdrawitem->m_iGroupTopDisplayIndex += pdrawitem->m_iGroupCount;
+               //      pdrawitem->m_iGroupTopDisplayIndex += pdrawitem->m_iGroupCount;
 
-                     pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
+               //      pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
 
-                     pdrawitem->m_iItemRectItem = pdrawitem->m_iGroupTopDisplayIndex;
+               //      pdrawitem->m_iItemRectItem = pdrawitem->m_iGroupTopDisplayIndex;
 
-                  }
+               //   }
 
-               }
-               else
-               {
+               //}
+               //else
+               //{
 
-                  i32 iOffset = (i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   i32 iOffset = (i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-                  pdrawitem->m_rectangleItem.top -= iOffset;
+               //   pdrawitem->m_rectangleItem.top -= iOffset;
 
-                  pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-                  while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount > pdrawitem->m_iDisplayItem)
-                  {
+               //   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount > pdrawitem->m_iDisplayItem)
+               //   {
 
-                     if ((pdrawitem->m_iGroup - 1) < 0)
-                     {
+               //      if ((pdrawitem->m_iGroup - 1) < 0)
+               //      {
 
-                        break;
+               //         break;
 
-                     }
+               //      }
 
-                     pdrawitem->m_iGroup--;
+               //      pdrawitem->m_iGroup--;
 
-                     i32 dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
+               //      i32 dHeight = _001GetGroupHeight(pdrawitem->m_iGroup);
 
-                     pdrawitem->m_rectangleItem.top -= dHeight;
+               //      pdrawitem->m_rectangleItem.top -= dHeight;
 
-                     pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
+               //      pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-                     pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
+               //      pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
 
-                     pdrawitem->m_iGroupTopDisplayIndex -= pdrawitem->m_iGroupCount;
+               //      pdrawitem->m_iGroupTopDisplayIndex -= pdrawitem->m_iGroupCount;
 
-                     pdrawitem->m_iItemRectItem = pdrawitem->m_iGroupTopDisplayIndex;
+               //      pdrawitem->m_iItemRectItem = pdrawitem->m_iGroupTopDisplayIndex;
 
-                  }
+               //   }
 
-               }
+               //}
 
-               if (pdrawitem->m_iGroup < m_nGroupCount && pdrawitem->m_iGroup >= 0)
-               {
+               //if (pdrawitem->m_iGroup < m_nGroupCount && pdrawitem->m_iGroup >= 0)
+               //{
 
-                  pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
+               //   pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
 
-                  pdrawitem->m_rectangleItem.top += (::i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.top += (::i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-                  pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
+               //   pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-               }
+               //}
 
             }
             else
@@ -2632,9 +2687,9 @@ namespace user
 
             pdrawitem->m_rectangleItem.bottom = (::i32)(pdrawitem->m_rectangleItem.top + m_dItemHeight);
 
-            //pdrawitem->m_rectangleItem.offset(-pointOffset.x, -pointOffset.y);
+            pdrawitem->m_iRectangleDisplayItem = pdrawitem->m_iDisplayItem;
 
-            pdrawitem->m_iItemRectItem = pdrawitem->m_iDisplayItem;
+            pdrawitem->m_bOk = true;
 
          }
 
@@ -2765,15 +2820,15 @@ namespace user
    }
 
 
-   void list::_001GetSubItemRect(::user::draw_list_item * pdrawitem)
+   void list::_001GetSubItemRect(::user::draw_list_subitem * pdrawlistsubitem)
    {
 
-      if (pdrawitem->m_iDisplayItem != pdrawitem->m_iItemRectItem)
+      if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
       {
 
-         _001GetItemRect(pdrawitem);
+         _001GetItemRect(*pdrawlistsubitem->m_pitem);
 
-         if (!pdrawitem->m_bOk)
+         if (!pdrawlistsubitem->m_pitem->m_bOk)
          {
 
             return;
@@ -2782,81 +2837,76 @@ namespace user
 
       }
 
-      if (pdrawitem->m_iSubItemRectOrder == pdrawitem->m_iOrder)
+      if (pdrawlistsubitem->m_iRectangleOrder == pdrawlistsubitem->m_iOrder)
       {
 
-         if (pdrawitem->m_iSubItemRectItem != pdrawitem->m_iItemRectItem)
-         {
-
-            pdrawitem->m_rectangleSubItem.top = pdrawitem->m_rectangleItem.top;
-
-            pdrawitem->m_rectangleSubItem.bottom = pdrawitem->m_rectangleItem.bottom;
-
-         }
-
-         return_(pdrawitem->m_bOk, true);
+         return_(pdrawlistsubitem->m_bOk, true);
 
       }
 
-      if (m_eview == impact_icon)
+      if (m_eview == impact_icon || m_eview == impact_list)
       {
 
-         pdrawitem->m_rectangleSubItem = pdrawitem->m_rectangleItem;
+         pdrawlistsubitem->m_rectangleSubItem = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem;
 
-         return_(pdrawitem->m_bOk, true);
+         return_(pdrawlistsubitem->m_bOk, true);
 
       }
 
-      pdrawitem->m_bOk = false;
+      pdrawlistsubitem->m_bOk = true;
 
-      pdrawitem->m_rectangleSubItem.top = pdrawitem->m_rectangleItem.top;
+      pdrawlistsubitem->m_rectangleSubItem.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
 
-      pdrawitem->m_rectangleSubItem.bottom = pdrawitem->m_rectangleItem.bottom;
+      pdrawlistsubitem->m_rectangleSubItem.bottom = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.bottom;
 
-      index iLastOrder = _001GetColumnCount() - 1;
+      pdrawlistsubitem->m_rectangleSubItem.left = pdrawlistsubitem->m_pcolumn->m_iPosition;
 
-      if (iLastOrder < 0)
-      {
+      pdrawlistsubitem->m_rectangleSubItem.right = pdrawlistsubitem->m_pcolumn->m_iPosition + pdrawlistsubitem->m_pcolumn->m_iWidth;
 
-         return_(pdrawitem->m_bOk, false);
+      //index iLastOrder = _001GetColumnCount() - 1;
 
-      }
+      //if (iLastOrder < 0)
+      //{
 
-      if (pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
-      {
-         pdrawitem->m_iSubItemRectOrder = 0;
-         pdrawitem->m_rectangleSubItem.left = pdrawitem->m_rectangleItem.left;
-         pdrawitem->m_iSubItemRectColumn = _001MapOrderToColumn(pdrawitem->m_iOrder);
-         pdrawitem->m_iColumn = pdrawitem->m_iSubItemRectColumn;
-         _001GetColumnWidth(pdrawitem);
-         pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleItem.left + pdrawitem->m_iColumnWidth;
-         pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
-         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
-         if (pdrawitem->m_iOrder == 0)
-         {
-            pdrawitem->m_bOk = true;
-            return;
-         }
-      }
+      //   return_(pdrawitem->m_bOk, false);
 
-      if (pdrawitem->m_iOrder <= iLastOrder)
-      {
-         while (pdrawitem->m_iSubItemRectOrder < pdrawitem->m_iOrder)
-         {
-            pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
-            _001GetColumnWidth(pdrawitem);
-            pdrawitem->m_rectangleSubItem.left += pdrawitem->m_iColumnWidth;
-            pdrawitem->m_iSubItemRectOrder++;
-         }
-         pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
-         pdrawitem->m_iSubItemRectColumn = pdrawitem->m_iColumn;
-         _001GetColumnWidth(pdrawitem);
-         pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleSubItem.left + pdrawitem->m_iColumnWidth;
-         pdrawitem->m_iSubItemRectOrder = pdrawitem->m_iOrder;
-         pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
-         pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
-         pdrawitem->m_bOk = true;
-      }
+      //}
+
+      //if (pdrawitem->m_iSubItemRectOrder < 0 || pdrawitem->m_iOrder == 0 || pdrawitem->m_iSubItemRectOrder > pdrawitem->m_iOrder)
+      //{
+      //   pdrawitem->m_iSubItemRectOrder = 0;
+      //   pdrawitem->m_rectangleSubItem.left = pdrawitem->m_rectangleItem.left;
+      //   pdrawitem->m_iSubItemRectColumn = _001MapOrderToColumn(pdrawitem->m_iOrder);
+      //   pdrawitem->m_iColumn = pdrawitem->m_iSubItemRectColumn;
+      //   _001GetColumnWidth(pdrawitem);
+      //   pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleItem.left + pdrawitem->m_iColumnWidth;
+      //   pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
+      //   pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
+      //   if (pdrawitem->m_iOrder == 0)
+      //   {
+      //      pdrawitem->m_bOk = true;
+      //      return;
+      //   }
+      //}
+
+      //if (pdrawitem->m_iOrder <= iLastOrder)
+      //{
+      //   while (pdrawitem->m_iSubItemRectOrder < pdrawitem->m_iOrder)
+      //   {
+      //      pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+      //      _001GetColumnWidth(pdrawitem);
+      //      pdrawitem->m_rectangleSubItem.left += pdrawitem->m_iColumnWidth;
+      //      pdrawitem->m_iSubItemRectOrder++;
+      //   }
+      //   pdrawitem->m_iColumn = _001MapOrderToColumn(pdrawitem->m_iSubItemRectOrder);
+      //   pdrawitem->m_iSubItemRectColumn = pdrawitem->m_iColumn;
+      //   _001GetColumnWidth(pdrawitem);
+      //   pdrawitem->m_rectangleSubItem.right = pdrawitem->m_rectangleSubItem.left + pdrawitem->m_iColumnWidth;
+      //   pdrawitem->m_iSubItemRectOrder = pdrawitem->m_iOrder;
+      //   pdrawitem->m_iSubItemRectItem = pdrawitem->m_iItemRectItem;
+      //   pdrawitem->m_iSubItemRectSubItem = pdrawitem->m_iSubItem;
+      //   pdrawitem->m_bOk = true;
+      //}
 
    }
 
@@ -2887,37 +2937,252 @@ namespace user
    }
 
 
-   void list::_001GetElementRect(::user::draw_list_item * pdrawitem, ::user::mesh::enum_element eelement)
+   void list::_001GetElementRect(::user::draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement)
    {
 
-      if (m_bGroup && m_bLateralGroup && (eelement == ::user::list::element_group_image || eelement == ::user::list::element_group_item_text))
+      if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
       {
 
-         i32 x = pdrawitem->m_rectangleGroup.left;
+         pdrawlistsubitem->m_bOk = false;
 
-         i32 iImageBottom = pdrawitem->m_rectangleGroup.top;
+         _001GetItemRect(*pdrawlistsubitem->m_pitem);
+
+         if (!pdrawlistsubitem->m_pitem->m_bOk)
+         {
+
+            return;
+
+         }
+
+      }
+
+      if (eelement == ::user::list::e_element_item)
+      {
+
+         return_(pdrawlistsubitem->m_bOk, true);
+
+      }
+
+      if (m_eview == impact_icon)
+      {
+
+         if (eelement == ::user::list::e_element_image)
+         {
+
+            i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
+
+            pdrawlistsubitem->m_rectangleImage.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left + iIconSize / 2;
+            pdrawlistsubitem->m_rectangleImage.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
+            pdrawlistsubitem->m_rectangleImage.right = pdrawlistsubitem->m_rectangleImage.left + iIconSize;
+            pdrawlistsubitem->m_rectangleImage.bottom = pdrawlistsubitem->m_rectangleImage.top + iIconSize;
+
+            return_(pdrawlistsubitem->m_bOk, true);
+
+         }
+         else if (eelement == ::user::mesh::e_element_text)
+         {
+
+            i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
+
+            pdrawlistsubitem->m_rectangleText.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left;
+            pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top + iIconSize;
+            pdrawlistsubitem->m_rectangleText.right = pdrawlistsubitem->m_rectangleText.left + iIconSize * 2;
+            pdrawlistsubitem->m_rectangleText.bottom = pdrawlistsubitem->m_rectangleText.top + iIconSize;
+
+            return_(pdrawlistsubitem->m_bOk, true);
+
+         }
+
+         return_(pdrawlistsubitem->m_bOk, false);
+
+      }
+
+      pdrawlistsubitem->m_bOk = false;
+
+      _001GetSubItemRect(*pdrawlistsubitem);
+
+      if (!pdrawlistsubitem->m_bOk)
+      {
+
+         return;
+
+      }
+
+      i32 x = pdrawlistsubitem->m_rectangleSubItem.left;
+
+      //if (pdrawitem->m_iListItem == -1)
+      {
+
+         if (eelement == ::user::mesh::e_element_sub_item)
+         {
+
+            return_(pdrawlistsubitem->m_bOk, true);
+
+         }
+
+         if (::is_set(pdrawlistsubitem->m_pcolumn))
+         {
+
+            if (pdrawlistsubitem->m_pcolumn->m_bIcon)
+            {
+
+               pdrawlistsubitem->m_bOk = false;
+
+               _001GetSubItemImage(*pdrawlistsubitem);
+
+               if (pdrawlistsubitem->m_bOk && pdrawlistsubitem->m_iImage >= 0)
+               {
+
+                  if (eelement == ::user::list::e_element_image)
+                  {
+
+                     ::rectangle_i32 rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
+
+                     rectangleAlign.left = x;
+                     ::rectangle_i32 rectangleIcon;
+                     rectangleIcon.set(0, 0, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx, pdrawlistsubitem->m_pcolumn->m_sizeIcon.cy);
+                     rectangleIcon.Align(e_align_left_center, rectangleAlign);
+                     pdrawlistsubitem->m_rectangleImage = rectangleIcon;
+
+                     return_(pdrawlistsubitem->m_bOk, true);
+
+                  }
+                  else
+                  {
+
+                     x += pdrawlistsubitem->m_pcolumn->m_sizeIcon.cx;
+
+                     x += m_iImageSpacing;
+
+                  }
+
+               }
+               else if (eelement == ::user::list::e_element_image)
+               {
+
+                  return_(pdrawlistsubitem->m_bOk, false);
+
+               }
+
+            }
+            else if (pdrawlistsubitem->m_pcolumn->m_pil != nullptr)
+            {
+
+               ::image_list::info ii;
+
+               pdrawlistsubitem->m_bOk = false;
+
+               _001GetSubItemImage(pdrawlistsubitem);
+
+               if (pdrawlistsubitem->m_bOk && pdrawlistsubitem->m_iImage >= 0)
+               {
+
+                  string strText = pdrawlistsubitem->m_strText;
+
+                  pdrawlistsubitem->m_pcolumn->m_pil->get_image_info((i32)pdrawlistsubitem->m_iImage, &ii);
+
+                  if (eelement == ::user::list::e_element_image)
+                  {
+
+                     ::rectangle_i32 rectangleAlign(pdrawlistsubitem->m_rectangleSubItem);
+                     rectangleAlign.left = x;
+                     ::rectangle_i32 rectangleIcon;
+                     rectangleIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
+                     rectangleIcon.Align(e_align_left_center, rectangleAlign);
+                     pdrawlistsubitem->m_rectangleImage = rectangleIcon;
+
+                     if (ii.m_rectangle.size().cx > m_sizeMaximumImage.cx 
+                        || ii.m_rectangle.size().cy > m_sizeMaximumImage.cy)
+                     {
+
+                        m_sizeMaximumImage.cx = maximum(m_sizeMaximumImage.cx, ii.m_rectangle.size().cx);
+
+                        m_sizeMaximumImage.cy = maximum(m_sizeMaximumImage.cy, ii.m_rectangle.size().cy);
+
+                        set_need_layout();
+
+                     }
+
+                     return_(pdrawlistsubitem->m_bOk, true);
+
+                  }
+                  else
+                  {
+
+                     x += ii.m_rectangle.width();
+
+                     x += m_iImageSpacing;
+
+                  }
+
+               }
+               else if (eelement == ::user::list::e_element_image)
+               {
+
+                  return_(pdrawlistsubitem->m_bOk, false);
+
+               }
+
+            }
+
+         }
+         else if (eelement == ::user::list::e_element_image)
+         {
+
+            return_(pdrawlistsubitem->m_bOk, false);
+
+         }
+
+         if (eelement == ::user::mesh::e_element_text)
+         {
+
+            pdrawlistsubitem->m_rectangleText.left = x;
+            pdrawlistsubitem->m_rectangleText.right = pdrawlistsubitem->m_rectangleSubItem.right;
+            pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_rectangleSubItem.top;
+            pdrawlistsubitem->m_rectangleText.bottom = pdrawlistsubitem->m_rectangleSubItem.bottom;
+
+            return_(pdrawlistsubitem->m_bOk, true);
+
+         }
+
+      }
+
+      pdrawlistsubitem->m_bOk = false;
+
+   }
+
+
+   void list::_001GetGroupElementRect(::user::draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement)
+   {
+
+      if (m_bGroup && m_bLateralGroup && (egroupelement == ::user::list::e_group_element_image || egroupelement == ::user::list::e_group_element_item_text))
+      {
+
+         i32 x = pdrawlistgroup->m_rectangleGroup.left;
+
+         i32 iImageBottom = pdrawlistgroup->m_rectangleGroup.top;
 
          if (m_pilGroup != nullptr)
          {
 
             ::image_list::info ii;
 
-            _001GetGroupImage(pdrawitem);
+            _001GetGroupImage(*pdrawlistgroup);
 
-            if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
+            if (pdrawlistgroup->m_bOk && pdrawlistgroup->m_iImage >= 0)
             {
 
-               m_pilGroup->get_image_info((i32)pdrawitem->m_iImage, &ii);
+               m_pilGroup->get_image_info((i32)pdrawlistgroup->m_iImage, &ii);
 
-               if (eelement == ::user::list::element_group_image)
+               if (egroupelement == ::user::list::e_group_element_image)
                {
 
-                  pdrawitem->m_rectangleImage.left = x;
-                  pdrawitem->m_rectangleImage.right = x + ii.m_rectangle.width();
-                  pdrawitem->m_rectangleImage.top = pdrawitem->m_rectangleGroup.top;
-                  pdrawitem->m_rectangleImage.bottom = pdrawitem->m_rectangleImage.top + ii.m_rectangle.height();
+                  pdrawlistgroup->m_rectangleImage.left = x;
+                  pdrawlistgroup->m_rectangleImage.right = x + ii.m_rectangle.width();
+                  pdrawlistgroup->m_rectangleImage.top = pdrawlistgroup->m_rectangleGroup.top;
+                  pdrawlistgroup->m_rectangleImage.bottom = pdrawlistgroup->m_rectangleImage.top + ii.m_rectangle.height();
 
-                  return_(pdrawitem->m_bOk, true);
+                  return_(pdrawlistgroup->m_bOk, true);
 
                }
                else
@@ -2932,260 +3197,48 @@ namespace user
                }
 
             }
-            else if (eelement == ::user::list::element_group_image)
+            else if (egroupelement == ::user::list::e_group_element_image)
             {
 
-               return_(pdrawitem->m_bOk, false);
+               return_(pdrawlistgroup->m_bOk, false);
 
             }
 
          }
-         else if (eelement == ::user::list::element_group_image)
+         else if (egroupelement == ::user::list::e_group_element_image)
          {
 
-            return_(pdrawitem->m_bOk, false);
+            return_(pdrawlistgroup->m_bOk, false);
 
          }
 
-         if (eelement == ::user::list::element_group_item_text)
+         if (egroupelement == ::user::list::e_group_element_item_text)
          {
 
-            pdrawitem->m_rectangleText.top = (::i32)(pdrawitem->m_rectangleGroup.top + m_dItemHeight * pdrawitem->m_iItem);
+            pdrawlistgroup->m_rectangleText.top = (::i32)(pdrawlistgroup->m_rectangleGroup.top + m_dItemHeight * pdrawlistgroup->m_iItem);
 
-            if (pdrawitem->m_rectangleText.top >= iImageBottom)
+            if (pdrawlistgroup->m_rectangleText.top >= iImageBottom)
             {
 
-               pdrawitem->m_rectangleText.left = pdrawitem->m_rectangleGroup.left;
+               pdrawlistgroup->m_rectangleText.left = pdrawlistgroup->m_rectangleGroup.left;
 
             }
             else
             {
 
-               pdrawitem->m_rectangleText.left = x;
+               pdrawlistgroup->m_rectangleText.left = x;
 
             }
 
-            pdrawitem->m_rectangleText.right = pdrawitem->m_rectangleGroup.right;
+            pdrawlistgroup->m_rectangleText.right = pdrawlistgroup->m_rectangleGroup.right;
 
-            pdrawitem->m_rectangleText.bottom = (::i32)(pdrawitem->m_rectangleText.top + m_dItemHeight);
+            pdrawlistgroup->m_rectangleText.bottom = (::i32)(pdrawlistgroup->m_rectangleText.top + m_dItemHeight);
 
-            return_(pdrawitem->m_bOk, true);
+            return_(pdrawlistgroup->m_bOk, true);
 
          }
 
-         pdrawitem->m_bOk = false;
-
-      }
-      else
-      {
-
-         if (pdrawitem->m_iDisplayItem != pdrawitem->m_iItemRectItem)
-         {
-
-            pdrawitem->m_bOk = false;
-
-            _001GetItemRect(pdrawitem);
-
-            if (!pdrawitem->m_bOk)
-            {
-
-               return;
-
-            }
-
-         }
-
-         if (eelement == ::user::list::e_element_item)
-         {
-
-            return_(pdrawitem->m_bOk, true);
-
-         }
-
-         if (m_eview == impact_icon)
-         {
-
-            if (eelement == ::user::list::element_image)
-            {
-
-               i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
-
-               pdrawitem->m_rectangleImage.left = pdrawitem->m_rectangleItem.left + iIconSize / 2;
-               pdrawitem->m_rectangleImage.top = pdrawitem->m_rectangleItem.top;
-               pdrawitem->m_rectangleImage.right = pdrawitem->m_rectangleImage.left + iIconSize;
-               pdrawitem->m_rectangleImage.bottom = pdrawitem->m_rectangleImage.top + iIconSize;
-
-               return_(pdrawitem->m_bOk, true);
-
-            }
-            else if (eelement == ::user::mesh::e_element_text)
-            {
-
-               i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
-
-               pdrawitem->m_rectangleText.left = pdrawitem->m_rectangleItem.left;
-               pdrawitem->m_rectangleText.top = pdrawitem->m_rectangleItem.top + iIconSize;
-               pdrawitem->m_rectangleText.right = pdrawitem->m_rectangleText.left + iIconSize * 2;
-               pdrawitem->m_rectangleText.bottom = pdrawitem->m_rectangleText.top + iIconSize;
-
-               return_(pdrawitem->m_bOk, true);
-
-            }
-
-            return_(pdrawitem->m_bOk, false);
-
-         }
-
-         pdrawitem->m_bOk = false;
-
-         _001GetSubItemRect(pdrawitem);
-
-         if (!pdrawitem->m_bOk)
-         {
-
-            return;
-
-         }
-
-         i32 x = pdrawitem->m_rectangleSubItem.left;
-
-         if (pdrawitem->m_iListItem == -1)
-         {
-
-            if (eelement == ::user::mesh::element_sub_item)
-            {
-
-               return_(pdrawitem->m_bOk, true);
-
-            }
-
-            if (::is_set(pdrawitem->m_pcolumn))
-            {
-               if (pdrawitem->m_pcolumn->m_bIcon)
-               {
-
-                  pdrawitem->m_bOk = false;
-
-                  _001GetItemImage(pdrawitem);
-
-                  if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
-                  {
-
-                     if (eelement == ::user::list::element_image)
-                     {
-
-                        ::rectangle_i32 rectangleAlign(pdrawitem->m_rectangleSubItem);
-
-                        rectangleAlign.left = x;
-                        ::rectangle_i32 rectangleIcon;
-                        rectangleIcon.set(0, 0, pdrawitem->m_pcolumn->m_sizeIcon.cx, pdrawitem->m_pcolumn->m_sizeIcon.cy);
-                        rectangleIcon.Align(e_align_left_center, rectangleAlign);
-                        pdrawitem->m_rectangleImage = rectangleIcon;
-
-                        return_(pdrawitem->m_bOk, true);
-
-                     }
-                     else
-                     {
-
-                        x += pdrawitem->m_pcolumn->m_sizeIcon.cx;
-
-                        x += m_iImageSpacing;
-
-                     }
-
-                  }
-                  else if (eelement == ::user::list::element_image)
-                  {
-
-                     return_(pdrawitem->m_bOk, false);
-
-                  }
-
-               }
-               else if (pdrawitem->m_pcolumn->m_pil != nullptr)
-               {
-
-                  ::image_list::info ii;
-
-                  pdrawitem->m_bOk = false;
-
-                  _001GetItemImage(pdrawitem);
-
-                  if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
-                  {
-
-                     string strText = pdrawitem->m_strText;
-
-                     pdrawitem->m_pcolumn->m_pil->get_image_info((i32)pdrawitem->m_iImage, &ii);
-
-                     if (eelement == ::user::list::element_image)
-                     {
-
-                        ::rectangle_i32 rectangleAlign(pdrawitem->m_rectangleSubItem);
-                        rectangleAlign.left = x;
-                        ::rectangle_i32 rectangleIcon;
-                        rectangleIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
-                        rectangleIcon.Align(e_align_left_center, rectangleAlign);
-                        pdrawitem->m_rectangleImage = rectangleIcon;
-
-                        if (ii.m_rectangle.size().cx > m_sizeMaximumImage.cx 
-                           || ii.m_rectangle.size().cy > m_sizeMaximumImage.cy)
-                        {
-
-                           m_sizeMaximumImage.cx = maximum(m_sizeMaximumImage.cx, ii.m_rectangle.size().cx);
-
-                           m_sizeMaximumImage.cy = maximum(m_sizeMaximumImage.cy, ii.m_rectangle.size().cy);
-
-                           set_need_layout();
-
-                        }
-
-                        return_(pdrawitem->m_bOk, true);
-
-                     }
-                     else
-                     {
-
-                        x += ii.m_rectangle.width();
-
-                        x += m_iImageSpacing;
-
-                     }
-
-                  }
-                  else if (eelement == ::user::list::element_image)
-                  {
-
-                     return_(pdrawitem->m_bOk, false);
-
-                  }
-
-               }
-
-            }
-            else if (eelement == ::user::list::element_image)
-            {
-
-               return_(pdrawitem->m_bOk, false);
-
-            }
-
-            if (eelement == ::user::mesh::e_element_text)
-            {
-
-               pdrawitem->m_rectangleText.left = x;
-               pdrawitem->m_rectangleText.right = pdrawitem->m_rectangleSubItem.right;
-               pdrawitem->m_rectangleText.top = pdrawitem->m_rectangleSubItem.top;
-               pdrawitem->m_rectangleText.bottom = pdrawitem->m_rectangleSubItem.bottom;
-
-               return_(pdrawitem->m_bOk, true);
-
-            }
-
-         }
-
-         pdrawitem->m_bOk = false;
+         pdrawlistgroup->m_bOk = false;
 
       }
 
@@ -3517,7 +3570,7 @@ namespace user
 
                m_iTimerHoverSelect = 0;
 
-               SetTimer(e_timer_hover_select, 0.2_s, nullptr);
+               on_enable_hover_select();
 
             }
 
@@ -3527,6 +3580,8 @@ namespace user
 
 
    }
+
+
 
 
    void list::on_message_left_button_down(::message::message * pmessage)
@@ -3833,7 +3888,7 @@ namespace user
 
                screen_to_client(point);
 
-               draw_list_item item(this);
+               draw_list_item item;
 
                item.m_iItem = m_iItemLButtonDown;
 
@@ -3896,11 +3951,7 @@ namespace user
 
       screen_to_client(point);
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -4474,7 +4525,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      for (index iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
+      for (index iColumn = 0; iColumn < m_columna.get_visible_count(); iColumn++)
       {
 
          list_column * pcolumn = m_columna.get_visible(iColumn);
@@ -4558,7 +4609,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      //    for(index iColumn = 0; iColumn < m_columna.VisibleGetCount(); iColumn++)
+      //    for(index iColumn = 0; iColumn < m_columna.get_visible_count(); iColumn++)
       //  {
       //         list_column & column = m_columna.get_visible(iColumn);
       //pcolumn->m_iWidth = m_plistheader->GetItemWidth(iColumn);
@@ -4690,26 +4741,39 @@ namespace user
 
    }
 
+
    index list_column_array::subitem_index(index iSubItem)
    {
 
-      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      ::index iIndex = -1;
+
+      if (!m_mapSubItemIndex.lookup(iSubItem, iIndex))
       {
 
-         list_column * pcolumn = element_at(iIndex);
-
-         if (pcolumn != nullptr && pcolumn->m_iSubItem == iSubItem)
+         for (index i = 0; i < this->get_size(); i++)
          {
 
-            return iIndex;
+            list_column * pcolumn = element_at(i);
+
+            if (pcolumn != nullptr && pcolumn->m_iSubItem == iSubItem)
+            {
+
+               iIndex = i;
+
+               break;
+
+            }
 
          }
 
+         m_mapSubItemIndex.set_at(iSubItem, iIndex);
+
       }
 
-      return -1;
+      return iIndex;
 
    }
+
 
    index list_column_array::subitem_visible_index(index iSubItem)
    {
@@ -4840,6 +4904,14 @@ namespace user
    }
 
 
+   void list_column_array::clear_cache()
+   {
+
+      m_mapSubItemIndex.clear();
+
+   }
+
+
    void list_column_array::OnChange()
    {
 
@@ -4891,7 +4963,7 @@ namespace user
       OnChange();
    }
 
-   ::count list_column_array::VisibleGetCount()
+   ::count list_column_array::get_visible_count()
    {
       index iCount = 0;
       for (index i = 0; i < this->get_size(); i++)
@@ -5016,7 +5088,7 @@ namespace user
 
    //void list_column_array::GlobalToVisibleOrder()
    //{
-   //   iptr iVisibleCount = VisibleGetCount();
+   //   iptr iVisibleCount = get_visible_count();
    //   for (index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
    //   {
    //      list_column * pcolumn = get_visible(iVisibleKey);
@@ -5108,7 +5180,7 @@ namespace user
    //{
    //   list * plist = m_plist;
    //   //detects change
-   //   iptr iVisibleCount = VisibleGetCount();
+   //   iptr iVisibleCount = get_visible_count();
    //   iptr iChangeCount = 0;
    //   iptr iNew = 0;
    //   iptr iOld = 0;
@@ -5134,9 +5206,9 @@ namespace user
    //   }
    //   else
    //   {
-   //      if (this->get_size() == VisibleGetCount())
+   //      if (this->get_size() == get_visible_count())
    //      {
-   //         for (index iColumn = 0; iColumn < VisibleGetCount(); iColumn++)
+   //         for (index iColumn = 0; iColumn < get_visible_count(); iColumn++)
    //         {
    //            list_column * column = get_visible(iColumn);
    //            column->m_iOrder = plist->HeaderCtrlMapColumnToOrder(iColumn);
@@ -5433,7 +5505,7 @@ namespace user
    bool list::_001IsItemVisible(index iItem)
    {
 
-      draw_list_item item(this);
+      draw_list_item item;
 
       item.m_iItem = iItem;
 
@@ -5457,39 +5529,11 @@ namespace user
    }
 
 
-   //void list::_001ClearSelection()
-   //{
-
-   //   m_rangeSelection.clear();
-
-   //   _001OnSelectionChange();
-
-   //}
-
-
-   //void list::_001SetSelection(const range &range)
-   //{
-   //   m_rangeSelection = range;
-   //   on_select();
-   //   _001OnSelectionChange();
-   //}
-
-   
-//   void list::_001AddSelection(const item_range & itemrange)
-//   {
-//   
-//      m_rangeSelection.add_item(itemrange);
-//
-////      on_select();
-//
-//      _001OnSelectionChange();
-//
-//   }
-
-
    void list::_001SetHighlightRange(range & range)
    {
+
       m_rangeHighlight = range;
+
    }
 
 
@@ -5649,17 +5693,17 @@ namespace user
    //}
 
 
-   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
    {
 
       pgraphics->set(pfont);
 
-      return _001CalcItemWidth(pgraphics, iItem, iSubItem);
+      return _001CalcSubItemWidth(pgraphics, iItem, iSubItem);
 
    }
 
 
-   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
    {
 
       ::image_list::info ii;
@@ -5670,25 +5714,23 @@ namespace user
 
       index cx = 0;
 
-      list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
+      auto psubitem = get_subitem(iItem, iSubItem);
 
-      draw_list_item item(this);
+      //item.m_iItem = iItem;
 
-      item.m_iItem = iItem;
+      //item.m_iSubItem = iSubItem;
 
-      item.m_iSubItem = iSubItem;
+      //item.m_iListItem = -1;
 
-      item.m_iListItem = -1;
-
-      if (pcolumn->m_pil != nullptr)
+      if (psubitem->m_pcolumn->m_pil != nullptr)
       {
 
-         _001GetItemImage(&item);
+         _001GetSubItemImage(*psubitem);
 
-         if (item.m_bOk && item.m_iImage >= 0)
+         if (psubitem->m_bOk && psubitem->m_iImage >= 0)
          {
 
-            pcolumn->m_pil->get_image_info((i32)item.m_iImage, &ii);
+            psubitem->m_pcolumn->m_pil->get_image_info((i32)psubitem->m_iImage, &ii);
 
             rectangle = ii.m_rectangle;
 
@@ -5700,14 +5742,14 @@ namespace user
 
       }
 
-      _001GetItemText(&item);
+      _001GetSubItemText(*psubitem);
 
-      if (item.m_bOk)
+      if (psubitem->m_bOk)
       {
 
          pgraphics->set_font(this, ::e_element_none);
 
-         m_dcextension.get_text_extent(pgraphics, item.m_strText, item.m_strText.get_length(), size);
+         m_dcextension.get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.get_length(), size);
 
          cx += size.cx;
 
@@ -5935,6 +5977,7 @@ namespace user
       }
 
    }
+
 
    void list::_001EnsureVisible(index iItem, range & range)
    {
@@ -6244,88 +6287,90 @@ namespace user
 
       index iItemCount = minimum(m_nItemCount, m_iFilter1Step + 1000);
 
-      index iFilter1Step;
+      //index iFilter1Step;
 
-      draw_list_item item(this);
+      //draw_list_item item(this);
 
-      for (
-      iFilter1Step = m_iFilter1Step;
-      iFilter1Step < iItemCount;
-      iFilter1Step++)
-      {
-         for (index j = 0; j < m_columna.get_count(); j++)
-         {
-            list_column * pcolumn = m_columna.get_by_index(j);
-            item.m_strText.Empty();
-            item.m_iItem = iFilter1Step;
-            item.m_iSubItem = pcolumn->m_iSubItem;
-            item.m_iListItem = -1;
-            _001SearchGetItemText(&item);
-            if (item.m_bOk)
-            {
+      //for (
+      //iFilter1Step = m_iFilter1Step;
+      //iFilter1Step < iItemCount;
+      //iFilter1Step++)
+      //{
+      //   for (index j = 0; j < m_columna.get_count(); j++)
+      //   {
+      //      list_column * pcolumn = m_columna.get_by_index(j);
+      //      item.m_strText.Empty();
+      //      item.m_iItem = iFilter1Step;
+      //      item.m_iSubItem = pcolumn->m_iSubItem;
+      //      item.m_iListItem = -1;
+      //      _001SearchGetItemText(&item);
+      //      if (item.m_bOk)
+      //      {
 
-               item.m_strText.make_lower();
+      //         item.m_strText.make_lower();
 
-               item.m_strText.find_replace("_", " ");
+      //         item.m_strText.find_replace("_", " ");
 
-               auto presult = m_pregexFilter1->run(item.m_strText);
+      //         auto presult = m_pregexFilter1->run(item.m_strText);
 
-               if (presult)
-               {
+      //         if (presult)
+      //         {
 
-                  if (m_eview == impact_icon)
-                  {
+      //            if (m_eview == impact_icon)
+      //            {
 
-                     m_piaFilterIcon->add_unique(iFilter1Step);
+      //               m_piaFilterIcon->add_unique(iFilter1Step);
 
-                  }
-                  else
-                  {
+      //            }
+      //            else
+      //            {
 
-                     m_piaFilterMesh->add_unique(iFilter1Step);
+      //               m_piaFilterMesh->add_unique(iFilter1Step);
 
-                  }
+      //            }
 
-                  break;
+      //            break;
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
-      m_iFilter1Step = (i32)iFilter1Step;
+      //m_iFilter1Step = (i32)iFilter1Step;
 
-      if (m_eview == impact_icon)
-      {
-         m_piconlayout->m_iaDisplayToStrict = (*m_piaFilterIcon);
-      }
-      else
-      {
-         m_pmeshlayout->m_iaDisplayToStrict = (*m_piaFilterMesh);
-      }
+      //if (m_eview == impact_icon)
+      //{
+      //   m_piconlayout->m_iaDisplayToStrict = (*m_piaFilterIcon);
+      //}
+      //else
+      //{
+      //   m_pmeshlayout->m_iaDisplayToStrict = (*m_piaFilterMesh);
+      //}
 
-      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
-         {
+      //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+      //   {
 
-            set_viewport_offset(pgraphics, 0, 0);
+      //      set_viewport_offset(pgraphics, 0, 0);
 
-         });
+      //   });
 
-      m_efilterstate = FilterStateFilter;
+      //m_efilterstate = FilterStateFilter;
 
-      set_need_layout();
+      //set_need_layout();
 
-      set_need_redraw();
+      //set_need_redraw();
 
-      auto tickOut = ::duration::now();
+      //auto tickOut = ::duration::now();
 
-      INFORMATION("tickOut = " << integral_millisecond(tickOut));
-      INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
+      //INFORMATION("tickOut = " << integral_millisecond(tickOut));
+      //INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
 
-      return m_nItemCount != iItemCount;
+      //return m_nItemCount != iItemCount;
+
+      return false;
 
    }
 
@@ -6452,32 +6497,35 @@ namespace user
 
    index list::_002Compare(index iItem1, index iItem2, index iSubItem)
    {
-      draw_list_item item1(this);
-      draw_list_item item2(this);
+      //draw_list_item item1(this);
+      //draw_list_item item2(this);
 
-      item1.m_iItem = iItem1;
-      item2.m_iItem = iItem2;
-      item1.m_iSubItem = iSubItem;
-      item2.m_iSubItem = iSubItem;
+      //item1.m_iItem = iItem1;
+      //item2.m_iItem = iItem2;
+      //item1.m_iSubItem = iSubItem;
+      //item2.m_iSubItem = iSubItem;
 
-      _001GetItemText(&item1);
-      _001GetItemText(&item2);
+      //_001GetItemText(&item1);
+      //_001GetItemText(&item2);
 
-      if (item1.m_bOk && item2.m_bOk)
-      {
-         return item1.m_strText.compare_ci(item2.m_strText);
-      }
-      else
-      {
-         if (item1.m_bOk)
-            return 1;
-         else if (item2.m_bOk)
-            return -1;
-         else
-            return 0;
-      }
+      //if (item1.m_bOk && item2.m_bOk)
+      //{
+      //   return item1.m_strText.compare_ci(item2.m_strText);
+      //}
+      //else
+      //{
+      //   if (item1.m_bOk)
+      //      return 1;
+      //   else if (item2.m_bOk)
+      //      return -1;
+      //   else
+      //      return 0;
+      //}
+
+      return 0;
 
    }
+
 
    index list::_001Compare(index iItem1, index iItem2)
    {
@@ -6536,7 +6584,7 @@ namespace user
       for (index i = 0; i < iCount; i++)
       {
 
-         iWidth = _001CalcItemWidth(pgraphics, i, 0);
+         iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
 
          if (iWidth > iMaxWidth)
          {
@@ -6639,13 +6687,9 @@ namespace user
 
       cache_hint();
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       auto pmouse = __create_new < ::user::mouse >();
 
@@ -7318,440 +7362,7 @@ namespace user
 
    }
 
-
-   list_item::list_item(list * plist) :
-      mesh_item(plist)
-   {
-      m_plistitem = this;
-      m_plist = plist;
-      m_iGroup = -1;
-      m_iItem = -1;
-      m_iDisplayItem = -1;
-      m_iColumn = -1;
-      //m_iColumnKey = -1;
-      m_iOrder = -1;
-      m_iSubItem = -1;
-      m_iListItem = -1;
-      m_colorText = __indexed_color(-1);
-      m_colorTextBackground = argb(255, 0, 0, 0);
-      m_colorItemBackground = ::color::transparent;
-      m_iState = -1;
-      m_iImage = -1;
-      m_bOk = false;
-
-      m_iGroupTopDisplayIndex = -1;
-      m_iGroupCount = -1;
-
-   }
-
-   draw_list_item::draw_list_item(list * plist) :
-      list_item(plist),
-      mesh_item(plist),
-      draw_mesh_item(plist)
-   {
-
-      m_prectClient = nullptr;
-
-      m_iColumn = -1;
-      m_iColumnWidth = 0;
-      m_pcolumn = nullptr;
-
-      m_iItemRectItem = -1;
-
-      m_iSubItemRectItem = -1;
-      m_iSubItemRectSubItem = -1;
-      m_iSubItemRectOrder = -1;
-      m_iSubItemRectColumn = -1;
-      m_pcolumn = nullptr;
-
-      m_iListItemRectItem = -1;
-      m_iListItemRectSubItem = -1;
-      m_iListItemRectListItem = -1;
-
-   }
-
-
-   __pointer(::image_list) draw_list_item::get_image_list()
-   {
-
-      if (m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
-      {
-
-         return m_pcolumn->m_pilHover;
-
-      }
-      else
-      {
-
-         return m_pcolumn->m_pil;
-
-      }
-
-   }
-
-
-   void draw_list_item::draw_image()
-   {
-
-      if (m_pcolumn->m_bIcon)
-      {
-
-         draw2d::icon * picon;
-
-         if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
-         {
-
-            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-            image_source imagesource(picon);
-
-            image_drawing_options imagedrawingoptions(m_rectangleImage);
-
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-            //m_pgraphics->draw(imagedrawing) != false;
-
-            m_pgraphics->draw(imagedrawing);
-
-         }
-
-      }
-      else
-      {
-
-         synchronous_lock synchronouslock(get_image_list()->mutex());
-
-         if(get_image_list()->m_pimage->is_null()
-               || get_image_list()->m_pimage->area() <= 0)
-         {
-
-            return;
-
-         }
-
-         if ((m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
-               || (m_plist->m_dIconSaturation < 1.0)
-            || (m_plist->m_dIconLightness < 1.0)
-            || (m_plist->m_dIconOpacity < 1.0))
-         {
-
-            auto & pimage = m_plist->m_mapIconBlur[m_iImage];
-
-            __defer_construct(pimage);
-
-            int iRate = 3;
-
-            if (pimage.nok() && m_iImage >= 0 && m_iImage < get_image_list()->get_image_count())
-            {
-
-               if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
-               {
-
-
-                  pimage->create(m_rectangleImage.size() +size_i32(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
-                  //m_plist->m_blurIcon.initialize(m_rectangleImage.size() , m_plist.m_iIconBlurRadius);
-
-               }
-               else
-               {
-
-                  pimage->create(m_rectangleImage.size());
-
-               }
-
-               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-               pimage->get_graphics()->fill_rectangle(pimage->size(), ::color::transparent);
-
-               get_image_list()->draw(pimage->g(), (i32)m_iImage,
-                                      point_i32(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectangleImage.size(), ::point_i32(), 0);
-
-               if (m_plist->m_dIconSaturation < 1.0)
-               {
-
-                  pimage->saturation(m_plist->m_dIconSaturation);
-
-               }
-
-               if (m_plist->m_dIconLightness < 1.0)
-               {
-
-                  pimage->lightness(m_plist->m_dIconLightness);
-
-               }
-
-
-               if (m_plist->m_dIconOpacity < 1.0)
-               {
-
-                  pimage->opacity(m_plist->m_dIconOpacity);
-
-               }
-
-
-               //pimage->g()->fill_rectangle(::rectangle_i32(pimage->size()), argb(255, 200, 220, 255));
-               if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
-               {
-
-                  for (index i = 0; i < m_plist->m_iIconBlur; i++)
-                  {
-
-                     m_plist->m_blurIcon.blur(pimage, m_plist->m_iIconBlurRadius);
-
-                  }
-
-               }
-
-
-            }
-
-            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-            if (::is_ok(pimage))
-            {
-
-               image_source imagesource(pimage);
-
-               rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_plist->m_iIconBlurRadius * iRate, m_plist->m_iIconBlurRadius * iRate),
-                  m_rectangleImage.size() + size_i32(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
-
-               image_drawing_options imagedrawingoptions(rectangleDib);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               m_pgraphics->draw(imagedrawing);
-
-            }
-
-            ::rectangle_i32 rectangleI;
-
-            if (m_plist->m_pimageSpot->is_set() && m_plist->m_pimageSpot->area() > 0 && rectangleI.intersect(m_rectangleImage, m_plist->m_rectangleSpot)
-                  && m_iImage >= 0 && m_iImage < get_image_list()->get_image_count()   )
-            {
-               ///return true;
-
-               m_plist->m_pimageTime = m_pcontext->m_pauracontext->create_image(m_plist->m_pimageSpot->size());
-
-               ::rectangle_i32 rectangle = rectangleI;
-
-               rectangle.offset(-m_rectangleImage.top_left());
-
-               //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-               //m_plist->m_pimageTime->get_graphics()->fill_rectangle(r, 0);
-
-               ::rectangle_i32 rect2 = rectangleI;
-
-               rect2.offset(-m_plist->m_rectangleSpot.top_left());
-
-               m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-               get_image_list()->draw(m_plist->m_pimageTime->get_graphics(), (i32)m_iImage,
-                                      rect2.top_left(),
-                                      rectangle.size(), rectangle.top_left(), 0);
-
-               //m_pgraphics->draw(rectangleI + point_i32(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
-
-               //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
-
-               m_plist->m_pimageTime->channel_multiply(::color::e_channel_alpha, m_plist->m_pimageSpot, rect2);
-
-               //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
-
-               m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-               {
-
-                  image_source imagesource(m_plist->m_pimageTime, rect2);
-
-                  image_drawing_options imagedrawingoptions(rectangleI);
-
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-                  m_pgraphics->draw(imagedrawing);
-
-               }
-
-            }
-
-            return;
-
-         }
-         //if(m_plist->m_bMorePlain)
-         //{
-
-         //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-         //   return m_pgraphics->BitBlt(m_rectangleImage.left, m_rectangleImage.top, m_rectangleImage.width(), m_rectangleImage.height(),get_image_list()->m_pimage->g(), m_iImage * m_rectangleImage->width());
-
-         //}
-         else
-         {
-            
-            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            
-            //auto ret = 
-            
-            get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
-
-            //auto pimageDebug = create_image(m_rectangleImage.size());
-            //{
-
-            //   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectangleImage.size(), ::point_i32(), 0);
-            //   auto pcolorref = pimageDebug->get_data();
-            //   output_debug_string("imageDebug");
-
-            //}
-
-            return;
-         }
-      }
-      //return false;
-   }
-
-
-   void draw_list_item::draw_group_image()
-   {
-
-      //return 
-      
-      m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
-
-   }
-
-
-   void draw_list_item::update_item_color()
-   {
-
-      m_plist->_001GetItemColor(this);
-
-      auto estate = get_user_state();
-
-      auto pstyle = m_plist->get_style(m_pgraphics);
-
-      m_colorText = m_plist->get_color(pstyle, ::e_element_item_text, estate);
-
-      m_colorItemBackground = m_plist->get_color(pstyle, ::e_element_item_background, estate);
-
-   }
-
-
-   void draw_list_item::set_text_color()
-   {
-
-      auto pbrushText = __create < ::draw2d::brush > ();
-
-      if (!m_plist->m_bHighHighLight)
-      {
-
-         ::color::color color;
-
-         color.set_COLORREF(m_colorText);
-
-         color.alpha = color.alpha / 3;
-
-         pbrushText->create_solid(color);
-
-      }
-      else
-      {
-
-         pbrushText->create_solid(m_colorText);
-
-      }
-
-      m_pgraphics->set(pbrushText);
-
-   }
-
-
-   void draw_list_item::draw_text()
-   {
-
-      if (m_bOk)
-      {
-
-         if (m_plist->m_eview == list::impact_icon && m_plist->m_bEmboss && ((m_plist->m_iTextBlurRadius > 0 && m_plist->m_iTextBlur > 0) || m_plist->m_iTextSpreadRadius > 0))
-         {
-
-            if (m_strText.has_char())
-            {
-
-               ::image_pointer & pimage2 = m_plist->m_mapBlur[m_iItem];
-
-               __defer_construct(pimage2);
-
-               auto psystem = m_psystem->m_paurasystem;
-
-               auto pdraw2d = psystem->draw2d();
-
-               //if (
-               
-               pdraw2d->embossed_text_out(
-                     m_pgraphics,
-                     m_rectangleText,
-                     m_strText,
-                     m_plist->m_blur,
-                     pimage2,
-                     m_pgraphics->m_pfont,
-                     m_ealign,
-                     m_edrawtext,
-                     m_colorText,
-                     m_colorTextBackground,
-                     m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
-                     m_plist->m_iTextBlur,
-                  m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]);
-               
-               //)
-               {
-
-                  m_plist->m_mapText[m_iItem] = m_strText;
-
-                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground;
-
-               }
-
-            }
-
-         }
-         else if(m_strText.has_char())
-         {
-
-            //auto pbrushText = __create < ::draw2d::brush > ();
-
-            update_item_color();
-
-            //pbrushText->create_solid(m_colorText);
-
-            //m_pgraphics->set(pbrushText);
-
-            m_pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
-
-            auto pstyle = m_plist->get_style(m_pgraphics);
-
-            auto ealign = (::enum_align) m_plist->get_int(pstyle, e_int_list_item_text_align);
-
-            auto edrawtext = (::enum_draw_text) m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
-
-            set_text_color();
-
-            m_pgraphics->draw_text(m_strText, m_rectangleText, ealign, edrawtext);
-
-            //m_pgraphics->fill_rectangle(m_rectangleText.left, m_rectangleText.top, 100, 100, argb(128, 100, 125, 255));
-
-            if (m_strText == "LOVE OR NOTHING")
-            {
-
-               output_debug_string("LOVE OR NOTHING");
-
-            }
-
-         }
-
-      }
-
-   }
-
-
+   
    ::count list::_001GetGroupMetaItemCount(index iGroup)
    {
       if (m_pmeshdata != nullptr)
@@ -7819,16 +7430,16 @@ namespace user
    }
 
 
-   void list::on_create_draw_item()
-   {
+   //void list::on_create_draw_item()
+   //{
 
-      m_pdrawlistitem = new draw_list_item(this);
+   //   m_pdrawlistitem = new draw_list_item(this);
 
-      m_pdrawlistitem->initialize(this);
+   //   m_pdrawlistitem->initialize(this);
 
-      m_pdrawmeshitem = m_pdrawlistitem;
+   //   m_pdrawmeshitem = m_pdrawlistitem;
 
-   }
+   //}
 
 
    void list::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
@@ -7881,7 +7492,9 @@ namespace user
    ::e_align list::get_draw_text_align(EImpact eview)
    {
 
-      return m_pdrawmeshitem->m_ealign;
+      //return m_pdrawmeshitem->m_ealign;
+
+      return ::e_align_none;
 
    }
 
@@ -7889,7 +7502,9 @@ namespace user
    ::e_draw_text list::get_draw_text_flags(EImpact eview)
    {
 
-      return m_pdrawmeshitem->m_edrawtext;
+      //return m_pdrawmeshitem->m_edrawtext;
+
+      return e_draw_text_none;
 
    }
 

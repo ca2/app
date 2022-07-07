@@ -11,19 +11,18 @@ namespace user
    public:
 
 
-
       index_to_index_to_string        m_map;
 
 
       list_cache();
-      virtual ~list_cache();
+      ~list_cache() override;
 
 
-      void _001Invalidate(mesh * pmesh);
+      void _001Invalidate(mesh * pmesh) override;
 
-      virtual void _001CacheHint(mesh * pmesh, index iItemStart, index iItemCount);
+      void _001CacheHint(mesh * pmesh, index iItemStart, index iItemCount) override;
 
-      virtual void _001GetItemText(::user::mesh_item * pitem);
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
 
    };

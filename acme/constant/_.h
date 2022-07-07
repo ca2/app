@@ -7,6 +7,9 @@
 #include "_mathematics.h"
 
 
+#include "geometry2d.h"
+
+
 #include "code_page.h"
 
 

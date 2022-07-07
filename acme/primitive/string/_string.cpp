@@ -9,23 +9,27 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
 
    string str;
 
-   string strTab;
+   //string strTab;
+
+   auto pszStart = psz;
+
+   decltype(pszStart) pszNext = nullptr;
 
    while (*psz)
    {
 
-      string strChar = ::str().get_utf8_char(psz);
+      pszNext = ::str().next(psz);
 
-      if (strChar.is_empty())
+      if (::is_empty(pszNext))
       {
 
          break;
 
       }
-      else if (strChar == "\t")
+      else if (*psz == '\t')
       {
 
-         strTab = string(' ', iWidth - (iOffset % iWidth));
+         auto lenTab = iWidth - (iOffset % iWidth);
 
          for (auto pi : intptra)
          {
@@ -33,20 +37,24 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
             if (*pi > iOffset)
             {
 
-               (*pi) += strTab.get_length() - 1;
+               (*pi) += lenTab - 1;
 
             }
 
          }
 
-         str += strTab;
+         str.append(pszStart, psz - pszStart);
 
-         iOffset += strTab.get_length();
+         str.append(lenTab, ' ');
+
+         pszStart = pszNext;
+
+         iOffset += lenTab;
 
          if (piaTab != nullptr)
          {
 
-            piaTab->add(strTab.get_length());
+            piaTab->add(lenTab);
 
          }
 
@@ -54,13 +62,20 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
       else
       {
 
-         str += strChar;
+         //str.append(psz, pszNext - psz);
 
          iOffset++;
 
       }
 
-      psz += strChar.get_length();
+      psz = pszNext;
+
+   }
+
+   if (psz > pszStart)
+   {
+
+      str.append(pszStart, pszNext - pszStart);
 
    }
 

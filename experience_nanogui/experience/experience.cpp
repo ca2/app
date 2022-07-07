@@ -35,7 +35,7 @@ namespace experience_nanogui
 
             auto puser = psession->user();
 
-            auto pwindowing = puser->windowing();
+            auto pwindowing = puser->windowing1();
 
             pwindowing->set_cursor_set_from_matter(this, "cursor/antialiased-classic");
 

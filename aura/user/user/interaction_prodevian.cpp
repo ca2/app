@@ -1,11 +1,16 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
+
+
+#define TIME_REPORTING 0
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -28,6 +33,15 @@
 
 namespace user
 {
+
+
+#if TIME_REPORTING
+   
+   
+   ::duration g_durationBetweenUpdateBufferAndUpdateScreen;
+
+
+#endif
 
 
    prodevian::prodevian()
@@ -831,9 +845,22 @@ namespace user
       if (edisplayOutput != edisplayDesign)
       {
 
-         m_puserinteraction->post_message(e_message_show_window);
+         m_puserinteraction->post_message(e_message_show_window, ::is_screen_visible(edisplayDesign) ? 1 : 0);
 
       }
+
+
+#if TIME_REPORTING
+
+      auto e1 = g_durationBetweenUpdateBufferAndUpdateScreen.elapsed();
+      
+      ::duration durationUpdateScreenPost;
+      
+      durationUpdateScreenPost.Now();
+
+      output_debug_string("durationBetweenUpdateBufferAndUpdateScreen "+__string(e1.floating_millisecond().m_d) +"ms\n");
+
+#endif
 
       if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
       {
@@ -841,6 +868,14 @@ namespace user
          prodevian_update_screen();
 
       }
+
+#if TIME_REPORTING
+
+      auto e2 = durationUpdateScreenPost.elapsed();
+
+      output_debug_string("durationUpdateScreenPost " + __string(e2.floating_millisecond().m_d) + "ms\n");
+
+#endif
 
       m_puserinteraction->set_display(edisplayDesign, e_layout_output);
 
@@ -959,6 +994,7 @@ namespace user
    }
 
 
+
    void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
    {
 
@@ -1033,12 +1069,12 @@ namespace user
 
             synchronouslock.unlock();
 
-            if (!m_puserinteraction->is_sketch_to_design_locked())
-            {
+            //if (!m_puserinteraction->is_sketch_to_design_locked())
+            //{
 
                m_puserinteraction->sketch_to_design(bUpdateBuffer, bUpdateWindow);
 
-            }
+            //}
 
             synchronouslock.lock();
 
@@ -1153,7 +1189,23 @@ namespace user
 
             i64 i2 = get_integral_nanosecond().m_i;
 
+#if TIME_REPORTING
+
+            static ::duration durationLast;
+
+            output_debug_string("time outside updatebuffer " +__string(durationLast.elapsed().floating_millisecond().m_d) + "ms\n");
+
+#endif
+
             m_pimpl->_001UpdateBuffer();
+
+#if TIME_REPORTING
+
+            durationLast.Now();
+
+            g_durationBetweenUpdateBufferAndUpdateScreen.Now();
+
+#endif
 
             bUpdateBuffer = true;
 

@@ -518,3 +518,50 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //} // namespace str
 //
 
+
+
+
+   CLASS_DECL_ACME string consume_token(::string & str, const ::string_array & straSeparator)
+   {
+
+      ::index iFind = -1;
+
+      ::index iSeparator = -1;
+
+      for (::index i = 0; i < straSeparator.get_size(); i++)
+      {
+
+         if (straSeparator[i].is_empty())
+         {
+
+            throw exception(error_bad_argument);
+
+         }
+
+         ::index iFindSeparator = str.find(straSeparator[i]);
+
+         if (iFind < 0 || (iFindSeparator > 0 && iFindSeparator < iFind))
+         {
+
+            iFind = iFindSeparator;
+
+            iSeparator = i;
+
+         }
+
+      }
+
+      ::string strToken;
+
+      if (iFind >= 0)
+      {
+
+         strToken = str.Left(iFind);
+
+         str = str.Mid(iFind + straSeparator[iSeparator].get_length());
+
+      }
+
+      return strToken;
+
+   }

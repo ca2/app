@@ -70,6 +70,9 @@ public:
 
    virtual void call_run();
 
+   virtual ::element * clone() const;
+
+
 
    virtual void set_generic_object_name(const char* pszName);
    virtual void set_library_name(const char* pszLibraryName);
@@ -99,6 +102,9 @@ public:
 
 
    virtual void initialize(::object* pobject);
+
+
+   virtual void on_initialize_object();
 
 
    virtual void initialize_matter(::matter* pmatter);
@@ -133,9 +139,9 @@ public:
    inline void unset_finishing() { clear(e_flag_finishing); }
 
 
-   [[nodiscard]] inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
-   inline void set_heap_allocated() { set(e_flag_heap_allocated); }
-   inline void unset_heap_allocated() { clear(e_flag_heap_allocated); }
+   // [[nodiscard]] inline bool is_heap_allocated() const { return has(e_flag_heap_allocated); }
+   // inline void set_heap_allocated() { set(e_flag_heap_allocated); }
+   // inline void unset_heap_allocated() { clear(e_flag_heap_allocated); }
 
 
    [[nodiscard]] inline bool is_destroying() const { return has(e_flag_destroying); }
@@ -183,6 +189,8 @@ public:
 
 
    virtual void destroy();
+   virtual void destroy_impl_data();
+   virtual void destroy_os_data();
 
 
    virtual void on_sequence();

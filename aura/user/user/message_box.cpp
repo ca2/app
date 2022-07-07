@@ -2,7 +2,9 @@
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/graphics/draw2d/graphics.h"
 
 
@@ -396,7 +398,7 @@ namespace user
 
       auto puser = psession->user();
 
-      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
+      puser->windowing1()->display()->get_main_monitor(rectangleMonitor);
 
       int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 

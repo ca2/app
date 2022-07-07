@@ -43,9 +43,11 @@ public:
 
 
 class CLASS_DECL_CORE XfplayerImpactLineSelection :
-   virtual object
+   virtual public element
 {
 public:
+
+
    enum enum_state
    {
       e_state_initial = 1,
@@ -64,6 +66,8 @@ public:
 //      TypeMaskEndHere = 2,
    };
 
+   ::user::interaction * m_puserinteraction;
+
    array < XfplayerImpactLineSelectionItem, XfplayerImpactLineSelectionItem> m_itema;
 
    XfplayerImpactLineSelectionItem m_item;
@@ -77,8 +81,10 @@ public:
    i32               m_etype; 
    enum_state            m_estate;
 
-   XfplayerImpactLineSelection();
-   virtual ~XfplayerImpactLineSelection();
+   
+   XfplayerImpactLineSelection(::user::interaction * puserinteraction);
+   ~XfplayerImpactLineSelection() override;
+
 
    bool get_item(XfplayerImpactLineSelectionItem & item, xfplayer_view_line & viewline);
    enum_state GetState();

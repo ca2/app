@@ -174,11 +174,7 @@ namespace simple_ui
 
       get_window_rect(&rectangleWindow);
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       auto pointCursor = pwindowing->get_cursor_position();
 

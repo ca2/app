@@ -8,7 +8,6 @@
 #include "aura/user/user/interaction_prodevian.h"
 
 
-
 namespace sandbox_windowing
 {
 
@@ -16,19 +15,7 @@ namespace sandbox_windowing
    window::window()
    {
 
-      m_pWindow = this;
-
-      //m_iXic = 0;
-
-      //m_xic = nullptr;
-
-      //      for (auto & i : m_iaNetWmState)
-      //      {
-      //
-      //         i = -1;
-      //
-      //      }
-
+      m_psandboxwindowingwindow = this;
 
    }
 
@@ -53,15 +40,15 @@ namespace sandbox_windowing
 
       auto pwindowingdisplay = pwindowing->display();
 
-      int x = m_puserinteractionimpl->m_puserinteraction->layout().sketch().origin().x;
+      int x = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().x;
 
-      int y = m_puserinteractionimpl->m_puserinteraction->layout().sketch().origin().y;
+      int y = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().origin().y;
 
-      int cx = m_puserinteractionimpl->m_puserinteraction->layout().sketch().width();
+      int cx = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().width();
 
-      int cy = m_puserinteractionimpl->m_puserinteraction->layout().sketch().height();
+      int cy = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().height();
 
-      bool bVisible = m_puserinteractionimpl->m_puserinteraction->layout().sketch().is_screen_visible();
+      bool bVisible = m_puserinteractionimpl->m_puserinteraction->const_layout().sketch().is_screen_visible();
 
       if (cx <= 0)
       {
@@ -286,16 +273,14 @@ namespace sandbox_windowing
                // (Hinting for monitor placement, if no stored information
                // available).
 
-               if (pimpl->m_puserinteraction->layout().sketch().display() == e_display_undefined)
+               if (pimpl->m_puserinteraction->const_layout().sketch().display() == e_display_undefined)
                {
 
-                  auto pwindowing = windowing();
+                  auto pointCursor = get_cursor_position();
 
-                  auto pointCursor = pwindowing->get_cursor_position();
+                  pimpl->m_puserinteraction->set_position(pointCursor);
 
-                  pimpl->m_puserinteraction->move_to(pointCursor);
-
-                  pimpl->m_puserinteraction->set_size(0, 0);
+                  pimpl->m_puserinteraction->set_size({0, 0});
 
                }
 
@@ -336,23 +321,6 @@ namespace sandbox_windowing
          throw ::exception(error_failed);
 
       }
-
-   }
-
-
-   ::sandbox_windowing::windowing* window::windowing()
-   {
-
-      auto pwindowing = ::windowing::window::windowing();
-
-      if (!pwindowing)
-      {
-
-         return nullptr;
-
-      }
-
-      return (::sandbox_windowing::windowing*)pwindowing->m_pWindowing;
 
    }
 
@@ -3518,9 +3486,7 @@ namespace sandbox_windowing
    void window::set_mouse_capture()
    {
 
-      //synchronous_lock synchronouslock(user_mutex());
-
-      auto pwindowing = (::sandbox_windowing::windowing*)m_pwindowing->m_pWindowing;
+      auto pwindowing = windowing();
 
       if (!pwindowing)
       {
@@ -3625,19 +3591,20 @@ namespace sandbox_windowing
 
    pwindowing->m_pwindowKeyboardFocus = this;
 
+   SetInternalFocus();
      
       if (puserinteractionimpl)
    {
 
       puserinteractionimpl->on_final_set_keyboard_focus();
-//         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
-//
-//         if (puserinteraction)
-//         {
-//
-//            puserinteraction->post_message(e_message_set_focus);
-//
-//         }
+         //auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+         //if (puserinteraction)
+         //{
+
+         //   puserinteraction->post_message(e_message_set_focus);
+
+         //}
 
    }
 

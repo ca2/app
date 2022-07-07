@@ -206,7 +206,7 @@ namespace html
 
             auto puser = psession->user();
 
-            auto pwindowing = puser->windowing();
+            auto pwindowing = puser->windowing1();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_hand);
 

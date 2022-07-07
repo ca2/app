@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "_.h"
 #include "_graphics.h"
 
@@ -48,7 +50,7 @@ namespace graphics
 
       m_pimpl = pimpl;
 
-      m_pwindow = pimpl->get_window();
+      m_pwindow = pimpl->window();
 
       //return estatus;
 

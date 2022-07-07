@@ -17,8 +17,8 @@ namespace windowing
       bool                                      m_bMessageOnlyWindow : 1;
 
 
-      void *                                    m_pWindow;
-      void *                                    m_pWindow2;
+      ::sandbox_windowing::window *             m_psandboxwindowingwindow;
+      void *                                    m_pWindow4;
 
       __pointer(::windowing::display)           m_pdisplay;
       __pointer(::user::interaction_impl)       m_puserinteractionimpl;
@@ -31,8 +31,8 @@ namespace windowing
       __pointer(::windowing::icon)              m_picon;
       __pointer(::windowing::windowing)         m_pwindowing;
       __composite(::user::copydesk)             m_pcopydesk;
-
-
+      ::point_i32                               m_pointCursor;
+      ::oswindow                                m_oswindow;
 
 
       window();
@@ -60,6 +60,15 @@ namespace windowing
       virtual void create_window(::user::interaction_impl * pimpl);
 
 
+      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+
+      virtual void get_cursor_position(POINT_I32 * ppointCursor);
+
+      inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
+
+
+      virtual double get_top_margin();
+      
 
       virtual void set_keyboard_focus();
 
@@ -79,12 +88,14 @@ namespace windowing
 
       virtual ::color::color screen_pixel(int x, int y) const;
 
+      virtual bool is_full_screen() const;
+
       virtual ::windowing::display * display();
 
       virtual ::user::copydesk * copydesk();
 
-      oswindow get_oswindow() const;
-      void set_oswindow(oswindow oswindow);
+      inline ::oswindow oswindow() const { return m_oswindow; }
+      void set_oswindow(::oswindow oswindow);
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
       inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
@@ -112,12 +123,12 @@ namespace windowing
       
       
       virtual ::windowing::window * get_parent() const;
-      virtual oswindow get_parent_oswindow() const;
+      virtual ::oswindow get_parent_oswindow() const;
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
       
       virtual ::windowing::window * get_owner() const;
-      virtual oswindow get_owner_oswindow() const;
+      virtual ::oswindow get_owner_oswindow() const;
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
@@ -321,9 +332,10 @@ namespace windowing
 inline bool operator == (const ::windowing::window & window1, const ::windowing::window & window2)
 {
 
-   return window1.get_oswindow() == window2.get_oswindow();
+   return window1.oswindow() == window2.oswindow();
 
 }
+
 
 inline bool operator != (const ::windowing::window & window1, const ::windowing::window & window2)
 {
@@ -331,5 +343,6 @@ inline bool operator != (const ::windowing::window & window1, const ::windowing:
    return !operator==(window1, window2);
 
 }
+
 
 

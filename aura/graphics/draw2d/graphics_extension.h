@@ -12,7 +12,7 @@ namespace draw2d
 
 
       graphics_extension();
-      virtual ~graphics_extension();
+      ~graphics_extension() override;
 
 
       void get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::string & pcwsz, ::size_array & sizea);

@@ -19,9 +19,9 @@ namespace windowing
    windowing::windowing()
    {
 
-      m_pWindowing = nullptr;
+      m_psandboxwindowing = nullptr;
 
-      m_pWindowing2 = nullptr;
+      m_pWindowing4 = nullptr;
 
       m_bSettingCursorMatter = false;
 
@@ -224,14 +224,14 @@ namespace windowing
    }
 
 
-   void windowing::set_cursor_position(const ::point_i32 & point)
-   {
+   //void windowing::set_cursor_position(const ::point_i32 & point)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //throw ::interface_only();
+   //   //throw ::interface_only();
 
-   }
+   //}
 
 
    ::windowing::window * windowing::window(oswindow oswindow)
@@ -402,12 +402,12 @@ namespace windowing
    }
 
 
-   void windowing::get_cursor_position(POINT_I32 * ppoint)
-   {
+   //void windowing::get_cursor_position(POINT_I32 * ppoint)
+   //{
 
-      *ppoint = m_pointCursor;
+   //   *ppoint = m_pointCursor;
 
-   }
+   //}
 
 
    ::windowing::window * windowing::get_keyboard_focus(::thread *)

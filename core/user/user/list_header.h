@@ -101,7 +101,7 @@ namespace user
       enum_element                      m_eelementLButtonDown;
       index                         m_iItemLButtonDown;
 
-      list *                        m_plistctrlinterface;
+      list *                        m_plist;
 
 
       list_header();

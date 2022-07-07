@@ -34,7 +34,10 @@ namespace sandbox_windowing
 
 
 
-      ::sandbox_windowing::windowing* windowing();
+      //::sandbox_windowing::windowing* windowing();
+
+      inline ::sandbox_windowing::windowing * windowing()
+      { return m_pwindowing->m_psandboxwindowing; }
 
 
       void exit_iconify() override;
@@ -55,7 +58,7 @@ namespace sandbox_windowing
 
       ::windowing::window* get_parent() const override;
       //virtual ::Window get_parent_handle();
-      oswindow get_parent_oswindow() const override;
+      ::oswindow get_parent_oswindow() const override;
 
       ::point_i32 get_mouse_cursor_position() override;
 

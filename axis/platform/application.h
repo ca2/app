@@ -18,14 +18,12 @@ namespace axis
 
    class CLASS_DECL_AXIS application :
       virtual public ::aura::application,
-      virtual public ::account::interactive,
-      virtual public ::networking_application_handler
+      virtual public ::account::interactive
    {
    public:
 
 
       __pointer(::simpledb::server)                         m_psimpledb;
-      __pointer(::networking_application)                   m_pnetworkingapplication;
       
 
       application();
@@ -50,13 +48,6 @@ namespace axis
 
       virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
-      virtual class networking_application* networking_application();
-
-
-      virtual void create_networking_application();
-
-
-      ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
 
       virtual void verb() override;

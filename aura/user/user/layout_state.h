@@ -150,7 +150,8 @@ namespace user
 
       layout_state& operator = (const ::zorder& zorder) { m_zorder = zorder; return *this; }
 
-      class ::zorder zorder() const { return m_zorder; }
+      ::zorder & zorder() { return m_zorder; }
+      const ::zorder & zorder() const { return m_zorder; }
 
       void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
 

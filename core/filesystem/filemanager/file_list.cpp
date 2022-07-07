@@ -30,6 +30,14 @@ namespace filemanager
    }
 
 
+   void file_list::initialize_view(::user::document * pdocument)
+   {
+
+      ::filemanager_show < ::userfs::list >::initialize_view(pdocument);
+
+   }
+
+
    void file_list::install_message_routing(::channel * pchannel)
    {
 
@@ -131,7 +139,7 @@ namespace filemanager
 
       synchronous_lock synchronouslock(fs_list()->mutex());
 
-      ::file::path filepath = fs_list_item(iLine)->m_filepathFinal;
+      ::file::path filepath = fs_list_item(iLine)->final_path();
 
       ::file::path filepathNew = filepath.folder() / wstrNameNew;
 
@@ -449,7 +457,7 @@ namespace filemanager
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
 
-            pmenu->track_popup_menu(get_parent_frame());
+            pmenu->track_popup_menu(parent_frame());
 
          }
 
@@ -955,12 +963,12 @@ namespace filemanager
    }
 
 
-   __pointer(::fs::data) file_list::fs_data()
-   {
+   //__pointer(::fs::data) file_list::fs_data()
+   //{
 
-      return ::userfs::list::fs_data();
+   //   return ::userfs::list::fs_data();
 
-   }
+   //}
 
 
    //void file_list::schedule_file_size(const ::string & psz)
@@ -991,7 +999,7 @@ namespace filemanager
    atom file_list::data_get_current_list_layout_id()
    {
 
-      return filemanager_item()->m_filepathUser;
+      return filemanager_item()->user_path();
 
    }
 
@@ -1034,9 +1042,9 @@ namespace filemanager
 
             string strName = strPath.name();
 
-            item.m_filepathUser = strPath;
+            item.set_user_path(strPath);
 
-            item.m_filepathFinal = pcontext->m_papexcontext->defer_process_path(strPath);
+            item.set_final_path(pcontext->m_papexcontext->defer_process_path(strPath));
 
             item.m_strName = strName;
 
@@ -1079,7 +1087,7 @@ namespace filemanager
 
       string strParent = filemanager_path();
 
-      ::file::path pathParentEx = filemanager_item()->get_user_path();
+      ::file::path pathParentEx = filemanager_item()->user_path();
 
       pathParentEx = filemanager_path();
 
@@ -1140,9 +1148,9 @@ namespace filemanager
 
             }
 
-            spitem->m_filepathUser = listingUser[i];
+            spitem->set_user_path(listingUser[i]);
 
-            spitem->m_filepathFinal = pathFinal;
+            spitem->set_final_path(pathFinal);
 
             spitem->m_strName = listingUser.name(i);
 
@@ -1425,25 +1433,25 @@ namespace filemanager
    }
 
 
-   void file_list::_001GetItemText(::user::mesh_item * pitem)
+   void file_list::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
       if (m_bStatic)
       {
 
-         return ::user::list::_001GetItemText(pitem);
+         return ::user::list::_001GetSubItemText(psubitem);
 
       }
 
-      return ::userfs::list::_001GetItemText(pitem);
+      return ::userfs::list::_001GetSubItemText(psubitem);
 
    }
 
 
-   void file_list::_001GetItemImage(::user::mesh_item * pitem)
+   void file_list::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
-      return ::userfs::list::_001GetItemImage(pitem);
+      return ::userfs::list::_001GetSubItemImage(psubitem);
 
    }
 
@@ -1766,9 +1774,9 @@ namespace filemanager
 
       ::userfs::list_item item;
 
-      item.m_filepathUser = pathUser;
+      item.set_user_path(pathUser);
 
-      item.m_filepathFinal = pathFinal;
+      item.set_final_path(pathFinal);
 
       item.m_strName = strName;
 
@@ -1790,7 +1798,7 @@ namespace filemanager
    }
 
 
-   __pointer(::image_list) file_list::GetActionButtonImageList(index i)
+   ::image_list * file_list::GetActionButtonImageList(index i)
    {
 
       if (i == 0)
@@ -1904,11 +1912,11 @@ namespace filemanager
       if (strict >= 0 && fs_list_item(strict)->IsFolder())
       {
 
-         ::file::path strPath = fs_list_item(strictDrag)->m_filepathFinal;
+         ::file::path strPath = fs_list_item(strictDrag)->final_path();
 
          string strName = strPath.name();
 
-         pcontext->m_papexcontext->file().move(fs_list_item(strict)->m_filepathFinal, strPath);
+         pcontext->m_papexcontext->file().move(fs_list_item(strict)->final_path(), strPath);
 
       }
       else
@@ -1998,7 +2006,7 @@ namespace filemanager
 
          filepatha.add(papp->data_get(filemanager_data()->m_dataidStatic).stra());
 
-         ::file::path filepath = filemanager_item()->get_user_path();
+         ::file::path filepath = filemanager_item()->user_path();
 
          filepath.trim();
 
@@ -2014,8 +2022,8 @@ namespace filemanager
 
                papp->data_set(filemanager_data()->m_dataidStatic, stra);
 
-               add_fs_item(filemanager_item()->get_user_path(),
-                  filemanager_item()->get_final_path(), filemanager_item()->m_filepathUser.name());
+               add_fs_item(filemanager_item()->user_path(),
+                  filemanager_item()->final_path(), filemanager_item()->user_path().name());
 
                _001OnUpdateItemCount();
 
@@ -2061,7 +2069,7 @@ namespace filemanager
       else if (!m_bStatic && ptopic->m_atom == id_synchronize_path)
       {
 
-         if (ptopic->_extended_topic()->m_pfileitem->m_filepathUser != filemanager_item()->m_filepathUser)
+         if (ptopic->_extended_topic()->m_pfileitem->user_path() != filemanager_item()->user_path())
          {
 
             return;
@@ -2117,7 +2125,7 @@ namespace filemanager
       else if (ptopic->m_atom == id_get_active_view_selection)
       {
 
-         if (get_parent_frame()->get_active_view() == (this))
+         if (parent_frame()->get_active_view() == (this))
          {
 
             get_selected_items(*ptopic->cast <::file::item_array>(id_selected));
@@ -2158,7 +2166,7 @@ namespace filemanager
 
                auto pcontext = get_context();
 
-               ::file::path pathFolder = filemanager_item()->get_user_path();
+               ::file::path pathFolder = filemanager_item()->user_path();
 
                pcontext->m_papexcontext->file().replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
@@ -2171,7 +2179,7 @@ namespace filemanager
             if (ptopic->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / ptopic->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->user_path() / ptopic->payload(id_folder);
 
                auto pcontext = get_context();
 

@@ -1029,7 +1029,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true " + __type_name(this));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true : " + __type_name(this) + "\n");
 
       //defer_set_icon();
 
@@ -1037,7 +1037,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false " + __type_name(this));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false :" + __type_name(this) + "\n");
 
    }
 
@@ -1970,7 +1970,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   m_bLockSketchToDesign = true;
+   //m_bLockSketchToDesign = true;
 
    if(puiParent == nullptr || wfi_is_up_down())
    {
@@ -2281,13 +2281,13 @@ bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
 
    }
 
-   set_need_layout();
+   //set_need_layout();
 
-   set_need_redraw();
+   //set_need_redraw();
 
-   m_bLockSketchToDesign = false;
+   //m_bLockSketchToDesign = false;
 
-   post_redraw();
+   //post_redraw();
 
    return true;
 
@@ -2703,8 +2703,9 @@ bool simple_frame_window::on_set_parent(::user::primitive * puiParent)
 void simple_frame_window::on_after_set_parent()
 {
 
-   auto puiParent = get_parent();
+   ::experience::frame_window::on_after_set_parent();
 
+   auto puiParent = get_parent();
 
    if (puiParent == nullptr)
    {
@@ -2727,23 +2728,21 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-bool simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
+void simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
    if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
    {
 
-      return m_pframe->get_window_client_rect(prectangle);
+      m_pframe->get_window_client_rect(prectangle);
 
    }
    else
    {
 
-      ::user::interaction::get_client_rect(prectangle);
+      ::experience::frame_window::get_client_rect(prectangle);
 
    }
-
-   return true;
 
 }
 
@@ -3200,15 +3199,15 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
+         auto pwindow = window();
+
+         auto pointCursor = pwindow->get_cursor_position();
+
+         string strXml = notification_area_get_xml_menu();
+
          auto psession = get_session();
 
          auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
-
-         string strXml = notification_area_get_xml_menu();
 
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 

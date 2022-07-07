@@ -37,9 +37,9 @@ namespace draw2d_cairo
       bool mask_combine(cairo_t * pdc);
 
       bool clip(cairo_t * pdc);
-      bool clip_rect(cairo_t * pdc);
-      bool clip_oval(cairo_t * pdc);
-      bool clip_polygon(cairo_t * pdc);
+      //bool clip_rect(cairo_t * pdc);
+      //bool clip_oval(cairo_t * pdc);
+      //bool clip_polygon(cairo_t * pdc);
 
       bool is_simple_positive_region();
 

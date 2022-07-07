@@ -6830,15 +6830,13 @@ namespace aura
 
       }
 
-
-
    }
 
 
    void system::windowing_post(const ::procedure & procedure)
    {
 
-      auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing();
+      auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing1();
 
       pwindowing->windowing_post(procedure);
 

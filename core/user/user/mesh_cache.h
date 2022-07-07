@@ -12,23 +12,25 @@ namespace user
    public:
 
 
-      bool                                  m_bCaching;
-      i32                               m_iCacheNextIndex;
-      ::i32_map < ::i32_map < CELL > >      m_map;
+      bool                                   m_bCaching;
+      i32                                    m_iCacheNextIndex;
+      ::i32_map < ::i32_map < CELL > >       m_map;
 
 
       mesh_cache();
-      virtual ~mesh_cache();
+      ~mesh_cache() override;
 
 
       void _001Invalidate();
 
       virtual void _001CacheHint(mesh * pmesh, index iItemStart, index iItemCount) override;
 
-      virtual void _001GetItemText(::user::mesh_item * pitem);
+      virtual void _001GetItemText(::user::mesh_subitem * pitem);
 
 
    };
+
+
    template < class CELL >
    mesh_cache<CELL>::mesh_cache()
    {
@@ -59,22 +61,22 @@ namespace user
 
 
    template < class CELL >
-   void mesh_cache<CELL>::_001GetItemText(::user::mesh_item * pitem)
+   void mesh_cache<CELL>::_001GetItemText(::user::mesh_subitem * psubitem)
    {
 
       if(m_bCaching)
       {
          
-         pitem->m_bOk = false;
+         psubitem->m_bOk = false;
 
          return;
 
       }
 
-      if(pitem->m_iItem < 0)
+      if(psubitem->m_pitem->m_iItem < 0)
       {
          
-         pitem->m_bOk = false;
+         psubitem->m_bOk = false;
 
          return;
 
@@ -82,19 +84,19 @@ namespace user
 
       {
 
-         auto passoc = m_map.plookup(pitem->m_iItem);
+         auto passoc = m_map.plookup(psubitem->m_pitem->m_iItem);
 
          if(passoc != nullptr)
          {
 
-            auto passoc2 = passoc->element2().plookup(pitem->m_iColumn);
+            auto passoc2 = passoc->element2().plookup(psubitem->m_pcolumn->m_iColumn);
 
             if(passoc2 != nullptr)
             {
 
-               passoc2->element2().get_topic_text(pitem->m_strText);
+               passoc2->element2().get_topic_text(psubitem->m_strText);
 
-               pitem->m_bOk = true;
+               psubitem->m_bOk = true;
 
                return;
 
@@ -128,7 +130,7 @@ namespace user
 
       //}
 
-      pitem->m_bOk = false;
+      psubitem->m_bOk = false;
 
       return;
 

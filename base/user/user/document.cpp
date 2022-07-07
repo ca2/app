@@ -105,7 +105,7 @@ namespace user
       for (auto & pimpact : m_viewa)
       {
 
-         uia.add_unique_interaction(pimpact->get_top_level());
+         uia.add_unique_interaction(pimpact->top_level());
 
       }
 
@@ -354,7 +354,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
+   toolbar * document::get_toolbar(::user::frame * pframewindow, bool bCreate)
    {
 
       if (!has_toolbar())
@@ -364,7 +364,7 @@ namespace user
 
       }
 
-      auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
+      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar(get_toolbar_id(), bCreate);
 
       if(!toolbartransport)
       {
@@ -437,14 +437,14 @@ namespace user
       if (pimpact)
       {
 
-         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+         auto pframe = pimpact->parent_frame();
 
-         while (pframe.is_set())
+         while (::is_null(pframe))
          {
 
             pframe->set_window_text(str);
 
-            pframe = pframe->get_parent_frame();
+            pframe = pframe->parent_frame();
 
          }
 
@@ -637,7 +637,7 @@ namespace user
 
          enum_activation eactivation = e_activation_default;
 
-         pimpact->get_parent_frame()->display(edisplay, eactivation);
+         pimpact->parent_frame()->display(edisplay, eactivation);
 
       }
 
@@ -1090,14 +1090,14 @@ namespace user
          for (auto & pimpact : m_viewa.ptra())
          {
 
-            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+            ::user::frame * pframe = pimpact->parent_frame();
 
-            if (pframe.is_set())
+            if (::is_null(pframe))
             {
 
                pframe->payload("hold_impact_system") = m_pimpactsystem;
 
-               frameptra.add_unique(pframe);
+               frameptra.add_unique(pframe->m_puserframewindow);
 
             }
 
@@ -1141,9 +1141,9 @@ namespace user
       for(auto & pimpact : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+         auto pframe = pimpact->parent_frame();
 
-         if (pframe.is_set())
+         if (::is_null(pframe))
          {
 
             pframe->display(e_display_none);
@@ -1157,9 +1157,9 @@ namespace user
       for(auto & pimpact : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+         auto pframe = pimpact->parent_frame();
 
-         if (pframe.is_set())
+         if (::is_null(pframe))
          {
 
             pframe->display(e_display_none);
@@ -1338,7 +1338,7 @@ namespace user
 
          ASSERT_VALID(pimpact);
 
-         __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+         auto pframe = pimpact->parent_frame();
 
          // assume frameless views are ok to close
          if (pframe != nullptr)
@@ -1347,8 +1347,12 @@ namespace user
             // assumes 1 document_interface per frame
             ASSERT_VALID(pframe);
 
-            if (pframe->m_nWindow > 0)
+            if (pframe->m_puserframewindow->m_nWindow > 0)
+            {
+
                return true;        // more than one frame refering to us
+
+            }
 
          }
 
@@ -1631,12 +1635,12 @@ namespace user
          if (pimpact->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+            auto pframe = pimpact->parent_frame();
 
             if (pframe != nullptr)
             {
 
-               pframe->m_nWindow = -1;
+               pframe->m_puserframewindow->m_nWindow = -1;
 
             }
 
@@ -1659,15 +1663,15 @@ namespace user
          if (pimpact->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+            auto pframe = pimpact->parent_frame();
 
-            if (pframe != nullptr && pframe->m_nWindow == -1)
+            if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == -1)
             {
 
                ASSERT_VALID(pframe);
 
                // not yet counted (give it a 1 based number)
-               pframe->m_nWindow = ++nFrames;
+               pframe->m_puserframewindow->m_nWindow = ++nFrames;
 
             }
 
@@ -1691,15 +1695,19 @@ namespace user
          if (pimpact->is_window_visible())   // Do not ::count invisible windows.
          {
 
-            __pointer(::user::frame_window) pframe = pimpact->get_parent_frame();
+            auto pframe = pimpact->parent_frame();
 
-            if (pframe != nullptr && pframe->m_nWindow == iFrame)
+            if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == iFrame)
             {
 
                ASSERT_VALID(pframe);
 
                if (nFrames == 1)
-                  pframe->m_nWindow = 0;      // the only one of its kind
+               {
+
+                  pframe->m_puserframewindow->m_nWindow = 0;      // the only one of its kind
+
+               }
 
                pframe->post_simple_command(e_simple_command_update_frame_title, (lparam) true);
 

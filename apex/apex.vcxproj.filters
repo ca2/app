@@ -207,6 +207,9 @@
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\networking\netserver">
+      <UniqueIdentifier>{a2e7fd7d-f1c0-41cd-bf69-42ef4051a45f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1686,6 +1689,24 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\networking.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_handler.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_socket.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_handler.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

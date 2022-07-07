@@ -172,12 +172,12 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      __pointer(::user::frame_window) pFrame = get_parent_frame();
+      auto pframe = parent_frame();
 
-      if (pFrame != nullptr && pFrame->get_active_view() == this)
+      if (pframe != nullptr && pframe->get_active_view() == this)
       {
 
-         pFrame->set_active_view(nullptr, false);    // deactivate during death
+         pframe->set_active_view(nullptr, false);    // deactivate during death
 
       }
 
@@ -421,7 +421,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) impact::get_toolbar(::user::frame_window* pframewindow, bool bCreate)
+   toolbar * impact::get_toolbar(::user::frame * pframewindow, bool bCreate)
    {
 
       if (!has_toolbar())
@@ -431,7 +431,7 @@ namespace user
 
       }
 
-      auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
+      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar(get_toolbar_id(), bCreate);
 
       if (!toolbartransport)
       {
@@ -461,9 +461,9 @@ namespace user
 
          }
 
-         __pointer(::user::document) pdocument = get_document();
+         auto pdocument = get_document();
 
-         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+         auto pframewindow = parent_frame();
 
          if (pdocument && pdocument->has_toolbar() && pframewindow)
          {
@@ -487,9 +487,9 @@ namespace user
       else
       {
 
-         __pointer(::user::document) pdocument = get_document();
+         auto pdocument = get_document();
 
-         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+         auto pframewindow = parent_frame();
 
          if (pdocument && pdocument->has_toolbar() && pframewindow)
          {
@@ -978,25 +978,32 @@ namespace user
 
       //}
 
-      if (get_parent_frame() != nullptr)
+      if (parent_frame() != nullptr)
       {
 
-         get_parent_frame()->set_active_view(this);
+         parent_frame()->set_active_view(this);
 
       }
 
    }
 
+
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
+
       __UNREFERENCED_PARAMETER(pmessage);
+
       //auto pmouse = pmessage->m_union.m_pmouse;
+
    }
+
 
    void impact::on_message_mouse_move(::message::message * pmessage)
    {
+
       __UNREFERENCED_PARAMETER(pmessage);
       //   auto pmouse = pmessage->m_union.m_pmouse;
+
    }
 
 
@@ -1160,9 +1167,11 @@ namespace user
 
       }
 
-      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
+      auto pParentFrame = parent_frame();
+
       if (pParentFrame != nullptr)
       {
+
          // eat it if this will cause activation
          ASSERT(pParentFrame == pmouseactivate->get_desktop_window()
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
@@ -1230,7 +1239,9 @@ namespace user
 
    void impact::on_select()
    {
-      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
+      
+      auto pParentFrame = parent_frame();
+
       if (pParentFrame != nullptr)
       {
          // eat it if this will cause activation
@@ -1440,7 +1451,7 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      get_parent_frame()->set_active_view((this));
+      parent_frame()->set_active_view(this);
    }
 
    void impact::on_message_middle_button_down(::message::message * pmessage)
@@ -1448,7 +1459,8 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
       //      auto pmouse = pmessage->m_union.m_pmouse;
 
-      get_parent_frame()->set_active_view((this));
+      parent_frame()->set_active_view(this);
+
    }
 
 
@@ -1498,7 +1510,7 @@ namespace user
       try
       {
 
-         get_parent_frame()->pre_translate_message(pmessage);
+         parent_frame()->pre_translate_message(pmessage);
 
       }
       catch(...)
@@ -1506,8 +1518,12 @@ namespace user
 
       }
 
-      if(pmessage->m_bRet)
+      if (pmessage->m_bRet)
+      {
+       
          return;
+
+      }
 
       pre_translate_message(pmessage);
 

@@ -50,7 +50,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawSubItem(draw_mesh_item * pdrawitem) override;
+      void _001DrawSubItem(draw_mesh_subitem * pdrawitem) override;
 
       //void _000OnMouse(::message::mouse * pmouse) override;
 

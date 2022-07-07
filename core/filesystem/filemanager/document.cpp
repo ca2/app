@@ -79,10 +79,10 @@ namespace filemanager
 //
 //#endif
       pimpact->set_current_tab_by_id(1);
-      pimpact->get_parent_frame()->set_need_redraw();
-      pimpact->get_parent_frame()->RunModalLoop();
+      pimpact->parent_frame()->set_need_redraw();
+      pimpact->parent_frame()->RunModalLoop();
       payloadFile = pdocument->m_strTopic;
-      pimpact->get_parent_frame()->destroy_window();
+      pimpact->parent_frame()->destroy_window();
       return true;
 
    }
@@ -111,7 +111,7 @@ namespace filemanager
       if (m_pitem.is_set())
       {
 
-         strOldPath = m_pitem->m_filepathUser;
+         strOldPath = m_pitem->user_path();
 
       }
 
@@ -163,7 +163,7 @@ namespace filemanager
 
          auto& watcher = dir.watcher();
 
-         m_filewatchid = watcher.add_watch(m_pitem->m_filepathFinal, { e_as, this } , false);
+         m_filewatchid = watcher.add_watch(m_pitem->final_path(), {e_as, this}, false);
 
       }
       catch (...)
@@ -428,14 +428,14 @@ namespace filemanager
    void document::FileManagerOneLevelUp(const ::action_context & context)
    {
 
-      if (filemanager_item()->m_filepathUser.is_empty())
+      if (filemanager_item()->user_path().is_empty())
       {
 
          return;
 
       }
 
-      string strParent = filemanager_item()->m_filepathUser.up();
+      string strParent = filemanager_item()->user_path().parent();
 
       browse(strParent, context + ::e_source_sync);
 
@@ -660,7 +660,7 @@ namespace filemanager
    void document::start_full_browse(__pointer(::file::item) pitem, const ::action_context & context)
    {
 
-      if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
+      if (!fs_data()->is_zero_latency(pitem->final_path()))
       {
 
          auto ptopic = create_topic(SYNCHRONIZE_PATH_ID);
@@ -727,7 +727,7 @@ namespace filemanager
          if (puser->m_pathFilemanagerProject.is_empty())
          {
 
-            pfilemanagerdata->set_last_browse_path(this, m_pitem->m_filepathUser);
+            pfilemanagerdata->set_last_browse_path(this, m_pitem->user_path());
 
          }
          else
@@ -874,7 +874,7 @@ namespace filemanager
 
       __pointer(::message::command) pcommand(pmessage);
 
-      if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
+      if (m_pitem.is_null() || m_pitem->user_path().is_empty())
       {
 
          pcommand->enable(false);

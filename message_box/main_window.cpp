@@ -23,8 +23,6 @@ namespace app_message_box
    }
 
 
-
-
    void main_window::install_message_routing(::channel * pchannel)
    {
 
@@ -102,9 +100,13 @@ namespace app_message_box
 
       rectangleButton.bottom -= (int) y;
 
-      rectangleButton.left = (int) (rectangleButton.right - x * 3.5);
+      //rectangleButton.left = (int) (rectangleButton.right - x * 3.5);
 
-      rectangleButton.top = (int) (rectangleButton.bottom - y * 1.65);
+      rectangleButton.left = (int) (rectangleButton.right - dBase * 11.0);
+      
+      //rectangleButton.top = (int) (rectangleButton.bottom - y * 1.65);
+
+      rectangleButton.top = (int) (rectangleButton.bottom - dBase * 5.0);
 
       m_pbuttonShowMessageBox->place(rectangleButton);
 

@@ -171,87 +171,6 @@ _.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.s
 .PHONY : _.cpp.s
 
-__matter_ca2.o: __matter_ca2.cpp.o
-
-.PHONY : __matter_ca2.o
-
-# target to build an object file
-__matter_ca2.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/__matter_ca2.cpp.o
-.PHONY : __matter_ca2.cpp.o
-
-__matter_ca2.i: __matter_ca2.cpp.i
-
-.PHONY : __matter_ca2.i
-
-# target to preprocess a source file
-__matter_ca2.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/__matter_ca2.cpp.i
-.PHONY : __matter_ca2.cpp.i
-
-__matter_ca2.s: __matter_ca2.cpp.s
-
-.PHONY : __matter_ca2.s
-
-# target to generate assembly for a file
-__matter_ca2.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/__matter_ca2.cpp.s
-.PHONY : __matter_ca2.cpp.s
-
-_to.o: _to.cpp.o
-
-.PHONY : _to.o
-
-# target to build an object file
-_to.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_to.cpp.o
-.PHONY : _to.cpp.o
-
-_to.i: _to.cpp.i
-
-.PHONY : _to.i
-
-# target to preprocess a source file
-_to.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_to.cpp.i
-.PHONY : _to.cpp.i
-
-_to.s: _to.cpp.s
-
-.PHONY : _to.s
-
-# target to generate assembly for a file
-_to.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_to.cpp.s
-.PHONY : _to.cpp.s
-
-account/account.o: account/account.cpp.o
-
-.PHONY : account/account.o
-
-# target to build an object file
-account/account.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/account.cpp.o
-.PHONY : account/account.cpp.o
-
-account/account.i: account/account.cpp.i
-
-.PHONY : account/account.i
-
-# target to preprocess a source file
-account/account.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/account.cpp.i
-.PHONY : account/account.cpp.i
-
-account/account.s: account/account.cpp.s
-
-.PHONY : account/account.s
-
-# target to generate assembly for a file
-account/account.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/account.cpp.s
-.PHONY : account/account.cpp.s
-
 account/authenticator.o: account/authenticator.cpp.o
 
 .PHONY : account/authenticator.o
@@ -468,33 +387,6 @@ account/product_array.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.s
 .PHONY : account/product_array.cpp.s
 
-account/storage.o: account/storage.cpp.o
-
-.PHONY : account/storage.o
-
-# target to build an object file
-account/storage.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage.cpp.o
-.PHONY : account/storage.cpp.o
-
-account/storage.i: account/storage.cpp.i
-
-.PHONY : account/storage.i
-
-# target to preprocess a source file
-account/storage.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage.cpp.i
-.PHONY : account/storage.cpp.i
-
-account/storage.s: account/storage.cpp.s
-
-.PHONY : account/storage.s
-
-# target to generate assembly for a file
-account/storage.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage.cpp.s
-.PHONY : account/storage.cpp.s
-
 account/storage_client.o: account/storage_client.cpp.o
 
 .PHONY : account/storage_client.o
@@ -698,33 +590,6 @@ constant/idpool.s: constant/idpool.cpp.s
 constant/idpool.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
-
-context_glx.o: context_glx.cpp.o
-
-.PHONY : context_glx.o
-
-# target to build an object file
-context_glx.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/context_glx.cpp.o
-.PHONY : context_glx.cpp.o
-
-context_glx.i: context_glx.cpp.i
-
-.PHONY : context_glx.i
-
-# target to preprocess a source file
-context_glx.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/context_glx.cpp.i
-.PHONY : context_glx.cpp.i
-
-context_glx.s: context_glx.cpp.s
-
-.PHONY : context_glx.s
-
-# target to generate assembly for a file
-context_glx.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/context_glx.cpp.s
-.PHONY : context_glx.cpp.s
 
 database/database/database.o: database/database/database.cpp.o
 
@@ -1428,33 +1293,6 @@ html/html_lite/tag.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.s
 .PHONY : html/html_lite/tag.cpp.s
 
-include/_.o: include/_.cpp.o
-
-.PHONY : include/_.o
-
-# target to build an object file
-include/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/include/_.cpp.o
-.PHONY : include/_.cpp.o
-
-include/_.i: include/_.cpp.i
-
-.PHONY : include/_.i
-
-# target to preprocess a source file
-include/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/include/_.cpp.i
-.PHONY : include/_.cpp.i
-
-include/_.s: include/_.cpp.s
-
-.PHONY : include/_.s
-
-# target to generate assembly for a file
-include/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/include/_.cpp.s
-.PHONY : include/_.cpp.s
-
 mathematics/calculator/calculator.o: mathematics/calculator/calculator.cpp.o
 
 .PHONY : mathematics/calculator/calculator.o
@@ -2103,33 +1941,6 @@ networking/sockets/bsd/timer/IEventOwner.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.s
 .PHONY : networking/sockets/bsd/timer/IEventOwner.cpp.s
 
-platform/_.o: platform/_.cpp.o
-
-.PHONY : platform/_.o
-
-# target to build an object file
-platform/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/_.cpp.o
-.PHONY : platform/_.cpp.o
-
-platform/_.i: platform/_.cpp.i
-
-.PHONY : platform/_.i
-
-# target to preprocess a source file
-platform/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/_.cpp.i
-.PHONY : platform/_.cpp.i
-
-platform/_.s: platform/_.cpp.s
-
-.PHONY : platform/_.s
-
-# target to generate assembly for a file
-platform/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/_.cpp.s
-.PHONY : platform/_.cpp.s
-
 platform/application.o: platform/application.cpp.o
 
 .PHONY : platform/application.o
@@ -2183,60 +1994,6 @@ platform/checked.s: platform/checked.cpp.s
 platform/checked.cpp.s:
 	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.s
 .PHONY : platform/checked.cpp.s
-
-platform/cregexp.o: platform/cregexp.cpp.o
-
-.PHONY : platform/cregexp.o
-
-# target to build an object file
-platform/cregexp.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp.cpp.o
-.PHONY : platform/cregexp.cpp.o
-
-platform/cregexp.i: platform/cregexp.cpp.i
-
-.PHONY : platform/cregexp.i
-
-# target to preprocess a source file
-platform/cregexp.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp.cpp.i
-.PHONY : platform/cregexp.cpp.i
-
-platform/cregexp.s: platform/cregexp.cpp.s
-
-.PHONY : platform/cregexp.s
-
-# target to generate assembly for a file
-platform/cregexp.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp.cpp.s
-.PHONY : platform/cregexp.cpp.s
-
-platform/cregexp_util.o: platform/cregexp_util.cpp.o
-
-.PHONY : platform/cregexp_util.o
-
-# target to build an object file
-platform/cregexp_util.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp_util.cpp.o
-.PHONY : platform/cregexp_util.cpp.o
-
-platform/cregexp_util.i: platform/cregexp_util.cpp.i
-
-.PHONY : platform/cregexp_util.i
-
-# target to preprocess a source file
-platform/cregexp_util.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp_util.cpp.i
-.PHONY : platform/cregexp_util.cpp.i
-
-platform/cregexp_util.s: platform/cregexp_util.cpp.s
-
-.PHONY : platform/cregexp_util.s
-
-# target to generate assembly for a file
-platform/cregexp_util.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/cregexp_util.cpp.s
-.PHONY : platform/cregexp_util.cpp.s
 
 platform/geo_department.o: platform/geo_department.cpp.o
 
@@ -2547,15 +2304,6 @@ help:
 	@echo "... _.o"
 	@echo "... _.i"
 	@echo "... _.s"
-	@echo "... __matter_ca2.o"
-	@echo "... __matter_ca2.i"
-	@echo "... __matter_ca2.s"
-	@echo "... _to.o"
-	@echo "... _to.i"
-	@echo "... _to.s"
-	@echo "... account/account.o"
-	@echo "... account/account.i"
-	@echo "... account/account.s"
 	@echo "... account/authenticator.o"
 	@echo "... account/authenticator.i"
 	@echo "... account/authenticator.s"
@@ -2580,9 +2328,6 @@ help:
 	@echo "... account/product_array.o"
 	@echo "... account/product_array.i"
 	@echo "... account/product_array.s"
-	@echo "... account/storage.o"
-	@echo "... account/storage.i"
-	@echo "... account/storage.s"
 	@echo "... account/storage_client.o"
 	@echo "... account/storage_client.i"
 	@echo "... account/storage_client.s"
@@ -2607,9 +2352,6 @@ help:
 	@echo "... constant/idpool.o"
 	@echo "... constant/idpool.i"
 	@echo "... constant/idpool.s"
-	@echo "... context_glx.o"
-	@echo "... context_glx.i"
-	@echo "... context_glx.s"
 	@echo "... database/database/database.o"
 	@echo "... database/database/database.i"
 	@echo "... database/database/database.s"
@@ -2688,9 +2430,6 @@ help:
 	@echo "... html/html_lite/tag.o"
 	@echo "... html/html_lite/tag.i"
 	@echo "... html/html_lite/tag.s"
-	@echo "... include/_.o"
-	@echo "... include/_.i"
-	@echo "... include/_.s"
 	@echo "... mathematics/calculator/calculator.o"
 	@echo "... mathematics/calculator/calculator.i"
 	@echo "... mathematics/calculator/calculator.s"
@@ -2763,21 +2502,12 @@ help:
 	@echo "... networking/sockets/bsd/timer/IEventOwner.o"
 	@echo "... networking/sockets/bsd/timer/IEventOwner.i"
 	@echo "... networking/sockets/bsd/timer/IEventOwner.s"
-	@echo "... platform/_.o"
-	@echo "... platform/_.i"
-	@echo "... platform/_.s"
 	@echo "... platform/application.o"
 	@echo "... platform/application.i"
 	@echo "... platform/application.s"
 	@echo "... platform/checked.o"
 	@echo "... platform/checked.i"
 	@echo "... platform/checked.s"
-	@echo "... platform/cregexp.o"
-	@echo "... platform/cregexp.i"
-	@echo "... platform/cregexp.s"
-	@echo "... platform/cregexp_util.o"
-	@echo "... platform/cregexp_util.i"
-	@echo "... platform/cregexp_util.s"
 	@echo "... platform/geo_department.o"
 	@echo "... platform/geo_department.i"
 	@echo "... platform/geo_department.s"

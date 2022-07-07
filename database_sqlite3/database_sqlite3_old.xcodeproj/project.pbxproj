@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 47;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A353E6C266235EA0060257B /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E6B266235EA0060257B /* libacme.dylib */; };
+		9A353E6E266235EA0060257B /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E6D266235EA0060257B /* libapex.dylib */; };
+		9A353E70266235EA0060257B /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E6F266235EA0060257B /* libaqua.dylib */; };
+		9A353E72266235EA0060257B /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E71266235EA0060257B /* libaura.dylib */; };
+		9A353E73266235EA0060257B /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E6726622FEB0060257B /* libaxis.dylib */; };
+		9A353E7526623BC40060257B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A353E7426623BC30060257B /* libsqlite3.tbd */; };
+		9A93B4AD2846E5EF005ACD11 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDC2661EA35009F476A /* _database_sqlite3.h */; };
+		9A93B4AE2846E5EF005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EE92661EA35009F476A /* _.h */; };
+		9A93B4AF2846E5EF005ACD11 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED92661EA35009F476A /* database.h */; };
+		9A93B4B02846E5EF005ACD11 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED12661EA35009F476A /* factory_exchange.h */; };
+		9A93B4B12846E5EF005ACD11 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDF2661EA35009F476A /* framework.h */; };
+		9A93B4B22846E5EF005ACD11 /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED62661EA35009F476A /* dataset.h */; };
+		9A93B4B32846E5EF005ACD11 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDA2661EA35009F476A /* _2.h */; };
+		9A93B4B52846E5EF005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED82661EA35009F476A /* _.cpp */; };
+		9A93B4B62846E5EF005ACD11 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED72661EA35009F476A /* database.cpp */; };
+		9A93B4B72846E5EF005ACD11 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ECB2661EA35009F476A /* framework.cpp */; };
+		9A93B4B82846E5EF005ACD11 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12EDD2661EA35009F476A /* _factory.cpp */; };
+		9AE12EEA2661EA35009F476A /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ECB2661EA35009F476A /* framework.cpp */; };
+		9AE12EEB2661EA35009F476A /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED12661EA35009F476A /* factory_exchange.h */; };
+		9AE12EEC2661EA35009F476A /* dataset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED62661EA35009F476A /* dataset.h */; };
+		9AE12EED2661EA35009F476A /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED72661EA35009F476A /* database.cpp */; };
+		9AE12EEE2661EA35009F476A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12ED82661EA35009F476A /* _.cpp */; };
+		9AE12EEF2661EA35009F476A /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12ED92661EA35009F476A /* database.h */; };
+		9AE12EF02661EA35009F476A /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDA2661EA35009F476A /* _2.h */; };
+		9AE12EF12661EA35009F476A /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDC2661EA35009F476A /* _database_sqlite3.h */; };
+		9AE12EF22661EA35009F476A /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE12EDD2661EA35009F476A /* _factory.cpp */; };
+		9AE12EF32661EA35009F476A /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EDF2661EA35009F476A /* framework.h */; };
+		9AE12EF42661EA35009F476A /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE12EE92661EA35009F476A /* _.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A353E6626622FEB0060257B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE63E9B252A5B7800BED5B8;
+			remoteInfo = axis;
+		};
+		9A353E68266232C40060257B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
+			remoteInfo = axis;
+		};
+		9A93B6942846EAFC005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B5822846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
+		9A93B6972846EAFC005ACD11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6912846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A353E6226622FEB0060257B /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
+		9A353E6B266235EA0060257B /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A353E6D266235EA0060257B /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A353E6F266235EA0060257B /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A353E71266235EA0060257B /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A353E7426623BC30060257B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9A93B4C32846E5EF005ACD11 /* lib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = lib.a; path = libios_database_sqlite3.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE12E782661E97E009F476A /* lib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = lib.dylib; path = libdatabase_sqlite3.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE12ECB2661EA35009F476A /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9AE12ED12661EA35009F476A /* factory_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory_exchange.h; sourceTree = "<group>"; };
+		9AE12ED62661EA35009F476A /* dataset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataset.h; sourceTree = "<group>"; };
+		9AE12ED72661EA35009F476A /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
+		9AE12ED82661EA35009F476A /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9AE12ED92661EA35009F476A /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		9AE12EDA2661EA35009F476A /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
+		9AE12EDC2661EA35009F476A /* _database_sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _database_sqlite3.h; sourceTree = "<group>"; };
+		9AE12EDD2661EA35009F476A /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
+		9AE12EDF2661EA35009F476A /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9AE12EE92661EA35009F476A /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AE12E762661E97E009F476A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A353E7526623BC40060257B /* libsqlite3.tbd in Frameworks */,
+				9A353E6C266235EA0060257B /* libacme.dylib in Frameworks */,
+				9A353E6E266235EA0060257B /* libapex.dylib in Frameworks */,
+				9A353E70266235EA0060257B /* libaqua.dylib in Frameworks */,
+				9A353E72266235EA0060257B /* libaura.dylib in Frameworks */,
+				9A353E73266235EA0060257B /* libaxis.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A353E6326622FEB0060257B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A353E6726622FEB0060257B /* libaxis.dylib */,
+				9A93B6982846EAFC005ACD11 /* libios_axis.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A353E6A266235EA0060257B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A353E7426623BC30060257B /* libsqlite3.tbd */,
+				9A353E6B266235EA0060257B /* libacme.dylib */,
+				9A353E6D266235EA0060257B /* libapex.dylib */,
+				9A353E6F266235EA0060257B /* libaqua.dylib */,
+				9A353E71266235EA0060257B /* libaura.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AE12E6F2661E97E009F476A = {
+			isa = PBXGroup;
+			children = (
+				9A353E6226622FEB0060257B /* axis.xcodeproj */,
+				9AE12EC62661EA35009F476A /* database_sqlite3 */,
+				9AE12E792661E97E009F476A /* Products */,
+				9A353E6A266235EA0060257B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9AE12E792661E97E009F476A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AE12E782661E97E009F476A /* lib.dylib */,
+				9A93B4C32846E5EF005ACD11 /* lib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE12EC62661EA35009F476A /* database_sqlite3 */ = {
+			isa = PBXGroup;
+			children = (
+				9AE12ED82661EA35009F476A /* _.cpp */,
+				9AE12EE92661EA35009F476A /* _.h */,
+				9AE12EDA2661EA35009F476A /* _2.h */,
+				9AE12EDC2661EA35009F476A /* _database_sqlite3.h */,
+				9AE12ED72661EA35009F476A /* database.cpp */,
+				9AE12ED92661EA35009F476A /* database.h */,
+				9AE12ED62661EA35009F476A /* dataset.h */,
+				9AE12EDD2661EA35009F476A /* _factory.cpp */,
+				9AE12ED12661EA35009F476A /* factory_exchange.h */,
+				9AE12ECB2661EA35009F476A /* framework.cpp */,
+				9AE12EDF2661EA35009F476A /* framework.h */,
+			);
+			name = database_sqlite3;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9A93B4AC2846E5EF005ACD11 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4AD2846E5EF005ACD11 /* _database_sqlite3.h in Headers */,
+				9A93B4AE2846E5EF005ACD11 /* _.h in Headers */,
+				9A93B4AF2846E5EF005ACD11 /* database.h in Headers */,
+				9A93B4B02846E5EF005ACD11 /* factory_exchange.h in Headers */,
+				9A93B4B12846E5EF005ACD11 /* framework.h in Headers */,
+				9A93B4B22846E5EF005ACD11 /* dataset.h in Headers */,
+				9A93B4B32846E5EF005ACD11 /* _2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE12E742661E97E009F476A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE12EF12661EA35009F476A /* _database_sqlite3.h in Headers */,
+				9AE12EF42661EA35009F476A /* _.h in Headers */,
+				9AE12EEF2661EA35009F476A /* database.h in Headers */,
+				9AE12EEB2661EA35009F476A /* factory_exchange.h in Headers */,
+				9AE12EF32661EA35009F476A /* framework.h in Headers */,
+				9AE12EEC2661EA35009F476A /* dataset.h in Headers */,
+				9AE12EF02661EA35009F476A /* _2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9A93B4A92846E5EF005ACD11 /* ios_database_sqlite3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A93B4C02846E5EF005ACD11 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */;
+			buildPhases = (
+				9A93B4AC2846E5EF005ACD11 /* Headers */,
+				9A93B4B42846E5EF005ACD11 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A93B6952846EAFC005ACD11 /* PBXTargetDependency */,
+			);
+			name = ios_database_sqlite3;
+			productName = database_sqlite3;
+			productReference = 9A93B4C32846E5EF005ACD11 /* lib.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9AE12E772661E97E009F476A /* database_sqlite3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AE12E812661E97E009F476A /* Build configuration list for PBXNativeTarget "database_sqlite3" */;
+			buildPhases = (
+				9AE12E742661E97E009F476A /* Headers */,
+				9AE12E752661E97E009F476A /* Sources */,
+				9AE12E762661E97E009F476A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A353E69266232C40060257B /* PBXTargetDependency */,
+			);
+			name = database_sqlite3;
+			productName = database_sqlite3;
+			productReference = 9AE12E782661E97E009F476A /* lib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AE12E702661E97E009F476A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					9AE12E772661E97E009F476A = {
+						CreatedOnToolsVersion = 12.5;
+					};
+				};
+			};
+			buildConfigurationList = 9AE12E732661E97E009F476A /* Build configuration list for PBXProject "database_sqlite3" */;
+			compatibilityVersion = "Xcode 6.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9AE12E6F2661E97E009F476A;
+			productRefGroup = 9AE12E792661E97E009F476A /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9A353E6326622FEB0060257B /* Products */;
+					ProjectRef = 9A353E6226622FEB0060257B /* axis.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9AE12E772661E97E009F476A /* database_sqlite3 */,
+				9A93B4A92846E5EF005ACD11 /* ios_database_sqlite3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A353E6726622FEB0060257B /* libaxis.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaxis.dylib;
+			remoteRef = 9A353E6626622FEB0060257B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A93B6982846EAFC005ACD11 /* libios_axis.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axis.a;
+			remoteRef = 9A93B6972846EAFC005ACD11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A93B4B42846E5EF005ACD11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A93B4B52846E5EF005ACD11 /* _.cpp in Sources */,
+				9A93B4B62846E5EF005ACD11 /* database.cpp in Sources */,
+				9A93B4B72846E5EF005ACD11 /* framework.cpp in Sources */,
+				9A93B4B82846E5EF005ACD11 /* _factory.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AE12E752661E97E009F476A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AE12EEE2661EA35009F476A /* _.cpp in Sources */,
+				9AE12EED2661EA35009F476A /* database.cpp in Sources */,
+				9AE12EEA2661EA35009F476A /* framework.cpp in Sources */,
+				9AE12EF22661EA35009F476A /* _factory.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A353E69266232C40060257B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = axis;
+			targetProxy = 9A353E68266232C40060257B /* PBXContainerItemProxy */;
+		};
+		9A93B6952846EAFC005ACD11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axis;
+			targetProxy = 9A93B6942846EAFC005ACD11 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9A93B4C12846E5EF005ACD11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A93B4C22846E5EF005ACD11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		9AE12E7F2661E97E009F476A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		9AE12E802661E97E009F476A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "@executable_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				USE_HEADERMAP = NO;
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		9AE12E822661E97E009F476A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PLATFORM_MODIFIER = macos;
+			};
+			name = Debug;
+		};
+		9AE12E832661E97E009F476A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PLATFORM_MODIFIER = macos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A93B4C02846E5EF005ACD11 /* Build configuration list for PBXNativeTarget "ios_database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A93B4C12846E5EF005ACD11 /* Debug */,
+				9A93B4C22846E5EF005ACD11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AE12E732661E97E009F476A /* Build configuration list for PBXProject "database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE12E7F2661E97E009F476A /* Debug */,
+				9AE12E802661E97E009F476A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AE12E812661E97E009F476A /* Build configuration list for PBXNativeTarget "database_sqlite3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AE12E822661E97E009F476A /* Debug */,
+				9AE12E832661E97E009F476A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9AE12E702661E97E009F476A /* Project object */;
+}

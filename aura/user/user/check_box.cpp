@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/draw_context2.h"

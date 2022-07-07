@@ -47,13 +47,13 @@ namespace geo
 
 
 
-      //bool                                          m_bInitialCountryTimeZoneInit;
-      bool                                            m_bInitialLocalityTimeZoneInit;
+      //bool                                                            m_bInitialCountryTimeZoneInit;
+      bool                                                              m_bInitialLocalityTimeZoneInit;
 
-      ::mutex                                         m_mutexOpenweatherCity;
+      ::mutex                                                           m_mutexOpenweatherCity;
       
       ::mutex                                                           m_mutexCityTimeZone;
-      iptr_map < ::datetime::department::time_zone >                    m_cityTimeZone;
+      index_map < ::datetime::department::time_zone >                   m_cityTimeZone;
       bool                                                              m_bLoadedCityTimeZoneFromFile;
       ::file::path                                                      m_pathCityTimeZoneFile;
       task_pointer                                                      m_ptaskSaveCityTimeZone;

@@ -124,6 +124,15 @@ namespace apex
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";
 
+#elif defined(_UWP)
+
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+         strFooter__ += "<input type=\"checkbox\" id=\"text_to_speech_speech_synthesis.checkbox\" />";
+         strFooter__ += "&nbsp;Speech Synthesis";
+         strFooter__ += "<br/>";
+         strFooter__ += "<br/>";
+
 #endif
 
       }

@@ -566,6 +566,12 @@
     <ClCompile Include="user\user\main_frame.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\mesh_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_item.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\userfs\userfs.h">

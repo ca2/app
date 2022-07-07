@@ -253,9 +253,9 @@ namespace filemanager
 
                   pitemChild = __new(::userfs::item(this));
 
-                  pitemChild->m_filepathUser = pathAscendant;
+                  pitemChild->set_user_path(pathAscendant);
 
-                  pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathAscendant);
+                  pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathAscendant));
 
                   pitemChild->m_strName = strName;
 
@@ -351,9 +351,9 @@ namespace filemanager
 
             }
 
-            pitemChild->m_filepathUser = pathUser;
+            pitemChild->set_user_path(pathUser);
 
-            pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
+            pitemChild->set_final_path(pcontext->m_papexcontext->defer_process_path(pathFinal));
 
             pitemChild->m_strName = strName;
 
@@ -522,7 +522,7 @@ namespace filemanager
       for(i32 i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(((itemptraSelected[0]->m_pdataitem.cast < ::userfs::item > ()))->m_filepathUser);
+         stra.add(((itemptraSelected[0]->m_pdataitem.cast < ::userfs::item > ()))->user_path());
 
       }
 
@@ -670,7 +670,7 @@ namespace filemanager
       if(puserfsitem)
       {
 
-         knowledge(puserfsitem->m_filepathUser,context);
+         knowledge(puserfsitem->user_path(), context);
 
       }
 

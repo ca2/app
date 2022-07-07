@@ -917,7 +917,7 @@ namespace html
    __pointer(::user::interaction) core_data::get_frame()
    {
       
-      return  (get_form()->get_parent_frame());
+      return  (get_form()->parent_frame());
 
    }
 

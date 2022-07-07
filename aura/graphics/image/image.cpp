@@ -12,6 +12,7 @@
 #include "aura/graphics/draw2d/task_tool.h"
 #include "save_image.h"
 #include "context_image.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 double get_default_screen_dpi()
@@ -70,8 +71,24 @@ image::image()
 image::~image()
 {
 
+   if (m_psystem)
+   {
+
+      m_psystem->m_paurasystem->draw2d()->erase_image(this);
+
+   }
+
 }
 
+
+void image::on_initialize_object()
+{
+
+   m_psystem->m_paurasystem->draw2d()->add_image(this);
+
+   ::object::on_initialize_object();
+
+}
 
 
 ::size_i32 image::get_image_drawer_size() const
@@ -431,6 +448,12 @@ void image::destroy()
    clear(e_flag_failure);
 
    //return ::success;
+
+}
+
+
+void image::destroy_os_data()
+{
 
 }
 
@@ -7725,6 +7748,74 @@ void image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 }
 
 
+void image::all_channels_copy(::color::enum_channel echannelSrc, ::image * pimage)
+{
+
+   if (size() != pimage->size())
+   {
+
+      //return false;
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   map();
+
+   if (colorref() == nullptr)
+   {
+
+      //return false;
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   pimage->map();
+
+   if (pimage->colorref() == nullptr)
+   {
+
+      //return false;
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   echannelSrc = (::color::enum_channel)(((i32)echannelSrc) % 4);
+
+   u8 * pdataDst = (u8 *)get_data();
+
+   u8 * pdataSrc = (u8 *)pimage->get_data() + ((i32)echannelSrc);
+
+   for (i32 y = 0; y < height(); y++)
+   {
+
+      u8 * pdst = &pdataDst[m_iScan * y];
+
+      u8 * psrc = &pdataSrc[pimage->m_iScan * y];
+
+      for (i32 x = 0; x < width(); x++)
+      {
+
+         pdst[0] = *psrc;
+         pdst[1] = *psrc;
+         pdst[2] = *psrc;
+         pdst[3] = *psrc;
+
+         pdst += 4;
+
+         psrc += 4;
+
+      }
+
+   }
+
+   //return true;
+
+}
+
+
 void image::tint(::image* pimage, const ::color::color& color32)
 {
 
@@ -8356,6 +8447,8 @@ void image::pixelate(i32 iSize)
       return;
 
    }
+
+   map();
 
    i32 w = width();
    i32 h = height();

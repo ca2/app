@@ -506,7 +506,7 @@ namespace user
 
       }
 
-      auto rectangleClient = get_client_rect(::user::e_layout_sketch);
+      auto rectangleClient = get_client_rect();
 
       if (rectangleClient.contains(point))
       {
@@ -610,11 +610,7 @@ namespace user
          if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_eelement == e_element_drop_down))
          {
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -825,7 +821,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectangleClient, ::user::e_layout_sketch);
+      get_client_rect(rectangleClient);
 
       m_plistbox->m_dItemHeight = minimum(24, rectangleClient.height());
 

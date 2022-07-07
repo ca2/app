@@ -972,13 +972,9 @@ namespace base
 
       ::point_i32 point;
 
-      auto psession = get_session();
+      auto pwindow = pinteraction->window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       return track_popup_menu(pinteraction, pitem, iFlags, pointCursor, pchannelNotify);
 
@@ -988,13 +984,9 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
    {
 
-      auto psession = get_session();
+      auto pwindow = pinteraction->window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor, ::size_i32(), pchannelNotify);
 
@@ -1004,13 +996,9 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
    {
 
-      auto psession = get_session();
+      auto pwindow = pinteraction->window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pointCursor = pwindow->get_cursor_position();
 
       return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor, pchannelNotify);
 

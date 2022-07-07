@@ -15,25 +15,25 @@ namespace userfs
       index                      m_iNameSubItemText;
       index                      m_iSelectionSubItem;
       index                      m_iSizeSubItem;
-      ::duration m_durationLastFileSizeGet;
+      ::duration                 m_durationLastFileSizeGet;
 
       list_item_array            m_itema;
 
 
 
       list_data();
-      virtual ~list_data();
+      ~list_data() override;
 
 
-      inline __pointer(::userfs::list_item) item(index i) { return m_itema.get_item(i); }
+      inline ::userfs::list_item * item(index i) { return m_itema.get_item(i); }
 
       virtual void update();
 
-      virtual void _001GetItemText(::user::mesh_item * pitem);
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
-      virtual count _001GetItemCount();
+      count _001GetItemCount() override;
 
-      virtual void _001GetItemImage(::user::mesh_item * pitem);
+      void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
 
 
    };

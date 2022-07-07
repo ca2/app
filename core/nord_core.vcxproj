@@ -357,11 +357,13 @@
     <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
     <ClCompile Include="user\user\list_header.cpp" />
+    <ClCompile Include="user\user\list_item.cpp" />
     <ClCompile Include="user\user\list_view.cpp" />
     <ClCompile Include="user\user\main_frame.cpp" />
     <ClCompile Include="user\user\mesh.cpp" />
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
+    <ClCompile Include="user\user\mesh_item.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />

@@ -36,13 +36,19 @@ public:
    void exclude_this_app();
 
    virtual void post(const ::atom& idPid);
+   virtual void send(const ::atom& idPid);
 
    __pointer(synchronization_array) synca();
 
    ::e_status wait();
    bool _wait(const class ::wait & wait);
 
-   void announce();
+
+   virtual id_array prepare_call();
+
+
+   virtual void send_call();
+   virtual void post_call();
 
 
 };

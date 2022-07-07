@@ -874,8 +874,23 @@ void create_directory(const char * path)
 
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
+      
+      int iErrorNumber = errno;
 
       auto estatus = errno_to_status(errno);
+      
+      if(estatus == error_already_exists)
+      {
+         
+#ifdef DEBUG
+         
+         throw exception(error_failed, "Why the program is creating directory if it is alredy a directory");
+         
+#endif
+         
+         return;
+         
+      }
 
       throw ::exception(estatus);
 

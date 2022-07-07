@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
@@ -67,16 +69,7 @@ namespace user
    void thread::initialize_user_thread(interaction_impl * pimpl)
    {
 
-      //auto estatus = 
-      
       initialize(pimpl);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       m_pimpl = pimpl;
 
@@ -263,7 +256,7 @@ namespace user
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
 
       m_pwindowing = pwindowing;
 
@@ -317,7 +310,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      m_oswindow = m_pimpl->m_pwindow->get_oswindow();
+      m_oswindow = m_pimpl->m_pwindow->oswindow();
 
       //delete m_pusersystem;
 

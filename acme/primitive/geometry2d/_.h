@@ -1076,6 +1076,9 @@ using point_f32_array = point_array_base < point_f32 >;
 using point_f64_array = point_array_base < point_f64 >;
 
 
+using rectangle = ::rectangle_f64;
+
+
 //inline float i32muldiv(float f, i32 iNum, i32 iDen);
 //inline double i32muldiv(double d, i32 iNum, i32 iDen);
 //inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen);

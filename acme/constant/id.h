@@ -168,9 +168,9 @@ enum enum_id : u64
    id_mesh,
 
    id_simple,
-   id_simple_checkbox,
-   id_simple_text,
-   id_simple_text_font_family,
+   //id_simple_checkbox,
+   //id_simple_text,
+   //id_simple_text_font_family,
 
    id_organization,
    id_no_teacher,
@@ -192,7 +192,7 @@ enum enum_id : u64
    id_raw_keydown,
    id_raw_keyup,
 
-   id_no_client_frame,
+   //id_no_client_frame,
    id_before_show_main_dialog,
    id_after_show_main_dialog,
    id_run,

@@ -26,7 +26,7 @@
 		9A882EA12844A0FF004113D1 /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA02844A0FF004113D1 /* libios_aqua.a */; };
 		9A882EA32844A0FF004113D1 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA22844A0FF004113D1 /* libios_aura.a */; };
 		9A882EA52844A0FF004113D1 /* libios_aura_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EA42844A0FF004113D1 /* libios_aura_apple.a */; };
-		9A882EA62844A0FF004113D1 /* libios_app_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */; };
+		9A882EA62844A0FF004113D1 /* libios_app_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E8128449DF8004113D1 /* libios_app_message_box.a */; };
 		9A882EB02844A5FD004113D1 /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EAF2844A5FD004113D1 /* libios_acme.a */; };
 		9A882EB22844A616004113D1 /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB12844A616004113D1 /* libios_aura_posix.a */; };
 		9A882EB42844A632004113D1 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EB32844A632004113D1 /* libios_aura.a */; };
@@ -57,6 +57,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 078C352E1921758500354453;
 			remoteInfo = wiossimple_drawing_simple_drawing;
+		};
+		9A1FBB8D2872ADDC0042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A882E5928449D74004113D1 /* app_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A882E6328449DBC004113D1;
+			remoteInfo = ios_app_message_box;
 		};
 		9A882E3D28449D59004113D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -172,18 +179,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9A8087681DE1175E00F70A07 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		077A02081B4D5758001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		078C352F1921758500354453 /* _ios_app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,7 +252,7 @@
 				9A882E9B2844A0FF004113D1 /* libapex_ios.a in Frameworks */,
 				9A882E9D2844A0FF004113D1 /* libios_apex_posix.a in Frameworks */,
 				9A882E9F2844A0FF004113D1 /* libios_app_app.a in Frameworks */,
-				9A882EA62844A0FF004113D1 /* libios_app_message_box.dylib in Frameworks */,
+				9A882EA62844A0FF004113D1 /* libios_app_message_box.a in Frameworks */,
 				9A882EA12844A0FF004113D1 /* libios_aqua.a in Frameworks */,
 				9A882EA32844A0FF004113D1 /* libios_aura.a in Frameworks */,
 				9A882EA52844A0FF004113D1 /* libios_aura_apple.a in Frameworks */,
@@ -401,7 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				9A882E5E28449D74004113D1 /* libapp_message_box.dylib */,
-				9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */,
+				9A882E8128449DF8004113D1 /* libios_app_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,16 +442,16 @@
 				078C352B1921758500354453 /* Sources */,
 				078C352C1921758500354453 /* Frameworks */,
 				078C352D1921758500354453 /* Resources */,
-				9A8087681DE1175E00F70A07 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
+				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
+				9A1FBB8E2872ADDC0042849A /* PBXTargetDependency */,
 				9A882EEC2844AB5C004113D1 /* PBXTargetDependency */,
 				9A882E8928449E18004113D1 /* PBXTargetDependency */,
-				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
 				9A882E8528449E06004113D1 /* PBXTargetDependency */,
-				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
 			);
 			name = _ios_app_message_box;
 			productName = wiossimple_drawing_simple_drawing;
@@ -611,10 +606,10 @@
 			remoteRef = 9A882E5D28449D74004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A882E8128449DF8004113D1 /* libios_app_message_box.dylib */ = {
+		9A882E8128449DF8004113D1 /* libios_app_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_app_message_box.dylib;
+			path = libios_app_message_box.a;
 			remoteRef = 9A882E8028449DF8004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -679,6 +674,11 @@
 			target = 078C352E1921758500354453 /* _ios_app_message_box */;
 			targetProxy = 078C35491921758600354453 /* PBXContainerItemProxy */;
 		};
+		9A1FBB8E2872ADDC0042849A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_app_message_box;
+			targetProxy = 9A1FBB8D2872ADDC0042849A /* PBXContainerItemProxy */;
+		};
 		9A882E8328449DFF004113D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_crypto_openssl;
@@ -735,7 +735,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "sofware.ca2.app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;
@@ -756,7 +756,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				OTHER_LDFLAGS = "-all_load";
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "sofware.ca2.app.message-box";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = debugging;
 				WRAPPER_EXTENSION = app;

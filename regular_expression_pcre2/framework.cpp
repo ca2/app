@@ -5,5 +5,5 @@
 #include "framework.h"
 
 
-
+IMPLEMENT_THIS_TYPE(regular_expression_pcre2_framework);
 

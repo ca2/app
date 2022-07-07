@@ -3,7 +3,9 @@
 // (as caThworansfer (also fun :/ ... few times... so seriously F****) from aura/os/application_system_run.cpp)
 #include "framework.h"
 #include "aura/operating_system/linux/_user.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#include <gtk/gtk.h>
 ////#include "sn/sn.h"
 #include "apex/platform/apex.h"

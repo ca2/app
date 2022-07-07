@@ -19,8 +19,8 @@ namespace user
 
 
       virtual void _001CacheHint(mesh * pmesh, index iItemStart, ::count nItemCount) = 0;
-      virtual void _001GetItemText(::user::mesh_item * pitem) = 0;
-      virtual void _001GetGroupText(::user::mesh_item * pitem);
+      virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) = 0;
+      virtual void _001GetGroupItemText(::user::mesh_group * pgroup);
 
       
       virtual void _001Invalidate(mesh * pmesh);

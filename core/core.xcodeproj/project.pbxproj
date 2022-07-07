@@ -14,6 +14,9 @@
 		9A16274D26F01D14003D9CB9 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16273A26F01D13003D9CB9 /* file.cpp */; };
 		9A16274F26F01D14003D9CB9 /* client_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16273C26F01D13003D9CB9 /* client_socket.cpp */; };
 		9A16275126F01D14003D9CB9 /* data_types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16273E26F01D13003D9CB9 /* data_types.cpp */; };
+		9A1FB6C7287161920042849A /* main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C4287161910042849A /* main_frame.cpp */; };
+		9A1FB6C8287161920042849A /* list_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C5287161920042849A /* list_item.cpp */; };
+		9A1FB6C9287161920042849A /* mesh_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C6287161920042849A /* mesh_item.cpp */; };
 		9A24D0722851452C000C9873 /* _no_templates.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D0682851452C000C9873 /* _no_templates.h */; };
 		9A24D0782851452C000C9873 /* _c_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D06B2851452C000C9873 /* _c_bridge.h */; };
 		9A24D07E2851452C000C9873 /* objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24D06E2851452C000C9873 /* objcpp.h */; };
@@ -24,6 +27,8 @@
 		9A42DA09266679A30011645D /* list_column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42DA08266679A30011645D /* list_column.cpp */; };
 		9A83B5BB2808110E00A1A2B6 /* dialog_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A83B5B92808110E00A1A2B6 /* dialog_frame.cpp */; };
 		9ABC54EF26DB15C900718C0D /* impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC54ED26DB15C900718C0D /* impact_base.cpp */; };
+		9AC88CA828750964005EABFD /* list_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C5287161920042849A /* list_item.cpp */; };
+		9AC88CA928750978005EABFD /* mesh_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB6C6287161920042849A /* mesh_item.cpp */; };
 		9AE63FD0284AA62D0079EBA0 /* core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF202627CFE05700D96CB7 /* core.h */; };
 		9AE63FD1284AA62D0079EBA0 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF1FF727CFE05600D96CB7 /* time.h */; };
 		9AE63FD2284AA62D0079EBA0 /* table_row.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64AB5252A681900BED5B8 /* table_row.h */; };
@@ -795,6 +800,9 @@
 		9A16273F26F01D13003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A16274026F01D13003D9CB9 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A16274126F01D13003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A1FB6C4287161910042849A /* main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_frame.cpp; sourceTree = "<group>"; };
+		9A1FB6C5287161920042849A /* list_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_item.cpp; sourceTree = "<group>"; };
+		9A1FB6C6287161920042849A /* mesh_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mesh_item.cpp; sourceTree = "<group>"; };
 		9A24D0682851452C000C9873 /* _no_templates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _no_templates.h; sourceTree = "<group>"; };
 		9A24D0692851452C000C9873 /* winrt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winrt.h; sourceTree = "<group>"; };
 		9A24D06A2851452C000C9873 /* _c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _c.h; sourceTree = "<group>"; };
@@ -1867,18 +1875,21 @@
 				9AE64B39252A681900BED5B8 /* list_data.h */,
 				9AE64B34252A681900BED5B8 /* list_header.cpp */,
 				9AE64B65252A681900BED5B8 /* list_header.h */,
+				9A1FB6C5287161920042849A /* list_item.cpp */,
 				9AE64B36252A681900BED5B8 /* list_item.h */,
 				9AE64B54252A681900BED5B8 /* list_view.cpp */,
 				9AE64B31252A681900BED5B8 /* list_view.h */,
 				9AE64B4E252A681900BED5B8 /* list.cpp */,
 				9AE64B45252A681900BED5B8 /* list.h */,
 				9AE64B5D252A681900BED5B8 /* listing.h */,
+				9A1FB6C4287161910042849A /* main_frame.cpp */,
 				9AE64B5F252A681900BED5B8 /* main_frame.h */,
 				9AE64B12252A681900BED5B8 /* mesh_cache_interface.cpp */,
 				9AE64B21252A681900BED5B8 /* mesh_cache_interface.h */,
 				9AE64B15252A681900BED5B8 /* mesh_cache.h */,
 				9AE64B29252A681900BED5B8 /* mesh_data.cpp */,
 				9AE64B28252A681900BED5B8 /* mesh_data.h */,
+				9A1FB6C6287161920042849A /* mesh_item.cpp */,
 				9AE64B25252A681900BED5B8 /* mesh_item.h */,
 				9AE64B1D252A681900BED5B8 /* mesh.cpp */,
 				9AE64B3C252A681900BED5B8 /* mesh.h */,
@@ -2810,6 +2821,7 @@
 				9AE651FF252A681C00BED5B8 /* span.cpp in Sources */,
 				9AE65170252A681C00BED5B8 /* list_view.cpp in Sources */,
 				9AE651A2252A681C00BED5B8 /* image_list.cpp in Sources */,
+				9A1FB6C8287161920042849A /* list_item.cpp in Sources */,
 				9AE6510B252A681C00BED5B8 /* tree_data.cpp in Sources */,
 				9AE650F0252A681C00BED5B8 /* department.cpp in Sources */,
 				9AE6522A252A681C00BED5B8 /* left_view.cpp in Sources */,
@@ -2864,6 +2876,7 @@
 				9AE650FE252A681C00BED5B8 /* mesh.cpp in Sources */,
 				9AE65120252A681C00BED5B8 /* form_mesh.cpp in Sources */,
 				9AE651EA252A681C00BED5B8 /* format.cpp in Sources */,
+				9A1FB6C9287161920042849A /* mesh_item.cpp in Sources */,
 				9AE65132252A681C00BED5B8 /* form_list_view.cpp in Sources */,
 				9AE650BA252A681C00BED5B8 /* user.cpp in Sources */,
 				9AE65272252A681C00BED5B8 /* icon.cpp in Sources */,
@@ -2896,6 +2909,7 @@
 				9AE65263252A681C00BED5B8 /* child_frame.cpp in Sources */,
 				9A16274726F01D14003D9CB9 /* file_status.cpp in Sources */,
 				9AE6511F252A681C00BED5B8 /* tree.cpp in Sources */,
+				9A1FB6C7287161920042849A /* main_frame.cpp in Sources */,
 				9AE65245252A681C00BED5B8 /* component.cpp in Sources */,
 				9AE65230252A681C00BED5B8 /* save_as_name_view.cpp in Sources */,
 				9AE65213252A681C00BED5B8 /* main_impact.cpp in Sources */,
@@ -3151,6 +3165,7 @@
 				9AE641D7284AA62D0079EBA0 /* value.cpp in Sources */,
 				9AE641D8284AA62D0079EBA0 /* frame.cpp in Sources */,
 				9AE641D9284AA62D0079EBA0 /* font_combo_box.cpp in Sources */,
+				9AC88CA828750964005EABFD /* list_item.cpp in Sources */,
 				9AE641DB284AA62D0079EBA0 /* xfplayer_view_lines.cpp in Sources */,
 				9AE641DC284AA62D0079EBA0 /* operation_child_frame.cpp in Sources */,
 				9AE641DD284AA62D0079EBA0 /* wait_message_dialog.cpp in Sources */,
@@ -3167,6 +3182,7 @@
 				9AE641E8284AA62D0079EBA0 /* progress.cpp in Sources */,
 				9AE641E9284AA62D0079EBA0 /* calculator_edit_view.cpp in Sources */,
 				9AE641EA284AA62D0079EBA0 /* tool_command.cpp in Sources */,
+				9AC88CA928750978005EABFD /* mesh_item.cpp in Sources */,
 				9AE641EB284AA62D0079EBA0 /* tool_tip_tool.cpp in Sources */,
 				9AE641EC284AA62D0079EBA0 /* style.cpp in Sources */,
 				9AE641ED284AA62D0079EBA0 /* tree_interface.cpp in Sources */,

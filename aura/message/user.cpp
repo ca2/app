@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "acme/include/_c_swap.h"
 
 
@@ -312,7 +314,7 @@ namespace message
          if(puserinteraction)
          {
 
-            auto pwindow = puserinteraction->get_window();
+            auto pwindow = puserinteraction->window();
 
             if (pwindow)
             {

@@ -44,6 +44,9 @@ public:
    ~image() override;
 
 
+   void on_initialize_object() override;
+
+
    using image_meta::clear;
    using object::clear;
 
@@ -266,6 +269,7 @@ public:
    virtual bool host(const ::pixmap * ppixmap);
    virtual bool on_host_read_pixels(const ::pixmap * ppixmap);
    void destroy() override;
+   void destroy_os_data() override;
    //virtual void detach(::image * pimage);
 
    // realization is semantically const
@@ -335,6 +339,7 @@ public:
 
    virtual void channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc);
    virtual void channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage);
+   virtual void all_channels_copy(::color::enum_channel echannelSrc, ::image * pimage);
 
    virtual void Map(i32 ToRgb, i32 FromRgb);
 

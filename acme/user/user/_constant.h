@@ -68,9 +68,9 @@ namespace user
    {
 
       e_state_none,
-      e_state_disabled = 1 << 0,
-      e_state_selected = 1 << 1,
-      e_state_hover = 1 << 2,
+      e_state_selected = 1 << 0,
+      e_state_hover = 1 << 1,
+      e_state_disabled = 1 << 2,
       e_state_pressed = 1 << 3,
       e_state_new_input = 1 << 4,
       e_state_focused = 1 << 5,

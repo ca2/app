@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "acme/platform/system_setup.h"
@@ -160,7 +162,7 @@ namespace user
    ::user::interaction * user::interaction(oswindow oswindow)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = windowing1();
 
       if (::is_null(pwindowing))
       {
@@ -195,7 +197,7 @@ namespace user
    ::user::interaction * user::get_mouse_capture(::thread * pthread)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = windowing1();
 
       if (::is_null(pwindowing))
       {
@@ -230,7 +232,7 @@ namespace user
    ::user::interaction * user::get_keyboard_focus(::thread * pthread)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = windowing1();
 
       if (::is_null(pwindowing))
       {
@@ -265,7 +267,7 @@ namespace user
    ::user::interaction * user::get_active_window(::thread * pthread)
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = windowing1();
 
       if (::is_null(pwindowing))
       {
@@ -305,7 +307,7 @@ namespace user
       if (::is_set(puserinteraction))
       {
 
-         pwindow = puserinteraction->get_window();
+         pwindow = puserinteraction->window();
 
       }
 
@@ -328,7 +330,7 @@ namespace user
    ::user::interaction * user::get_foreground_window()
    {
 
-      auto pwindowing = windowing();
+      auto pwindowing = windowing1();
 
       if (::is_null(pwindowing))
       {
@@ -368,7 +370,7 @@ namespace user
       if (::is_set(puserinteraction))
       {
 
-         pwindow = puserinteraction->get_window();
+         pwindow = puserinteraction->window();
 
       }
 
@@ -561,12 +563,10 @@ namespace user
    void user::term()
    {
 
-
       try
       {
 
-
-         auto pwindowing = windowing();
+         auto pwindowing = windowing1();
 
          if(::is_set(pwindowing))
          {

@@ -748,12 +748,12 @@ namespace dynamic_source
 
       ::file::path str;
       str = pcontext->m_papexcontext->dir().module();
-      str.go_up(2);
+      str.ascend(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
       str2 = pcontext->m_papexcontext->dir().module();
-      str2.go_up(2);
+      str2.ascend(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
       str = str + str2;

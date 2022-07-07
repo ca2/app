@@ -8,29 +8,10 @@
 #pragma once
 
 
-enum enum_shape
-{
 
-   e_shape_none,
-   e_shape_begin_clip,
-   e_shape_intersect_clip,
-   e_shape_begin_figure,
-   e_shape_close_figure,
-   e_shape_end_figure,
-   e_shape_arc,
-   e_shape_line,
-   e_shape_lines,
-   e_shape_rectangle,
-   e_shape_ellipse,
-   e_shape_polygon,
-   e_shape_text_out,
-   e_shape_draw_text,
-
-};
-
-
-class CLASS_DECL_ACME ___shape :
-   virtual public matter
+template < typename HOLDEE >
+class ___shape :
+   virtual public element
 {
 protected:
 
@@ -47,6 +28,10 @@ public:
    inline enum_shape eshape() const { return m_eshape; }
    virtual void * raw_type() const {return nullptr;}
 
+
+   virtual HOLDEE * holdee() { return nullptr; }
+   virtual const HOLDEE * holdee() const { return nullptr; }
+   virtual void holdee(HOLDEE *) {}
 
    template < typename SHAPE >
    SHAPE & shape() { return *(SHAPE *)raw_type(); }
@@ -69,12 +54,13 @@ public:
 };
 
 
-class CLASS_DECL_ACME begin_clip_shape :
-virtual public ___shape
+template < typename HOLDEE >
+class begin_clip_shape :
+virtual public ___shape < HOLDEE >
 {
 public:
 
-   begin_clip_shape():___shape(e_shape_begin_clip) {}
+   begin_clip_shape():___shape< HOLDEE>(e_shape_begin_clip) {}
 
    ::element * clone() const override
    {
@@ -86,12 +72,14 @@ public:
 };
 
 
-class CLASS_DECL_ACME intersect_clip_shape :
-virtual public ___shape
+template < typename HOLDEE >
+class intersect_clip_shape :
+virtual public ___shape < HOLDEE >
 {
 public:
 
-   intersect_clip_shape():___shape(e_shape_intersect_clip) {}
+
+   intersect_clip_shape():___shape< HOLDEE>(e_shape_intersect_clip) {}
 
 
    ::element * clone() const override
@@ -104,12 +92,13 @@ public:
 };
 
 
-class CLASS_DECL_ACME begin_figure_shape :
-   virtual public ___shape
+template < typename HOLDEE >
+class begin_figure_shape :
+   virtual public ___shape < HOLDEE >
 {
 public:
 
-   begin_figure_shape() :___shape(e_shape_begin_figure) {}
+   begin_figure_shape() :___shape< HOLDEE>(e_shape_begin_figure) {}
 
    ::element * clone() const override
    {
@@ -121,12 +110,13 @@ public:
 };
 
 
-class CLASS_DECL_ACME close_figure_shape :
-   virtual public ___shape
+template < typename HOLDEE >
+class close_figure_shape :
+   virtual public ___shape < HOLDEE >
 {
 public:
 
-   close_figure_shape() :___shape(e_shape_close_figure) {}
+   close_figure_shape() :___shape< HOLDEE>(e_shape_close_figure) {}
 
    ::element * clone() const override
    {
@@ -138,12 +128,13 @@ public:
 };
 
 
-class CLASS_DECL_ACME end_figure_shape :
-   virtual public ___shape
+template < typename HOLDEE >
+class end_figure_shape :
+   virtual public ___shape < HOLDEE >
 {
 public:
 
-   end_figure_shape() :___shape(e_shape_end_figure) {}
+   end_figure_shape() :___shape< HOLDEE>(e_shape_end_figure) {}
 
    ::element * clone() const override
    {
@@ -157,19 +148,26 @@ public:
 
 
 
-template < typename SHAPE, enum_shape ESHAPE >
+template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
 class _shape :
-virtual public ___shape
+virtual public ___shape < HOLDEE >
 {
 public:
 
 
-   SHAPE       m_shape;
+   SHAPE                m_shape;
+
+   __pointer(HOLDEE)    m_pholdee;
 
 
-   _shape():___shape(ESHAPE) {}
-   _shape(const SHAPE & shape) : ___shape(ESHAPE), m_shape(shape) {}
+   _shape():___shape< HOLDEE>(ESHAPE) {}
+   _shape(const SHAPE & shape) : ___shape< HOLDEE>(ESHAPE), m_shape(shape) {}
    ~_shape() override {}
+
+
+   HOLDEE * holdee() override { return m_pholdee; }
+   const HOLDEE * holdee() const override { return m_pholdee; }
+   void holdee(HOLDEE * pholdee) override { m_pholdee = pholdee; }
 
 
    virtual void * raw_type() const override { return (void*) &m_shape; }
@@ -201,75 +199,160 @@ public:
 };
 
 
-using line = ::line_f64;
-using rectangle = ::rectangle_f64;
-using ellipse = ::ellipse_f64;
+
+
+//using line = ::line_f64;
+//using rectangle = ::rectangle_f64;
+//using ellipse = ::ellipse_f64;
 //using lines = ::lines_f64;
 //using polygon = ::polygon_f64;
 
 
-using arc_shape = _shape < ::arc, e_shape_arc>;
-using line_shape = _shape < ::line, e_shape_line >;
-using rectangle_shape = _shape < ::rectangle, e_shape_rectangle >;
-using ellipse_shape = _shape < ::ellipse, e_shape_ellipse >;
+//using arc_shape = _shape < ::arc, e_shape_arc>;
+//using line_shape = _shape < ::line, e_shape_line >;
+//using rectangle_shape = _shape < ::rectangle, e_shape_rectangle >;
+//using ellipse_shape = _shape < ::ellipse, e_shape_ellipse >;
 //using lines_shape = _shape < ::lines, e_shape_lines >;
 //using polygon_shape = _shape < ::polygon, e_shape_polygon >;
 
 
-template < typename GEOMETRY >
-inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
+// template < typename GEOMETRY >
+// inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
+
+// template < typename HOLDE >
+// class shape_factory
+// {
+// public:
+// // template < typename GEOMETRY >
+// // inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
+
+// };
 
 
-template < >
-inline __pointer(___shape) __create_shape(const enum_shape& eshape);
+template < typename HOLDEE >
+class holdee
+{
+};
 
 
-//template < >
-//inline __pointer(___shape) __create_shape(const ::line & line)
-//{
-//
-//   return __new(line_shape(line));
-//
-//}
-
-
-template < >
-inline __pointer(___shape) __create_shape(const ::line & line)
+template < typename GEOMETRY, typename HOLDEE >
+inline __pointer(___shape < HOLDEE >) __create_shape(const GEOMETRY& geometry, holdee < HOLDEE >)
 {
 
-   return __new(line_shape(line));
+   throw interface_only();
+
+   return nullptr;
+
+}
+
+template < typename HOLDEE >
+inline __pointer(___shape < HOLDEE >) __create_shape(const enum_shape& eshape);
+
+
+template < typename HOLDEE >
+bool ___shape <HOLDEE>::expand_bounding_rect(RECTANGLE_F64* prectangle) const
+{
+
+   rectangle_f64 r;
+
+   if (!get_bounding_rectangle(&r))
+   {
+
+      return false;
+
+   }
+
+   expand_rect(prectangle, r);
+
+   return true;
 
 }
 
 
-//template < >
-//inline __pointer(___shape) __create_shape(const ::lines& lines);
-
-
-
-
-//template < >
-//inline __pointer(___shape) __create_shape(const ::rectangle_i32& rectangle)
-//{
-//
-//   return __new(rect_shape(rectangle));
-//
-//}
-
-template < >
-inline __pointer(___shape) __create_shape(const ::rectangle & rectangle)
+template < typename HOLDEE >
+bool ___shape<HOLDEE>::expand_bounding_rect(RECTANGLE_I32* prectangle) const
 {
 
-   return __new(rectangle_shape(rectangle));
+   rectangle_f64 r;
+
+   if (!expand_bounding_rect(&r))
+   {
+
+      return false;
+
+   }
+
+   expand_rect(prectangle, r);
+
+   return true;
 
 }
 
 
-template < >
-inline __pointer(___shape) __create_shape(const ::ellipse & ellipse)
+template < typename HOLDEE >
+bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
 {
 
-   return __new(ellipse_shape(ellipse));
+   ::null_rect(prectangle);
+
+   return false;
 
 }
+
+
+template < typename HOLDEE >
+bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
+{
+
+   ::null_rect(prectangle);
+
+   return false;
+
+}
+
+
+template < typename HOLDEE >
+bool ___shape<HOLDEE>::contains(const ::point_f64& point) const
+{
+
+   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
+
+   ::rectangle_f64 r;
+
+   if (!get_bounding_rectangle(r))
+   {
+
+      return false;
+
+   }
+
+   return r.contains(point);
+
+}
+
+
+
+
+
+
+template < typename HOLDEE >
+using arc_shape = _shape < ::arc, e_shape_arc, HOLDEE >;
+
+template < typename HOLDEE >
+using line_shape = _shape < ::line, e_shape_line, HOLDEE >;
+
+template < typename HOLDEE >
+using rectangle_shape = _shape < ::rectangle, e_shape_rectangle, HOLDEE >;
+
+template < typename HOLDEE >
+using ellipse_shape = _shape < ::ellipse, e_shape_ellipse, HOLDEE >;
+
+template < typename HOLDEE >
+using lines_shape = _shape < ::lines, e_shape_lines, HOLDEE >;
+
+template < typename HOLDEE >
+using polygon_shape = _shape < ::polygon, e_shape_polygon, HOLDEE >;
+
+
+
 

@@ -132,17 +132,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">false</IgnoreImportLibrary>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</IgnoreImportLibrary>
@@ -194,7 +186,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -211,7 +202,6 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
@@ -284,21 +274,14 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>include;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <CompileAsManaged>false</CompileAsManaged>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -306,12 +289,10 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
       <IntrinsicFunctions>false</IntrinsicFunctions>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>
@@ -472,24 +453,17 @@
       <AdditionalIncludeDirectories>include;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
       <BrowseInformation>false</BrowseInformation>
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <CompileAsManaged>false</CompileAsManaged>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -502,11 +476,9 @@
       </BufferSecurityCheck>
       <SDLCheck>
       </SDLCheck>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>
@@ -582,7 +554,6 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -600,7 +571,6 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
@@ -670,15 +640,10 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>include;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -693,12 +658,8 @@
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <SDLCheck>true</SDLCheck>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <CompileAsManaged>false</CompileAsManaged>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>
@@ -846,24 +807,17 @@
       <AdditionalIncludeDirectories>include;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__operating_system)third-windows/$(PlatformName)/$(Configuration)/include;$(__operating_system)third-windows/include;$(__operating_system)third-windows/third/include;$(__operating_system)third-windows/third/include/include;$(SolutionDir)../../../operating-system/operating-system-windows/_include;$(SolutionDir)../../../operating-system/operating-system-windows;$(SolutionDir)../../../operating-system/operating-system-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/port/include;$(SolutionDir)../../../source/port;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
-      <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <OpenMPSupport>false</OpenMPSupport>
       <BrowseInformation>false</BrowseInformation>
       <StringPooling>false</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <CompileAsManaged>false</CompileAsManaged>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <OmitFramePointers>true</OmitFramePointers>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -878,9 +832,7 @@
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <SDLCheck>
       </SDLCheck>
-      <ObjectFileName>$(IntDir)%(Directory)</ObjectFileName>
       <UseFullPaths>true</UseFullPaths>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ResourceCompile>

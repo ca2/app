@@ -118,7 +118,7 @@ namespace app_shader
 
       }
 
-      get_top_level()->set_prodevian();
+      top_level()->set_prodevian();
 
       update_shader("");
 
@@ -284,7 +284,7 @@ namespace app_shader
 
       {
 
-         ::user::lock_sketch_to_design lockSketchToDesign(this);
+         //::user::lock_sketch_to_design lockSketchToDesign(this);
 
          auto prender = __create_new < render >();
 

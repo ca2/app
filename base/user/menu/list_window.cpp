@@ -240,7 +240,7 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
+         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight * 1.2 - 2);
 
          if(prectangle->bottom > rectangleBound.bottom)
          {
@@ -255,12 +255,14 @@ namespace user
 
          if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
          {
+            
+            auto rPlacement = ::rectangle_i32_dimension(
+                                                        prectangle->left + pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->top,
+                                                        iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
+                                                        prectangle->bottom - prectangle->top);
 
-            pitem->m_puserinteraction->place(::rectangle_i32_dimension(
-            prectangle->left + pitem->m_iLevel * g_base_menu_indent,
-            prectangle->top,
-            iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-            prectangle->bottom - prectangle->top));
+            pitem->m_puserinteraction->place(rPlacement);
 
             pitem->m_puserinteraction->display();
 
@@ -268,7 +270,7 @@ namespace user
 
          }
 
-         prectangle->top = prectangle->bottom + 2;
+         prectangle->top = prectangle->bottom + 5;
 
       }
 

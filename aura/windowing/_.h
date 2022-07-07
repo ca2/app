@@ -6,14 +6,15 @@
 #pragma once
 
 
-namespace windowing_universal_windows
+namespace sandbox_windowing
 {
 
 
    class window;
+   class windowing;
 
 
-} // namespace windowing_universal_windows
+} // namespace sandbox_windowing
 
 
 namespace windowing

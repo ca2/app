@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/platform/aura.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 #include "aura/graphics/image/array.h"
@@ -10,7 +12,11 @@
 #include "path.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
-//#include <math.h>
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/_collection.h"
+#include "_defer.h"
+#include "acme/primitive/geometry2d/_defer_shape.h"
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
@@ -31,7 +37,7 @@ namespace draw2d
    graphics::graphics()
    {
 
-
+      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
       //m_estatus = success;
@@ -1851,9 +1857,16 @@ namespace draw2d
    void graphics::get_text_metrics(::write_text::text_metric * pMetrics)
    {
 
-      __UNREFERENCED_PARAMETER(pMetrics);
+      if (!m_pfont)
+      {
 
-      //return false;
+         return;
+
+      }
+
+      m_pfont->get_os_data(this);
+
+      memcpy(pMetrics, &m_pfont->m_textmetric2, sizeof(*pMetrics));
 
    }
 
@@ -2582,7 +2595,7 @@ namespace draw2d
    void graphics::destroy_os_data()
    {
       
-      //return ::success;
+      clear_os_data();
       
    }
 
@@ -3122,13 +3135,13 @@ namespace draw2d
    }
 
 
-   void graphics::add_shapes(const shape_array & shapea)
+   void graphics::add_clipping_shapes(const shape_array < ::draw2d::region > & shapea)
    {
       
       for(auto & pshape : shapea)
       {
          
-         _add_shape(pshape);
+         _add_clipping_shape(pshape);
          
       }
 
@@ -3137,7 +3150,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_shape(___shape * pshape)
+   void graphics::_add_clipping_shape(___shape < ::draw2d::region > * pshape)
    {
    
       switch(pshape->eshape())
@@ -3148,15 +3161,15 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_shape(pshape->shape < ::rectangle >());
+         _add_clipping_shape(pshape->shape < ::rectangle >(), pshape);
          break;
       case e_shape_ellipse:
-         _add_shape(pshape->shape < ::ellipse >());
+         _add_clipping_shape(pshape->shape < ::ellipse >(), pshape);
          break;
 //      case e_shape_lines:
 //         return _add_shape(pshape->shape < ::lines >());
       case e_shape_polygon:
-         _add_shape(pshape->shape < ::polygon >());
+         _add_clipping_shape(pshape->shape < ::polygon >(), pshape);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3176,7 +3189,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_shape(const ::rectangle_f64 & rectangle)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > * pshape)
    {
    
       throw ::interface_only();
@@ -3206,7 +3219,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::ellipse & ellipse)
+   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > * pshape)
    {
    
       throw ::interface_only();
@@ -3226,7 +3239,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_shape(const ::polygon_f64 & polygon_i32)
+   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > * pshape)
    {
 
       throw ::interface_only();
@@ -3236,114 +3249,67 @@ namespace draw2d
    }
 
 
-   void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
+   void graphics::intersect_clip(const ::rectangle & rectangle)
    {
-   
-      //auto estatus = 
-      _add_shape(rectangle);
       
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      
-      //estatus = 
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
-   
+      _shape < ::rectangle, e_shape_rectangle, ::draw2d::region > regionshape;
+
+      _add_clipping_shape(rectangle, &regionshape);
+
    }
-
-
-   //void graphics::intersect_clip(const ::rectangle_f64 & rectangle)
-   //{
-   //
-   //   auto estatus = _add_shape(rectangle);
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   estatus = _intersect_clip();
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   return estatus;
-   //
-   //}
-
-
-   //void graphics::intersect_clip(const ::ellipse & ellipse)
-   //{
-   //
-   //   auto estatus = _add_shape(ellipse);
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   estatus = _intersect_clip();
-   //   
-   //   if(!estatus)
-   //   {
-   //    
-   //      return estatus;
-   //      
-   //   }
-   //   
-   //   return estatus;
-   //
-   //}
 
 
    void graphics::intersect_clip(const ::ellipse & ellipse)
    {
    
-      //auto estatus =
-      
-      _add_shape(ellipse);
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      
-      //estatus = 
-      
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
+      _shape < ::ellipse, e_shape_ellipse, ::draw2d::region > regionshape;
+
+      _add_clipping_shape(ellipse, &regionshape);
    
    }
+
+
+   void graphics::intersect_clip(const ::polygon & polygon)
+   {
+
+      _shape < ::polygon, e_shape_polygon, ::draw2d::region > regionshape;
+
+      _add_clipping_shape(polygon, &regionshape);
+
+   }
+
+
+//   void graphics::intersect_clip(const ::ellipse & ellipse)
+//   {
+//
+//      throw interface_only();
+////      //auto estatus =
+////
+////      __pointer(::draw2d::region) pregion;
+////
+////      _add_clipping_shape(ellipse, pregion);
+////
+////      //if(!estatus)
+////      //{
+////      //
+////      //   return estatus;
+////      //
+////      //}
+////
+////      //estatus =
+////
+////      _intersect_clip();
+////
+////      //if(!estatus)
+////      //{
+////      //
+////      //   return estatus;
+////      //
+////      //}
+////      //
+////      //return estatus;
+//
+//   }
 
 
    //void graphics::intersect_clip(const ::polygon_i32 & polygon_i32)
@@ -3372,32 +3338,34 @@ namespace draw2d
    //}
 
 
-   void graphics::intersect_clip(const ::polygon_f64 & polygon_i32)
-   {
-
-      //auto estatus = 
-      _add_shape(polygon_i32);
-      //
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //estatus =
-      _intersect_clip();
-      
-      //if(!estatus)
-      //{
-      // 
-      //   return estatus;
-      //   
-      //}
-      //
-      //return estatus;
-
-   }
+//   void graphics::intersect_clip(const ::polygon_f64 & polygon)
+//   {
+//
+//      __pointer(::draw2d::region) pregion;
+//
+//      //auto estatus = 
+//      _add_clipping_shape(polygon, pregion);
+//      //
+//      //if(!estatus)
+//      //{
+//      // 
+//      //   return estatus;
+//      //   
+//      //}
+//      //
+//      //estatus =
+//      _intersect_clip();
+//      
+//      //if(!estatus)
+//      //{
+//      // 
+//      //   return estatus;
+//      //   
+//      //}
+//      //
+//      //return estatus;
+//
+//   }
 
 
 
@@ -4282,15 +4250,7 @@ namespace draw2d
 
       }
 
-      ::write_text::text_metric tm2;
-
-      get_text_metrics(&tm2);
-
-      double dLineSpacing = tm2.get_line_spacing();
-
-      ::draw2d::graphics * pgraphics = this;
-
-      wstring wstr = utf8_to_unicode(strParam);
+      m_pfont->get_os_data(this);
 
       string str(strParam);
 
@@ -4327,15 +4287,41 @@ namespace draw2d
       if((edrawtext & e_draw_text_word_break) != 0)
       {
 
-         bLastLine = !word_break(pgraphics, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
+         bLastLine = !word_break(this, str, rectangleClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
-         sz = pgraphics->get_text_extent(str);
+         auto & text = m_pfont->m_mapText[str];
+
+         if (text.m_bSize)
+         {
+
+            sz = text.m_size;
+
+         }
+         else
+         {
+
+            sz = get_text_extent(str);
+
+         }
 
       }
       else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
-         sz = pgraphics->get_text_extent(str, (i32)iLen);
+         auto & text = m_pfont->m_mapText[::string(str, iLen)];
+
+         if (text.m_bSize)
+         {
+
+            sz = text.m_size;
+
+         }
+         else
+         {
+
+            sz = get_text_extent(::string(str, iLen));
+
+         }
 
          if (sz.cx > rectangleClip.width())
          {
@@ -4355,7 +4341,7 @@ namespace draw2d
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
-               sz = pgraphics->get_text_extent(strSample);
+               sz = get_text_extent(strSample);
 
                if (sz.cx > rectangleClip.width())
                {
@@ -4376,7 +4362,20 @@ namespace draw2d
       else
       {
 
-         sz = pgraphics->get_text_extent(str);
+         auto & text = m_pfont->m_mapText[str];
+
+         if (text.m_bSize)
+         {
+
+            sz = text.m_size;
+
+         }
+         else
+         {
+
+            sz = get_text_extent(str);
+
+         }
 
          if (sz.cx > rectangleClip.width())
          {
@@ -4395,7 +4394,7 @@ namespace draw2d
             while (i > 0)
             {
 
-               sz = pgraphics->get_text_extent(str, (i32)i);
+               sz = get_text_extent(str, (i32)i);
 
                if ((int) sz.cx > rectangleClip.width())
                {
@@ -4422,6 +4421,7 @@ namespace draw2d
             psz[i] = L'\0';
 
             str.release_string_buffer();
+
          }
 
       }
@@ -4443,7 +4443,7 @@ namespace draw2d
 
             pfontUnderline.create(this);
 
-            pfontUnderline->operator=(*pgraphics->get_current_font());
+            pfontUnderline->operator=(*get_current_font());
 
             pfontUnderline->set_bold();
 
@@ -4451,12 +4451,19 @@ namespace draw2d
 
       }
 
+      //double dLineSpacing = m_pfont->m_textmetric2.get_line_spacing();
+
+      //::draw2d::graphics * pgraphics = this;
+
+      //wstring wstr = utf8_to_unicode(strParam);
+
       ::rectangle_f64 rectangle;
 
       rectangle.left = 0;
       rectangle.top = 0;
-      rectangle.right = (::i32) sz.cx;
-      rectangle.bottom = (::i32) (dLineSpacing);
+      rectangle.right =  sz.cx;
+      rectangle.bottom = sz.cy;
+      //rectangle.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -4503,7 +4510,7 @@ namespace draw2d
       if (iUnderline >= 0 && iUnderline < str.get_length())
       {
 
-         pgraphics->text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)minimum(iUnderline, str.get_length()) });
+         text_out(rectangle.left, rectangle.top, { str.c_str(), (i32)minimum(iUnderline, str.get_length()) });
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
          rectangle.left,
@@ -4512,13 +4519,15 @@ namespace draw2d
          minimum(iUnderline, str.get_length()));*/
          if (iUnderline <= str.get_length())
          {
-            pgraphics->set(pfontUnderline);
+            set(pfontUnderline);
             /*::GetTextExtentPoint32U(
             (HDC)pgraphics->get_os_data(),
             str,
             iUnderline,
             &sz);*/
-            sz = pgraphics->get_text_extent(str, (i32)iUnderline);
+            
+            sz = get_text_extent(str, (i32)iUnderline);
+
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
@@ -4526,23 +4535,30 @@ namespace draw2d
             rectangle.top,
             &wch,
             1);*/
-            pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
+            
+            text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
+
             if (iUnderline + 1 <= str.get_length())
             {
-               sz = pgraphics->get_text_extent(str, (i32)(iUnderline + 1));
+
+               sz = get_text_extent(str, (i32)(iUnderline + 1));
                /*::GetTextExtentPoint32U(
                (HDC)pgraphics->get_os_data(),
                str,
                iUnderline + 1,
                &sz);*/
+               
                strsize iCount = str.get_length() - iUnderline - 1;
-               pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.Right(iCount).c_str(), (i32)iCount });
+
+               text_out(rectangle.left + sz.cx, (double)rectangle.top, { str.Right(iCount).c_str(), (i32)iCount });
+
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
                rectangle.left + sz.cx,
                rectangle.top,
                str.Right(iCount),
                iCount);*/
+
             }
 
          }
@@ -4551,14 +4567,14 @@ namespace draw2d
       else
       {
 
-         pgraphics->text_out(rectangle.left, rectangle.top, str);
+         text_out(rectangle.left, rectangle.top, str);
 
       }
 
       if (!bLastLine && str2.get_length() > 0)
       {
 
-         rectangleClip.top = (::i32) (rectangleClip.top+dLineSpacing);
+         rectangleClip.top = rectangleClip.top+sz.cy;
 
          _DrawText(str2, rectangleClip, ealign, edrawtext);
 
@@ -5738,6 +5754,7 @@ namespace draw2d
             m_pgraphics->RestoreDC(m_iSavedDC);
             m_pgraphics->m_matrixViewport = m_matrixViewport;
             m_pgraphics->m_matrixTransform = m_matrixTransform;
+            m_pgraphics->update_matrix();
          }
       }
       catch (...)

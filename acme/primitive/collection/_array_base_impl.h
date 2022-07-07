@@ -1045,5 +1045,20 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::element
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::set_each(ARG_TYPE element, ::index first, ::count in_count_out_last)
+{
+
+   prepare_first_in_count_last_out(first, in_count_out_last);
+
+   for(::index i = first; i <= in_count_out_last; i++)
+   {
+
+      m_pData[i] = element;
+
+   }
+
+}
+
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
    template < typename ITERATOR >
    inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }

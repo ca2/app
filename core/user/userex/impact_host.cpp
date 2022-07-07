@@ -132,9 +132,9 @@ namespace userex
 
       }
 
-      __pointer(::simple_frame_window) pframewindow = pimpact->get_parent_frame();
+      auto pframewindow = pimpact->parent_frame();
 
-      if (pframewindow.is_null())
+      if (::is_null(pframewindow))
       {
 
          return nullptr;
@@ -245,7 +245,7 @@ namespace userex
 
             __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
 
-            ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+            //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
             pframewindow->m_bSizeEnable = false;
 
@@ -319,7 +319,7 @@ namespace userex
             INFORMATION("");
             INFORMATION("");
 
-            ptabimpact->get_parent_frame()->display();
+            ptabimpact->parent_frame()->display();
 
             set_need_layout();
 
@@ -379,7 +379,7 @@ namespace userex
 
                   __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
 
-                  pframewindowTab = ptabimpact->get_parent_frame();
+                  pframewindowTab = ptabimpact->parent_frame();
 
 
                }
@@ -388,7 +388,7 @@ namespace userex
 
             {
 
-               ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+               //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
                __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
 
@@ -413,9 +413,9 @@ namespace userex
                      if (ptabimpact.is_set() && ptabimpact->get_tab_count() <= 0)
                      {
 
-                        ptabimpact->get_parent_frame()->hide();
+                        ptabimpact->parent_frame()->hide();
 
-                        ptabimpact->get_parent_frame()->set_need_redraw();
+                        ptabimpact->parent_frame()->set_need_redraw();
 
                      }
 
@@ -567,7 +567,7 @@ namespace userex
 
       }
 
-      m_mapframe[idImpact] = dynamic_cast < simple_frame_window * > (pimpact->get_parent_frame());
+      m_mapframe[idImpact] = dynamic_cast < simple_frame_window * > (pimpact->parent_frame());
 
       m_mapframe[idImpact]->display(e_display_none);
 

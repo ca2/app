@@ -451,6 +451,7 @@
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
+    <ClCompile Include="platform\_main_hold_base.cpp" />
     <ClCompile Include="primitive\collection\array.cpp" />
     <ClCompile Include="primitive\collection\bit_array.cpp" />
     <ClCompile Include="primitive\collection\map_test_51778915.cpp" />

@@ -445,19 +445,42 @@ namespace experience_anthill
       else if (eelement == ::e_element_item_text)
       {
 
-         if (estate & ::user::e_state_hover)
+         if (estate & ::user::e_state_selected)
          {
 
-            if (is_dark_mode())
+
+            if (estate & ::user::e_state_hover)
             {
 
-               return ::color::color(50, 120, 190, 127);
+               if (is_dark_mode())
+               {
+
+                  return ::color::color(50, 120, 190, 127);
+
+               }
+               else
+               {
+
+                  return ::color::color(100, 160, 220, 127);
+
+               }
 
             }
             else
             {
 
-               return ::color::color(100, 160, 220, 127);
+               if (is_dark_mode())
+               {
+
+                  return ::color::white;
+
+               }
+               else
+               {
+
+                  return ::color::black;
+
+               }
 
             }
 
@@ -465,16 +488,39 @@ namespace experience_anthill
          else
          {
 
-            if (is_dark_mode())
+
+            if (estate & ::user::e_state_hover)
             {
 
-               return ::color::white;
+               if (is_dark_mode())
+               {
+
+                  return ::color::color(50, 120, 190, 127);
+
+               }
+               else
+               {
+
+                  return ::color::color(100, 160, 220, 127);
+
+               }
 
             }
             else
             {
 
-               return ::color::black;
+               if (is_dark_mode())
+               {
+
+                  return ::color::white;
+
+               }
+               else
+               {
+
+                  return ::color::black;
+
+               }
 
             }
 
@@ -510,13 +556,13 @@ namespace experience_anthill
                if (is_dark_mode())
                {
 
-                  return ::color::black;
+                  return argb(60, 255, 255, 255);
 
                }
                else
                {
 
-                  return ::color::white;
+                  return argb(60, 0, 0, 0);
 
                }
 

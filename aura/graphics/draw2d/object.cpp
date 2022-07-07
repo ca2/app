@@ -2,6 +2,7 @@
 #include "object.h"
 #include "lock.h"
 #include "device_lock.h"
+#include "draw2d.h"
 
 
 namespace draw2d
@@ -21,6 +22,8 @@ namespace draw2d
    object::~object()
    {
 
+      m_psystem->m_paurasystem->draw2d()->erase_object(this);
+
    }
 
 
@@ -38,6 +41,19 @@ namespace draw2d
    {
 
       throw ::interface_only();
+
+   }
+
+
+   void object::on_initialize_object()
+   {
+
+      if (m_psystem)
+      {
+
+         m_psystem->m_paurasystem->draw2d()->add_object(this);
+
+      }
 
    }
 
@@ -147,15 +163,13 @@ namespace draw2d
    void object::destroy_os_data()
    {
 
-      //return true;
+      clear_os_data();
 
    }
 
 
    void object::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
-
-      //return true;
 
    }
 

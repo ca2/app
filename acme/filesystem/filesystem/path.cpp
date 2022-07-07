@@ -385,21 +385,21 @@ namespace file
    }
 
 
-   path & path::go_up()
+   path & path::ascend()
    {
 
-      return *this = folder();
+      return *this = parent();
 
    }
 
 
-   path & path::go_up(int i)
+   path & path::ascend(int i)
    {
 
       while(i > 0)
       {
 
-         go_up();
+         ascend();
 
          i--;
 
@@ -893,7 +893,7 @@ namespace file
    }
 
 
-   path path::up() const
+   path path::parent() const
    {
 
       return folder();
@@ -901,7 +901,7 @@ namespace file
    }
 
 
-   path path::up(int i) const
+   path path::ascendant(int i) const
    {
 
       return folder(i);
@@ -912,7 +912,7 @@ namespace file
    path & path::operator -= (int i)
    {
 
-      return go_up(i);
+      return ascend(i);
 
    }
 

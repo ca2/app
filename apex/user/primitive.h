@@ -357,11 +357,12 @@ namespace user
 
 
       ::user::interaction * get_parent() const override;
-      ::user::interaction * get_top_level() const override;
       ::user::interaction * get_owner() const override;
       ::user::interaction * get_parent_owner() const override;
       ::user::interaction * get_parent_or_owner() const override;
       ::user::interaction * get_top_level_owner() const override;
+
+      ::user::interaction * _top_level() const override;
 
       bool is_top_level_window() const override;
 
@@ -422,7 +423,7 @@ namespace user
       oswindow detach_window() override;
 
 
-      windowing::window * get_window() const override;
+      ::windowing::window * _window() const override;
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);

@@ -10,13 +10,13 @@ namespace filemanager
    {
    public:
 
-
+      
       context_menu                        m_contextmenu;
       string_array                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;
       index                               m_iSizeSubItem;
-      ::duration                              m_durationLastFileSizeGet;
+      ::duration                          m_durationLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
@@ -28,32 +28,34 @@ namespace filemanager
 
 
       file_list();
-      virtual ~file_list();
+      ~file_list() override;
+
+
+      void initialize_view(::user::document * pdocument) override;
 
 
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual __pointer(::fs::data) fs_data() override;
 
       //void schedule_file_size(const ::string & psz);
 
-      virtual void _017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & action_context) override;
-      virtual void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;
-      virtual void _017OpenContextMenu(const ::action_context & action_context) override;
-      virtual void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context) override;
-      virtual void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context) override;
+      void _017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & action_context) override;
+      void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;
+      void _017OpenContextMenu(const ::action_context & action_context) override;
+      void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context) override;
+      void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context) override;
       virtual void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
       //void FileSize();
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void on_command_probe(::message::command * pcommand) override;
-      virtual void on_command(::message::command * pcommand) override;
+      void on_command_probe(::message::command * pcommand) override;
+      void on_command(::message::command * pcommand) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnUpdateOpenWith);
       DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
@@ -109,7 +111,7 @@ namespace filemanager
       bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
       virtual void browse_sync(const ::action_context & action_context) override;
 
-      __pointer(::image_list) GetActionButtonImageList(index i);
+      ::image_list * GetActionButtonImageList(index i);
 
       //void GetSelected(::file::item_array & itema);
 
@@ -129,8 +131,8 @@ namespace filemanager
       //virtual bool TwiHasTranslucency();
       //void _001CreateImageList();
       //bool _001CreateImageListStep();
-      virtual void _001GetItemImage(::user::mesh_item * pitem) override;
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+      void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
       virtual count _001GetItemCount() override;
       void _017Browse(const ::string & pcsz, const ::action_context & action_context);
 

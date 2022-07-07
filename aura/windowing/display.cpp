@@ -1,7 +1,9 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "_windowing.h"
 #include "acme/primitive/geometry2d/_.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
@@ -602,7 +604,7 @@ namespace windowing
 
       ::rectangle_i32 rectangleWorkspace;
 
-      index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+      index iBestWorkspace = get_best_workspace(& rectangleWorkspace, rectangle);
 
       edisplay edisplay;
 
@@ -873,7 +875,7 @@ namespace windowing
    }
 
 
-   index display::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation)
+   index display::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::windowing::window * pwindowCursorPosition)
    {
 
       index iMatchingMonitor = -1;
@@ -887,7 +889,7 @@ namespace windowing
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point_i32 pointCursor = m_pwindowing->get_cursor_position();
+         ::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();
 
          rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
@@ -952,7 +954,7 @@ namespace windowing
    }
 
 
-   index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation)
+   index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::windowing::window * pwindowCursorPosition)
    {
 
       index iMatchingWorkspace = -1;
@@ -963,10 +965,11 @@ namespace windowing
 
       ::rectangle_i32 rectangle(rectangleParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      //if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      if (eactivation & e_activation_under_mouse_cursor)
       {
 
-         ::point_i32 pointCursor = m_pwindowing->get_cursor_position();
+         ::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();
 
          rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
@@ -1284,22 +1287,31 @@ namespace windowing
 
 
    index display::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
+   //index display::get_good_move(RECTANGLE_I32 * prectangle)
    {
 
-      index iMatchingMonitor = initial_frame_position(prectangle, rectangleParam, true, pinteraction);
+      // currently allow any moves of a window!!
+      // Including even the ones that would make
+      // the window lie completely out of the screen.
 
-      if (__memcmp(prectangle, &rectangleParam, sizeof(const rectangle_i32 &)))
-      {
+      *prectangle = rectangleParam;
 
-         return iMatchingMonitor;
+      return 0;
 
-      }
-      else
-      {
+      //index iMatchingMonitor = initial_frame_position(prectangle, rectangleParam, true, pinteraction);
 
-         return -1;
+      //if (__memcmp(prectangle, &rectangleParam, sizeof(const rectangle_i32 &)))
+      //{
 
-      }
+      //   return iMatchingMonitor;
+
+      //}
+      //else
+      //{
+
+      //   return -1;
+
+      //}
 
    }
 

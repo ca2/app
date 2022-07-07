@@ -85,7 +85,7 @@ namespace user
 
 
       bool keyboard_focus_is_focusable() const override;
-      bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      bool keyboard_focus_OnKillFocus(::oswindow oswindowNew) override;
 
 
       bool has_pending_graphical_update() override;

@@ -24,7 +24,7 @@ namespace filemanager
 
       using ::database::client::set_data_key_modifier;
 
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+      void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
       virtual count _001GetItemCount() override;
 

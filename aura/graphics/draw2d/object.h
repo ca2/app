@@ -27,9 +27,10 @@ namespace draw2d
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
+
+      void on_initialize_object() override;
       
-      //inline ::aura::application* get_app();
-      //inline ::aura::session* get_session();
+      
       inline ::aura::system* get_system();
 
 
@@ -40,7 +41,7 @@ namespace draw2d
 
 
       virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
-      virtual void destroy_os_data();
+      void destroy_os_data() override;
 
       virtual void create(::draw2d::graphics * pgraphics, i8 iCreate);
       void destroy() override;

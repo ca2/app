@@ -12,13 +12,13 @@ public:
 
 
    simple_mesh_data();
-   virtual ~simple_mesh_data();
+   ~simple_mesh_data() override;
 
 
-   virtual void _001GetItemText(::user::mesh_item * pitem);
+   void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
-   virtual ::count _001GetItemCount();
-   virtual ::count _001GetColumnCount(::user::mesh * pmesh);
+   ::count _001GetItemCount() override;
+   ::count _001GetColumnCount(::user::mesh * pmesh) override;
 
    virtual void clear();
 

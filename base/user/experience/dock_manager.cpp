@@ -79,11 +79,9 @@ namespace experience
 
       ::rectangle_i32 rectangleWork;
 
-      __pointer(::base::session) psession = get_session();
+      auto pwindow = m_pframewindow->window();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = pwindow->windowing();
 
       auto pdisplay = pwindowing->display();
 

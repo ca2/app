@@ -2,6 +2,7 @@
 #include "list.h"
 #include "image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/lock.h"
 #include "context_image.h"
 
 /*
@@ -215,9 +216,7 @@ void image_list::color_blend(image_list* pimagelistSource, const ::color::color&
 void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
 {
 
-   ::point_f64 pointOffset(pointOffsetParam);
-
-   if(iImage < 0)
+   if (iImage < 0)
    {
 
       return;
@@ -226,12 +225,22 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(mutex());
 
-   if(iImage >= get_image_count())
+   if (iImage >= get_image_count())
    {
 
       return;
 
    }
+
+   _draw(pgraphics, iImage, point, sz, pointOffsetParam, iFlag);
+
+}
+
+
+void image_list::_draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffsetParam, i32 iFlag)
+{
+
+   ::point_f64 pointOffset(pointOffsetParam);
 
    __UNREFERENCED_PARAMETER(iFlag);
 
@@ -273,6 +282,8 @@ void image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
 i32 image_list::reserve_image(int iItem)
 {
+
+   ::draw2d::lock draw2dlock(this);
 
    synchronous_lock synchronouslock(mutex());
 
@@ -472,6 +483,8 @@ i32 image_list::reserve_image(int iItem)
 
 i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 {
+
+   ::draw2d::lock draw2dlock(this);
 
    synchronous_lock synchronouslock(mutex());
 

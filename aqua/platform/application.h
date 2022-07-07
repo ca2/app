@@ -12,7 +12,8 @@ namespace aqua
 
 
       __composite(::aqua::game)                       m_pgame;
-
+      __pointer(::networking_application)                   m_pnetworkingapplication;
+     
 
       application();
       ~application() override;

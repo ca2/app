@@ -226,7 +226,7 @@ namespace user
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
 
-      virtual ::windowing::window* get_window() const;
+      //virtual ::windowing::window* get_window() const;
 
 
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
@@ -335,7 +335,7 @@ namespace user
 
       //virtual ::user::interaction * GetTopWindow() const;
       virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * get_top_level() const;
+      inline ::user::interaction * top_level() const;
       //virtual ::user::interaction * GetParentTopLevel() const;
       //virtual ::user::interaction * EnsureTopLevel();
       //virtual ::user::interaction * EnsureParentTopLevel();
@@ -343,7 +343,7 @@ namespace user
       virtual ::user::interaction * get_parent_owner() const;
       virtual ::user::interaction * get_parent_or_owner() const;
       virtual ::user::interaction * get_top_level_owner() const;
-      virtual ::user::frame * get_parent_frame() const;
+      inline ::user::frame * parent_frame() const;
       //virtual ::user::frame * GetParentTopLevelFrame() const;
       //virtual ::user::frame * EnsureParentFrame();
 
@@ -400,7 +400,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::windowing::window* window();
+      inline ::windowing::window* window();
 
 
       virtual ::user::element * get_keyboard_focus();

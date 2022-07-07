@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#include "apex/platform/app_core.h"
 #include "aura/graphics/draw2d/graphics.h"
 
@@ -97,6 +99,8 @@ namespace user
          //}
 
          m_puserinteraction->on_set_parent(pprimitiveParent);
+
+         m_puserinteraction->on_after_set_parent();
 
          install_message_routing(m_puserinteraction);
 

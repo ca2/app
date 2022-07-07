@@ -14,7 +14,7 @@ namespace sandbox_windowing
 
       defer_create_mutex();
 
-      m_pWindowing = this;
+      m_psandboxwindowing = this;
 
 
    }

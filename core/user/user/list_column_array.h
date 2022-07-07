@@ -13,6 +13,7 @@ public:
 
    index               m_iFirstGlobalOrderKey;
    list * m_plist;
+   index_to_index       m_mapSubItemIndex;
 
 
    list_column_array();
@@ -21,7 +22,7 @@ public:
    void Initialize(list * plist);
    //index MapConfigIdToKey(const ::database::key & key);
 
-
+   void clear_cache();
 
 
 
@@ -47,7 +48,7 @@ public:
    //list_column * GlobalOrderGetNext(index iKey);
 
    //index VisibleMapSubItemToColumn(index iSubItem);
-   ::count VisibleGetCount();
+   ::count get_visible_count();
 
    ::count get_count();
 

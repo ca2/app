@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 
 //#if defined(LINUX) || defined(SOLARIS)
@@ -270,7 +272,7 @@ namespace user
       
       auto puser = psession->user();
       
-      auto pwindowing = puser->windowing();
+      auto pwindowing = puser->windowing1();
       
       auto pkeyboard = pwindowing->keyboard();
       

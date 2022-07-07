@@ -14,15 +14,18 @@
 #include "contains.h"
 
 
-namespace write_text
+namespace draw2d
 {
 
 
-   using text_out_shape = _shape < text_out, e_shape_text_out >;
-   using draw_text_shape = _shape < draw_text, e_shape_draw_text >;
+   template < typename HOLDEE >
+   using text_out_shape = _shape < ::write_text::text_out, e_shape_text_out, HOLDEE >;
+
+   template < typename HOLDEE >
+   using draw_text_shape = _shape < ::write_text::draw_text, e_shape_draw_text, HOLDEE >;
 
 
-} // namespace write_text
+} // namespace draw2d
 
 
 

@@ -8,39 +8,39 @@ namespace draw2d
 {
 
 
-   ::mutex * lock::s_pmutex = nullptr;
+   //::mutex * lock::s_pmutex = nullptr;
 
-   ::interlocked_count lock::s_countReference;
+   //::interlocked_count lock::s_countReference;
 
    
-   void lock::__s_initialize()
-   {
+   //void lock::__s_initialize()
+   //{
 
-      auto count = s_countReference++;
+   //   auto count = s_countReference++;
 
-      if (count == 0)
-      {
+   //   if (count == 0)
+   //   {
 
-         s_pmutex = new ::mutex();
+   //      s_pmutex = new ::mutex();
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void lock::__s_finalize()
-   {
+   //void lock::__s_finalize()
+   //{
 
-      auto count = s_countReference--;
+   //   auto count = s_countReference--;
 
-      if (count == 1)
-      {
+   //   if (count == 1)
+   //   {
 
-         delete s_pmutex;
+   //      delete s_pmutex;
 
-      }
+   //   }
 
-   }
+   //}
 
 
 //   device_lock::device_lock(::user::interaction * pinteraction)

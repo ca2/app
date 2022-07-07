@@ -261,7 +261,7 @@ namespace user
 
       auto pcontextimage = pcontext->context_image();
 
-      ppane->m_pimage = pcontextimage->load_image(strIcon, { .cache = false });
+      ppane->m_pimage = pcontextimage->load_image(strIcon, { .sync = false, .cache = false, });
 
       on_change_tab_count({ ppane });
 
@@ -414,12 +414,12 @@ namespace user
    bool tab::defer_handle_auto_hide_tabs(bool bLayout)
    {
 
-      if (!get_wnd()->is_ok())
-      {
+      //if (!get_wnd()->is_ok())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       //__pointer(::experience::frame_window) pchannel = top_level_frame();
       //
@@ -430,7 +430,7 @@ namespace user
 
       bool bNeedLayout = false;
 
-      ::user::interaction * puiTopLevel = get_top_level();
+      auto puiTopLevel = top_level();
 
       if (puiTopLevel != nullptr)
       {
@@ -490,20 +490,16 @@ namespace user
       if(m_bShowTabs)
       {
 
-         if(top_level_frame()!= nullptr && top_level_frame()->layout().is_full_screen())
+         if(top_level_frame()!= nullptr && top_level_frame()->is_full_screen())
          {
 
             ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
 
             client_to_screen(rectangleTab);
 
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             bool bShowTabs = rectangleTab.contains(pointCursor);
 
@@ -529,7 +525,7 @@ namespace user
       else
       {
 
-         auto pframe = get_parent_frame();
+         auto pframe = parent_frame();
 
          if(::is_set(pframe) && !pframe->layout().is_full_screen())
          {
@@ -555,13 +551,9 @@ namespace user
 
             bool bShowTabs;
 
-            auto psession = get_session();
+            auto pwindow = window();
 
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            auto pointCursor = pwindowing->get_cursor_position();
+            auto pointCursor = pwindow->get_cursor_position();
 
             if(get_data()->m_bVertical)
             {
@@ -594,10 +586,10 @@ namespace user
 
       }
 
-      if (get_parent_frame() != nullptr && (bNeedLayout || !get_parent_frame()->is_this_screen_visible()))
+      if (parent_frame() != nullptr && (bNeedLayout || !parent_frame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = get_parent_frame()->const_layout().design().display();
+         m_edisplayParentFrameAutoHide = parent_frame()->const_layout().design().display();
 
       }
 
@@ -622,7 +614,7 @@ namespace user
 
       }
 
-      if (get_top_level()->frame_is_transparent())
+      if (top_level()->frame_is_transparent())
       {
 
          return;
@@ -648,7 +640,6 @@ namespace user
          }
 
       }
-
 
       if(pstyle == nullptr)
       {
@@ -1582,9 +1573,6 @@ namespace user
 
          }
 
-
-
-
          get_data()->m_rectangleTab.left       = rectangleClient.left;
          get_data()->m_rectangleTab.top        = rectangleClient.top;
          get_data()->m_rectangleTab.right      = rectangleClient.right;
@@ -1701,11 +1689,18 @@ namespace user
 
          pholder->display(::e_display_normal);
 
-         pholder->set_need_layout();
-
-         pholder->set_need_redraw();
-
-         pholder->post_redraw();
+//         if (ppane->m_bNeedLayout)
+//         {
+//
+//            ppane->m_bNeedLayout = false;
+//
+//            pholder->set_need_layout();
+//
+//         }
+//
+//         pholder->set_need_redraw();
+//
+//         pholder->post_redraw();
 
       }
       else if(::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
@@ -1732,6 +1727,8 @@ namespace user
       get_data()->m_iClickTab = -1;
 
       m_pointLeftButtonDown = pmouse->m_point;
+      
+      m_iTabScrollStart = m_iTabScroll;
 
       m_bMouseDown = true;
 
@@ -1829,11 +1826,7 @@ namespace user
 
          m_bMouseDown = false;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -1861,11 +1854,7 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -1892,9 +1881,9 @@ namespace user
 
             }
 
-            set_need_redraw();
-
-            post_redraw();
+//            set_need_redraw();
+//
+//            post_redraw();
 
             pmouse->m_bRet = true;
 
@@ -1926,7 +1915,7 @@ namespace user
 
             int iOffset = m_pointLeftButtonDown.x - pmouse->m_point.x;
 
-            auto iTabScroll = minimum_maximum(m_iTabScroll + iOffset, 0, m_iTabScrollMax);
+            auto iTabScroll = minimum_maximum(m_iTabScrollStart + iOffset, 0, m_iTabScrollMax);
 
             if (iTabScroll != m_iTabScroll)
             {
@@ -1947,6 +1936,7 @@ namespace user
          }
          else
          {
+            
             if (::is_element(m_pitemClick, e_element_tab_far_scroll))
             {
 
@@ -2014,12 +2004,12 @@ namespace user
    }
 
 
-   bool tab::has_tab_scrolling() const
-   {
+   //bool tab::has_tab_scrolling() const
+   //{
 
-      return m_iTabScrollMax > 0;
+   //   return m_iTabScrollMax > 0;
 
-   }
+   //}
 
 
    bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 * prectangle, enum_element eelement)
@@ -2027,7 +2017,9 @@ namespace user
 
       point_i32 ptOffset(0,0);
 
-      if(has_tab_scrolling())
+      auto ptabdata = get_data();
+
+      if(_001HasTabScrolling())
       {
 
          float fDensity = 1.0f;
@@ -2038,10 +2030,10 @@ namespace user
             if (eelement == e_element_tab_near_scroll)
             {
 
-               if (get_data()->m_bVertical)
+               if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2057,7 +2049,7 @@ namespace user
                else
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2077,10 +2069,10 @@ namespace user
             else if (eelement == e_element_tab_far_scroll)
             {
 
-               if (get_data()->m_bVertical)
+               if (ptabdata->m_bVertical)
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   prectangle->left = rectangle.left;
 
@@ -2096,7 +2088,7 @@ namespace user
                else
                {
 
-                  ::rectangle_i32 rectangle = get_data()->m_rectangleTab;
+                  ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
                   fDensity = window()->get_density_for_window();
 
@@ -2121,7 +2113,7 @@ namespace user
 
             ptOffset.y += 4;
 
-            ptOffset.y -= m_iTabScroll;
+            //ptOffset.y -= m_iTabScroll;
 
          }
          else
@@ -2129,7 +2121,7 @@ namespace user
 
             ptOffset.x += 4;
 
-            ptOffset.x -= m_iTabScroll;
+            //ptOffset.x -= m_iTabScroll;
 
          }
 
@@ -2155,7 +2147,7 @@ namespace user
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleMargin);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleMargin);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2173,7 +2165,7 @@ namespace user
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleBorder);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleBorder);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2184,7 +2176,7 @@ namespace user
       if(eelement == e_element_icon)
       {
 
-         if (::not_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
+         if (::not_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
             return false;
@@ -2198,9 +2190,9 @@ namespace user
 
          }
 
-         prectangle->right = prectangle->left + get_data()->m_tabpanecompositea[iIndex]->m_pimage->width();
+         prectangle->right = prectangle->left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         prectangle->bottom = prectangle->top + get_data()->m_tabpanecompositea[iIndex]->m_pimage->height();
+         prectangle->bottom = prectangle->top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2217,22 +2209,21 @@ namespace user
 
          }
 
-         if(::is_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
+         if(::is_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
-            prectangle->left += get_data()->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
-
+            prectangle->left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
          }
 
-         if(!get_data()->m_tabpanecompositea[iIndex]->m_bPermanent)
+         if(!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
             prectangle->right -= 2 + 16 + 2;
 
          }
 
-         ::rect_deflate(prectangle, &get_data()->m_rectangleTextMargin);
+         ::rect_deflate(prectangle, &ptabdata->m_rectangleTextMargin);
 
          //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2429,14 +2420,16 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::point_i32 &point)
+   ::item_pointer tab::on_hit_test(const ::point_i32 &pointParam)
    {
+      
+      auto point = pointParam;
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = has_tab_scrolling();
+      bool bScroll = _001HasTabScrolling();
 
       if(bScroll)
       {
@@ -2474,6 +2467,19 @@ namespace user
 
          }
 
+      }
+      
+      if(get_data()->m_bVertical)
+      {
+         
+         point.y += m_iTabScroll;
+         
+      }
+      else
+      {
+         
+         point.x += m_iTabScroll;
+         
       }
 
       ::rectangle_i32 rectangle;
@@ -2598,11 +2604,7 @@ namespace user
       if(pmessage->previous())
          return;
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -2697,6 +2699,8 @@ namespace user
 
    void tab::set_current_tab_by_index(::index iIndex)
    {
+      
+      output_debug_string("tab::set_current_tab_by_index start\n");
 
       synchronous_lock lock(get_data()->mutex());
 
@@ -2712,7 +2716,18 @@ namespace user
       }
 
       on_change_cur_sel();
-
+      
+      if (m_ewindowflag & ::e_window_flag_window_created)
+      {
+      
+         set_need_redraw();
+      
+         post_redraw();
+         
+      }
+      
+      output_debug_string("tab::set_current_tab_by_index end\n");
+      
    }
 
 
@@ -3065,9 +3080,9 @@ namespace user
 
       pplaceholder->hide();
 
-      pplaceholder->set_need_redraw();
-
-      pplaceholder->post_redraw();
+//      pplaceholder->set_need_redraw();
+//
+//      pplaceholder->post_redraw();
 
       return true;
 
@@ -3632,15 +3647,13 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pwindow = window();
+
+         auto pointCursor = pwindow->get_cursor_position();
 
          auto pitem = hit_test(pointCursor);
 
@@ -3787,12 +3800,12 @@ namespace user
    //}
 
 
-   tab_data * tab::get_data()
-   {
+   //tab_data * tab::get_data()
+   //{
 
-      return m_pdata;
+   //   return m_pdata;
 
-   }
+   //}
 
 
    ::user::tab_pane *tab::get_tab_by_id(const ::atom & atom)

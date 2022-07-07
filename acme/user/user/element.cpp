@@ -1124,7 +1124,7 @@ namespace user
    }
 
 
-   ::windowing::window * element::get_window() const
+   ::windowing::window * element::_window() const
    {
 
       return nullptr;
@@ -1144,8 +1144,6 @@ namespace user
    {
 
       throw ::interface_only();
-
-      //return false;
 
    }
 
@@ -1694,16 +1692,6 @@ namespace user
    //}
 
 
-   ::user::interaction * element::get_top_level() const
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-
    //::user::interaction * element::GetParentTopLevel() const
    //{
 
@@ -1914,6 +1902,16 @@ namespace user
 
 
    ::user::interaction * element::get_top_level_owner() const
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction * element::_top_level() const
    {
 
       throw ::interface_only();

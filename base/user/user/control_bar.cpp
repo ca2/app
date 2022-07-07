@@ -331,13 +331,20 @@ namespace user
       //   we call all frame windows' pre_translate_message first
       while (pOwner != nullptr)
       {
+
          // allow owner & frames to translate before IsDialogMessage does
          pOwner->pre_translate_message(pmessage);
-         if(pmessage->m_bRet)
+
+         if (pmessage->m_bRet)
+         {
+
             return;
 
+         }
+
          // try parent frames until there are no parent frames
-         pOwner = pOwner->get_parent_frame();
+         pOwner = pOwner->parent_frame();
+
       }
 
       // filter both messages to dialog and from children
@@ -1206,7 +1213,7 @@ namespace user
    __pointer(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      __pointer(::user::frame_window) pframewindow = get_parent_frame();
+      auto pframewindow = parent_frame();
 
       if (!pframewindow)
       {

@@ -398,6 +398,38 @@ namespace user
    }
 
 
+   inline ::oswindow interaction_impl::oswindow() const
+   {
+
+      return m_pwindow->m_oswindow;
+
+   }
+
+
+   inline ::user::interaction * primitive_impl::top_level() const
+   {
+      
+      return m_puserinteraction->m_puserinteractionTopLevel; 
+   
+   }
+
+
+   inline ::user::frame * primitive_impl::parent_frame() const 
+   { 
+      
+      return m_puserinteraction->m_puserframeParent; 
+   
+   }
+
+
+   inline ::windowing::window* primitive_impl::window()
+   {
+
+      return m_puserinteraction->m_pwindow;
+
+   }
+
+
 } // namespace user
 
 

@@ -271,16 +271,37 @@ namespace factory
    
    inline void set_factory(const ::atom & atom, const __pointer(factory_item_interface) & pfactory);
 
+   template < typename BASE_TYPE >
+   inline ::atom get_atom()
+   {
+
+      auto pszTypename = typeid(BASE_TYPE).name();
+
+#ifdef WINDOWS
+
+      pszTypename = c_demangle(pszTypename);
+
+      return pszTypename;
+
+#else
+
+      auto strTypename = ::move(demangle(pszTypename));
+
+      return strTypename;
+
+
+#endif
+
+   }
+
 
    template < typename BASE_TYPE >
    inline __pointer(factory_item_interface) & get_factory_item()
    {
 
-      string strTypename = typeid(BASE_TYPE).name();
+      static auto atom = get_atom<BASE_TYPE>();
 
-      strTypename = demangle(strTypename);
-
-      return get_factory_item(strTypename);
+      return get_factory_item(atom);
 
    }
 
@@ -289,11 +310,9 @@ namespace factory
    inline __pointer(factory_item_interface)& get_factory_item(const ::atom & atomSource)
    {
 
-      string strTypename = typeid(BASE_TYPE).name();
+      static auto atom = get_atom<BASE_TYPE>();
 
-      strTypename = demangle(strTypename);
-
-      return get_factory_item(strTypename, atomSource);
+      return get_factory_item(atom, atomSource);
 
    }
 

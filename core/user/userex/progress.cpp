@@ -34,9 +34,10 @@ namespace userex
    void progress_control::set_progress_title(const ::string & pszTitle)
    {
 
-      m_pimpact->get_parent_frame()->set_window_text(pszTitle);
+      m_pimpact->parent_frame()->set_window_text(pszTitle);
 
    }
+
 
 #ifdef _DEBUG
    i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -271,11 +272,7 @@ namespace userex
 
          ::rectangle_i32 rectangle;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pdisplay = pwindowing->display();
 
@@ -283,7 +280,7 @@ namespace userex
 
          rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
 
-         auto pframe = get_parent_frame();
+         auto pframe = parent_frame();
 
          if (::is_set(pframe))
          {

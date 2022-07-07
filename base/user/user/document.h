@@ -391,7 +391,7 @@ namespace user
 
       virtual ::atom get_toolbar_id();
 
-      virtual __pointer(toolbar) get_toolbar(::user::frame_window * pframe, bool bCreate = true);
+      virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
 
 
    };

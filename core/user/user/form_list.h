@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      index_map < __pointer_array(::user::interaction) > m_mapControl;
+      //index_map < __pointer_array(::user::interaction) > m_mapControl;
 
 
       form_list();
@@ -24,10 +24,10 @@ namespace user
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
-      virtual void _001DrawSubItem(draw_list_item * pdrawitem) override;
+      void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;
 
       using ::user::list::_001HitTest_;
-      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
+      bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
 
       virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::index iItem);
@@ -43,27 +43,28 @@ namespace user
 
       virtual bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
+      bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
 
-      virtual void _001OnAddColumn(list_column * pcolumn) override;
+      void _001OnAddColumn(list_column * pcolumn) override;
 
       virtual void _001HideEditingControls();
       virtual void _001HideControl(::user::interaction * pinteraction);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();
       void _001SetEditControl(::user::interaction * pinteraction);
-      virtual bool _001AddControl(::user::interaction * pinteraction) override;
-      virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
+      bool _001AddControl(::user::interaction * pinteraction) override;
+      void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
+      virtual ::user::interaction * _001GetControl(draw_list_subitem * psubitem);
       virtual bool on_click(::item * pitem) override;
-      virtual bool on_right_click(::item * pitem) override;
+      bool on_right_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;
-      virtual void _001GetSelection(::database::key & key,::database::selection & selection) override;
+      void _001GetSelection(::database::key & key,::database::selection & selection) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnNotify);
       DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
@@ -72,24 +73,24 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
 
-      virtual void _001UpdateComboBox(::user::interaction * pinteraction) override;
+      void _001UpdateComboBox(::user::interaction * pinteraction) override;
 
-      virtual void _001UpdateEdit(::user::interaction * pinteraction) override;
-      virtual bool _001SaveEdit(::user::interaction * pinteraction) override;
+      void _001UpdateEdit(::user::interaction * pinteraction) override;
+      bool _001SaveEdit(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
+      bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom,lresult & iResult) override;
 
 
       void install_message_routing(::channel * pchannel) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void _001OnColumnChange() override;
+      void _001OnColumnChange() override;
 
 
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
+      void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual bool _001UpperEditableControl(index & iItem, index & iSubItem);

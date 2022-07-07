@@ -33,6 +33,7 @@ public:
    enum_placement          m_eplacement;
    point_f64               m_pointAlign;
    ::rectangle_f64         m_rectangleTarget;
+   bool                    m_bIntegerPlacement = false;
 
 
    image_drawing_options() :
@@ -44,7 +45,17 @@ public:
    }
 
 
-   image_drawing_options(const image_drawing_options & imagedrawingoptions) = default;
+   image_drawing_options(const image_drawing_options & imagedrawingoptions) :
+      color_filter(imagedrawingoptions),
+      m_eimageselection(imagedrawingoptions.m_eimageselection),
+      m_rectangleTarget(imagedrawingoptions.m_rectangleTarget),
+      m_eplacement(imagedrawingoptions.m_eplacement),
+      m_pointAlign(imagedrawingoptions.m_pointAlign),
+      m_bIntegerPlacement(imagedrawingoptions.m_bIntegerPlacement)
+   {
+
+
+   }
 
    
    explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default) :
@@ -60,7 +71,7 @@ public:
 };
 
 
-using image_drawing_options_pointer = __pointer(image_drawing_options);
+//using image_drawing_options_pointer = __pointer(image_drawing_options);
 
 
 class CLASS_DECL_AURA image_drawing :

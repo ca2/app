@@ -168,15 +168,7 @@ namespace user
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
 
-      //virtual ::point_i32 get_cursor_position() const;
-
       virtual bool _is_window() const;
-
-      //virtual ::i32 get_window_long(i32 nIndex) const;
-      //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
-
-      //virtual iptr get_window_long_ptr(i32 nIndex) const;
-      //virtual void set_window_long_ptr(i32 nIndex, iptr lValue);
 
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * last_child();
@@ -412,11 +404,14 @@ namespace user
 
 
       virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * get_top_level() const;
       virtual ::user::interaction * get_owner() const;
       virtual ::user::interaction * get_parent_owner() const;
       virtual ::user::interaction * get_parent_or_owner() const;
       virtual ::user::interaction * get_top_level_owner() const;
+
+
+      virtual ::user::interaction * _top_level() const;
+
 
       virtual bool is_top_level_window() const;
 
@@ -477,7 +472,7 @@ namespace user
       virtual oswindow detach_window();
 
 
-      virtual windowing::window * get_window() const;
+      virtual ::windowing::window * _window() const;
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);

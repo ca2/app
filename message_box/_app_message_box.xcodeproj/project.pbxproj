@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */; };
 		9A22742D27CF3A4C0042BAC2 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742C27CF3A4C0042BAC2 /* _main.cpp */; };
 		9A46D37726785AD0000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9A46D37C26785B51000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
@@ -51,6 +50,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 070B8EE91B6E53F900D26137;
 			remoteInfo = "Hello Multiverse!!";
+		};
+		9A1FB53828713D320042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A882E7728449DBC004113D1;
+			remoteInfo = ios_app_message_box;
+		};
+		9A1FB53B28713D320042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC01D672748C46A006BEBCC /* crypto_openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA14DBB282A17C600B1621E;
+			remoteInfo = ios_crypto_openssl;
+		};
+		9A1FB53F28713D320042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4E96BB27853D4200B74C76 /* folder_zip.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA14DDC282A17D900B1621E;
+			remoteInfo = ios_folder_zip;
+		};
+		9A1FB54228713D320042849A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A882EE12844AA66004113D1;
+			remoteInfo = ios_write_text_quartz2d;
 		};
 		9A46D36C26785A9C000B22D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -185,8 +212,6 @@
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		070B8F021B6E53FA00D26137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
 		9A22742C27CF3A4C0042BAC2 /* _main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main.cpp; sourceTree = "<group>"; };
 		9A46D36526785A76000B22D0 /* libapp_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_app.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_message_box.xcodeproj; sourceTree = "<group>"; };
@@ -253,7 +278,6 @@
 				9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */,
 				9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */,
 				9AB3DCD32783849D0025099F /* message_box */,
-				070B8F001B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 				070B8EEB1B6E53F900D26137 /* Products */,
 				9ADF1D2922C16DBB00456537 /* Frameworks */,
 				9A3E0BA12309FBD400B5459B /* Library */,
@@ -270,23 +294,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		070B8F001B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
-			isa = PBXGroup;
-			children = (
-				070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */,
-				070B8F011B6E53FA00D26137 /* Supporting Files */,
-			);
-			path = "Hello Multiverse!!Tests";
-			sourceTree = "<group>";
-		};
-		070B8F011B6E53FA00D26137 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				070B8F021B6E53FA00D26137 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		9A3E0BA12309FBD400B5459B /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */,
+				9A1FB53928713D320042849A /* libios_app_message_box.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -306,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				9A4E96C027853D4200B74C76 /* libfolder_zip.dylib */,
+				9A1FB54028713D320042849A /* libios_folder_zip.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				9A64C1D02660C7890074030F /* libwrite_text_quartz2d.dylib */,
+				9A1FB54328713D320042849A /* ios_write_text_quartz2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -342,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC01D6C2748C46A006BEBCC /* libcrypto_openssl.dylib */,
+				9A1FB53C28713D320042849A /* libios_crypto_openssl.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +519,35 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A1FB53928713D320042849A /* libios_app_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_app_message_box.dylib;
+			remoteRef = 9A1FB53828713D320042849A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1FB53C28713D320042849A /* libios_crypto_openssl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_crypto_openssl.a;
+			remoteRef = 9A1FB53B28713D320042849A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1FB54028713D320042849A /* libios_folder_zip.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_folder_zip.a;
+			remoteRef = 9A1FB53F28713D320042849A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A1FB54328713D320042849A /* ios_write_text_quartz2d.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			name = ios_write_text_quartz2d.a;
+			path = libios_write_text_quartz2d.a;
+			remoteRef = 9A1FB54228713D320042849A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A46D36D26785A9C000B22D0 /* libapp_message_box.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -593,7 +633,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

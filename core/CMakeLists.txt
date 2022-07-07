@@ -455,6 +455,7 @@ list(APPEND library_source
    user/user/list_data.h
    user/user/list_header.cpp
    user/user/list_header.h
+   user/user/list_item.cpp
    user/user/list_item.h
    user/user/list_view.cpp
    user/user/list_view.h
@@ -469,6 +470,7 @@ list(APPEND library_source
    user/user/mesh_cache_interface.h
    user/user/mesh_data.cpp
    user/user/mesh_data.h
+   user/user/mesh_item.cpp
    user/user/mesh_item.h
    user/user/statusbar.cpp
    user/user/statusbar.h

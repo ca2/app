@@ -15,6 +15,7 @@
 #include "acme/platform/node.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
+#include "apex/networking/networking_application.h"
 
 
 
@@ -3661,11 +3662,32 @@ __pointer(::acme::exclusive) application_impl::get_exclusive(string strId ARG_SE
 
       auto pexclusiveNew = __new(::acme::exclusive(this, strId ADD_PARAM_SEC_ATTRS));
 
-      __m_own(this, pexclusive, pexclusiveNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::get_exclusive"));
+      pexclusive = pexclusiveNew;
 
    }
 
    return pexclusive;
+
+}
+
+
+bool application_impl::erase_exclusive(string strId ARG_SEC_ATTRS)
+{
+
+   auto& pexclusive = m_mapExclusive[strId];
+
+   if (!pexclusive)
+   {
+
+      return true;
+
+   }
+
+   __release(pexclusive);
+
+   m_mapExclusive.erase_key(strId);
+
+   return true;
 
 }
 
@@ -3683,6 +3705,21 @@ bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
    }
 
    return pexclusive->exclusive_fails();
+
+}
+
+
+bool application::exclusive_erase(string strId ARG_SEC_ATTRS)
+{
+
+   if (!m_pappimpl->erase_exclusive(strId ADD_PARAM_SEC_ATTRS))
+   {
+
+      return false;
+
+   }
+
+   return true;
 
 }
 
@@ -3813,6 +3850,26 @@ bool application::check_exclusive(bool& bHandled)
       }
 
    }
+
+   return true;
+
+}
+
+
+bool application::erase_exclusive(const ::string & strId)
+{
+
+   auto psystem = m_psystem;
+
+   auto pnode = psystem->node();
+
+   memory memorySecurityAttributes;
+
+   bool bSetOk = pnode->get_application_exclusivity_security_attributes(memorySecurityAttributes);
+
+   void* psaSecurityAttributes = memorySecurityAttributes.get_data();
+   
+   bool bErased = exclusive_erase(strId  INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
    return true;
 
@@ -4020,9 +4077,7 @@ void application::on_exclusive_instance_local_conflict(bool& bHandled)
 
          pcall->add_arg(strId);
 
-         pcall->announce();
-
-         pcall->wait();
+         pcall->send_call();
 
          for (auto& pair : pcall->m_mapTask)
          {
@@ -10095,6 +10150,61 @@ string application::get_wm_class() const
 
 
 #endif
+
+
+class networking_application* application::networking_application()
+{
+
+   if (!m_pnetworkingapplication)
+   {
+
+      create_networking_application();
+
+   }
+
+   return m_pnetworkingapplication;
+
+}
+
+
+void application::create_networking_application()
+{
+
+   //auto estatus =
+   
+   __defer_construct(m_pnetworkingapplication);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //estatus =
+   
+   m_pnetworkingapplication->create_networking_application();
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //return estatus;
+
+}
+
+
+::e_status application::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+{
+
+   auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+
+   return estatus;
+
+}
 
 
 //void application::interprocess_communication_open(const char * pszPath)

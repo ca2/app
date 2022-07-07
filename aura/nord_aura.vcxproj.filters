@@ -1465,9 +1465,6 @@
     <ClCompile Include="user\user\wait_cursor.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\window_state.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\window_util.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1521,6 +1518,21 @@
     </ClCompile>
     <ClCompile Include="windowing\sandbox\host_interaction.cpp">
       <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\region_item.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\layout_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holder.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\holdee.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,7 +7,23 @@
 namespace user
 {
 
-   
+
+   class CLASS_DECL_CORE draw_list_column :
+      virtual public ::element
+   {
+   public:
+
+
+      ::draw2d::brush_pointer          m_brushaText[16];
+      ::status < ::color::color >      m_coloraText[16];
+      ::write_text::font *             m_pfont;
+      ::e_align                        m_ealign;
+      ::e_draw_text                    m_edrawtext;
+
+
+   };
+
+
    class CLASS_DECL_CORE list_column :
       virtual public matter
    {
@@ -20,7 +36,7 @@ namespace user
       //
       // int                           m_iKey;
 
-      ::atom                                m_atom;
+      //::atom                                m_atom;
       bool                                m_bNew;
       bool                                m_bVisible;
       index                               m_iNextGlobalOrderKey;
@@ -34,10 +50,14 @@ namespace user
       index                               m_iColumn;
       __pointer(::image_list)             m_pil;
       __pointer(::image_list)             m_pilHover;
+      __pointer(draw_list_column)         m_pdrawlistcolumn;
+      __pointer(::user::interaction)      m_puserinteractionTemplate;
+      ::user::interaction_array           m_userinteractiona;
       ::draw2d::icon_int_map              m_mapIcon;
       ::size_i32                          m_sizeIcon;
       bool                                m_bIcon;
-      i32                                 m_iWidth;
+      ::i32                               m_iPosition;
+      ::i32                               m_iWidth;
       bool                                m_bCustomDraw;
       ::image_pointer                     m_pimageHeader;
 
@@ -50,7 +70,7 @@ namespace user
 
       list_column();
       //list_column(const list_column & pcolumn);
-      virtual ~list_column();
+      ~list_column() override;
 
 
       bool bind(::user::interaction * pinteraction);

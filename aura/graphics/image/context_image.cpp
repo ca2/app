@@ -5,7 +5,7 @@
 #include "frame_array.h"
 #include "save_image.h"
 #include "image.h"
-
+#include "aura/graphics/draw2d/lock.h"
 
 
 context_image::context_image()
@@ -1051,6 +1051,8 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
       return;
 
    }
+
+   ::draw2d::lock draw2dlock(this);
 
    auto pcontext = m_pcontext->m_pauracontext;
 

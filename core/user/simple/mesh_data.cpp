@@ -16,36 +16,35 @@ simple_mesh_data::~simple_mesh_data()
 
 
 
-void simple_mesh_data::_001GetItemText(::user::mesh_item * pitem)
+void simple_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 {
 
-   if(pitem->m_iItem < 0)
+   if(psubitem->m_pitem->m_iItem < 0)
    {
 
-      return_(pitem->m_bOk,false);
+      return_(psubitem->m_bOk,false);
 
    }
 
-   auto passoc = m_map.plookup(pitem->m_iItem);
+   auto passoc = m_map.plookup(psubitem->m_pitem->m_iItem);
 
    if(passoc != nullptr)
    {
 
-      auto passoc2 = passoc->element2().plookup(pitem->m_iColumn);
+      auto passoc2 = passoc->element2().plookup(psubitem->m_pcolumn->m_iColumn);
 
       if(passoc2 != nullptr)
       {
 
-         pitem->m_strText = passoc2->element2();
+         psubitem->m_strText = passoc2->element2();
 
-         return_(pitem->m_bOk,true);
+         return_(psubitem->m_bOk,true);
 
       }
 
    }
 
-
-   return_(pitem->m_bOk,false);
+   return_(psubitem->m_bOk,false);
 
 }
 

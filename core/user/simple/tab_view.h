@@ -23,7 +23,7 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
+   void get_client_rect(RECTANGLE_I32 * prectangle) override;
 
 
    void install_message_routing(::channel * pchannel) override;

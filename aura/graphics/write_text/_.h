@@ -30,11 +30,26 @@ namespace write_text
 #include "acme/primitive/geometry2d/_geometry2d.h"
 
 
-template < >
-CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::text_out& textout);
+#include "aura/graphics/draw2d/path.h"
+
+
+#include "aura/graphics/draw2d/region.h"
+
 
 template < >
-CLASS_DECL_AURA __pointer(___shape) __create_shape(const ::write_text::draw_text& drawtext);
+CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::path>);
+
+template < >
+CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::path>);
+
+
+template < >
+CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
+
+template < >
+CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
+
+
 
 
 #include "bounding_rect.h"

@@ -17,10 +17,11 @@ namespace databaseuser
 
 
       void assert_ok() const override;
-      virtual void dump(dump_context& dumpcontext) const override;
+      void dump(dump_context& dumpcontext) const override;
 
 
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
+
 
       virtual count _001GetItemCount() override;
 

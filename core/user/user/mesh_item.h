@@ -7,40 +7,138 @@
 namespace user
 {
 
+   class mesh_subitem;
+   class draw_mesh_subitem;
+   class list_subitem;
+   class draw_list_subitem;
 
+   class mesh_item;
+   class draw_mesh_item;
+   class list_item;
+   class draw_list_item;
 
+   class mesh_group;
+   class draw_mesh_group;
+   class list_group;
+   class draw_list_group;
 
-   class CLASS_DECL_CORE mesh_item :
-      virtual public ::matter
+   class CLASS_DECL_CORE mesh_subitem :
+      virtual public ::element
    {
    public:
 
 
-      list_item *                            m_plistitem;
-      mesh *                                 m_pmesh;
-      index                                  m_iGroup;
-      index                                  m_iItem;
-      index                                  m_iDisplayItem;
-      index                                  m_iColumn;
-      index                                  m_iOrder;
-      index                                  m_iSubItem;
-      index                                  m_iListItem;
-      string                                 m_strText;
-      status < ::color::color >       m_colorText;
-      status < ::color::color >       m_colorTextBackground;
-      status < ::color::color >       m_colorItemBackground;
-      i32                                    m_iState;
-      index                                  m_iImage;
-      bool                                   m_bOk;
+      __pointer(mesh_item)          m_pitem;
 
-      index          m_iGroupTopDisplayIndex;
-      ::count        m_iGroupCount;
 
-      mesh_item(mesh * pmesh);
+      draw_mesh_subitem *           m_pdrawmeshsubitem;
+      list_subitem *                m_plistsubitem;
+      draw_list_subitem *           m_pdrawlistsubitem;
+
+      __pointer(mesh_item)          m_pmeshitem;
+      ::index                       m_iSubItem;
+      ::index                       m_iOrder;
+      ::index                       m_iImage;
+      __pointer(list_column)        m_pcolumn;
+
+
+      bool                          m_bOk;
+
+      string                        m_strText;
+
+
+      mesh_subitem();
+
+
+      void initialize_mesh_subitem(mesh_item * pmeshitem);
+
+
+      operator mesh_subitem * () { return this; }
+      operator draw_mesh_subitem * () { return  m_pdrawmeshsubitem; }
+      operator list_subitem * () { return  m_plistsubitem; }
+      operator draw_list_subitem * () { return m_pdrawlistsubitem; }
+
+
+   };
+
+
+   
+   class CLASS_DECL_CORE draw_mesh_subitem :
+      virtual public mesh_subitem
+   {
+   public:
+
+
+      status < ::color::color >                 m_colorText;
+      status < ::color::color >                 m_colorTextBackground;
+      status < ::color::color >                 m_colorSubItemBackground;
+      ::rectangle_i32                           m_rectangleSubItem;
+      ::rectangle_i32                           m_rectangleImage;
+      ::rectangle_i32                           m_rectangleText;
+
+      //index                               m_iSubItemRectItem;
+      //index                               m_iSubItemRectSubItem;
+      //index                               m_iSubItemRectOrder;
+      //index                               m_iSubItemRectColumn;
+
+      ::index                                   m_iRectangleOrder;
+
+
+      draw_mesh_subitem();
+
+
+      void initialize_draw_mesh_subitem(mesh_item * pmeshitem);
+
+
+      __pointer(::image_list) get_image_list();
+      bool draw_image();
+      void update_color();
+      // void draw_group_image();
+      void set_text_color();
+      void draw_text();
+
+
+
+   };
+
+
+   class CLASS_DECL_CORE mesh_item :
+      virtual public ::element
+   {
+   public:
+
+
+      draw_mesh_item *                          m_pdrawmeshitem;
+      list_item *                               m_plistitem;
+      draw_list_item *                          m_pdrawlistitem;
+
+
+      mesh *                                    m_pmesh;
+      //index                                     m_iGroup;
+      index                                     m_iItem;
+      index                                     m_iDisplayItem;
+      //index                                     m_iSubItem;
+      ::index_map < __pointer(mesh_subitem) >   m_mapSubItem;
+//      index                                   m_iListItem;
+      i32                                       m_iState;
+      bool                                      m_bOk;
+
+      index                                     m_iGroupTopDisplayIndex;
+      ::count                                   m_iGroupCount;
+
+      mesh_item();
+
+      void initialize_mesh_item(mesh * pmesh);
 
       ::index item_index() const { return (::index) m_iItem; }
-      ::index subitem_index() const { return (::index) m_iSubItem; }
-      ::index list_item_index() const { return (::index) m_iListItem; }
+      //::index subitem_index() const { return (::index) m_iSubItem; }
+      //::index list_item_index() const { return (::index) m_iListItem; }
+
+      operator mesh_item * () { return this; }
+      operator draw_mesh_item * () { return  m_pdrawmeshitem; }
+      operator list_item * () { return  m_plistitem; }
+      operator draw_list_item * () { return m_pdrawlistitem; }
+
 
    };
 
@@ -52,43 +150,136 @@ namespace user
    public:
 
 
-      ::rectangle_i32                     m_rectangleGroup;
+      ::integral_nanosecond               m_nanoLastDraw;
+      // ::rectangle_i32                     m_rectangleGroup;
       ::rectangle_i32                     m_rectangleItem;
-      ::rectangle_i32                     m_rectangleSubItem;
-      ::rectangle_i32                     m_rectangleListItem;
-      ::rectangle_i32                     m_rectangleImage;
-      ::rectangle_i32                     m_rectangleText;
+      //::rectangle_i32                     m_rectangleListItem;
       rectangle_i32 *                     m_prectClient;
 
+      status < ::color::color >           m_colorItemBackground;
 
-      index                      m_iGroupRectGroup;
+      //index                               m_iItemRectItem;
 
-      index                      m_iItemRectItem;
+      ::index                             m_iRectangleDisplayItem;
 
-      i32                        m_iColumnWidth;
-
-      index                      m_iSubItemRectItem;
-      index                      m_iSubItemRectSubItem;
-      index                      m_iSubItemRectOrder;
-      index                      m_iSubItemRectColumn;
+      i32                                 m_iColumnWidth;
 
 
-      index                      m_iListItemRectItem;
-      index                      m_iListItemRectSubItem;
-      index                      m_iListItemRectListItem;
 
-      ::write_text::font *           m_pfont;
-      ::e_align                  m_ealign;
-      ::e_draw_text              m_edrawtext;
+      //index                               m_iListItemRectItem;
+      //index                               m_iListItemRectSubItem;
+      //index                               m_iListItemRectListItem;
 
-
-      draw_mesh_item(mesh * pmesh);
+      ::write_text::font *                m_pfont;
+      ::e_align                           m_ealign;
+      ::e_draw_text                       m_edrawtext;
 
 
-      __pointer(::image_list) get_image_list();
-      bool draw_image();
+      draw_mesh_item();
+
+
+      void initialize_draw_mesh_item(mesh * pmesh);
+
+
+      //void update_item_color();
+
+
+      ::user::enum_state get_user_state() const;
+
+
+   };
+
+
+
+   class CLASS_DECL_CORE mesh_group :
+      virtual public ::element
+   {
+   public:
+
+
+      draw_mesh_group * m_pdrawmeshgroup;
+      list_group* m_plistgroup;
+      draw_list_group * m_pdrawlistgroup;
+
+
+      mesh * m_pmesh;
+      index                                     m_iGroup;
+      index                                     m_iItem;
+      //index                                     m_iDisplayItem;
+      //index                                     m_iSubItem;
+      //::index_map < __pointer(mesh_subitem) >   m_mapSubitem;
+      //      index                                   m_iListItem;
+      ::index                                   m_iImage;
+      i32                                       m_iState;
+      bool                                      m_bOk;
+
+      index                                     m_iGroupTopDisplayIndex;
+      ::count                                   m_iGroupCount;
+
+      mesh_group();
+
+      void initialize_mesh_group(mesh * pmesh);
+
+      ::index group_index() const { return (::index)m_iGroup; }
+      //::index subitem_index() const { return (::index) m_iSubItem; }
+      //::index list_item_index() const { return (::index) m_iListItem; }
+
+      operator mesh_group * () { return this; }
+      operator draw_mesh_group * () { return  m_pdrawmeshgroup; }
+      operator list_group * () { return  m_plistgroup; }
+      operator draw_list_group * () { return m_pdrawlistgroup; }
+
+
+   };
+
+
+   class CLASS_DECL_CORE draw_mesh_group :
+      virtual public mesh_group,
+      virtual public ::aura::draw_context
+   {
+   public:
+
+
+      ::integral_nanosecond               m_nanoLastDraw;
+       ::rectangle_i32                     m_rectangleGroup;
+      //::rectangle_i32                     m_rectangleItem;
+      //::rectangle_i32                     m_rectangleListItem;
+      ::rectangle_i32                     m_rectangleImage;
+      ::rectangle_i32                     m_rectangleText;
+      rectangle_i32 * m_prectClient;
+
+      ::write_text::font * m_pfont;
+      ::e_align                           m_ealign;
+      ::e_draw_text                       m_edrawtext;
+
+      index                               m_iGroupRectGroup;
+
+      //index                               m_iItemRectItem;
+
+      //i32                                 m_iColumnWidth;
+
+      //index                               m_iSubItemRectItem;
+      //index                               m_iSubItemRectSubItem;
+      //index                               m_iSubItemRectOrder;
+      //index                               m_iSubItemRectColumn;
+
+
+      //index                               m_iListItemRectItem;
+      //index                               m_iListItemRectSubItem;
+      //index                               m_iListItemRectListItem;
+
+
+
+      draw_mesh_group();
+
+
+      void initialize_draw_mesh_group(mesh * pmesh);
+
+
+      //__pointer(::image_list) get_image_list();
+      //bool draw_image();
       void draw_group_image();
-      void update_item_color();
+      void update_group_color();
       void set_text_color();
       void draw_text();
 
@@ -97,7 +288,6 @@ namespace user
 
 
    };
-
 
 
 } // namespace user

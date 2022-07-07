@@ -2,8 +2,7 @@
 #include "bitmap.h"
 #include "graphics.h"
 #include "aura/graphics/image/pixmap.h"
-//#include "pixmap.h"
-//#include "draw2d_bitmap.h"
+
 
 
 namespace draw2d

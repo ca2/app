@@ -876,16 +876,21 @@ namespace user
             try
             {
 
-               if(ppair->element2()->m_pplaceholder != nullptr)
+               if (ppair->element2())
                {
 
-                  ppair->element2()->m_pplaceholder->display(e_display_none);
+                  if (ppair->element2()->m_pplaceholder != nullptr)
+                  {
 
-               }
-               else if(ppair->element2()->m_puserinteraction != nullptr)
-               {
+                     ppair->element2()->m_pplaceholder->display(e_display_none);
 
-                  ppair->element2()->m_puserinteraction->display(e_display_none);
+                  }
+                  else if (ppair->element2()->m_puserinteraction != nullptr)
+                  {
+
+                     ppair->element2()->m_puserinteraction->display(e_display_none);
+
+                  }
 
                }
 

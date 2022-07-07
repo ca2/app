@@ -11,7 +11,8 @@ cmake-time-*/
 **/.link_object
 **/VisualGDB
 **/CVS
-*.xcuserdata
+**/xcuserdata
+**/Generated Files
 .DS_Store
 ._.DS_Store
 *.suo
@@ -30,3 +31,4 @@ solution.vc.db*
 *.expand_fileset.spa
 Thumbs.db
 _matter.zip
+Makefile

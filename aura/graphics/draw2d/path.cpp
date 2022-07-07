@@ -4,9 +4,11 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_shape.h"
+#include "acme/primitive/geometry2d/shape_array.h"
 #include "aura/graphics/write_text/_shape.h"
+#include "path_shape.h"
 #include "acme/primitive/geometry2d/_impl.h"
-#include "acme/primitive/geometry2d/_defer.h"
+#include "acme/primitive/geometry2d/_defer_shape.h"
 
 
 point_f64 arc_point(double dAngle, size_f64 sizeRadius)
@@ -52,539 +54,13 @@ namespace draw2d
 {
 
 
-path::simple_optimization::simple_optimization(::draw2d::path * ppath)
-{
-   
-   for (auto& pshape : ppath->m_shapea)
-   {
-
-      auto eshape = pshape->eshape();
-
-      switch (eshape)
-      {
-      case e_shape_arc:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_line:
-            m_iTopic +=2; // to quit optimization
-//
-//
-//         {
-//            if(m_iTopic == 0)
-//            {
-//            m_iTopicLines++;
-//            auto & line = pshape->shape < line_f64 >();
-//            if(m_pointa.is_empty())
-//            {
-//
-//               m_pointa.add(line.m_p1);
-//
-//            }
-//            else if(is_different(m_pointa.last(), line.m_p1, 0.001))
-//            {
-//
-//               m_iTopic++;
-//
-//            }
-//            if(is_different(m_pointa.last(), line.m_p2, 0.001))
-//            {
-//
-//               m_pointa.add(line.m_p2);
-//
-//            }
-//
-//            }
-//      }
-//            break;
-      case e_shape_lines:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_rectangle:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_ellipse:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_polygon:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_draw_text:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_text_out:
-            m_iTopic++;
-            m_pshapeTopic = pshape;
-            break;
-      case e_shape_close_figure:
-            m_iClose++;
-            break;
-      default:
-            break;
-      }
-
-   }
-   
-}
-
-bool path::simple_optimization::draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen)
-{
- 
-   if(m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pshapeTopic))
-   {
-      
-      auto eshape = m_pshapeTopic->eshape();
-
-      switch (eshape)
-      {
-      case e_shape_arc:
-            break;
-      case e_shape_line:
-            break;
-      case e_shape_lines:
-            break;
-      case e_shape_rectangle:
-            if(::is_set(ppen))
-            {
-               pgraphics->set(ppen);
-            }
-            pgraphics->draw_rectangle(m_pshapeTopic->shape < ::rectangle_f64>());
-            return true;
-      case e_shape_ellipse:
-            if(::is_set(ppen))
-            {
-               pgraphics->set(ppen);
-            }
-            pgraphics->draw_ellipse(m_pshapeTopic->shape < ::ellipse_f64>());
-            return true;
-      case e_shape_polygon:
-            break;
-      case e_shape_draw_text:
-            break;
-      case e_shape_text_out:
-            break;
-         default:
-            break;
-      }
-
-   }
-//   else if(m_iTopic <= 0 && m_iTopicLines > 0)
-//   {
-//
-//      if(m_iClose == 1 && m_pointa.size() >= 3)
-//      {
-//         if(::is_set(ppen))
-//         {
-//            pgraphics->set(ppen);
-//         }
-//
-//         pgraphics->draw_polygon(m_pointa.get_data(), m_pointa.get_size());
-//
-//         return true;
-//
-//      }
-//      else if(m_iClose <= 1)
-//      {
-//
-//         if(m_pointa.size() >= 2)
-//         {
-//            if(::is_set(ppen))
-//            {
-//               pgraphics->set(ppen);
-//            }
-//
-//            pgraphics->set_current_point(m_pointa.first());
-//
-//            for(::index i = 1; i < m_pointa.get_size(); i++)
-//            {
-//
-//               pgraphics->line_to(m_pointa[i]);
-//
-//            }
-//
-//         }
-//
-//         return true;
-//
-//      }
-//
-//   }
-   
-   return false;
-
-}
-
-bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
-{
- 
-   if(m_iTopic == 1 && m_iTopicLines == 0 && ::is_set(m_pshapeTopic))
-   {
-      
-      auto eshape = m_pshapeTopic->eshape();
-
-      switch (eshape)
-      {
-      case e_shape_arc:
-            break;
-      case e_shape_line:
-            break;
-      case e_shape_lines:
-            break;
-      case e_shape_rectangle:
-            if(::is_set(pbrush))
-            {
-               pgraphics->set(pbrush);
-            }
-            pgraphics->fill_rectangle(m_pshapeTopic->shape < ::rectangle_f64>());
-            return true;
-      case e_shape_ellipse:
-            if(::is_set(pbrush))
-            {
-               pgraphics->set(pbrush);
-            }
-            pgraphics->fill_ellipse(m_pshapeTopic->shape < ::ellipse_f64>());
-            return true;
-      case e_shape_polygon:
-            break;
-      case e_shape_draw_text:
-            break;
-      case e_shape_text_out:
-            break;
-         default:
-            break;
-      }
-
-   }
-//   else if(m_iTopic <= 0 && m_iTopicLines > 0)
-//   {
-//
-//      if(m_iClose == 1 && m_pointa.size() >= 3)
-//      {
-//
-//         if(::is_set(pbrush))
-//         {
-//            pgraphics->set(pbrush);
-//         }
-//
-//         pgraphics->fill_polygon(m_pointa.get_data(), m_pointa.get_size());
-//
-//         return true;
-//
-//      }
-//      else if(m_iClose <= 1)
-//      {
-//
-//         output_debug_string("filling opened path?");
-//
-////         if(m_pointa.size() >= 2)
-////         {
-////            if(::is_set(ppen))
-////            {
-////               pgraphics->set(ppen);
-////            }
-////
-////            pgraphics->set_current_point(m_pointa.first());
-////
-////            for(::index i = 1; i < pointa.get_size(); i++)
-////            {
-////
-////               pgraphics->line_to(m_pointa[i]);
-////
-////            }
-////
-////         }
-//
-//         return true;
-//
-//      }
-//      
-//   }
-   
-   return false;
-
-}
-
-   //bool path::matter::expand_bounding_rect(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   rectangle_f64 r;
-
-   //   if (!get_bounding_rectangle(&r))
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   expand_rect(prectangle, r);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::matter::expand_bounding_rect(RECTANGLE_I32* prectangle) const
-   //{
-
-   //   rectangle_f64 r;
-
-   //   if (!expand_bounding_rect(&r))
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   expand_rect(prectangle, r);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::matter::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   ::null_rect(prectangle);
-
-   //   return false;
-
-   //}
-
-
-   //bool path::matter::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
-   //{
-
-   //   ::null_rect(prectangle);
-
-   //   return false;
-
-   //}
-
-
-   //bool path::matter::contains(const ::point_f64& point) const
-   //{
-
-   //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
-
-   //   ::rectangle_f64 r;
-
-   //   if (!get_bounding_rectangle(r))
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return r.contains(point);
-
-   //}
-
-
-   //bool path::arc::get_bounding_rectangle(RECTANGLE_F64* prectd) const
-   //{
-
-   //   // BUG SS (STILL SIMPLE) m_dRotationAngle ignored
-
-   //   prectd->left = m_pointCenter.x - m_sizeRadius.cx;
-   //   prectd->right = m_pointCenter.x + m_sizeRadius.cx;
-   //   prectd->top = m_pointCenter.y - m_sizeRadius.cy;
-   //   prectd->bottom = m_pointCenter.y + m_sizeRadius.cy;
-
-   //   return true;
-
-   //}
-
-
-
-   //bool path::arc::contains(const ::point_f64 & point) const
-   //{
-
-   //   // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
-
-   //   return path::matter::contains(point);
-
-   //}
-
-
-   //bool path::rectangle_i32::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   __copy(prectangle, m_rectangle);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::rectangle_i32::contains(const ::point_f64& point) const
-   //{
-
-   //   return m_rectangle.contains(point);
-
-   //}
-
-
-   //bool path::lines::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   m_pointa.get_bounding_rectangle(prectangle);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::lines::contains(const ::point_f64& point) const
-   //{
-
-   //   return m_pointa.polygon_contains(point);
-
-   //}
-
-
-
-   //bool path::polygon_i32::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   m_pointa.get_bounding_rectangle(prectangle);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::polygon_i32::contains(const ::point_f64& point) const
-   //{
-
-   //   return m_pointa.polygon_contains(point);
-
-   //}
-
-
-   //bool path::line::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   prectangle->left = minimum(m_pointBegin.x, m_pointEnd.x);
-   //   prectangle->right = maximum(m_pointBegin.x, m_pointEnd.x);
-   //   prectangle->top = minimum(m_pointBegin.y, m_pointEnd.y);
-   //   prectangle->bottom = maximum(m_pointBegin.y, m_pointEnd.y);
-
-   //   return true;
-
-   //}
-
-   ////bool path::line::contains(const ::point_f64& point) const
-   ////{
-
-   ////   return false;
-
-   ////}
-
-
-   //bool path::text_out::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   //__copy(prectangle, m_rectangle);
-
-   //   return true;
-
-   //}
-
-
-   //bool path::text_out::contains(const ::point_f64& point) const
-   //{
-
-   //   return path::matter::contains(point);
-
-   //}
-
-
-   //bool path::draw_text::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-   //{
-
-   //   __copy(prectangle, m_rectangle);
-
-   //   return true;
-
-   //}
-
-
-
-   //bool path::draw_text::contains(const ::point_f64& point) const
-   //{
-
-   //   return path::matter::contains(point);
-
-   //}
-
-
-   ////path::text::text()
-   ////{
-
-   ////}
-
-
-   ////path::text::text(const text& text)
-   ////{
-
-   ////   operator = (text);
-
-   ////}
-
-
-   ////path::text::~text()
-   ////{
-
-   ////}
-
-
-   ////path::text& path::text::operator = (const text& text)
-   ////{
-
-   ////   if (this == &text)
-   ////   {
-
-   ////      return *this;
-
-   ////   }
-
-   ////   m_point        = text.m_point;
-   ////   m_rectangle         = text.m_rectangle;
-   ////   m_strText      = text.m_strText;
-   ////   m_pfont        = text.m_pfont;
-
-   ////   return *this;
-
-   ////}
-
-
-   //path::matter::matter()
-   //{
-
-   //   m_etype = type_none;
-
-   //}
-
-
-   //path::matter::~matter()
-   //{
-
-
-   //}
-
-
    path::path()
    {
-      m_bPersistent = false;
-      //m_bFill        = false;
-      m_efillmode    = ::draw2d::e_fill_mode_winding;
-      m_bHasPoint    = false;
+      
+      m_bPersistent              = false;
+      m_efillmode                = ::draw2d::e_fill_mode_winding;
+      m_bHasPoint                = false;
+      m_bUseGeometryRealization  = true;
 
    }
 
@@ -618,13 +94,18 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       bool bGotAny = false;
 
-      for(auto & pmatter : m_shapea)
+      if (m_pshapea)
       {
 
-         if (pmatter->expand_bounding_rect(r))
+         for (auto & pshape : *m_pshapea)
          {
 
-            bGotAny = true;
+            if (pshape->expand_bounding_rect(r))
+            {
+
+               bGotAny = true;
+
+            }
 
          }
 
@@ -642,39 +123,6 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
       return true;
 
    }
-
-
-   //bool path::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
-   //{
-
-   //   ::rectangle_i32 r;
-
-   //   bool bGotAny = false;
-
-   //   for (auto& pmatter : m_shapea)
-   //   {
-
-   //      if (pmatter->expand_bounding_rect(r))
-   //      {
-
-   //         bGotAny = true;
-
-   //      }
-
-   //   }
-
-   //   if (!bGotAny)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   __copy(prectangle, r);
-
-   //   return true;
-
-   //}
 
 
    bool path::has_current_point()
@@ -700,18 +148,19 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    }
 
 
-   //bool path::set_current_point(i32 x, i32 y)
-   //{
+   bool path::is_empty()
+   {
 
-   //   m_pointEnd.x = x;
+      if (!m_pshapea)
+      {
 
-   //   m_pointEnd.y = y;
+         return true;
 
-   //   m_bHasPoint = true;
+      }
 
-   //   return true;
+      return m_pshapea->is_empty();
 
-   //}
+   }
 
 
    bool path::set_current_point(const ::point_f64 & point)
@@ -745,24 +194,17 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    }
 
 
-   //bool path::add_rect(const ::rectangle_i32& rectangleParam)
-   //{
-
-   //   auto prectangle = __new(rectangle);
-
-   //   __copy(prectangle->m_rectangle, rectangleParam);
-
-   //   m_shapea.add(prectangle);
-
-   //   return true;
-
-   //}
-
-
    bool path::add_rectangle(const ::rectangle_f64& rectangleParam)
    {
 
-      m_shapea.add_shape(rectangleParam);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(rectangleParam);
 
       return true;
 
@@ -772,7 +214,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::add_ellipse(const ::ellipse_f64 & ellipseParam)
    {
 
-      m_shapea.add_shape(ellipseParam);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(ellipseParam);
 
       return true;
 
@@ -800,13 +249,18 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       polygon_i32.rotate(angleRotationCenter, point);
 
-      m_shapea.add_shape(polygon_i32);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(polygon_i32);
 
       return true;
 
    }
-
-
 
 
    bool path::varc(const ::point_f64 & point, double h, const ::angle& angle)
@@ -817,7 +271,7 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
          return false;
       }
 
-      auto parc = __new(arc_shape);
+      auto parc = __new(arc_shape< path >);
 
       ::arc& arc = parc->m_shape;
 
@@ -839,12 +293,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
       arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      //arc.m_pointBegin.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleBeg);
-      //arc.m_pointBegin.y = arc.m_pointCenter.y +arc.m_dRadiusY * sin(arc.m_angleBeg);
-      //arc.m_pointEnd.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleEnd);
-      //arc.m_pointEnd.y = arc.m_pointCenter.y + arc.m_dRadiusY * sin(arc.m_angleEnd);
+      if (!m_pshapea)
+      {
 
-      m_shapea.add(parc);
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(parc);
 
       m_bHasPoint = true;
 
@@ -870,7 +326,7 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       }
 
-      auto parc = __new(arc_shape);
+      auto parc = __new(arc_shape < path >);
 
       ::arc& arc = parc->m_shape;
 
@@ -894,7 +350,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
       arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      m_shapea.add_item(parc);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_item(parc);
 
       m_bHasPoint = true;
 
@@ -919,7 +382,7 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       }
 
-      auto parc = __new(arc_shape);
+      auto parc = __new(arc_shape< ::draw2d::path>);
 
       ::arc& arc = parc->m_shape;
 
@@ -934,7 +397,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
       arc.m_pointBegin        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      m_shapea.add(parc);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(parc);
 
       m_bHasPoint = true;
 
@@ -949,93 +419,17 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    }
 
 
-   //bool path::add_move(double x, double y)
-   //{
-
-   //   __pointer(matter) pmatter;
-
-   //   pmatter = __new(matter);
-
-   //   pmatter->m_etype               = matter::type_move;
-   //   pmatter->u.m_move.m_x          = x;
-   //   pmatter->u.m_move.m_y          = y;
-
-   //   m_shapea.add(pmatter);
-
-   //   m_bHasPoint = true;
-   //   m_point.x = x;
-   //   m_point.y = y;
-
-   //   set_modified();
-
-   //   return true;
-
-   //}
-
-
-   //bool path::add_line(double x,double y)
-   //{
-
-   //   if(!has_current_point())
-   //   {
-   //
-   //      return set_current_point(x,y);
-
-   //   }
-
-   //   return add_line(m_pointEnd, point_f64(x, y));
-
-   //}
-
-
-   //bool path::add_line(i32 x, i32 y)
-   //{
-
-   //   return add_line((double)x,(double)y);
-
-   //}
-
-
-   //bool path::add_line(double x,double y,double x2,double y2)
-   //{
-
-   //   auto pline = __new(line);
-
-   //   pline->m_pointBegin.x = x;
-
-   //   pline->m_pointBegin.y = y;
-
-   //   pline->m_pointEnd.x = x2;
-
-   //   pline->m_pointEnd.y = y2;
-
-   //   m_shapea.add(pline);
-
-   //   m_bHasPoint = true;
-
-   //   m_pointBegin = pline->m_pointBegin;
-
-   //   m_pointEnd = pline->m_pointEnd;
-
-   //   set_modified();
-
-   //   return true;
-
-   //}
-
-
-   //bool path::add_line(i32 x,i32 y,i32 x2,i32 y2)
-   //{
-
-   //   return add_line((double) x, (double)y, (double) x2, (double) y2);
-
-   //}
-
-
    bool path::begin_figure()
    {
 
-      m_shapea.add_shape(e_shape_begin_figure);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(e_shape_begin_figure);
 
       m_bHasPoint = false;
 
@@ -1049,7 +443,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::close_figure()
    {
 
-      m_shapea.add_shape(e_shape_close_figure);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(e_shape_close_figure);
 
       set_modified();
 
@@ -1061,7 +462,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::end_figure()
    {
 
-      m_shapea.add_shape(e_shape_end_figure);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_shape(e_shape_end_figure);
 
       set_modified();
 
@@ -1073,15 +481,24 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::add_text_out(const ::point_f64 & point, const ::string & strText,::write_text::font_pointer pfont)
    {
 
-      auto ptextout = __new(::write_text::text_out_shape);
+      auto ptextout = __new(text_out_shape < path >);
 
       auto& textout = ptextout->m_shape;
+
+      ptextout->m_pholdee = this;
 
       textout.m_strText     = strText;
       textout.m_pfont       = pfont;
       textout.m_point       = point;
 
-      m_shapea.add_item(ptextout);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add_item(ptextout);
 
       return true;
 
@@ -1091,10 +508,11 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
-      auto pdrawtext = __new(::write_text::draw_text_shape);
+      auto pdrawtext = __new(draw_text_shape < path >);
 
       auto & drawtext = pdrawtext->m_shape;
 
+      pdrawtext->m_pholdee = this;
 
       drawtext.m_strText            = strText;
       drawtext.m_pfont              = pfont;
@@ -1104,7 +522,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
       drawtext.m_ealign             = ealign;
       drawtext.m_edrawtext          = edrawtext;
 
-      m_shapea.add(pdrawtext);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(pdrawtext);
 
       return true;
 
@@ -1114,7 +539,9 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      auto pline = __new(line_shape);
+      auto pline = __new(line_shape< path>);
+
+      pline->m_pholdee = this;
 
       ::line & line = pline->m_shape;
 
@@ -1122,7 +549,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       line.m_p2 = p2;
 
-      m_shapea.add(pline);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(pline);
 
       m_pointBegin = line.m_p1;
 
@@ -1136,7 +570,9 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::add_line(const point_f64 & point)
    {
 
-      auto pline = __new(line_shape);
+      auto pline = __new(line_shape < path >);
+
+      pline->m_pholdee = this;
 
       ::line & line = pline->m_shape;
 
@@ -1144,7 +580,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
       line.m_p2 = point;
 
-      m_shapea.add(pline);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(pline);
 
       m_pointBegin = line.m_p1;
 
@@ -1155,68 +598,51 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    }
 
 
-   //bool path::add_polygon(const POINT_I32* ppoint, ::count nCount)
-   //{
-
-   //   auto ppolygon = __new(polygon_shape);
-
-   //   for (i32 i = 0; i < nCount; i++)
-   //   {
-
-   //      ppolygon->m_shape.add(point_f64(ppoint[i].x, ppoint[i].y));
-
-   //   }
-
-   //   m_shapea.add_item(ppolygon);
-
-   //   return true;
-
-   //}
-
-
+ 
    bool path::add_polygon(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto ppolygon = __new(polygon_shape);
+      auto ppolygon = __new(polygon_shape < path >);
+
+      ppolygon->m_pholdee = this;
 
       ppolygon->m_shape.set_size(nCount);
 
       memcpy(ppolygon->m_shape.get_data(), ppoint, ppolygon->m_shape.get_size_in_bytes());
 
-      m_shapea.add(ppolygon);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(ppolygon);
 
       return true;
 
    }
 
 
-
-   //bool path::add_lines(const POINT_I32 * ppoint, ::count nCount)
-   //{
-
-   //   auto plines = __new(lines_shape);
-
-   //   plines->m_shape.set_size(nCount);
-
-   //   memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
-
-   //   m_shapea.add(plines);
-
-   //   return true;
-
-   //}
-
-
    bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto plines = __new(lines_shape);
+      auto plines = __new(lines_shape < path >);
+
+      plines->m_pholdee = this;
 
       plines->m_shape.set_size(nCount);
 
       memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
 
-      m_shapea.add(plines);
+      if (!m_pshapea)
+      {
+
+         m_pshapea = __new(shape_array < path>());
+
+      }
+
+      m_pshapea->add(plines);
 
       return true;
 
@@ -1707,7 +1133,14 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    bool path::_set_create(::draw2d::graphics* pgraphics)
    {
 
-      for (auto& pmatter : m_shapea)
+      if (!m_pshapea)
+      {
+
+         return true;
+
+      }
+
+      for (auto& pmatter : *m_pshapea)
       {
 
          if (!_set(pgraphics, pmatter))
@@ -1724,7 +1157,7 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, ___shape * pshape)
+   bool path::_set(::draw2d::graphics* pgraphics, ___shape < path > * pshape)
    {
 
       auto eshape = pshape->eshape();
@@ -2245,12 +1678,20 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
    }
 
+
    bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
    {
 
+      if (!m_pshapea)
+      {
+
+         return false;
+
+      }
+
       int iFill = 0;
 
-      for (auto& pmatter : m_shapea)
+      for (auto& pmatter : *m_pshapea)
       {
 
          if (pmatter->contains(point))
@@ -2336,18 +1777,26 @@ bool path::simple_optimization::fill(::draw2d::graphics * pgraphics, ::draw2d::b
 
    }
 
+
    path & path::operator = (const path & path)
    {
 
       if (this != &path)
       {
 
-         m_shapea.erase_all();
-
-         for (auto & pshape : path.m_shapea)
+         if(!m_pshapea)
          {
 
-            m_shapea.add(::clone(pshape));
+            m_pshapea = __new(shape_array <class path>());
+
+         }
+
+         m_pshapea->erase_all();
+
+         for (auto & pshape : *path.m_pshapea)
+         {
+
+            m_pshapea->add(::clone(pshape));
 
          }
 

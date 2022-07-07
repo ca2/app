@@ -4,6 +4,64 @@
 CLASS_DECL_ACME string demangle(const char * psz);
 
 
+#ifdef WINDOWS
+
+#define __c_type_name(t) (c_demangle(typeid(t).name()))
+
+inline const char * c_demangle(const char * psz)
+{
+
+   if (psz[0] == 'c' &&
+      psz[1] == 'l' &&
+      psz[2] == 'a' &&
+      psz[3] == 's' &&
+      psz[4] == 's' &&
+      psz[5] == ' ')
+   {
+
+      return psz + 6;
+
+   }
+   else if (psz[0] == 's' &&
+      psz[1] == 't' &&
+      psz[2] == 'r' &&
+      psz[3] == 'u' &&
+      psz[4] == 'c' &&
+      psz[5] == 't' &&
+      psz[6] == ' ')
+   {
+
+      return psz + 7;
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
+#else
+//inline const char * c_demangle(const char * psz)
+//{
+//
+//   return psz;
+//
+//}
+
+#endif
+#define __object_type(t) ::type(e_data_structure_type, t)
+
+enum enum_data_structure_type
+{
+
+   e_data_structure_type
+
+};
+
+
+
 class CLASS_DECL_ACME type
 {
 public:
@@ -14,6 +72,19 @@ public:
 
    type()
    {
+
+   }
+
+
+   template < typename TYPE >
+   type(enum_data_structure_type, TYPE) :
+#ifdef WINDOWS
+   m_strName(c_demangle(typeid(TYPE).name()))
+#else
+   m_strName(::move(demangle(typeid(TYPE).name())))
+#endif
+   {
+
 
    }
 
@@ -155,6 +226,14 @@ public:
    inline const string & to_string() const { return m_strName; }
 
 
+   bool name_contains(const char * psz) const
+   {
+
+      return m_strName.contains(psz);
+
+   }
+
+
 };
 
 
@@ -166,6 +245,8 @@ template < typename TYPE >
 
 }
 
+
+//#define __type(TYPE)  ___type<TYPE>()
 
 #define __type(TYPE)  ___type<TYPE>()
 

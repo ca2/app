@@ -23,7 +23,7 @@ namespace user
       ::user::impact_data *                     m_pimpactdataOld;
       ::user::impact_creator *                  m_pviewcreator;
       bool                                      m_bCloseDocumentIfNoTabs;
-      __pointer(::user::impact)                 m_pimpactTopic;
+      //__pointer(::user::impact)                 m_pimpactTopic;
 
 
       tab_view();

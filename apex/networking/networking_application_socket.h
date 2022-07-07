@@ -3,7 +3,7 @@
 #pragma once
 
 
-class CLASS_DECL_AXIS networking_application_socket :
+class CLASS_DECL_APEX networking_application_socket :
    virtual public ::netserver::socket
 {
 public:

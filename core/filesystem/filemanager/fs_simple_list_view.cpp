@@ -174,76 +174,92 @@ namespace filemanager
          }
 
 
-         void list_view::_001GetItemImage(::user::mesh_item * pitem)
+         void list_view::_001GetSubItemImage(::user::mesh_subitem * psubitem)
          {
-            if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+
+            if(psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
             {
-               pitem->m_bOk = false;
+
+               psubitem->m_bOk = false;
+
                return;
+
             }
-            if(pitem->m_iSubItem == SubItemTitle)
+
+            if(psubitem->m_iSubItem == SubItemTitle)
             {
-               pitem->m_bOk = true;
-               switch(m_itema[pitem->m_iItem]->m_etype)
+
+               psubitem->m_bOk = true;
+
+               switch(m_itema[psubitem->m_pitem->m_iItem]->m_etype)
                {
                case ItemTypeFolder:
-                  pitem->m_iImage = m_iIconFolder;
+                  psubitem->m_iImage = m_iIconFolder;
                   break;
                case ItemTypeArtist:
-                  pitem->m_iImage = m_iIconArtist;
+                  psubitem->m_iImage = m_iIconArtist;
                   break;
                case ItemTypeSong:
-                  pitem->m_iImage = m_iIconSong;
+                  psubitem->m_iImage = m_iIconSong;
                   break;
                default:
-                  pitem->m_bOk = false;
+                  psubitem->m_bOk = false;
                   break;
                }
                return;
             }
             else
             {
-               pitem->m_bOk = false;
+               psubitem->m_bOk = false;
                return;
             }
 
          }
 
-         void list_view::_001GetItemText(::user::mesh_item * pitem)
+
+         void list_view::_001GetSubItemText(::user::mesh_subitem * psubitem)
          {
-            if(pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+
+            if(psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
             {
-               pitem->m_bOk = false;
+
+               psubitem->m_bOk = false;
+
                return;
+
             }
-            switch(pitem->m_iSubItem)
+
+            switch(psubitem->m_iSubItem)
             {
             case SubItemId:
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
                break;
             case SubItemTitle:
-               pitem->m_strText = m_itema[pitem->m_iItem]->m_strTitle;
+               psubitem->m_strText = m_itema[psubitem->m_pitem->m_iItem]->m_strTitle;
                break;
             case SubItemArtist:
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
                break;
             case SubItemFileName:
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
                break;;
             case SubItemFilePath:
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
                break;
             default:
                //ASSERT(false);
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
                break;
             }
-            pitem->m_bOk = true;
+            psubitem->m_bOk = true;
          }
 
-         void list_view::_001SearchGetItemText(::user::mesh_item * pitem)
+
+         void list_view::_001SearchGetSubItemText(::user::mesh_subitem * psubitem)
          {
-            return_(pitem->m_bOk, false);
+
+            return_(psubitem->m_bOk, false);
+
          }
 
 
@@ -318,16 +334,23 @@ namespace filemanager
          bool list_view::GetSongPath(string &str, index iItem)
          {
 
-            ::user::list_item item(this);
-            item.m_iItem = iItem;
-            item.m_iSubItem = SubItemFilePath;
-            item.m_iListItem = -1;
-            _001GetItemText(&item);
-            if(!item.m_bOk)
+            auto & pdrawlistsubitem = get_subitem(iItem, SubItemFilePath);
+
+            _001GetSubItemText(pdrawlistsubitem);
+            
+            if (!pdrawlistsubitem->m_bOk)
+            {
+
                return false;
-            str = item.m_strText;
+
+            }
+
+            str = pdrawlistsubitem->m_strText;
+
             return true;
+
          }
+
 
          void list_view::_001OnSort()
          {

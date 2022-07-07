@@ -225,6 +225,7 @@ namespace experience
 
    }
 
+
    void orto_button::UpdateWndRgn()
    {
 
@@ -232,16 +233,18 @@ namespace experience
 
       ::user::interaction::get_client_rect(rectangleClient);
 
-      __defer_construct(m_spregion);
+      __defer_construct(m_pregion);
 
-      m_spregion->create_ellipse(rectangleClient);
+      m_pregion->create_ellipse(rectangleClient);
 
    }
 
 
    void orto_button::install_message_routing(::channel * pchannel)
    {
+
       ::user::button::install_message_routing(pchannel);
+
       MESSAGE_LINK(e_message_show_window, pchannel, this, &orto_button::on_message_show_window);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &orto_button::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &orto_button::on_message_left_button_up);
@@ -254,14 +257,14 @@ namespace experience
    ::item_pointer orto_button::on_hit_test(const ::point_i32 &point)
    {
 
-      if (m_spregion.is_null())
+      if (m_pregion.is_null())
       {
 
          return __new(::item(::e_element_none));
 
       }
 
-      if (!m_spregion->contains(point))
+      if (!m_pregion->contains(point))
       {
 
          return __new(::item(::e_element_none));

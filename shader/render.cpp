@@ -27,11 +27,13 @@ namespace app_shader
    }
 
 
-   void render::initialize(::object * pobject)
+   void render::initialize_render(::user::interaction * puserinteraction)
    {
 
+      m_puserinteraction = puserinteraction;
+
       //auto estatus = 
-      ::object::initialize(pobject);
+      ::object::initialize(puserinteraction);
 
       //if (!estatus)
       //{
@@ -286,13 +288,13 @@ namespace app_shader
 
             {
 
-               __pointer(::aura::session) psession = get_session();
+               //__pointer(::aura::session) psession = get_session();
 
-               auto puser = psession->user();
+               //auto puser = psession->user();
 
-               auto pwindowing = puser->windowing();
+               auto pwindow = m_puserinteraction->window();
 
-               auto pointCursor = pwindowing->get_cursor_position();
+               auto pointCursor = pwindow->get_cursor_position();
 
                float x = (float) pointCursor.x;
 

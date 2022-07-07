@@ -46,14 +46,7 @@ string demangle(const char* psz)
 
 #else
 
-string demangle(const char* name)
-{
 
-   auto str = ::cxxabi_demangle(name);
-
-   return str;
-
-}
 
 
 
@@ -61,31 +54,46 @@ char * g_pszDemangle = nullptr;
 size_t g_sizeDemangle = 0;
 critical_section * g_pcsDemangle = nullptr;
 
+
 #include <cxxabi.h>
 
-string cxxabi_demangle (const char* name)
+
+string demangle(const char* name)
 {
 
    int status = -4;
+
    char* res = abi::__cxa_demangle(name, 0, 0, &status);
+
    string str;
+
    if (status == 0)
    {
+
       str = res;
 
    }
    else
    {
+
       str = name;
+
    }
+
    if (res != nullptr)
    {
+
       free(res);
+
    }
-   return str;
+
+   return ::move(str);
+
 }
 
+
 #endif
+
 
 //
 //type::type(const atom & atom, const ::atom & idFriendly)

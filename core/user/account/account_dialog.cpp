@@ -255,9 +255,7 @@ namespace account
       else if (rectangle.is_empty())
       {
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pdisplay = pwindowing->display();
 
@@ -552,11 +550,7 @@ namespace account
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -626,11 +620,7 @@ namespace account
 
       __pointer(::message::show_window) pshowwindow(pmessage);
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+auto pwindowing = windowing();
 
       if (pshowwindow->m_bShow)
       {

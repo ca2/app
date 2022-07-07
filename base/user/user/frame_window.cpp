@@ -341,6 +341,12 @@ namespace user
    }
 
 
+   bool frame_window::create_bars()
+   {
+
+      return false;
+
+   }
 
    /////////////////////////////////////////////////////////////////////////////
    // frame_window
@@ -740,7 +746,7 @@ namespace user
 
       // determine top-level parent, since that is the true parent of any
       //  modeless windows anyway...
-      __pointer(::user::interaction) pParent = get_top_level();
+      //auto pparent = top_level();
 
       m_uiptraDisable.erase_all();
 
@@ -1015,6 +1021,13 @@ namespace user
    }
 
 
+   void frame_window::enable_frame_experience(bool bEnable)
+   {
+
+
+   }
+
+
    void frame_window::OnInitialFrameUpdate(bool bMakeVisible)
    {
 
@@ -1067,7 +1080,7 @@ namespace user
 
       }
 
-      m_bLockSketchToDesign = true;
+      //m_bLockSketchToDesign = true;
 
       set_display(e_display_none);
 
@@ -1216,7 +1229,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         m_bLockSketchToDesign = false;
+         //m_bLockSketchToDesign = false;
 
          // send initial update to all views (and other controls) in the frame
          send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
@@ -1242,7 +1255,7 @@ namespace user
 
       }
 
-      m_bLockSketchToDesign = false;
+      //m_bLockSketchToDesign = false;
 
       // update frame counts and frame title (may already have been visible)
       if (pDoc != nullptr)
@@ -1759,9 +1772,9 @@ namespace user
    void frame_window::set_active_view(::user::impact * pviewNew, bool bNotify)
    {
 
-      __pointer(::user::impact) pviewOld = m_pviewActive;
+      auto pviewOld = m_pviewActive;
 
-      __pointer(frame_window) pframewindow = get_parent_frame();
+      auto pframewindow = parent_frame();
 
       if (pframewindow)
       {
@@ -2368,7 +2381,7 @@ namespace user
       if (edisplay != e_display_default)
       {
 
-         lock_sketch_to_design lockSketchToDesign(this);
+         //lock_sketch_to_design lockSketchToDesign(this);
 
          display(edisplay);
 
@@ -2377,6 +2390,12 @@ namespace user
          set_need_redraw();
 
       }
+
+      set_reposition();
+
+      set_need_layout();
+
+      set_need_redraw();
 
       post_redraw();
 
@@ -2533,15 +2552,15 @@ namespace user
 
       bool bUpdateWindow;
 
-      string strType = __type_name(this);
+      auto type = __object_type(*this);
 
-      if(strType.contains_ci("app_veriwell_keyboard") && strType.contains_ci("main_frame"))
+      if (type.name_contains("app_veriwell_keyboard") && type.name_contains("main_frame"))
       {
 
          //::output_debug_string("app_veriwell_keyboard::main_frame");
 
       }
-      else if(strType.contains_ci("simple_child_frame"))
+      else if(type.name_contains("simple_child_frame"))
       {
 
          //::output_debug_string("simple_child_frame");

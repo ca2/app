@@ -93,11 +93,7 @@ namespace user
       if(m_bSlide)
       {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -143,13 +139,11 @@ namespace user
 
       double dScalar = m_pscalar->get_rate();
 
-      auto psession = get_session();
+auto pwindowing = windowing();
 
-      auto puser = psession->user();
+      auto pwindow = window();
 
-      auto pwindowing = puser->windowing();
-
-      auto point = pwindowing->get_cursor_position();
+      auto point = pwindow->get_cursor_position();
 
       screen_to_client(point, e_layout_design);
 

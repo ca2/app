@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
@@ -857,12 +859,12 @@ namespace user
    }
 
 
-   ::windowing::window* primitive_impl::get_window() const
-   {
-
-      return nullptr;
-
-   }
+//   ::windowing::window* primitive_impl::get_window() const
+//   {
+//
+//      return nullptr;
+//
+//   }
 
 
    bool primitive_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
@@ -1372,19 +1374,19 @@ namespace user
    }
 
 
-   ::user::frame * primitive_impl::get_parent_frame() const
-   {
+   //::user::frame * primitive_impl::get_parent_frame() const
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puserinteraction->get_parent_frame();
+   //   return m_puserinteraction->parent_frame();
 
-   }
+   //}
 
 
    ::user::interaction * primitive_impl::get_parent_owner() const
@@ -1447,19 +1449,19 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::get_top_level() const
-   {
+   //::user::interaction * primitive_impl::get_top_level() const
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puserinteraction->get_top_level();
+   //   return m_puserinteraction->top_level();
 
-   }
+   //}
 
 
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
@@ -1850,30 +1852,30 @@ namespace user
    }
 
 
-   ::windowing::window* primitive_impl::window()
-   {
-
-      auto puserinteraction = m_puserinteraction;
-
-      if (!puserinteraction)
-      {
-
-         return nullptr;
-
-      }
-
-      auto pwindow = puserinteraction->window();
-
-      if (!pwindow)
-      {
-
-         return nullptr;
-
-      }
-
-      return pwindow;
-
-   }
+//   ::windowing::window* primitive_impl::window()
+//   {
+//
+//      auto puserinteraction = m_puserinteraction;
+//
+//      if (!puserinteraction)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      auto pwindow = puserinteraction->window();
+//
+//      if (!pwindow)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return pwindow;
+//
+//   }
 
 
    ::user::element * primitive_impl::get_keyboard_focus()

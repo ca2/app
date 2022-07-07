@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -56,29 +58,40 @@ namespace user
       //if (is_different(m_bDarkMode, bDarkMode))
       {
 
-         //m_bDarkMode = bDarkMode;
-
          auto psystem = m_psystem;
 
-         psystem->m_papexsystem->signal(id_user_style_change);
+         auto pnode = psystem->node();
+
+         auto bDarkMode = pnode->dark_mode();
+
+         m_bDarkMode = bDarkMode;
+
+
+         //m_bDarkMode = bDarkMode;
+
+         //auto psystem = m_psystem;
+
+         //psystem->m_papexsystem->signal(id_user_style_change);
 
       }
 
    }
 
 
-   bool style_base::is_dark_mode() const
-   {
+   //bool style_base::is_dark_mode() const
+   //{
 
-      auto psystem = m_psystem;
+   //   return
 
-      auto pnode = psystem->node();
+   //   //auto psystem = m_psystem;
 
-      auto bDarkMode = pnode->dark_mode();
+   //   //auto pnode = psystem->node();
 
-      return bDarkMode;
+   //   //auto bDarkMode = pnode->dark_mode();
 
-   }
+   //   //return bDarkMode;
+
+   //}
 
 
    void style_base::handle(::topic * ptopic, ::context * pcontext)

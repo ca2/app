@@ -1,6 +1,8 @@
 #include "framework.h"
 //#include "aura/operating_system.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 #include "aura/user/user/shell.h"
 //#include "acme/compress/zip/_.h"
 //#include "acme/compress/gz.h"
@@ -11,6 +13,7 @@
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
 
 
@@ -181,6 +184,8 @@ namespace user
 
    bool shell::reserve_image(_get_file_image_ & getfileimage)
    {
+
+      ::draw2d::lock lock(this);
 
       synchronous_lock synchronouslock(mutex());
 

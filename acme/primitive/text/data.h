@@ -2,6 +2,16 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/atom.h"
+
+
+namespace acme
+{
+
+   class context;
+
+} // namespace acme
+
 namespace text
 {
 

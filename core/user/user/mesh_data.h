@@ -18,18 +18,18 @@ namespace user
 
 
       mesh_data();
-      virtual ~mesh_data();
+      ~mesh_data() override;
 
 
-      virtual void _001GetItemText(mesh_item * pitem);
+      virtual void _001GetSubItemText(mesh_subitem * pitem);
 
-      virtual void _001GetItemImage(mesh_item * pitem);
+      virtual void _001GetSubItemImage(mesh_subitem * pitem);
 
-      virtual void _001GetItemColor(mesh_item * pitem);
+      virtual void _001GetSubItemColor(mesh_subitem * pitem);
 
-      virtual void _001GetGroupText(mesh_item * pitem);
+      virtual void _001GetGroupItemText(mesh_group * pgroup);
 
-      virtual void _001GetGroupImage(mesh_item * pitem);
+      virtual void _001GetGroupImage(mesh_group * pgroup);
 
       virtual count _001GetItemCount();
 
@@ -40,6 +40,7 @@ namespace user
       virtual ::count _001GetGroupMetaItemCount(index iGroup);
 
       virtual void _001OnDeleteRange(::user::range & range);
+
 
    };
 

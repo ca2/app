@@ -1,6 +1,8 @@
 #include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#endif
 //#include "acme/id.h"
 //#include "apex/platform/app_core.h"
@@ -1294,7 +1296,7 @@ namespace aura
          if (!puiFocus->get_wnd()->is_active_window())
          {
 
-            auto pwindow = puiFocus->get_window();
+            auto pwindow = puiFocus->window();
 
             if (pwindow != nullptr)
             {
@@ -1900,7 +1902,7 @@ namespace aura
 
       auto puser = m_puser;
 
-      puser->windowing()->defer_initialize_host_window(lpcrect);
+      puser->windowing1()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 

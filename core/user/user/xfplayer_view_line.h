@@ -52,7 +52,7 @@ public:
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
    i32                              m_iAlign;
-   ::user::interaction *            m_oswindow;
+   ::user::interaction *            m_puserinteraction;
    xfplayer_view_linea *              m_pContainer;
 
    // 08, May 2004 attributes
@@ -96,7 +96,7 @@ public:
    ::color::color                         m_colorLyricLeft;
    ::color::color                         m_colorLyricRight;
 
-   xfplayer_view_line();
+   xfplayer_view_line(::user::interaction * puserinteraction);
    //xfplayer_view_line(const xfplayer_view_line & line);
    ~xfplayer_view_line() override;
 

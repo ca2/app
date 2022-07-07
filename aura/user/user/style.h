@@ -42,6 +42,7 @@ namespace user
 
       ::draw2d::graphics *                   m_pgraphics;
 
+      ::draw2d::pen_pointer                  m_ppenFocusRect;
       ::draw2d::pen_pointer                  m_ppenFocusRect0;
       ::draw2d::pen_pointer                  m_ppenFocusRect1;
       ::draw2d::pen_pointer                  m_ppenFocusRect2;

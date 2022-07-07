@@ -42,12 +42,12 @@ void simple_tab_view::on_layout(::draw2d::graphics_pointer & pgraphics)
 
 
 
-bool simple_tab_view::get_client_rect(RECTANGLE_I32 * prectangle)
+void simple_tab_view::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
    ::user::impact::get_client_rect(prectangle);
 
-   return true;
+   //return true;
 
 }
 

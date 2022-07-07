@@ -79,6 +79,9 @@ void api::on_login_response()
 {
 
    m_bWaitingResponseFromUser = false;
+   
+   save_profile();
+
 
    m_eventResponse.SetEvent();
 
@@ -98,7 +101,6 @@ void api::on_login_response()
 
    }
 
-   save_profile();
 
 }
 
@@ -146,24 +148,14 @@ void api::api_get(::payload& payload, const string & strUrl, property_set& set)
 
    string strNetworkPayload;
 
-   //auto estatus = 
-      api_get(strNetworkPayload, strUrl, set);
-
-   //if(!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
+   api_get(strNetworkPayload, strUrl, set);
 
    payload.parse_network_payload(strNetworkPayload);
 
-   //return estatus;
-
 }
 
 
-void api::api_download(string strGet, const ::file::path& path, property_set& set)
+void api::api_download(string strGet, const ::file::path & path, property_set& set)
 {
 
    throw ::interface_only();
@@ -171,27 +163,26 @@ void api::api_download(string strGet, const ::file::path& path, property_set& se
 }
 
 
-string api::api_token(bool bForce)
-{
+   string api::api_token(bool bForce)
+   {
 
-   throw ::interface_only();
+      throw ::interface_only();
 
-   return "";
+      return "";
 
-}
+   }
 
 
-void api::on_login_authentication_failed()
-{
+   void api::on_login_authentication_failed()
+   {
 
-   m_strToken.Empty();
+      m_strToken.Empty();
 
-   save_profile();
+      save_profile();
 
-   api_login(m_strConfig, m_strProfile);
+      api_login(m_strConfig, m_strProfile);
 
-}
-
+   }
 
 
    string api::randomDataBase64url(u32 length)

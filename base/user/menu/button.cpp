@@ -81,6 +81,13 @@ namespace user
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);
+      
+      if(rectangleClient.is_empty())
+      {
+       
+         return;
+         
+      }
 
       if (m_atom == "separator")
       {
@@ -173,6 +180,8 @@ namespace user
 
    void menu_button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      //::user::button::on_layout(pgraphics);
 
 //      if (m_puserstyle == nullptr)
 //      {
@@ -201,7 +210,7 @@ namespace user
       //if (m_atom != "separator")
       {
 
-         //::user::button::_001OnNcDraw(pgraphics);
+         ::user::button::_001OnNcDraw(pgraphics);
 
       }
 

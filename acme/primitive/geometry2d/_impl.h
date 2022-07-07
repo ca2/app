@@ -164,8 +164,8 @@ inline string __xmlpri<double>()
 }
 
 
-template < >
-inline __pointer(___shape) __create_shape(const enum_shape& eshape)
+template < typename HOLDEE >
+inline __pointer(___shape<HOLDEE >) __create_shape(const enum_shape& eshape)
 {
 
    switch (eshape)
@@ -173,15 +173,15 @@ inline __pointer(___shape) __create_shape(const enum_shape& eshape)
    case e_shape_none:
       return nullptr;
    case e_shape_begin_clip:
-      return __new(begin_clip_shape);
+      return __new(begin_clip_shape<HOLDEE>);
    case e_shape_intersect_clip:
-      return __new(intersect_clip_shape);
+      return __new(intersect_clip_shape<HOLDEE>);
    case e_shape_begin_figure:
-      return __new(begin_figure_shape);
+      return __new(begin_figure_shape<HOLDEE>);
    case e_shape_close_figure:
-      return __new(close_figure_shape);
+      return __new(close_figure_shape<HOLDEE>);
    case e_shape_end_figure:
-      return __new(end_figure_shape);
+      return __new(end_figure_shape<HOLDEE>);
    default:
       throw ::exception(error_not_implemented, "new geometry processor or not a geometry processor?");
       return nullptr;
@@ -190,69 +190,6 @@ inline __pointer(___shape) __create_shape(const enum_shape& eshape)
 }
 
 
-template < typename GEOMETRY >
-inline __pointer(___shape) __create_shape(const GEOMETRY& geometry)
-{
-
-   throw ::exception(error_not_implemented, "unimplemented geometry");
-
-   return nullptr;
-
-}
-
-
-template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_F64* prectangle) const
-      {
-
-         ::RECTANGLE_F64 r;
-
-         if (!this->get_bounding_rectangle(&r))
-         {
-
-            return false;
-
-         }
-
-         ::union_rect(prectangle, prectangle, &r);
-
-         return true;
-
-      }
-
-
-template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_I32* prectangle) const
-   {
-
-      ::RECTANGLE_I32 r;
-
-      if (!this->get_bounding_rectangle(&r))
-      {
-
-         return false;
-
-      }
-
-      ::union_rect(prectangle, prectangle, &r);
-
-      return true;
-
-   }
-
-
-
-
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
-{
-   
-   __sort(this->left, this->right); 
-   
-   __sort(this->top, this->bottom); 
-
-}
 
 
 namespace geometry

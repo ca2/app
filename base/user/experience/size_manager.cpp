@@ -130,13 +130,9 @@ namespace experience
 
       pmouse->m_bRet = true;
 
-      __pointer(::base::session) psession = get_session();
-
       m_pframewindow->set_mouse_capture();
 
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       auto ecursor = experience_frame_to_cursor(eframe);
 
@@ -172,11 +168,7 @@ namespace experience
 
          size_window(m_eframeSizing, m_pframewindow, pmouse->m_point, true);
 
-         auto psession = get_session()->m_paurasession;
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = m_pframewindow->windowing();
 
          auto ecursor = experience_frame_to_cursor(m_eframeSizing);
 
@@ -219,11 +211,7 @@ namespace experience
 
       auto ecursor = experience_frame_to_cursor(m_eframeCursor);
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       auto pcursor = pwindowing->get_cursor(ecursor);
 
@@ -361,11 +349,7 @@ namespace experience
 
       m_eframeSizing = e_frame_none;
 
-      __pointer(::base::session) psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -657,7 +641,7 @@ namespace experience
 
       {
 
-         ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
+         //::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
 
          if (m_pframewindow->layout().is_zoomed())
          {

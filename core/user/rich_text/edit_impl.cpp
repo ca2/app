@@ -420,11 +420,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 
@@ -438,6 +434,8 @@ namespace user
          m_bSelDrag = false;
 
          auto item = hit_test(pmouse);
+
+         auto psession = get_session();
 
          if (item.is_set() && psession->user()->get_mouse_focus_LButtonDown() == this)
          {
@@ -484,11 +482,7 @@ namespace user
          if (::is_set(m_pitemHover))
          {
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
@@ -523,11 +517,7 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
@@ -567,11 +557,7 @@ namespace user
       void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          pwindowing->release_mouse_capture();
 

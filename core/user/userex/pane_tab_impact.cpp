@@ -250,10 +250,10 @@ namespace userex
       if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
       {
 
-         if (get_parent_frame()->ContinueModal())
+         if (parent_frame()->ContinueModal())
          {
 
-            get_parent_frame()->EndModalLoop("yes");
+            parent_frame()->EndModalLoop("yes");
 
          }
 
@@ -685,7 +685,7 @@ namespace userex
             if(pimpact != nullptr)
             {
 
-               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pimpact->get_parent_frame();
+               __pointer(::user::frame_window) pframe = pimpact->parent_frame();
 
                if(pframe != nullptr)
                {
@@ -764,7 +764,7 @@ namespace userex
 
                ::user::impact * pimpact = pdocument->get_view(0);
 
-               pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
+               pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
                prepare_form(pimpactdata->m_atom, pdocument);
 
@@ -822,11 +822,11 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(get_parent_frame()->ContinueModal() && ::is_set(filemanager_document("file_manager_save"))
+      if(parent_frame()->ContinueModal() && ::is_set(filemanager_document("file_manager_save"))
             && filemanager_document("file_manager_save")->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
-         get_parent_frame()->EndModalLoop("yes");
+         parent_frame()->EndModalLoop("yes");
 
       }
 

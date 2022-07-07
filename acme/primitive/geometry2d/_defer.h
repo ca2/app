@@ -1,39 +1,16 @@
+// Split to _defer_shape.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
 #pragma once
 
 
-template < typename SHAPE, enum_shape ESHAPE >
-inline bool _shape < SHAPE, ESHAPE >::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
+inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
 {
 
-   return ::get_bounding_rectangle(prectangle, &m_shape);
+   __sort(this->left, this->right);
+
+   __sort(this->top, this->bottom);
 
 }
 
-
-template < typename SHAPE, enum_shape ESHAPE >
-inline bool _shape < SHAPE, ESHAPE >::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
-{
-
-   return ::get_bounding_rectangle(prectangle, &m_shape);
-
-}
-
-
-template < typename SHAPE, enum_shape ESHAPE >
-inline bool _shape < SHAPE, ESHAPE >::contains(const ::POINT_I32 & point) const
-{
-
-   return ::shape_contains(&m_shape, point);
-
-}
-
-
-template < typename SHAPE, enum_shape ESHAPE >
-inline bool _shape < SHAPE, ESHAPE >::contains(const ::POINT_F64 & point) const
-{
-
-   return ::shape_contains(&m_shape, point);
-
-}
 
 

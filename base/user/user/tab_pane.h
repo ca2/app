@@ -2,12 +2,16 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/holder.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_BASE tab_pane :
-      virtual public ::property_object
+      virtual public ::property_object,
+      virtual public ::draw2d::holder
    {
    public:
 
@@ -22,7 +26,7 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushFill;
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;
-      atom                                  m_atom;
+      atom                                m_atom;
       ::image_pointer                     m_pimage;
       __pointer(place_holder)             m_pplaceholder;
       __pointer(impact_data)              m_pimpactdata;
@@ -33,6 +37,7 @@ namespace user
       ::size_array                        m_sizeaText;
       point_i32                           m_point;
       eflag                               m_eflag;
+      bool                                m_bNeedLayout;
 
 
       tab_pane();

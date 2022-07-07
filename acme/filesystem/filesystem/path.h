@@ -206,6 +206,7 @@ namespace file
 
       path & operator += (const path & path);
       path & operator += (const ::string & str);
+      using path_meta::operator+=;
       path operator / (const path & path) const;
       path operator / (const ::string & str) const;
       path operator / (const char * psz) const;
@@ -222,7 +223,8 @@ namespace file
       bool has_char() const;
 
 
-
+      
+      
 
       //::file::path & file_cat(const ::string & str) { return *this + str; }
 
@@ -309,11 +311,11 @@ namespace file
 
       path folder() const;
       path folder(int i) const;
-      path up() const;
-      path up(int i) const;
-      path & go_up();
-      path & go_up(int i);
-      path operator - (int i) const { return this->up(i); }
+      path parent() const;
+      path ascendant(int i) const;
+      path & ascend();
+      path & ascend(int i);
+      path operator - (int i) const { return this->ascendant(i); }
       path & operator -= (int i);
       using path_meta::operator -=;
 

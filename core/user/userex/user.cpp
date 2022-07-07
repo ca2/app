@@ -226,7 +226,6 @@ namespace core
       ::factory::add_factory_item < ::html::html >();
       ::factory::add_factory_item < int_biunique  >();
       ::factory::add_factory_item <::user::plain_edit >();
-      ::factory::add_factory_item < xfplayer_view_line  >();
       ::factory::add_factory_item <::user::place_holder >();
       ::factory::add_factory_item <::user::combo_box >();
       ::factory::add_factory_item <::user::check_box >();

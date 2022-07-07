@@ -147,13 +147,15 @@ namespace user
    void elastic_slider::CalcTension()
    {
       
-      auto psession = get_session();
+      //auto psession = get_session();
 
-      auto puser = psession->user();
+      //auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+      //auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_position();
+      auto pwindow = window();
+
+      auto pointCursor = pwindow->get_cursor_position();
 
       screen_to_client(pointCursor);
 
@@ -252,13 +254,9 @@ namespace user
          
          pgraphics->set_current_point(rectangle.center());
          
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          screen_to_client(pointCursor);
 

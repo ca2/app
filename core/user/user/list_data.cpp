@@ -21,7 +21,7 @@ namespace user
    count list_data::_001GetColumnCount(mesh * pmesh)
    {
 
-      return pmesh->m_plist->m_columna.VisibleGetCount();;
+      return pmesh->m_plist->m_columna.get_visible_count();
 
    }
 

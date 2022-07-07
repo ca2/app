@@ -152,13 +152,9 @@ namespace user
       if(m_bHover)
       {
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = pwindow->get_cursor_position();
 
          ::rectangle_i32 rectangleWindow;
 

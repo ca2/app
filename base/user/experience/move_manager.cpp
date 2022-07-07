@@ -74,6 +74,22 @@ namespace experience
 
       m_bMoving = true;
 
+      auto & edisplaySketch = m_pframewindow->layout().m_statea[::user::e_layout_sketch].m_edisplay;
+
+      if (edisplaySketch & e_display_docking_mask)
+      {
+
+         edisplaySketch -= e_display_docking_mask;
+
+         if (edisplaySketch == e_display_none)
+         {
+
+            edisplaySketch = e_display_normal;
+
+         }
+
+      }
+
       m_pframewindow->on_start_layout_experience(e_layout_experience_moving);
 
       pmouse->m_bRet = true;
@@ -95,11 +111,7 @@ namespace experience
 
       ASSERT(pmouse->m_atom == e_message_mouse_move || pmouse->m_atom == e_message_non_client_mouse_move);
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -138,9 +150,11 @@ namespace experience
 
       {
 
-         ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
+         //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
-         if (::is_docking_appearance(pframewindow->const_layout().sketch().display()))
+         auto edisplay = pframewindow->const_layout().sketch().display();
+
+         if (::is_docking_appearance(edisplay))
          {
 
             pframewindow->m_pframe->defer_frame_placement_snapping();
@@ -192,28 +206,6 @@ namespace experience
    }
 
 
-   //bool move_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
-   //{
-
-   //   if (!m_pframewindow->is_moving_enabled())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   if (!window_is_moving())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
    bool move_manager::window_stop_moving(bool bApply, ::message::mouse * pmouse)
    {
 
@@ -226,11 +218,7 @@ namespace experience
 
       m_bMoving = false;
 
-      __pointer(::base::session) psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = m_pframewindow->windowing();
 
       pwindowing->release_mouse_capture();
 
@@ -239,7 +227,7 @@ namespace experience
 
          {
 
-            ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
+//            ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
 
             m_pframewindow->set_layout_state(m_stateBefore, ::user::e_layout_sketch);
 
@@ -253,19 +241,22 @@ namespace experience
 
          auto rectangleRequest = m_pframewindow->screen_rect();
 
-         index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
+         //index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
 
-         if (iMatchingMonitor >= 0)
-         {
+         //index iMatchingMonitor =
+         m_pframewindow->good_move(rectangleRequest);
 
-            if (!pmouse)
-            {
+         //if (iMatchingMonitor >= 0)
+         //{
 
-               pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
+         //   if (!pmouse)
+         //   {
 
-            }
+         //      pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
 
-         }
+         //   }
+
+         //}
 
       }
 

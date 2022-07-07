@@ -206,6 +206,12 @@ namespace experience_tranquillum
                return argb(255, 116, 160, 220);
 
             }
+            else if (eelement == ::e_element_text)
+            {
+
+               return argb(255, 255, 255, 255);
+
+            }
 
          }
          else if (econtroltype == ::user::e_control_type_list)
@@ -499,7 +505,9 @@ namespace experience_tranquillum
 
       }
 
-      auto rectangleClient = pframe->get_client_rect();
+      ::rectangle_i32 rectangleClient;
+      
+      pframe->get_client_rect(rectangleClient);
 
       auto pstyle = pframe->get_style(pgraphics);
 
@@ -1045,6 +1053,8 @@ namespace experience_tranquillum
          else
          {
 
+            // Horizontal
+
             if (ptab->get_element_rect(iTab, rectangleIcon, ::e_element_icon))
             {
 
@@ -1076,7 +1086,7 @@ namespace experience_tranquillum
             if (true)
             {
 
-               auto ppath = __create < ::draw2d::path > ();
+               //auto ppath = __create < ::draw2d::path > ();
 
                if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
                {
@@ -1093,13 +1103,13 @@ namespace experience_tranquillum
 
                   pgraphics->set(pane.m_pbrushFillSel);
 
-                  pgraphics->fill(ppath);
+                  //pgraphics->fill(ppath);
 
                   ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw(ppath);
+                  //pgraphics->draw(ppath);
 
                   if (::is_item(ptab->m_pitemHover, iTab)
                      && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -1132,11 +1142,11 @@ namespace experience_tranquillum
 
                      pgraphics->set(pane.m_pbrushFillHover);
 
-                     pgraphics->fill(ppath);
+                     //pgraphics->fill(ppath);
 
                      ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
                      
-                     pgraphics->draw(ppath);
+                     //pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
@@ -1150,7 +1160,7 @@ namespace experience_tranquillum
 
                      pgraphics->set(ppenBorder);
 
-                     pgraphics->draw(ppath);
+                     //pgraphics->draw(ppath);
 
                      pgraphics->set_font(ptab, ::e_element_none);
 

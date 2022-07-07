@@ -107,7 +107,7 @@ namespace user
       if (ptimer->m_etimer == e_timer_command_probe)
       {
 
-         auto pframewindow = get_parent_frame();
+         auto pframewindow = parent_frame();
 
          on_command_probe(pframewindow, true);
 

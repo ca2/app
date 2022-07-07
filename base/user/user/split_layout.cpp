@@ -280,11 +280,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
+            auto pwindowing = windowing();
 
             pwindowing->release_mouse_capture();
 

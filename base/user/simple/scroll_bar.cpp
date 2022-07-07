@@ -110,11 +110,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
       //pmouse->m_bRet = true;
 
-      auto psession = get_session()->m_paurasession;
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -129,11 +125,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
       if(eelement.is_set())
       {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
+         auto pwindowing = windowing();
 
          auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
@@ -245,14 +237,11 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
 }
 
+
 void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto psession = get_session();
-
-   auto puser = psession->user();
-
-   auto pwindowing = puser->windowing();
+   auto pwindowing = windowing();
 
    pwindowing->release_mouse_capture();
 
@@ -787,13 +776,9 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto psession = get_session();
+   auto pwindow = window();
 
-   auto puser = psession->user();
-
-   auto pwindowing = puser->windowing();
-
-   auto pointCursor = pwindowing->get_cursor_position();
+   auto pointCursor = pwindow->get_cursor_position();
 
    screen_to_client(pointCursor);
 

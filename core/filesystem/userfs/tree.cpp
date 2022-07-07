@@ -312,7 +312,7 @@ namespace userfs
       for (i32 i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(itemptraSelected[0]->m_pdataitem.cast < ::userfs::item >()->m_filepathUser);
+         stra.add(itemptraSelected[0]->m_pdataitem.cast < ::userfs::item >()->user_path());
 
       }
 
@@ -464,7 +464,7 @@ namespace userfs
             if (puserfsitem != nullptr)
             {
 
-               ::file::path & pathTreeItem = puserfsitem->m_filepathFinal;
+               auto & pathTreeItem = puserfsitem->final_path();
 
                if (bPointerFromPathFromItemFromOwnTree)
                {
@@ -545,7 +545,7 @@ namespace userfs
             if (puserfsitem != nullptr)
             {
 
-               ::file::path & pathTreeItem = puserfsitem->m_filepathUser;
+               auto & pathTreeItem = puserfsitem->user_path();
 
                if (bPointerFromPathFromItemFromOwnTree)
                {

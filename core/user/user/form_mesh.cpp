@@ -107,15 +107,17 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      draw_mesh_item item(this);
+      auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
 
-      item.m_iDisplayItem = _001StrictToDisplay(pinteraction->m_iItem);
-      item.m_iItem = pinteraction->m_iItem;
-      item.m_iSubItem = pinteraction->m_iSubItem;
-      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
-      item.m_iListItem = -1;
-      _001GetElementRect(&item,::user::mesh::e_element_text);
-      if(item.m_bOk)
+      psubitem->m_pitem->m_iDisplayItem = _001StrictToDisplay(pinteraction->m_iItem);
+      
+      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
+      
+      //psubitem.m_iListItem = -1;
+      
+      _001GetElementRect(*psubitem,::user::mesh::e_element_text);
+
+      if(psubitem->m_bOk)
       {
          
          _001Update(pinteraction);
@@ -304,11 +306,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-#ifdef _UWP
-      ASSERT(is_user_thread());
-#else
       synchronous_lock synchronouslock(mutex());
-#endif
 
       if(_001GetEditControl() != nullptr)
       {
@@ -363,9 +361,9 @@ namespace user
    }
 
 
-   void form_mesh::_001DrawSubItem(draw_mesh_item * pdrawitem)
+   void form_mesh::_001DrawSubItem(draw_mesh_subitem * psubitem)
    {
-      ::user::mesh::_001DrawSubItem(pdrawitem);
+      ::user::mesh::_001DrawSubItem(psubitem);
       //if(pdrawitem->m_pcolumn->m_bCustomDraw)
       //{
       //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
@@ -422,7 +420,9 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      draw_mesh_item item(this);
+      draw_mesh_item item;
+
+      item.initialize_mesh_item(this);
 
       return ::is_set(m_pitemControl)
          && m_pitemControl->m_iSubItem == pinteraction->m_iSubItem;
@@ -601,42 +601,44 @@ namespace user
 
       ::rectangle_i32 rectangleControl;
 
-      draw_mesh_item item(this);
+      auto iItem = _001DisplayToStrict(m_iDisplayItemHover);
 
-      item.m_iDisplayItem = m_iDisplayItemHover;
+      auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
-      item.m_iItem = _001DisplayToStrict(m_iDisplayItemHover);
+      //item.initialize_mesh_item(this);
 
-      if(m_bGroup)
-      {
+      psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-         item.m_iGroupTopDisplayIndex = 0;
+      //if(m_bGroup)
+      //{
 
-         for(item.m_iGroup = 0; item.m_iGroup < m_nGroupCount; item.m_iGroup++)
-         {
+      //   psubitem->m_pitem->m_iGroupTopDisplayIndex = 0;
 
-            item.m_iGroupCount = _001GetGroupItemCount(item.m_iGroup);
+      //   for(psubitem->m_pitem->m_iGroup = 0; psubitem->m_pitem->m_iGroup < m_nGroupCount; psubitem->m_pitem->m_iGroup++)
+      //   {
 
-            if(item.m_iItem >= item.m_iGroupTopDisplayIndex && item.m_iItem < (item.m_iGroupTopDisplayIndex + item.m_iGroupCount))
-            {
+      //      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount(psubitem->m_pitem->m_iGroup);
 
-               break;
+      //      if(psubitem->m_pitem->m_iItem >= psubitem->m_pitem->m_iGroupTopDisplayIndex && psubitem->m_pitem->m_iItem < (psubitem->m_pitem->m_iGroupTopDisplayIndex + psubitem->m_pitem->m_iGroupCount))
+      //      {
 
-            }
+      //         break;
 
-         }
+      //      }
 
-      }
+      //   }
 
-      item.m_iSubItem = pinteraction->m_iSubItem;
+      //}
 
-      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
+      //psubitem->m_iSubItem = 
 
-      item.m_iListItem = -1;
+      psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
 
-      _001GetElementRect(&item,::user::mesh::element_sub_item);
+      //item.m_iListItem = -1;
 
-      rectangleControl = item.m_rectangleSubItem;
+      _001GetElementRect(*psubitem,::user::mesh::e_element_sub_item);
+
+      rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
 
       ::rectangle_i32 rectangle(rectangleControl);
 

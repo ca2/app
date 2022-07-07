@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aura/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 //#include "acme/operating_system/cross.h"
 #include "aura/platform/message_queue.h"
 #include "aura/message.h"
@@ -12,6 +14,8 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/text_editor_interface.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/lock.h"
 //#ifdef _UWP
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
@@ -22,6 +26,9 @@ point_i32 g_pointLastBottomRight;
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
 //#include <mutex>
+
+
+#define TIME_REPORTING 0
 
 
 #ifdef WINDOWS_DESKTOP
@@ -42,9 +49,8 @@ CLASS_DECL_ACME void monitor_pointer(void * p);
 
 
 #define HARD_DEBUG 0
-//#define REDRAW_HINTING
 #undef REDRAW_HINTING
-//
+
 
 namespace user
 {
@@ -87,7 +93,6 @@ namespace user
 
       m_bOkToUpdateScreen = true;
       m_bUpdatingBuffer = false;
-      //m_bFocus = false;
       m_bCursorRedraw = false;
 
       defer_create_mutex();
@@ -96,8 +101,6 @@ namespace user
       m_bTranslateMouseMessageCursor         = true;
       m_bComposite                           = true;
       m_bUpdateGraphics                      = false;
-      //m_pwindow                              = nullptr;
-      //m_pprimitiveFocus                      = nullptr;
       m_bPendingRedraw                       = false;
       m_bTransparentMouseEvents              = false;
 
@@ -121,33 +124,7 @@ namespace user
    void interaction_impl::on_tsf_activate(bool bActivate)
    {
 
-      if (bActivate)
-      {
-
-         //get_wnd()->pred([this]()
-         //   {
-
-         //      //ImmSetOpenStatus(m_puserthread->m_himc, true);
-
-
-
-         ////      if (m_puserthread->m_peditwnd == nullptr)
-         ////      {
-
-         ////         m_puserthread->m_peditwnd = new CTSFEditWnd(psystem->m_hinstance, m_puserinteraction->get_handle());
-
-         ////         m_puserthread->m_peditwnd->_Initialize(m_puserthread->m_pthreadmgr, m_puserthread->m_tfClientID);
-
-         ////      }
-
-         ////      m_puserthread->m_peditwnd->on_edit_set_focus(dynamic_cast <::user::interaction * > (get_keyboard_focus()));
-
-         //   });
-
-      }
-
    }
-
 
 
    ::mutex * interaction_impl::draw_mutex()
@@ -176,31 +153,6 @@ namespace user
    bool interaction_impl::has_pending_redraw_flags()
    {
 
-      //if (m_bCursorRedraw)
-      //{
-
-      //   auto psession = get_session();
-
-      //   auto puser = psession->user();
-
-      //   auto pwindowing = puser->windowing();
-
-      //   auto pointCursor = pwindowing->get_cursor_position();
-
-      //   if (m_pointMouseMove != pointCursor)
-      //   {
-
-      //      if (_001IsPointInside(pointCursor))
-      //      {
-
-      //         return true;
-
-      //      }
-
-      //   }
-
-      //}
-
       return ::user::primitive_impl::has_pending_redraw_flags();
 
    }
@@ -212,22 +164,6 @@ namespace user
       m_puserinteraction->set_need_layout();
 
    }
-
-
-   //void interaction_impl::window_move(i32 x, i32 y)
-   //{
-
-   //   auto & stateRequest = m_puserinteraction->request_state();
-
-   //   stateRequest.m_point.x = x;
-
-   //   stateRequest.m_point.y = y;
-
-   //   m_puserinteraction->set_reposition();
-
-   //   return true;
-
-   //}
 
 
    bool interaction_impl::has_pending_focus()
@@ -294,14 +230,6 @@ namespace user
    }
 
 
-   //void interaction_impl::set_destroying()
-   //{
-
-   //   m_bDestroying = true;
-
-   //}
-
-
    bool interaction_impl::set_pending_focus()
    {
 
@@ -333,22 +261,11 @@ namespace user
       else
       {
 
-         //auto pusersystem=__new(::user::system(0, nullptr, lpszName, WS_CHILD, nullptr));
-
-         //pusersystem->m_createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
-
          pinteraction->m_bMessageWindow = true;
 
          create_host(pinteraction);
-         //{
-
-         //   return false;
-
-         //}
 
       }
-
-      //return true;
 
    }
 
@@ -656,8 +573,7 @@ namespace user
 
          auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = puser->windowing1();
          //pwindowing->windowing_send([&]()
          //   {
 
@@ -809,20 +725,11 @@ namespace user
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          pwindowing->windowing_send([&]()
                                     {
 
-                                       auto psession = get_session();
-
-                                       auto puser = psession->user();
-
-                                       auto pwindowing = puser->windowing();
+                                       auto pwindowing = windowing();
 
                                        m_pwindow = pwindowing->new_window(this);
 
@@ -1755,8 +1662,6 @@ namespace user
    }
 
 
-
-
    void interaction_impl::default_message_handler(::message::message * pmessage)
    {
 
@@ -1880,7 +1785,7 @@ namespace user
 
          m_puserinteraction.release();
 
-         auto pwindow = get_window();
+         auto pwindow = window();
 
          message_queue_post(pwindow, e_message_destroy_window, 0, 0);
 
@@ -2323,9 +2228,7 @@ namespace user
                   m_puserinteraction->get_window_rect(rectWindow);
                }
 
-               auto puser = psession->user();
-
-               auto pwindowing = puser->windowing();
+               auto pwindowing = windowing();
 
                auto pdisplay = pwindowing->display();
 
@@ -2339,14 +2242,15 @@ namespace user
                   if (rectWindow.left >= rcMonitor.left)
                   {
 
-                     pmouse->m_point.x += (::i32)rectWindow.left;
+                     pmouse->m_point.x += (::i32)rcMonitor.left;
 
                   }
 
                   if (rectWindow.top >= rcMonitor.top)
                   {
 
-                     pmouse->m_point.y += (::i32)rectWindow.top;
+                     //pmouse->m_point.y += (::i32)rectWindow.top;
+                     pmouse->m_point.y += (::i32)rcMonitor.top;
 
                   }
 
@@ -2374,11 +2278,9 @@ namespace user
 
          }
 
-         auto puser = psession->user();
+         auto pwindowing = windowing();
 
-         auto pwindowing = puser->windowing();
-
-         pwindowing->set(pmouse, get_oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
+         pwindowing->set(pmouse, oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
          if (pmessage->m_atom == e_message_mouse_move)
          {
@@ -2681,12 +2583,7 @@ namespace user
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          auto pcursor = pwindowing->get_cursor(e_cursor_default);
 
          pmouse->m_pcursor = pcursor;
@@ -2717,12 +2614,7 @@ namespace user
          // So the procedure starts by setting to the default cursor,
          // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
          // handler has set it to another one.
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
+         auto pwindowing = windowing();
          auto pcursor = pwindowing->get_cursor(e_cursor_default);
 
          pmouse->m_pcursor = pcursor;
@@ -3614,7 +3506,7 @@ namespace user
 
       }
 
-      auto oswindow = pwindow->get_oswindow();
+      auto oswindow = pwindow->oswindow();
 
       if(!oswindow)
       {
@@ -3994,12 +3886,12 @@ namespace user
    }
 
 
-   ::windowing::window * interaction_impl::get_window() const
-   {
+   //::windowing::window * interaction_impl::get_window() const
+   //{
 
-      return m_pwindow;
+   //   return m_pwindow;
 
-   }
+   //}
 
 
    //void interaction_impl::set_mouse_cursor(enum_cursor ecursor)
@@ -4486,11 +4378,7 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      m_pwindowing = puser->windowing();
+      m_pwindowing = m_puserinteraction->windowing();
 
       if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
       {
@@ -4790,6 +4678,14 @@ namespace user
 
       }
 
+#if TIME_REPORTING
+
+      ::duration durationStart;
+
+      durationStart.Now();
+
+#endif
+
       ::rectangle_i32 rectangleWindow;
 
       m_puserinteraction->get_window_rect(rectangleWindow);
@@ -4807,15 +4703,41 @@ namespace user
 
       {
 
+         ::draw2d::lock draw2dlock(this);
+
          ::size_i32 sizeDrawn;
 
+         //single_lock synchronouslockObjects(m_psystem->m_paurasystem->draw2d()->get_object_list_mutex());
+
+         //if (!synchronouslockObjects.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
+         //single_lock synchronouslockImages(m_psystem->m_paurasystem->draw2d()->get_image_list_mutex());
+
+         //if (!synchronouslockImages.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
+         //single_lock synchronouslockGraphicsContext(m_psystem->m_paurasystem->draw2d()->get_graphics_context_list_mutex());
+
+         //if (!synchronouslockGraphicsContext.lock(0_s))
+         //{
+
+         //   return;
+
+         //}
          _synchronous_lock slGraphics(m_pgraphics->mutex());
 
          ::synchronization_object * psync = m_pgraphics->get_buffer_sync();
 
          _synchronous_lock synchronouslock(psync);
 
-         windowing::graphics_lock graphicslock(m_pwindow);
+         //windowing::graphics_lock graphicslock(m_pwindow);
 
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
@@ -4933,6 +4855,14 @@ namespace user
          }
 
       }
+
+#if TIME_REPORTING
+
+      auto elapsed = durationStart.elapsed();
+
+      output_debug_string("_001UpdateBuffer "+__string(elapsed.floating_millisecond().m_d) + "ms\n");
+
+#endif
 
    }
 
@@ -5491,19 +5421,19 @@ namespace user
    //}
 
 
-   oswindow interaction_impl::get_oswindow() const
-   {
-       
-      if(!m_pwindow)
-      {
-         
-         return nullptr;
-         
-      }
+   //oswindow interaction_impl::get_oswindow() const
+   //{
+   //    
+   //   if(!m_pwindow)
+   //   {
+   //      
+   //      return nullptr;
+   //      
+   //   }
 
-      return (oswindow) m_pwindow->get_oswindow();
+   //   return (oswindow) m_pwindow->oswindow();
 
-   }
+   //}
 
 
    bool interaction_impl::is_composite()
@@ -5552,7 +5482,7 @@ namespace user
    bool interaction_impl::on_keyboard_focus(::user::primitive* pfocus)
    {
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = windowing();
 
       auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -5569,7 +5499,7 @@ namespace user
 
          pfocus->_001GetText(strText);
 
-         auto pwindowing = m_puserinteraction->windowing();
+         auto pwindowing = windowing();
 
          auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -5631,12 +5561,12 @@ namespace user
    }
 
 
-   bool interaction_impl::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool interaction_impl::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
    {
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnKillFocus() (1) \n");
 
-//      auto pwindowing = m_puserinteraction->windowing();
+//      auto pwindowing = windowing();
 //
 //      auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 //
@@ -5672,7 +5602,7 @@ namespace user
 
       output_debug_string("::android::interaction_impl::keyboard_focus_OnChildKillFocus() (2) \n");
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = windowing();
 
       auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
@@ -6524,11 +6454,9 @@ namespace user
 
          psession->m_pimplPendingFocus2 = nullptr;
 
-         auto puser = psession->user();
+         auto pwindowing = windowing();
 
-         auto pwindowing = puser->windowing();
-
-         oswindow oswindow = pimplFocus->get_oswindow();
+         ::oswindow oswindow = pimplFocus->oswindow();
 
          if (pimplFocus == this)
          {
@@ -7414,7 +7342,6 @@ namespace user
       auto pdataSource = pimageSource->get_data();
 
       auto scanSource = pimageSource->m_iScan;
-
 
 #ifdef __i386__
 

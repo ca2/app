@@ -73,10 +73,13 @@ namespace filemanager
 
       ::file::item * filemanager_item();
 
-      virtual void _001GetItemImage(::user::mesh_item * pitem) override;
       virtual void _001CreateImageList(::user::list_column * column) override;
       virtual void browse_sync(const ::action_context & action_context) override;
-      virtual void _001GetItemText(::user::mesh_item * pitem) override;
+
+      void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
+      void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
+
+
       virtual count _001GetItemCount() override;
       virtual void _001InsertColumns() override;
 

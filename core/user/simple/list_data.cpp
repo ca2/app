@@ -7,35 +7,58 @@ simple_list_data::simple_list_data()
    m_bEnable = true;
 }
 
+
 simple_list_data::~simple_list_data()
 {
 
 }
 
-void simple_list_data::_001GetItemText(::user::mesh_item * pitem)
+
+void simple_list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 {
 
-   if(!m_bEnable)
-      return_(pitem->m_bOk,false);
+   if (!m_bEnable)
+   {
+    
+      return_(psubitem->m_bOk, false);
 
-   if(pitem->m_iSubItem < 0)
-      return_(pitem->m_bOk,false);
+   }
 
-   if(pitem->m_iSubItem >= m_array.get_size())
-      return_(pitem->m_bOk,false);
+   if (psubitem->m_iSubItem < 0)
+   {
 
-   string_array & stra = m_array(pitem->m_iSubItem);
+      return_(psubitem->m_bOk, false);
 
-   if(pitem->m_iItem < 0)
-      return_(pitem->m_bOk,false);
+   }
 
-   if(pitem->m_iItem >= stra.get_size())
-      return_(pitem->m_bOk,false);
+   if (psubitem->m_iSubItem >= m_array.get_size())
+   {
+    
+      return_(psubitem->m_bOk, false);
 
+   }
 
-   pitem->m_strText = stra.element_at(pitem->m_iItem);
+   string_array & stra = m_array(psubitem->m_iSubItem);
 
-   pitem->m_bOk = true;
+   auto pitem = psubitem->m_pitem;
+
+   if (pitem->m_iItem < 0)
+   {
+
+      return_(psubitem->m_bOk, false);
+
+   }
+
+   if (pitem->m_iItem >= stra.get_size())
+   {
+
+      return_(psubitem->m_bOk, false);
+
+   }
+
+   psubitem->m_strText = stra.element_at(pitem->m_iItem);
+
+   psubitem->m_bOk = true;
 
 
 }

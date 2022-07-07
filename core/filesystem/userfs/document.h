@@ -21,10 +21,10 @@ namespace userfs
 
 
       document();
-      virtual ~document();
+      ~document() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
       ::user::document * get_document();
@@ -39,7 +39,7 @@ namespace userfs
       virtual bool browse(__pointer(::file::item) pitem, const ::action_context & action_context);
 
 
-      inline __pointer(::fs::set) fs_data() { return m_pfsset; }
+      inline ::fs::set * fs_data() { return m_pfsset; }
 
 
    };

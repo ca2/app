@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "netserver/_netserver.h"
 #include "_networking.h"
+#include "networking_application_socket.h"
 
 
 networking_application::networking_application()

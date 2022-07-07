@@ -256,7 +256,14 @@ i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & s
       // is this a known entity object?
       if (m_CharEntityRefs.lookup(strKey, chTemp))
       {
-         strChar = chTemp;
+         union
+         {
+            char sz[4];
+            wd32char wd32ch;
+            
+         } u{};
+         u.sz[0] = chTemp;
+         strChar = u.wd32ch;
          return (i32) (pszEnd - pszEntity + 1);
 
       }

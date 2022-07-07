@@ -107,45 +107,45 @@ namespace userfs
    }
 
 
-   void list_data::_001GetItemText(::user::mesh_item * pitem)
+   void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
 //      if(is_locked())
 //         return;
 
-      if(pitem->m_iSubItem == m_iNameSubItemText)
+      if(psubitem->m_iSubItem == m_iNameSubItemText)
       {
 
-         if (pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
             return;
 
          }
 
-         pitem->m_bOk = true;
+         psubitem->m_bOk = true;
 
          try
          {
 
-            pitem->m_strText = m_itema.get_item((::index) pitem->m_iItem)->m_strName;
+            psubitem->m_strText = m_itema.get_item((::index)psubitem->m_pitem->m_iItem)->m_strName;
 
          }
          catch (...)
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
          }
 
          return;
 
       }
-      else if(pitem->m_iSubItem == m_iSizeSubItem)
+      else if(psubitem->m_iSubItem == m_iSizeSubItem)
       {
          /*      bool bPendingSize = false;
 
@@ -184,19 +184,19 @@ namespace userfs
 
             //}
 
-            ::file::path & path = m_itema[pitem->m_iItem]->m_filepathFinal;
+            auto & path = m_itema[psubitem->m_pitem->m_iItem]->final_path_reference();
 
             if (path.m_iDir < 0)
             {
 
-               path.m_iDir = pcontext->m_papexcontext->dir().is(path) ? 1 : 0;
+               m_itema[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir().is(path) ? 1 : 0);
 
             }
 
             if (path.m_iDir > 0)
             {
 
-               pitem->m_strText.Empty();
+               psubitem->m_strText.Empty();
 
             }
             else
@@ -212,7 +212,7 @@ namespace userfs
                if (path.m_iSize >= 0)
                {
 
-                  pitem->m_strText = _001FileSizeText(path.m_iSize);
+                  psubitem->m_strText = _001FileSizeText(path.m_iSize);
 
                }
                else
@@ -228,19 +228,25 @@ namespace userfs
          catch (...)
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
          }
 
-         pitem->m_bOk = true;
+         psubitem->m_bOk = true;
+
          return;
+
       }
       //else if(m_bStatic)
       //{
       // return ::user::list::_001GetItemText(str, iItem, iSubItem, iListItem);
       //}
       else
-         return_(pitem->m_bOk, false);
+      {
+
+         return_(psubitem->m_bOk, false);
+
+      }
 
    }
 
@@ -259,46 +265,50 @@ namespace userfs
    }
 
 
-   void list_data::_001GetItemImage(::user::mesh_item * pitem)
+   void list_data::_001GetSubItemImage(::user::mesh_subitem * psubitem)
    {
 
       synchronous_lock synchronouslock(mutex());
-//      if(is_locked())
-      //return;
-      if(pitem->m_iSubItem == m_iNameSubItemText)
+
+      if(psubitem->m_iSubItem == m_iNameSubItemText)
       {
 
-         if (pitem->m_iItem < 0 || pitem->m_iItem >= m_itema.get_size())
+         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
             return;
 
          }
 
-         pitem->m_bOk = true;
+         psubitem->m_bOk = true;
 
          try
          {
 
-            ::file::path & pathFinal = m_itema.get_item((::index) pitem->m_iItem)->m_filepathFinal;
-
-            __pointer(::core::session) psession = get_session();
-
-            auto puser = psession->user();
-
-            pitem->m_iImage = puser->shell()->get_file_image(
-                              pathFinal,
-                              pathFinal.m_iDir == 1 ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
-                              ::user::shell::e_icon_normal);
-
-            if(pitem->m_iImage < 0)
+            if (psubitem->m_iImage < 0)
             {
 
+               auto & pathFinal = m_itema.get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
 
-               puser->shell()->warn_when_ok(pathFinal, {pitem->m_pmesh});
+               __pointer(::core::session) psession = get_session();
 
+               auto puser = psession->user();
+
+               psubitem->m_iImage = puser->shell()->get_file_image(
+                  pathFinal,
+                  pathFinal.m_iDir == 1 ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  ::user::shell::e_icon_normal);
+
+               if (psubitem->m_iImage < 0)
+               {
+
+
+                  puser->shell()->warn_when_ok(pathFinal, { psubitem->m_pitem->m_pmesh });
+
+
+               }
 
             }
 
@@ -306,7 +316,7 @@ namespace userfs
          catch (...)
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
          }
 
@@ -315,7 +325,9 @@ namespace userfs
       }
       else
       {
-         return_(pitem->m_bOk, false);
+
+         return_(psubitem->m_bOk, false);
+
       }
 
    }

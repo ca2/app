@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "data.h"
+
+
 namespace text
 {
 
@@ -20,7 +23,9 @@ namespace text
       text(data * ptextdata);
       ~text(); 
 
-      string get_text() const;
+      inline string get_text() const { return ::is_set(m_pdata) ? ((m_pdata->m_bPendingUpdate) ? defer_update_text() : m_pdata->m_str) : ::string(); }
+
+      string defer_update_text() const;
 
       void destroy();
 

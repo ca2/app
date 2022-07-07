@@ -70,12 +70,12 @@ namespace filemanager
    }
 
 
-   void folder_list_data::_001GetItemText(::user::mesh_item * pitem)
+   void folder_list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if(pitem->m_iSubItem == 0)
+      if(psubitem->m_iSubItem == 0)
       {
 
          string_array stra;
@@ -83,21 +83,21 @@ namespace filemanager
          if(!data_get(::atom(), stra))
          {
 
-            pitem->m_bOk = false;
+            psubitem->m_bOk = false;
 
             return;
 
          }
 
-         pitem->m_strText = stra[pitem->m_iItem];
+         psubitem->m_strText = stra[psubitem->m_pitem->m_iItem];
 
-         pitem->m_bOk = true;
+         psubitem->m_bOk = true;
 
       }
-      else if(pitem->m_iSubItem == 1)
+      else if(psubitem->m_iSubItem == 1)
       {
 
-         pitem->m_bOk = false; 
+         psubitem->m_bOk = false;
 
       }
 

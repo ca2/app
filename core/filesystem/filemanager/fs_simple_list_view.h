@@ -139,14 +139,14 @@ namespace filemanager
 
             void PostFillTask(string & strFile, uptr uiTimer);
 
-            virtual void _001OnSort() override;
+            void _001OnSort() override;
             bool GetSongPath(string & str, index iItem);
 
-            virtual void _001GetItemImage(::user::mesh_item * pitem) override;
-            virtual void _001InsertColumns() override;
-            virtual void _001GetItemText(::user::mesh_item * pitem) override;
-            virtual count _001GetItemCount() override;
-            virtual void _001SearchGetItemText(::user::mesh_item * pitem) override;
+            void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
+            void _001InsertColumns() override;
+            void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
+            count _001GetItemCount() override;
+            void _001SearchGetSubItemText(::user::mesh_subitem * psubitem) override;
 
             virtual void handle(::topic * ptopic, ::context * pcontext) override;
 

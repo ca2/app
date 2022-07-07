@@ -11,40 +11,41 @@ namespace user
    public:
 
 
-      bool                                   m_bColumnsAdded;
-      int                                    m_iImageSpacing;
-      bool                                   m_bMorePlain;
-      bool                                   m_bAutoCreateListHeader;
-      bool                                   m_bHeaderCtrl;
-      bool                                   m_bSingleColumnMode;
+      bool                                         m_bColumnsAdded;
+      int                                          m_iImageSpacing;
+      bool                                         m_bMorePlain;
+      bool                                         m_bAutoCreateListHeader;
+      bool                                         m_bHeaderCtrl;
+      bool                                         m_bSingleColumnMode;
 
-      __pointer(list_header)                 m_plistheader;
+      __pointer(list_header)                       m_plistheader;
 
-      draw_list_item *                       m_pdrawlistitem;
+      //index_map < __pointer(draw_list_item) >      m_mapDrawListGroup;
+      //index_map < __pointer(draw_list_subitem) >   m_mapDrawListSubitem;
 
-      ::user::list_column_array              m_columna;
+      ::user::list_column_array                    m_columna;
 
-      __pointer(simple_list_data)            m_psimplelistdata;
+      __pointer(simple_list_data)                  m_psimplelistdata;
 
 
-      ::draw2d::fastblur                     m_blur;
-      index_map < ::image_pointer >          m_mapBlur;
-      index_map < string >                   m_mapText;
+      ::draw2d::fastblur                           m_blur;
+      index_map < ::image_pointer >                m_mapBlur;
+      index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
-      ::draw2d::fastblur                     m_blurIcon;
-      index_map < ::image_pointer >          m_mapIconBlur;
-      double                                 m_dIconSaturation;
-      double                                 m_dIconLightness;
-      double                                 m_dIconOpacity;
-      int                                    m_iIconBlur;
-      int                                    m_iIconBlurRadius;
-      int                                    m_iTextSpreadRadius;
-      int                                    m_iTextBlurRadius;
-      int                                    m_iTextBlur;
-      ::rectangle_i32                                 m_rectangleSpot;
-      ::image_pointer                        m_pimageSpot;
-      ::image_pointer                        m_pimageTime;
-      bool                                   m_bHighHighLight;
+      ::draw2d::fastblur                           m_blurIcon;
+      index_map < ::image_pointer >                m_mapIconBlur;
+      double                                       m_dIconSaturation;
+      double                                       m_dIconLightness;
+      double                                       m_dIconOpacity;
+      int                                          m_iIconBlur;
+      int                                          m_iIconBlurRadius;
+      int                                          m_iTextSpreadRadius;
+      int                                          m_iTextBlurRadius;
+      int                                          m_iTextBlur;
+      ::rectangle_i32                              m_rectangleSpot;
+      ::image_pointer                              m_pimageSpot;
+      ::image_pointer                              m_pimageTime;
+      bool                                         m_bHighHighLight;
 
 
       list();
@@ -57,19 +58,24 @@ namespace user
 
 
 
-      i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
-      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
+      i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(EImpact eview);
       virtual ::e_draw_text get_draw_text_flags(EImpact eview);
 
+
+      
 
       //virtual ::index item_index(::user::interaction * pinteractionControl);
       virtual ::index subitem_index(::user::interaction * pinteractionControl);
       //virtual ::index list_item_index(::user::interaction * pinteractionControl);
       virtual ::index column_index(::user::interaction * pinteractionControl);
 
+      __pointer(mesh_item) & get_item(::index iItem) override;
+      __pointer(mesh_subitem) & get_subitem(mesh_item * pitem, ::index iSubItem) override;
 
+      using mesh::get_subitem;
 
       __pointer(list_column) new_list_column();
 
@@ -178,15 +184,17 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
+      //virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 
-      virtual void _001DrawGroup(draw_list_item * pdrawitem);
+      void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast) override;
 
-      virtual void _001DrawItems(draw_list_item * pdrawitem, index iItemFirst, index iItemLast);
+      virtual void _001DrawGroup(::draw2d::graphics_pointer & pgraphics, draw_list_group * pdrawgroup);
 
-      virtual void _001DrawItem(draw_list_item * pdrawitem);
+      void _001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast) override;
 
-      virtual void _001DrawSubItem(draw_list_item * pdrawitem);
+      virtual void _001DrawItem(::draw2d::graphics_pointer & pgraphics, draw_list_item * pdrawitem);
+
+      virtual void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem);
 
       //virtual void _001GetItemImage(list_item * pitem);
 
@@ -225,10 +233,11 @@ namespace user
       //virtual __pointer(list_column) new_column();
       virtual void _001OnAddColumn(list_column * pcolumn);
 
-      virtual void _001GetGroupRect(draw_list_item * pitem);
-      virtual void _001GetItemRect(draw_list_item * pitem);
-      virtual void _001GetSubItemRect(draw_list_item * pitem);
-      virtual void _001GetElementRect(draw_list_item * pitem, ::user::mesh::enum_element eelement);
+      virtual void _001GetGroupRect(draw_list_group * pdrawlistgroup);
+      virtual void _001GetItemRect(draw_list_item * pdrawlistitem);
+      virtual void _001GetSubItemRect(draw_list_subitem * pdrawlistsubitem);
+      virtual void _001GetElementRect(draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement);
+      virtual void _001GetGroupElementRect(draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement);
 
       virtual ::user::interaction * get_subitem_control(::index iSubItem);
 
@@ -236,7 +245,7 @@ namespace user
 
       bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
 
-      virtual void _001GetColumnWidth(draw_list_item * pdrawitem);
+      //virtual int _001GetColumnWidth(::index iColumn);
 
       index _001MapSubItemToOrder(index iSubItem) override;
 
@@ -276,7 +285,7 @@ namespace user
 
       bool get_auto_arrange() override;
 
-      void on_create_draw_item() override;
+      //void on_create_draw_item() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);

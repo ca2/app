@@ -39,14 +39,6 @@
 		9A1626D126F0041A003D9CB9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626A926F0041A003D9CB9 /* _.h */; };
 		9A1626D226F0041A003D9CB9 /* _sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AA26F0041A003D9CB9 /* _sockets.h */; };
 		9A1626D326F0041A003D9CB9 /* _networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AB26F0041A003D9CB9 /* _networking.h */; };
-		9A1626D426F0041A003D9CB9 /* _netserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AD26F0041A003D9CB9 /* _netserver.h */; };
-		9A1626D526F0041A003D9CB9 /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626AE26F0041A003D9CB9 /* socket_thread.cpp */; };
-		9A1626D626F0041A003D9CB9 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626AF26F0041A003D9CB9 /* socket.cpp */; };
-		9A1626D726F0041A003D9CB9 /* socket_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B026F0041A003D9CB9 /* socket_thread.h */; };
-		9A1626D826F0041A003D9CB9 /* socket_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B126F0041A003D9CB9 /* socket_handler.h */; };
-		9A1626D926F0041A003D9CB9 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626B226F0041A003D9CB9 /* socket_handler.cpp */; };
-		9A1626DA26F0041A003D9CB9 /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B326F0041A003D9CB9 /* socket.h */; };
-		9A1626DB26F0041A003D9CB9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B426F0041A003D9CB9 /* _.h */; };
 		9A1626DC26F0041A003D9CB9 /* email_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B526F0041A003D9CB9 /* email_department.h */; };
 		9A1626DD26F0041A003D9CB9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B626F0041A003D9CB9 /* _.h */; };
 		9A93B5862846EA94005ACD11 /* fftd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFA2748CC4B006BEBCC /* fftd.h */; };
@@ -116,19 +108,16 @@
 		9A93B5C82846EA94005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64006252A5BEB00BED5B8 /* _.h */; };
 		9A93B5C92846EA94005ACD11 /* policy_objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64458252A5BEE00BED5B8 /* policy_objcpp.h */; };
 		9A93B5CA2846EA94005ACD11 /* database_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A00E5EB26614F9400517464 /* database_impl.h */; };
-		9A93B5CB2846EA94005ACD11 /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B326F0041A003D9CB9 /* socket.h */; };
 		9A93B5CC2846EA94005ACD11 /* _sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AA26F0041A003D9CB9 /* _sockets.h */; };
 		9A93B5CD2846EA94005ACD11 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64060252A5BEB00BED5B8 /* application_common.h */; };
 		9A93B5CE2846EA94005ACD11 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC0252A5BE900BED5B8 /* console.h */; };
 		9A93B5CF2846EA94005ACD11 /* ajp_base_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16269C26F0041A003D9CB9 /* ajp_base_socket.h */; };
 		9A93B5D02846EA94005ACD11 /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63ECC252A5BE900BED5B8 /* const.h */; };
 		9A93B5D12846EA94005ACD11 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F83252A5BEA00BED5B8 /* _impl.h */; };
-		9A93B5D22846EA94005ACD11 /* networking_application_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E202748CE39006BEBCC /* networking_application_socket.h */; };
 		9A93B5D32846EA94005ACD11 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F5C252A5BEA00BED5B8 /* library.h */; };
 		9A93B5D42846EA94005ACD11 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64457252A5BEE00BED5B8 /* _c.h */; };
 		9A93B5D52846EA94005ACD11 /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64054252A5BEB00BED5B8 /* _console_old.h */; };
 		9A93B5D62846EA94005ACD11 /* storage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F01252A5BEA00BED5B8 /* storage.h */; };
-		9A93B5D72846EA94005ACD11 /* socket_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B126F0041A003D9CB9 /* socket_handler.h */; };
 		9A93B5D82846EA94005ACD11 /* thread_localdatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F02252A5BEA00BED5B8 /* thread_localdatabase.h */; };
 		9A93B5D92846EA94005ACD11 /* veiev_post.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63ED6252A5BE900BED5B8 /* veiev_post.h */; };
 		9A93B5DA2846EA94005ACD11 /* _features.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F8A252A5BEA00BED5B8 /* _features.h */; };
@@ -136,7 +125,6 @@
 		9A93B5DC2846EA94005ACD11 /* simpledb.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EFD252A5BE900BED5B8 /* simpledb.h */; };
 		9A93B5DD2846EA94005ACD11 /* water_routine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6444C252A5BEE00BED5B8 /* water_routine.h */; };
 		9A93B5DE2846EA94005ACD11 /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64446252A5BEE00BED5B8 /* const.h */; };
-		9A93B5DF2846EA94005ACD11 /* networking_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E232748CE3A006BEBCC /* networking_application.h */; };
 		9A93B5E02846EA94005ACD11 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64015252A5BEB00BED5B8 /* _user.h */; };
 		9A93B5E12846EA94005ACD11 /* department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64436252A5BEE00BED5B8 /* department.h */; };
 		9A93B5E22846EA94005ACD11 /* ievent_owner.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16269626F0041A003D9CB9 /* ievent_owner.h */; };
@@ -149,7 +137,6 @@
 		9A93B5E92846EA94005ACD11 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F6D252A5BEA00BED5B8 /* _c.h */; };
 		9A93B5EA2846EA94005ACD11 /* fft.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DF52748CC4B006BEBCC /* fft.h */; };
 		9A93B5EB2846EA94005ACD11 /* attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64000252A5BEB00BED5B8 /* attributes.h */; };
-		9A93B5EC2846EA94005ACD11 /* _netserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626AD26F0041A003D9CB9 /* _netserver.h */; };
 		9A93B5ED2846EA94005ACD11 /* product_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64420252A5BEE00BED5B8 /* product_array.h */; };
 		9A93B5EE2846EA94005ACD11 /* astr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F5E252A5BEA00BED5B8 /* astr.h */; };
 		9A93B5F02846EA94005ACD11 /* city.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FF3252A5BEB00BED5B8 /* city.h */; };
@@ -160,14 +147,12 @@
 		9A93B5F52846EA94005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626A926F0041A003D9CB9 /* _.h */; };
 		9A93B5F62846EA94005ACD11 /* openweather_city.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FB9252A5BEA00BED5B8 /* openweather_city.h */; };
 		9A93B5F72846EA94005ACD11 /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EF7252A5BE900BED5B8 /* item.h */; };
-		9A93B5F82846EA94005ACD11 /* socket_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B026F0041A003D9CB9 /* socket_thread.h */; };
 		9A93B5F92846EA94005ACD11 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EFE252A5BE900BED5B8 /* thread.h */; };
 		9A93B5FA2846EA94005ACD11 /* parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DED2748CC4B006BEBCC /* parser_exception.h */; };
 		9A93B5FB2846EA94005ACD11 /* update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FF8252A5BEB00BED5B8 /* update.h */; };
 		9A93B5FC2846EA94005ACD11 /* _mathematics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFF2748CC4B006BEBCC /* _mathematics.h */; };
 		9A93B5FD2846EA94005ACD11 /* database_composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A00E5EC26614F9400517464 /* database_composite.h */; };
 		9A93B5FE2846EA94005ACD11 /* user_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64441252A5BEE00BED5B8 /* user_array.h */; };
-		9A93B5FF2846EA94005ACD11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B426F0041A003D9CB9 /* _.h */; };
 		9A93B6002846EA94005ACD11 /* template.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63ECD252A5BE900BED5B8 /* template.h */; };
 		9A93B6012846EA94005ACD11 /* _defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63F24252A5BEA00BED5B8 /* _defer.h */; };
 		9A93B6022846EA94005ACD11 /* authenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64423252A5BEE00BED5B8 /* authenticator.h */; };
@@ -202,7 +187,6 @@
 		9A93B61F2846EA94005ACD11 /* scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DEC2748CC4B006BEBCC /* scanner.h */; };
 		9A93B6202846EA94005ACD11 /* html.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64009252A5BEB00BED5B8 /* html.h */; };
 		9A93B6212846EA94005ACD11 /* ievent_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16269526F0041A003D9CB9 /* ievent_handler.h */; };
-		9A93B6222846EA94005ACD11 /* networking_application_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E242748CE3A006BEBCC /* networking_application_handler.h */; };
 		9A93B6232846EA94005ACD11 /* slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6401A252A5BEB00BED5B8 /* slider.h */; };
 		9A93B6242846EA94005ACD11 /* policy_objc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64455252A5BEE00BED5B8 /* policy_objc.h */; };
 		9A93B6252846EA94005ACD11 /* system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63FCF252A5BEA00BED5B8 /* system.h */; };
@@ -217,7 +201,6 @@
 		9A93B62E2846EA94005ACD11 /* credentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6443A252A5BEE00BED5B8 /* credentials.h */; };
 		9A93B6302846EA94005ACD11 /* _simpledb.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EFF252A5BEA00BED5B8 /* _simpledb.h */; };
 		9A93B6322846EA94005ACD11 /* water_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6444D252A5BEE00BED5B8 /* water_routine.cpp */; };
-		9A93B6332846EA94005ACD11 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626B226F0041A003D9CB9 /* socket_handler.cpp */; };
 		9A93B6342846EA94005ACD11 /* tag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64001252A5BEB00BED5B8 /* tag.cpp */; };
 		9A93B6352846EA94005ACD11 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401D252A5BEB00BED5B8 /* user.cpp */; };
 		9A93B6362846EA94005ACD11 /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EC8252A5BE900BED5B8 /* database.cpp */; };
@@ -234,7 +217,6 @@
 		9A93B6412846EA94005ACD11 /* ifftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DFC2748CC4B006BEBCC /* ifftd.cpp */; };
 		9A93B6432846EA94005ACD11 /* database_composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5F026614F9400517464 /* database_composite.cpp */; };
 		9A93B6442846EA94005ACD11 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6443C252A5BEE00BED5B8 /* user.cpp */; };
-		9A93B6452846EA94005ACD11 /* networking_application_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E252748CE3A006BEBCC /* networking_application_handler.cpp */; };
 		9A93B6462846EA94005ACD11 /* parser_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE52748CC4B006BEBCC /* parser_exception.cpp */; };
 		9A93B6472846EA94005ACD11 /* reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64003252A5BEB00BED5B8 /* reader.cpp */; };
 		9A93B6482846EA94005ACD11 /* user_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64428252A5BEE00BED5B8 /* user_array.cpp */; };
@@ -245,7 +227,6 @@
 		9A93B64D2846EA94005ACD11 /* email_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16268A26F0041A003D9CB9 /* email_department.cpp */; };
 		9A93B64E2846EA94005ACD11 /* slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401F252A5BEB00BED5B8 /* slider.cpp */; };
 		9A93B64F2846EA94005ACD11 /* thread_localdatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EF6252A5BE900BED5B8 /* thread_localdatabase.cpp */; };
-		9A93B6502846EA94005ACD11 /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626AE26F0041A003D9CB9 /* socket_thread.cpp */; };
 		9A93B6512846EA94005ACD11 /* simpledb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63F00252A5BEA00BED5B8 /* simpledb.cpp */; };
 		9A93B6522846EA94005ACD11 /* attributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64005252A5BEB00BED5B8 /* attributes.cpp */; };
 		9A93B6562846EA94005ACD11 /* geo_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC6252A5BEA00BED5B8 /* geo_department.cpp */; };
@@ -265,16 +246,13 @@
 		9A93B6652846EA94005ACD11 /* interactive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64432252A5BEE00BED5B8 /* interactive.cpp */; };
 		9A93B6662846EA94005ACD11 /* credentials.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64434252A5BEE00BED5B8 /* credentials.cpp */; };
 		9A93B6672846EA94005ACD11 /* dataset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63ECB252A5BE900BED5B8 /* dataset.cpp */; };
-		9A93B6682846EA94005ACD11 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626AF26F0041A003D9CB9 /* socket.cpp */; };
 		9A93B6692846EA94005ACD11 /* file_set.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EFB252A5BE900BED5B8 /* file_set.cpp */; };
 		9A93B66B2846EA94005ACD11 /* calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DE72748CC4B006BEBCC /* calculator.cpp */; };
 		9A93B66C2846EA94005ACD11 /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EFA252A5BE900BED5B8 /* storage.cpp */; };
 		9A93B66D2846EA94005ACD11 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63FC1252A5BEA00BED5B8 /* system.cpp */; };
 		9A93B66E2846EA94005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE64077252A5BEB00BED5B8 /* _.cpp */; };
-		9A93B6702846EA94005ACD11 /* networking_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E222748CE39006BEBCC /* networking_application.cpp */; };
 		9A93B6712846EA94005ACD11 /* result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DEE2748CC4B006BEBCC /* result.cpp */; };
 		9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01DF62748CC4B006BEBCC /* fftd.cpp */; };
-		9A93B6732846EA94005ACD11 /* networking_application_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E212748CE39006BEBCC /* networking_application_socket.cpp */; };
 		9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1626A626F0041A003D9CB9 /* smtp_socket.cpp */; };
 		9A93B6752846EA94005ACD11 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE63EF9252A5BE900BED5B8 /* item.cpp */; };
 		9A93B6762846EA94005ACD11 /* database_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5EF26614F9400517464 /* database_impl.cpp */; };
@@ -322,12 +300,6 @@
 		9AC01E1D2748CC4C006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFE2748CC4B006BEBCC /* _.h */; };
 		9AC01E1E2748CC4C006BEBCC /* _mathematics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFF2748CC4B006BEBCC /* _mathematics.h */; };
 		9AC01E1F2748CC4C006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E002748CC4B006BEBCC /* _.h */; };
-		9AC01E262748CE3A006BEBCC /* networking_application_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E202748CE39006BEBCC /* networking_application_socket.h */; };
-		9AC01E272748CE3A006BEBCC /* networking_application_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E212748CE39006BEBCC /* networking_application_socket.cpp */; };
-		9AC01E282748CE3A006BEBCC /* networking_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E222748CE39006BEBCC /* networking_application.cpp */; };
-		9AC01E292748CE3A006BEBCC /* networking_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E232748CE3A006BEBCC /* networking_application.h */; };
-		9AC01E2A2748CE3A006BEBCC /* networking_application_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E242748CE3A006BEBCC /* networking_application_handler.h */; };
-		9AC01E2B2748CE3B006BEBCC /* networking_application_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC01E252748CE3A006BEBCC /* networking_application_handler.cpp */; };
 		9AE64461252A5BEF00BED5B8 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EBF252A5BE900BED5B8 /* procedure.h */; };
 		9AE64462252A5BEF00BED5B8 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC0252A5BE900BED5B8 /* console.h */; };
 		9AE64463252A5BEF00BED5B8 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC3252A5BE900BED5B8 /* _impl.h */; };
@@ -575,14 +547,6 @@
 		9A1626A926F0041A003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A1626AA26F0041A003D9CB9 /* _sockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _sockets.h; sourceTree = "<group>"; };
 		9A1626AB26F0041A003D9CB9 /* _networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _networking.h; sourceTree = "<group>"; };
-		9A1626AD26F0041A003D9CB9 /* _netserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _netserver.h; sourceTree = "<group>"; };
-		9A1626AE26F0041A003D9CB9 /* socket_thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_thread.cpp; sourceTree = "<group>"; };
-		9A1626AF26F0041A003D9CB9 /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket.cpp; sourceTree = "<group>"; };
-		9A1626B026F0041A003D9CB9 /* socket_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_thread.h; sourceTree = "<group>"; };
-		9A1626B126F0041A003D9CB9 /* socket_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_handler.h; sourceTree = "<group>"; };
-		9A1626B226F0041A003D9CB9 /* socket_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_handler.cpp; sourceTree = "<group>"; };
-		9A1626B326F0041A003D9CB9 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
-		9A1626B426F0041A003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A1626B526F0041A003D9CB9 /* email_department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = email_department.h; sourceTree = "<group>"; };
 		9A1626B626F0041A003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A93B6912846EA94005ACD11 /* libios_axis.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axis.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -615,12 +579,6 @@
 		9AC01DFE2748CC4B006BEBCC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC01DFF2748CC4B006BEBCC /* _mathematics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _mathematics.h; sourceTree = "<group>"; };
 		9AC01E002748CC4B006BEBCC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AC01E202748CE39006BEBCC /* networking_application_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application_socket.h; sourceTree = "<group>"; };
-		9AC01E212748CE39006BEBCC /* networking_application_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application_socket.cpp; sourceTree = "<group>"; };
-		9AC01E222748CE39006BEBCC /* networking_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application.cpp; sourceTree = "<group>"; };
-		9AC01E232748CE3A006BEBCC /* networking_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application.h; sourceTree = "<group>"; };
-		9AC01E242748CE3A006BEBCC /* networking_application_handler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking_application_handler.h; sourceTree = "<group>"; };
-		9AC01E252748CE3A006BEBCC /* networking_application_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking_application_handler.cpp; sourceTree = "<group>"; };
 		9AE63E9B252A5B7800BED5B8 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9AE63EBF252A5BE900BED5B8 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
@@ -820,19 +778,12 @@
 		9A16268826F0041A003D9CB9 /* networking */ = {
 			isa = PBXGroup;
 			children = (
-				9A1626AC26F0041A003D9CB9 /* netserver */,
 				9A16268B26F0041A003D9CB9 /* sockets */,
 				9A1626B626F0041A003D9CB9 /* _.h */,
 				9A16268926F0041A003D9CB9 /* _impl.h */,
 				9A1626AB26F0041A003D9CB9 /* _networking.h */,
 				9A16268A26F0041A003D9CB9 /* email_department.cpp */,
 				9A1626B526F0041A003D9CB9 /* email_department.h */,
-				9AC01E252748CE3A006BEBCC /* networking_application_handler.cpp */,
-				9AC01E242748CE3A006BEBCC /* networking_application_handler.h */,
-				9AC01E212748CE39006BEBCC /* networking_application_socket.cpp */,
-				9AC01E202748CE39006BEBCC /* networking_application_socket.h */,
-				9AC01E222748CE39006BEBCC /* networking_application.cpp */,
-				9AC01E232748CE3A006BEBCC /* networking_application.h */,
 			);
 			path = networking;
 			sourceTree = "<group>";
@@ -898,21 +849,6 @@
 				9A1626A726F0041A003D9CB9 /* smtpd_socket.h */,
 			);
 			path = smtp;
-			sourceTree = "<group>";
-		};
-		9A1626AC26F0041A003D9CB9 /* netserver */ = {
-			isa = PBXGroup;
-			children = (
-				9A1626B426F0041A003D9CB9 /* _.h */,
-				9A1626AD26F0041A003D9CB9 /* _netserver.h */,
-				9A1626B226F0041A003D9CB9 /* socket_handler.cpp */,
-				9A1626B126F0041A003D9CB9 /* socket_handler.h */,
-				9A1626AE26F0041A003D9CB9 /* socket_thread.cpp */,
-				9A1626B026F0041A003D9CB9 /* socket_thread.h */,
-				9A1626AF26F0041A003D9CB9 /* socket.cpp */,
-				9A1626B326F0041A003D9CB9 /* socket.h */,
-			);
-			path = netserver;
 			sourceTree = "<group>";
 		};
 		9AC01DDE2748CC4B006BEBCC /* constant */ = {
@@ -1411,19 +1347,16 @@
 				9A93B5C82846EA94005ACD11 /* _.h in Headers */,
 				9A93B5C92846EA94005ACD11 /* policy_objcpp.h in Headers */,
 				9A93B5CA2846EA94005ACD11 /* database_impl.h in Headers */,
-				9A93B5CB2846EA94005ACD11 /* socket.h in Headers */,
 				9A93B5CC2846EA94005ACD11 /* _sockets.h in Headers */,
 				9A93B5CD2846EA94005ACD11 /* application_common.h in Headers */,
 				9A93B5CE2846EA94005ACD11 /* console.h in Headers */,
 				9A93B5CF2846EA94005ACD11 /* ajp_base_socket.h in Headers */,
 				9A93B5D02846EA94005ACD11 /* const.h in Headers */,
 				9A93B5D12846EA94005ACD11 /* _impl.h in Headers */,
-				9A93B5D22846EA94005ACD11 /* networking_application_socket.h in Headers */,
 				9A93B5D32846EA94005ACD11 /* library.h in Headers */,
 				9A93B5D42846EA94005ACD11 /* _c.h in Headers */,
 				9A93B5D52846EA94005ACD11 /* _console_old.h in Headers */,
 				9A93B5D62846EA94005ACD11 /* storage.h in Headers */,
-				9A93B5D72846EA94005ACD11 /* socket_handler.h in Headers */,
 				9A93B5D82846EA94005ACD11 /* thread_localdatabase.h in Headers */,
 				9A93B5D92846EA94005ACD11 /* veiev_post.h in Headers */,
 				9A93B5DA2846EA94005ACD11 /* _features.h in Headers */,
@@ -1431,7 +1364,6 @@
 				9A93B5DC2846EA94005ACD11 /* simpledb.h in Headers */,
 				9A93B5DD2846EA94005ACD11 /* water_routine.h in Headers */,
 				9A93B5DE2846EA94005ACD11 /* const.h in Headers */,
-				9A93B5DF2846EA94005ACD11 /* networking_application.h in Headers */,
 				9A93B5E02846EA94005ACD11 /* _user.h in Headers */,
 				9A93B5E12846EA94005ACD11 /* department.h in Headers */,
 				9A93B5E22846EA94005ACD11 /* ievent_owner.h in Headers */,
@@ -1444,7 +1376,6 @@
 				9A93B5E92846EA94005ACD11 /* _c.h in Headers */,
 				9A93B5EA2846EA94005ACD11 /* fft.h in Headers */,
 				9A93B5EB2846EA94005ACD11 /* attributes.h in Headers */,
-				9A93B5EC2846EA94005ACD11 /* _netserver.h in Headers */,
 				9A93B5ED2846EA94005ACD11 /* product_array.h in Headers */,
 				9A93B5EE2846EA94005ACD11 /* astr.h in Headers */,
 				9A93B5F02846EA94005ACD11 /* city.h in Headers */,
@@ -1455,14 +1386,12 @@
 				9A93B5F52846EA94005ACD11 /* _.h in Headers */,
 				9A93B5F62846EA94005ACD11 /* openweather_city.h in Headers */,
 				9A93B5F72846EA94005ACD11 /* item.h in Headers */,
-				9A93B5F82846EA94005ACD11 /* socket_thread.h in Headers */,
 				9A93B5F92846EA94005ACD11 /* thread.h in Headers */,
 				9A93B5FA2846EA94005ACD11 /* parser_exception.h in Headers */,
 				9A93B5FB2846EA94005ACD11 /* update.h in Headers */,
 				9A93B5FC2846EA94005ACD11 /* _mathematics.h in Headers */,
 				9A93B5FD2846EA94005ACD11 /* database_composite.h in Headers */,
 				9A93B5FE2846EA94005ACD11 /* user_array.h in Headers */,
-				9A93B5FF2846EA94005ACD11 /* _.h in Headers */,
 				9A93B6002846EA94005ACD11 /* template.h in Headers */,
 				9A93B6012846EA94005ACD11 /* _defer.h in Headers */,
 				9A93B6022846EA94005ACD11 /* authenticator.h in Headers */,
@@ -1497,7 +1426,6 @@
 				9A93B61F2846EA94005ACD11 /* scanner.h in Headers */,
 				9A93B6202846EA94005ACD11 /* html.h in Headers */,
 				9A93B6212846EA94005ACD11 /* ievent_handler.h in Headers */,
-				9A93B6222846EA94005ACD11 /* networking_application_handler.h in Headers */,
 				9A93B6232846EA94005ACD11 /* slider.h in Headers */,
 				9A93B6242846EA94005ACD11 /* policy_objc.h in Headers */,
 				9A93B6252846EA94005ACD11 /* system.h in Headers */,
@@ -1585,19 +1513,16 @@
 				9AE64564252A5BF100BED5B8 /* _.h in Headers */,
 				9AE6493E252A5BF700BED5B8 /* policy_objcpp.h in Headers */,
 				9A00E5F126614F9400517464 /* database_impl.h in Headers */,
-				9A1626DA26F0041A003D9CB9 /* socket.h in Headers */,
 				9A1626D226F0041A003D9CB9 /* _sockets.h in Headers */,
 				9AE645B1252A5BF200BED5B8 /* application_common.h in Headers */,
 				9AE64462252A5BEF00BED5B8 /* console.h in Headers */,
 				9A1626C626F0041A003D9CB9 /* ajp_base_socket.h in Headers */,
 				9AE6446C252A5BEF00BED5B8 /* const.h in Headers */,
 				9AE644EF252A5BF000BED5B8 /* _impl.h in Headers */,
-				9AC01E262748CE3A006BEBCC /* networking_application_socket.h in Headers */,
 				9AE644D9252A5BF000BED5B8 /* library.h in Headers */,
 				9AE6493D252A5BF700BED5B8 /* _c.h in Headers */,
 				9AE645A7252A5BF100BED5B8 /* _console_old.h in Headers */,
 				9AE6449E252A5BEF00BED5B8 /* storage.h in Headers */,
-				9A1626D826F0041A003D9CB9 /* socket_handler.h in Headers */,
 				9AE6449F252A5BF000BED5B8 /* thread_localdatabase.h in Headers */,
 				9AE64474252A5BEF00BED5B8 /* veiev_post.h in Headers */,
 				9AE644F5252A5BF000BED5B8 /* _features.h in Headers */,
@@ -1605,7 +1530,6 @@
 				9AE6449A252A5BEF00BED5B8 /* simpledb.h in Headers */,
 				9AE64935252A5BF700BED5B8 /* water_routine.h in Headers */,
 				9AE64932252A5BF700BED5B8 /* const.h in Headers */,
-				9AC01E292748CE3A006BEBCC /* networking_application.h in Headers */,
 				9AE64571252A5BF100BED5B8 /* _user.h in Headers */,
 				9AE64924252A5BF700BED5B8 /* department.h in Headers */,
 				9A1626C126F0041A003D9CB9 /* ievent_owner.h in Headers */,
@@ -1618,7 +1542,6 @@
 				9AE644DF252A5BF000BED5B8 /* _c.h in Headers */,
 				9AC01E142748CC4C006BEBCC /* fft.h in Headers */,
 				9AE6455E252A5BF100BED5B8 /* attributes.h in Headers */,
-				9A1626D426F0041A003D9CB9 /* _netserver.h in Headers */,
 				9AE6490E252A5BF700BED5B8 /* product_array.h in Headers */,
 				9AE644DA252A5BF000BED5B8 /* astr.h in Headers */,
 				9AE64555252A5BF100BED5B8 /* city.h in Headers */,
@@ -1629,14 +1552,12 @@
 				9A1626D126F0041A003D9CB9 /* _.h in Headers */,
 				9AE64523252A5BF000BED5B8 /* openweather_city.h in Headers */,
 				9AE64494252A5BEF00BED5B8 /* item.h in Headers */,
-				9A1626D726F0041A003D9CB9 /* socket_thread.h in Headers */,
 				9AE6449B252A5BEF00BED5B8 /* thread.h in Headers */,
 				9AC01E0D2748CC4C006BEBCC /* parser_exception.h in Headers */,
 				9AE6455A252A5BF100BED5B8 /* update.h in Headers */,
 				9AC01E1E2748CC4C006BEBCC /* _mathematics.h in Headers */,
 				9A00E5F226614F9400517464 /* database_composite.h in Headers */,
 				9AE6492D252A5BF700BED5B8 /* user_array.h in Headers */,
-				9A1626DB26F0041A003D9CB9 /* _.h in Headers */,
 				9AE6446D252A5BEF00BED5B8 /* template.h in Headers */,
 				9AE644B2252A5BF000BED5B8 /* _defer.h in Headers */,
 				9AE64911252A5BF700BED5B8 /* authenticator.h in Headers */,
@@ -1671,7 +1592,6 @@
 				9AC01E0C2748CC4C006BEBCC /* scanner.h in Headers */,
 				9AE64566252A5BF100BED5B8 /* html.h in Headers */,
 				9A1626C026F0041A003D9CB9 /* ievent_handler.h in Headers */,
-				9AC01E2A2748CE3A006BEBCC /* networking_application_handler.h in Headers */,
 				9AE64576252A5BF100BED5B8 /* slider.h in Headers */,
 				9AE6493B252A5BF700BED5B8 /* policy_objc.h in Headers */,
 				9AE64536252A5BF100BED5B8 /* system.h in Headers */,
@@ -1795,7 +1715,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A93B6322846EA94005ACD11 /* water_routine.cpp in Sources */,
-				9A93B6332846EA94005ACD11 /* socket_handler.cpp in Sources */,
 				9A93B6342846EA94005ACD11 /* tag.cpp in Sources */,
 				9A93B6352846EA94005ACD11 /* user.cpp in Sources */,
 				9A93B6362846EA94005ACD11 /* database.cpp in Sources */,
@@ -1812,7 +1731,6 @@
 				9A93B6412846EA94005ACD11 /* ifftd.cpp in Sources */,
 				9A93B6432846EA94005ACD11 /* database_composite.cpp in Sources */,
 				9A93B6442846EA94005ACD11 /* user.cpp in Sources */,
-				9A93B6452846EA94005ACD11 /* networking_application_handler.cpp in Sources */,
 				9A93B6462846EA94005ACD11 /* parser_exception.cpp in Sources */,
 				9A93B6472846EA94005ACD11 /* reader.cpp in Sources */,
 				9A93B6482846EA94005ACD11 /* user_array.cpp in Sources */,
@@ -1823,7 +1741,6 @@
 				9A93B64D2846EA94005ACD11 /* email_department.cpp in Sources */,
 				9A93B64E2846EA94005ACD11 /* slider.cpp in Sources */,
 				9A93B64F2846EA94005ACD11 /* thread_localdatabase.cpp in Sources */,
-				9A93B6502846EA94005ACD11 /* socket_thread.cpp in Sources */,
 				9A93B6512846EA94005ACD11 /* simpledb.cpp in Sources */,
 				9A93B6522846EA94005ACD11 /* attributes.cpp in Sources */,
 				9A93B6562846EA94005ACD11 /* geo_department.cpp in Sources */,
@@ -1843,16 +1760,13 @@
 				9A93B6652846EA94005ACD11 /* interactive.cpp in Sources */,
 				9A93B6662846EA94005ACD11 /* credentials.cpp in Sources */,
 				9A93B6672846EA94005ACD11 /* dataset.cpp in Sources */,
-				9A93B6682846EA94005ACD11 /* socket.cpp in Sources */,
 				9A93B6692846EA94005ACD11 /* file_set.cpp in Sources */,
 				9A93B66B2846EA94005ACD11 /* calculator.cpp in Sources */,
 				9A93B66C2846EA94005ACD11 /* storage.cpp in Sources */,
 				9A93B66D2846EA94005ACD11 /* system.cpp in Sources */,
 				9A93B66E2846EA94005ACD11 /* _.cpp in Sources */,
-				9A93B6702846EA94005ACD11 /* networking_application.cpp in Sources */,
 				9A93B6712846EA94005ACD11 /* result.cpp in Sources */,
 				9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */,
-				9A93B6732846EA94005ACD11 /* networking_application_socket.cpp in Sources */,
 				9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */,
 				9A93B6752846EA94005ACD11 /* item.cpp in Sources */,
 				9A93B6762846EA94005ACD11 /* database_impl.cpp in Sources */,
@@ -1879,7 +1793,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE64936252A5BF700BED5B8 /* water_routine.cpp in Sources */,
-				9A1626D926F0041A003D9CB9 /* socket_handler.cpp in Sources */,
 				9AE6455F252A5BF100BED5B8 /* tag.cpp in Sources */,
 				9AE64579252A5BF100BED5B8 /* user.cpp in Sources */,
 				9AE64468252A5BEF00BED5B8 /* database.cpp in Sources */,
@@ -1896,7 +1809,6 @@
 				9AC01E1B2748CC4C006BEBCC /* ifftd.cpp in Sources */,
 				9A00E5F626614F9400517464 /* database_composite.cpp in Sources */,
 				9AE64929252A5BF700BED5B8 /* user.cpp in Sources */,
-				9AC01E2B2748CE3B006BEBCC /* networking_application_handler.cpp in Sources */,
 				9AC01E052748CC4C006BEBCC /* parser_exception.cpp in Sources */,
 				9AE64561252A5BF100BED5B8 /* reader.cpp in Sources */,
 				9AE64916252A5BF700BED5B8 /* user_array.cpp in Sources */,
@@ -1907,7 +1819,6 @@
 				9A1626B826F0041A003D9CB9 /* email_department.cpp in Sources */,
 				9AE6457B252A5BF100BED5B8 /* slider.cpp in Sources */,
 				9AE64493252A5BEF00BED5B8 /* thread_localdatabase.cpp in Sources */,
-				9A1626D526F0041A003D9CB9 /* socket_thread.cpp in Sources */,
 				9AE6449D252A5BEF00BED5B8 /* simpledb.cpp in Sources */,
 				9AE64563252A5BF100BED5B8 /* attributes.cpp in Sources */,
 				9AE6452E252A5BF100BED5B8 /* geo_department.cpp in Sources */,
@@ -1927,16 +1838,13 @@
 				9AE64920252A5BF700BED5B8 /* interactive.cpp in Sources */,
 				9AE64922252A5BF700BED5B8 /* credentials.cpp in Sources */,
 				9AE6446B252A5BEF00BED5B8 /* dataset.cpp in Sources */,
-				9A1626D626F0041A003D9CB9 /* socket.cpp in Sources */,
 				9AE64498252A5BEF00BED5B8 /* file_set.cpp in Sources */,
 				9AC01E072748CC4C006BEBCC /* calculator.cpp in Sources */,
 				9AE64497252A5BEF00BED5B8 /* storage.cpp in Sources */,
 				9AE6452A252A5BF000BED5B8 /* system.cpp in Sources */,
 				9AE645C6252A5BF200BED5B8 /* _.cpp in Sources */,
-				9AC01E282748CE3A006BEBCC /* networking_application.cpp in Sources */,
 				9AC01E0E2748CC4C006BEBCC /* result.cpp in Sources */,
 				9AC01E152748CC4C006BEBCC /* fftd.cpp in Sources */,
-				9AC01E272748CE3A006BEBCC /* networking_application_socket.cpp in Sources */,
 				9A1626CE26F0041A003D9CB9 /* smtp_socket.cpp in Sources */,
 				9AE64496252A5BEF00BED5B8 /* item.cpp in Sources */,
 				9A00E5F526614F9400517464 /* database_impl.cpp in Sources */,

@@ -83,3 +83,18 @@ namespace net
 
 
 
+class networking_application_socket;
+
+
+#include "apex/networking/netserver/_.h"
+
+
+#include "networking_application_handler.h"
+
+
+#include "networking_application.h"
+
+
+
+
+

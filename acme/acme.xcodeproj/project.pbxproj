@@ -222,6 +222,10 @@
 		9A16260626EFCD6A003D9CB9 /* install_mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16260326EFCD69003D9CB9 /* install_mutex.h */; };
 		9A16260726EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
 		9A16260826EFCD6A003D9CB9 /* install_mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16260426EFCD69003D9CB9 /* install_mutex.cpp */; };
+		9A1FB4CF2870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
+		9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
+		9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */; };
+		9A1FB4D22870DE460042849A /* _main_hold_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */; };
 		9A220F09251A1993002B42B7 /* printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A220EA7251A1993002B42B7 /* printf.cpp */; };
 		9A220F66251A1993002B42B7 /* printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F06251A1993002B42B7 /* printf.h */; };
 		9A22670A27CDDD9C0042BAC2 /* popup_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670727CDDD9C0042BAC2 /* popup_button.cpp */; };
@@ -2458,6 +2462,8 @@
 		9A1625F726EFCCC0003D9CB9 /* streamable_composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streamable_composite.h; sourceTree = "<group>"; };
 		9A16260326EFCD69003D9CB9 /* install_mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = install_mutex.h; sourceTree = "<group>"; };
 		9A16260426EFCD69003D9CB9 /* install_mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = install_mutex.cpp; sourceTree = "<group>"; };
+		9A1FB4CD2870DE460042849A /* _main_hold_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _main_hold_base.h; sourceTree = "<group>"; };
+		9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main_hold_base.cpp; sourceTree = "<group>"; };
 		9A21AFD127611EA0001E14CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A21AFD527611F59001E14CC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A220EA7251A1993002B42B7 /* printf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printf.cpp; sourceTree = "<group>"; };
@@ -3994,6 +4000,8 @@
 				9A68A5962511442F008DABD2 /* _generic_object_constructor_impl.h */,
 				9A68A54F2511442E008DABD2 /* _global.h */,
 				9A68A53B2511442E008DABD2 /* _impl.h */,
+				9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */,
+				9A1FB4CD2870DE460042849A /* _main_hold_base.h */,
 				9A68A5942511442F008DABD2 /* _platform.h */,
 				9A110F4727CDD2410081BCCD /* acme_main_struct.h */,
 				9A68A5532511442E008DABD2 /* acme_str_pool.h */,
@@ -6204,6 +6212,7 @@
 				9A78624E264B90B5003DF8A0 /* static_numeric_info.h in Headers */,
 				9A750D9E282B367600C4861B /* exception.h in Headers */,
 				9A68AD5425114434008DABD2 /* version.h in Headers */,
+				9A1FB4CF2870DE460042849A /* _main_hold_base.h in Headers */,
 				9A68AF7325114435008DABD2 /* _impl.h in Headers */,
 				9A68AFDA25114436008DABD2 /* __debug_box_set_impl.h in Headers */,
 				9AA8FD9727BA729B008FF9AA /* window.h in Headers */,
@@ -6766,6 +6775,7 @@
 				9AD69037251A753A00C0EBD7 /* heap_item_array.h in Headers */,
 				9AD69038251A753A00C0EBD7 /* library.h in Headers */,
 				9AD6903D251A753A00C0EBD7 /* status.h in Headers */,
+				9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */,
 				9A892DEB26CD9061008D6412 /* routine.h in Headers */,
 				9A78624F264B90B5003DF8A0 /* static_numeric_info.h in Headers */,
 				9A786225264B90B5003DF8A0 /* value.h in Headers */,
@@ -7410,6 +7420,7 @@
 				9AC0190527489356006BEBCC /* implementable.cpp in Sources */,
 				9A68AEEC25114435008DABD2 /* _c_trait_ansi.cpp in Sources */,
 				9A892E2826CDA3D3008D6412 /* url_domain.cpp in Sources */,
+				9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */,
 				9ADD650B26B5CF1300D11298 /* strdup_array.cpp in Sources */,
 				9A97C7B7282367F500755A0A /* display.cpp in Sources */,
 				9A68AEF925114435008DABD2 /* international.cpp in Sources */,
@@ -7785,6 +7796,7 @@
 				9AD6927D251A753A00C0EBD7 /* allocate_mid_big.cpp in Sources */,
 				9ADD650C26B5CF1300D11298 /* strdup_array.cpp in Sources */,
 				9AD6927E251A753A00C0EBD7 /* composite.cpp in Sources */,
+				9A1FB4D22870DE460042849A /* _main_hold_base.cpp in Sources */,
 				9A15A6E9264B59EF0080670E /* semaphore.cpp in Sources */,
 				9AA8FCA627BA7299008FF9AA /* mmcpp.cpp in Sources */,
 				9A0B8D1927AA1F3300760D34 /* serialization.cpp in Sources */,

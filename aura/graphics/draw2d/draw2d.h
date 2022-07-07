@@ -32,14 +32,14 @@ namespace draw2d
    class fastblur;
 
 
-   class CLASS_DECL_AURA draw2d  :
+   class CLASS_DECL_AURA draw2d :
       virtual public ::acme::department
    {
    public:
 
 
       static double g_dEmboss;
-      void* m_pimpl;
+      void * m_pimpl;
 
       i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
       i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
@@ -47,13 +47,18 @@ namespace draw2d
 
       __pointer(class ::draw2d::api)                           m_papi;
 
-      //::mutex                                        m_pmutexFont;
-//#ifdef WINDOWS
-  //    __composite(::draw2d_direct2d::plugin)                     m_pplugin;
-//#endif
 
       __pointer(::write_text::write_text)                      m_pwritetext;
 
+
+      critical_section                                         m_criticalsectionObjectList;
+      __pointer_array(::draw2d::object)                        m_objecta;
+
+      critical_section                                         m_criticalsectionImageList;
+      __pointer_array(::image)                                 m_imagea;
+
+      critical_section                                         m_criticalsectionGraphicsContextList;
+      __pointer_array(graphics)                                m_graphicsa;
 
 
       draw2d();
@@ -61,6 +66,33 @@ namespace draw2d
 
 
       virtual void initialize(::object * pobject) override;
+
+   protected:
+      friend class ::draw2d::object;
+      void add_object(::draw2d::object * pobject);
+      void erase_object(::draw2d::object * pobject);
+      friend class ::image;
+      void add_image(::image * pimage);
+      void erase_image(::image * pimage);
+      friend class graphics;
+      void add_graphics(graphics * pimage);
+      void erase_graphics(graphics * pimage);
+      //::mutex * get_object_list_mutex();
+      //::mutex * get_image_list_mutex();
+      //::mutex * get_graphics_context_list_mutex();
+
+   public:
+
+
+
+      void clear_all_objects_os_data();
+
+      void clear_object_list_os_data();
+      void clear_image_list_os_data();
+      void clear_graphics_context_list_os_data();
+
+
+
 
       virtual void process_init() override;
 
@@ -72,7 +104,7 @@ namespace draw2d
       virtual void destroy() override;
 
 
-      __pointer(save_image) new_save_image(const ::payload& payloadFile, const ::payload& varOptions);
+      __pointer(save_image) new_save_image(const ::payload & payloadFile, const ::payload & varOptions);
 
 
       virtual graphics_pointer create_graphics(::draw2d::host * pdraw2dhost);
@@ -83,15 +115,15 @@ namespace draw2d
 
       inline class ::write_text::write_text * write_text() { return m_pwritetext; }
 
-//#ifdef WINDOWS
-  //    ::draw2d_direct2d::plugin * direct2d();
-//#endif
+      //#ifdef WINDOWS
+        //    ::draw2d_direct2d::plugin * direct2d();
+      //#endif
 
-      
+
 
       enum_format file_extension_to_format(const ::payload & payloadFile);
       enum_format text_to_format(string str);
-      
+
       virtual void initialize_write_text();
       virtual __pointer(::factory::factory) & write_text_factory();
 
@@ -102,21 +134,21 @@ namespace draw2d
       virtual string write_text_get_default_library_name();
 
       virtual void embossed_text_out(
-      ::draw2d::graphics_pointer & pgraphics,
-      const ::rectangle_i32 & rectangle,
-      string strText,
-      ::draw2d::fastblur & blur,
-      ::image_pointer & imageBlur,
-      ::write_text::font * pfont,
-      const ::e_align & ealign,
-      const ::e_draw_text & edrawtext,
-      const ::color::color & colorText,
-      const ::color::color & colorGlow,
-      int iSpreadRadius,
-      int iBlurRadius,
-      int iBlur,
-      bool bUpdate,
-      const ::color_filter & colorfilter = nullptr);
+         ::draw2d::graphics_pointer & pgraphics,
+         const ::rectangle_i32 & rectangle,
+         string strText,
+         ::draw2d::fastblur & blur,
+         ::image_pointer & imageBlur,
+         ::write_text::font * pfont,
+         const ::e_align & ealign,
+         const ::e_draw_text & edrawtext,
+         const ::color::color & colorText,
+         const ::color::color & colorGlow,
+         int iSpreadRadius,
+         int iBlurRadius,
+         int iBlur,
+         bool bUpdate,
+         const ::color_filter & colorfilter = nullptr);
 
 
       template < typename PRED >
@@ -167,7 +199,7 @@ namespace draw2d
             ::image_pointer pimage;
 
             //auto estatus =
-            
+
             __construct(pimage);
 
             //if (!estatus)
@@ -178,7 +210,7 @@ namespace draw2d
             //}
 
             //estatus = 
-            
+
             pimage->create(size);
 
             //if (!estatus)
@@ -190,7 +222,7 @@ namespace draw2d
 
             pimage->fill(0, 0, 0, 0);
 
-            auto pbrushText = __create < ::draw2d::brush > ();
+            auto pbrushText = __create < ::draw2d::brush >();
 
             pbrushText->create_solid(argb(255, 255, 255, 255));
             pimage->get_graphics()->set(pbrushText);

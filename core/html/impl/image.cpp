@@ -120,7 +120,7 @@ namespace html
 
                }
 
-               m_box.set_size((float) cx, (float) cy);
+               m_box.set_size((float)cx, (float)cy);
 
             }
             else

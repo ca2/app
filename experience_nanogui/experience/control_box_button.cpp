@@ -37,7 +37,7 @@ namespace experience_nanogui
 
          ::duration t1 = ::duration::now();
 
-         if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
+         if ((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
 
             return;

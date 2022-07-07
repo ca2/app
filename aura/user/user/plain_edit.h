@@ -310,7 +310,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
-      DECLARE_MESSAGE_HANDLER(on_message_character);
+      DECLARE_MESSAGE_HANDLER(on_message_char);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageKey);
       DECLARE_MESSAGE_HANDLER(_001OnUniChar);
 
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
@@ -360,7 +361,7 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      void key_to_char(::message::key * pkey);
+      //void key_to_char(::message::key * pkey);
 
       void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
@@ -397,12 +398,14 @@ namespace user
       //colorertake5::file_type * colorer_select_type();
 
       virtual strsize _001GetTextLength() const override;
+      virtual strsize _001_get_text_length() const;
       virtual void plain_edit_get_text(string & str) const;
       virtual void _001GetText(string & str) const override;
       virtual void _001GetSelText(string & str) const override;
       virtual void _001GetText(string & str, index iBeg, index iEnd) const override;
 
       void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const override;
+      void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd) const;
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;

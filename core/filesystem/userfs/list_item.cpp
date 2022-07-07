@@ -12,11 +12,16 @@ namespace userfs
    list_item::list_item()
    {
 
+      m_iImage = -1;
+      m_iImageSelected = -1;
+
    }
 
 
    list_item::list_item(const list_item & listitem) :
-      ::file::item(listitem)
+      ::file::item(listitem),
+      m_iImage(listitem.m_iImage),
+      m_iImageSelected(listitem.m_iImageSelected)
    {
 
    }
@@ -32,10 +37,12 @@ namespace userfs
 
       }
 
-      m_filepathUser    = item.m_filepathUser;
-      m_filepathFinal   = item.m_filepathFinal;
+      m_pathUser        = item.m_pathUser;
+      m_pathFinal       = item.m_pathFinal;
       m_strName         = item.m_strName;
       m_flags           = item.m_flags;
+      m_iImage          = item.m_iImage;
+      m_iImageSelected  = item.m_iImageSelected;
 
       return *this;
 
@@ -51,11 +58,11 @@ template <>
 
    ::file::item itemT;
 
-   itemT.m_filepathUser = item.m_filepathUser;
+   itemT.set_user_path(item.user_path());
 
-   itemT.m_filepathFinal = item.m_filepathFinal;
+   itemT.set_final_path(item.final_path());
 
-   itemT.m_flags = item.m_flags;
+   itemT.m_flags        = item.m_flags;
 
    return itemT;
 

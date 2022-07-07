@@ -983,6 +983,7 @@ class image_drawer;
 class image_drawing;
 class image_drawing_options;
 
+template < typename SHAPE_FACTORY >
 class shape_array;
 
 class imaging;

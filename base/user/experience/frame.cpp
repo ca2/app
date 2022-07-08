@@ -149,11 +149,11 @@ namespace experience
 
       synchronous_lock synchronouslock(pframewindow->mutex());
 
-      ::rectangle_i32 rectangleWindow;
+      ::rectangle_i32 rectangleClient;
 
-      pframewindow->get_window_rect(rectangleWindow);
+      pframewindow->::user::interaction::get_client_rect(rectangleClient);
 
-      if (rectangleWindow.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -169,7 +169,7 @@ namespace experience
 
       m_iCaptionHeight = calc_caption_height(pgraphics);
 
-      ::rectangle_i32 rectangleClient;
+      //::rectangle_i32 rectangleClient;
 
       title_bar_layout(pgraphics);
 
@@ -742,7 +742,7 @@ namespace experience
 
       ::rectangle_i32 rectangleClient;
 
-      pframewindow->get_client_rect(rectangleClient);
+      pframewindow->::user::interaction::get_client_rect(rectangleClient);
 
       if (rectangleClient.is_empty())
       {

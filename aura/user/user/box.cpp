@@ -365,7 +365,7 @@ namespace user
 //
 //         }
 
-         place(windowrectangle.m_rectangleWindow);
+         //place(windowrectangle.m_rectangleWindow);
 
          display(edisplay);
 

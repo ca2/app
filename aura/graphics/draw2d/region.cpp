@@ -112,13 +112,21 @@ namespace draw2d
 
       pitem->m_polygon.set_size(nCount);
 
-      memcpy(pitem->m_polygon.get_data(), ppoints, sizeof(*ppoints) * nCount);
+      memcpy(pitem->m_polygon.data(), ppoints, pitem->m_polygon.get_size_in_bytes());
 
       pitem->m_efillmode = efillmode;
 
       m_pitem = pitem;
 
       return true;
+
+   }
+
+
+   bool region::create_polygon(const polygon& polygon, ::draw2d::enum_fill_mode efillmode)
+   {
+
+      return create_polygon(polygon.data(), polygon.size(), efillmode);
 
    }
 
@@ -139,11 +147,12 @@ namespace draw2d
 
       pitem->m_polygon.set_size(nCount);
 
-      for (::index i = 0; i < nCount; i++)
+      for (::i32 i = 0; i < nCount; i++)
       {
 
-         pitem->m_polygon[i].x = ppoints[i].x;
-         pitem->m_polygon[i].y = ppoints[i].y;
+         auto& p = pitem->m_polygon[i];
+
+         p = (const ::point_i32&)ppoints[i];
 
       }
 

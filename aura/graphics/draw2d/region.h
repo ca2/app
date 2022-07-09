@@ -201,9 +201,11 @@ namespace draw2d
 
       virtual bool create_ellipse(const ::rectangle_i32 & rectangle);
       
-      virtual bool create_polygon(const POINT_I32 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode);
+      virtual bool create_polygon(const POINT_I32 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
-      virtual bool create_polygon(const POINT_F64 * pPoints, i32 nCount,::draw2d::enum_fill_mode efillmode);
+      virtual bool create_polygon(const POINT_F64 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+
+      virtual bool create_polygon(const polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
       virtual bool create_poly_polygon(const POINT_F64 * pPoints, const i32 * lpPolyCounts, i32 nCount, ::draw2d::enum_fill_mode efillmode);
 

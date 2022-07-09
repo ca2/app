@@ -1058,6 +1058,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 }
 
 
+
 void simple_frame_window::on_message_display_change(::message::message * pmessage)
 {
 
@@ -1991,7 +1992,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          m_puserinteractionParent = puiParent;
 
-         WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
+         //WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
          rectangleFrame = screen_rect();
 
@@ -2731,18 +2732,18 @@ void simple_frame_window::on_after_set_parent()
 void simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
-   //if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
-   //{
-
-   //   m_pframe->get_window_client_rect(prectangle);
-
-   //}
-   //else
-   {
+//   if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
+//   {
+//
+//      m_pframe->get_window_client_rect(prectangle);
+//
+//   }
+//   else
+//   {
 
       ::experience::frame_window::get_client_rect(prectangle);
 
-   }
+//   }
 
 }
 
@@ -3361,6 +3362,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       //on_viewport_offset(pgraphics);
       //if (0)
       {
+
          try
          {
 

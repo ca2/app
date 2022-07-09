@@ -1463,6 +1463,7 @@ namespace user
       virtual ::user::interaction* get_parent_or_owner() const override;
       virtual ::user::interaction* get_top_level_owner() const override;
       
+      virtual bool is_host_top_level() const;
 
       //virtual ::user::frame* get_parent_frame() const override;
       //virtual ::user::frame* get_owner_frame() const override;

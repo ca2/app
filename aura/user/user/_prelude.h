@@ -4,7 +4,7 @@
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 
-#include "aura/user/_user.h"
+#include "aura/user/user/_user.h"
 
 
 #define new ACME_NEW

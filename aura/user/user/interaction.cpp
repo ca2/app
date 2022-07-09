@@ -8489,26 +8489,26 @@ namespace user
    }
 
 
-   bool interaction::is_host_top_level() const
-   {
-         
-      if(is_top_level())
-      {
-         
-         auto pwindowing = windowing();
-         
-         if(pwindowing->is_sandboxed())
-         {
-            
-            return true;
-            
-         }
-
-      }
-         
-      return false;
-         
-   }
+//   bool interaction::is_host_top_level() const
+//   {
+//
+//      if(is_top_level())
+//      {
+//
+//         auto pwindowing = windowing();
+//
+//         if(pwindowing->is_sandboxed())
+//         {
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      return false;
+//
+//   }
 
 
    void interaction::viewport_client_to_screen(POINT_I32 * ppt)
@@ -18806,7 +18806,7 @@ namespace user
 
       __pointer(::user::interaction) puserinteractionParent = get_parent();
 
-      if (puserinteractionParent && puserinteractionParent != windowing()->get_application_host_window()->m_puserinteractionimpl->m_puserinteraction)
+      if (puserinteractionParent)
       {
 
          puserinteractionParent->route_command(pcommand, false);

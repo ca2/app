@@ -2219,7 +2219,7 @@ bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
       else if (m_bFrameMoveEnable)
       {
 
-         bool bHostTopLevel = is_top_level();
+         bool bHostTopLevel = is_host_top_level();
 
          if (bHostTopLevel)
          {
@@ -2731,13 +2731,13 @@ void simple_frame_window::on_after_set_parent()
 void simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
-   if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
-   {
+   //if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
+   //{
 
-      m_pframe->get_window_client_rect(prectangle);
+   //   m_pframe->get_window_client_rect(prectangle);
 
-   }
-   else
+   //}
+   //else
    {
 
       ::experience::frame_window::get_client_rect(prectangle);

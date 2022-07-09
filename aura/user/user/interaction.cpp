@@ -1282,6 +1282,14 @@ namespace user
    }
 
 
+   bool interaction::is_host_top_level() const
+   {
+
+      return ::is_set(m_puserinteractionParent) && is_top_level();
+
+   }
+
+
    //   bool interaction::is_host_window() const
    //   {
    //

@@ -1453,6 +1453,8 @@ namespace user
       inline bool is_top_level() const { return m_ewindowflag & e_window_flag_top_level; }
       inline bool is_root() const  { return m_ewindowflag & e_window_flag_root; }
 
+      virtual bool is_host_top_level() const;
+
       ::user::element * get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;

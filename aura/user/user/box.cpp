@@ -254,7 +254,7 @@ namespace user
    }
 
 
-   bool box::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+   bool box::WindowDataLoadWindowRect()
    {
 
       bool bLoad = false;
@@ -263,7 +263,7 @@ namespace user
 
       auto key = m_databasekey + window_data_key_modifier();
 
-      bLoad = LoadWindowRect_(key, bForceRestore, bInitialFramePosition);
+      bLoad = LoadWindowRect_(key);
 
       if (!bLoad)
       {
@@ -298,7 +298,170 @@ namespace user
    }
 
 
-   bool box::LoadWindowRect_(const ::database::key & key, bool bForceRestore, bool bInitialFramePosition)
+
+
+   bool box::FancyWindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+   {
+
+      bool bLoad = false;
+
+      defer_update_display();
+
+      auto key = m_databasekey + window_data_key_modifier();
+
+      bLoad = FancyLoadWindowRect_(key, bForceRestore, bInitialFramePosition);
+
+      if (!bLoad)
+      {
+
+         m_ewindowflag |= e_window_flag_loading_window_rect;
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing1();
+
+         ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
+
+         bool bRestore = iDisplay >= 0;
+
+         if (!bRestore)
+         {
+
+            set_need_layout();
+
+            display();
+
+         };
+
+         return bRestore;
+
+      }
+
+      return bLoad;
+
+   }
+
+
+   bool box::LoadWindowRect_(const ::database::key& key)
+   {
+
+      if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
+      {
+
+         return false;
+
+         //return;
+
+      }
+
+      window_rectangle windowrectangle;
+
+      __pointer(::aura::application) papp = get_app();
+
+      if (!papp->data_get(key, windowrectangle))
+      {
+
+         return false;
+
+      }
+
+      m_ewindowflag |= e_window_flag_loading_window_rect;
+
+      m_windowrectangleStore = windowrectangle;
+
+      m_windowrectangle = m_windowrectangleStore;
+
+      enum_display edisplay = windowrectangle.m_edisplay;
+
+      const_layout().sketch().appearance() = windowrectangle.m_eappearance;
+
+      //if (edisplay == e_display_iconic && bInitialFramePosition)
+      //{
+
+      //   edisplay = windowrectangle.m_edisplayPrevious;
+
+      //}
+
+      order(e_zorder_top);
+
+      if (m_ewindowflag & e_window_flag_disable_window_placement_snapping)
+      {
+
+         if (is_docking_appearance(edisplay))
+         {
+
+            edisplay = e_display_normal;
+
+         }
+
+      }
+
+      //if (!bForceRestore
+      //   && (edisplay == e_display_zoomed
+      //      || edisplay == e_display_full_screen
+      //      || (edisplay == e_display_iconic && !bInitialFramePosition)))
+      if (edisplay == e_display_zoomed
+      && edisplay == e_display_full_screen
+      && edisplay == e_display_iconic)
+      {
+
+         //         if(bInitialFramePosition)
+         //         {
+         //
+         //            display( edisplay);
+         //
+         //         }
+
+                  //place(windowrectangle.m_rectangleWindow);
+
+         display(edisplay);
+
+      }
+      else if (is_docking_appearance(edisplay))
+      {
+
+         place(windowrectangle.m_rectangleSnapped);
+
+         display(edisplay);
+
+      }
+      else
+      {
+
+         place(windowrectangle.m_rectangleRestored);
+
+         display(edisplay);
+
+///*         auto functionGoodRestore = [this, windowrectangle]()
+//         {
+//
+//            good_restore(nullptr, windowrectangle.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
+//
+//         };
+//
+//         if (m_ewindowflag & e_window_flag_window_created)
+//         {
+//
+//            send_procedure(functionGoodRestore);
+//
+//         }
+//         else
+//         {
+//
+//            functionGoodRestore();
+//
+//         */}//
+
+      }
+
+      return true;
+
+   }
+
+
+   bool box::FancyLoadWindowRect_(const ::database::key & key, bool bForceRestore, bool bInitialFramePosition)
    {
 
       if (!(m_ewindowflag & e_window_flag_auto_store_window_rect))
@@ -676,7 +839,9 @@ namespace user
       {
          case e_simple_command_load_window_rect:
 
-            WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
+            //WindowDataLoadWindowRect(psimplecommand->m_lparam != false);
+
+            WindowDataLoadWindowRect();
 
             psimplecommand->m_bRet = true;
 

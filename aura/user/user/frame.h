@@ -185,9 +185,11 @@ namespace user
 
       bool is_frame_window() override;
 
-      using ::user::box::_001InitialFramePlacement;
+      //using ::user::box::_001FancyInitialFramePlacement;
 
-      bool _001InitialFramePlacement(bool bForceRestore = false) override;
+      //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
+
+      virtual void initial_frame_placement();
 
       ::size_i32 get_window_minimum_size() override;
 

@@ -4862,7 +4862,7 @@ namespace user
    void interaction::on_message_display_change(::message::message * pmessage)
    {
 
-      _001InitialFramePlacement();
+      //_001FancyInitialFramePlacement();
 
    }
 
@@ -8718,7 +8718,15 @@ namespace user
    }
 
 
-   bool interaction::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+   bool interaction::WindowDataLoadWindowRect()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::FancyWindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
    {
 
       return false;
@@ -18140,65 +18148,76 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePlacement(bool bForceRestore)
-   {
-
-      ::rectangle_i32 rectangleWindow;
-
-      bool bSet = false;
-
-      __pointer(::aura::application) papp = get_app();
-
-      if (m_bExtendOnParent ||
-         (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
-      {
-
-         auto puserinteractionParent = get_parent();
-
-         if (puserinteractionParent)
-         {
-
-            puserinteractionParent->get_client_rect(rectangleWindow);
-
-            bSet = true;
-
-         }
-
-      }
-
-      if (!bSet)
-      {
-
-         if (!_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      display(e_display_normal);
-
-      place(rectangleWindow);
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      post_redraw();
-
-      return true;
-
-   }
+   // void interaction::initial_frame_placement()
+   // {
 
 
-   bool interaction::_001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
-   {
+   // }
 
-      return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
 
-   }
+   //bool interaction::_001FancyInitialFramePlacement(bool bForceRestore)
+   //{
+
+   //   return false;
+
+   //}
+
+   //    ::rectangle_i32 rectangleWindow;
+
+   //    bool bSet = false;
+
+   //    __pointer(::aura::application) papp = get_app();
+
+   //    if (m_bExtendOnParent ||
+   //       (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
+   //    {
+
+   //       auto puserinteractionParent = get_parent();
+
+   //       if (puserinteractionParent)
+   //       {
+
+   //          puserinteractionParent->get_client_rect(rectangleWindow);
+
+   //          bSet = true;
+
+   //       }
+
+   //    }
+
+   //    if (!bSet)
+   //    {
+
+   //       if (!_001FancyInitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
+   //       {
+
+   //          return false;
+
+   //       }
+
+   //    }
+
+   //    display(e_display_normal);
+
+   //    place(rectangleWindow);
+
+   //    set_need_layout();
+
+   //    set_need_redraw();
+
+   //    post_redraw();
+
+   //    return true;
+
+   // }
+
+
+   // bool interaction::_001FancyInitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
+   // {
+
+   //    return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
+
+   // }
 
 
    //void interaction::destroy()
@@ -18250,7 +18269,7 @@ namespace user
    }
 
 
-   bool interaction::wfi_is_up_down()
+   bool interaction::wfi_has_up_down()
    {
 
       return m_ewindowflag & e_window_flag_updown;

@@ -1049,7 +1049,7 @@ namespace aura
 //         //      }
 //         //      else
 //         //      {
-//         //         pframe->_001InitialFramePlacement();
+//         //         pframe->_001FancyInitialFramePlacement();
 //         //      }
 //         //   }
 //         //}

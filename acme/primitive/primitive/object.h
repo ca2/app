@@ -1327,7 +1327,7 @@ inline void release(INTERMEDIATE*, RELEASEE* & p)
 #define __make_identifier(PART1, PART2) PART1 ## PART2
 
 
-#define __defer_branch(ID) defer_branch(m_ptask ## ID, [this](){ID ## TaskProcedure();})
+#define __defer_branch(procedure) defer_branch(m_p ## procedure, [this](){procedure();})
 
 
 CLASS_DECL_ACME void call_sync(const ::procedure_array& routinea);

@@ -298,12 +298,12 @@ namespace user
 
       }
 
-      if(bCreated)
-      {
+      //if(bCreated)
+      //{
 
-         InitialUpdateFrame(pFrame,pdocument,bMakeVisible);
+      //   InitialUpdateFrame(pFrame,pdocument,bMakeVisible);
 
-      }
+      //}
 
  /*     auto papp = get_app();
 

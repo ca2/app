@@ -551,10 +551,18 @@ namespace user
    }
 
 
-   bool frame::_001InitialFramePlacement(bool bForceRestore)
+   // bool frame::_001FancyInitialFramePlacement(bool bForceRestore)
+   // {
+
+   //    return ::user::box::_001FancyInitialFramePlacement(bForceRestore);
+
+   // }
+
+
+   void frame::initial_frame_placement()
    {
 
-      return ::user::box::_001InitialFramePlacement(bForceRestore);
+      WindowDataLoadWindowRect();
 
    }
 

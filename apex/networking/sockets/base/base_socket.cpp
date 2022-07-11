@@ -81,6 +81,7 @@ namespace sockets
       //,m_socks4_host(h.GetSocks4Host())
       //,m_socks4_port(h.GetSocks4Port())
       //,m_socks4_userid(h.GetSocks4Userid())
+      ,m_socks4_port(0)
       ,m_bDetach(false)
       ,m_bDetached(false)
       // Line protocol
@@ -121,19 +122,13 @@ namespace sockets
    void base_socket::initialize_socket(base_socket_handler* phandler)
    {
 
-      //auto estatus = ::object::initialize(phandler);
-
       ::object::initialize(phandler);
 
-      //if (!estatus)
-      //{
+      m_psockethandler = phandler;
 
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
+      m_socks4_host = m_psockethandler->GetSocks4Host();
+      m_socks4_port = m_psockethandler->GetSocks4Port();
+      m_socks4_userid = m_psockethandler->GetSocks4Userid();
 
    }
 

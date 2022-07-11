@@ -1952,7 +1952,16 @@ namespace http
 
       }
 
-      psocket->initialize(this);
+      auto psockethandler = psocket->m_psockethandler;
+
+      if (!psockethandler)
+      {
+
+         psockethandler = __create_new < ::sockets::socket_handler >();
+
+         psocket->initialize_socket(psockethandler);
+
+      }
 
       string strTopicText;
 
@@ -1960,14 +1969,6 @@ namespace http
 
       //psocket->set_topic_text(strTopicText);
 
-      auto psockethandler = psocket->m_psockethandler;
-
-      if(!psockethandler)
-      {
-
-         psockethandler = __create_new < ::sockets::socket_handler >();
-
-      }
 
       psocket->m_bEnablePool = psockethandler->PoolEnabled();
 

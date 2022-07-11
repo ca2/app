@@ -130,6 +130,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &button::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_key_down  , pchannel, this, &button::on_message_key_down);
 
       //install_click_default_mouse_handling(pchannel);
@@ -287,6 +288,14 @@ namespace user
       }
 
       m_propertyCheck = fetch_property(m_atom, true);
+
+   }
+
+
+   void button::on_message_left_button_double_click(::message::message * pmessage)
+   {
+   
+      pmessage->m_bRet = true;
 
    }
 

@@ -120,8 +120,8 @@ bool dialog::show(const ::string & pszMatter)
 
    on_show(m_strMatter);
 
-   m_pframe->_001InitialFramePlacement();
-
+   //m_pframe->_001FancyInitialFramePlacement();
+//
    //m_pframe->RunModalLoop();
 
    //m_pframe->DestroyWindow();

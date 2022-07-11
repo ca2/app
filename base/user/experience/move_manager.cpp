@@ -285,6 +285,18 @@ namespace experience
    }
 
 
+   void move_manager::cancel_moving()
+   {
+      
+      m_bMoving = false;
+      
+      auto pwindowing = m_pframewindow->windowing();
+
+      pwindowing->release_mouse_capture();
+
+   }
+
+
    bool move_manager::consider_move()
    {
 

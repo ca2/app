@@ -1031,17 +1031,17 @@ namespace user
    void frame_window::OnInitialFrameUpdate(bool bMakeVisible)
    {
 
-      if (bMakeVisible)
-      {
+      // if (bMakeVisible)
+      // {
 
-         if (get_parent() == nullptr || !get_parent()->is_place_holder())
-         {
+      //    if (get_parent() == nullptr || !get_parent()->is_place_holder())
+      //    {
 
-            _001InitialFramePlacement();
+      //       _001FancyInitialFramePlacement();
 
-         }
+      //    }
 
-      }
+      // }
 
    }
 
@@ -1278,33 +1278,33 @@ namespace user
    }
 
 
-   bool frame_window::_001InitialFramePlacement(bool bForceRestore)
-   {
+   //bool frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
+   //{
 
-      __UNREFERENCED_PARAMETER(bForceRestore);
+   //   __UNREFERENCED_PARAMETER(bForceRestore);
 
-      if (m_bFrameMoveEnable)
-      {
+   //   if (m_bFrameMoveEnable)
+   //   {
 
-         display(e_display_restore);
+   //      display(e_display_restore);
 
-      }
+   //   }
 
-      ActivateTopParent();
+   //   ActivateTopParent();
 
-      ActivateFrame();
+   //   ActivateFrame();
 
-      set_reposition();
+   //   set_reposition();
 
-      set_need_layout();
+   //   set_need_layout();
 
-      set_need_redraw();
+   //   set_need_redraw();
 
-      post_redraw();
+   //   post_redraw();
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void frame_window::OnClose()

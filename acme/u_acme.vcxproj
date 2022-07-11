@@ -373,7 +373,6 @@
       </ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -439,7 +438,6 @@
       </ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -1954,7 +1952,6 @@
     <ClCompile Include="operating_system\universal_windows\universal_windows.cpp" />
     <ClCompile Include="operating_system\universal_windows\user.cpp" />
     <ClCompile Include="operating_system\universal_windows\_.cpp" />
-    <ClCompile Include="operating_system\universal_windows\_main.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows_common\api.cpp" />
     <ClCompile Include="operating_system\windows_common\callstack.cpp" />

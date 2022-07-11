@@ -210,7 +210,7 @@ namespace user
       ::windowing::window *                     m_pwindow;
 
 
-      bool                                      m_bEatsDoubleClick;
+      //bool                                      m_bEatsDoubleClick;
 
 
       //__pointer(shape_array<::draw2d::region >) m_pshapeaClip;
@@ -608,7 +608,7 @@ namespace user
       // updown
       virtual bool wfi_is_up();
       virtual bool wfi_is_down();
-      virtual bool wfi_is_up_down();
+      virtual bool wfi_has_up_down();
       // end updown
 
 
@@ -657,7 +657,8 @@ namespace user
 
       virtual bool should_save_window_rect();
       
-      virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool FancyWindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool WindowDataLoadWindowRect();
       virtual void WindowDataSaveWindowRect();
 
       virtual void on_defer_display();
@@ -1349,8 +1350,6 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
@@ -2049,9 +2048,11 @@ namespace user
 
       }*/
 
-      virtual bool _001InitialFramePlacement(bool bForceRestore = false);
+      //virtual void initial_frame_placement();
 
-      virtual bool _001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
+      //virtual bool _001FancyInitialFramePlacement(bool bForceRestore = false);
+
+      //virtual bool _001FancyInitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 

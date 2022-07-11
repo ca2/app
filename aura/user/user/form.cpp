@@ -14,6 +14,8 @@ namespace user
       m_econtroltype = e_control_type_form;
 
       m_pform = this;
+      
+      //m_bEatsDoubleClick = false;
 
    }
 

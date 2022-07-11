@@ -27,6 +27,8 @@ namespace user
 
       m_flagNonClient -= non_client_background;
       m_flagNonClient -= non_client_focus_rect;
+      
+      //m_bEatsDoubleClick = false;
 
    }
 

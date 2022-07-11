@@ -54,12 +54,14 @@ namespace user
 
       virtual bool should_save_window_rect() override;
       
-      bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+      bool FancyWindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+      bool WindowDataLoadWindowRect() override;
       void WindowDataSaveWindowRect() override;
 
       virtual string window_data_key_modifier();
 
-      virtual bool LoadWindowRect_(const ::database::key & key, bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool FancyLoadWindowRect_(const ::database::key & key, bool bForceRestore = false, bool bInitialFramePosition = false);
+      virtual bool LoadWindowRect_(const ::database::key& key);
       virtual void SaveWindowRect_(const ::database::key & key);
 
 

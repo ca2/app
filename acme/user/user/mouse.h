@@ -24,6 +24,7 @@ namespace user
       point_i32                           m_pointDesired;
       bool                                m_bTranslated;
       __pointer(::windowing::cursor)      m_pcursor;
+      __pointer(::user::interaction)      m_puserinteractionHit;
 
 
       virtual unsigned int get_message()

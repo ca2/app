@@ -29,7 +29,7 @@ public:
    __pointer(::windowing::icon)                    m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
    ::payload                                       m_varFrame;
-   __composite(::task)                             m_ptaskSaveWindowRect;
+   __composite(::task)                             m_ptask_save_window_placement;
 
 
    simple_frame_window();
@@ -45,12 +45,10 @@ public:
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
-   virtual void SaveWindowRectTaskProcedure();
-
+   virtual void task_save_window_placement();
+   virtual void task_intensive_save_window_placement();
 
    virtual void defer_save_window_placement() override;
-
-   virtual void _thread_save_window_placement();
 
    virtual void default_notify_icon_topic();
    virtual bool would_display_notify_icon();
@@ -101,7 +99,8 @@ public:
    void OnUpdateControlBarMenu(::message::command * pcommand);
 
    void WindowDataSaveWindowRect() override;
-   bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
+   bool WindowDataLoadWindowRect() override;
+   //bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
 
    using ::experience::frame_window::frame_experience;
    virtual ::experience::frame * frame_experience();
@@ -116,7 +115,7 @@ public:
 
 
 
-   bool _001InitialFramePlacement(bool bForceRestore = false) override;
+   //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
    virtual void on_frame_position();
 
    __pointer(::user::interaction) WindowDataGetWnd();

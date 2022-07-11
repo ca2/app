@@ -67,11 +67,13 @@ namespace user
    void main_window::create_main_window()
    {
 
-      ::rectangle_i32 rectangleWindow;
+      //::rectangle_i32 rectangleWindow;
 
-      bool bInitialFramePosition = _001InitialFramePlacement(rectangleWindow, m_rectangleInitialRateOrSize);
+      //bool bInitialFramePosition = _001FancyInitialFramePlacement(rectangleWindow, m_rectangleInitialRateOrSize);
 
-      place(rectangleWindow);
+      //place(rectangleWindow);
+
+      initial_frame_placement();
 
       __pointer(::aura::application) papp = get_app();
 

@@ -25,28 +25,28 @@ namespace opengl
 
 
       context_fbo();
-      virtual ~context_fbo();
+      ~context_fbo() override;
       
-      virtual void lock_context() override;
-      virtual void unlock_context() override;
+      void lock_context() override;
+      void unlock_context() override;
 
-      virtual void _create_offscreen_buffer(const ::size_i32& size) override;
+      void _create_offscreen_buffer(const ::size_i32& size) override;
       //virtual void resize_offscreen_buffer(const ::size_i32& size) override;
-      virtual void destroy_offscreen_buffer() override;
+      void destroy_offscreen_buffer() override;
 
-      virtual void make_current() override;
+      void make_current() override;
 
-      virtual string get_shader_version_text() override;
+      string get_shader_version_text() override;
 
-      virtual void _translate_shader(string_array& stra) override;
+      void _translate_shader(string_array& stra) override;
 
-      virtual void render() override;
+      void render() override;
       
-      virtual void start() override;
+      void start_drawing() override;
       
-      virtual void prepare_for_gpu_read() override;
+      void prepare_for_gpu_read() override;
       
-      virtual void resize_offscreen_buffer(const ::size_i32& size) override;
+      void resize_offscreen_buffer(const ::size_i32& size) override;
       
 
    };

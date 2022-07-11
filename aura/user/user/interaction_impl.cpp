@@ -2172,6 +2172,13 @@ namespace user
          pmessage->m_atom == e_message_mouse_move ||
          pmessage->m_atom == e_message_mouse_wheel)
       {
+         
+         if(pmessage->m_atom == e_message_left_button_double_click)
+         {
+            
+            INFORMATION("e_message_left_button_double_click");
+            
+         }
 
          if (::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
          {
@@ -2345,10 +2352,12 @@ namespace user
 
          }
 
+         pmouse->m_puserinteractionHit = m_puserinteraction->child_from_point(pmouse->m_point);
+
          if (!puserinteractionMouse)
          {
 
-            puserinteractionMouse = m_puserinteraction->child_from_point(pmouse->m_point);
+            puserinteractionMouse = pmouse->m_puserinteractionHit;
 
          }
 
@@ -2396,11 +2405,22 @@ namespace user
 
          if (puserinteractionMouse)
          {
-
+            
+//            if(pmouse->m_atom == ::e_message_left_button_double_click && puserinteractionMouse->m_bEatsDoubleClick)
+//            {
+//               
+//               pmouse->m_bRet = true;
+//               
+//               return;
+//               
+//            }
+            
+            auto puserinteractionItem = puserinteractionMouse;
+            
             do
             {
-
-               puserinteractionMouse->route_message(pmouse);
+               
+               puserinteractionItem->route_message(pmouse);
 
                if (pmouse->m_bRet)
                {
@@ -2409,9 +2429,9 @@ namespace user
 
                }
 
-               puserinteractionMouse = puserinteractionMouse->get_parent();
+               puserinteractionItem = puserinteractionItem->get_parent();
 
-            } while (puserinteractionMouse != nullptr);
+            } while (puserinteractionItem != nullptr);
 
          }
 

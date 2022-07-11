@@ -35,7 +35,7 @@
 
 
 
-#ifdef WINDOWS_DESKTOP
+#if defined(WINDOWS)
 int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 #elif defined(ANDROID)
 extern "C" int IDENTIFIER_CONCATENATE(main_, APPLICATION)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
@@ -79,7 +79,7 @@ int main(int argc, char * argv[], char * envp[])
 
       //return iExitCode;
 
-#else
+#elif !defined(_UWP)
 
    papp->set_args(argc, argv, envp);
 

@@ -194,7 +194,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_frame_window::SaveWindowRectTaskProcedure()
+void simple_frame_window::task_save_window_placement()
 {
 
    ::output_debug_string("_task_save_window_rect start\n");
@@ -229,7 +229,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
       }
 
-      if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
+      if (m_durationLastSaveWindowRectRequest.elapsed() < 150_ms)
       {
 
          preempt(150_ms);
@@ -238,7 +238,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
       else if (m_bPendingSaveWindowRect)
       {
 
-         _thread_save_window_placement();
+         task_intensive_save_window_placement();
 
          m_durationLastSaveWindowRect.Now();
 
@@ -252,13 +252,59 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
       else
       {
 
-         preempt(1_s);
+         preempt(150_ms);
 
       }
 
    }
 
    ::output_debug_string("_task_save_window_rect end\n");
+
+}
+
+
+void simple_frame_window::task_intensive_save_window_placement()
+{
+
+   while (::task_get_run())
+   {
+
+      preempt(300_ms);
+
+      if (layout().m_eflag)
+      {
+
+         continue;
+
+      }
+
+      if (m_durationLastSaveWindowRect.elapsed() < 300_ms)
+      {
+
+         continue;
+
+      }
+
+      try
+      {
+
+         m_bSizeMove = false;
+
+         m_bPendingSaveWindowRect = false;
+
+         WindowDataSaveWindowRect();
+
+         break;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      m_bPendingSaveWindowRect = true;
+
+   }
 
 }
 
@@ -279,15 +325,15 @@ void simple_frame_window::defer_save_window_placement()
 
    m_durationLastSaveWindowRectRequest.Now();
 
-   __defer_branch(SaveWindowRect);
+   __defer_branch(task_save_window_placement);
 
 }
 
 
-bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+bool simple_frame_window::WindowDataLoadWindowRect()
 {
 
-   if (wfi_is_up_down())
+   if (wfi_has_up_down())
    {
 
       if (!(m_uiUserInteractionFlags & ::user::interaction_wfi_up_down_loading))
@@ -346,7 +392,7 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
    INFORMATION("");
    INFORMATION("");
 
-   return ::experience::frame_window::WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
+   return ::experience::frame_window::WindowDataLoadWindowRect();
 
 }
 
@@ -354,7 +400,7 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 void simple_frame_window::WindowDataSaveWindowRect()
 {
 
-   if(wfi_is_up_down())
+   if(wfi_has_up_down())
    {
 
       bool bDown;
@@ -407,56 +453,6 @@ bool simple_frame_window::_001OnBeforeAppearance()
    }
 
    return true;
-
-}
-
-
-void simple_frame_window::_thread_save_window_placement()
-{
-
-   while (::task_get_run())
-   {
-
-      if (!task_sleep(300'000_us))
-      {
-
-         break;
-
-      }
-
-      if (layout().m_eflag)
-      {
-
-         continue;
-
-      }
-
-      if (m_durationLastSaveWindowRect.elapsed() < 300_ms)
-      {
-
-         continue;
-
-      }
-
-      try
-      {
-
-         m_bSizeMove = false;
-
-         m_bPendingSaveWindowRect = false;
-
-         WindowDataSaveWindowRect();
-
-         break;
-
-      }
-      catch (...)
-      {
-
-      }
-      m_bPendingSaveWindowRect = true;
-
-   }
 
 }
 
@@ -776,7 +772,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
 #else
 
-         m_bWindowFrame = get_parent() == nullptr || wfi_is_up_down();
+         m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();
 
 #endif
 
@@ -1639,7 +1635,7 @@ void simple_frame_window::on_message_app_exit(::message::message * pmessage)
 void simple_frame_window::on_message_close(::message::message * pmessage)
 {
 
-   if (wfi_is_up_down())
+   if (wfi_has_up_down())
    {
 
       string strImpact = m_atom;
@@ -1973,10 +1969,10 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    //m_bLockSketchToDesign = true;
 
-   if(puiParent == nullptr || wfi_is_up_down())
+   if(puiParent == nullptr || wfi_has_up_down())
    {
 
-      if (wfi_is_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
+      if (wfi_has_up_down() && ::is_set(puiParent) && puiParent->m_bWfiUpDownTarget)
       {
 
          m_pupdowntarget = puiParent;
@@ -1986,20 +1982,24 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       if(should_save_window_rect())
       {
 
-         bool bForceRestore = false;
+         //bool bForceRestore = false;
 
-         bool bInitialFramePosition = true;
+         //bool bInitialFramePosition = true;
 
-         m_puserinteractionParent = puiParent;
+         //m_puserinteractionParent = puiParent;
 
          //WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
+
+         //_001FancyInitialFramePlacement();
+
+         initial_frame_placement();
 
          rectangleFrame = screen_rect();
 
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
          FORMATTED_INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
 
-         if (wfi_is_up_down())
+         if (wfi_has_up_down())
          {
 
             if (m_eupdown == updown_up)
@@ -2049,26 +2049,6 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
 
-      if (pusersystem->m_pcreate->m_bMakeVisible)
-      {
-
-         set_activation(e_activation_set_foreground);
-
-         //dwDefaultStyle |= WS_VISIBLE;
-
-      }
-      else
-      {
-
-         set_need_layout();
-
-         set_display(e_display_none);
-
-         INFORMATION("simple_frame_window::LoadFrame DISPLAY_NONE");
-
-      }
-
-      //design_display();
 
    }
 
@@ -2113,6 +2093,13 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
    {
 
       send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
+
+   }
+   
+   if (pusersystem->m_pcreate->m_bMakeVisible)
+   {
+
+      initial_frame_display();
 
    }
 
@@ -2190,109 +2177,109 @@ void simple_frame_window::on_frame_position()
 }
 
 
-bool simple_frame_window::_001InitialFramePlacement(bool bForceRestore)
-{
-
-   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
-   //{
-
-   //   set_need_layout();
-
-   //   set_need_redraw();
-
-   //   post_redraw();
-
-   //   return;
-
-   //}
-
-   auto papp = get_app();
-
-   try
-   {
-
-      if(!m_bWindowFrame)
-      {
-
-         display(e_display_full_screen);
-
-      }
-      else if (m_bFrameMoveEnable)
-      {
-
-         bool bHostTopLevel = is_host_top_level();
-
-         if (bHostTopLevel)
-         {
-
-            display(e_display_full_screen);
-
-         }
-         else if (papp->has_property("full_screen"))
-         {
-
-            display(e_display_full_screen);
-
-         }
-         else if (papp->has_property("wfi_maximize") && is_top_level_window())
-         {
-
-            display(e_display_zoomed);
-
-         }
-            //else if(papp->m_bExperienceMainFrame)
-            //{
-
-            //   if(is_frame_experience_enabled())
-            //   {
-
-            //      display(e_display_full_screen);
-
-            //   }
-            //   else
-            //   {
-
-            //      //best_monitor(nullptr,nullptr,true);
-
-            //      display(e_display_zoomed);
-
-            //   }
-
-            //}
-         else
-         {
-
-            m_bInitialFramePosition = true;
-
-            WindowDataLoadWindowRect(bForceRestore, true);
-
-         }
-
-      }
-
-      m_bInitialFramePosition = true;
-
-      get_app()->on_initial_frame_position(this);
-
-      //on_frame_position();
-
-   }
-   catch (...)
-   {
-
-   }
-
-   //set_need_layout();
-
-   //set_need_redraw();
-
-   //m_bLockSketchToDesign = false;
-
-   //post_redraw();
-
-   return true;
-
-}
+//bool simple_frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
+//{
+//
+//   //if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+//   //{
+//
+//   //   set_need_layout();
+//
+//   //   set_need_redraw();
+//
+//   //   post_redraw();
+//
+//   //   return;
+//
+//   //}
+//
+//   auto papp = get_app();
+//
+//   try
+//   {
+//
+//      if(!m_bWindowFrame)
+//      {
+//
+//         display(e_display_full_screen);
+//
+//      }
+//      else if (m_bFrameMoveEnable)
+//      {
+//
+//         bool bHostTopLevel = is_host_top_level();
+//
+//         if (bHostTopLevel)
+//         {
+//
+//            display(e_display_full_screen);
+//
+//         }
+//         else if (papp->has_property("full_screen"))
+//         {
+//
+//            display(e_display_full_screen);
+//
+//         }
+//         else if (papp->has_property("wfi_maximize") && is_top_level_window())
+//         {
+//
+//            display(e_display_zoomed);
+//
+//         }
+//            //else if(papp->m_bExperienceMainFrame)
+//            //{
+//
+//            //   if(is_frame_experience_enabled())
+//            //   {
+//
+//            //      display(e_display_full_screen);
+//
+//            //   }
+//            //   else
+//            //   {
+//
+//            //      //best_monitor(nullptr,nullptr,true);
+//
+//            //      display(e_display_zoomed);
+//
+//            //   }
+//
+//            //}
+//         else
+//         {
+//
+//            m_bInitialFramePosition = true;
+//
+//            WindowDataLoadWindowRect(bForceRestore, true);
+//
+//         }
+//
+//      }
+//
+//      m_bInitialFramePosition = true;
+//
+//      get_app()->on_initial_frame_position(this);
+//
+//      //on_frame_position();
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   //set_need_layout();
+//
+//   //set_need_redraw();
+//
+//   //m_bLockSketchToDesign = false;
+//
+//   //post_redraw();
+//
+//   return true;
+//
+//}
 
 
 
@@ -2824,7 +2811,7 @@ void simple_frame_window::defer_create_notification_icon()
 bool simple_frame_window::updown_get_up_enable()
 {
 
-   return m_pupdowntarget != nullptr && wfi_is_up_down() && wfi_is_down();
+   return m_pupdowntarget != nullptr && wfi_has_up_down() && wfi_is_down();
 
 }
 
@@ -2832,7 +2819,7 @@ bool simple_frame_window::updown_get_up_enable()
 bool simple_frame_window::updown_get_down_enable()
 {
 
-   return m_pupdowntarget != nullptr && wfi_is_up_down() && wfi_is_up();
+   return m_pupdowntarget != nullptr && wfi_has_up_down() && wfi_is_up();
 
 }
 
@@ -3991,14 +3978,14 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 
    }
 
-   if(bMakeVisible)
-   {
+   //if(bMakeVisible)
+   //{
 
-      //OnUpdateToolWindow(bMakeVisible);
+   //   //OnUpdateToolWindow(bMakeVisible);
 
-      _001InitialFramePlacement();
+   //   _001FancyInitialFramePlacement();
 
-   }
+   //}
 
 }
 

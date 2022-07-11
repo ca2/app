@@ -1874,7 +1874,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
 {
 
-   auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile);
+   auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_share_deny_none);
 
    if (!::is_ok(preader))
    {

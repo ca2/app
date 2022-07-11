@@ -97,9 +97,6 @@
     <Filter Include="Source Files\networking\sockets\bsd\smtp">
       <UniqueIdentifier>{5a83b085-9d96-441a-9f1c-25ae53981a8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\netserver">
-      <UniqueIdentifier>{62b1d2f2-12c3-4930-8d9e-62aec803af62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\networking">
       <UniqueIdentifier>{d0661fd2-af6f-47d1-a3e2-e708bc6fce09}</UniqueIdentifier>
     </Filter>
@@ -713,15 +710,6 @@
     <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp">
       <Filter>Source Files\networking\sockets\bsd\smtp</Filter>
     </ClCompile>
-    <ClCompile Include="networking\netserver\socket.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_handler.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\netserver\socket_thread.cpp">
-      <Filter>Source Files\networking\netserver</Filter>
-    </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
@@ -757,15 +745,6 @@
     </ClCompile>
     <ClCompile Include="mathematics\kissfft\ifftd.cpp">
       <Filter>Source Files\mathematics\kissfft</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_handler.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\networking_application_socket.cpp">
-      <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

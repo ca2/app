@@ -260,7 +260,7 @@ namespace user
 
       m_bSizeMove = false;
 
-      m_bEatsDoubleClick = true;
+      //m_bEatsDoubleClick = true;
 
       m_pointScroll.x = 0;
       m_pointScroll.y = 0;
@@ -1897,13 +1897,6 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
-
-      if (m_bEatsDoubleClick)
-      {
-
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &interaction::on_message_left_button_double_click);
-
-      }
 
       primitive::install_message_routing(pchannel);
 
@@ -4862,7 +4855,7 @@ namespace user
    void interaction::on_message_display_change(::message::message * pmessage)
    {
 
-      _001InitialFramePlacement();
+      //_001FancyInitialFramePlacement();
 
    }
 
@@ -8718,7 +8711,15 @@ namespace user
    }
 
 
-   bool interaction::WindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
+   bool interaction::WindowDataLoadWindowRect()
+   {
+
+      return false;
+
+   }
+
+
+   bool interaction::FancyWindowDataLoadWindowRect(bool bForceRestore, bool bInitialFramePosition)
    {
 
       return false;
@@ -16805,34 +16806,6 @@ namespace user
    }
 
 
-   void interaction::on_message_left_button_double_click(::message::message * pmessage)
-   {
-
-      if (m_bEatsDoubleClick)
-      {
-
-         pmessage->m_bRet = true;
-
-      }
-
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      auto pitem = hit_test(pmouse);
-
-      on_click(pitem);
-
-      //pmessage->m_bRet = on_click(pitem);
-
-   }
-
-
-
-   //void interaction::on_message_set_focus(::message::message* pmessage)
-   //{
-
-   //}
-
-
    void interaction::on_message_left_button_up(::message::message * pmessage)
    {
 
@@ -18140,65 +18113,76 @@ namespace user
    }
 
 
-   bool interaction::_001InitialFramePlacement(bool bForceRestore)
-   {
-
-      ::rectangle_i32 rectangleWindow;
-
-      bool bSet = false;
-
-      __pointer(::aura::application) papp = get_app();
-
-      if (m_bExtendOnParent ||
-         (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
-      {
-
-         auto puserinteractionParent = get_parent();
-
-         if (puserinteractionParent)
-         {
-
-            puserinteractionParent->get_client_rect(rectangleWindow);
-
-            bSet = true;
-
-         }
-
-      }
-
-      if (!bSet)
-      {
-
-         if (!_001InitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      display(e_display_normal);
-
-      place(rectangleWindow);
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      post_redraw();
-
-      return true;
-
-   }
+   // void interaction::initial_frame_placement()
+   // {
 
 
-   bool interaction::_001InitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
-   {
+   // }
 
-      return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
 
-   }
+   //bool interaction::_001FancyInitialFramePlacement(bool bForceRestore)
+   //{
+
+   //   return false;
+
+   //}
+
+   //    ::rectangle_i32 rectangleWindow;
+
+   //    bool bSet = false;
+
+   //    __pointer(::aura::application) papp = get_app();
+
+   //    if (m_bExtendOnParent ||
+   //       (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
+   //    {
+
+   //       auto puserinteractionParent = get_parent();
+
+   //       if (puserinteractionParent)
+   //       {
+
+   //          puserinteractionParent->get_client_rect(rectangleWindow);
+
+   //          bSet = true;
+
+   //       }
+
+   //    }
+
+   //    if (!bSet)
+   //    {
+
+   //       if (!_001FancyInitialFramePlacement(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 }))
+   //       {
+
+   //          return false;
+
+   //       }
+
+   //    }
+
+   //    display(e_display_normal);
+
+   //    place(rectangleWindow);
+
+   //    set_need_layout();
+
+   //    set_need_redraw();
+
+   //    post_redraw();
+
+   //    return true;
+
+   // }
+
+
+   // bool interaction::_001FancyInitialFramePlacement(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize)
+   // {
+
+   //    return calculate_window_rectangle_in_main_monitor(lprect, rectangleOptionalRateOrSize);
+
+   // }
 
 
    //void interaction::destroy()
@@ -18250,7 +18234,7 @@ namespace user
    }
 
 
-   bool interaction::wfi_is_up_down()
+   bool interaction::wfi_has_up_down()
    {
 
       return m_ewindowflag & e_window_flag_updown;

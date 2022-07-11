@@ -267,7 +267,6 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSizeParent);
       DECLARE_MESSAGE_HANDLER(_001OnHelpHitTest);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);

@@ -133,7 +133,7 @@ namespace user
       ::draw2d::icon* get_draw_icon() override;
 
       
-      void get_client_rect(RECTANGLE_I32 * prectangle) override;
+      //void get_client_rect(RECTANGLE_I32 * prectangle) override;
 
       
       virtual bool is_translucid_user_style(enum_style estyle);
@@ -185,9 +185,12 @@ namespace user
 
       bool is_frame_window() override;
 
-      using ::user::box::_001InitialFramePlacement;
+      //using ::user::box::_001FancyInitialFramePlacement;
 
-      bool _001InitialFramePlacement(bool bForceRestore = false) override;
+      //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
+
+      virtual void initial_frame_placement();
+      virtual void initial_frame_display();
 
       ::size_i32 get_window_minimum_size() override;
 

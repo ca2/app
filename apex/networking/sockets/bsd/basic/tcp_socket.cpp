@@ -362,6 +362,9 @@ namespace sockets
 
       }
 
+
+
+
 //      if(socket_handler()->get_count() >= FD_SETSIZE)
 //      {
 //
@@ -374,7 +377,7 @@ namespace sockets
 //      }
 
       set_connecting(false);
-      SetSocks4(false);
+      //SetSocks4(false);
 
 //      if(socket_handler()->PoolEnabled())
 //      {

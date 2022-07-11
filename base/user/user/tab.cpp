@@ -1810,6 +1810,14 @@ namespace user
             m_estate = state_other_tab_button_down;
 
          }
+         else
+         {
+            
+            pmouse->m_bRet = true;
+
+            pmouse->m_lresult = 1;
+
+         }
 
       }
 
@@ -1897,6 +1905,14 @@ namespace user
 
       get_data()->m_bDrag = false;
 
+   }
+
+
+   void tab::on_message_left_button_double_click(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = m_pitemClick.is_set();
+      
    }
 
 
@@ -2683,11 +2699,12 @@ namespace user
 
       //install_hover_default_mouse_handling(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tab::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::on_message_show_window);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
       MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);

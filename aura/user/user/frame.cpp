@@ -574,6 +574,20 @@ namespace user
    }
 
 
+   void frame::initial_frame_display()
+   {
+      
+      display();
+
+      set_activation(e_activation_set_foreground);
+
+      set_need_redraw();
+      
+      post_redraw();
+
+   }
+
+
    size_i32 frame::get_window_minimum_size()
    {
 

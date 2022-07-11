@@ -260,7 +260,7 @@ namespace user
 
       m_bSizeMove = false;
 
-      m_bEatsDoubleClick = true;
+      //m_bEatsDoubleClick = true;
 
       m_pointScroll.x = 0;
       m_pointScroll.y = 0;
@@ -1897,13 +1897,6 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
-
-      if (m_bEatsDoubleClick)
-      {
-
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &interaction::on_message_left_button_double_click);
-
-      }
 
       primitive::install_message_routing(pchannel);
 
@@ -16811,34 +16804,6 @@ namespace user
       //      }
 
    }
-
-
-   void interaction::on_message_left_button_double_click(::message::message * pmessage)
-   {
-
-      if (m_bEatsDoubleClick)
-      {
-
-         pmessage->m_bRet = true;
-
-      }
-
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      auto pitem = hit_test(pmouse);
-
-      on_click(pitem);
-
-      //pmessage->m_bRet = on_click(pitem);
-
-   }
-
-
-
-   //void interaction::on_message_set_focus(::message::message* pmessage)
-   //{
-
-   //}
 
 
    void interaction::on_message_left_button_up(::message::message * pmessage)

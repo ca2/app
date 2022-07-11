@@ -481,6 +481,18 @@ namespace experience
    }
 
 
+   void dock_manager::cancel_docking()
+   {
+      
+      m_bDocking = false;
+
+      auto pwindowing = m_pframewindow->windowing();
+
+      pwindowing->release_mouse_capture();
+      
+   }
+
+
    ::user::button * dock_manager::dock_button()
    {
 

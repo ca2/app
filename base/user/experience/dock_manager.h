@@ -27,7 +27,7 @@ namespace experience
 
 
       dock_manager();
-      virtual ~dock_manager();
+      ~dock_manager() override;
 
 
       virtual void initialize_dock_manager(::experience::frame_window* pframewindow);
@@ -47,8 +47,10 @@ namespace experience
 
       void set_dock_mask(e_dock edock);
       e_dock get_dock_mask();
-
+      
       bool window_is_docking();
+
+      virtual void cancel_docking();
 
       bool set_frame_window(frame_window * pframewindow);
 

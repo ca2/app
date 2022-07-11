@@ -53,7 +53,6 @@ namespace user
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
@@ -648,41 +647,6 @@ namespace user
       }
       pmouse->previous();
    }
-
-   void control_bar::on_message_left_button_double_click(::message::message * pmessage)
-   {
-      auto pmouse = pmessage->m_union.m_pmouse;
-      pmouse->previous();
-   }
-
-//    void control_bar::_001OnIdleUpdateCmdUI(::message::message * pmessage)
-//    {
-//       __pointer(::user::message) pmessage(pmessage);
-//       // handle delay hide/show
-//       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
-//       ::u32 swpFlags = 0;
-//       if ((m_nStateFlags & delayHide) && bVis)
-//          swpFlags = SWP_HIDEWINDOW;
-//       else if ((m_nStateFlags & delayShow) && !bVis)
-//          swpFlags = SWP_SHOWWINDOW;
-//       m_nStateFlags &= ~(delayShow|delayHide);
-//       if (swpFlags != 0)
-//       {
-//          set_window_position(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
-//       }
-
-//       // the style must be visible and if it is docked
-//       // the dockbar style must also be visible
-//       if ((GetStyle() & WS_VISIBLE))
-//       {
-//          __pointer(::user::frame_window) pTarget = (get_owner());
-//          if (pTarget == nullptr)
-//             pTarget = (get_parent_frame());
-//          if (pTarget != nullptr)
-//             OnUpdateCmdUI(pTarget, pmessage->m_wparam != false);
-//       }
-//       pmessage->set_lresult(0L);
-//    }
 
 
    void control_bar::handle(::topic * ptopic, ::context * pcontext)

@@ -141,6 +141,7 @@ namespace experience
       m_bSizeEnable = true;
       m_bMenuEnable = true;
       m_bEnableFrameExperience = true;
+      //m_bEatsDoubleClick = false;
 
       m_eupdown = updown_normal_frame;
 

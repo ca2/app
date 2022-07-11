@@ -696,6 +696,18 @@ namespace experience
    }
 
 
+   void size_manager::cancel_sizing()
+   {
+      
+      m_eframeSizing = e_frame_none;
+      
+      auto pwindowing = m_pframewindow->windowing();
+
+      pwindowing->release_mouse_capture();
+
+   }
+
+
    void size_manager::SetGripMask(enum_grip egrip)
    {
 

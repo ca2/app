@@ -210,7 +210,7 @@ namespace user
       ::windowing::window *                     m_pwindow;
 
 
-      bool                                      m_bEatsDoubleClick;
+      //bool                                      m_bEatsDoubleClick;
 
 
       //__pointer(shape_array<::draw2d::region >) m_pshapeaClip;
@@ -1350,8 +1350,6 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);

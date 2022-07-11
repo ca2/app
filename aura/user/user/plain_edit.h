@@ -301,9 +301,18 @@ namespace user
 
       virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
-
+      
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(on_message_context_menu);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -465,15 +474,8 @@ namespace user
       bool CanRedo();
       ::count GetRedoBranchCount();
 
-      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       void VirtualOnSize(::draw2d::graphics_pointer & pgraphics);
-      DECLARE_MESSAGE_HANDLER(_001OnPaint);
-      DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(on_message_context_menu);
-      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
-      DECLARE_MESSAGE_HANDLER(on_message_size);
-      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
-      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+
 
 
       virtual __pointer(::data::item) on_allocate_item();

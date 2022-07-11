@@ -40,6 +40,9 @@ namespace experience
       e_border GetBorderMask();
 
       bool window_is_moving();
+      
+      virtual void cancel_moving();
+      
       //void MoveWindow(void * oswindow, const ::point_i32 & point);
       //void SetSWPFlags(::u32 uFlags);
 

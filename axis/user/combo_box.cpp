@@ -66,7 +66,6 @@ namespace user
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
       //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::on_message_set_focus);
@@ -1548,48 +1547,6 @@ namespace user
       return m_plistbox != nullptr && m_plistbox->is_window_visible(e_layout_sketch);
 
    }
-
-
-   void combo_box::on_message_left_button_double_click(::message::message * pmessage)
-   {
-
-      on_message_left_button_down(pmessage);
-
-   }
-
-
-   //void combo_box::handle(::topic * ptopic, ::context * pcontext)
-   //{
-
-   //   if(ptopic->m_atom == ::id_after_change_cur_sel)
-   //   {
-
-   //      auto puserinteraction = ptopic->user_interaction();
-
-   //      if(puserinteraction == m_plistbox)
-   //      {
-
-   //         set_current_item(ptopic->m_item, ptopic->m_actioncontext);
-
-   //         _001ShowDropDown(false);
-
-   //         ptopic->Ret();
-
-   //         set_need_redraw();
-
-   //         post_redraw();
-
-   //         keyboard_set_focus_next();
-
-   //         return;
-
-   //      }
-
-   //   }
-
-   //   ::user::plain_edit::handle(ptopic, pcontext);
-
-   //}
 
 
 } // namespace user

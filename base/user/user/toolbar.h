@@ -180,7 +180,6 @@ namespace user
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      //DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);

@@ -367,12 +367,12 @@ namespace opengl
    }
 
 
-   void context_fbo::start()
+   void context_fbo::start_drawing()
    {
       
       //::e_status estatus =
       
-      context::start();
+      context::start_drawing();
       
       //return estatus;
    

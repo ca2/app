@@ -126,7 +126,7 @@ namespace draw2d
    bool region::create_polygon(const polygon& polygon, ::draw2d::enum_fill_mode efillmode)
    {
 
-      return create_polygon(polygon.data(), polygon.size(), efillmode);
+      return create_polygon(polygon.data(), (::i32) polygon.size(), efillmode);
 
    }
 

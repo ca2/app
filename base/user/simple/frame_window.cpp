@@ -2049,26 +2049,6 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
       FORMATTED_INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __c_str(const_layout().sketch().display().eflag()));
 
-      if (pusersystem->m_pcreate->m_bMakeVisible)
-      {
-
-         set_activation(e_activation_set_foreground);
-
-         //dwDefaultStyle |= WS_VISIBLE;
-
-      }
-      else
-      {
-
-         set_need_layout();
-
-         set_display(e_display_none);
-
-         INFORMATION("simple_frame_window::LoadFrame DISPLAY_NONE");
-
-      }
-
-      //design_display();
 
    }
 
@@ -2113,6 +2093,13 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
    {
 
       send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
+
+   }
+   
+   if (pusersystem->m_pcreate->m_bMakeVisible)
+   {
+
+      initial_frame_display();
 
    }
 

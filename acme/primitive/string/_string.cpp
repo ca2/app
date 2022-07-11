@@ -72,7 +72,7 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
 
    }
 
-   if (psz > pszStart)
+   if (pszNext > pszStart)
    {
 
       str.append(pszStart, pszNext - pszStart);

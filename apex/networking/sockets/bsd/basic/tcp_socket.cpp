@@ -363,9 +363,6 @@ namespace sockets
       }
 
 
-      m_socks4_host = m_psockethandler->GetSocks4Host();
-      m_socks4_port = m_psockethandler->GetSocks4Port();
-      m_socks4_userid = m_psockethandler->GetSocks4Userid();
 
 
 //      if(socket_handler()->get_count() >= FD_SETSIZE)

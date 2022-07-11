@@ -190,6 +190,7 @@ namespace user
       //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
 
       virtual void initial_frame_placement();
+      virtual void initial_frame_display();
 
       ::size_i32 get_window_minimum_size() override;
 

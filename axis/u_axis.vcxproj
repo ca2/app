@@ -274,12 +274,6 @@
     <ClCompile Include="mathematics\kissfft\ifft.cpp" />
     <ClCompile Include="mathematics\kissfft\ifftd.cpp" />
     <ClCompile Include="networking\email_department.cpp" />
-    <ClCompile Include="networking\netserver\socket.cpp" />
-    <ClCompile Include="networking\netserver\socket_handler.cpp" />
-    <ClCompile Include="networking\netserver\socket_thread.cpp" />
-    <ClCompile Include="networking\networking_application.cpp" />
-    <ClCompile Include="networking\networking_application_handler.cpp" />
-    <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp" />
     <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp" />
     <ClCompile Include="platform\application.cpp" />

@@ -218,6 +218,9 @@
     <Filter Include="Source Files\networking\http">
       <UniqueIdentifier>{aed352f1-9768-4e19-8807-abaa907541ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\networking\netserver">
+      <UniqueIdentifier>{414a359c-1bac-4154-9597-7a54f9c8d260}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -693,6 +696,24 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_handler.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking_application_socket.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_handler.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1195,9 +1195,6 @@
     <ClCompile Include="primitive\geometry2d\_shape.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\_main.cpp">
-      <Filter>Source Files\operating_system\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\enumerator.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>

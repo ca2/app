@@ -54,7 +54,7 @@ typedef u64 file_time_t;
 #endif
 
 
-#if defined(ANDROID) || defined(APPLE_IOS) || defined(UWP)
+#if defined(ANDROID) || defined(APPLE_IOS) || defined(_UWP)
 #define SANDBOXED_PLATFORM
 #endif
 

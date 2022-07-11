@@ -562,7 +562,14 @@ namespace user
    void frame::initial_frame_placement()
    {
 
+#if defined(SANDBOXED_PLATFORM)
+
+
+#else
+
       WindowDataLoadWindowRect();
+
+#endif
 
    }
 

@@ -114,7 +114,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_app_app.cpp">
+    <ClCompile Include="_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
